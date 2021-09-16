@@ -70,8 +70,7 @@ class PhoneSignUpAction extends ReduxAction<AppState> {
 
     /// initialize the [createAccountEndpoint] endpoint used to create a new user
     final String createAccountEndpoint =
-        EndpointContext.createUserByPhoneEndpoint(
-            AppWrapperBase.of(context)!.appContexts);
+        AppWrapperBase.of(context)!.customContext!.createUserByPhoneEndpoint;
 
     /// initialize the http client from [AppWrapperBase]
     final IGraphQlClient _httpClient =

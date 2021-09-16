@@ -42,6 +42,7 @@ import './onboarding_utils_2_test.mocks.dart';
 void main() {
   // initial set up
   setupFirebaseAuthMocks();
+
   final DeepLinkSubject deepLink = DeepLinkSubject();
 
   setUpAll(() async {

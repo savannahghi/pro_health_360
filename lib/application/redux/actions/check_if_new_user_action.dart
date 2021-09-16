@@ -37,8 +37,8 @@ class CheckIfNewUserAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     // get the verify phone endpoint based on the context
-    final String verifyPhoneEndpoint = EndpointContext.verifyPhoneEndpoint(
-        AppWrapperBase.of(context)!.appContexts);
+    final String verifyPhoneEndpoint =
+        AppWrapperBase.of(context)!.customContext!.verifyPhoneEndpoint;
 
     // create the payload
     final Map<String, dynamic> _variables = <String, String>{

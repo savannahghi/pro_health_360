@@ -35,6 +35,7 @@ void main() {
   setUpAll(() async {
     await Firebase.initializeApp();
   });
+
   group('PhoneLoginAction', () {
     late Store<AppState> store;
 

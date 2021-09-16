@@ -70,8 +70,11 @@ class ForgotPinOtpWidget extends StatelessWidget {
                       loader: const SILPlatformLoader(),
                       generateOtpFunc: GraphQlUtils().generateRetryOtp,
                       client: AppWrapperBase.of(context)?.graphQLClient,
-                      retrySendOtpEndpoint:
-                          EndpointContext.retrySendOtpEndpoint,
+                      retrySendOtpEndpoint: (List<AppContext> contexts) {
+                        return AppWrapperBase.of(context)!
+                            .customContext
+                            ?.retryResendOtpEndpoint;
+                      },
                       appWrapperContext:
                           EndPointsContextSubject().contexts.valueOrNull,
                       successCallBack: (

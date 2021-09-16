@@ -16,7 +16,6 @@ import 'package:intl/intl.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/result.dart';
@@ -261,8 +260,8 @@ Future<String> getUploadID({
         AppWrapperBase.of(context)!.graphQLClient;
 
     /// initialize the [uploadFileEndpoint]
-    final String endPoint = EndpointContext.uploadFileEndpoint(
-        EndPointsContextSubject().contexts.valueOrNull!);
+    final String endPoint =
+        AppWrapperBase.of(context)!.customContext!.uploadFileEndPoint;
 
     final ProcessedResponse processedResponse = processHttpResponse(
         await _httpClient.callRESTAPI(

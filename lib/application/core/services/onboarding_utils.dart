@@ -18,7 +18,6 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
-import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -63,8 +62,8 @@ Future<void> updateUserPin({
 
   final IGraphQlClient _httpClient = AppWrapperBase.of(context)!.graphQLClient;
 
-  final String endPoint = EndpointContext.updateUserPinEndpoint(
-      EndPointsContextSubject().contexts.value);
+  final String endPoint =
+      AppWrapperBase.of(context)!.customContext!.updateUserPinEndpoint;
 
   final http.Response response = await _httpClient.callRESTAPI(
       endpoint: endPoint, variables: _variables, method: httpPOST);
@@ -96,7 +95,7 @@ Future<ProcessedResponse> requestForANewToken({
 }) async {
   final IGraphQlClient _httpClient = AppWrapperBase.of(context)!.graphQLClient;
   final String refreshTokenEndpoint =
-      EndpointContext.refreshTokenEndpoint(thisAppContexts);
+      AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint;
 
   final Map<String, dynamic> refreshTokenVariables = <String, dynamic>{
     'refreshToken': refreshToken,

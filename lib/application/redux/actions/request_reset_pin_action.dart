@@ -45,8 +45,8 @@ class RequestResetPinAction extends ReduxAction<AppState> {
 
     // get the verify phone endpoint based on the context
 
-    final String resetPinResetEndpoint = EndpointContext.resetPinResetEndpoint(
-        AppWrapperBase.of(context)!.appContexts);
+    final String resetPinResetEndpoint =
+        AppWrapperBase.of(context)!.customContext!.pinResetEndpoint;
 
     // create the payload
     final Map<String, dynamic> _variables = <String, String>{

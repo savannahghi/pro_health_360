@@ -75,6 +75,7 @@ class _AppEntryPointState extends State<AppEntryPoint>
               appState.userProfileState!.auth!.idToken!,
               widget.appSetupData.customContext!.graphqlEndpoint,
             ),
+            baseContext: widget.appSetupData.customContext,
             child: Builder(
               builder: (BuildContext ctx) {
                 return PreLoadApp(

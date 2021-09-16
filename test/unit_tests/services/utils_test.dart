@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -12,7 +13,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
-import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 
@@ -107,6 +107,7 @@ void main() {
       'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
       'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
     });
+
     test('should return the correct instance of AppSetupData', () async {
       expect(getAppSetupData(testAppContexts.last), devAppSetupData);
 

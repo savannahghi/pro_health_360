@@ -19,6 +19,7 @@ import 'package:domain_objects/value_objects.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:app_wrapper/app_wrapper.dart';
@@ -41,6 +42,11 @@ import '../../../test_utils.dart';
     // ignore: always_specify_types
     customMocks: [MockSpec<GraphQlClient>(as: #BaseGraphQlClient)])
 void main() {
+  FlutterConfig.loadValueForTesting(<String, String>{
+    'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
+    'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+  });
+
   final Store<AppState> store =
       Store<AppState>(initialState: AppState.initial());
   final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();

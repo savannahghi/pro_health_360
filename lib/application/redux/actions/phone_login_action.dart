@@ -16,7 +16,6 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
@@ -73,8 +72,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           AppWrapperBase.of(context)!.graphQLClient;
 
       /// initialize the [loginByPhoneEndpoint] endpoint used to verify user logging in with phone number and PIN
-      final String endPoint = EndpointContext.loginByPhoneEndpoint(
-          EndPointsContextSubject().contexts.valueOrNull!);
+      final String endPoint =
+          AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
 
       /// network request is made to the backend to verify that the user provided credentials match those stored in our backend and result store in [processedResponse] variable
       final ProcessedResponse processedResponse = processHttpResponse(

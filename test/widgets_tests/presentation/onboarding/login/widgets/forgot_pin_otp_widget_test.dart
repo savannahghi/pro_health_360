@@ -64,7 +64,7 @@ void main() {
       expect(silPinCodeTextField, findsOneWidget);
     });
 
-    testWidgets('SILVerifyPhoneOtp successCallBack works correctly',
+    testWidgets('VerifyPhoneOtp successCallBack works correctly',
         (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
@@ -101,7 +101,18 @@ void main() {
       expect(find.byType(SILPinCodeTextField), findsOneWidget);
 
       await tester.tap(find.byType(SILPinCodeTextField));
-      await tester.pump();
+      await tester.pumpAndSettle();
+
+      final Finder resendOtpFinder = find.text(' Send the code again ');
+      expect(resendOtpFinder, findsOneWidget);
+      await tester.tap(resendOtpFinder);
+      await tester.pumpAndSettle();
+
+      final Finder resendRadioFinder = find.text('via Text Message');
+      expect(resendRadioFinder, findsOneWidget);
+      await tester.tap(resendRadioFinder);
+      await tester.pumpAndSettle();
+
       await tester.enterText(find.byType(SILPinCodeTextField), testOTP);
       await tester.pumpAndSettle(const Duration(seconds: 10));
       expect(find.byType(CreatePinPage), findsOneWidget);

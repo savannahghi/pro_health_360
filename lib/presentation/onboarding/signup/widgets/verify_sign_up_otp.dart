@@ -65,7 +65,11 @@ class VerifySignUpOTP extends StatelessWidget {
                   otp: phoneSignUpState.otp.toString(),
                   generateOtpFunc: GraphQlUtils().generateRetryOtp,
                   client: AppWrapperBase.of(context)!.graphQLClient,
-                  retrySendOtpEndpoint: EndpointContext.retrySendOtpEndpoint,
+                  retrySendOtpEndpoint: (List<AppContext> contexts) {
+                    return AppWrapperBase.of(context)!
+                        .customContext
+                        ?.retryResendOtpEndpoint;
+                  },
                   appWrapperContext: AppWrapperBase.of(context)!.appContexts,
                   loader: const SILPlatformLoader(),
                   changeNumberCallback: () => Navigator.of(context)

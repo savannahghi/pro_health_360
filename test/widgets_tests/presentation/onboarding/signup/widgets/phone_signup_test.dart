@@ -29,6 +29,7 @@ void main() {
   setUpAll(() async {
     await Firebase.initializeApp();
   });
+
   group('Phone signup page', () {
     final Store<AppState> store =
         Store<AppState>(initialState: AppState.initial());
