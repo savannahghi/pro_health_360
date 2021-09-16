@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/remote_config_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -15,6 +16,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:shared_themes/constants.dart';
@@ -25,6 +27,8 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await FlutterConfig.loadEnvVariables();
+
   await Firebase.initializeApp();
 
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
@@ -33,7 +37,8 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
       <DeviceOrientation>[DeviceOrientation.portraitUp]);
 
   // initialize firebase remote config
-  final RemoteConfigService remoteConfig = await RemoteConfigService.getInstance();
+  final RemoteConfigService remoteConfig =
+      await RemoteConfigService.getInstance();
   remoteConfig.init();
 
   final BeWellStateDatabase stateDB =
@@ -91,22 +96,22 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
 
   NavigateAction.setNavigatorKey(navigatorKey);
 
-  final String sentryDns = getSentryDSN(appContexts);
+  final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
   runZonedGuarded(() async {
     await SentryFlutter.init(
       (SentryFlutterOptions options) {
         options
-          ..dsn = sentryDns
+          ..dsn = appSetupData.sentryDsn
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
         BewellApp(
           store: store,
-          appContexts: appContexts,
           navigatorObserver: navigatorObserver,
           connectivityStatus: connectivityStatus,
           navigatorKey: navigatorKey,
+          appSetupData: appSetupData,
         ),
       ),
     );

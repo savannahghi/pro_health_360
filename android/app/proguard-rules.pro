@@ -15,3 +15,6 @@
 -keep class com.twilio.video.** { *; }
 -keep class com.twilio.common.** { *; }
 -keepattributes InnerClasses
+
+# flutter_config
+-keep class com.savannah.myafyahub.BuildConfig { *; }

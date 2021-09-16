@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/actions/app_review_action.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -61,15 +62,19 @@ Gender genderFromString(String g) {
   return Gender.unknown;
 }
 
-String getSentryDSN(List<AppContext> contexts) {
-  if (contexts.contains(AppContext.AppTest)) {
-    const String testingSentryDSN =
-        'https://6daca1fa1ebe4005a2daf15f0c4545e3@errors.bewell.co.ke/2';
-    return testingSentryDSN;
+AppSetupData getAppSetupData(AppContext context) {
+  switch (context) {
+    case AppContext.AppTest:
+      return devAppSetupData;
+    case AppContext.AppDemo:
+      return devAppSetupData;
+    case AppContext.AppProd:
+      return prodAppSetupData;
+    case AppContext.AppE2E:
+      return devAppSetupData;
+    default:
+      return devAppSetupData;
   }
-  const String prodSentryDSN =
-      'https://93f4de3f7bf446ffbbd84b3b43ebf7f8@errors.bewell.co.ke/3';
-  return prodSentryDSN;
 }
 
 Function() logoutUser({required BuildContext context}) {

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/domain/core/entities/core/result.dart';
@@ -7,9 +9,10 @@ import 'package:myafyahub/domain/core/entities/core/suggestion.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+
+import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 
@@ -24,13 +27,6 @@ void main() {
       expect(applyPayerPrimaryColor('Resolution'),
           AppColors.resolutionPrimaryColor);
     });
-  });
-
-  test('should return getSentryDSN per appContext', () {
-    expect(getSentryDSN(testAppContexts), isA<String>());
-    expect(getSentryDSN(testAppContexts), isNotNull);
-    expect(getSentryDSN(prodAppContexts), isA<String>());
-    expect(getSentryDSN(prodAppContexts), isNotNull);
   });
 
   test('should sentencecase username', () {
@@ -104,5 +100,23 @@ void main() {
           customDateTime: DateTime.parse('2021-05-18 13:27:00'),
         ).parsedExpireAt(int.parse('3600')),
         isA<String>());
+  });
+
+  group('getAppSetupData', () {
+    FlutterConfig.loadValueForTesting(<String, String>{
+      'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
+      'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+    });
+    test('should return the correct instance of AppSetupData', () async {
+      expect(getAppSetupData(testAppContexts.last), devAppSetupData);
+
+      expect(getAppSetupData(demoAppContexts.last), devAppSetupData);
+
+      expect(getAppSetupData(prodAppContexts.last), prodAppSetupData);
+
+      expect(getAppSetupData(e2eAppContexts.last), devAppSetupData);
+
+      expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
+    });
   });
 }

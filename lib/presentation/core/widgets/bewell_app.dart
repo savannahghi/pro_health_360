@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/check_connectivity_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -8,24 +9,23 @@ import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class BewellApp extends StatefulWidget {
-  const BewellApp(
-      {Key? key,
-      required this.navigatorObserver,
-      required this.store,
-      required this.connectivityStatus,
-      required this.navigatorKey,
-      required this.appContexts})
-      : super(key: key);
+  const BewellApp({
+    Key? key,
+    required this.navigatorObserver,
+    required this.store,
+    required this.connectivityStatus,
+    required this.navigatorKey,
+    required this.appSetupData,
+  }) : super(key: key);
 
   final NavigatorObserver navigatorObserver;
   final Store<AppState> store;
   final ConnectivityStatus connectivityStatus;
   final GlobalKey<NavigatorState> navigatorKey;
-  final List<AppContext> appContexts;
+  final AppSetupData appSetupData;
 
   @override
   _BewellAppState createState() => _BewellAppState();
@@ -55,8 +55,8 @@ class _BewellAppState extends State<BewellApp> {
   @override
   Widget build(BuildContext context) {
     return AppEntryPoint(
+      appSetupData: widget.appSetupData,
       appStore: widget.store,
-      thisAppContexts: widget.appContexts,
       appName: testAppName,
       appNavigatorKey: widget.navigatorKey,
       appNavigatorObservers: <NavigatorObserver>[
