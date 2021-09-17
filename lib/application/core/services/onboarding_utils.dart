@@ -524,7 +524,7 @@ Object actionWrapError(
         message: noUserFoundString,
         isError: true,
         primaryActionCallback: () =>
-            Navigator.pushReplacementNamed(context, BWRoutes.createAccount),
+            Navigator.pushReplacementNamed(context, BWRoutes.phoneLogin),
         primaryActionText: createAccountButtonText,
         buttonColor: AppColors.primaryColor,
       );

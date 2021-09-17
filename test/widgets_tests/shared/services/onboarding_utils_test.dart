@@ -1160,8 +1160,8 @@ void main() {
     });
 
     testWidgets(
-        'actionWrapError should return error if runtimeType is SILException for no user found',
-        (WidgetTester tester) async {
+        'actionWrapError should return error if runtimeType is SILException '
+        'for no user found', (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 

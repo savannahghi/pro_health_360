@@ -21,7 +21,6 @@ class BWRoutes {
   static const String resumeWithPin = '/resumeWithPin';
 
   // onboarding routes
-  static const String createAccount = '/createAccount';
   static const String setupUserAsTester = '/setupUserAsTester';
 
   static const String enterEmail = '/enterEmail';
@@ -68,7 +67,7 @@ class BWRoutes {
 
   // loans placeholder
   static const String webView = '/webView';
- 
+
   static const String introduction = 'introduction';
   static const String selectAssistantPage = '/selectAssistantPage';
   static const String selectCoverageInfoPage = '/selectCoverageInfoPage';
@@ -83,6 +82,5 @@ class BWRoutes {
 List<String> unProtectedRoutes = <String>[
   BWRoutes.landing,
   BWRoutes.phoneLogin,
-  BWRoutes.createAccount,
   BWRoutes.resetPin,
 ];

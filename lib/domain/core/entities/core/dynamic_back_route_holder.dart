@@ -13,7 +13,7 @@ class DynamicBackRouteHolder {
   /// holds back route for [CreatePinPage] so that the back button can work as expected
   /// depending on where the user came from
   BehaviorSubject<String> createPINPage =
-      BehaviorSubject<String>.seeded(BWRoutes.createAccount);
+      BehaviorSubject<String>.seeded(BWRoutes.phoneLogin);
 
   static final DynamicBackRouteHolder _singleton =
       DynamicBackRouteHolder._internal();

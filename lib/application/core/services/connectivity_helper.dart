@@ -68,10 +68,11 @@ void moveCamera(
     (GoogleMapController controller) => controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-            target: _locationData,
-            zoom: CAMERA_ZOOM,
-            bearing: CAMERA_BEARING,
-            tilt: CAMERA_TILT),
+          target: _locationData,
+          zoom: CAMERA_ZOOM,
+          bearing: CAMERA_BEARING,
+          tilt: CAMERA_TILT,
+        ),
       ),
     ),
   );

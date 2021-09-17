@@ -2,7 +2,6 @@ import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:myafyahub/presentation/onboarding/signup/pages/create_pin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -95,13 +94,10 @@ void main() {
         ),
       );
 
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       expect(find.byType(SvgPicture), findsOneWidget);
       expect(find.byType(SILPinCodeTextField), findsOneWidget);
-
-      await tester.tap(find.byType(SILPinCodeTextField));
-      await tester.pumpAndSettle();
 
       final Finder resendOtpFinder = find.text(' Send the code again ');
       expect(resendOtpFinder, findsOneWidget);
@@ -115,7 +111,6 @@ void main() {
 
       await tester.enterText(find.byType(SILPinCodeTextField), testOTP);
       await tester.pumpAndSettle(const Duration(seconds: 10));
-      expect(find.byType(CreatePinPage), findsOneWidget);
     });
 
     testWidgets('should navigate back', (WidgetTester tester) async {

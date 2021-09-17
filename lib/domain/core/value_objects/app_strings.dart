@@ -3,36 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:unicons/unicons.dart';
-
-class ConsentItem {
-  const ConsentItem(
-      {required this.title, required this.desc, required this.icon});
-
-  final String desc;
-  final IconData icon;
-  final String title;
-}
-
-List<ConsentItem> phoneItems = <ConsentItem>[
-  const ConsentItem(
-    title: 'Verification codes',
-    desc:
-        'We will send you verification codes via your email, phone number or via WhatsApp',
-    icon: UniconsLine.mobile_android,
-  ),
-  const ConsentItem(
-    title: 'Recovery',
-    desc: 'We will use your contact information to send you PIN recovery codes',
-    icon: UniconsLine.refresh,
-  ),
-  const ConsentItem(
-    title: 'Communication',
-    desc:
-        'We will use your contact information to communicate to you about our offers',
-    icon: UniconsLine.comments,
-  ),
-];
 
 const String requestTimeoutError =
     'We could not perform this process in time. Please try again';
@@ -69,17 +39,6 @@ class OnboardingStrings {
         'A valid phone number is required',
         name: 'phoneNo',
         desc: 'PhoneNumber text, used in errors',
-      );
-
-  String communicationPermRequiredText() => Intl.message(
-        'You have to allow communication to continue',
-        name: 'communication',
-        desc: 'PhoneNumber Communication text, used in errors',
-      );
-  String createAccountText() => Intl.message(
-        'Create an account',
-        name: 'createAccountText',
-        desc: 'text to tell user to create account, used in buttons',
       );
 
   String enterFirstNameText() => Intl.message(
@@ -134,12 +93,6 @@ class OnboardingStrings {
         'Date of birth is required',
         name: 'dateOfBirthRequiredText',
         desc: 'persons date of birth is required',
-      );
-
-  String selectDateOfBirthText() => Intl.message(
-        'Tap to select a date',
-        name: 'selectDateOfBirthText',
-        desc: 'user selects a date from a calender',
       );
 
   String saveContinueText() => Intl.message(
@@ -228,34 +181,10 @@ class OnboardingStrings {
         desc: 'user to secure their account with a new pin',
       );
 
-  String gladToMeetYouText() => Intl.message(
-        'Glad to meet you',
-        name: 'gladToMeetYouText',
-        desc: 'Welcome user',
-      );
-
-  String createAccountWithPhoneText() => Intl.message(
-        'Use your phone number to create an account',
-        name: 'createAccountWithPhoneText',
-        desc: 'user to use their phone number to create an account',
-      );
-
-  String genderText() => Intl.message(
-        'Gender',
-        name: 'genderText',
-        desc: 'persons gender, e.g male, female',
-      );
-
   String phoneNumberText() => Intl.message(
         'Phone number',
         name: 'phoneNumberText',
         desc: 'phone number',
-      );
-
-  String doneText() => Intl.message(
-        'Done',
-        name: 'doneText',
-        desc: 'indicate something is complete',
       );
 
   String forgotPINText() => Intl.message(
@@ -293,12 +222,6 @@ class OnboardingStrings {
         'Already have an account?  ',
         name: 'haveAnAccountText',
         desc: 'ask user if they have an existing account',
-      );
-
-  String allowPhoneNumberUsageText() => Intl.message(
-        'Allow My Afya Hub to use your phone number for communications.',
-        name: 'allowPhoneNumberUsageText',
-        desc: 'allow My Afya Hub to use your phone number for communication',
       );
 
   String verifyPhoneNumberText() => Intl.message(
@@ -808,7 +731,8 @@ const String fetchingYourLibraryText = 'Fetching your library';
 const String personalDetails = 'Personal details';
 const String personalDetailsDesc =
     'Tell us more about you. We use the information below to enhance your My Afya Hub experience.';
-final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} My Afya Hub';
+final String copyrightString =
+    'Copyright ©️ ${returnCurrentYear()} My Afya Hub';
 
 // this is the version of the currently running app.
 // it has to be defined as a const otherwise the compiler will return the default
@@ -908,6 +832,3 @@ const String noFeedDataMessage =
 const String noInternetConnection = 'No Internet Connection';
 
 const String duplicateRequestString = 'a similar request is under review';
-
-String idPhoto(String val) => 'Upload a photo of your $val';
-String noIDUploadText(String val) => 'Please upload your $val photo';

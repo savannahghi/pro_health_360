@@ -7,8 +7,8 @@ import 'package:myafyahub/domain/core/entities/login/phone_signup.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
 
-import 'package:myafyahub/presentation/onboarding/signup/pages/create_pin_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -73,13 +73,13 @@ class VerifySignUpOTP extends StatelessWidget {
                   appWrapperContext: AppWrapperBase.of(context)!.appContexts,
                   loader: const SILPlatformLoader(),
                   changeNumberCallback: () => Navigator.of(context)
-                      .pushReplacementNamed(BWRoutes.createAccount),
+                      .pushReplacementNamed(BWRoutes.phoneLogin),
                   successCallBack: (
                       {required String otp,
                       required Function toggleLoading}) async {
                     DynamicBackRouteHolder()
                         .createPINPage
-                        .add(BWRoutes.createAccount);
+                        .add(BWRoutes.phoneLogin);
                     // navigate the user to the set pin page and avoid user from navigating back to this page
                     await Navigator.of(context).pushReplacement(
                         MaterialPageRoute<dynamic>(
@@ -90,7 +90,7 @@ class VerifySignUpOTP extends StatelessWidget {
                 largeVerticalSizedBox,
                 SILNoBorderButton(
                   onPressed: () => Navigator.of(context)
-                      .pushReplacementNamed(BWRoutes.createAccount),
+                      .pushReplacementNamed(BWRoutes.phoneLogin),
                   text: onboardingStrings.backText(),
                   textColor: AppColors.greyColor,
                 ),

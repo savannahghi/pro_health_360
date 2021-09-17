@@ -24,16 +24,17 @@ void main() {
     const String endpoint =
         'https://profile-testing.healthcloud.co.ke/verify_phone';
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       storeTester = StoreTester<AppState>(
-          initialState: AppState.initial(), shouldThrowUserExceptions: true);
+        initialState: AppState.initial(),
+        shouldThrowUserExceptions: true,
+      );
       HttpOverrides.global = BWTestHttpOverrides();
     });
 
     testWidgets('should dispatch action and catch error',
         (WidgetTester tester) async {
-      // mocked response
       final http.Response response = http.Response(
         json.encode(<String, dynamic>{'statusCode': 408}),
         408,
@@ -89,9 +90,65 @@ void main() {
       expect(find.byKey(genericBottomSheetWidgetKey), findsOneWidget);
     });
 
-    testWidgets(
-        'should dispatch action and catch error when processHttpResponse is not ok with code 10',
+    testWidgets('should return correct state if run successfully',
         (WidgetTester tester) async {
+      await tester.runAsync(() async {
+        storeTester.dispatch(
+          PhoneSignUpStateAction(
+            phoneNumber: '+254728101710',
+            acceptCommunicationTerms: true,
+          ),
+        );
+
+        final http.Response response = http.Response(
+          json.encode(<String, dynamic>{'statusCode': 200, 'otp': '1234'}),
+          200,
+        );
+
+        callRESTAPIWhenThenAnswer(
+          endpoint: endpoint,
+          variables: <String, dynamic>{
+            'phoneNumber': '+254728101710',
+            'appId': 'test'
+          },
+          response: response,
+        );
+
+        const Widget widget = MaterialApp(
+          home: Material(
+            child: Center(
+              child: ElevatedButton(
+                onPressed: null,
+                child: Text('Go'),
+              ),
+            ),
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: widget,
+        );
+
+        final BuildContext context = tester.element(find.text('Go'));
+
+        storeTester.dispatch(
+          CheckIfNewUserAction(
+              context: context, flag: 'check_new_user', appSignature: 'test'),
+        );
+
+        final TestInfo<AppState> info =
+            await storeTester.waitUntil(CheckIfNewUserAction);
+
+        expect(info.state.miscState?.phoneSignUp?.otp, '1234');
+      });
+    });
+
+    testWidgets(
+        'should dispatch action and catch error when processHttpResponse is '
+        'not ok with code 10', (WidgetTester tester) async {
       // mocked response
       final http.Response response = http.Response(
         json.encode(<String, dynamic>{'code': 10}),
@@ -149,7 +206,8 @@ void main() {
     });
 
     testWidgets(
-        'should dispatch action and catch error when processHttpResponse is not ok with code 4 then navigate to login screen',
+        'should dispatch action and catch error when processHttpResponse is '
+        'not ok with code 4 then navigate to login screen',
         (WidgetTester tester) async {
       // mocked response
       final http.Response response = http.Response(

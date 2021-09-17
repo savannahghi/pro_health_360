@@ -58,24 +58,6 @@ class LandingPageActionsState extends State<LandingPageActions> {
                 ),
               ),
               mediumVerticalSizedBox,
-              SizedBox(
-                width: isLargeScreen ? number300 : double.infinity,
-                height: number52,
-                child: SILSecondaryButton(
-                  buttonKey: createAccountKey,
-                  borderColor: Theme.of(context).primaryColor,
-                  onPressed: () {
-                    BeWellFacebookEvents()
-                        .logger
-                        .logViewContent(id: 'click_create_account');
-                    // should navigate to [CreateAccountPage] page, which serves completely new users
-                    Navigator.pushNamed(context, BWRoutes.createAccount);
-                  },
-                  textColor: Theme.of(context).primaryColor,
-                  text: onboardingStrings.createAccountText(),
-                ),
-              ),
-              mediumVerticalSizedBox,
             ],
           ),
         );

@@ -5,10 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final DynamicBackRouteHolder holder = DynamicBackRouteHolder();
   test('BottomNavObj toJson', () {
-    expect(
-      holder.createPINPage.valueOrNull,
-      BWRoutes.createAccount,
-    );
     holder.createPINPage.add(BWRoutes.userProfile);
     expect(
       holder.createPINPage.valueOrNull,

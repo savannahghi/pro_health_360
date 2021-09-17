@@ -77,9 +77,10 @@ class ForgotPinOtpWidget extends StatelessWidget {
                       },
                       appWrapperContext:
                           EndPointsContextSubject().contexts.valueOrNull,
-                      successCallBack: (
-                          {required String otp,
-                          required Function toggleLoading}) async {
+                      successCallBack: ({
+                        required String otp,
+                        required Function toggleLoading,
+                      }) async {
                         // set back route
                         DynamicBackRouteHolder()
                             .createPINPage

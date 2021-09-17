@@ -59,7 +59,7 @@ const $UserProfileState = _$UserProfileStateTearOff();
 
 /// @nodoc
 mixin _$UserProfileState {
-// sourced from the response fo login
+// sourced from the response for login
   UserProfile? get userProfile => throw _privateConstructorUsedError;
   Customer? get customerProfile => throw _privateConstructorUsedError;
   CommunicationSettings? get communicationSettings =>
@@ -360,7 +360,7 @@ class _$_UserProfileState implements _UserProfileState {
   factory _$_UserProfileState.fromJson(Map<String, dynamic> json) =>
       _$_$_UserProfileStateFromJson(json);
 
-  @override // sourced from the response fo login
+  @override // sourced from the response for login
   final UserProfile? userProfile;
   @override
   final Customer? customerProfile;
@@ -476,7 +476,7 @@ abstract class _UserProfileState implements UserProfileState {
   factory _UserProfileState.fromJson(Map<String, dynamic> json) =
       _$_UserProfileState.fromJson;
 
-  @override // sourced from the response fo login
+  @override // sourced from the response for login
   UserProfile? get userProfile => throw _privateConstructorUsedError;
   @override
   Customer? get customerProfile => throw _privateConstructorUsedError;

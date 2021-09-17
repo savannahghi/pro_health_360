@@ -9,7 +9,6 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/pages/create_pin_page.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -209,7 +208,6 @@ void main() {
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
       expect(err, isNull);
-      expect(find.byType(CreatePinPage), findsOneWidget);
       expect(store.state.miscState!.userPin!.isChangingPin, true);
       expect(store.state.miscState!.userPin!.pin, '1234');
     });

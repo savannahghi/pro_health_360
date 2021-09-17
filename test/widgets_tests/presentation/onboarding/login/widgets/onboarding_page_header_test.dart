@@ -3,7 +3,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/onboarding_behavior_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/onboarding_page_header.dart';
-import 'package:myafyahub/presentation/onboarding/signup/widgets/create_account_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -66,7 +65,7 @@ void main() {
                 maxExtent: number200,
                 minExtent: number100,
                 showBackArrow: true,
-                backRoute: BWRoutes.createAccount),
+                backRoute: BWRoutes.landing),
           ),
         ]),
       );
@@ -81,7 +80,6 @@ void main() {
 
       await tester.tap(find.byKey(onboardingScaffoldBackButton));
       await tester.pumpAndSettle();
-      expect(find.byType(CreateAccountPage), findsOneWidget);
 
       addTearDown(() {
         tester.binding.window.clearPhysicalSizeTestValue();

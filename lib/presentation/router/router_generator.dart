@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
@@ -14,13 +16,10 @@ import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
-import 'package:myafyahub/presentation/onboarding/signup/pages/create_pin_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/widgets/verify_sign_up_otp.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/widgets/create_account_page.dart';
 import 'package:myafyahub/presentation/onboarding/introduction/introduction_page.dart';
 
 import 'package:user_profile/term_and_conditions.dart';
@@ -33,8 +32,20 @@ class RouteGenerator {
     final dynamic args = settings.arguments;
 
     switch (settings.name) {
+      case BWRoutes.createPin:
+        return MaterialPageRoute<CreatePinPage>(
+          builder: (_) => CreatePinPage(
+            changingPin: args != null
+                ? args['changingPin'] != null
+                    ? args['changingPin'] as bool
+                    : false
+                : false,
+          ),
+        );
 
-      // the root route config
+      case BWRoutes.verifySignUpOTP:
+        return MaterialPageRoute<VerifySignUpOTP>(
+            builder: (_) => VerifySignUpOTP());
 
       case BWRoutes.landing:
         return MaterialPageRoute<LandingPage>(builder: (_) => LandingPage());
@@ -43,23 +54,9 @@ class RouteGenerator {
         return MaterialPageRoute<PhoneNumberLoginPage>(
             builder: (_) => PhoneNumberLoginPage());
 
-      case BWRoutes.createAccount:
-        return MaterialPageRoute<CreateAccountPage>(
-            builder: (_) => CreateAccountPage());
-
       case BWRoutes.basicDetails:
         return MaterialPageRoute<BasicDetailsPage>(
             builder: (_) => BasicDetailsPage());
-
-      case BWRoutes.createPin:
-        return MaterialPageRoute<CreatePinPage>(
-            builder: (_) => CreatePinPage(
-                  changingPin: args != null
-                      ? args['changingPin'] != null
-                          ? args['changingPin'] as bool
-                          : false
-                      : false,
-                ));
 
       case BWRoutes.resetPin:
         return MaterialPageRoute<RequestPinResetPage>(
@@ -115,10 +112,6 @@ class RouteGenerator {
       case BWRoutes.webView:
         return MaterialPageRoute<TermsAndConditionsPage>(
             builder: (_) => const TermsAndConditionsPage());
-
-      case BWRoutes.verifySignUpOTP:
-        return MaterialPageRoute<VerifySignUpOTP>(
-            builder: (_) => VerifySignUpOTP());
 
       case BWRoutes.forgotPinOtpWidget:
         return MaterialPageRoute<ForgotPinOtpWidget>(

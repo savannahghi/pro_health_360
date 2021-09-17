@@ -1,17 +1,17 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/onboarding/signup/widgets/create_account_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/widgets/verify_sign_up_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/verify_phone_otp.dart';
 
-import '../../../../../test_helpers.dart';
-import '../../../../../test_utils.dart';
+import '../../../../test_helpers.dart';
+import '../../../../test_utils.dart';
 
 void main() {
   group('Forgot pin page', () {
@@ -70,7 +70,7 @@ void main() {
       await tester.tap(find.byType(SILNoBorderButton));
 
       await tester.pumpAndSettle();
-      expect(find.byType(CreateAccountPage), findsOneWidget);
+      expect(find.byType(PhoneNumberLoginPage), findsOneWidget);
     });
 
     testWidgets('changeNumberCallback should work correctly',
@@ -102,7 +102,7 @@ void main() {
       await tester.tap(find.text('Change number'));
 
       await tester.pumpAndSettle();
-      expect(find.byType(CreateAccountPage), findsOneWidget);
+      expect(find.byType(PhoneNumberLoginPage), findsOneWidget);
     });
 
     testWidgets('VerifyPhoneOtp successCallBack works correctly',

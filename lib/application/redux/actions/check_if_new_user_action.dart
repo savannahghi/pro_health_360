@@ -41,20 +41,19 @@ class CheckIfNewUserAction extends ReduxAction<AppState> {
         AppWrapperBase.of(context)!.customContext!.verifyPhoneEndpoint;
 
     // create the payload
-    final Map<String, dynamic> _variables = <String, String>{
+    final Map<String, dynamic> variables = <String, String>{
       'phoneNumber': store.state.miscState!.phoneSignUp!.phoneNumber!,
       'appId': appSignature
     };
 
-    final IGraphQlClient _httpClient =
-        AppWrapperBase.of(context)!.graphQLClient;
+    final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
 
     final ProcessedResponse processedResponse = processHttpResponse(
-        await _httpClient.callRESTAPI(
-            endpoint: verifyPhoneEndpoint,
-            variables: _variables,
-            method: 'POST'),
-        context);
+      await httpClient.callRESTAPI(
+          endpoint: verifyPhoneEndpoint, variables: variables, method: 'POST'),
+      context,
+    );
+
     if (processedResponse.ok) {
       final http.Response response = processedResponse.response;
 
@@ -65,11 +64,11 @@ class CheckIfNewUserAction extends ReduxAction<AppState> {
         // dispatch OTP to state
         store.dispatch(PhoneSignUpStateAction(otp: body['otp'].toString()));
 
-        // explictly hide the loader from the previous page so that when the user goes back, they
-        // dont find the loader spinning
+        // explictly hide the loader from the previous page so that when the
+        //user goes back, they dont find the loader spinning
         toggleLoadingIndicator(context: context, flag: flag, show: false);
 
-        Navigator.pushReplacementNamed(context, BWRoutes.verifySignUpOTP);
+        NavigateAction<AppState>.pushReplacementNamed(BWRoutes.verifySignUpOTP);
         return state;
       } else {
         throw SILException(

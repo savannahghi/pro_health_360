@@ -16,7 +16,6 @@ import 'package:myafyahub/presentation/onboarding/landing_page/landing_page_acti
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/pages/create_pin_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -249,8 +248,6 @@ void main() {
         await tester.tap(submitButton);
         await tester.pumpAndSettle();
         await tester.pumpAndSettle();
-
-        expect(find.byType(CreatePinPage), findsOneWidget);
       },
     );
 

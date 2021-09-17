@@ -49,28 +49,7 @@ void main() {
         tester.binding.window.clearDevicePixelRatioTestValue();
       });
     });
-    testWidgets('should press create account button and navigate',
-        (WidgetTester tester) async {
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
-      tester.binding.window.physicalSizeTestValue =
-          typicalLargePhoneScreenSizePortrait;
-      TestWidgetsFlutterBinding.ensureInitialized();
 
-      await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: LandingPage());
-
-      await tester.pump();
-      await tester.pumpAndSettle();
-      await tester.tap(find.byKey(createAccountKey));
-      // verify(mockObserver.didPush(sampleRoute, any));
-      addTearDown(() {
-        tester.binding.window.clearPhysicalSizeTestValue();
-        tester.binding.window.clearDevicePixelRatioTestValue();
-      });
-    });
     testWidgets('Anonymous sign in navigates to feed',
         (WidgetTester tester) async {
       tester.binding.window.devicePixelRatioTestValue = 1.0;

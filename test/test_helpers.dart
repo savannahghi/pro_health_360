@@ -70,23 +70,26 @@ Future<void> buildTestWidget({
     'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
     'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
   });
-  return tester.pumpWidget(StoreProvider<AppState>(
-    store: store,
-    child: AppWrapper(
-      appName: testAppName,
-      appContexts: testAppContexts,
-      graphQLClient: client,
-      baseContext: devAppSetupData.customContext,
-      child: MaterialApp(
-        localizationsDelegates: localizationDelegates,
-        supportedLocales: locales,
-        onGenerateRoute: RouteGenerator.generateRoute,
-        home: Scaffold(
-          body: Center(
-            child: widget,
+
+  return tester.pumpWidget(
+    StoreProvider<AppState>(
+      store: store,
+      child: AppWrapper(
+        appName: testAppName,
+        appContexts: testAppContexts,
+        graphQLClient: client,
+        baseContext: devAppSetupData.customContext,
+        child: MaterialApp(
+          localizationsDelegates: localizationDelegates,
+          supportedLocales: locales,
+          onGenerateRoute: RouteGenerator.generateRoute,
+          home: Scaffold(
+            body: Center(
+              child: widget,
+            ),
           ),
         ),
       ),
     ),
-  ));
+  );
 }

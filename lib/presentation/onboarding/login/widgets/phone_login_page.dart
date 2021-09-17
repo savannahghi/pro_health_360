@@ -1,6 +1,5 @@
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -209,15 +208,6 @@ class _PhoneLoginState extends State<PhoneLoginPage> {
                           style:
                               TextThemes.normalSize16Text(AppColors.blackColor),
                         ),
-                        TextSpan(
-                          text: createAccount,
-                          style: TextThemes.normalSize16Text(
-                            Theme.of(context).backgroundColor,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => Navigator.pushReplacementNamed(
-                                context, BWRoutes.createAccount),
-                        )
                       ],
                     ),
                     key: createNewAccountKey,
