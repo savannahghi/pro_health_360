@@ -1,10 +1,10 @@
 name: myafyahub
 description: A new Flutter project.
-publish_to: "none"
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   app_wrapper: ^0.1.23
@@ -62,7 +62,7 @@ dependencies:
   unicons: ^2.0.1
   upgrader: ^3.4.1
   url_launcher: ^6.0.6
-  user_feed: ^0.1.41-nullsafety
+  user_feed: ^0.1.42-nullsafety
   user_profile: ^0.1.21-nullsafety
 
 dev_dependencies:

@@ -944,7 +944,7 @@ packages:
       name: misc_utilities
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.27-nullsafety"
+    version: "0.1.28-nullsafety"
   mockito:
     dependency: "direct dev"
     description:
@@ -1266,7 +1266,7 @@ packages:
       name: shared_ui_components
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.37-nullsafety"
+    version: "0.1.38-nullsafety"
   shelf:
     dependency: transitive
     description:
@@ -1530,7 +1530,7 @@ packages:
       name: user_feed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.41-nullsafety"
+    version: "0.1.42-nullsafety"
   user_profile:
     dependency: "direct main"
     description:
