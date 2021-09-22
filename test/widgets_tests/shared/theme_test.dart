@@ -18,7 +18,7 @@ void main() {
       final Finder silPrimaryButton = find.byType(SILPrimaryButton);
       expect(silPrimaryButton, findsOneWidget);
       expect(AppTheme.getAppTheme(testAppContexts).accentColor,
-          AppColors.silColors['accentColor']);
+          AppColors.themeColors['accentColor']);
       await tester.tap(silPrimaryButton);
       await tester.pumpAndSettle();
     });

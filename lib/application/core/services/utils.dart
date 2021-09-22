@@ -113,19 +113,6 @@ void showToast(String message) {
   );
 }
 
-Color applyPayerPrimaryColor(String payer) {
-  if (payer.contains('Resolution')) {
-    return AppColors.resolutionPrimaryColor;
-  } else if (payer.contains('Jubilee')) {
-    return AppColors.jubileePrimaryColor;
-  } else if (payer.contains('APA')) {
-    return AppColors.apaPrimaryColor;
-  } else if (payer.contains('MADISON')) {
-    return AppColors.madisonPrimaryColor;
-  }
-  return AppColors.britamPrimaryColor;
-}
-
 Future<void> updateStateContacts(
     {required BuildContext context,
     required StateContactType type,
