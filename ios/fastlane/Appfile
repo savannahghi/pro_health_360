@@ -1,0 +1,15 @@
+apple_id("shikami@savannahinformatics.com") # Your Apple email address
+itc_team_id("120973169") # App Store Connect Team ID
+
+team_id("533DA44846") # Developer Portal Team ID
+app_identifier 'com.savannah.myafyahub'
+
+
+#for_platform :ios do
+ # for_lane :sil do
+  #end
+
+  #for_lane :apa do
+   # app_identifier 'com.savannah.myafyahub.apa'
+  #end
+#end

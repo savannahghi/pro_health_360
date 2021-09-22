@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>841947754847-fta1h0nfvvgm0u20uboiuns699l1414c.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.841947754847-fta1h0nfvvgm0u20uboiuns699l1414c</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>841947754847-1bd76t81l17bp4bqbf89f5usncjp17c6.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCTH81PNAzfDDNYnhmCjWl5U6x6apxoVaI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>841947754847</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.savannah.myafyahub</string>
+	<key>PROJECT_ID</key>
+	<string>bewell-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bewell-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:841947754847:ios:edae0e9b605af9b36686ea</string>
+	<key>DATABASE_URL</key>
+	<string>https://bewell-app.firebaseio.com</string>
+</dict>
+</plist>

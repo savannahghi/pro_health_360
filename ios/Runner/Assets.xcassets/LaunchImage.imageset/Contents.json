@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "My Afya Hub Transparent Logo 514.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "My Afya Hub Transparent Logo 514-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "My Afya Hub Transparent Logo 514-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
