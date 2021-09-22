@@ -7,17 +7,19 @@
 
         <clip-path android:pathData="M0 0H1024V768H0V0Z" />
 
-        <group android:translateX="0.845" android:translateY="-0.523" android:pivotX="512" android:pivotY="384" android:scaleX="2.427" android:scaleY="2.98" android:rotation="61.029">
+        <group android:translateX="0.845" android:translateY="-0.523" android:pivotX="512" android:pivotY="384" android:scaleX="2.427" android:scaleY="2.98" android:rotation="134.645">
 
             <path android:pathData="M0 0V768H1024V0">
 
                 <aapt:attr name="android:fillColor">
 
-                    <gradient android:type="linear" android:startX="256" android:startY="384" android:endX="768" android:endY="384">
+                    <gradient android:type="linear"  android:startX="256" android:startY="384" android:endX="768" android:endY="500">
 
-                        <item android:color="#C9603A8B" android:offset="0" />
-
-                        <item android:color="#603A8B" android:offset="1" />
+                        <item android:color="#A8EB12" android:offset="0"  />
+                        <item android:color="#00BF72" android:offset="0.3"  />
+                        <item android:color="#008793" android:offset="0.6"  />
+                        <item android:color="#004D7A" android:offset="0.75"  />
+                        <item android:color="#051937" android:offset="1"  />
 
                     </gradient>
 
