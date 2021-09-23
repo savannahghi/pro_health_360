@@ -57,30 +57,6 @@ class _IntroductionPageState extends State<IntroductionPage> {
             globalBackgroundColor: AppColors.introductionBackgroundColor,
             pages: <PageViewModel>[
               PageViewModel(
-                image: _buildFullScreenImage(slideOneImg),
-                title: introSliderOneTitle,
-                body: introSliderOneDesc,
-                decoration: pageDecoration,
-              ),
-              PageViewModel(
-                image: _buildFullScreenImage(slideTwoImg),
-                title: introSliderTwoTitle,
-                body: introSliderTwoDesc,
-                decoration: pageDecoration,
-              ),
-              PageViewModel(
-                image: _buildFullScreenImage(slideThreeImg),
-                title: introSliderThreeTitle,
-                body: introSliderThreeDesc,
-                decoration: pageDecoration,
-              ),
-              PageViewModel(
-                title: introSliderFourTitle,
-                body: introSliderFourDesc,
-                image: _buildFullScreenImage(slideFourImg),
-                decoration: pageDecoration,
-              ),
-              PageViewModel(
                 title: introSliderFiveTitle,
                 body: introSliderFiveDesc,
                 image: _buildFullScreenImage(slideFiveImg),

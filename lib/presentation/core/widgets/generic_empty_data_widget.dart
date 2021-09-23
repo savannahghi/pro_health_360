@@ -1,4 +1,5 @@
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class GenericEmptyData extends StatelessWidget {
       child: Center(
         child: Column(
           children: <Widget>[
-            SvgPicture.asset('assets/images/no_data.svg'),
+            SvgPicture.asset(noDataImgUrl),
             mediumVerticalSizedBox,
             Text(
               customMessage ?? noDataText,

@@ -5,7 +5,7 @@ commands:
     description: "Install flutter to latest version and install dependencies"
     steps:
       - checkout
-      - run :
+      - run:
           name: Install flutter
           command: bash install_flutter_ci.sh
       - save_cache:
@@ -18,7 +18,6 @@ commands:
             - $CIRCLE_WORKING_DIRECTORY/.pub-cache/
             - $CIRCLE_WORKING_DIRECTORY/.pub/
             - $CIRCLE_WORKING_DIRECTORY/.pub/
-
 
   download_and_setup_keystore:
     description: "Setup service account and download keystore"
@@ -34,7 +33,7 @@ commands:
             gcloud kms decrypt --location europe-west3 --keyring android-keys --key android-crypto-key \
             --ciphertext-file afyamoja_keystore.jks.encrypted \
             --plaintext-file afyamoja_keystore.jks
-      - run: 
+      - run:
           name: Generate key properties file
           command: |
             echo "storePassword=$KEY_STORE_PWD" | tee -a android/key.properties
@@ -47,7 +46,6 @@ commands:
             - $CIRCLE_WORKING_DIRECTORY/android/android/key.properties
             - $CIRCLE_WORKING_DIRECTORY/afyamoja_keystore.jks
             - $CIRCLE_WORKING_DIRECTORY/service.json
-
 
   setup_env_vars:
     description: "Setup required directories and load config files"
@@ -64,7 +62,6 @@ commands:
           name: "Setup flutter environment variable"
           command: |
             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
-         
 
 jobs:
   run_tests_and_generate_coverage:
@@ -76,14 +73,14 @@ jobs:
       - run:
           name: "Setup flutter environment variable"
           command: |
-             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
+            echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
       - restore_cache:
           keys:
             - flutter_root_and_dependencies_cache
       - run:
-         name: Analyze, test and report coverage
-         no_output_timeout: 10m
-         command: |
+          name: Analyze, test and report coverage
+          no_output_timeout: 10m
+          command: |
             flutter clean
             flutter pub get
             flutter analyze
@@ -100,7 +97,6 @@ jobs:
             python3 check_coverage.py
       - store_artifacts:
           path: coverage/
-
 
   deploy_to_internal_firebase_app_tester:
     resource_class: large
@@ -121,16 +117,17 @@ jobs:
             flutter build apk --release --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-internal
             BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
             firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/release-notes.txt
- 
+
 workflows:
   version: 2
   test_and_deploy:
-   jobs:
-     - run_tests_and_generate_coverage
-     - deploy_to_internal_firebase_app_tester:
-         requires:
-           - run_tests_and_generate_coverage
-         filters:
-           branches:
-             only:
-               - develop
+    jobs:
+      # - run_tests_and_generate_coverage
+      - deploy_to_internal_firebase_app_tester:
+          # requires:
+          #   - run_tests_and_generate_coverage
+          filters:
+            branches:
+              only:
+                - develop
+                - fix_app_build

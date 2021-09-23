@@ -1,5 +1,6 @@
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 import 'package:flutter/material.dart';
@@ -56,7 +57,7 @@ List<Suggestion> recentSearches = <Suggestion>[
   Suggestion(
     name: libraryTitle,
     route: BWRoutes.home,
-    image: SvgPicture.asset('assets/icons/schedule.svg', color: Colors.grey),
+    image: SvgPicture.asset(scheduleSvgUrl, color: Colors.grey),
     description: 'View my library',
     aliases: <String>['lib', 'my library'],
     shouldUpdateBottomNav: true,
@@ -69,7 +70,7 @@ List<Suggestion> suggestions = <Suggestion>[
   Suggestion(
     name: libraryTitle,
     route: BWRoutes.home,
-    image: SvgPicture.asset('assets/icons/schedule.svg', color: Colors.grey),
+    image: SvgPicture.asset(scheduleSvgUrl, color: Colors.grey),
     description: 'View my library',
     aliases: <String>['lib', 'my library'],
     shouldUpdateBottomNav: true,
@@ -80,7 +81,7 @@ List<Suggestion> suggestions = <Suggestion>[
   Suggestion(
     name: medicine,
     route: BWRoutes.buyMedicine,
-    image: SvgPicture.asset('assets/icons/schedule.svg', color: Colors.grey),
+    image: SvgPicture.asset(scheduleSvgUrl, color: Colors.grey),
     description: 'Buy medicine',
     aliases: <String>[
       'meds',
@@ -94,7 +95,7 @@ List<Suggestion> suggestions = <Suggestion>[
   Suggestion(
     name: tests,
     route: BWRoutes.getTested,
-    image: SvgPicture.asset('assets/icons/schedule.svg', color: Colors.grey),
+    image: SvgPicture.asset(scheduleSvgUrl, color: Colors.grey),
     description: 'Get Tested',
     aliases: <String>['test', 'tests', 'get test', 'tested'],
   ),
@@ -102,7 +103,7 @@ List<Suggestion> suggestions = <Suggestion>[
   Suggestion(
     name: seeDoctor,
     route: BWRoutes.seeDoctor,
-    image: SvgPicture.asset('assets/icons/schedule.svg', color: Colors.grey),
+    image: SvgPicture.asset(scheduleSvgUrl, color: Colors.grey),
     description: 'See a doctor',
     aliases: <String>[
       'doc',
@@ -118,7 +119,7 @@ List<Suggestion> suggestions = <Suggestion>[
   Suggestion(
     name: helpCenter,
     route: BWRoutes.helpCenter,
-    image: SvgPicture.asset('assets/icons/schedule.svg', color: Colors.grey),
+    image: SvgPicture.asset(scheduleSvgUrl, color: Colors.grey),
     description: 'Help center',
     aliases: <String>[
       'help',

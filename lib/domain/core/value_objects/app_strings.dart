@@ -288,6 +288,7 @@ const String contactInfo = 'Contact info';
 const String profileUpdated = 'Profile updated successfully';
 
 // help center strings
+
 const String faqTextDescription = 'Frequently asked questions';
 const String faqTextSubtitle =
     'We are here to help, browse through our frequently asked questions';
