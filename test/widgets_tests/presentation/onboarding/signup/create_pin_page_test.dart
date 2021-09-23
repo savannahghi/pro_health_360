@@ -168,7 +168,7 @@ void main() {
 
       when(baseGraphQlClientMock.callRESTAPI(
               endpoint:
-                  'https://profile-testing.healthcloud.co.ke/create_user_by_phone',
+                  'https://onboarding-testing.savannahghi.org/create_user_by_phone',
               variables: <String, dynamic>{
                 'phoneNumber': '0710000000',
                 'pin': '1234',

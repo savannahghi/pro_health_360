@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:app_wrapper/app_wrapper.dart' show AppContext;
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:domain_objects/entities.dart';
@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
 
@@ -853,7 +854,7 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-        endpoint: 'https://profile-testing.healthcloud.co.ke/refresh_token',
+        endpoint: 'https://onboarding-testing.savannahghi.org/refresh_token',
         variables: <String, dynamic>{
           'refreshToken': 'oldRefreshToken',
           'appVersion': APPVERSION,
@@ -1346,7 +1347,7 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-        endpoint: 'https://profile-testing.healthcloud.co.ke/refresh_token',
+        endpoint: 'https://onboarding-testing.savannahghi.org/refresh_token',
         variables: <String, dynamic>{
           'refreshToken': refreshToken,
           'appVersion': APPVERSION,

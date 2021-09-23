@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:user_feed/user_feed.dart';
 import 'package:http/http.dart' as http;
 
@@ -83,8 +84,7 @@ void main() {
 
     testWidgets('should dispatch action and catch error',
         (WidgetTester tester) async {
-      const String endpoint =
-          'https://profile-testing.healthcloud.co.ke/login_by_phone';
+      const String endpoint = kTestLoginByPhoneEndpoint;
       const String errMsg = 'No user account found';
       final http.Response response = http.Response(
         json.encode(<String, dynamic>{'error': errMsg}),
@@ -147,8 +147,7 @@ void main() {
 
     testWidgets('should dispatch action and catch no_user_account_found error',
         (WidgetTester tester) async {
-      const String endpoint =
-          'https://profile-testing.healthcloud.co.ke/login_by_phone';
+      const String endpoint = kTestLoginByPhoneEndpoint;
       const String errMsg = 'No user account found';
       final http.Response response = http.Response(
         json.encode(<String, dynamic>{'code': 10}),
@@ -213,8 +212,7 @@ void main() {
     testWidgets('should dispatch action and pass', (WidgetTester tester) async {
       final MockSILFCM fcmMock = MockSILFCM();
 
-      const String endpoint =
-          'https://profile-testing.healthcloud.co.ke/login_by_phone';
+      const String endpoint = kTestLoginByPhoneEndpoint;
 
       final http.Response response = http.Response(
         json.encode(loginResponse),

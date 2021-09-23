@@ -6,6 +6,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:domain_objects/entities.dart';
@@ -18,8 +19,7 @@ import '../../../../../test_helpers.dart';
 void main() {
   group('RequestResetPinAction', () {
     late Store<AppState> store;
-    const String endpoint =
-        'https://profile-testing.healthcloud.co.ke/request_pin_reset';
+    const String endpoint = kTestPinResetEndpoint;
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());

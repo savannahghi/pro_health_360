@@ -15,6 +15,7 @@ import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
@@ -26,7 +27,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:app_wrapper/app_wrapper.dart' show AppContext, AppWrapperBase;
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -399,8 +400,7 @@ void main() {
         201,
       );
 
-      final String refreshTokenEndpoint = EndpointContext.refreshTokenEndpoint(
-          <AppContext>[AppContext.AppTest, AppContext.AppTest]);
+      const String refreshTokenEndpoint = kTestRefreshTokenEndpoint;
 
       callRESTAPIWhenThenAnswer(
           endpoint: refreshTokenEndpoint,

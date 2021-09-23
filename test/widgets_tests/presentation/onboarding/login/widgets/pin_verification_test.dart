@@ -204,7 +204,7 @@ void main() {
 
       when(baseGraphQlClientMock.callRESTAPI(
               endpoint:
-                  'https://profile-testing.healthcloud.co.ke/request_pin_reset',
+                  'https://onboarding-testing.savannahghi.org/request_pin_reset',
               variables: <String, String>{'phoneNumber': '0710000000'},
               method: 'POST'))
           .thenAnswer(

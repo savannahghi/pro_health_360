@@ -6,6 +6,7 @@ import 'package:myafyahub/application/redux/actions/check_if_new_user_action.dar
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,8 +22,7 @@ void main() {
     late Store<AppState> store;
     late StoreTester<AppState> storeTester;
 
-    const String endpoint =
-        'https://profile-testing.healthcloud.co.ke/verify_phone';
+    const String endpoint = kTestVerifyPhoneEndpoint;
 
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());

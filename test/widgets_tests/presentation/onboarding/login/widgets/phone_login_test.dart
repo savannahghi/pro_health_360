@@ -129,7 +129,7 @@ void main() {
       (WidgetTester tester) async {
         when(baseGraphQlClientMock.callRESTAPI(
                 endpoint:
-                    'https://profile-testing.healthcloud.co.ke/login_by_phone',
+                    'https://onboarding-testing.savannahghi.org/login_by_phone',
                 variables: <String, dynamic>{
                   'phoneNumber': '+254710000000',
                   'pin': '1234',
@@ -191,7 +191,7 @@ void main() {
       (WidgetTester tester) async {
         when(baseGraphQlClientMock.callRESTAPI(
                 endpoint:
-                    'https://profile-testing.healthcloud.co.ke/login_by_phone',
+                    'https://onboarding-testing.savannahghi.org/login_by_phone',
                 variables: <String, dynamic>{
                   'phoneNumber': '+254710000000',
                   'pin': '1234',
@@ -367,7 +367,7 @@ void main() {
         );
         when(baseGraphQlClientMock.callRESTAPI(
                 endpoint:
-                    'https://profile-testing.healthcloud.co.ke/login_by_phone',
+                    'https://onboarding-testing.savannahghi.org/login_by_phone',
                 variables: <String, dynamic>{
                   'phoneNumber': '+254710000000',
                   'pin': '1234',
@@ -519,7 +519,7 @@ void main() {
 
       when(baseGraphQlClientMock.callRESTAPI(
               endpoint:
-                  'https://profile-testing.healthcloud.co.ke/login_by_phone',
+                  'https://onboarding-testing.savannahghi.org/login_by_phone',
               variables: <String, dynamic>{
                 'phoneNumber': '+254710000000',
                 'pin': '1234',
