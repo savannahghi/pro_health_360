@@ -71,7 +71,6 @@ void moveCamera(
           target: _locationData,
           zoom: CAMERA_ZOOM,
           bearing: CAMERA_BEARING,
-          tilt: CAMERA_TILT,
         ),
       ),
     ),
