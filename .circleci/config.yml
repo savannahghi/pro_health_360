@@ -19,7 +19,6 @@ commands:
             - $CIRCLE_WORKING_DIRECTORY/.pub/
             - $CIRCLE_WORKING_DIRECTORY/.pub/
 
-
   download_and_setup_keystore:
     description: "Setup service account and download keystore"
     steps:
@@ -31,6 +30,7 @@ commands:
             gcloud config set project $GCLOUD_PROJECT_ID
             gcloud config list
             gsutil cp gs://sghi-android-keys-box/afyamoja_keystore.jks.encrypted .
+            gsutil cp gs://sghi-android-keys-box/secrets.xml $HOME/project/android/app/src/main/res/values/secrets.xml
             gcloud kms decrypt --location europe-west3 --keyring android-keys --key android-crypto-key \
             --ciphertext-file afyamoja_keystore.jks.encrypted \
             --plaintext-file afyamoja_keystore.jks
@@ -47,6 +47,7 @@ commands:
             - $CIRCLE_WORKING_DIRECTORY/android/android/key.properties
             - $CIRCLE_WORKING_DIRECTORY/afyamoja_keystore.jks
             - $CIRCLE_WORKING_DIRECTORY/service.json
+            - $CIRCLE_WORKING_DIRECTORY/android/app/src/main/res/values/secrets.xml
 
 
   setup_env_vars:
@@ -59,7 +60,6 @@ commands:
             echo $DEV_SENTRY_DNS > .env
             echo $PROD_SENTRY_DNS >> .env
             echo $GOOGLE_SERVICES_FILE > android/app/google-services.json
-            echo $SECRETS_XML_FILE > android/app/src/main/res/values/secrets.xml
       - run:
           name: "Setup flutter environment variable"
           command: |

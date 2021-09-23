@@ -10,7 +10,7 @@ import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/bewell_app.dart';
+import 'package:myafyahub/presentation/core/widgets/my_afya_hub_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -106,7 +106,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
-        BewellApp(
+        MyAfyaHubApp(
           store: store,
           navigatorObserver: navigatorObserver,
           connectivityStatus: connectivityStatus,

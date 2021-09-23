@@ -1,4 +1,5 @@
 import 'package:myafyahub/infrastructure/repository/migrations.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -27,8 +28,7 @@ Future<void> migrate(Database db, int oldVersion, int newVersion) async {
     try {
       await db.execute(migrations[i]);
     } catch (e) {
-      // ignore: avoid_print
-      print('Error executing migration ${migrations[i]}');
+      Sentry.captureException(e);
     }
   }
 }

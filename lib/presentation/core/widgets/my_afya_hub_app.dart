@@ -11,8 +11,8 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class BewellApp extends StatefulWidget {
-  const BewellApp({
+class MyAfyaHubApp extends StatefulWidget {
+  const MyAfyaHubApp({
     Key? key,
     required this.navigatorObserver,
     required this.store,
@@ -28,13 +28,13 @@ class BewellApp extends StatefulWidget {
   final AppSetupData appSetupData;
 
   @override
-  _BewellAppState createState() => _BewellAppState();
+  _MyAfyaHubAppState createState() => _MyAfyaHubAppState();
 
   @override
   String toStringShort() => 'myafyahub.app.main';
 }
 
-class _BewellAppState extends State<BewellApp> {
+class _MyAfyaHubAppState extends State<MyAfyaHubApp> {
   FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics();
 
   @override
