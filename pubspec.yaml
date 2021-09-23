@@ -59,6 +59,7 @@ dependencies:
   sms_autofill: ^2.0.1
   sqflite: ^2.0.0+3
   transparent_image: ^2.0.0
+  uni_links: ^0.5.1
   unicons: ^2.0.1
   upgrader: ^3.4.1
   url_launcher: ^6.0.6

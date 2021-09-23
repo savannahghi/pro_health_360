@@ -12,6 +12,7 @@ import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
+import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/dynamic_back_route_holder.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -76,10 +77,16 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
                   'changingPin': true,
                 });
           } else {
-            final Map<String, dynamic> routeContext = onboardingPath(state);
-            Navigator.pushReplacementNamed(
-                context, routeContext['route'].toString(),
-                arguments: routeContext['args']);
+            final DeepLinkSubject deepLink = DeepLinkSubject();
+            if (deepLink.hasLink.value) {
+              deepLink.hasLink.add(false);
+              Navigator.pushReplacementNamed(context, deepLink.link.value);
+            } else {
+              final Map<String, dynamic> routeContext = onboardingPath(state);
+              Navigator.pushReplacementNamed(
+                  context, routeContext['route'].toString(),
+                  arguments: routeContext['args']);
+            }
           }
         } else {
           store.dispatch(

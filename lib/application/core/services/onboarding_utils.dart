@@ -661,6 +661,14 @@ Future<dynamic> afterLoginOrCreateAccount(
       // call register device token here but don't wait for it
       registerDeviceToken(client: AppWrapperBase.of(context)!.graphQLClient);
 
+      final DeepLinkSubject deepLink = DeepLinkSubject();
+      if (deepLink.hasLink.value) {
+        deepLink.hasLink.add(false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, deepLink.link.value, (Route<dynamic> route) => false);
+        return;
+      }
+
       if (userResponse.auth?.isChangePin != null &&
           userResponse.auth!.isChangePin!) {
         StoreProvider.dispatch(

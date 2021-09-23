@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:debug_logger/debug_logger.dart';
 import 'package:html/dom.dart' as dom;
+import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
+import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_html/html_parser.dart';
 import 'package:connectivity/connectivity.dart';
@@ -75,4 +78,72 @@ void moveCamera(
       ),
     ),
   );
+}
+
+Function linkStreamListener({
+  required bool mounted,
+  required GlobalKey<NavigatorState> nav,
+  required bool signedIn,
+}) {
+  return (Uri? uri) {
+    if (!mounted) return;
+    if (uri != null) {
+      handleDeepLink(
+        uri: uri,
+        navigatorKey: nav,
+        signedIn: signedIn,
+      );
+    }
+  };
+}
+
+void handleDeepLink({
+  required Uri uri,
+  required GlobalKey<NavigatorState> navigatorKey,
+  required bool signedIn,
+  bool isInitialUri = false,
+}) {
+  final String route = '/${uri.path.split('/').last}';
+
+  //if its the first deep link being handled
+  if (isInitialUri) {
+    final BehaviorSubject<String> appInitialRoute = BehaviorSubject<String>();
+    //if user is signedin navigate to the deep link route
+    if (signedIn) {
+      //we navigate via the initial route and not via GlobalKey<NavigatorState>
+      //because GlobalKey<NaigatorState> is null at this point it has not been configured by
+      //MaterialApp yet
+      appInitialRoute.add(route);
+      //set deep link is handled to true
+      initialUriIsHandled = true;
+    } else {
+      //defer deep link navigation until user has logged in or something
+      queueLink(route, navigatorKey);
+    }
+  }
+
+  //if its subsequent incoming deep links
+  if (navigatorKey.currentState == null) return;
+
+  if (unProtectedRoutes.contains(route)) {
+    navigatorKey.currentState!.pushNamed(route);
+    return;
+  }
+
+  // TODO: experiment with sending arguments too
+
+  if (signedIn) {
+    // navigate here to the route above
+    navigatorKey.currentState!.pushNamed(route);
+  } else {
+    queueLink(route, navigatorKey);
+  }
+}
+
+void queueLink(String route, GlobalKey<NavigatorState> navigatorKey) {
+  final DeepLinkSubject deepLink = DeepLinkSubject();
+  // save link and navigate later
+  deepLink.hasLink.add(true);
+  deepLink.link.add(route);
+  deepLink.navigatorKey = navigatorKey;
 }
