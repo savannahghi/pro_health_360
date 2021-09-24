@@ -16,14 +16,14 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
-### ios bewelldev
+### ios myafyahubdev
 ```
-fastlane ios bewelldev
+fastlane ios myafyahubdev
 ```
 Code Signing Dev Build for TestFlight
-### ios bewelldemo
+### ios myafyahubdemo
 ```
-fastlane ios bewelldemo
+fastlane ios myafyahubdemo
 ```
 Code Signing Demo Build for TestFlight
 ### ios deploy
@@ -34,6 +34,6 @@ Code Sign and Build SIL for App Store
 
 ----
 
-This README.md is auto-generated and will be re-generated every time [fastlane](https://fastlane.tools) is run.
+This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
 The documentation of fastlane can be found on [docs.fastlane.tools](https://docs.fastlane.tools).
