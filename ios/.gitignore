@@ -1,3 +1,7 @@
 Runner/info.plist
-Runner/AppDelegate.Swift
-Runner/GoogleServicesInfo.plist
+Runner/GoogleService-Info.plist
+*.ipa
+*.p8
+*.dSYM.zip
+*.podspec
+Runner/Credentials.generated.swift

@@ -3,7 +3,6 @@ platform :ios, '11.0'
 
 pod 'FBSDKCoreKit'
 
-
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
@@ -35,6 +34,7 @@ target 'Runner' do
   use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  pod 'Sourcery', '~> 1.0.0'
 end
 
 post_install do |installer|

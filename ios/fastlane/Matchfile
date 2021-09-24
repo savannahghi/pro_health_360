@@ -1,4 +1,4 @@
-google_cloud_bucket_name("bewell-signing-keys")
+google_cloud_bucket_name("sghi-myafyahub-signing-keys")
 
 storage_mode("google_cloud")
 

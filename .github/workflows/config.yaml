@@ -8,7 +8,7 @@ jobs:
     name: Publish My Afya Hub Prod binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/setup-ios-deploy'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
@@ -26,7 +26,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-          flutter-version: "1.20.4"
+          flutter-version: "2.2.3"
 
       - name: Install flutter dependencies
         run: flutter pub get
@@ -34,25 +34,25 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
-          APP_DELEGATE_SWIFT_FILE: ${{secrets.APP_DELEGATE_SWIFT_FILE}}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
+          CREDENTIALS_ENV: ${{secrets.CREDENTIALS_ENV}}
 
         run: |
           cd ios
           echo $GC_KEYS > ./gc_keys.json
           echo $INFO_PLIST_FILE > ./Runner/info.plist
-          echo $APP_DELEGATE_SWIFT_FILE > ./Runner/AppDelegate.swift
           echo $GOOGLE_SERVICES_INFO_PLIST_FILE > ./Runner/GoogleService-Info.plist
+          echo $CREDENTIALS_ENV > ./credentials/add_credentials_to_env.sh
 
       - name: Code sign and build prod app
         env:
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}
-          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY_ID}}
+          APP_STORE_CONNECT_API_KEY_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_ID}}
           APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID}}
-          APP_STORE_CONNECT_API_KEY_KEY: ${{secrets.APP_STORE_CONNECT_API_KEY_KEY}}
+          APP_STORE_CONNECT_API_KEY_FUNGUO: ${{secrets.APP_STORE_CONNECT_API_KEY_FUNGUO}}
         run: |
           cd ios && bundle install
           bundle exec fastlane deploy
