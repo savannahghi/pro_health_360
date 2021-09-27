@@ -106,8 +106,8 @@ void main() {
         await tester.pump();
 
         final Finder phoneInput = find.byType(SILPhoneInput);
-        final Finder pinInput = find.byWidgetPredicate((Widget widget) =>
-            widget is SILFormTextField && widget.key == pinInputKey);
+        final Finder pinInput = find
+            .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
 
         expect(find.byType(Form), findsOneWidget);
         expect(phoneInput, findsOneWidget);
@@ -356,6 +356,7 @@ void main() {
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+
     testWidgets(
       'should login user',
       (WidgetTester tester) async {
@@ -408,8 +409,8 @@ void main() {
         await tester.tap(find.byType(SILPhoneInput));
         await tester.enterText(find.byType(SILPhoneInput), testPhoneNumber);
 
-        final Finder finder = find.byWidgetPredicate((Widget widget) =>
-            widget is SILFormTextField && widget.key == pinInputKey);
+        final Finder finder = find
+            .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
         expect(finder, findsOneWidget);
         await tester.tap(finder);
         await tester.enterText(finder, testPin);
@@ -472,8 +473,8 @@ void main() {
 
         await tester.pump();
 
-        final Finder finder = find.byWidgetPredicate((Widget widget) =>
-            widget is SILFormTextField && widget.key == pinInputKey);
+        final Finder finder = find
+            .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
 
         expect(finder, findsOneWidget);
         await tester.tap(finder);

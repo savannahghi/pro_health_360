@@ -13,6 +13,7 @@ import 'package:myafyahub/application/redux/view_models/app_state_view_model.dar
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/core/widgets/inputs/custom_text_field.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/application/core/services/login_utils.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
@@ -122,19 +123,19 @@ class _PhoneLoginState extends State<PhoneLoginPage> {
                     ),
                   ),
                   largeVerticalSizedBox,
-                  SILFormTextField(
-                    key: pinInputKey,
+                  CustomTextField(
+                    formFieldKey: pinInputKey,
                     borderColor: Colors.grey.withOpacity(0.5),
                     maxLength: 4,
                     maxLines: 1,
                     keyboardType: TextInputType.number,
                     obscureText: true,
                     labelText: uiStrings.enterPinText(),
+                    validator: userPinValidator,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
-                    validator: userPinValidator,
-                    onChanged: (dynamic val) {
+                    onChanged: (String val) {
                       if (vm.appState.miscState!.phoneSignUp!
                           .invalidCredentials) {
                         StoreProvider.dispatch(
