@@ -22,3 +22,8 @@ enum BorderRadiusSides {
   None,
   All,
 }
+enum TimelineItemType {
+  DiaryText,
+  DiaryImage,
+  Appointment,
+}

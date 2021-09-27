@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_themes/text_themes.dart';
 
+/// [CustomTextBody] is a shared widget to display the description on the [ListItemCard] widget
+///
+/// It takes in a required [body] parameters
 class CustomTextBody extends StatelessWidget {
   const CustomTextBody({required this.body});
 
