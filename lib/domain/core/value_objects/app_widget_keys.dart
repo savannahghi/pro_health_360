@@ -381,3 +381,6 @@ const Key maleRadioButtonKey = Key('male_radio_button_key');
 const Key femaleRadioButtonKey = Key('female_radio_button_key');
 
 const Key continueLaterKey = Key('continue_later_key');
+
+//Notification List Item
+const Key notificationIconContainerKey = Key('notification_icon_container_key');

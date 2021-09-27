@@ -48,3 +48,5 @@ const String slideThreeImg = 'assets/images/track_your_expenses.svg';
 const String slideFourImg = 'assets/images/view_your_benefits.svg';
 const String slideFiveImg = 'assets/images/build_health_habits.svg';
 const String paperClipIcon = 'assets/icons/paper_clip_icon.svg';
+
+const String calendarIcon = 'assets/icons/calendar.svg';
