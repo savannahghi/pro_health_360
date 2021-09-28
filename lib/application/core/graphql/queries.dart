@@ -1,31 +1,5 @@
 import 'package:user_feed/user_feed.dart';
 
-const String sendOTP = r'''
-query GenerateOTP($msisdn: String!) {
-    generateOTP(msisdn: $msisdn)
-  }
-''';
-
-const String sendEmailVerificationOTP = r'''
-query EmailVerificationOTP($email: String!) {
-    emailVerificationOTP(email: $email)
-  }
-''';
-
-const String generateRetryOTPQuery = r'''
-query GenerateRetryOTP($msisdn: String!, $step: Int!) {
-  generateRetryOTP(msisdn: $msisdn, retryStep: $step)
-}
-''';
-
-Map<String, dynamic> sendOTPVariables(String phone) {
-  return <String, dynamic>{'msisdn': phone};
-}
-
-Map<String, dynamic> sendEmailOTPVariables(String email) {
-  return <String, dynamic>{'email': email};
-}
-
 const String resumeWithPinQuery = r'''
 query resumeWithPhoneAndPin($pin: String!) {
    resumeWithPIN(pin: $pin)

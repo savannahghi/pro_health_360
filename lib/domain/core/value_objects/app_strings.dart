@@ -489,3 +489,6 @@ const String noFeedDataMessage =
 const String noInternetConnection = 'No Internet Connection';
 
 const String duplicateRequestString = 'a similar request is under review';
+const String diaryString = 'Diary';
+const String textEntryString = 'Text entry';
+const String imageFileString = 'Image file';

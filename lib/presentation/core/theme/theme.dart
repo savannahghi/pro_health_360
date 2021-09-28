@@ -59,4 +59,7 @@ class AppColors {
   static const Color lightPurpleBackgroundColor = Color(0xffE2E0F6);
 
   static const Color introductionBackgroundColor = Color(0xFFF7F8FF);
+  static const Color listCardColor = Color(0xffeeeeee);
+  static const Color diaryListCardColor = Color(0xff17d1d4);
+  static const Color timeLineBackroundColor = Color(0xfff6f6f6);
 }
