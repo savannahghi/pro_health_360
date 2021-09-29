@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
+import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
+import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
@@ -15,13 +20,10 @@ import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:user_profile/term_and_conditions.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
 
 /// The router generator for the app. The arrangement in this config must match that
 /// in the routes.dart file
@@ -46,8 +48,15 @@ class RouteGenerator {
         return MaterialPageRoute<VerifySignUpOTP>(
             builder: (_) => VerifySignUpOTP());
 
+      case BWRoutes.termsAndConditions:
+        return MaterialPageRoute<TermsAndConditionsPage>(
+          builder: (_) => const TermsAndConditionsPage(),
+        );
+
       case BWRoutes.landing:
-        return MaterialPageRoute<LandingPage>(builder: (_) => LandingPage());
+        return MaterialPageRoute<LandingPage>(
+          builder: (_) => LandingPage(),
+        );
 
       case BWRoutes.phoneLogin:
         return MaterialPageRoute<PhoneNumberLoginPage>(
@@ -109,8 +118,8 @@ class RouteGenerator {
         );
 
       case BWRoutes.webView:
-        return MaterialPageRoute<TermsAndConditionsPage>(
-            builder: (_) => const TermsAndConditionsPage());
+        return MaterialPageRoute<webview.TermsAndConditionsPage>(
+            builder: (_) => const webview.TermsAndConditionsPage());
 
       case BWRoutes.forgotPinOtpWidget:
         return MaterialPageRoute<ForgotPinOtpWidget>(

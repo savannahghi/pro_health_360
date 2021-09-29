@@ -97,12 +97,6 @@ const Key genericNoDataButtonKey = Key('generic_no_data_button_key');
 
 const Key physicalVisitTypeRadioKey = Key('physical_visit_type_radio');
 
-// terms and conditions keys
-const Key acceptTermsAndConditionsKey = Key('accept_terms_and_conditions');
-const Key rejectTermsAndConditionsKey = Key('reject_terms_and_conditions');
-const Key termsAndConditionsColumnKey = Key('terms_and_conditions_column');
-const Key termsAndConditionsLinkKey = Key('terms_and_conditions_link');
-
 // phone number verification
 const Key phoneNumberVerificationKey = Key('phone_number_verification');
 

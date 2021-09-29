@@ -15,12 +15,13 @@ import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
+import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:user_profile/term_and_conditions.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
 
 import '../../mocks.dart';
 
@@ -199,10 +200,11 @@ void main() {
 
   test('Test router returns incoming  webView page', () {
     const RouteSettings settings = RouteSettings(name: BWRoutes.webView);
-    final MaterialPageRoute<TermsAndConditionsPage> route =
-        routeGenerator(settings) as MaterialPageRoute<TermsAndConditionsPage>;
-    expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());
-    expect(route.builder(context), isA<TermsAndConditionsPage>());
+    final MaterialPageRoute<webview.TermsAndConditionsPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<webview.TermsAndConditionsPage>;
+    expect(route, isA<MaterialPageRoute<webview.TermsAndConditionsPage>>());
+    expect(route.builder(context), isA<webview.TermsAndConditionsPage>());
   });
 
   test('Test router returns profile contact details page', () {
@@ -229,5 +231,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<SecurityQuestionsPage>;
     expect(route, isA<MaterialPageRoute<SecurityQuestionsPage>>());
     expect(route.builder(context), isA<SecurityQuestionsPage>());
+  });
+
+  test('Test router returns TermsAndConditionsPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.termsAndConditions);
+    final MaterialPageRoute<TermsAndConditionsPage> route =
+        routeGenerator(settings) as MaterialPageRoute<TermsAndConditionsPage>;
+    expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());
+    expect(route.builder(context), isA<TermsAndConditionsPage>());
   });
 }

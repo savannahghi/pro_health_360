@@ -62,10 +62,11 @@ void main() {
         widget: CustomScrollView(slivers: <Widget>[
           SliverPersistentHeader(
             delegate: OnboardingPageHeader(
-                maxExtent: number200,
-                minExtent: number100,
-                showBackArrow: true,
-                backRoute: BWRoutes.landing),
+              maxExtent: number200,
+              minExtent: number100,
+              showBackArrow: true,
+              backRoute: BWRoutes.landing,
+            ),
           ),
         ]),
       );

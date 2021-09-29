@@ -9,6 +9,7 @@ class BWRoutes {
   static const String basicDetails = '/basicDetails';
   static const String verifyPhoneNo = '/verifyPhoneNo';
   static const String verifyCode = '/verifyCode';
+  static const String termsAndConditions = '/termsAndConditions';
   static const String verifySignUpOTP = '/verifySignUpOTP';
   static const String forgotPinOtpWidget = '/forgotPinOtpWidget';
 
@@ -65,7 +66,6 @@ class BWRoutes {
   // search center
   static const String searchPage = '/searchPage';
 
-  // loans placeholder
   static const String webView = '/webView';
 
   static const String introduction = 'introduction';

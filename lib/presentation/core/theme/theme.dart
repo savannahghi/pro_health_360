@@ -18,13 +18,18 @@ class AppTheme {
             TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
           }),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            primary: AppColors.primaryColor,
+            textStyle: const TextStyle(color: Colors.white)),
+      ),
     );
   }
 }
 
 class AppColors {
   static const Color accentColor = Color.fromARGB(255, 188, 197, 50);
-  static const Color backgroundGreyColor = Color(0xFFF4F4F6);
+  static Color backgroundGreyColor = Colors.grey.shade200;
   static const Color blackColor = Color(0xFF000000);
   static const Color cyanColor = Color(0xFF98DDE7);
   static const Color darkGreenColor = Color(0xFF388E3C);
@@ -46,12 +51,12 @@ class AppColors {
   static const Color secondaryColor = Color.fromARGB(255, 22, 20, 74);
   static const Color primaryColorLite = Color(0xFFF2E8FF);
   static const Color redColor = Color(0xFFE41518);
-  static const Map<String, Color> themeColors = <String, Color>{
+  static Map<String, Color> themeColors = <String, Color>{
     'primaryColor': primaryColor,
     'primaryDark': primaryColor,
     'accentColor': accentColor,
-    'backgroundColor': Color(0xFFF4F6FA),
-    'textSelectionColor': Color(0xff0e2153),
+    'backgroundColor': backgroundGreyColor,
+    'textSelectionColor': const Color(0xff0e2153),
   };
   static const Color superLightGreyColor = Color(0xFFF2F2F2);
   static const Color whiteColor = Color(0xFFFFFFFF);

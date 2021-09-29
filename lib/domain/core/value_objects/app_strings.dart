@@ -545,3 +545,9 @@ const String importantInformationString = 'Important Information';
 
 //Important Information Link Widget
 const String importantLinkString = 'Important Link';
+
+// Terms and conditions
+const String portalTermsText = 'Portal terms and conditions';
+const String readAndAcceptText =
+    'Read and accept the terms and conditions to proceed';
+const String acceptTermsText = 'I accept terms and conditions';

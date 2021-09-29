@@ -98,8 +98,8 @@ void main() {
       });
 
       testWidgets(
-          'should render ProfileDetail correctly when ProfileItem [Legal Section] is tapped',
-          (WidgetTester tester) async {
+          'should render ProfileDetail correctly when ProfileItem '
+          '[Legal Section] is tapped', (WidgetTester tester) async {
         tester.binding.window.devicePixelRatioTestValue = 1.0;
         tester.binding.window.physicalSizeTestValue = tabletLandscape;
 

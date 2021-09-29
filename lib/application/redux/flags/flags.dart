@@ -17,9 +17,6 @@ const String anonymousLoginFlag = 'anonymous_login';
 // phone number entry
 const String phoneNumberEntryFlag = 'phone_number_entry';
 
-// terms and conditions
-const String termsAndConditionsFlag = 'terms_and_conditions';
-
 // create pin page
 const String createPinFlag = 'create_pin';
 
