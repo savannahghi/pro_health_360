@@ -520,3 +520,12 @@ const String pinString = 'PIN';
 const String enterYourString = 'Enter your PIN';
 const String enterPhoneNumberString = 'Enter phone number';
 const String continueString = 'Continue';
+String howAreYoufeelingTodayText(String user) {
+  return 'Hi $user, how are you feeling today?';
+}
+
+const String excitedString = 'Excited';
+const String happyString = 'Happy';
+const String mehString = 'Meh';
+const String sadString = 'Sad';
+const String verySadString = 'Very Sad';
