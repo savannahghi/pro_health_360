@@ -534,3 +534,14 @@ const String createNewPINTitleString = 'Create new pin';
 const String createNewPINSubTitleString =
     'Enter a new 4 digit pin, make sure you remember it.';
 const String pinMustMatchString = 'PIN must match';
+//congratulations page
+String congratulationsPageTitle(String duration) =>
+    'Congratulations on your $duration health journey';
+const String congratulationsPageDescription =
+    'Please create a nickname (Visible to community members)';
+const String nickNameString = 'Name';
+const String nameInputValidateString = 'Name is required';
+const String importantInformationString = 'Important Information';
+
+//Important Information Link Widget
+const String importantLinkString = 'Important Link';

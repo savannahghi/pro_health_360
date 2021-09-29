@@ -390,3 +390,6 @@ const Key phoneLoginContinueButtonKey = Key('phone_login_continue_button_key');
 const Key selectCountryKey = Key('select_country_key');
 const Key createPINContinueButtonKey = Key('create_pin_continue_button_key');
 const Key confirmPinInputKey = Key('confirm_pin_input_key');
+
+//Congratulations Page
+const Key nameInputKey = Key('name_input_key');
