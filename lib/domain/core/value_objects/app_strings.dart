@@ -1,7 +1,7 @@
-import 'package:myafyahub/presentation/profile/profile_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:myafyahub/presentation/profile/profile_utils.dart';
 
 const String requestTimeoutError =
     'We could not perform this process in time. Please try again';
@@ -500,3 +500,14 @@ const String verifyPhoneNumberDescription =
 const String enterOTPString = 'Enter OTP to proceed';
 const String confirmOTPButtonString = 'Confirm OTP';
 const String invalidOTPString = 'Invalid OTP *';
+const String setSecurityQuestionsString = 'Set security questions';
+const String securityQuestionsDescriptionString =
+    'Choose one security question. Make sure to remember the answer';
+
+const String whereWereYouBornString = 'Where were you born?';
+const String whatsTheNameOfYourPetString = 'What\'s the name of your pet?';
+const String whatsYourfavouriteFoodString = 'What\'s your favourite food?';
+const String whereDidYouFirstLiveString = 'Where did you first live?';
+const String answerHereString = 'Answer here';
+const String saveAndContinueButtonText = 'Save & Continue';
+const String doneText = 'Done';

@@ -77,6 +77,9 @@ class BWRoutes {
       '/selectFullPaymentOrLoanPage';
   static const String selectTypeOfCoverPage = '/selectTypeOfCoverPage';
   static const String selectPremiumRangePage = '/selectPremiumRangePage';
+
+  // Security questions
+  static const String securityQuestionsPage = '/securityQuestionsPage';
 }
 
 List<String> unProtectedRoutes = <String>[
