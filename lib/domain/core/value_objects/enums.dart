@@ -27,3 +27,4 @@ enum TimelineItemType {
   DiaryImage,
   Appointment,
 }
+enum Country { kenya, uganda, tanzania, us, uk, belgium }

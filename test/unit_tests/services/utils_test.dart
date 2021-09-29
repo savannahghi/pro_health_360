@@ -10,6 +10,7 @@ import 'package:myafyahub/domain/core/entities/core/suggestion.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -111,6 +112,18 @@ void main() {
 
         expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
       });
+    });
+    test('should return correct country', () {
+      expect(popValue('Uganda'), Country.uganda);
+      expect(popValue('Tanzania'), Country.tanzania);
+      expect(popValue('United Kingdom'), Country.uk);
+      expect(popValue('Belgium'), Country.belgium);
+
+      expect(getCountry(Country.uganda), supportedCountries['uganda']);
+      expect(getCountry(Country.tanzania), supportedCountries['tanzania']);
+      expect(getCountry(Country.uk), supportedCountries['uk']);
+      expect(getCountry(Country.belgium), supportedCountries['belgium']);
+      expect(getCountry(Country.us), supportedCountries['usa']);
     });
   });
 }

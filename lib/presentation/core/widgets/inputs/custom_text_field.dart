@@ -113,10 +113,8 @@ class CustomTextField extends StatelessWidget {
                 .copyWith(color: hintColor ?? grey, fontSize: 16),
             suffix: suffixIcon,
             prefixIcon: prefixIcon,
-            labelStyle: Theme.of(context)
-                .textTheme
-                .headline6!
-                .copyWith(color: grey, fontSize: 16),
+            labelStyle: const TextStyle(
+                fontWeight: FontWeight.w300, color: Colors.grey, fontSize: 15),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                   color: customFillColor ?? borderColor ?? Colors.white24),

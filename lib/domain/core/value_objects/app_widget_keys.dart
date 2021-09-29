@@ -59,6 +59,7 @@ const Key phoneLoginSubmitButtonKey = Key('phone_login_submit_button_key');
 const Key createNewAccountKey = Key('create_new_account_key');
 const Key resetPinKey = Key('reset_pin_key');
 const Key pinInputKey = Key('pin_input_key');
+const Key phoneNumberInputKey = Key('phone_number_input_key');
 
 // phone sign up keys
 const Key phoneSignUpCheckboxKey = Key('phone_sign_up_checkbox_key');
@@ -384,3 +385,6 @@ const Key continueLaterKey = Key('continue_later_key');
 
 //Notification List Item
 const Key notificationIconContainerKey = Key('notification_icon_container_key');
+const Key textFormFieldKey = Key('text_form_field_key');
+const Key phoneLoginContinueButtonKey = Key('phone_login_continue_button_key');
+const Key selectCountryKey = Key('select_country_key');

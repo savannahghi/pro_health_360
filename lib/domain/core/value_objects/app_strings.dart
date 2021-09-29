@@ -179,7 +179,7 @@ class OnboardingStrings {
       );
 
   String phoneNumberText() => Intl.message(
-        'Phone number',
+        'Enter phone number',
         name: 'phoneNumberText',
         desc: 'phone number',
       );
@@ -511,3 +511,12 @@ const String whereDidYouFirstLiveString = 'Where did you first live?';
 const String answerHereString = 'Answer here';
 const String saveAndContinueButtonText = 'Save & Continue';
 const String doneText = 'Done';
+const String phoneNumberRequiredText = 'Phone number is required';
+const String validPhoneNumberText = 'Please enter a valid phone number';
+const String loginPageTitleString = 'Welcome\nto My Care Hub';
+const String loginPageSubTitleString = 'Enter PIN sent to you to continue';
+const String phoneNumberString = 'Phone Number';
+const String pinString = 'PIN';
+const String enterYourString = 'Enter your PIN';
+const String enterPhoneNumberString = 'Enter phone number';
+const String continueString = 'Continue';
