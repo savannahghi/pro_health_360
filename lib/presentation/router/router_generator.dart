@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-
-import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
+import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
-import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/help_center/pages/help_center_page.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
+import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
 import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
+import 'package:myafyahub/presentation/onboarding/introduction/introduction_page.dart';
 import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
+import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
-import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
-import 'package:myafyahub/presentation/onboarding/introduction/introduction_page.dart';
-
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_profile/term_and_conditions.dart';
 
 /// The router generator for the app. The arrangement in this config must match that

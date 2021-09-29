@@ -492,3 +492,11 @@ const String duplicateRequestString = 'a similar request is under review';
 const String diaryString = 'Diary';
 const String textEntryString = 'Text entry';
 const String imageFileString = 'Image file';
+
+//Verify phone number page
+const String verifyPhoneNumberTitle = 'Verify phone number';
+const String verifyPhoneNumberDescription =
+    'A one time password has been sent to your phone';
+const String enterOTPString = 'Enter OTP to proceed';
+const String confirmOTPButtonString = 'Confirm OTP';
+const String invalidOTPString = 'Invalid OTP *';
