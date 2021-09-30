@@ -529,3 +529,8 @@ const String happyString = 'Happy';
 const String mehString = 'Meh';
 const String sadString = 'Sad';
 const String verySadString = 'Very Sad';
+const String confirmPinString = 'Confirm new PIN';
+const String createNewPINTitleString = 'Create new pin';
+const String createNewPINSubTitleString =
+    'Enter a new 4 digit pin, make sure you remember it.';
+const String pinMustMatchString = 'PIN must match';

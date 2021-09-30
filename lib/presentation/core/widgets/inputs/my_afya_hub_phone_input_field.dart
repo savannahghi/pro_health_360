@@ -10,7 +10,7 @@ import 'package:myafyahub/presentation/core/widgets/inputs/country_code_picker.d
 import 'package:shared_themes/colors.dart';
 import 'package:misc_utilities/misc.dart';
 
-/// [MyAfyaHubPhoneInput] is is a shared widget to to input user phone number and country code
+/// [MyAfyaHubPhoneInput] is a shared widget to input user phone number and country code
 ///
 /// It takes in required [inputController], [onChanged] and [phoneNumberFormatter] parameters
 ///
