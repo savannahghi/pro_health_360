@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:unicons/unicons.dart';
@@ -18,53 +19,17 @@ class TermsAndConditionsPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               // Terms and Conditions Card
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
+
+              InformationListCard(
+                leadingIcon: UniconsLine.file_lock_alt,
+                title: Text(
+                  portalTermsText,
+                  style: TextThemes.normalSize16Text(
+                      Theme.of(context).primaryColor),
                 ),
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.all(18),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            UniconsLine.file_lock_alt,
-                            size: 32,
-                            color: AppColors.secondaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Flexible(
-                      flex: 8,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 4.0),
-                            child: Text(
-                              portalTermsText,
-                              style: TextThemes.normalSize16Text(
-                                  Theme.of(context).primaryColor),
-                            ),
-                          ),
-                          Text(
-                            readAndAcceptText,
-                            style: TextThemes.normalSize14Text(Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                body: Text(
+                  readAndAcceptText,
+                  style: TextThemes.normalSize14Text(Colors.grey),
                 ),
               ),
 
