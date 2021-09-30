@@ -387,3 +387,4 @@ const Key confirmPinInputKey = Key('confirm_pin_input_key');
 
 //Congratulations Page
 const Key nameInputKey = Key('name_input_key');
+const Key joinSuggestedGroupButtonKey = Key('join_suggested_group_button_key');

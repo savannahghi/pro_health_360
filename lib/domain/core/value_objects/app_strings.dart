@@ -551,3 +551,5 @@ const String portalTermsText = 'Portal terms and conditions';
 const String readAndAcceptText =
     'Read and accept the terms and conditions to proceed';
 const String acceptTermsText = 'I accept terms and conditions';
+const String joinString = 'Join';
+const String suggestedGroupsString = 'Suggested groups to join';

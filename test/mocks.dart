@@ -2771,3 +2771,25 @@ void setUpRemoteConfigStubs() {
   when(mockRemoteConfigPlatform.setDefaults(any))
       .thenAnswer((_) => Future<void>.value());
 }
+List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
+    'title': 'Kilimani',
+    'totalMembers': '1.3k Members',
+  },
+  <String, dynamic>{
+    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
+    'title': 'Ruaraka',
+    'totalMembers': '1.3k Members',
+  },
+  <String, dynamic>{
+    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
+    'title': 'Ruaraka',
+    'totalMembers': '1.3k Members',
+  },
+  <String, dynamic>{
+    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
+    'title': 'Ruaraka',
+    'totalMembers': '1.3k Members',
+  },
+];
