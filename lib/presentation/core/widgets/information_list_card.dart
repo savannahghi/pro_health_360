@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 class InformationListCard extends StatelessWidget {
   const InformationListCard({
@@ -9,6 +11,7 @@ class InformationListCard extends StatelessWidget {
     this.iconColor,
     this.iconBackgroundColor,
     double? borderRadius,
+    this.iconAssetPath,
   }) : borderRadius = borderRadius ?? 8;
 
   final Text title;
@@ -17,6 +20,7 @@ class InformationListCard extends StatelessWidget {
   final Color? iconColor;
   final Color? iconBackgroundColor;
   final double borderRadius;
+  final String? iconAssetPath;
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +46,33 @@ class InformationListCard extends StatelessWidget {
         ),
         const SizedBox(width: 12),
       ]);
+    } else if (iconAssetPath != null) {
+      leadingItems.addAll(<Widget>[
+        Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            color: AppColors.listCardColor,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SvgPicture.asset(
+              iconAssetPath!,
+              width: 20,
+              height: 20,
+              color: iconColor ?? AppColors.secondaryColor,
+            ),
+          ),
+        ),
+        mediumHorizontalSizedBox,
+      ]);
     }
 
     return Container(
-      padding: leadingIcon != null
-          ? const EdgeInsets.all(8)
+      padding: leadingIcon != null ? const EdgeInsets.all(8)
+          : iconAssetPath != null ? const EdgeInsets.all(6)
           : const EdgeInsets.all(16),
+          
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(borderRadius),
@@ -56,7 +81,7 @@ class InformationListCard extends StatelessWidget {
         children: <Widget>[
           ...leadingItems,
           Flexible(
-            flex: leadingIcon != null ? 8 : 1,
+            flex: leadingIcon != null && iconAssetPath != null ? 8 : 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
