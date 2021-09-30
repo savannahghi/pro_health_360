@@ -1,10 +1,6 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -16,6 +12,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:platform/platform.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
@@ -2680,6 +2680,25 @@ class MockFirebaseRemoteConfig extends Mock
     ) as RemoteConfigSettings;
   }
 }
+
+List<Map<String, dynamic>> mockFilterItems = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'filterIcon': Icons.grid_view_sharp,
+    'filterText': 'All',
+  },
+  <String, dynamic>{
+    'filterIcon': Icons.lightbulb_rounded,
+    'filterText': 'Recommended',
+  },
+  <String, dynamic>{
+    'filterIcon': Icons.grid_view_sharp,
+    'filterText': 'Exercise',
+  },
+  <String, dynamic>{
+    'filterIcon': Icons.fastfood_outlined,
+    'filterText': 'diet',
+  },
+];
 
 class TestFirebaseRemoteConfigPlatform extends FirebaseRemoteConfigPlatform {
   TestFirebaseRemoteConfigPlatform() : super();
