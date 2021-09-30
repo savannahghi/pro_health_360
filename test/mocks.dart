@@ -15,6 +15,7 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:platform/platform.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -2790,6 +2791,7 @@ void setUpRemoteConfigStubs() {
   when(mockRemoteConfigPlatform.setDefaults(any))
       .thenAnswer((_) => Future<void>.value());
 }
+
 List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
   <String, dynamic>{
     'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
@@ -2810,5 +2812,30 @@ List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
     'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
     'title': 'Ruaraka',
     'totalMembers': '1.3k Members',
+  }
+];
+
+List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'coverImageUrl': contentItemImageUrl,
+    'header': feedHeader,
+    'date': '',
+    'isNew': true
+  },
+  <String, dynamic>{
+    'coverImageUrl': contentItemImageUrl,
+    'header': feedHeader,
+    'date': '',
+    'readTime': feedReadTime
+  },
+  <String, dynamic>{
+    'coverImageUrl': contentItemImageUrl,
+    'header': feedHeader,
+    'date': '',
+  },
+  <String, dynamic>{
+    'coverImageUrl': contentItemImageUrl,
+    'header': feedHeader,
+    'date': '',
   },
 ];

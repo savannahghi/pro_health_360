@@ -562,3 +562,15 @@ const String correctionRequestString = 'Request for correction';
 const String hotlineString = 'Hotline';
 const String hotlineNumberString = '0712345678';
 const String callString = 'Call';
+
+//feed Item Widget
+const String feedHeader =
+    'Tips on how to keep yourself properly hydrated while exercising';
+const String feedDate = 'July 12 2021';
+const String feedReadTime = '5 minutes';
+String contentReadDuration(String duration) => '$duration read';
+const String newString = 'New';
+
+//New Content
+const String newContentText = 'New Content';
+const String viewAllText = 'View All';
