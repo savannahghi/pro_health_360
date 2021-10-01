@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -9,17 +11,18 @@ import 'package:shared_themes/text_themes.dart';
 
 class NotificationListItem extends StatelessWidget {
   const NotificationListItem({
-    required this.listItemColor,
     required this.svgPath,
     required this.description,
     required this.date,
     bool? calendarDate,
-  }) : this.calendarDate = calendarDate ?? false;
+    bool? isAlternateNotification,
+  })  : this.calendarDate = calendarDate ?? false,
+        this.isAlternateNotification = isAlternateNotification ?? false;
 
-  final Color listItemColor;
   final String svgPath;
   final String description;
   final String date;
+  final bool isAlternateNotification;
 
   ///Displays a calendar widget
   final bool calendarDate;
@@ -37,13 +40,15 @@ class NotificationListItem extends StatelessWidget {
             height: 70,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: listItemColor,
+              color: isAlternateNotification
+                  ? AppColors.secondaryColor
+                  : Colors.white,
             ),
             child: Center(
               child: SvgPicture.asset(
                 svgPath,
-                width: 40,
-                height: 40,
+                width: 30,
+                height: 30,
                 color: Theme.of(context).accentColor,
               ),
             ),
@@ -56,7 +61,9 @@ class NotificationListItem extends StatelessWidget {
                   smallVerticalSizedBox,
                   Text(
                     description,
-                    style: TextThemes.normalSize16Text(Colors.blue),
+                    style: TextThemes.normalSize14Text(
+                      AppColors.secondaryColor,
+                    ),
                   ),
                   const SizedBox(height: 2.5),
                   Text(
@@ -71,7 +78,7 @@ class NotificationListItem extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(
-                          color: Colors.blue,
+                          color: AppColors.secondaryColor,
                         ),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(7),
@@ -84,13 +91,15 @@ class NotificationListItem extends StatelessWidget {
                             calendarIcon,
                             width: 20,
                             height: 20,
-                            color: Colors.blue,
+                            color: AppColors.secondaryColor,
                           ),
                           smallHorizontalSizedBox,
                           Expanded(
                             child: Text(
-                              'Add to Calendar',
-                              style: TextThemes.normalSize12Text(Colors.blue),
+                              addCalendarText,
+                              style: TextThemes.normalSize12Text(
+                                AppColors.secondaryColor,
+                              ),
                             ),
                           ),
                         ]),

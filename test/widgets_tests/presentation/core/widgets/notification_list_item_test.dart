@@ -13,9 +13,8 @@ void main() {
             return const Scaffold(
               body: NotificationListItem(
                 svgPath: helpCenterButtonImageUrl,
-                listItemColor: Colors.black,
                 description:
-                    'You have a tele consult with doctor WellMan. Click ',
+                    'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
                 date: 'July 12 2021',
               ),
             );
@@ -40,9 +39,9 @@ void main() {
             return const Scaffold(
               body: NotificationListItem(
                 svgPath: helpCenterButtonImageUrl,
-                listItemColor: Colors.black,
+                isAlternateNotification: true,
                 description:
-                    'You have a tele consult with doctor WellMan. Click ',
+                    'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
                 date: 'July 12 2021',
                 calendarDate: true,
               ),

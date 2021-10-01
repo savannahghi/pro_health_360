@@ -50,6 +50,9 @@ class BWRoutes {
   // consult and teleconsult routes
   static const String providerPanel = '/providerPanel';
 
+  // notifications
+  static const String notificationsPage = '/notificationsPage';
+
   // verify edi contacts routes
   static const String addMemberDetailsEdi = '/addMemberDetailsEdi';
 

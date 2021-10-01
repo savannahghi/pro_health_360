@@ -26,6 +26,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
+import 'package:myafyahub/presentation/notifications/notification_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 import 'package:app_wrapper/app_wrapper.dart';
@@ -1089,4 +1090,25 @@ List<Map<String, dynamic>> userProfileItems = <Map<String, dynamic>>[
     'iconPath': settingsIcon,
     'title': 'Settings',
   }
+];
+
+List<NotificationDetails> notifications = <NotificationDetails>[
+  NotificationDetails(
+    svgPath: teleConsultVideoNotificationIcon,
+    description:
+        'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join goog/meet.consult',
+    date: feedDate,
+    calendar: true,
+  ),
+  NotificationDetails(
+    svgPath: teleConsultNotificationIcon,
+    description:
+        'You have a tele consult with doctor Wellman. Click  Here to schedule the call ',
+    date: feedDate,
+  ),
+  NotificationDetails(
+      svgPath: wellnessSurveyNotificationIcon,
+      description: 'Wellness Survey',
+      date: feedDate,
+      isAlternateNotification: true),
 ];

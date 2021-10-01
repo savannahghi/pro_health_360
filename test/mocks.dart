@@ -2838,5 +2838,26 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'coverImageUrl': contentItemImageUrl,
     'header': feedHeader,
     'date': '',
+  }
+];
+
+List<Map<String, dynamic>> mockNotification = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'svgPath': shieldIconImgUrl,
+    'description':
+        'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
+    'date': 'July 21 2021',
+    'calendar': true
+  },
+  <String, dynamic>{
+    'svgPath': libraryNavItemIconUrl,
+    'description': 'You have a tele consult with doctor Wellman. Click ',
+    'date': 'July 21 2021',
+  },
+  <String, dynamic>{
+    'svgPath': helpCenterButtonImageUrl,
+    'description': 'Wellness Survey',
+    'date': 'July 21 2021',
+    'isAlternateNotification': true,
   },
 ];

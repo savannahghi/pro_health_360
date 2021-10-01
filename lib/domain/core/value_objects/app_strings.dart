@@ -613,3 +613,7 @@ const String savedText = 'Saved';
 const String savedVideoText = 'Saved Video';
 const String savedArticleText = 'Saved Article';
 const String feedHeaderListSavedVideo = 'How to keep yourself healthy always';
+
+//notifications
+const String addCalendarText = 'Add to Calendar';
+const String notificationsText = 'Notifications';

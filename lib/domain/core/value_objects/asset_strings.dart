@@ -85,3 +85,11 @@ const String homeIconSvgPath = 'assets/icons/home_icon.svg';
 const String feedIconSvgPath = 'assets/icons/feed_icon.svg';
 const String communityIconSvgPath = 'assets/icons/community_icon.svg';
 const String myHealthIconSvgPath = 'assets/icons/my_health_icon.svg';
+//Notification Icons
+
+const String teleConsultNotificationIcon =
+    'assets/icons/tele_consult_notification_icon.svg';
+const String teleConsultVideoNotificationIcon =
+    'assets/icons/tele_consult_video_notification_icon.svg';
+const String wellnessSurveyNotificationIcon =
+    'assets/icons/wellness_survey_notification_icon.svg';
