@@ -29,7 +29,6 @@ class AppTheme {
 
 class AppColors {
   static const Color accentColor = Color.fromARGB(255, 188, 197, 50);
-  static Color backgroundGreyColor = Colors.grey.shade200;
   static const Color blackColor = Color(0xFF000000);
   static const Color cyanColor = Color(0xFF98DDE7);
   static const Color darkGreenColor = Color(0xFF388E3C);
@@ -37,7 +36,7 @@ class AppColors {
   static const Color darkOrangeColor = Color(0xFFFFA000);
   static const Color greenColor = Color(0xFF50C878);
   static const Color greyColor = Color(0xFF828282);
-  static const Color greyTextColor = Color(0xff7D8D9C);
+  static const Color greyTextColor = Color(0xFF707070);
   static const Color greySeparatorColor = Color(0xfff3f5f9);
   static const Color inputFieldColor = Color(0xFFF0F3FE);
   static const Color lightBlueColor = Color(0xFFBCE0FA);
@@ -55,7 +54,7 @@ class AppColors {
     'primaryColor': primaryColor,
     'primaryDark': primaryColor,
     'accentColor': accentColor,
-    'backgroundColor': backgroundGreyColor,
+    'backgroundColor': timeLineBackgroundColor,
     'textSelectionColor': const Color(0xff0e2153),
   };
   static const Color superLightGreyColor = Color(0xFFF2F2F2);

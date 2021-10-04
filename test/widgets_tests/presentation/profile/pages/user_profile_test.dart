@@ -11,8 +11,8 @@ import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:shared_ui_components/profile_banner.dart';
 
-import '../../../mock_image_httpclient.dart';
-import '../../../test_helpers.dart';
+import '../../../../mock_image_httpclient.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('Should test UserProfile page', () {

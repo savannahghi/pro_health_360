@@ -14,8 +14,8 @@ import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
-import '../../../mocks.dart';
-import '../../../test_helpers.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('EditProfilePage test', () {

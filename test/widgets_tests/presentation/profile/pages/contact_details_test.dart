@@ -17,7 +17,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:shared_ui_components/profile_banner.dart';
 import 'package:user_profile/contacts.dart';
 
-import '../../../mocks.dart';
+import '../../../../mocks.dart';
 
 void main() {
   group('Should test ProfileContactDetails settings page', () {

@@ -5,7 +5,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 
-import '../../../test_helpers.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('ConsentPage', () {

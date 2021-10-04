@@ -15,9 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:user_profile/term_and_conditions.dart';
 
-import '../../../mock_image_httpclient.dart';
-import '../../../mocks.dart';
-import '../../../test_helpers.dart';
+import '../../../../mock_image_httpclient.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('SignedUserProfileScaffold', () {

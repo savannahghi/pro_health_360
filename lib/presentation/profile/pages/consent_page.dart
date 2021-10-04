@@ -17,7 +17,7 @@ class ConsentPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
+          child: ListView(
             children: <Widget>[
               InformationListCard(
                 leadingIcon: const Icon(

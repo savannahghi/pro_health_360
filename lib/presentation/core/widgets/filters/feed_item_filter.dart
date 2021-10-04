@@ -40,7 +40,7 @@ class FeedItemFilter extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
           color: isActive
               ? AppColors.secondaryColor
-              : AppColors.backgroundGreyColor,
+              : AppColors.timeLineBackgroundColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),

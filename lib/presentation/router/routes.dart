@@ -31,10 +31,12 @@ class BWRoutes {
   static const String home = 'home';
 
   // user profile routes
+  static const String editProfileSettingsPage = '/editProfileSettingsPage';
   static const String userProfile = '/userProfile';
   static const String contactInfo = '/contactInfo';
   static const String consent = '/consent';
   static const String personalInfo = '/personalInfo';
+  static const String medicalData = '/medicalData';
 
   // benefit details and utilization routes
 
@@ -58,9 +60,6 @@ class BWRoutes {
   // library
   static const String library = '/library';
   static const String libraryContent = '/libraryContent';
-
-  // profile page action items routes
-  static const String editProfileSettingsPage = '/editProfileSettingsPage';
 
   // support center
   static const String helpCenter = '/helpCenter';

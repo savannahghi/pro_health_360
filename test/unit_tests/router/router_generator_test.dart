@@ -22,6 +22,7 @@ import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_inforamation_page.dart';
+import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -282,5 +283,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<PersonalInformationPage>;
     expect(route, isA<MaterialPageRoute<PersonalInformationPage>>());
     expect(route.builder(context), isA<PersonalInformationPage>());
+  });
+
+  test('Test router returns MedicalDataPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.medicalData);
+
+    final MaterialPageRoute<MedicalDataPage> route =
+        routeGenerator(settings) as MaterialPageRoute<MedicalDataPage>;
+    expect(route, isA<MaterialPageRoute<MedicalDataPage>>());
+    expect(route.builder(context), isA<MedicalDataPage>());
   });
 }

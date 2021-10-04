@@ -571,6 +571,7 @@ const String correctionRequestString = 'Request for correction';
 const String hotlineString = 'Hotline';
 const String hotlineNumberString = '0712345678';
 const String callString = 'Call';
+const String myProfileText = 'My Profile';
 
 //feed Item Widget
 const String feedHeader =
