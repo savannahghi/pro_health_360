@@ -84,6 +84,10 @@ class BWRoutes {
 
   // Security questions
   static const String securityQuestionsPage = '/securityQuestionsPage';
+
+  // Answer Security Question
+  static const String answerSecurityQuestionPage =
+      '/answerSecurityQuestionPage';
 }
 
 List<String> unProtectedRoutes = <String>[

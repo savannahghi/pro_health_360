@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/community_list_view.dart';
-import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
-import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
-import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
@@ -21,10 +15,16 @@ import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
+import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
+import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
+import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 /// The router generator for the app. The arrangement in this config must match that
@@ -134,6 +134,10 @@ class RouteGenerator {
       case BWRoutes.securityQuestionsPage:
         return MaterialPageRoute<SecurityQuestionsPage>(
             builder: (_) => const SecurityQuestionsPage());
+
+      case BWRoutes.answerSecurityQuestionPage:
+        return MaterialPageRoute<AnswerSecurityQuestionPage>(
+            builder: (_) => const AnswerSecurityQuestionPage());
 
       case BWRoutes.communityListView:
         return MaterialPageRoute<CommunityListView>(

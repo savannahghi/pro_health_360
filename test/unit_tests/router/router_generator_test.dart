@@ -14,6 +14,7 @@ import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
@@ -233,6 +234,16 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<SecurityQuestionsPage>;
     expect(route, isA<MaterialPageRoute<SecurityQuestionsPage>>());
     expect(route.builder(context), isA<SecurityQuestionsPage>());
+  });
+
+  test('Test router returns answer security question page', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.answerSecurityQuestionPage);
+    final MaterialPageRoute<AnswerSecurityQuestionPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<AnswerSecurityQuestionPage>;
+    expect(route, isA<MaterialPageRoute<AnswerSecurityQuestionPage>>());
+    expect(route.builder(context), isA<AnswerSecurityQuestionPage>());
   });
 
   test('Test router returns TermsAndConditionsPage', () {

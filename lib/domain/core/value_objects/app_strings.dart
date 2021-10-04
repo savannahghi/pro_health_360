@@ -504,6 +504,10 @@ const String setSecurityQuestionsString = 'Set security questions';
 const String securityQuestionsDescriptionString =
     'Choose one security question. Make sure to remember the answer';
 
+const String answerSecurityQuestionString = 'Answer security question';
+const String answerCorrectlyToGainAccessString =
+    'Answer correctly to gain access';
+
 const String whereWereYouBornString = 'Where were you born?';
 const String whatsTheNameOfYourPetString = 'What\'s the name of your pet?';
 const String whatsYourfavouriteFoodString = 'What\'s your favourite food?';
