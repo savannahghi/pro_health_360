@@ -72,3 +72,7 @@ const String clinicIcon = 'assets/icons/clinic_icon.svg';
 const String faqsIcon = 'assets/icons/faqs_icon.svg';
 const String feedbackIcon = 'assets/icons/feedback_icon.svg';
 const String mySavedIcon = 'assets/icons/my_saved_icon.svg';
+
+//App bar icons
+const String notificationIcon = 'assets/icons/notification_icon.svg';
+const String backIcon = 'assets/icons/app_bar_back_icon.svg';

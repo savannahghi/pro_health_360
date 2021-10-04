@@ -34,6 +34,7 @@ class BWRoutes {
   static const String userProfile = '/userProfile';
   static const String contactInfo = '/contactInfo';
   static const String consent = '/consent';
+  static const String personalInfo = '/personalInfo';
 
   // benefit details and utilization routes
 

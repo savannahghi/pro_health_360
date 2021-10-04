@@ -23,6 +23,7 @@ import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
+import 'package:myafyahub/presentation/profile/pages/personal_inforamation_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
@@ -147,6 +148,10 @@ class RouteGenerator {
         return MaterialPageRoute<ConsentPage>(
           builder: (_) => const ConsentPage(),
         );
+
+      case BWRoutes.personalInfo:
+        return MaterialPageRoute<PersonalInformationPage>(
+            builder: (_) => PersonalInformationPage());
 
       default:
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());

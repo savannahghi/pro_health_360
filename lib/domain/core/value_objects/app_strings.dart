@@ -583,3 +583,16 @@ const String newString = 'New';
 //New Content
 const String newContentText = 'New Content';
 const String viewAllText = 'View All';
+
+//Personal Information
+const String myProfileParentText = 'Parent/guardian/caregiver information';
+const String name = 'Name';
+const String phoneNumber = 'Phone number';
+const String relationText = 'How are you related';
+const String preferredLanguage = 'Preferred Language';
+const String english = 'English';
+const String preferredClinic = 'Preferred Clinic';
+const String clinic = 'Equity Afia Ruaka';
+const String preferredCommunication = 'Preferred way of Communication';
+const String inApp = 'in app';
+const String myProfileString = 'My Profile';

@@ -21,6 +21,7 @@ import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
+import 'package:myafyahub/presentation/profile/pages/personal_inforamation_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -272,5 +273,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ConsentPage>;
     expect(route, isA<MaterialPageRoute<ConsentPage>>());
     expect(route.builder(context), isA<ConsentPage>());
+  });
+
+  test('Test router returns PersonalInformation Page', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.personalInfo);
+
+    final MaterialPageRoute<PersonalInformationPage> route =
+        routeGenerator(settings) as MaterialPageRoute<PersonalInformationPage>;
+    expect(route, isA<MaterialPageRoute<PersonalInformationPage>>());
+    expect(route.builder(context), isA<PersonalInformationPage>());
   });
 }
