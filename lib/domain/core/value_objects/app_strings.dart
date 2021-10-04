@@ -553,3 +553,9 @@ const String readAndAcceptText =
 const String acceptTermsText = 'I accept terms and conditions';
 const String joinString = 'Join';
 const String suggestedGroupsString = 'Suggested groups to join';
+
+//User Profile
+const String correctionRequestString = 'Request for correction';
+const String hotlineString = 'Hotline';
+const String hotlineNumberString = '0712345678';
+const String callString = 'Call';

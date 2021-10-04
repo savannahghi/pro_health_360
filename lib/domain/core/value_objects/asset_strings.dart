@@ -47,3 +47,15 @@ const String paperClipIcon = 'assets/icons/paper_clip_icon.svg';
 
 const String calendarIcon = 'assets/icons/calendar.svg';
 const String alertCircleIcon = 'assets/icons/alert_circle_icon.svg';
+
+// user profile page icons
+const String phoneCallIcon = 'assets/icons/phone_call_icon.svg';
+const String helpCircleIcon = 'assets/icons/help_circle_icon.svg';
+const String settingsIcon = 'assets/icons/settings_icon.svg';
+const String homeLocationIcon = 'assets/icons/home_location_icon.svg';
+const String profileIcon = 'assets/icons/profile_icon.svg';
+const String medicalDataIcon = 'assets/icons/medical_data_icon.svg';
+const String clinicIcon = 'assets/icons/clinic_icon.svg';
+const String faqsIcon = 'assets/icons/faqs_icon.svg';
+const String feedbackIcon = 'assets/icons/feedback_icon.svg';
+const String mySavedIcon = 'assets/icons/my_saved_icon.svg';

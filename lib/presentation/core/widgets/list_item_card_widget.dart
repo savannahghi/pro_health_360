@@ -110,6 +110,7 @@ class ListItemCard extends StatelessWidget {
             ),
         ],
       ),
+      
     );
   }
 }

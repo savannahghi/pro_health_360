@@ -1009,6 +1009,7 @@ Future<void> showRatingBottomSheet(BuildContext context) async {
     ),
   );
 }
+
 Map<String, String>? getCountry(Country country) {
   switch (country) {
     case Country.kenya:
@@ -1025,6 +1026,7 @@ Map<String, String>? getCountry(Country country) {
       return supportedCountries['usa'];
   }
 }
+
 Map<String, Map<String, String>> supportedCountries =
     <String, Map<String, String>>{
   'kenya': <String, String>{
@@ -1087,6 +1089,7 @@ dynamic selectCountryModalBottomSheet(BuildContext context) {
         );
       });
 }
+
 Country popValue(String name) {
   switch (name) {
     case 'Kenya':
@@ -1103,6 +1106,7 @@ Country popValue(String name) {
       return Country.us;
   }
 }
+
 bool confirmPinValidator(String pin, String confirmPin) {
   if (pin != confirmPin) {
     return false;
@@ -1110,3 +1114,37 @@ bool confirmPinValidator(String pin, String confirmPin) {
   return true;
 }
 
+List<Map<String, dynamic>> userProfileItems = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'iconPath': profileIcon,
+    'title': 'Personal information',
+  },
+  <String, dynamic>{
+    'iconPath': medicalDataIcon,
+    'title': 'Medical data',
+  },
+  <String, dynamic>{
+    'iconPath': clinicIcon,
+    'title': 'Clinic data',
+  },
+  <String, dynamic>{
+    'iconPath': mySavedIcon,
+    'title': 'My Saved',
+  },
+  <String, dynamic>{
+    'iconPath': faqsIcon,
+    'title': 'FAQs',
+  },
+  <String, dynamic>{
+    'iconPath': helpCircleIcon,
+    'title': 'Concent',
+  },
+  <String, dynamic>{
+    'iconPath': feedbackIcon,
+    'title': 'Feedback',
+  },
+  <String, dynamic>{
+    'iconPath': settingsIcon,
+    'title': 'Settings',
+  }
+];

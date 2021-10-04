@@ -6,7 +6,7 @@ import 'package:myafyahub/presentation/core/widgets/suggested_group_card_widget.
 
 /// [SuggestedGroupsSection] is a widget used in the Feed Page
 ///
-/// It takes in a required [suggestedGroups] parameter which whis is a List of 
+/// It takes in a required [suggestedGroups] parameter which is a List of 
 /// the suggested groups or communities a user can join 
 
 class SuggestedGroupsSection extends StatelessWidget {
@@ -18,7 +18,7 @@ class SuggestedGroupsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(5.0),
-      color: AppColors.timeLineBackroundColor,
+      color: AppColors.timeLineBackgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -66,5 +66,8 @@ class AppColors {
   static const Color introductionBackgroundColor = Color(0xFFF7F8FF);
   static const Color listCardColor = Color(0xffeeeeee);
   static const Color diaryListCardColor = Color(0xff17d1d4);
-  static const Color timeLineBackroundColor = Color(0xfff6f6f6);
+  static const Color timeLineBackgroundColor = Color(0xfff6f6f6);
+  static const Color userDetailsCardBackgroundColor = Color(0xff119496);
+  static const Color userInitialsColor = Color(0xff11dddf);
+  static const Color hotlineBackgroundColor = Color(0xffff7a7a);
 }

@@ -14,6 +14,7 @@ class MyAfyaHubPrimaryButton extends StatelessWidget {
     this.customRadius,
     this.customPadding,
     this.customElevation,
+    this.textStyle,
   });
 
   final Color? borderColor;
@@ -27,6 +28,7 @@ class MyAfyaHubPrimaryButton extends StatelessWidget {
   final void Function()? onPressed;
   final String? text;
   final Color? textColor;
+  final TextStyle? textStyle;
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
@@ -48,7 +50,8 @@ class MyAfyaHubPrimaryButton extends StatelessWidget {
       ),
       child: customChild ??
           Text(text ?? '',
-              style: TextThemes.veryBoldSize15Text(textColor ?? Colors.white)),
+              style: textStyle ??
+                  TextThemes.veryBoldSize15Text(textColor ?? Colors.white)),
     );
   }
 }

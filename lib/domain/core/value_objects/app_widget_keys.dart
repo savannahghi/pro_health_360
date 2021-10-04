@@ -27,7 +27,7 @@ const Key backKey = Key('back_button_key');
 const Key enterPinKey = Key('enter_pin_field');
 const Key confirmPinKey = Key('confirm_pin_field');
 
-// sil sliver appbar keys
+// sil sliver app bar keys
 const Key greetingFormFieldKey = Key('greeting_formField_Key');
 const Key sliverSearchKey = Key('sliver_search_key');
 
@@ -298,7 +298,7 @@ const Key recoverAccountKey = Key('recover_account_button');
 
 const Key logoutIconKey = Key('logout_icon_key');
 
-const Key genericBottomSheetWidgetKey = Key('generic_bottomsheet_widget_key');
+const Key genericBottomSheetWidgetKey = Key('generic_bottom_sheet_widget_key');
 
 const Key stepCounterProgressIndicatorKey =
     Key('step_counter_progress_indicator_key');
@@ -337,12 +337,12 @@ const Key diagnosesCardKey = Key('diagnoses_card');
 const Key refreshButtonKey = Key('refresh_button_key');
 const Key noWidgetKey = Key('no_widget_key');
 const Key noWidgetSizedBoxKey = Key('no_widget_sized_box_key');
-const Key dismissShowMoreKey = Key('dismiss_show_morek_key');
+const Key dismissShowMoreKey = Key('dismiss_show_more_key');
 const Key expansionPanelKey = Key('expansion_panel_key');
 const Key hraProgressKey = Key('hra_progress_key');
 
-const Key hrakGridResponseKey = Key('hra_grid_respose_key');
-const Key hrakColumnResponseKey = Key('hra_column_respose_key');
+const Key hrakGridResponseKey = Key('hra_grid_response_key');
+const Key hrakColumnResponseKey = Key('hra_column_response_key');
 const Key circularButtonKey = Key('circular_button_key');
 const Key pillButtonKey = Key('pill_button_key');
 const Key nextHRAQuestionKey = Key('next_hra_question_key');
@@ -388,3 +388,5 @@ const Key confirmPinInputKey = Key('confirm_pin_input_key');
 //Congratulations Page
 const Key nameInputKey = Key('name_input_key');
 const Key joinSuggestedGroupButtonKey = Key('join_suggested_group_button_key');
+
+const Key hotlineCallButtonKey = Key('hotline_call_button_key');
