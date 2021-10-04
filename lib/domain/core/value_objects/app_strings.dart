@@ -572,6 +572,11 @@ const String hotlineString = 'Hotline';
 const String hotlineNumberString = '0712345678';
 const String callString = 'Call';
 const String myProfileText = 'My Profile';
+const String clinicContactString = 'Clinic contacts';
+const String chvString = 'CHV';
+const String treatmentBuddyString = 'Treatment buddy';
+const String keyProviderString = 'Key provider';
+const String myProfileString = 'My Profile';
 
 //feed Item Widget
 const String feedHeader =
@@ -596,4 +601,3 @@ const String preferredClinic = 'Preferred Clinic';
 const String clinic = 'Equity Afia Ruaka';
 const String preferredCommunication = 'Preferred way of Communication';
 const String inApp = 'in app';
-const String myProfileString = 'My Profile';

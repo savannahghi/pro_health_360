@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
 import 'package:shared_themes/spaces.dart';
@@ -101,56 +100,12 @@ class UserProfilePage extends StatelessWidget {
                           fontSize: 14),
                     ),
                     smallVerticalSizedBox,
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: AppColors.hotlineBackgroundColor,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          const Text(
-                            hotlineNumberString,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: GestureDetector(
-                              key: hotlineCallButtonKey,
-                              child: Row(
-                                children: <Widget>[
-                                  SvgPicture.asset(
-                                    phoneCallIcon,
-                                    color: AppColors.secondaryColor,
-                                    width: 14,
-                                    height: 14,
-                                  ),
-                                  smallHorizontalSizedBox,
-                                  const Text(
-                                    callString,
-                                    style: TextStyle(
-                                      color: AppColors.secondaryColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    const CallContactActionWidget(
+                        backgroundColor: AppColors.hotlineBackgroundColor,
+                        phoneNumber: hotlineNumberString,
+                        textColor: Colors.white,
+                        iconColor: AppColors.secondaryColor,
+                        iconBackground: AppColors.whiteColor,),
                     mediumVerticalSizedBox,
                   ],
                 ),
