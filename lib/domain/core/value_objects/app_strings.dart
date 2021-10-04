@@ -607,3 +607,9 @@ const String preferredCommunication = 'Preferred way of Communication';
 const String inApp = 'in app';
 
 const String comingSoonText = 'Coming soon';
+
+//savedPosts
+const String savedText = 'Saved';
+const String savedVideoText = 'Saved Video';
+const String savedArticleText = 'Saved Article';
+const String feedHeaderListSavedVideo = 'How to keep yourself healthy always';

@@ -6,6 +6,7 @@ import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
+import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
@@ -157,6 +158,11 @@ class RouteGenerator {
       case BWRoutes.medicalData:
         return MaterialPageRoute<MedicalDataPage>(
           builder: (_) => const MedicalDataPage(),
+        );
+
+      case BWRoutes.savedPosts:
+        return MaterialPageRoute<SavedPostPage>(
+          builder: (_) => SavedPostPage(),
         );
 
       default:

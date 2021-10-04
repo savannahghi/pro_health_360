@@ -23,6 +23,7 @@ import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
+import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -292,5 +293,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<MedicalDataPage>;
     expect(route, isA<MaterialPageRoute<MedicalDataPage>>());
     expect(route.builder(context), isA<MedicalDataPage>());
+  });
+
+  test('Test router returns SavedPostsPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.savedPosts);
+
+    final MaterialPageRoute<SavedPostPage> route =
+        routeGenerator(settings) as MaterialPageRoute<SavedPostPage>;
+    expect(route, isA<MaterialPageRoute<SavedPostPage>>());
+    expect(route.builder(context), isA<SavedPostPage>());
   });
 }
