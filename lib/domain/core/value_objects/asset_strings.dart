@@ -108,3 +108,6 @@ const String attachFileIcon = 'assets/icons/attach_file.svg';
 const String moderatorIcon = 'assets/icons/moderator_icon.svg';
 const String awaitingModerationIcon =
     'assets/icons/awaiting_moderation_icon.svg';
+//pin input page icons
+const String lockIcon = 'assets/icons/lock_icon.svg';
+const String backSpaceIcon = 'assets/icons/back_space_icon.svg';

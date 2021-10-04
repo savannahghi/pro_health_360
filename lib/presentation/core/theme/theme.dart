@@ -69,4 +69,5 @@ class AppColors {
   static const Color userDetailsCardBackgroundColor = Color(0xff119496);
   static const Color userInitialsColor = Color(0xff11dddf);
   static const Color hotlineBackgroundColor = Color(0xffff7a7a);
+  static const Color wrongPinTextColor = Color(0xffff642A);
 }

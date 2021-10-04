@@ -121,7 +121,6 @@ class RouteGenerator {
             builder: (_) => HelpCenterPage());
 
       // search page
-
       case BWRoutes.editProfileSettingsPage:
         return MaterialPageRoute<EditProfilePage>(
           builder: (_) => EditProfilePage(),

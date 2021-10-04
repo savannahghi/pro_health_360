@@ -1112,3 +1112,11 @@ List<NotificationDetails> notifications = <NotificationDetails>[
       date: feedDate,
       isAlternateNotification: true),
 ];
+
+String tooManyTriesString(int timeLeft) {
+  final DateFormat f = DateFormat('mm:ss');
+  final String convertedTime =
+      f.format(DateTime.fromMillisecondsSinceEpoch(timeLeft * 1000));
+
+  return 'Too may tries, try again in $convertedTime minutes';
+}
