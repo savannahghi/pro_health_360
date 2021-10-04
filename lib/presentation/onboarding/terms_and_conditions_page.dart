@@ -21,7 +21,13 @@ class TermsAndConditionsPage extends StatelessWidget {
               // Terms and Conditions Card
 
               InformationListCard(
-                leadingIcon: UniconsLine.file_lock_alt,
+                leadingIcon: const Center(
+                  child: Icon(
+                    UniconsLine.file_lock_alt,
+                    size: 32,
+                    color: AppColors.secondaryColor,
+                  ),
+                ),
                 title: Text(
                   portalTermsText,
                   style: TextThemes.normalSize16Text(

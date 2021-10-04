@@ -17,6 +17,7 @@ import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_pa
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
@@ -251,5 +252,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<CommunityListView>;
     expect(route, isA<MaterialPageRoute<CommunityListView>>());
     expect(route.builder(context), isA<CommunityListView>());
+  });
+
+  test('Test router returns ConsentPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.consent);
+
+    final MaterialPageRoute<ConsentPage> route =
+        routeGenerator(settings) as MaterialPageRoute<ConsentPage>;
+    expect(route, isA<MaterialPageRoute<ConsentPage>>());
+    expect(route.builder(context), isA<ConsentPage>());
   });
 }

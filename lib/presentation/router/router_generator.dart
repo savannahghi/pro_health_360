@@ -5,6 +5,7 @@ import 'package:myafyahub/presentation/community/community_list_view.dart';
 import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
@@ -137,6 +138,11 @@ class RouteGenerator {
       case BWRoutes.communityListView:
         return MaterialPageRoute<CommunityListView>(
             builder: (_) => const CommunityListView());
+
+      case BWRoutes.consent:
+        return MaterialPageRoute<ConsentPage>(
+          builder: (_) => const ConsentPage(),
+        );
 
       default:
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());

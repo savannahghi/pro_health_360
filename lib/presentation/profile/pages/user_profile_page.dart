@@ -76,9 +76,19 @@ class UserProfilePage extends StatelessWidget {
                                 fontSize: 14),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          iconColor: AppColors.secondaryColor,
                           iconBackgroundColor: AppColors.listCardColor,
-                          iconAssetPath: iconPath,
+                          leadingIcon: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.listCardColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: SvgPicture.asset(
+                              iconPath,
+                              width: 20,
+                              height: 20,
+                              color: AppColors.secondaryColor,
+                            ),
+                          ),
                         ),
                       );
                     }),

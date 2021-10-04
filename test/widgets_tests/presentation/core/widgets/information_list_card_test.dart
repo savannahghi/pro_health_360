@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
 
 import '../../../../test_helpers.dart';
@@ -33,7 +34,11 @@ void main() {
         client: baseGraphQlClientMock,
         widget: const InformationListCard(
           title: Text('title'),
-          leadingIcon: Icons.access_alarm,
+          leadingIcon: Icon(
+            Icons.access_alarm,
+            size: 32,
+            color: AppColors.secondaryColor,
+          ),
         ),
       );
 

@@ -549,6 +549,11 @@ const String groupText = 'Group';
 //Important Information Link Widget
 const String importantLinkString = 'Important Link';
 
+// Consent page
+const String viewTermsText = 'View terms and conditions';
+const String groupsText = 'Groups';
+const String consentText = 'I consent to be added to groups';
+
 // Terms and conditions
 const String portalTermsText = 'Portal terms and conditions';
 const String readAndAcceptText =
