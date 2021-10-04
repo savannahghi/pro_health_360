@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
+import 'package:myafyahub/presentation/community/community_list_view.dart';
 import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
@@ -132,6 +133,10 @@ class RouteGenerator {
       case BWRoutes.securityQuestionsPage:
         return MaterialPageRoute<SecurityQuestionsPage>(
             builder: (_) => const SecurityQuestionsPage());
+
+      case BWRoutes.communityListView:
+        return MaterialPageRoute<CommunityListView>(
+            builder: (_) => const CommunityListView());
 
       default:
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());

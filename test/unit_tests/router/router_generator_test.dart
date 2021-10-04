@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
+import 'package:myafyahub/presentation/community/community_list_view.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
@@ -240,5 +241,15 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<TermsAndConditionsPage>;
     expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());
     expect(route.builder(context), isA<TermsAndConditionsPage>());
+  });
+
+  test('Test router returns CommunityListView', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.communityListView);
+
+    final MaterialPageRoute<CommunityListView> route =
+        routeGenerator(settings) as MaterialPageRoute<CommunityListView>;
+    expect(route, isA<MaterialPageRoute<CommunityListView>>());
+    expect(route.builder(context), isA<CommunityListView>());
   });
 }

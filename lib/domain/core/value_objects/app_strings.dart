@@ -543,6 +543,9 @@ const String nickNameString = 'Name';
 const String nameInputValidateString = 'Name is required';
 const String importantInformationString = 'Important Information';
 
+// Community strings
+const String groupText = 'Group';
+
 //Important Information Link Widget
 const String importantLinkString = 'Important Link';
 

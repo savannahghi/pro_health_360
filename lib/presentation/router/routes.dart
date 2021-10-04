@@ -78,6 +78,9 @@ class BWRoutes {
   static const String selectTypeOfCoverPage = '/selectTypeOfCoverPage';
   static const String selectPremiumRangePage = '/selectPremiumRangePage';
 
+  // community
+  static const String communityListView = '/communityListView';
+
   // Security questions
   static const String securityQuestionsPage = '/securityQuestionsPage';
 }

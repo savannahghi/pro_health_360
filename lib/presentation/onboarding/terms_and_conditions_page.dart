@@ -89,7 +89,7 @@ class TermsAndConditionsPage extends StatelessWidget {
                   text: 'Continue',
                   buttonColor: AppColors.secondaryColor,
                 ),
-              )
+              ),
             ],
           ),
         ),
