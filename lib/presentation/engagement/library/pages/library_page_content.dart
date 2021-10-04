@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class LibraryPageContent extends StatelessWidget {
   /// [libContent] are the library items. This list should never be empty.If by any chance it's empty
-  /// and the widget is drawn, it means there is a bug in the initial check step at [library.dart] -> [Library]
+  /// and the widget is drawn, it means there is a bug in the initial check step at [feed.dart] -> [Library]
   final List<dynamic> libContent;
 
   const LibraryPageContent({Key? key, required this.libContent})

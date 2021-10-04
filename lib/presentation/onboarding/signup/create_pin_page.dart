@@ -30,7 +30,7 @@ class _CreatePinPageState extends State<CreatePinPage> {
   @override
   void initState() {
     super.initState();
-    BeWellFacebookEvents().logger.logEvent(name: 'view_set_pin_page');
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_set_pin_page');
 
     /// clear any active flags
     clearAllFlags(context);

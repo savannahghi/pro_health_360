@@ -1,8 +1,8 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/community/community_list_view.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/community/community_list_page.dart';
 
 import '../../../test_helpers.dart';
 
@@ -19,10 +19,10 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: const CommunityListView(),
+        widget: const CommunityListViewPage(),
       );
 
-      expect(find.byType(ListView), findsOneWidget);
+      expect(find.byKey(communityListViewKey), findsOneWidget);
     });
   });
 }

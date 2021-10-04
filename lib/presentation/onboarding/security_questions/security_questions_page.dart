@@ -58,7 +58,7 @@ class SecurityQuestionsPage extends StatelessWidget {
                   ),
                   smallVerticalSizedBox,
                   ExpandableQuestion(
-                    question: whatsYourfavouriteFoodString,
+                    question: whatsYourFavouriteFoodString,
                     hintText: answerHereString,
                     onChanged: (String value) {
                       ScaffoldMessenger.of(context)

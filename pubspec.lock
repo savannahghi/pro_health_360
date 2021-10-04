@@ -1551,7 +1551,7 @@ packages:
       name: user_feed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.42-nullsafety"
+    version: "0.1.43-nullsafety"
   user_profile:
     dependency: "direct main"
     description:

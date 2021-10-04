@@ -1,5 +1,3 @@
-import 'package:user_feed/user_feed.dart';
-
 const String resumeWithPinQuery = r'''
 query resumeWithPhoneAndPin($pin: String!) {
    resumeWithPIN(pin: $pin)
@@ -158,14 +156,3 @@ query GetFeed(
   }
 }
 ''';
-
-Map<String, dynamic> getFeedQueryVariables(
-    {required bool isAnonymous, String? status}) {
-  return <String, dynamic>{
-    'flavour': Flavour.CONSUMER.name,
-    'persistent': 'BOTH',
-    'visibility': 'SHOW',
-    'isAnonymous': isAnonymous,
-    'status': status,
-  };
-}

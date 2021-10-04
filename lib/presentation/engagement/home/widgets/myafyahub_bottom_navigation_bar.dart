@@ -7,7 +7,7 @@ import 'package:async_redux/async_redux.dart';
 
 import 'package:myafyahub/application/core/services/connectivity_helper.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/sil_bottom_nav_action.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
@@ -15,9 +15,10 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/events.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
-class SILBottomNavigationBar extends StatelessWidget {
-  const SILBottomNavigationBar({Key? key, required this.currentIndex})
+class MyAfyaHubBottomNavigationBar extends StatelessWidget {
+  const MyAfyaHubBottomNavigationBar({Key? key, required this.currentIndex})
       : super(key: key);
+
   final int currentIndex;
 
   @override
@@ -31,13 +32,13 @@ class SILBottomNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       backgroundColor: AppColors.whiteColor,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Theme.of(context).primaryColor,
-      unselectedItemColor: AppColors.greyColor,
-      onTap: (int v) {
+      selectedItemColor: Theme.of(context).accentColor,
+      unselectedItemColor: AppColors.secondaryColor,
+      onTap: (int currentIndex) {
         StoreProvider.dispatch<AppState>(
-            context, BottomNavAction(currentBottomNavIndex: v));
+            context, BottomNavAction(currentBottomNavIndex: currentIndex));
 
-        if (BottomNavIndex.home.index == v) {
+        if (BottomNavIndex.home.index == currentIndex) {
           publishEvent(
             hasAccessedFeedEvent(appContext),
             EventObject(
@@ -56,7 +57,7 @@ class SILBottomNavigationBar extends StatelessWidget {
             ),
           );
         }
-        if (BottomNavIndex.library.index == v) {
+        if (BottomNavIndex.feed.index == currentIndex) {
           publishEvent(
             hasNavigatedToLibraryPageEvent(appContext),
             EventObject(
@@ -81,11 +82,11 @@ class SILBottomNavigationBar extends StatelessWidget {
             (BottomNavItem navItem) => BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 navItem.iconUrl,
-                color: AppColors.greyColor,
+                color: AppColors.secondaryColor.withOpacity(0.8),
               ),
               activeIcon: SvgPicture.asset(
                 navItem.iconUrl,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
               ),
               label: navItem.text,
             ),

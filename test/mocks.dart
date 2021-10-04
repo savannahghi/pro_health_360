@@ -29,46 +29,25 @@ const String testFirstName = 'John';
 const String testLastName = 'Doe';
 const String testDOB = '02/02/2012';
 const String testDate = '2020-03-13T17:18:21+03:00';
-const String testFormatedDate = '2020-03-13';
+const String testFormattedDate = '2020-03-13';
 const String inaccurateGenderValue = 'knb jk ';
 
 class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
-  @override
-  String get dbName =>
-      super.noSuchMethod(Invocation.getter(#dbName), returnValue: 'testDb')
-          as String;
-
   @override
   Future<MockStateDB> database({MockStateDB? preInitializedDB}) =>
       super.noSuchMethod(Invocation.getter(#database),
               returnValue: Future<MockStateDB>.value(MockStateDB()))
           as Future<MockStateDB>;
+
+  @override
+  String get dbName =>
+      super.noSuchMethod(Invocation.getter(#dbName), returnValue: 'testDb')
+          as String;
 }
 
 class MockGraphQlClient5 extends Mock implements GraphQlClient {}
 
 class MockStateDB extends Mock implements Database {
-  @override
-  Future<List<Map<String, Object?>>> rawQuery(String sql,
-          [List<Object?>? arguments]) =>
-      super.noSuchMethod(
-        Invocation.method(#rawQuery, <dynamic>[sql, arguments]),
-        returnValue: Future<List<Map<String, Object?>>>.value(
-          <Map<String, Object?>>[
-            <String, Object?>{'users': 10}
-          ],
-        ),
-      ) as Future<List<Map<String, Object?>>>;
-
-  @override
-  Future<int> rawInsert(String sql, [List<Object?>? arguments]) =>
-      super.noSuchMethod(
-        Invocation.method(#rawInsert, <dynamic>[sql, arguments]),
-        returnValue: Future<int>.value(
-          10,
-        ),
-      ) as Future<int>;
-
   @override
   Batch batch() {
     throw UnimplementedError();
@@ -135,6 +114,27 @@ class MockStateDB extends Mock implements Database {
   Future<int> rawDelete(String sql, [List<Object?>? arguments]) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<int> rawInsert(String sql, [List<Object?>? arguments]) =>
+      super.noSuchMethod(
+        Invocation.method(#rawInsert, <dynamic>[sql, arguments]),
+        returnValue: Future<int>.value(
+          10,
+        ),
+      ) as Future<int>;
+
+  @override
+  Future<List<Map<String, Object?>>> rawQuery(String sql,
+          [List<Object?>? arguments]) =>
+      super.noSuchMethod(
+        Invocation.method(#rawQuery, <dynamic>[sql, arguments]),
+        returnValue: Future<List<Map<String, Object?>>>.value(
+          <Map<String, Object?>>[
+            <String, Object?>{'users': 10}
+          ],
+        ),
+      ) as Future<List<Map<String, Object?>>>;
 
   @override
   Future<int> rawUpdate(String sql, [List<Object?>? arguments]) {
@@ -465,13 +465,14 @@ class MockGraphQlClientForFailures2 extends Mock implements GraphQlClient {
 
 // ignore: subtype_of_sealed_class
 class MockGraphQlClient extends Mock implements GraphQlClient {
-  String setupUserAsExperimenterVariables =
-      json.encode(<String, dynamic>{'participate': true});
   String removeUserAsExperimenterVariables =
       json.encode(<String, dynamic>{'participate': false});
 
   String sendOTPTesterVariables =
       json.encode(<String, dynamic>{'phone': testPhoneNumber});
+
+  String setupUserAsExperimenterVariables =
+      json.encode(<String, dynamic>{'participate': true});
 
   @override
   Future<http.Response> callRESTAPI(
@@ -583,6 +584,35 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         201,
       ),
     );
+  }
+
+  @override
+  String? parseError(Map<String, dynamic>? body) {
+    const String errString =
+        'Oops!!! Something wrong just happened. If this persists, log out and login again';
+    if (body == null) {
+      return errString;
+    }
+    Object? error;
+    if (body.containsKey('errors')) {
+      error = body['errors'];
+    } else if (body.containsKey('error')) {
+      error = body['error'];
+    } else {
+      error = null;
+    }
+    if (error is String) {
+      return error.contains('ID token')
+          ? 'Oops!!! Something wrong just happened. If this persists, log out and login again'
+          : error;
+    }
+    if (error is List<dynamic>) {
+      return error[0]['message'] as String;
+    }
+    if (error is Map) {
+      return error.toString();
+    }
+    return null;
   }
 
   @override
@@ -1305,35 +1335,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
 
     if (_res is Map) return _res as Map<String, dynamic>;
     return _res[0] as Map<String, dynamic>;
-  }
-
-  @override
-  String? parseError(Map<String, dynamic>? body) {
-    const String errString =
-        'Oops!!! Something wrong just happened. If this persists, log out and login again';
-    if (body == null) {
-      return errString;
-    }
-    Object? error;
-    if (body.containsKey('errors')) {
-      error = body['errors'];
-    } else if (body.containsKey('error')) {
-      error = body['error'];
-    } else {
-      error = null;
-    }
-    if (error is String) {
-      return error.contains('ID token')
-          ? 'Oops!!! Something wrong just happened. If this persists, log out and login again'
-          : error;
-    }
-    if (error is List<dynamic>) {
-      return error[0]['message'] as String;
-    }
-    if (error is Map) {
-      return error.toString();
-    }
-    return null;
   }
 }
 
@@ -2514,6 +2515,15 @@ class MockFirebaseRemoteConfig extends Mock
   }
 
   @override
+  Future<bool> activate() {
+    return super.noSuchMethod(
+      Invocation.method(#activate, <dynamic>[]),
+      returnValue: Future<bool>.value(true),
+      returnValueForMissingStub: Future<bool>.value(true),
+    ) as Future<bool>;
+  }
+
+  @override
   FirebaseRemoteConfigPlatform delegateFor({FirebaseApp? app}) {
     return super.noSuchMethod(
       Invocation.method(
@@ -2521,26 +2531,6 @@ class MockFirebaseRemoteConfig extends Mock
       returnValue: TestFirebaseRemoteConfigPlatform(),
       returnValueForMissingStub: TestFirebaseRemoteConfigPlatform(),
     ) as FirebaseRemoteConfigPlatform;
-  }
-
-  @override
-  FirebaseRemoteConfigPlatform setInitialValues(
-      {Map<dynamic, dynamic>? remoteConfigValues}) {
-    return super.noSuchMethod(
-      Invocation.method(#setInitialValues, <dynamic>[],
-          <Symbol, Object?>{#remoteConfigValues: remoteConfigValues}),
-      returnValue: TestFirebaseRemoteConfigPlatform(),
-      returnValueForMissingStub: TestFirebaseRemoteConfigPlatform(),
-    ) as FirebaseRemoteConfigPlatform;
-  }
-
-  @override
-  Future<bool> activate() {
-    return super.noSuchMethod(
-      Invocation.method(#activate, <dynamic>[]),
-      returnValue: Future<bool>.value(true),
-      returnValueForMissingStub: Future<bool>.value(true),
-    ) as Future<bool>;
   }
 
   @override
@@ -2571,24 +2561,6 @@ class MockFirebaseRemoteConfig extends Mock
   }
 
   @override
-  Future<void> setConfigSettings(RemoteConfigSettings? remoteConfigSettings) {
-    return super.noSuchMethod(
-      Invocation.method(#setConfigSettings, <dynamic>[remoteConfigSettings]),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value(),
-    ) as Future<void>;
-  }
-
-  @override
-  Future<void> setDefaults(Map<String, dynamic>? defaultParameters) {
-    return super.noSuchMethod(
-      Invocation.method(#setDefaults, <dynamic>[defaultParameters]),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value(),
-    ) as Future<void>;
-  }
-
-  @override
   Map<String, RemoteConfigValue> getAll() {
     return super.noSuchMethod(
       Invocation.method(#getAll, <dynamic>[]),
@@ -2607,6 +2579,15 @@ class MockFirebaseRemoteConfig extends Mock
   }
 
   @override
+  double getDouble(String key) {
+    return super.noSuchMethod(
+      Invocation.method(#getDouble, <dynamic>[key]),
+      returnValue: 8.8,
+      returnValueForMissingStub: 8.8,
+    ) as double;
+  }
+
+  @override
   int getInt(String key) {
     return super.noSuchMethod(
       Invocation.method(#getInt, <dynamic>[key]),
@@ -2622,15 +2603,6 @@ class MockFirebaseRemoteConfig extends Mock
       returnValue: 'foo',
       returnValueForMissingStub: 'foo',
     ) as String;
-  }
-
-  @override
-  double getDouble(String key) {
-    return super.noSuchMethod(
-      Invocation.method(#getDouble, <dynamic>[key]),
-      returnValue: 8.8,
-      returnValueForMissingStub: 8.8,
-    ) as double;
   }
 
   @override
@@ -2664,6 +2636,35 @@ class MockFirebaseRemoteConfig extends Mock
       returnValue: DateTime(2020),
       returnValueForMissingStub: DateTime(2020),
     ) as DateTime;
+  }
+
+  @override
+  Future<void> setConfigSettings(RemoteConfigSettings? remoteConfigSettings) {
+    return super.noSuchMethod(
+      Invocation.method(#setConfigSettings, <dynamic>[remoteConfigSettings]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value(),
+    ) as Future<void>;
+  }
+
+  @override
+  Future<void> setDefaults(Map<String, dynamic>? defaultParameters) {
+    return super.noSuchMethod(
+      Invocation.method(#setDefaults, <dynamic>[defaultParameters]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value(),
+    ) as Future<void>;
+  }
+
+  @override
+  FirebaseRemoteConfigPlatform setInitialValues(
+      {Map<dynamic, dynamic>? remoteConfigValues}) {
+    return super.noSuchMethod(
+      Invocation.method(#setInitialValues, <dynamic>[],
+          <Symbol, Object?>{#remoteConfigValues: remoteConfigValues}),
+      returnValue: TestFirebaseRemoteConfigPlatform(),
+      returnValueForMissingStub: TestFirebaseRemoteConfigPlatform(),
+    ) as FirebaseRemoteConfigPlatform;
   }
 
   @override
@@ -2704,11 +2705,6 @@ List<Map<String, dynamic>> mockFilterItems = <Map<String, dynamic>>[
 class TestFirebaseRemoteConfigPlatform extends FirebaseRemoteConfigPlatform {
   TestFirebaseRemoteConfigPlatform() : super();
 
-  void instanceFor({
-    FirebaseApp? app,
-    Map<dynamic, dynamic>? pluginConstants,
-  }) {}
-
   @override
   FirebaseRemoteConfigPlatform delegateFor({FirebaseApp? app}) {
     return this;
@@ -2719,6 +2715,11 @@ class TestFirebaseRemoteConfigPlatform extends FirebaseRemoteConfigPlatform {
       {Map<dynamic, dynamic>? remoteConfigValues}) {
     return this;
   }
+
+  void instanceFor({
+    FirebaseApp? app,
+    Map<dynamic, dynamic>? pluginConstants,
+  }) {}
 }
 
 class MockRemoteConfig extends Mock implements RemoteConfig {}

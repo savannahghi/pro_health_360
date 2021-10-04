@@ -2,11 +2,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
+import 'package:myafyahub/presentation/core/widgets/my_afya_hub_mood_selection.dart';
 import 'package:myafyahub/presentation/engagement/home/widgets/bewell_upgrader.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/presentation/engagement/feed/feed_component_wrapper.dart';
-import 'package:myafyahub/presentation/engagement/home/widgets/sil_sliver_appbar.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -49,15 +47,15 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: fetchFeed(context) as Future<void> Function(),
-      child: CustomScrollView(
-        slivers: <Widget>[
-          SILSliverAppbar(),
-          SliverToBoxAdapter(
-            child: BeWellUpgrader(),
+    return Scaffold(
+      body: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          BeWellUpgrader(),
+          const Padding(
+            padding: EdgeInsets.all(12.0),
+            child: MyAfyaHubMoodSelection(),
           ),
-          const SliverToBoxAdapter(child: FeedComponentWrapper()),
         ],
       ),
     );

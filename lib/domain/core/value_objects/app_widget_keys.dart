@@ -45,11 +45,6 @@ const Key helpCenterDismissKey = Key('help_center_dismiss');
 const Key helpCenterColumnKey = Key('help_center_column');
 const Key helpCenterBackKey = Key('help_center_back');
 
-//cart coming soon page
-const Key cartComingSoonScaffold = Key('cart_scaffold');
-const Key cartComingListView = Key('cart_listView');
-const Key cartComingImage = Key('cart_coming_soon_image');
-
 //pin verification keys
 const Key pinResetKey = Key('pin_verification_key');
 const Key pinVerificationInputKey = Key('pin_verification_input_key');
@@ -61,31 +56,11 @@ const Key resetPinKey = Key('reset_pin_key');
 const Key pinInputKey = Key('pin_input_key');
 const Key phoneNumberInputKey = Key('phone_number_input_key');
 
-// phone sign up keys
-const Key phoneSignUpCheckboxKey = Key('phone_sign_up_checkbox_key');
-const Key phoneSignUpBackKey = Key('phone_sign_up_back_key');
-
 /// bottom sheet keys
 const Key bottomSheetKey = Key('bottom_sheet_key');
 const Key primaryBottomSheetButtonKey = Key('primary_bottom_sheet_button');
 const Key secondaryBottomSheetButtonKey = Key('secondary_bottom_sheet_button');
 const Key tertiaryBottomSheetButtonKey = Key('tertiary_bottom_sheet_button');
-
-/// SIL Card keys
-const Key benefitCardKey = Key('benefit_card_key');
-const Key noVirtualCardViewButtonKey = Key('no_virtual_card_view_button');
-
-// Appointment keys
-const Key appointmentsAppBarBackButtonKey = Key('back_button_key');
-const Key appointmentsTabBar = Key('tab_bar_key');
-const Key appointmentsStack = Key('appointments_stack');
-const Key pastAppointmentsListView = Key('past_appointments_listView');
-const Key pastAppointmentCard = Key('past_appointments_card');
-const Key upcomingAppointmentsListView = Key('upcoming_appointments_listView');
-const Key upcomingAppointmentCard = Key('upcoming_appointments_card');
-const Key singleAppointmentAppBarKey = Key('single_appointment_appBar_key');
-
-const Key appointmentSilNoBorderButton = Key('appointment_Sil_NoBorder_Button');
 
 const Key silAppBarGestureKey = Key('sil_appBar_gesture_detector');
 
@@ -104,48 +79,10 @@ const Key phoneNumberVerificationKey = Key('phone_number_verification');
 const Key wellnessCheckupPageKey = Key('wellness_checkup_key');
 
 // search page keys
-const Key searchPageKey = Key('search_page_key');
-const Key searchActionCardKey = Key('search_action_card_key');
-const Key searchFormKey = Key('search_form');
 const Key searchBackButtonKey = Key('search_back_button');
-const Key searchTopResultKey = Key('search_top_result');
-const Key searchPossibleResultKey = Key('search_possible_result');
-
-// wellness page keys
-const Key wellnessPageKey = Key('wellness_page');
-const Key earnPointsTabDetailsKey = Key('earn_points_tab_details');
-const Key historyTabDetailsKey = Key('history_tab_details');
-const Key payWithWellnessPointsCardKey = Key('pay_with_wellness_points_card');
-const Key earnPointsTabCardKey = Key('earn_points_tab_card');
-const Key historyTabCardTitleKey = Key('history_tab_card_title');
-const Key historyTabCardDetailsKey = Key('history_tab_card_details');
-const Key wellnessHistoryPageKey = Key('wellness_page_history_page');
-const Key wellnessPayPageKey = Key('wellness_pay_scaffold_key');
-const Key wellnessPageComingSoon = Key('wellness_page_coming_soon_scaffold');
-const Key wellnessListViewKey = Key('wellness_list_view');
-const Key wellnessComingSoonCardKey = Key('wellness_coming_soon_card');
-
-// feed keys
-const Key feedComponentKey = Key('feed_component_key');
 
 // homepage content keys
 const Key homepageContentKey = Key('home_page_content_scaffold');
-
-// health records
-const Key healthRecordsPageKey = Key('my_health_profile');
-
-// medical loans
-const Key medicalLoansPageKey = Key('medical_loan');
-
-// payer list
-const Key payersListKey = Key('payers-list');
-
-// test pages
-const Key getTestedButtonKey = Key('get_tested_button_key');
-const Key doctorsPrescriptionTappableCardKey =
-    Key('doctors_prescription_tappable_card_Key');
-const Key noDoctorsPrescriptionTappableCardKey =
-    Key('no_doctors_prescription_tappable_card_Key');
 
 // user profile keys
 const Key editProfileKey = Key('save_profile');
@@ -172,17 +109,6 @@ const Key enterSignUpNumberButtonKey = Key('enter_sign_up_number_button');
 
 const Key coachPageScaffoldKey = Key('coach_scaffold');
 
-//set confirm pin
-const String setPinColumn = 'set_pin_column';
-
-//communication alert
-const Key commBottomSheetKey = Key('comm_bottom_sheet_key');
-const Key commContainerKey = Key('comm_container_key');
-
-//communication consent page
-const Key commConsentPrimaryButtonKey = Key('comm_consent_primary_button_key');
-const Key commConsentNoBorderButtonKey =
-    Key('comm_consent_no_border_button_key');
 //onboarding page wrapper
 const Key onboardingNoBorderButtonKey = Key('onboarding_flat_button_key');
 const Key onboardingSingleChildKey = Key('onboarding_single_child_key');
@@ -204,34 +130,15 @@ const Key welcomePageNextKey = Key('welcome_page_next_key');
 // error alert box keys
 const Key errorAlertBoxKey = Key('error_alert_box_key');
 const Key errorAlertBoxTextKey = Key('error_alert_box_text_key');
-//webview page keys
+
+// webview page keys
 const Key webScaffoldKey = Key('web_scaffold');
 const Key webViewKey = Key('web_view');
-//product detail page keys
-const Key productScrollViewKey = Key('product_scroll_view');
-const Key productImageKey = Key('product_image');
-const Key productContainerKey = Key('product_container');
-const Key productBuyButtonKey = Key('product_buy_button');
-const Key productAddCartButtonKey = Key('product_add_cart_button');
-const Key productImageGestureKey = Key('product_image_gesture');
-
-//home work settings page keys
-const Key homeWorkScrollViewKey = Key('home_work_scroll_view');
-const Key homeWorkContainerKey = Key('home_work_container');
 
 //generic empty data keys
 const Key genericContainerKey = Key('generic_container');
 const Key genericListViewKey = Key('generic_list_view');
 const Key genericRetryButtonKey = Key('generic_primary_button');
-
-//medications keys
-const Key comingSoonCardKey = Key('coming_soon');
-
-//sign up edi widgets
-const Key bottomSheetContainerKey = Key('bottom_sheet_container');
-const Key openSettingsButtonKey = Key('open_settings_button');
-const Key closeButtonKey = Key('close_button');
-const Key documentContainerKey = Key('document_container');
 
 //recover account keys
 const Key phoneNumberInputButtonKey = Key('phone_number_input_button');
@@ -278,9 +185,6 @@ const Key libraryNavigationBarItemKey = Key('library_navigation_bar_item');
 const Key cartNavigationBarItemKey = Key('cart_navigation_bar_item');
 const Key coversNavigationBarItemKey = Key('covers_navigation_bar_item');
 
-// patient panel error widget keys
-const Key patientsPanelRetryButtonKey = Key('patients_panel_retry_button');
-
 // primary phone number
 const Key recoveryOtpButton = Key('recovery_otp_button');
 
@@ -305,35 +209,6 @@ const Key stepCounterProgressIndicatorKey =
 
 const Key searchPageActionLibraryKey = Key('search_page_action_library_key');
 
-const Key bowiSelectRange = Key('bowiSelectRange');
-const Key bevSelectRange = Key('bevSelectRange');
-
-const Key bowiFinalStep = Key('bowiFInalStep');
-const Key bevFinalStep = Key('bevFinalStep');
-
-const Key bowiAddInfo = Key('bowiAddInfo');
-const Key bevAddInfo = Key('bevAddInfo');
-const Key addAgeKey = Key('add_age_key');
-
-const Key spouseFirstNameKey = Key('spouse_first_name_key');
-const Key spouseLastNameKey = Key('spouse_last_name_key');
-const Key principalFirstNameKey = Key('principal_first_name_key');
-const Key principalLastNameKey = Key('principal_last_name_key');
-const Key spousePhoneNumberKey = Key('spouse_phone_number_key');
-const Key spouseIDKey = Key('spouse_id_key');
-const Key spouseKRAKey = Key('spouse_kra_key');
-
-const Key parentFirstNameKey = Key('parent_first_name_key');
-const Key parentLastNameKey = Key('parent_last_name_key');
-const Key parentPhoneNumberKey = Key('parent_phone_number_key');
-const Key motherDetailsWidgetKey = Key('mother_details_widget_key');
-const Key fatherDetailsWidgetKey = Key('father_details_widget_key');
-const Key childFirstNameKey = Key('child_first_name_key');
-const Key childLastNameKey = Key('child_last_name_key');
-const Key childBirthCertKey = Key('child_birth_cert_key');
-
-const Key diagnosesCardKey = Key('diagnoses_card');
-
 const Key refreshButtonKey = Key('refresh_button_key');
 const Key noWidgetKey = Key('no_widget_key');
 const Key noWidgetSizedBoxKey = Key('no_widget_sized_box_key');
@@ -341,8 +216,6 @@ const Key dismissShowMoreKey = Key('dismiss_show_more_key');
 const Key expansionPanelKey = Key('expansion_panel_key');
 const Key hraProgressKey = Key('hra_progress_key');
 
-const Key hrakGridResponseKey = Key('hra_grid_response_key');
-const Key hrakColumnResponseKey = Key('hra_column_response_key');
 const Key circularButtonKey = Key('circular_button_key');
 const Key pillButtonKey = Key('pill_button_key');
 const Key nextHRAQuestionKey = Key('next_hra_question_key');
@@ -362,9 +235,6 @@ const Key selectCoverageInfoListKey = Key('select_coverage_info_list_key');
 const Key selectLoanOrFullAmountListKey =
     Key('select_loan_or_full_amount_list_key');
 
-//principal confirm details keys
-const Key principalGenderKey = Key('principal_gender_key');
-
 const Key confirmIdentificationListKey = Key('confirm_identification_list_key');
 const Key notifyLaterButtonKey = Key('notify_later_button_key');
 const Key refreshStatusButtonKey = Key('refresh_status_button_key');
@@ -374,8 +244,6 @@ const Key loanTermsButtonKey = Key('loan_terms_button_key');
 
 const Key maleRadioButtonKey = Key('male_radio_button_key');
 const Key femaleRadioButtonKey = Key('female_radio_button_key');
-
-const Key continueLaterKey = Key('continue_later_key');
 
 //Notification List Item
 const Key notificationIconContainerKey = Key('notification_icon_container_key');
@@ -390,3 +258,14 @@ const Key nameInputKey = Key('name_input_key');
 const Key joinSuggestedGroupButtonKey = Key('join_suggested_group_button_key');
 
 const Key hotlineCallButtonKey = Key('hotline_call_button_key');
+
+// community page
+const Key communityListViewKey = Key('community_list_view_key');
+const Key ratingDialogKey = Key('app_rating_dialog_key');
+
+// mood widget keys
+const Key excitedMoodKey = Key('excited_mood_key');
+const Key happyMoodKey = Key('happy_mood_key');
+const Key mehMoodKey = Key('meh_mood_key');
+const Key sadMoodKey = Key('sad_mood_key');
+const Key verySadMoodKey = Key('very_sad_mood_key');

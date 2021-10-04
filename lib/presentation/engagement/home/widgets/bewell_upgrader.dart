@@ -11,9 +11,9 @@ class BeWellUpgrader extends StatelessWidget {
     // On iOS, the default behavior will be to use the App Store version of
     // the app, so update the Bundle Identifier in example/ios/Runner with a
     // valid identifier already in the App Store.
-    const String appcastURL = 'https://bewell.co.ke/consumer-appcast.xml';
+    const String appCastURL = 'https://bewell.co.ke/consumer-appcast.xml';
     final AppcastConfiguration cfg =
-        AppcastConfiguration(url: appcastURL, supportedOS: <String>['android']);
+        AppcastConfiguration(url: appCastURL, supportedOS: <String>['android']);
 
     return UpgradeAlert(
       appcastConfig: cfg,

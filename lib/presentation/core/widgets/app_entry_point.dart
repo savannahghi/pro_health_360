@@ -50,9 +50,9 @@ class _AppEntryPointState extends State<AppEntryPoint>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      BeWellFacebookEvents().logger.logActivatedApp();
+      MyAfyaHubFacebookEvents().logger.logActivatedApp();
     } else {
-      BeWellFacebookEvents().logger.logDeactivatedApp();
+      MyAfyaHubFacebookEvents().logger.logDeactivatedApp();
     }
   }
 

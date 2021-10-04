@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
-import 'package:myafyahub/presentation/community/community_list_view.dart';
 import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
+import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
@@ -25,7 +25,7 @@ import 'package:myafyahub/presentation/onboarding/security_questions/answer_secu
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
-import 'package:myafyahub/presentation/profile/pages/personal_inforamation_page.dart';
+import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -142,8 +142,8 @@ class RouteGenerator {
             builder: (_) => const AnswerSecurityQuestionPage());
 
       case BWRoutes.communityListView:
-        return MaterialPageRoute<CommunityListView>(
-            builder: (_) => const CommunityListView());
+        return MaterialPageRoute<CommunityListViewPage>(
+            builder: (_) => const CommunityListViewPage());
 
       case BWRoutes.consent:
         return MaterialPageRoute<ConsentPage>(

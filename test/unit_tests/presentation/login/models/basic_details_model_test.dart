@@ -28,7 +28,7 @@ void main() {
       userBasicDetails.lastName.add(Name.withValue(testLastName));
       userBasicDetails.gender.add(Gender.male);
       userBasicDetails.dateOfBirth.add(testDOB);
-      const String expectedDOB = testFormatedDate;
+      const String expectedDOB = testFormattedDate;
       final String actualDOB = userBasicDetails.formatDateOfBirth(testDate);
       expect(actualDOB, expectedDOB);
     });

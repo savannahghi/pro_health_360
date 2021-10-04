@@ -13,14 +13,14 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 EventObject _$EventObjectFromJson(Map<String, dynamic> json) {
-  return _MarketplaceContent.fromJson(json);
+  return _EventObject.fromJson(json);
 }
 
 /// @nodoc
 class _$EventObjectTearOff {
   const _$EventObjectTearOff();
 
-  _MarketplaceContent call(
+  _EventObject call(
       {@JsonKey(name: 'first_name')
           String? firstName,
       @JsonKey(name: 'last_name')
@@ -35,7 +35,7 @@ class _$EventObjectTearOff {
           String? flavour,
       @JsonKey(name: 'app_version', defaultValue: APPVERSION)
           String? appVersion}) {
-    return _MarketplaceContent(
+    return _EventObject(
       firstName: firstName,
       lastName: lastName,
       uid: uid,
@@ -151,11 +151,11 @@ class _$EventObjectCopyWithImpl<$Res> implements $EventObjectCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MarketplaceContentCopyWith<$Res>
+abstract class _$EventObjectCopyWith<$Res>
     implements $EventObjectCopyWith<$Res> {
-  factory _$MarketplaceContentCopyWith(
-          _MarketplaceContent value, $Res Function(_MarketplaceContent) then) =
-      __$MarketplaceContentCopyWithImpl<$Res>;
+  factory _$EventObjectCopyWith(
+          _EventObject value, $Res Function(_EventObject) then) =
+      __$EventObjectCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'first_name')
@@ -175,15 +175,14 @@ abstract class _$MarketplaceContentCopyWith<$Res>
 }
 
 /// @nodoc
-class __$MarketplaceContentCopyWithImpl<$Res>
-    extends _$EventObjectCopyWithImpl<$Res>
-    implements _$MarketplaceContentCopyWith<$Res> {
-  __$MarketplaceContentCopyWithImpl(
-      _MarketplaceContent _value, $Res Function(_MarketplaceContent) _then)
-      : super(_value, (v) => _then(v as _MarketplaceContent));
+class __$EventObjectCopyWithImpl<$Res> extends _$EventObjectCopyWithImpl<$Res>
+    implements _$EventObjectCopyWith<$Res> {
+  __$EventObjectCopyWithImpl(
+      _EventObject _value, $Res Function(_EventObject) _then)
+      : super(_value, (v) => _then(v as _EventObject));
 
   @override
-  _MarketplaceContent get _value => super._value as _MarketplaceContent;
+  _EventObject get _value => super._value as _EventObject;
 
   @override
   $Res call({
@@ -195,7 +194,7 @@ class __$MarketplaceContentCopyWithImpl<$Res>
     Object? flavour = freezed,
     Object? appVersion = freezed,
   }) {
-    return _then(_MarketplaceContent(
+    return _then(_EventObject(
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -230,8 +229,8 @@ class __$MarketplaceContentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MarketplaceContent implements _MarketplaceContent {
-  _$_MarketplaceContent(
+class _$_EventObject implements _EventObject {
+  _$_EventObject(
       {@JsonKey(name: 'first_name') this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
       @JsonKey(name: 'uid') this.uid,
@@ -240,8 +239,8 @@ class _$_MarketplaceContent implements _MarketplaceContent {
       @JsonKey(name: 'flavour') this.flavour,
       @JsonKey(name: 'app_version', defaultValue: APPVERSION) this.appVersion});
 
-  factory _$_MarketplaceContent.fromJson(Map<String, dynamic> json) =>
-      _$_$_MarketplaceContentFromJson(json);
+  factory _$_EventObject.fromJson(Map<String, dynamic> json) =>
+      _$_$_EventObjectFromJson(json);
 
   @override
   @JsonKey(name: 'first_name')
@@ -273,7 +272,7 @@ class _$_MarketplaceContent implements _MarketplaceContent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MarketplaceContent &&
+        (other is _EventObject &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
@@ -309,17 +308,17 @@ class _$_MarketplaceContent implements _MarketplaceContent {
 
   @JsonKey(ignore: true)
   @override
-  _$MarketplaceContentCopyWith<_MarketplaceContent> get copyWith =>
-      __$MarketplaceContentCopyWithImpl<_MarketplaceContent>(this, _$identity);
+  _$EventObjectCopyWith<_EventObject> get copyWith =>
+      __$EventObjectCopyWithImpl<_EventObject>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MarketplaceContentToJson(this);
+    return _$_$_EventObjectToJson(this);
   }
 }
 
-abstract class _MarketplaceContent implements EventObject {
-  factory _MarketplaceContent(
+abstract class _EventObject implements EventObject {
+  factory _EventObject(
       {@JsonKey(name: 'first_name')
           String? firstName,
       @JsonKey(name: 'last_name')
@@ -333,10 +332,10 @@ abstract class _MarketplaceContent implements EventObject {
       @JsonKey(name: 'flavour')
           String? flavour,
       @JsonKey(name: 'app_version', defaultValue: APPVERSION)
-          String? appVersion}) = _$_MarketplaceContent;
+          String? appVersion}) = _$_EventObject;
 
-  factory _MarketplaceContent.fromJson(Map<String, dynamic> json) =
-      _$_MarketplaceContent.fromJson;
+  factory _EventObject.fromJson(Map<String, dynamic> json) =
+      _$_EventObject.fromJson;
 
   @override
   @JsonKey(name: 'first_name')
@@ -361,6 +360,6 @@ abstract class _MarketplaceContent implements EventObject {
   String? get appVersion => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MarketplaceContentCopyWith<_MarketplaceContent> get copyWith =>
+  _$EventObjectCopyWith<_EventObject> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,5 +1,6 @@
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/help_center/pages/help_center_channels.dart';
 import 'package:myafyahub/presentation/help_center/widgets/faq_wrapper.dart';
 import 'package:myafyahub/presentation/widgets/top_header.dart';
@@ -15,11 +16,11 @@ class HelpCenterPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              PageTopHeader(
-                widget: const HelpCenterChannels(),
+              const PageTopHeader(
+                widget: HelpCenterChannels(),
                 title: faqPageTitle,
                 description: faqSubtitle,
-                color: Theme.of(context).accentColor,
+                color: AppColors.secondaryColor,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(

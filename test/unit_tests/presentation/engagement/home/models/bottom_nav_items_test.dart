@@ -5,11 +5,11 @@ import 'package:test/test.dart';
 void main() {
   test('BottomNavIndex returns the correct index', () {
     expect(BottomNavIndex.home.index, 0);
-    expect(BottomNavIndex.library.index, 1);
-    // expect(BottomNavIndex.market.index, 2);
+    expect(BottomNavIndex.feed.index, 1);
   });
+
   test('bottomNavItems returns the right Nav items', () {
-    expect(bottomNavItems.length, 2);
+    expect(bottomNavItems.length, 4);
 
     expect(
       bottomNavItems[0].text,
@@ -17,7 +17,7 @@ void main() {
     );
     expect(
       bottomNavItems[1].text,
-      'Library',
+      'Feed',
     );
   });
 }

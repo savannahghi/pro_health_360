@@ -18,8 +18,8 @@ import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
-class SILAppbarUser extends StatelessWidget {
-  const SILAppbarUser({Key? key}) : super(key: key);
+class MyAfyaHubAppbarUser extends StatelessWidget {
+  const MyAfyaHubAppbarUser({Key? key}) : super(key: key);
 
   void editProfileNavigation(BuildContext context) {
     // navigate to the user profile here
@@ -28,43 +28,36 @@ class SILAppbarUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 12.0),
-      child: GestureDetector(
-        key: silAppBarGestureKey,
-        onTap: () => editProfileNavigation(context),
-        child: StoreConnector<AppState, UserProfileViewModel>(
-          converter: (Store<AppState> store) =>
-              UserProfileViewModel.fromStore(store),
-          builder: (BuildContext context, UserProfileViewModel vm) {
-            final UserProfileState userProfileState = vm.userProfileState;
-            final String? photoUrl =
-                userProfileState.userProfile!.photoUploadID;
-            return Container(
-              padding: EdgeInsets.all(photoUrl == UNKNOWN ? 2 : 0),
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: AppColors.whiteColor),
-              child: Container(
-                height: 38,
-                width: 38,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, gradient: getAppGradient(context)),
-                child: Center(
-                  child: photoUrl == UNKNOWN
-                      ? Text(
-                          extractNamesInitials(
-                              name: getDisplayName(userProfileState)),
-                          style:
-                              TextThemes.boldSize14Text(AppColors.whiteColor),
-                        )
-                      : CircleAvatar(
-                          backgroundImage: AssetImage(photoUrl!),
-                        ),
-                ),
+    return GestureDetector(
+      key: silAppBarGestureKey,
+      onTap: () => editProfileNavigation(context),
+      child: StoreConnector<AppState, UserProfileViewModel>(
+        converter: (Store<AppState> store) =>
+            UserProfileViewModel.fromStore(store),
+        builder: (BuildContext context, UserProfileViewModel vm) {
+          final UserProfileState userProfileState = vm.userProfileState;
+          final String? photoUrl = userProfileState.userProfile!.photoUploadID;
+          return Container(
+            padding: EdgeInsets.all(photoUrl == UNKNOWN ? 2 : 0),
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: AppColors.whiteColor),
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, gradient: getAppGradient(context)),
+              child: Center(
+                child: photoUrl == UNKNOWN
+                    ? Text(
+                        extractNamesInitials(
+                            name: getDisplayName(userProfileState)),
+                        style: TextThemes.boldSize14Text(AppColors.whiteColor),
+                      )
+                    : CircleAvatar(backgroundImage: AssetImage(photoUrl!)),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

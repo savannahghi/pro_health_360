@@ -9,6 +9,7 @@ import 'package:myafyahub/application/redux/view_models/app_state_view_model.dar
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
@@ -37,7 +38,7 @@ class _LibraryState extends State<Library> {
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
       await fetchData();
     });
-    BeWellFacebookEvents().logger.logEvent(name: 'view_library_page');
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_library_page');
     super.initState();
   }
 
@@ -66,6 +67,7 @@ class _LibraryState extends State<Library> {
 
         return Scaffold(
           key: homepageContentKey,
+          appBar: const MyAfyaHubAppBar(title: libraryString),
           backgroundColor: Theme.of(context).backgroundColor,
           body: !hasLibraryItems(libraryListItems)
               ? StreamBuilder<Object>(

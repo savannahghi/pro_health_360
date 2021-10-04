@@ -16,20 +16,31 @@ class BottomNavItem {
   final String text;
 }
 
-enum BottomNavIndex {
-  home,
-  library,
-}
+enum BottomNavIndex { home, feed, community, myHealth }
 
 List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   BottomNavItem(
-      iconUrl: homeNavItemIconUrl,
-      text: 'Home',
-      onTapRoute: BWRoutes.home,
-      index: BottomNavIndex.home.index),
+    iconUrl: homeIconSvgPath,
+    text: 'Home',
+    onTapRoute: BWRoutes.home,
+    index: BottomNavIndex.home.index,
+  ),
   BottomNavItem(
-      iconUrl: libraryNavItemIconUrl,
-      text: 'Library',
-      onTapRoute: BWRoutes.library,
-      index: BottomNavIndex.library.index),
+    iconUrl: feedIconSvgPath,
+    text: 'Feed',
+    onTapRoute: BWRoutes.library,
+    index: BottomNavIndex.feed.index,
+  ),
+  BottomNavItem(
+    iconUrl: communityIconSvgPath,
+    text: 'Community',
+    onTapRoute: BWRoutes.library,
+    index: BottomNavIndex.feed.index,
+  ),
+  BottomNavItem(
+    iconUrl: myHealthIconSvgPath,
+    text: 'My Health',
+    onTapRoute: BWRoutes.library,
+    index: BottomNavIndex.feed.index,
+  ),
 ];

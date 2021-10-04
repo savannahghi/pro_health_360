@@ -4,10 +4,11 @@ import 'package:shared_themes/spaces.dart';
 
 class MoodItem extends StatelessWidget {
   const MoodItem({
+    Key? key,
     required this.moodIcon,
     required this.moodText,
     required this.onTap,
-  });
+  }) : super(key: key);
 
   final IconData moodIcon;
   final String moodText;

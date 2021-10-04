@@ -2,7 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/engagement/home/widgets/sil_bottom_navigation_bar.dart';
+import 'package:myafyahub/presentation/engagement/home/widgets/myafyahub_bottom_navigation_bar.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
-  group('SIL bottom navigation bar', () {
+  group('myAfyaHub bottom navigation bar', () {
     final MockGraphQlClient GraphQlClient = MockGraphQlClient();
     final Store<AppState> store = Store<AppState>(
       initialState: AppState.initial().copyWith(
@@ -34,7 +34,7 @@ void main() {
         tester: tester,
         store: store,
         client: GraphQlClient,
-        widget: const SILBottomNavigationBar(
+        widget: const MyAfyaHubBottomNavigationBar(
           currentIndex: 0,
         ),
       );
@@ -54,7 +54,7 @@ void main() {
         widget: Builder(builder: (BuildContext context) {
           return Scaffold(
             body: Container(),
-            bottomNavigationBar: const SILBottomNavigationBar(
+            bottomNavigationBar: const MyAfyaHubBottomNavigationBar(
               currentIndex: 1,
             ),
           );
@@ -68,7 +68,7 @@ void main() {
       expect(find.text('Home'), findsOneWidget);
       await tester.tap(find.text('Home'));
       await tester.pumpAndSettle();
-      expect(find.text('Library'), findsOneWidget);
+      expect(find.text('Feed'), findsOneWidget);
     });
 
     testWidgets('should navigate to the different tabs',
@@ -79,7 +79,7 @@ void main() {
         client: GraphQlClient,
         widget: Scaffold(
           body: Container(),
-          bottomNavigationBar: const SILBottomNavigationBar(
+          bottomNavigationBar: const MyAfyaHubBottomNavigationBar(
             currentIndex: 1,
           ),
         ),
@@ -93,8 +93,8 @@ void main() {
 
       expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 0);
 
-      expect(find.text('Library'), findsOneWidget);
-      await tester.tap(find.text('Library'));
+      expect(find.text('Feed'), findsOneWidget);
+      await tester.tap(find.text('Feed'));
       await tester.pumpAndSettle();
 
       expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 1);

@@ -11,7 +11,7 @@ import 'package:domain_objects/failures.dart';
 
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/sil_bottom_nav_action.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';

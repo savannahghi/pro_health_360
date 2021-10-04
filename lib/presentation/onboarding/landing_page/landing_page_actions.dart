@@ -24,8 +24,8 @@ class LandingPageActions extends StatefulWidget {
 class LandingPageActionsState extends State<LandingPageActions> {
   @override
   void initState() {
-    BeWellFacebookEvents().logger.setAdvertiserTracking(enabled: true);
-    BeWellFacebookEvents().logger.logEvent(name: 'view_landing_page');
+    MyAfyaHubFacebookEvents().logger.setAdvertiserTracking(enabled: true);
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_landing_page');
     super.initState();
   }
 
@@ -47,7 +47,7 @@ class LandingPageActionsState extends State<LandingPageActions> {
                 child: SILPrimaryButton(
                   buttonKey: loginWithPhoneKey,
                   onPressed: () {
-                    BeWellFacebookEvents()
+                    MyAfyaHubFacebookEvents()
                         .logger
                         .logViewContent(id: 'click_login_button');
                     // should navigate to [PhoneLogin] page, which serves existing users

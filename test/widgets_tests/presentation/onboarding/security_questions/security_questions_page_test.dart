@@ -94,7 +94,7 @@ void main() {
       await tester.tap(find.text(whatsTheNameOfYourPetString));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(whatsYourfavouriteFoodString));
+      await tester.tap(find.text(whatsYourFavouriteFoodString));
       await tester.pumpAndSettle();
 
       final Finder favouriteFoodTextFormField = find.byType(TextFormField);
@@ -104,7 +104,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
-      await tester.tap(find.text(whatsYourfavouriteFoodString));
+      await tester.tap(find.text(whatsYourFavouriteFoodString));
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(whereDidYouFirstLiveString));

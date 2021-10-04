@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
-import 'package:myafyahub/presentation/community/community_list_view.dart';
+import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
@@ -21,7 +21,7 @@ import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
-import 'package:myafyahub/presentation/profile/pages/personal_inforamation_page.dart';
+import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
@@ -261,10 +261,10 @@ void main() {
     const RouteSettings settings =
         RouteSettings(name: BWRoutes.communityListView);
 
-    final MaterialPageRoute<CommunityListView> route =
-        routeGenerator(settings) as MaterialPageRoute<CommunityListView>;
-    expect(route, isA<MaterialPageRoute<CommunityListView>>());
-    expect(route.builder(context), isA<CommunityListView>());
+    final MaterialPageRoute<CommunityListViewPage> route =
+        routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>;
+    expect(route, isA<MaterialPageRoute<CommunityListViewPage>>());
+    expect(route.builder(context), isA<CommunityListViewPage>());
   });
 
   test('Test router returns ConsentPage', () {

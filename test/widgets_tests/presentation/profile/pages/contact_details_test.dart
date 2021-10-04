@@ -41,6 +41,7 @@ void main() {
         ),
       );
     });
+
     testWidgets('ProfileContactDetails page renders well',
         (WidgetTester tester) async {
       final MockNavigatorObserver mockObserver = MockNavigatorObserver();

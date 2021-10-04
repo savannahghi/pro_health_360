@@ -20,7 +20,7 @@ class _UserProfileState extends State<UserProfile>
   @override
   void initState() {
     super.initState();
-    BeWellFacebookEvents().logger.logEvent(name: 'view_profile_page');
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_profile_page');
 
     /// clear any active flags
     clearAllFlags(context);

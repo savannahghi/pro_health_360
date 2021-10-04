@@ -510,7 +510,7 @@ const String answerCorrectlyToGainAccessString =
 
 const String whereWereYouBornString = 'Where were you born?';
 const String whatsTheNameOfYourPetString = 'What\'s the name of your pet?';
-const String whatsYourfavouriteFoodString = 'What\'s your favourite food?';
+const String whatsYourFavouriteFoodString = 'What\'s your favourite food?';
 const String whereDidYouFirstLiveString = 'Where did you first live?';
 const String answerHereString = 'Answer here';
 const String saveAndContinueButtonText = 'Save & Continue';
@@ -524,7 +524,7 @@ const String pinString = 'PIN';
 const String enterYourString = 'Enter your PIN';
 const String enterPhoneNumberString = 'Enter phone number';
 const String continueString = 'Continue';
-String howAreYoufeelingTodayText(String user) {
+String howAreYouFeelingTodayText(String user) {
   return 'Hi $user, how are you feeling today?';
 }
 
@@ -557,6 +557,10 @@ const String importantLinkString = 'Important Link';
 const String viewTermsText = 'View terms and conditions';
 const String groupsText = 'Groups';
 const String consentText = 'I consent to be added to groups';
+
+// Community strings
+const String communityString = 'Community';
+const String libraryString = 'Library';
 
 // Terms and conditions
 const String portalTermsText = 'Portal terms and conditions';
@@ -601,3 +605,5 @@ const String preferredClinic = 'Preferred Clinic';
 const String clinic = 'Equity Afia Ruaka';
 const String preferredCommunication = 'Preferred way of Communication';
 const String inApp = 'in app';
+
+const String comingSoonText = 'Coming soon';

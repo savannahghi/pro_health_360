@@ -48,7 +48,7 @@ class _PhoneLoginState extends State<PhoneLoginPage> {
   @override
   void initState() {
     super.initState();
-    BeWellFacebookEvents().logger.logEvent(name: 'view_login_page');
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_login_page');
 
     /// clear any active flags
     clearAllFlags(context);
@@ -158,7 +158,7 @@ class _PhoneLoginState extends State<PhoneLoginPage> {
                   GestureDetector(
                     key: resetPinKey,
                     onTap: () {
-                      BeWellFacebookEvents()
+                      MyAfyaHubFacebookEvents()
                           .logger
                           .logEvent(name: 'view_request_pin_reset_page');
                       Navigator.pushNamed(context, BWRoutes.resetPin);

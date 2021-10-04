@@ -18,7 +18,7 @@ class SILHelpCenterButton extends StatelessWidget {
   const SILHelpCenterButton();
 
   void helpCenterNavigationFunction(BuildContext context, AppState state) {
-    BeWellFacebookEvents().logger.logEvent(name: 'view_healp_center_page');
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_healp_center_page');
     Navigator.pushNamed(context, BWRoutes.helpCenter);
     final String appContext =
         getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);

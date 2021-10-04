@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -173,37 +174,42 @@ void main() {
     testWidgets(
         'should retry FAQ fetch when there is a timeout while fetching FAQs',
         (WidgetTester tester) async {
-      final MockGraphQlClient2 mockShortGraphQlClient =
-          MockGraphQlClient2.withResponse(
-        'idToken',
-        'endpoint',
-        http.Response(json.encode(<String, dynamic>{'error': 'timeout'}), 408),
-      );
-      store.dispatch(
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
+      mockNetworkImages(() async {
+        final MockGraphQlClient2 mockShortGraphQlClient =
+            MockGraphQlClient2.withResponse(
+          'idToken',
+          'endpoint',
+          http.Response(
+              json.encode(<String, dynamic>{'error': 'timeout'}), 408),
+        );
+
+        store.dispatch(
+          UpdateUserProfileAction(
+            profile: UserProfile(
+              primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
+            ),
           ),
-        ),
-      );
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortGraphQlClient,
-        widget: FAQWrapper(),
-      );
+        );
 
-      await tester.pump();
-      final Finder genericNoDataWidget = find.byType(GenericTimeoutWidget);
-      expect(genericNoDataWidget, findsOneWidget);
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortGraphQlClient,
+          widget: FAQWrapper(),
+        );
 
-      final Finder retryWidget = find.text('Retry');
-      expect(retryWidget, findsOneWidget);
+        await tester.pump();
+        final Finder genericNoDataWidget = find.byType(GenericTimeoutWidget);
+        expect(genericNoDataWidget, findsOneWidget);
 
-      await tester.tap(retryWidget);
-      await tester.pumpAndSettle();
+        final Finder retryWidget = find.text('Retry');
+        expect(retryWidget, findsOneWidget);
 
-      expect(genericNoDataWidget, findsOneWidget);
+        await tester.tap(retryWidget);
+        await tester.pumpAndSettle();
+
+        expect(genericNoDataWidget, findsOneWidget);
+      });
     });
   });
 }

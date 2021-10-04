@@ -6,7 +6,7 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/help_center/sil_help_center_button.dart';
-import 'package:myafyahub/presentation/engagement/home/widgets/sil_bottom_navigation_bar.dart';
+import 'package:myafyahub/presentation/engagement/home/widgets/myafyahub_bottom_navigation_bar.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/bottom_nav_view_model.dart';
@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    BeWellFacebookEvents().logger.logEvent(name: 'view_home_page');
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_home_page');
     super.initState();
   }
 
@@ -41,9 +41,8 @@ class _HomePageState extends State<HomePage> {
             snackBar: snackbar(content: pressToExitText, durationSeconds: 3),
             child: pagesTabs[vm.currentIndex],
           ),
-          bottomNavigationBar: SILBottomNavigationBar(
-            currentIndex: vm.currentIndex,
-          ),
+          bottomNavigationBar:
+              MyAfyaHubBottomNavigationBar(currentIndex: vm.currentIndex),
         );
       },
     );

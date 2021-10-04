@@ -8,7 +8,6 @@ import 'package:myafyahub/application/core/services/connectivity_helper.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
-import 'package:myafyahub/application/redux/actions/fetch_user_feed_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
@@ -39,7 +38,6 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
-import 'package:rxdart/subjects.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:user_feed/user_feed.dart';
@@ -778,39 +776,6 @@ void clearAllFlags(BuildContext context) {
       WaitAction<AppState>.clear(),
     );
   });
-}
-
-BehaviorSubject<bool> showFeedShimmer = BehaviorSubject<bool>.seeded(false);
-Function fetchFeed(BuildContext context) {
-  final AppState? state = StoreProvider.state<AppState>(context);
-  final String appContext =
-      getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
-  return ({bool showRefreshIndicator = true}) async {
-    publishEvent(
-      hasRefreshedFeedSuccessfully(appContext),
-      EventObject(
-        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
-            .getValue(),
-        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-            .getValue(),
-        uid: state.userProfileState!.auth!.uid,
-        flavour: Flavour.CONSUMER.name,
-        timestamp: DateTime.now(),
-      ),
-    );
-    await StoreProvider.dispatch<AppState>(
-      context,
-      FetchUserFeedAction(
-        context: context,
-        showRefreshIndicator: showRefreshIndicator,
-      ),
-    );
-  };
-}
-
-Function periodicFeedRefreshFunc(BuildContext context) {
-  return (Timer t) async =>
-      await fetchFeed(context)(showRefreshIndicator: false);
 }
 
 void callSupport() {

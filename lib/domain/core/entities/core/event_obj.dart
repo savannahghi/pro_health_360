@@ -18,7 +18,7 @@ class EventObject with _$EventObject {
     @JsonKey(name: 'timestamp') DateTime? timestamp,
     @JsonKey(name: 'flavour') String? flavour,
     @JsonKey(name: 'app_version', defaultValue: APPVERSION) String? appVersion,
-  }) = _MarketplaceContent;
+  }) = _EventObject;
 
   factory EventObject.fromJson(Map<String, dynamic> json) =>
       _$EventObjectFromJson(json);

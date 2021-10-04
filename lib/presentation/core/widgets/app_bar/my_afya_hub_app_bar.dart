@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -33,17 +34,20 @@ class MyAfyaHubAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            leadingWidget ?? mediumHorizontalSizedBox,
-            Text(
-              title ?? '',
-              style: TextThemes.boldSize16Text()
-                  .copyWith(color: AppColors.secondaryColor),
-            ),
-            trailingWidget ?? mediumHorizontalSizedBox,
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              leadingWidget ?? const MyAfyaHubAppbarUser(),
+              Text(
+                title ?? '',
+                style: TextThemes.boldSize16Text()
+                    .copyWith(color: AppColors.secondaryColor),
+              ),
+              trailingWidget ?? mediumHorizontalSizedBox,
+            ],
+          ),
         ),
       ),
     );

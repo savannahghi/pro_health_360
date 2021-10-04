@@ -5,9 +5,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/actions/save_user_feed_action.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
-import 'package:myafyahub/domain/core/value_objects/extensions.dart';
 
 import 'package:dart_fcm/dart_fcm.dart';
 
@@ -33,10 +31,6 @@ class LogoutAction extends ReduxAction<AppState> {
               DateTime.now().add(const Duration(days: 1000)).toIso8601String(),
         ),
       );
-
-      // set feed to unknown. This is prompt a refresh when the user logs in again
-      await store.dispatch(
-          SaveUserFeedAction(userFeedState: FeedResponsePayloadEx.initial()));
 
       await SILFCM().resetToken();
     } catch (error, stackTrace) {

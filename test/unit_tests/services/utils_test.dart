@@ -5,10 +5,7 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/domain/core/entities/core/result.dart';
-import 'package:myafyahub/domain/core/entities/core/suggestion.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -20,7 +17,7 @@ import '../../mocks.dart';
 
 void main() {
   group('Utils', () {
-    test('should sentencecase username', () {
+    test('should sentence case username', () {
       expect(sentenceCaseUserName(firstName: 'ule', lastName: 'makmende'),
           'Ule Makmende');
       expect(sentenceCaseUserName(firstName: 'u', lastName: 'm'), 'u m');
@@ -29,39 +26,6 @@ void main() {
 
     test('should getWidthOfSymmetricalWidgetsSmallDevices', () {
       expect(getWidthOfSymmetricalWidgetsOnLargeDevice(), 190.0);
-    });
-
-    test('should get empty globalSearchResults ', () {
-      final List<Result> results = globalSearchResults(searchParam: '');
-      expect(results.isEmpty, true);
-    });
-
-    test('should get globalSearchResults ', () {
-      final List<Result> results =
-          globalSearchResults(searchParam: libraryTitle);
-      expect(results.isNotEmpty, true);
-    });
-
-    test('should get globalSearchResults with alias', () {
-      final List<Result> results = globalSearchResults(searchParam: 'lib');
-      expect(results.isNotEmpty, true);
-    });
-
-    test('should get  globalSearchSuggestion when search tem is empty', () {
-      final List<Suggestion> results = globalSearchSuggestion(searchParam: '');
-      expect(results.isEmpty, false);
-    });
-
-    test('should get  globalSearchSuggestion', () {
-      final List<Suggestion> results =
-          globalSearchSuggestion(searchParam: libraryTitle);
-      expect(results.isNotEmpty, true);
-    });
-
-    test('should get  globalSearchSuggestion with alias', () {
-      final List<Suggestion> results =
-          globalSearchSuggestion(searchParam: 'lib');
-      expect(results.isNotEmpty, true);
     });
 
     test('should return false on onWillPopCallback call', () async {

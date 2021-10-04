@@ -88,9 +88,7 @@ class BuildContactProviderState extends State<BuildContactProvider> {
     return buildContactProviderState;
   }
 
-  void refreshFeed() {
-    fetchFeed(context)(showRefreshIndicator: false);
-  }
+  void refreshFeed() {}
 
   @override
   Widget build(BuildContext context) {

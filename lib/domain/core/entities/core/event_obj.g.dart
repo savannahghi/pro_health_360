@@ -6,9 +6,8 @@ part of 'event_obj.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MarketplaceContent _$_$_MarketplaceContentFromJson(
-    Map<String, dynamic> json) {
-  return _$_MarketplaceContent(
+_$_EventObject _$_$_EventObjectFromJson(Map<String, dynamic> json) {
+  return _$_EventObject(
     firstName: json['first_name'] as String?,
     lastName: json['last_name'] as String?,
     uid: json['uid'] as String?,
@@ -21,8 +20,7 @@ _$_MarketplaceContent _$_$_MarketplaceContentFromJson(
   );
 }
 
-Map<String, dynamic> _$_$_MarketplaceContentToJson(
-        _$_MarketplaceContent instance) =>
+Map<String, dynamic> _$_$_EventObjectToJson(_$_EventObject instance) =>
     <String, dynamic>{
       'first_name': instance.firstName,
       'last_name': instance.lastName,

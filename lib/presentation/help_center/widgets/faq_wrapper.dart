@@ -76,8 +76,13 @@ class _FAQWrapperState extends State<FAQWrapper> {
 
           /// check if the error is a timeout error and return an appropriate widget
           if (error == null || error['error'] == 'timeout') {
-            return const GenericTimeoutWidget(
-                route: BWRoutes.home, action: 'getting FAQs');
+            return GenericTimeoutWidget(
+              route: BWRoutes.home,
+              action: 'getting FAQs',
+              recoverCallback: () async {
+                await fetchData();
+              },
+            );
           }
 
           return GenericNoData(

@@ -49,13 +49,13 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(builder: (BuildContext context) {
-          return const SILAppbarUser();
+          return const MyAfyaHubAppbarUser();
         }),
       );
 
       await fireEvent(tester);
       final Finder silAppBarGestureString = find.byKey(silAppBarGestureKey);
-      expect(find.byType(SILAppbarUser), findsOneWidget);
+      expect(find.byType(MyAfyaHubAppbarUser), findsOneWidget);
       expect(silAppBarGestureString, findsOneWidget);
       await tester.tap(silAppBarGestureString);
       await tester.pumpAndSettle();
@@ -69,11 +69,11 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(builder: (BuildContext context) {
-          return const SILAppbarUser();
+          return const MyAfyaHubAppbarUser();
         }),
       );
       await tester.pumpAndSettle();
-      expect(find.byType(SILAppbarUser), findsOneWidget);
+      expect(find.byType(MyAfyaHubAppbarUser), findsOneWidget);
     });
   });
 }

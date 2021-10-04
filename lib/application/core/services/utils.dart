@@ -18,8 +18,6 @@ import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
-import 'package:myafyahub/domain/core/entities/core/result.dart';
-import 'package:myafyahub/domain/core/entities/core/suggestion.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -233,11 +231,6 @@ Future<void> updateStateContacts(
   }
 }
 
-Future<void> navigateToHome(BuildContext context) async {
-  Navigator.pop(context);
-  Navigator.pushNamed(context, BWRoutes.home);
-}
-
 Future<String> getUploadID({
   required Map<String, dynamic> fileData,
   required BuildContext context,
@@ -283,56 +276,6 @@ String? userPinValidator(dynamic val) {
     return 'Enter a four digit PIN';
   }
   return null;
-}
-
-List<Suggestion> globalSearchSuggestion({required String searchParam}) {
-  return searchParam.isEmpty
-      ? recentSearches
-      : suggestions.where(
-          (Suggestion p) {
-            final bool nameContainsParam = p.name.contains(searchParam);
-
-            final List<String> aliasFoundResults = p.aliases
-                .where(
-                  (String alias) => alias.contains(searchParam),
-                )
-                .toList();
-
-            bool emptyAlias;
-            if (aliasFoundResults.isNotEmpty) {
-              emptyAlias = true;
-            } else {
-              emptyAlias = false;
-            }
-
-            return nameContainsParam || emptyAlias;
-          },
-        ).toList();
-}
-
-List<Result> globalSearchResults({required String searchParam}) {
-  return searchParam.isEmpty
-      ? <Result>[]
-      : results.where(
-          (Result result) {
-            final bool nameContainsParam = result.name.contains(searchParam);
-
-            final List<String> aliasFoundResults = result.aliases
-                .where(
-                  (String alias) => alias.contains(searchParam),
-                )
-                .toList();
-
-            bool emptyAlias;
-            if (aliasFoundResults.isNotEmpty) {
-              emptyAlias = true;
-            } else {
-              emptyAlias = false;
-            }
-
-            return nameContainsParam || emptyAlias;
-          },
-        ).toList();
 }
 
 void genericBottomSheet({
@@ -926,6 +869,7 @@ Future<void> showRatingBottomSheet(BuildContext context) async {
     builder: (BuildContext context) => Padding(
       padding: const EdgeInsets.all(number2),
       child: Container(
+        key: ratingDialogKey,
         decoration: const BoxDecoration(color: Colors.white),
         constraints: const BoxConstraints(maxWidth: 420),
         child: SingleChildScrollView(
@@ -969,9 +913,7 @@ Future<void> showRatingBottomSheet(BuildContext context) async {
                               Navigator.pop(context);
                               StoreProvider.dispatch<AppState>(
                                 context,
-                                AppReviewAction(
-                                  launches: 0,
-                                ),
+                                AppReviewAction(launches: 0),
                               );
                             },
                             text: later),

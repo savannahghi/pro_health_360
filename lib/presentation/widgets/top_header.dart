@@ -7,13 +7,12 @@ import 'package:shared_themes/text_themes.dart';
 /// this widget renders a header for an intro page
 class PageTopHeader extends StatelessWidget {
   const PageTopHeader({
-    Key? key,
     required this.title,
     required this.description,
     required this.color,
     this.widget,
     this.radius = 0,
-  }) : super(key: key);
+  });
 
   final Color color;
   final String description;

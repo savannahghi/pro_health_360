@@ -9,7 +9,6 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/engagement/feed/feed_component_wrapper.dart';
 
 import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
 
@@ -496,39 +495,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(Text), findsOneWidget);
-    });
-
-    testWidgets('should navigate to homepage', (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-
-      store.dispatch(
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
-          ),
-        ),
-      );
-
-      await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Center(
-            child: Builder(builder: (BuildContext context) {
-              return SILPrimaryButton(
-                  buttonKey: const Key('continue_homepage'),
-                  onPressed: () {
-                    navigateToHome(context);
-                  });
-            }),
-          ));
-
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byKey(const Key('continue_homepage')));
-      await tester.pumpAndSettle();
-      expect(find.byType(SILPrimaryButton), findsWidgets);
-      expect(find.byType(FeedComponentWrapper), findsOneWidget);
     });
 
     testWidgets('should pass to getUploadId', (WidgetTester tester) async {

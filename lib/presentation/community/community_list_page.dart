@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/community/community_list_item.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
 
-class CommunityListView extends StatelessWidget {
-  const CommunityListView({Key? key}) : super(key: key);
+class CommunityListViewPage extends StatelessWidget {
+  const CommunityListViewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Placeholder
     const String dontMissAppointmentMessage =
-        'Don\'t miss your appointment tommorow';
+        'Don\'t miss your appointment tomorrow';
     const AssetImage avatarImage = AssetImage('assets/images/wellness2.jpeg');
     const String date = 'July 12 2021';
 
@@ -89,15 +92,20 @@ class CommunityListView extends StatelessWidget {
     ];
 
     return Scaffold(
-      body: SafeArea(
-        child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (_, int index) {
-            return GestureDetector(
-              child: items[index],
-            );
-          },
-        ),
+      appBar: const MyAfyaHubAppBar(title: communityString),
+      body: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          ListView.builder(
+            key: communityListViewKey,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemCount: items.length,
+            itemBuilder: (_, int index) {
+              return GestureDetector(child: items[index]);
+            },
+          ),
+        ],
       ),
     );
   }
