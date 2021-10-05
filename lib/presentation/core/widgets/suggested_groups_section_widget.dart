@@ -49,13 +49,10 @@ class SuggestedGroupsSection extends StatelessWidget {
                     suggestedGroups.elementAt(index)['totalMembers'].toString();
                 final String iconUrl =
                     suggestedGroups.elementAt(index)['iconUrl'].toString();
-                return Column(
-                  children: <Widget>[
-                    SuggestedGroupCard(
-                        groupIconUrl: iconUrl,
-                        groupTitle: title,
-                        groupTotalMembers: totalMembers)
-                  ],
+                return SuggestedGroupCard(
+                  groupIconUrl: iconUrl,
+                  groupTitle: title,
+                  groupTotalMembers: totalMembers,
                 );
               },
             ),

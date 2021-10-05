@@ -84,7 +84,7 @@ PODS:
     - Firebase/RemoteConfig (= 8.6.0)
     - firebase_core
     - Flutter
-  - FirebaseABTesting (8.7.0):
+  - FirebaseABTesting (8.8.0):
     - FirebaseCore (~> 8.0)
   - FirebaseAnalytics (8.6.0):
     - FirebaseAnalytics/AdIdSupport (= 8.6.0)
@@ -108,7 +108,7 @@ PODS:
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.7.0):
+  - FirebaseCoreDiagnostics (8.8.0):
     - GoogleDataTransport (~> 9.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
@@ -120,7 +120,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - FirebaseInstallations (8.7.0):
+  - FirebaseInstallations (8.8.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
@@ -211,15 +211,15 @@ PODS:
     - Flutter
   - launch_review (0.0.1):
     - Flutter
-  - libwebp (1.2.0):
-    - libwebp/demux (= 1.2.0)
-    - libwebp/mux (= 1.2.0)
-    - libwebp/webp (= 1.2.0)
-  - libwebp/demux (1.2.0):
+  - libwebp (1.2.1):
+    - libwebp/demux (= 1.2.1)
+    - libwebp/mux (= 1.2.1)
+    - libwebp/webp (= 1.2.1)
+  - libwebp/demux (1.2.1):
     - libwebp/webp
-  - libwebp/mux (1.2.0):
+  - libwebp/mux (1.2.1):
     - libwebp/demux
-  - libwebp/webp (1.2.0)
+  - libwebp/webp (1.2.1)
   - local_auth (0.0.1):
     - Flutter
   - location (0.0.1):
@@ -241,9 +241,9 @@ PODS:
     - Flutter
   - PromisesObjC (2.0.0)
   - Reachability (3.2)
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
+  - SDWebImage (5.12.0):
+    - SDWebImage/Core (= 5.12.0)
+  - SDWebImage/Core (5.12.0)
   - SDWebImageWebPCoder (0.8.4):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.10)
@@ -427,12 +427,12 @@ SPEC CHECKSUMS:
   firebase_crashlytics: b0581024be6112af8821de61e5a37fdb292373f0
   firebase_messaging: 0fddeca6fcfee0bed23c66210391d782af8f8d0e
   firebase_remote_config: 68becd5f079ab2f73bc717c24ce6c31f5f1cf13f
-  FirebaseABTesting: 5a72ea0e88422f9e223614cb4016cafffb2af8d1
+  FirebaseABTesting: 981336dd14d84787e33466e4247f77ec2343f8d9
   FirebaseAnalytics: 8f32ae54ad42754f503354782575c4ddfc1425c3
   FirebaseCore: 620b677f70f5470a8e59cb77f3ddc666f6f09785
-  FirebaseCoreDiagnostics: b63732f581a1c6a453ec7241f9ab60b3a5bd3450
+  FirebaseCoreDiagnostics: fe77f42da6329d6d83d21fd9d621a6b704413bfc
   FirebaseCrashlytics: 58f8ecea7c799c61c50e8111d2e438424a8a1d2e
-  FirebaseInstallations: ede6fb72bb6337914e5888b399271259d0c4910c
+  FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
   FirebaseMessaging: ce0a5ee974f7bfe83b6cc5acce88c2d969e37c41
   FirebaseRemoteConfig: 9ee4672d4eacf646256e26cfac61021b3a390ea4
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
@@ -449,7 +449,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
   launch_review: 75d5a956ba8eaa493e9c9d4bf4c05e505e8d5ed0
-  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
+  libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
   location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   Mantle: 4c0ed6ce47c96eccc4dc3bb071deb3def0e2c3be
@@ -460,7 +460,7 @@ SPEC CHECKSUMS:
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
   Sentry: 1d3eb1a25f8c5333c88dd5603904a6d461cd9fcf
   sentry_flutter: f20d4f199442900fbdab2b8496f1d2091d8b94d9

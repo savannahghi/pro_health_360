@@ -18,6 +18,7 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -91,99 +92,101 @@ void main() {
 
     testWidgets('afterLoginOrCreateAccount should pass with a deep link',
         (WidgetTester tester) async {
-      deepLink.hasLink.add(true);
-      deepLink.link.add('home');
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-      final http.Response response = http.Response(
-        json.encode(loginResponse),
-        201,
-      );
+      mockNetworkImages(() async {
+        deepLink.hasLink.add(true);
+        deepLink.link.add('home');
+        final Store<AppState> store =
+            Store<AppState>(initialState: AppState.initial());
+        final http.Response response = http.Response(
+          json.encode(loginResponse),
+          201,
+        );
 
-      final Map<String, dynamic> responseData =
-          mockFeedResponse(hasItems: false);
-      // mocked response
-      final http.Response _response = http.Response(
-        json.encode(responseData),
-        200,
-      );
+        final Map<String, dynamic> responseData =
+            mockFeedResponse(hasItems: false);
+        // mocked response
+        final http.Response _response = http.Response(
+          json.encode(responseData),
+          200,
+        );
 
-      loginResponse.remove('auth');
+        loginResponse.remove('auth');
 
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
+        final UserResponse userResp = UserResponse.fromJson(loginResponse);
+        final UserProfile? userProfile = userResp.profile;
 
-      queryWhenThenAnswer(
-          queryString: getFeedQuery,
-          variables: <String, dynamic>{
-            'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
-          },
-          response: _response);
+        queryWhenThenAnswer(
+            queryString: getFeedQuery,
+            variables: <String, dynamic>{
+              'flavour': Flavour.CONSUMER.name,
+              'persistent': 'BOTH',
+              'visibility': 'SHOW',
+              'isAnonymous': false,
+              'status': null,
+            },
+            response: _response);
 
-      queryWhenThenAnswer(
-          queryString: registerDeviceTokenQuery,
-          variables: <String, dynamic>{'token': 'sampleToken'},
-          response: _response);
+        queryWhenThenAnswer(
+            queryString: registerDeviceTokenQuery,
+            variables: <String, dynamic>{'token': 'sampleToken'},
+            response: _response);
 
-      when(baseGraphQlClientMock.toMap(_response))
-          .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
+        when(baseGraphQlClientMock.toMap(_response))
+            .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
+        when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
 
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                StoreProvider.dispatch(
-                  context,
-                  AuthStatusAction(
-                    signedIn: true,
-                    idToken: 'ajskdhbskjbdjhaskdbkash',
-                    refreshToken: 'ajskdhbskjbdjhaskdbkash',
-                    expiresAt: DateTime.now()
-                        .add(const Duration(seconds: 5))
-                        .toIso8601String(),
-                  ),
-                );
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  StoreProvider.dispatch(
+                    context,
+                    AuthStatusAction(
+                      signedIn: true,
+                      idToken: 'ajskdhbskjbdjhaskdbkash',
+                      refreshToken: 'ajskdhbskjbdjhaskdbkash',
+                      expiresAt: DateTime.now()
+                          .add(const Duration(seconds: 5))
+                          .toIso8601String(),
+                    ),
+                  );
 
-                StoreProvider.dispatch(
-                  context,
-                  UpdateUserProfileAction(
-                    profile: userProfile,
-                    userBioData: userProfile?.userBioData,
-                  ),
-                );
+                  StoreProvider.dispatch(
+                    context,
+                    UpdateUserProfileAction(
+                      profile: userProfile,
+                      userBioData: userProfile?.userBioData,
+                    ),
+                  );
 
-                // call our check token status function
-                await afterLoginOrCreateAccount(
-                    context: context,
-                    dateTimeParser: dateTimeParser!,
-                    onboardActionType: OnboardActionType.login,
-                    processedResponse: processHttpResponse(response),
-                    store: store,
-                    refreshTokenManger: refreshTimer!,
-                    graphQlClient: AppWrapperBase.of(context)!.graphQLClient);
-              },
-              text: 'Test',
-            );
-          },
-        ),
-      );
+                  // call our check token status function
+                  await afterLoginOrCreateAccount(
+                      context: context,
+                      dateTimeParser: dateTimeParser!,
+                      onboardActionType: OnboardActionType.login,
+                      processedResponse: processHttpResponse(response),
+                      store: store,
+                      refreshTokenManger: refreshTimer!,
+                      graphQlClient: AppWrapperBase.of(context)!.graphQLClient);
+                },
+                text: 'Test',
+              );
+            },
+          ),
+        );
 
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
 
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
 
-      expect(find.byType(HomePage), findsOneWidget);
+        expect(find.byType(HomePage), findsOneWidget);
+      });
     });
 
     testWidgets('for a token whose expiry is less than 5 minutes',
@@ -496,8 +499,7 @@ void main() {
           returnsNormally);
     });
 
-    testWidgets(
-        'should show bottomshet when afterLoginOrCreateAccount call catches an exception',
+    testWidgets('should show bottomshet when afterLoginOrCreateAccount',
         (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());

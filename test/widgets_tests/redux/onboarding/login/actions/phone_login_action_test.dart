@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -212,107 +213,109 @@ void main() {
     });
 
     testWidgets('should dispatch action and pass', (WidgetTester tester) async {
-      final MockSILFCM fcmMock = MockSILFCM();
+      mockNetworkImages(() async {
+        final MockSILFCM fcmMock = MockSILFCM();
 
-      const String endpoint = kTestLoginByPhoneEndpoint;
+        const String endpoint = kTestLoginByPhoneEndpoint;
 
-      final http.Response response = http.Response(
-        json.encode(loginResponse),
-        200,
-      );
-
-      callRESTAPIWhenThenAnswer(
-        endpoint: endpoint,
-        variables: <String, dynamic>{
-          'phoneNumber': '+254728101710',
-          'pin': '1234',
-          'flavour': Flavour.CONSUMER.name,
-          'appVersion': APPVERSION,
-        },
-        response: response,
-      );
-
-      when(baseGraphQlClientMock.toMap(response))
-          .thenReturn(json.decode(response.body) as Map<String, dynamic>);
-
-      when(refreshTimer.updateExpireTime('2021-05-18T14:17:00.000'))
-          .thenReturn(refreshTimer);
-      when(refreshTimer.reset()).thenReturn(null);
-
-      when(fcmMock.resetToken())
-          .thenAnswer((Invocation realInvocation) => Future<void>.value());
-
-      when(fcmMock.resetToken()).thenAnswer(
-          (Invocation realInvocation) => Future<String?>.value('newPushToken'));
-
-      queryWhenThenAnswer(
-        queryString: registerDeviceTokenQuery,
-        variables: <String, dynamic>{'token': 'newPushToken'},
-        response: http.Response(
-          json.encode(<String, dynamic>{'token': 'newPushToken'}),
+        final http.Response response = http.Response(
+          json.encode(loginResponse),
           200,
-        ),
-      );
+        );
 
-      final Map<String, dynamic> responseData =
-          mockFeedResponse(hasItems: false);
-      // mocked response
-      final http.Response _response = http.Response(
-        json.encode(responseData),
-        200,
-      );
-
-      queryWhenThenAnswer(
-          queryString: getFeedQuery,
+        callRESTAPIWhenThenAnswer(
+          endpoint: endpoint,
           variables: <String, dynamic>{
+            'phoneNumber': '+254728101710',
+            'pin': '1234',
             'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
+            'appVersion': APPVERSION,
           },
-          response: _response);
+          response: response,
+        );
 
-      when(baseGraphQlClientMock.toMap(_response))
-          .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
+        when(baseGraphQlClientMock.toMap(response))
+            .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
+        when(refreshTimer.updateExpireTime('2021-05-18T14:17:00.000'))
+            .thenReturn(refreshTimer);
+        when(refreshTimer.reset()).thenReturn(null);
 
-      dynamic err;
-      await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
-                EndPointsContextSubject().contexts.add(testAppContexts);
-                await StoreProvider.dispatch(
-                  context,
-                  PhoneLoginStateAction(
-                      pinCode: '1234', phoneNumber: '+254728101710'),
-                );
-                try {
+        when(fcmMock.resetToken())
+            .thenAnswer((Invocation realInvocation) => Future<void>.value());
+
+        when(fcmMock.resetToken()).thenAnswer((Invocation realInvocation) =>
+            Future<String?>.value('newPushToken'));
+
+        queryWhenThenAnswer(
+          queryString: registerDeviceTokenQuery,
+          variables: <String, dynamic>{'token': 'newPushToken'},
+          response: http.Response(
+            json.encode(<String, dynamic>{'token': 'newPushToken'}),
+            200,
+          ),
+        );
+
+        final Map<String, dynamic> responseData =
+            mockFeedResponse(hasItems: false);
+        // mocked response
+        final http.Response _response = http.Response(
+          json.encode(responseData),
+          200,
+        );
+
+        queryWhenThenAnswer(
+            queryString: getFeedQuery,
+            variables: <String, dynamic>{
+              'flavour': Flavour.CONSUMER.name,
+              'persistent': 'BOTH',
+              'visibility': 'SHOW',
+              'isAnonymous': false,
+              'status': null,
+            },
+            response: _response);
+
+        when(baseGraphQlClientMock.toMap(_response))
+            .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
+
+        when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
+
+        dynamic err;
+        await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: baseGraphQlClientMock,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(onPressed: () async {
+                  EndPointsContextSubject().contexts.add(testAppContexts);
                   await StoreProvider.dispatch(
                     context,
-                    PhoneLoginAction(
-                      context: context,
-                      flag: 'phone_login',
-                      tokenManger: refreshTimer,
-                      dateTimeParser: dateTimeParser,
-                    ),
+                    PhoneLoginStateAction(
+                        pinCode: '1234', phoneNumber: '+254728101710'),
                   );
-                } catch (e) {
-                  err = e;
-                }
-              });
-            },
-          ));
+                  try {
+                    await StoreProvider.dispatch(
+                      context,
+                      PhoneLoginAction(
+                        context: context,
+                        flag: 'phone_login',
+                        tokenManger: refreshTimer,
+                        dateTimeParser: dateTimeParser,
+                      ),
+                    );
+                  } catch (e) {
+                    err = e;
+                  }
+                });
+              },
+            ));
 
-      await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(err, isNull);
+        await tester.pump();
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
+        expect(err, isNull);
+      });
     });
   });
 }

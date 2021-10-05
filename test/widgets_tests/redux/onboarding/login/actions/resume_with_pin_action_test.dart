@@ -10,6 +10,7 @@ import 'package:domain_objects/entities.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -221,95 +222,97 @@ void main() {
     testWidgets(
         'should navigate to home when user enters app via deep link and resumes by pin',
         (WidgetTester tester) async {
-      deepLink.hasLink.add(true);
-      deepLink.link.add('home');
+      mockNetworkImages(() async {
+        deepLink.hasLink.add(true);
+        deepLink.link.add('home');
 
-      final Map<String, dynamic> resp = <String, dynamic>{
-        'data': <String, dynamic>{'resumeWithPIN': true}
-      };
+        final Map<String, dynamic> resp = <String, dynamic>{
+          'data': <String, dynamic>{'resumeWithPIN': true}
+        };
 
-      final http.Response response = http.Response(
-        json.encode(resp),
-        200,
-      );
+        final http.Response response = http.Response(
+          json.encode(resp),
+          200,
+        );
 
-      queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response);
+        queryWhenThenAnswer(
+            queryString: resumeWithPinQuery,
+            variables: <String, dynamic>{'pin': '1234'},
+            response: response);
 
-      when(baseGraphQlClientMock.toMap(response))
-          .thenReturn(json.decode(response.body) as Map<String, dynamic>);
+        when(baseGraphQlClientMock.toMap(response))
+            .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(resp)).thenReturn(null);
+        when(baseGraphQlClientMock.parseError(resp)).thenReturn(null);
 
-      final Map<String, dynamic> responseData =
-          mockFeedResponse(hasItems: false);
-      // mocked response
-      final http.Response _response = http.Response(
-        json.encode(responseData),
-        200,
-      );
+        final Map<String, dynamic> responseData =
+            mockFeedResponse(hasItems: false);
+        // mocked response
+        final http.Response _response = http.Response(
+          json.encode(responseData),
+          200,
+        );
 
-      loginResponse.remove('auth');
+        loginResponse.remove('auth');
 
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
+        final UserResponse userResp = UserResponse.fromJson(loginResponse);
+        final UserProfile? userProfile = userResp.profile;
 
-      queryWhenThenAnswer(
-          queryString: getFeedQuery,
-          variables: <String, dynamic>{
-            'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
-          },
-          response: _response);
+        queryWhenThenAnswer(
+            queryString: getFeedQuery,
+            variables: <String, dynamic>{
+              'flavour': Flavour.CONSUMER.name,
+              'persistent': 'BOTH',
+              'visibility': 'SHOW',
+              'isAnonymous': false,
+              'status': null,
+            },
+            response: _response);
 
-      queryWhenThenAnswer(
-          queryString: registerDeviceTokenQuery,
-          variables: <String, dynamic>{'token': 'sampleToken'},
-          response: _response);
+        queryWhenThenAnswer(
+            queryString: registerDeviceTokenQuery,
+            variables: <String, dynamic>{'token': 'sampleToken'},
+            response: _response);
 
-      when(baseGraphQlClientMock.toMap(_response))
-          .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
+        when(baseGraphQlClientMock.toMap(_response))
+            .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
+        when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
 
-      await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
-                await store.dispatch(
-                  UpdatePinStatusAction(pin: '1234', isChangingPin: false),
-                );
-                await store.dispatch(
-                  UpdateUserProfileAction(
-                    profile: userProfile,
-                    userBioData: userProfile?.userBioData,
-                  ),
-                );
-                try {
+        await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: baseGraphQlClientMock,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(onPressed: () async {
                   await store.dispatch(
-                    ResumeWithPinAction(
-                      context: context,
-                      flag: 'resume_with_pin',
+                    UpdatePinStatusAction(pin: '1234', isChangingPin: false),
+                  );
+                  await store.dispatch(
+                    UpdateUserProfileAction(
+                      profile: userProfile,
+                      userBioData: userProfile?.userBioData,
                     ),
                   );
-                } catch (e) {}
-              });
-            },
-          ));
+                  try {
+                    await store.dispatch(
+                      ResumeWithPinAction(
+                        context: context,
+                        flag: 'resume_with_pin',
+                      ),
+                    );
+                  } catch (e) {}
+                });
+              },
+            ));
 
-      await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
+        await tester.pump();
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
 
-      expect(find.byType(HomePage), findsOneWidget);
+        expect(find.byType(HomePage), findsOneWidget);
+      });
     });
 
     testWidgets('should throw exception on wrong pin entered',

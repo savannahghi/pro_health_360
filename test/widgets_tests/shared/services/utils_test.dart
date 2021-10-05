@@ -333,7 +333,6 @@ void main() {
           store.state.userProfileState!.userProfile!.primaryEmailAddress!
               .getValue(),
           contactVal);
-      //
     });
 
     testWidgets(

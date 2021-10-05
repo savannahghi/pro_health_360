@@ -19,6 +19,7 @@ import 'package:shared_ui_components/platform_loader.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -299,156 +300,158 @@ void main() {
     testWidgets(
         'Save button updates user profile when pressed and navigates to HomePage',
         (WidgetTester tester) async {
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
-      tester.binding.window.physicalSizeTestValue = tabletLandscape;
+      await mockNetworkImages(() async {
+        tester.binding.window.devicePixelRatioTestValue = 1.0;
+        tester.binding.window.physicalSizeTestValue = tabletLandscape;
 
-      final DateFormat formatter = DateFormat('MM-dd');
-      final String date = formatter.format(DateTime.now());
-      storeTester.dispatch(
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
+        final DateFormat formatter = DateFormat('MM-dd');
+        final String date = formatter.format(DateTime.now());
+        storeTester.dispatch(
+          UpdateUserProfileAction(
+            profile: UserProfile(
+              primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
+            ),
           ),
-        ),
-      );
-      // updateUserProfile response
-      final http.Response response = http.Response(
-        json.encode(<String, dynamic>{
+        );
+        // updateUserProfile response
+        final http.Response response = http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'loading': true}
+          }),
+          201,
+        );
+
+        queryWhenThenAnswer(
+            queryString: updateUserProfileMutation,
+            variables: <String, dynamic>{
+              'input': <String, dynamic>{
+                'firstName': testFirstName,
+                'lastName': testLastName,
+                'dateOfBirth': '2003-$date',
+                'gender': 'female',
+              }
+            },
+            response: response);
+
+        when(baseGraphQlClientMock.toMap(response))
+            .thenReturn(json.decode(response.body) as Map<String, dynamic>);
+
+        when(baseGraphQlClientMock.parseError(<String, dynamic>{
           'data': <String, dynamic>{'loading': true}
-        }),
-        201,
-      );
+        })).thenReturn(null);
 
-      queryWhenThenAnswer(
-          queryString: updateUserProfileMutation,
-          variables: <String, dynamic>{
-            'input': <String, dynamic>{
-              'firstName': testFirstName,
-              'lastName': testLastName,
-              'dateOfBirth': '2003-$date',
-              'gender': 'female',
-            }
-          },
-          response: response);
+        // getFeed mocked response
+        final http.Response feedResponse = http.Response(
+          json.encode(<String, dynamic>{
+            'error': <String, dynamic>{'error': 'some error'}
+          }),
+          401,
+        );
 
-      when(baseGraphQlClientMock.toMap(response))
-          .thenReturn(json.decode(response.body) as Map<String, dynamic>);
+        queryWhenThenAnswer(
+            queryString: getFeedQuery,
+            variables: <String, dynamic>{
+              'flavour': Flavour.CONSUMER.name,
+              'persistent': 'BOTH',
+              'visibility': 'SHOW',
+              'isAnonymous': false,
+              'status': null,
+            },
+            response: feedResponse);
 
-      when(baseGraphQlClientMock.parseError(<String, dynamic>{
-        'data': <String, dynamic>{'loading': true}
-      })).thenReturn(null);
+        when(baseGraphQlClientMock.toMap(feedResponse))
+            .thenReturn(json.decode(feedResponse.body) as Map<String, dynamic>);
 
-      // getFeed mocked response
-      final http.Response feedResponse = http.Response(
-        json.encode(<String, dynamic>{
+        when(baseGraphQlClientMock.parseError(<String, dynamic>{
           'error': <String, dynamic>{'error': 'some error'}
-        }),
-        401,
-      );
+        })).thenReturn('null');
 
-      queryWhenThenAnswer(
-          queryString: getFeedQuery,
-          variables: <String, dynamic>{
-            'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
-          },
-          response: feedResponse);
+        await store.dispatch(
+          UpdateUserProfileAction(
+            userBioData: BioData(
+                dateOfBirth: '3 May 2021',
+                gender: Gender.female,
+                firstName: Name.withValue(testFirstName),
+                lastName: Name.withValue(testLastName)),
+          ),
+        );
 
-      when(baseGraphQlClientMock.toMap(feedResponse))
-          .thenReturn(json.decode(feedResponse.body) as Map<String, dynamic>);
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: BasicDetailsPage(),
+        );
 
-      when(baseGraphQlClientMock.parseError(<String, dynamic>{
-        'error': <String, dynamic>{'error': 'some error'}
-      })).thenReturn('null');
+        await tester.pump();
 
-      await store.dispatch(
-        UpdateUserProfileAction(
-          userBioData: BioData(
-              dateOfBirth: '3 May 2021',
-              gender: Gender.female,
-              firstName: Name.withValue(testFirstName),
-              lastName: Name.withValue(testLastName)),
-        ),
-      );
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: BasicDetailsPage(),
-      );
+        //finder
+        final Finder firstNameFormFinder = find.byWidgetPredicate(
+            (Widget widget) =>
+                widget is SILFormTextField && widget.key == firstNameKey);
+        final Finder lastNameFormFinder = find.byWidgetPredicate(
+            (Widget widget) =>
+                widget is SILFormTextField && widget.key == lastNameKey);
+        final Finder genderFinder = find.text(genderHint);
+        final Finder datePickerFinder =
+            find.widgetWithText(GestureDetector, dateLabelText);
 
-      await tester.pump();
+        expect(firstNameFormFinder, findsWidgets);
+        expect(genderFinder, findsOneWidget);
+        expect(lastNameFormFinder, findsWidgets);
 
-      //finder
-      final Finder firstNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == firstNameKey);
-      final Finder lastNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == lastNameKey);
-      final Finder genderFinder = find.text(genderHint);
-      final Finder datePickerFinder =
-          find.widgetWithText(GestureDetector, dateLabelText);
+        // first name form test
+        await tester.tap(firstNameFormFinder.first);
+        await tester.pumpAndSettle();
+        await tester.showKeyboard(firstNameFormFinder);
+        await tester.enterText(firstNameFormFinder, testFirstName);
+        await tester.testTextInput.receiveAction(TextInputAction.done);
+        await tester.pumpAndSettle();
 
-      expect(firstNameFormFinder, findsWidgets);
-      expect(genderFinder, findsOneWidget);
-      expect(lastNameFormFinder, findsWidgets);
+        // last name form test
+        await tester.tap(lastNameFormFinder.first);
+        await tester.pumpAndSettle();
+        await tester.showKeyboard(lastNameFormFinder);
+        await tester.enterText(lastNameFormFinder, testLastName);
+        await tester.testTextInput.receiveAction(TextInputAction.done);
+        await tester.pumpAndSettle();
 
-      // first name form test
-      await tester.tap(firstNameFormFinder.first);
-      await tester.pumpAndSettle();
-      await tester.showKeyboard(firstNameFormFinder);
-      await tester.enterText(firstNameFormFinder, testFirstName);
-      await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.pumpAndSettle();
+        // gender test
+        await tester.tap(genderFinder);
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('UNKNOWN').last);
+        await tester.pumpAndSettle();
 
-      // last name form test
-      await tester.tap(lastNameFormFinder.first);
-      await tester.pumpAndSettle();
-      await tester.showKeyboard(lastNameFormFinder);
-      await tester.enterText(lastNameFormFinder, testLastName);
-      await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.pumpAndSettle();
+        await tester.tap(genderFinder);
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('FEMALE').last);
+        await tester.pumpAndSettle();
 
-      // gender test
-      await tester.tap(genderFinder);
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('UNKNOWN').last);
-      await tester.pumpAndSettle();
+        // dob test
 
-      await tester.tap(genderFinder);
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('FEMALE').last);
-      await tester.pumpAndSettle();
+        await tester.tap(datePickerFinder);
+        await tester.pumpAndSettle();
+        await tester.enterText(datePickerFinder, DateTime.now().toString());
+        await tester.tap(find.text('2003'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('OK'));
+        await tester.pumpAndSettle();
 
-      // dob test
+        // primary button test
+        final SILPrimaryButton saveButton = find
+            .widgetWithText(SILPrimaryButton, 'Save & Continue')
+            .evaluate()
+            .first
+            .widget as SILPrimaryButton;
+        saveButton.onPressed!();
 
-      await tester.tap(datePickerFinder);
-      await tester.pumpAndSettle();
-      await tester.enterText(datePickerFinder, DateTime.now().toString());
-      await tester.tap(find.text('2003'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('OK'));
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
+        expect(find.byType(HomePage), findsOneWidget);
 
-      //primary button test
-
-      final SILPrimaryButton saveButton = find
-          .widgetWithText(SILPrimaryButton, 'Save & Continue')
-          .evaluate()
-          .first
-          .widget as SILPrimaryButton;
-      saveButton.onPressed!();
-
-      await tester.pumpAndSettle();
-      expect(find.byType(HomePage), findsOneWidget);
-
-      addTearDown(() {
-        tester.binding.window.clearPhysicalSizeTestValue();
-        tester.binding.window.clearDevicePixelRatioTestValue();
+        addTearDown(() {
+          tester.binding.window.clearPhysicalSizeTestValue();
+          tester.binding.window.clearDevicePixelRatioTestValue();
+        });
       });
     });
 

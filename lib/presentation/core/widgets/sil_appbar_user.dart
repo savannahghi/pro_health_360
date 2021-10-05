@@ -46,14 +46,14 @@ class MyAfyaHubAppbarUser extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: Theme.of(context).primaryColor),
               child: Center(
-                child: photoUrl == UNKNOWN
+                child: (photoUrl == UNKNOWN || photoUrl!.isEmpty)
                     ? Text(
                         extractNamesInitials(
                             name: getDisplayName(userProfileState)),
                         style:
                             TextThemes.boldSize14Text(AppColors.secondaryColor),
                       )
-                    : CircleAvatar(backgroundImage: AssetImage(photoUrl!)),
+                    : CircleAvatar(backgroundImage: AssetImage(photoUrl)),
               ),
             ),
           );

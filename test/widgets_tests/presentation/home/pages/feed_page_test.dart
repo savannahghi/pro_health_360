@@ -17,29 +17,29 @@ import '../../../../test_helpers.dart';
 
 void main() {
   group('FeedPage', () {
-    final Store<AppState> store = Store<AppState>(
-      initialState: AppState.initial().copyWith(
-          userProfileState: UserProfileState(
-            auth: AuthCredentialResponse.fromJson(
-                <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'}),
-            userProfile: UserProfile.initial().copyWith(
-              primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
-              userBioData: BioData.initial().copyWith(
-                  firstName: Name.withValue('name'),
-                  lastName: Name.withValue('name'),
-                  gender: Gender.female),
-            ),
-          ),
-          miscState: MiscState.initial()
-              .copyWith(appReviewObj: AppReviewObj(launches: 10, days: 5))),
-    );
-
-    final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-
     testWidgets(
         'should render app rating dialog when the user has viewed the '
         'app more than 10 times in the last 5 days',
         (WidgetTester tester) async {
+      final Store<AppState> store = Store<AppState>(
+        initialState: AppState.initial().copyWith(
+            userProfileState: UserProfileState(
+              auth: AuthCredentialResponse.fromJson(
+                  <String, dynamic>{'uid': 'some-long-uid'}),
+              userProfile: UserProfile.initial().copyWith(
+                primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
+                userBioData: BioData.initial().copyWith(
+                    firstName: Name.withValue('name'),
+                    lastName: Name.withValue('name'),
+                    gender: Gender.female),
+              ),
+            ),
+            miscState: MiscState.initial()
+                .copyWith(appReviewObj: AppReviewObj(launches: 10, days: 5))),
+      );
+
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
       mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,

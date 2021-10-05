@@ -16,6 +16,7 @@ import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/request_reset_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
@@ -164,43 +165,46 @@ void main() {
     });
 
     testWidgets('should resume with pin', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch<AppState>(
-              context,
-              UpdateUserProfileAction(
-                userBioData: BioData(
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockGraphQlClient,
+          widget: Builder(
+            builder: (BuildContext context) {
+              StoreProvider.dispatch<AppState>(
+                context,
+                UpdateUserProfileAction(
+                  userBioData: BioData(
                     dateOfBirth: '12-12-12',
                     firstName: Name.withValue('Test'),
                     lastName: Name.withValue('Coverage'),
-                    gender: Gender.male),
-                profile: UserProfile(
-                  primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
+                    gender: Gender.male,
+                  ),
+                  profile: UserProfile(
+                    primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
+                  ),
                 ),
-              ),
-            );
-            return const PinVerification();
-          },
-        ),
-      );
+              );
+              return const PinVerification();
+            },
+          ),
+        );
 
-      await tester.pump();
+        await tester.pump();
 
-      await tester.pumpAndSettle();
-      expect(find.byType(TextFormField), findsOneWidget);
-      await tester.tap(find.byType(TextFormField));
-      await tester.enterText(find.byType(TextFormField), '1234');
-      await tester.pumpAndSettle();
-      expect(find.byType(SILPlatformLoader), findsNothing);
-      expect(find.byKey(phoneLoginSubmitButtonKey), findsOneWidget);
+        await tester.pumpAndSettle();
+        expect(find.byType(TextFormField), findsOneWidget);
+        await tester.tap(find.byType(TextFormField));
+        await tester.enterText(find.byType(TextFormField), '1234');
+        await tester.pumpAndSettle();
+        expect(find.byType(SILPlatformLoader), findsNothing);
+        expect(find.byKey(phoneLoginSubmitButtonKey), findsOneWidget);
 
-      await tester.tap(find.byKey(phoneLoginSubmitButtonKey));
-      await tester.pumpAndSettle();
-      expect(find.byType(HomePage), findsOneWidget);
+        await tester.tap(find.byKey(phoneLoginSubmitButtonKey));
+        await tester.pumpAndSettle();
+        expect(find.byType(HomePage), findsOneWidget);
+      });
     });
 
     testWidgets('should reset pin', (WidgetTester tester) async {

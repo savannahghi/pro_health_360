@@ -17,65 +17,63 @@ class NewContent extends StatelessWidget {
   const NewContent({required this.feedItems});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15.0,
-                vertical: 10.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    newContentText,
-                    style: TextThemes.veryBoldSize16Text(
-                      AppColors.secondaryColor,
-                    ),
-                  ),
-                  Text(
-                    viewAllText,
-                    style: TextThemes.normalSize16Text(
-                      AppColors.secondaryColor,
-                    ),
-                  ),
-                ],
-              ),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 10.0,
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 247,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: feedItems.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final String header = feedItems.elementAt(index).header;
-                    final String date = feedItems.elementAt(index).date;
-                    final String coverImageUrl =
-                        feedItems.elementAt(index).coverImageUrl;
-                    final String? readTime =
-                        feedItems.elementAt(index).readTime;
-                    final bool? isNew = feedItems.elementAt(index).isNew;
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  newContentText,
+                  style: TextThemes.veryBoldSize16Text(
+                    AppColors.secondaryColor,
+                  ),
+                ),
+                Text(
+                  viewAllText,
+                  style: TextThemes.normalSize16Text(
+                    AppColors.secondaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 250,
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: feedItems.length,
+              itemBuilder: (BuildContext context, int index) {
+                final String header = feedItems.elementAt(index).header;
+                final String date = feedItems.elementAt(index).date;
+                final String coverImageUrl =
+                    feedItems.elementAt(index).coverImageUrl;
+                final String? readTime = feedItems.elementAt(index).readTime;
+                final bool? isNew = feedItems.elementAt(index).isNew;
 
-                    return Padding(
-                      padding: EdgeInsets.only(left: index == 0 ? 15 : 7.5),
-                      child: FeedItem(
-                        coverImagePath: coverImageUrl,
-                        contentHeader: header,
-                        date: date,
-                        readTime: readTime,
-                        isNew: isNew,
-                      ),
-                    );
-                  }),
+                return Padding(
+                  padding: EdgeInsets.only(left: index == 0 ? 15 : 7.5),
+                  child: FeedItem(
+                    coverImagePath: coverImageUrl,
+                    contentHeader: header,
+                    date: date,
+                    readTime: readTime,
+                    isNew: isNew,
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

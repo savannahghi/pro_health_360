@@ -5,54 +5,54 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000367">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000341">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.00055">
+      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000625">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="5.395402">
+      <testcase classname="fastlane.lanes" name="2: match" time="5.058351">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.006185">
+      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.005293">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="8.959226">
+      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="8.277502">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.755911">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.80533">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.000346">
+      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.000313">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: update_code_signing_settings" time="0.120441">
+      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000286">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: build_app" time="176.461032">
+      <testcase classname="fastlane.lanes" name="8: build_app" time="210.437603">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="9: upload_to_app_store" time="128.500286">
+      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="120.653945">
         
-          <failure message="/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:229:in `chdir'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:180:in `block (2 levels) in parsing_binding'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/commands_generator.rb:109:in `block (2 levels) in run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:117:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/commands_generator.rb:353:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/commands_generator.rb:42:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/cli_tools_distributor.rb:122:in `take_off'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:23:in `load'&#10;/usr/local/bin/fastlane:23:in `&lt;main&gt;'&#10;&#10;Error uploading ipa file: &#10; [Transporter Error Output]: ERROR ITMS-90189: Redundant Binary Upload. You've already uploaded a build with build number '8' for version number '1.0.0'. Make sure you increment the build string before you upload your app to App Store Connect. Learn more in Xcode Help (http://help.apple.com/xcode/mac/current/#/devba7f53ad4).&#10;[Transporter Error Output]: Return status of iTunes Transporter was 1: ERROR ITMS-90189: Redundant Binary Upload. You've already uploaded a build with build number '8' for version number '1.0.0'. Make sure you increment the build string before you upload your app to App Store Connect. Learn more in Xcode Help (http://help.apple.com/xcode/mac/current/#/devba7f53ad4).&#10;[Transporter Error Output]: The call to the iTMSTransporter completed with a non-zero exit status: 1. This indicates a failure." />
+          <failure message="/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:229:in `chdir'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:73:in `block (2 levels) in parsing_binding'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/commands_generator.rb:109:in `block (2 levels) in run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:117:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/commands_generator.rb:353:in `run'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/commands_generator.rb:42:in `start'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/fastlane/lib/fastlane/cli_tools_distributor.rb:122:in `take_off'&#10;/Library/Ruby/Gems/2.6.0/gems/fastlane-2.194.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:23:in `load'&#10;/usr/local/bin/fastlane:23:in `&lt;main&gt;'&#10;&#10;Error uploading ipa file: &#10; [Transporter Error Output]: ERROR ITMS-90054: This bundle is invalid. The bundle identifier cannot be changed from the previous version. If you want to change your bundle identifier, you will need to create a new application in App Store Connect.&#10;[Transporter Error Output]: ERROR ITMS-90478: Invalid Version. The build with the version “1.2.6” can’t be imported because a later version has been closed for new build submissions. Choose a different version number.&#10;[Transporter Error Output]: ERROR ITMS-90189: Redundant Binary Upload. You've already uploaded a build with build number '10' for version number '1.0.0'. Make sure you increment the build string before you upload your app to App Store Connect. Learn more in Xcode Help (http://help.apple.com/xcode/mac/current/#/devba7f53ad4).&#10;[Transporter Error Output]: ERROR ITMS-90186: Invalid Pre-Release Train. The train version '1.0.0' is closed for new build submissions&#10;[Transporter Error Output]: ERROR ITMS-90062: This bundle is invalid. The value for key CFBundleShortVersionString [1.0.0] in the Info.plist file must contain a higher version than that of the previously approved version [1.2.6]. Please find more information about CFBundleShortVersionString at https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring&#10;[Transporter Error Output]: Return status of iTunes Transporter was 1: ERROR ITMS-90054: This bundle is invalid. The bundle identifier cannot be changed from the previous version. If you want to change your bundle identifier, you will need to create a new application in App Store Connect.\nERROR ITMS-90478: Invalid Version. The build with the version “1.2.6” can’t be imported because a later version has been closed for new build submissions. Choose a different version number.\nERROR ITMS-90189: Redundant Binary Upload. You've already uploaded a build with build number '10' for version number '1.0.0'. Make sure you increment the build string before you upload your app to App Store Connect. Learn more in Xcode Help (http://help.apple.com/xcode/mac/current/#/devba7f53ad4).\nERROR ITMS-90186: Invalid Pre-Release Train. The train version '1.0.0' is closed for new build submissions\nERROR ITMS-90062: This bundle is invalid. The value for key CFBundleShortVersionString [1.0.0] in the Info.plist file must contain a higher version than that of the previously approved version [1.2.6]. Please find more information about CFBundleShortVersionString at https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring&#10;[Transporter Error Output]: The call to the iTMSTransporter completed with a non-zero exit status: 1. This indicates a failure." />
         
       </testcase>
     
