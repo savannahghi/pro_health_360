@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
+import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 
 // Package imports:
 import 'package:user_profile/term_and_conditions.dart' as webview;
@@ -12,6 +13,8 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
+import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
@@ -25,7 +28,6 @@ import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/introduction/introduction_page.dart';
-import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
@@ -41,9 +43,7 @@ import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
-import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 
 /// The router generator for the app. The arrangement in this config must match that
 /// in the routes.dart file
@@ -204,22 +204,22 @@ class RouteGenerator {
           builder: (_) => MyHealthPage(),
         );
 
-        case BWRoutes.myHealthDiaryPage:
+      case BWRoutes.myHealthDiaryPage:
         return MaterialPageRoute<MyHealthDiaryPage>(
           builder: (_) => MyHealthDiaryPage(),
         );
 
-        case BWRoutes.userProfilePage:
+      case BWRoutes.userProfilePage:
         return MaterialPageRoute<UserProfilePage>(
           builder: (_) => UserProfilePage(),
         );
 
-        case BWRoutes.clinicInformationPage:
+      case BWRoutes.clinicInformationPage:
         return MaterialPageRoute<ClinicInformationPage>(
           builder: (_) => ClinicInformationPage(),
         );
 
-        case BWRoutes.settingsPage:
+      case BWRoutes.settingsPage:
         return MaterialPageRoute<SettingsPage>(
           builder: (_) => SettingsPage(),
         );

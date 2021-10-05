@@ -15,6 +15,7 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
 import 'package:myafyahub/presentation/my_health/widgets/profile_health_details_widget.dart';
+import 'package:myafyahub/presentation/profile/widgets/my_health_timeline.dart';
 
 class MyHealthPage extends StatelessWidget {
   @override
@@ -143,6 +144,8 @@ class MyHealthPage extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
+              const MyHealthTimeline(),
             ],
           ),
         ),
