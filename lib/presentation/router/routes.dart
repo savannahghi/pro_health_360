@@ -88,6 +88,9 @@ class BWRoutes {
   // community
   static const String communityListView = '/communityListView';
 
+  // community chat screen
+  static const String communityChatScreenPage = '/CommunityChatScreenPage';
+
   // Security questions
   static const String securityQuestionsPage = '/securityQuestionsPage';
 

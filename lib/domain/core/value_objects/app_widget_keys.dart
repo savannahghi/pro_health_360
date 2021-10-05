@@ -263,6 +263,10 @@ const Key hotlineCallButtonKey = Key('hotline_call_button_key');
 const Key communityListViewKey = Key('community_list_view_key');
 const Key ratingDialogKey = Key('app_rating_dialog_key');
 
+// community chat page
+const Key messageInputAttachFileKey = Key('message_input_attach_file_key');
+const Key messageInputSendMessageKey = Key('message_input_send_message_key');
+
 // mood widget keys
 const Key excitedMoodKey = Key('excited_mood_key');
 const Key happyMoodKey = Key('happy_mood_key');

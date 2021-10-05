@@ -570,6 +570,10 @@ const String acceptTermsText = 'I accept terms and conditions';
 const String joinString = 'Join';
 const String suggestedGroupsString = 'Suggested groups to join';
 
+// Community Chat
+const String awaitingModerationString = 'Awaiting Moderation';
+const String typeYourMessageHereString = 'Type your Message here';
+
 //User Profile
 const String correctionRequestString = 'Request for correction';
 const String hotlineString = 'Hotline';

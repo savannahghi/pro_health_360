@@ -85,8 +85,8 @@ const String homeIconSvgPath = 'assets/icons/home_icon.svg';
 const String feedIconSvgPath = 'assets/icons/feed_icon.svg';
 const String communityIconSvgPath = 'assets/icons/community_icon.svg';
 const String myHealthIconSvgPath = 'assets/icons/my_health_icon.svg';
-//Notification Icons
 
+//Notification Icons
 const String teleConsultNotificationIcon =
     'assets/icons/tele_consult_notification_icon.svg';
 const String teleConsultVideoNotificationIcon =
@@ -99,3 +99,10 @@ const String viralLoadIcon = 'assets/icons/viral_load_icon.svg';
 const String nextRefillIcon = 'assets/icons/next_refill_icon.svg';
 const String healthDiaryIcon = 'assets/icons/health_diary_icon.svg';
 const String appointmentIcon = 'assets/icons/appointments_icon.svg';
+
+// community chat screen
+const String sendTextIcon = 'assets/icons/send_text.svg';
+const String attachFileIcon = 'assets/icons/attach_file.svg';
+const String moderatorIcon = 'assets/icons/moderator_icon.svg';
+const String awaitingModerationIcon =
+    'assets/icons/awaiting_moderation_icon.svg';
