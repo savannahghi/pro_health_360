@@ -4,7 +4,13 @@ import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
+/// [MyAfyaHubAppBar] is a custom [AppBar] used within this apps' pages.
 class MyAfyaHubAppBar extends StatelessWidget implements PreferredSizeWidget {
+  /// [MyAfyaHubAppBar] is a custom [AppBar] used within this apps' pages.
+  ///
+  /// [leadingWidget] could use predefined widgets i.e. [ProfileImageItem] or
+  /// [ProfileInitialsItem] for ease of use, or any other custom widget provided for adaptability.
+  ///
   const MyAfyaHubAppBar({
     this.leadingWidget,
     this.title,

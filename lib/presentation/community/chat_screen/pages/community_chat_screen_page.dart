@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/message_input.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/quoted_message_widget.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/time_classification_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/icon_button_item.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
 
 import '../widgets/sender_type_widget.dart';
@@ -75,11 +75,15 @@ class CommunityChatScreenPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.lightSkyBlueColor,
         appBar: MyAfyaHubAppBar(
-            leadingWidget:
-                IconButtonItem(icon: Icons.arrow_back_ios, onPressed: () {}),
+            leadingWidget: IconButton(
+                key: backAppBarKey,
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {}),
             title: 'Ruaka Questions Group',
-            trailingWidget:
-                IconButtonItem(icon: Icons.more_vert, onPressed: () {})),
+            trailingWidget: IconButton(
+                key: moreAppBarKey,
+                icon: const Icon(Icons.more_vert),
+                onPressed: () {})),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Stack(children: <Widget>[

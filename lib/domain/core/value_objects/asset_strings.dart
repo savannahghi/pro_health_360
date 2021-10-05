@@ -54,6 +54,8 @@ const String shareIconUrl = 'assets/icons/share.svg';
 const String heartIconUrl = 'assets/icons/heart.svg';
 const String clockIconUrl = 'assets/icons/clock.svg';
 
+const String profileImage = 'assets/images/profile_image.png';
+
 const String slideOneImg = 'assets/images/find_your_cover.svg';
 const String slideTwoImg = 'assets/images/add_your_card.svg';
 const String slideThreeImg = 'assets/images/track_your_expenses.svg';

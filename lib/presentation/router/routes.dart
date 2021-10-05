@@ -97,6 +97,9 @@ class BWRoutes {
   // Answer Security Question
   static const String answerSecurityQuestionPage =
       '/answerSecurityQuestionPage';
+
+  // Feed
+  static const String myAfyaHubFeedPage = '/feedPage';
 }
 
 List<String> unProtectedRoutes = <String>[

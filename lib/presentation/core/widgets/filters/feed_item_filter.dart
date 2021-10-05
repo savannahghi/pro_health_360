@@ -38,9 +38,7 @@ class FeedItemFilter extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
-          color: isActive
-              ? AppColors.secondaryColor
-              : AppColors.timeLineBackgroundColor,
+          color: isActive ? AppColors.secondaryColor : Colors.grey.shade300,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),

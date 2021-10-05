@@ -6,7 +6,13 @@ import 'package:shared_themes/text_themes.dart';
 
 import '../../helpers.dart';
 
+/// [ProfileInitialsItem] used within [MyAfyaHubAppBar] to display username initials.
 class ProfileInitialsItem extends StatelessWidget {
+  /// [ProfileInitialsItem] used within [MyAfyaHubAppBar] to display username initials.
+  ///
+  /// [firstName] and [lastName] are all required.
+  ///
+  /// than or equal to zero.
   const ProfileInitialsItem({
     required this.firstName,
     required this.lastName,

@@ -7,11 +7,12 @@ import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
+import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
 import 'package:myafyahub/presentation/help_center/pages/help_center_page.dart';
 import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
 import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
-import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
+import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
@@ -279,6 +280,16 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<CommunityChatScreenPage>;
     expect(route, isA<MaterialPageRoute<CommunityChatScreenPage>>());
     expect(route.builder(context), isA<CommunityChatScreenPage>());
+  });
+
+  test('Test router returns  MyAfyaHubFeedPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.myAfyaHubFeedPage);
+
+    final MaterialPageRoute<MyAfyaHubFeedPage> route =
+        routeGenerator(settings) as MaterialPageRoute<MyAfyaHubFeedPage>;
+    expect(route, isA<MaterialPageRoute<MyAfyaHubFeedPage>>());
+    expect(route.builder(context), isA<MyAfyaHubFeedPage>());
   });
 
   test('Test router returns ConsentPage', () {

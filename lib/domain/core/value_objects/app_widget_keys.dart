@@ -266,6 +266,8 @@ const Key ratingDialogKey = Key('app_rating_dialog_key');
 // community chat page
 const Key messageInputAttachFileKey = Key('message_input_attach_file_key');
 const Key messageInputSendMessageKey = Key('message_input_send_message_key');
+const Key backAppBarKey = Key('back_app_bar_key');
+const Key moreAppBarKey = Key('more_app_bar_key');
 
 // mood widget keys
 const Key excitedMoodKey = Key('excited_mood_key');

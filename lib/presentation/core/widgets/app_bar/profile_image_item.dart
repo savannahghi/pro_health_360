@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_themes/spaces.dart';
 
+/// [ProfileImageItem] used within [MyAfyaHubAppBar] to display profile image.
 class ProfileImageItem extends StatelessWidget {
+  /// [ProfileImageItem] used within [MyAfyaHubAppBar] to display circular profile image.
+  ///
+  /// [imageUrl] is required.
+  ///
   const ProfileImageItem({
     required this.imageUrl,
   });
@@ -14,11 +19,11 @@ class ProfileImageItem extends StatelessWidget {
       children: <Widget>[
         smallHorizontalSizedBox,
         ClipRRect(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(50.0),
           child: Image.asset(
             imageUrl,
-            height: 50.0,
-            width: 50.0,
+            height: 38.0,
+            width: 38.0,
           ),
         ),
       ],
