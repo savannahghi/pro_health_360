@@ -590,6 +590,20 @@ const String feedReadTime = '5 minutes';
 String contentReadDuration(String duration) => '$duration read';
 const String newString = 'New';
 
+//My Health Page
+const String myHealthPageTitle = 'My Health';
+const String myHealthPageProfile = 'My Profile';
+const String initials = 'WJ';
+const String myHealthPagePatient = 'Patient ID';
+const String myHealthViralLoad = 'Viral load';
+const String myHealthViralLoadReading = '600';
+const String myHealthViralLoadReadingUnit = '/ml';
+const String myHealthNextRefill = 'Next refill';
+const String myHealthNextRefillDate = '19';
+const String myHealthNextRefillMonth = 'Aug';
+const String myHealthPageHealthDiary = 'My Health Diary';
+const String myHealthPageAppointments = 'My Health';
+
 //New Content
 const String newContentText = 'New Content';
 const String viewAllText = 'View All';

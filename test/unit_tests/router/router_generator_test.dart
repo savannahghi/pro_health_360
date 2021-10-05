@@ -10,6 +10,7 @@ import 'package:myafyahub/presentation/help_center/pages/help_center_page.dart';
 import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
 import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
+import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
@@ -313,5 +314,14 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<NotificationsPage>;
     expect(route, isA<MaterialPageRoute<NotificationsPage>>());
     expect(route.builder(context), isA<NotificationsPage>());
+  });
+
+  test('Test router returns MyHealthPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.myHealthPage);
+
+    final MaterialPageRoute<MyHealthPage> route =
+        routeGenerator(settings) as MaterialPageRoute<MyHealthPage>;
+    expect(route, isA<MaterialPageRoute<MyHealthPage>>());
+    expect(route.builder(context), isA<MyHealthPage>());
   });
 }
