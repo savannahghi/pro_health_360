@@ -28,7 +28,7 @@ class HelpCenterQuestionCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.timeLineBackgroundColor,
+          color: Theme.of(context).backgroundColor,
           border: Border.all(color: Colors.grey.withOpacity(0.2)),
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),

@@ -54,7 +54,7 @@ class ClinicInformationPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Container(
-            color: AppColors.timeLineBackgroundColor,
+            color: Theme.of(context).backgroundColor,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

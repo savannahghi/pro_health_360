@@ -66,7 +66,7 @@ class _PINInputPageState extends State<PINInputPage> {
   Widget build(BuildContext context) {
     late String enteredPin = '';
     return Scaffold(
-      backgroundColor: AppColors.timeLineBackgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: MyAfyaHubAppBar(
         trailingWidget: Padding(
           padding: const EdgeInsets.only(
@@ -109,7 +109,7 @@ class _PINInputPageState extends State<PINInputPage> {
                             borderRadius: BorderRadius.circular(5),
                             color: Colors.white,
                             border: Border.all(
-                                color: AppColors.timeLineBackgroundColor,
+                                color: Theme.of(context).backgroundColor,
                                 width: 1.5)),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15),

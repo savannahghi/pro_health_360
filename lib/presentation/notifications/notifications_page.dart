@@ -28,7 +28,7 @@ class NotificationsPage extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: AppColors.timeLineBackgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView.builder(

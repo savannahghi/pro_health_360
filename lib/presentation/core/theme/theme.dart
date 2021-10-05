@@ -35,7 +35,7 @@ class AppColors {
   static const Color darkGreyColor = Color(0xFF9B9B9B);
   static const Color darkOrangeColor = Color(0xFFFFA000);
   static const Color greenColor = Color(0xFF50C878);
-  static const Color greyColor = Color(0xFF828282);
+  static const Color greyColor = Color(0x28FF8282);
   static const Color greyTextColor = Color(0xFF707070);
   static const Color greySeparatorColor = Color(0xfff3f5f9);
   static const Color inputFieldColor = Color(0xFFF0F3FE);
@@ -54,7 +54,7 @@ class AppColors {
     'primaryColor': primaryColor,
     'primaryDark': primaryColor,
     'accentColor': accentColor,
-    'backgroundColor': timeLineBackgroundColor,
+    'backgroundColor': lightGreyBackgroundColor,
     'textSelectionColor': const Color(0xff0e2153),
   };
   static const Color superLightGreyColor = Color(0xFFF2F2F2);
@@ -65,9 +65,12 @@ class AppColors {
   static const Color introductionBackgroundColor = Color(0xFFF7F8FF);
   static const Color listCardColor = Color(0xffeeeeee);
   static const Color diaryListCardColor = Color(0xff17d1d4);
-  static const Color timeLineBackgroundColor = Color(0xfff6f6f6);
+  static const Color lightGreyBackgroundColor = Color(0xfff6f6f6);
   static const Color userDetailsCardBackgroundColor = Color(0xff119496);
   static const Color userInitialsColor = Color(0xff11dddf);
   static const Color hotlineBackgroundColor = Color(0xffff7a7a);
   static const Color wrongPinTextColor = Color(0xffff642A);
+  static const Color darkGreyBackgroundColor = Color(0xffebebeb);
+  static const Color greenHappyColor = Color(0xFF00BE33);
+  static const Color mehMoodColor = Color(0xFF857C00);
 }

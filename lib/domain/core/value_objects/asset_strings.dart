@@ -108,6 +108,17 @@ const String attachFileIcon = 'assets/icons/attach_file.svg';
 const String moderatorIcon = 'assets/icons/moderator_icon.svg';
 const String awaitingModerationIcon =
     'assets/icons/awaiting_moderation_icon.svg';
+
 //pin input page icons
 const String lockIcon = 'assets/icons/lock_icon.svg';
 const String backSpaceIcon = 'assets/icons/back_space_icon.svg';
+
+//My Health Diary icon Paths
+const String prevIconSvgPath = 'assets/icons/prev_icon.svg';
+const String nextIconSvgPath = 'assets/icons/next_icon.svg';
+const String sunnyIconSvgPath = 'assets/icons/sunny_icon.svg';
+const String sadMoodIconSvgPath = 'assets/icons/sad_mood_icon.svg';
+const String imageIconSvgPath = 'assets/icons/image_icon.svg';
+const String happyMoodIconSvgPath = 'assets/icons/happy_mood_icon.svg';
+const String textIconSvgPath = 'assets/icons/text_icon.svg';
+const String mehMoodIconSvgPath = 'assets/icons/meh_mood_icon.svg';

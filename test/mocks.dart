@@ -14,6 +14,8 @@ import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
+import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/core/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
@@ -2860,4 +2862,67 @@ List<Map<String, dynamic>> mockNotification = <Map<String, dynamic>>[
     'date': 'July 21 2021',
     'isAlternateNotification': true,
   },
+];
+
+final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
+  HealthDiaryItemObj(
+    date: 'Tuesday 13th',
+    detailsList: <HealthDiaryDetailsItemObj>[
+      HealthDiaryDetailsItemObj(
+          svgIconPath: sadMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Sad'),
+      HealthDiaryDetailsItemObj(
+          svgIconPath: textIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Text'),
+    ],
+  ),
+  HealthDiaryItemObj(
+    date: 'Wednesday 19th',
+    detailsList: <HealthDiaryDetailsItemObj>[
+      HealthDiaryDetailsItemObj(
+          svgIconPath: happyMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Happy'),
+      HealthDiaryDetailsItemObj(
+          svgIconPath: mehMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Meh!'),
+    ],
+  ),
+  HealthDiaryItemObj(
+    date: 'Monday 21st',
+    detailsList: <HealthDiaryDetailsItemObj>[
+      HealthDiaryDetailsItemObj(
+          svgIconPath: sadMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Sad'),
+      HealthDiaryDetailsItemObj(
+          svgIconPath: imageIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Image'),
+    ],
+  ),
+  HealthDiaryItemObj(
+    date: 'Wednesday 25th',
+    detailsList: <HealthDiaryDetailsItemObj>[
+      HealthDiaryDetailsItemObj(
+          svgIconPath: sadMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Sad'),
+      HealthDiaryDetailsItemObj(
+          svgIconPath: imageIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Text'),
+    ],
+  ),
 ];

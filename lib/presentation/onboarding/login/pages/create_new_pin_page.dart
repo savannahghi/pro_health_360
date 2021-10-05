@@ -32,7 +32,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: AppColors.timeLineBackgroundColor,
+        color: Theme.of(context).backgroundColor,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
