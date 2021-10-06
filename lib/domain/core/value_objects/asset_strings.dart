@@ -96,6 +96,10 @@ const String teleConsultVideoNotificationIcon =
 const String wellnessSurveyNotificationIcon =
     'assets/icons/wellness_survey_notification_icon.svg';
 
+//Appointments Icons
+const String hospitalIcon = 'assets/icons/hospital_icon.svg';
+const String syringeIcon = 'assets/icons/syringe_icon.svg';
+
 //My Health Icons
 const String viralLoadIcon = 'assets/icons/viral_load_icon.svg';
 const String nextRefillIcon = 'assets/icons/next_refill_icon.svg';

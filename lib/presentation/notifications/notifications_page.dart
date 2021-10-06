@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
-import 'package:myafyahub/presentation/notifications/notification_details.dart';
 
 class NotificationsPage extends StatelessWidget {
   final List<NotificationDetails> notifications;
@@ -42,19 +44,19 @@ class NotificationsPage extends StatelessWidget {
               final String description =
                   notifications.elementAt(index).description;
               final String date = notifications.elementAt(index).date;
-              final bool? isAlternateNotification =
-                  notifications.elementAt(index).isAlternateNotification;
-              final String iconPath = notifications.elementAt(index).svgPath;
-              final bool? isCalendar = notifications.elementAt(index).calendar;
+              final IconDetails icon = notifications.elementAt(index).icon;
+              final List<NotificationActions>? actions =
+                  notifications.elementAt(index).actions;
+              final String? status = notifications.elementAt(index).status;
 
               return Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: NotificationListItem(
-                  isAlternateNotification: isAlternateNotification,
-                  svgPath: iconPath,
+                  icon: icon,
+                  actions: actions,
+                  status: status,
                   description: description,
                   date: date,
-                  calendarDate: isCalendar,
                 ),
               );
             }),

@@ -613,6 +613,11 @@ const String myHealthNextRefillMonth = 'Aug';
 const String myHealthPageHealthDiary = 'My Health Diary';
 const String myHealthPageAppointments = 'My Health';
 
+//Appointments
+const String appointmentsTitle = 'Appointments';
+const String upcomingAppointmentsText = 'Upcoming appointments';
+const String pastAppointmentsText = 'Past appointments';
+
 //New Content
 const String newContentText = 'New Content';
 const String viewAllText = 'View All';

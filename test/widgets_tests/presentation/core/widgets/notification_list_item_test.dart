@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
 
@@ -15,9 +17,10 @@ void main() {
       final Widget testWidget = MaterialApp(
         home: Builder(
           builder: (BuildContext context) {
-            return const Scaffold(
+            return Scaffold(
               body: NotificationListItem(
-                svgPath: helpCenterButtonImageUrl,
+                icon: IconDetails(
+                    iconUrlSvgPath: teleConsultVideoNotificationIcon),
                 description:
                     'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
                 date: 'July 12 2021',
@@ -41,14 +44,20 @@ void main() {
       final Widget testWidget = MaterialApp(
         home: Builder(
           builder: (BuildContext context) {
-            return const Scaffold(
+            return Scaffold(
               body: NotificationListItem(
-                svgPath: helpCenterButtonImageUrl,
-                isAlternateNotification: true,
+                icon: IconDetails(
+                    iconUrlSvgPath: teleConsultVideoNotificationIcon),
                 description:
                     'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
                 date: 'July 12 2021',
-                calendarDate: true,
+                actions: <NotificationActions>[
+                  NotificationActions(
+                    icon: IconDetails(iconUrlSvgPath: calendarIcon),
+                    name: 'Add to Calendar',
+                    route: '',
+                  )
+                ],
               ),
             );
           },

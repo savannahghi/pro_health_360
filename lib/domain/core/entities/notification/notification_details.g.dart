@@ -9,20 +9,22 @@ part of 'notification_details.dart';
 _$_NotificationDetails _$_$_NotificationDetailsFromJson(
     Map<String, dynamic> json) {
   return _$_NotificationDetails(
-    svgPath: json['svgPath'] as String,
+    icon: IconDetails.fromJson(json['icon'] as Map<String, dynamic>),
     description: json['description'] as String,
     date: json['date'] as String,
-    calendar: json['calendar'] as bool?,
-    isAlternateNotification: json['isAlternateNotification'] as bool?,
+    actions: (json['actions'] as List<dynamic>?)
+        ?.map((e) => NotificationActions.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    status: json['status'] as String?,
   );
 }
 
 Map<String, dynamic> _$_$_NotificationDetailsToJson(
         _$_NotificationDetails instance) =>
     <String, dynamic>{
-      'svgPath': instance.svgPath,
+      'icon': instance.icon,
       'description': instance.description,
       'date': instance.date,
-      'calendar': instance.calendar,
-      'isAlternateNotification': instance.isAlternateNotification,
+      'actions': instance.actions,
+      'status': instance.status,
     };

@@ -2,14 +2,13 @@
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,14 +20,6 @@ import 'package:misc_utilities/enums.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-import 'package:unicons/unicons.dart';
-import 'package:user_profile/contact_utils.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -37,16 +28,25 @@ import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
-import 'package:myafyahub/presentation/notifications/notification_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:unicons/unicons.dart';
+import 'package:user_profile/contact_utils.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -374,7 +374,8 @@ void genericBottomSheet({
                       child: SILNoBorderButton(
                         buttonKey: secondaryBottomSheetButtonKey,
                         text: secondaryActionText ?? 'Close',
-                        textColor: buttonColor ?? Theme.of(context).colorScheme.secondary,
+                        textColor: buttonColor ??
+                            Theme.of(context).colorScheme.secondary,
                         onPressed: secondaryActionCallback ??
                             () {
                               Navigator.pop(context);
@@ -1094,25 +1095,35 @@ List<Map<String, dynamic>> userProfileItems = <Map<String, dynamic>>[
   }
 ];
 
+final NotificationActions calendarAction = NotificationActions(
+    icon: IconDetails(iconUrlSvgPath: calendarIcon),
+    name: 'Add to Calendar',
+    route: '');
+
+final NotificationActions rescheduleAction = NotificationActions(
+    icon: IconDetails(iconUrlSvgPath: calendarIcon),
+    name: 'Reschedule',
+    route: '');
+
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(
-    svgPath: teleConsultVideoNotificationIcon,
+    icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
     description:
         'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join goog/meet.consult',
     date: feedDate,
-    calendar: true,
+    actions: <NotificationActions>[calendarAction],
   ),
   NotificationDetails(
-    svgPath: teleConsultNotificationIcon,
+    icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
     description:
         'You have a tele consult with doctor Wellman. Click  Here to schedule the call ',
     date: feedDate,
   ),
   NotificationDetails(
-      svgPath: wellnessSurveyNotificationIcon,
-      description: 'Wellness Survey',
-      date: feedDate,
-      isAlternateNotification: true),
+    icon: IconDetails(iconUrlSvgPath: wellnessSurveyNotificationIcon),
+    description: 'Wellness Survey',
+    date: feedDate,
+  ),
 ];
 
 String tooManyTriesString(int timeLeft) {
@@ -1122,3 +1133,39 @@ String tooManyTriesString(int timeLeft) {
 
   return 'Too may tries, try again in $convertedTime minutes';
 }
+
+List<NotificationDetails> upcomingAppointments = <NotificationDetails>[
+  NotificationDetails(
+    icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
+    description:
+        'Your Teleconsult with Dr Tibu for 11am on 12/12/2021 has been set. Click this link to join goog/meet.consult',
+    date: feedDate,
+    actions: <NotificationActions>[calendarAction],
+  ),
+  NotificationDetails(
+    icon: IconDetails(iconUrlSvgPath: hospitalIcon),
+    description:
+        'Hospital appointment for Ruaka community center 11am on 12/12/2021',
+    date: '3 days ago',
+    actions: <NotificationActions>[calendarAction],
+  ),
+  NotificationDetails(
+    icon: IconDetails(iconUrlSvgPath: syringeIcon),
+    description:
+        'Bloodwork appointment for Ruaka community center 11am on 12/12/2021',
+    date: '3 days ago',
+    actions: <NotificationActions>[calendarAction, rescheduleAction],
+  ),
+];
+
+List<NotificationDetails> pastAppointments = <NotificationDetails>[
+  NotificationDetails(
+    icon: IconDetails(iconUrlSvgPath: syringeIcon),
+    status: 'MISSED',
+    description:
+        'Teleconsult with Dr Tibu for 11am on 12/12/2021 has been set. Click this link to join goog/meet.consult',
+    date: feedDate,
+    actions: <NotificationActions>[calendarAction, rescheduleAction],
+  ),
+  ...upcomingAppointments
+];

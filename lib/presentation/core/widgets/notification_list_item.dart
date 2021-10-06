@@ -1,39 +1,34 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
-// Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-
 /// [NotificationListItem] Displays the notifications with Icons and a short description
-
 class NotificationListItem extends StatelessWidget {
   const NotificationListItem({
-    required this.svgPath,
+    required this.icon,
     required this.description,
     required this.date,
-    bool? calendarDate,
-    bool? isAlternateNotification,
-  })  : this.calendarDate = calendarDate ?? false,
-        this.isAlternateNotification = isAlternateNotification ?? false;
+    this.actions,
+    this.status,
+  });
 
-  final String svgPath;
+  final String? status;
   final String description;
   final String date;
-  final bool isAlternateNotification;
-
-  ///Displays a calendar widget
-  final bool calendarDate;
+  final List<NotificationActions>? actions;
+  final IconDetails icon;
 
   @override
   Widget build(BuildContext context) {
+    final String iconString = icon.iconUrlSvgPath;
+
     return SizedBox(
       width: double.infinity,
       child: Row(
@@ -43,15 +38,13 @@ class NotificationListItem extends StatelessWidget {
             key: notificationIconContainerKey,
             width: 70,
             height: 70,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: isAlternateNotification
-                  ? AppColors.secondaryColor
-                  : Colors.white,
+              color: Colors.white,
             ),
             child: Center(
               child: SvgPicture.asset(
-                svgPath,
+                iconString,
                 width: 30,
                 height: 30,
                 color: Theme.of(context).colorScheme.secondary,
@@ -61,56 +54,85 @@ class NotificationListItem extends StatelessWidget {
           mediumHorizontalSizedBox,
           Expanded(
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  smallVerticalSizedBox,
-                  Text(
-                    description,
-                    style: TextThemes.normalSize14Text(
-                      AppColors.secondaryColor,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                if (status != null && status!.isNotEmpty)
+                  Transform(
+                    transform: Matrix4.identity()..scale(0.8),
+                    child: Chip(
+                      backgroundColor: AppColors.warningColor.withOpacity(0.2),
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      label: SizedBox(
+                        width: 70,
+                        child: Center(
+                          child: Text(status!,
+                              style: TextThemes.normalSize12Text(
+                                  AppColors.warningColor)),
+                        ),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 2.5),
-                  Text(
-                    date,
-                    style: TextThemes.normalSize12Text(Colors.grey),
+                // verySmallVerticalSizedBox,
+                Text(
+                  description,
+                  style: TextThemes.normalSize14Text(
+                    AppColors.secondaryColor,
                   ),
-                  const SizedBox(height: 5),
-                  if (calendarDate)
-                    Container(
-                      width: 130,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: AppColors.secondaryColor,
-                        ),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(7),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Row(children: <Widget>[
-                          SvgPicture.asset(
-                            calendarIcon,
-                            width: 20,
-                            height: 20,
-                            color: AppColors.secondaryColor,
-                          ),
-                          smallHorizontalSizedBox,
-                          Expanded(
-                            child: Text(
-                              addCalendarText,
-                              style: TextThemes.normalSize12Text(
-                                AppColors.secondaryColor,
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  date,
+                  style: TextThemes.normalSize12Text(Colors.grey),
+                ),
+                const SizedBox(height: 5),
+                if (actions != null && actions!.isNotEmpty)
+                  IntrinsicWidth(
+                    child: Row(
+                      children: actions!
+                          .map(
+                            (NotificationActions notificationActions) =>
+                                Expanded(
+                              child: Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                width: 120,
+                                height: 27.5,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: AppColors.secondaryColor,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(7),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Row(children: <Widget>[
+                                    SvgPicture.asset(
+                                      notificationActions.icon.iconUrlSvgPath,
+                                      width: 15,
+                                      height: 15,
+                                      color: AppColors.secondaryColor,
+                                    ),
+                                    smallHorizontalSizedBox,
+                                    Expanded(
+                                      child: Text(
+                                        notificationActions.name,
+                                        style: TextThemes.normalSize11Text(
+                                          AppColors.secondaryColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ]),
+                                ),
                               ),
                             ),
-                          ),
-                        ]),
-                      ),
-                    )
-                ]),
+                          )
+                          .toList(),
+                    ),
+                  )
+              ],
+            ),
           )
         ],
       ),

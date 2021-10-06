@@ -21,22 +21,17 @@ class _$NotificationDetailsTearOff {
   const _$NotificationDetailsTearOff();
 
   _NotificationDetails call(
-      {@JsonKey(name: 'svgPath')
-          required String svgPath,
-      @JsonKey(name: 'description')
-          required String description,
-      @JsonKey(name: 'date')
-          required String date,
-      @JsonKey(name: 'calendar')
-          bool? calendar,
-      @JsonKey(name: 'isAlternateNotification')
-          bool? isAlternateNotification}) {
+      {@JsonKey(name: 'icon') required IconDetails icon,
+      @JsonKey(name: 'description') required String description,
+      @JsonKey(name: 'date') required String date,
+      @JsonKey(name: 'actions') List<NotificationActions>? actions,
+      @JsonKey(name: 'status') String? status}) {
     return _NotificationDetails(
-      svgPath: svgPath,
+      icon: icon,
       description: description,
       date: date,
-      calendar: calendar,
-      isAlternateNotification: isAlternateNotification,
+      actions: actions,
+      status: status,
     );
   }
 
@@ -50,16 +45,16 @@ const $NotificationDetails = _$NotificationDetailsTearOff();
 
 /// @nodoc
 mixin _$NotificationDetails {
-  @JsonKey(name: 'svgPath')
-  String get svgPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'icon')
+  IconDetails get icon => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
   String get date => throw _privateConstructorUsedError;
-  @JsonKey(name: 'calendar')
-  bool? get calendar => throw _privateConstructorUsedError;
-  @JsonKey(name: 'isAlternateNotification')
-  bool? get isAlternateNotification => throw _privateConstructorUsedError;
+  @JsonKey(name: 'actions')
+  List<NotificationActions>? get actions => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  String? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,11 +68,13 @@ abstract class $NotificationDetailsCopyWith<$Res> {
           NotificationDetails value, $Res Function(NotificationDetails) then) =
       _$NotificationDetailsCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'svgPath') String svgPath,
+      {@JsonKey(name: 'icon') IconDetails icon,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'date') String date,
-      @JsonKey(name: 'calendar') bool? calendar,
-      @JsonKey(name: 'isAlternateNotification') bool? isAlternateNotification});
+      @JsonKey(name: 'actions') List<NotificationActions>? actions,
+      @JsonKey(name: 'status') String? status});
+
+  $IconDetailsCopyWith<$Res> get icon;
 }
 
 /// @nodoc
@@ -91,17 +88,17 @@ class _$NotificationDetailsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? svgPath = freezed,
+    Object? icon = freezed,
     Object? description = freezed,
     Object? date = freezed,
-    Object? calendar = freezed,
-    Object? isAlternateNotification = freezed,
+    Object? actions = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      svgPath: svgPath == freezed
-          ? _value.svgPath
-          : svgPath // ignore: cast_nullable_to_non_nullable
-              as String,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as IconDetails,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -110,15 +107,22 @@ class _$NotificationDetailsCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
-      calendar: calendar == freezed
-          ? _value.calendar
-          : calendar // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isAlternateNotification: isAlternateNotification == freezed
-          ? _value.isAlternateNotification
-          : isAlternateNotification // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      actions: actions == freezed
+          ? _value.actions
+          : actions // ignore: cast_nullable_to_non_nullable
+              as List<NotificationActions>?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
+  }
+
+  @override
+  $IconDetailsCopyWith<$Res> get icon {
+    return $IconDetailsCopyWith<$Res>(_value.icon, (value) {
+      return _then(_value.copyWith(icon: value));
+    });
   }
 }
 
@@ -130,11 +134,14 @@ abstract class _$NotificationDetailsCopyWith<$Res>
       __$NotificationDetailsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'svgPath') String svgPath,
+      {@JsonKey(name: 'icon') IconDetails icon,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'date') String date,
-      @JsonKey(name: 'calendar') bool? calendar,
-      @JsonKey(name: 'isAlternateNotification') bool? isAlternateNotification});
+      @JsonKey(name: 'actions') List<NotificationActions>? actions,
+      @JsonKey(name: 'status') String? status});
+
+  @override
+  $IconDetailsCopyWith<$Res> get icon;
 }
 
 /// @nodoc
@@ -150,17 +157,17 @@ class __$NotificationDetailsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? svgPath = freezed,
+    Object? icon = freezed,
     Object? description = freezed,
     Object? date = freezed,
-    Object? calendar = freezed,
-    Object? isAlternateNotification = freezed,
+    Object? actions = freezed,
+    Object? status = freezed,
   }) {
     return _then(_NotificationDetails(
-      svgPath: svgPath == freezed
-          ? _value.svgPath
-          : svgPath // ignore: cast_nullable_to_non_nullable
-              as String,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as IconDetails,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -169,14 +176,14 @@ class __$NotificationDetailsCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
-      calendar: calendar == freezed
-          ? _value.calendar
-          : calendar // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isAlternateNotification: isAlternateNotification == freezed
-          ? _value.isAlternateNotification
-          : isAlternateNotification // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      actions: actions == freezed
+          ? _value.actions
+          : actions // ignore: cast_nullable_to_non_nullable
+              as List<NotificationActions>?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -185,18 +192,18 @@ class __$NotificationDetailsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_NotificationDetails implements _NotificationDetails {
   _$_NotificationDetails(
-      {@JsonKey(name: 'svgPath') required this.svgPath,
+      {@JsonKey(name: 'icon') required this.icon,
       @JsonKey(name: 'description') required this.description,
       @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'calendar') this.calendar,
-      @JsonKey(name: 'isAlternateNotification') this.isAlternateNotification});
+      @JsonKey(name: 'actions') this.actions,
+      @JsonKey(name: 'status') this.status});
 
   factory _$_NotificationDetails.fromJson(Map<String, dynamic> json) =>
       _$_$_NotificationDetailsFromJson(json);
 
   @override
-  @JsonKey(name: 'svgPath')
-  final String svgPath;
+  @JsonKey(name: 'icon')
+  final IconDetails icon;
   @override
   @JsonKey(name: 'description')
   final String description;
@@ -204,46 +211,43 @@ class _$_NotificationDetails implements _NotificationDetails {
   @JsonKey(name: 'date')
   final String date;
   @override
-  @JsonKey(name: 'calendar')
-  final bool? calendar;
+  @JsonKey(name: 'actions')
+  final List<NotificationActions>? actions;
   @override
-  @JsonKey(name: 'isAlternateNotification')
-  final bool? isAlternateNotification;
+  @JsonKey(name: 'status')
+  final String? status;
 
   @override
   String toString() {
-    return 'NotificationDetails(svgPath: $svgPath, description: $description, date: $date, calendar: $calendar, isAlternateNotification: $isAlternateNotification)';
+    return 'NotificationDetails(icon: $icon, description: $description, date: $date, actions: $actions, status: $status)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _NotificationDetails &&
-            (identical(other.svgPath, svgPath) ||
-                const DeepCollectionEquality()
-                    .equals(other.svgPath, svgPath)) &&
+            (identical(other.icon, icon) ||
+                const DeepCollectionEquality().equals(other.icon, icon)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
             (identical(other.date, date) ||
                 const DeepCollectionEquality().equals(other.date, date)) &&
-            (identical(other.calendar, calendar) ||
+            (identical(other.actions, actions) ||
                 const DeepCollectionEquality()
-                    .equals(other.calendar, calendar)) &&
-            (identical(
-                    other.isAlternateNotification, isAlternateNotification) ||
-                const DeepCollectionEquality().equals(
-                    other.isAlternateNotification, isAlternateNotification)));
+                    .equals(other.actions, actions)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(svgPath) ^
+      const DeepCollectionEquality().hash(icon) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(date) ^
-      const DeepCollectionEquality().hash(calendar) ^
-      const DeepCollectionEquality().hash(isAlternateNotification);
+      const DeepCollectionEquality().hash(actions) ^
+      const DeepCollectionEquality().hash(status);
 
   @JsonKey(ignore: true)
   @override
@@ -259,23 +263,18 @@ class _$_NotificationDetails implements _NotificationDetails {
 
 abstract class _NotificationDetails implements NotificationDetails {
   factory _NotificationDetails(
-      {@JsonKey(name: 'svgPath')
-          required String svgPath,
-      @JsonKey(name: 'description')
-          required String description,
-      @JsonKey(name: 'date')
-          required String date,
-      @JsonKey(name: 'calendar')
-          bool? calendar,
-      @JsonKey(name: 'isAlternateNotification')
-          bool? isAlternateNotification}) = _$_NotificationDetails;
+      {@JsonKey(name: 'icon') required IconDetails icon,
+      @JsonKey(name: 'description') required String description,
+      @JsonKey(name: 'date') required String date,
+      @JsonKey(name: 'actions') List<NotificationActions>? actions,
+      @JsonKey(name: 'status') String? status}) = _$_NotificationDetails;
 
   factory _NotificationDetails.fromJson(Map<String, dynamic> json) =
       _$_NotificationDetails.fromJson;
 
   @override
-  @JsonKey(name: 'svgPath')
-  String get svgPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'icon')
+  IconDetails get icon => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
@@ -283,11 +282,11 @@ abstract class _NotificationDetails implements NotificationDetails {
   @JsonKey(name: 'date')
   String get date => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'calendar')
-  bool? get calendar => throw _privateConstructorUsedError;
+  @JsonKey(name: 'actions')
+  List<NotificationActions>? get actions => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'isAlternateNotification')
-  bool? get isAlternateNotification => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  String? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$NotificationDetailsCopyWith<_NotificationDetails> get copyWith =>

@@ -17,6 +17,7 @@ import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
 import 'package:myafyahub/presentation/help_center/pages/help_center_page.dart';
 import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
 import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
+import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
@@ -330,6 +331,16 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<SavedPostPage>;
     expect(route, isA<MaterialPageRoute<SavedPostPage>>());
     expect(route.builder(context), isA<SavedPostPage>());
+  });
+
+  test('Test router returns AppointmentsPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.appointmentsPage);
+
+    final MaterialPageRoute<AppointmentsPage> route =
+        routeGenerator(settings) as MaterialPageRoute<AppointmentsPage>;
+    expect(route, isA<MaterialPageRoute<AppointmentsPage>>());
+    expect(route.builder(context), isA<AppointmentsPage>());
   });
 
   test('Test router returns NotificationsPage', () {

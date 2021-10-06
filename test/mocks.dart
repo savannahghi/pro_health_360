@@ -2847,28 +2847,6 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'date': '',
   }
 ];
-
-List<Map<String, dynamic>> mockNotification = <Map<String, dynamic>>[
-  <String, dynamic>{
-    'svgPath': shieldIconImgUrl,
-    'description':
-        'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-    'date': 'July 21 2021',
-    'calendar': true
-  },
-  <String, dynamic>{
-    'svgPath': libraryNavItemIconUrl,
-    'description': 'You have a tele consult with doctor Wellman. Click ',
-    'date': 'July 21 2021',
-  },
-  <String, dynamic>{
-    'svgPath': helpCenterButtonImageUrl,
-    'description': 'Wellness Survey',
-    'date': 'July 21 2021',
-    'isAlternateNotification': true,
-  },
-];
-
 final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
   HealthDiaryItemObj(
     date: 'Tuesday 13th',
@@ -2932,5 +2910,22 @@ final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
   ),
 ];
 
-
 // ignore_for_file: avoid_redundant_argument_values, null_argument_to_non_null_type
+Map<String, dynamic> mockIconDetails = <String, dynamic>{
+  'url': shieldIconImgUrl
+};
+
+Map<String, dynamic> mockNotificationActions = <String, dynamic>{
+  'name': 'Calendar',
+  'route': ' ',
+  'icon': mockIconDetails
+};
+
+Map<String, dynamic> mockNotification = <String, dynamic>{
+  'icon': mockIconDetails,
+  'description':
+      'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
+  'date': 'July 21 2021',
+  'actions': <dynamic>[mockNotificationActions],
+  'status': 'Missed'
+};

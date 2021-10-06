@@ -52,8 +52,12 @@ class BWRoutes {
 
   // notifications
   static const String notificationsPage = '/notificationsPage';
+
   //My Health Page
   static const String myHealthPage = '/myHealthPage';
+
+  //Appointments page
+  static const String appointmentsPage = '/appointmentsPage';
 
   // verify edi contacts routes
   static const String addMemberDetailsEdi = '/addMemberDetailsEdi';

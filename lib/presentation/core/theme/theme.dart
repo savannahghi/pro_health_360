@@ -62,6 +62,7 @@ class AppColors {
     lightGreyBackgroundColor,
     const Color(0xff0e2153),
   );
+  static const Color warningColor = Color(0xFFE09B2D);
   static const Color superLightGreyColor = Color(0xFFF2F2F2);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color darkGreyTextColor = Color(0xFF797979);
