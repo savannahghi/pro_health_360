@@ -1,20 +1,18 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
-// Project imports:
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
+import 'package:shared_themes/text_themes.dart';
 
 /// [MyAfyaHubAppBar] is a custom [AppBar] used within this apps' pages.
 class MyAfyaHubAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// [MyAfyaHubAppBar] is a custom [AppBar] used within this apps' pages.
   ///
-  /// [leadingWidget] could use predefined widgets i.e. [ProfileImageItem] or
-  /// [ProfileInitialsItem] for ease of use, or any other custom widget provided for adaptability.
+  /// [leadingWidget] defaults to [MyAfyaHubAppbarUser] if not widget is provided.
+  ///
+  /// [trailingWidget] defaults to notifications icon if not widget is provided.
   ///
   const MyAfyaHubAppBar({
     this.leadingWidget,
@@ -50,13 +48,41 @@ class MyAfyaHubAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              leadingWidget ?? const MyAfyaHubAppbarUser(),
+              if (leadingWidget != null)
+                Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                    ),
+                    child: leadingWidget),
+              if (leadingWidget == null)
+                const Padding(
+                    padding: EdgeInsets.only(
+                      left: 10,
+                    ),
+                    child: MyAfyaHubAppbarUser()),
               Text(
                 title ?? '',
                 style: TextThemes.boldSize16Text()
                     .copyWith(color: AppColors.secondaryColor),
               ),
-              trailingWidget ?? mediumHorizontalSizedBox,
+              if (trailingWidget != null)
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 10,
+                  ),
+                  child: trailingWidget,
+                ),
+              if (trailingWidget == null)
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 10,
+                  ),
+                  child: SvgPicture.asset(
+                    notificationIcon,
+                    color: AppColors.secondaryColor,
+                    width: 20,
+                  ),
+                ),
             ],
           ),
         ),

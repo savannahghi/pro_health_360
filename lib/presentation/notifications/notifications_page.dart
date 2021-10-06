@@ -25,14 +25,9 @@ class NotificationsPage extends StatelessWidget {
     return Scaffold(
       appBar: MyAfyaHubAppBar(
         title: notificationsText,
-        leadingWidget: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-          ),
-          child: SvgPicture.asset(
-            backIcon,
-            color: AppColors.secondaryColor,
-          ),
+        leadingWidget: SvgPicture.asset(
+          backIcon,
+          color: AppColors.secondaryColor,
         ),
       ),
       backgroundColor: Theme.of(context).backgroundColor,

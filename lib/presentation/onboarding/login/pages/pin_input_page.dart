@@ -74,15 +74,6 @@ class _PINInputPageState extends State<PINInputPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: MyAfyaHubAppBar(
-        trailingWidget: Padding(
-          padding: const EdgeInsets.only(
-            right: 20,
-          ),
-          child: SvgPicture.asset(
-            notificationIcon,
-            width: 20,
-          ),
-        ),
         leadingWidget: mediumHorizontalSizedBox,
       ),
       body: SingleChildScrollView(

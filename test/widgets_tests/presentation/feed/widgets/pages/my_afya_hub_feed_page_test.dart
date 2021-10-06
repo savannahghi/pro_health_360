@@ -31,10 +31,6 @@ void main() {
       expect(find.byType(FeedItemFilter), findsWidgets);
       expect(find.byType(FeedItem), findsWidgets);
 
-      await tester.tap(find.byType(IconButton));
-      await tester.pumpAndSettle();
-      expect(find.byType(ScaffoldMessenger), findsOneWidget);
-
       await tester.tap(find.text('All'));
       await tester.pumpAndSettle();
       expect(find.byType(ScaffoldMessenger), findsOneWidget);

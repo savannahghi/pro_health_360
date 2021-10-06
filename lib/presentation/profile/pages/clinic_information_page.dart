@@ -34,25 +34,10 @@ class ClinicInformationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAfyaHubAppBar(
-        trailingWidget: Padding(
-          padding: const EdgeInsets.only(
-            right: 20,
-          ),
-          child: SvgPicture.asset(
-            notificationIcon,
-            color: AppColors.secondaryColor,
-            width: 20,
-          ),
-        ),
         title: myProfileString,
-        leadingWidget: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-          ),
-          child: SvgPicture.asset(
-            backIcon,
-            color: AppColors.secondaryColor,
-          ),
+        leadingWidget: SvgPicture.asset(
+          backIcon,
+          color: AppColors.secondaryColor,
         ),
       ),
       body: SafeArea(

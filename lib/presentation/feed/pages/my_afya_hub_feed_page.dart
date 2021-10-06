@@ -9,7 +9,6 @@ import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/profile_image_item.dart';
 import 'package:myafyahub/presentation/core/widgets/filters/feed_item_filter.dart';
 import 'package:myafyahub/presentation/feed/feed_details.dart';
 import '../feed_item_widget.dart';
@@ -75,17 +74,8 @@ class MyAfyaHubFeedPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: MyAfyaHubAppBar(
-        leadingWidget: const ProfileImageItem(
-          imageUrl: profileImage,
-        ),
+      appBar: const MyAfyaHubAppBar(
         title: libraryTitle,
-        trailingWidget: IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(snackbar(content: comingSoonText));
-            }),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

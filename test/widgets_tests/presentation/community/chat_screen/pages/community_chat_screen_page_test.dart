@@ -31,10 +31,6 @@ void main() {
       expect(find.byType(ListView), findsOneWidget);
       expect(find.byType(MessageInput), findsOneWidget);
 
-      await tester.tap(find.byKey(backAppBarKey));
-      await tester.pumpAndSettle();
-      expect(find.byType(ScaffoldMessenger), findsWidgets);
-
       await tester.tap(find.byKey(moreAppBarKey));
       await tester.pumpAndSettle();
       expect(find.byType(ScaffoldMessenger), findsWidgets);

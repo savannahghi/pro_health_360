@@ -1,14 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
-// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
@@ -16,6 +11,7 @@ import 'package:myafyahub/application/redux/view_models/user_profile_view_model.
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/text_themes.dart';
 
 class MyAfyaHubAppbarUser extends StatelessWidget {
   const MyAfyaHubAppbarUser({Key? key}) : super(key: key);
@@ -44,13 +40,15 @@ class MyAfyaHubAppbarUser extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                  shape: BoxShape.circle, gradient: getAppGradient(context)),
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor),
               child: Center(
                 child: photoUrl == UNKNOWN
                     ? Text(
                         extractNamesInitials(
                             name: getDisplayName(userProfileState)),
-                        style: TextThemes.boldSize14Text(AppColors.whiteColor),
+                        style:
+                            TextThemes.boldSize14Text(AppColors.secondaryColor),
                       )
                     : CircleAvatar(backgroundImage: AssetImage(photoUrl!)),
               ),

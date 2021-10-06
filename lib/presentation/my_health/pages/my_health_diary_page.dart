@@ -29,25 +29,10 @@ class MyHealthDiaryPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: MyAfyaHubAppBar(
-        trailingWidget: Padding(
-          padding: const EdgeInsets.only(
-            right: 10,
-          ),
-          child: SvgPicture.asset(
-            notificationIcon,
-            color: AppColors.secondaryColor,
-            width: 20,
-          ),
-        ),
         title: myHealthDiaryString,
-        leadingWidget: Padding(
-          padding: const EdgeInsets.only(
-            left: 10,
-          ),
-          child: SvgPicture.asset(
-            backIcon,
-            color: AppColors.secondaryColor,
-          ),
+        leadingWidget: SvgPicture.asset(
+          backIcon,
+          color: AppColors.secondaryColor,
         ),
       ),
       body: SingleChildScrollView(

@@ -1,11 +1,10 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:misc_utilities/misc.dart';
-
 // Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/message_input.dart';
@@ -14,6 +13,7 @@ import 'package:myafyahub/presentation/community/chat_screen/widgets/received_me
 import 'package:myafyahub/presentation/community/chat_screen/widgets/time_classification_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+
 import '../widgets/sender_type_widget.dart';
 import '../widgets/sent_message_item.dart';
 
@@ -79,15 +79,15 @@ class CommunityChatScreenPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.lightSkyBlueColor,
         appBar: MyAfyaHubAppBar(
-            leadingWidget: IconButton(
-                key: backAppBarKey,
-                icon: const Icon(Icons.arrow_back_ios),
-                onPressed: () {}),
-            title: 'Ruaka Questions Group',
-            trailingWidget: IconButton(
-                key: moreAppBarKey,
-                icon: const Icon(Icons.more_vert),
-                onPressed: () {})),
+          title: 'Ruaka Questions Group',
+          trailingWidget: IconButton(
+              key: moreAppBarKey,
+              icon: const Icon(Icons.more_vert),
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text(comingSoonText)));
+              }),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Stack(children: <Widget>[
