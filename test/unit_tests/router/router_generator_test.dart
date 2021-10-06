@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -24,14 +29,11 @@ import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
-import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
@@ -59,26 +61,52 @@ void main() {
     expect(route, isA<MaterialPageRoute<HomePage>>());
     expect(route.builder(context), isA<HomePage>());
   });
-  test('Test router returns landing', () {
-    const RouteSettings settings = RouteSettings(
-        name: BWRoutes.landing, arguments: <String, dynamic>{'test': 'value'});
-
-    final MaterialPageRoute<LandingPage> route =
-        routeGenerator(settings) as MaterialPageRoute<LandingPage>;
-
-    expect(route, isA<MaterialPageRoute<LandingPage>>());
-    expect(route.builder(context), isA<LandingPage>());
-  });
   test('Test router returns phoneLogin', () {
     const RouteSettings settings = RouteSettings(
         name: BWRoutes.phoneLogin,
         arguments: <String, dynamic>{'test': 'value'});
 
-    final MaterialPageRoute<PhoneNumberLoginPage> route =
-        routeGenerator(settings) as MaterialPageRoute<PhoneNumberLoginPage>;
+    final MaterialPageRoute<MyAfyaHubPhoneLoginPage> route =
+        routeGenerator(settings) as MaterialPageRoute<MyAfyaHubPhoneLoginPage>;
 
-    expect(route, isA<MaterialPageRoute<PhoneNumberLoginPage>>());
-    expect(route.builder(context), isA<PhoneNumberLoginPage>());
+    expect(route, isA<MaterialPageRoute<MyAfyaHubPhoneLoginPage>>());
+    expect(route.builder(context), isA<MyAfyaHubPhoneLoginPage>());
+  });
+
+  test('Test router returns create new pin page', () {
+    const RouteSettings settings = RouteSettings(
+      name: BWRoutes.createPin,
+    );
+
+    final MaterialPageRoute<CreateNewPINPage> route =
+        routeGenerator(settings) as MaterialPageRoute<CreateNewPINPage>;
+
+    expect(route, isA<MaterialPageRoute<CreateNewPINPage>>());
+    expect(route.builder(context), isA<CreateNewPINPage>());
+  });
+
+  test('Test router returns  verify otp page', () {
+    const RouteSettings settings = RouteSettings(
+        name: BWRoutes.verifySignUpOTP,
+        arguments: <String, dynamic>{'OTP': 1234});
+
+    final MaterialPageRoute<VerifyPhonePage> route =
+        routeGenerator(settings) as MaterialPageRoute<VerifyPhonePage>;
+
+    expect(route, isA<MaterialPageRoute<VerifyPhonePage>>());
+    expect(route.builder(context), isA<VerifyPhonePage>());
+  });
+
+  test('Test router returns congratulations page', () {
+    const RouteSettings settings = RouteSettings(
+        name: BWRoutes.congratulationsPage,
+        arguments: <String, dynamic>{'duration': '1 year'});
+
+    final MaterialPageRoute<CongratulationsPage> route =
+        routeGenerator(settings) as MaterialPageRoute<CongratulationsPage>;
+
+    expect(route, isA<MaterialPageRoute<CongratulationsPage>>());
+    expect(route.builder(context), isA<CongratulationsPage>());
   });
 
   test('Test router returns HomePage', () {
@@ -95,11 +123,11 @@ void main() {
   test('Test router returns phoneLogin Page', () {
     const RouteSettings settings = RouteSettings(name: BWRoutes.phoneLogin);
 
-    final MaterialPageRoute<PhoneNumberLoginPage> route =
-        routeGenerator(settings) as MaterialPageRoute<PhoneNumberLoginPage>;
+    final MaterialPageRoute<MyAfyaHubPhoneLoginPage> route =
+        routeGenerator(settings) as MaterialPageRoute<MyAfyaHubPhoneLoginPage>;
 
-    expect(route, isA<MaterialPageRoute<PhoneNumberLoginPage>>());
-    expect(route.builder(context), isA<PhoneNumberLoginPage>());
+    expect(route, isA<MaterialPageRoute<MyAfyaHubPhoneLoginPage>>());
+    expect(route.builder(context), isA<MyAfyaHubPhoneLoginPage>());
   });
 
   test('Test router returns incoming library page', () {
@@ -224,15 +252,6 @@ void main() {
     expect(route.builder(context), isA<ProfileContactDetails>());
   });
 
-  test('Test router returns incoming  verifySignUpOTP page', () {
-    const RouteSettings settings =
-        RouteSettings(name: BWRoutes.verifySignUpOTP);
-    final MaterialPageRoute<VerifySignUpOTP> route =
-        routeGenerator(settings) as MaterialPageRoute<VerifySignUpOTP>;
-    expect(route, isA<MaterialPageRoute<VerifySignUpOTP>>());
-    expect(route.builder(context), isA<VerifySignUpOTP>());
-  });
-
   test('Test router returns security questions page', () {
     const RouteSettings settings =
         RouteSettings(name: BWRoutes.securityQuestionsPage);
@@ -316,6 +335,16 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<MedicalDataPage>;
     expect(route, isA<MaterialPageRoute<MedicalDataPage>>());
     expect(route.builder(context), isA<MedicalDataPage>());
+  });
+
+  test('Test router returns ForgotOTPPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.forgotPinOtpWidget);
+
+    final MaterialPageRoute<ForgotPinOtpWidget> route =
+        routeGenerator(settings) as MaterialPageRoute<ForgotPinOtpWidget>;
+    expect(route, isA<MaterialPageRoute<ForgotPinOtpWidget>>());
+    expect(route.builder(context), isA<ForgotPinOtpWidget>());
   });
 
   test('Test router returns SavedPostsPage', () {

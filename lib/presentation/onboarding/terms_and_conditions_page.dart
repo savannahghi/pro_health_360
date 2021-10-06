@@ -1,5 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/presentation/core/widgets/my_afya_hub_checkbox.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/constants.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -11,9 +16,15 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
 
-class TermsAndConditionsPage extends StatelessWidget {
+class TermsAndConditionsPage extends StatefulWidget {
   const TermsAndConditionsPage({Key? key}) : super(key: key);
 
+  @override
+  _TermsAndConditionsPageState createState() => _TermsAndConditionsPageState();
+}
+
+class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
+  bool isAgreed = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,26 +90,38 @@ class TermsAndConditionsPage extends StatelessWidget {
               ),
 
               // Accepts terms check box
-              Row(
-                children: const <Widget>[
-                  Checkbox(
-                    value: false,
-                    onChanged: null,
-                  ),
-                  Text(
-                    acceptTermsText,
-                    style: TextStyle(color: AppColors.secondaryColor),
-                  ),
-                ],
+              MyAfyaHubCheckBox(
+                text: acceptTermsText,
+                value: isAgreed,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isAgreed = value!;
+                  });
+                },
               ),
 
               // Continue button
-              const SizedBox(
+              SizedBox(
                 height: 48,
                 width: double.infinity,
                 child: MyAfyaHubPrimaryButton(
                   text: 'Continue',
                   buttonColor: AppColors.secondaryColor,
+                  onPressed: () {
+                    if (isAgreed) {
+                      Navigator.pushReplacementNamed(
+                          context, BWRoutes.securityQuestionsPage);
+                    } else {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(SnackBar(
+                          content: const Text(acceptTermsErrorMessage),
+                          duration:
+                              const Duration(seconds: kShortSnackBarDuration),
+                          action: dismissSnackBar(closeString, white, context),
+                        ));
+                    }
+                  },
                 ),
               ),
             ],

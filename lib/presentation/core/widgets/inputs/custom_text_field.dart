@@ -98,7 +98,6 @@ class CustomTextField extends StatelessWidget {
           keyboardType: keyboardType,
           controller: controller,
           obscureText: obscureText,
-          autovalidateMode: AutovalidateMode.always,
           enabled: enabled,
           key: formFieldKey,
           onFieldSubmitted: onSubmitted,

@@ -10,6 +10,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -128,6 +129,23 @@ void main() {
         tester.binding.window.clearPhysicalSizeTestValue();
         tester.binding.window.clearDevicePixelRatioTestValue();
       });
+    });
+
+    testWidgets('Navigates to Create New Pin page',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const SecurityQuestionsPage(),
+      );
+
+      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsOneWidget);
     });
   });
 }

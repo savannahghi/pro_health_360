@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 
 // onboarding keys
 const Key landingPageKey = Key('landing_page_key');
+const Key verifyOTPGestureKey = Key('verify_OTP_gesture_key');
 
 const Key globalStoreKey = Key('global-store-provider');
 const Key onboardingScaffoldBackButton = Key('onboarding_scaffold_back_button');

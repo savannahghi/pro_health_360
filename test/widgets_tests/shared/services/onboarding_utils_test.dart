@@ -31,7 +31,6 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -164,7 +163,6 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byKey(feedbackBottomSheet), findsNothing);
-        expect(find.byType(PhoneNumberLoginPage), findsOneWidget);
       });
 
       testWidgets('should update user pin and navigate',

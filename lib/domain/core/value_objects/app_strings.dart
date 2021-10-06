@@ -20,17 +20,6 @@ class OnboardingStrings {
     return Localizations.of<OnboardingStrings>(context, OnboardingStrings);
   }
 
-  String landingPageSubtitleText() =>
-      Intl.message('Access health care easily at the palm of your hand',
-          name: 'landingPageSubtitleText',
-          desc: 'the subtitle for the landing page');
-
-  String loginText() => Intl.message(
-        'Login',
-        name: 'loginText',
-        desc: 'Login text, used in buttons',
-      );
-
   String loginTextV2() => Intl.message(
         'Sign in here',
         name: 'signText',
@@ -110,18 +99,6 @@ class OnboardingStrings {
             'Text used in buttons to show an action takes user to a previous screen',
       );
 
-  String requestPinResetText() => Intl.message(
-        'Request PIN reset',
-        name: 'requestPinResetText',
-        desc: 'Tell user to input their PIN',
-      );
-
-  String usePhoneToRequestText() => Intl.message(
-        'Use your phone number to request',
-        name: 'usePhoneToRequestText',
-        desc: 'user to input their phone number to receive a text through it',
-      );
-
   String greetUser(String name) => Intl.message(
         'Hey, $name',
         args: <String>[name],
@@ -139,48 +116,12 @@ class OnboardingStrings {
         name: 'enterPinText',
         desc: 'user to enter their PIN',
       );
-  String confirmPinText() => Intl.message(
-        'Confirm your PIN',
-        name: 'confirmPinText',
-        desc: 'user to enter their PIN again',
-      );
-
-  String continueText() => Intl.message(
-        'Continue',
-        name: 'continueText',
-        desc:
-            'used in button text for actions that take user to another screen',
-      );
 
   String backText() => Intl.message(
         'Back',
         name: 'backText',
         desc:
             'used in buttons for an action that takes user to previous screen',
-      );
-
-  String createPinText() => Intl.message(
-        'Create PIN',
-        name: 'createPinText',
-        desc: 'create PIN',
-      );
-
-  String secureAccountText() => Intl.message(
-        'Secure your account with a PIN',
-        name: 'secureAccountText',
-        desc: 'user to secure their account',
-      );
-
-  String changePinText() => Intl.message(
-        'Change your PIN',
-        name: 'changePinText',
-        desc: 'change your PIN',
-      );
-
-  String changePinToSecureAccountText() => Intl.message(
-        'Secure your account with a new PIN',
-        name: 'changePinToSecureAccountText',
-        desc: 'user to secure their account with a new pin',
       );
 
   String phoneNumberText() => Intl.message(
@@ -193,12 +134,6 @@ class OnboardingStrings {
         'Forgot PIN?',
         name: 'forgotPINText',
         desc: 'ask user if they can remember their PIN',
-      );
-
-  String signInText() => Intl.message(
-        'Sign in',
-        name: 'signInText',
-        desc: 'Sign in to the app',
       );
 
   String wrongPinEntered() => Intl.message(
@@ -522,7 +457,7 @@ const String saveAndContinueButtonText = 'Save & Continue';
 const String doneText = 'Done';
 const String phoneNumberRequiredText = 'Phone number is required';
 const String validPhoneNumberText = 'Please enter a valid phone number';
-const String loginPageTitleString = 'Welcome\nto My Care Hub';
+const String loginPageTitleString = 'Welcome to My Care Hub';
 const String loginPageSubTitleString = 'Enter PIN sent to you to continue';
 const String phoneNumberString = 'Phone Number';
 const String pinString = 'PIN';
@@ -548,8 +483,7 @@ String congratulationsPageTitle(String duration) =>
     'Congratulations on your $duration health journey';
 const String congratulationsPageDescription =
     'Please create a nickname (Visible to community members)';
-const String nameString = 'Name';
-const String nameInputValidateString = 'Name is required';
+const String nameInputValidateString = 'Kindly input a nickname';
 const String importantInformationString = 'Important Information';
 
 // Community strings
@@ -574,6 +508,9 @@ const String readAndAcceptText =
 const String acceptTermsText = 'I accept terms and conditions';
 const String joinString = 'Join';
 const String suggestedGroupsString = 'Suggested groups to join';
+const String closeString = 'Close';
+const String acceptTermsErrorMessage =
+    'Kindly agree to the terms and conditions before proceeding';
 
 // Community Chat
 const String awaitingModerationString = 'Awaiting Moderation';
@@ -672,4 +609,3 @@ const String nickNameString = 'Nickname';
 const String editString = 'Edit';
 const String settingsText = 'Settings';
 const String saveString = 'Save';
-

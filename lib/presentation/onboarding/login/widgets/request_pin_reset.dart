@@ -29,7 +29,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/number_constants.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/widgets/bewell_scaffold.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/scaffold_header.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class RequestPinReset extends StatefulWidget {
@@ -104,13 +103,6 @@ class _RequestPinResetState extends State<RequestPinReset> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    ScaffoldHeader(
-                      title: onboardingStrings.requestPinResetText(),
-                      description: onboardingStrings.usePhoneToRequestText(),
-                      backFunc: () {
-                        Navigator.pushNamed(context, BWRoutes.phoneLogin);
-                      },
-                    ),
                     largeVerticalSizedBox,
                     largeVerticalSizedBox,
                     Align(

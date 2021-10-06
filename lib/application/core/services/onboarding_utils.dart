@@ -2,10 +2,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
@@ -14,15 +10,14 @@ import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:user_feed/user_feed.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/connectivity_helper.dart';
@@ -32,9 +27,7 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
@@ -47,6 +40,9 @@ import 'package:myafyahub/domain/core/value_objects/events.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/sil_progress_dialog.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:user_feed/user_feed.dart';
 
 /// [updateUserPin] resets a user's PIN
 ///
@@ -284,22 +280,34 @@ Future<void> registerDeviceToken({required IGraphQlClient client}) async {
 /// [Resume with PIN Page ]to allow for renew of their AuthToken.
 ///
 /// 2. User is NOT Signed in/ logged in
-///     - If a user is not signed in/logged in the routine checks if they
-/// have completed the onboarding tour to determine which page user
-/// should be redirected.
+///     - If a user is not signed in/logged in they are routed to the phone
+/// login page.
+///     - If successful the user is routed to the Home page.
 ///     - If the user had completed the Onboarding tour they are
-/// directed to the [Lading Page] where there are options to
-/// Login(for an existing user)/Sign Up(for a new user).
+/// directed to the [Login Page] where there are options to
+/// Login.
 ///     - If the user had `NOT` completed the Onboarding tour
-///  they are directed to the Welcome page where they can browse through the
-///  tour, which upon completion they are redirected to the [Lading Page]
+///  they are directed to the Login page where they can browse through the
+///  tour
+
+/// 3. First time user to MyAfyaHub
+///     - If a user is a first time user they are routed to the phone login page.
+/// They enter the one time pin sent with the invite.
+///     - They are routed to the Verify OTP page where an OTP is sent to their
+/// invite device
+///     -They are then routed to the Terms and Conditions page
+///     -They are then routed to the Set Security Questions page
+///     -They are then routed to the Set change PIN page
+///     -They are then routed to the Congratulations page
+///     - If successful the user is routed to the Home page.
 ///
 /// #### Routes and corresponding pages
 /// - [Routes.home] ---> home_page.dart
-/// - [Routes.welcome] ---> welcome.dart
-/// - [Routes.landing] ---> landing_page.dart
-/// - [Routes.resumeWithPin] ---> resume_with_pin_page.dart
 /// - [Routes.phoneLogin] ---> phone_number_login_page.dart
+/// - [Routes.verifySignUpOTP] ---> verify_phone_page.dart
+/// - [Routes.termsAndConditions] ---> terms_and_conditions.dart
+/// - [Routes.setPIN] ---> create_new_pin.dart
+/// - [Routes.securityQuestions] ---> security_questions_page.dart
 Future<String> getInitialRoute(
   BuildContext context,
   AppState appState,
@@ -348,9 +356,8 @@ Future<String> getInitialRoute(
           isFirstLaunch: false,
         ),
       );
-      return BWRoutes.introduction;
     }
-    return BWRoutes.landing;
+    return BWRoutes.phoneLogin;
   }
 }
 
@@ -424,9 +431,6 @@ String getUserFriendlyMsg(int code) {
       return wrongLoginCredentials;
     case 9:
       return pinNotFound;
-    case 2:
-    case 3:
-    case 11:
     default:
       return defaultUserFriendlyMessage;
   }
@@ -583,8 +587,6 @@ Future<dynamic> afterLoginOrCreateAccount(
         userResponse.communicationSettings;
 
     final AuthCredentialResponse auth = userResponse.auth!;
-    final String appContext =
-        getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
 
     await store.dispatch(
       ManageTokenAction(
@@ -620,30 +622,6 @@ Future<dynamic> afterLoginOrCreateAccount(
       ),
     );
 
-    if (onboardActionType == OnboardActionType.createAccount) {
-      /// explicitly call to hide in case the user navigate back
-      toggleLoadingIndicator(
-          context: context, flag: createPinFlag, show: false);
-
-      await store.dispatch(PhoneSignUpStateAction(accountCreated: true));
-
-      publishEvent(
-        hasSignedUpSuccessFullyEvent(appContext),
-        EventObject(
-          firstName: userProfile!.userBioData!.firstName?.getValue(),
-          lastName: userProfile.userBioData!.lastName?.getValue(),
-          uid: auth.uid,
-          primaryPhoneNumber: userProfile.primaryPhoneNumber?.getValue(),
-          flavour: Flavour.CONSUMER.name,
-          timestamp: DateTime.now(),
-        ),
-      );
-
-      await Navigator.pushNamedAndRemoveUntil(
-          context, BWRoutes.basicDetails, (Route<dynamic> route) => false);
-      return;
-    }
-
     if (onboardActionType == OnboardActionType.login) {
       /// navigation to home page happens here
       final Map<String, dynamic> routeContext = onboardingPath(updatedState);
@@ -673,23 +651,10 @@ Future<dynamic> afterLoginOrCreateAccount(
         return;
       }
 
-      if (userResponse.auth?.isChangePin != null &&
-          userResponse.auth!.isChangePin!) {
-        StoreProvider.dispatch(
-          context,
-          UpdatePinStatusAction(
-            isChangingPin: true,
-          ),
-        );
-        await Navigator.pushReplacementNamed(context, BWRoutes.createPin,
-            arguments: <String, bool>{
-              'changingPin': true,
-            });
-      } else {
-        await Navigator.pushNamedAndRemoveUntil(context,
-            routeContext['route'].toString(), (Route<dynamic> route) => false,
-            arguments: routeContext['args']);
-      }
+      await Navigator.pushNamedAndRemoveUntil(context,
+          routeContext['route'].toString(), (Route<dynamic> route) => false,
+          arguments: routeContext['args']);
+
       return;
     }
   } catch (e, stackTrace) {

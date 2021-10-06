@@ -1,17 +1,22 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/entities.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/important_information_link_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/custom_text_field.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
 import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
 
 class CongratulationsPage extends StatefulWidget {
   final String duration;
@@ -39,7 +44,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              nameString,
+              nickNameString,
               style: TextThemes.boldSize16Text(Colors.grey),
             ),
             smallVerticalSizedBox,
@@ -65,7 +70,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
             SizedBox(height: sizedBoxHeight),
             Text(
               importantInformationString,
-              style: TextThemes.boldSize16Text(Theme.of(context).primaryColor),
+              style: TextThemes.boldSize16Text(AppColors.secondaryColor),
             ),
             smallVerticalSizedBox,
             ImportantInformationWidget(),
@@ -80,10 +85,25 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
               child: MyAfyaHubPrimaryButton(
                 customRadius: 4,
                 text: continueButtonText,
-                buttonColor: Theme.of(context).primaryColor,
-                borderColor: Theme.of(context).primaryColor,
-                onPressed: () {
-                  if (_congratulationsFormKey.currentState!.validate()) {}
+                buttonColor: AppColors.secondaryColor,
+                borderColor: AppColors.secondaryColor,
+                onPressed: () async {
+                  if (_congratulationsFormKey.currentState!.validate()) {
+                    final UserProfile userProfile =
+                        UserProfile.fromJson(loginResponse['profile']!);
+
+                    await StoreProvider.dispatch<AppState>(
+                        context,
+                        UpdateUserProfileAction(
+                          profile: userProfile,
+                          userBioData: userProfile.userBioData,
+                        ));
+
+                    Navigator.pushReplacementNamed(
+                      context,
+                      BWRoutes.home,
+                    );
+                  }
                 },
               ),
             )

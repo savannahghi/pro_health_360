@@ -1,21 +1,14 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
@@ -26,11 +19,13 @@ import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dar
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
-import 'package:myafyahub/presentation/onboarding/landing_page/landing_page_actions.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
+import 'package:myafyahub/presentation/core/widgets/inputs/custom_text_field.dart';
+import 'package:myafyahub/presentation/core/widgets/inputs/my_afya_hub_phone_input_field.dart';
+import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -70,7 +65,7 @@ void main() {
                 appName: 'test',
                 appContexts: testAppContexts,
                 graphQLClient: mockShortGraphQlClient,
-                child: PhoneLoginPage(),
+                child: MyAfyaHubPhoneLoginPage(),
               ),
             );
           },
@@ -79,7 +74,7 @@ void main() {
 
       await tester.pump();
 
-      final Finder phoneInput = find.byType(SILPhoneInput);
+      final Finder phoneInput = find.byType(CustomTextField);
 
       expect(find.byType(Form), findsOneWidget);
       expect(phoneInput, findsOneWidget);
@@ -104,13 +99,13 @@ void main() {
               ),
             );
 
-            return PhoneLoginPage();
+            return MyAfyaHubPhoneLoginPage();
           }),
         );
 
         await tester.pump();
 
-        final Finder phoneInput = find.byType(SILPhoneInput);
+        final Finder phoneInput = find.byType(MyAfyaHubPhoneInput);
         final Finder pinInput = find
             .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
 
@@ -166,12 +161,12 @@ void main() {
             client: baseGraphQlClientMock,
             widget: Builder(builder: (BuildContext context) {
               EndPointsContextSubject().contexts.add(testAppContexts);
-              return PhoneLoginPage();
+              return MyAfyaHubPhoneLoginPage();
             }));
         await tester.pumpAndSettle();
 
-        final Finder phoneInput = find.byType(SILPhoneInput);
-        final Finder submitButton = find.byKey(phoneLoginSubmitButtonKey);
+        final Finder phoneInput = find.byType(MyAfyaHubPhoneInput);
+        final Finder submitButton = find.byKey(phoneLoginContinueButtonKey);
 
         expect(find.byType(Form), findsOneWidget);
         expect(phoneInput, findsOneWidget);
@@ -187,164 +182,6 @@ void main() {
 
         await tester.tap(submitButton);
         await tester.pumpAndSettle();
-        await tester.pumpAndSettle();
-      },
-    );
-
-    testWidgets(
-      'should navigate to change pin route',
-      (WidgetTester tester) async {
-        when(baseGraphQlClientMock.callRESTAPI(
-                endpoint:
-                    'https://onboarding-testing.savannahghi.org/login_by_phone',
-                variables: <String, dynamic>{
-                  'phoneNumber': '+254710000000',
-                  'pin': '1234',
-                  'flavour': 'CONSUMER',
-                  'appVersion': APPVERSION,
-                },
-                method: httpPOST))
-            .thenAnswer(
-          (_) => Future<http.Response>.value(
-            http.Response(
-              json.encode(changePINloginMock()),
-              200,
-            ),
-          ),
-        );
-
-        when(baseGraphQlClientMock.toMap(any)).thenReturn(
-          <String, dynamic>{
-            'data': <String, dynamic>{
-              'phoneNumber': '+254710000000',
-              'pin': '1234',
-              'flavour': 'CONSUMER',
-              'auth': <String, dynamic>{
-                'change_pin': true,
-              }
-            }
-          },
-        );
-        await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: baseGraphQlClientMock,
-            widget: Builder(builder: (BuildContext context) {
-              EndPointsContextSubject().contexts.add(testAppContexts);
-              return PhoneLoginPage();
-            }));
-        await tester.pumpAndSettle();
-
-        final Finder phoneInput = find.byType(SILPhoneInput);
-        final Finder submitButton = find.byKey(phoneLoginSubmitButtonKey);
-
-        expect(find.byType(Form), findsOneWidget);
-        expect(phoneInput, findsOneWidget);
-        expect(submitButton, findsOneWidget);
-
-        await tester.enterText(phoneInput, testPhoneNumber);
-        await tester.pumpAndSettle();
-
-        await tester.enterText(find.byKey(pinInputKey), testOTP);
-        await tester.pumpAndSettle();
-
-        expect(find.text(testPhoneNumber), findsOneWidget);
-
-        await tester.tap(submitButton);
-        await tester.pumpAndSettle();
-        await tester.pumpAndSettle();
-      },
-    );
-
-    testWidgets(
-      'form renders correctly on large',
-      (WidgetTester tester) async {
-        tester.binding.window.physicalSizeTestValue = tabletLandscape;
-
-        addTearDown(() {
-          tester.binding.window.clearPhysicalSizeTestValue();
-          tester.binding.window.clearDevicePixelRatioTestValue();
-        });
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Scaffold(
-                body: AppWrapper(
-                  appName: 'test',
-                  appContexts: testAppContexts,
-                  graphQLClient: mockShortGraphQlClient,
-                  child: PhoneLoginPage(),
-                ),
-              );
-            },
-          ),
-        );
-
-        await tester.pump();
-
-        final Finder phoneInput = find.byType(SILPhoneInput);
-
-        expect(find.byType(Form), findsOneWidget);
-        expect(phoneInput, findsOneWidget);
-      },
-    );
-
-    testWidgets(
-      'should create a new account',
-      (WidgetTester tester) async {
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: PhoneLoginPage(),
-        );
-
-        await tester.pump();
-
-        final Finder createAccount = find.byKey(createNewAccountKey);
-
-        expect(find.byType(Form), findsOneWidget);
-        expect(createAccount, findsOneWidget);
-
-        await tester.tap(createAccount);
-
-        // verify(mockObserver.didPush(sampleRoute, any));
-      },
-    );
-
-    testWidgets(
-      'should navigate back',
-      (WidgetTester tester) async {
-        tester.binding.window.devicePixelRatioTestValue = 1.0;
-        tester.binding.window.physicalSizeTestValue = tabletPortrait;
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              EndPointsContextSubject().contexts.add(testAppContexts);
-
-              return LandingPage();
-            },
-          ),
-        );
-
-        await tester.pump();
-        expect(find.byType(LandingPageActions), findsOneWidget);
-        expect(find.byKey(loginWithPhoneKey), findsOneWidget);
-        await tester.tap(find.byKey(loginWithPhoneKey));
-
-        await tester.pump(const Duration(seconds: 10));
-
-        // verify(mockObserver.didPush(sampleRoute, any));
-        addTearDown(() {
-          tester.binding.window.clearPhysicalSizeTestValue();
-          tester.binding.window.clearDevicePixelRatioTestValue();
-        });
       },
     );
   });
@@ -403,16 +240,17 @@ void main() {
             builder: (BuildContext context) {
               EndPointsContextSubject().contexts.add(testAppContexts);
 
-              return PhoneLoginPage();
+              return MyAfyaHubPhoneLoginPage();
             },
           ),
         );
 
         await tester.pump();
 
-        expect(find.byType(SILPhoneInput), findsOneWidget);
-        await tester.tap(find.byType(SILPhoneInput));
-        await tester.enterText(find.byType(SILPhoneInput), testPhoneNumber);
+        expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
+        await tester.tap(find.byType(MyAfyaHubPhoneInput));
+        await tester.enterText(
+            find.byType(MyAfyaHubPhoneInput), testPhoneNumber);
 
         final Finder finder = find
             .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
@@ -420,8 +258,11 @@ void main() {
         await tester.tap(finder);
         await tester.enterText(finder, testPin);
 
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-        await tester.tap(find.byType(SILPrimaryButton));
+        final Finder completeButton = find.byType(MyAfyaHubPrimaryButton);
+
+        expect(completeButton, findsOneWidget);
+        await tester.ensureVisible(completeButton);
+        await tester.tap(completeButton);
 
         await tester.pump(const Duration(minutes: 35));
 
@@ -444,13 +285,16 @@ void main() {
           builder: (BuildContext context) {
             EndPointsContextSubject().contexts.add(testAppContexts);
 
-            return PhoneLoginPage();
+            return MyAfyaHubPhoneLoginPage();
           },
         ),
       );
 
-      expect(find.byType(SILPrimaryButton), findsOneWidget);
-      await tester.tap(find.byType(SILPrimaryButton));
+      final Finder logInButton = find.byType(MyAfyaHubPrimaryButton);
+
+      tester.ensureVisible(logInButton);
+      expect(logInButton, findsOneWidget);
+      await tester.tap(logInButton);
 
       await tester.pump(const Duration(minutes: 35));
       expect(find.text(noInternetConnection), findsOneWidget);
@@ -472,7 +316,7 @@ void main() {
                   PhoneLoginStateAction(invalidCredentials: true),
                 );
 
-                return PhoneLoginPage();
+                return MyAfyaHubPhoneLoginPage();
               },
             ));
 
@@ -504,7 +348,7 @@ void main() {
 
               EndPointsContextSubject().contexts.add(testAppContexts);
 
-              return PhoneLoginPage();
+              return MyAfyaHubPhoneLoginPage();
             },
           ),
         );
@@ -516,127 +360,71 @@ void main() {
     );
   });
 
-  testWidgets(
-    'should requestMessagingPerm for iOS',
-    (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+//   testWidgets(
+//     'should requestMessagingPerm for iOS',
+//     (WidgetTester tester) async {
+//       final Store<AppState> store =
+//           Store<AppState>(initialState: AppState.initial());
+//       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      when(baseGraphQlClientMock.callRESTAPI(
-              endpoint:
-                  'https://onboarding-testing.savannahghi.org/login_by_phone',
-              variables: <String, dynamic>{
-                'phoneNumber': '+254710000000',
-                'pin': '1234',
-                'flavour': 'CONSUMER',
-                'appVersion': APPVERSION,
-              },
-              method: httpPOST))
-          .thenAnswer(
-        (_) => Future<http.Response>.value(
-          http.Response(
-            json.encode(createUserMock()),
-            200,
-          ),
-        ),
-      );
+//       when(baseGraphQlClientMock.callRESTAPI(
+//               endpoint:
+//                   'https://onboarding-testing.savannahghi.org/login_by_phone',
+//               variables: <String, dynamic>{
+//                 'phoneNumber': '+254710000000',
+//                 'pin': '1234',
+//                 'flavour': 'CONSUMER',
+//                 'appVersion': APPVERSION,
+//               },
+//               method: httpPOST))
+//           .thenAnswer(
+//         (_) => Future<http.Response>.value(
+//           http.Response(
+//             json.encode(createUserMock()),
+//             200,
+//           ),
+//         ),
+//       );
 
-      when(baseGraphQlClientMock.toMap(any)).thenReturn(
-        <String, dynamic>{
-          'data': <String, dynamic>{
-            'phoneNumber': '+254710000000',
-            'pin': '1234',
-            'flavour': 'CONSUMER'
-          }
-        },
-      );
-      await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            EndPointsContextSubject().contexts.add(testAppContexts);
-            return PhoneLoginPage();
-          }));
-      await tester.pumpAndSettle();
+//       when(baseGraphQlClientMock.toMap(any)).thenReturn(
+//         <String, dynamic>{
+//           'data': <String, dynamic>{
+//             'phoneNumber': '+254710000000',
+//             'pin': '1234',
+//             'flavour': 'CONSUMER'
+//           }
+//         },
+//       );
+//       await buildTestWidget(
+//           tester: tester,
+//           store: store,
+//           client: baseGraphQlClientMock,
+//           widget: Builder(builder: (BuildContext context) {
+//             EndPointsContextSubject().contexts.add(testAppContexts);
+//             return MyAfyaHubPhoneLoginPage();
+//           }));
+//       await tester.pumpAndSettle();
 
-      final Finder phoneInput = find.byType(SILPhoneInput);
-      final Finder submitButton = find.byKey(phoneLoginSubmitButtonKey);
+//       final Finder phoneInput = find.byType(MyAfyaHubPhoneInput);
+//       final Finder submitButton = find.byKey(phoneLoginSubmitButtonKey);
 
-      expect(find.byType(Form), findsOneWidget);
-      expect(phoneInput, findsOneWidget);
-      expect(submitButton, findsOneWidget);
+//       expect(find.byType(Form), findsOneWidget);
+//       expect(phoneInput, findsOneWidget);
+//       expect(submitButton, findsOneWidget);
 
-      await tester.enterText(phoneInput, testPhoneNumber);
-      await tester.pumpAndSettle();
+//       await tester.enterText(phoneInput, testPhoneNumber);
+//       await tester.pumpAndSettle();
 
-      await tester.enterText(find.byKey(pinInputKey), testOTP);
-      await tester.pumpAndSettle();
+//       await tester.enterText(find.byKey(pinInputKey), testOTP);
+//       await tester.pumpAndSettle();
 
-      expect(find.text(testPhoneNumber), findsOneWidget);
+//       expect(find.text(testPhoneNumber), findsOneWidget);
 
-      await tester.tap(submitButton);
-      await tester.pumpAndSettle();
-      await tester.pumpAndSettle();
+//       await tester.tap(submitButton);
+//       await tester.pumpAndSettle();
+//       await tester.pumpAndSettle();
 
-      debugDefaultTargetPlatformOverride = null;
-    },
-  );
-
-  testWidgets(
-    'should navigate to LandingPage',
-    (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      OnboardingStrings? onboardingStrings;
-      await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            EndPointsContextSubject().contexts.add(testAppContexts);
-            onboardingStrings = OnboardingStrings.of(context);
-            return PhoneLoginPage();
-          }));
-
-      await tester.pumpAndSettle();
-
-      expect(find.text(onboardingStrings!.loginText()), findsOneWidget);
-      expect(find.byKey(backButtonToLanding), findsOneWidget);
-      await tester.tap(find.byKey(backButtonToLanding));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(LandingPage), findsOneWidget);
-    },
-  );
-
-  testWidgets(
-    'should navigate to RequestPinResetPage',
-    (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      OnboardingStrings? onboardingStrings;
-      await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            EndPointsContextSubject().contexts.add(testAppContexts);
-            onboardingStrings = OnboardingStrings.of(context);
-            return PhoneLoginPage();
-          }));
-
-      await tester.pumpAndSettle();
-
-      expect(find.text(onboardingStrings!.loginText()), findsOneWidget);
-      expect(find.byKey(resetPinKey), findsOneWidget);
-      await tester.tap(find.byKey(resetPinKey));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(RequestPinResetPage), findsOneWidget);
-    },
-  );
+//       debugDefaultTargetPlatformOverride = null;
+//     },
+//   );
 }

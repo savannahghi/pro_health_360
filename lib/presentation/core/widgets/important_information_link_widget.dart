@@ -25,8 +25,7 @@ class ImportantInformationWidget extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             importantLinkString,
-            style: TextThemes.boldSize16Text(
-                Theme.of(context).colorScheme.secondary),
+            style: TextThemes.boldSize16Text(Theme.of(context).primaryColor),
           ),
         ),
       ),

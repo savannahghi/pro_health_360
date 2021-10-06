@@ -4,9 +4,6 @@ String hasLoggedInSuccessfullyEvent(String appContext) =>
 String hasFailedToLoggingEvent(String appContext) =>
     'consumer_failed_to_login_$appContext';
 
-String hasSignedUpSuccessFullyEvent(String appContext) =>
-    'consumer_signed_up_$appContext';
-
 String hasFailedToSignupEvent(String appContext) =>
     'consumer_failed_to_signup_$appContext';
 
@@ -24,12 +21,6 @@ String hasNavigatedToLibraryPageEvent(String appContext) =>
 
 String hasUpdatedProfileSuccessfullyEvent(String appContext) =>
     'consumer_updated_profile_$appContext';
-
-String hasChangedPinSuccessfullyEvent(String appContext) =>
-    'consumer_changed_pin_$appContext';
-
-String hasResetPinSuccessfullyEvent(String appContext) =>
-    'consumer_reset_pin_$appContext';
 
 String hasSuccessfullyVerifiedContactEvent(String appContext) =>
     'consumer_success_contact_veri_$appContext';

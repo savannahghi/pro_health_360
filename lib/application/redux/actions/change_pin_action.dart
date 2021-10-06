@@ -69,14 +69,6 @@ class ChangePinAction extends ReduxAction<AppState> {
         'pin': newChangedPin,
       };
 
-      if (state.miscState!.userPin!.forgotPIN) {
-        await updateUserPin(
-            context: context,
-            pin: newChangedPin!,
-            phoneNumber: phoneNumber,
-            otp: state.miscState!.userPin!.recoveryOtp!);
-      }
-
       /// network request is made to the backend to request a PIN update/change
       final GraphQlClient _client =
           AppWrapperBase.of(context)!.graphQLClient as GraphQlClient;

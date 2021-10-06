@@ -17,12 +17,11 @@ import 'package:shared_ui_components/buttons.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/actions/change_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_page.dart';
 import '../../../../../test_helpers.dart';
 import '../../../../../test_utils.dart';
 
@@ -95,8 +94,7 @@ void main() {
       await tester.tap(find.byKey(primaryBottomSheetButtonKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(PhoneNumberLoginPage), findsOneWidget);
-      expect(find.byType(PhoneLoginPage), findsOneWidget);
+      expect(find.byType(MyAfyaHubPhoneLoginPage), findsOneWidget);
     });
 
     testWidgets('should dispatch and catch error when pins don\'t match',

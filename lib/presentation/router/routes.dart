@@ -4,7 +4,6 @@
 /// the router generator file
 class BWRoutes {
   // onboarding routes
-  static const String landing = 'landing';
   static const String phoneLogin = '/phoneLogin';
   static const String basicDetails = '/basicDetails';
   static const String verifyPhoneNo = '/verifyPhoneNo';
@@ -12,6 +11,8 @@ class BWRoutes {
   static const String termsAndConditions = '/termsAndConditions';
   static const String verifySignUpOTP = '/verifySignUpOTP';
   static const String forgotPinOtpWidget = '/forgotPinOtpWidget';
+  static const String securityQuestionsPage = '/securityQuestionsPage';
+  static const String congratulationsPage = '/congratulationsPage';
 
   static const String setPin = '/setPin';
   static const String resetPin = '/resetPin';
@@ -92,9 +93,6 @@ class BWRoutes {
   // community chat screen
   static const String communityChatScreenPage = '/CommunityChatScreenPage';
 
-  // Security questions
-  static const String securityQuestionsPage = '/securityQuestionsPage';
-
   // Answer Security Question
   static const String answerSecurityQuestionPage =
       '/answerSecurityQuestionPage';
@@ -119,7 +117,6 @@ class BWRoutes {
 }
 
 List<String> unProtectedRoutes = <String>[
-  BWRoutes.landing,
   BWRoutes.phoneLogin,
   BWRoutes.resetPin,
 ];

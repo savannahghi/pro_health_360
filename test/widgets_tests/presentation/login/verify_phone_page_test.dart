@@ -37,7 +37,8 @@ void main() {
       expect(find.text(invalidOTPString), findsOneWidget);
     });
 
-    testWidgets('confirmOTP button is clickable if input is valid',
+    testWidgets(
+        'confirmOTP button routes to Terms and Conditions if input is valid',
         (WidgetTester tester) async {
       await buildTestWidget(
           tester: tester,

@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -45,7 +47,7 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
         children: <Widget>[
           Text(
             enterOTPString,
-            style: TextThemes.boldSize16Text(Colors.blue),
+            style: TextThemes.boldSize16Text(AppColors.secondaryColor),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 70),
@@ -75,11 +77,16 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
               child: MyAfyaHubPrimaryButton(
                 customRadius: 4,
                 text: confirmOTPButtonString,
-                buttonColor:
-                    isValid ? Theme.of(context).primaryColor : Colors.grey,
-                borderColor:
-                    isValid ? Theme.of(context).primaryColor : Colors.grey,
-                onPressed: !isValid ? null : () {},
+                buttonColor: isValid ? AppColors.secondaryColor : Colors.grey,
+                borderColor: isValid ? AppColors.secondaryColor : Colors.grey,
+                onPressed: !isValid
+                    ? null
+                    : () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          BWRoutes.termsAndConditions,
+                        );
+                      },
               ),
             ),
           )
