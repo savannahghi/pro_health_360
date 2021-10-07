@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
+import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -18,6 +20,7 @@ import 'package:myafyahub/presentation/help_center/pages/help_center_page.dart';
 import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
 import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
+import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
@@ -360,5 +363,30 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<MyHealthPage>;
     expect(route, isA<MaterialPageRoute<MyHealthPage>>());
     expect(route.builder(context), isA<MyHealthPage>());
+  });
+  test('Test router returns MyHealthDiaryPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.myHealthDiaryPage);
+
+    final MaterialPageRoute<MyHealthDiaryPage> route =
+        routeGenerator(settings) as MaterialPageRoute<MyHealthDiaryPage>;
+    expect(route, isA<MaterialPageRoute<MyHealthDiaryPage>>());
+    expect(route.builder(context), isA<MyHealthDiaryPage>());
+  });
+  test('Test router returns UserProfilePage', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.userProfilePage);
+    final MaterialPageRoute<UserProfilePage> route =
+        routeGenerator(settings) as MaterialPageRoute<UserProfilePage>;
+    expect(route, isA<MaterialPageRoute<UserProfilePage>>());
+    expect(route.builder(context), isA<UserProfilePage>());
+  });
+  test('Test router returns ClinicInformationPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.clinicInformationPage);
+    final MaterialPageRoute<ClinicInformationPage> route =
+        routeGenerator(settings) as MaterialPageRoute<ClinicInformationPage>;
+    expect(route, isA<MaterialPageRoute<ClinicInformationPage>>());
+    expect(route.builder(context), isA<ClinicInformationPage>());
   });
 }

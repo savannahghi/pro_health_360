@@ -19,8 +19,8 @@ class SavedPostPage extends StatelessWidget {
       appBar: MyAfyaHubAppBar(
         title: savedText,
         leadingWidget: SvgPicture.asset(
-          backIcon,
-          color: AppColors.secondaryColor,
+            backIcon,
+            color: AppColors.secondaryColor,
         ),
       ),
       backgroundColor: Theme.of(context).backgroundColor,

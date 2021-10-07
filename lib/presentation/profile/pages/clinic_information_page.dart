@@ -20,16 +20,10 @@ class ClinicInformationPage extends StatelessWidget {
   /// It takes in required [contactNumber], [CHV], [treatmentBuddy], [age],
   /// and [keyProvider] parameters of type String
   ///
-  const ClinicInformationPage(
-      {required this.contactNumber,
-      required this.CHV,
-      required this.treatmentBuddy,
-      required this.keyProvider});
-
-  final String contactNumber;
-  final String CHV;
-  final String treatmentBuddy;
-  final String keyProvider;
+  final String contactNumber = '0712345678';
+  final String CHV = 'Name';
+  final String treatmentBuddy = 'Name';
+  final String keyProvider = 'Name';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -611,7 +611,10 @@ const String myHealthNextRefill = 'Next refill';
 const String myHealthNextRefillDate = '19';
 const String myHealthNextRefillMonth = 'Aug';
 const String myHealthPageHealthDiary = 'My Health Diary';
-const String myHealthPageAppointments = 'My Health';
+const String myHealthPageAppointments = 'Appointments';
+const String feelingString = 'Feeling';
+const String textString = 'Text';
+const String addDiaryString = 'Add diary entry';
 
 //Appointments
 const String appointmentsTitle = 'Appointments';

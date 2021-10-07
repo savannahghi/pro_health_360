@@ -20,9 +20,10 @@ class PersonalInformationPage extends StatelessWidget {
       appBar: MyAfyaHubAppBar(
         title: myProfileString,
         leadingWidget: SvgPicture.asset(
-          backIcon,
-          color: AppColors.secondaryColor,
-        ),
+            backIcon,
+            color: AppColors.secondaryColor,
+          ),
+        
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(

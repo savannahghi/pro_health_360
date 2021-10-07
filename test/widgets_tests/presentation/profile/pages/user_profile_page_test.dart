@@ -19,15 +19,7 @@ void main() {
         home: Scaffold(
           body: Builder(
             builder: (BuildContext context) {
-              return UserProfilePage(
-                userInitials: 'WJ',
-                name: 'Waikiki',
-                userCCCNumber: '12345678',
-                age: '20',
-                phoneNumber: '0712345678',
-                home: 'Ruaka',
-                userProfileItems: userProfileItems,
-              );
+              return UserProfilePage();
             },
           ),
         ),

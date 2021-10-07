@@ -15,9 +15,10 @@ class AppointmentsPage extends StatelessWidget {
       appBar: MyAfyaHubAppBar(
         title: appointmentsTitle,
         leadingWidget: SvgPicture.asset(
-          backIcon,
-          color: AppColors.secondaryColor,
-        ),
+            backIcon,
+            color: AppColors.secondaryColor,
+          ),
+        
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(

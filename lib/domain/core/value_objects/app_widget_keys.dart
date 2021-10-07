@@ -278,3 +278,4 @@ const Key sadMoodKey = Key('sad_mood_key');
 const Key verySadMoodKey = Key('very_sad_mood_key');
 const Key keyPadWidgetKey = Key('key_pad_widget_key');
 const Key keyPadBackSpaceButtonKey = Key('key_pad_back_space_button_key');
+const Key appBarBackButtonKey = Key('app_bar_back_button_key');

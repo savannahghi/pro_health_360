@@ -104,6 +104,15 @@ class BWRoutes {
 
   // Feed
   static const String myAfyaHubFeedPage = '/feedPage';
+
+  // Health Diary Page
+  static const String myHealthDiaryPage = '/healthDiaryPage';
+
+  // User Profile Page
+  static const String userProfilePage = '/userProfilePage';
+
+//Clinic Information Page
+  static const String clinicInformationPage = '/clinicInformationPage';
 }
 
 List<String> unProtectedRoutes = <String>[
