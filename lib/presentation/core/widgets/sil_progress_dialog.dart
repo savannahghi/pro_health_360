@@ -1,6 +1,9 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:flutter/material.dart';
 
 const BoxDecoration _DefaultDecoration = BoxDecoration(
   color: AppColors.whiteColor,

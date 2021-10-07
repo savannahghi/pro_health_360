@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,19 +44,19 @@ abstract class LocationInteface {
 //     }
 //   }
 
-  // Future<String> getAddressFromLatLng(
-  //     LatLng location, http.Client client) async {
+// Future<String> getAddressFromLatLng(
+//     LatLng location, http.Client client) async {
 
-  //   String request =
-  //       'https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=$kPLACES_API_KEY';
+//   String request =
+//       'https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=$kPLACES_API_KEY';
 
-  //   http.Response response = await client.get(Uri.parse(request));
-  //   if (response.statusCode == 200) {
-  //     dynamic locationData =
-  //         json.decode(response.body)['results'].first['formatted_address'];
+//   http.Response response = await client.get(Uri.parse(request));
+//   if (response.statusCode == 200) {
+//     dynamic locationData =
+//         json.decode(response.body)['results'].first['formatted_address'];
 
-  //     return locationData as String;
-  //   } else {
-  //     throw Exception('Failed to load address');
-  //   }
+//     return locationData as String;
+//   } else {
+//     throw Exception('Failed to load address');
+//   }
 // }

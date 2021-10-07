@@ -1,7 +1,22 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/entities.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_bio_data_action.dart';
@@ -12,16 +27,6 @@ import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dar
 import 'package:myafyahub/domain/core/entities/login/basic_details_model.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
-import 'package:domain_objects/value_objects.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:domain_objects/entities.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:http/http.dart' as http;
-
 import '../../../../../mock_image_httpclient.dart';
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';

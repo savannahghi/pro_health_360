@@ -1,12 +1,17 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/important_information_link_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/custom_text_field.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
 import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class CongratulationsPage extends StatefulWidget {
   final String duration;

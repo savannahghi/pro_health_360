@@ -1,10 +1,11 @@
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/basic_details_model.dart';
-
-import 'package:flutter_test/flutter_test.dart';
-import 'package:domain_objects/value_objects.dart';
-
 import '../../../../mocks.dart';
 
 void main() {

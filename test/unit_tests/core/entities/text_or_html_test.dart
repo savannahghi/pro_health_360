@@ -1,5 +1,8 @@
-import 'package:myafyahub/domain/core/entities/core/text_or_html.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/entities/core/text_or_html.dart';
 
 void main() {
   test('TextOrHtml should determine whether text is html or not', () {

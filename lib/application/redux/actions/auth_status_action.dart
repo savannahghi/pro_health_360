@@ -1,6 +1,9 @@
+// Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:domain_objects/entities.dart';
+
+// Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
 
 class AuthStatusAction extends ReduxAction<AppState> {
   AuthStatusAction({
@@ -15,15 +18,15 @@ class AuthStatusAction extends ReduxAction<AppState> {
     this.isChangePin,
   });
 
-  final String? idToken;
-  final String? expiresAt;
-  final String? refreshToken;
-  final bool? isAnonymous;
   final bool? canExperiment;
-  final bool? signedIn;
-  final String? uid;
-  final String? signedInTime;
+  final String? expiresAt;
+  final String? idToken;
+  final bool? isAnonymous;
   final bool? isChangePin;
+  final String? refreshToken;
+  final bool? signedIn;
+  final String? signedInTime;
+  final String? uid;
 
   @override
   AppState reduce() {

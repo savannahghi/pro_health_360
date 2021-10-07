@@ -1,26 +1,27 @@
-import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-
-import 'package:myafyahub/domain/core/entities/core/edit_profile_page_behavior_object.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/profile/widgets/text_field_label.dart';
-
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
-import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/edit_profile_page_behavior_object.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/profile/widgets/text_field_label.dart';
 
 class EditProfileForm extends StatefulWidget {
   @override
@@ -28,25 +29,23 @@ class EditProfileForm extends StatefulWidget {
 }
 
 class _EditProfileFormState extends State<EditProfileForm> {
-  late String firstNameFromState;
-  late String lastNameFromState;
-  late String displayNameFromState;
-  late Gender genderFromState;
   late String dateOfBirthFromState;
+  late String displayNameFromState;
+  EditProfilePageBehaviorObject editProfilePageBehaviorObject =
+      EditProfilePageBehaviorObject();
+
   TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
-
+  late String firstNameFromState;
   String? gender;
-
+  TextEditingController genderController = TextEditingController();
+  late Gender genderFromState;
+  TextEditingController lastNameController = TextEditingController();
+  late String lastNameFromState;
   bool launched = false;
 
   final FocusNode _firstNameFocusNode = FocusNode();
-  final GlobalKey<FormState> _userProfileFormKey = GlobalKey<FormState>();
   final FocusNode _lastNameFocusNode = FocusNode();
-
-  EditProfilePageBehaviorObject editProfilePageBehaviorObject =
-      EditProfilePageBehaviorObject();
+  final GlobalKey<FormState> _userProfileFormKey = GlobalKey<FormState>();
 
   @override
   void didChangeDependencies() {
@@ -177,7 +176,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                       );
                     }
                   },
-                  buttonColor: Theme.of(context).accentColor,
+                  buttonColor: Theme.of(context).colorScheme.secondary,
                   text: 'Save & Continue',
                 ),
               )

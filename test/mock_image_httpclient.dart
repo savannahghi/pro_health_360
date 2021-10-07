@@ -1,6 +1,8 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
 // Returns a mock HTTP client that responds with an image to all requests.

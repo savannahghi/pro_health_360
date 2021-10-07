@@ -1,9 +1,13 @@
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
+import 'package:sqflite/sqflite.dart';
+
+// Project imports:
 import 'package:myafyahub/infrastructure/repository/database_base.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:myafyahub/infrastructure/repository/sqlite.dart';
-import 'package:sqflite/sqflite.dart';
 
 /// [BeWellDatabaseMobile] is the main entry for interacting with the database for My Afya Hub mobile
 /// It uses sqlite which a common RDMS. Unlike other key:value storage, sqlite offers

@@ -1,15 +1,19 @@
-import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
-import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
 import 'package:shared_ui_components/verify_phone_otp.dart';
 
+// Project imports:
+import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/signup/verify_signup_otp.dart';
 import '../../../../test_helpers.dart';
 import '../../../../test_utils.dart';
 

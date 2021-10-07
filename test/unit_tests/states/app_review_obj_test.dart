@@ -1,5 +1,8 @@
-import 'package:myafyahub/domain/core/entities/core/app_review_obj.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/entities/core/app_review_obj.dart';
 
 void main() {
   test('should convert from and to json', () {

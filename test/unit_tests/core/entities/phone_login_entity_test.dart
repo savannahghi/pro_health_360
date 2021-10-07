@@ -1,5 +1,8 @@
-import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
 
 void main() {
   final Map<String, dynamic> data = <String, dynamic>{

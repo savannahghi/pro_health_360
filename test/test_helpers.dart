@@ -1,21 +1,23 @@
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-
-import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:flutter_config/flutter_config.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'widgets_tests/shared/utils_test.mocks.dart';
 
 final BaseGraphQlClient baseGraphQlClientMock = BaseGraphQlClient();

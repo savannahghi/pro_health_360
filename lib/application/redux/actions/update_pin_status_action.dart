@@ -1,7 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
-import 'package:flutter/material.dart';
 
 class UpdatePinStatusAction extends ReduxAction<AppState> {
   UpdatePinStatusAction({
@@ -13,12 +18,12 @@ class UpdatePinStatusAction extends ReduxAction<AppState> {
     this.controller,
   });
 
+  final TextEditingController? controller;
   final bool? forgotPIN;
   final bool? invalidPin;
   final bool? isChangingPin;
   final String? pin;
   final String? recoveryOtp;
-  final TextEditingController? controller;
 
   @override
   AppState reduce() {

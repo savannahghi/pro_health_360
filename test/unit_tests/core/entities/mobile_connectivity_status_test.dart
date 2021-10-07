@@ -1,8 +1,13 @@
+// Flutter imports:
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/entities/core/mobile_connectivity_status.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

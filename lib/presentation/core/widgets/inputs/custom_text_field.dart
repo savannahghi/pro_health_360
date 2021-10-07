@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myafyahub/domain/core/value_objects/types.dart';
-import 'package:myafyahub/presentation/core/widgets/inputs/hints.dart';
+
+// Package imports:
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/types.dart';
+import 'package:myafyahub/presentation/core/widgets/inputs/hints.dart';
 
 /// A wrapper for [TextFormField] that contains options for a field label.
 ///
@@ -125,7 +130,8 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).accentColor),
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.secondary),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
             ),
             errorBorder: const OutlineInputBorder(
@@ -136,7 +142,7 @@ class CustomTextField extends StatelessWidget {
               borderSide: BorderSide(color: red),
               borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
-            focusColor: Theme.of(context).accentColor,
+            focusColor: Theme.of(context).colorScheme.secondary,
           ),
           validator: validator,
           inputFormatters: inputFormatters,

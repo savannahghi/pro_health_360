@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_header_scaffold.dart';
+
+// Package imports:
 import 'package:shared_themes/spaces.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_header_scaffold.dart';
 
 /// [MyAfyaHubOnboardingScaffold] a scaffold used during the onboarding process
 class MyAfyaHubOnboardingScaffold extends StatelessWidget {

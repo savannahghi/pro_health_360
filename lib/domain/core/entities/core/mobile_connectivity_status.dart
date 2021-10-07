@@ -1,6 +1,9 @@
+// Package imports:
+import 'package:connectivity/connectivity.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/connectivity_helper.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
-import 'package:connectivity/connectivity.dart';
 
 class MobileConnectivityStatus extends ConnectivityStatus {
   MobileConnectivityStatus();

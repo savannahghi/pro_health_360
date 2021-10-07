@@ -1,7 +1,11 @@
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 /// [CustomTextBody] is a shared widget to display the description on the [ListItemCard] widget
 ///

@@ -1,17 +1,21 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 
 class AppTheme {
   static ThemeData getAppTheme(List<AppContext> contexts) {
     return ThemeData(
         fontFamily: 'Raleway',
-        primaryColor: AppColors.themeColors['primaryColor'],
-        primaryColorDark: AppColors.themeColors['primaryDark'],
-        accentColor: AppColors.themeColors['accentColor'],
-        backgroundColor: AppColors.themeColors['backgroundColor'],
+        primaryColor: AppColors.themeColors.primaryColor,
+        primaryColorDark: AppColors.themeColors.primaryDark,
+        colorScheme: ColorScheme.light(
+            primary: AppColors.themeColors.primaryColor,
+            secondary: AppColors.themeColors.accentColor),
+        backgroundColor: AppColors.themeColors.backgroundColor,
         textSelectionTheme: TextSelectionThemeData(
-          selectionColor: AppColors.themeColors['textSelectionColor'],
+          selectionColor: AppColors.themeColors.textSelectionColor,
         )).copyWith(
       pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
@@ -20,8 +24,9 @@ class AppTheme {
           }),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            primary: AppColors.primaryColor,
-            textStyle: const TextStyle(color: Colors.white)),
+          primary: AppColors.primaryColor,
+          textStyle: const TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
@@ -50,13 +55,13 @@ class AppColors {
   static const Color secondaryColor = Color.fromARGB(255, 22, 20, 74);
   static const Color primaryColorLite = Color(0xFFF2E8FF);
   static const Color redColor = Color(0xFFE41518);
-  static Map<String, Color> themeColors = <String, Color>{
-    'primaryColor': primaryColor,
-    'primaryDark': primaryColor,
-    'accentColor': accentColor,
-    'backgroundColor': lightGreyBackgroundColor,
-    'textSelectionColor': const Color(0xff0e2153),
-  };
+  static ThemeColors themeColors = ThemeColors(
+    primaryColor,
+    primaryColor,
+    accentColor,
+    lightGreyBackgroundColor,
+    const Color(0xff0e2153),
+  );
   static const Color superLightGreyColor = Color(0xFFF2F2F2);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color darkGreyTextColor = Color(0xFF797979);
@@ -73,4 +78,20 @@ class AppColors {
   static const Color darkGreyBackgroundColor = Color(0xffebebeb);
   static const Color greenHappyColor = Color(0xFF00BE33);
   static const Color mehMoodColor = Color(0xFF857C00);
+}
+
+class ThemeColors {
+  final Color primaryColor;
+  final Color primaryDark;
+  final Color accentColor;
+  final Color backgroundColor;
+  final Color textSelectionColor;
+
+  ThemeColors(
+    this.primaryColor,
+    this.primaryDark,
+    this.accentColor,
+    this.backgroundColor,
+    this.textSelectionColor,
+  );
 }

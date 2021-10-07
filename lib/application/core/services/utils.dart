@@ -1,19 +1,38 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/redux/actions/app_review_action.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/entities.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:launch_review/launch_review.dart';
+import 'package:misc_utilities/enums.dart';
+import 'package:misc_utilities/misc.dart';
+import 'package:misc_utilities/number_constants.dart';
+import 'package:misc_utilities/responsive_widget.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:unicons/unicons.dart';
+import 'package:user_profile/contact_utils.dart';
 
+// Project imports:
+import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/redux/actions/app_review_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -28,23 +47,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
 import 'package:myafyahub/presentation/notifications/notification_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
-import 'package:launch_review/launch_review.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:misc_utilities/enums.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/number_constants.dart';
-import 'package:misc_utilities/responsive_widget.dart';
-import 'package:user_profile/contact_utils.dart';
-import 'package:unicons/unicons.dart';
-
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -372,7 +374,7 @@ void genericBottomSheet({
                       child: SILNoBorderButton(
                         buttonKey: secondaryBottomSheetButtonKey,
                         text: secondaryActionText ?? 'Close',
-                        textColor: buttonColor ?? Theme.of(context).accentColor,
+                        textColor: buttonColor ?? Theme.of(context).colorScheme.secondary,
                         onPressed: secondaryActionCallback ??
                             () {
                               Navigator.pop(context);

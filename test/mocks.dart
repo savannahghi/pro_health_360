@@ -1,17 +1,26 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:io' as io;
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:platform/platform.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:sqflite/sqflite.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
@@ -19,10 +28,6 @@ import 'package:myafyahub/domain/core/entities/core/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
-import 'package:platform/platform.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sqflite/sqflite.dart';
-
 import 'test_helpers.dart';
 import 'test_utils.dart';
 import 'tests_resources/shared_resources.dart';
@@ -439,7 +444,7 @@ class MockGraphQlClientForFailures extends Mock implements GraphQlClient {
       );
     }
 
-    return Future<http.Response>.value();
+    return Future<http.Response>.value(null);
   }
 }
 
@@ -2926,3 +2931,6 @@ final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
     ],
   ),
 ];
+
+
+// ignore_for_file: avoid_redundant_argument_values, null_argument_to_non_null_type

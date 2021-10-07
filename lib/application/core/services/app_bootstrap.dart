@@ -1,6 +1,22 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter_config/flutter_config.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/remote_config_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -11,16 +27,6 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_app.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_config/flutter_config.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:shared_themes/text_themes.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

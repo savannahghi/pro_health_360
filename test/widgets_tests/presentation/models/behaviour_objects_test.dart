@@ -1,9 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 void main() {
   group('should test behavior subjects', () {

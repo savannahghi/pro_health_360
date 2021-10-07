@@ -1,11 +1,15 @@
-import 'package:async_redux/async_redux.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/community/community_list_item.dart';
 import 'package:unicons/unicons.dart';
 
+// Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/presentation/community/community_list_item.dart';
 import '../../../test_helpers.dart';
 
 void main() {

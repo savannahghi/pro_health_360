@@ -1,9 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import '../../helpers.dart';
 
 /// [ProfileInitialsItem] used within [MyAfyaHubAppBar] to display username initials.

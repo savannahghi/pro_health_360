@@ -1,9 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:unicons/unicons.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-
-import 'package:flutter/material.dart';
-import 'package:unicons/unicons.dart';
 
 class ProfileItems {
   const ProfileItems({

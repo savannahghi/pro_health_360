@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
 
+// Project imports:
+import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
 import '../../../mocks.dart';
 
 void main() {

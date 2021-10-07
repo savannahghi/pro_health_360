@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
 
 ConnectivityStatus getConnectivityStatus() =>

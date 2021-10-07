@@ -1,6 +1,9 @@
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
 class BeWellScaffold extends StatelessWidget {
   const BeWellScaffold({

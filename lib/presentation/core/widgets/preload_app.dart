@@ -1,36 +1,31 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/core/services/connectivity_helper.dart';
-import 'package:myafyahub/application/core/services/localization.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import 'package:rxdart/rxdart.dart';
-import 'package:myafyahub/presentation/router/router_generator.dart';
-
-import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
-import 'package:shared_ui_components/platform_loader.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 import 'package:uni_links/uni_links.dart';
+
+// Project imports:
+import 'package:myafyahub/application/core/services/connectivity_helper.dart';
+import 'package:myafyahub/application/core/services/localization.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/router/router_generator.dart';
 
 bool initialUriIsHandled = false;
 
 class PreLoadApp extends StatefulWidget with WidgetsBindingObserver {
-  final String appName;
-  final GlobalKey<NavigatorState> appNavigatorKey;
-  final List<NavigatorObserver> appNavigatorObservers;
-  final AppState appState;
-  final Store<AppState> appStore;
-  final List<AppContext> thisAppContexts;
-  final BuildContext entryPointContext;
-
   const PreLoadApp({
     Key? key,
     required this.thisAppContexts,
@@ -41,21 +36,23 @@ class PreLoadApp extends StatefulWidget with WidgetsBindingObserver {
     required this.appState,
     required this.appStore,
   }) : super(key: key);
+
+  final String appName;
+  final GlobalKey<NavigatorState> appNavigatorKey;
+  final List<NavigatorObserver> appNavigatorObservers;
+  final AppState appState;
+  final Store<AppState> appStore;
+  final BuildContext entryPointContext;
+  final List<AppContext> thisAppContexts;
+
   @override
   _PreLoadAppState createState() => _PreLoadAppState();
 }
 
 class _PreLoadAppState extends State<PreLoadApp> {
   BehaviorSubject<String> appInitialRoute = BehaviorSubject<String>();
-  StreamSubscription<dynamic>? _sub;
 
-  @override
-  void initState() {
-    super.initState();
-    _handleIncomingLinks();
-    _handleInitialUri();
-    Connectivity().onConnectivityChanged.listen(listenForConnectivityChanges);
-  }
+  StreamSubscription<dynamic>? _sub;
 
   @override
   void didChangeDependencies() {
@@ -73,6 +70,14 @@ class _PreLoadAppState extends State<PreLoadApp> {
   void dispose() {
     _sub?.cancel();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _handleIncomingLinks();
+    _handleInitialUri();
+    Connectivity().onConnectivityChanged.listen(listenForConnectivityChanges);
   }
 
   /// Handle incoming links - the ones that the app will recieve from the OS

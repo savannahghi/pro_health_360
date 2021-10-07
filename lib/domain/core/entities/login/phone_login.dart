@@ -1,5 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
+// Package imports:
 import 'package:domain_objects/value_objects.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'phone_login.g.dart';
 

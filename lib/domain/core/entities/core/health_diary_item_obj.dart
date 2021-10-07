@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:json_annotation/json_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
 
 part 'health_diary_item_obj.g.dart';

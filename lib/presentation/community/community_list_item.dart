@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+
+// Package imports:
 import 'package:shared_themes/text_themes.dart';
 import 'package:unicons/unicons.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 /// List items used within the coummunity page to show incoming messages.
 class CommunityListItem extends StatelessWidget {
@@ -115,7 +120,8 @@ class CommunityListItem extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0),
                         child: CircleAvatar(
-                          backgroundColor: Theme.of(context).accentColor,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary,
                           radius: 15,
                           child: Text(
                             '$unreadNotificationCount',

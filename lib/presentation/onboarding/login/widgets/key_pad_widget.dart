@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class KeyPadWidget extends StatefulWidget {
   /// [KeyPadWidget] is a shared widget used in [PINInputPage]

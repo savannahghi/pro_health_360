@@ -1,8 +1,13 @@
-import 'package:myafyahub/domain/core/value_objects/number_constants.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:misc_utilities/number_constants.dart';
 import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/number_constants.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class ProfileSeparator extends StatelessWidget {
   final String text;
@@ -20,7 +25,8 @@ class ProfileSeparator extends StatelessWidget {
         child: Text(
           text.toUpperCase(),
           style: TextThemes.boldSize12Text().copyWith(
-              color: Theme.of(context).accentColor, fontSize: number8),
+              color: Theme.of(context).colorScheme.secondary,
+              fontSize: number8),
         ),
       ),
     );

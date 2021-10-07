@@ -1,14 +1,19 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
+// Project imports:
 import 'mocks.dart';
 
 http.StreamedResponse simpleResponse({required String body, int? status}) {

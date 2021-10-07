@@ -1,5 +1,8 @@
-import 'package:myafyahub/presentation/router/routes.dart';
+// Package imports:
 import 'package:rxdart/subjects.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/router/routes.dart';
 
 /// holds back routes for certain pages such as [CreatePINPage] that one can
 /// get to via different routes and may want to go back

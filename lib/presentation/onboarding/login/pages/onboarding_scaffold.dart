@@ -1,7 +1,12 @@
-import 'package:myafyahub/presentation/onboarding/login/widgets/onboarding_page_header.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:misc_utilities/number_constants.dart';
+
+// Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/onboarding_page_header.dart';
 
 /// [OnboardingScaffold] Page is where a user inputs their phone number and PIN and press `Continue` to Logging
 

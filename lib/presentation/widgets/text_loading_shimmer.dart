@@ -1,7 +1,12 @@
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shimmer/shimmer.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class TextLoadingShimmer extends StatelessWidget {
   List<Widget> _getLine() => <Widget>[

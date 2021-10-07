@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/presentation/notifications/notification_details.dart';
 
+// Project imports:
+import 'package:myafyahub/presentation/notifications/notification_details.dart';
 import '../../../mocks.dart';
 
 void main() {

@@ -1,15 +1,21 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:rxdart/rxdart.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:rxdart/rxdart.dart';
 
 /// [MyAfyaHubCountryPicker] is used in [MyAfyaHubPhoneLoginPage] select Country Code
 ///
 /// It takes in a required [onChanged] parameter
 class MyAfyaHubCountryPicker extends StatefulWidget {
-  const MyAfyaHubCountryPicker({Key? key, required this.onChanged}) : super(key: key);
+  const MyAfyaHubCountryPicker({Key? key, required this.onChanged})
+      : super(key: key);
 
   final Function onChanged;
 
@@ -51,9 +57,8 @@ class _MyAfyaHubCountryPickerState extends State<MyAfyaHubCountryPicker> {
                     fontWeight: FontWeight.w300,
                     color: AppColors.secondaryColor,
                     fontSize: 15),
-                ),
               ),
-            
+            ),
             const SizedBox(
               width: 10,
             ),

@@ -1,5 +1,8 @@
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 part 'event_obj.freezed.dart';
 part 'event_obj.g.dart';

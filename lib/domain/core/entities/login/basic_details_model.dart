@@ -1,15 +1,15 @@
+// Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-
+import 'package:domain_objects/entities.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/subjects.dart';
 
-import 'package:myafyahub/application/redux/states/app_state.dart';
+// Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 enum BasicDetailType { firstName, lastName, gender, dateOfBirth }
 

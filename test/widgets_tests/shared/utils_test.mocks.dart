@@ -2,15 +2,17 @@
 // in bewell/test/widgets_tests/shared/utils_test.dart.
 // Do not manually edit this file.
 
+// Dart imports:
 import 'dart:async' as _i6;
 import 'dart:convert' as _i8;
 import 'dart:typed_data' as _i4;
 
+// Package imports:
+import 'package:flutter_graphql_client/src/flutter_graphql_client.dart' as _i5;
 import 'package:http/src/base_request.dart' as _i7;
 import 'package:http/src/response.dart' as _i2;
 import 'package:http/src/streamed_response.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:flutter_graphql_client/src/flutter_graphql_client.dart' as _i5;
 
 // ignore_for_file: comment_references
 // ignore_for_file: unnecessary_parenthesis

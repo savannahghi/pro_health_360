@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:rxdart/rxdart.dart';
 
 class StartVisitIdentificationOTP {
@@ -8,6 +9,7 @@ class StartVisitIdentificationOTP {
   StartVisitIdentificationOTP._internal();
 
   BehaviorSubject<bool> codeHasTakenLong = BehaviorSubject<bool>.seeded(false);
+
   /// [StartVisitIdentificationOTP]
   BehaviorSubject<String> startVisitIdentificationOTP =
       BehaviorSubject<String>();

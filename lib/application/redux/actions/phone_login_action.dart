@@ -1,22 +1,26 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:user_feed/user_feed.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:user_feed/user_feed.dart';
 
+// Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend

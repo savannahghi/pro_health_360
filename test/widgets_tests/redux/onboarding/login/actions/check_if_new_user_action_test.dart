@@ -1,19 +1,24 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/actions/check_if_new_user_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:http/http.dart' as http;
-
 import '../../../../../mock_image_httpclient.dart';
 import '../../../../../test_helpers.dart';
 

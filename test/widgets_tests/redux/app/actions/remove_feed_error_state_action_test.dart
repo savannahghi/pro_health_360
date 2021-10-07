@@ -1,12 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_ui_components/buttons.dart';
 
+// Project imports:
 import 'package:myafyahub/application/redux/actions/remove_feed_error_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-
-import 'package:shared_ui_components/buttons.dart';
 
 void main() {
   late Store<AppState> store;

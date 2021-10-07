@@ -1,6 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/presentation/community/community_list_page.dart';
 
+// Project imports:
+import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/feed_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 

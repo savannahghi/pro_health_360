@@ -1,13 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:dart_fcm/dart_fcm.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+// Project imports:
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
-
-import 'package:dart_fcm/dart_fcm.dart';
 
 class LogoutAction extends ReduxAction<AppState> {
   LogoutAction({required this.navigationCallback, required this.context});

@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
 
 /// Determines whether the [value] is either text or html

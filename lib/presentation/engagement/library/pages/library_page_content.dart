@@ -1,19 +1,21 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-
 import 'package:myafyahub/presentation/engagement/library/pages/library_page_articles_list.dart';
 import 'package:myafyahub/presentation/engagement/library/widgets/featured_content.dart';
 
-import 'package:flutter/material.dart';
-
 class LibraryPageContent extends StatelessWidget {
+  const LibraryPageContent({Key? key, required this.libContent})
+      : super(key: key);
+
   /// [libContent] are the library items. This list should never be empty.If by any chance it's empty
   /// and the widget is drawn, it means there is a bug in the initial check step at [feed.dart] -> [Library]
   final List<dynamic> libContent;
 
-  const LibraryPageContent({Key? key, required this.libContent})
-      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(

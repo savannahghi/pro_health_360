@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 
 /// [PINInputField] is a shared widget to input authentication PIN
@@ -41,7 +44,7 @@ class PINInputField extends StatelessWidget {
         focusNode: focusNode,
         highlightColor: Colors.blue,
         defaultBorderColor: Theme.of(context).primaryColor,
-        hasTextBorderColor: Theme.of(context).accentColor,
+        hasTextBorderColor: Theme.of(context).colorScheme.secondary,
         maxLength: maxLength ?? 4,
         maskCharacter: '⚫',
         pinBoxWidth: pinBoxWidth!,

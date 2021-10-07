@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class ProfileHealthDetailsWidget extends StatelessWidget {
   ///[ProfileHealthDetailsWidget] displays profile health details widget

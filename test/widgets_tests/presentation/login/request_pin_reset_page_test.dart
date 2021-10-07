@@ -1,13 +1,15 @@
+// Dart imports:
 import 'dart:io';
 
+// Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/request_pin_reset.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_ui_components/inputs.dart';
 
+// Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/request_pin_reset.dart';
 import '../../../mock_image_httpclient.dart';
 import '../../../test_helpers.dart';
 

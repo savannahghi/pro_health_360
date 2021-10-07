@@ -1,7 +1,12 @@
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 final List<LocalizationsDelegate<dynamic>> localizationDelegates =
     <LocalizationsDelegate<dynamic>>[

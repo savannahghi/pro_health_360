@@ -14,7 +14,7 @@ packages:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.1"
+    version: "1.7.2"
   app_wrapper:
     dependency: "direct main"
     description:
@@ -35,7 +35,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.8.1"
   async_redux:
     dependency: "direct main"
     description:
@@ -161,7 +161,7 @@ packages:
       name: charcode
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.1"
   checked_yaml:
     dependency: transitive
     description:
@@ -357,7 +357,7 @@ packages:
       name: domain_objects
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.27-nullsafety"
+    version: "0.0.31-nullsafety"
   dots_indicator:
     dependency: transitive
     description:
@@ -930,7 +930,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.7.0"
   mime:
     dependency: transitive
     description:
@@ -1119,7 +1119,7 @@ packages:
       name: photo_view
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.1"
+    version: "0.13.0"
   pin_code_text_field:
     dependency: "direct main"
     description:
@@ -1259,7 +1259,7 @@ packages:
       name: shared_themes
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   shared_ui_components:
     dependency: "direct main"
     description:
@@ -1411,21 +1411,21 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.16.8"
+    version: "1.17.10"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.2"
   test_core:
     dependency: transitive
     description:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.19"
+    version: "0.4.0"
   time:
     dependency: transitive
     description:
@@ -1551,14 +1551,14 @@ packages:
       name: user_feed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.43-nullsafety"
+    version: "0.1.45-nullsafety"
   user_profile:
     dependency: "direct main"
     description:
       name: user_profile
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.22-nullsafety"
+    version: "0.1.23-nullsafety"
   uuid:
     dependency: transitive
     description:

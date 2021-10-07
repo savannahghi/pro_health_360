@@ -1,10 +1,13 @@
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:user_feed/user_feed.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/value_objects/extensions.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:user_feed/user_feed.dart';
 
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';

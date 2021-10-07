@@ -1,5 +1,8 @@
-import 'package:myafyahub/application/redux/states/app_error_state.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
+import 'package:myafyahub/application/redux/states/app_error_state.dart';
 
 void main() {
   test('should convert from json', () {

@@ -1,14 +1,17 @@
-import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/help_center/widgets/html_wrapper.dart';
+// Flutter imports:
 import 'package:flutter/gestures.dart';
-
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
+// Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/help_center/widgets/html_wrapper.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

@@ -1,5 +1,7 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
+// Project imports:
 import 'tests_resources/shared_resources.dart';
 
 Future<void> fireEvent(WidgetTester tester) async {

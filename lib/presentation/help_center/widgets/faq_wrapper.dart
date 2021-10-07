@@ -1,6 +1,15 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:misc_utilities/misc.dart';
+import 'package:user_feed/user_feed.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/faq_list_action.dart';
@@ -12,13 +21,9 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/widgets/text_loading_shimmer.dart';
-import 'package:flutter/material.dart';
-import 'package:user_feed/user_feed.dart';
-import 'package:misc_utilities/misc.dart';
-
 import 'package:myafyahub/presentation/help_center/help_center_question_card.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/widgets/text_loading_shimmer.dart';
 
 class FAQWrapper extends StatefulWidget {
   @override

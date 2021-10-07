@@ -1,23 +1,27 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
-import 'package:debug_logger/debug_logger.dart';
-import 'package:html/dom.dart' as dom;
-import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
-import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_html/html_parser.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dart_fcm/dart_fcm.dart';
+import 'package:debug_logger/debug_logger.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_html/html_parser.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:html/dom.dart' as dom;
 import 'package:rxdart/rxdart.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+// Project imports:
+import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-
+import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'onboarding_utils.dart';
 
 /// [connectivityHelper] checks for changes in connection from the operating
@@ -108,10 +112,10 @@ void handleDeepLink({
   //if its the first deep link being handled
   if (isInitialUri) {
     final BehaviorSubject<String> appInitialRoute = BehaviorSubject<String>();
-    //if user is signedin navigate to the deep link route
+    //if user is signed in navigate to the deep link route
     if (signedIn) {
       //we navigate via the initial route and not via GlobalKey<NavigatorState>
-      //because GlobalKey<NaigatorState> is null at this point it has not been configured by
+      //because GlobalKey<NavigatorState> is null at this point it has not been configured by
       //MaterialApp yet
       appInitialRoute.add(route);
       //set deep link is handled to true

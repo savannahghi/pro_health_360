@@ -1,20 +1,24 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart' show AppContext;
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
 
+// Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
@@ -26,10 +30,10 @@ import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import '../../../test_utils.dart';

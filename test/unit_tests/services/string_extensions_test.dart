@@ -1,5 +1,8 @@
-import 'package:myafyahub/domain/core/value_objects/extensions.dart';
+// Package imports:
 import 'package:test/test.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/extensions.dart';
 
 void main() {
   group('Capitalize', () {

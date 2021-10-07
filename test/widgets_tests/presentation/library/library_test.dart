@@ -1,7 +1,18 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
@@ -10,12 +21,6 @@ import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/pages/library_page_content.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 import '../../../mock_image_httpclient.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

@@ -1,9 +1,11 @@
-import 'package:myafyahub/application/core/services/remote_config_service.dart';
+// Package imports:
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
 
+// Project imports:
+import 'package:myafyahub/application/core/services/remote_config_service.dart';
 import '../../mock_utils.dart';
 import '../../mocks.dart';
 

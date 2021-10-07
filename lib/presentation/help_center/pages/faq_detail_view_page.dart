@@ -1,15 +1,20 @@
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/help_center/widgets/html_wrapper.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shared_themes/text_themes.dart';
 
-class FAQDetailViewPage extends StatelessWidget {
-  final String answer;
-  final String question;
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/help_center/widgets/html_wrapper.dart';
 
+class FAQDetailViewPage extends StatelessWidget {
   const FAQDetailViewPage(
       {Key? key, required this.question, required this.answer})
       : super(key: key);
+
+  final String answer;
+  final String question;
 
   @override
   Widget build(BuildContext context) {

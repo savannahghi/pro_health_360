@@ -1,5 +1,8 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shared_themes/text_themes.dart';
 
 class PersonalInformationWidget extends StatelessWidget {

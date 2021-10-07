@@ -1,6 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
 
+// Project imports:
+import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
 import 'feed_details.dart';
 
 class FeedList extends StatelessWidget {

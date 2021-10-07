@@ -1,10 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:rxdart/rxdart.dart';
 import 'package:unicons/unicons.dart';
 
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+// Project imports:
 import 'package:myafyahub/domain/core/entities/core/profile_page_items.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class UtilizationBehaviorSubject {
@@ -14,19 +17,16 @@ class UtilizationBehaviorSubject {
 
   UtilizationBehaviorSubject._internal();
 
-  static final UtilizationBehaviorSubject _singleton =
-      UtilizationBehaviorSubject._internal();
-
-  BehaviorSubject<dynamic> reservedAmountClaimsBehaviorObject =
-      BehaviorSubject<dynamic>();
-  BehaviorSubject<dynamic> spentAmountClaimsBehaviorObject =
-      BehaviorSubject<dynamic>();
-
   /// [authorizations] holds raw authorization as received from backend
   BehaviorSubject<dynamic> authorizations = BehaviorSubject<dynamic>();
 
   /// [authorizationsFiltered] holds authorizations list that has been filtered
   BehaviorSubject<dynamic> authorizationsFiltered = BehaviorSubject<dynamic>();
+
+  /// [cache] is used to cache server response. this will stop the Ui from
+  /// making multiple requests for the same date when the user changes tabs from
+  /// utilization to details and back
+  BehaviorSubject<dynamic> cache = BehaviorSubject<dynamic>();
 
   /// [preauthorizations] holds raw preauthorizations received from the backend
   BehaviorSubject<dynamic> preauthorizations = BehaviorSubject<dynamic>();
@@ -35,10 +35,14 @@ class UtilizationBehaviorSubject {
   BehaviorSubject<dynamic> preauthorizationsFiltered =
       BehaviorSubject<dynamic>();
 
-  /// [cache] is used to cache server response. this will stop the Ui from
-  /// making multiple requests for the same date when the user changes tabs from
-  /// utilization to details and back
-  BehaviorSubject<dynamic> cache = BehaviorSubject<dynamic>();
+  BehaviorSubject<dynamic> reservedAmountClaimsBehaviorObject =
+      BehaviorSubject<dynamic>();
+
+  BehaviorSubject<dynamic> spentAmountClaimsBehaviorObject =
+      BehaviorSubject<dynamic>();
+
+  static final UtilizationBehaviorSubject _singleton =
+      UtilizationBehaviorSubject._internal();
 
   /// [hasCache] checks if a cache has been saved
   // ignore: avoid_bool_literals_in_conditional_expressions
@@ -63,14 +67,29 @@ class BookAppointmentSubject {
 
   BookAppointmentSubject._internal();
 
-  static final BookAppointmentSubject _singleton =
-      BookAppointmentSubject._internal();
+  /// [benefitCode] the benefit code that will be used to start a visit
+  BehaviorSubject<dynamic> benefitCode = BehaviorSubject<dynamic>();
 
-  /// [patientMemberNumber] the member number of the patient
-  BehaviorSubject<String> patientMemberNumber = BehaviorSubject<String>();
+  /// [benefitType] the benefit that will be used to start a visit
+  BehaviorSubject<String> benefitType = BehaviorSubject<String>();
+
+  /// [doctorBranchID] the guid of the the doctor or hospital that will participate in the visit
+  BehaviorSubject<dynamic> doctorBranchID = BehaviorSubject<dynamic>();
+
+  /// [doctorPushToken] the device to the doctor that we will send a notification to
+  BehaviorSubject<dynamic> doctorPushToken = BehaviorSubject<dynamic>();
+
+  /// [doctorSladeCode] the sladecode of the the doctor or hospital that will participate in the visit
+  BehaviorSubject<dynamic> doctorSladeCode = BehaviorSubject<dynamic>();
+
+  /// [isTeleconsult] whether the visit is a teleconsult or physical
+  BehaviorSubject<bool> isTeleconsult = BehaviorSubject<bool>.seeded(true);
 
   /// [patientMSISDN] the phone number that is used for OTP authorization
   BehaviorSubject<String> patientMSISDN = BehaviorSubject<String>();
+
+  /// [patientMemberNumber] the member number of the patient
+  BehaviorSubject<String> patientMemberNumber = BehaviorSubject<String>();
 
   /// [patientOTPCode] otp code used to verify the patient's phone number
   BehaviorSubject<String> patientOTPCode = BehaviorSubject<String>();
@@ -81,15 +100,6 @@ class BookAppointmentSubject {
   /// [patientSelfieContentType] the content type of the photo taken
   BehaviorSubject<String> patientSelfieContentType = BehaviorSubject<String>();
 
-  /// [doctorBranchID] the guid of the the doctor or hospital that will participate in the visit
-  BehaviorSubject<dynamic> doctorBranchID = BehaviorSubject<dynamic>();
-
-  /// [doctorSladeCode] the sladecode of the the doctor or hospital that will participate in the visit
-  BehaviorSubject<dynamic> doctorSladeCode = BehaviorSubject<dynamic>();
-
-  /// [doctorPushToken] the device to the doctor that we will send a notification to
-  BehaviorSubject<dynamic> doctorPushToken = BehaviorSubject<dynamic>();
-
   /// [presentingSymptom] picked from a predefined list of common symptoms
   BehaviorSubject<dynamic> presentingSymptom = BehaviorSubject<dynamic>();
 
@@ -97,14 +107,8 @@ class BookAppointmentSubject {
   /// presiding doctor
   BehaviorSubject<dynamic> presentingSymptomProse = BehaviorSubject<dynamic>();
 
-  /// [isTeleconsult] whether the visit is a teleconsult or physical
-  BehaviorSubject<bool> isTeleconsult = BehaviorSubject<bool>.seeded(true);
-
-  /// [benefitCode] the benefit code that will be used to start a visit
-  BehaviorSubject<dynamic> benefitCode = BehaviorSubject<dynamic>();
-
-  /// [benefitType] the benefit that will be used to start a visit
-  BehaviorSubject<String> benefitType = BehaviorSubject<String>();
+  /// [showDependants] the patient's dependants show toggle
+  BehaviorSubject<bool> showDependants = BehaviorSubject<bool>();
 
   /// [userCoordinates] the patient's current location
   BehaviorSubject<dynamic> userCoordinates = BehaviorSubject<dynamic>();
@@ -112,8 +116,8 @@ class BookAppointmentSubject {
   /// [userPanels ] the patient's panel factor by their geolocation
   BehaviorSubject<dynamic> userPanels = BehaviorSubject<dynamic>();
 
-  /// [showDependants] the patient's dependants show toggle
-  BehaviorSubject<bool> showDependants = BehaviorSubject<bool>();
+  static final BookAppointmentSubject _singleton =
+      BookAppointmentSubject._internal();
 
   /// [clearSubject] resets everything to null. Should be called when the user aborts starting a visit or when
   /// a successful visit has been created
@@ -144,11 +148,11 @@ class AuthorizationQueryDetailsBehaviorObject {
 
   AuthorizationQueryDetailsBehaviorObject._internal();
 
-  static final AuthorizationQueryDetailsBehaviorObject _singleton =
-      AuthorizationQueryDetailsBehaviorObject._internal();
-
   BehaviorSubject<dynamic> authorizationQueryDetailsBehaviorObject =
       BehaviorSubject<dynamic>();
+
+  static final AuthorizationQueryDetailsBehaviorObject _singleton =
+      AuthorizationQueryDetailsBehaviorObject._internal();
 }
 
 class CardIndexBehaviorObject {
@@ -158,11 +162,11 @@ class CardIndexBehaviorObject {
 
   CardIndexBehaviorObject._internal();
 
-  static final CardIndexBehaviorObject _singleton =
-      CardIndexBehaviorObject._internal();
-
   BehaviorSubject<int> cardIndexBehaviorObject = BehaviorSubject<int>();
   BehaviorSubject<int> dependantsIndex = BehaviorSubject<int>();
+
+  static final CardIndexBehaviorObject _singleton =
+      CardIndexBehaviorObject._internal();
 }
 
 class ManageDependantsBehaviorObject {
@@ -172,11 +176,11 @@ class ManageDependantsBehaviorObject {
 
   ManageDependantsBehaviorObject._internal();
 
-  static final ManageDependantsBehaviorObject _singleton =
-      ManageDependantsBehaviorObject._internal();
-
   BehaviorSubject<dynamic> dependantMemberNumber = BehaviorSubject<dynamic>();
   BehaviorSubject<dynamic> dependantPayerSladeCode = BehaviorSubject<dynamic>();
+
+  static final ManageDependantsBehaviorObject _singleton =
+      ManageDependantsBehaviorObject._internal();
 }
 
 class RequestPinResetBehaviorObject {
@@ -186,11 +190,11 @@ class RequestPinResetBehaviorObject {
 
   RequestPinResetBehaviorObject._internal();
 
-  static final RequestPinResetBehaviorObject _singleton =
-      RequestPinResetBehaviorObject._internal();
-
   BehaviorSubject<bool> processing = BehaviorSubject<bool>.seeded(false);
   BehaviorSubject<bool> userHasNoAccount = BehaviorSubject<bool>.seeded(false);
+
+  static final RequestPinResetBehaviorObject _singleton =
+      RequestPinResetBehaviorObject._internal();
 }
 
 class UserPhoneBehaviorObject {
@@ -200,12 +204,12 @@ class UserPhoneBehaviorObject {
 
   UserPhoneBehaviorObject._internal();
 
+  BehaviorSubject<bool> allowedComm = BehaviorSubject<bool>.seeded(false);
+  BehaviorSubject<bool> loading = BehaviorSubject<bool>.seeded(false);
+  BehaviorSubject<String> phoneNumber = BehaviorSubject<String>();
+
   static final UserPhoneBehaviorObject _singleton =
       UserPhoneBehaviorObject._internal();
-
-  BehaviorSubject<String> phoneNumber = BehaviorSubject<String>();
-  BehaviorSubject<bool> loading = BehaviorSubject<bool>.seeded(false);
-  BehaviorSubject<bool> allowedComm = BehaviorSubject<bool>.seeded(false);
 }
 
 class UserEmailBehaviorObject {
@@ -215,11 +219,11 @@ class UserEmailBehaviorObject {
 
   UserEmailBehaviorObject._internal();
 
+  BehaviorSubject<bool> allowedComm = BehaviorSubject<bool>.seeded(false);
+  BehaviorSubject<bool> loading = BehaviorSubject<bool>.seeded(false);
+
   static final UserEmailBehaviorObject _singleton =
       UserEmailBehaviorObject._internal();
-
-  BehaviorSubject<bool> loading = BehaviorSubject<bool>.seeded(false);
-  BehaviorSubject<bool> allowedComm = BehaviorSubject<bool>.seeded(false);
 }
 
 class EditProfilePageBehaviorObject {
@@ -229,10 +233,10 @@ class EditProfilePageBehaviorObject {
 
   EditProfilePageBehaviorObject._internal();
 
+  BehaviorSubject<bool> loading = BehaviorSubject<bool>.seeded(false);
+
   static final EditProfilePageBehaviorObject _singleton =
       EditProfilePageBehaviorObject._internal();
-
-  BehaviorSubject<bool> loading = BehaviorSubject<bool>.seeded(false);
 }
 
 class StartVisitIdentificationOTP {
@@ -242,14 +246,14 @@ class StartVisitIdentificationOTP {
 
   StartVisitIdentificationOTP._internal();
 
-  static final StartVisitIdentificationOTP _singleton =
-      StartVisitIdentificationOTP._internal();
+  BehaviorSubject<bool> codeHasTakenLong = BehaviorSubject<bool>.seeded(false);
 
   /// [StartVisitIdentificationOTP]
   BehaviorSubject<String> startVisitIdentificationOTP =
       BehaviorSubject<String>();
 
-  BehaviorSubject<bool> codeHasTakenLong = BehaviorSubject<bool>.seeded(false);
+  static final StartVisitIdentificationOTP _singleton =
+      StartVisitIdentificationOTP._internal();
 }
 
 class ProfileSubject {
@@ -259,12 +263,12 @@ class ProfileSubject {
 
   ProfileSubject._internal();
 
-  static final ProfileSubject _singleton = ProfileSubject._internal();
-
   BehaviorSubject<Color> color =
       BehaviorSubject<Color>.seeded(Colors.purple[100]!);
+
   BehaviorSubject<String> selectedTile =
       BehaviorSubject<String>.seeded(contactInfo);
+
   BehaviorSubject<ValueNotifier<ProfileItems>> selection =
       BehaviorSubject<ValueNotifier<ProfileItems>>.seeded(
           ValueNotifier<ProfileItems>(const ProfileItems(
@@ -273,6 +277,8 @@ class ProfileSubject {
     onTapRoute: BWRoutes.contactInfo,
     iconData: UniconsLine.user_circle,
   )));
+
+  static final ProfileSubject _singleton = ProfileSubject._internal();
 }
 
 class InternetConnectivitySubject {
@@ -282,11 +288,11 @@ class InternetConnectivitySubject {
 
   InternetConnectivitySubject._internal();
 
-  static final InternetConnectivitySubject _singleton =
-      InternetConnectivitySubject._internal();
-
   BehaviorSubject<bool> connectivitySubject =
       BehaviorSubject<bool>.seeded(true);
+
+  static final InternetConnectivitySubject _singleton =
+      InternetConnectivitySubject._internal();
 }
 
 class DeepLinkSubject {
@@ -296,9 +302,9 @@ class DeepLinkSubject {
 
   DeepLinkSubject._internal();
 
-  static final DeepLinkSubject _singleton = DeepLinkSubject._internal();
-
   BehaviorSubject<bool> hasLink = BehaviorSubject<bool>.seeded(false);
   BehaviorSubject<String> link = BehaviorSubject<String>();
   GlobalKey<NavigatorState>? navigatorKey;
+
+  static final DeepLinkSubject _singleton = DeepLinkSubject._internal();
 }

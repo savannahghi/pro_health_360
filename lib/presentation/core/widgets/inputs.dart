@@ -1,7 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:shared_themes/colors.dart';
 
+// Project imports:
 import '../helpers.dart';
 
 /// ExpandableQuestion
@@ -57,11 +61,10 @@ class ExpandableQuestion extends StatelessWidget {
             'When a controller is specified, initialValue must be null'),
         super(key: key);
 
-  final String question;
-  final Color? color;
   final bool? autoFocus;
   final bool? autoValidate;
   final Color? borderColor;
+  final Color? color;
   final TextEditingController? controller;
   final Color? customFillColor;
   final InputDecoration? decoration;
@@ -71,7 +74,6 @@ class ExpandableQuestion extends StatelessWidget {
   final List<TextInputFormatter>? formatters;
   final Color? hintColor;
   final String? hintText;
-  // jhfdf
   final Color? hintTextColor;
   final String? initialValue;
   final List<TextInputFormatter>? inputFormatters;
@@ -87,6 +89,7 @@ class ExpandableQuestion extends StatelessWidget {
   final FormFieldSetter<String>? onSaved;
   final Function? onTap;
   final Widget? prefixIcon;
+  final String question;
   final Widget? suffixIcon;
   final Color? textFieldBackgroundColor;
   final TextInputAction? textInputAction;
@@ -119,7 +122,8 @@ class ExpandableQuestion extends StatelessWidget {
           data: ThemeData().copyWith(
             dividerColor: Colors.transparent,
             unselectedWidgetColor: black,
-            accentColor: Colors.black,
+            colorScheme:
+                Theme.of(context).colorScheme.copyWith(secondary: Colors.black),
           ),
           child: Column(
             children: <Widget>[

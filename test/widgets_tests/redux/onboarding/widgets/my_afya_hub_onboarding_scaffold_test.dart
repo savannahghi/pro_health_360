@@ -1,10 +1,14 @@
-import 'package:async_redux/async_redux.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_header_scaffold.dart';
 import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
-
 import '../../../../test_helpers.dart';
 
 void main() {

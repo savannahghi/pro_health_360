@@ -1,18 +1,17 @@
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+// Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+
 class FeaturedContent extends StatelessWidget {
-  final String featuredContentImagePath;
-  final String featuredContentTitle;
-  final String featuredContentReadTime;
-  final String featuredContentPublishDate;
-  final List<dynamic> libContent;
   const FeaturedContent({
     Key? key,
     required this.featuredContentImagePath,
@@ -21,6 +20,12 @@ class FeaturedContent extends StatelessWidget {
     required this.featuredContentPublishDate,
     required this.libContent,
   }) : super(key: key);
+
+  final String featuredContentImagePath;
+  final String featuredContentPublishDate;
+  final String featuredContentReadTime;
+  final String featuredContentTitle;
+  final List<dynamic> libContent;
 
   @override
   Widget build(BuildContext context) {

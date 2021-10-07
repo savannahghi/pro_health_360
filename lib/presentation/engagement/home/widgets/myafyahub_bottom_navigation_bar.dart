@@ -1,10 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
-import 'package:user_feed/user_feed.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:user_feed/user_feed.dart';
 
+// Project imports:
 import 'package:myafyahub/application/core/services/connectivity_helper.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
@@ -32,7 +35,7 @@ class MyAfyaHubBottomNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       backgroundColor: AppColors.whiteColor,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Theme.of(context).accentColor,
+      selectedItemColor: Theme.of(context).colorScheme.secondary,
       unselectedItemColor: AppColors.secondaryColor,
       onTap: (int currentIndex) {
         StoreProvider.dispatch<AppState>(
@@ -86,7 +89,7 @@ class MyAfyaHubBottomNavigationBar extends StatelessWidget {
               ),
               activeIcon: SvgPicture.asset(
                 navItem.iconUrl,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               label: navItem.text,
             ),

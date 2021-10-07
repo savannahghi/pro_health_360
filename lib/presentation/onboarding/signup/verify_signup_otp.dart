@@ -1,28 +1,27 @@
-import 'package:myafyahub/application/redux/states/app_state.dart';
-
-import 'package:myafyahub/application/redux/view_models/phone_signup_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/dynamic_back_route_holder.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_signup.dart';
-
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
-
-import 'package:myafyahub/presentation/router/routes.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import 'package:async_redux/async_redux.dart';
-
-import 'package:flutter_svg/flutter_svg.dart';
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_utils.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:shared_ui_components/verify_phone_otp.dart';
+
+// Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/phone_signup_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/dynamic_back_route_holder.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_signup.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/onboarding/signup/create_pin_page.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 class VerifySignUpOTP extends StatelessWidget {
   @override
@@ -48,7 +47,7 @@ class VerifySignUpOTP extends StatelessWidget {
                   child: Text(
                     onboardingStrings.verifyPhoneNumberText(),
                     style: TextThemes.boldSize20Text(
-                        Theme.of(context).accentColor),
+                        Theme.of(context).colorScheme.secondary),
                   ),
                 ),
                 mediumVerticalSizedBox,

@@ -1,24 +1,27 @@
-import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import 'package:myafyahub/domain/core/entities/core/profile_page_items.dart';
+// Package imports:
 import 'package:misc_utilities/enums.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-
 import 'package:shared_themes/text_themes.dart';
 
+// Project imports:
+import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
+import 'package:myafyahub/domain/core/entities/core/profile_page_items.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+
 class ProfileItemBuilder extends StatelessWidget {
-  final ProfileItemType section;
-  final ValueChanged<ProfileItems> onSelect;
-
-  final BuildContext context;
-
   const ProfileItemBuilder({
     required this.context,
     required this.section,
     required this.onSelect,
   });
+
+  final BuildContext context;
+  final ValueChanged<ProfileItems> onSelect;
+  final ProfileItemType section;
+
   @override
   Widget build(BuildContext context) {
     final ProfileSubject profileSubject = ProfileSubject();

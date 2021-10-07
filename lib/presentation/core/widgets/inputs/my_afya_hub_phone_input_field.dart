@@ -1,14 +1,19 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:flutter_svg/svg.dart';
+import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/colors.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/types.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/country_code_picker.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:misc_utilities/misc.dart';
 
 /// [MyAfyaHubPhoneInput] is a shared widget to input user phone number and country code
 ///
@@ -69,7 +74,7 @@ class MyAfyaHubPhoneInput extends FormField<String> {
               }
               if (countryCode == '+254' &&
                   !validateKenyanNumber('$countryCode$phone')) {
-                    isValidNumber = showAlertIcon;
+                isValidNumber = showAlertIcon;
                 return validPhoneNumberText;
               }
               isValidNumber = !showAlertIcon;

@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:shared_themes/text_themes.dart';
+import 'package:unicons/unicons.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:unicons/unicons.dart';
 
 class ConsentPage extends StatelessWidget {
   const ConsentPage({Key? key, this.onChanged}) : super(key: key);

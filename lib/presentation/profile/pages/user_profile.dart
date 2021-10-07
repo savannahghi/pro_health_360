@@ -1,14 +1,16 @@
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
-
-import 'package:myafyahub/presentation/profile/widgets/signed_user_profile_scaffold.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 
+// Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
+import 'package:myafyahub/presentation/profile/widgets/signed_user_profile_scaffold.dart';
 
 class UserProfile extends StatefulWidget {
   @override

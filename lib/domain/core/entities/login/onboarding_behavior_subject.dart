@@ -1,5 +1,8 @@
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+// Package imports:
 import 'package:rxdart/rxdart.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 class OnboardingAppBarValuesSubject {
   static final OnboardingAppBarValuesSubject _singleton =

@@ -1,23 +1,26 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 
-import 'package:async_redux/async_redux.dart';
-import 'package:http/http.dart' as http;
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
-import 'package:user_feed/user_feed.dart';
 import 'package:domain_objects/failures.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:http/http.dart' as http;
+import 'package:user_feed/user_feed.dart';
 
+// Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/entities/login/basic_details_model.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -90,8 +93,8 @@ class UpdateBioDataAction extends ReduxAction<AppState> {
 
     if (isAccountCreated) {
       /// here we call the backend to create `customer account` on our ERP
-      /// it's not the responsibily on the app to know wherther the creation was
-      /// successfull or not, that is, waiting for the response as asserting the payload.
+      /// it's not the responsibly on the app to know whether the creation was
+      /// successful or not, that is, waiting for the response as asserting the payload.
       /// In this regard, we only `wait` for the call to complete regardless of the response.
 
       await _client.query(completeSignUpMutation,

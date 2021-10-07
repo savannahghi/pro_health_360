@@ -1,7 +1,12 @@
-import 'package:myafyahub/application/core/services/utils.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:shared_ui_components/inputs.dart';
+
+// Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
 
 class PinInputWrapper extends StatelessWidget {
   const PinInputWrapper({

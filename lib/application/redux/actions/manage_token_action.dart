@@ -1,9 +1,13 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:misc_utilities/refresh_token_manager.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-
-import 'package:flutter/material.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 
 /// [ManageTokenAction] called when a valid auth has been received. In this regarded, [signedIn] will always be [true]
 class ManageTokenAction extends ReduxAction<AppState> {
@@ -16,13 +20,12 @@ class ManageTokenAction extends ReduxAction<AppState> {
     this.canExperiment = false,
   });
 
+  bool? canExperiment;
   final BuildContext context;
-
-  String parsedExpiresAt;
   String idToken;
+  String parsedExpiresAt;
   String refreshToken;
   RefreshTokenManger refreshTokenManger;
-  bool? canExperiment;
 
   @override
   Future<AppState> reduce() async {

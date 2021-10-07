@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shared_themes/text_themes.dart';
 
 class MyAfyaHubCheckBox extends StatelessWidget {
@@ -24,7 +27,7 @@ class MyAfyaHubCheckBox extends StatelessWidget {
       children: <Widget>[
         Checkbox(
           key: checkBoxKey,
-          activeColor: Theme.of(context).accentColor,
+          activeColor: Theme.of(context).colorScheme.secondary,
           materialTapTargetSize: MaterialTapTargetSize.padded,
           value: value,
           onChanged: onChanged,
@@ -33,8 +36,8 @@ class MyAfyaHubCheckBox extends StatelessWidget {
           child: child ??
               Text(
                 text ?? '',
-                style:
-                    TextThemes.normalSize14Text(Theme.of(context).accentColor),
+                style: TextThemes.normalSize14Text(
+                    Theme.of(context).colorScheme.secondary),
               ),
         )
       ],

@@ -1,6 +1,11 @@
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 TextStyle marketHeadline1 = GoogleFonts.raleway().copyWith(
   fontSize: 50,

@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
+
+// Package imports:
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
 
 /// [MyAfyaHubAppBar] is a custom [AppBar] used within this apps' pages.
 class MyAfyaHubAppBar extends StatelessWidget implements PreferredSizeWidget {

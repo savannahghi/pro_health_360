@@ -1,5 +1,8 @@
-import 'package:myafyahub/infrastructure/repository/sqlite.dart';
+// Package imports:
 import 'package:sqflite/sqflite.dart';
+
+// Project imports:
+import 'package:myafyahub/infrastructure/repository/sqlite.dart';
 
 abstract class BewellStateDatabase extends Database {}
 

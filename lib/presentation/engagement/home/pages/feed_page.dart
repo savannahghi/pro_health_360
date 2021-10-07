@@ -1,10 +1,15 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_mood_selection.dart';
 import 'package:myafyahub/presentation/engagement/home/widgets/bewell_upgrader.dart';
-import 'package:flutter/material.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);

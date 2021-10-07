@@ -1,15 +1,19 @@
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
-import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/infrastructure/repository/database_base.dart';
 import 'package:myafyahub/infrastructure/repository/database_mobile.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
-
-import 'package:async_redux/async_redux.dart';
-import 'package:flutter/foundation.dart';
-import 'package:user_feed/user_feed.dart';
-import 'package:sqflite/sqflite.dart';
 
 /// [BeWellStateDatabase] is the middleware that interacts with the database on behalf
 /// of the application. From the apps perspective, it doesn't care which database
@@ -27,9 +31,6 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
 
   final Duration _saveDuration;
   final Duration _throttle;
-
-  @override
-  Duration get throttle => _throttle;
 
   @override
   Future<void> deleteState() async {
@@ -76,6 +77,9 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
   @override
   Future<void> saveInitialState(AppState state) async =>
       persistDifference(newState: state);
+
+  @override
+  Duration get throttle => _throttle;
 
   Duration get saveDuration => _saveDuration;
 

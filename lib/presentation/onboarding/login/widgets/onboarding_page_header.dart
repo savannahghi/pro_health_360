@@ -1,14 +1,20 @@
+// Dart imports:
 import 'dart:math';
 
-import 'package:myafyahub/domain/core/entities/login/onboarding_behavior_subject.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/onboarding_scaffold.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+// Package imports:
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:unicons/unicons.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/entities/login/onboarding_behavior_subject.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/onboarding_scaffold.dart';
 
 /// provide a custom title and description by calling OnboardingAppBarValuesSubject().<property>.add(value)
 class OnboardingPageHeader implements SliverPersistentHeaderDelegate {

@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_checkbox.dart';
 
 void main() {

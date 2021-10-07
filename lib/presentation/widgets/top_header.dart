@@ -1,8 +1,13 @@
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/wheel_back_button.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/onboarding/widgets/wheel_back_button.dart';
 
 /// this widget renders a header for an intro page
 class PageTopHeader extends StatelessWidget {

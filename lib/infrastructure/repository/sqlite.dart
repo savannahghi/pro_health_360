@@ -1,7 +1,10 @@
-import 'package:myafyahub/infrastructure/repository/migrations.dart';
+// Package imports:
+import 'package:path/path.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+
+// Project imports:
+import 'package:myafyahub/infrastructure/repository/migrations.dart';
 
 Future<T> initDatabase<T extends DatabaseExecutor>(String dbName) async {
   final String _dbPath = await getDatabasesPath();

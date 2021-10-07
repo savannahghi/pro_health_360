@@ -1,9 +1,14 @@
-import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:flutter_config/flutter_config.dart';
+import 'package:quiver/core.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
-import 'package:quiver/core.dart';
 
 class AppSetupData {
   final List<AppContext> appContexts;

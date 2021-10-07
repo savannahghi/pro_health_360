@@ -1,5 +1,8 @@
-import 'package:myafyahub/application/core/graphql/queries.dart';
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
+import 'package:myafyahub/application/core/graphql/queries.dart';
 
 void main() {
   group('test queries.dart', () {

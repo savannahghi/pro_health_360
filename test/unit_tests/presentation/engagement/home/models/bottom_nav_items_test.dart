@@ -1,6 +1,8 @@
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
-
+// Package imports:
 import 'package:test/test.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 
 void main() {
   test('BottomNavIndex returns the correct index', () {

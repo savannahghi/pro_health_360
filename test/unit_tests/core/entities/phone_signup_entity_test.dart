@@ -1,6 +1,9 @@
+// Package imports:
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_signup.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   BookAppointmentSubject().clearSubject();

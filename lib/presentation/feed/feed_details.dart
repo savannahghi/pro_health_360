@@ -1,4 +1,6 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'feed_details.freezed.dart';
 part 'feed_details.g.dart';
 
