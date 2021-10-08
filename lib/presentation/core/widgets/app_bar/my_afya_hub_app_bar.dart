@@ -1,10 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
-import 'package:shared_themes/text_themes.dart';
 
 /// [MyAfyaHubAppBar] is a custom [AppBar] used within this apps' pages.
 class MyAfyaHubAppBar extends StatelessWidget implements PreferredSizeWidget {
