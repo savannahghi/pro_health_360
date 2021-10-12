@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // Package imports:
 import 'package:misc_utilities/misc.dart';
@@ -77,10 +78,14 @@ class CommunityChatScreenPage extends StatelessWidget {
         time: '12:00pm',
       ),
     ];
-
     return Scaffold(
         backgroundColor: AppColors.lightSkyBlueColor,
         appBar: MyAfyaHubAppBar(
+          leadingWidget: SvgPicture.asset(
+            backIcon,
+            key: backAppBarKey,
+            color: AppColors.secondaryColor,
+          ),
           title: 'Ruaka Questions Group',
           trailingWidget: IconButton(
               key: moreAppBarKey,

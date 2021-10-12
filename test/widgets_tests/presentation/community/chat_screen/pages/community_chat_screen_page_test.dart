@@ -10,6 +10,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/message_input.dart';
+import 'package:myafyahub/presentation/community/community_list_page.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
@@ -41,6 +42,10 @@ void main() {
       await tester.enterText(textField, 'text');
       await tester.pumpAndSettle();
       expect(find.byType(ScaffoldMessenger), findsWidgets);
+
+      await tester.tap(find.byKey(backAppBarKey));
+      await tester.pumpAndSettle();
+      expect(find.byType(CommunityListViewPage), findsNothing);
     });
   });
 }

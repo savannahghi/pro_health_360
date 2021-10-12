@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:unicons/unicons.dart';
 
 // Project imports:
@@ -41,6 +42,11 @@ void main() {
       expect(find.text('5'), findsOneWidget);
       expect(find.text('Group'), findsOneWidget);
       expect(find.byIcon(UniconsLine.user_square), findsOneWidget);
+
+      await tester.tap(find.byType(CommunityListItem));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CommunityChatScreenPage), findsWidgets);
     });
 
     testWidgets('should show avatar image', (WidgetTester tester) async {

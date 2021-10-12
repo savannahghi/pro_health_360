@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -59,82 +60,92 @@ class CommunityListItem extends StatelessWidget {
       );
     }
 
-    return Container(
-      color: hasUnreadNotifications ? Colors.grey.shade200 : null,
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
-      child: Row(
-        children: <Widget>[
-          // pic
-          Expanded(
-            child: circleAvatar,
-          ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          BWRoutes.communityChatScreenPage,
+        );
+      },
+      child: Container(
+        color: hasUnreadNotifications ? Colors.grey.shade200 : null,
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
+        child: Row(
+          children: <Widget>[
+            // pic
+            Expanded(
+              child: circleAvatar,
+            ),
 
-          const SizedBox(width: 10),
+            const SizedBox(width: 10),
 
-          Expanded(
-            flex: 4,
-            child: Column(
-              children: <Widget>[
-                // group and date
-                Row(
-                  mainAxisAlignment: isGroup
-                      ? MainAxisAlignment.spaceBetween
-                      : MainAxisAlignment.end,
-                  children: <Widget>[
-                    if (isGroup)
+            Expanded(
+              flex: 4,
+              child: Column(
+                children: <Widget>[
+                  // group and date
+                  Row(
+                    mainAxisAlignment: isGroup
+                        ? MainAxisAlignment.spaceBetween
+                        : MainAxisAlignment.end,
+                    children: <Widget>[
+                      if (isGroup)
+                        Text(
+                          groupText,
+                          style:
+                              TextThemes.normalSize10Text(Colors.grey.shade600),
+                        ),
                       Text(
-                        groupText,
+                        date,
                         style:
                             TextThemes.normalSize10Text(Colors.grey.shade600),
                       ),
-                    Text(
-                      date,
-                      style: TextThemes.normalSize10Text(Colors.grey.shade600),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        // Chat title
-                        Text(
-                          title,
-                          style: TextThemes.boldSize14Text(
-                              AppColors.secondaryColor),
-                        ),
-                        const SizedBox(height: 4),
-                        // message
-                        Text(
-                          message,
-                          style:
-                              TextThemes.normalSize10Text(Colors.grey.shade600),
-                        )
-                      ],
-                    ),
-
-                    // Notification count
-                    if (hasUnreadNotifications)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12.0),
-                        child: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.secondary,
-                          radius: 15,
-                          child: Text(
-                            '$unreadNotificationCount',
-                            style: const TextStyle(color: Colors.white),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          // Chat title
+                          Text(
+                            title,
+                            style: TextThemes.boldSize14Text(
+                                AppColors.secondaryColor),
                           ),
-                        ),
-                      )
-                  ],
-                ),
-              ],
+                          const SizedBox(height: 4),
+                          // message
+                          Text(
+                            message,
+                            style: TextThemes.normalSize10Text(
+                                Colors.grey.shade600),
+                          )
+                        ],
+                      ),
+
+                      // Notification count
+                      if (hasUnreadNotifications)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
+                            radius: 15,
+                            child: Text(
+                              '$unreadNotificationCount',
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        )
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
