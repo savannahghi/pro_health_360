@@ -31,9 +31,6 @@ String hasChangedPinSuccessfullyEvent(String appContext) =>
 String hasResetPinSuccessfullyEvent(String appContext) =>
     'consumer_reset_pin_$appContext';
 
-String hasNavigatedToHelpCenterPageEvent(String appContext) =>
-    'consumer_navigated_to_help_center_$appContext';
-
 String hasSuccessfullyVerifiedContactEvent(String appContext) =>
     'consumer_success_contact_veri_$appContext';
 

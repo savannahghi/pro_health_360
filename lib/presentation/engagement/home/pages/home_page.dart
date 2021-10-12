@@ -14,7 +14,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/pages_tabs.dart';
 import 'package:myafyahub/presentation/engagement/home/widgets/myafyahub_bottom_navigation_bar.dart';
-import 'package:myafyahub/presentation/help_center/sil_help_center_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,7 +37,6 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           key: homepageContentKey,
           backgroundColor: Theme.of(context).backgroundColor,
-          floatingActionButton: const SILHelpCenterButton(),
           body: DoubleBackToCloseApp(
             snackBar: snackbar(content: pressToExitText, durationSeconds: 3),
             child: pagesTabs[vm.currentIndex],

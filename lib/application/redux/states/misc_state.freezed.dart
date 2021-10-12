@@ -26,7 +26,6 @@ class _$MiscStateTearOff {
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
-      List<FAQContent?>? faqList,
       List<dynamic>? libraryListItems,
       AppReviewObj? appReviewObj}) {
     return _MiscState(
@@ -35,7 +34,6 @@ class _$MiscStateTearOff {
       userPin: userPin,
       appErrorState: appErrorState,
       bottomNavObj: bottomNavObj,
-      faqList: faqList,
       libraryListItems: libraryListItems,
       appReviewObj: appReviewObj,
     );
@@ -56,7 +54,6 @@ mixin _$MiscState {
   UserPin? get userPin => throw _privateConstructorUsedError;
   Set<AppErrorState>? get appErrorState => throw _privateConstructorUsedError;
   BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
-  List<FAQContent?>? get faqList => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   AppReviewObj? get appReviewObj => throw _privateConstructorUsedError;
 
@@ -76,7 +73,6 @@ abstract class $MiscStateCopyWith<$Res> {
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
-      List<FAQContent?>? faqList,
       List<dynamic>? libraryListItems,
       AppReviewObj? appReviewObj});
 }
@@ -96,7 +92,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? userPin = freezed,
     Object? appErrorState = freezed,
     Object? bottomNavObj = freezed,
-    Object? faqList = freezed,
     Object? libraryListItems = freezed,
     Object? appReviewObj = freezed,
   }) {
@@ -121,10 +116,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.bottomNavObj
           : bottomNavObj // ignore: cast_nullable_to_non_nullable
               as BottomNavObj?,
-      faqList: faqList == freezed
-          ? _value.faqList
-          : faqList // ignore: cast_nullable_to_non_nullable
-              as List<FAQContent?>?,
       libraryListItems: libraryListItems == freezed
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
@@ -149,7 +140,6 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
-      List<FAQContent?>? faqList,
       List<dynamic>? libraryListItems,
       AppReviewObj? appReviewObj});
 }
@@ -170,7 +160,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? userPin = freezed,
     Object? appErrorState = freezed,
     Object? bottomNavObj = freezed,
-    Object? faqList = freezed,
     Object? libraryListItems = freezed,
     Object? appReviewObj = freezed,
   }) {
@@ -195,10 +184,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.bottomNavObj
           : bottomNavObj // ignore: cast_nullable_to_non_nullable
               as BottomNavObj?,
-      faqList: faqList == freezed
-          ? _value.faqList
-          : faqList // ignore: cast_nullable_to_non_nullable
-              as List<FAQContent?>?,
       libraryListItems: libraryListItems == freezed
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
@@ -220,7 +205,6 @@ class _$_MiscState implements _MiscState {
       this.userPin,
       this.appErrorState,
       this.bottomNavObj,
-      this.faqList,
       this.libraryListItems,
       this.appReviewObj});
 
@@ -238,15 +222,13 @@ class _$_MiscState implements _MiscState {
   @override
   final BottomNavObj? bottomNavObj;
   @override
-  final List<FAQContent?>? faqList;
-  @override
   final List<dynamic>? libraryListItems;
   @override
   final AppReviewObj? appReviewObj;
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, phoneSignUp: $phoneSignUp, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, faqList: $faqList, libraryListItems: $libraryListItems, appReviewObj: $appReviewObj)';
+    return 'MiscState(phoneLogin: $phoneLogin, phoneSignUp: $phoneSignUp, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, appReviewObj: $appReviewObj)';
   }
 
   @override
@@ -268,9 +250,6 @@ class _$_MiscState implements _MiscState {
             (identical(other.bottomNavObj, bottomNavObj) ||
                 const DeepCollectionEquality()
                     .equals(other.bottomNavObj, bottomNavObj)) &&
-            (identical(other.faqList, faqList) ||
-                const DeepCollectionEquality()
-                    .equals(other.faqList, faqList)) &&
             (identical(other.libraryListItems, libraryListItems) ||
                 const DeepCollectionEquality()
                     .equals(other.libraryListItems, libraryListItems)) &&
@@ -287,7 +266,6 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(userPin) ^
       const DeepCollectionEquality().hash(appErrorState) ^
       const DeepCollectionEquality().hash(bottomNavObj) ^
-      const DeepCollectionEquality().hash(faqList) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
       const DeepCollectionEquality().hash(appReviewObj);
 
@@ -309,7 +287,6 @@ abstract class _MiscState implements MiscState {
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
-      List<FAQContent?>? faqList,
       List<dynamic>? libraryListItems,
       AppReviewObj? appReviewObj}) = _$_MiscState;
 
@@ -326,8 +303,6 @@ abstract class _MiscState implements MiscState {
   Set<AppErrorState>? get appErrorState => throw _privateConstructorUsedError;
   @override
   BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
-  @override
-  List<FAQContent?>? get faqList => throw _privateConstructorUsedError;
   @override
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override

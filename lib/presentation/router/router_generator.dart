@@ -21,7 +21,6 @@ import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
 import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
-import 'package:myafyahub/presentation/help_center/pages/help_center_page.dart';
 import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
 import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
@@ -130,10 +129,6 @@ class RouteGenerator {
         return MaterialPageRoute<LibraryContent>(
             builder: (_) => LibraryContent(
                 libraryContentItem: args as LibraryContentItemData));
-
-      case BWRoutes.helpCenter:
-        return MaterialPageRoute<HelpCenterPage>(
-            builder: (_) => HelpCenterPage());
 
       // search page
       case BWRoutes.editProfileSettingsPage:
