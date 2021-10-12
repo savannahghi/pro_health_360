@@ -4,4 +4,3 @@ Runner/GoogleService-Info.plist
 *.p8
 *.dSYM.zip
 *.podspec
-Runner/Credentials.generated.swift
