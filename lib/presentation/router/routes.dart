@@ -111,11 +111,14 @@ class BWRoutes {
   // User Profile Page
   static const String userProfilePage = '/userProfilePage';
 
+  // Profile Faqs Page
+  static const String profileFaqsPage = '/profileFaqsPage';
+
   //Clinic Information Page
   static const String clinicInformationPage = '/clinicInformationPage';
 
   //Settings Page
-static const String settingsPage = '/settingsPage';
+  static const String settingsPage = '/settingsPage';
 }
 
 List<String> unProtectedRoutes = <String>[

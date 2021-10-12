@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
+import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/onboarding/landing_page/landing_page.dart';
 
@@ -108,6 +109,10 @@ class RouteGenerator {
       case BWRoutes.buyMedicine:
         return MaterialPageRoute<BuyMedicineLandingPage>(
             builder: (_) => BuyMedicineLandingPage());
+
+      case BWRoutes.profileFaqsPage:
+        return MaterialPageRoute<ProfileFaqsPage>(
+            builder: (_) => const ProfileFaqsPage());
 
       case BWRoutes.getTested:
         return MaterialPageRoute<MedicalTestsLandingPage>(
