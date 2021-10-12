@@ -47,6 +47,7 @@ import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:unicons/unicons.dart';
 import 'package:user_profile/contact_utils.dart';
+import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -918,47 +919,47 @@ bool confirmPinValidator(String pin, String confirmPin) {
   return true;
 }
 
-final List<Map<String, dynamic>> userProfileItems = <Map<String, dynamic>>[
-  <String, dynamic>{
-    'iconPath': profileIcon,
-    'title': 'Personal information',
-    'route': BWRoutes.personalInfo,
-  },
-  <String, dynamic>{
-    'iconPath': medicalDataIcon,
-    'title': 'Medical data',
-    'route': BWRoutes.medicalData,
-  },
-  <String, dynamic>{
-    'iconPath': clinicIcon,
-    'title': 'Clinic information',
-    'route': BWRoutes.clinicInformationPage,
-  },
-  <String, dynamic>{
-    'iconPath': mySavedIcon,
-    'title': 'My Saved',
-    'route': BWRoutes.savedPosts,
-  },
-  <String, dynamic>{
-    'iconPath': faqsIcon,
-    'title': 'FAQs',
-    'route': '',
-  },
-  <String, dynamic>{
-    'iconPath': helpCircleIcon,
-    'title': 'Concent',
-    'route': '',
-  },
-  <String, dynamic>{
-    'iconPath': feedbackIcon,
-    'title': 'Feedback',
-    'route': '',
-  },
-  <String, dynamic>{
-    'iconPath': settingsIcon,
-    'title': 'Settings',
-    'route': BWRoutes.settingsPage,
-  }
+final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
+  UserProfileItemObj(
+    iconAssetPath: profileIcon,
+    route: BWRoutes.personalInfo,
+    title: 'Personal information',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: medicalDataIcon,
+    route: BWRoutes.medicalData,
+    title: 'Medical data',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: clinicIcon,
+    route: BWRoutes.clinicInformationPage,
+    title: 'Clinic information',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: mySavedIcon,
+    route: BWRoutes.savedPosts,
+    title: 'My Saved',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: faqsIcon,
+    route: BWRoutes.profileFaqsPage,
+    title: 'FAQs',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: helpCircleIcon,
+    route: BWRoutes.consent,
+    title: 'Concent',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: feedbackIcon,
+    route: BWRoutes.feedbackPage,
+    title: 'Feedback',
+  ),
+  UserProfileItemObj(
+    iconAssetPath: settingsIcon,
+    route: BWRoutes.settingsPage,
+    title: 'Settings',
+  ),
 ];
 
 final NotificationActions calendarAction = NotificationActions(

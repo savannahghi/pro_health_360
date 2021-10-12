@@ -609,3 +609,17 @@ const String nickNameString = 'Nickname';
 const String editString = 'Edit';
 const String settingsText = 'Settings';
 const String saveString = 'Save';
+
+//Feedback Page
+const String feedbackString = 'Feedback';
+const String weValueFeedbackString = 'We value your feedback';
+const String anyThoughtsToShareString =
+    'Do you have any thoughts you\'d like to share?';
+const String howToImproveExperienceString =
+    'Let us know how we might improve your experience in the app';
+const String followUpOnFeedbackString =
+    'May we follow up with you on your feedback??';
+const String yesString = 'Yes';
+const String noString = 'No';
+const String sendFeedbackString = 'Send feedback'; 
+const String cancelString = 'Cancel'; 

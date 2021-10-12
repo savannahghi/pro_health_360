@@ -122,7 +122,6 @@ const Key lastNameKey = Key('last_name');
 const Key primaryButtonKey = Key('primary_button');
 const Key editButtonKey = Key('edit_button');
 const Key cancelButtonKey = Key('cancel_button');
-const Key backButtonKey = Key('back_button');
 const Key genderOptionFieldKey = Key('gender_option_field');
 
 //welcome page keys
@@ -280,3 +279,9 @@ const Key verySadMoodKey = Key('very_sad_mood_key');
 const Key keyPadWidgetKey = Key('key_pad_widget_key');
 const Key keyPadBackSpaceButtonKey = Key('key_pad_back_space_button_key');
 const Key appBarBackButtonKey = Key('app_bar_back_button_key');
+
+//Feedback page widget keys
+const Key sendFeedbackButtonKey = Key('send_feedback_button_key');
+const Key cancelFeedbackButtonKey = Key('cancel_feedback_button_key');
+const Key noRadioButtonKey = Key('no_radio_button_key');
+const Key yesRadioButtonKey = Key('yes_radio_button_key');

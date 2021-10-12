@@ -63,24 +63,17 @@ class UserProfilePage extends StatelessWidget {
                   ...List<Widget>.generate(userProfileItems.length,
                       (int index) {
                     final String iconPath = userProfileItems
-                        .elementAt(index)['iconPath']
-                        .toString();
+                        .elementAt(index).iconAssetPath;
                     final String title =
-                        userProfileItems.elementAt(index)['title'].toString();
+                        userProfileItems.elementAt(index).title;
                     final String routeName =
-                        userProfileItems.elementAt(index)['route'].toString();
+                        userProfileItems.elementAt(index).route;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 4),
                       child: GestureDetector(
                         onTap: () {
                           if (routeName.isNotEmpty) {
                             Navigator.pushNamed(context, routeName);
-                          } else {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text(comingSoonText),
-                              duration: Duration(seconds: 2),
-                            ));
                           }
                         },
                         child: InformationListCard(

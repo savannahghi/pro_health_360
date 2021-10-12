@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
@@ -19,14 +18,11 @@ class SavedPostPage extends StatelessWidget {
     return Scaffold(
       appBar: MyAfyaHubAppBar(
         title: savedText,
-        leadingWidget: GestureDetector(
-          key: backButtonKey,
-          onTap: () => Navigator.pop(context),
-          child: SvgPicture.asset(
+        leadingWidget: SvgPicture.asset(
               backIcon,
               color: AppColors.secondaryColor,
             ),
-        ),
+        
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(

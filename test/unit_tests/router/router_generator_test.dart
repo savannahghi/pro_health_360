@@ -9,6 +9,7 @@ import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
+import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
@@ -425,5 +426,13 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<SettingsPage>;
     expect(route, isA<MaterialPageRoute<SettingsPage>>());
     expect(route.builder(context), isA<SettingsPage>());
+  });
+
+  test('Test router returns FeedbackPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.feedbackPage);
+    final MaterialPageRoute<FeedbackPage> route =
+        routeGenerator(settings) as MaterialPageRoute<FeedbackPage>;
+    expect(route, isA<MaterialPageRoute<FeedbackPage>>());
+    expect(route.builder(context), isA<FeedbackPage>());
   });
 }

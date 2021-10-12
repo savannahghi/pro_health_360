@@ -114,6 +114,9 @@ class BWRoutes {
 
   //Settings Page
   static const String settingsPage = '/settingsPage';
+
+  //Feedback Page
+  static const String feedbackPage = '/feedbackPage';
 }
 
 List<String> unProtectedRoutes = <String>[

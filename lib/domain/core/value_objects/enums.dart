@@ -29,3 +29,5 @@ enum TimelineItemType {
   Appointment,
 }
 enum Country { kenya, uganda, tanzania, us, uk, belgium }
+
+enum FollowUpChoice { Yes, No, Unknown }

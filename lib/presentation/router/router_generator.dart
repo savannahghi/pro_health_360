@@ -31,6 +31,7 @@ import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dar
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
+import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
@@ -214,6 +215,11 @@ class RouteGenerator {
       case BWRoutes.settingsPage:
         return MaterialPageRoute<SettingsPage>(
           builder: (_) => SettingsPage(),
+        );
+
+        case BWRoutes.feedbackPage:
+        return MaterialPageRoute<FeedbackPage>(
+          builder: (_) => const FeedbackPage(),
         );
 
       default:
