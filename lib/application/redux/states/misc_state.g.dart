@@ -23,10 +23,6 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
     bottomNavObj: json['bottomNavObj'] == null
         ? null
         : BottomNavObj.fromJson(json['bottomNavObj'] as Map<String, dynamic>),
-    faqList: (json['faqList'] as List<dynamic>?)
-        ?.map((e) =>
-            e == null ? null : FAQContent.fromJson(e as Map<String, dynamic>))
-        .toList(),
     libraryListItems: json['libraryListItems'] as List<dynamic>?,
     appReviewObj: json['appReviewObj'] == null
         ? null
@@ -41,7 +37,6 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'userPin': instance.userPin,
       'appErrorState': instance.appErrorState?.toList(),
       'bottomNavObj': instance.bottomNavObj,
-      'faqList': instance.faqList,
       'libraryListItems': instance.libraryListItems,
       'appReviewObj': instance.appReviewObj,
     };

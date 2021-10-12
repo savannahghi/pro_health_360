@@ -31,7 +31,6 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
-import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/phone_number_login_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../mocks.dart';
@@ -1218,44 +1217,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(UserFeedBackTexts.getErrorMessage()), findsOneWidget);
-    });
-
-    testWidgets('showPhoneNoUsage should show phoneNumberUsageBottomSheet',
-        (WidgetTester tester) async {
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
-      tester.binding.window.physicalSizeTestValue = tabletPortrait;
-
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      bool isDoneCallbackCalled = false;
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () {
-              showPhoneNoUsage(context, () => isDoneCallbackCalled = true)();
-            },
-          );
-        }),
-      );
-      await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(CircularBackGroundIcons), findsWidgets);
-      expect(find.text(infoVerificationTitle), findsOneWidget);
-
-      await tester.tap(find.byKey(enterSignUpNumberButtonKey));
-      expect(isDoneCallbackCalled, true);
-
-      addTearDown(() {
-        tester.binding.window.clearPhysicalSizeTestValue();
-        tester.binding.window.clearDevicePixelRatioTestValue();
-      });
     });
 
     testWidgets('checkWaitingForFunc should show loading indicator',

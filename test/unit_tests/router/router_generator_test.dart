@@ -18,7 +18,6 @@ import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
 import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
-import 'package:myafyahub/presentation/help_center/pages/help_center_page.dart';
 import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
 import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
@@ -101,16 +100,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PhoneNumberLoginPage>>());
     expect(route.builder(context), isA<PhoneNumberLoginPage>());
-  });
-
-  test('Test router returns incoming help center page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.helpCenter);
-
-    final MaterialPageRoute<HelpCenterPage> route =
-        routeGenerator(settings) as MaterialPageRoute<HelpCenterPage>;
-
-    expect(route, isA<MaterialPageRoute<HelpCenterPage>>());
-    expect(route.builder(context), isA<HelpCenterPage>());
   });
 
   test('Test router returns incoming library page', () {

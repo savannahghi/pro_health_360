@@ -38,7 +38,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
+import 'package:myafyahub/presentation/core/widgets/circular_background_icons.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
@@ -419,148 +419,6 @@ void showMedicationBottomSheet({
         return Container(
           key: actionsContainerKey,
           child: child,
-        );
-      });
-}
-
-void phoneNumberUsageBottomSheet({
-  required BuildContext context,
-  required VoidCallback onDoneCallback,
-}) {
-  showModalBottomSheet(
-      backgroundColor: AppColors.whiteColor,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
-      ),
-      context: context,
-      builder: (BuildContext ctx) {
-        return Container(
-          padding: EdgeInsets.symmetric(
-            horizontal:
-                (ResponsiveWidget.deviceType(ctx) == DeviceScreensType.Mobile &&
-                        !ResponsiveWidget.isSmallScreenAndOnLandscape(
-                          context: context,
-                        ))
-                    ? number30
-                    : ResponsiveWidget.preferredPaddingOnStretchedScreens(
-                        context: ctx),
-          ),
-          child: Center(
-            child: ListView(shrinkWrap: true, children: <Widget>[
-              largeVerticalSizedBox,
-              Text(
-                infoTitle,
-                style: TextThemes.boldSize22Text(),
-              ),
-              largeVerticalSizedBox,
-
-              /// [verification code]
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const CircularBackGroundIcons(
-                    backgroundColor: AppColors.accentColor,
-                    loadIcon: UniconsLine.comment_verify,
-                    iconBackgroundPadding: 8,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: number20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            infoVerificationTitle,
-                            textAlign: TextAlign.center,
-                            style: TextThemes.boldSize14Text(),
-                          ),
-                          verySmallVerticalSizedBox,
-                          const Text(infoVerificationBody),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              mediumVerticalSizedBox,
-
-              /// [Recovery]
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const CircularBackGroundIcons(
-                    backgroundColor: AppColors.accentColor,
-                    loadIcon: UniconsLine.redo,
-                    iconBackgroundPadding: 8,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: number20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            infoRecoveryTitle,
-                            textAlign: TextAlign.start,
-                            style: TextThemes.boldSize14Text(),
-                          ),
-                          verySmallVerticalSizedBox,
-                          const Text(infoRecoveryBody),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              mediumVerticalSizedBox,
-
-              /// [Communication]
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const CircularBackGroundIcons(
-                    backgroundColor: AppColors.accentColor,
-                    loadIcon: UniconsLine.comment_lines,
-                    iconBackgroundPadding: 8,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: number20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            infoCommunicationTitle,
-                            textAlign: TextAlign.start,
-                            style: TextThemes.boldSize14Text(),
-                          ),
-                          verySmallVerticalSizedBox,
-                          const Text(infoCommunicationBody),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              veryLargeVerticalSizedBox,
-
-              /// [Continue]
-              SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: SILPrimaryButton(
-                  buttonKey: enterSignUpNumberButtonKey,
-                  onPressed: onDoneCallback,
-                  buttonColor: Theme.of(context).primaryColor,
-                  borderColor: Colors.transparent,
-                  text: infoDoneText,
-                ),
-              ),
-            ]),
-          ),
         );
       });
 }
@@ -1061,47 +919,47 @@ bool confirmPinValidator(String pin, String confirmPin) {
 }
 
 final List<Map<String, dynamic>> userProfileItems = <Map<String, dynamic>>[
-    <String, dynamic>{
-      'iconPath': profileIcon,
-      'title': 'Personal information',
-      'route': BWRoutes.personalInfo,
-    },
-    <String, dynamic>{
-      'iconPath': medicalDataIcon,
-      'title': 'Medical data',
-      'route': BWRoutes.medicalData,
-    },
-    <String, dynamic>{
-      'iconPath': clinicIcon,
-      'title': 'Clinic information',
-      'route': BWRoutes.clinicInformationPage,
-    },
-    <String, dynamic>{
-      'iconPath': mySavedIcon,
-      'title': 'My Saved',
-      'route': BWRoutes.savedPosts,
-    },
-    <String, dynamic>{
-      'iconPath': faqsIcon,
-      'title': 'FAQs',
-      'route': '',
-    },
-    <String, dynamic>{
-      'iconPath': helpCircleIcon,
-      'title': 'Concent',
-      'route': '',
-    },
-    <String, dynamic>{
-      'iconPath': feedbackIcon,
-      'title': 'Feedback',
-      'route': '',
-    },
-    <String, dynamic>{
-      'iconPath': settingsIcon,
-      'title': 'Settings',
-      'route': BWRoutes.settingsPage,
-    }
-  ];
+  <String, dynamic>{
+    'iconPath': profileIcon,
+    'title': 'Personal information',
+    'route': BWRoutes.personalInfo,
+  },
+  <String, dynamic>{
+    'iconPath': medicalDataIcon,
+    'title': 'Medical data',
+    'route': BWRoutes.medicalData,
+  },
+  <String, dynamic>{
+    'iconPath': clinicIcon,
+    'title': 'Clinic information',
+    'route': BWRoutes.clinicInformationPage,
+  },
+  <String, dynamic>{
+    'iconPath': mySavedIcon,
+    'title': 'My Saved',
+    'route': BWRoutes.savedPosts,
+  },
+  <String, dynamic>{
+    'iconPath': faqsIcon,
+    'title': 'FAQs',
+    'route': '',
+  },
+  <String, dynamic>{
+    'iconPath': helpCircleIcon,
+    'title': 'Concent',
+    'route': '',
+  },
+  <String, dynamic>{
+    'iconPath': feedbackIcon,
+    'title': 'Feedback',
+    'route': '',
+  },
+  <String, dynamic>{
+    'iconPath': settingsIcon,
+    'title': 'Settings',
+    'route': BWRoutes.settingsPage,
+  }
+];
 
 final NotificationActions calendarAction = NotificationActions(
     icon: IconDetails(iconUrlSvgPath: calendarIcon),

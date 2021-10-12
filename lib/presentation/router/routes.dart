@@ -71,9 +71,6 @@ class BWRoutes {
   static const String library = '/library';
   static const String libraryContent = '/libraryContent';
 
-  // support center
-  static const String helpCenter = '/helpCenter';
-
   // search center
   static const String searchPage = '/searchPage';
 

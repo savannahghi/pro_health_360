@@ -16,7 +16,6 @@ void main() {
     });
 
     expect(result2.phoneLogin, isNull);
-    expect(result2.faqList, isNull);
     expect(result2.libraryListItems, isA<List<dynamic>>());
   });
 }

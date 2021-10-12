@@ -29,7 +29,6 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import '../../../mock_feed_response.dart';
 import '../../../mocks.dart';
@@ -867,31 +866,6 @@ void main() {
     });
   });
 
-  testWidgets('test phoneNumberUsageBottomSheet', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Builder(builder: (BuildContext context) {
-            return RawMaterialButton(
-              onPressed: () => phoneNumberUsageBottomSheet(
-                context: context,
-                onDoneCallback: () => Navigator.pop(context),
-              ),
-            );
-          }),
-        ),
-      ),
-    ));
-
-    await tester.pumpAndSettle();
-    await tester.tap(find.byType(RawMaterialButton));
-    await tester.pumpAndSettle();
-    expect(find.byType(ListView), findsOneWidget);
-    expect(find.text(infoVerificationBody), findsOneWidget);
-    expect(find.text(infoCommunicationBody), findsOneWidget);
-    expect(find.byType(CircularBackGroundIcons), findsNWidgets(3));
-  });
-
   testWidgets('test getWidthOfSymmetricalWidgetsSmallDevices',
       (WidgetTester tester) async {
     double? width;
@@ -964,36 +938,6 @@ void main() {
     addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
   });
 
-  testWidgets('phoneNumberUsageBottomSheet should render correctly',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Builder(builder: (BuildContext context) {
-            return RawMaterialButton(onPressed: () {
-              phoneNumberUsageBottomSheet(
-                context: context,
-                onDoneCallback: () => Navigator.pop(context),
-              );
-            });
-          }),
-        ),
-      ),
-    ));
-
-    await tester.pumpAndSettle();
-    await tester.tap(find.byType(RawMaterialButton));
-    await tester.pumpAndSettle();
-
-    expect(find.text(infoVerificationTitle), findsOneWidget);
-    expect(find.text(infoVerificationBody), findsOneWidget);
-
-    expect(find.text(infoRecoveryTitle), findsOneWidget);
-    expect(find.text(infoRecoveryBody), findsOneWidget);
-
-    expect(find.text(infoCommunicationTitle), findsOneWidget);
-    expect(find.text(infoCommunicationBody), findsOneWidget);
-  });
   testWidgets('test showRatingBottomSheet', (WidgetTester tester) async {
     final Store<AppState> store =
         Store<AppState>(initialState: AppState.initial());

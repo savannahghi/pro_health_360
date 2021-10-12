@@ -756,19 +756,6 @@ Future<dynamic> afterLoginOrCreateAccount(
   }
 }
 
-Function showPhoneNoUsage(
-  BuildContext context,
-  VoidCallback phoneNumberUsageBottomSheetCallback,
-) {
-  return () {
-    // show how we use users phone number
-    phoneNumberUsageBottomSheet(
-      context: context,
-      onDoneCallback: phoneNumberUsageBottomSheetCallback,
-    );
-  };
-}
-
 Function checkWaitingForFunc(BuildContext context) {
   return ({required String flag}) {
     return StoreProvider.state<AppState>(context)!.wait!.isWaitingFor(flag);

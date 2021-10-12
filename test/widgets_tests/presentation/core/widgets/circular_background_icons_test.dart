@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/presentation/core/widgets/circular_background_icons.dart';
 import 'package:unicons/unicons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/help_center/widgets/circular_background_icons.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
