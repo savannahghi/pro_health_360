@@ -3,16 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -23,13 +20,7 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAfyaHubAppBar(
-        title: notificationsText,
-        leadingWidget: SvgPicture.asset(
-          backIcon,
-          color: AppColors.secondaryColor,
-        ),
-      ),
+      appBar: const CustomAppBar(title: notificationsText),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

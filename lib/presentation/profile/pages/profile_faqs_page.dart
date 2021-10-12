@@ -1,14 +1,11 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 // Package imports:
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -26,16 +23,7 @@ class ProfileFaqsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isLargeScreen = ResponsiveWidget.isLargeScreen(context);
     return Scaffold(
-      appBar: MyAfyaHubAppBar(
-        title: faqsText,
-        leadingWidget: GestureDetector(
-          key: backAppBarKey,
-          child: SvgPicture.asset(
-            backIcon,
-            color: AppColors.secondaryColor,
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(title: faqsText),
       backgroundColor: authBackgroundColor,
       body: SizedBox(
         child: SafeArea(

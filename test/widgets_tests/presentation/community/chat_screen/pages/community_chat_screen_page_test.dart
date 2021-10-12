@@ -43,7 +43,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(ScaffoldMessenger), findsWidgets);
 
-      await tester.tap(find.byKey(backAppBarKey));
+      await tester.tap(find.byKey(appBarBackButtonKey));
       await tester.pumpAndSettle();
       expect(find.byType(CommunityListViewPage), findsNothing);
     });

@@ -18,7 +18,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
 
-import '../../../../mock_image_httpclient.dart';
+import '../../../../mock_image_http_client.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
@@ -28,7 +28,7 @@ void main() {
     setUp(() {
       final String dir = Directory.current.path;
       store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
         UpdateUserProfileAction(
           profile: UserProfile(
@@ -48,6 +48,7 @@ void main() {
         ),
       );
     });
+
     testWidgets('1, 2, 3 buttons are tappable', (WidgetTester tester) async {
       final TextEditingController _pinController = TextEditingController();
 
@@ -116,6 +117,7 @@ void main() {
       await tester.tap(numberFourButton);
       expect(_pinController.text, equals('6464'));
     });
+
     testWidgets('7, 8, 9, 0 and backSpace buttons work correctly',
         (WidgetTester tester) async {
       final TextEditingController _pinController = TextEditingController();

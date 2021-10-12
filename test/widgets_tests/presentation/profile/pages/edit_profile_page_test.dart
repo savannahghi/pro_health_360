@@ -52,8 +52,6 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-
-      await tester.pumpAndSettle();
       final Finder scrollViewWidget = find.byType(Form);
       expect(scrollViewWidget, findsOneWidget);
 

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/community/community_list_item.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
 class CommunityListViewPage extends StatelessWidget {
   const CommunityListViewPage({Key? key}) : super(key: key);
@@ -95,7 +95,7 @@ class CommunityListViewPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: const MyAfyaHubAppBar(title: communityString),
+      appBar: const CustomAppBar(title: communityString),
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[

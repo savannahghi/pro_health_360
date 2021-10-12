@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -34,13 +33,7 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAfyaHubAppBar(
-        title: myHealthPageProfile,
-        leadingWidget: SvgPicture.asset(
-          backIcon,
-          color: AppColors.secondaryColor,
-        ),
-      ),
+      appBar: const CustomAppBar(title: myHealthPageProfile),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(

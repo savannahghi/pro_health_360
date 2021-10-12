@@ -61,7 +61,7 @@ class FakeHttpClientResponse extends Fake implements HttpClientResponse {
 
 class FakeHttpHeaders extends Fake implements HttpHeaders {}
 
-class BWTestHttpOverrides extends HttpOverrides {
+class TestHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return createMockImageHttpClient();

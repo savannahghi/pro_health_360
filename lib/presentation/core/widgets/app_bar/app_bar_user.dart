@@ -16,8 +16,8 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
-class MyAfyaHubAppbarUser extends StatelessWidget {
-  const MyAfyaHubAppbarUser({Key? key}) : super(key: key);
+class AppbarUser extends StatelessWidget {
+  const AppbarUser({Key? key}) : super(key: key);
 
   void editProfileNavigation(BuildContext context) {
     // navigate to the user profile here
@@ -27,7 +27,7 @@ class MyAfyaHubAppbarUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      key: silAppBarGestureKey,
+      key: appBarUserKey,
       onTap: () => editProfileNavigation(context),
       child: StoreConnector<AppState, UserProfileViewModel>(
         converter: (Store<AppState> store) =>
@@ -35,8 +35,13 @@ class MyAfyaHubAppbarUser extends StatelessWidget {
         builder: (BuildContext context, UserProfileViewModel vm) {
           final UserProfileState userProfileState = vm.userProfileState;
           final String? photoUrl = userProfileState.userProfile!.photoUploadID;
+
+          // a sanity check for the photo url
+          final bool isUploadUrlInvalid =
+              photoUrl!.isEmpty || photoUrl == UNKNOWN;
+
           return Container(
-            padding: EdgeInsets.all(photoUrl == UNKNOWN ? 2 : 0),
+            padding: EdgeInsets.all(isUploadUrlInvalid ? 2 : 0),
             decoration: const BoxDecoration(
                 shape: BoxShape.circle, color: AppColors.whiteColor),
             child: Container(
@@ -46,7 +51,7 @@ class MyAfyaHubAppbarUser extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: Theme.of(context).primaryColor),
               child: Center(
-                child: (photoUrl == UNKNOWN || photoUrl!.isEmpty)
+                child: isUploadUrlInvalid
                     ? Text(
                         extractNamesInitials(
                             name: getDisplayName(userProfileState)),

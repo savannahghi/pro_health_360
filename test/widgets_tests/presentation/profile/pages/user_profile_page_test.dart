@@ -18,9 +18,11 @@ import '../../../../test_helpers.dart';
 void main() {
   group('UserProfilePage', () {
     late Store<AppState> store;
-    setUp(() {
+
+    setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -35,6 +37,7 @@ void main() {
       expect(userProfileListItem, findsNWidgets(userProfileItems.length));
       expect(hotlineCallButton, findsOneWidget);
     });
+
     testWidgets('navigates to PersonalInformationPage correctly',
         (WidgetTester tester) async {
       await buildTestWidget(

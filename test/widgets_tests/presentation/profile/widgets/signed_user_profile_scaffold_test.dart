@@ -20,7 +20,7 @@ import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_pa
 import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/widgets/profile_item_builder.dart';
 import 'package:myafyahub/presentation/profile/widgets/signed_user_profile_scaffold.dart';
-import '../../../../mock_image_httpclient.dart';
+import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -29,7 +29,7 @@ void main() {
     late Store<AppState> store;
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
         UpdateUserProfileAction(
           userBioData: BioData(

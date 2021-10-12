@@ -12,7 +12,7 @@ import 'package:myafyahub/domain/core/entities/core/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/my_health/widgets/my_health_diary_item_widget.dart';
 
 class MyHealthDiaryPage extends StatelessWidget {
@@ -90,10 +90,10 @@ class MyHealthDiaryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: MyAfyaHubAppBar(
+      appBar: CustomAppBar(
         title: myHealthDiaryString,
         leadingWidget: SvgPicture.asset(
-            backIcon,
+            backIconPath,
             color: AppColors.secondaryColor,
           
         ),

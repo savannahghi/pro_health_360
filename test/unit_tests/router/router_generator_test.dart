@@ -19,13 +19,10 @@ import 'package:user_profile/term_and_conditions.dart' as webview;
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
-import 'package:myafyahub/presentation/doctors/doctors_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
 import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
-import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
-import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
@@ -155,15 +152,6 @@ void main() {
     expect(route.builder(context), isA<LibraryContent>());
   });
 
-  test('Test router returns incoming  seeDoctor page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.seeDoctor);
-
-    final MaterialPageRoute<SeeDoctorLandingPage> route =
-        routeGenerator(settings) as MaterialPageRoute<SeeDoctorLandingPage>;
-
-    expect(route, isA<MaterialPageRoute<SeeDoctorLandingPage>>());
-    expect(route.builder(context), isA<SeeDoctorLandingPage>());
-  });
   test('Test router returns incoming  basicDetails page', () {
     const RouteSettings settings = RouteSettings(name: BWRoutes.basicDetails);
 
@@ -193,33 +181,6 @@ void main() {
     expect(route.builder(context), isA<ResumeWithPinPage>());
   });
 
-  test('Test router returns incoming  buyMedicine page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.buyMedicine);
-
-    final MaterialPageRoute<BuyMedicineLandingPage> route =
-        routeGenerator(settings) as MaterialPageRoute<BuyMedicineLandingPage>;
-
-    expect(route, isA<MaterialPageRoute<BuyMedicineLandingPage>>());
-    expect(route.builder(context), isA<BuyMedicineLandingPage>());
-  });
-
-  test('Test router returns incoming  getTested page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.getTested);
-
-    final MaterialPageRoute<MedicalTestsLandingPage> route =
-        routeGenerator(settings) as MaterialPageRoute<MedicalTestsLandingPage>;
-
-    expect(route, isA<MaterialPageRoute<MedicalTestsLandingPage>>());
-    expect(route.builder(context), isA<MedicalTestsLandingPage>());
-  });
-  test('Test router returns incoming  seeDoctor page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.seeDoctor);
-    final MaterialPageRoute<SeeDoctorLandingPage> route =
-        routeGenerator(settings) as MaterialPageRoute<SeeDoctorLandingPage>;
-
-    expect(route, isA<MaterialPageRoute<SeeDoctorLandingPage>>());
-    expect(route.builder(context), isA<SeeDoctorLandingPage>());
-  });
   test('Test router returns incoming  editProfileSettingsPage page', () {
     const RouteSettings settings =
         RouteSettings(name: BWRoutes.editProfileSettingsPage);

@@ -5,13 +5,12 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
-import 'package:myafyahub/presentation/doctors/doctors_page.dart';
+import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
 import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
-import 'package:myafyahub/presentation/medical_tests/medical_tests_landing_page.dart';
-import 'package:myafyahub/presentation/medications/medications_landing_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
@@ -35,11 +34,9 @@ import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
-import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 // Package imports:
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -102,22 +99,9 @@ class RouteGenerator {
         return MaterialPageRoute<ProfileContactDetails>(
             builder: (_) => ProfileContactDetails());
 
-      case BWRoutes.buyMedicine:
-        return MaterialPageRoute<BuyMedicineLandingPage>(
-            builder: (_) => BuyMedicineLandingPage());
-
       case BWRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
             builder: (_) => const ProfileFaqsPage());
-
-      case BWRoutes.getTested:
-        return MaterialPageRoute<MedicalTestsLandingPage>(
-          builder: (_) => MedicalTestsLandingPage(),
-        );
-
-      case BWRoutes.seeDoctor:
-        return MaterialPageRoute<SeeDoctorLandingPage>(
-            builder: (_) => SeeDoctorLandingPage());
 
       case BWRoutes.library:
         return MaterialPageRoute<Library>(builder: (_) => Library());

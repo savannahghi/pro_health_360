@@ -15,7 +15,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
 
 class PINInputPage extends StatefulWidget {
@@ -73,9 +72,9 @@ class _PINInputPageState extends State<PINInputPage> {
     late String enteredPin = '';
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: MyAfyaHubAppBar(
-        leadingWidget: mediumHorizontalSizedBox,
-      ),
+      // TODO(abiud): triage why tests for this fail when the appbar is added
+      // appBar: CustomAppBar(
+      //     leadingWidget: mediumHorizontalSizedBox, showBackButton: false),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

@@ -13,26 +13,28 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
-import '../../mock_image_httpclient.dart';
-import '../../test_helpers.dart';
-import '../../test_utils.dart';
+
+import '../../../../../mock_image_http_client.dart';
+import '../../../../../test_helpers.dart';
+import '../../../../../test_utils.dart';
 
 void main() {
-  group('SIL Appbar', () {
+  group('AppbarUser', () {
     late Store<AppState> store;
 
     setUp(() {
       final String dir = Directory.current.path;
       store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
         UpdateUserProfileAction(
           profile: UserProfile(
               photoUploadID: '$dir/test/tests_resources/test_file.png'),
         ),
       );
+
       store.dispatch(
         UpdateUserProfileAction(
           userBioData: BioData(
@@ -46,38 +48,42 @@ void main() {
         ),
       );
     });
-    testWidgets('should render SILAppBarUSer correctly',
+
+    testWidgets('should render AppBarUSer widget correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(builder: (BuildContext context) {
-          return const MyAfyaHubAppbarUser();
+          return const AppbarUser();
         }),
       );
 
       await fireEvent(tester);
-      final Finder silAppBarGestureString = find.byKey(silAppBarGestureKey);
-      expect(find.byType(MyAfyaHubAppbarUser), findsOneWidget);
+
+      final Finder silAppBarGestureString = find.byKey(appBarUserKey);
+      expect(find.byType(AppbarUser), findsOneWidget);
       expect(silAppBarGestureString, findsOneWidget);
+
       await tester.tap(silAppBarGestureString);
       await tester.pumpAndSettle();
-      // verify(mockObserver.didPush(sampleRoute, any));
     });
 
-    testWidgets('should render SILAppBarUSer with a photo URL correctly',
+    testWidgets('should render AppBarUSer widget with a photo URL',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(builder: (BuildContext context) {
-          return const MyAfyaHubAppbarUser();
+          return const AppbarUser();
         }),
       );
+
       await tester.pumpAndSettle();
-      expect(find.byType(MyAfyaHubAppbarUser), findsOneWidget);
+
+      expect(find.byType(AppbarUser), findsOneWidget);
     });
   });
 }

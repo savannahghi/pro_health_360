@@ -35,7 +35,7 @@ void main() {
 
       expect(find.text(frequentlyAskedQuestions), findsOneWidget);
       expect(find.text(faqsText), findsOneWidget);
-      expect(find.byKey(backAppBarKey), findsOneWidget);
+      expect(find.byKey(appBarBackButtonKey), findsOneWidget);
       expect(find.byType(ExpandableQuestion), findsWidgets);
       expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
 

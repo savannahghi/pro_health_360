@@ -15,7 +15,7 @@ import 'package:myafyahub/domain/core/entities/library/library_content_item.dart
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
-import '../../../mock_image_httpclient.dart';
+import '../../../mock_image_http_client.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -48,7 +48,7 @@ void main() {
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
     });
 
     testWidgets('should render correctly', (WidgetTester tester) async {

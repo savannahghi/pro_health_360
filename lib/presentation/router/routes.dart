@@ -40,52 +40,22 @@ class BWRoutes {
   static const String medicalData = '/medicalData';
   static const String savedPosts = '/savedPosts';
 
-  // benefit details and utilization routes
-
-  static const String Invoices = '/Invoices';
-  static const String singleSpentAmountInvoice = '/singleSpentAmountInvoice';
-  static const String preAuthorizations = '/preAuthorizations';
-  static const String authorizations = '/authorizations';
-  static const String balanceReservations = '/balanceReservations';
-
-  // consult and teleconsult routes
-  static const String providerPanel = '/providerPanel';
-
-  // notifications
+  // Notifications page
   static const String notificationsPage = '/notificationsPage';
 
-  //My Health Page
+  // My Health Page
   static const String myHealthPage = '/myHealthPage';
 
-  //Appointments page
+  // Appointments page
   static const String appointmentsPage = '/appointmentsPage';
-
-  // verify edi contacts routes
-  static const String addMemberDetailsEdi = '/addMemberDetailsEdi';
-
-  // homepage money items landing page routes
-  static const String seeDoctor = '/seeDoctor';
-  static const String buyMedicine = '/buyMedicine';
-  static const String getTested = '/getTested';
 
   // library
   static const String library = '/library';
   static const String libraryContent = '/libraryContent';
 
-  // search center
-  static const String searchPage = '/searchPage';
-
   static const String webView = '/webView';
 
   static const String introduction = 'introduction';
-  static const String selectAssistantPage = '/selectAssistantPage';
-  static const String selectCoverageInfoPage = '/selectCoverageInfoPage';
-  static const String confirmIdentificationDetailsPage =
-      '/confirmIdentificationDetailsPage';
-  static const String selectFullPaymentOrLoanPage =
-      '/selectFullPaymentOrLoanPage';
-  static const String selectTypeOfCoverPage = '/selectTypeOfCoverPage';
-  static const String selectPremiumRangePage = '/selectPremiumRangePage';
 
   // community
   static const String communityListView = '/communityListView';

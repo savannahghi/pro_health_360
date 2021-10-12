@@ -281,7 +281,6 @@ const String createAccount = 'Create your account';
 const String loadingText = 'LOADING';
 
 //login strings
-const String doesNotHaveAccount = 'Don\'t have an account?  ';
 const String enteredWrongPINString =
     'Sorry, you entered the wrong PIN, please try again.';
 const String invalidCredentialsErrorMsg =

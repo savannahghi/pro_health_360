@@ -11,12 +11,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/suggested_group_card_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/suggested_groups_section_widget.dart';
-import '../../../../mock_image_httpclient.dart';
+import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 
 void main() {
   setUpAll(() {
-    HttpOverrides.global = BWTestHttpOverrides();
+    HttpOverrides.global = TestHttpOverrides();
   });
 
   testWidgets('SuggestedGroupsSection should render correctly',

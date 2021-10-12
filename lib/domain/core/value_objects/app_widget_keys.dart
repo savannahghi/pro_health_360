@@ -53,7 +53,6 @@ const Key pinVerificationInputKey = Key('pin_verification_input_key');
 
 // phone login keys
 const Key phoneLoginSubmitButtonKey = Key('phone_login_submit_button_key');
-const Key createNewAccountKey = Key('create_new_account_key');
 const Key resetPinKey = Key('reset_pin_key');
 const Key pinInputKey = Key('pin_input_key');
 const Key phoneNumberInputKey = Key('phone_number_input_key');
@@ -64,7 +63,7 @@ const Key primaryBottomSheetButtonKey = Key('primary_bottom_sheet_button');
 const Key secondaryBottomSheetButtonKey = Key('secondary_bottom_sheet_button');
 const Key tertiaryBottomSheetButtonKey = Key('tertiary_bottom_sheet_button');
 
-const Key silAppBarGestureKey = Key('sil_appBar_gesture_detector');
+const Key appBarUserKey = Key('app_bar_user_key');
 
 const Key selfAppointmentBookingKey = Key('self_appointment_booking_key');
 const Key dependantAppointmentBookingKey =
@@ -267,7 +266,6 @@ const Key ratingDialogKey = Key('app_rating_dialog_key');
 // community chat page
 const Key messageInputAttachFileKey = Key('message_input_attach_file_key');
 const Key messageInputSendMessageKey = Key('message_input_send_message_key');
-const Key backAppBarKey = Key('back_app_bar_key');
 const Key moreAppBarKey = Key('more_app_bar_key');
 
 // mood widget keys
@@ -278,7 +276,10 @@ const Key sadMoodKey = Key('sad_mood_key');
 const Key verySadMoodKey = Key('very_sad_mood_key');
 const Key keyPadWidgetKey = Key('key_pad_widget_key');
 const Key keyPadBackSpaceButtonKey = Key('key_pad_back_space_button_key');
+
+// appbar keys
 const Key appBarBackButtonKey = Key('app_bar_back_button_key');
+const Key appBarNotificationKey = Key('app_bar_notification_key');
 
 //Feedback page widget keys
 const Key sendFeedbackButtonKey = Key('send_feedback_button_key');

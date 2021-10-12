@@ -13,7 +13,7 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart' as p;
-import '../../../../mock_image_httpclient.dart';
+import '../../../../mock_image_http_client.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
@@ -21,7 +21,7 @@ void main() {
     late Store<AppState> store;
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
         UpdateUserProfileAction(
           userBioData: BioData(

@@ -14,14 +14,18 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/sil_appbar_user.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_back_button.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_notification.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_user.dart';
+import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 
-import '../../../../../mock_image_httpclient.dart';
+import '../../../../../mock_image_http_client.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
-  group('MyAfyaHubAppBar', () {
+  group('CustomAppBar', () {
     const String title = 'Community';
 
     late Store<AppState> store;
@@ -29,7 +33,7 @@ void main() {
     setUp(() {
       final String dir = Directory.current.path;
       store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
         UpdateUserProfileAction(
           profile: domain.UserProfile(
@@ -57,8 +61,9 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(builder: (BuildContext context) {
-          return MyAfyaHubAppBar(
+          return CustomAppBar(
             title: title,
+            showBackButton: false,
             trailingWidget: IconButton(
               icon: const Icon(Icons.notifications),
               onPressed: () {
@@ -70,8 +75,8 @@ void main() {
         }),
       );
 
-      expect(find.byType(MyAfyaHubAppBar), findsOneWidget);
-      expect(find.byType(MyAfyaHubAppbarUser), findsOneWidget);
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(find.byType(AppbarUser), findsOneWidget);
       expect(find.text(title), findsOneWidget);
 
       await tester.press(find.byType(IconButton));
@@ -80,15 +85,16 @@ void main() {
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
     });
 
-    testWidgets('should render correctly with empty profile initials',
+    testWidgets('should show initials when profile picture is absent',
         (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(builder: (BuildContext context) {
-          return MyAfyaHubAppBar(
+          return CustomAppBar(
             title: title,
+            showBackButton: false,
             trailingWidget: IconButton(
               icon: const Icon(Icons.notifications),
               onPressed: () {
@@ -100,8 +106,8 @@ void main() {
         }),
       );
 
-      expect(find.byType(MyAfyaHubAppBar), findsOneWidget);
-      expect(find.byType(MyAfyaHubAppbarUser), findsOneWidget);
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(find.byType(AppbarUser), findsOneWidget);
       expect(find.text(title), findsOneWidget);
 
       await tester.press(find.byType(IconButton));
@@ -110,15 +116,15 @@ void main() {
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
     });
 
-    testWidgets('should render correctly with profile image',
-        (WidgetTester tester) async {
+    testWidgets('should show profile picture', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(builder: (BuildContext context) {
-          return MyAfyaHubAppBar(
+          return CustomAppBar(
             title: title,
+            showBackButton: false,
             trailingWidget: IconButton(
               icon: const Icon(Icons.notifications),
               onPressed: () {
@@ -130,7 +136,7 @@ void main() {
         }),
       );
 
-      expect(find.byType(MyAfyaHubAppbarUser), findsOneWidget);
+      expect(find.byType(AppbarUser), findsOneWidget);
       expect(find.text(title), findsOneWidget);
 
       await tester.press(find.byType(IconButton));
@@ -139,39 +145,31 @@ void main() {
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
     });
 
-    testWidgets('should render correctly with back button',
+    testWidgets('should show back button and pop when back button is tapped',
         (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Builder(
-            builder: (BuildContext context) {
-              return MaterialApp(
-                home: Scaffold(
-                  appBar: MyAfyaHubAppBar(
-                    leadingWidget: IconButton(
-                      icon: const Icon(Icons.arrow_back_ios),
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text(getTestedComingSoonText)));
-                      },
-                    ),
-                    title: title,
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const CustomAppBar(),
       );
 
-      expect(find.byType(MyAfyaHubAppbarUser), findsNothing);
-      expect(find.text(title), findsOneWidget);
-
-      await tester.press(find.byType(IconButton));
       await tester.pumpAndSettle();
 
-      expect(find.byType(ScaffoldMessenger), findsWidgets);
+      expect(find.byType(AppBarBackButton), findsOneWidget);
+      expect(find.byType(AppBarNotification), findsOneWidget);
+
+      // navigate to notifications page and back
+      await tester.tap(find.byKey(appBarNotificationKey, skipOffstage: false));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(NotificationsPage), findsOneWidget);
+
+      await tester.tap(find.byKey(appBarBackButtonKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AppBarBackButton), findsOneWidget);
+      expect(find.byType(AppBarNotification), findsOneWidget);
     });
   });
 }

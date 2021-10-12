@@ -19,7 +19,7 @@ import 'package:myafyahub/application/redux/actions/phone_signup_state_action.da
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
-import '../../../../../mock_image_httpclient.dart';
+import '../../../../../mock_image_http_client.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
@@ -35,7 +35,7 @@ void main() {
         initialState: AppState.initial(),
         shouldThrowUserExceptions: true,
       );
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
     });
 
     testWidgets('should dispatch action and catch error',

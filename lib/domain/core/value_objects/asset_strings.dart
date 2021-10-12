@@ -80,7 +80,7 @@ const String mySavedIcon = 'assets/icons/my_saved_icon.svg';
 
 //App bar icons
 const String notificationIcon = 'assets/icons/notification_icon.svg';
-const String backIcon = 'assets/icons/app_bar_back_icon.svg';
+const String backIconPath = 'assets/icons/app_bar_back_icon.svg';
 
 // Bottom nav icon paths
 const String homeIconSvgPath = 'assets/icons/home_icon.svg';

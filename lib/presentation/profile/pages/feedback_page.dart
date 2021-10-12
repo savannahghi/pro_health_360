@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
 import 'package:myafyahub/presentation/profile/widgets/medical_data_item_title.dart';
 import 'package:shared_themes/spaces.dart';
@@ -27,13 +25,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: MyAfyaHubAppBar(
-        title: feedbackString,
-        leadingWidget: SvgPicture.asset(
-          backIcon,
-          color: AppColors.secondaryColor,
-        ),
-      ),
+      appBar: const CustomAppBar(title: feedbackString),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(

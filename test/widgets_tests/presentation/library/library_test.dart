@@ -21,7 +21,7 @@ import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/pages/library_page_content.dart';
-import '../../../mock_image_httpclient.dart';
+import '../../../mock_image_http_client.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -31,7 +31,7 @@ void main() {
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = BWTestHttpOverrides();
+      HttpOverrides.global = TestHttpOverrides();
     });
 
     final MockGraphQlClient GraphQlClient = MockGraphQlClient();

@@ -5,17 +5,17 @@ import 'package:myafyahub/domain/core/entities/notification/notification_details
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointments_list.dart';
 
 class AppointmentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAfyaHubAppBar(
+      appBar: CustomAppBar(
         title: appointmentsTitle,
         leadingWidget: SvgPicture.asset(
-            backIcon,
+            backIconPath,
             color: AppColors.secondaryColor,
           ),
         

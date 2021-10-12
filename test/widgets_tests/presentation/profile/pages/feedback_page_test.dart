@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/my_afya_hub_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 
 void main() {
@@ -19,7 +19,7 @@ void main() {
         ),
       ),
     );
-    expect(find.byType(MyAfyaHubAppBar), findsWidgets);
+    expect(find.byType(CustomAppBar), findsWidgets);
 
     final Finder sendRequestButton = find.byKey(sendFeedbackButtonKey);
     final Finder cancelRequestButton = find.byKey(cancelFeedbackButtonKey);

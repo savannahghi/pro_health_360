@@ -13,11 +13,11 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/widgets/list_item_card_widget.dart';
-import '../../../../mock_image_httpclient.dart';
+import '../../../../mock_image_http_client.dart';
 
 void main() {
   setUpAll(() {
-    HttpOverrides.global = BWTestHttpOverrides();
+    HttpOverrides.global = TestHttpOverrides();
   });
   group('ListItemCard', () {
     testWidgets('ListItemCard should render correctly for Appointment',

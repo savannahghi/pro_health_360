@@ -27,7 +27,7 @@ import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dar
 import 'package:myafyahub/domain/core/entities/login/basic_details_model.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
-import '../../../../../mock_image_httpclient.dart';
+import '../../../../../mock_image_http_client.dart';
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -47,7 +47,7 @@ void main() {
       () {
         final String dir = Directory.current.path;
         store = Store<AppState>(initialState: AppState.initial());
-        HttpOverrides.global = BWTestHttpOverrides();
+        HttpOverrides.global = TestHttpOverrides();
         store.dispatch(
           UpdateUserProfileAction(
             profile: UserProfile(
