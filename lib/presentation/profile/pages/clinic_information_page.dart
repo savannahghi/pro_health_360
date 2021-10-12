@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -29,9 +30,13 @@ class ClinicInformationPage extends StatelessWidget {
     return Scaffold(
       appBar: MyAfyaHubAppBar(
         title: myProfileString,
-        leadingWidget: SvgPicture.asset(
-          backIcon,
-          color: AppColors.secondaryColor,
+        leadingWidget: GestureDetector(
+          key: backButtonKey,
+          onTap: () => Navigator.pop(context),
+          child: SvgPicture.asset(
+              backIcon,
+              color: AppColors.secondaryColor,
+            ),
         ),
       ),
       body: SafeArea(

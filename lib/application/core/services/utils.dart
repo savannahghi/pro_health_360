@@ -1061,47 +1061,47 @@ bool confirmPinValidator(String pin, String confirmPin) {
 }
 
 final List<Map<String, dynamic>> userProfileItems = <Map<String, dynamic>>[
-  <String, dynamic>{
-    'iconPath': profileIcon,
-    'title': 'Personal information',
-    'route': BWRoutes.personalInfo,
-  },
-  <String, dynamic>{
-    'iconPath': medicalDataIcon,
-    'title': 'Medical data',
-    'route': BWRoutes.medicalData,
-  },
-  <String, dynamic>{
-    'iconPath': clinicIcon,
-    'title': 'Clinic data',
-    'route': BWRoutes.clinicInformationPage,
-  },
-  <String, dynamic>{
-    'iconPath': mySavedIcon,
-    'title': 'My Saved',
-    'route': BWRoutes.savedPosts,
-  },
-  <String, dynamic>{
-    'iconPath': faqsIcon,
-    'title': 'FAQs',
-    'route': '',
-  },
-  <String, dynamic>{
-    'iconPath': helpCircleIcon,
-    'title': 'Concent',
-    'route': '',
-  },
-  <String, dynamic>{
-    'iconPath': feedbackIcon,
-    'title': 'Feedback',
-    'route': '',
-  },
-  <String, dynamic>{
-    'iconPath': settingsIcon,
-    'title': 'Settings',
-    'route': '',
-  }
-];
+    <String, dynamic>{
+      'iconPath': profileIcon,
+      'title': 'Personal information',
+      'route': BWRoutes.personalInfo,
+    },
+    <String, dynamic>{
+      'iconPath': medicalDataIcon,
+      'title': 'Medical data',
+      'route': BWRoutes.medicalData,
+    },
+    <String, dynamic>{
+      'iconPath': clinicIcon,
+      'title': 'Clinic information',
+      'route': BWRoutes.clinicInformationPage,
+    },
+    <String, dynamic>{
+      'iconPath': mySavedIcon,
+      'title': 'My Saved',
+      'route': BWRoutes.savedPosts,
+    },
+    <String, dynamic>{
+      'iconPath': faqsIcon,
+      'title': 'FAQs',
+      'route': '',
+    },
+    <String, dynamic>{
+      'iconPath': helpCircleIcon,
+      'title': 'Concent',
+      'route': '',
+    },
+    <String, dynamic>{
+      'iconPath': feedbackIcon,
+      'title': 'Feedback',
+      'route': '',
+    },
+    <String, dynamic>{
+      'iconPath': settingsIcon,
+      'title': 'Settings',
+      'route': BWRoutes.settingsPage,
+    }
+  ];
 
 final NotificationActions calendarAction = NotificationActions(
     icon: IconDetails(iconUrlSvgPath: calendarIcon),
