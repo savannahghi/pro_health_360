@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // Package imports:
 import 'package:shared_themes/colors.dart';
@@ -13,7 +14,7 @@ class MoodItem extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  final IconData moodIcon;
+  final String moodIcon;
   final String moodText;
   final VoidCallback onTap;
 
@@ -23,10 +24,8 @@ class MoodItem extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: <Widget>[
-          Icon(
+          SvgPicture.asset(
             moodIcon,
-            color: Colors.white,
-            size: 36.0,
           ),
           smallVerticalSizedBox,
           Text(

@@ -28,12 +28,14 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: 180,
+      height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        image: const DecorationImage(
+        image: DecorationImage(
+          colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.6), BlendMode.srcOver),
           fit: BoxFit.cover,
-          image: AssetImage(blendedBackgroundImg),
+          image: const AssetImage(moodSelectionBackgroundUrl),
         ),
       ),
       child: Padding(
@@ -52,7 +54,7 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                 children: <Widget>[
                   MoodItem(
                     key: excitedMoodKey,
-                    moodIcon: Icons.insert_emoticon_outlined,
+                    moodIcon: excitedIconSvgPath,
                     moodText: excitedString,
                     onTap: () {
                       ScaffoldMessenger.of(context)
@@ -61,7 +63,7 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   ),
                   MoodItem(
                     key: happyMoodKey,
-                    moodIcon: Icons.insert_emoticon_outlined,
+                    moodIcon: happyIconSvgPath,
                     moodText: happyString,
                     onTap: () {
                       ScaffoldMessenger.of(context)
@@ -70,7 +72,7 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   ),
                   MoodItem(
                     key: mehMoodKey,
-                    moodIcon: Icons.outlet_outlined,
+                    moodIcon: mehIconSvgPath,
                     moodText: mehString,
                     onTap: () {
                       ScaffoldMessenger.of(context)
@@ -79,7 +81,7 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   ),
                   MoodItem(
                     key: sadMoodKey,
-                    moodIcon: Icons.mood_bad_outlined,
+                    moodIcon: sadIconSvgPath,
                     moodText: sadString,
                     onTap: () {
                       ScaffoldMessenger.of(context)
@@ -88,7 +90,7 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   ),
                   MoodItem(
                     key: verySadMoodKey,
-                    moodIcon: Icons.mood_bad_outlined,
+                    moodIcon: verySadIconSvgPath,
                     moodText: verySadString,
                     onTap: () {
                       ScaffoldMessenger.of(context)
