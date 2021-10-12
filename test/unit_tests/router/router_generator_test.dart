@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
+import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -388,5 +389,13 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ClinicInformationPage>;
     expect(route, isA<MaterialPageRoute<ClinicInformationPage>>());
     expect(route.builder(context), isA<ClinicInformationPage>());
+  });
+
+  test('Test router returns SettingsPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.settingsPage);
+    final MaterialPageRoute<SettingsPage> route =
+        routeGenerator(settings) as MaterialPageRoute<SettingsPage>;
+    expect(route, isA<MaterialPageRoute<SettingsPage>>());
+    expect(route.builder(context), isA<SettingsPage>());
   });
 }

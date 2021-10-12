@@ -548,7 +548,7 @@ String congratulationsPageTitle(String duration) =>
     'Congratulations on your $duration health journey';
 const String congratulationsPageDescription =
     'Please create a nickname (Visible to community members)';
-const String nickNameString = 'Name';
+const String nameString = 'Name';
 const String nameInputValidateString = 'Name is required';
 const String importantInformationString = 'Important Information';
 
@@ -656,3 +656,8 @@ const String wrongPINString = 'Wrong pin, try again';
 
 //Health Diary page
 const String myHealthDiaryString = 'My Health Diary';
+
+//settings page
+const String nickNameString = 'Nickname';
+const String editString = 'Edit';
+const String saveString = 'Save';

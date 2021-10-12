@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
+import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 
 // Package imports:
@@ -216,6 +217,11 @@ class RouteGenerator {
         case BWRoutes.clinicInformationPage:
         return MaterialPageRoute<ClinicInformationPage>(
           builder: (_) => ClinicInformationPage(),
+        );
+
+        case BWRoutes.settingsPage:
+        return MaterialPageRoute<SettingsPage>(
+          builder: (_) => SettingsPage(),
         );
 
       default:

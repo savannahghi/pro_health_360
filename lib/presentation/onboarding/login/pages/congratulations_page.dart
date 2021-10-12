@@ -39,7 +39,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              nickNameString,
+              nameString,
               style: TextThemes.boldSize16Text(Colors.grey),
             ),
             smallVerticalSizedBox,

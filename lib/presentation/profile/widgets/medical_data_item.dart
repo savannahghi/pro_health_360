@@ -8,14 +8,15 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class MedicalDataItem extends StatelessWidget {
-  const MedicalDataItem({required this.data, this.description});
+  const MedicalDataItem({required this.data, this.description, this.customWidth});
 
   final String data;
   final String? description;
+  final double? customWidth;
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width * 0.8;
+    final double width = customWidth ?? MediaQuery.of(context).size.width * 0.8;
     const Color itemDescriptionColor = Color(0xFF11DDDF);
 
     return Container(
