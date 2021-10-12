@@ -126,3 +126,13 @@ const String imageIconSvgPath = 'assets/icons/image_icon.svg';
 const String happyMoodIconSvgPath = 'assets/icons/happy_mood_icon.svg';
 const String textIconSvgPath = 'assets/icons/text_icon.svg';
 const String mehMoodIconSvgPath = 'assets/icons/meh_mood_icon.svg';
+
+// Mood selection icons
+const String excitedIconSvgPath = 'assets/icons/excited.svg';
+const String happyIconSvgPath = 'assets/icons/happy.svg';
+const String mehIconSvgPath = 'assets/icons/meh.svg';
+const String sadIconSvgPath = 'assets/icons/sad.svg';
+const String verySadIconSvgPath = 'assets/icons/very_sad.svg';
+
+const String moodSelectionBackgroundUrl =
+    'assets/images/mood_selection_background.png';
