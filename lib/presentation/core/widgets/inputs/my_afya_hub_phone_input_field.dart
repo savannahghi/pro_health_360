@@ -161,7 +161,6 @@ class MyAfyaHubPhoneInput extends FormField<String> {
                                     );
                                   },
                                 ),
-                                if (!isValidNumber)
                                   Positioned(
                                     right: 12,
                                     height: 20,
