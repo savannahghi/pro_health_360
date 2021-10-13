@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
@@ -395,5 +396,13 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<FeedbackPage>;
     expect(route, isA<MaterialPageRoute<FeedbackPage>>());
     expect(route.builder(context), isA<FeedbackPage>());
+  });
+
+  test('Test router returns PINInputPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.pinInputPage);
+    final MaterialPageRoute<PINInputPage> route =
+        routeGenerator(settings) as MaterialPageRoute<PINInputPage>;
+    expect(route, isA<MaterialPageRoute<PINInputPage>>());
+    expect(route.builder(context), isA<PINInputPage>());
   });
 }

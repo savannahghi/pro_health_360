@@ -49,78 +49,8 @@ void main() {
       );
     });
 
-    testWidgets('1, 2, 3 buttons are tappable', (WidgetTester tester) async {
-      final TextEditingController _pinController = TextEditingController();
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return MaterialApp(
-            home: PINInputPage(
-              pinController: _pinController,
-              pin: '2345',
-            ),
-          );
-        }),
-      );
-
-      expect(find.byType(KeyPadWidget), findsOneWidget);
-      final Finder numberOneButton = find.text('1');
-      final Finder numberTwoButton = find.text('2');
-      final Finder numberThreeButton = find.text('3');
-
-      expect(numberOneButton, findsOneWidget);
-      expect(numberTwoButton, findsOneWidget);
-      expect(numberThreeButton, findsOneWidget);
-
-      await tester.tap(numberOneButton);
-      await tester.tap(numberTwoButton);
-      await tester.tap(numberThreeButton);
-      expect(_pinController.text, equals('123'));
-    });
-    testWidgets('4, 5,  and 6,  buttons are tappable',
-        (WidgetTester tester) async {
-      final TextEditingController _pinController = TextEditingController();
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return MaterialApp(
-            home: PINInputPage(
-              pinController: _pinController,
-              pin: '6464',
-            ),
-          );
-        }),
-      );
-      expect(find.text(enterChatPINString), findsOneWidget);
-      final Finder numberFourButton = find.text('4');
-      final Finder numberFiveButton = find.text('5');
-      final Finder numberSixButton = find.text('6');
-
-      expect(numberFiveButton, findsOneWidget);
-      expect(numberSixButton, findsOneWidget);
-      expect(numberFourButton, findsOneWidget);
-
-      await tester.tap(numberFiveButton);
-      await tester.tap(numberSixButton);
-      await tester.tap(numberFourButton);
-      expect(_pinController.text, equals('564'));
-
-      await tester.tap(numberFiveButton);
-      await tester.tap(numberSixButton);
-      await tester.tap(numberFourButton);
-      await tester.tap(numberSixButton);
-      await tester.tap(numberFourButton);
-      expect(_pinController.text, equals('6464'));
-    });
-
     testWidgets('7, 8, 9, 0 and backSpace buttons work correctly',
         (WidgetTester tester) async {
-      final TextEditingController _pinController = TextEditingController();
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -128,10 +58,7 @@ void main() {
         widget: Builder(builder: (BuildContext context) {
           return MaterialApp(
               home: MaterialApp(
-            home: PINInputPage(
-              pinController: _pinController,
-              pin: '2345',
-            ),
+            home: PINInputPage(),
           ));
         }),
       );
@@ -154,7 +81,6 @@ void main() {
       await tester.tap(numberSevenButton);
       await tester.tap(numberEightButton);
 
-      expect(_pinController.text, equals('978'));
       expect(find.text('978'), findsOneWidget);
 
       await tester.tap(numberZeroButton);
@@ -184,7 +110,73 @@ void main() {
       await tester.pumpAndSettle(const Duration(minutes: 6));
 
       expect(find.text(wrongPINString), findsNothing);
-      expect(_pinController.text, equals('07'));
+      expect(find.text('07'), findsOneWidget);
+    });
+
+    testWidgets('1, 2, 3 buttons are tappable', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(builder: (BuildContext context) {
+          return MaterialApp(
+            home: PINInputPage(),
+          );
+        }),
+      );
+
+      expect(find.byType(KeyPadWidget), findsOneWidget);
+      final Finder numberOneButton = find.text('1');
+      final Finder numberTwoButton = find.text('2');
+      final Finder numberThreeButton = find.text('3');
+      final Finder numberFourButton = find.text('4');
+
+      expect(numberOneButton, findsOneWidget);
+      expect(numberTwoButton, findsOneWidget);
+      expect(numberThreeButton, findsOneWidget);
+      expect(numberFourButton, findsOneWidget);
+
+      await tester.tap(numberOneButton);
+      await tester.tap(numberTwoButton);
+      await tester.tap(numberThreeButton);
+      expect(find.text('123'), findsOneWidget);
+
+      await tester.tap(numberFourButton);
+      expect(find.text('1234'), findsOneWidget);
+    });
+    testWidgets('4, 5,  and 6,  buttons are tappable',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(builder: (BuildContext context) {
+          return MaterialApp(
+            home: PINInputPage(),
+          );
+        }),
+      );
+      expect(find.text(enterChatPINString), findsOneWidget);
+      final Finder numberFourButton = find.text('4');
+      final Finder numberFiveButton = find.text('5');
+      final Finder numberSixButton = find.text('6');
+
+      expect(numberFiveButton, findsOneWidget);
+      expect(numberSixButton, findsOneWidget);
+      expect(numberFourButton, findsOneWidget);
+
+      await tester.tap(numberFiveButton);
+      await tester.tap(numberSixButton);
+      await tester.tap(numberFourButton);
+      expect(find.text('564'), findsOneWidget);
+
+      await tester.tap(numberFiveButton);
+      await tester.tap(numberSixButton);
+      await tester.tap(numberFourButton);
+      await tester.tap(numberSixButton);
+
+      expect(find.text('646'), findsOneWidget);
+
     });
   });
 }

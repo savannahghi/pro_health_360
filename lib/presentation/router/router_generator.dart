@@ -5,6 +5,7 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
@@ -204,6 +205,11 @@ class RouteGenerator {
         case BWRoutes.feedbackPage:
         return MaterialPageRoute<FeedbackPage>(
           builder: (_) => const FeedbackPage(),
+        );
+
+        case BWRoutes.pinInputPage:
+        return MaterialPageRoute<PINInputPage>(
+          builder: (_) => PINInputPage(),
         );
 
       default:

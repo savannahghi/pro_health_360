@@ -2,10 +2,14 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -22,12 +26,11 @@ class PINInputPage extends StatefulWidget {
   /// [MyHealth] section of the app
   ///
   /// It takes in a required [pinController]
-  const PINInputPage({required this.pinController, required this.pin});
 
   @override
   _PINInputPageState createState() => _PINInputPageState();
-  final TextEditingController pinController;
-  final String pin;
+  final TextEditingController _pinController = TextEditingController();
+  final String _pin = '1234';
 }
 
 class _PINInputPageState extends State<PINInputPage> {
@@ -60,7 +63,7 @@ class _PINInputPageState extends State<PINInputPage> {
             _start--;
             errorMessageStyle = TextThemes.heavySize12Text(AppColors.redColor);
             errorMessage = tooManyTriesString(_start);
-            canEnterPin = false;
+            canEnterPin = true;
           });
         }
       },
@@ -72,9 +75,22 @@ class _PINInputPageState extends State<PINInputPage> {
     late String enteredPin = '';
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      // TODO(abiud): triage why tests for this fail when the appbar is added
-      // appBar: CustomAppBar(
-      //     leadingWidget: mediumHorizontalSizedBox, showBackButton: false),
+      appBar: CustomAppBar(
+        leadingWidget: GestureDetector(
+          key: pinInputPageBackKey,
+          onTap: () {
+            StoreProvider.dispatch<AppState>(
+                context, BottomNavAction(currentBottomNavIndex: 0));
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SvgPicture.asset(backIconPath, width: 24,),
+          ),
+        ),
+        trailingWidget: const SizedBox(),
+        showBackButton: false,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -111,7 +127,7 @@ class _PINInputPageState extends State<PINInputPage> {
                           padding: const EdgeInsets.only(left: 15),
                           child: TextFormField(
                             keyboardType: TextInputType.number,
-                            controller: widget.pinController,
+                            controller: widget._pinController,
                             obscureText: true,
                             readOnly: true,
                             obscuringCharacter: '*',
@@ -135,29 +151,29 @@ class _PINInputPageState extends State<PINInputPage> {
                 KeyPadWidget(
                   key: keyPadWidgetKey,
                   onChange: (String pin) {
-                    widget.pinController.text = pin;
+                    widget._pinController.text = pin;
                     setState(() {
-                      enteredPin = widget.pinController.text;
+                      enteredPin = widget._pinController.text;
                       if (enteredPin.length == 4) {
                         tries = tries + 1;
-                        if (enteredPin != widget.pin) {
+                        if (enteredPin != widget._pin) {
                           if (tries % maxTries != 0) {
                             errorMessageStyle = TextThemes.boldSize12Text(
                                 AppColors.wrongPinTextColor);
                             errorMessage = wrongPINString;
-                            widget.pinController.text = '';
+                            widget._pinController.text = '';
                           } else {
                             _startTimer();
-                            widget.pinController.text = '';
+                            widget._pinController.text = '';
                           }
                         } else {
                           errorMessage = '';
-                          return;
+                          Navigator.pop(context);
                         }
                       }
                     });
                   },
-                  pinController: widget.pinController,
+                  pinController: widget._pinController,
                   isCorrectPin: isCorrectPin,
                   canEnterPin: canEnterPin,
                 ),

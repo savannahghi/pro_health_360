@@ -87,6 +87,9 @@ class BWRoutes {
 
   //Feedback Page
   static const String feedbackPage = '/feedbackPage';
+
+  //Pin Input Page
+  static const String pinInputPage = '/pinInputPage';
 }
 
 List<String> unProtectedRoutes = <String>[

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
@@ -78,6 +79,9 @@ class MyAfyaHubBottomNavigationBar extends StatelessWidget {
               timestamp: DateTime.now(),
             ),
           );
+        }
+        if (BottomNavIndex.myHealth.index == currentIndex) {
+          Navigator.pushNamed(context, BWRoutes.pinInputPage);
         }
       },
       items: bottomNavItems
