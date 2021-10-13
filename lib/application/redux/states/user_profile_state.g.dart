@@ -33,6 +33,14 @@ _$_UserProfileState _$_$_UserProfileStateFromJson(Map<String, dynamic> json) {
     inActivitySetInTime: json['inActivitySetInTime'] as String?,
     signedInTime: json['signedInTime'] as String?,
     isFirstLaunch: json['isFirstLaunch'] as bool?,
+    securityQuestions: (json['securityQuestions'] as List<dynamic>?)
+        ?.map((e) => SecurityQuestion.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    securityQuestionsResponses:
+        (json['securityQuestionsResponses'] as Map<String, dynamic>?)?.map(
+      (k, e) => MapEntry(
+          k, SecurityQuestionResponse.fromJson(e as Map<String, dynamic>)),
+    ),
   );
 }
 
@@ -51,4 +59,6 @@ Map<String, dynamic> _$_$_UserProfileStateToJson(
       'inActivitySetInTime': instance.inActivitySetInTime,
       'signedInTime': instance.signedInTime,
       'isFirstLaunch': instance.isFirstLaunch,
+      'securityQuestions': instance.securityQuestions,
+      'securityQuestionsResponses': instance.securityQuestionsResponses,
     };

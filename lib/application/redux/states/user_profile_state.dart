@@ -2,6 +2,8 @@
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 
 part 'user_profile_state.freezed.dart';
 part 'user_profile_state.g.dart';
@@ -24,6 +26,8 @@ class UserProfileState with _$UserProfileState {
     String? inActivitySetInTime,
     String? signedInTime,
     bool? isFirstLaunch,
+    List<SecurityQuestion>? securityQuestions,
+    Map<String, SecurityQuestionResponse>? securityQuestionsResponses,
   }) = _UserProfileState;
 
   factory UserProfileState.fromJson(Map<String, dynamic> json) =>
@@ -70,5 +74,7 @@ class UserProfileState with _$UserProfileState {
         onboardingTourComplete: false,
         profileSetupComplete: false,
         isFirstLaunch: true,
+        securityQuestions: <SecurityQuestion>[],
+        securityQuestionsResponses: <String, SecurityQuestionResponse>{},
       );
 }

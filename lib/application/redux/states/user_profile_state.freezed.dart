@@ -32,7 +32,9 @@ class _$UserProfileStateTearOff {
       bool? isSignedIn,
       String? inActivitySetInTime,
       String? signedInTime,
-      bool? isFirstLaunch}) {
+      bool? isFirstLaunch,
+      List<SecurityQuestion>? securityQuestions,
+      Map<String, SecurityQuestionResponse>? securityQuestionsResponses}) {
     return _UserProfileState(
       userProfile: userProfile,
       customerProfile: customerProfile,
@@ -46,6 +48,8 @@ class _$UserProfileStateTearOff {
       inActivitySetInTime: inActivitySetInTime,
       signedInTime: signedInTime,
       isFirstLaunch: isFirstLaunch,
+      securityQuestions: securityQuestions,
+      securityQuestionsResponses: securityQuestionsResponses,
     );
   }
 
@@ -76,6 +80,10 @@ mixin _$UserProfileState {
   String? get inActivitySetInTime => throw _privateConstructorUsedError;
   String? get signedInTime => throw _privateConstructorUsedError;
   bool? get isFirstLaunch => throw _privateConstructorUsedError;
+  List<SecurityQuestion>? get securityQuestions =>
+      throw _privateConstructorUsedError;
+  Map<String, SecurityQuestionResponse>? get securityQuestionsResponses =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -100,7 +108,9 @@ abstract class $UserProfileStateCopyWith<$Res> {
       bool? isSignedIn,
       String? inActivitySetInTime,
       String? signedInTime,
-      bool? isFirstLaunch});
+      bool? isFirstLaunch,
+      List<SecurityQuestion>? securityQuestions,
+      Map<String, SecurityQuestionResponse>? securityQuestionsResponses});
 
   $UserProfileCopyWith<$Res>? get userProfile;
   $CustomerCopyWith<$Res>? get customerProfile;
@@ -131,6 +141,8 @@ class _$UserProfileStateCopyWithImpl<$Res>
     Object? inActivitySetInTime = freezed,
     Object? signedInTime = freezed,
     Object? isFirstLaunch = freezed,
+    Object? securityQuestions = freezed,
+    Object? securityQuestionsResponses = freezed,
   }) {
     return _then(_value.copyWith(
       userProfile: userProfile == freezed
@@ -181,6 +193,14 @@ class _$UserProfileStateCopyWithImpl<$Res>
           ? _value.isFirstLaunch
           : isFirstLaunch // ignore: cast_nullable_to_non_nullable
               as bool?,
+      securityQuestions: securityQuestions == freezed
+          ? _value.securityQuestions
+          : securityQuestions // ignore: cast_nullable_to_non_nullable
+              as List<SecurityQuestion>?,
+      securityQuestionsResponses: securityQuestionsResponses == freezed
+          ? _value.securityQuestionsResponses
+          : securityQuestionsResponses // ignore: cast_nullable_to_non_nullable
+              as Map<String, SecurityQuestionResponse>?,
     ));
   }
 
@@ -249,7 +269,9 @@ abstract class _$UserProfileStateCopyWith<$Res>
       bool? isSignedIn,
       String? inActivitySetInTime,
       String? signedInTime,
-      bool? isFirstLaunch});
+      bool? isFirstLaunch,
+      List<SecurityQuestion>? securityQuestions,
+      Map<String, SecurityQuestionResponse>? securityQuestionsResponses});
 
   @override
   $UserProfileCopyWith<$Res>? get userProfile;
@@ -286,6 +308,8 @@ class __$UserProfileStateCopyWithImpl<$Res>
     Object? inActivitySetInTime = freezed,
     Object? signedInTime = freezed,
     Object? isFirstLaunch = freezed,
+    Object? securityQuestions = freezed,
+    Object? securityQuestionsResponses = freezed,
   }) {
     return _then(_UserProfileState(
       userProfile: userProfile == freezed
@@ -336,6 +360,14 @@ class __$UserProfileStateCopyWithImpl<$Res>
           ? _value.isFirstLaunch
           : isFirstLaunch // ignore: cast_nullable_to_non_nullable
               as bool?,
+      securityQuestions: securityQuestions == freezed
+          ? _value.securityQuestions
+          : securityQuestions // ignore: cast_nullable_to_non_nullable
+              as List<SecurityQuestion>?,
+      securityQuestionsResponses: securityQuestionsResponses == freezed
+          ? _value.securityQuestionsResponses
+          : securityQuestionsResponses // ignore: cast_nullable_to_non_nullable
+              as Map<String, SecurityQuestionResponse>?,
     ));
   }
 }
@@ -355,7 +387,9 @@ class _$_UserProfileState implements _UserProfileState {
       this.isSignedIn,
       this.inActivitySetInTime,
       this.signedInTime,
-      this.isFirstLaunch});
+      this.isFirstLaunch,
+      this.securityQuestions,
+      this.securityQuestionsResponses});
 
   factory _$_UserProfileState.fromJson(Map<String, dynamic> json) =>
       _$_$_UserProfileStateFromJson(json);
@@ -384,10 +418,14 @@ class _$_UserProfileState implements _UserProfileState {
   final String? signedInTime;
   @override
   final bool? isFirstLaunch;
+  @override
+  final List<SecurityQuestion>? securityQuestions;
+  @override
+  final Map<String, SecurityQuestionResponse>? securityQuestionsResponses;
 
   @override
   String toString() {
-    return 'UserProfileState(userProfile: $userProfile, customerProfile: $customerProfile, communicationSettings: $communicationSettings, auth: $auth, onboardingTourComplete: $onboardingTourComplete, profileSetupComplete: $profileSetupComplete, unmaskedPhoneNumbers: $unmaskedPhoneNumbers, maskedPhoneNumbers: $maskedPhoneNumbers, isSignedIn: $isSignedIn, inActivitySetInTime: $inActivitySetInTime, signedInTime: $signedInTime, isFirstLaunch: $isFirstLaunch)';
+    return 'UserProfileState(userProfile: $userProfile, customerProfile: $customerProfile, communicationSettings: $communicationSettings, auth: $auth, onboardingTourComplete: $onboardingTourComplete, profileSetupComplete: $profileSetupComplete, unmaskedPhoneNumbers: $unmaskedPhoneNumbers, maskedPhoneNumbers: $maskedPhoneNumbers, isSignedIn: $isSignedIn, inActivitySetInTime: $inActivitySetInTime, signedInTime: $signedInTime, isFirstLaunch: $isFirstLaunch, securityQuestions: $securityQuestions, securityQuestionsResponses: $securityQuestionsResponses)';
   }
 
   @override
@@ -428,7 +466,15 @@ class _$_UserProfileState implements _UserProfileState {
                     .equals(other.signedInTime, signedInTime)) &&
             (identical(other.isFirstLaunch, isFirstLaunch) ||
                 const DeepCollectionEquality()
-                    .equals(other.isFirstLaunch, isFirstLaunch)));
+                    .equals(other.isFirstLaunch, isFirstLaunch)) &&
+            (identical(other.securityQuestions, securityQuestions) ||
+                const DeepCollectionEquality()
+                    .equals(other.securityQuestions, securityQuestions)) &&
+            (identical(other.securityQuestionsResponses,
+                    securityQuestionsResponses) ||
+                const DeepCollectionEquality().equals(
+                    other.securityQuestionsResponses,
+                    securityQuestionsResponses)));
   }
 
   @override
@@ -445,7 +491,9 @@ class _$_UserProfileState implements _UserProfileState {
       const DeepCollectionEquality().hash(isSignedIn) ^
       const DeepCollectionEquality().hash(inActivitySetInTime) ^
       const DeepCollectionEquality().hash(signedInTime) ^
-      const DeepCollectionEquality().hash(isFirstLaunch);
+      const DeepCollectionEquality().hash(isFirstLaunch) ^
+      const DeepCollectionEquality().hash(securityQuestions) ^
+      const DeepCollectionEquality().hash(securityQuestionsResponses);
 
   @JsonKey(ignore: true)
   @override
@@ -460,18 +508,21 @@ class _$_UserProfileState implements _UserProfileState {
 
 abstract class _UserProfileState implements UserProfileState {
   factory _UserProfileState(
-      {UserProfile? userProfile,
-      Customer? customerProfile,
-      CommunicationSettings? communicationSettings,
-      AuthCredentialResponse? auth,
-      bool? onboardingTourComplete,
-      bool? profileSetupComplete,
-      List<PhoneNumber>? unmaskedPhoneNumbers,
-      List<PhoneNumber>? maskedPhoneNumbers,
-      bool? isSignedIn,
-      String? inActivitySetInTime,
-      String? signedInTime,
-      bool? isFirstLaunch}) = _$_UserProfileState;
+          {UserProfile? userProfile,
+          Customer? customerProfile,
+          CommunicationSettings? communicationSettings,
+          AuthCredentialResponse? auth,
+          bool? onboardingTourComplete,
+          bool? profileSetupComplete,
+          List<PhoneNumber>? unmaskedPhoneNumbers,
+          List<PhoneNumber>? maskedPhoneNumbers,
+          bool? isSignedIn,
+          String? inActivitySetInTime,
+          String? signedInTime,
+          bool? isFirstLaunch,
+          List<SecurityQuestion>? securityQuestions,
+          Map<String, SecurityQuestionResponse>? securityQuestionsResponses}) =
+      _$_UserProfileState;
 
   factory _UserProfileState.fromJson(Map<String, dynamic> json) =
       _$_UserProfileState.fromJson;
@@ -503,6 +554,12 @@ abstract class _UserProfileState implements UserProfileState {
   String? get signedInTime => throw _privateConstructorUsedError;
   @override
   bool? get isFirstLaunch => throw _privateConstructorUsedError;
+  @override
+  List<SecurityQuestion>? get securityQuestions =>
+      throw _privateConstructorUsedError;
+  @override
+  Map<String, SecurityQuestionResponse>? get securityQuestionsResponses =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserProfileStateCopyWith<_UserProfileState> get copyWith =>

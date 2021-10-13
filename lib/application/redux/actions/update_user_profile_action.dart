@@ -2,9 +2,10 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 
 /// - [userProfile]
 /// - [profileSetupComplete]
@@ -24,6 +25,8 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
     this.unmaskedPhoneNumbers,
     this.maskedPhoneNumbers,
     this.isFirstLaunch,
+    this.securityQuestions,
+    this.securityQuestionsResponses,
   });
 
   final UserProfile? profile;
@@ -35,6 +38,8 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
   final List<PhoneNumber>? maskedPhoneNumbers;
   final List<PhoneNumber>? unmaskedPhoneNumbers;
   final bool? isFirstLaunch;
+  final List<SecurityQuestion>? securityQuestions;
+  final Map<String, SecurityQuestionResponse>? securityQuestionsResponses;
 
   @override
   AppState reduce() {
@@ -44,6 +49,12 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
 
     final CommunicationSettings settings =
         state.userProfileState!.communicationSettings!;
+
+    final List<SecurityQuestion> questions =
+        state.userProfileState!.securityQuestions!;
+
+    final Map<String, SecurityQuestionResponse> questionsResponses =
+        state.userProfileState!.securityQuestionsResponses!;
 
     final AppState newState = state.copyWith.userProfileState!.call(
       userProfile: UserProfile(
@@ -92,6 +103,9 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
       unmaskedPhoneNumbers: this.unmaskedPhoneNumbers ??
           state.userProfileState!.unmaskedPhoneNumbers,
       isFirstLaunch: this.isFirstLaunch,
+      securityQuestions: this.securityQuestions ?? questions,
+      securityQuestionsResponses:
+          this.securityQuestionsResponses ?? questionsResponses,
     );
 
     return newState;

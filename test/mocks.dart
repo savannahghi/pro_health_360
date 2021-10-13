@@ -2,24 +2,19 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:platform/platform.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sqflite/sqflite.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
@@ -28,6 +23,10 @@ import 'package:myafyahub/domain/core/entities/core/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
+import 'package:platform/platform.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:sqflite/sqflite.dart';
+
 import 'test_helpers.dart';
 import 'test_utils.dart';
 import 'tests_resources/shared_resources.dart';
@@ -2928,4 +2927,22 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'date': 'July 21 2021',
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed'
+};
+
+Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
+  'id': 'id',
+  'questionStem': 'question_stem',
+  'description': 'description',
+  'responseType': 'response_type',
+  'flavour': 'flavour',
+  'active': true,
+  'sequence': 1,
+};
+
+Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
+  'id': 'id',
+  'timeStamp': '2021-05-06T05:34:24Z',
+  'userId': 'userId',
+  'securityQuestionId': 'securityQuestionId',
+  'response': 'response',
 };
