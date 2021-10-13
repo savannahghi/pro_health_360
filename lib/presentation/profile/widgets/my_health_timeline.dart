@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:myafyahub/domain/core/entities/profile/doctor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
+import 'package:afya_moja_core/information_list_card.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class MyHealthTimeline extends StatelessWidget {

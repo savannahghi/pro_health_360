@@ -10,7 +10,7 @@ import 'package:shared_themes/spaces.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
+import 'package:afya_moja_core/information_list_card.dart';
 import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widget.dart';
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
 
@@ -55,8 +55,8 @@ class UserProfilePage extends StatelessWidget {
                   largeVerticalSizedBox,
                   ...List<Widget>.generate(userProfileItems.length,
                       (int index) {
-                    final String iconPath = userProfileItems
-                        .elementAt(index).iconAssetPath;
+                    final String iconPath =
+                        userProfileItems.elementAt(index).iconAssetPath;
                     final String title =
                         userProfileItems.elementAt(index).title;
                     final String routeName =

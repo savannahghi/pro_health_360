@@ -13,7 +13,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
+import 'package:afya_moja_core/information_list_card.dart';
 import 'package:myafyahub/presentation/my_health/widgets/profile_health_details_widget.dart';
 import 'package:myafyahub/presentation/profile/widgets/my_health_timeline.dart';
 

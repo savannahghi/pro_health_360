@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/information_list_card.dart';
+import 'package:afya_moja_core/information_list_card.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
