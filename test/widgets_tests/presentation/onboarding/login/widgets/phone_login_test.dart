@@ -19,7 +19,7 @@ import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dar
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/inputs/custom_text_field.dart';
+import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/my_afya_hub_phone_input_field.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
