@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/presentation/core/widgets/inputs.dart';
+import 'package:afya_moja_core/inputs.dart';
 
 void main() {
   group('ExpandableQuestion', () {

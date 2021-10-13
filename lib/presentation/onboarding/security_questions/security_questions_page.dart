@@ -7,7 +7,7 @@ import 'package:misc_utilities/responsive_widget.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/inputs.dart';
+import 'package:afya_moja_core/inputs.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';

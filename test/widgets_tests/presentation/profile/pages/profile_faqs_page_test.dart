@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/inputs.dart';
+import 'package:afya_moja_core/inputs.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
 import '../../../../mocks.dart';

@@ -13,7 +13,7 @@ import 'package:shared_themes/text_themes.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/inputs.dart';
+import 'package:afya_moja_core/inputs.dart';
 import 'package:afya_moja_core/buttons.dart';
 
 class ProfileFaqsPage extends StatelessWidget {
