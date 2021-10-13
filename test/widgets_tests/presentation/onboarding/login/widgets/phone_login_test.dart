@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/phone_input.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +21,6 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:myafyahub/presentation/core/widgets/inputs/my_afya_hub_phone_input_field.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';

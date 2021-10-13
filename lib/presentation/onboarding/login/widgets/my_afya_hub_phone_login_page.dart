@@ -1,8 +1,10 @@
 // Flutter imports:
+import 'package:afya_moja_core/phone_input.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 // Package imports:
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/services/login_utils.dart';
@@ -17,9 +19,9 @@ import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:myafyahub/presentation/core/widgets/inputs/my_afya_hub_phone_input_field.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
@@ -170,6 +172,15 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
               phoneNumber = val?.toString();
             });
           },
+          suffixIcon: Positioned(
+            right: 12,
+            height: 20,
+            width: 20,
+            child: SvgPicture.asset(
+              alertCircleIcon,
+              color: AppColors.secondaryColor,
+            ),
+          ),
         ),
         largeVerticalSizedBox,
         Align(
