@@ -12,7 +12,7 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
+import 'package:afya_moja_core/onboarding_scaffold.dart';
 
 class VerifyPhonePage extends StatefulWidget {
   final int otp;
@@ -39,7 +39,7 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
       }
     }
 
-    return MyAfyaHubOnboardingScaffold(
+    return OnboardingScaffold(
       title: verifyPhoneNumberTitle,
       description: verifyPhoneNumberDescription,
       child: Column(

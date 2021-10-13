@@ -6,7 +6,6 @@ const Key landingPageKey = Key('landing_page_key');
 const Key verifyOTPGestureKey = Key('verify_OTP_gesture_key');
 
 const Key globalStoreKey = Key('global-store-provider');
-const Key onboardingScaffoldBackButton = Key('onboarding_scaffold_back_button');
 const Key welcomeScreensKey = Key('welcome_screens_key');
 
 // landing page keys

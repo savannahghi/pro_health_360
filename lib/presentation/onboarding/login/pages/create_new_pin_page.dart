@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +10,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/buttons.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -34,7 +34,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MyAfyaHubOnboardingScaffold(
+    return OnboardingScaffold(
       title: createNewPINTitleString,
       description: createNewPINSubTitleString,
       child: SizedBox(

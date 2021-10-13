@@ -12,7 +12,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/important_information_link_widget.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
+import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -37,7 +37,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
   Widget build(BuildContext context) {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 6;
 
-    return MyAfyaHubOnboardingScaffold(
+    return OnboardingScaffold(
         title: congratulationsPageTitle(widget.duration),
         description: congratulationsPageDescription,
         child: Column(

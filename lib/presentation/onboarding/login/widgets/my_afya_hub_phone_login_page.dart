@@ -22,7 +22,7 @@ import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/my_afya_hub_phone_input_field.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
+import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -75,7 +75,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MyAfyaHubOnboardingScaffold(
+    return OnboardingScaffold(
       title: loginPageTitleString,
       description: loginPageSubTitleString,
       child: StoreConnector<AppState, AppStateViewModel>(

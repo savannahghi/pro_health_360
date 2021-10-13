@@ -9,7 +9,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:afya_moja_core/inputs.dart';
 import 'package:afya_moja_core/buttons.dart';
-import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
+import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -19,7 +19,7 @@ class SecurityQuestionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isLargeScreen = ResponsiveWidget.isLargeScreen(context);
-    return MyAfyaHubOnboardingScaffold(
+    return OnboardingScaffold(
       title: setSecurityQuestionsString,
       description: securityQuestionsDescriptionString,
       child: SizedBox(
