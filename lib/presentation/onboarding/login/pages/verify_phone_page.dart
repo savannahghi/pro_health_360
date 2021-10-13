@@ -10,7 +10,7 @@ import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
+import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:myafyahub/presentation/onboarding/widgets/my_afya_hub_onboarding_scaffold.dart';
 

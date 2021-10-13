@@ -21,7 +21,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/custom_text_field.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/my_afya_hub_phone_input_field.dart';
-import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
+import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
 import 'package:shared_ui_components/platform_loader.dart';

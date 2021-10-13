@@ -7,7 +7,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/inputs/custom_text_field.dart';
-import 'package:myafyahub/presentation/core/widgets/my_afya_hub_primary_button.dart';
+import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/feed_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 
