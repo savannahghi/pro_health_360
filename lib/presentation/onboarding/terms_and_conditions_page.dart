@@ -1,10 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/presentation/core/widgets/my_afya_hub_checkbox.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
+import 'package:afya_moja_core/checkbox_component.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -90,7 +90,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
               ),
 
               // Accepts terms check box
-              MyAfyaHubCheckBox(
+              CheckBoxComponent(
                 text: acceptTermsText,
                 value: isAgreed,
                 onChanged: (bool? value) {
