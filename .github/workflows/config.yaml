@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   # AppStore ready
-  publish-prod-binary-to-app-store:
+  publish-dev-binary-to-app-store:
     name: Publish My Afya Hub Prod binary to TestFlight
     timeout-minutes: 60
     runs-on: macos-latest
+    # revert this once done debugging
     if: github.event_name == 'push' && github.ref == 'refs/heads/app-ci-fixes'
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +27,60 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-          flutter-version: "2.2.3"
+          flutter-version: "2.5.2"
+
+      - name: Install flutter dependencies
+        run: flutter pub get
+
+      - name: Convert secret to gc file
+        env:
+          GC_KEYS: ${{ secrets.GC_KEYS }}
+          GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
+          INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
+
+        run: |
+          cd ios
+          echo $GC_KEYS > ./gc_keys.json
+          echo $INFO_PLIST_FILE > ./Runner/info.plist
+          echo $GOOGLE_SERVICES_INFO_PLIST_FILE > ./Runner/GoogleService-Info.plist
+
+      - name: Code sign and build prod app
+        env:
+          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}
+          APP_STORE_CONNECT_API_KEY_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_ID}}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID}}
+          APP_STORE_CONNECT_API_KEY_FUNGUO: ${{secrets.APP_STORE_CONNECT_API_KEY_FUNGUO}}
+        run: |
+          cd ios && bundle install
+          bundle exec fastlane ios myafyahubdev
+
+
+  # AppStore ready
+  publish-prod-binary-to-app-store:
+    name: Publish My Afya Hub Prod binary to TestFlight
+    timeout-minutes: 60
+    runs-on: macos-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12"
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.8"
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+          flutter-version: "2.5.2"
 
       - name: Install flutter dependencies
         run: flutter pub get
