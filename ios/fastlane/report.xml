@@ -5,52 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000357">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000446">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.00056">
+      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000576">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="3.762314">
+      <testcase classname="fastlane.lanes" name="2: match" time="3.689672">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.004332">
+      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.028865">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="15.620771">
+      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="14.429363">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.838661">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.938704">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.000421">
+      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.00033">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.00024">
+      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000237">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: build_app" time="175.970216">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="484.96445">
+      <testcase classname="fastlane.lanes" name="8: build_app" time="61.920581">
         
       </testcase>
     
