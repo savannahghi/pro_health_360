@@ -494,7 +494,8 @@ const String importantLinkString = 'Important Link';
 // Consent page
 const String viewTermsText = 'View terms and conditions';
 const String groupsText = 'Groups';
-const String consentText = 'I consent to be added to groups';
+const String consentConfirmationText = 'I consent to be added to groups';
+const String consentText = 'Consent';
 
 // Community strings
 const String communityString = 'Community';
