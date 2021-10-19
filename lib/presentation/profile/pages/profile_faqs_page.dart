@@ -1,30 +1,26 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:misc_utilities/number_constants.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 // Package imports:
-import 'package:misc_utilities/number_constants.dart';
-import 'package:misc_utilities/responsive_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:shared_themes/colors.dart';
+import 'package:myafyahub/presentation/profile/widgets/expandable_content.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:afya_moja_core/inputs.dart';
-import 'package:afya_moja_core/buttons.dart';
 
 class ProfileFaqsPage extends StatelessWidget {
   const ProfileFaqsPage();
 
   @override
   Widget build(BuildContext context) {
-    final bool isLargeScreen = ResponsiveWidget.isLargeScreen(context);
     return Scaffold(
       appBar: const CustomAppBar(title: faqsText),
-      backgroundColor: authBackgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SizedBox(
         child: SafeArea(
           child: SingleChildScrollView(
@@ -40,50 +36,95 @@ class ProfileFaqsPage extends StatelessWidget {
                         Theme.of(context).primaryColor),
                   ),
                   mediumVerticalSizedBox,
-                  ExpandableQuestion(
-                    question: howDoIUpdateMyProfileText,
-                    hintText: answerHereString,
-                    onChanged: (String value) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(value)));
-                    },
+                  const ExpandableContent(
+                    title: howDoIUpdateMyProfileText,
+                    content: Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: number15,
+                          right: number15,
+                          bottom: number15,
+                        ),
+                        child: Text(
+                          loremIpsumText,
+                          style: TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   smallVerticalSizedBox,
-                  ExpandableQuestion(
-                    question: howDoICheckMyMedicalInfoText,
-                    hintText: answerHereString,
-                    onChanged: (String value) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(value)));
-                    },
+                  const ExpandableContent(
+                    title: howDoICheckMyMedicalInfoText,
+                    content: Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: number15,
+                          right: number15,
+                          bottom: number15,
+                        ),
+                        child: Text(
+                          loremIpsumText,
+                          style: TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   smallVerticalSizedBox,
-                  ExpandableQuestion(
-                    question: howDoIUpdateMyNicknameText,
-                    hintText: answerHereString,
-                    onChanged: (String value) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(value)));
-                    },
+                  const ExpandableContent(
+                    title: howDoIUpdateMyNicknameText,
+                    content: Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: number15,
+                          right: number15,
+                          bottom: number15,
+                        ),
+                        child: Text(
+                          loremIpsumText,
+                          style: TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   smallVerticalSizedBox,
-                  ExpandableQuestion(
-                    question: howDoIRescheduleAnAppointmentText,
-                    hintText: answerHereString,
-                    onChanged: (String value) {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text(value)));
-                    },
+                  const ExpandableContent(
+                    title: howDoIRescheduleAnAppointmentText,
+                    content: Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: number15,
+                          right: number15,
+                          bottom: number15,
+                        ),
+                        child: Text(
+                          loremIpsumText,
+                          style: TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   veryLargeVerticalSizedBox,
                   veryLargeVerticalSizedBox,
-                  SizedBox(
-                      width: isLargeScreen ? number300 : double.infinity,
-                      height: number52,
-                      child: const MyAfyaHubPrimaryButton(
-                        text: saveAndContinueButtonText,
-                        buttonColor: AppColors.secondaryColor,
-                      ))
                 ],
               ),
             ),
