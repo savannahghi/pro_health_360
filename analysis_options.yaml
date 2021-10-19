@@ -8,6 +8,7 @@ analyzer:
     sdk_version_async_exported_from_core: ignore
     missing_required_param: error
     missing_return: error
+    invalid_annotation_target: ignore
   exclude:
     - "lib/generated_plugin_*.dart"
     - "bin/cache/**"
@@ -80,3 +81,9 @@ linter:
     no_adjacent_strings_in_list: false
     use_setters_to_change_properties: false
     directives_ordering: false
+    #todo: fix: require_trailing_commas
+    require_trailing_commas: false
+    #todo: fix: depend_on_referenced_packages
+    depend_on_referenced_packages: false
+    #todo: fix: noop_primitive_operations
+    noop_primitive_operations: false
