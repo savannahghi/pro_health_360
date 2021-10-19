@@ -68,7 +68,8 @@ class _SignedUserProfileScaffoldState extends State<SignedUserProfileScaffold> {
 
                     /// [Detail] Content
                     ProfileDetail(
-                        selection: profileSubject.selection.valueOrNull!)
+                      selection: profileSubject.selection.valueOrNull!,
+                    )
                   ],
                 ),
               ),
@@ -94,7 +95,9 @@ Future<void> _navigateToItemPage({
   if (profileItem.onTapRoute == BWRoutes.resumeWithPin) {
     // dispatch action to set [isChangingPin] to true
     StoreProvider.dispatch<AppState>(
-        context, UpdatePinStatusAction(isChangingPin: true));
+      context,
+      UpdatePinStatusAction(isChangingPin: true),
+    );
     await Navigator.pushNamed(context, BWRoutes.resumeWithPin);
   } else {
     await Navigator.pushNamed(context, profileItem.onTapRoute!);
@@ -114,32 +117,34 @@ class ProfileDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: ValueListenableBuilder<ProfileItems>(
-      valueListenable: _selection,
-      builder: (BuildContext context, ProfileItems profileItem, Widget? child) {
-        // returns default page detail when profile is open for the first time
-        if (profileItem.text == contactInfo) {
+      child: ValueListenableBuilder<ProfileItems>(
+        valueListenable: _selection,
+        builder:
+            (BuildContext context, ProfileItems profileItem, Widget? child) {
+          // returns default page detail when profile is open for the first time
+          if (profileItem.text == contactInfo) {
+            return Column(
+              children: <Widget>[
+                veryLargeVerticalSizedBox,
+                Text(profileItem.text),
+                veryLargeVerticalSizedBox,
+                BuildContactProvider(),
+              ],
+            );
+          }
+
+          // returns profile page detail when profile item is clicked
           return Column(
             children: <Widget>[
               veryLargeVerticalSizedBox,
               Text(profileItem.text),
-              veryLargeVerticalSizedBox,
-              BuildContactProvider(),
+              largeVerticalSizedBox,
+              if (profileItem.tabletWidget != null) profileItem.tabletWidget!,
             ],
           );
-        }
-
-        // returns profile page detail when profile item is clicked
-        return Column(
-          children: <Widget>[
-            veryLargeVerticalSizedBox,
-            Text(profileItem.text),
-            largeVerticalSizedBox,
-            if (profileItem.tabletWidget != null) profileItem.tabletWidget!,
-          ],
-        );
-      },
-    ));
+        },
+      ),
+    );
   }
 }
 
@@ -164,35 +169,38 @@ class _ProfileMasterDetailState extends State<ProfileMasterDetail> {
       children: <Widget>[
         /// [ProfileBanner] section
         StoreConnector<AppState, UserProfileViewModel>(
-            converter: (Store<AppState> store) =>
-                UserProfileViewModel.fromStore(store),
-            builder: (BuildContext context, UserProfileViewModel vm) {
-              final UserProfileState userProfile = vm.userProfileState;
-              final String firstName =
-                  userProfile.userProfile?.userBioData?.firstName?.getValue() ??
-                      UNKNOWN;
-              final String lastName =
-                  userProfile.userProfile?.userBioData?.lastName?.getValue() ??
-                      UNKNOWN;
+          converter: (Store<AppState> store) =>
+              UserProfileViewModel.fromStore(store),
+          builder: (BuildContext context, UserProfileViewModel vm) {
+            final UserProfileState userProfile = vm.userProfileState;
+            final String firstName =
+                userProfile.userProfile?.userBioData?.firstName?.getValue() ??
+                    UNKNOWN;
+            final String lastName =
+                userProfile.userProfile?.userBioData?.lastName?.getValue() ??
+                    UNKNOWN;
 
-              return Hero(
-                tag: 'profile_banner',
-                child: Material(
-                  child: SILProfileBanner(
-                    editable: true,
-                    backgroundImagePath: wellnessBackgroundImgUrl,
-                    userPhotoUrl:
-                        userProfile.userProfile?.photoUploadID ?? UNKNOWN,
-                    userName: sentenceCaseUserName(
-                        firstName: firstName, lastName: lastName),
-                    primaryPhone: userProfile.userProfile?.primaryPhoneNumber
-                            ?.getValue() ??
-                        UNKNOWN,
-                    profileRoute: BWRoutes.editProfileSettingsPage,
+            return Hero(
+              tag: 'profile_banner',
+              child: Material(
+                child: SILProfileBanner(
+                  editable: true,
+                  backgroundImagePath: wellnessBackgroundImgUrl,
+                  userPhotoUrl:
+                      userProfile.userProfile?.photoUploadID ?? UNKNOWN,
+                  userName: sentenceCaseUserName(
+                    firstName: firstName,
+                    lastName: lastName,
                   ),
+                  primaryPhone:
+                      userProfile.userProfile?.primaryPhoneNumber?.getValue() ??
+                          UNKNOWN,
+                  profileRoute: BWRoutes.editProfileSettingsPage,
                 ),
-              );
-            }),
+              ),
+            );
+          },
+        ),
         veryLargeVerticalSizedBox,
         mediumVerticalSizedBox,
 
@@ -210,7 +218,9 @@ class _ProfileMasterDetailState extends State<ProfileMasterDetail> {
                 if (val.onTapRoute == BWRoutes.resumeWithPin) {
                   // dispatch action to set [isChangingPin] to true
                   StoreProvider.dispatch<AppState>(
-                      context, UpdatePinStatusAction(isChangingPin: true));
+                    context,
+                    UpdatePinStatusAction(isChangingPin: true),
+                  );
                   Navigator.pushNamed(context, val.onTapRoute!);
                 }
               }

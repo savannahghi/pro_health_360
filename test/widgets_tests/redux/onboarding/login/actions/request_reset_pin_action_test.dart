@@ -36,12 +36,13 @@ void main() {
         (WidgetTester tester) async {
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 try {
                   await store.dispatch(
                     RequestResetPinAction(
@@ -52,9 +53,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -72,11 +75,12 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-          endpoint: endpoint,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254728101710',
-          },
-          response: response);
+        endpoint: endpoint,
+        variables: <String, dynamic>{
+          'phoneNumber': '+254728101710',
+        },
+        response: response,
+      );
 
       store.dispatch(
         UpdateUserProfileAction(
@@ -88,12 +92,13 @@ void main() {
 
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 EndPointsContextSubject().contexts.add(testAppContexts);
                 try {
                   await store.dispatch(
@@ -105,9 +110,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -124,11 +131,12 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-          endpoint: endpoint,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254728101710',
-          },
-          response: response);
+        endpoint: endpoint,
+        variables: <String, dynamic>{
+          'phoneNumber': '+254728101710',
+        },
+        response: response,
+      );
 
       store.dispatch(
         UpdateUserProfileAction(
@@ -140,12 +148,13 @@ void main() {
 
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 EndPointsContextSubject().contexts.add(testAppContexts);
                 try {
                   await store.dispatch(
@@ -157,9 +166,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -176,11 +187,12 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-          endpoint: endpoint,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254728101710',
-          },
-          response: response);
+        endpoint: endpoint,
+        variables: <String, dynamic>{
+          'phoneNumber': '+254728101710',
+        },
+        response: response,
+      );
 
       store.dispatch(
         UpdateUserProfileAction(
@@ -192,12 +204,13 @@ void main() {
 
       dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 EndPointsContextSubject().contexts.add(testAppContexts);
                 try {
                   await store.dispatch(
@@ -209,9 +222,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));

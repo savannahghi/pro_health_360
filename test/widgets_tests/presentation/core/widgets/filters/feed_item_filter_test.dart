@@ -14,22 +14,29 @@ void main() {
     testWidgets('should render correctly', (WidgetTester tester) async {
       const String filterText = 'All';
       const IconData iconData = Icons.grid_view_rounded;
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Builder(builder: (BuildContext context) {
-              return FeedItemFilter(
-                filterIcon: iconData,
-                filterText: filterText,
-                onTap: () {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(snackbar(content: getTestedComingSoonText));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: Builder(
+                builder: (BuildContext context) {
+                  return FeedItemFilter(
+                    filterIcon: iconData,
+                    filterText: filterText,
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        snackbar(
+                          content: getTestedComingSoonText,
+                        ),
+                      );
+                    },
+                  );
                 },
-              );
-            }),
+              ),
+            ),
           ),
         ),
-      ));
+      );
 
       expect(find.text(filterText), findsOneWidget);
       expect(find.byType(Icon), findsOneWidget);

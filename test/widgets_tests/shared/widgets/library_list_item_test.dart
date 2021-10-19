@@ -23,18 +23,23 @@ void main() {
   });
 
   final LibraryContentItemData libraryContentItem = LibraryContentItemData(
-      'image', 'body', 'title', 'tag',
-      libraryContentPublishDate: DateTime.now().toIso8601String(),
-      libraryContentTitle: '');
+    'image',
+    'body',
+    'title',
+    'tag',
+    libraryContentPublishDate: DateTime.now().toIso8601String(),
+    libraryContentTitle: '',
+  );
 
   group('Library list test', () {
     testWidgets('Library List should render correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: LibraryListItem(libraryContentItem: libraryContentItem));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: LibraryListItem(libraryContentItem: libraryContentItem),
+      );
 
       await tester.pumpAndSettle();
       final Finder gestureWidget = find.byKey(libraryListItemKey);
@@ -44,10 +49,11 @@ void main() {
     testWidgets('Library List should navigate when pressed',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: LibraryListItem(libraryContentItem: libraryContentItem));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: LibraryListItem(libraryContentItem: libraryContentItem),
+      );
 
       await tester.pumpAndSettle();
       final Finder gestureWidget = find.byKey(libraryListItemKey);

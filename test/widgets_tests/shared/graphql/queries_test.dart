@@ -16,8 +16,10 @@ void main() {
           resumeWithPinQueryVariables('1234');
 
       // verify functionality
-      expect(actualResumeWithPinQueryVariables,
-          expectedResumeWithPinQueryVariables);
+      expect(
+        actualResumeWithPinQueryVariables,
+        expectedResumeWithPinQueryVariables,
+      );
     });
   });
 }

@@ -38,9 +38,10 @@ class MessageInput extends StatelessWidget {
           Expanded(
             child: TextField(
               decoration: const InputDecoration(
-                  hintText: typeYourMessageHereString,
-                  hintStyle: TextStyle(color: AppColors.darkGreyTextColor),
-                  border: InputBorder.none),
+                hintText: typeYourMessageHereString,
+                hintStyle: TextStyle(color: AppColors.darkGreyTextColor),
+                border: InputBorder.none,
+              ),
               onChanged: onChanged,
             ),
           ),

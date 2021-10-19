@@ -47,23 +47,28 @@ void main() {
 
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
-      store.dispatch(AppReviewAction(
+      store.dispatch(
+        AppReviewAction(
           lastLaunchDate: '2020-08-23 08:48:24.731',
           days: 0,
           launches: 0,
-          shouldRateApp: true));
+          shouldRateApp: true,
+        ),
+      );
 
-      await tester.pumpWidget(MaterialApp(
-        home: Center(
-          child: AppEntryPoint(
-            appSetupData: devAppSetupData,
-            appName: testAppName,
-            appNavigatorKey: navigatorKey,
-            appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
-            appStore: store,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Center(
+            child: AppEntryPoint(
+              appSetupData: devAppSetupData,
+              appName: testAppName,
+              appNavigatorKey: navigatorKey,
+              appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
+              appStore: store,
+            ),
           ),
         ),
-      ));
+      );
 
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
       RefreshTokenManger().listen.add(true);
@@ -103,17 +108,19 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      await tester.pumpWidget(MaterialApp(
-        home: Center(
-          child: AppEntryPoint(
-            appSetupData: devAppSetupData,
-            appName: testAppName,
-            appNavigatorKey: navigatorKey,
-            appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
-            appStore: store,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Center(
+            child: AppEntryPoint(
+              appSetupData: devAppSetupData,
+              appName: testAppName,
+              appNavigatorKey: navigatorKey,
+              appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
+              appStore: store,
+            ),
           ),
         ),
-      ));
+      );
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
       RefreshTokenManger().listen.add(true);
 

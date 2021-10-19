@@ -58,11 +58,13 @@ class _PreLoadAppState extends State<PreLoadApp> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     Future<dynamic>.delayed(Duration.zero, () async {
-      appInitialRoute.add(await getInitialRoute(
-        widget.entryPointContext,
-        widget.appState,
-        widget.thisAppContexts,
-      ));
+      appInitialRoute.add(
+        await getInitialRoute(
+          widget.entryPointContext,
+          widget.appState,
+          widget.thisAppContexts,
+        ),
+      );
     });
   }
 
@@ -85,11 +87,13 @@ class _PreLoadAppState extends State<PreLoadApp> {
   void _handleIncomingLinks() {
     // It will handle app links while the app is already started - be it in
     // the foreground or in the background.
-    _sub = uriLinkStream.listen(linkStreamListener(
-      mounted: mounted,
-      nav: widget.appNavigatorKey,
-      signedIn: widget.appState.userProfileState!.isSignedIn!,
-    ) as void Function(Uri?)?);
+    _sub = uriLinkStream.listen(
+      linkStreamListener(
+        mounted: mounted,
+        nav: widget.appNavigatorKey,
+        signedIn: widget.appState.userProfileState!.isSignedIn!,
+      ) as void Function(Uri?)?,
+    );
   }
 
   /// Handle the initial Uri - the one the app was started with

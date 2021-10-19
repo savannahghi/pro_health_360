@@ -65,15 +65,16 @@ class MyAfyaHubFeedPage extends StatelessWidget {
                 width: double.infinity,
                 height: 42,
                 child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: feedFilterItems.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
-                        child: feedFilterItems.elementAt(index),
-                      );
-                    }),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: feedFilterItems.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
+                      child: feedFilterItems.elementAt(index),
+                    );
+                  },
+                ),
               ),
             ),
             Expanded(

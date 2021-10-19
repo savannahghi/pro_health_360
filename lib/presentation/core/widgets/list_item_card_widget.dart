@@ -18,14 +18,15 @@ import 'package:myafyahub/presentation/core/widgets/list_item_card_subtitle.dart
 /// [title] this is a string defaults to 'Diary' string if not provided
 
 class ListItemCard extends StatelessWidget {
-  const ListItemCard(
-      {this.title = diaryString,
-      this.subTitle,
-      required this.time,
-      required this.timelineType,
-      this.iconBackgroundColor = AppColors.introductionBackgroundColor,
-      required this.assetPath,
-      this.imageUrl});
+  const ListItemCard({
+    this.title = diaryString,
+    this.subTitle,
+    required this.time,
+    required this.timelineType,
+    this.iconBackgroundColor = AppColors.introductionBackgroundColor,
+    required this.assetPath,
+    this.imageUrl,
+  });
   final String title;
   final String? subTitle;
   final String time;
@@ -53,8 +54,12 @@ class ListItemCard extends StatelessWidget {
                       : AppColors.diaryListCardColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: SvgPicture.asset(assetPath,
-                    width: 40, height: 40, color: Colors.black),
+                child: SvgPicture.asset(
+                  assetPath,
+                  width: 40,
+                  height: 40,
+                  color: Colors.black,
+                ),
               ),
               const SizedBox(
                 width: 8,
@@ -67,9 +72,10 @@ class ListItemCard extends StatelessWidget {
                     Text(
                       title,
                       style: const TextStyle(
-                          color: AppColors.blackColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12),
+                        color: AppColors.blackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                     if (timelineType == TimelineItemType.Appointment)
@@ -78,9 +84,10 @@ class ListItemCard extends StatelessWidget {
                         child: Text(
                           subTitle!,
                           style: const TextStyle(
-                              color: AppColors.greyTextColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
+                            color: AppColors.greyTextColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
                           overflow: TextOverflow.clip,
                           softWrap: true,
                         ),
@@ -96,7 +103,9 @@ class ListItemCard extends StatelessWidget {
                     Text(
                       time,
                       style: const TextStyle(
-                          color: AppColors.greyTextColor, fontSize: 12),
+                        color: AppColors.greyTextColor,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),

@@ -12,6 +12,7 @@ class PhoneSignUpViewModel {
 
   static PhoneSignUpViewModel fromStore(Store<AppState> store) {
     return PhoneSignUpViewModel(
-        phoneSignUpState: store.state.miscState!.phoneSignUp);
+      phoneSignUpState: store.state.miscState!.phoneSignUp,
+    );
   }
 }

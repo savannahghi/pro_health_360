@@ -46,46 +46,54 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-          endpoint: endpoint,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254728101710',
-            'appId': 'test'
-          },
-          response: response);
+        endpoint: endpoint,
+        variables: <String, dynamic>{
+          'phoneNumber': '+254728101710',
+          'appId': 'test'
+        },
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(<String, dynamic>{'error': 'An error occurred'}))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(<String, dynamic>{'error': 'An error occurred'}),
+      ).thenReturn(null);
 
-      storeTester.dispatch(PhoneSignUpStateAction(
-        phoneNumber: '+254728101710',
-        acceptCommunicationTerms: true,
-      ));
+      storeTester.dispatch(
+        PhoneSignUpStateAction(
+          phoneNumber: '+254728101710',
+          acceptCommunicationTerms: true,
+        ),
+      );
 
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 try {
                   await storeTester.dispatch(
                     CheckIfNewUserAction(
-                        context: context,
-                        flag: 'check_new_user',
-                        appSignature: 'test'),
+                      context: context,
+                      flag: 'check_new_user',
+                      appSignature: 'test',
+                    ),
                   );
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -141,7 +149,10 @@ void main() {
 
         storeTester.dispatch(
           CheckIfNewUserAction(
-              context: context, flag: 'check_new_user', appSignature: 'test'),
+            context: context,
+            flag: 'check_new_user',
+            appSignature: 'test',
+          ),
         );
 
         final TestInfo<AppState> info =
@@ -161,46 +172,54 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-          endpoint: endpoint,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254728101710',
-            'appId': 'test'
-          },
-          response: response);
+        endpoint: endpoint,
+        variables: <String, dynamic>{
+          'phoneNumber': '+254728101710',
+          'appId': 'test'
+        },
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(<String, dynamic>{'error': 'An error occurred'}))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(<String, dynamic>{'error': 'An error occurred'}),
+      ).thenReturn(null);
 
-      storeTester.dispatch(PhoneSignUpStateAction(
-        phoneNumber: '+254728101710',
-        acceptCommunicationTerms: true,
-      ));
+      storeTester.dispatch(
+        PhoneSignUpStateAction(
+          phoneNumber: '+254728101710',
+          acceptCommunicationTerms: true,
+        ),
+      );
 
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 try {
                   await storeTester.dispatch(
                     CheckIfNewUserAction(
-                        context: context,
-                        flag: 'check_new_user',
-                        appSignature: 'test'),
+                      context: context,
+                      flag: 'check_new_user',
+                      appSignature: 'test',
+                    ),
                   );
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -221,46 +240,54 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-          endpoint: endpoint,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254728101710',
-            'appId': 'test'
-          },
-          response: response);
+        endpoint: endpoint,
+        variables: <String, dynamic>{
+          'phoneNumber': '+254728101710',
+          'appId': 'test'
+        },
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(<String, dynamic>{'error': 'An error occurred'}))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(<String, dynamic>{'error': 'An error occurred'}),
+      ).thenReturn(null);
 
-      storeTester.dispatch(PhoneSignUpStateAction(
-        phoneNumber: '+254728101710',
-        acceptCommunicationTerms: true,
-      ));
+      storeTester.dispatch(
+        PhoneSignUpStateAction(
+          phoneNumber: '+254728101710',
+          acceptCommunicationTerms: true,
+        ),
+      );
 
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 try {
                   await storeTester.dispatch(
                     CheckIfNewUserAction(
-                        context: context,
-                        flag: 'check_new_user',
-                        appSignature: 'test'),
+                      context: context,
+                      flag: 'check_new_user',
+                      appSignature: 'test',
+                    ),
                   );
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));

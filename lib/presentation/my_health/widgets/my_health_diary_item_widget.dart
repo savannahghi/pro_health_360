@@ -66,7 +66,9 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 12),
+                            horizontal: 12,
+                            vertical: 12,
+                          ),
                           width: 50,
                           decoration: BoxDecoration(
                             color: AppColors.listCardColor,
@@ -93,8 +95,8 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
                               Text(
                                 time,
                                 style: TextThemes.normalSize10Text(
-                                        AppColors.greyTextColor)
-                                    .copyWith(
+                                  AppColors.greyTextColor,
+                                ).copyWith(
                                   fontWeight: FontWeight.w100,
                                 ),
                               ),
@@ -116,8 +118,8 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
                               Text(
                                 description,
                                 style: TextThemes.normalSize9Text(
-                                        AppColors.secondaryColor)
-                                    .copyWith(),
+                                  AppColors.secondaryColor,
+                                ).copyWith(),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ],

@@ -22,18 +22,21 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: const SentMessageItem(
-            message: 'Don\'t miss your appointment tomorrow',
-            time: '12:00pm',
-            isAwaitingModeration: true,
-            highlightedMessage: QuotedMessageWidget(
-              senderName: 'senderName',
-              message:
-                  'Don\'t miss your appointment tomorrow Don\'t miss your appointment tomorrow',
-            )),
+          message: 'Don\'t miss your appointment tomorrow',
+          time: '12:00pm',
+          isAwaitingModeration: true,
+          highlightedMessage: QuotedMessageWidget(
+            senderName: 'senderName',
+            message:
+                'Don\'t miss your appointment tomorrow Don\'t miss your appointment tomorrow',
+          ),
+        ),
       );
 
       expect(
-          find.text('Don\'t miss your appointment tomorrow'), findsOneWidget);
+        find.text('Don\'t miss your appointment tomorrow'),
+        findsOneWidget,
+      );
       expect(find.text('12:00pm'), findsOneWidget);
       expect(find.byType(QuotedMessageWidget), findsOneWidget);
     });

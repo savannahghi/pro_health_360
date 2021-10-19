@@ -38,76 +38,78 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 6;
 
     return OnboardingScaffold(
-        title: congratulationsPageTitle(widget.duration),
-        description: congratulationsPageDescription,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              nickNameString,
-              style: TextThemes.boldSize16Text(Colors.grey),
+      title: congratulationsPageTitle(widget.duration),
+      description: congratulationsPageDescription,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            nickNameString,
+            style: TextThemes.boldSize16Text(Colors.grey),
+          ),
+          smallVerticalSizedBox,
+          Form(
+            key: _congratulationsFormKey,
+            child: CustomTextField(
+              formFieldKey: nameInputKey,
+              borderColor: Colors.grey.withOpacity(0.5),
+              maxLines: 1,
+              keyboardType: TextInputType.name,
+              validator: (String? value) {
+                if (value!.isEmpty) {
+                  return nameInputValidateString;
+                }
+              },
+              onChanged: (String val) {
+                setState(() {
+                  name = val;
+                });
+              },
             ),
-            smallVerticalSizedBox,
-            Form(
-              key: _congratulationsFormKey,
-              child: CustomTextField(
-                formFieldKey: nameInputKey,
-                borderColor: Colors.grey.withOpacity(0.5),
-                maxLines: 1,
-                keyboardType: TextInputType.name,
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return nameInputValidateString;
-                  }
-                },
-                onChanged: (String val) {
-                  setState(() {
-                    name = val;
-                  });
-                },
-              ),
-            ),
-            SizedBox(height: sizedBoxHeight),
-            Text(
-              importantInformationString,
-              style: TextThemes.boldSize16Text(AppColors.secondaryColor),
-            ),
-            smallVerticalSizedBox,
-            ImportantInformationWidget(),
-            verySmallVerticalSizedBox,
-            ImportantInformationWidget(),
-            verySmallVerticalSizedBox,
-            ImportantInformationWidget(),
-            largeVerticalSizedBox,
-            SizedBox(
-              width: double.infinity,
-              height: 52,
-              child: MyAfyaHubPrimaryButton(
-                customRadius: 4,
-                text: continueButtonText,
-                buttonColor: AppColors.secondaryColor,
-                borderColor: AppColors.secondaryColor,
-                onPressed: () async {
-                  if (_congratulationsFormKey.currentState!.validate()) {
-                    final UserProfile userProfile =
-                        UserProfile.fromJson(loginResponse['profile']!);
+          ),
+          SizedBox(height: sizedBoxHeight),
+          Text(
+            importantInformationString,
+            style: TextThemes.boldSize16Text(AppColors.secondaryColor),
+          ),
+          smallVerticalSizedBox,
+          ImportantInformationWidget(),
+          verySmallVerticalSizedBox,
+          ImportantInformationWidget(),
+          verySmallVerticalSizedBox,
+          ImportantInformationWidget(),
+          largeVerticalSizedBox,
+          SizedBox(
+            width: double.infinity,
+            height: 52,
+            child: MyAfyaHubPrimaryButton(
+              customRadius: 4,
+              text: continueButtonText,
+              buttonColor: AppColors.secondaryColor,
+              borderColor: AppColors.secondaryColor,
+              onPressed: () async {
+                if (_congratulationsFormKey.currentState!.validate()) {
+                  final UserProfile userProfile =
+                      UserProfile.fromJson(loginResponse['profile']!);
 
-                    await StoreProvider.dispatch<AppState>(
-                        context,
-                        UpdateUserProfileAction(
-                          profile: userProfile,
-                          userBioData: userProfile.userBioData,
-                        ));
+                  await StoreProvider.dispatch<AppState>(
+                    context,
+                    UpdateUserProfileAction(
+                      profile: userProfile,
+                      userBioData: userProfile.userBioData,
+                    ),
+                  );
 
-                    Navigator.pushReplacementNamed(
-                      context,
-                      BWRoutes.home,
-                    );
-                  }
-                },
-              ),
-            )
-          ],
-        ));
+                  Navigator.pushReplacementNamed(
+                    context,
+                    BWRoutes.home,
+                  );
+                }
+              },
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

@@ -32,9 +32,10 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           userBioData: BioData(
-              firstName: Name.withValue('Test'),
-              lastName: Name.withValue('Name'),
-              gender: Gender.male),
+            firstName: Name.withValue('Test'),
+            lastName: Name.withValue('Name'),
+            gender: Gender.male,
+          ),
           profile: UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),
@@ -68,23 +69,29 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return EditProfilePage();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return EditProfilePage();
+          },
+        ),
       );
 
       await tester.pumpAndSettle();
 
       //firstName
-      final Finder firstName = find.byWidgetPredicate((Widget widget) =>
-          widget is SILFormTextField && widget.key == editProfileFirstNameKey);
+      final Finder firstName = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == editProfileFirstNameKey,
+      );
       expect(firstName, findsOneWidget);
       await tester.tap(firstName);
       await tester.enterText(firstName, '');
 
       //lastName
-      final Finder lastName = find.byWidgetPredicate((Widget widget) =>
-          widget is SILFormTextField && widget.key == editProfileLastNameKey);
+      final Finder lastName = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == editProfileLastNameKey,
+      );
       expect(lastName, findsOneWidget);
       await tester.tap(lastName);
       await tester.enterText(lastName, '');
@@ -109,9 +116,11 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return EditProfilePage();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return EditProfilePage();
+          },
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -122,15 +131,19 @@ void main() {
       expect(formWidget, findsOneWidget);
 
       //firstName
-      final Finder firstName = find.byWidgetPredicate((Widget widget) =>
-          widget is SILFormTextField && widget.key == editProfileFirstNameKey);
+      final Finder firstName = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == editProfileFirstNameKey,
+      );
       expect(firstName, findsOneWidget);
       await tester.tap(firstName);
       await tester.enterText(firstName, testFirstName);
 
       //lastName
-      final Finder lastName = find.byWidgetPredicate((Widget widget) =>
-          widget is SILFormTextField && widget.key == editProfileLastNameKey);
+      final Finder lastName = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == editProfileLastNameKey,
+      );
       expect(lastName, findsOneWidget);
       await tester.tap(lastName);
       await tester.enterText(lastName, testLastName);
@@ -171,9 +184,11 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return EditProfilePage();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return EditProfilePage();
+          },
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -184,15 +199,19 @@ void main() {
       expect(formWidget, findsOneWidget);
 
       //firstName
-      final Finder firstName = find.byWidgetPredicate((Widget widget) =>
-          widget is SILFormTextField && widget.key == editProfileFirstNameKey);
+      final Finder firstName = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == editProfileFirstNameKey,
+      );
       expect(firstName, findsOneWidget);
       await tester.tap(firstName);
       await tester.enterText(firstName, testFirstName);
 
       //lastName
-      final Finder lastName = find.byWidgetPredicate((Widget widget) =>
-          widget is SILFormTextField && widget.key == editProfileLastNameKey);
+      final Finder lastName = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == editProfileLastNameKey,
+      );
       expect(lastName, findsOneWidget);
       await tester.tap(lastName);
       await tester.enterText(lastName, testLastName);
@@ -232,9 +251,11 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return EditProfilePage();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return EditProfilePage();
+          },
+        ),
       );
 
       final Finder loaderWidget = find.byType(SILPlatformLoader);

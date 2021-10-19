@@ -36,7 +36,8 @@ class BeWellDatabaseMobile<T extends DatabaseExecutor>
   Future<int> countTableRecords(String table) async {
     final T _db = await this.database;
     final int? count = Sqflite.firstIntValue(
-        await _db.rawQuery('SELECT COUNT(*) FROM $table'));
+      await _db.rawQuery('SELECT COUNT(*) FROM $table'),
+    );
     return Future<int>.value(count);
   }
 
@@ -85,13 +86,17 @@ class BeWellDatabaseMobile<T extends DatabaseExecutor>
   /// [saveState] saves the current states by an [INSERT] in the database
   /// IMPORTANT: THIS METHOD WORKS ON THE ASSUMPTION THAT THE TABLE NAME MATCHES THE INSERTION FIELD NAME
   @override
-  Future<void> saveState(
-      {required Map<String, dynamic> data, required Tables table}) async {
+  Future<void> saveState({
+    required Map<String, dynamic> data,
+    required Tables table,
+  }) async {
     final T _db = await this.database;
     final String dataAsString = jsonEncode(data);
     final String tableName = table.name;
-    await _db.rawInsert('INSERT INTO $tableName($tableName) VALUES(?)',
-        <dynamic>[dataAsString]);
+    await _db.rawInsert(
+      'INSERT INTO $tableName($tableName) VALUES(?)',
+      <dynamic>[dataAsString],
+    );
     return;
   }
 }

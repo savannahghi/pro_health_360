@@ -80,12 +80,17 @@ class _PINInputPageState extends State<PINInputPage> {
           key: pinInputPageBackKey,
           onTap: () {
             StoreProvider.dispatch<AppState>(
-                context, BottomNavAction(currentBottomNavIndex: 0));
+              context,
+              BottomNavAction(currentBottomNavIndex: 0),
+            );
             Navigator.pop(context);
           },
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: SvgPicture.asset(backIconPath, width: 24,),
+            child: SvgPicture.asset(
+              backIconPath,
+              width: 24,
+            ),
           ),
         ),
         trailingWidget: const SizedBox(),
@@ -118,11 +123,13 @@ class _PINInputPageState extends State<PINInputPage> {
                     children: <Widget>[
                       Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white,
-                            border: Border.all(
-                                color: Theme.of(context).backgroundColor,
-                                width: 1.5)),
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Theme.of(context).backgroundColor,
+                            width: 1.5,
+                          ),
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: TextFormField(
@@ -133,7 +140,8 @@ class _PINInputPageState extends State<PINInputPage> {
                             obscuringCharacter: '*',
                             textAlign: TextAlign.center,
                             style: TextThemes.normalSize24Text(
-                                AppColors.secondaryColor),
+                              AppColors.secondaryColor,
+                            ),
                             decoration: const InputDecoration(
                               border: InputBorder.none,
                             ),
@@ -159,7 +167,8 @@ class _PINInputPageState extends State<PINInputPage> {
                         if (enteredPin != widget._pin) {
                           if (tries % maxTries != 0) {
                             errorMessageStyle = TextThemes.boldSize12Text(
-                                AppColors.wrongPinTextColor);
+                              AppColors.wrongPinTextColor,
+                            );
                             errorMessage = wrongPINString;
                             widget._pinController.text = '';
                           } else {

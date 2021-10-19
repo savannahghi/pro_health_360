@@ -35,13 +35,14 @@ class UpdatePinStatusAction extends ReduxAction<AppState> {
     }
 
     final AppState newState = state.copyWith.miscState!.call(
-        userPin: UserPin(
-      pin: pin ?? pinObj!.pin,
-      invalidPin: invalidPin ?? pinObj!.invalidPin,
-      forgotPIN: forgotPIN ?? pinObj!.forgotPIN,
-      isChangingPin: isChangingPin ?? pinObj!.isChangingPin,
-      recoveryOtp: recoveryOtp ?? pinObj!.recoveryOtp,
-    ));
+      userPin: UserPin(
+        pin: pin ?? pinObj!.pin,
+        invalidPin: invalidPin ?? pinObj!.invalidPin,
+        forgotPIN: forgotPIN ?? pinObj!.forgotPIN,
+        isChangingPin: isChangingPin ?? pinObj!.isChangingPin,
+        recoveryOtp: recoveryOtp ?? pinObj!.recoveryOtp,
+      ),
+    );
 
     return newState;
   }

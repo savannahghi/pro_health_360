@@ -40,12 +40,13 @@ void main() {
         (WidgetTester tester) async {
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 try {
                   await store.dispatch(
                     ResumeWithPinAction(
@@ -56,9 +57,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -74,24 +77,28 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response);
+        queryString: resumeWithPinQuery,
+        variables: <String, dynamic>{'pin': '1234'},
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(
-              <String, dynamic>{'error': 'Failed to resume with pin'}))
-          .thenReturn('err');
+      when(
+        baseGraphQlClientMock.parseError(
+          <String, dynamic>{'error': 'Failed to resume with pin'},
+        ),
+      ).thenReturn('err');
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 await store.dispatch(
                   UpdatePinStatusAction(pin: '1234'),
                 );
@@ -105,9 +112,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -125,9 +134,10 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response);
+        queryString: resumeWithPinQuery,
+        variables: <String, dynamic>{'pin': '1234'},
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
@@ -136,12 +146,13 @@ void main() {
           .thenReturn(errMsg);
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 await store.dispatch(
                   UpdatePinStatusAction(pin: '1234'),
                 );
@@ -155,9 +166,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -177,9 +190,10 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response);
+        queryString: resumeWithPinQuery,
+        variables: <String, dynamic>{'pin': '1234'},
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
@@ -188,12 +202,13 @@ void main() {
 
       dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 await store.dispatch(
                   UpdatePinStatusAction(pin: '1234', isChangingPin: true),
                 );
@@ -207,9 +222,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -236,9 +253,10 @@ void main() {
         );
 
         queryWhenThenAnswer(
-            queryString: resumeWithPinQuery,
-            variables: <String, dynamic>{'pin': '1234'},
-            response: response);
+          queryString: resumeWithPinQuery,
+          variables: <String, dynamic>{'pin': '1234'},
+          response: response,
+        );
 
         when(baseGraphQlClientMock.toMap(response))
             .thenReturn(json.decode(response.body) as Map<String, dynamic>);
@@ -259,20 +277,22 @@ void main() {
         final UserProfile? userProfile = userResp.profile;
 
         queryWhenThenAnswer(
-            queryString: getFeedQuery,
-            variables: <String, dynamic>{
-              'flavour': Flavour.CONSUMER.name,
-              'persistent': 'BOTH',
-              'visibility': 'SHOW',
-              'isAnonymous': false,
-              'status': null,
-            },
-            response: _response);
+          queryString: getFeedQuery,
+          variables: <String, dynamic>{
+            'flavour': Flavour.CONSUMER.name,
+            'persistent': 'BOTH',
+            'visibility': 'SHOW',
+            'isAnonymous': false,
+            'status': null,
+          },
+          response: _response,
+        );
 
         queryWhenThenAnswer(
-            queryString: registerDeviceTokenQuery,
-            variables: <String, dynamic>{'token': 'sampleToken'},
-            response: _response);
+          queryString: registerDeviceTokenQuery,
+          variables: <String, dynamic>{'token': 'sampleToken'},
+          response: _response,
+        );
 
         when(baseGraphQlClientMock.toMap(_response))
             .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
@@ -280,12 +300,13 @@ void main() {
         when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
 
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: baseGraphQlClientMock,
-            widget: Builder(
-              builder: (BuildContext context) {
-                return SILPrimaryButton(onPressed: () async {
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
                   await store.dispatch(
                     UpdatePinStatusAction(pin: '1234', isChangingPin: false),
                   );
@@ -302,10 +323,14 @@ void main() {
                         flag: 'resume_with_pin',
                       ),
                     );
-                  } catch (e) {}
-                });
-              },
-            ));
+                  } catch (e) {
+                    return;
+                  }
+                },
+              );
+            },
+          ),
+        );
 
         await tester.pump();
         await tester.tap(find.byType(SILPrimaryButton));
@@ -327,9 +352,10 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response);
+        queryString: resumeWithPinQuery,
+        variables: <String, dynamic>{'pin': '1234'},
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
@@ -337,12 +363,13 @@ void main() {
       when(baseGraphQlClientMock.parseError(resp)).thenReturn(null);
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 await store.dispatch(
                   UpdatePinStatusAction(pin: '1234', isChangingPin: true),
                 );
@@ -353,10 +380,14 @@ void main() {
                       flag: 'resume_with_pin',
                     ),
                   );
-                } catch (e) {}
-              });
-            },
-          ));
+                } catch (e) {
+                  return;
+                }
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -374,9 +405,10 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response);
+        queryString: resumeWithPinQuery,
+        variables: <String, dynamic>{'pin': '1234'},
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
@@ -385,12 +417,13 @@ void main() {
 
       dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 await store.dispatch(
                   UpdatePinStatusAction(pin: '1234', isChangingPin: true),
                 );
@@ -404,9 +437,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -415,5 +450,3 @@ void main() {
     });
   });
 }
-
-// ignore_for_file: empty_catches

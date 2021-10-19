@@ -31,7 +31,8 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           profile: UserProfile(
-              photoUploadID: '$dir/test/tests_resources/test_file.png'),
+            photoUploadID: '$dir/test/tests_resources/test_file.png',
+          ),
         ),
       );
 
@@ -55,9 +56,11 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return const AppbarUser();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return const AppbarUser();
+          },
+        ),
       );
 
       await fireEvent(tester);
@@ -76,9 +79,11 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return const AppbarUser();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return const AppbarUser();
+          },
+        ),
       );
 
       await tester.pumpAndSettle();

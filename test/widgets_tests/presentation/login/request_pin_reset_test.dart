@@ -38,10 +38,11 @@ void main() {
       'should render correctly',
       (WidgetTester tester) async {
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: baseGraphQlClientMock,
-            widget: RequestPinReset());
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: RequestPinReset(),
+        );
 
         await tester.pump();
         final Finder requestPinResetKey = find.byKey(requestPinResetWidgetKey);
@@ -60,10 +61,11 @@ void main() {
         requestPinResetBehaviorObject.processing.add(true);
         requestPinResetBehaviorObject.userHasNoAccount.add(true);
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: baseGraphQlClientMock,
-            widget: RequestPinReset());
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: RequestPinReset(),
+        );
         await tester.pump();
         final Finder requestPinResetKey = find.byKey(requestPinResetWidgetKey);
         expect(requestPinResetKey, findsOneWidget);
@@ -79,11 +81,13 @@ void main() {
             RequestPinResetBehaviorObject();
         requestPinResetBehaviorObject.processing.add(false);
 
-        when(baseGraphQlClientMock.callRESTAPI(
-                endpoint: kTestPinResetEndpoint,
-                variables: anyNamed('variables'),
-                method: 'POST'))
-            .thenAnswer(
+        when(
+          baseGraphQlClientMock.callRESTAPI(
+            endpoint: kTestPinResetEndpoint,
+            variables: anyNamed('variables'),
+            method: 'POST',
+          ),
+        ).thenAnswer(
           (_) => Future<http.Response>.value(
             http.Response(
               json.encode(resetPINMock()),

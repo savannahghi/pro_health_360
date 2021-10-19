@@ -42,10 +42,11 @@ void main() {
         'idToken',
         'endpoint',
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'loading': true}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'loading': true}
+          }),
+          201,
+        ),
       );
 
       await buildTestWidget(
@@ -164,10 +165,11 @@ void main() {
         'idToken',
         'endpoint',
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'getLibraryContent': null}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getLibraryContent': null}
+          }),
+          201,
+        ),
       );
 
       await tester.pumpWidget(
@@ -195,10 +197,11 @@ void main() {
         'idToken',
         'endpoint',
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'getLibraryContent': null}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getLibraryContent': null}
+          }),
+          201,
+        ),
       );
 
       await buildTestWidget(

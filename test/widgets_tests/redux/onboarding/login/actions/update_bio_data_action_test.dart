@@ -98,8 +98,10 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
-        expect(store.state.userProfileState!.userProfile!.userBioData!.gender,
-            Gender.male);
+        expect(
+          store.state.userProfileState!.userProfile!.userBioData!.gender,
+          Gender.male,
+        );
       } catch (e) {
         expect(e, isA<TypeError>());
       }
@@ -130,7 +132,9 @@ void main() {
             userBasicDetails.gender.add(Gender.unknown);
             userBasicDetails.dateOfBirth.add('3 May 2021');
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: true));
+              context,
+              PhoneSignUpStateAction(accountCreated: true),
+            );
 
             return SILPrimaryButton(
               onPressed: () async => StoreProvider.dispatch(
@@ -153,9 +157,10 @@ void main() {
       await tester.pump(const Duration(seconds: 60));
       await tester.pumpAndSettle();
       expect(
-          store.state.userProfileState!.userProfile!.userBioData!.firstName!
-              .getValue(),
-          testFirstName);
+        store.state.userProfileState!.userProfile!.userBioData!.firstName!
+            .getValue(),
+        testFirstName,
+      );
     });
 
     testWidgets(
@@ -184,7 +189,9 @@ void main() {
             userBasicDetails.gender.add(Gender.unknown);
             userBasicDetails.dateOfBirth.add('3 May 2021');
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: false));
+              context,
+              PhoneSignUpStateAction(accountCreated: false),
+            );
 
             return SILPrimaryButton(
               onPressed: () async => StoreProvider.dispatch(
@@ -231,7 +238,9 @@ void main() {
             userBasicDetails.dateOfBirth.add('3 May 2021');
 
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: false));
+              context,
+              PhoneSignUpStateAction(accountCreated: false),
+            );
 
             return SILPrimaryButton(
               onPressed: () async => StoreProvider.dispatch(
@@ -282,7 +291,9 @@ void main() {
             userBasicDetails.gender.add(Gender.unknown);
             userBasicDetails.dateOfBirth.add('3 May 2021');
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: true));
+              context,
+              PhoneSignUpStateAction(accountCreated: true),
+            );
             actualUserProfileInfo = userBasicDetails.getUserProfileVariables();
             return SILPrimaryButton(
               onPressed: () async => StoreProvider.dispatch(
@@ -339,9 +350,10 @@ void main() {
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(json.decode(response.body) as Map<String, dynamic>))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(json.decode(response.body) as Map<String, dynamic>),
+      ).thenReturn(null);
 
       late dynamic err;
       await buildTestWidget(
@@ -358,7 +370,9 @@ void main() {
             userBasicDetails.gender.add(Gender.unknown);
             userBasicDetails.dateOfBirth.add('11 Jan 1996');
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: true));
+              context,
+              PhoneSignUpStateAction(accountCreated: true),
+            );
 
             return SILPrimaryButton(
               onPressed: () async {
@@ -412,9 +426,10 @@ void main() {
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(json.decode(response.body) as Map<String, dynamic>))
-          .thenReturn('Some error');
+      when(
+        baseGraphQlClientMock
+            .parseError(json.decode(response.body) as Map<String, dynamic>),
+      ).thenReturn('Some error');
 
       late dynamic err;
       await buildTestWidget(
@@ -431,7 +446,9 @@ void main() {
             userBasicDetails.gender.add(Gender.unknown);
             userBasicDetails.dateOfBirth.add('11 Jan 1996');
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: true));
+              context,
+              PhoneSignUpStateAction(accountCreated: true),
+            );
 
             return SILPrimaryButton(
               onPressed: () async {
@@ -485,9 +502,10 @@ void main() {
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(json.decode(response.body) as Map<String, dynamic>))
-          .thenReturn('Some error');
+      when(
+        baseGraphQlClientMock
+            .parseError(json.decode(response.body) as Map<String, dynamic>),
+      ).thenReturn('Some error');
 
       late dynamic err;
       await buildTestWidget(
@@ -504,7 +522,9 @@ void main() {
             userBasicDetails.gender.add(Gender.unknown);
             userBasicDetails.dateOfBirth.add('11 Jan 1996');
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: true));
+              context,
+              PhoneSignUpStateAction(accountCreated: true),
+            );
 
             return SILPrimaryButton(
               onPressed: () async {
@@ -558,9 +578,10 @@ void main() {
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(json.decode(response.body) as Map<String, dynamic>))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(json.decode(response.body) as Map<String, dynamic>),
+      ).thenReturn(null);
 
       late dynamic err;
       await buildTestWidget(
@@ -577,7 +598,9 @@ void main() {
             userBasicDetails.gender.add(Gender.unknown);
             userBasicDetails.dateOfBirth.add('11 Jan 1996');
             StoreProvider.dispatch(
-                context, PhoneSignUpStateAction(accountCreated: true));
+              context,
+              PhoneSignUpStateAction(accountCreated: true),
+            );
 
             return SILPrimaryButton(
               onPressed: () async {

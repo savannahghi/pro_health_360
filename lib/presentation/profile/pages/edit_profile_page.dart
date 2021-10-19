@@ -24,37 +24,37 @@ class EditProfilePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             StoreConnector<AppState, UserProfileViewModel>(
-                converter: (Store<AppState> store) =>
-                    UserProfileViewModel.fromStore(store),
-                builder: (BuildContext context, UserProfileViewModel vm) {
-                  final UserProfileState userProfile = vm.userProfileState;
-                  final String firstName = userProfile
-                      .userProfile!.userBioData!.firstName!
-                      .getValue();
+              converter: (Store<AppState> store) =>
+                  UserProfileViewModel.fromStore(store),
+              builder: (BuildContext context, UserProfileViewModel vm) {
+                final UserProfileState userProfile = vm.userProfileState;
+                final String firstName =
+                    userProfile.userProfile!.userBioData!.firstName!.getValue();
 
-                  final String lastName = userProfile
-                      .userProfile!.userBioData!.lastName!
-                      .getValue();
+                final String lastName =
+                    userProfile.userProfile!.userBioData!.lastName!.getValue();
 
-                  return Hero(
-                    tag: 'profile_banner',
-                    child: Material(
-                      child: SILProfileBanner(
-                        height: 160,
-                        backgroundImagePath: wellnessUmbrellaImgUrl,
-                        userPhotoUrl:
-                            userProfile.userProfile?.photoUploadID ?? UNKNOWN,
-                        userName: sentenceCaseUserName(
-                            firstName: firstName, lastName: lastName),
-                        primaryPhone: userProfile
-                                .userProfile?.primaryPhoneNumber!
-                                .getValue() ??
-                            'No phone number',
-                        profileRoute: BWRoutes.userProfile,
+                return Hero(
+                  tag: 'profile_banner',
+                  child: Material(
+                    child: SILProfileBanner(
+                      height: 160,
+                      backgroundImagePath: wellnessUmbrellaImgUrl,
+                      userPhotoUrl:
+                          userProfile.userProfile?.photoUploadID ?? UNKNOWN,
+                      userName: sentenceCaseUserName(
+                        firstName: firstName,
+                        lastName: lastName,
                       ),
+                      primaryPhone: userProfile.userProfile?.primaryPhoneNumber!
+                              .getValue() ??
+                          'No phone number',
+                      profileRoute: BWRoutes.userProfile,
                     ),
-                  );
-                }),
+                  ),
+                );
+              },
+            ),
             veryLargeVerticalSizedBox,
             largeVerticalSizedBox,
             Padding(

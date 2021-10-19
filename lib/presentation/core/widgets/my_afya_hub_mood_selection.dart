@@ -33,7 +33,9 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         image: DecorationImage(
           colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.6), BlendMode.srcOver),
+            Colors.black.withOpacity(0.6),
+            BlendMode.srcOver,
+          ),
           fit: BoxFit.cover,
           image: const AssetImage(moodSelectionBackgroundUrl),
         ),
@@ -50,54 +52,55 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
             ),
             mediumVerticalSizedBox,
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  MoodItem(
-                    key: excitedMoodKey,
-                    moodIcon: excitedIconSvgPath,
-                    moodText: excitedString,
-                    onTap: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackbar(content: comingSoonText));
-                    },
-                  ),
-                  MoodItem(
-                    key: happyMoodKey,
-                    moodIcon: happyIconSvgPath,
-                    moodText: happyString,
-                    onTap: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackbar(content: comingSoonText));
-                    },
-                  ),
-                  MoodItem(
-                    key: mehMoodKey,
-                    moodIcon: mehIconSvgPath,
-                    moodText: mehString,
-                    onTap: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackbar(content: comingSoonText));
-                    },
-                  ),
-                  MoodItem(
-                    key: sadMoodKey,
-                    moodIcon: sadIconSvgPath,
-                    moodText: sadString,
-                    onTap: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackbar(content: comingSoonText));
-                    },
-                  ),
-                  MoodItem(
-                    key: verySadMoodKey,
-                    moodIcon: verySadIconSvgPath,
-                    moodText: verySadString,
-                    onTap: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackbar(content: comingSoonText));
-                    },
-                  ),
-                ])
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                MoodItem(
+                  key: excitedMoodKey,
+                  moodIcon: excitedIconSvgPath,
+                  moodText: excitedString,
+                  onTap: () {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackbar(content: comingSoonText));
+                  },
+                ),
+                MoodItem(
+                  key: happyMoodKey,
+                  moodIcon: happyIconSvgPath,
+                  moodText: happyString,
+                  onTap: () {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackbar(content: comingSoonText));
+                  },
+                ),
+                MoodItem(
+                  key: mehMoodKey,
+                  moodIcon: mehIconSvgPath,
+                  moodText: mehString,
+                  onTap: () {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackbar(content: comingSoonText));
+                  },
+                ),
+                MoodItem(
+                  key: sadMoodKey,
+                  moodIcon: sadIconSvgPath,
+                  moodText: sadString,
+                  onTap: () {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackbar(content: comingSoonText));
+                  },
+                ),
+                MoodItem(
+                  key: verySadMoodKey,
+                  moodIcon: verySadIconSvgPath,
+                  moodText: verySadString,
+                  onTap: () {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackbar(content: comingSoonText));
+                  },
+                ),
+              ],
+            )
           ],
         ),
       ),

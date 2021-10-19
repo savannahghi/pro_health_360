@@ -41,7 +41,9 @@ void main() {
 
       expect(find.text('Wanjiku'), findsOneWidget);
       expect(
-          find.text('Don\'t miss your appointment tomorrow'), findsOneWidget);
+        find.text('Don\'t miss your appointment tomorrow'),
+        findsOneWidget,
+      );
       expect(find.text('12:00pm'), findsOneWidget);
       expect(find.byType(SenderTypeWidget), findsOneWidget);
       expect(find.byType(QuotedMessageWidget), findsOneWidget);

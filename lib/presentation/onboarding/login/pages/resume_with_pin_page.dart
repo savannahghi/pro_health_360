@@ -19,9 +19,10 @@ class ResumeWithPinPage extends StatelessWidget {
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
-        final String firstName = toBeginningOfSentenceCase(vm
-            .appState.userProfileState!.userProfile!.userBioData!.firstName!
-            .getValue())!;
+        final String firstName = toBeginningOfSentenceCase(
+          vm.appState.userProfileState!.userProfile!.userBioData!.firstName!
+              .getValue(),
+        )!;
         return OnboardingPageWrapper(
           title: OnboardingStrings.of(context)!.greetUser(firstName),
           description: OnboardingStrings.of(context)!.enterPinToContinueText(),

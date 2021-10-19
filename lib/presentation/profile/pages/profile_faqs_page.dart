@@ -33,7 +33,8 @@ class ProfileFaqsPage extends StatelessWidget {
                   Text(
                     frequentlyAskedQuestions,
                     style: TextThemes.normalSize34Text(
-                        Theme.of(context).primaryColor),
+                      Theme.of(context).primaryColor,
+                    ),
                   ),
                   mediumVerticalSizedBox,
                   const ExpandableContent(

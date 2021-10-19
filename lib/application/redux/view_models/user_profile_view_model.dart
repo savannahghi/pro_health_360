@@ -12,6 +12,7 @@ class UserProfileViewModel {
 
   static UserProfileViewModel fromStore(Store<AppState> store) {
     return UserProfileViewModel(
-        userProfileState: store.state.userProfileState!);
+      userProfileState: store.state.userProfileState!,
+    );
   }
 }

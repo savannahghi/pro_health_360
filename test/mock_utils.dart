@@ -54,8 +54,10 @@ http.StreamedResponse simpleResponse({required String body, int? status}) {
 /// }
 /// ```
 
-R provideMockedNetworkImages<R>(R Function() body,
-    {List<int> imageBytes = _transparentImage}) {
+R provideMockedNetworkImages<R>(
+  R Function() body, {
+  List<int> imageBytes = _transparentImage,
+}) {
   return HttpOverrides.runZoned(
     body,
     createHttpClient: (_) => _createMockImageHttpClient(_!, imageBytes),
@@ -64,7 +66,9 @@ R provideMockedNetworkImages<R>(R Function() body,
 
 // Returns a mock HTTP client that responds with an image to all requests.
 MockHttpClientIO _createMockImageHttpClient(
-    SecurityContext _, List<int> imageBytes) {
+  SecurityContext _,
+  List<int> imageBytes,
+) {
   final MockHttpClientIO client = MockHttpClientIO();
   final MockHttpClientRequest request = MockHttpClientRequest();
   final MockHttpClientResponse response = MockHttpClientResponse();
@@ -88,10 +92,11 @@ MockHttpClientIO _createMockImageHttpClient(
         invocation.namedArguments[#cancelOnError] as bool;
 
     return Stream<List<int>>.fromIterable(<List<int>>[imageBytes]).listen(
-        onData,
-        onDone: onDone,
-        onError: onError,
-        cancelOnError: cancelOnError);
+      onData,
+      onDone: onDone,
+      onError: onError,
+      cancelOnError: cancelOnError,
+    );
   });
 
   return client;

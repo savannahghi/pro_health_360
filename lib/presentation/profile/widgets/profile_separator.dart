@@ -25,8 +25,9 @@ class ProfileSeparator extends StatelessWidget {
         child: Text(
           text.toUpperCase(),
           style: TextThemes.boldSize12Text().copyWith(
-              color: Theme.of(context).colorScheme.secondary,
-              fontSize: number8),
+            color: Theme.of(context).colorScheme.secondary,
+            fontSize: number8,
+          ),
         ),
       ),
     );

@@ -54,15 +54,17 @@ class ReceivedMessageItem extends StatelessWidget {
             children: <Widget>[
               Align(
                 alignment: Alignment.topLeft,
-                child: Row(children: <Widget>[
-                  Text(
-                    senderName,
-                    style: TextThemes.normalSize10Text()
-                        .copyWith(color: AppColors.userInitialsColor),
-                  ),
-                  smallHorizontalSizedBox,
-                  senderType ?? smallHorizontalSizedBox,
-                ]),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      senderName,
+                      style: TextThemes.normalSize10Text()
+                          .copyWith(color: AppColors.userInitialsColor),
+                    ),
+                    smallHorizontalSizedBox,
+                    senderType ?? smallHorizontalSizedBox,
+                  ],
+                ),
               ),
               quotedMessageWidget ?? smallVerticalSizedBox,
               Align(

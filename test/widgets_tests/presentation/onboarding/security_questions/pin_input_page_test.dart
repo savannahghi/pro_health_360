@@ -32,7 +32,8 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           profile: UserProfile(
-              photoUploadID: '$dir/test/tests_resources/test_file.png'),
+            photoUploadID: '$dir/test/tests_resources/test_file.png',
+          ),
         ),
       );
       store.dispatch(
@@ -55,12 +56,15 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return MaterialApp(
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MaterialApp(
               home: MaterialApp(
-            home: PINInputPage(),
-          ));
-        }),
+                home: PINInputPage(),
+              ),
+            );
+          },
+        ),
       );
       expect(find.text(forgotPINString), findsOneWidget);
       final Finder numberSevenButton = find.text('7');
@@ -118,11 +122,13 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return MaterialApp(
-            home: PINInputPage(),
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MaterialApp(
+              home: PINInputPage(),
+            );
+          },
+        ),
       );
 
       expect(find.byType(KeyPadWidget), findsOneWidget);
@@ -150,11 +156,13 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return MaterialApp(
-            home: PINInputPage(),
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MaterialApp(
+              home: PINInputPage(),
+            );
+          },
+        ),
       );
       expect(find.text(enterChatPINString), findsOneWidget);
       final Finder numberFourButton = find.text('4');
@@ -176,7 +184,6 @@ void main() {
       await tester.tap(numberSixButton);
 
       expect(find.text('646'), findsOneWidget);
-
     });
   });
 }

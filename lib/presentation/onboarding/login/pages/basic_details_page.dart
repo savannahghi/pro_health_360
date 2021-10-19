@@ -182,15 +182,19 @@ class _BasicDetailsPageState extends State<BasicDetailsPage> {
                 key: _formKey,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal:
-                          preferredPaddingOnStretchedScreens(context: context),
-                      vertical: 50),
+                    horizontal:
+                        preferredPaddingOnStretchedScreens(context: context),
+                    vertical: 50,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(personalDetails,
-                          style: TextThemes.boldSize24Text(
-                              Theme.of(context).primaryColor)),
+                      Text(
+                        personalDetails,
+                        style: TextThemes.boldSize24Text(
+                          Theme.of(context).primaryColor,
+                        ),
+                      ),
                       smallVerticalSizedBox,
                       Text(
                         personalDetailsDesc,
@@ -223,8 +227,9 @@ class _BasicDetailsPageState extends State<BasicDetailsPage> {
                         },
                         onChanged: (dynamic value) {
                           userBasicDetails.setUserProfileVariables(
-                              value.toString().trim(),
-                              BasicDetailType.firstName);
+                            value.toString().trim(),
+                            BasicDetailType.firstName,
+                          );
 
                           setState(() {});
                         },
@@ -252,8 +257,9 @@ class _BasicDetailsPageState extends State<BasicDetailsPage> {
                         },
                         onChanged: (dynamic value) {
                           userBasicDetails.setUserProfileVariables(
-                              value.toString().trim(),
-                              BasicDetailType.lastName);
+                            value.toString().trim(),
+                            BasicDetailType.lastName,
+                          );
 
                           setState(() {});
                         },
@@ -275,7 +281,9 @@ class _BasicDetailsPageState extends State<BasicDetailsPage> {
                         labelText: dateLabelText,
                         onChanged: (dynamic value) {
                           userBasicDetails.setUserProfileVariables(
-                              value.toString(), BasicDetailType.dateOfBirth);
+                            value.toString(),
+                            BasicDetailType.dateOfBirth,
+                          );
                           setState(() {});
                         },
                       ),
@@ -290,7 +298,9 @@ class _BasicDetailsPageState extends State<BasicDetailsPage> {
                         options: userBasicDetails.genderTypes,
                         onChanged: (dynamic value) {
                           userBasicDetails.setUserProfileVariables(
-                              value.toString().trim(), BasicDetailType.gender);
+                            value.toString().trim(),
+                            BasicDetailType.gender,
+                          );
                           setState(() {});
                         },
                       ),
@@ -316,8 +326,9 @@ class _BasicDetailsPageState extends State<BasicDetailsPage> {
                                 if (userBasicDetails.gender.valueOrNull ==
                                     Gender.unknown) {
                                   userBasicDetails.setUserProfileVariables(
-                                      genderFromState.toString(),
-                                      BasicDetailType.gender);
+                                    genderFromState.toString(),
+                                    BasicDetailType.gender,
+                                  );
                                   showFeedbackBottomSheet(
                                     context: context,
                                     modalContent: genderRequired,
@@ -354,7 +365,8 @@ class _BasicDetailsPageState extends State<BasicDetailsPage> {
 
                                 publishEvent(
                                   hasUpdatedProfileSuccessfullyEvent(
-                                      appContext),
+                                    appContext,
+                                  ),
                                   EventObject(
                                     firstName: vm.appState.userProfileState!
                                         .userProfile!.userBioData!.firstName!

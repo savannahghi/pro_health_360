@@ -22,10 +22,11 @@ import 'widgets_tests/shared/utils_test.mocks.dart';
 
 final BaseGraphQlClient baseGraphQlClientMock = BaseGraphQlClient();
 
-void queryWhenThenAnswer(
-    {required String queryString,
-    required Map<String, dynamic> variables,
-    required http.Response response}) {
+void queryWhenThenAnswer({
+  required String queryString,
+  required Map<String, dynamic> variables,
+  required http.Response response,
+}) {
   when(
     baseGraphQlClientMock.query(
       queryString,
@@ -38,10 +39,11 @@ void queryWhenThenAnswer(
   );
 }
 
-void callRESTAPIWhenThenAnswer(
-    {required String endpoint,
-    required Map<String, dynamic> variables,
-    required http.Response response}) {
+void callRESTAPIWhenThenAnswer({
+  required String endpoint,
+  required Map<String, dynamic> variables,
+  required http.Response response,
+}) {
   when(
     baseGraphQlClientMock.callRESTAPI(
       endpoint: endpoint,

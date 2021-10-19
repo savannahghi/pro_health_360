@@ -13,8 +13,10 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 /// It takes in required [titleText] and [bodyText} parameters
 ///
 class ClinicInformationItemWidget extends StatelessWidget {
-  const ClinicInformationItemWidget(
-      {required this.titleText, required this.bodyText});
+  const ClinicInformationItemWidget({
+    required this.titleText,
+    required this.bodyText,
+  });
   final String titleText;
   final String bodyText;
 

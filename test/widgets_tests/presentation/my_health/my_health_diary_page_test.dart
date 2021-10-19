@@ -8,12 +8,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
+
 void main() {
   testWidgets('MyHealthDiaryPage renders correctly',
       (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: MyHealthDiaryPage(),
-    ));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: MyHealthDiaryPage(),
+      ),
+    );
     expect(find.byType(CustomAppBar), findsOneWidget);
     expect(find.text('$mehString!'), findsOneWidget);
     expect(find.text(sadString), findsNWidgets(3));

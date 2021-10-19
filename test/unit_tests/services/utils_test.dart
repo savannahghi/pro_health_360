@@ -19,8 +19,10 @@ import '../../mocks.dart';
 void main() {
   group('Utils', () {
     test('should sentence case username', () {
-      expect(sentenceCaseUserName(firstName: 'ule', lastName: 'makmende'),
-          'Ule Makmende');
+      expect(
+        sentenceCaseUserName(firstName: 'ule', lastName: 'makmende'),
+        'Ule Makmende',
+      );
       expect(sentenceCaseUserName(firstName: 'u', lastName: 'm'), 'u m');
       expect(sentenceCaseUserName(firstName: '', lastName: ''), ' ');
     });
@@ -43,21 +45,26 @@ void main() {
           Response(json.encode(<String, dynamic>{'code': 7}), 400);
       final MockBuildContext context = MockBuildContext();
 
-      expect(() => processHttpResponse(expectedResponse, context),
-          throwsException);
+      expect(
+        () => processHttpResponse(expectedResponse, context),
+        throwsException,
+      );
     });
 
     test('should parser expiredAt', () {
       expect(DateTimeParser().parsedExpireAt(int.parse('3600')), isA<String>());
-      expect(DateTimeParser().parsedExpireAt(int.parse('3600')).contains('T'),
-          true);
+      expect(
+        DateTimeParser().parsedExpireAt(int.parse('3600')).contains('T'),
+        true,
+      );
 
       expect(
-          DateTimeParser(
-            useCustomDateTime: true,
-            customDateTime: DateTime.parse('2021-05-18 13:27:00'),
-          ).parsedExpireAt(int.parse('3600')),
-          isA<String>());
+        DateTimeParser(
+          useCustomDateTime: true,
+          customDateTime: DateTime.parse('2021-05-18 13:27:00'),
+        ).parsedExpireAt(int.parse('3600')),
+        isA<String>(),
+      );
     });
 
     group('getAppSetupData', () {

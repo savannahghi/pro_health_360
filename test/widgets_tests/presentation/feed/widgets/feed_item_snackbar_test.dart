@@ -23,10 +23,13 @@ void main() {
       store: store,
       client: baseGraphQlClientMock,
       widget: Builder(
-        builder: (BuildContext context) => SILPrimaryButton(onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-              getFeedItemActionSnackbar(UniconsLine.cog, 'Resolving...', 1));
-        }),
+        builder: (BuildContext context) => SILPrimaryButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              getFeedItemActionSnackbar(UniconsLine.cog, 'Resolving...', 1),
+            );
+          },
+        ),
       ),
     );
     await tester.pumpAndSettle();

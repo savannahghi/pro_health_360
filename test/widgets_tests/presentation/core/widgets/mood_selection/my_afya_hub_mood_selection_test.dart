@@ -22,13 +22,15 @@ void main() {
       initialState: AppState.initial().copyWith(
         userProfileState: UserProfileState(
           auth: AuthCredentialResponse.fromJson(
-              <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'}),
+            <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'},
+          ),
           userProfile: UserProfile.initial().copyWith(
             primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
             userBioData: BioData.initial().copyWith(
-                firstName: Name.withValue('john'),
-                lastName: Name.withValue('doe'),
-                gender: Gender.female),
+              firstName: Name.withValue('john'),
+              lastName: Name.withValue('doe'),
+              gender: Gender.female,
+            ),
           ),
         ),
       ),

@@ -26,19 +26,21 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              ctx = context;
-              await showDialog(
-                context: context,
-                builder: (BuildContext context) => const SILProgressDialog(
-                  message: Text('Loading...'),
-                ),
-              );
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                ctx = context;
+                await showDialog(
+                  context: context,
+                  builder: (BuildContext context) => const SILProgressDialog(
+                    message: Text('Loading...'),
+                  ),
+                );
+              },
+            );
+          },
+        ),
       );
 
       await tester.pump();
@@ -58,20 +60,22 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              ctx = context;
-              await showDialog(
-                context: context,
-                builder: (BuildContext context) => const SILProgressDialog(
-                  progress: Text('Please wait...'),
-                  decoration: BoxDecoration(color: Colors.red),
-                ),
-              );
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                ctx = context;
+                await showDialog(
+                  context: context,
+                  builder: (BuildContext context) => const SILProgressDialog(
+                    progress: Text('Please wait...'),
+                    decoration: BoxDecoration(color: Colors.red),
+                  ),
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
 

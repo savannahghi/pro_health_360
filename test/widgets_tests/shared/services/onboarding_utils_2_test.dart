@@ -87,7 +87,8 @@ void main() {
           .thenAnswer((Invocation realInvocation) => Future<void>.value());
 
       when(fcm!.getDeviceToken()).thenAnswer(
-          (Invocation realInvocation) => Future<String>.value('test-token'));
+        (Invocation realInvocation) => Future<String>.value('test-token'),
+      );
     });
 
     testWidgets('afterLoginOrCreateAccount should pass with a deep link',
@@ -116,20 +117,22 @@ void main() {
         final UserProfile? userProfile = userResp.profile;
 
         queryWhenThenAnswer(
-            queryString: getFeedQuery,
-            variables: <String, dynamic>{
-              'flavour': Flavour.CONSUMER.name,
-              'persistent': 'BOTH',
-              'visibility': 'SHOW',
-              'isAnonymous': false,
-              'status': null,
-            },
-            response: _response);
+          queryString: getFeedQuery,
+          variables: <String, dynamic>{
+            'flavour': Flavour.CONSUMER.name,
+            'persistent': 'BOTH',
+            'visibility': 'SHOW',
+            'isAnonymous': false,
+            'status': null,
+          },
+          response: _response,
+        );
 
         queryWhenThenAnswer(
-            queryString: registerDeviceTokenQuery,
-            variables: <String, dynamic>{'token': 'sampleToken'},
-            response: _response);
+          queryString: registerDeviceTokenQuery,
+          variables: <String, dynamic>{'token': 'sampleToken'},
+          response: _response,
+        );
 
         when(baseGraphQlClientMock.toMap(_response))
             .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
@@ -166,13 +169,14 @@ void main() {
 
                   // call our check token status function
                   await afterLoginOrCreateAccount(
-                      context: context,
-                      dateTimeParser: dateTimeParser!,
-                      onboardActionType: OnboardActionType.login,
-                      processedResponse: processHttpResponse(response),
-                      store: store,
-                      refreshTokenManger: refreshTimer!,
-                      graphQlClient: AppWrapperBase.of(context)!.graphQLClient);
+                    context: context,
+                    dateTimeParser: dateTimeParser!,
+                    onboardActionType: OnboardActionType.login,
+                    processedResponse: processHttpResponse(response),
+                    store: store,
+                    refreshTokenManger: refreshTimer!,
+                    graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                  );
                 },
                 text: 'Test',
               );
@@ -222,12 +226,13 @@ void main() {
               onPressed: () async {
                 // call our check token status function
                 actualTokenStatus = await checkTokenStatus(
-                    context: context,
-                    profileState: store.state.userProfileState!,
-                    thisAppContexts: <AppContext>[
-                      AppContext.BewellCONSUMER,
-                      AppContext.AppTest
-                    ]);
+                  context: context,
+                  profileState: store.state.userProfileState!,
+                  thisAppContexts: <AppContext>[
+                    AppContext.BewellCONSUMER,
+                    AppContext.AppTest
+                  ],
+                );
               },
               text: 'Test',
             );
@@ -349,12 +354,13 @@ void main() {
               onPressed: () async {
                 // call our check token status function
                 actualTokenStatus = await checkTokenStatus(
-                    context: context,
-                    profileState: store.state.userProfileState!,
-                    thisAppContexts: <AppContext>[
-                      AppContext.BewellCONSUMER,
-                      AppContext.AppTest
-                    ]);
+                  context: context,
+                  profileState: store.state.userProfileState!,
+                  thisAppContexts: <AppContext>[
+                    AppContext.BewellCONSUMER,
+                    AppContext.AppTest
+                  ],
+                );
               },
               text: 'Test',
             );
@@ -410,12 +416,13 @@ void main() {
       const String refreshTokenEndpoint = kTestRefreshTokenEndpoint;
 
       callRESTAPIWhenThenAnswer(
-          endpoint: refreshTokenEndpoint,
-          variables: <String, dynamic>{
-            'refreshToken': 'oldRefreshToken',
-            'appVersion': APPVERSION,
-          },
-          response: response);
+        endpoint: refreshTokenEndpoint,
+        variables: <String, dynamic>{
+          'refreshToken': 'oldRefreshToken',
+          'appVersion': APPVERSION,
+        },
+        response: response,
+      );
 
       // implementation/call the function
       await buildTestWidget(
@@ -474,10 +481,14 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(store.state.userProfileState!.isSignedIn, true);
-      expect(store.state.userProfileState!.auth!.refreshToken,
-          'AOvuKvSUUOtClp53pQ3x0Jf31cV4nUtXf2G');
-      expect(store.state.userProfileState!.auth!.idToken,
-          'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRlMDBlO');
+      expect(
+        store.state.userProfileState!.auth!.refreshToken,
+        'AOvuKvSUUOtClp53pQ3x0Jf31cV4nUtXf2G',
+      );
+      expect(
+        store.state.userProfileState!.auth!.idToken,
+        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRlMDBlO',
+      );
       expect(actualTokenStatus, AuthTokenStatus.requiresPin);
     });
 
@@ -495,8 +506,10 @@ void main() {
 
       await registerDeviceToken(client: baseGraphQlClientMock);
 
-      expect(() async => registerDeviceToken(client: baseGraphQlClientMock),
-          returnsNormally);
+      expect(
+        () async => registerDeviceToken(client: baseGraphQlClientMock),
+        returnsNormally,
+      );
     });
 
     testWidgets('should show bottomshet when afterLoginOrCreateAccount',
@@ -518,13 +531,14 @@ void main() {
               onPressed: () async {
                 // call our check token status function
                 await afterLoginOrCreateAccount(
-                    context: context,
-                    dateTimeParser: dateTimeParser!,
-                    onboardActionType: OnboardActionType.login,
-                    processedResponse: processHttpResponse(response),
-                    store: store,
-                    refreshTokenManger: refreshTimer!,
-                    graphQlClient: AppWrapperBase.of(context)!.graphQLClient);
+                  context: context,
+                  dateTimeParser: dateTimeParser!,
+                  onboardActionType: OnboardActionType.login,
+                  processedResponse: processHttpResponse(response),
+                  store: store,
+                  refreshTokenManger: refreshTimer!,
+                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                );
               },
               text: 'Test',
             );
@@ -557,7 +571,8 @@ void main() {
               allowWhatsApp: true,
             ),
             auth: AuthCredentialResponse.fromJson(
-                <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'}),
+              <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'},
+            ),
             userProfile: UserProfile.initial().copyWith(
               id: '123',
               username: Name.withValue('ddsa'),
@@ -582,10 +597,11 @@ void main() {
                 placeID: '',
               ),
               userBioData: BioData.initial().copyWith(
-                  dateOfBirth: '23 May 2019',
-                  firstName: Name.withValue('bob'),
-                  lastName: Name.withValue('were'),
-                  gender: Gender.female),
+                dateOfBirth: '23 May 2019',
+                firstName: Name.withValue('bob'),
+                lastName: Name.withValue('were'),
+                gender: Gender.female,
+              ),
             ),
           ),
         ),
@@ -605,13 +621,14 @@ void main() {
               onPressed: () async {
                 // call our check token status function
                 await afterLoginOrCreateAccount(
-                    context: context,
-                    dateTimeParser: dateTimeParser!,
-                    onboardActionType: OnboardActionType.createAccount,
-                    processedResponse: processHttpResponse(response),
-                    store: store,
-                    refreshTokenManger: refreshTimer!,
-                    graphQlClient: AppWrapperBase.of(context)!.graphQLClient);
+                  context: context,
+                  dateTimeParser: dateTimeParser!,
+                  onboardActionType: OnboardActionType.createAccount,
+                  processedResponse: processHttpResponse(response),
+                  store: store,
+                  refreshTokenManger: refreshTimer!,
+                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                );
               },
               text: 'Test',
             );
@@ -650,15 +667,16 @@ void main() {
       final UserProfile? userProfile = userResp.profile;
 
       queryWhenThenAnswer(
-          queryString: getFeedQuery,
-          variables: <String, dynamic>{
-            'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
-          },
-          response: _response);
+        queryString: getFeedQuery,
+        variables: <String, dynamic>{
+          'flavour': Flavour.CONSUMER.name,
+          'persistent': 'BOTH',
+          'visibility': 'SHOW',
+          'isAnonymous': false,
+          'status': null,
+        },
+        response: _response,
+      );
 
       when(baseGraphQlClientMock.toMap(_response))
           .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
@@ -694,13 +712,14 @@ void main() {
                 );
                 // call our check token status function
                 await afterLoginOrCreateAccount(
-                    context: context,
-                    dateTimeParser: dateTimeParser!,
-                    onboardActionType: OnboardActionType.login,
-                    processedResponse: processHttpResponse(response),
-                    store: store,
-                    refreshTokenManger: refreshTimer!,
-                    graphQlClient: AppWrapperBase.of(context)!.graphQLClient);
+                  context: context,
+                  dateTimeParser: dateTimeParser!,
+                  onboardActionType: OnboardActionType.login,
+                  processedResponse: processHttpResponse(response),
+                  store: store,
+                  refreshTokenManger: refreshTimer!,
+                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                );
               },
               text: 'Test',
             );
@@ -739,15 +758,16 @@ void main() {
       final UserProfile? userProfile = userResp.profile;
 
       queryWhenThenAnswer(
-          queryString: getFeedQuery,
-          variables: <String, dynamic>{
-            'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
-          },
-          response: _response);
+        queryString: getFeedQuery,
+        variables: <String, dynamic>{
+          'flavour': Flavour.CONSUMER.name,
+          'persistent': 'BOTH',
+          'visibility': 'SHOW',
+          'isAnonymous': false,
+          'status': null,
+        },
+        response: _response,
+      );
 
       when(baseGraphQlClientMock.toMap(_response))
           .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
@@ -771,13 +791,14 @@ void main() {
                 );
                 // call our check token status function
                 await afterLoginOrCreateAccount(
-                    context: context,
-                    dateTimeParser: dateTimeParser!,
-                    onboardActionType: OnboardActionType.createAccount,
-                    processedResponse: processHttpResponse(response),
-                    store: store,
-                    refreshTokenManger: refreshTimer!,
-                    graphQlClient: AppWrapperBase.of(context)!.graphQLClient);
+                  context: context,
+                  dateTimeParser: dateTimeParser!,
+                  onboardActionType: OnboardActionType.createAccount,
+                  processedResponse: processHttpResponse(response),
+                  store: store,
+                  refreshTokenManger: refreshTimer!,
+                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
+                );
               },
               text: 'Test',
             );

@@ -32,7 +32,8 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           profile: domain.UserProfile(
-              photoUploadID: '$dir/test/tests_resources/test_file.png'),
+            photoUploadID: '$dir/test/tests_resources/test_file.png',
+          ),
         ),
       );
       store.dispatch(

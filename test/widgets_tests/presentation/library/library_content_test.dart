@@ -32,19 +32,33 @@ void main() {
         "<a href='https://www.nhs.uk/live-well/healthy-weight/bmi-calculator/'>BMI calculator</a>";
 
     final LibraryContentItemData libraryContentItem = LibraryContentItemData(
-        image, readTime, bodyText, contentTags,
-        libraryContentPublishDate: '1969-07-20 20:18:04Z',
-        libraryContentTitle: 'Exercise');
+      image,
+      readTime,
+      bodyText,
+      contentTags,
+      libraryContentPublishDate: '1969-07-20 20:18:04Z',
+      libraryContentTitle: 'Exercise',
+    );
 
     final LibraryContentItemData libraryContentItemWithNoImage =
-        LibraryContentItemData(emptyImage, readTime, bodyText, contentTags,
-            libraryContentPublishDate: '1969-07-20 20:18:04Z',
-            libraryContentTitle: 'Exercise');
+        LibraryContentItemData(
+      emptyImage,
+      readTime,
+      bodyText,
+      contentTags,
+      libraryContentPublishDate: '1969-07-20 20:18:04Z',
+      libraryContentTitle: 'Exercise',
+    );
 
     final LibraryContentItemData libraryContentItemWithHTMLBodyLink =
-        LibraryContentItemData(emptyImage, readTime, bodyHTMLLink, contentTags,
-            libraryContentPublishDate: '1969-07-20 20:18:04Z',
-            libraryContentTitle: 'Exercise');
+        LibraryContentItemData(
+      emptyImage,
+      readTime,
+      bodyHTMLLink,
+      contentTags,
+      libraryContentPublishDate: '1969-07-20 20:18:04Z',
+      libraryContentTitle: 'Exercise',
+    );
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
@@ -77,14 +91,16 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          iconButton = LibraryIconButton(
-            context: context,
-            backgroundColor: AppColors.whiteColor,
-            iconColor: AppColors.blackColor,
-          );
-          return iconButton!;
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            iconButton = LibraryIconButton(
+              context: context,
+              backgroundColor: AppColors.whiteColor,
+              iconColor: AppColors.blackColor,
+            );
+            return iconButton!;
+          },
+        ),
       );
 
       await tester.pumpAndSettle();

@@ -34,18 +34,19 @@ class TextLoadingShimmer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ..._getLine(),
-                    ..._getLine(),
-                    Container(
-                      width: 40.0,
-                      height: 8.0,
-                      color: AppColors.whiteColor,
-                    ),
-                  ],
-                ))
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ..._getLine(),
+                      ..._getLine(),
+                      Container(
+                        width: 40.0,
+                        height: 8.0,
+                        color: AppColors.whiteColor,
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),

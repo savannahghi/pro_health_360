@@ -57,8 +57,9 @@ class OnboardingPageWrapper extends StatelessWidget {
                     width: number150,
                     height: number150,
                     decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.lightPurpleBackgroundColor),
+                      shape: BoxShape.circle,
+                      color: AppColors.lightPurpleBackgroundColor,
+                    ),
                     child: Center(
                       child: SvgPicture.asset(svgPath, width: 80, height: 80),
                     ),

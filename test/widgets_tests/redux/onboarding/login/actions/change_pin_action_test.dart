@@ -44,27 +44,30 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: updateUserPinMutation,
-          variables: <String, dynamic>{
-            'phone': '0710000000',
-            'pin': '1234',
-          },
-          response: response);
+        queryString: updateUserPinMutation,
+        variables: <String, dynamic>{
+          'phone': '0710000000',
+          'pin': '1234',
+        },
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(<String, dynamic>{'error': 'An error occurred'}))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(<String, dynamic>{'error': 'An error occurred'}),
+      ).thenReturn(null);
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 StoreProvider.dispatch(
                   context,
                   UpdateUserProfileAction(
@@ -79,14 +82,21 @@ void main() {
                   ),
                 );
                 StoreProvider.dispatch(
-                    context,
-                    PhoneSignUpStateAction(
-                        createPin: testPin, confirmPin: testPin));
-                await StoreProvider.dispatch(context,
-                    ChangePinAction(context: context, flag: createPinFlag));
-              });
-            },
-          ));
+                  context,
+                  PhoneSignUpStateAction(
+                    createPin: testPin,
+                    confirmPin: testPin,
+                  ),
+                );
+                await StoreProvider.dispatch(
+                  context,
+                  ChangePinAction(context: context, flag: createPinFlag),
+                );
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -108,29 +118,32 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: updateUserPinMutation,
-          variables: <String, dynamic>{
-            'phone': '0710000000',
-            'pin': '1234',
-          },
-          response: response);
+        queryString: updateUserPinMutation,
+        variables: <String, dynamic>{
+          'phone': '0710000000',
+          'pin': '1234',
+        },
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(<String, dynamic>{'error': 'An error occurred'}))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(<String, dynamic>{'error': 'An error occurred'}),
+      ).thenReturn(null);
 
       late dynamic err;
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 StoreProvider.dispatch(
                   context,
                   UpdateUserProfileAction(
@@ -145,19 +158,26 @@ void main() {
                   ),
                 );
                 StoreProvider.dispatch(
-                    context,
-                    PhoneSignUpStateAction(
-                        createPin: testPin, confirmPin: '4321'));
+                  context,
+                  PhoneSignUpStateAction(
+                    createPin: testPin,
+                    confirmPin: '4321',
+                  ),
+                );
 
                 try {
-                  await StoreProvider.dispatch(context,
-                      ChangePinAction(context: context, flag: createPinFlag));
+                  await StoreProvider.dispatch(
+                    context,
+                    ChangePinAction(context: context, flag: createPinFlag),
+                  );
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -176,29 +196,32 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: updateUserPinMutation,
-          variables: <String, dynamic>{
-            'phone': '0710000000',
-            'pin': '1234',
-          },
-          response: response);
+        queryString: updateUserPinMutation,
+        variables: <String, dynamic>{
+          'phone': '0710000000',
+          'pin': '1234',
+        },
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock
-              .parseError(<String, dynamic>{'error': 'An error occurred'}))
-          .thenReturn(null);
+      when(
+        baseGraphQlClientMock
+            .parseError(<String, dynamic>{'error': 'An error occurred'}),
+      ).thenReturn(null);
 
       late dynamic err;
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 StoreProvider.dispatch(
                   context,
                   UpdateUserProfileAction(
@@ -213,19 +236,26 @@ void main() {
                   ),
                 );
                 StoreProvider.dispatch(
-                    context,
-                    PhoneSignUpStateAction(
-                        createPin: testPin, confirmPin: testPin));
+                  context,
+                  PhoneSignUpStateAction(
+                    createPin: testPin,
+                    confirmPin: testPin,
+                  ),
+                );
 
                 try {
-                  await StoreProvider.dispatch(context,
-                      ChangePinAction(context: context, flag: createPinFlag));
+                  await StoreProvider.dispatch(
+                    context,
+                    ChangePinAction(context: context, flag: createPinFlag),
+                  );
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));

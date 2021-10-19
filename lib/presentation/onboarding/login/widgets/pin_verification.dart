@@ -65,10 +65,14 @@ class _PinVerificationState extends State<PinVerification> {
   Future<void> resetPinFunction(BuildContext context) async {
     // dispatch action to show user forgot PIN and wants to request a reset
     StoreProvider.dispatch<AppState>(
-        context, UpdatePinStatusAction(forgotPIN: true));
+      context,
+      UpdatePinStatusAction(forgotPIN: true),
+    );
     // dispatch action to send OTP to the user
     await StoreProvider.dispatch<AppState>(
-        context, RequestResetPinAction(context: context, flag: flag));
+      context,
+      RequestResetPinAction(context: context, flag: flag),
+    );
   }
 
   @override

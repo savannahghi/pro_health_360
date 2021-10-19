@@ -12,25 +12,26 @@ class AppointmentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: appointments.length,
-        itemBuilder: (BuildContext context, int index) {
-          final String description = appointments.elementAt(index).description;
-          final String date = appointments.elementAt(index).date;
-          final IconDetails icon = appointments.elementAt(index).icon;
-          final List<NotificationActions>? actions =
-              appointments.elementAt(index).actions;
-          final String? status = appointments.elementAt(index).status;
+      itemCount: appointments.length,
+      itemBuilder: (BuildContext context, int index) {
+        final String description = appointments.elementAt(index).description;
+        final String date = appointments.elementAt(index).date;
+        final IconDetails icon = appointments.elementAt(index).icon;
+        final List<NotificationActions>? actions =
+            appointments.elementAt(index).actions;
+        final String? status = appointments.elementAt(index).status;
 
-          return Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: NotificationListItem(
-              icon: icon,
-              actions: actions,
-              status: status,
-              description: description,
-              date: date,
-            ),
-          );
-        });
+        return Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: NotificationListItem(
+            icon: icon,
+            actions: actions,
+            status: status,
+            description: description,
+            date: date,
+          ),
+        );
+      },
+    );
   }
 }

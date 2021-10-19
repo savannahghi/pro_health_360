@@ -29,7 +29,8 @@ class ErrorAlertBox extends StatelessWidget {
         key: errorAlertBoxTextKey,
         text: TextSpan(
           style: TextThemes.normalSize14Text(
-              AppColors.blackColor.withOpacity(0.6)),
+            AppColors.blackColor.withOpacity(0.6),
+          ),
           children: <TextSpan>[
             TextSpan(text: message),
             if (actionSpan != null) actionSpan!,

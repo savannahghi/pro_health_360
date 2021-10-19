@@ -20,11 +20,11 @@ import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 /// its saving its state on. BeWellStateDatabase therefore offers different implementations
 /// for its method.
 class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
-  BeWellStateDatabase(
-      {Duration throttle = const Duration(seconds: 2),
-      Duration saveDuration = Duration.zero,
-      required this.dataBaseName})
-      : _throttle = throttle,
+  BeWellStateDatabase({
+    Duration throttle = const Duration(seconds: 2),
+    Duration saveDuration = Duration.zero,
+    required this.dataBaseName,
+  })  : _throttle = throttle,
         _saveDuration = saveDuration;
 
   final String dataBaseName;
@@ -35,8 +35,8 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
   @override
   Future<void> deleteState() async {
     await BeWellDatabaseMobile<Database>(
-            initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
-        .clearDatabase();
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).clearDatabase();
   }
 
   @override
@@ -52,9 +52,11 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
         lastPersistedState.userFeedState != newState.userFeedState ||
         lastPersistedState.miscState != newState.miscState) {
       await persistState(
-          newState,
-          BeWellDatabaseMobile<Database>(
-              initializeDB: InitializeDB<Database>(dbName: this.dataBaseName)));
+        newState,
+        BeWellDatabaseMobile<Database>(
+          initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+        ),
+      );
     }
   }
 
@@ -65,12 +67,15 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
   @override
   Future<AppState> readState() async {
     if (await BeWellDatabaseMobile<Database>(
-            initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
-        .isDatabaseEmpty()) {
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).isDatabaseEmpty()) {
       return AppState.initial();
     } else {
-      return retrieveState(BeWellDatabaseMobile<Database>(
-          initializeDB: InitializeDB<Database>(dbName: this.dataBaseName)));
+      return retrieveState(
+        BeWellDatabaseMobile<Database>(
+          initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+        ),
+      );
     }
   }
 
@@ -85,31 +90,39 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
 
   Future<void> init() async {
     await BeWellDatabaseMobile<Database>(
-            initializeDB: InitializeDB<Database>(dbName: this.dataBaseName))
-        .database;
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).database;
   }
 
   /// saves app state to the database
   @visibleForTesting
   Future<void> persistState(
-      AppState newState, BeWellDatabaseBase<dynamic> database) async {
+    AppState newState,
+    BeWellDatabaseBase<dynamic> database,
+  ) async {
     // save user state
     await database.saveState(
-        data: newState.userProfileState!.toJson(),
-        table: Tables.userProfileState);
+      data: newState.userProfileState!.toJson(),
+      table: Tables.userProfileState,
+    );
 
     // save connectivity state
     await database.saveState(
-        data: newState.connectivityState!.toJson(),
-        table: Tables.connectivityState);
+      data: newState.connectivityState!.toJson(),
+      table: Tables.connectivityState,
+    );
 
     // save user feed state
     await database.saveState(
-        data: newState.userFeedState!.toJson(), table: Tables.userFeedState);
+      data: newState.userFeedState!.toJson(),
+      table: Tables.userFeedState,
+    );
 
     // save misc state
     await database.saveState(
-        data: newState.miscState!.toJson(), table: Tables.miscState);
+      data: newState.miscState!.toJson(),
+      table: Tables.miscState,
+    );
   }
 
   /// retrieves app state to the database
@@ -118,15 +131,18 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
     return AppState().copyWith(
       // retrieve user state
       userProfileState: UserProfileState.fromJson(
-          await database.retrieveState(Tables.userProfileState)),
+        await database.retrieveState(Tables.userProfileState),
+      ),
 
       // retrieve connectivity state
       connectivityState: ConnectivityState.fromJson(
-          await database.retrieveState(Tables.connectivityState)),
+        await database.retrieveState(Tables.connectivityState),
+      ),
 
       // retrieve user feed state
       userFeedState: FeedResponsePayload.fromJson(
-          await database.retrieveState(Tables.userFeedState)),
+        await database.retrieveState(Tables.userFeedState),
+      ),
 
       // retrieve misc state
       miscState:

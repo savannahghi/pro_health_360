@@ -41,16 +41,19 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response);
+        queryString: resumeWithPinQuery,
+        variables: <String, dynamic>{'pin': '1234'},
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(<String, dynamic>{
-        'data': <String, dynamic>{'resumeWithPIN': true}
-      })).thenReturn(null);
+      when(
+        baseGraphQlClientMock.parseError(<String, dynamic>{
+          'data': <String, dynamic>{'resumeWithPIN': true}
+        }),
+      ).thenReturn(null);
 
       await buildTestWidget(
         tester: tester,
@@ -61,9 +64,11 @@ void main() {
             StoreProvider.dispatch<AppState>(
               context,
               UpdateUserProfileAction(
-                  userBioData: BioData(
-                      firstName: Name.withValue('Test'),
-                      lastName: Name.withValue('Coverage'))),
+                userBioData: BioData(
+                  firstName: Name.withValue('Test'),
+                  lastName: Name.withValue('Coverage'),
+                ),
+              ),
             );
             return ResumeWithPinPage();
           },
@@ -71,8 +76,10 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final Finder pinInput = find.byWidgetPredicate((Widget widget) =>
-          widget is SILFormTextField && widget.key == pinInputKey);
+      final Finder pinInput = find.byWidgetPredicate(
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == pinInputKey,
+      );
       expect(pinInput, findsOneWidget);
       await tester.tap(pinInput);
       await tester.pump(const Duration(seconds: 1));

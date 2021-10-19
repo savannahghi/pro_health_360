@@ -11,7 +11,8 @@ class BottomNavViewModel {
 
   static BottomNavViewModel fromStore(Store<AppState> store) {
     return BottomNavViewModel(
-        currentIndex:
-            store.state.miscState?.bottomNavObj?.currentBottomNavIndex ?? 0);
+      currentIndex:
+          store.state.miscState?.bottomNavObj?.currentBottomNavIndex ?? 0,
+    );
   }
 }

@@ -52,7 +52,10 @@ class CheckIfNewUserAction extends ReduxAction<AppState> {
 
     final ProcessedResponse processedResponse = processHttpResponse(
       await httpClient.callRESTAPI(
-          endpoint: verifyPhoneEndpoint, variables: variables, method: 'POST'),
+        endpoint: verifyPhoneEndpoint,
+        variables: variables,
+        method: 'POST',
+      ),
       context,
     );
 
@@ -74,16 +77,18 @@ class CheckIfNewUserAction extends ReduxAction<AppState> {
         return state;
       } else {
         throw SILException(
-            error: body,
-            cause: 'otp_error',
-            message: 'Error encountered while sending OTP');
+          error: body,
+          cause: 'otp_error',
+          message: 'Error encountered while sending OTP',
+        );
       }
     } else {
       toggleLoadingIndicator(context: context, flag: flag, show: false);
       throw SILException(
-          error: processedResponse.response,
-          cause: 'check_new_user_error',
-          message: processedResponse.message);
+        error: processedResponse.response,
+        cause: 'check_new_user_error',
+        message: processedResponse.message,
+      );
     }
   }
 

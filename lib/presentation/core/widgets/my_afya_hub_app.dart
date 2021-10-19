@@ -48,7 +48,9 @@ class _MyAfyaHubAppState extends State<MyAfyaHubApp> {
         .listen((bool hasConnection) {
       if (hasConnection == false) {
         StoreProvider.dispatch<AppState>(
-            context, CheckConnectivityAction(hasConnection: hasConnection));
+          context,
+          CheckConnectivityAction(hasConnection: hasConnection),
+        );
 
         showToast('Internet connection lost');
       }

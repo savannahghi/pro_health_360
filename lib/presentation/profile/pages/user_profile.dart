@@ -31,10 +31,11 @@ class _UserProfileState extends State<UserProfile>
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, UserProfileViewModel>(
-        converter: (Store<AppState> store) =>
-            UserProfileViewModel.fromStore(store),
-        builder: (BuildContext context, UserProfileViewModel vm) {
-          return const SignedUserProfileScaffold();
-        });
+      converter: (Store<AppState> store) =>
+          UserProfileViewModel.fromStore(store),
+      builder: (BuildContext context, UserProfileViewModel vm) {
+        return const SignedUserProfileScaffold();
+      },
+    );
   }
 }

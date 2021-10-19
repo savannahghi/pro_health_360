@@ -9,9 +9,11 @@ class WheelBackButton extends StatelessWidget {
   final Function onPressed;
   final Color color;
 
-  const WheelBackButton(
-      {Key? key, required this.onPressed, required this.color})
-      : super(key: key);
+  const WheelBackButton({
+    Key? key,
+    required this.onPressed,
+    required this.color,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(

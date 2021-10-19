@@ -88,11 +88,14 @@ class ChangePinAction extends ReduxAction<AppState> {
           primaryActionCallback: () {
             store.dispatch(
               LogoutAction(
-                  navigationCallback: () async {
-                    await Navigator.of(context).pushNamedAndRemoveUntil(
-                        BWRoutes.phoneLogin, (Route<dynamic> route) => false);
-                  },
-                  context: context),
+                navigationCallback: () async {
+                  await Navigator.of(context).pushNamedAndRemoveUntil(
+                    BWRoutes.phoneLogin,
+                    (Route<dynamic> route) => false,
+                  );
+                },
+                context: context,
+              ),
             );
           },
           primaryActionText: continueButtonText,
@@ -103,15 +106,18 @@ class ChangePinAction extends ReduxAction<AppState> {
 
         /// exception used to handle a `null` response from the backend
         return throw SILException(
-            error: _result,
-            cause: changePINActionError,
-            message: changePINActionException);
+          error: _result,
+          cause: changePINActionError,
+          message: changePINActionException,
+        );
       }
     } else {
       toggleLoadingIndicator(context: context, flag: flag, show: false);
       // exception that handles a mismatch in the just entered PINs by the user
       return throw SILException(
-          cause: pinMismatchError, message: pinMismatchException);
+        cause: pinMismatchError,
+        message: pinMismatchException,
+      );
     }
 
     return state;

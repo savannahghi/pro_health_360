@@ -25,9 +25,10 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           userBioData: BioData(
-              firstName: Name.withValue('Test'),
-              lastName: Name.withValue('Name'),
-              gender: Gender.male),
+            firstName: Name.withValue('Test'),
+            lastName: Name.withValue('Name'),
+            gender: Gender.male,
+          ),
           profile: UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),

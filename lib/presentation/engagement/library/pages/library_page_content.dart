@@ -45,7 +45,8 @@ class LibraryPageContent extends StatelessWidget {
                     listLibraryDataItems(index, libContent);
 
                 return LibraryPageArticlesList(
-                    libraryContentItem: libraryContentItemData);
+                  libraryContentItem: libraryContentItemData,
+                );
               },
             ),
           ],

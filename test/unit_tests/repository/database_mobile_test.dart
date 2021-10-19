@@ -18,7 +18,8 @@ void main() {
   final MockInitializeDB initDb = MockInitializeDB();
 
   when(initDb.database()).thenAnswer(
-      (Invocation realInvocation) => Future<MockStateDB>.value(mockDb));
+    (Invocation realInvocation) => Future<MockStateDB>.value(mockDb),
+  );
 
   final BeWellDatabaseMobile<MockStateDB> db =
       BeWellDatabaseMobile<MockStateDB>(initializeDB: initDb);
@@ -31,9 +32,10 @@ void main() {
   test('should call initialize and clear database : mock', () {
     expect(() => InitializeDB<MockStateDB>(dbName: 'test_db'), returnsNormally);
     expect(
-        () => InitializeDB<MockStateDB>(dbName: 'test_db')
-            .database(preInitializedDB: mockDb),
-        returnsNormally);
+      () => InitializeDB<MockStateDB>(dbName: 'test_db')
+          .database(preInitializedDB: mockDb),
+      returnsNormally,
+    );
 
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
@@ -46,8 +48,10 @@ void main() {
 
   test('should throw exception on real state db. Missing plugin', () {
     expect(() => InitializeDB<MockStateDB>(dbName: 'test_db'), returnsNormally);
-    expect(() => InitializeDB<MockStateDB>(dbName: 'test_db').database(),
-        throwsException);
+    expect(
+      () => InitializeDB<MockStateDB>(dbName: 'test_db').database(),
+      throwsException,
+    );
 
     final InitializeDB<MockStateDB> initDB =
         InitializeDB<MockStateDB>(dbName: 'test_db');
@@ -88,39 +92,52 @@ void main() {
   });
 
   test('retrieveWorker should return record from database', () async {
-    when(mockDb.rawQuery(
-            'SELECT * FROM userProfileState ORDER BY id DESC LIMIT 1'))
-        .thenAnswer((_) => returnVal(10));
-    expect(await db.retrieveWorker(Tables.userProfileState),
-        <String, Object?>{'users': 10});
+    when(
+      mockDb.rawQuery(
+        'SELECT * FROM userProfileState ORDER BY id DESC LIMIT 1',
+      ),
+    ).thenAnswer((_) => returnVal(10));
+    expect(
+      await db.retrieveWorker(Tables.userProfileState),
+      <String, Object?>{
+        'users': 10,
+      },
+    );
   });
 
   test('retrieveState should return state from userProfileState table',
       () async {
-    when(mockDb.rawQuery(
-            'SELECT * FROM userProfileState ORDER BY id DESC LIMIT 1'))
-        .thenAnswer((_) =>
-            Future<List<Map<String, Object?>>>.value(<Map<String, Object?>>[
-              <String, Object?>{
-                'userProfileState':
-                    json.encode(<String, String>{'name': 'Vincent Michuki'})
-              }
-            ]));
-    expect(await db.retrieveState(Tables.userProfileState),
-        <String, Object?>{'name': 'Vincent Michuki'});
+    when(
+      mockDb.rawQuery(
+        'SELECT * FROM userProfileState ORDER BY id DESC LIMIT 1',
+      ),
+    ).thenAnswer(
+      (_) => Future<List<Map<String, Object?>>>.value(<Map<String, Object?>>[
+        <String, Object?>{
+          'userProfileState':
+              json.encode(<String, String>{'name': 'Vincent Michuki'})
+        }
+      ]),
+    );
+    expect(
+      await db.retrieveState(Tables.userProfileState),
+      <String, Object?>{'name': 'Vincent Michuki'},
+    );
   });
 
   test('retrieveState should return state any unknown table', () async {
     when(mockDb.rawQuery('SELECT * FROM unknown ORDER BY id DESC LIMIT 1'))
-        .thenAnswer((_) =>
-            Future<List<Map<String, Object?>>>.value(<Map<String, Object?>>[
-              <String, Object?>{
-                'unknown':
-                    json.encode(<String, String>{'name': 'Vincent Michuki'})
-              }
-            ]));
-    expect(await db.retrieveState(Tables.unknown),
-        <String, Object?>{'unknown': '{"name":"Vincent Michuki"}'});
+        .thenAnswer(
+      (_) => Future<List<Map<String, Object?>>>.value(<Map<String, Object?>>[
+        <String, Object?>{
+          'unknown': json.encode(<String, String>{'name': 'Vincent Michuki'})
+        }
+      ]),
+    );
+    expect(
+      await db.retrieveState(Tables.unknown),
+      <String, Object?>{'unknown': '{"name":"Vincent Michuki"}'},
+    );
   });
 
   test('saveState should call rawInsert', () async {

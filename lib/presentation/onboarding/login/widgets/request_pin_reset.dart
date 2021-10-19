@@ -72,10 +72,14 @@ class _RequestPinResetState extends State<RequestPinReset> {
       );
       // dispatch action to show user forgot PIN and wants to request a reset
       StoreProvider.dispatch<AppState>(
-          context, UpdatePinStatusAction(forgotPIN: true));
+        context,
+        UpdatePinStatusAction(forgotPIN: true),
+      );
       // dispatch action to send OTP to the user
       await StoreProvider.dispatch<AppState>(
-          context, RequestResetPinAction(context: context, flag: flag));
+        context,
+        RequestResetPinAction(context: context, flag: flag),
+      );
     }
   }
 
@@ -90,106 +94,110 @@ class _RequestPinResetState extends State<RequestPinReset> {
     return BeWellScaffold(
       gradient: defaultGradient(Theme.of(context).primaryColor),
       child: StoreConnector<AppState, AppStateViewModel>(
-          converter: (Store<AppState> store) =>
-              AppStateViewModel.fromStore(store),
-          builder: (BuildContext context, AppStateViewModel vm) {
-            return Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal:
-                      preferredPaddingOnStretchedScreens(context: context)),
-              key: requestPinResetWidgetKey,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    largeVerticalSizedBox,
-                    largeVerticalSizedBox,
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(onboardingStrings.phoneNumberText()),
+        converter: (Store<AppState> store) =>
+            AppStateViewModel.fromStore(store),
+        builder: (BuildContext context, AppStateViewModel vm) {
+          return Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: preferredPaddingOnStretchedScreens(context: context),
+            ),
+            key: requestPinResetWidgetKey,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  largeVerticalSizedBox,
+                  largeVerticalSizedBox,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(onboardingStrings.phoneNumberText()),
+                  ),
+                  smallVerticalSizedBox,
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.whiteColor.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(8),
                     ),
+                    child: SILPhoneInput(
+                      phoneNumberFormatter: formatPhoneNumber,
+                      inputController: phoneNumberInputController,
+                      labelStyle: TextThemes.boldSize16Text(),
+                      labelText: onboardingStrings.phoneNumberText(),
+                      onChanged: (String? val) {
+                        if (val != null) phoneNumber = val;
+                      },
+                    ),
+                  ),
+                  if (requestPinResetBehaviorObject
+                          .userHasNoAccount.valueOrNull! ==
+                      true) ...<Widget>[
                     smallVerticalSizedBox,
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteColor.withOpacity(0.9),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: SILPhoneInput(
-                        phoneNumberFormatter: formatPhoneNumber,
-                        inputController: phoneNumberInputController,
-                        labelStyle: TextThemes.boldSize16Text(),
-                        labelText: onboardingStrings.phoneNumberText(),
-                        onChanged: (String? val) {
-                          if (val != null) phoneNumber = val.toString();
-                        },
-                      ),
-                    ),
-                    if (requestPinResetBehaviorObject
-                            .userHasNoAccount.valueOrNull! ==
-                        true) ...<Widget>[
-                      smallVerticalSizedBox,
-                      Center(
-                        child: Text(
-                          onboardingStrings.noAccountWithPhoneNumber(),
-                          style:
-                              TextThemes.normalSize14Text(AppColors.redColor),
-                        ),
-                      ),
-                    ],
-                    largeVerticalSizedBox,
-                    if (vm.appState.wait!.isWaitingFor(flag)) ...<Widget>[
-                      const Center(child: SILPlatformLoader()),
-                      size15VerticalSizedBox,
-                    ] else
-                      SizedBox(
-                        width: number356,
-                        height: number52,
-                        child: SILPrimaryButton(
-                          onPressed: () {
-                            if (phoneNumber != null) {
-                              requestPinResetFunction(
-                                formKey: _formKey,
-                                phoneNumber: phoneNumber!,
-                                flag: flag,
-                              );
-                            }
-                          },
-                          buttonColor: Theme.of(context).primaryColor,
-                          borderColor: Colors.transparent,
-                          text: onboardingStrings.requestText(),
-                          buttonKey: startLoginButtonKey,
-                        ),
-                      ),
-                    largeVerticalSizedBox,
                     Center(
-                      child: Text.rich(
-                        TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: onboardingStrings.haveAnAccountText(),
-                              style: TextThemes.normalSize16Text(
-                                  AppColors.blackColor),
-                            ),
-                            TextSpan(
-                                text: onboardingStrings.loginTextV2(),
-                                style: TextThemes.boldSize16Text(
-                                  Theme.of(context).primaryColorDark,
-                                ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () => Navigator.pushNamed(
-                                      context, BWRoutes.phoneLogin))
-                          ],
-                        ),
-                        key: phoneLoginGesture,
+                      child: Text(
+                        onboardingStrings.noAccountWithPhoneNumber(),
+                        style: TextThemes.normalSize14Text(AppColors.redColor),
                       ),
                     ),
-                    largeVerticalSizedBox,
                   ],
-                ),
+                  largeVerticalSizedBox,
+                  if (vm.appState.wait!.isWaitingFor(flag)) ...<Widget>[
+                    const Center(child: SILPlatformLoader()),
+                    size15VerticalSizedBox,
+                  ] else
+                    SizedBox(
+                      width: number356,
+                      height: number52,
+                      child: SILPrimaryButton(
+                        onPressed: () {
+                          if (phoneNumber != null) {
+                            requestPinResetFunction(
+                              formKey: _formKey,
+                              phoneNumber: phoneNumber!,
+                              flag: flag,
+                            );
+                          }
+                        },
+                        buttonColor: Theme.of(context).primaryColor,
+                        borderColor: Colors.transparent,
+                        text: onboardingStrings.requestText(),
+                        buttonKey: startLoginButtonKey,
+                      ),
+                    ),
+                  largeVerticalSizedBox,
+                  Center(
+                    child: Text.rich(
+                      TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: onboardingStrings.haveAnAccountText(),
+                            style: TextThemes.normalSize16Text(
+                              AppColors.blackColor,
+                            ),
+                          ),
+                          TextSpan(
+                            text: onboardingStrings.loginTextV2(),
+                            style: TextThemes.boldSize16Text(
+                              Theme.of(context).primaryColorDark,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.pushNamed(
+                                    context,
+                                    BWRoutes.phoneLogin,
+                                  ),
+                          )
+                        ],
+                      ),
+                      key: phoneLoginGesture,
+                    ),
+                  ),
+                  largeVerticalSizedBox,
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

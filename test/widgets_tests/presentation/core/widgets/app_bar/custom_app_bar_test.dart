@@ -37,7 +37,8 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           profile: domain.UserProfile(
-              photoUploadID: '$dir/test/tests_resources/test_file.png'),
+            photoUploadID: '$dir/test/tests_resources/test_file.png',
+          ),
         ),
       );
       store.dispatch(
@@ -60,19 +61,22 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return CustomAppBar(
-            title: title,
-            showBackButton: false,
-            trailingWidget: IconButton(
-              icon: const Icon(Icons.notifications),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text(getTestedComingSoonText)));
-              },
-            ),
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return CustomAppBar(
+              title: title,
+              showBackButton: false,
+              trailingWidget: IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text(getTestedComingSoonText)),
+                  );
+                },
+              ),
+            );
+          },
+        ),
       );
 
       expect(find.byType(CustomAppBar), findsOneWidget);
@@ -91,19 +95,22 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return CustomAppBar(
-            title: title,
-            showBackButton: false,
-            trailingWidget: IconButton(
-              icon: const Icon(Icons.notifications),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text(getTestedComingSoonText)));
-              },
-            ),
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return CustomAppBar(
+              title: title,
+              showBackButton: false,
+              trailingWidget: IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text(getTestedComingSoonText)),
+                  );
+                },
+              ),
+            );
+          },
+        ),
       );
 
       expect(find.byType(CustomAppBar), findsOneWidget);
@@ -121,19 +128,22 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return CustomAppBar(
-            title: title,
-            showBackButton: false,
-            trailingWidget: IconButton(
-              icon: const Icon(Icons.notifications),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text(getTestedComingSoonText)));
-              },
-            ),
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return CustomAppBar(
+              title: title,
+              showBackButton: false,
+              trailingWidget: IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text(getTestedComingSoonText)),
+                  );
+                },
+              ),
+            );
+          },
+        ),
       );
 
       expect(find.byType(AppbarUser), findsOneWidget);

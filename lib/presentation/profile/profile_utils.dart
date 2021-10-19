@@ -3,5 +3,5 @@ import 'package:intl/intl.dart';
 
 String returnCurrentYear() {
   final DateTime now = DateTime.now();
-  return DateFormat('y').format(now).toString();
+  return DateFormat('y').format(now);
 }

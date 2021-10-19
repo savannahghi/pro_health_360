@@ -7,21 +7,24 @@ import 'package:app_wrapper/app_wrapper.dart';
 class AppTheme {
   static ThemeData getAppTheme(List<AppContext> contexts) {
     return ThemeData(
-        fontFamily: 'Raleway',
-        primaryColor: AppColors.themeColors.primaryColor,
-        primaryColorDark: AppColors.themeColors.primaryDark,
-        colorScheme: ColorScheme.light(
-            primary: AppColors.themeColors.primaryColor,
-            secondary: AppColors.themeColors.accentColor),
-        backgroundColor: AppColors.themeColors.backgroundColor,
-        textSelectionTheme: TextSelectionThemeData(
-          selectionColor: AppColors.themeColors.textSelectionColor,
-        )).copyWith(
+      fontFamily: 'Raleway',
+      primaryColor: AppColors.themeColors.primaryColor,
+      primaryColorDark: AppColors.themeColors.primaryDark,
+      colorScheme: ColorScheme.light(
+        primary: AppColors.themeColors.primaryColor,
+        secondary: AppColors.themeColors.accentColor,
+      ),
+      backgroundColor: AppColors.themeColors.backgroundColor,
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: AppColors.themeColors.textSelectionColor,
+      ),
+    ).copyWith(
       pageTransitionsTheme: const PageTransitionsTheme(
-          builders: <TargetPlatform, PageTransitionsBuilder>{
-            TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
-            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-          }),
+        builders: <TargetPlatform, PageTransitionsBuilder>{
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        },
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           primary: AppColors.primaryColor,

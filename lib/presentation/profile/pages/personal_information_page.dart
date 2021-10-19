@@ -25,9 +25,10 @@ class PersonalInformationPage extends StatelessWidget {
               //parent/caregiver/guardian details
               Align(
                 alignment: Alignment.topLeft,
-                child: Text(myProfileParentText,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor)),
+                child: Text(
+                  myProfileParentText,
+                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
+                ),
               ),
               smallVerticalSizedBox,
               const PersonalInformationWidget(description: name),
@@ -40,9 +41,10 @@ class PersonalInformationPage extends StatelessWidget {
               //preferred language
               Align(
                 alignment: Alignment.topLeft,
-                child: Text(preferredLanguage,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor)),
+                child: Text(
+                  preferredLanguage,
+                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
+                ),
               ),
               smallVerticalSizedBox,
               const PersonalInformationWidget(description: english),
@@ -51,9 +53,10 @@ class PersonalInformationPage extends StatelessWidget {
               //preferred clinic
               Align(
                 alignment: Alignment.topLeft,
-                child: Text(preferredClinic,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor)),
+                child: Text(
+                  preferredClinic,
+                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
+                ),
               ),
               smallVerticalSizedBox,
               const PersonalInformationWidget(description: clinic),
@@ -62,9 +65,10 @@ class PersonalInformationPage extends StatelessWidget {
               //preferred communication
               Align(
                 alignment: Alignment.topLeft,
-                child: Text(preferredCommunication,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor)),
+                child: Text(
+                  preferredCommunication,
+                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
+                ),
               ),
               smallVerticalSizedBox,
               const PersonalInformationWidget(description: inApp),

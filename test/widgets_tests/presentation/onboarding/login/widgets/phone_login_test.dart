@@ -92,15 +92,17 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            store.dispatch(
-              PhoneSignUpStateAction(
-                invalidCredentials: true,
-              ),
-            );
+          widget: Builder(
+            builder: (BuildContext context) {
+              store.dispatch(
+                PhoneSignUpStateAction(
+                  invalidCredentials: true,
+                ),
+              );
 
-            return MyAfyaHubPhoneLoginPage();
-          }),
+              return MyAfyaHubPhoneLoginPage();
+            },
+          ),
         );
 
         await tester.pump();
@@ -127,17 +129,19 @@ void main() {
     testWidgets(
       'form can be filled and submitted correctly',
       (WidgetTester tester) async {
-        when(baseGraphQlClientMock.callRESTAPI(
-                endpoint:
-                    'https://onboarding-testing.savannahghi.org/login_by_phone',
-                variables: <String, dynamic>{
-                  'phoneNumber': '+254710000000',
-                  'pin': '1234',
-                  'flavour': 'CONSUMER',
-                  'appVersion': APPVERSION,
-                },
-                method: httpPOST))
-            .thenAnswer(
+        when(
+          baseGraphQlClientMock.callRESTAPI(
+            endpoint:
+                'https://onboarding-testing.savannahghi.org/login_by_phone',
+            variables: <String, dynamic>{
+              'phoneNumber': '+254710000000',
+              'pin': '1234',
+              'flavour': 'CONSUMER',
+              'appVersion': APPVERSION,
+            },
+            method: httpPOST,
+          ),
+        ).thenAnswer(
           (_) => Future<http.Response>.value(
             http.Response(
               json.encode(createUserMock()),
@@ -156,13 +160,16 @@ void main() {
           },
         );
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: baseGraphQlClientMock,
-            widget: Builder(builder: (BuildContext context) {
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
               EndPointsContextSubject().contexts.add(testAppContexts);
               return MyAfyaHubPhoneLoginPage();
-            }));
+            },
+          ),
+        );
         await tester.pumpAndSettle();
 
         final Finder phoneInput = find.byType(MyAfyaHubPhoneInput);
@@ -208,17 +215,19 @@ void main() {
           json.encode(createUserMock()),
           200,
         );
-        when(baseGraphQlClientMock.callRESTAPI(
-                endpoint:
-                    'https://onboarding-testing.savannahghi.org/login_by_phone',
-                variables: <String, dynamic>{
-                  'phoneNumber': '+254710000000',
-                  'pin': '1234',
-                  'flavour': 'CONSUMER',
-                  'appVersion': APPVERSION,
-                },
-                method: 'POST'))
-            .thenAnswer(
+        when(
+          baseGraphQlClientMock.callRESTAPI(
+            endpoint:
+                'https://onboarding-testing.savannahghi.org/login_by_phone',
+            variables: <String, dynamic>{
+              'phoneNumber': '+254710000000',
+              'pin': '1234',
+              'flavour': 'CONSUMER',
+              'appVersion': APPVERSION,
+            },
+            method: 'POST',
+          ),
+        ).thenAnswer(
           (_) => Future<http.Response>.value(response),
         );
 
@@ -250,7 +259,9 @@ void main() {
         expect(find.byType(MyAfyaHubPhoneInput), findsOneWidget);
         await tester.tap(find.byType(MyAfyaHubPhoneInput));
         await tester.enterText(
-            find.byType(MyAfyaHubPhoneInput), testPhoneNumber);
+          find.byType(MyAfyaHubPhoneInput),
+          testPhoneNumber,
+        );
 
         final Finder finder = find
             .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
@@ -304,21 +315,22 @@ void main() {
       'should  update invalid credentials state',
       (WidgetTester tester) async {
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: baseGraphQlClientMock,
-            widget: Builder(
-              builder: (BuildContext context) {
-                EndPointsContextSubject().contexts.add(testAppContexts);
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              EndPointsContextSubject().contexts.add(testAppContexts);
 
-                StoreProvider.dispatch(
-                  context,
-                  PhoneLoginStateAction(invalidCredentials: true),
-                );
+              StoreProvider.dispatch(
+                context,
+                PhoneLoginStateAction(invalidCredentials: true),
+              );
 
-                return MyAfyaHubPhoneLoginPage();
-              },
-            ));
+              return MyAfyaHubPhoneLoginPage();
+            },
+          ),
+        );
 
         await tester.pump();
 
@@ -359,72 +371,4 @@ void main() {
       },
     );
   });
-
-//   testWidgets(
-//     'should requestMessagingPerm for iOS',
-//     (WidgetTester tester) async {
-//       final Store<AppState> store =
-//           Store<AppState>(initialState: AppState.initial());
-//       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-
-//       when(baseGraphQlClientMock.callRESTAPI(
-//               endpoint:
-//                   'https://onboarding-testing.savannahghi.org/login_by_phone',
-//               variables: <String, dynamic>{
-//                 'phoneNumber': '+254710000000',
-//                 'pin': '1234',
-//                 'flavour': 'CONSUMER',
-//                 'appVersion': APPVERSION,
-//               },
-//               method: httpPOST))
-//           .thenAnswer(
-//         (_) => Future<http.Response>.value(
-//           http.Response(
-//             json.encode(createUserMock()),
-//             200,
-//           ),
-//         ),
-//       );
-
-//       when(baseGraphQlClientMock.toMap(any)).thenReturn(
-//         <String, dynamic>{
-//           'data': <String, dynamic>{
-//             'phoneNumber': '+254710000000',
-//             'pin': '1234',
-//             'flavour': 'CONSUMER'
-//           }
-//         },
-//       );
-//       await buildTestWidget(
-//           tester: tester,
-//           store: store,
-//           client: baseGraphQlClientMock,
-//           widget: Builder(builder: (BuildContext context) {
-//             EndPointsContextSubject().contexts.add(testAppContexts);
-//             return MyAfyaHubPhoneLoginPage();
-//           }));
-//       await tester.pumpAndSettle();
-
-//       final Finder phoneInput = find.byType(MyAfyaHubPhoneInput);
-//       final Finder submitButton = find.byKey(phoneLoginSubmitButtonKey);
-
-//       expect(find.byType(Form), findsOneWidget);
-//       expect(phoneInput, findsOneWidget);
-//       expect(submitButton, findsOneWidget);
-
-//       await tester.enterText(phoneInput, testPhoneNumber);
-//       await tester.pumpAndSettle();
-
-//       await tester.enterText(find.byKey(pinInputKey), testOTP);
-//       await tester.pumpAndSettle();
-
-//       expect(find.text(testPhoneNumber), findsOneWidget);
-
-//       await tester.tap(submitButton);
-//       await tester.pumpAndSettle();
-//       await tester.pumpAndSettle();
-
-//       debugDefaultTargetPlatformOverride = null;
-//     },
-//   );
 }

@@ -31,7 +31,9 @@ class FeaturedContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => libraryContentNavigation(
-          context, listLibraryDataItems(3, libContent)),
+        context,
+        listLibraryDataItems(3, libContent),
+      ),
       child: Container(
         key: libraryFeaturedContentKey,
         color: AppColors.greyColor,
@@ -77,9 +79,11 @@ class FeaturedContent extends StatelessWidget {
                           ),
                         ),
                         smallHorizontalSizedBox,
-                        Text('$featuredContentReadTime min read',
-                            style: TextThemes.normalSize12Text(
-                                AppColors.whiteColor))
+                        Text(
+                          '$featuredContentReadTime min read',
+                          style:
+                              TextThemes.normalSize12Text(AppColors.whiteColor),
+                        )
                       ],
                     ),
                   ],

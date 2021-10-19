@@ -24,10 +24,11 @@ void main() {
   group('test if request reset pin widget exists', () {
     testWidgets('find pin request reset page', (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: RequestPinResetPage());
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: RequestPinResetPage(),
+      );
 
       await tester.pump();
       final Finder pinLoginWidget = find.byType(RequestPinReset);

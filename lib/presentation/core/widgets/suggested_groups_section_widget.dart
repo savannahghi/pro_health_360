@@ -32,9 +32,10 @@ class SuggestedGroupsSection extends StatelessWidget {
               suggestedGroupsString,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.secondaryColor),
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
+                color: AppColors.secondaryColor,
+              ),
             ),
           ),
           SizedBox(

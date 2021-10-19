@@ -42,7 +42,7 @@ class UserBasicDetails {
       /// without explicit conversion of [gender] to `string` this exception will be thrown
       /// [ERROR:flutter/lib/ui/ui_dart_state.cc(186)] Unhandled Exception: Converting object to an encodable object failed: Instance of 'Gender'
       /// since [Gender] type has no explicitly conversion function
-      'gender': gender.valueOrNull!.name.toLowerCase().toString(),
+      'gender': gender.valueOrNull!.name.toLowerCase(),
     };
   }
 
@@ -70,10 +70,11 @@ class UserBasicDetails {
     await store.dispatch(
       UpdateUserProfileAction(
         userBioData: BioData(
-            dateOfBirth: dateOfBirth.valueOrNull,
-            firstName: firstName.valueOrNull,
-            lastName: lastName.valueOrNull,
-            gender: gender.valueOrNull),
+          dateOfBirth: dateOfBirth.valueOrNull,
+          firstName: firstName.valueOrNull,
+          lastName: lastName.valueOrNull,
+          gender: gender.valueOrNull,
+        ),
       ),
     );
   }

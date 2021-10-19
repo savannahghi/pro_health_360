@@ -54,14 +54,15 @@ class CommunityChatScreenPage extends StatelessWidget {
         ),
       ),
       SentMessageItem(
-          message: 'Don\'t miss your appointment tomorrow',
-          time: '12:00pm',
-          isAwaitingModeration: true,
-          highlightedMessage: QuotedMessageWidget(
-            senderName: 'senderName',
-            message:
-                'Don\'t miss your appointment tomorrow Don\'t miss your appointment tomorrow',
-          )),
+        message: 'Don\'t miss your appointment tomorrow',
+        time: '12:00pm',
+        isAwaitingModeration: true,
+        highlightedMessage: QuotedMessageWidget(
+          senderName: 'senderName',
+          message:
+              'Don\'t miss your appointment tomorrow Don\'t miss your appointment tomorrow',
+        ),
+      ),
       ReceivedMessageItem(
         senderName: 'Wanjiku',
         message: 'Don\'t miss your appointment tomorrow',
@@ -101,7 +102,11 @@ class CommunityChatScreenPage extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   padding: const EdgeInsets.only(
-                      left: 14, right: 14, top: 10, bottom: 10),
+                    left: 14,
+                    right: 14,
+                    top: 10,
+                    bottom: 10,
+                  ),
                   child: Align(
                     alignment: messages[index] is TimeClassificationWidget
                         ? Alignment.topCenter

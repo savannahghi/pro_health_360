@@ -28,10 +28,12 @@ void main() {
         child: Builder(
           builder: (BuildContext context) {
             return RawMaterialButton(
-                onPressed: () => signInUser(
-                    context: context,
-                    phoneNumber: '1w24osdfsohaoasdsad',
-                    pin: '1111'));
+              onPressed: () => signInUser(
+                context: context,
+                phoneNumber: '1w24osdfsohaoasdsad',
+                pin: '1111',
+              ),
+            );
           },
         ),
       ),

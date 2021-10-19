@@ -86,7 +86,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
         OnboardingStrings.of(context)!;
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: preferredPaddingOnStretchedScreens(context: context)),
+        horizontal: preferredPaddingOnStretchedScreens(context: context),
+      ),
       child: Form(
         key: _userProfileFormKey,
         child: Column(
@@ -170,7 +171,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                           'lastName': lastNameController.value.text,
                           'gender': genderController.value.text.toLowerCase(),
                         },
-                        checkGender: genderFromState.name.toString(),
+                        checkGender: genderFromState.name,
                         checkDisplayName: displayNameFromState,
                         context: context,
                       );

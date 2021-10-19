@@ -43,59 +43,61 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
           children: <Widget>[
             Form(
               key: _formKey,
-              child: Column(children: <Widget>[
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    pinString,
-                    style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      pinString,
+                      style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+                    ),
                   ),
-                ),
-                verySmallVerticalSizedBox,
-                CustomTextField(
-                  formFieldKey: pinInputKey,
-                  borderColor: Colors.grey[200],
-                  maxLength: 4,
-                  maxLines: 1,
-                  keyboardType: TextInputType.number,
-                  obscureText: true,
-                  validator: userPinValidator,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  onChanged: (String val) {
-                    setState(() {
-                      pin = val.toString();
-                    });
-                  },
-                ),
-                verySmallVerticalSizedBox,
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    confirmPinString,
-                    style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+                  verySmallVerticalSizedBox,
+                  CustomTextField(
+                    formFieldKey: pinInputKey,
+                    borderColor: Colors.grey[200],
+                    maxLength: 4,
+                    maxLines: 1,
+                    keyboardType: TextInputType.number,
+                    obscureText: true,
+                    validator: userPinValidator,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    onChanged: (String val) {
+                      setState(() {
+                        pin = val;
+                      });
+                    },
                   ),
-                ),
-                verySmallVerticalSizedBox,
-                CustomTextField(
-                  formFieldKey: confirmPinInputKey,
-                  borderColor: Colors.grey[200],
-                  maxLength: 4,
-                  maxLines: 1,
-                  keyboardType: TextInputType.number,
-                  obscureText: true,
-                  validator: userPinValidator,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  onChanged: (String val) {
-                    setState(() {
-                      confirmPin = val.toString();
-                    });
-                  },
-                ),
-              ]),
+                  verySmallVerticalSizedBox,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      confirmPinString,
+                      style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+                    ),
+                  ),
+                  verySmallVerticalSizedBox,
+                  CustomTextField(
+                    formFieldKey: confirmPinInputKey,
+                    borderColor: Colors.grey[200],
+                    maxLength: 4,
+                    maxLines: 1,
+                    keyboardType: TextInputType.number,
+                    obscureText: true,
+                    validator: userPinValidator,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    onChanged: (String val) {
+                      setState(() {
+                        confirmPin = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -106,18 +108,22 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                   buttonKey: createPINContinueButtonKey,
                   onPressed: () {
                     if (!confirmPinValidator(pin, confirmPin)) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text(pinMustMatchString),
-                        duration: Duration(seconds: 2),
-                      ));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(pinMustMatchString),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
                       return;
                     }
                     if (_formKey.currentState!.validate()) {
                       Navigator.pushReplacementNamed(
-                          context, BWRoutes.congratulationsPage,
-                          arguments: <String, String>{
-                            'duration': '2 years',
-                          });
+                        context,
+                        BWRoutes.congratulationsPage,
+                        arguments: <String, String>{
+                          'duration': '2 years',
+                        },
+                      );
                     }
                   },
                   buttonColor: AppColors.secondaryColor,

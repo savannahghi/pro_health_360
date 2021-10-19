@@ -22,17 +22,19 @@ void main() {
           Store<AppState>(initialState: AppState.initial());
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: const Scaffold(
-              body: OnboardingPageWrapper(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const Scaffold(
+          body: OnboardingPageWrapper(
             title: landingPageTitle,
             description: enterPINText,
             svgPath: shieldIconImgUrl,
             previousRoute: BWRoutes.phoneLogin,
             child: PinVerification(),
-          )));
+          ),
+        ),
+      );
 
       await tester.pump();
 

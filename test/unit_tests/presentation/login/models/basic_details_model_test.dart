@@ -36,10 +36,14 @@ void main() {
     test('should test setUserProfileVariables routine works', () {
       final UserBasicDetails userBasicDetails = UserBasicDetails();
       userBasicDetails.setUserProfileVariables(
-          testFirstName, BasicDetailType.firstName);
+        testFirstName,
+        BasicDetailType.firstName,
+      );
       expect(userBasicDetails.firstName.valueOrNull!.getValue(), testFirstName);
       userBasicDetails.setUserProfileVariables(
-          '1996-12-12', BasicDetailType.dateOfBirth);
+        '1996-12-12',
+        BasicDetailType.dateOfBirth,
+      );
       expect(userBasicDetails.dateOfBirth.valueOrNull, '1996-12-12');
     });
 
@@ -58,9 +62,10 @@ void main() {
       expect(userBasicDetails.dateOfBirth.valueOrNull, '');
       userBasicDetails.saveUserDetailsToState(store);
       expect(
-          store.state.userProfileState!.userProfile!.userBioData!.firstName!
-              .getValue(),
-          UNKNOWN);
+        store.state.userProfileState!.userProfile!.userBioData!.firstName!
+            .getValue(),
+        UNKNOWN,
+      );
     });
   });
 }

@@ -54,8 +54,12 @@ class FakeHttpClientResponse extends Fake implements HttpClientResponse {
     bool? cancelOnError,
   }) {
     return Stream<List<int>>.fromIterable(<List<int>>[kTransparentImage])
-        .listen(onData,
-            onDone: onDone, onError: onError, cancelOnError: cancelOnError);
+        .listen(
+      onData,
+      onDone: onDone,
+      onError: onError,
+      cancelOnError: cancelOnError,
+    );
   }
 }
 

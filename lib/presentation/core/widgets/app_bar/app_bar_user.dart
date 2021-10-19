@@ -43,18 +43,22 @@ class AppbarUser extends StatelessWidget {
           return Container(
             padding: EdgeInsets.all(isUploadUrlInvalid ? 2 : 0),
             decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.whiteColor),
+              shape: BoxShape.circle,
+              color: AppColors.whiteColor,
+            ),
             child: Container(
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColor),
+                shape: BoxShape.circle,
+                color: Theme.of(context).primaryColor,
+              ),
               child: Center(
                 child: isUploadUrlInvalid
                     ? Text(
                         extractNamesInitials(
-                            name: getDisplayName(userProfileState)),
+                          name: getDisplayName(userProfileState),
+                        ),
                         style:
                             TextThemes.boldSize14Text(AppColors.secondaryColor),
                       )

@@ -279,8 +279,13 @@ void main() {
     test('When setCustomBreakPoint is called should update breakpoints', () {
       final ResponsiveSizingConfig config = ResponsiveSizingConfig();
 
-      config.setCustomBreakpoints(const ScreenBreakpoints(
-          mobileSmall: 300, mobileNormal: 400, mobileLarge: 600));
+      config.setCustomBreakpoints(
+        const ScreenBreakpoints(
+          mobileSmall: 300,
+          mobileNormal: 400,
+          mobileLarge: 600,
+        ),
+      );
 
       expect(config.breakpoints.mobileSmall, 300);
       expect(config.breakpoints.mobileNormal, 400);
@@ -291,9 +296,13 @@ void main() {
         'When getDeviceType is called and is smallScreen should update return appropriate DeviceScreenType',
         () {
       final DeviceScreenType dT = getDeviceType(
-          const Size(300, 480),
-          const ScreenBreakpoints(
-              mobileSmall: 300, mobileNormal: 400, mobileLarge: 600));
+        const Size(300, 480),
+        const ScreenBreakpoints(
+          mobileSmall: 300,
+          mobileNormal: 400,
+          mobileLarge: 600,
+        ),
+      );
 
       expect(dT, DeviceScreenType.mobileSmall);
     });
@@ -302,9 +311,13 @@ void main() {
         'When getDeviceType is called and is normalScreen should update return appropriate DeviceScreenType',
         () {
       final DeviceScreenType dT = getDeviceType(
-          const Size(450, 580),
-          const ScreenBreakpoints(
-              mobileSmall: 300, mobileNormal: 400, mobileLarge: 600));
+        const Size(450, 580),
+        const ScreenBreakpoints(
+          mobileSmall: 300,
+          mobileNormal: 400,
+          mobileLarge: 600,
+        ),
+      );
 
       expect(dT, DeviceScreenType.mobileNormal);
     });
@@ -313,9 +326,13 @@ void main() {
         'When getDeviceType is called and is largeScreen should update return appropriate DeviceScreenType',
         () {
       final DeviceScreenType dT = getDeviceType(
-          const Size(650, 980),
-          const ScreenBreakpoints(
-              mobileSmall: 300, mobileNormal: 400, mobileLarge: 600));
+        const Size(650, 980),
+        const ScreenBreakpoints(
+          mobileSmall: 300,
+          mobileNormal: 400,
+          mobileLarge: 600,
+        ),
+      );
 
       expect(dT, DeviceScreenType.mobileLarge);
     });

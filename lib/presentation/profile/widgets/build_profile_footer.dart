@@ -17,37 +17,39 @@ class BuildProfileFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Builder(builder: (BuildContext context) {
-          return GestureDetector(
-            onTap: () async {
-              logoutUser(context: context)();
-            },
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      const Icon(
-                        Icons.logout,
-                        color: AppColors.redColor,
-                        key: logoutIconKey,
-                      ),
-                      size15HorizontalSizedBox,
-                      Text(
-                        'Logout',
-                        style: TextThemes.boldSize14Text(AppColors.redColor),
-                      ),
-                    ],
-                  ),
-                  const Icon(CupertinoIcons.chevron_right, size: 20),
-                ],
+        Builder(
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () async {
+                logoutUser(context: context)();
+              },
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        const Icon(
+                          Icons.logout,
+                          color: AppColors.redColor,
+                          key: logoutIconKey,
+                        ),
+                        size15HorizontalSizedBox,
+                        Text(
+                          'Logout',
+                          style: TextThemes.boldSize14Text(AppColors.redColor),
+                        ),
+                      ],
+                    ),
+                    const Icon(CupertinoIcons.chevron_right, size: 20),
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          },
+        ),
         Container(
           width: double.infinity,
           height: 120,

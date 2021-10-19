@@ -84,11 +84,14 @@ Function() logoutUser({required BuildContext context}) {
     StoreProvider.dispatch(
       context,
       LogoutAction(
-          navigationCallback: () async {
-            await Navigator.of(context).pushNamedAndRemoveUntil(
-                BWRoutes.phoneLogin, (Route<dynamic> route) => false);
-          },
-          context: context),
+        navigationCallback: () async {
+          await Navigator.of(context).pushNamedAndRemoveUntil(
+            BWRoutes.phoneLogin,
+            (Route<dynamic> route) => false,
+          );
+        },
+        context: context,
+      ),
     );
   };
 }
@@ -116,10 +119,11 @@ void showToast(String message) {
   );
 }
 
-Future<void> updateStateContacts(
-    {required BuildContext context,
-    required StateContactType type,
-    String? value}) async {
+Future<void> updateStateContacts({
+  required BuildContext context,
+  required StateContactType type,
+  String? value,
+}) async {
   final UserProfileState profile =
       StoreProvider.state<AppState>(context)!.userProfileState!;
   switch (type) {
@@ -161,8 +165,9 @@ Future<void> updateStateContacts(
         context,
         UpdateUserProfileAction(
           profile: UserProfile(
-              secondaryPhoneNumbers: phones,
-              primaryPhoneNumber: PhoneNumber.withValue(value)),
+            secondaryPhoneNumbers: phones,
+            primaryPhoneNumber: PhoneNumber.withValue(value),
+          ),
         ),
       );
       break;
@@ -201,10 +206,12 @@ Future<void> updateStateContacts(
         PhoneNumber.withValue(value!)
       ];
 
-      phones.addAll(StoreProvider.state<AppState>(context)!
-          .userProfileState!
-          .userProfile!
-          .secondaryPhoneNumbers!);
+      phones.addAll(
+        StoreProvider.state<AppState>(context)!
+            .userProfileState!
+            .userProfile!
+            .secondaryPhoneNumbers!,
+      );
 
       StoreProvider.dispatch(
         context,
@@ -220,10 +227,12 @@ Future<void> updateStateContacts(
         EmailAddress.withValue(value!)
       ];
 
-      emails.addAll(StoreProvider.state<AppState>(context)!
-          .userProfileState!
-          .userProfile!
-          .secondaryEmailAddresses!);
+      emails.addAll(
+        StoreProvider.state<AppState>(context)!
+            .userProfileState!
+            .userProfile!
+            .secondaryEmailAddresses!,
+      );
       StoreProvider.dispatch(
         context,
         UpdateUserProfileAction(
@@ -249,9 +258,13 @@ Future<String> getUploadID({
         AppWrapperBase.of(context)!.customContext!.uploadFileEndPoint;
 
     final ProcessedResponse processedResponse = processHttpResponse(
-        await _httpClient.callRESTAPI(
-            endpoint: endPoint, variables: fileData, method: httpPOST),
-        context);
+      await _httpClient.callRESTAPI(
+        endpoint: endPoint,
+        variables: fileData,
+        method: httpPOST,
+      ),
+      context,
+    );
 
     if (processedResponse.ok == true &&
         json.decode(processedResponse.response.body)['id'] != null) {
@@ -262,8 +275,12 @@ Future<String> getUploadID({
       throw processedResponse.response;
     }
   } catch (e, stackTrace) {
-    reportErrorToSentry(context, e,
-        stackTrace: stackTrace, hint: 'Failed To Get UploadID');
+    reportErrorToSentry(
+      context,
+      e,
+      stackTrace: stackTrace,
+      hint: 'Failed To Get UploadID',
+    );
     return 'err';
   }
 }
@@ -304,103 +321,107 @@ void genericBottomSheet({
   Function? tertiaryActionCallback,
 }) {
   showModalBottomSheet(
-      context: context,
-      enableDrag: true,
-      isDismissible: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
+    context: context,
+    enableDrag: true,
+    isDismissible: true,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20.0),
+        topRight: Radius.circular(20.0),
       ),
-      builder: (BuildContext bc) {
-        return Container(
-          key: bottomSheetKey,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40.0),
-              topRight: Radius.circular(40.0),
-            ),
+    ),
+    builder: (BuildContext bc) {
+      return Container(
+        key: bottomSheetKey,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40.0),
+            topRight: Radius.circular(40.0),
           ),
-          child: ListView(
-            key: genericBottomSheetWidgetKey,
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            shrinkWrap: true,
-            children: <Widget>[
-              mediumVerticalSizedBox,
-              Column(
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: 24.0,
-                    backgroundColor:
-                        isError ? AppColors.redColor : AppColors.greenColor,
-                    child: Icon(
-                      isError ? UniconsLine.times : UniconsLine.check,
-                      size: 36.0,
-                      color: Theme.of(context).backgroundColor,
+        ),
+        child: ListView(
+          key: genericBottomSheetWidgetKey,
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          shrinkWrap: true,
+          children: <Widget>[
+            mediumVerticalSizedBox,
+            Column(
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 24.0,
+                  backgroundColor:
+                      isError ? AppColors.redColor : AppColors.greenColor,
+                  child: Icon(
+                    isError ? UniconsLine.times : UniconsLine.check,
+                    size: 36.0,
+                    color: Theme.of(context).backgroundColor,
+                  ),
+                ),
+                mediumVerticalSizedBox,
+                Padding(
+                  padding: veryLargeHorizontalPadding,
+                  child: Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: TextThemes.normalSize18Text(
+                      AppColors.blackColor,
                     ),
                   ),
-                  mediumVerticalSizedBox,
-                  Padding(
+                ),
+                largeVerticalSizedBox,
+                if (primaryActionCallback != null)
+                  Container(
                     padding: veryLargeHorizontalPadding,
-                    child: Text(message,
-                        textAlign: TextAlign.center,
-                        style: TextThemes.normalSize18Text(
-                          AppColors.blackColor,
-                        )),
+                    height: 52,
+                    width: double.infinity,
+                    child: SILPrimaryButton(
+                      buttonColor: buttonColor,
+                      borderColor: borderColor,
+                      customPadding: customPadding,
+                      buttonKey: primaryBottomSheetButtonKey,
+                      text: primaryActionText,
+                      textColor: AppColors.whiteColor,
+                      onPressed: () {
+                        primaryActionCallback();
+                      },
+                    ),
                   ),
-                  largeVerticalSizedBox,
-                  if (primaryActionCallback != null)
-                    Container(
-                      padding: veryLargeHorizontalPadding,
-                      height: 52,
-                      width: double.infinity,
-                      child: SILPrimaryButton(
-                          buttonColor: buttonColor,
-                          borderColor: borderColor,
-                          customPadding: customPadding,
-                          buttonKey: primaryBottomSheetButtonKey,
-                          text: primaryActionText,
-                          textColor: AppColors.whiteColor,
-                          onPressed: () {
-                            primaryActionCallback();
-                          }),
+                smallVerticalSizedBox,
+                if (showSecondaryButton || secondaryActionCallback != null)
+                  Container(
+                    padding: veryLargeHorizontalPadding,
+                    width: double.infinity,
+                    child: SILNoBorderButton(
+                      buttonKey: secondaryBottomSheetButtonKey,
+                      text: secondaryActionText ?? 'Close',
+                      textColor: buttonColor ??
+                          Theme.of(context).colorScheme.secondary,
+                      onPressed: secondaryActionCallback ??
+                          () {
+                            Navigator.pop(context);
+                          },
                     ),
-                  smallVerticalSizedBox,
-                  if (showSecondaryButton || secondaryActionCallback != null)
-                    Container(
-                      padding: veryLargeHorizontalPadding,
-                      width: double.infinity,
-                      child: SILNoBorderButton(
-                        buttonKey: secondaryBottomSheetButtonKey,
-                        text: secondaryActionText ?? 'Close',
-                        textColor: buttonColor ??
-                            Theme.of(context).colorScheme.secondary,
-                        onPressed: secondaryActionCallback ??
-                            () {
-                              Navigator.pop(context);
-                            },
-                      ),
+                  ),
+                smallVerticalSizedBox,
+                if (tertiaryActionCallback != null)
+                  Container(
+                    padding: veryLargeHorizontalPadding,
+                    width: double.infinity,
+                    child: SILNoBorderButton(
+                      buttonKey: tertiaryBottomSheetButtonKey,
+                      text: tertiaryActionText ?? 'Complete',
+                      textColor: AppColors.whiteColor,
+                      onPressed: tertiaryActionCallback,
                     ),
-                  smallVerticalSizedBox,
-                  if (tertiaryActionCallback != null)
-                    Container(
-                      padding: veryLargeHorizontalPadding,
-                      width: double.infinity,
-                      child: SILNoBorderButton(
-                        buttonKey: tertiaryBottomSheetButtonKey,
-                        text: tertiaryActionText ?? 'Complete',
-                        textColor: AppColors.whiteColor,
-                        onPressed: tertiaryActionCallback,
-                      ),
-                    ),
-                ],
-              ),
-            ],
-          ),
-        );
-      });
+                  ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }
 
 void showMedicationBottomSheet({
@@ -408,20 +429,21 @@ void showMedicationBottomSheet({
   required Widget child,
 }) {
   showModalBottomSheet(
-      backgroundColor: AppColors.whiteColor,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
+    backgroundColor: AppColors.whiteColor,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(16),
+        topRight: Radius.circular(16),
       ),
-      context: context,
-      builder: (BuildContext ctx) {
-        return Container(
-          key: actionsContainerKey,
-          child: child,
-        );
-      });
+    ),
+    context: context,
+    builder: (BuildContext ctx) {
+      return Container(
+        key: actionsContainerKey,
+        child: child,
+      );
+    },
+  );
 }
 
 /// [preferredPaddingOnStretchedScreens] function is used to calculate give a
@@ -449,8 +471,9 @@ double getWidthOfSymmetricalWidgetsOnLargeDevice() {
   return 420 / 2 - 20;
 }
 
-double getWidthOfSymmetricalWidgetsSmallDevices(
-    {required BuildContext context}) {
+double getWidthOfSymmetricalWidgetsSmallDevices({
+  required BuildContext context,
+}) {
   return (MediaQuery.of(context).size.width -
           preferredPaddingOnStretchedScreens(context: context) * 2 -
           number10) /
@@ -473,8 +496,10 @@ bool isLargeScreenAndOnLandscape({required BuildContext context}) {
   return false;
 }
 
-String sentenceCaseUserName(
-    {required String firstName, required String lastName}) {
+String sentenceCaseUserName({
+  required String firstName,
+  required String lastName,
+}) {
   if (firstName.isNotEmpty && lastName.isNotEmpty) {
     if (firstName.length > 1 && lastName.length > 1) {
       return '${firstName[0].toUpperCase()}${firstName.substring(1)} ${lastName[0].toUpperCase()}${lastName.substring(1)}';
@@ -490,77 +515,79 @@ Future<dynamic> showFeedbackBottomSheet({
   required String imageAssetPath,
 }) async {
   return showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return Container(
-          key: feedbackBottomSheet,
-          padding: MediaQuery.of(context).viewInsets,
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor,
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(0, 3), // changes position of shadow
+    context: context,
+    backgroundColor: Colors.transparent,
+    barrierColor: Colors.transparent,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return Container(
+        key: feedbackBottomSheet,
+        padding: MediaQuery.of(context).viewInsets,
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          constraints: const BoxConstraints(
+            maxWidth: 420,
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          margin: const EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Flexible(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                          imageAssetPath,
+                          height: 34.0,
+                          width: 34.0,
+                        ),
+                      ),
+                      mediumHorizontalSizedBox,
+                      Flexible(
+                        child: Text(
+                          modalContent,
+                          style: TextThemes.normalSize14Text(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                smallHorizontalSizedBox,
+                Container(
+                  margin: const EdgeInsets.only(top: 4),
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: const Image(
+                      key: feedbackBottomSheetCloseIconKey,
+                      image: AssetImage(closeIconUrl),
+                      color: Colors.black54,
+                      height: 16.0,
+                      width: 16.0,
+                    ),
+                  ),
                 ),
               ],
             ),
-            constraints: const BoxConstraints(
-              maxWidth: 420,
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-            margin: const EdgeInsets.all(20),
-            child: SingleChildScrollView(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Flexible(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        GestureDetector(
-                          child: SvgPicture.asset(
-                            imageAssetPath,
-                            height: 34.0,
-                            width: 34.0,
-                          ),
-                        ),
-                        mediumHorizontalSizedBox,
-                        Flexible(
-                            child: Text(
-                          modalContent,
-                          style: TextThemes.normalSize14Text(),
-                        )),
-                      ],
-                    ),
-                  ),
-                  smallHorizontalSizedBox,
-                  Container(
-                    margin: const EdgeInsets.only(top: 4),
-                    child: GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: const Image(
-                        key: feedbackBottomSheetCloseIconKey,
-                        image: AssetImage(closeIconUrl),
-                        color: Colors.black54,
-                        height: 16.0,
-                        width: 16.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ),
-        );
-      });
+        ),
+      );
+    },
+  );
 }
 
 // Parses date then converts it to the format 18 May 2021 at 12:00 AM
@@ -592,7 +619,7 @@ Widget sortDate({
 }
 
 String removeHyphens(String sentence) {
-  return titleCase(sentence.toString().replaceAll('-', ' ').toLowerCase());
+  return titleCase(sentence.replaceAll('-', ' ').toLowerCase());
 }
 
 Widget SILLoaderWithText() {
@@ -636,13 +663,20 @@ Widget LibraryIconButton({
 }
 
 void libraryContentNavigation(
-    BuildContext context, LibraryContentItemData libraryContentItem) {
-  Navigator.pushNamed(context, BWRoutes.libraryContent,
-      arguments: libraryContentItem);
+  BuildContext context,
+  LibraryContentItemData libraryContentItem,
+) {
+  Navigator.pushNamed(
+    context,
+    BWRoutes.libraryContent,
+    arguments: libraryContentItem,
+  );
 }
 
 LibraryContentItemData listLibraryDataItems(
-    int index, List<dynamic> libContent) {
+  int index,
+  List<dynamic> libContent,
+) {
   final String libraryContentTitle = libContent[index]['title'].toString();
   final String image = libContent[index]['featureImage'].toString();
   final String readingTime = libContent[index]['readingTime'].toString();
@@ -654,9 +688,13 @@ LibraryContentItemData listLibraryDataItems(
   final String formattedLibraryContentTag = removeHyphens(libraryContentTags);
 
   final LibraryContentItemData libraryContentItemData = LibraryContentItemData(
-      image, readingTime, libraryBody, formattedLibraryContentTag,
-      libraryContentPublishDate: libraryPublishedDate,
-      libraryContentTitle: libraryContentTitle);
+    image,
+    readingTime,
+    libraryBody,
+    formattedLibraryContentTag,
+    libraryContentPublishDate: libraryPublishedDate,
+    libraryContentTitle: libraryContentTitle,
+  );
   return libraryContentItemData;
 }
 
@@ -670,8 +708,12 @@ String getEnvironmentContext(List<AppContext> contexts) {
   return 'test';
 }
 
-dynamic reportErrorToSentry(BuildContext? context, dynamic error,
-    {dynamic stackTrace, String? hint}) {
+dynamic reportErrorToSentry(
+  BuildContext? context,
+  dynamic error, {
+  dynamic stackTrace,
+  String? hint,
+}) {
   dynamic errorTrace = error;
   if (error.runtimeType == http.Response) {
     error as http.Response;
@@ -720,7 +762,10 @@ void updateAppReviewVariables({
   StoreProvider.dispatch<AppState>(
     context,
     AppReviewAction(
-        days: days, lastLaunchDate: lastLaunchDate, launches: launches),
+      days: days,
+      lastLaunchDate: lastLaunchDate,
+      launches: launches,
+    ),
   );
 }
 
@@ -772,14 +817,15 @@ Future<void> showRatingBottomSheet(BuildContext context) async {
                       child: SizedBox(
                         height: number48,
                         child: SILSecondaryButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              StoreProvider.dispatch<AppState>(
-                                context,
-                                AppReviewAction(launches: 0),
-                              );
-                            },
-                            text: later),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              AppReviewAction(launches: 0),
+                            );
+                          },
+                          text: later,
+                        ),
                       ),
                     ),
                     const SizedBox(width: number20),
@@ -787,20 +833,21 @@ Future<void> showRatingBottomSheet(BuildContext context) async {
                       child: SizedBox(
                         height: number48,
                         child: SILPrimaryButton(
-                            onPressed: () {
-                              StoreProvider.dispatch<AppState>(
-                                context,
-                                AppReviewAction(
-                                  shouldRateApp: false,
-                                ),
-                              );
-                              Navigator.pop(context);
-                              LaunchReview.launch(
-                                androidAppId: googlePlayIdentifier,
-                                iOSAppId: appStoreID,
-                              );
-                            },
-                            text: rateNow),
+                          onPressed: () {
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              AppReviewAction(
+                                shouldRateApp: false,
+                              ),
+                            );
+                            Navigator.pop(context);
+                            LaunchReview.launch(
+                              androidAppId: googlePlayIdentifier,
+                              iOSAppId: appStoreID,
+                            );
+                          },
+                          text: rateNow,
+                        ),
                       ),
                     ),
                   ],
@@ -866,14 +913,16 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
 ];
 
 final NotificationActions calendarAction = NotificationActions(
-    icon: IconDetails(iconUrlSvgPath: calendarIcon),
-    name: 'Add to Calendar',
-    route: '');
+  icon: IconDetails(iconUrlSvgPath: calendarIcon),
+  name: 'Add to Calendar',
+  route: '',
+);
 
 final NotificationActions rescheduleAction = NotificationActions(
-    icon: IconDetails(iconUrlSvgPath: calendarIcon),
-    name: 'Reschedule',
-    route: '');
+  icon: IconDetails(iconUrlSvgPath: calendarIcon),
+  name: 'Reschedule',
+  route: '',
+);
 
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(

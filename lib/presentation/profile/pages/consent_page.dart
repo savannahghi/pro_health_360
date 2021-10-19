@@ -68,7 +68,8 @@ class _ConsentPageState extends State<ConsentPage> {
                 title: Text(
                   groupsText,
                   style: TextThemes.normalSize16Text(
-                      Theme.of(context).primaryColor),
+                    Theme.of(context).primaryColor,
+                  ),
                 ),
                 body: Row(
                   children: <Widget>[

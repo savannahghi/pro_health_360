@@ -41,9 +41,10 @@ const String inaccurateGenderValue = 'knb jk ';
 class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
   @override
   Future<MockStateDB> database({MockStateDB? preInitializedDB}) =>
-      super.noSuchMethod(Invocation.getter(#database),
-              returnValue: Future<MockStateDB>.value(MockStateDB()))
-          as Future<MockStateDB>;
+      super.noSuchMethod(
+        Invocation.getter(#database),
+        returnValue: Future<MockStateDB>.value(MockStateDB()),
+      ) as Future<MockStateDB>;
 
   @override
   String get dbName =>
@@ -75,8 +76,11 @@ class MockStateDB extends Mock implements Database {
   }
 
   @override
-  Future<T> devInvokeSqlMethod<T>(String method, String sql,
-      [List<Object?>? arguments]) {
+  Future<T> devInvokeSqlMethod<T>(
+    String method,
+    String sql, [
+    List<Object?>? arguments,
+  ]) {
     throw UnimplementedError();
   }
 
@@ -91,8 +95,12 @@ class MockStateDB extends Mock implements Database {
   }
 
   @override
-  Future<int> insert(String table, Map<String, Object?> values,
-      {String? nullColumnHack, ConflictAlgorithm? conflictAlgorithm}) {
+  Future<int> insert(
+    String table,
+    Map<String, Object?> values, {
+    String? nullColumnHack,
+    ConflictAlgorithm? conflictAlgorithm,
+  }) {
     throw UnimplementedError();
   }
 
@@ -103,16 +111,18 @@ class MockStateDB extends Mock implements Database {
   String get path => 'test';
 
   @override
-  Future<List<Map<String, Object?>>> query(String table,
-      {bool? distinct,
-      List<String>? columns,
-      String? where,
-      List<Object?>? whereArgs,
-      String? groupBy,
-      String? having,
-      String? orderBy,
-      int? limit,
-      int? offset}) {
+  Future<List<Map<String, Object?>>> query(
+    String table, {
+    bool? distinct,
+    List<String>? columns,
+    String? where,
+    List<Object?>? whereArgs,
+    String? groupBy,
+    String? having,
+    String? orderBy,
+    int? limit,
+    int? offset,
+  }) {
     throw UnimplementedError();
   }
 
@@ -131,8 +141,10 @@ class MockStateDB extends Mock implements Database {
       ) as Future<int>;
 
   @override
-  Future<List<Map<String, Object?>>> rawQuery(String sql,
-          [List<Object?>? arguments]) =>
+  Future<List<Map<String, Object?>>> rawQuery(
+    String sql, [
+    List<Object?>? arguments,
+  ]) =>
       super.noSuchMethod(
         Invocation.method(#rawQuery, <dynamic>[sql, arguments]),
         returnValue: Future<List<Map<String, Object?>>>.value(
@@ -153,16 +165,21 @@ class MockStateDB extends Mock implements Database {
   }
 
   @override
-  Future<T> transaction<T>(Future<T> Function(Transaction txn) action,
-      {bool? exclusive}) {
+  Future<T> transaction<T>(
+    Future<T> Function(Transaction txn) action, {
+    bool? exclusive,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<int> update(String table, Map<String, Object?> values,
-      {String? where,
-      List<Object?>? whereArgs,
-      ConflictAlgorithm? conflictAlgorithm}) {
+  Future<int> update(
+    String table,
+    Map<String, Object?> values, {
+    String? where,
+    List<Object?>? whereArgs,
+    ConflictAlgorithm? conflictAlgorithm,
+  }) {
     throw UnimplementedError();
   }
 }
@@ -248,12 +265,13 @@ void availableCamerasMock() {
       ];
     } else if (methodCall.method == 'initialize') {
       return Future<dynamic>.delayed(
-          const Duration(microseconds: 1),
-          () => <String, dynamic>{
-                'textureId': 2,
-                'previewWidth': 100,
-                'previewHeight': 100,
-              });
+        const Duration(microseconds: 1),
+        () => <String, dynamic>{
+          'textureId': 2,
+          'previewWidth': 100,
+          'previewHeight': 100,
+        },
+      );
     }
     return null;
   });
@@ -394,10 +412,11 @@ Map<String, dynamic> invoicesEmptyMock = <String, dynamic>{
 // ignore: subtype_of_sealed_class
 class MockGraphQlClientForFailures extends Mock implements GraphQlClient {
   @override
-  Future<http.Response> callRESTAPI(
-      {required String endpoint,
-      required String method,
-      Map<String, dynamic>? variables}) {
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
     if (endpoint.contains('upload')) {
       return Future<http.Response>.value(
         http.Response(
@@ -424,22 +443,25 @@ class MockGraphQlClientForFailures extends Mock implements GraphQlClient {
 
   @override
   Future<http.Response> query(
-      String queryString, Map<String, dynamic> variables,
-      [ContentType contentType = ContentType.json]) {
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
     if (queryString.contains('createMemberProfileRequest')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'errors': <dynamic>[
-                <String, dynamic>{'message': 'An error occurred'}
-              ],
-              'data': <String, dynamic>{
-                'createMemberProfileRequest': <String, dynamic>{
-                  'stateFake': 'DRAFT'
-                }
+          json.encode(<String, dynamic>{
+            'errors': <dynamic>[
+              <String, dynamic>{'message': 'An error occurred'}
+            ],
+            'data': <String, dynamic>{
+              'createMemberProfileRequest': <String, dynamic>{
+                'stateFake': 'DRAFT'
               }
-            }),
-            201),
+            }
+          }),
+          201,
+        ),
       );
     }
 
@@ -451,18 +473,21 @@ class MockGraphQlClientForFailures extends Mock implements GraphQlClient {
 class MockGraphQlClientForFailures2 extends Mock implements GraphQlClient {
   @override
   Future<http.Response> query(
-      String queryString, Map<String, dynamic> variables,
-      [ContentType contentType = ContentType.json]) {
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
     if (queryString.contains('createMemberProfileRequest')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'errors': <dynamic>[
-                <String, dynamic>{'message': duplicateRequestString}
-              ],
-              'data': <String, dynamic>{}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'errors': <dynamic>[
+              <String, dynamic>{'message': duplicateRequestString}
+            ],
+            'data': <String, dynamic>{}
+          }),
+          201,
+        ),
       );
     }
     return Future<http.Response>.value();
@@ -481,10 +506,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       json.encode(<String, dynamic>{'participate': true});
 
   @override
-  Future<http.Response> callRESTAPI(
-      {required String endpoint,
-      required String method,
-      Map<String, dynamic>? variables}) {
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
     if (endpoint.contains('request_pin_reset')) {
       return Future<http.Response>.value(
         http.Response(
@@ -623,20 +649,23 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
 
   @override
   Future<http.Response> query(
-      String queryString, Map<String, dynamic> variables,
-      [ContentType contentType = ContentType.json]) {
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
     if (json.encode(variables) == sendOTPTesterVariables) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(
-              <String, dynamic>{
-                'data': <String, dynamic>{
-                  'otp': testOTP,
-                  'phoneNumber': testPhoneNumber,
-                }
-              },
-            ),
-            200),
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'otp': testOTP,
+                'phoneNumber': testPhoneNumber,
+              }
+            },
+          ),
+          200,
+        ),
       );
     }
 
@@ -651,10 +680,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'updateProfile': true}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'updateProfile': true}
+          }),
+          201,
+        ),
       );
     }
 
@@ -662,61 +692,63 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'unreadPersistentItems': 3}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'unreadPersistentItems': 3}
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('panelLocations')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'panelLocations': <dynamic>[
-                  <String, dynamic>{
-                    'freeBusy': <String, dynamic>{
-                      'timeMin': '2020-06-15T10:43:04Z',
-                      'timeMax': '2020-06-16T10:43:04Z',
-                      'busySlots': <dynamic>[]
-                    },
-                    'branchProfile': <String, dynamic>{
-                      'id': 'b827f240-b423-4ee8-87b6-49f78533e032',
-                      'branchSladeCode': 'BRA-PRO-3739-1',
-                      'branchName': 'Dr. Musima and Associates - Main Office',
-                      'organizationSladeCode': 'PRO-3739',
-                      'coordinates': '-1.295541, 36.806474',
-                      'geoHash': 'kzf0ts1svj8h',
-                      'hasTelehealth': false,
-                      'averageRating': 20,
-                      'providerCategory': 'DENTAL_PRACTICE',
-                      'practiceTypes': <dynamic>[
-                        'DENTAL_GENERAL_DENTAL_PRACTICE'
-                      ],
-                      'sortPriority': 0,
-                      'profile':
-                          'Dr. Musima & Associates is an experienced group of dentist, dental surgeons, and orthodontists.',
-                      'license': '-',
-                      'averageConsultationPrice': 1000,
-                      'averageTeleconsultationPrice': 500,
-                      'phones': <dynamic>['+254790360360'],
-                      'emails': <dynamic>['info@savannahinformatics.com'],
-                      'profilePages': <dynamic>[
-                        'http://www.savannahinformatics.com'
-                      ],
-                      'calendarID':
-                          'healthcloud.co.ke_6jm2ffq7ninov3o1evgs8n0r3o@group.calendar.google.com',
-                      'photoContentType': 'JPG',
-                      'photoBase64data': SharedResources.base64ImageString,
-                      'active': true,
-                      'fhirReference': null
-                    }
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'panelLocations': <dynamic>[
+                <String, dynamic>{
+                  'freeBusy': <String, dynamic>{
+                    'timeMin': '2020-06-15T10:43:04Z',
+                    'timeMax': '2020-06-16T10:43:04Z',
+                    'busySlots': <dynamic>[]
+                  },
+                  'branchProfile': <String, dynamic>{
+                    'id': 'b827f240-b423-4ee8-87b6-49f78533e032',
+                    'branchSladeCode': 'BRA-PRO-3739-1',
+                    'branchName': 'Dr. Musima and Associates - Main Office',
+                    'organizationSladeCode': 'PRO-3739',
+                    'coordinates': '-1.295541, 36.806474',
+                    'geoHash': 'kzf0ts1svj8h',
+                    'hasTelehealth': false,
+                    'averageRating': 20,
+                    'providerCategory': 'DENTAL_PRACTICE',
+                    'practiceTypes': <dynamic>[
+                      'DENTAL_GENERAL_DENTAL_PRACTICE'
+                    ],
+                    'sortPriority': 0,
+                    'profile':
+                        'Dr. Musima & Associates is an experienced group of dentist, dental surgeons, and orthodontists.',
+                    'license': '-',
+                    'averageConsultationPrice': 1000,
+                    'averageTeleconsultationPrice': 500,
+                    'phones': <dynamic>['+254790360360'],
+                    'emails': <dynamic>['info@savannahinformatics.com'],
+                    'profilePages': <dynamic>[
+                      'http://www.savannahinformatics.com'
+                    ],
+                    'calendarID':
+                        'healthcloud.co.ke_6jm2ffq7ninov3o1evgs8n0r3o@group.calendar.google.com',
+                    'photoContentType': 'JPG',
+                    'photoBase64data': SharedResources.base64ImageString,
+                    'active': true,
+                    'fhirReference': null
                   }
-                ]
-              }
-            }),
-            201),
+                }
+              ]
+            }
+          }),
+          201,
+        ),
       );
     }
 
@@ -724,74 +756,74 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'covers': <dynamic>[
-                  <String, dynamic>{
-                    'benefits': <dynamic>[
-                      <String, dynamic>{
-                        'status': 'AVAILABLE',
-                        'benefitLimit': 2000000,
-                        'benefitType': 'INPATIENT',
-                        'benefitCode': '33657',
-                        'availableBalance': 2000000,
-                        'spentAmount': 0,
-                        'benefit':
-                            'SAVANNAH INFORMATICS CORPORATE 2M SHARED 2016',
-                        'visitLimit': 5000,
-                        'reservedAmount': 0,
-                        'thresholdAmount': 0
-                      },
-                      <String, dynamic>{
-                        'status': 'AVAILABLE',
-                        'benefitLimit': 100000,
-                        'benefitType': 'OUTPATIENT',
-                        'benefitCode': '33656',
-                        'availableBalance': 100000,
-                        'spentAmount': 0,
-                        'benefit': 'SAVANNAH INFORMATICS OP C100 SH COPAY 2016',
-                        'visitLimit': 5000,
-                        'reservedAmount': 0,
-                        'thresholdAmount': 0
-                      },
-                      <String, dynamic>{
-                        'status': 'AVAILABLE',
-                        'benefitLimit': 100000,
-                        'benefitType': 'OTHER',
-                        'benefitCode': '22701',
-                        'availableBalance': 100000,
-                        'spentAmount': 0,
-                        'benefit':
-                            'Corporate 2M and above Inbuilt Riders (2016)',
-                        'visitLimit': 5000,
-                        'reservedAmount': 0,
-                        'thresholdAmount': 0
-                      }
-                    ],
-                    'cover': <String, dynamic>{
-                      'group': 'SAVANNAH INFORMATICS LIMITED',
-                      'category': 'SAVANNAH INFORMATICS LIMITED',
-                      'validFrom': '2020-08-15T00:00:00+03:00',
-                      'validTo': '2021-08-15T00:00:00+03:00'
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'covers': <dynamic>[
+                <String, dynamic>{
+                  'benefits': <dynamic>[
+                    <String, dynamic>{
+                      'status': 'AVAILABLE',
+                      'benefitLimit': 2000000,
+                      'benefitType': 'INPATIENT',
+                      'benefitCode': '33657',
+                      'availableBalance': 2000000,
+                      'spentAmount': 0,
+                      'benefit':
+                          'SAVANNAH INFORMATICS CORPORATE 2M SHARED 2016',
+                      'visitLimit': 5000,
+                      'reservedAmount': 0,
+                      'thresholdAmount': 0
                     },
-                    'payerDetails': <String, dynamic>{
-                      'name': 'Resolution Insurance',
-                      'sladeCode': 458
+                    <String, dynamic>{
+                      'status': 'AVAILABLE',
+                      'benefitLimit': 100000,
+                      'benefitType': 'OUTPATIENT',
+                      'benefitCode': '33656',
+                      'availableBalance': 100000,
+                      'spentAmount': 0,
+                      'benefit': 'SAVANNAH INFORMATICS OP C100 SH COPAY 2016',
+                      'visitLimit': 5000,
+                      'reservedAmount': 0,
+                      'thresholdAmount': 0
                     },
-                    'member': <String, dynamic>{
-                      'membershipNumber': '1464449',
-                      'title': 'Mr',
-                      'names': 'KEVIN KIPCHIRCHIR MAIYO',
-                      'firstName': 'KEVIN KIPCHIRCHIR',
-                      'lastName': 'MAIYO',
-                      'hasSladeCard': <dynamic>[true, 'PHYSICAL']
-                    },
-                    'dependants': <dynamic>[]
-                  }
-                ]
-              }
-            }),
-            201),
+                    <String, dynamic>{
+                      'status': 'AVAILABLE',
+                      'benefitLimit': 100000,
+                      'benefitType': 'OTHER',
+                      'benefitCode': '22701',
+                      'availableBalance': 100000,
+                      'spentAmount': 0,
+                      'benefit': 'Corporate 2M and above Inbuilt Riders (2016)',
+                      'visitLimit': 5000,
+                      'reservedAmount': 0,
+                      'thresholdAmount': 0
+                    }
+                  ],
+                  'cover': <String, dynamic>{
+                    'group': 'SAVANNAH INFORMATICS LIMITED',
+                    'category': 'SAVANNAH INFORMATICS LIMITED',
+                    'validFrom': '2020-08-15T00:00:00+03:00',
+                    'validTo': '2021-08-15T00:00:00+03:00'
+                  },
+                  'payerDetails': <String, dynamic>{
+                    'name': 'Resolution Insurance',
+                    'sladeCode': 458
+                  },
+                  'member': <String, dynamic>{
+                    'membershipNumber': '1464449',
+                    'title': 'Mr',
+                    'names': 'KEVIN KIPCHIRCHIR MAIYO',
+                    'firstName': 'KEVIN KIPCHIRCHIR',
+                    'lastName': 'MAIYO',
+                    'hasSladeCard': <dynamic>[true, 'PHYSICAL']
+                  },
+                  'dependants': <dynamic>[]
+                }
+              ]
+            }
+          }),
+          201,
+        ),
       );
     }
 
@@ -799,13 +831,14 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'consumerTermsAndConditions':
-                    'Thine test coverage shall reacheth a percentage of 100'
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'consumerTermsAndConditions':
+                  'Thine test coverage shall reacheth a percentage of 100'
+            }
+          }),
+          201,
+        ),
       );
     }
 
@@ -813,10 +846,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'generateOTP': '1234'}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'generateOTP': '1234'}
+          }),
+          201,
+        ),
       );
     }
 
@@ -824,20 +858,22 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'emailVerificationOTP': '1234'}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'emailVerificationOTP': '1234'}
+          }),
+          201,
+        ),
       );
     }
     if (queryString.contains('verifyMSISDNandPIN')) {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'verifyMSISDNandPIN': true}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'verifyMSISDNandPIN': true}
+          }),
+          201,
+        ),
       );
     }
 
@@ -845,10 +881,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'updateUserPIN': true},
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'updateUserPIN': true},
+          }),
+          201,
+        ),
       );
     }
 
@@ -856,10 +893,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'generateRetryOTP': '1234'},
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'generateRetryOTP': '1234'},
+          }),
+          201,
+        ),
       );
     }
 
@@ -867,10 +905,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'completeSignup': true},
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'completeSignup': true},
+          }),
+          201,
+        ),
       );
     }
 
@@ -878,19 +917,20 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'updateUserProfile': <String, dynamic>{
-                  'userBioData': <String, dynamic>{
-                    'firstName': 'John',
-                    'lastName': 'Doe',
-                    'gender': 'male',
-                    'dateOfBirth': '2000-01-01'
-                  }
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'updateUserProfile': <String, dynamic>{
+                'userBioData': <String, dynamic>{
+                  'firstName': 'John',
+                  'lastName': 'Doe',
+                  'gender': 'male',
+                  'dateOfBirth': '2000-01-01'
                 }
-              },
-            }),
-            201),
+              }
+            },
+          }),
+          201,
+        ),
       );
     }
 
@@ -898,12 +938,13 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'userProfile': true,
-              },
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'userProfile': true,
+            },
+          }),
+          201,
+        ),
       );
     }
 
@@ -911,12 +952,13 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'userProfile': true,
-              },
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'userProfile': true,
+            },
+          }),
+          201,
+        ),
       );
     }
 
@@ -924,103 +966,104 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'filterProviderPanel': <dynamic>[
-                  <String, dynamic>{
-                    'providerName': 'Prime City Clinics & Laboratories',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3088,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Kiambu Pharmacy',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3089,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Madaraka Health Services',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3090,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Tower Chemist Ltd',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3091,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Green House Chemists',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3092,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Mansion Chemist Ltd',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3093,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Nila Pharmacy',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3094,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Githurai Chemist',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3095,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Rika Chemists',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3096,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
-                  },
-                  <String, dynamic>{
-                    'providerName': 'Omaera Pharmaceuticals Ltd',
-                    'providerType': 'PROVIDER',
-                    'providerSladeCode': 3097,
-                    'providerRestriction': <String, dynamic>{
-                      'copayType': 'NO_COPAY',
-                      'copayValue': 0
-                    }
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'filterProviderPanel': <dynamic>[
+                <String, dynamic>{
+                  'providerName': 'Prime City Clinics & Laboratories',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3088,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
                   }
-                ]
-              }
-            }),
-            201),
+                },
+                <String, dynamic>{
+                  'providerName': 'Kiambu Pharmacy',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3089,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Madaraka Health Services',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3090,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Tower Chemist Ltd',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3091,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Green House Chemists',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3092,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Mansion Chemist Ltd',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3093,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Nila Pharmacy',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3094,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Githurai Chemist',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3095,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Rika Chemists',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3096,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                },
+                <String, dynamic>{
+                  'providerName': 'Omaera Pharmaceuticals Ltd',
+                  'providerType': 'PROVIDER',
+                  'providerSladeCode': 3097,
+                  'providerRestriction': <String, dynamic>{
+                    'copayType': 'NO_COPAY',
+                    'copayValue': 0
+                  }
+                }
+              ]
+            }
+          }),
+          201,
+        ),
       );
     }
 
@@ -1028,10 +1071,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'error': <String, dynamic>{'error': 'some error'}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'error': <String, dynamic>{'error': 'some error'}
+          }),
+          201,
+        ),
       );
     }
 
@@ -1039,67 +1083,69 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (queryString == getFAQQuery) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'getFaqsContent': <dynamic>[
-                  <String, dynamic>{
-                    'id': '5f89b9120251c700391da360',
-                    'createdAt': '2020-10-16T18:15:30+03:00',
-                    'excerpt':
-                        '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                    'featureImage':
-                        'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                    'html':
-                        '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                    'publishedAt': '2020-10-16T18:19:34+03:00',
-                    'slug': 'how-to-add-your-cover',
-                    'title': 'How to add your cover',
-                    'readingTime': 0,
-                    'tags': <dynamic>[
-                      <String, dynamic>{
-                        'id': '5f89b94a0251c700391da364',
-                        'name': 'faqs-consumer',
-                        'slug': 'faqs-consumer'
-                      }
-                    ]
-                  },
-                  <String, dynamic>{
-                    'id': '5f89b9120251c700391da360',
-                    'createdAt': '2020-10-16T18:15:30+03:00',
-                    'excerpt':
-                        '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                    'featureImage':
-                        'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                    'html':
-                        '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                    'publishedAt': '2020-10-16T18:19:34+03:00',
-                    'slug': 'how-to-add-your-cover',
-                    'title': 'How to add your cover',
-                    'readingTime': 0,
-                    'tags': <dynamic>[
-                      <String, dynamic>{
-                        'id': '5f89b94a0251c700391da364',
-                        'name': 'faqs',
-                        'slug': 'faqs'
-                      }
-                    ]
-                  }
-                ]
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getFaqsContent': <dynamic>[
+                <String, dynamic>{
+                  'id': '5f89b9120251c700391da360',
+                  'createdAt': '2020-10-16T18:15:30+03:00',
+                  'excerpt':
+                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
+                  'featureImage':
+                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
+                  'html':
+                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
+                  'publishedAt': '2020-10-16T18:19:34+03:00',
+                  'slug': 'how-to-add-your-cover',
+                  'title': 'How to add your cover',
+                  'readingTime': 0,
+                  'tags': <dynamic>[
+                    <String, dynamic>{
+                      'id': '5f89b94a0251c700391da364',
+                      'name': 'faqs-consumer',
+                      'slug': 'faqs-consumer'
+                    }
+                  ]
+                },
+                <String, dynamic>{
+                  'id': '5f89b9120251c700391da360',
+                  'createdAt': '2020-10-16T18:15:30+03:00',
+                  'excerpt':
+                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
+                  'featureImage':
+                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
+                  'html':
+                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
+                  'publishedAt': '2020-10-16T18:19:34+03:00',
+                  'slug': 'how-to-add-your-cover',
+                  'title': 'How to add your cover',
+                  'readingTime': 0,
+                  'tags': <dynamic>[
+                    <String, dynamic>{
+                      'id': '5f89b94a0251c700391da364',
+                      'name': 'faqs',
+                      'slug': 'faqs'
+                    }
+                  ]
+                }
+              ]
+            }
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('getEmptyFAQ')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(
-              <String, dynamic>{
-                'data': <String, dynamic>{'getFaqsContent': <dynamic>[]}
-              },
-            ),
-            201),
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'getFaqsContent': <dynamic>[]}
+            },
+          ),
+          201,
+        ),
       );
     }
 
@@ -1124,28 +1170,28 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (queryString.contains('createMemberProfileRequest')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'createMemberProfileRequest': <String, dynamic>{
-                  'state': 'DRAFT'
-                }
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'createMemberProfileRequest': <String, dynamic>{'state': 'DRAFT'}
+            }
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('upload')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'upload': <String, dynamic>{
-                  'id': 'uploadID',
-                },
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'upload': <String, dynamic>{
+                'id': 'uploadID',
+              },
+            }
+          }),
+          201,
+        ),
       );
     }
 
@@ -1153,108 +1199,110 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (queryString == getLibraryQuery) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'getLibraryContent': <dynamic>[
-                  <String, dynamic>{
-                    'id': '5f89b9120251c700391da360',
-                    'createdAt': '2020-10-16T18:15:30+03:00',
-                    'excerpt':
-                        '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                    'featureImage':
-                        'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                    'html':
-                        '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                    'publishedAt': '2020-10-16T18:19:34+03:00',
-                    'slug': 'how-to-add-your-cover',
-                    'title': 'How to add your cover',
-                    'readingTime': 0,
-                    'tags': <dynamic>[
-                      <String, dynamic>{
-                        'id': '5f89b94a0251c700391da364',
-                        'name': 'faqs',
-                        'slug': 'faqs'
-                      }
-                    ]
-                  },
-                  <String, dynamic>{
-                    'id': '5f89b9120251c700391da360',
-                    'createdAt': '2020-10-16T18:15:30+03:00',
-                    'excerpt':
-                        '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                    'featureImage':
-                        'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                    'html':
-                        '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                    'publishedAt': '2020-10-16T18:19:34+03:00',
-                    'slug': 'how-to-add-your-cover',
-                    'title': 'How to add your cover',
-                    'readingTime': 0,
-                    'tags': <dynamic>[
-                      <String, dynamic>{
-                        'id': '5f89b94a0251c700391da364',
-                        'name': 'faqs',
-                        'slug': 'faqs'
-                      }
-                    ]
-                  },
-                  <String, dynamic>{
-                    'id': '5f89b9120251c700391da360',
-                    'createdAt': '2020-10-16T18:15:30+03:00',
-                    'excerpt':
-                        '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                    'featureImage':
-                        'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                    'html':
-                        '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                    'publishedAt': '2020-10-16T18:19:34+03:00',
-                    'slug': 'how-to-add-your-cover',
-                    'title': 'How to add your cover',
-                    'readingTime': 0,
-                    'tags': <dynamic>[
-                      <String, dynamic>{
-                        'id': '5f89b94a0251c700391da364',
-                        'name': 'faqs',
-                        'slug': 'faqs'
-                      }
-                    ]
-                  },
-                  <String, dynamic>{
-                    'id': '5f89b9120251c700391da360',
-                    'createdAt': '2020-10-16T18:15:30+03:00',
-                    'excerpt':
-                        '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                    'featureImage':
-                        'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                    'html':
-                        '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                    'publishedAt': '2020-10-16T18:19:34+03:00',
-                    'slug': 'how-to-add-your-cover',
-                    'title': 'How to add your cover',
-                    'readingTime': 0,
-                    'tags': <dynamic>[
-                      <String, dynamic>{
-                        'id': '5f89b94a0251c700391da364',
-                        'name': 'faqs',
-                        'slug': 'faqs'
-                      }
-                    ]
-                  },
-                ]
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getLibraryContent': <dynamic>[
+                <String, dynamic>{
+                  'id': '5f89b9120251c700391da360',
+                  'createdAt': '2020-10-16T18:15:30+03:00',
+                  'excerpt':
+                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
+                  'featureImage':
+                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
+                  'html':
+                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
+                  'publishedAt': '2020-10-16T18:19:34+03:00',
+                  'slug': 'how-to-add-your-cover',
+                  'title': 'How to add your cover',
+                  'readingTime': 0,
+                  'tags': <dynamic>[
+                    <String, dynamic>{
+                      'id': '5f89b94a0251c700391da364',
+                      'name': 'faqs',
+                      'slug': 'faqs'
+                    }
+                  ]
+                },
+                <String, dynamic>{
+                  'id': '5f89b9120251c700391da360',
+                  'createdAt': '2020-10-16T18:15:30+03:00',
+                  'excerpt':
+                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
+                  'featureImage':
+                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
+                  'html':
+                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
+                  'publishedAt': '2020-10-16T18:19:34+03:00',
+                  'slug': 'how-to-add-your-cover',
+                  'title': 'How to add your cover',
+                  'readingTime': 0,
+                  'tags': <dynamic>[
+                    <String, dynamic>{
+                      'id': '5f89b94a0251c700391da364',
+                      'name': 'faqs',
+                      'slug': 'faqs'
+                    }
+                  ]
+                },
+                <String, dynamic>{
+                  'id': '5f89b9120251c700391da360',
+                  'createdAt': '2020-10-16T18:15:30+03:00',
+                  'excerpt':
+                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
+                  'featureImage':
+                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
+                  'html':
+                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
+                  'publishedAt': '2020-10-16T18:19:34+03:00',
+                  'slug': 'how-to-add-your-cover',
+                  'title': 'How to add your cover',
+                  'readingTime': 0,
+                  'tags': <dynamic>[
+                    <String, dynamic>{
+                      'id': '5f89b94a0251c700391da364',
+                      'name': 'faqs',
+                      'slug': 'faqs'
+                    }
+                  ]
+                },
+                <String, dynamic>{
+                  'id': '5f89b9120251c700391da360',
+                  'createdAt': '2020-10-16T18:15:30+03:00',
+                  'excerpt':
+                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
+                  'featureImage':
+                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
+                  'html':
+                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
+                  'publishedAt': '2020-10-16T18:19:34+03:00',
+                  'slug': 'how-to-add-your-cover',
+                  'title': 'How to add your cover',
+                  'readingTime': 0,
+                  'tags': <dynamic>[
+                    <String, dynamic>{
+                      'id': '5f89b94a0251c700391da364',
+                      'name': 'faqs',
+                      'slug': 'faqs'
+                    }
+                  ]
+                },
+              ]
+            }
+          }),
+          201,
+        ),
       );
     }
     if (queryString.contains('getEmptyLibrary')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(
-              <String, dynamic>{
-                'data': <String, dynamic>{'getLibraryContent': <dynamic>[]}
-              },
-            ),
-            201),
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'getLibraryContent': <dynamic>[]}
+            },
+          ),
+          201,
+        ),
       );
     }
 
@@ -1273,45 +1321,48 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (queryString.contains('addCover')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'addCover': <String, dynamic>{
-                  'message': 'cover is LIVE',
-                  'status': 'VALID_COVER',
-                  'eligibilityTime': '2021-01-26T10:43:46Z'
-                }
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'addCover': <String, dynamic>{
+                'message': 'cover is LIVE',
+                'status': 'VALID_COVER',
+                'eligibilityTime': '2021-01-26T10:43:46Z'
               }
-            }),
-            201),
+            }
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('setUserCommunicationsSettings')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'setUserCommunicationsSettings': <String, dynamic>{
-                  'allowWhatsApp': true,
-                  'allowPush': false,
-                  'allowEmail': true,
-                  'allowTextSMS': true
-                }
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'setUserCommunicationsSettings': <String, dynamic>{
+                'allowWhatsApp': true,
+                'allowPush': false,
+                'allowEmail': true,
+                'allowTextSMS': true
               }
-            }),
-            201),
+            }
+          }),
+          201,
+        ),
       );
     }
 
     if (queryString.contains('getMemberRequestByPhoneNumber')) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'getMemberRequestByPhoneNumber': <dynamic>[]
-              }
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getMemberRequestByPhoneNumber': <dynamic>[]
+            }
+          }),
+          201,
+        ),
       );
     }
 
@@ -1325,10 +1376,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (queryString == resumeWithPinQuery) {
       return Future<http.Response>.value(
         http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'resumeWithPIN': true}
-            }),
-            201),
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'resumeWithPIN': true}
+          }),
+          201,
+        ),
       );
     }
 
@@ -1346,7 +1398,10 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
 
 class MockGraphQlClient2 extends IGraphQlClient {
   MockGraphQlClient2.withResponse(
-      String idToken, String endpoint, this.response) {
+    String idToken,
+    String endpoint,
+    this.response,
+  ) {
     super.idToken = idToken;
     super.endpoint = endpoint;
   }
@@ -1354,8 +1409,11 @@ class MockGraphQlClient2 extends IGraphQlClient {
   late final Response response;
 
   @override
-  Future<Response> query(String queryString, Map<String, dynamic> variables,
-          [ContentType contentType = ContentType.json]) async =>
+  Future<Response> query(
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) async =>
       this.response;
 }
 
@@ -1424,11 +1482,12 @@ List<dynamic> providerPanelsMock() {
   ];
 }
 
-List<dynamic> returnCoversMock(
-    {List<dynamic>? dependants,
-    List<dynamic>? benefits,
-    List<dynamic>? hasSladeCard,
-    bool? singleCover}) {
+List<dynamic> returnCoversMock({
+  List<dynamic>? dependants,
+  List<dynamic>? benefits,
+  List<dynamic>? hasSladeCard,
+  bool? singleCover,
+}) {
   return <dynamic>[
     <String, dynamic>{
       'member': <String, dynamic>{
@@ -1687,10 +1746,11 @@ Map<String, dynamic> singleMemberEligibility() {
   };
 }
 
-Map<String, dynamic> coversMock(
-    {List<dynamic>? dependants,
-    List<dynamic>? benefits,
-    List<dynamic>? hasSladeCard}) {
+Map<String, dynamic> coversMock({
+  List<dynamic>? dependants,
+  List<dynamic>? benefits,
+  List<dynamic>? hasSladeCard,
+}) {
   return <String, dynamic>{
     'member': <String, dynamic>{
       'membershipNumber': '1464443',
@@ -2393,7 +2453,8 @@ String sampleEndPoint = 'http://www.example.com/';
 Uri sampleUri = Uri.parse(sampleEndPoint);
 String sampleQuery = '';
 Route<dynamic> sampleRoute = MaterialPageRoute<dynamic>(
-    builder: (BuildContext context) => const Placeholder());
+  builder: (BuildContext context) => const Placeholder(),
+);
 
 final Map<String, Map<String, dynamic>?> loginResponse =
     <String, Map<String, Object?>?>{
@@ -2496,13 +2557,16 @@ void setUpMocks() {
   );
 
   when(baseGraphQlClientMock.toMap(coverRequestsErrorResponse)).thenReturn(
-      json.decode(coverRequestsErrorResponse.body) as Map<String, dynamic>);
+    json.decode(coverRequestsErrorResponse.body) as Map<String, dynamic>,
+  );
 
-  when(baseGraphQlClientMock.parseError(
-    <String, dynamic>{
-      'errors': 'An error occurred',
-    },
-  )).thenReturn(null);
+  when(
+    baseGraphQlClientMock.parseError(
+      <String, dynamic>{
+        'errors': 'An error occurred',
+      },
+    ),
+  ).thenReturn(null);
 
   when(baseGraphQlClientMock.toMap(response))
       .thenReturn(json.decode(response.body) as Map<String, dynamic>);
@@ -2533,7 +2597,10 @@ class MockFirebaseRemoteConfig extends Mock
   FirebaseRemoteConfigPlatform delegateFor({FirebaseApp? app}) {
     return super.noSuchMethod(
       Invocation.method(
-          #delegateFor, <dynamic>[], <Symbol, Object?>{#app: app}),
+        #delegateFor,
+        <dynamic>[],
+        <Symbol, Object?>{#app: app},
+      ),
       returnValue: TestFirebaseRemoteConfigPlatform(),
       returnValueForMissingStub: TestFirebaseRemoteConfigPlatform(),
     ) as FirebaseRemoteConfigPlatform;
@@ -2663,11 +2730,15 @@ class MockFirebaseRemoteConfig extends Mock
   }
 
   @override
-  FirebaseRemoteConfigPlatform setInitialValues(
-      {Map<dynamic, dynamic>? remoteConfigValues}) {
+  FirebaseRemoteConfigPlatform setInitialValues({
+    Map<dynamic, dynamic>? remoteConfigValues,
+  }) {
     return super.noSuchMethod(
-      Invocation.method(#setInitialValues, <dynamic>[],
-          <Symbol, Object?>{#remoteConfigValues: remoteConfigValues}),
+      Invocation.method(
+        #setInitialValues,
+        <dynamic>[],
+        <Symbol, Object?>{#remoteConfigValues: remoteConfigValues},
+      ),
       returnValue: TestFirebaseRemoteConfigPlatform(),
       returnValueForMissingStub: TestFirebaseRemoteConfigPlatform(),
     ) as FirebaseRemoteConfigPlatform;
@@ -2717,8 +2788,9 @@ class TestFirebaseRemoteConfigPlatform extends FirebaseRemoteConfigPlatform {
   }
 
   @override
-  FirebaseRemoteConfigPlatform setInitialValues(
-      {Map<dynamic, dynamic>? remoteConfigValues}) {
+  FirebaseRemoteConfigPlatform setInitialValues({
+    Map<dynamic, dynamic>? remoteConfigValues,
+  }) {
     return this;
   }
 
@@ -2748,17 +2820,24 @@ void setUpRemoteConfigStubs() {
     ValueSource.valueStatic,
   );
 
-  when(mockRemoteConfigPlatform.instanceFor(
-          app: anyNamed('app'), pluginConstants: anyNamed('pluginConstants')))
-      .thenAnswer((_) => mockRemoteConfigPlatform);
+  when(
+    mockRemoteConfigPlatform.instanceFor(
+      app: anyNamed('app'),
+      pluginConstants: anyNamed('pluginConstants'),
+    ),
+  ).thenAnswer((_) => mockRemoteConfigPlatform);
 
-  when(mockRemoteConfigPlatform.delegateFor(
-    app: anyNamed('app'),
-  )).thenAnswer((_) => mockRemoteConfigPlatform);
+  when(
+    mockRemoteConfigPlatform.delegateFor(
+      app: anyNamed('app'),
+    ),
+  ).thenAnswer((_) => mockRemoteConfigPlatform);
 
-  when(mockRemoteConfigPlatform.setInitialValues(
-          remoteConfigValues: anyNamed('remoteConfigValues')))
-      .thenAnswer((_) => mockRemoteConfigPlatform);
+  when(
+    mockRemoteConfigPlatform.setInitialValues(
+      remoteConfigValues: anyNamed('remoteConfigValues'),
+    ),
+  ).thenAnswer((_) => mockRemoteConfigPlatform);
 
   when(mockRemoteConfigPlatform.lastFetchTime).thenReturn(mockLastFetchTime);
 
@@ -2863,60 +2942,68 @@ final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
     date: 'Tuesday 13th',
     detailsList: <HealthDiaryDetailsItemObj>[
       HealthDiaryDetailsItemObj(
-          svgIconPath: sadMoodIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Sad'),
+        svgIconPath: sadMoodIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Sad',
+      ),
       HealthDiaryDetailsItemObj(
-          svgIconPath: textIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Text'),
+        svgIconPath: textIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Text',
+      ),
     ],
   ),
   HealthDiaryItemObj(
     date: 'Wednesday 19th',
     detailsList: <HealthDiaryDetailsItemObj>[
       HealthDiaryDetailsItemObj(
-          svgIconPath: happyMoodIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Happy'),
+        svgIconPath: happyMoodIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Happy',
+      ),
       HealthDiaryDetailsItemObj(
-          svgIconPath: mehMoodIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Meh!'),
+        svgIconPath: mehMoodIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Meh!',
+      ),
     ],
   ),
   HealthDiaryItemObj(
     date: 'Monday 21st',
     detailsList: <HealthDiaryDetailsItemObj>[
       HealthDiaryDetailsItemObj(
-          svgIconPath: sadMoodIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Sad'),
+        svgIconPath: sadMoodIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Sad',
+      ),
       HealthDiaryDetailsItemObj(
-          svgIconPath: imageIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Image'),
+        svgIconPath: imageIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Image',
+      ),
     ],
   ),
   HealthDiaryItemObj(
     date: 'Wednesday 25th',
     detailsList: <HealthDiaryDetailsItemObj>[
       HealthDiaryDetailsItemObj(
-          svgIconPath: sadMoodIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Sad'),
+        svgIconPath: sadMoodIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Sad',
+      ),
       HealthDiaryDetailsItemObj(
-          svgIconPath: imageIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Text'),
+        svgIconPath: imageIconSvgPath,
+        time: '8:00 am',
+        description: 'Description of how you are feeling today',
+        title: 'Text',
+      ),
     ],
   ),
 ];

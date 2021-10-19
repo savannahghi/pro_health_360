@@ -15,14 +15,18 @@ void main() {
 
       expect(obj1, equals(obj2));
       expect(
-          obj1.codeHasTakenLong.valueOrNull, obj2.codeHasTakenLong.valueOrNull);
+        obj1.codeHasTakenLong.valueOrNull,
+        obj2.codeHasTakenLong.valueOrNull,
+      );
 
       obj1.codeHasTakenLong.add(true);
 
       expect(obj1.codeHasTakenLong.valueOrNull, true);
 
       expect(
-          obj1.codeHasTakenLong.valueOrNull, obj2.codeHasTakenLong.valueOrNull);
+        obj1.codeHasTakenLong.valueOrNull,
+        obj2.codeHasTakenLong.valueOrNull,
+      );
     });
   });
 

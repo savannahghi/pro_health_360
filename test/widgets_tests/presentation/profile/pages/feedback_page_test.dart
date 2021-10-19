@@ -91,13 +91,17 @@ void main() {
     await tester.tap(yesRadioButton);
     await tester.pumpAndSettle();
 
-    expect((tester.firstWidget(yesRadioButton) as Radio<FollowUpChoice>).value,
-        FollowUpChoice.Yes);
+    expect(
+      (tester.firstWidget(yesRadioButton) as Radio<FollowUpChoice>).value,
+      FollowUpChoice.Yes,
+    );
 
     await tester.tap(noRadioButton);
     await tester.pumpAndSettle();
 
-    expect((tester.firstWidget(noRadioButton) as Radio<FollowUpChoice>).value,
-        FollowUpChoice.No);
+    expect(
+      (tester.firstWidget(noRadioButton) as Radio<FollowUpChoice>).value,
+      FollowUpChoice.No,
+    );
   });
 }

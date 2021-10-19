@@ -14,14 +14,16 @@ void main() {
     const String errorMsgText = 'some error message ';
     const String actionSpanText = 'or some other error message';
 
-    await tester.pumpWidget(const MaterialApp(
-      home: Scaffold(
-        body: ErrorAlertBox(
-          message: errorMsgText,
-          actionSpan: TextSpan(text: actionSpanText),
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: ErrorAlertBox(
+            message: errorMsgText,
+            actionSpan: TextSpan(text: actionSpanText),
+          ),
         ),
       ),
-    ));
+    );
 
     expect(find.byKey(errorAlertBoxKey), findsOneWidget);
     expect(find.byType(RichText), findsOneWidget);

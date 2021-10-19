@@ -65,9 +65,11 @@ void main() {
                     appName: testAppName,
                     appContexts: testAppContexts,
                     graphQLClient: mockGraphQlClient,
-                    child: Builder(builder: (BuildContext context) {
-                      return ProfileContactDetails();
-                    }),
+                    child: Builder(
+                      builder: (BuildContext context) {
+                        return ProfileContactDetails();
+                      },
+                    ),
                   ),
                 ),
               );
@@ -81,8 +83,9 @@ void main() {
 
       // get the state
       final State<StatefulWidget> testState = tester.allStates.singleWhere(
-          (State<StatefulWidget> element) =>
-              element.toString() == buildContactProviderState);
+        (State<StatefulWidget> element) =>
+            element.toString() == buildContactProviderState,
+      );
 
       // check if it is null
       expect(testState, isNotNull);
@@ -94,7 +97,9 @@ void main() {
 
       // assert that is was called
       expect(
-          () => buildContactProviderStateTest.refreshFeed(), returnsNormally);
+        () => buildContactProviderStateTest.refreshFeed(),
+        returnsNormally,
+      );
     });
   });
 }

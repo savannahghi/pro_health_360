@@ -49,9 +49,11 @@ class GenericTimeoutWidget extends StatelessWidget {
           smallVerticalSizedBox,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: Text(UserFeedBackTexts.getErrorMessage(action),
-                textAlign: TextAlign.center,
-                style: TextThemes.normalSize14Text()),
+            child: Text(
+              UserFeedBackTexts.getErrorMessage(action),
+              textAlign: TextAlign.center,
+              style: TextThemes.normalSize14Text(),
+            ),
           ),
           smallVerticalSizedBox,
           SILPrimaryButton(
@@ -61,8 +63,11 @@ class GenericTimeoutWidget extends StatelessWidget {
                 ? recoverCallback as void Function()?
                 : route != null
                     ? () async {
-                        await Navigator.pushNamed(context, route!,
-                            arguments: payload);
+                        await Navigator.pushNamed(
+                          context,
+                          route!,
+                          arguments: payload,
+                        );
                       }
                     : () {},
             text: recoverActionText ?? 'Retry',

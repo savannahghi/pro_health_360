@@ -48,16 +48,19 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
               child: Center(
                 child: RichText(
                   text: TextSpan(
-                      text: description,
-                      style: TextThemes.veryBoldSize32Text(
-                          AppColors.secondaryColor),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: descriptionSubScript,
-                          style: TextThemes.normalSize14Text(
-                              AppColors.secondaryColor),
-                        )
-                      ]),
+                    text: description,
+                    style: TextThemes.veryBoldSize32Text(
+                      AppColors.secondaryColor,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: descriptionSubScript,
+                        style: TextThemes.normalSize14Text(
+                          AppColors.secondaryColor,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

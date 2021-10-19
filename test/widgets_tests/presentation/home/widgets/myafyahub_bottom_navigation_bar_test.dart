@@ -23,13 +23,15 @@ void main() {
       initialState: AppState.initial().copyWith(
         userProfileState: UserProfileState(
           auth: AuthCredentialResponse.fromJson(
-              <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'}),
+            <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'},
+          ),
           userProfile: UserProfile.initial().copyWith(
             primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
             userBioData: BioData.initial().copyWith(
-                firstName: Name.withValue('name'),
-                lastName: Name.withValue('name'),
-                gender: Gender.female),
+              firstName: Name.withValue('name'),
+              lastName: Name.withValue('name'),
+              gender: Gender.female,
+            ),
           ),
         ),
       ),
@@ -57,14 +59,16 @@ void main() {
         tester: tester,
         store: store,
         client: GraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return Scaffold(
-            body: Container(),
-            bottomNavigationBar: const MyAfyaHubBottomNavigationBar(
-              currentIndex: 1,
-            ),
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return Scaffold(
+              body: Container(),
+              bottomNavigationBar: const MyAfyaHubBottomNavigationBar(
+                currentIndex: 1,
+              ),
+            );
+          },
+        ),
       );
 
       await tester.pumpAndSettle();

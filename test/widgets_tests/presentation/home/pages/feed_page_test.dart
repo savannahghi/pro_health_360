@@ -23,19 +23,22 @@ void main() {
         (WidgetTester tester) async {
       final Store<AppState> store = Store<AppState>(
         initialState: AppState.initial().copyWith(
-            userProfileState: UserProfileState(
-              auth: AuthCredentialResponse.fromJson(
-                  <String, dynamic>{'uid': 'some-long-uid'}),
-              userProfile: UserProfile.initial().copyWith(
-                primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
-                userBioData: BioData.initial().copyWith(
-                    firstName: Name.withValue('name'),
-                    lastName: Name.withValue('name'),
-                    gender: Gender.female),
+          userProfileState: UserProfileState(
+            auth: AuthCredentialResponse.fromJson(
+              <String, dynamic>{'uid': 'some-long-uid'},
+            ),
+            userProfile: UserProfile.initial().copyWith(
+              primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
+              userBioData: BioData.initial().copyWith(
+                firstName: Name.withValue('name'),
+                lastName: Name.withValue('name'),
+                gender: Gender.female,
               ),
             ),
-            miscState: MiscState.initial()
-                .copyWith(appReviewObj: AppReviewObj(launches: 10, days: 5))),
+          ),
+          miscState: MiscState.initial()
+              .copyWith(appReviewObj: AppReviewObj(launches: 10, days: 5)),
+        ),
       );
 
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();

@@ -13,8 +13,8 @@ class BottomNavAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final AppState newState = state.copyWith.miscState!.call(
-        bottomNavObj:
-            BottomNavObj(currentBottomNavIndex: currentBottomNavIndex));
+      bottomNavObj: BottomNavObj(currentBottomNavIndex: currentBottomNavIndex),
+    );
     return newState;
   }
 }

@@ -65,9 +65,12 @@ class NotificationListItem extends StatelessWidget {
                       label: SizedBox(
                         width: 70,
                         child: Center(
-                          child: Text(status!,
-                              style: TextThemes.normalSize12Text(
-                                  AppColors.warningColor)),
+                          child: Text(
+                            status!,
+                            style: TextThemes.normalSize12Text(
+                              AppColors.warningColor,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -107,23 +110,25 @@ class NotificationListItem extends StatelessWidget {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(5),
-                                  child: Row(children: <Widget>[
-                                    SvgPicture.asset(
-                                      notificationActions.icon.iconUrlSvgPath,
-                                      width: 15,
-                                      height: 15,
-                                      color: AppColors.secondaryColor,
-                                    ),
-                                    smallHorizontalSizedBox,
-                                    Expanded(
-                                      child: Text(
-                                        notificationActions.name,
-                                        style: TextThemes.normalSize11Text(
-                                          AppColors.secondaryColor,
+                                  child: Row(
+                                    children: <Widget>[
+                                      SvgPicture.asset(
+                                        notificationActions.icon.iconUrlSvgPath,
+                                        width: 15,
+                                        height: 15,
+                                        color: AppColors.secondaryColor,
+                                      ),
+                                      smallHorizontalSizedBox,
+                                      Expanded(
+                                        child: Text(
+                                          notificationActions.name,
+                                          style: TextThemes.normalSize11Text(
+                                            AppColors.secondaryColor,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ]),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

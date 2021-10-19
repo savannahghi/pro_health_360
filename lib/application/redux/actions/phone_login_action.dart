@@ -81,19 +81,24 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       /// network request is made to the backend to verify that the user provided credentials match those stored in our backend and result store in [processedResponse] variable
       final ProcessedResponse processedResponse = processHttpResponse(
-          await _httpClient.callRESTAPI(
-              endpoint: endPoint, variables: _variables, method: httpPOST),
-          context);
+        await _httpClient.callRESTAPI(
+          endpoint: endPoint,
+          variables: _variables,
+          method: httpPOST,
+        ),
+        context,
+      );
 
       if (processedResponse.ok == true) {
         afterLoginOrCreateAccount(
-            context: context,
-            onboardActionType: OnboardActionType.login,
-            processedResponse: processedResponse,
-            store: store,
-            graphQlClient: _httpClient,
-            dateTimeParser: this.dateTimeParser,
-            refreshTokenManger: this.tokenManger);
+          context: context,
+          onboardActionType: OnboardActionType.login,
+          processedResponse: processedResponse,
+          store: store,
+          graphQlClient: _httpClient,
+          dateTimeParser: this.dateTimeParser,
+          refreshTokenManger: this.tokenManger,
+        );
         return state;
       } else {
         // exception thrown if the backend could not match the provided credentials with those stored in the backend
@@ -104,9 +109,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         );
 
         throw SILException(
-            error: processedResponse.response,
-            cause: 'sign_in_error',
-            message: processedResponse.message);
+          error: processedResponse.response,
+          cause: 'sign_in_error',
+          message: processedResponse.message,
+        );
       }
     } else {
       showFeedbackBottomSheet(

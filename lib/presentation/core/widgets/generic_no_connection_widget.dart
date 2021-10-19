@@ -13,9 +13,11 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 /// [GenericNoConnection] used when there is no internet connection
 /// todo(dexter) -> implement connectivity to make this widget usable
 class GenericNoConnection extends StatelessWidget {
-  const GenericNoConnection(
-      {Key? key, required this.route, required this.payload})
-      : super(key: key);
+  const GenericNoConnection({
+    Key? key,
+    required this.route,
+    required this.payload,
+  }) : super(key: key);
 
   final Map<String, dynamic> payload;
   final String route;
@@ -42,30 +44,34 @@ class GenericNoConnection extends StatelessWidget {
         ),
         smallVerticalSizedBox,
         Center(
-          child: Column(children: <Widget>[
-            Text.rich(
-              TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
+          child: Column(
+            children: <Widget>[
+              Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
                       text: 'No internet connection',
-                      style: TextThemes.boldSize18Text(AppColors.primaryColor)),
-                  const TextSpan(text: '\n\n'),
-                  TextSpan(
+                      style: TextThemes.boldSize18Text(AppColors.primaryColor),
+                    ),
+                    const TextSpan(text: '\n\n'),
+                    TextSpan(
                       text:
                           'Sorry, you do not seem to have an internet connection.'
                           ' Please reconnect and try again',
-                      style: TextThemes.normalSize14Text(AppColors.blackColor))
-                ],
+                      style: TextThemes.normalSize14Text(AppColors.blackColor),
+                    )
+                  ],
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            smallVerticalSizedBox,
-            SILPrimaryButton(
-              text: 'Retry',
-              buttonColor: AppColors.primaryColor,
-              onPressed: () => retryFunction(context),
-            )
-          ]),
+              smallVerticalSizedBox,
+              SILPrimaryButton(
+                text: 'Retry',
+                buttonColor: AppColors.primaryColor,
+                onPressed: () => retryFunction(context),
+              )
+            ],
+          ),
         ),
       ],
     );

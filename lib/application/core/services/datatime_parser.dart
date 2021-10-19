@@ -14,8 +14,11 @@ class DateTimeParser {
       dateTimeToUse = this.customDateTime!;
     }
     final String parsedExpiresAt = dateTimeToUse
-        .add(Duration(
-            seconds: expiresIn - kTokenCustomBeforeExpiryTimeInSeconds))
+        .add(
+          Duration(
+            seconds: expiresIn - kTokenCustomBeforeExpiryTimeInSeconds,
+          ),
+        )
         .toIso8601String();
     return parsedExpiresAt;
   }

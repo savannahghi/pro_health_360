@@ -28,60 +28,68 @@ class MyHealthDiaryPage extends StatelessWidget {
       date: 'Tuesday 13th',
       detailsList: <HealthDiaryDetailsItemObj>[
         HealthDiaryDetailsItemObj(
-            svgIconPath: sadMoodIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Sad'),
+          svgIconPath: sadMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Sad',
+        ),
         HealthDiaryDetailsItemObj(
-            svgIconPath: textIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Text'),
+          svgIconPath: textIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Text',
+        ),
       ],
     ),
     HealthDiaryItemObj(
       date: 'Wednesday 19th',
       detailsList: <HealthDiaryDetailsItemObj>[
         HealthDiaryDetailsItemObj(
-            svgIconPath: happyMoodIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Happy'),
+          svgIconPath: happyMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Happy',
+        ),
         HealthDiaryDetailsItemObj(
-            svgIconPath: mehMoodIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Meh!'),
+          svgIconPath: mehMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Meh!',
+        ),
       ],
     ),
     HealthDiaryItemObj(
       date: 'Monday 21st',
       detailsList: <HealthDiaryDetailsItemObj>[
         HealthDiaryDetailsItemObj(
-            svgIconPath: sadMoodIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Sad'),
+          svgIconPath: sadMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Sad',
+        ),
         HealthDiaryDetailsItemObj(
-            svgIconPath: imageIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Image'),
+          svgIconPath: imageIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Image',
+        ),
       ],
     ),
     HealthDiaryItemObj(
       date: 'Wednesday 25th',
       detailsList: <HealthDiaryDetailsItemObj>[
         HealthDiaryDetailsItemObj(
-            svgIconPath: sadMoodIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Sad'),
+          svgIconPath: sadMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Sad',
+        ),
         HealthDiaryDetailsItemObj(
-            svgIconPath: imageIconSvgPath,
-            time: '8:00 am',
-            description: 'Description of how you are feeling today',
-            title: 'Text'),
+          svgIconPath: imageIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Text',
+        ),
       ],
     ),
   ];
@@ -93,9 +101,8 @@ class MyHealthDiaryPage extends StatelessWidget {
       appBar: CustomAppBar(
         title: myHealthDiaryString,
         leadingWidget: SvgPicture.asset(
-            backIconPath,
-            color: AppColors.secondaryColor,
-          
+          backIconPath,
+          color: AppColors.secondaryColor,
         ),
       ),
       body: Stack(
@@ -107,38 +114,41 @@ class MyHealthDiaryPage extends StatelessWidget {
                   color: AppColors.darkGreyBackgroundColor,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 15.0, horizontal: 30.0),
+                      vertical: 15.0,
+                      horizontal: 30.0,
+                    ),
                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          SvgPicture.asset(
-                            prevIconSvgPath,
-                            width: 16,
-                            height: 16,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              SvgPicture.asset(
-                                calendarIcon,
-                                width: 16,
-                                height: 16,
-                                color: AppColors.secondaryColor,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SvgPicture.asset(
+                          prevIconSvgPath,
+                          width: 16,
+                          height: 16,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SvgPicture.asset(
+                              calendarIcon,
+                              width: 16,
+                              height: 16,
+                              color: AppColors.secondaryColor,
+                            ),
+                            smallHorizontalSizedBox,
+                            Text(
+                              month,
+                              style: TextThemes.boldSize14Text(
+                                AppColors.secondaryColor,
                               ),
-                              smallHorizontalSizedBox,
-                              Text(
-                                month,
-                                style: TextThemes.boldSize14Text(
-                                  AppColors.secondaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SvgPicture.asset(
-                            nextIconSvgPath,
-                            width: 16,
-                            height: 16,
-                          ),
-                        ]),
+                            ),
+                          ],
+                        ),
+                        SvgPicture.asset(
+                          nextIconSvgPath,
+                          width: 16,
+                          height: 16,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 mediumVerticalSizedBox,
@@ -222,7 +232,9 @@ class MyHealthDiaryPage extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 12),
+                                  horizontal: 12,
+                                  vertical: 12,
+                                ),
                                 width: 50,
                                 decoration: BoxDecoration(
                                   color: AppColors.listCardColor,
@@ -250,7 +262,9 @@ class MyHealthDiaryPage extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 12),
+                                  horizontal: 12,
+                                  vertical: 12,
+                                ),
                                 width: 50,
                                 decoration: BoxDecoration(
                                   color: AppColors.listCardColor,

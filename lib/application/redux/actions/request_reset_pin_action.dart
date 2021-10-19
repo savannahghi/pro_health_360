@@ -44,7 +44,9 @@ class RequestResetPinAction extends ReduxAction<AppState> {
     if (state.userProfileState!.userProfile!.primaryPhoneNumber ==
         PhoneNumber.withValue(UNKNOWN)) {
       throw SILException(
-          cause: 'no_phone_number', message: providePhoneToProceed);
+        cause: 'no_phone_number',
+        message: providePhoneToProceed,
+      );
     }
 
     // get the verify phone endpoint based on the context
@@ -62,11 +64,13 @@ class RequestResetPinAction extends ReduxAction<AppState> {
         AppWrapperBase.of(context)!.graphQLClient;
     // forgot PIN endpoint to sent and OTP to the number and not check if user exists
     final ProcessedResponse processedResponse = processHttpResponse(
-        await _httpClient.callRESTAPI(
-            endpoint: resetPinResetEndpoint,
-            variables: _variables,
-            method: 'POST'),
-        context);
+      await _httpClient.callRESTAPI(
+        endpoint: resetPinResetEndpoint,
+        variables: _variables,
+        method: 'POST',
+      ),
+      context,
+    );
     if (processedResponse.ok) {
       final http.Response response = processedResponse.response;
 
@@ -76,13 +80,17 @@ class RequestResetPinAction extends ReduxAction<AppState> {
       if (body['otp'] != null) {
         // dispatch OTP to state
         store.dispatch(
-            UpdatePinStatusAction(recoveryOtp: body['otp'].toString()));
+          UpdatePinStatusAction(recoveryOtp: body['otp'].toString()),
+        );
         // navigate to forgot PIN otp page to verify the OTP
         Navigator.pushNamed(context, BWRoutes.forgotPinOtpWidget);
         return state;
       }
       throw SILException(
-          error: body, cause: 'otp_error', message: sendOtpError);
+        error: body,
+        cause: 'otp_error',
+        message: sendOtpError,
+      );
     }
     throw SILException(
       error: processedResponse.response,

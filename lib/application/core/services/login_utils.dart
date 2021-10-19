@@ -31,11 +31,12 @@ Future<void> signInUser({
   }
   // this is the Redux Action that store the phone number and PIN user enters
   StoreProvider.dispatch(
-      context,
-      PhoneLoginStateAction(
-        phoneNumber: phoneNumber,
-        pinCode: pin,
-      ));
+    context,
+    PhoneLoginStateAction(
+      phoneNumber: phoneNumber,
+      pinCode: pin,
+    ),
+  );
 
   // this is the Redux Action that handles Login for an existing user
   await StoreProvider.dispatch<AppState>(

@@ -76,19 +76,23 @@ class RouteGenerator {
 
       case BWRoutes.phoneLogin:
         return MaterialPageRoute<MyAfyaHubPhoneLoginPage>(
-            builder: (_) => MyAfyaHubPhoneLoginPage());
+          builder: (_) => MyAfyaHubPhoneLoginPage(),
+        );
 
       case BWRoutes.basicDetails:
         return MaterialPageRoute<BasicDetailsPage>(
-            builder: (_) => BasicDetailsPage());
+          builder: (_) => BasicDetailsPage(),
+        );
 
       case BWRoutes.resetPin:
         return MaterialPageRoute<RequestPinResetPage>(
-            builder: (_) => RequestPinResetPage());
+          builder: (_) => RequestPinResetPage(),
+        );
 
       case BWRoutes.resumeWithPin:
         return MaterialPageRoute<ResumeWithPinPage>(
-            builder: (_) => ResumeWithPinPage());
+          builder: (_) => ResumeWithPinPage(),
+        );
 
       // the homepage route config
       case BWRoutes.home:
@@ -99,19 +103,23 @@ class RouteGenerator {
 
       case BWRoutes.contactInfo:
         return MaterialPageRoute<ProfileContactDetails>(
-            builder: (_) => ProfileContactDetails());
+          builder: (_) => ProfileContactDetails(),
+        );
 
       case BWRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
-            builder: (_) => const ProfileFaqsPage());
+          builder: (_) => const ProfileFaqsPage(),
+        );
 
       case BWRoutes.library:
         return MaterialPageRoute<Library>(builder: (_) => Library());
 
       case BWRoutes.libraryContent:
         return MaterialPageRoute<LibraryContent>(
-            builder: (_) => LibraryContent(
-                libraryContentItem: args as LibraryContentItemData));
+          builder: (_) => LibraryContent(
+            libraryContentItem: args as LibraryContentItemData,
+          ),
+        );
 
       // search page
       case BWRoutes.editProfileSettingsPage:
@@ -121,27 +129,33 @@ class RouteGenerator {
 
       case BWRoutes.webView:
         return MaterialPageRoute<webview.TermsAndConditionsPage>(
-            builder: (_) => const webview.TermsAndConditionsPage());
+          builder: (_) => const webview.TermsAndConditionsPage(),
+        );
 
       case BWRoutes.forgotPinOtpWidget:
         return MaterialPageRoute<ForgotPinOtpWidget>(
-            builder: (_) => ForgotPinOtpWidget());
+          builder: (_) => ForgotPinOtpWidget(),
+        );
 
       case BWRoutes.securityQuestionsPage:
         return MaterialPageRoute<SecurityQuestionsPage>(
-            builder: (_) => const SecurityQuestionsPage());
+          builder: (_) => const SecurityQuestionsPage(),
+        );
 
       case BWRoutes.answerSecurityQuestionPage:
         return MaterialPageRoute<AnswerSecurityQuestionPage>(
-            builder: (_) => const AnswerSecurityQuestionPage());
+          builder: (_) => const AnswerSecurityQuestionPage(),
+        );
 
       case BWRoutes.communityListView:
         return MaterialPageRoute<CommunityListViewPage>(
-            builder: (_) => const CommunityListViewPage());
+          builder: (_) => const CommunityListViewPage(),
+        );
 
       case BWRoutes.communityChatScreenPage:
         return MaterialPageRoute<CommunityChatScreenPage>(
-            builder: (_) => const CommunityChatScreenPage());
+          builder: (_) => const CommunityChatScreenPage(),
+        );
 
       case BWRoutes.consent:
         return MaterialPageRoute<ConsentPage>(
@@ -150,7 +164,8 @@ class RouteGenerator {
 
       case BWRoutes.personalInfo:
         return MaterialPageRoute<PersonalInformationPage>(
-            builder: (_) => PersonalInformationPage());
+          builder: (_) => PersonalInformationPage(),
+        );
 
       case BWRoutes.medicalData:
         return MaterialPageRoute<MedicalDataPage>(
@@ -176,7 +191,8 @@ class RouteGenerator {
 
       case BWRoutes.appointmentsPage:
         return MaterialPageRoute<AppointmentsPage>(
-            builder: (_) => AppointmentsPage());
+          builder: (_) => AppointmentsPage(),
+        );
 
       case BWRoutes.myHealthPage:
         return MaterialPageRoute<MyHealthPage>(

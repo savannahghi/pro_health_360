@@ -271,12 +271,15 @@ class ProfileSubject {
 
   BehaviorSubject<ValueNotifier<ProfileItems>> selection =
       BehaviorSubject<ValueNotifier<ProfileItems>>.seeded(
-          ValueNotifier<ProfileItems>(const ProfileItems(
-    text: contactInfo,
-    section: ProfileItemType.account,
-    onTapRoute: BWRoutes.contactInfo,
-    iconData: UniconsLine.user_circle,
-  )));
+    ValueNotifier<ProfileItems>(
+      const ProfileItems(
+        text: contactInfo,
+        section: ProfileItemType.account,
+        onTapRoute: BWRoutes.contactInfo,
+        iconData: UniconsLine.user_circle,
+      ),
+    ),
+  );
 
   static final ProfileSubject _singleton = ProfileSubject._internal();
 }

@@ -66,7 +66,8 @@ void main() {
           .thenAnswer((Invocation realInvocation) => Future<void>.value());
 
       when(fcm!.getDeviceToken()).thenAnswer(
-          (Invocation realInvocation) => Future<String>.value('test-token'));
+        (Invocation realInvocation) => Future<String>.value('test-token'),
+      );
     });
 
     testWidgets('should return homepage route', (WidgetTester tester) async {
@@ -130,23 +131,26 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return Material(
-              child: Scaffold(
-                body: SILPrimaryButton(
-                  buttonKey: updateUserPinButtonKey,
-                  onPressed: () async {
-                    EndPointsContextSubject().contexts.add(prodAppContexts);
-                    await updateUserPin(
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Material(
+                child: Scaffold(
+                  body: SILPrimaryButton(
+                    buttonKey: updateUserPinButtonKey,
+                    onPressed: () async {
+                      EndPointsContextSubject().contexts.add(prodAppContexts);
+                      await updateUserPin(
                         context: context,
                         pin: testPin,
                         phoneNumber: testPhoneNumber,
-                        otp: testOTP);
-                  },
+                        otp: testOTP,
+                      );
+                    },
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            },
+          ),
         );
         await fireEvent(tester);
         expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -170,15 +174,17 @@ void main() {
         const Key updateUserPinButtonKey = Key('update_user_pin_button');
         final Store<AppState> store =
             Store<AppState>(initialState: AppState.initial());
-        when(baseGraphQlClientMock.callRESTAPI(
-                endpoint: kTestUpdateUserPinEndpoint,
-                variables: <String, String>{
-                  'phoneNumber': testPhoneNumber,
-                  'OTP': testOTP,
-                  'PIN': testPin,
-                },
-                method: 'POST'))
-            .thenAnswer(
+        when(
+          baseGraphQlClientMock.callRESTAPI(
+            endpoint: kTestUpdateUserPinEndpoint,
+            variables: <String, String>{
+              'phoneNumber': testPhoneNumber,
+              'OTP': testOTP,
+              'PIN': testPin,
+            },
+            method: 'POST',
+          ),
+        ).thenAnswer(
           (_) => Future<http.Response>.value(
             http.Response(
               json.encode(true),
@@ -191,23 +197,26 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return Material(
-              child: Scaffold(
-                body: SILPrimaryButton(
-                  buttonKey: updateUserPinButtonKey,
-                  onPressed: () async {
-                    EndPointsContextSubject().contexts.add(testAppContexts);
-                    await updateUserPin(
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Material(
+                child: Scaffold(
+                  body: SILPrimaryButton(
+                    buttonKey: updateUserPinButtonKey,
+                    onPressed: () async {
+                      EndPointsContextSubject().contexts.add(testAppContexts);
+                      await updateUserPin(
                         context: context,
                         pin: testPin,
                         phoneNumber: testPhoneNumber,
-                        otp: testOTP);
-                  },
+                        otp: testOTP,
+                      );
+                    },
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            },
+          ),
         );
         await fireEvent(tester);
         expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -225,15 +234,17 @@ void main() {
         const Key updateUserPinButtonKey = Key('update_user_pin_button');
         final Store<AppState> store =
             Store<AppState>(initialState: AppState.initial());
-        when(baseGraphQlClientMock.callRESTAPI(
-                endpoint: kTestUpdateUserPinEndpoint,
-                variables: <String, String>{
-                  'phoneNumber': testPhoneNumber,
-                  'OTP': testOTP,
-                  'PIN': testPin,
-                },
-                method: 'POST'))
-            .thenAnswer(
+        when(
+          baseGraphQlClientMock.callRESTAPI(
+            endpoint: kTestUpdateUserPinEndpoint,
+            variables: <String, String>{
+              'phoneNumber': testPhoneNumber,
+              'OTP': testOTP,
+              'PIN': testPin,
+            },
+            method: 'POST',
+          ),
+        ).thenAnswer(
           (_) => Future<http.Response>.value(
             http.Response(
               json.encode(false),
@@ -246,23 +257,26 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return Material(
-              child: Scaffold(
-                body: SILPrimaryButton(
-                  buttonKey: updateUserPinButtonKey,
-                  onPressed: () async {
-                    EndPointsContextSubject().contexts.add(testAppContexts);
-                    await updateUserPin(
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Material(
+                child: Scaffold(
+                  body: SILPrimaryButton(
+                    buttonKey: updateUserPinButtonKey,
+                    onPressed: () async {
+                      EndPointsContextSubject().contexts.add(testAppContexts);
+                      await updateUserPin(
                         context: context,
                         pin: testPin,
                         phoneNumber: testPhoneNumber,
-                        otp: testOTP);
-                  },
+                        otp: testOTP,
+                      );
+                    },
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            },
+          ),
         );
         await fireEvent(tester);
         expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -286,15 +300,19 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                await StoreProvider.dispatch<AppState>(
-                    context, AuthStatusAction(isAnonymous: true));
-                _onboardingPath = onboardingPath(store.state);
-              },
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  await StoreProvider.dispatch<AppState>(
+                    context,
+                    AuthStatusAction(isAnonymous: true),
+                  );
+                  _onboardingPath = onboardingPath(store.state);
+                },
+              );
+            },
+          ),
         );
         await tester.pumpAndSettle();
 
@@ -315,18 +333,21 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                await StoreProvider.dispatch<AppState>(
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  await StoreProvider.dispatch<AppState>(
                     context,
                     AuthStatusAction(
                       isAnonymous: false,
-                    ));
-                _onboardingPath = onboardingPath(store.state);
-              },
-            );
-          }),
+                    ),
+                  );
+                  _onboardingPath = onboardingPath(store.state);
+                },
+              );
+            },
+          ),
         );
         await tester.pumpAndSettle();
         // trigger the bottom sheet
@@ -345,23 +366,26 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                await StoreProvider.dispatch<AppState>(
-                  context,
-                  UpdateUserProfileAction(
-                    userBioData: BioData(
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  await StoreProvider.dispatch<AppState>(
+                    context,
+                    UpdateUserProfileAction(
+                      userBioData: BioData(
                         dateOfBirth: '12-12-12',
                         firstName: Name.withValue('Test'),
                         lastName: Name.withValue('Coverage'),
-                        gender: Gender.male),
-                  ),
-                );
-                _onboardingPath = onboardingPath(store.state);
-              },
-            );
-          }),
+                        gender: Gender.male,
+                      ),
+                    ),
+                  );
+                  _onboardingPath = onboardingPath(store.state);
+                },
+              );
+            },
+          ),
         );
         await tester.pumpAndSettle();
 
@@ -382,25 +406,28 @@ void main() {
       testWidgets('Onboarding utils should process response with a 200',
           (WidgetTester tester) async {
         final http.Response expectedResponse = http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'addTester': true}
-            }),
-            201);
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'addTester': true}
+          }),
+          201,
+        );
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
-        await tester.pumpWidget(MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  actualResponse = processHttpResponse(expectedResponse);
-                },
-                text: processBtnText,
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    actualResponse = processHttpResponse(expectedResponse);
+                  },
+                  text: processBtnText,
+                ),
               ),
             ),
           ),
-        ));
+        );
 
         expect(find.text(processBtnText), findsOneWidget);
         expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -416,29 +443,32 @@ void main() {
           'Onboarding utils should process response with a 400 and a status code of 4',
           (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(
-            json.encode(<String, dynamic>{
-              'error': <String, dynamic>{
-                'code': 4,
-                'message': 'coverage is still not 100%'
-              },
+          json.encode(<String, dynamic>{
+            'error': <String, dynamic>{
               'code': 4,
-            }),
-            400);
+              'message': 'coverage is still not 100%'
+            },
+            'code': 4,
+          }),
+          400,
+        );
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
-        await tester.pumpWidget(MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  actualResponse = processHttpResponse(expectedErrorResponse);
-                },
-                text: processBtnText,
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    actualResponse = processHttpResponse(expectedErrorResponse);
+                  },
+                  text: processBtnText,
+                ),
               ),
             ),
           ),
-        ));
+        );
 
         expect(find.text(processBtnText), findsOneWidget);
         expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -456,11 +486,12 @@ void main() {
           'Onboarding utils should show that a user exists if a 400 '
           ' is returned and a status code of 4', (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(
-            json.encode(<String, dynamic>{
-              'code': 4,
-              'message': 'coverage is still not 100%'
-            }),
-            400);
+          json.encode(<String, dynamic>{
+            'code': 4,
+            'message': 'coverage is still not 100%'
+          }),
+          400,
+        );
 
         late ProcessedResponse actualResponse;
         final Store<AppState> store =
@@ -470,15 +501,17 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () {
-                actualResponse =
-                    processHttpResponse(expectedErrorResponse, context);
-              },
-              text: 'process response',
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () {
+                  actualResponse =
+                      processHttpResponse(expectedErrorResponse, context);
+                },
+                text: 'process response',
+              );
+            },
+          ),
         );
         await tester.pump();
         expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -498,11 +531,12 @@ void main() {
           'Onboarding utils should process response '
           'with a 400 and a status code of 8', (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(
-            json.encode(<String, dynamic>{
-              'code': 8,
-              'message': 'coverage is still not 100%'
-            }),
-            400);
+          json.encode(<String, dynamic>{
+            'code': 8,
+            'message': 'coverage is still not 100%'
+          }),
+          400,
+        );
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
@@ -510,17 +544,19 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  actualResponse =
-                      processHttpResponse(expectedErrorResponse, context);
-                },
-                text: processBtnText,
-              ),
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    actualResponse =
+                        processHttpResponse(expectedErrorResponse, context);
+                  },
+                  text: processBtnText,
+                ),
+              );
+            },
+          ),
         );
         await tester.pump();
         expect(find.text(processBtnText), findsOneWidget);
@@ -541,11 +577,12 @@ void main() {
           'Onboarding utils should process response '
           'with a 500 and a status code of 8', (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(
-            json.encode(<String, dynamic>{
-              'code': 11,
-              'message': 'coverage is still not 100%'
-            }),
-            400);
+          json.encode(<String, dynamic>{
+            'code': 11,
+            'message': 'coverage is still not 100%'
+          }),
+          400,
+        );
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
@@ -553,17 +590,19 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  actualResponse =
-                      processHttpResponse(expectedErrorResponse, context);
-                },
-                text: processBtnText,
-              ),
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    actualResponse =
+                        processHttpResponse(expectedErrorResponse, context);
+                  },
+                  text: processBtnText,
+                ),
+              );
+            },
+          ),
         );
         await tester.pump();
         expect(find.text(processBtnText), findsOneWidget);
@@ -581,11 +620,12 @@ void main() {
       testWidgets('Onboarding utils should process response with a 500',
           (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(
-            json.encode(<String, dynamic>{
-              'code': 11,
-              'message': 'coverage is still not 100%'
-            }),
-            500);
+          json.encode(<String, dynamic>{
+            'code': 11,
+            'message': 'coverage is still not 100%'
+          }),
+          500,
+        );
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
@@ -593,17 +633,19 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  actualResponse =
-                      processHttpResponse(expectedErrorResponse, context);
-                },
-                text: processBtnText,
-              ),
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    actualResponse =
+                        processHttpResponse(expectedErrorResponse, context);
+                  },
+                  text: processBtnText,
+                ),
+              );
+            },
+          ),
         );
         await tester.pump();
         expect(find.text(processBtnText), findsOneWidget);
@@ -621,15 +663,18 @@ void main() {
       testWidgets('Onboarding utils should process response with a 408',
           (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(
-            json.encode(<String, dynamic>{'error': 'timeout'}), 408);
+          json.encode(<String, dynamic>{'error': 'timeout'}),
+          408,
+        );
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: mockGraphQlClient,
-            widget: Builder(builder: (BuildContext context) {
+          tester: tester,
+          store: store,
+          client: mockGraphQlClient,
+          widget: Builder(
+            builder: (BuildContext context) {
               return Center(
                 child: SILPrimaryButton(
                   onPressed: () {
@@ -639,7 +684,9 @@ void main() {
                   text: processBtnText,
                 ),
               );
-            }));
+            },
+          ),
+        );
         await tester.pump();
 
         expect(find.text(processBtnText), findsOneWidget);
@@ -656,7 +703,9 @@ void main() {
       testWidgets('Onboarding utils should process response with a 522',
           (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(
-            json.encode(<String, dynamic>{'error': 'timeout'}), 522);
+          json.encode(<String, dynamic>{'error': 'timeout'}),
+          522,
+        );
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
@@ -664,17 +713,19 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  actualResponse =
-                      processHttpResponse(expectedErrorResponse, context);
-                },
-                text: processBtnText,
-              ),
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    actualResponse =
+                        processHttpResponse(expectedErrorResponse, context);
+                  },
+                  text: processBtnText,
+                ),
+              );
+            },
+          ),
         );
         await tester.pump();
 
@@ -698,16 +749,18 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  toggleLoadingIndicator(context: context, flag: testFlag);
-                },
-                text: processBtnText,
-              ),
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    toggleLoadingIndicator(context: context, flag: testFlag);
+                  },
+                  text: processBtnText,
+                ),
+              );
+            },
+          ),
         );
         await tester.pump();
         expect(find.text(processBtnText), findsOneWidget);
@@ -728,17 +781,22 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
-          widget: Builder(builder: (BuildContext context) {
-            return Center(
-              child: SILPrimaryButton(
-                onPressed: () {
-                  toggleLoadingIndicator(
-                      context: context, flag: testFlag, show: false);
-                },
-                text: processBtnText,
-              ),
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    toggleLoadingIndicator(
+                      context: context,
+                      flag: testFlag,
+                      show: false,
+                    );
+                  },
+                  text: processBtnText,
+                ),
+              );
+            },
+          ),
         );
         await tester.pump();
         expect(find.text(processBtnText), findsOneWidget);
@@ -761,28 +819,30 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          StoreProvider.dispatch(
-            context,
-            AuthStatusAction(
-              signedIn: true,
-              idToken: 'oldAuthToken',
-              refreshToken: 'oldRefreshToken',
-              expiresAt: DateTime.now()
-                  .add(const Duration(seconds: 2))
-                  .toIso8601String(),
-            ),
-          );
-          return SILPrimaryButton(
-            onPressed: () async {
-              initialRoute = await getInitialRoute(
-                context,
-                store.state,
-                <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-              );
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            StoreProvider.dispatch(
+              context,
+              AuthStatusAction(
+                signedIn: true,
+                idToken: 'oldAuthToken',
+                refreshToken: 'oldRefreshToken',
+                expiresAt: DateTime.now()
+                    .add(const Duration(seconds: 2))
+                    .toIso8601String(),
+              ),
+            );
+            return SILPrimaryButton(
+              onPressed: () async {
+                initialRoute = await getInitialRoute(
+                  context,
+                  store.state,
+                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       // trigger the bottom sheet
@@ -803,30 +863,34 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          StoreProvider.dispatch(
-              context, UpdateUserProfileAction(onboardingTourComplete: false));
-          StoreProvider.dispatch(
-            context,
-            AuthStatusAction(
-              signedIn: false,
-              idToken: 'oldAuthToken',
-              refreshToken: 'oldRefreshToken',
-              expiresAt: DateTime.now()
-                  .add(const Duration(seconds: 2))
-                  .toIso8601String(),
-            ),
-          );
-          return SILPrimaryButton(
-            onPressed: () async {
-              initialRoute = await getInitialRoute(
-                context,
-                store.state,
-                <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-              );
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            StoreProvider.dispatch(
+              context,
+              UpdateUserProfileAction(onboardingTourComplete: false),
+            );
+            StoreProvider.dispatch(
+              context,
+              AuthStatusAction(
+                signedIn: false,
+                idToken: 'oldAuthToken',
+                refreshToken: 'oldRefreshToken',
+                expiresAt: DateTime.now()
+                    .add(const Duration(seconds: 2))
+                    .toIso8601String(),
+              ),
+            );
+            return SILPrimaryButton(
+              onPressed: () async {
+                initialRoute = await getInitialRoute(
+                  context,
+                  store.state,
+                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       // trigger the bottom sheet
@@ -872,38 +936,43 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          StoreProvider.dispatch(context, AuthStatusAction(isAnonymous: true));
-          StoreProvider.dispatch(
-            context,
-            AuthStatusAction(
-              signedIn: true,
-              idToken: 'oldAuthToken',
-              refreshToken: 'oldRefreshToken',
-              expiresAt: DateTime.now()
-                  .add(const Duration(hours: 2))
-                  .toIso8601String(),
-            ),
-          );
+        widget: Builder(
+          builder: (BuildContext context) {
+            StoreProvider.dispatch(
+              context,
+              AuthStatusAction(isAnonymous: true),
+            );
+            StoreProvider.dispatch(
+              context,
+              AuthStatusAction(
+                signedIn: true,
+                idToken: 'oldAuthToken',
+                refreshToken: 'oldRefreshToken',
+                expiresAt: DateTime.now()
+                    .add(const Duration(hours: 2))
+                    .toIso8601String(),
+              ),
+            );
 
-          StoreProvider.dispatch(
-            context,
-            UpdateUserProfileAction(
-              profile: userProfile,
-              userBioData: userProfile?.userBioData,
-            ),
-          );
+            StoreProvider.dispatch(
+              context,
+              UpdateUserProfileAction(
+                profile: userProfile,
+                userBioData: userProfile?.userBioData,
+              ),
+            );
 
-          return SILPrimaryButton(
-            onPressed: () async {
-              initialRoute = await getInitialRoute(
-                context,
-                store.state,
-                <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-              );
-            },
-          );
-        }),
+            return SILPrimaryButton(
+              onPressed: () async {
+                initialRoute = await getInitialRoute(
+                  context,
+                  store.state,
+                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       // trigger the bottom sheet
@@ -924,24 +993,28 @@ void main() {
         'dateOfBirth': testDOB
       };
 
-      when(baseGraphQlClientMock.query(
-        updateUserProfileMutation,
-        <String, dynamic>{
-          // ignore: always_specify_types
-          'input': variables,
-        },
-      )).thenAnswer((_) => Future<http.Response>.value(
-            http.Response(
-              json.encode(<String, dynamic>{
-                'data': <String, dynamic>{
-                  'updateUserProfile': <String, dynamic>{
-                    'userBioData': variables
-                  },
-                }
-              }),
-              201,
-            ),
-          ));
+      when(
+        baseGraphQlClientMock.query(
+          updateUserProfileMutation,
+          <String, dynamic>{
+            // ignore: always_specify_types
+            'input': variables,
+          },
+        ),
+      ).thenAnswer(
+        (_) => Future<http.Response>.value(
+          http.Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'updateUserProfile': <String, dynamic>{
+                  'userBioData': variables
+                },
+              }
+            }),
+            201,
+          ),
+        ),
+      );
 
       when(baseGraphQlClientMock.toMap(any)).thenReturn(<String, dynamic>{
         'data': <String, dynamic>{
@@ -949,28 +1022,32 @@ void main() {
         }
       });
 
-      when(baseGraphQlClientMock.parseError(<String, dynamic>{
-        'data': <String, dynamic>{
-          'updateUserProfile': <String, dynamic>{'userBioData': variables},
-        }
-      })).thenReturn(null);
+      when(
+        baseGraphQlClientMock.parseError(<String, dynamic>{
+          'data': <String, dynamic>{
+            'updateUserProfile': <String, dynamic>{'userBioData': variables},
+          }
+        }),
+      ).thenReturn(null);
 
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              await saveProfileDetails(
-                variables: variables,
-                checkGender: 'Male',
-                checkDisplayName: testFirstName,
-                context: context,
-              );
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                await saveProfileDetails(
+                  variables: variables,
+                  checkGender: 'Male',
+                  checkDisplayName: testFirstName,
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -997,18 +1074,22 @@ void main() {
         'dateOfBirth': testDOB
       };
 
-      when(baseGraphQlClientMock.query(
-        updateUserProfileMutation,
-        <String, dynamic>{
-          // ignore: always_specify_types
-          'input': variables,
-        },
-      )).thenAnswer((_) => Future<http.Response>.value(
-            http.Response(
-              json.encode(<String, dynamic>{'data': null}),
-              201,
-            ),
-          ));
+      when(
+        baseGraphQlClientMock.query(
+          updateUserProfileMutation,
+          <String, dynamic>{
+            // ignore: always_specify_types
+            'input': variables,
+          },
+        ),
+      ).thenAnswer(
+        (_) => Future<http.Response>.value(
+          http.Response(
+            json.encode(<String, dynamic>{'data': null}),
+            201,
+          ),
+        ),
+      );
 
       when(baseGraphQlClientMock.toMap(any))
           .thenReturn(<String, dynamic>{'data': null});
@@ -1020,18 +1101,20 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              await saveProfileDetails(
-                variables: variables,
-                checkGender: 'Male',
-                checkDisplayName: testFirstName,
-                context: context,
-              );
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                await saveProfileDetails(
+                  variables: variables,
+                  checkGender: 'Male',
+                  checkDisplayName: testFirstName,
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -1044,25 +1127,34 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      when(baseGraphQlClientMock.query(
-        updateUserProfileMutation,
-        <String, dynamic>{
-          // ignore: always_specify_types
-          'input': {'firstName': 'Test', 'lastName': 'Name', 'gender': 'Male'},
-        },
-      )).thenAnswer((_) => Future<http.Response>.value(
-            http.Response(
-              json.encode(<String, dynamic>{'error': 'An error occurred'}),
-              401,
-            ),
-          ));
+      when(
+        baseGraphQlClientMock.query(
+          updateUserProfileMutation,
+          <String, dynamic>{
+            // ignore: always_specify_types
+            'input': {
+              'firstName': 'Test',
+              'lastName': 'Name',
+              'gender': 'Male'
+            },
+          },
+        ),
+      ).thenAnswer(
+        (_) => Future<http.Response>.value(
+          http.Response(
+            json.encode(<String, dynamic>{'error': 'An error occurred'}),
+            401,
+          ),
+        ),
+      );
 
       when(baseGraphQlClientMock.toMap(any))
           .thenReturn(<String, dynamic>{'error': 'An error occurred'});
 
-      when(baseGraphQlClientMock
-              .parseError(<String, dynamic>{'error': 'An error occurred'}))
-          .thenReturn('error');
+      when(
+        baseGraphQlClientMock
+            .parseError(<String, dynamic>{'error': 'An error occurred'}),
+      ).thenReturn('error');
 
       final Map<String, String> variables = <String, String>{
         'firstName': 'Test',
@@ -1073,18 +1165,20 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              await saveProfileDetails(
-                variables: variables,
-                checkGender: 'Male',
-                checkDisplayName: 'Test Name',
-                context: context,
-              );
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                await saveProfileDetails(
+                  variables: variables,
+                  checkGender: 'Male',
+                  checkDisplayName: 'Test Name',
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -1108,17 +1202,21 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              actionWrapError(
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                actionWrapError(
                   error: SILException(
-                      cause: changePINActionError,
-                      message: changePINActionException),
-                  context: context);
-            },
-          );
-        }),
+                    cause: changePINActionError,
+                    message: changePINActionException,
+                  ),
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -1137,17 +1235,21 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              actionWrapError(
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                actionWrapError(
                   error: SILException(
-                      cause: changePINActionError,
-                      message: changePINActionException),
-                  context: context);
-            },
-          );
-        }),
+                    cause: changePINActionError,
+                    message: changePINActionException,
+                  ),
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -1171,16 +1273,21 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              actionWrapError(
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                actionWrapError(
                   error: SILException(
-                      cause: noUserFound, message: changePINActionException),
-                  context: context);
-            },
-          );
-        }),
+                    cause: noUserFound,
+                    message: changePINActionException,
+                  ),
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -1201,14 +1308,18 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              actionWrapError(
-                  error: const UserException('Error'), context: context);
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                actionWrapError(
+                  error: const UserException('Error'),
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
       );
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -1229,19 +1340,21 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            onPressed: () async {
-              await store.dispatch(
-                WaitAction<AppState>.add(
-                  flag,
-                  ref: '${flag}_ref',
-                ),
-              );
-              isWaitingFor = checkWaitingForFunc(context)(flag: flag) as bool;
-            },
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                await store.dispatch(
+                  WaitAction<AppState>.add(
+                    flag,
+                    ref: '${flag}_ref',
+                  ),
+                );
+                isWaitingFor = checkWaitingForFunc(context)(flag: flag) as bool;
+              },
+            );
+          },
+        ),
       );
 
       await tester.pump();
@@ -1271,14 +1384,16 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                clearAllFlags(context);
-                await Future<void>.delayed(const Duration(seconds: 5));
-              },
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  clearAllFlags(context);
+                  await Future<void>.delayed(const Duration(seconds: 5));
+                },
+              );
+            },
+          ),
         );
 
         await tester.pump();
@@ -1328,27 +1443,29 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              UpdateUserProfileAction(
-                profile: userProfile,
-                userBioData: userProfile?.userBioData,
-              ),
-            );
+          widget: Builder(
+            builder: (BuildContext context) {
+              StoreProvider.dispatch(
+                context,
+                UpdateUserProfileAction(
+                  profile: userProfile,
+                  userBioData: userProfile?.userBioData,
+                ),
+              );
 
-            return SILPrimaryButton(
-              onPressed: () async {
-                refreshTokenAndUpdateState(
-                  context: context,
-                  signedIn: true,
-                  value: true,
-                  refreshToken: refreshToken,
-                  appContexts: testAppContexts,
-                );
-              },
-            );
-          }),
+              return SILPrimaryButton(
+                onPressed: () async {
+                  refreshTokenAndUpdateState(
+                    context: context,
+                    signedIn: true,
+                    value: true,
+                    refreshToken: refreshToken,
+                    appContexts: testAppContexts,
+                  );
+                },
+              );
+            },
+          ),
         );
 
         await tester.pump();
@@ -1371,19 +1488,21 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                refreshTokenAndUpdateState(
-                  context: context,
-                  signedIn: true,
-                  value: false,
-                  refreshToken: refreshToken,
-                  appContexts: testAppContexts,
-                );
-              },
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  refreshTokenAndUpdateState(
+                    context: context,
+                    signedIn: true,
+                    value: false,
+                    refreshToken: refreshToken,
+                    appContexts: testAppContexts,
+                  );
+                },
+              );
+            },
+          ),
         );
 
         await tester.pump();
@@ -1406,19 +1525,21 @@ void main() {
           tester: tester,
           store: store,
           client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                refreshTokenAndUpdateState(
-                  context: context,
-                  signedIn: false,
-                  value: true,
-                  refreshToken: refreshToken,
-                  appContexts: testAppContexts,
-                );
-              },
-            );
-          }),
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
+                  refreshTokenAndUpdateState(
+                    context: context,
+                    signedIn: false,
+                    value: true,
+                    refreshToken: refreshToken,
+                    appContexts: testAppContexts,
+                  );
+                },
+              );
+            },
+          ),
         );
 
         await tester.pump();
@@ -1443,14 +1564,18 @@ void main() {
         () async {
       listenForConnectivityChanges(ConnectivityResult.none);
       expect(
-          InternetConnectivitySubject().connectivitySubject.valueOrNull, false);
+        InternetConnectivitySubject().connectivitySubject.valueOrNull,
+        false,
+      );
     });
 
     test('should test listenForConnectivityChanges show internet connection',
         () async {
       listenForConnectivityChanges(ConnectivityResult.wifi);
       expect(
-          InternetConnectivitySubject().connectivitySubject.valueOrNull, true);
+        InternetConnectivitySubject().connectivitySubject.valueOrNull,
+        true,
+      );
     });
   });
 }

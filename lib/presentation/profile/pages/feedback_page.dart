@@ -54,7 +54,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       ),
                       veryLargeVerticalSizedBox,
                       const MedicalDataItemTitle(
-                          title: anyThoughtsToShareString),
+                        title: anyThoughtsToShareString,
+                      ),
                       TextField(
                         controller: feedBackInputController,
                         keyboardType: TextInputType.multiline,
@@ -73,7 +74,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       ),
                       veryLargeVerticalSizedBox,
                       const MedicalDataItemTitle(
-                          title: followUpOnFeedbackString),
+                        title: followUpOnFeedbackString,
+                      ),
                       Row(
                         children: <Widget>[
                           Row(
@@ -97,8 +99,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               Text(
                                 yesString,
                                 style: TextThemes.lightSize16Text(
-                                        AppColors.greyTextColor)
-                                    .copyWith(
+                                  AppColors.greyTextColor,
+                                ).copyWith(
                                   fontSize: 12,
                                 ),
                               )
@@ -126,8 +128,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               Text(
                                 noString,
                                 style: TextThemes.lightSize16Text(
-                                        AppColors.greyTextColor)
-                                    .copyWith(
+                                  AppColors.greyTextColor,
+                                ).copyWith(
                                   fontSize: 12,
                                 ),
                               )
@@ -172,7 +174,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             borderColor: AppColors.secondaryColor,
                             text: cancelString,
                             textStyle: TextThemes.normalSize14Text(
-                                AppColors.secondaryColor),
+                              AppColors.secondaryColor,
+                            ),
                           ),
                         ),
                         largeVerticalSizedBox,

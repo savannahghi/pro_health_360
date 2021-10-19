@@ -53,7 +53,9 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             StoreProvider.dispatch<AppState>(
-                context, UpdatePinStatusAction(invalidPin: true));
+              context,
+              UpdatePinStatusAction(invalidPin: true),
+            );
             return const PinVerification();
           },
         ),
@@ -88,15 +90,21 @@ void main() {
               wrapAlignment: WrapAlignment.spaceAround,
               onDone: (dynamic value) {
                 StoreProvider.dispatch(
-                    context,
-                    UpdatePinStatusAction(
-                        pin: value.toString(), invalidPin: false));
+                  context,
+                  UpdatePinStatusAction(
+                    pin: value.toString(),
+                    invalidPin: false,
+                  ),
+                );
               },
               onTextChanged: (dynamic value) {
                 StoreProvider.dispatch(
-                    context,
-                    UpdatePinStatusAction(
-                        pin: value.toString(), invalidPin: false));
+                  context,
+                  UpdatePinStatusAction(
+                    pin: value.toString(),
+                    invalidPin: false,
+                  ),
+                );
               },
             );
           },
@@ -115,14 +123,16 @@ void main() {
           Store<AppState>(initialState: AppState.initial());
 
       when(baseGraphQlClientMock.query(sampleQuery, <String, dynamic>{}))
-          .thenAnswer((_) => Future<http.Response>.value(
-                http.Response(
-                  json.encode(<String, dynamic>{
-                    'msg': 'credentials submitted successfully'
-                  }),
-                  200,
-                ),
-              ));
+          .thenAnswer(
+        (_) => Future<http.Response>.value(
+          http.Response(
+            json.encode(
+              <String, dynamic>{'msg': 'credentials submitted successfully'},
+            ),
+            200,
+          ),
+        ),
+      );
 
       when(baseGraphQlClientMock.toMap(any)).thenReturn(
         <String, dynamic>{
@@ -149,17 +159,22 @@ void main() {
           Store<AppState>(initialState: AppState.initial());
 
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
             return SILPrimaryButton(
               onPressed: () async {
-                await StoreProvider.dispatch<AppState>(context,
-                    RequestResetPinAction(context: context, flag: 'flag'));
+                await StoreProvider.dispatch<AppState>(
+                  context,
+                  RequestResetPinAction(context: context, flag: 'flag'),
+                );
               },
             );
-          }));
+          },
+        ),
+      );
       // verify(mockObserver.didPush(sampleRoute, any));
       await tester.pumpAndSettle();
     });
@@ -211,12 +226,14 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      when(baseGraphQlClientMock.callRESTAPI(
-              endpoint:
-                  'https://onboarding-testing.savannahghi.org/request_pin_reset',
-              variables: <String, String>{'phoneNumber': '0710000000'},
-              method: 'POST'))
-          .thenAnswer(
+      when(
+        baseGraphQlClientMock.callRESTAPI(
+          endpoint:
+              'https://onboarding-testing.savannahghi.org/request_pin_reset',
+          variables: <String, String>{'phoneNumber': '0710000000'},
+          method: 'POST',
+        ),
+      ).thenAnswer(
         (_) => Future<http.Response>.value(
           http.Response(
             json.encode(resetPINMock()),
@@ -245,7 +262,9 @@ void main() {
             );
 
             StoreProvider.dispatch<AppState>(
-                context, UpdatePinStatusAction(forgotPIN: true));
+              context,
+              UpdatePinStatusAction(forgotPIN: true),
+            );
 
             return const PinVerification();
           },
@@ -274,7 +293,9 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             StoreProvider.dispatch<AppState>(
-                context, UpdatePinStatusAction(isChangingPin: true));
+              context,
+              UpdatePinStatusAction(isChangingPin: true),
+            );
             return const PinVerification();
           },
         ),

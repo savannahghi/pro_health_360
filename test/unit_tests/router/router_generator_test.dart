@@ -63,8 +63,9 @@ void main() {
   });
   test('Test router returns phoneLogin', () {
     const RouteSettings settings = RouteSettings(
-        name: BWRoutes.phoneLogin,
-        arguments: <String, dynamic>{'test': 'value'});
+      name: BWRoutes.phoneLogin,
+      arguments: <String, dynamic>{'test': 'value'},
+    );
 
     final MaterialPageRoute<MyAfyaHubPhoneLoginPage> route =
         routeGenerator(settings) as MaterialPageRoute<MyAfyaHubPhoneLoginPage>;
@@ -87,8 +88,9 @@ void main() {
 
   test('Test router returns  verify otp page', () {
     const RouteSettings settings = RouteSettings(
-        name: BWRoutes.verifySignUpOTP,
-        arguments: <String, dynamic>{'OTP': 1234});
+      name: BWRoutes.verifySignUpOTP,
+      arguments: <String, dynamic>{'OTP': 1234},
+    );
 
     final MaterialPageRoute<VerifyPhonePage> route =
         routeGenerator(settings) as MaterialPageRoute<VerifyPhonePage>;
@@ -99,8 +101,9 @@ void main() {
 
   test('Test router returns congratulations page', () {
     const RouteSettings settings = RouteSettings(
-        name: BWRoutes.congratulationsPage,
-        arguments: <String, dynamic>{'duration': '1 year'});
+      name: BWRoutes.congratulationsPage,
+      arguments: <String, dynamic>{'duration': '1 year'},
+    );
 
     final MaterialPageRoute<CongratulationsPage> route =
         routeGenerator(settings) as MaterialPageRoute<CongratulationsPage>;
@@ -111,7 +114,9 @@ void main() {
 
   test('Test router returns HomePage', () {
     const RouteSettings settings = RouteSettings(
-        name: BWRoutes.home, arguments: <String, dynamic>{'test': 'value'});
+      name: BWRoutes.home,
+      arguments: <String, dynamic>{'test': 'value'},
+    );
 
     final MaterialPageRoute<HomePage> route =
         routeGenerator(settings) as MaterialPageRoute<HomePage>;
@@ -143,8 +148,14 @@ void main() {
   test('Test router returns incoming  libraryContent page', () {
     final RouteSettings settings = RouteSettings(
       name: BWRoutes.libraryContent,
-      arguments: LibraryContentItemData('test', 'test', 'test', 'test',
-          libraryContentPublishDate: 'test', libraryContentTitle: 'test'),
+      arguments: LibraryContentItemData(
+        'test',
+        'test',
+        'test',
+        'test',
+        libraryContentPublishDate: 'test',
+        libraryContentTitle: 'test',
+      ),
     );
 
     final MaterialPageRoute<LibraryContent> route =

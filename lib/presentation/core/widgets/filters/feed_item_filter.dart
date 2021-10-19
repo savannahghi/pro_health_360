@@ -58,7 +58,8 @@ class FeedItemFilter extends StatelessWidget {
               Text(
                 filterText,
                 style: TextThemes.normalSize16Text().copyWith(
-                    color: isActive ? white : AppColors.secondaryColor),
+                  color: isActive ? white : AppColors.secondaryColor,
+                ),
               )
             ],
           ),

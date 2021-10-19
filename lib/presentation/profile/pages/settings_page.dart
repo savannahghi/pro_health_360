@@ -34,9 +34,10 @@ class SettingsPage extends StatelessWidget {
                     largeVerticalSizedBox,
                     const MedicalDataItemTitle(title: nickNameString),
                     const MedicalDataItem(
-                        customWidth: double.infinity,
-                        data: nickNameString,
-                        description: editString),
+                      customWidth: double.infinity,
+                      data: nickNameString,
+                      description: editString,
+                    ),
                   ],
                 ),
                 Center(
@@ -44,14 +45,17 @@ class SettingsPage extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 20),
                     child: MyAfyaHubPrimaryButton(
                       customPadding: const EdgeInsets.symmetric(
-                          horizontal: 140, vertical: 12),
+                        horizontal: 140,
+                        vertical: 12,
+                      ),
                       textStyle: TextThemes.normalSize15Text(Colors.white),
                       onPressed: () {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text(comingSoonText),
-                          duration: Duration(seconds: 2),
-                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(comingSoonText),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
                       },
                       buttonColor: AppColors.secondaryColor,
                       borderColor: Colors.transparent,

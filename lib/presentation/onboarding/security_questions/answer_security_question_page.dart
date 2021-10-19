@@ -52,12 +52,13 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: SizedBox(
-                      width: double.infinity,
-                      height: number52,
-                      child: MyAfyaHubPrimaryButton(
-                        text: continueString,
-                        buttonColor: AppColors.secondaryColor,
-                      )),
+                    width: double.infinity,
+                    height: number52,
+                    child: MyAfyaHubPrimaryButton(
+                      text: continueString,
+                      buttonColor: AppColors.secondaryColor,
+                    ),
+                  ),
                 ),
               ),
             ],

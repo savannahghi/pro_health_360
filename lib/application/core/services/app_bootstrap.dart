@@ -40,7 +40,8 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
   await SystemChrome.setPreferredOrientations(
-      <DeviceOrientation>[DeviceOrientation.portraitUp]);
+    <DeviceOrientation>[DeviceOrientation.portraitUp],
+  );
 
   // initialize firebase remote config
   final RemoteConfigService remoteConfig =
@@ -74,10 +75,12 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
 
   ErrorWidget.builder = (FlutterErrorDetails details) {
     bool inDebug = false;
-    assert(() {
-      inDebug = true;
-      return true;
-    }());
+    assert(
+      () {
+        inDebug = true;
+        return true;
+      }(),
+    );
     // In debug mode, use the normal error widget which shows
     if (inDebug) {
       return ErrorWidget(details.exception);
@@ -88,15 +91,19 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
       height: 200,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(errorDisplayImgUrl), fit: BoxFit.cover)),
+        image: DecorationImage(
+          image: AssetImage(errorDisplayImgUrl),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Text(
-            UserFeedBackTexts.getErrorMessage(),
-            style: TextThemes.boldSize16Text(AppColors.whiteColor),
-            textDirection: TextDirection.ltr,
-          )),
+        alignment: Alignment.bottomCenter,
+        child: Text(
+          UserFeedBackTexts.getErrorMessage(),
+          style: TextThemes.boldSize16Text(AppColors.whiteColor),
+          textDirection: TextDirection.ltr,
+        ),
+      ),
     );
   };
 

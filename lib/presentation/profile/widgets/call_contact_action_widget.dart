@@ -45,9 +45,10 @@ class CallContactActionWidget extends StatelessWidget {
             child: Text(
               phoneNumber,
               style: TextStyle(
-                  color: textColor ?? AppColors.darkGreyTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w300),
+                color: textColor ?? AppColors.darkGreyTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+              ),
             ),
           ),
           Container(

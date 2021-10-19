@@ -14,12 +14,12 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 /// It takes in required [groupIconUrl], [groupTitle] and [groupTotalMembers] parameters
 
 class SuggestedGroupCard extends StatelessWidget {
-  const SuggestedGroupCard(
-      {Key? key,
-      required this.groupIconUrl,
-      required this.groupTitle,
-      required this.groupTotalMembers})
-      : super(key: key);
+  const SuggestedGroupCard({
+    Key? key,
+    required this.groupIconUrl,
+    required this.groupTitle,
+    required this.groupTotalMembers,
+  }) : super(key: key);
   final String groupIconUrl;
   final String groupTitle;
   final String groupTotalMembers;
@@ -30,7 +30,9 @@ class SuggestedGroupCard extends StatelessWidget {
       child: Container(
         width: 110,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0), color: Colors.white),
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.white,
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
           children: <Widget>[
@@ -53,20 +55,24 @@ class SuggestedGroupCard extends StatelessWidget {
                 groupTitle,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.secondaryColor),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.secondaryColor,
+                ),
               ),
             ),
             smallVerticalSizedBox,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: Text(groupTotalMembers,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.greyTextColor)),
+              child: Text(
+                groupTotalMembers,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.greyTextColor,
+                ),
+              ),
             ),
             smallVerticalSizedBox,
             RawMaterialButton(
@@ -74,11 +80,12 @@ class SuggestedGroupCard extends StatelessWidget {
               splashColor: AppColors.secondaryColor.withOpacity(0.2),
               highlightColor: Colors.transparent,
               elevation: 0,
-              onPressed: () =>
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(groupTitle),
-                duration: const Duration(seconds: 2),
-              )),
+              onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(groupTitle),
+                  duration: const Duration(seconds: 2),
+                ),
+              ),
               constraints: const BoxConstraints(minHeight: 25, minWidth: 80),
               fillColor: Colors.transparent,
               shape: RoundedRectangleBorder(
@@ -90,9 +97,10 @@ class SuggestedGroupCard extends StatelessWidget {
               child: const Text(
                 joinString,
                 style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.secondaryColor),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.secondaryColor,
+                ),
               ),
             ),
           ],

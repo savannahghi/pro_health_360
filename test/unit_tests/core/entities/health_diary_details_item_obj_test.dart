@@ -15,11 +15,11 @@ void main() {
   test('HealthDiaryItemObj toJson', () {
     expect(
       HealthDiaryDetailsItemObj(
-              description: mockDiaryItems.first.detailsList.first.description,
-              svgIconPath: mockDiaryItems.first.detailsList.first.svgIconPath,
-              time: mockDiaryItems.first.detailsList.first.time,
-              title: mockDiaryItems.first.detailsList.first.title)
-          .toJson(),
+        description: mockDiaryItems.first.detailsList.first.description,
+        svgIconPath: mockDiaryItems.first.detailsList.first.svgIconPath,
+        time: mockDiaryItems.first.detailsList.first.time,
+        title: mockDiaryItems.first.detailsList.first.title,
+      ).toJson(),
       data,
     );
   });

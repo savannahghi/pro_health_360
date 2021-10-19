@@ -25,27 +25,28 @@ class NotificationsPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView.builder(
-            itemCount: notifications.length,
-            itemBuilder: (BuildContext context, int index) {
-              final String description =
-                  notifications.elementAt(index).description;
-              final String date = notifications.elementAt(index).date;
-              final IconDetails icon = notifications.elementAt(index).icon;
-              final List<NotificationActions>? actions =
-                  notifications.elementAt(index).actions;
-              final String? status = notifications.elementAt(index).status;
+          itemCount: notifications.length,
+          itemBuilder: (BuildContext context, int index) {
+            final String description =
+                notifications.elementAt(index).description;
+            final String date = notifications.elementAt(index).date;
+            final IconDetails icon = notifications.elementAt(index).icon;
+            final List<NotificationActions>? actions =
+                notifications.elementAt(index).actions;
+            final String? status = notifications.elementAt(index).status;
 
-              return Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: NotificationListItem(
-                  icon: icon,
-                  actions: actions,
-                  status: status,
-                  description: description,
-                  date: date,
-                ),
-              );
-            }),
+            return Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: NotificationListItem(
+                icon: icon,
+                actions: actions,
+                status: status,
+                description: description,
+                date: date,
+              ),
+            );
+          },
+        ),
       ),
     );
   }

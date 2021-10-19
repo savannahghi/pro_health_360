@@ -88,11 +88,16 @@ class MyHealthPage extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () => Navigator.pushNamed(
-                          context, BWRoutes.myHealthDiaryPage),
+                        context,
+                        BWRoutes.myHealthDiaryPage,
+                      ),
                       child: InformationListCard(
-                        title: Text(myHealthPageHealthDiary,
-                            style: TextThemes.normalSize14Text(
-                                AppColors.secondaryColor)),
+                        title: Text(
+                          myHealthPageHealthDiary,
+                          style: TextThemes.normalSize14Text(
+                            AppColors.secondaryColor,
+                          ),
+                        ),
                         alternateLeadingIcon: Container(
                           padding: const EdgeInsets.all(18),
                           decoration: BoxDecoration(
@@ -113,12 +118,15 @@ class MyHealthPage extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () => Navigator.pushNamed(
-                          context, BWRoutes.appointmentsPage),
+                        context,
+                        BWRoutes.appointmentsPage,
+                      ),
                       child: InformationListCard(
                         title: Text(
                           myHealthPageAppointments,
                           style: TextThemes.normalSize14Text(
-                              AppColors.secondaryColor),
+                            AppColors.secondaryColor,
+                          ),
                         ),
                         alternateLeadingIcon: Container(
                           padding: const EdgeInsets.all(18),

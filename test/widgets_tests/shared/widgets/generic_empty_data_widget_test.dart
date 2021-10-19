@@ -18,10 +18,11 @@ void main() {
     testWidgets('GenericEmptyData should render correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: const GenericEmptyData(item: 'FAQ'));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const GenericEmptyData(item: 'FAQ'),
+      );
 
       await tester.pumpAndSettle();
 

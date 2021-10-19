@@ -12,9 +12,11 @@ import 'package:myafyahub/presentation/profile/widgets/clinic_information_item_w
 void main() {
   testWidgets('ClinicInformationPage renders correctly',
       (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: ClinicInformationPage(),
-    ));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ClinicInformationPage(),
+      ),
+    );
     expect(find.byType(ClinicInformationItemWidget), findsNWidgets(3));
 
     await tester.tap(find.byKey(hotlineCallButtonKey));

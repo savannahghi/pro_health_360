@@ -23,11 +23,12 @@ class PersonalInformationWidget extends StatelessWidget {
         color: Colors.white,
       ),
       child: Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(description, style: TextThemes.normalSize14Text()),
-          )),
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(description, style: TextThemes.normalSize14Text()),
+        ),
+      ),
     );
   }
 }

@@ -25,9 +25,13 @@ void main() {
     const String contentTags = 'Health Tips';
 
     final LibraryContentItemData libraryContentItem = LibraryContentItemData(
-        image, readTime, bodyText, contentTags,
-        libraryContentPublishDate: '1969-07-20 20:18:04Z',
-        libraryContentTitle: 'Exercise');
+      image,
+      readTime,
+      bodyText,
+      contentTags,
+      libraryContentPublishDate: '1969-07-20 20:18:04Z',
+      libraryContentTitle: 'Exercise',
+    );
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());

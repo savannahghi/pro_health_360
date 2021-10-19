@@ -40,7 +40,9 @@ class MyAfyaHubBottomNavigationBar extends StatelessWidget {
       unselectedItemColor: AppColors.secondaryColor,
       onTap: (int currentIndex) {
         StoreProvider.dispatch<AppState>(
-            context, BottomNavAction(currentBottomNavIndex: currentIndex));
+          context,
+          BottomNavAction(currentBottomNavIndex: currentIndex),
+        );
 
         if (BottomNavIndex.home.index == currentIndex) {
           publishEvent(

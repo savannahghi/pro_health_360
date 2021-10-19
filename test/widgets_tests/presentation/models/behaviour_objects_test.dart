@@ -52,12 +52,15 @@ void main() {
       expect(editProfilePageBehaviorObject.loading.valueOrNull, true);
       expect(requestPinResetBehaviorObject.userHasNoAccount.valueOrNull, true);
       expect(cardIndexBehaviorObject.dependantsIndex.valueOrNull, 1);
-      expect(manageDependantsBehaviorObject.dependantMemberNumber.valueOrNull,
-          '78482');
       expect(
-          authorizationQueryDetailsBehaviorObject
-              .authorizationQueryDetailsBehaviorObject.valueOrNull,
-          'someAuthQuery');
+        manageDependantsBehaviorObject.dependantMemberNumber.valueOrNull,
+        '78482',
+      );
+      expect(
+        authorizationQueryDetailsBehaviorObject
+            .authorizationQueryDetailsBehaviorObject.valueOrNull,
+        'someAuthQuery',
+      );
       expect(userPhoneBehaviorObject.allowedComm.valueOrNull, true);
       expect(requestPinResetBehaviorObject.userHasNoAccount.valueOrNull, true);
     });
@@ -66,13 +69,15 @@ void main() {
         (WidgetTester tester) async {
       final BookAppointmentSubject bookAppointmentSubject =
           BookAppointmentSubject();
-      await tester.pumpWidget(MaterialApp(
-        home: SILPrimaryButton(
-          onPressed: () {
-            bookAppointmentSubject.clearSubject();
-          },
+      await tester.pumpWidget(
+        MaterialApp(
+          home: SILPrimaryButton(
+            onPressed: () {
+              bookAppointmentSubject.clearSubject();
+            },
+          ),
         ),
-      ));
+      );
       final Finder silPrimaryButton = find.byType(SILPrimaryButton);
       await tester.tap(silPrimaryButton);
       await tester.pumpAndSettle();
@@ -84,14 +89,16 @@ void main() {
       final UtilizationBehaviorSubject utilizationBehaviorSubject =
           UtilizationBehaviorSubject();
       utilizationBehaviorSubject.cache.add(true);
-      await tester.pumpWidget(MaterialApp(
-        home: SILPrimaryButton(
-          onPressed: () {
-            utilizationBehaviorSubject.hasCache();
-            utilizationBehaviorSubject.clearCache();
-          },
+      await tester.pumpWidget(
+        MaterialApp(
+          home: SILPrimaryButton(
+            onPressed: () {
+              utilizationBehaviorSubject.hasCache();
+              utilizationBehaviorSubject.clearCache();
+            },
+          ),
         ),
-      ));
+      );
       final Finder silPrimaryButton = find.byType(SILPrimaryButton);
       await tester.tap(silPrimaryButton);
       await tester.pumpAndSettle();

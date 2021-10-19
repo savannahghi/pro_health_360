@@ -30,127 +30,131 @@ class LibraryContent extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
 
     return Scaffold(
-        backgroundColor: themeData.backgroundColor,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              key: libraryContentColumnKey,
-              children: <Widget>[
-                StoreConnector<AppState, ConnectivityViewModel>(
-                  converter: (Store<AppState> store) =>
-                      ConnectivityViewModel.fromStore(store),
-                  builder: (BuildContext context, ConnectivityViewModel vm) {
-                    return Stack(
-                      children: <Widget>[
-                        ClipRRect(
-                          child: Align(
-                            heightFactor: 1.0,
-                            widthFactor: double.infinity,
-                            child: libraryContentItem.libraryContentImageUrl ==
-                                    ''
-                                ? const SizedBox.shrink()
-                                : Image.network(
-                                    libraryContentItem.libraryContentImageUrl,
-                                  ),
-                          ),
-                        ),
-                        Positioned(
-                          top: -10,
-                          child: LibraryIconButton(
-                            context: context,
-                            backgroundColor: AppColors.whiteColor,
-                            iconColor: AppColors.blackColor,
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                ),
-                verySmallVerticalSizedBox,
-                if (libraryContentItem.libraryContentImageUrl.isEmpty)
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: LibraryIconButton(
-                      context: context,
-                      backgroundColor: AppColors.lightPurpleCardBorder,
-                      iconColor: AppColors.primaryColor,
-                    ),
-                  ),
-                largeHorizontalSizedBox,
-                Container(
-                  key: libraryContentContainerKey,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: themeData.backgroundColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            key: libraryContentColumnKey,
+            children: <Widget>[
+              StoreConnector<AppState, ConnectivityViewModel>(
+                converter: (Store<AppState> store) =>
+                    ConnectivityViewModel.fromStore(store),
+                builder: (BuildContext context, ConnectivityViewModel vm) {
+                  return Stack(
                     children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              libraryContentItem.libraryContentTitle,
-                              style: TextThemes.boldSize24Text(),
-                              textAlign: TextAlign.start,
-                            ),
-                            verySmallVerticalSizedBox,
-                            Row(
-                              children: <Widget>[
-                                sortDate(
-                                  context: context,
-                                  loadedDate: libraryContentItem
-                                      .libraryContentPublishDate,
-                                  dateTextStyle: TextThemes.normalSize12Text(
-                                      AppColors.darkGreyColor),
+                      ClipRRect(
+                        child: Align(
+                          heightFactor: 1.0,
+                          widthFactor: double.infinity,
+                          child: libraryContentItem.libraryContentImageUrl == ''
+                              ? const SizedBox.shrink()
+                              : Image.network(
+                                  libraryContentItem.libraryContentImageUrl,
                                 ),
-                                smallHorizontalSizedBox,
-                                Text(
-                                  '${libraryContentItem.libraryContentReadTime} min read',
-                                  style: TextThemes.normalSize12Text(
-                                      AppColors.darkGreyColor),
-                                )
-                              ],
-                            ),
-                          ],
                         ),
                       ),
-                      mediumVerticalSizedBox,
-                      Html(
-                        data: libraryContentItem.libraryContentBodyText,
-                        onLinkTap: (String? url,
-                            RenderContext context,
-                            Map<String, String> attributes,
-                            dom.Element? element) {
-                          launch(url!);
-                        },
-                        style: <String, Style>{
-                          'li': Style(
-                            lineHeight: LineHeight.em(1.5),
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.greyColor,
-                            listStylePosition: ListStylePosition.INSIDE,
-                          ),
-                          'a': Style(
-                            textDecoration: TextDecoration.none,
-                          ),
-                          'p': Style(
-                            lineHeight: LineHeight.em(1.5),
-                            letterSpacing: 0.4,
-                          ),
-                          'iframe': Style(
-                            height: 320,
-                            width: double.infinity,
-                          ),
-                        },
-                      ),
-                      largeVerticalSizedBox,
+                      Positioned(
+                        top: -10,
+                        child: LibraryIconButton(
+                          context: context,
+                          backgroundColor: AppColors.whiteColor,
+                          iconColor: AppColors.blackColor,
+                        ),
+                      )
                     ],
+                  );
+                },
+              ),
+              verySmallVerticalSizedBox,
+              if (libraryContentItem.libraryContentImageUrl.isEmpty)
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: LibraryIconButton(
+                    context: context,
+                    backgroundColor: AppColors.lightPurpleCardBorder,
+                    iconColor: AppColors.primaryColor,
                   ),
-                )
-              ],
-            ),
+                ),
+              largeHorizontalSizedBox,
+              Container(
+                key: libraryContentContainerKey,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            libraryContentItem.libraryContentTitle,
+                            style: TextThemes.boldSize24Text(),
+                            textAlign: TextAlign.start,
+                          ),
+                          verySmallVerticalSizedBox,
+                          Row(
+                            children: <Widget>[
+                              sortDate(
+                                context: context,
+                                loadedDate: libraryContentItem
+                                    .libraryContentPublishDate,
+                                dateTextStyle: TextThemes.normalSize12Text(
+                                  AppColors.darkGreyColor,
+                                ),
+                              ),
+                              smallHorizontalSizedBox,
+                              Text(
+                                '${libraryContentItem.libraryContentReadTime} min read',
+                                style: TextThemes.normalSize12Text(
+                                  AppColors.darkGreyColor,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    mediumVerticalSizedBox,
+                    Html(
+                      data: libraryContentItem.libraryContentBodyText,
+                      onLinkTap: (
+                        String? url,
+                        RenderContext context,
+                        Map<String, String> attributes,
+                        dom.Element? element,
+                      ) {
+                        launch(url!);
+                      },
+                      style: <String, Style>{
+                        'li': Style(
+                          lineHeight: LineHeight.em(1.5),
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.greyColor,
+                          listStylePosition: ListStylePosition.INSIDE,
+                        ),
+                        'a': Style(
+                          textDecoration: TextDecoration.none,
+                        ),
+                        'p': Style(
+                          lineHeight: LineHeight.em(1.5),
+                          letterSpacing: 0.4,
+                        ),
+                        'iframe': Style(
+                          height: 320,
+                          width: double.infinity,
+                        ),
+                      },
+                    ),
+                    largeVerticalSizedBox,
+                  ],
+                ),
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

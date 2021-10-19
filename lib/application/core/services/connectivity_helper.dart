@@ -28,7 +28,9 @@ import 'onboarding_utils.dart';
 /// system. This method is excluded from testing since there is no way to
 /// simulate actual connection changes without a device
 Stream<bool> connectivityHelper(
-    Connectivity connectivity, Future<bool> Function() connectionChecker) {
+  Connectivity connectivity,
+  Future<bool> Function() connectionChecker,
+) {
   final Stream<bool> changeStream =
       connectivity.onConnectivityChanged.map<bool>(
     (ConnectivityResult event) =>
@@ -41,8 +43,12 @@ Stream<bool> connectivityHelper(
 }
 
 // onBodyLinkOrImageTapCallback open an in-app browser with the provided url
-void onBodyLinkOrImageTapCallback(String? url, RenderContext context,
-    Map<String, String> attributes, dom.Element? element) {
+void onBodyLinkOrImageTapCallback(
+  String? url,
+  RenderContext context,
+  Map<String, String> attributes,
+  dom.Element? element,
+) {
   launch(url!);
 }
 
@@ -70,7 +76,9 @@ void registerFCMTokenListener(BuildContext context) {
 }
 
 void moveCamera(
-    LatLng _locationData, Completer<GoogleMapController> mapController) {
+  LatLng _locationData,
+  Completer<GoogleMapController> mapController,
+) {
   mapController.future.then(
     (GoogleMapController controller) => controller.animateCamera(
       CameraUpdate.newCameraPosition(

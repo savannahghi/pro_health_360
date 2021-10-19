@@ -14,13 +14,13 @@ class KeyPadWidget extends StatefulWidget {
   /// [KeyPadWidget] is a shared widget used in [PINInputPage]
   ///
   /// It takes in required [pinController], [onChange] and [isCorrectPin] parameters
-  const KeyPadWidget(
-      {Key? key,
-      required this.pinController,
-      required this.onChange,
-      required this.isCorrectPin,
-      required this.canEnterPin})
-      : super(key: key);
+  const KeyPadWidget({
+    Key? key,
+    required this.pinController,
+    required this.onChange,
+    required this.isCorrectPin,
+    required this.canEnterPin,
+  }) : super(key: key);
   final TextEditingController pinController;
   final Function onChange;
   final bool isCorrectPin;
@@ -95,7 +95,9 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
                             setState(() {
                               widget.pinController.text =
                                   widget.pinController.text.substring(
-                                      0, widget.pinController.text.length - 1);
+                                0,
+                                widget.pinController.text.length - 1,
+                              );
                             });
                           }
                         : null,
@@ -144,8 +146,8 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
             buttonText,
             textAlign: TextAlign.center,
             style: TextThemes.lightSize16Text(
-                    widget.canEnterPin ? AppColors.secondaryColor : Colors.grey)
-                .copyWith(
+              widget.canEnterPin ? AppColors.secondaryColor : Colors.grey,
+            ).copyWith(
               fontSize: 47.0,
             ),
           ),

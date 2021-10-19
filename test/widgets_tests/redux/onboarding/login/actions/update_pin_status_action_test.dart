@@ -25,12 +25,20 @@ void main() {
       StoreProvider<AppState>(
         store: store,
         child: MaterialApp(
-          home: Scaffold(body: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(onPressed: () async {
-              StoreProvider.dispatch(context,
-                  UpdatePinStatusAction(invalidPin: false, pin: testPin));
-            });
-          })),
+          home: Scaffold(
+            body: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () async {
+                    StoreProvider.dispatch(
+                      context,
+                      UpdatePinStatusAction(invalidPin: false, pin: testPin),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );
@@ -45,17 +53,24 @@ void main() {
       StoreProvider<AppState>(
         store: store,
         child: MaterialApp(
-          home: Scaffold(body: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(onPressed: () async {
-              StoreProvider.dispatch(
-                  context,
-                  UpdatePinStatusAction(
-                    invalidPin: true,
-                    pin: testPin,
-                    controller: controller,
-                  ));
-            });
-          })),
+          home: Scaffold(
+            body: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () async {
+                    StoreProvider.dispatch(
+                      context,
+                      UpdatePinStatusAction(
+                        invalidPin: true,
+                        pin: testPin,
+                        controller: controller,
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

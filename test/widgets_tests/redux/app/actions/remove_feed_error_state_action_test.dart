@@ -22,11 +22,20 @@ void main() {
       StoreProvider<AppState>(
         store: store,
         child: MaterialApp(
-          home: Scaffold(body: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(onPressed: () async {
-              StoreProvider.dispatch(context, RemoveFeedErrorStateAction());
-            });
-          })),
+          home: Scaffold(
+            body: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () async {
+                    StoreProvider.dispatch(
+                      context,
+                      RemoveFeedErrorStateAction(),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

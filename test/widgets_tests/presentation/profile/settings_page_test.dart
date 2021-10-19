@@ -8,9 +8,11 @@ import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 void main() {
   testWidgets('ClinicInformationPage renders correctly',
       (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: SettingsPage(),
-    ));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: SettingsPage(),
+      ),
+    );
     expect(find.byType(CustomAppBar), findsOneWidget);
 
     await tester.tap(find.byType(MyAfyaHubPrimaryButton));

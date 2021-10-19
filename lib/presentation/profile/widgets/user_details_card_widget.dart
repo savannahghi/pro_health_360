@@ -16,15 +16,15 @@ class UserDetailsCard extends StatelessWidget {
   ///
   /// It takes in required [userInitials], [name], [userCCCNumber], [age], [phoneNumber]
   /// and [home] parameters
-  const UserDetailsCard(
-      {Key? key,
-      required this.userInitials,
-      required this.name,
-      required this.cccNumber,
-      required this.age,
-      required this.phoneNumber,
-      required this.home})
-      : super(key: key);
+  const UserDetailsCard({
+    Key? key,
+    required this.userInitials,
+    required this.name,
+    required this.cccNumber,
+    required this.age,
+    required this.phoneNumber,
+    required this.home,
+  }) : super(key: key);
   final String userInitials;
   final String name;
   final String cccNumber;
@@ -66,25 +66,28 @@ class UserDetailsCard extends StatelessWidget {
               Text(
                 name,
                 style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               smallVerticalSizedBox,
               Text(
                 'CCC No: $cccNumber',
                 style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400),
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               smallVerticalSizedBox,
               Text(
                 'Age: $age yrs',
                 style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               largeVerticalSizedBox,
               Row(
@@ -99,9 +102,10 @@ class UserDetailsCard extends StatelessWidget {
                   Text(
                     phoneNumber,
                     style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400),
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ],
               ),
@@ -118,9 +122,10 @@ class UserDetailsCard extends StatelessWidget {
                   Text(
                     home,
                     style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400),
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ],
               ),
@@ -129,9 +134,10 @@ class UserDetailsCard extends StatelessWidget {
                 text: correctionRequestString,
                 textColor: Colors.white,
                 textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
               )
             ],
           ),

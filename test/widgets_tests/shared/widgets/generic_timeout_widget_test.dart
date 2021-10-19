@@ -23,12 +23,13 @@ void main() {
     testWidgets('GenericTimeoutWidget should render correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: const GenericTimeoutWidget(
-            action: 'fetching library',
-          ));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const GenericTimeoutWidget(
+          action: 'fetching library',
+        ),
+      );
 
       await tester.pumpAndSettle();
 
@@ -47,14 +48,15 @@ void main() {
         'GenericTimeoutWidget should render correctly with recoverCallback',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: GenericTimeoutWidget(
-            key: const Key('test-generic-timeout-widget-key'),
-            action: 'fetching library',
-            recoverCallback: () {},
-          ));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: GenericTimeoutWidget(
+          key: const Key('test-generic-timeout-widget-key'),
+          action: 'fetching library',
+          recoverCallback: () {},
+        ),
+      );
 
       await tester.pumpAndSettle();
 
@@ -75,12 +77,14 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return const GenericTimeoutWidget(
-            action: 'fetching library',
-            route: BWRoutes.phoneLogin,
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return const GenericTimeoutWidget(
+              action: 'fetching library',
+              route: BWRoutes.phoneLogin,
+            );
+          },
+        ),
       );
 
       await tester.pumpAndSettle();

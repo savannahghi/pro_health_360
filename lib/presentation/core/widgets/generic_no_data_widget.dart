@@ -83,16 +83,21 @@ class GenericNoData extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Text.rich(
-                        TextSpan(children: <TextSpan>[
-                          TextSpan(
+                        TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
                               text: messageTitle ?? genericErrorOccurred,
-                              style: TextThemes.veryBoldSize20Text()),
-                          const TextSpan(text: '\n\n'),
-                          TextSpan(
+                              style: TextThemes.veryBoldSize20Text(),
+                            ),
+                            const TextSpan(text: '\n\n'),
+                            TextSpan(
                               text: this.messageBody ?? genericTryAgain,
                               style: TextThemes.normalSize16Text(
-                                  AppColors.greyColor))
-                        ]),
+                                AppColors.greyColor,
+                              ),
+                            )
+                          ],
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       largeVerticalSizedBox,

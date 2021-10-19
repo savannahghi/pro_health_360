@@ -35,10 +35,12 @@ import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import '../../../test_utils.dart';
 
-// ignore: always_specify_types
-@GenerateMocks([],
-    // ignore: always_specify_types
-    customMocks: [MockSpec<GraphQlClient>(as: #BaseGraphQlClient)])
+@GenerateMocks(
+  // ignore: always_specify_types
+  [],
+  // ignore: always_specify_types
+  customMocks: [MockSpec<GraphQlClient>(as: #BaseGraphQlClient)],
+)
 void main() {
   FlutterConfig.loadValueForTesting(<String, String>{
     'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
@@ -58,11 +60,15 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(onPressed: () {
-            logoutUser(context: context);
-          });
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () {
+                logoutUser(context: context);
+              },
+            );
+          },
+        ),
       );
       await tester.pumpAndSettle();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -78,8 +84,9 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           userBioData: BioData(
-              firstName: Name.withValue('Test'),
-              lastName: Name.withValue('Name')),
+            firstName: Name.withValue('Test'),
+            lastName: Name.withValue('Name'),
+          ),
         ),
       );
       await buildTestWidget(
@@ -144,18 +151,20 @@ void main() {
 
     testWidgets('should show a toast', (WidgetTester tester) async {
       const Key showToastKey = Key('show_toast');
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: SILPrimaryButton(
-              buttonKey: showToastKey,
-              onPressed: () {
-                showToast('Some random toast message');
-              },
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SILPrimaryButton(
+                buttonKey: showToastKey,
+                onPressed: () {
+                  showToast('Some random toast message');
+                },
+              ),
             ),
           ),
         ),
-      ));
+      );
 
       expect(find.byType(SILPrimaryButton), findsOneWidget);
       expect(find.byKey(showToastKey), findsOneWidget);
@@ -168,33 +177,38 @@ void main() {
     testWidgets('should retire secondary phone from state',
         (WidgetTester tester) async {
       const String contactPhone = '+254728101710';
-      await tester.pumpWidget(StoreProvider<AppState>(
-        store: store,
-        child: StoreConnector<AppState, AppState>(
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: StoreConnector<AppState, AppState>(
             converter: (Store<AppState> store) {
-          return store.state;
-        }, builder: (BuildContext context, AppState appState) {
-          return MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return Center(
-                    child: SILPrimaryButton(
-                      buttonKey: const Key('update_contacts'),
-                      onPressed: () {
-                        updateStateContacts(
-                            context: context,
-                            type: StateContactType.retireSecondaryPhone,
-                            value: contactPhone);
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-        }),
-      ));
+              return store.state;
+            },
+            builder: (BuildContext context, AppState appState) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Builder(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: SILPrimaryButton(
+                          buttonKey: const Key('update_contacts'),
+                          onPressed: () {
+                            updateStateContacts(
+                              context: context,
+                              type: StateContactType.retireSecondaryPhone,
+                              value: contactPhone,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
       expect(find.byType(SILPrimaryButton), findsOneWidget);
       expect(find.byKey(const Key('update_contacts')), findsOneWidget);
@@ -202,42 +216,48 @@ void main() {
       // tap the button to show the toast
       await tester.tap(find.byKey(const Key('update_contacts')));
       expect(
-          store.state.userProfileState!.userProfile!.secondaryPhoneNumbers!
-              .contains(PhoneNumber.withValue(contactPhone)),
-          false);
+        store.state.userProfileState!.userProfile!.secondaryPhoneNumbers!
+            .contains(PhoneNumber.withValue(contactPhone)),
+        false,
+      );
       //
     });
 
     testWidgets('should retire secondary email from state',
         (WidgetTester tester) async {
       const String contactVal = 'someone@gmail.com';
-      await tester.pumpWidget(StoreProvider<AppState>(
-        store: store,
-        child: StoreConnector<AppState, AppState>(
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: StoreConnector<AppState, AppState>(
             converter: (Store<AppState> store) {
-          return store.state;
-        }, builder: (BuildContext context, AppState appState) {
-          return MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return Center(
-                    child: SILPrimaryButton(
-                      buttonKey: const Key('update_contacts'),
-                      onPressed: () {
-                        updateStateContacts(
-                            context: context,
-                            type: StateContactType.retireSecondaryEmail,
-                            value: contactVal);
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-        }),
-      ));
+              return store.state;
+            },
+            builder: (BuildContext context, AppState appState) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Builder(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: SILPrimaryButton(
+                          buttonKey: const Key('update_contacts'),
+                          onPressed: () {
+                            updateStateContacts(
+                              context: context,
+                              type: StateContactType.retireSecondaryEmail,
+                              value: contactVal,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
       expect(find.byType(SILPrimaryButton), findsOneWidget);
       expect(find.byKey(const Key('update_contacts')), findsOneWidget);
@@ -245,41 +265,47 @@ void main() {
       // tap the button to show the toast
       await tester.tap(find.byKey(const Key('update_contacts')));
       expect(
-          store.state.userProfileState!.userProfile!.secondaryEmailAddresses!
-              .contains(EmailAddress.withValue(contactVal)),
-          false);
+        store.state.userProfileState!.userProfile!.secondaryEmailAddresses!
+            .contains(EmailAddress.withValue(contactVal)),
+        false,
+      );
       //
     });
 
     testWidgets('should set primary phone number', (WidgetTester tester) async {
       const String contactVal = '+2254728710101';
-      await tester.pumpWidget(StoreProvider<AppState>(
-        store: store,
-        child: StoreConnector<AppState, AppState>(
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: StoreConnector<AppState, AppState>(
             converter: (Store<AppState> store) {
-          return store.state;
-        }, builder: (BuildContext context, AppState appState) {
-          return MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return Center(
-                    child: SILPrimaryButton(
-                      buttonKey: const Key('update_contacts'),
-                      onPressed: () {
-                        updateStateContacts(
-                            context: context,
-                            type: StateContactType.setPrimaryPhone,
-                            value: contactVal);
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-        }),
-      ));
+              return store.state;
+            },
+            builder: (BuildContext context, AppState appState) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Builder(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: SILPrimaryButton(
+                          buttonKey: const Key('update_contacts'),
+                          onPressed: () {
+                            updateStateContacts(
+                              context: context,
+                              type: StateContactType.setPrimaryPhone,
+                              value: contactVal,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
       expect(find.byType(SILPrimaryButton), findsOneWidget);
       expect(find.byKey(const Key('update_contacts')), findsOneWidget);
@@ -287,41 +313,47 @@ void main() {
       // tap the button to show the toast
       await tester.tap(find.byKey(const Key('update_contacts')));
       expect(
-          store.state.userProfileState!.userProfile!.primaryPhoneNumber!
-              .getValue(),
-          contactVal);
+        store.state.userProfileState!.userProfile!.primaryPhoneNumber!
+            .getValue(),
+        contactVal,
+      );
       //
     });
 
     testWidgets('should set primary email', (WidgetTester tester) async {
       const String contactVal = 'email@example.com';
-      await tester.pumpWidget(StoreProvider<AppState>(
-        store: store,
-        child: StoreConnector<AppState, AppState>(
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: StoreConnector<AppState, AppState>(
             converter: (Store<AppState> store) {
-          return store.state;
-        }, builder: (BuildContext context, AppState appState) {
-          return MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return Center(
-                    child: SILPrimaryButton(
-                      buttonKey: const Key('update_contacts'),
-                      onPressed: () {
-                        updateStateContacts(
-                            context: context,
-                            type: StateContactType.setPrimaryEmail,
-                            value: contactVal);
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-        }),
-      ));
+              return store.state;
+            },
+            builder: (BuildContext context, AppState appState) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Builder(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: SILPrimaryButton(
+                          buttonKey: const Key('update_contacts'),
+                          onPressed: () {
+                            updateStateContacts(
+                              context: context,
+                              type: StateContactType.setPrimaryEmail,
+                              value: contactVal,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
       expect(find.byType(SILPrimaryButton), findsOneWidget);
       expect(find.byKey(const Key('update_contacts')), findsOneWidget);
@@ -329,9 +361,10 @@ void main() {
       // tap the button to show the toast
       await tester.tap(find.byKey(const Key('update_contacts')));
       expect(
-          store.state.userProfileState!.userProfile!.primaryEmailAddress!
-              .getValue(),
-          contactVal);
+        store.state.userProfileState!.userProfile!.primaryEmailAddress!
+            .getValue(),
+        contactVal,
+      );
     });
 
     testWidgets(
@@ -339,8 +372,10 @@ void main() {
       (WidgetTester tester) async {
         final AppState _state = AppState.initial();
         final AppState state = _state.copyWith.userFeedState!.call(
-            data: GetFeedData.fromJson(
-                mockFeedResponse()['data'] as Map<String, dynamic>));
+          data: GetFeedData.fromJson(
+            mockFeedResponse()['data'] as Map<String, dynamic>,
+          ),
+        );
         final Store<AppState> _store = Store<AppState>(initialState: state);
 
         final MockGraphQlClient GraphQlClient = MockGraphQlClient();
@@ -359,9 +394,10 @@ void main() {
                     buttonKey: const Key('add_primary_email'),
                     onPressed: () {
                       updateStateContacts(
-                          context: context,
-                          type: StateContactType.primaryEmail,
-                          value: contactVal);
+                        context: context,
+                        type: StateContactType.primaryEmail,
+                        value: contactVal,
+                      );
                     },
                   ),
                 );
@@ -377,9 +413,10 @@ void main() {
         await tester.tap(find.byKey(const Key('add_primary_email')));
 
         expect(
-            _store.state.userProfileState!.userProfile!.primaryEmailAddress!
-                .getValue(),
-            contactVal);
+          _store.state.userProfileState!.userProfile!.primaryEmailAddress!
+              .getValue(),
+          contactVal,
+        );
         //
       },
     );
@@ -387,33 +424,38 @@ void main() {
     testWidgets('should add secondary phone number to state',
         (WidgetTester tester) async {
       const String contactVal = '+2547xxx xxx';
-      await tester.pumpWidget(StoreProvider<AppState>(
-        store: store,
-        child: StoreConnector<AppState, AppState>(
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: StoreConnector<AppState, AppState>(
             converter: (Store<AppState> store) {
-          return store.state;
-        }, builder: (BuildContext context, AppState appState) {
-          return MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return Center(
-                    child: SILPrimaryButton(
-                      buttonKey: const Key('update_contacts'),
-                      onPressed: () {
-                        updateStateContacts(
-                            context: context,
-                            type: StateContactType.secondaryPhones,
-                            value: contactVal);
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-        }),
-      ));
+              return store.state;
+            },
+            builder: (BuildContext context, AppState appState) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Builder(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: SILPrimaryButton(
+                          buttonKey: const Key('update_contacts'),
+                          onPressed: () {
+                            updateStateContacts(
+                              context: context,
+                              type: StateContactType.secondaryPhones,
+                              value: contactVal,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
       expect(find.byType(SILPrimaryButton), findsOneWidget);
       expect(find.byKey(const Key('update_contacts')), findsOneWidget);
@@ -421,42 +463,48 @@ void main() {
       // tap the button to show the toast
       await tester.tap(find.byKey(const Key('update_contacts')));
       expect(
-          store.state.userProfileState!.userProfile!.secondaryPhoneNumbers!
-              .contains(PhoneNumber.withValue(contactVal)),
-          true);
+        store.state.userProfileState!.userProfile!.secondaryPhoneNumbers!
+            .contains(PhoneNumber.withValue(contactVal)),
+        true,
+      );
       //
     });
 
     testWidgets('should add secondary email to state',
         (WidgetTester tester) async {
       const String contactVal = 'xyz@xc.com';
-      await tester.pumpWidget(StoreProvider<AppState>(
-        store: store,
-        child: StoreConnector<AppState, AppState>(
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: StoreConnector<AppState, AppState>(
             converter: (Store<AppState> store) {
-          return store.state;
-        }, builder: (BuildContext context, AppState appState) {
-          return MaterialApp(
-            home: Scaffold(
-              body: Builder(
-                builder: (BuildContext context) {
-                  return Center(
-                    child: SILPrimaryButton(
-                      buttonKey: const Key('update_contacts'),
-                      onPressed: () {
-                        updateStateContacts(
-                            context: context,
-                            type: StateContactType.secondaryEmails,
-                            value: contactVal);
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-        }),
-      ));
+              return store.state;
+            },
+            builder: (BuildContext context, AppState appState) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Builder(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: SILPrimaryButton(
+                          buttonKey: const Key('update_contacts'),
+                          onPressed: () {
+                            updateStateContacts(
+                              context: context,
+                              type: StateContactType.secondaryEmails,
+                              value: contactVal,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
       expect(find.byType(SILPrimaryButton), findsOneWidget);
       expect(find.byKey(const Key('update_contacts')), findsOneWidget);
@@ -464,9 +512,10 @@ void main() {
       // tap the button to show the toast
       await tester.tap(find.byKey(const Key('update_contacts')));
       expect(
-          store.state.userProfileState!.userProfile!.secondaryEmailAddresses!
-              .contains(EmailAddress.withValue(contactVal)),
-          true);
+        store.state.userProfileState!.userProfile!.secondaryEmailAddresses!
+            .contains(EmailAddress.withValue(contactVal)),
+        true,
+      );
       //
     });
 
@@ -476,15 +525,18 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
               buttonKey: const Key('btn'),
               onPressed: () async {
                 showSaveProfileDetailsSILProgressDialog(
                   context,
                 );
-              });
-        }),
+              },
+            );
+          },
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -514,13 +566,14 @@ void main() {
           widget: Builder(
             builder: (BuildContext context) {
               return SILPrimaryButton(
-                  buttonKey: const Key('get_upload_id'),
-                  onPressed: () async {
-                    uploadID = await getUploadID(
-                      fileData: fileData,
-                      context: context,
-                    );
-                  });
+                buttonKey: const Key('get_upload_id'),
+                onPressed: () async {
+                  uploadID = await getUploadID(
+                    fileData: fileData,
+                    context: context,
+                  );
+                },
+              );
             },
           ),
         );
@@ -551,13 +604,14 @@ void main() {
           widget: Builder(
             builder: (BuildContext context) {
               return SILPrimaryButton(
-                  buttonKey: const Key('get_upload_id'),
-                  onPressed: () async {
-                    uploadID = await getUploadID(
-                      fileData: fileData,
-                      context: context,
-                    );
-                  });
+                buttonKey: const Key('get_upload_id'),
+                onPressed: () async {
+                  uploadID = await getUploadID(
+                    fileData: fileData,
+                    context: context,
+                  );
+                },
+              );
             },
           ),
         );
@@ -571,21 +625,25 @@ void main() {
 
     group('showAlertSnackBar test', () {
       testWidgets('should showAlertSnackBar', (WidgetTester tester) async {
-        await tester.pumpWidget(MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: Builder(builder: (BuildContext context) {
-                return SILPrimaryButton(
-                  buttonKey: const Key('snackbar_button'),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(misc.snackbar(content: 'hey'));
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Builder(
+                  builder: (BuildContext context) {
+                    return SILPrimaryButton(
+                      buttonKey: const Key('snackbar_button'),
+                      onPressed: () {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(misc.snackbar(content: 'hey'));
+                      },
+                    );
                   },
-                );
-              }),
+                ),
+              ),
             ),
           ),
-        ));
+        );
 
         await tester.pumpAndSettle();
         await tester.tap(find.byKey(const Key('snackbar_button')));
@@ -595,21 +653,28 @@ void main() {
 
       testWidgets('should showAlertSnackBar with default message',
           (WidgetTester tester) async {
-        await tester.pumpWidget(MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: Builder(builder: (BuildContext context) {
-                return SILPrimaryButton(
-                  buttonKey: const Key('snackbar_button'),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(misc.snackbar(
-                        content: UserFeedBackTexts.getErrorMessage()));
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Builder(
+                  builder: (BuildContext context) {
+                    return SILPrimaryButton(
+                      buttonKey: const Key('snackbar_button'),
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          misc.snackbar(
+                            content: UserFeedBackTexts.getErrorMessage(),
+                          ),
+                        );
+                      },
+                    );
                   },
-                );
-              }),
+                ),
+              ),
             ),
           ),
-        ));
+        );
 
         await tester.pumpAndSettle();
         await tester.tap(find.byKey(const Key('snackbar_button')));
@@ -620,21 +685,27 @@ void main() {
 
     testWidgets('should show SILActionsBottomSheet',
         (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Builder(builder: (BuildContext context) {
-              return SILPrimaryButton(
-                buttonKey: const Key('bottom_sheet_button'),
-                onPressed: () {
-                  showMedicationBottomSheet(
-                      context: context, child: Container());
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: Builder(
+                builder: (BuildContext context) {
+                  return SILPrimaryButton(
+                    buttonKey: const Key('bottom_sheet_button'),
+                    onPressed: () {
+                      showMedicationBottomSheet(
+                        context: context,
+                        child: Container(),
+                      );
+                    },
+                  );
                 },
-              );
-            }),
+              ),
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('bottom_sheet_button')));
@@ -646,20 +717,24 @@ void main() {
     testWidgets('should launchWhatsApp on ios', (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-      await tester.pumpWidget(MaterialApp(
-        onGenerateRoute: RouteGenerator.generateRoute,
-        navigatorObservers: <NavigatorObserver>[mockNavigatorObserver],
-        home: Scaffold(
-          body: Center(
-            child: Builder(builder: (BuildContext context) {
-              return SILPrimaryButton(
-                buttonKey: const Key('bottom_sheet_button'),
-                onPressed: () => misc.launchWhatsApp,
-              );
-            }),
+      await tester.pumpWidget(
+        MaterialApp(
+          onGenerateRoute: RouteGenerator.generateRoute,
+          navigatorObservers: <NavigatorObserver>[mockNavigatorObserver],
+          home: Scaffold(
+            body: Center(
+              child: Builder(
+                builder: (BuildContext context) {
+                  return SILPrimaryButton(
+                    buttonKey: const Key('bottom_sheet_button'),
+                    onPressed: () => misc.launchWhatsApp,
+                  );
+                },
+              ),
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('bottom_sheet_button')));
@@ -673,20 +748,24 @@ void main() {
         (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
 
-      await tester.pumpWidget(MaterialApp(
-        onGenerateRoute: RouteGenerator.generateRoute,
-        navigatorObservers: <NavigatorObserver>[mockNavigatorObserver],
-        home: Scaffold(
-          body: Center(
-            child: Builder(builder: (BuildContext context) {
-              return SILPrimaryButton(
-                buttonKey: const Key('bottom_sheet_button'),
-                onPressed: () => misc.launchWhatsApp,
-              );
-            }),
+      await tester.pumpWidget(
+        MaterialApp(
+          onGenerateRoute: RouteGenerator.generateRoute,
+          navigatorObservers: <NavigatorObserver>[mockNavigatorObserver],
+          home: Scaffold(
+            body: Center(
+              child: Builder(
+                builder: (BuildContext context) {
+                  return SILPrimaryButton(
+                    buttonKey: const Key('bottom_sheet_button'),
+                    onPressed: () => misc.launchWhatsApp,
+                  );
+                },
+              ),
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('bottom_sheet_button')));
@@ -702,21 +781,25 @@ void main() {
         (WidgetTester tester) async {
       const Key launchBottomSheetKey = Key('bottom_sheet_key');
 
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            buttonKey: launchBottomSheetKey,
-            onPressed: () async {
-              genericBottomSheet(
-                context: context,
-                message: 'demo bottom sheet',
-                isError: false,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                buttonKey: launchBottomSheetKey,
+                onPressed: () async {
+                  genericBottomSheet(
+                    context: context,
+                    message: 'demo bottom sheet',
+                    isError: false,
+                  );
+                },
+                text: 'Show Bottom Sheet',
               );
             },
-            text: 'Show Bottom Sheet',
-          );
-        }),
-      ));
+          ),
+        ),
+      );
 
       await fireEvent(tester);
       expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -734,32 +817,36 @@ void main() {
       }
 
       const Key launchBottomSheetKey = Key('bottom_sheet_key');
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            buttonKey: launchBottomSheetKey,
-            onPressed: () async {
-              genericBottomSheet(
-                context: context,
-                message: 'demo bottom sheet',
-                isError: false,
-                primaryActionCallback: () {
-                  incrementButtonTaps(primaryButtonTaps);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                buttonKey: launchBottomSheetKey,
+                onPressed: () async {
+                  genericBottomSheet(
+                    context: context,
+                    message: 'demo bottom sheet',
+                    isError: false,
+                    primaryActionCallback: () {
+                      incrementButtonTaps(primaryButtonTaps);
+                    },
+                    secondaryActionCallback: () {
+                      incrementButtonTaps(secondaryButtonTaps);
+                    },
+                    secondaryActionText: 'Secondary Button',
+                    tertiaryActionCallback: () {
+                      incrementButtonTaps(tertiaryButtonTaps);
+                    },
+                    tertiaryActionText: 'Tertiary Button',
+                  );
                 },
-                secondaryActionCallback: () {
-                  incrementButtonTaps(secondaryButtonTaps);
-                },
-                secondaryActionText: 'Secondary Button',
-                tertiaryActionCallback: () {
-                  incrementButtonTaps(tertiaryButtonTaps);
-                },
-                tertiaryActionText: 'Tertiary Button',
+                text: 'Show Bottom Sheet',
               );
             },
-            text: 'Show Bottom Sheet',
-          );
-        }),
-      ));
+          ),
+        ),
+      );
 
       await fireEvent(tester);
       expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -811,28 +898,32 @@ void main() {
       }
 
       const Key launchBottomSheetKey = Key('bottom_sheet_key');
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(builder: (BuildContext context) {
-          return SILPrimaryButton(
-            buttonKey: launchBottomSheetKey,
-            onPressed: () async {
-              genericBottomSheet(
-                context: context,
-                message: 'demo bottom sheet',
-                isError: true,
-                primaryActionCallback: () {
-                  incrementButtonTaps(primaryButtonTaps);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                buttonKey: launchBottomSheetKey,
+                onPressed: () async {
+                  genericBottomSheet(
+                    context: context,
+                    message: 'demo bottom sheet',
+                    isError: true,
+                    primaryActionCallback: () {
+                      incrementButtonTaps(primaryButtonTaps);
+                    },
+                    showSecondaryButton: true,
+                    secondaryActionText: 'Secondary Button',
+                    tertiaryActionCallback: () {},
+                    tertiaryActionText: 'Other Button',
+                  );
                 },
-                showSecondaryButton: true,
-                secondaryActionText: 'Secondary Button',
-                tertiaryActionCallback: () {},
-                tertiaryActionText: 'Other Button',
+                text: 'Show Bottom Sheet',
               );
             },
-            text: 'Show Bottom Sheet',
-          );
-        }),
-      ));
+          ),
+        ),
+      );
 
       await fireEvent(tester);
       expect(find.byType(SILPrimaryButton), findsOneWidget);
@@ -869,18 +960,25 @@ void main() {
   testWidgets('test getWidthOfSymmetricalWidgetsSmallDevices',
       (WidgetTester tester) async {
     double? width;
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Builder(builder: (BuildContext context) {
-            return RawMaterialButton(onPressed: () {
-              width =
-                  getWidthOfSymmetricalWidgetsSmallDevices(context: context);
-            });
-          }),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: Builder(
+              builder: (BuildContext context) {
+                return RawMaterialButton(
+                  onPressed: () {
+                    width = getWidthOfSymmetricalWidgetsSmallDevices(
+                      context: context,
+                    );
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
-    ));
+    );
 
     await tester.pumpAndSettle();
     await tester.tap(find.byType(RawMaterialButton));
@@ -894,17 +992,23 @@ void main() {
     tester.binding.window.physicalSizeTestValue = const Size(20, 10);
     tester.binding.window.devicePixelRatioTestValue = 1.0;
     bool? isLarge;
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Builder(builder: (BuildContext context) {
-            return RawMaterialButton(onPressed: () {
-              isLarge = isLargeScreenAndOnLandscape(context: context);
-            });
-          }),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: Builder(
+              builder: (BuildContext context) {
+                return RawMaterialButton(
+                  onPressed: () {
+                    isLarge = isLargeScreenAndOnLandscape(context: context);
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
-    ));
+    );
 
     await tester.pumpAndSettle();
     await tester.tap(find.byType(RawMaterialButton));
@@ -919,17 +1023,23 @@ void main() {
     tester.binding.window.physicalSizeTestValue = const Size(1400, 1000);
     tester.binding.window.devicePixelRatioTestValue = 1.0;
     bool? isLarge;
-    await tester.pumpWidget(MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Builder(builder: (BuildContext context) {
-            return RawMaterialButton(onPressed: () {
-              isLarge = isLargeScreenAndOnLandscape(context: context);
-            });
-          }),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: Builder(
+              builder: (BuildContext context) {
+                return RawMaterialButton(
+                  onPressed: () {
+                    isLarge = isLargeScreenAndOnLandscape(context: context);
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
-    ));
+    );
 
     await tester.pumpAndSettle();
     await tester.tap(find.byType(RawMaterialButton));
@@ -950,7 +1060,8 @@ void main() {
         child: Builder(
           builder: (BuildContext context) {
             return RawMaterialButton(
-                onPressed: () => showRatingBottomSheet(context));
+              onPressed: () => showRatingBottomSheet(context),
+            );
           },
         ),
       ),

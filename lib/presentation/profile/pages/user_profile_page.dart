@@ -74,9 +74,10 @@ class UserProfilePage extends StatelessWidget {
                             title,
                             maxLines: 2,
                             style: const TextStyle(
-                                color: AppColors.secondaryColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                              color: AppColors.secondaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                           iconBackgroundColor: AppColors.listCardColor,
@@ -100,9 +101,10 @@ class UserProfilePage extends StatelessWidget {
                   const Text(
                     hotlineString,
                     style: TextStyle(
-                        color: AppColors.secondaryColor,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14),
+                      color: AppColors.secondaryColor,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                    ),
                   ),
                   smallVerticalSizedBox,
                   const CallContactActionWidget(

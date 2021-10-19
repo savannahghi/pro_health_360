@@ -23,8 +23,11 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class ResumeWithPinAction extends ReduxAction<AppState> {
-  ResumeWithPinAction(
-      {required this.context, required this.flag, this.controller});
+  ResumeWithPinAction({
+    required this.context,
+    required this.flag,
+    this.controller,
+  });
 
   final BuildContext context;
   final String flag;
@@ -51,10 +54,14 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
     // check if the PIN is null or unknown
     if (pin == null || pin == UNKNOWN) {
       return throw SILException(
-          cause: 'empty_pin', message: 'Please provide a PIN');
+        cause: 'empty_pin',
+        message: 'Please provide a PIN',
+      );
     } else {
       final http.Response result = await _client.query(
-          resumeWithPinQuery, resumeWithPinQueryVariables(pin));
+        resumeWithPinQuery,
+        resumeWithPinQueryVariables(pin),
+      );
 
       final Map<String, dynamic> body = _client.toMap(result);
 
@@ -63,22 +70,32 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         final String error = _client.parseError(body)!;
         if (error.contains('wrong PIN credentials supplied')) {
           store.dispatch(
-              UpdatePinStatusAction(invalidPin: true, controller: controller));
+            UpdatePinStatusAction(invalidPin: true, controller: controller),
+          );
           return throw SILException(
-              error: error, cause: 'resume_with_pin_error', message: wrongPIN);
+            error: error,
+            cause: 'resume_with_pin_error',
+            message: wrongPIN,
+          );
         }
         return throw SILException(
-            error: error, cause: 'resume_with_pin_error', message: errMsg);
+          error: error,
+          cause: 'resume_with_pin_error',
+          message: errMsg,
+        );
       }
 
       if (body['data'] != null) {
         if (body['data']['resumeWithPIN'] == true) {
           if (isUserChangingPin == true) {
             DynamicBackRouteHolder().createPINPage.add(BWRoutes.userProfile);
-            Navigator.pushReplacementNamed(context, BWRoutes.createPin,
-                arguments: <String, bool>{
-                  'changingPin': true,
-                });
+            Navigator.pushReplacementNamed(
+              context,
+              BWRoutes.createPin,
+              arguments: <String, bool>{
+                'changingPin': true,
+              },
+            );
           } else {
             final DeepLinkSubject deepLink = DeepLinkSubject();
             if (deepLink.hasLink.value) {
@@ -87,13 +104,16 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
             } else {
               final Map<String, dynamic> routeContext = onboardingPath(state);
               Navigator.pushReplacementNamed(
-                  context, routeContext['route'].toString(),
-                  arguments: routeContext['args']);
+                context,
+                routeContext['route'].toString(),
+                arguments: routeContext['args'],
+              );
             }
           }
         } else {
           store.dispatch(
-              UpdatePinStatusAction(invalidPin: true, controller: controller));
+            UpdatePinStatusAction(invalidPin: true, controller: controller),
+          );
           showFeedbackBottomSheet(
             context: context,
             modalContent: wrongPIN,
@@ -103,9 +123,10 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         }
       } else {
         return throw SILException(
-            error: body,
-            cause: 'empty_body_when_changing_pin',
-            message: errMsg);
+          error: body,
+          cause: 'empty_body_when_changing_pin',
+          message: errMsg,
+        );
       }
     }
 

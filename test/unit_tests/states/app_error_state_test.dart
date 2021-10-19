@@ -7,7 +7,8 @@ import 'package:myafyahub/application/redux/states/app_error_state.dart';
 void main() {
   test('should convert from json', () {
     final AppErrorState result2 = AppErrorState.fromJson(
-        <String, dynamic>{'isTimeout': false, 'errorMessage': 'test'});
+      <String, dynamic>{'isTimeout': false, 'errorMessage': 'test'},
+    );
 
     expect(result2.isTimeout, isNotNull);
     expect(result2.isTimeout, false);

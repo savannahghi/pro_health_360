@@ -21,12 +21,13 @@ void main() {
     testWidgets('should render error text if OTP is invalid',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: const VerifyPhonePage(
-            otp: 1234,
-          ));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const VerifyPhonePage(
+          otp: 1234,
+        ),
+      );
 
       await tester.pumpAndSettle();
       await tester.showKeyboard(find.byType(PINInputField));
@@ -41,12 +42,13 @@ void main() {
         'confirmOTP button routes to Terms and Conditions if input is valid',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: const VerifyPhonePage(
-            otp: 1234,
-          ));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const VerifyPhonePage(
+          otp: 1234,
+        ),
+      );
 
       await tester.pumpAndSettle();
       await tester.showKeyboard(find.byType(PINInputField));

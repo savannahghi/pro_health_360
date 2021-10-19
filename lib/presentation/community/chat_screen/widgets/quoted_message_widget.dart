@@ -44,7 +44,8 @@ class QuotedMessageWidget extends StatelessWidget {
                 child: Text(
                   senderName,
                   style: TextThemes.normalSize10Text().copyWith(
-                      color: AppColors.userDetailsCardBackgroundColor),
+                    color: AppColors.userDetailsCardBackgroundColor,
+                  ),
                 ),
               ),
               smallVerticalSizedBox,

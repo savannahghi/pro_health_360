@@ -20,12 +20,13 @@ void main() {
     testWidgets('should render notifications as a list',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: NotificationsPage(
-            notifications: notifications,
-          ));
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: NotificationsPage(
+          notifications: notifications,
+        ),
+      );
 
       await tester.pumpAndSettle();
 

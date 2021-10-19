@@ -27,13 +27,15 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: Builder(builder: (BuildContext context) {
-          return const CircularBackGroundIcons(
-            backgroundColor: AppColors.primaryColor,
-            iconBackgroundPadding: 24,
-            loadIcon: UniconsLine.phone,
-          );
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return const CircularBackGroundIcons(
+              backgroundColor: AppColors.primaryColor,
+              iconBackgroundPadding: 24,
+              loadIcon: UniconsLine.phone,
+            );
+          },
+        ),
       );
 
       expect(find.byType(CircularBackGroundIcons), findsOneWidget);

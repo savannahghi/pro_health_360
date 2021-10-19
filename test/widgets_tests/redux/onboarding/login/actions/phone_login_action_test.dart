@@ -46,8 +46,9 @@ void main() {
     final MockRefreshTokenManger refreshTimer = MockRefreshTokenManger();
 
     final DateTimeParser dateTimeParser = DateTimeParser(
-        useCustomDateTime: true,
-        customDateTime: DateTime.parse('2021-05-18 13:27:00'));
+      useCustomDateTime: true,
+      customDateTime: DateTime.parse('2021-05-18 13:27:00'),
+    );
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
@@ -57,12 +58,13 @@ void main() {
         (WidgetTester tester) async {
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 try {
                   await store.dispatch(
                     PhoneLoginAction(
@@ -75,9 +77,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -113,17 +117,20 @@ void main() {
 
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 EndPointsContextSubject().contexts.add(testAppContexts);
                 await StoreProvider.dispatch(
                   context,
                   PhoneLoginStateAction(
-                      pinCode: '1234', phoneNumber: '+254728101710'),
+                    pinCode: '1234',
+                    phoneNumber: '+254728101710',
+                  ),
                 );
                 try {
                   await StoreProvider.dispatch(
@@ -138,9 +145,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -176,17 +185,20 @@ void main() {
 
       late dynamic err;
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(onPressed: () async {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
                 EndPointsContextSubject().contexts.add(testAppContexts);
                 await StoreProvider.dispatch(
                   context,
                   PhoneLoginStateAction(
-                      pinCode: '1234', phoneNumber: '+254728101710'),
+                    pinCode: '1234',
+                    phoneNumber: '+254728101710',
+                  ),
                 );
                 try {
                   await StoreProvider.dispatch(
@@ -201,9 +213,11 @@ void main() {
                 } catch (e) {
                   err = e;
                 }
-              });
-            },
-          ));
+              },
+            );
+          },
+        ),
+      );
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
@@ -244,8 +258,9 @@ void main() {
         when(fcmMock.resetToken())
             .thenAnswer((Invocation realInvocation) => Future<void>.value());
 
-        when(fcmMock.resetToken()).thenAnswer((Invocation realInvocation) =>
-            Future<String?>.value('newPushToken'));
+        when(fcmMock.resetToken()).thenAnswer(
+          (Invocation realInvocation) => Future<String?>.value('newPushToken'),
+        );
 
         queryWhenThenAnswer(
           queryString: registerDeviceTokenQuery,
@@ -265,15 +280,16 @@ void main() {
         );
 
         queryWhenThenAnswer(
-            queryString: getFeedQuery,
-            variables: <String, dynamic>{
-              'flavour': Flavour.CONSUMER.name,
-              'persistent': 'BOTH',
-              'visibility': 'SHOW',
-              'isAnonymous': false,
-              'status': null,
-            },
-            response: _response);
+          queryString: getFeedQuery,
+          variables: <String, dynamic>{
+            'flavour': Flavour.CONSUMER.name,
+            'persistent': 'BOTH',
+            'visibility': 'SHOW',
+            'isAnonymous': false,
+            'status': null,
+          },
+          response: _response,
+        );
 
         when(baseGraphQlClientMock.toMap(_response))
             .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
@@ -282,17 +298,20 @@ void main() {
 
         dynamic err;
         await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: baseGraphQlClientMock,
-            widget: Builder(
-              builder: (BuildContext context) {
-                return SILPrimaryButton(onPressed: () async {
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () async {
                   EndPointsContextSubject().contexts.add(testAppContexts);
                   await StoreProvider.dispatch(
                     context,
                     PhoneLoginStateAction(
-                        pinCode: '1234', phoneNumber: '+254728101710'),
+                      pinCode: '1234',
+                      phoneNumber: '+254728101710',
+                    ),
                   );
                   try {
                     await StoreProvider.dispatch(
@@ -307,9 +326,11 @@ void main() {
                   } catch (e) {
                     err = e;
                   }
-                });
-              },
-            ));
+                },
+              );
+            },
+          ),
+        );
 
         await tester.pump();
         await tester.tap(find.byType(SILPrimaryButton));

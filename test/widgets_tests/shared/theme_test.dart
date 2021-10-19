@@ -14,15 +14,24 @@ void main() {
     testWidgets('should test AppTheme class and getAppTheme method',
         (WidgetTester tester) async {
       await tester.pumpWidget(
-          MaterialApp(home: Builder(builder: (BuildContext context) {
-        return SILPrimaryButton(onPressed: () {
-          AppTheme.getAppTheme(testAppContexts);
-        });
-      })));
+        MaterialApp(
+          home: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () {
+                  AppTheme.getAppTheme(testAppContexts);
+                },
+              );
+            },
+          ),
+        ),
+      );
       final Finder silPrimaryButton = find.byType(SILPrimaryButton);
       expect(silPrimaryButton, findsOneWidget);
-      expect(AppTheme.getAppTheme(testAppContexts).colorScheme.secondary,
-          AppColors.themeColors.accentColor);
+      expect(
+        AppTheme.getAppTheme(testAppContexts).colorScheme.secondary,
+        AppColors.themeColors.accentColor,
+      );
       await tester.tap(silPrimaryButton);
       await tester.pumpAndSettle();
     });

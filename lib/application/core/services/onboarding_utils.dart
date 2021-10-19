@@ -66,7 +66,10 @@ Future<void> updateUserPin({
       AppWrapperBase.of(context)!.customContext!.updateUserPinEndpoint;
 
   final http.Response response = await _httpClient.callRESTAPI(
-      endpoint: endPoint, variables: _variables, method: httpPOST);
+    endpoint: endPoint,
+    variables: _variables,
+    method: httpPOST,
+  );
 
   final dynamic body = json.decode(response.body);
 
@@ -103,11 +106,13 @@ Future<ProcessedResponse> requestForANewToken({
   };
 
   return processHttpResponse(
-      await _httpClient.callRESTAPI(
-          endpoint: refreshTokenEndpoint,
-          method: 'POST',
-          variables: refreshTokenVariables),
-      context);
+    await _httpClient.callRESTAPI(
+      endpoint: refreshTokenEndpoint,
+      method: 'POST',
+      variables: refreshTokenVariables,
+    ),
+    context,
+  );
 }
 
 Future<bool> updateStateAuth({
@@ -132,18 +137,17 @@ Future<bool> updateStateAuth({
     publishEvent(
       hasSuccessfulRefreshTokenEvent(appContext),
       EventObject(
-          firstName: state!
-              .userProfileState!.userProfile!.userBioData!.firstName!
-              .getValue(),
-          lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-              .getValue(),
-          primaryPhoneNumber: state
-              .userProfileState!.userProfile!.primaryPhoneNumber!
-              .getValue(),
-          uid: state.userProfileState!.auth!.uid,
-          flavour: Flavour.CONSUMER.name,
-          timestamp: DateTime.now(),
-          appVersion: APPVERSION),
+        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
+            .getValue(),
+        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
+            .getValue(),
+        primaryPhoneNumber:
+            state.userProfileState!.userProfile!.primaryPhoneNumber!.getValue(),
+        uid: state.userProfileState!.auth!.uid,
+        flavour: Flavour.CONSUMER.name,
+        timestamp: DateTime.now(),
+        appVersion: APPVERSION,
+      ),
     );
 
     await StoreProvider.dispatch<AppState>(
@@ -160,25 +164,27 @@ Future<bool> updateStateAuth({
     );
     return true;
   } else {
-    reportErrorToSentry(context, okResponse,
-        hint: 'Error failed to refresh token');
+    reportErrorToSentry(
+      context,
+      okResponse,
+      hint: 'Error failed to refresh token',
+    );
 
     /// we failed to refresh the token so require the user to login
     publishEvent(
       hasFailedToRefreshTokenEvent(appContext),
       EventObject(
-          firstName: state!
-              .userProfileState!.userProfile!.userBioData!.firstName!
-              .getValue(),
-          lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-              .getValue(),
-          primaryPhoneNumber: state
-              .userProfileState!.userProfile!.primaryPhoneNumber!
-              .getValue(),
-          uid: state.userProfileState!.auth!.uid,
-          flavour: Flavour.CONSUMER.name,
-          timestamp: DateTime.now(),
-          appVersion: APPVERSION),
+        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
+            .getValue(),
+        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
+            .getValue(),
+        primaryPhoneNumber:
+            state.userProfileState!.userProfile!.primaryPhoneNumber!.getValue(),
+        uid: state.userProfileState!.auth!.uid,
+        flavour: Flavour.CONSUMER.name,
+        timestamp: DateTime.now(),
+        appVersion: APPVERSION,
+      ),
     );
     return false;
   }
@@ -225,7 +231,9 @@ Future<AuthTokenStatus> checkTokenStatus({
     ///  set by the backend to mean user credentials matched
     if (processedResponse.ok) {
       if (await updateStateAuth(
-          context: context, processedResponse: processedResponse)) {
+        context: context,
+        processedResponse: processedResponse,
+      )) {
         return AuthTokenStatus.requiresPin;
       } else {
         /// we failed to refresh the token so require the user to login
@@ -240,8 +248,10 @@ Future<AuthTokenStatus> checkTokenStatus({
 }
 
 // determines the path to route the user to based on the app state
-Map<String, dynamic> onboardingPath(AppState state,
-    {bool calledOnResume = false}) {
+Map<String, dynamic> onboardingPath(
+  AppState state, {
+  bool calledOnResume = false,
+}) {
   final BioData bioData = state.userProfileState!.userProfile!.userBioData!;
 
   if (bioData.firstName?.getValue() == UNKNOWN ||
@@ -364,8 +374,10 @@ Future<String> getInitialRoute(
 /// [processHttpResponse] routine is used to process a network call response, for errors, bad requests, timeouts and correct responses.
 ///
 /// errors are further processed using our own custom error codes to determine if it an error within our error codes
-ProcessedResponse processHttpResponse(http.Response response,
-    [BuildContext? context]) {
+ProcessedResponse processHttpResponse(
+  http.Response response, [
+  BuildContext? context,
+]) {
   if (<int>[200, 201, 202].contains(response.statusCode)) {
     return ProcessedResponse(ok: true, response: response);
   }
@@ -377,11 +389,16 @@ ProcessedResponse processHttpResponse(http.Response response,
         json.decode(response.body) as Map<String, dynamic>;
     if (body['code'] == 4 && context != null) {
       StoreProvider.dispatch(
-          context, PhoneSignUpStateAction(accountExists: true));
+        context,
+        PhoneSignUpStateAction(accountExists: true),
+      );
     }
     if ((body['code'] == 7 || body['code'] == 10) && context != null) {
       throw SILException(
-          error: body, cause: noUserFound, message: getUserPhoneNumbersMessage);
+        error: body,
+        cause: noUserFound,
+        message: getUserPhoneNumbersMessage,
+      );
     }
 
     if (body['code'] == 8 && context != null) {
@@ -392,9 +409,10 @@ ProcessedResponse processHttpResponse(http.Response response,
     }
 
     return ProcessedResponse(
-        ok: false,
-        response: response,
-        message: getUserFriendlyMsg(body['code'] as int));
+      ok: false,
+      response: response,
+      message: getUserFriendlyMsg(body['code'] as int),
+    );
   }
   if (response.statusCode == 500) {
     final int code = json.decode(response.body)['code'] != null
@@ -402,16 +420,23 @@ ProcessedResponse processHttpResponse(http.Response response,
         : 11;
 
     return ProcessedResponse(
-        ok: false, response: response, message: getUserFriendlyMsg(code));
+      ok: false,
+      response: response,
+      message: getUserFriendlyMsg(code),
+    );
   }
   if (response.statusCode == 408) {
     return ProcessedResponse(
-        ok: true, response: response, message: getUserFriendlyMsg(0));
+      ok: true,
+      response: response,
+      message: getUserFriendlyMsg(0),
+    );
   }
   return ProcessedResponse(
-      ok: false,
-      response: response,
-      message: UserFeedBackTexts.getErrorMessage());
+    ok: false,
+    response: response,
+    message: UserFeedBackTexts.getErrorMessage(),
+  );
 }
 
 String getUserFriendlyMsg(int code) {
@@ -489,8 +514,11 @@ Future<void> saveProfileDetails({
 
   //check first for errors
   if (_client.parseError(body) != null) {
-    reportErrorToSentry(context, result,
-        hint: 'Failed to save profile details');
+    reportErrorToSentry(
+      context,
+      result,
+      hint: 'Failed to save profile details',
+    );
     ScaffoldMessenger.of(context)
         .showSnackBar(snackbar(content: UserFeedBackTexts.getErrorMessage()));
     return;
@@ -523,8 +551,10 @@ Future<void> saveProfileDetails({
       .showSnackBar(snackbar(content: UserFeedBackTexts.getErrorMessage()));
 }
 
-Object actionWrapError(
-    {required dynamic error, required BuildContext context}) async {
+Object actionWrapError({
+  required dynamic error,
+  required BuildContext context,
+}) async {
   if (error.runtimeType == SILException) {
     if (error.cause.contains('no_user_account_found') == true) {
       genericBottomSheet(
@@ -563,14 +593,15 @@ Object actionWrapError(
 /// Since the working is the same,makes sense to have only one point to preprocess the response.
 /// The only difference is in the final step where for [login] the user is navigated to a suitable page
 /// depending on their onboarding path while for [createAccount] the used to navigated direct to basic details page.
-Future<dynamic> afterLoginOrCreateAccount(
-    {required ProcessedResponse processedResponse,
-    required Store<AppState> store,
-    required BuildContext context,
-    required OnboardActionType onboardActionType,
-    required DateTimeParser dateTimeParser,
-    required RefreshTokenManger refreshTokenManger,
-    required IGraphQlClient graphQlClient}) async {
+Future<dynamic> afterLoginOrCreateAccount({
+  required ProcessedResponse processedResponse,
+  required Store<AppState> store,
+  required BuildContext context,
+  required OnboardActionType onboardActionType,
+  required DateTimeParser dateTimeParser,
+  required RefreshTokenManger refreshTokenManger,
+  required IGraphQlClient graphQlClient,
+}) async {
   try {
     final http.Response jsonResponse = processedResponse.response;
     final Map<String, dynamic> response =
@@ -647,13 +678,19 @@ Future<dynamic> afterLoginOrCreateAccount(
       if (deepLink.hasLink.value) {
         deepLink.hasLink.add(false);
         Navigator.pushNamedAndRemoveUntil(
-            context, deepLink.link.value, (Route<dynamic> route) => false);
+          context,
+          deepLink.link.value,
+          (Route<dynamic> route) => false,
+        );
         return;
       }
 
-      await Navigator.pushNamedAndRemoveUntil(context,
-          routeContext['route'].toString(), (Route<dynamic> route) => false,
-          arguments: routeContext['args']);
+      await Navigator.pushNamedAndRemoveUntil(
+        context,
+        routeContext['route'].toString(),
+        (Route<dynamic> route) => false,
+        arguments: routeContext['args'],
+      );
 
       return;
     }
@@ -663,8 +700,12 @@ Future<dynamic> afterLoginOrCreateAccount(
         getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
 
     if (onboardActionType == OnboardActionType.login) {
-      reportErrorToSentry(context, e,
-          stackTrace: stackTrace, hint: 'Error logging in');
+      reportErrorToSentry(
+        context,
+        e,
+        stackTrace: stackTrace,
+        hint: 'Error logging in',
+      );
       publishEvent(
         hasFailedToLoggingEvent(appContext),
         EventObject(
@@ -681,8 +722,12 @@ Future<dynamic> afterLoginOrCreateAccount(
     }
 
     if (onboardActionType == OnboardActionType.createAccount) {
-      reportErrorToSentry(context, e,
-          stackTrace: stackTrace, hint: 'Error signing up');
+      reportErrorToSentry(
+        context,
+        e,
+        stackTrace: stackTrace,
+        hint: 'Error signing up',
+      );
       publishEvent(
         hasFailedToSignupEvent(appContext),
         EventObject(

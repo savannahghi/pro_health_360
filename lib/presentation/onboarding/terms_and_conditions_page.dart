@@ -47,7 +47,8 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                 title: Text(
                   portalTermsText,
                   style: TextThemes.normalSize16Text(
-                      Theme.of(context).primaryColor),
+                    Theme.of(context).primaryColor,
+                  ),
                 ),
                 body: Text(
                   readAndAcceptText,
@@ -79,8 +80,8 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                           child: Text(
                             'Terms and Conditions will be available soon',
                             style: TextThemes.normalSize18Text(
-                                    AppColors.secondaryColor.withOpacity(0.5))
-                                .copyWith(height: 1.8),
+                              AppColors.secondaryColor.withOpacity(0.5),
+                            ).copyWith(height: 1.8),
                           ),
                         ),
                       ),
@@ -110,16 +111,21 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                   onPressed: () {
                     if (isAgreed) {
                       Navigator.pushReplacementNamed(
-                          context, BWRoutes.securityQuestionsPage);
+                        context,
+                        BWRoutes.securityQuestionsPage,
+                      );
                     } else {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
-                        ..showSnackBar(SnackBar(
-                          content: const Text(acceptTermsErrorMessage),
-                          duration:
-                              const Duration(seconds: kShortSnackBarDuration),
-                          action: dismissSnackBar(closeString, white, context),
-                        ));
+                        ..showSnackBar(
+                          SnackBar(
+                            content: const Text(acceptTermsErrorMessage),
+                            duration:
+                                const Duration(seconds: kShortSnackBarDuration),
+                            action:
+                                dismissSnackBar(closeString, white, context),
+                          ),
+                        );
                     }
                   },
                 ),

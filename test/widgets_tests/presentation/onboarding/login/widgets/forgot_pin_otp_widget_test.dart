@@ -48,8 +48,10 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            StoreProvider.dispatch(context,
-                UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP));
+            StoreProvider.dispatch(
+              context,
+              UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP),
+            );
             EndPointsContextSubject().contexts.add(testAppContexts);
             return ForgotPinOtpWidget();
           },
@@ -87,8 +89,10 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            StoreProvider.dispatch(context,
-                UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP));
+            StoreProvider.dispatch(
+              context,
+              UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP),
+            );
             EndPointsContextSubject().contexts.add(testAppContexts);
             return ForgotPinOtpWidget();
           },
@@ -136,8 +140,10 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            StoreProvider.dispatch(context,
-                UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP));
+            StoreProvider.dispatch(
+              context,
+              UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP),
+            );
             EndPointsContextSubject().contexts.add(testAppContexts);
             return ForgotPinOtpWidget();
           },
@@ -177,8 +183,10 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            StoreProvider.dispatch(context,
-                UpdatePinStatusAction(invalidPin: true, recoveryOtp: testOTP));
+            StoreProvider.dispatch(
+              context,
+              UpdatePinStatusAction(invalidPin: true, recoveryOtp: testOTP),
+            );
             EndPointsContextSubject().contexts.add(testAppContexts);
             return ForgotPinOtpWidget();
           },
@@ -217,8 +225,10 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             toggleLoadingIndicator(context: context, flag: flag);
-            StoreProvider.dispatch(context,
-                UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP));
+            StoreProvider.dispatch(
+              context,
+              UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP),
+            );
             EndPointsContextSubject().contexts.add(testAppContexts);
 
             return ForgotPinOtpWidget();

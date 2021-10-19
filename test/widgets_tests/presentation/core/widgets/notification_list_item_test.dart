@@ -20,7 +20,8 @@ void main() {
             return Scaffold(
               body: NotificationListItem(
                 icon: IconDetails(
-                    iconUrlSvgPath: teleConsultVideoNotificationIcon),
+                  iconUrlSvgPath: teleConsultVideoNotificationIcon,
+                ),
                 description:
                     'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
                 date: 'July 12 2021',
@@ -47,7 +48,8 @@ void main() {
             return Scaffold(
               body: NotificationListItem(
                 icon: IconDetails(
-                    iconUrlSvgPath: teleConsultVideoNotificationIcon),
+                  iconUrlSvgPath: teleConsultVideoNotificationIcon,
+                ),
                 description:
                     'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
                 date: 'July 12 2021',

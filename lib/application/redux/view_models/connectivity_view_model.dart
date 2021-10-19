@@ -12,6 +12,7 @@ class ConnectivityViewModel {
 
   static ConnectivityViewModel fromStore(Store<AppState> store) {
     return ConnectivityViewModel(
-        connectivityState: store.state.connectivityState!);
+      connectivityState: store.state.connectivityState!,
+    );
   }
 }

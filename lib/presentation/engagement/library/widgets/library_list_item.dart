@@ -43,8 +43,10 @@ class LibraryListItem extends StatelessWidget {
                                   .copyWith(height: 2),
                         ),
                         verySmallVerticalSizedBox,
-                        Text(libraryContentItem.libraryContentTitle,
-                            style: TextThemes.boldSize20Text()),
+                        Text(
+                          libraryContentItem.libraryContentTitle,
+                          style: TextThemes.boldSize20Text(),
+                        ),
                         verySmallVerticalSizedBox,
                         Row(
                           children: <Widget>[
@@ -60,7 +62,8 @@ class LibraryListItem extends StatelessWidget {
                             Text(
                               '${libraryContentItem.libraryContentReadTime} min read',
                               style: TextThemes.normalSize12Text(
-                                  AppColors.greyColor),
+                                AppColors.greyColor,
+                              ),
                             )
                           ],
                         ),

@@ -46,14 +46,19 @@ class ForgotPinOtpWidget extends StatelessWidget {
                 children: <Widget>[
                   size100VerticalSizedBox,
                   Center(
-                      child: SvgPicture.asset(shieldIconImgUrl,
-                          width: 80, height: 80)),
+                    child: SvgPicture.asset(
+                      shieldIconImgUrl,
+                      width: 80,
+                      height: 80,
+                    ),
+                  ),
                   mediumVerticalSizedBox,
                   Align(
                     child: Text(
                       onboardingStrings.verifyPhoneNumberText(),
                       style: TextThemes.boldSize20Text(
-                          Theme.of(context).colorScheme.secondary),
+                        Theme.of(context).colorScheme.secondary,
+                      ),
                     ),
                   ),
                   mediumVerticalSizedBox,
@@ -89,7 +94,9 @@ class ForgotPinOtpWidget extends StatelessWidget {
                             .add(BWRoutes.phoneLogin);
                         // navigate to create new PIN page
                         await Navigator.pushReplacementNamed(
-                            context, BWRoutes.createPin);
+                          context,
+                          BWRoutes.createPin,
+                        );
                       },
                     ),
                   ),

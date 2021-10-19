@@ -24,11 +24,17 @@ void main() {
       StoreProvider<AppState>(
         store: store,
         child: MaterialApp(
-          home: Scaffold(body: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(onPressed: () async {
-              await mobileConnectivityStatus.checkConnection();
-            });
-          })),
+          home: Scaffold(
+            body: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () async {
+                    await mobileConnectivityStatus.checkConnection();
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

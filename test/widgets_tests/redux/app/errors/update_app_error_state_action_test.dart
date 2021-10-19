@@ -23,17 +23,25 @@ void main() {
       StoreProvider<AppState>(
         store: store,
         child: MaterialApp(
-          home: Scaffold(body: Builder(builder: (BuildContext context) {
-            return SILPrimaryButton(onPressed: () async {
-              StoreProvider.dispatch(
-                  context,
-                  UpdateAppErrorStateAction(
-                      errorMessage: 'error',
-                      errorType: AppErrorType.UserFeedError,
-                      isError: true,
-                      isTimeout: false));
-            });
-          })),
+          home: Scaffold(
+            body: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () async {
+                    StoreProvider.dispatch(
+                      context,
+                      UpdateAppErrorStateAction(
+                        errorMessage: 'error',
+                        errorType: AppErrorType.UserFeedError,
+                        isError: true,
+                        isTimeout: false,
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

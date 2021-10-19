@@ -53,34 +53,40 @@ class UpdateBioDataAction extends ReduxAction<AppState> {
 
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response result = await _client.query(updateUserProfileMutation,
-        updateUserProfileMutationVariables(userProfileVariables));
+    final http.Response result = await _client.query(
+      updateUserProfileMutation,
+      updateUserProfileMutationVariables(userProfileVariables),
+    );
     final Map<String, dynamic> body = _client.toMap(result);
 
     if (_client.parseError(body) != null) {
       throw SILException(
-          error: body, cause: 'sign_in_error', message: 'update error');
+        error: body,
+        cause: 'sign_in_error',
+        message: 'update error',
+      );
     }
 
     if (body['data'] == null) {
       throw SILException(
-          error: body,
-          cause: 'update_bio_data_error',
-          message: 'no data error');
+        error: body,
+        cause: 'update_bio_data_error',
+        message: 'no data error',
+      );
     }
 
     await store.dispatch(
       UpdateUserProfileAction(
         userBioData: BioData(
-            firstName: Name.withValue(
-              userProfileVariables['firstName'].toString(),
-            ),
-            lastName: Name.withValue(
-              userProfileVariables['lastName'].toString(),
-            ),
-            dateOfBirth: userProfileVariables['dateOfBirth'].toString(),
-            gender:
-                genderFromString(userProfileVariables['gender'].toString())),
+          firstName: Name.withValue(
+            userProfileVariables['firstName'].toString(),
+          ),
+          lastName: Name.withValue(
+            userProfileVariables['lastName'].toString(),
+          ),
+          dateOfBirth: userProfileVariables['dateOfBirth'].toString(),
+          gender: genderFromString(userProfileVariables['gender'].toString()),
+        ),
       ),
     );
 
@@ -88,10 +94,14 @@ class UpdateBioDataAction extends ReduxAction<AppState> {
     if (routeContext['route'] == BWRoutes.home) {
       // set the home as the current bottom nav index
       await store.dispatch(
-          BottomNavAction(currentBottomNavIndex: BottomNavIndex.home.index));
+        BottomNavAction(currentBottomNavIndex: BottomNavIndex.home.index),
+      );
     }
-    Navigator.pushReplacementNamed(context, routeContext['route'].toString(),
-        arguments: routeContext['args']);
+    Navigator.pushReplacementNamed(
+      context,
+      routeContext['route'].toString(),
+      arguments: routeContext['args'],
+    );
 
     return state;
   }

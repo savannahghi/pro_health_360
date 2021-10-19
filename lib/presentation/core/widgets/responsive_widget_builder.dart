@@ -70,16 +70,17 @@ class ResponsiveBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints boxConstraints) {
-      final MediaQueryData mediaQuery = MediaQuery.of(context);
-      final SizingInformation sizingInformation = SizingInformation(
-        deviceType: getDeviceType(mediaQuery.size, breakpoints),
-        screenSize: mediaQuery.size,
-        localWidgetSize:
-            Size(boxConstraints.maxWidth, boxConstraints.maxHeight),
-      );
-      return builder(context, sizingInformation);
-    });
+      builder: (BuildContext context, BoxConstraints boxConstraints) {
+        final MediaQueryData mediaQuery = MediaQuery.of(context);
+        final SizingInformation sizingInformation = SizingInformation(
+          deviceType: getDeviceType(mediaQuery.size, breakpoints),
+          screenSize: mediaQuery.size,
+          localWidgetSize:
+              Size(boxConstraints.maxWidth, boxConstraints.maxHeight),
+        );
+        return builder(context, sizingInformation);
+      },
+    );
   }
 }
 

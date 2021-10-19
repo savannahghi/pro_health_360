@@ -18,7 +18,8 @@ mutation updateUserProfile($input: UserProfileInput!) {
 ''';
 
 Map<String, dynamic> updateUserProfileMutationVariables(
-    Map<String, dynamic> userProfileVariables) {
+  Map<String, dynamic> userProfileVariables,
+) {
   return <String, dynamic>{'input': userProfileVariables};
 }
 

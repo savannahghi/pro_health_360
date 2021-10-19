@@ -55,9 +55,11 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return BasicDetailsPage();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return BasicDetailsPage();
+          },
+        ),
       );
 
       await tester.pump();
@@ -92,17 +94,20 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return BasicDetailsPage();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return BasicDetailsPage();
+          },
+        ),
       );
 
       await tester.pump();
 
       //first name
       final Finder firstNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == firstNameKey);
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == firstNameKey,
+      );
       final Finder firstNameErrorFinder = find.text(firstNameRequiredString);
 
       // first name form test
@@ -119,17 +124,20 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(builder: (BuildContext context) {
-          return BasicDetailsPage();
-        }),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return BasicDetailsPage();
+          },
+        ),
       );
 
       await tester.pump();
 
       //last name
       final Finder lastNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == lastNameKey);
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == lastNameKey,
+      );
       final Finder lastNameErrorFinder = find.text(firstNameRequiredString);
 
       // last name form test
@@ -161,23 +169,28 @@ void main() {
 
       //first name
       final Finder firstNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == firstNameKey);
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == firstNameKey,
+      );
 
       expect(firstNameFormFinder, findsWidgets);
 
       //primary button
       final SILPrimaryButton saveButton = find
           .widgetWithText(
-              SILPrimaryButton, onBoardingStringClass!.saveContinueText())
+            SILPrimaryButton,
+            onBoardingStringClass!.saveContinueText(),
+          )
           .evaluate()
           .first
           .widget as SILPrimaryButton;
       saveButton.onPressed!();
 
       await tester.pumpAndSettle();
-      expect(find.text(onBoardingStringClass!.firstNameRequiredText()),
-          findsOneWidget);
+      expect(
+        find.text(onBoardingStringClass!.firstNameRequiredText()),
+        findsOneWidget,
+      );
     });
 
     testWidgets('last name can be validated correctly',
@@ -200,23 +213,28 @@ void main() {
 
       //last name
       final Finder lastNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == lastNameKey);
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == lastNameKey,
+      );
 
       expect(lastNameFormFinder, findsWidgets);
 
       //primary button
       final SILPrimaryButton saveButton = find
           .widgetWithText(
-              SILPrimaryButton, onBoardingStringClass!.saveContinueText())
+            SILPrimaryButton,
+            onBoardingStringClass!.saveContinueText(),
+          )
           .evaluate()
           .first
           .widget as SILPrimaryButton;
       saveButton.onPressed!();
 
       await tester.pumpAndSettle();
-      expect(find.text(onBoardingStringClass!.lastNameRequiredText()),
-          findsOneWidget);
+      expect(
+        find.text(onBoardingStringClass!.lastNameRequiredText()),
+        findsOneWidget,
+      );
     });
 
     testWidgets('gender can be validated correctly',
@@ -247,7 +265,9 @@ void main() {
       //primary button
       final SILPrimaryButton saveButton = find
           .widgetWithText(
-              SILPrimaryButton, onBoardingStringClass!.saveContinueText())
+            SILPrimaryButton,
+            onBoardingStringClass!.saveContinueText(),
+          )
           .evaluate()
           .first
           .widget as SILPrimaryButton;
@@ -255,11 +275,15 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(onBoardingStringClass!.phoneNumberExistsText(),
-          'Sorry, a user with that phone number exists, please sign in to continue');
+      expect(
+        onBoardingStringClass!.phoneNumberExistsText(),
+        'Sorry, a user with that phone number exists, please sign in to continue',
+      );
 
-      expect(store.state.userProfileState!.userProfile!.userBioData!.gender,
-          Gender.unknown);
+      expect(
+        store.state.userProfileState!.userProfile!.userBioData!.gender,
+        Gender.unknown,
+      );
     });
 
     testWidgets('date of birth can be validated correctly',
@@ -283,18 +307,23 @@ void main() {
       //primary button
       final SILPrimaryButton saveButton = find
           .widgetWithText(
-              SILPrimaryButton, onBoardingStringClass!.saveContinueText())
+            SILPrimaryButton,
+            onBoardingStringClass!.saveContinueText(),
+          )
           .evaluate()
           .first
           .widget as SILPrimaryButton;
       saveButton.onPressed!();
       await tester.pumpAndSettle();
 
-      expect(find.text(onBoardingStringClass!.dateOfBirthRequiredText()),
-          findsOneWidget);
       expect(
-          store.state.userProfileState!.userProfile!.userBioData!.dateOfBirth,
-          UNKNOWN);
+        find.text(onBoardingStringClass!.dateOfBirthRequiredText()),
+        findsOneWidget,
+      );
+      expect(
+        store.state.userProfileState!.userProfile!.userBioData!.dateOfBirth,
+        UNKNOWN,
+      );
     });
 
     testWidgets(
@@ -322,23 +351,26 @@ void main() {
         );
 
         queryWhenThenAnswer(
-            queryString: updateUserProfileMutation,
-            variables: <String, dynamic>{
-              'input': <String, dynamic>{
-                'firstName': testFirstName,
-                'lastName': testLastName,
-                'dateOfBirth': '2003-$date',
-                'gender': 'female',
-              }
-            },
-            response: response);
+          queryString: updateUserProfileMutation,
+          variables: <String, dynamic>{
+            'input': <String, dynamic>{
+              'firstName': testFirstName,
+              'lastName': testLastName,
+              'dateOfBirth': '2003-$date',
+              'gender': 'female',
+            }
+          },
+          response: response,
+        );
 
         when(baseGraphQlClientMock.toMap(response))
             .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-        when(baseGraphQlClientMock.parseError(<String, dynamic>{
-          'data': <String, dynamic>{'loading': true}
-        })).thenReturn(null);
+        when(
+          baseGraphQlClientMock.parseError(<String, dynamic>{
+            'data': <String, dynamic>{'loading': true}
+          }),
+        ).thenReturn(null);
 
         // getFeed mocked response
         final http.Response feedResponse = http.Response(
@@ -349,30 +381,34 @@ void main() {
         );
 
         queryWhenThenAnswer(
-            queryString: getFeedQuery,
-            variables: <String, dynamic>{
-              'flavour': Flavour.CONSUMER.name,
-              'persistent': 'BOTH',
-              'visibility': 'SHOW',
-              'isAnonymous': false,
-              'status': null,
-            },
-            response: feedResponse);
+          queryString: getFeedQuery,
+          variables: <String, dynamic>{
+            'flavour': Flavour.CONSUMER.name,
+            'persistent': 'BOTH',
+            'visibility': 'SHOW',
+            'isAnonymous': false,
+            'status': null,
+          },
+          response: feedResponse,
+        );
 
         when(baseGraphQlClientMock.toMap(feedResponse))
             .thenReturn(json.decode(feedResponse.body) as Map<String, dynamic>);
 
-        when(baseGraphQlClientMock.parseError(<String, dynamic>{
-          'error': <String, dynamic>{'error': 'some error'}
-        })).thenReturn('null');
+        when(
+          baseGraphQlClientMock.parseError(<String, dynamic>{
+            'error': <String, dynamic>{'error': 'some error'}
+          }),
+        ).thenReturn('null');
 
         await store.dispatch(
           UpdateUserProfileAction(
             userBioData: BioData(
-                dateOfBirth: '3 May 2021',
-                gender: Gender.female,
-                firstName: Name.withValue(testFirstName),
-                lastName: Name.withValue(testLastName)),
+              dateOfBirth: '3 May 2021',
+              gender: Gender.female,
+              firstName: Name.withValue(testFirstName),
+              lastName: Name.withValue(testLastName),
+            ),
           ),
         );
 
@@ -387,11 +423,13 @@ void main() {
 
         //finder
         final Finder firstNameFormFinder = find.byWidgetPredicate(
-            (Widget widget) =>
-                widget is SILFormTextField && widget.key == firstNameKey);
+          (Widget widget) =>
+              widget is SILFormTextField && widget.key == firstNameKey,
+        );
         final Finder lastNameFormFinder = find.byWidgetPredicate(
-            (Widget widget) =>
-                widget is SILFormTextField && widget.key == lastNameKey);
+          (Widget widget) =>
+              widget is SILFormTextField && widget.key == lastNameKey,
+        );
         final Finder genderFinder = find.text(genderHint);
         final Finder datePickerFinder =
             find.widgetWithText(GestureDetector, dateLabelText);
@@ -473,23 +511,26 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: updateUserProfileMutation,
-          variables: <String, dynamic>{
-            'input': <String, dynamic>{
-              'firstName': testFirstName,
-              'lastName': testLastName,
-              'dateOfBirth': '2003-$date',
-              'gender': 'female',
-            }
-          },
-          response: response);
+        queryString: updateUserProfileMutation,
+        variables: <String, dynamic>{
+          'input': <String, dynamic>{
+            'firstName': testFirstName,
+            'lastName': testLastName,
+            'dateOfBirth': '2003-$date',
+            'gender': 'female',
+          }
+        },
+        response: response,
+      );
 
       when(baseGraphQlClientMock.toMap(response))
           .thenReturn(json.decode(response.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(<String, dynamic>{
-        'data': <String, dynamic>{'loading': true}
-      })).thenReturn(null);
+      when(
+        baseGraphQlClientMock.parseError(<String, dynamic>{
+          'data': <String, dynamic>{'loading': true}
+        }),
+      ).thenReturn(null);
 
       // getFeed mocked response
       final http.Response feedResponse = http.Response(
@@ -500,30 +541,34 @@ void main() {
       );
 
       queryWhenThenAnswer(
-          queryString: getFeedQuery,
-          variables: <String, dynamic>{
-            'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
-          },
-          response: feedResponse);
+        queryString: getFeedQuery,
+        variables: <String, dynamic>{
+          'flavour': Flavour.CONSUMER.name,
+          'persistent': 'BOTH',
+          'visibility': 'SHOW',
+          'isAnonymous': false,
+          'status': null,
+        },
+        response: feedResponse,
+      );
 
       when(baseGraphQlClientMock.toMap(feedResponse))
           .thenReturn(json.decode(feedResponse.body) as Map<String, dynamic>);
 
-      when(baseGraphQlClientMock.parseError(<String, dynamic>{
-        'error': <String, dynamic>{'error': 'some error'}
-      })).thenReturn('null');
+      when(
+        baseGraphQlClientMock.parseError(<String, dynamic>{
+          'error': <String, dynamic>{'error': 'some error'}
+        }),
+      ).thenReturn('null');
 
       await store.dispatch(
         UpdateUserProfileAction(
           userBioData: BioData(
-              dateOfBirth: '3 May 2021',
-              gender: Gender.female,
-              firstName: Name.withValue(testFirstName),
-              lastName: Name.withValue(testLastName)),
+            dateOfBirth: '3 May 2021',
+            gender: Gender.female,
+            firstName: Name.withValue(testFirstName),
+            lastName: Name.withValue(testLastName),
+          ),
         ),
       );
       await buildTestWidget(
@@ -537,11 +582,13 @@ void main() {
 
       //finder
       final Finder firstNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == firstNameKey);
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == firstNameKey,
+      );
       final Finder lastNameFormFinder = find.byWidgetPredicate(
-          (Widget widget) =>
-              widget is SILFormTextField && widget.key == lastNameKey);
+        (Widget widget) =>
+            widget is SILFormTextField && widget.key == lastNameKey,
+      );
       final Finder genderFinder = find.text(genderHint);
       final Finder datePickerFinder =
           find.widgetWithText(GestureDetector, dateLabelText);
@@ -608,7 +655,9 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             toggleLoadingIndicator(
-                context: context, flag: updateBasicDetailsFlag);
+              context: context,
+              flag: updateBasicDetailsFlag,
+            );
             return BasicDetailsPage();
           },
         ),

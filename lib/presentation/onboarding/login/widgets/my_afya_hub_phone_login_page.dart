@@ -94,10 +94,12 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
                   GestureDetector(
                     onTap: () {
                       Navigator.pushReplacementNamed(
-                          context, BWRoutes.verifySignUpOTP,
-                          arguments: <String, int>{
-                            'OTP': 1234,
-                          });
+                        context,
+                        BWRoutes.verifySignUpOTP,
+                        arguments: <String, int>{
+                          'OTP': 1234,
+                        },
+                      );
                     },
                     child: const Text(
                       ' ',
@@ -116,8 +118,10 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
                               .connectivitySubject
                               .valueOrNull!) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(noInternetConnection)));
+                              const SnackBar(
+                                content: Text(noInternetConnection),
+                              ),
+                            );
                             return;
                           }
                           if (_formKey.currentState!.validate()) {
@@ -211,7 +215,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
               );
             }
             setState(() {
-              pin = val.toString();
+              pin = val;
             });
           },
         ),
