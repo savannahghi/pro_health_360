@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
@@ -15,5 +16,8 @@ void main() {
       home: ClinicInformationPage(),
     ));
     expect(find.byType(ClinicInformationItemWidget), findsNWidgets(3));
+
+    await tester.tap(find.byKey(hotlineCallButtonKey));
+    expect(find.byType(ClinicInformationPage), findsWidgets);
   });
 }
