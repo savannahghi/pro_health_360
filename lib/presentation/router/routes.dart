@@ -90,6 +90,9 @@ class BWRoutes {
 
   //Pin Input Page
   static const String pinInputPage = '/pinInputPage';
+
+  //Article Details Page
+  static const String articleDetailsPage = '/articleDetailsPage';
 }
 
 List<String> unProtectedRoutes = <String>[

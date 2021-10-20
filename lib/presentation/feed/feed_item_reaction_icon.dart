@@ -11,17 +11,18 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 /// [FeedItemReactionIcon] Displays reaction Icons on the feed
 class FeedItemReactionIcon extends StatelessWidget {
   final String svgPath;
-  const FeedItemReactionIcon({required this.svgPath});
+  final Color backgroundColor;
+  const FeedItemReactionIcon({required this.svgPath, this.backgroundColor = Colors.white});
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 25,
       height: 25,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
           Radius.circular(7),
         ),
-        color: Colors.white,
+        color: backgroundColor,
       ),
       child: Center(
         child: SvgPicture.asset(

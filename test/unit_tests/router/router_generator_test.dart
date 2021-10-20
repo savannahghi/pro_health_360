@@ -14,6 +14,7 @@ import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
+import 'package:myafyahub/presentation/widgets/article_details_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -404,5 +405,15 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<PINInputPage>;
     expect(route, isA<MaterialPageRoute<PINInputPage>>());
     expect(route.builder(context), isA<PINInputPage>());
+  });
+
+  test('Test router returns ArticleDetailsPage', () {
+    const RouteSettings settings = RouteSettings(
+        name: BWRoutes.articleDetailsPage,
+        arguments: <String, dynamic>{'test': 'value'});
+    final MaterialPageRoute<ArticleDetailsPage> route =
+        routeGenerator(settings) as MaterialPageRoute<ArticleDetailsPage>;
+    expect(route, isA<MaterialPageRoute<ArticleDetailsPage>>());
+    expect(route.builder(context), isA<ArticleDetailsPage>());
   });
 }

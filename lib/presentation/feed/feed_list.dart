@@ -23,6 +23,10 @@ class FeedList extends StatelessWidget {
                 feedItems.elementAt(index).coverImageUrl;
             final String? readTime = feedItems.elementAt(index).readTime;
             final bool? isNew = feedItems.elementAt(index).isNew;
+            final String authorName = feedItems.elementAt(index).authorName;
+            final String? authorDisplayPic =
+                feedItems.elementAt(index).authorDisplayPic;
+            final String bodyContent = feedItems.elementAt(index).bodyContent;
 
             return Padding(
               padding: const EdgeInsets.only(top: 7.5),
@@ -32,6 +36,9 @@ class FeedList extends StatelessWidget {
                 date: date,
                 readTime: readTime,
                 isNew: isNew,
+                authorName: authorName,
+                bodyContent: bodyContent,
+                authorDisplayPic: authorDisplayPic,
               ),
             );
           }),

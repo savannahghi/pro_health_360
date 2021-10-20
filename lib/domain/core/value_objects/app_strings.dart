@@ -624,3 +624,8 @@ const String yesString = 'Yes';
 const String noString = 'No';
 const String sendFeedbackString = 'Send feedback';
 const String cancelString = 'Cancel';
+
+//Article Details Page
+const String datePublishedString = 'Date published: ';
+const String loremIpsumString =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tortor lacus, facilisis rutrum cursus nec, mollis id magna. Proin egestas nisl dui, eget semper mauris finibus et. Mauris a eros finibus, ornare velit at, venenatis eros. Phasellus in bibendum ligula, et aliquam sapien. Donec massa felis, fermentum et aliquam eget, condimentum ut lorem. Maecenas feugiat convallis tincidunt. Nullam ultricies dictum neque non sagittis. Proin facilisis mattis ultrices. Duis cursus ipsum eu lacus pretium accumsan. Morbi pellentesque nulla sed rhoncus porta. Fusce vel nulla eu augue elementum fringilla. Phasellus efficitur nunc vel urna viverra mattis. Nullam ante ante, ornare vestibulum augue quis, consequat mollis leo. Cras et tellus nec urna vehicula bibendum.';

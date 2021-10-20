@@ -59,6 +59,11 @@ class NewContent extends StatelessWidget {
                     feedItems.elementAt(index).coverImageUrl;
                 final String? readTime = feedItems.elementAt(index).readTime;
                 final bool? isNew = feedItems.elementAt(index).isNew;
+                final String authorName = feedItems.elementAt(index).authorName;
+                final String? authorDisplayPic =
+                    feedItems.elementAt(index).authorDisplayPic;
+                final String bodyContent =
+                    feedItems.elementAt(index).bodyContent;
 
                 return Padding(
                   padding: EdgeInsets.only(left: index == 0 ? 15 : 7.5),
@@ -68,6 +73,9 @@ class NewContent extends StatelessWidget {
                     date: date,
                     readTime: readTime,
                     isNew: isNew,
+                    authorName: authorName,
+                    bodyContent: bodyContent,
+                    authorDisplayPic: authorDisplayPic,
                   ),
                 );
               },

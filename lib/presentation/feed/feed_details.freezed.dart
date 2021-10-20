@@ -25,12 +25,18 @@ class _$FeedDetailsTearOff {
       @JsonKey(name: 'header') required String header,
       @JsonKey(name: 'date') required String date,
       @JsonKey(name: 'readTime') String? readTime,
+      @JsonKey(name: 'authorName') required String authorName,
+      @JsonKey(name: 'bodyContent') required String bodyContent,
+      @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
       @JsonKey(name: 'isNew') bool? isNew}) {
     return _FeedDetails(
       coverImageUrl: coverImageUrl,
       header: header,
       date: date,
       readTime: readTime,
+      authorName: authorName,
+      bodyContent: bodyContent,
+      authorDisplayPic: authorDisplayPic,
       isNew: isNew,
     );
   }
@@ -53,6 +59,12 @@ mixin _$FeedDetails {
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'readTime')
   String? get readTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'authorName')
+  String get authorName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bodyContent')
+  String get bodyContent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'authorDisplayPic')
+  String? get authorDisplayPic => throw _privateConstructorUsedError;
   @JsonKey(name: 'isNew')
   bool? get isNew => throw _privateConstructorUsedError;
 
@@ -72,6 +84,9 @@ abstract class $FeedDetailsCopyWith<$Res> {
       @JsonKey(name: 'header') String header,
       @JsonKey(name: 'date') String date,
       @JsonKey(name: 'readTime') String? readTime,
+      @JsonKey(name: 'authorName') String authorName,
+      @JsonKey(name: 'bodyContent') String bodyContent,
+      @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
       @JsonKey(name: 'isNew') bool? isNew});
 }
 
@@ -89,6 +104,9 @@ class _$FeedDetailsCopyWithImpl<$Res> implements $FeedDetailsCopyWith<$Res> {
     Object? header = freezed,
     Object? date = freezed,
     Object? readTime = freezed,
+    Object? authorName = freezed,
+    Object? bodyContent = freezed,
+    Object? authorDisplayPic = freezed,
     Object? isNew = freezed,
   }) {
     return _then(_value.copyWith(
@@ -107,6 +125,18 @@ class _$FeedDetailsCopyWithImpl<$Res> implements $FeedDetailsCopyWith<$Res> {
       readTime: readTime == freezed
           ? _value.readTime
           : readTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      authorName: authorName == freezed
+          ? _value.authorName
+          : authorName // ignore: cast_nullable_to_non_nullable
+              as String,
+      bodyContent: bodyContent == freezed
+          ? _value.bodyContent
+          : bodyContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorDisplayPic: authorDisplayPic == freezed
+          ? _value.authorDisplayPic
+          : authorDisplayPic // ignore: cast_nullable_to_non_nullable
               as String?,
       isNew: isNew == freezed
           ? _value.isNew
@@ -128,6 +158,9 @@ abstract class _$FeedDetailsCopyWith<$Res>
       @JsonKey(name: 'header') String header,
       @JsonKey(name: 'date') String date,
       @JsonKey(name: 'readTime') String? readTime,
+      @JsonKey(name: 'authorName') String authorName,
+      @JsonKey(name: 'bodyContent') String bodyContent,
+      @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
       @JsonKey(name: 'isNew') bool? isNew});
 }
 
@@ -147,6 +180,9 @@ class __$FeedDetailsCopyWithImpl<$Res> extends _$FeedDetailsCopyWithImpl<$Res>
     Object? header = freezed,
     Object? date = freezed,
     Object? readTime = freezed,
+    Object? authorName = freezed,
+    Object? bodyContent = freezed,
+    Object? authorDisplayPic = freezed,
     Object? isNew = freezed,
   }) {
     return _then(_FeedDetails(
@@ -166,6 +202,18 @@ class __$FeedDetailsCopyWithImpl<$Res> extends _$FeedDetailsCopyWithImpl<$Res>
           ? _value.readTime
           : readTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      authorName: authorName == freezed
+          ? _value.authorName
+          : authorName // ignore: cast_nullable_to_non_nullable
+              as String,
+      bodyContent: bodyContent == freezed
+          ? _value.bodyContent
+          : bodyContent // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorDisplayPic: authorDisplayPic == freezed
+          ? _value.authorDisplayPic
+          : authorDisplayPic // ignore: cast_nullable_to_non_nullable
+              as String?,
       isNew: isNew == freezed
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
@@ -182,6 +230,9 @@ class _$_FeedDetails implements _FeedDetails {
       @JsonKey(name: 'header') required this.header,
       @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'readTime') this.readTime,
+      @JsonKey(name: 'authorName') required this.authorName,
+      @JsonKey(name: 'bodyContent') required this.bodyContent,
+      @JsonKey(name: 'authorDisplayPic') this.authorDisplayPic,
       @JsonKey(name: 'isNew') this.isNew});
 
   factory _$_FeedDetails.fromJson(Map<String, dynamic> json) =>
@@ -200,12 +251,21 @@ class _$_FeedDetails implements _FeedDetails {
   @JsonKey(name: 'readTime')
   final String? readTime;
   @override
+  @JsonKey(name: 'authorName')
+  final String authorName;
+  @override
+  @JsonKey(name: 'bodyContent')
+  final String bodyContent;
+  @override
+  @JsonKey(name: 'authorDisplayPic')
+  final String? authorDisplayPic;
+  @override
   @JsonKey(name: 'isNew')
   final bool? isNew;
 
   @override
   String toString() {
-    return 'FeedDetails(coverImageUrl: $coverImageUrl, header: $header, date: $date, readTime: $readTime, isNew: $isNew)';
+    return 'FeedDetails(coverImageUrl: $coverImageUrl, header: $header, date: $date, readTime: $readTime, authorName: $authorName, bodyContent: $bodyContent, authorDisplayPic: $authorDisplayPic, isNew: $isNew)';
   }
 
   @override
@@ -222,6 +282,15 @@ class _$_FeedDetails implements _FeedDetails {
             (identical(other.readTime, readTime) ||
                 const DeepCollectionEquality()
                     .equals(other.readTime, readTime)) &&
+            (identical(other.authorName, authorName) ||
+                const DeepCollectionEquality()
+                    .equals(other.authorName, authorName)) &&
+            (identical(other.bodyContent, bodyContent) ||
+                const DeepCollectionEquality()
+                    .equals(other.bodyContent, bodyContent)) &&
+            (identical(other.authorDisplayPic, authorDisplayPic) ||
+                const DeepCollectionEquality()
+                    .equals(other.authorDisplayPic, authorDisplayPic)) &&
             (identical(other.isNew, isNew) ||
                 const DeepCollectionEquality().equals(other.isNew, isNew)));
   }
@@ -233,6 +302,9 @@ class _$_FeedDetails implements _FeedDetails {
       const DeepCollectionEquality().hash(header) ^
       const DeepCollectionEquality().hash(date) ^
       const DeepCollectionEquality().hash(readTime) ^
+      const DeepCollectionEquality().hash(authorName) ^
+      const DeepCollectionEquality().hash(bodyContent) ^
+      const DeepCollectionEquality().hash(authorDisplayPic) ^
       const DeepCollectionEquality().hash(isNew);
 
   @JsonKey(ignore: true)
@@ -252,6 +324,9 @@ abstract class _FeedDetails implements FeedDetails {
       @JsonKey(name: 'header') required String header,
       @JsonKey(name: 'date') required String date,
       @JsonKey(name: 'readTime') String? readTime,
+      @JsonKey(name: 'authorName') required String authorName,
+      @JsonKey(name: 'bodyContent') required String bodyContent,
+      @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
       @JsonKey(name: 'isNew') bool? isNew}) = _$_FeedDetails;
 
   factory _FeedDetails.fromJson(Map<String, dynamic> json) =
@@ -269,6 +344,15 @@ abstract class _FeedDetails implements FeedDetails {
   @override
   @JsonKey(name: 'readTime')
   String? get readTime => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'authorName')
+  String get authorName => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'bodyContent')
+  String get bodyContent => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'authorDisplayPic')
+  String? get authorDisplayPic => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'isNew')
   bool? get isNew => throw _privateConstructorUsedError;

@@ -15,7 +15,7 @@ import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widge
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
 
 class UserProfilePage extends StatelessWidget {
-  /// [UserProfilePage] is to display the user information
+  /// [UserProfilePage] is used to display the user information
   ///
   /// It takes in required [userInitials], [name], [userCCCNumber], [age], [phoneNumber],
   ///  [home] and [userProfileItems] parameters

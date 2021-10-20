@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -18,6 +19,9 @@ class FeedItem extends StatelessWidget {
   final String contentHeader;
   final String date;
   final String? readTime;
+  final String authorName;
+  final String bodyContent;
+  final String? authorDisplayPic;
   final bool isNew;
 
   const FeedItem({
@@ -26,11 +30,15 @@ class FeedItem extends StatelessWidget {
     required this.date,
     bool? isNew,
     this.readTime,
+    required this.authorName,
+    required this.bodyContent,
+    this.authorDisplayPic,
   }) : this.isNew = isNew ?? false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      child: Container(
         width: 370,
         decoration: BoxDecoration(
           color: Colors.grey.shade300,
@@ -97,6 +105,17 @@ class FeedItem extends StatelessWidget {
                 ),
               ),
           ],
-        ));
+        ),
+      ),
+      onTap: () => navigateToArticleDetailsPage(
+        context,
+        authorName: authorName,
+        bodyText: bodyContent,
+        coverImagePath: coverImagePath,
+        date: date,
+        titleText: contentHeader,
+        authorDisplayPic: authorDisplayPic,
+      ),
+    );
   }
 }

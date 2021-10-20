@@ -12,6 +12,9 @@ _$_FeedDetails _$_$_FeedDetailsFromJson(Map<String, dynamic> json) {
     header: json['header'] as String,
     date: json['date'] as String,
     readTime: json['readTime'] as String?,
+    authorName: json['authorName'] as String,
+    bodyContent: json['bodyContent'] as String,
+    authorDisplayPic: json['authorDisplayPic'] as String?,
     isNew: json['isNew'] as bool?,
   );
 }
@@ -22,5 +25,8 @@ Map<String, dynamic> _$_$_FeedDetailsToJson(_$_FeedDetails instance) =>
       'header': instance.header,
       'date': instance.date,
       'readTime': instance.readTime,
+      'authorName': instance.authorName,
+      'bodyContent': instance.bodyContent,
+      'authorDisplayPic': instance.authorDisplayPic,
       'isNew': instance.isNew,
     };

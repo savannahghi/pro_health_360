@@ -2827,23 +2827,35 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'coverImageUrl': contentItemImageUrl,
     'header': feedHeader,
     'date': '',
-    'isNew': true
+    'isNew': true,
+    'authorName': 'Ken Doe',
+    'bodyContent': loremIpsumString,
+    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   },
   <String, dynamic>{
     'coverImageUrl': contentItemImageUrl,
     'header': feedHeader,
     'date': '',
-    'readTime': feedReadTime
+    'readTime': feedReadTime,
+    'authorName': 'Ken Doe',
+    'bodyContent': loremIpsumString,
+    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   },
   <String, dynamic>{
     'coverImageUrl': contentItemImageUrl,
     'header': feedHeader,
     'date': '',
+    'authorName': 'Ken Doe',
+    'bodyContent': loremIpsumString,
+    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   },
   <String, dynamic>{
     'coverImageUrl': contentItemImageUrl,
     'header': feedHeader,
     'date': '',
+    'authorName': 'Ken Doe',
+    'bodyContent': loremIpsumString,
+    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   }
 ];
 final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[

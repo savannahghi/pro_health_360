@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/filters/feed_item_filter.dart';
-import 'package:myafyahub/presentation/feed/feed_details.dart';
 import '../feed_item_widget.dart';
 
 class MyAfyaHubFeedPage extends StatelessWidget {
@@ -18,25 +17,6 @@ class MyAfyaHubFeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<FeedDetails> feedItems = <FeedDetails>[
-      FeedDetails(
-        coverImageUrl: feedImage3,
-        header: feedHeader,
-        date: feedDate,
-        isNew: true,
-      ),
-      FeedDetails(
-        coverImageUrl: feedImage2,
-        header: feedHeader,
-        date: feedDate,
-        isNew: true,
-      ),
-      FeedDetails(
-          coverImageUrl: feedImage1, header: feedHeader, date: feedDate),
-      FeedDetails(
-          coverImageUrl: feedImage3, header: feedHeader, date: feedDate),
-    ];
-
     final List<Widget> feedFilterItems = <Widget>[
       FeedItemFilter(
         filterIcon: Icons.grid_view_sharp,
@@ -108,6 +88,12 @@ class MyAfyaHubFeedPage extends StatelessWidget {
                     final String? readTime =
                         feedItems.elementAt(index).readTime;
                     final bool? isNew = feedItems.elementAt(index).isNew;
+                    final String authorName =
+                        feedItems.elementAt(index).authorName;
+                    final String? authorDisplayPic =
+                        feedItems.elementAt(index).authorDisplayPic;
+                    final String bodyContent =
+                        feedItems.elementAt(index).bodyContent;
 
                     return Padding(
                       padding: EdgeInsets.only(top: index == 0 ? 15 : 7.5),
@@ -117,6 +103,9 @@ class MyAfyaHubFeedPage extends StatelessWidget {
                         date: date,
                         readTime: readTime,
                         isNew: isNew,
+                        authorName: authorName,
+                        bodyContent: bodyContent,
+                        authorDisplayPic: authorDisplayPic,
                       ),
                     );
                   }),

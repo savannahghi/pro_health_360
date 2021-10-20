@@ -48,21 +48,31 @@ class SavedPostPage extends StatelessWidget {
                             coverImageUrl: feedImage3,
                             date: feedDate,
                             header: feedHeaderListSavedVideo,
+                            authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
+                            
                           ),
                           FeedDetails(
                             coverImageUrl: feedImage3,
                             date: feedDate,
                             header: feedHeaderListSavedVideo,
+                            authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
+                            
                           ),
                           FeedDetails(
                             coverImageUrl: feedImage3,
                             date: feedDate,
                             header: feedHeaderListSavedVideo,
+                             authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
                           ),
                           FeedDetails(
                             coverImageUrl: feedImage3,
                             date: feedDate,
                             header: feedHeaderListSavedVideo,
+                             authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
                           )
                         ],
                       ),
@@ -72,21 +82,29 @@ class SavedPostPage extends StatelessWidget {
                             coverImageUrl: feedImage2,
                             date: feedDate,
                             header: feedHeader,
+                             authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
                           ),
                           FeedDetails(
                             coverImageUrl: feedImage1,
                             date: feedDate,
                             header: feedHeader,
+                             authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
                           ),
                           FeedDetails(
                             coverImageUrl: feedImage4,
                             date: feedDate,
                             header: feedHeader,
+                             authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
                           ),
                           FeedDetails(
                             coverImageUrl: feedImage5,
                             date: feedDate,
                             header: feedHeader,
+                             authorName: treatmentBuddyString,
+                            bodyContent: loremIpsumString,
                           )
                         ],
                       ),

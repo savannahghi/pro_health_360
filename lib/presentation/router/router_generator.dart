@@ -38,6 +38,7 @@ import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
+import 'package:myafyahub/presentation/widgets/article_details_page.dart';
 // Package imports:
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -202,14 +203,20 @@ class RouteGenerator {
           builder: (_) => SettingsPage(),
         );
 
-        case BWRoutes.feedbackPage:
+      case BWRoutes.feedbackPage:
         return MaterialPageRoute<FeedbackPage>(
           builder: (_) => const FeedbackPage(),
         );
 
-        case BWRoutes.pinInputPage:
+      case BWRoutes.pinInputPage:
         return MaterialPageRoute<PINInputPage>(
           builder: (_) => PINInputPage(),
+        );
+
+      case BWRoutes.articleDetailsPage:
+        return MaterialPageRoute<ArticleDetailsPage>(
+          builder: (_) =>
+              ArticleDetailsPage(payload: args as Map<String, dynamic>),
         );
 
       default:

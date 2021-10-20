@@ -62,11 +62,17 @@ class _FeedPageState extends State<FeedPage> {
         coverImageUrl: feedImage1,
         header: feedHeaderListSavedVideo,
         date: '21 Oct 2021',
+        authorName: 'Ken Doe',
+        bodyContent: loremIpsumString,
+        authorDisplayPic:
+            'https://cloudcannon.com/blog/uploads/george-photo.jpg',
       ),
       FeedDetails(
         coverImageUrl: feedImage2,
         header: feedHeaderListSavedVideo,
         date: '21 Oct 2021',
+        authorName: 'Ken Doe',
+        bodyContent: loremIpsumString,
       )
     ];
 
