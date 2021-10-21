@@ -13,7 +13,7 @@ import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/widgets/article_details_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -66,11 +66,11 @@ void main() {
       arguments: <String, dynamic>{'test': 'value'},
     );
 
-    final MaterialPageRoute<MyAfyaHubPhoneLoginPage> route =
-        routeGenerator(settings) as MaterialPageRoute<MyAfyaHubPhoneLoginPage>;
+    final MaterialPageRoute<LoginPage> route =
+        routeGenerator(settings) as MaterialPageRoute<LoginPage>;
 
-    expect(route, isA<MaterialPageRoute<MyAfyaHubPhoneLoginPage>>());
-    expect(route.builder(context), isA<MyAfyaHubPhoneLoginPage>());
+    expect(route, isA<MaterialPageRoute<LoginPage>>());
+    expect(route.builder(context), isA<LoginPage>());
   });
 
   test('Test router returns create new pin page', () {
@@ -127,11 +127,11 @@ void main() {
   test('Test router returns phoneLogin Page', () {
     const RouteSettings settings = RouteSettings(name: BWRoutes.phoneLogin);
 
-    final MaterialPageRoute<MyAfyaHubPhoneLoginPage> route =
-        routeGenerator(settings) as MaterialPageRoute<MyAfyaHubPhoneLoginPage>;
+    final MaterialPageRoute<LoginPage> route =
+        routeGenerator(settings) as MaterialPageRoute<LoginPage>;
 
-    expect(route, isA<MaterialPageRoute<MyAfyaHubPhoneLoginPage>>());
-    expect(route.builder(context), isA<MyAfyaHubPhoneLoginPage>());
+    expect(route, isA<MaterialPageRoute<LoginPage>>());
+    expect(route.builder(context), isA<LoginPage>());
   });
 
   test('Test router returns incoming library page', () {

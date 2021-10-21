@@ -22,7 +22,7 @@ import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
@@ -74,8 +74,8 @@ class RouteGenerator {
         );
 
       case BWRoutes.phoneLogin:
-        return MaterialPageRoute<MyAfyaHubPhoneLoginPage>(
-          builder: (_) => MyAfyaHubPhoneLoginPage(),
+        return MaterialPageRoute<LoginPage>(
+          builder: (_) => LoginPage(),
         );
 
       case BWRoutes.resetPin:

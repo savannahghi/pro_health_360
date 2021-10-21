@@ -10,14 +10,14 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 
 import '../../../mock_utils.dart';
 import '../../../test_helpers.dart';
 
 void main() {
-  group('MyAfyaHubLoginPage', () {
+  group('LoginPage', () {
     setupFirebaseAuthMocks();
 
     setUpAll(() async {
@@ -39,7 +39,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return MyAfyaHubPhoneLoginPage();
+                return LoginPage();
               },
             ),
           ),
@@ -77,7 +77,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return MyAfyaHubPhoneLoginPage();
+                return LoginPage();
               },
             ),
           ),
@@ -113,7 +113,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return MyAfyaHubPhoneLoginPage();
+                return LoginPage();
               },
             ),
           ),
@@ -152,7 +152,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return MyAfyaHubPhoneLoginPage();
+                return LoginPage();
               },
             ),
           ),

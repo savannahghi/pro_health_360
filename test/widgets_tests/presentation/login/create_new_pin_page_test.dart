@@ -10,7 +10,7 @@ import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_pag
 import 'package:myafyahub/presentation/router/router_generator.dart';
 
 void main() {
-  group('MyAfyaHubLoginPage', () {
+  group('LoginPage', () {
     testWidgets('PIN field validates correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(

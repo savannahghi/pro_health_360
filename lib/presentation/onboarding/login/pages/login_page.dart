@@ -30,17 +30,17 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
-/// [MyAfyaHubPhoneLoginPage] is parsed in [PhoneNumberLoginPage]
+/// [LoginPage] is parsed in [PhoneNumberLoginPage]
 ///
 /// It consists of [MyAfyaHubPhoneInput] used to user input PhoneNumber,
 ///  [CustomTextField] to input PIN and [MyAfyaHubPrimaryButton] as submit button
-class MyAfyaHubPhoneLoginPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _MyAfyaHubPhoneLoginPageState createState() =>
-      _MyAfyaHubPhoneLoginPageState();
+  _LoginPageState createState() =>
+      _LoginPageState();
 }
 
-class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController phoneNumberInputController =

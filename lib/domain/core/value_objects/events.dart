@@ -19,9 +19,6 @@ String hasAccessedFeedEvent(String appContext) =>
 String hasNavigatedToLibraryPageEvent(String appContext) =>
     'consumer_navigated_to_library_$appContext';
 
-String hasUpdatedProfileSuccessfullyEvent(String appContext) =>
-    'consumer_updated_profile_$appContext';
-
 String hasSuccessfullyVerifiedContactEvent(String appContext) =>
     'consumer_success_contact_veri_$appContext';
 

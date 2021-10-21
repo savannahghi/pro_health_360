@@ -15,6 +15,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
 
@@ -293,70 +294,6 @@ void main() {
     group('Onboarding path', () {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
-      testWidgets('should return homepage for anonymous users',
-          (WidgetTester tester) async {
-        late Map<String, dynamic> _onboardingPath;
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(
-                onPressed: () async {
-                  await StoreProvider.dispatch<AppState>(
-                    context,
-                    AuthStatusAction(isAnonymous: true),
-                  );
-                  _onboardingPath = onboardingPath(store.state);
-                },
-              );
-            },
-          ),
-        );
-        await tester.pumpAndSettle();
-
-        // trigger the bottom sheet
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(_onboardingPath['route'], BWRoutes.basicDetails);
-        expect(_onboardingPath['args'], null);
-      });
-
-      testWidgets(
-          'should return basic details for normal users '
-          'that have not filled their user profile',
-          (WidgetTester tester) async {
-        late Map<String, dynamic> _onboardingPath;
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(
-                onPressed: () async {
-                  await StoreProvider.dispatch<AppState>(
-                    context,
-                    AuthStatusAction(
-                      isAnonymous: false,
-                    ),
-                  );
-                  _onboardingPath = onboardingPath(store.state);
-                },
-              );
-            },
-          ),
-        );
-        await tester.pumpAndSettle();
-        // trigger the bottom sheet
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(_onboardingPath['route'], BWRoutes.basicDetails);
-        expect(_onboardingPath['args'], null);
-      });
 
       testWidgets(
           'should return homepage for users who have filled in their user profile',
@@ -803,7 +740,7 @@ void main() {
       // trigger the bottom sheet
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.basicDetails);
+      expect(initialRoute, BWRoutes.home);
     });
 
     testWidgets(
@@ -1283,6 +1220,42 @@ void main() {
       expect(find.text(UserFeedBackTexts.getErrorMessage()), findsOneWidget);
     });
 
+    testWidgets(
+        'actionWrapError should navigate to login page when exit CTA is tapped',
+        (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                actionWrapError(
+                  error: SILException(
+                      cause: 'some-other-cause', message: 'some message'),
+                  context: context,
+                );
+              },
+            );
+          },
+        ),
+      );
+      await tester.pump();
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(primaryBottomSheetButtonKey), findsOneWidget);
+
+      await tester.tap(find.byKey(primaryBottomSheetButtonKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(LoginPage), findsOneWidget);
+    });
+
     testWidgets('checkWaitingForFunc should show loading indicator',
         (WidgetTester tester) async {
       final Store<AppState> store =
@@ -1365,14 +1338,14 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+      const String testRefreshToken = 'some-valid-token';
 
       // mocked response
       final http.Response response = http.Response(
         json.encode(
           <String, dynamic>{
             'id_token': 'newAuthToken',
-            'refresh_token': refreshToken,
+            'refresh_token': testRefreshToken,
             'expires_in': '2'
           },
         ),
@@ -1382,7 +1355,7 @@ void main() {
       callRESTAPIWhenThenAnswer(
         endpoint: 'https://onboarding-testing.savannahghi.org/refresh_token',
         variables: <String, dynamic>{
-          'refreshToken': refreshToken,
+          'refreshToken': testRefreshToken,
           'appVersion': APPVERSION,
         },
         response: response,
@@ -1414,7 +1387,7 @@ void main() {
                     context: context,
                     signedIn: true,
                     value: true,
-                    refreshToken: refreshToken,
+                    refreshToken: testRefreshToken,
                     appContexts: testAppContexts,
                   );
                 },
@@ -1427,7 +1400,8 @@ void main() {
 
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
-        expect(store.state.userProfileState!.auth!.refreshToken, refreshToken);
+        expect(
+            store.state.userProfileState!.auth!.refreshToken, testRefreshToken);
       });
     });
 
@@ -1436,7 +1410,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+      const String testRefreshToken = 'some-valid-token';
 
       await tester.runAsync(() async {
         await buildTestWidget(
@@ -1451,7 +1425,7 @@ void main() {
                     context: context,
                     signedIn: true,
                     value: false,
-                    refreshToken: refreshToken,
+                    refreshToken: testRefreshToken,
                     appContexts: testAppContexts,
                   );
                 },
@@ -1473,7 +1447,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+      const String testRefreshToken = 'some-valid-token';
 
       await tester.runAsync(() async {
         await buildTestWidget(
@@ -1488,7 +1462,7 @@ void main() {
                     context: context,
                     signedIn: false,
                     value: true,
-                    refreshToken: refreshToken,
+                    refreshToken: testRefreshToken,
                     appContexts: testAppContexts,
                   );
                 },

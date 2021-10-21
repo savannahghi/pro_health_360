@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -51,7 +51,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // verify(mockObserver.didPush(sampleRoute, any));
-    expect(find.byType(MyAfyaHubPhoneLoginPage), findsOneWidget);
+    expect(find.byType(LoginPage), findsOneWidget);
     addTearDown(() {
       tester.binding.window.clearPhysicalSizeTestValue();
       tester.binding.window.clearDevicePixelRatioTestValue();

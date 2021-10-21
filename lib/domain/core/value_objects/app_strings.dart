@@ -32,64 +32,10 @@ class OnboardingStrings {
         desc: 'PhoneNumber text, used in errors',
       );
 
-  String enterFirstNameText() => Intl.message(
-        'Enter first name',
-        name: 'enterFirstNameText',
-        desc: 'enter persons first name',
-      );
-
-  String firstNameText() => Intl.message(
-        'First name',
-        name: 'firstNameText',
-        desc: 'persons first name',
-      );
-
-  String firstNameRequiredText() => Intl.message(
-        'First name is required',
-        name: 'firstNameRequiredText',
-        desc: 'user should enter persons first name to proceed',
-      );
-
-  String enterLastNameText() => Intl.message(
-        'Enter last name',
-        name: 'enterLastNameText',
-        desc: 'persons last name',
-      );
-
-  String lastNameText() => Intl.message(
-        'Last name',
-        name: 'lastNameText',
-        desc: 'persons last name',
-      );
-
-  String lastNameRequiredText() => Intl.message(
-        ' Last name is required',
-        name: 'lastNameRequiredText',
-        desc: 'user to enter a persons last name to proceed',
-      );
-
   String selectGenderText() => Intl.message(
         'Select gender',
         name: 'selectGenderText',
         desc: 'persons gender',
-      );
-
-  String dateOfBirthText() => Intl.message(
-        'Date of birth',
-        name: 'dateOfBirthText',
-        desc: 'calendar date',
-      );
-
-  String dateOfBirthRequiredText() => Intl.message(
-        'Date of birth is required',
-        name: 'dateOfBirthRequiredText',
-        desc: 'persons date of birth is required',
-      );
-
-  String saveContinueText() => Intl.message(
-        'Save & Continue',
-        name: 'saveContinueText',
-        desc: 'Save the to the phone and proceed to next screen',
       );
 
   String previousText() => Intl.message(
@@ -173,11 +119,6 @@ class OnboardingStrings {
         desc: 'an OTP code sent to a phone number',
       );
 
-  String phoneNumberExistsText() => Intl.message(
-        'Sorry, a user with that phone number exists, please sign in to continue',
-        name: 'phoneNumberExistsText',
-        desc: 'phone number already registered an account',
-      );
   static const String changePINMsg =
       'Your PIN was successfully updated. You will now be required to login with your new PIN';
 }

@@ -17,12 +17,6 @@ mutation updateUserProfile($input: UserProfileInput!) {
 }
 ''';
 
-Map<String, dynamic> updateUserProfileMutationVariables(
-  Map<String, dynamic> userProfileVariables,
-) {
-  return <String, dynamic>{'input': userProfileVariables};
-}
-
 const String registerDeviceTokenQuery = r'''
 mutation RegisterPushToken($token: String!) {
   registerPushToken(token: $token)

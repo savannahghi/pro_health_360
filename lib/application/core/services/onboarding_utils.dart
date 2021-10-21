@@ -247,6 +247,7 @@ Future<AuthTokenStatus> checkTokenStatus({
 }
 
 // determines the path to route the user to based on the app state
+// TODO!!(abiud): make this return a concrete class implementation
 Map<String, dynamic> onboardingPath(
   AppState state, {
   bool calledOnResume = false,
