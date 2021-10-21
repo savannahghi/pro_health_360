@@ -19,11 +19,11 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class CongratulationsPage extends StatefulWidget {
-  final String duration;
-
   const CongratulationsPage({
     required this.duration,
   });
+
+  final String duration;
 
   @override
   _CongratulationsPageState createState() => _CongratulationsPageState();
@@ -31,6 +31,7 @@ class CongratulationsPage extends StatefulWidget {
 
 class _CongratulationsPageState extends State<CongratulationsPage> {
   String? name;
+
   final GlobalKey<FormState> _congratulationsFormKey = GlobalKey<FormState>();
 
   @override
@@ -52,6 +53,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
             key: _congratulationsFormKey,
             child: CustomTextField(
               formFieldKey: nameInputKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               borderColor: Colors.grey.withOpacity(0.5),
               maxLines: 1,
               keyboardType: TextInputType.name,

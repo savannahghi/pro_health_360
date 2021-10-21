@@ -36,27 +36,26 @@ import 'package:shared_ui_components/platform_loader.dart';
 ///  [CustomTextField] to input PIN and [MyAfyaHubPrimaryButton] as submit button
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPageState createState() =>
-      _LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  String? phoneNumber;
   final TextEditingController phoneNumberInputController =
       TextEditingController();
 
-  TextEditingController pinController = TextEditingController();
-  String? phoneNumber;
   String? pin;
+  TextEditingController pinController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
-  void initState() {
-    super.initState();
-    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_login_page');
-
-    /// clear any active flags
-    clearAllFlags(context);
+  void didChangeDependencies() {
+    if (phoneNumber == null) {
+      /// reset login state upon entering this page
+      StoreProvider.dispatch(context, PhoneLoginStateAction());
+    }
+    super.didChangeDependencies();
   }
 
   @override
@@ -67,12 +66,97 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
-  void didChangeDependencies() {
-    if (phoneNumber == null) {
-      /// reset login state upon entering this page
-      StoreProvider.dispatch(context, PhoneLoginStateAction());
-    }
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_login_page');
+
+    /// clear any active flags
+    clearAllFlags(context);
+  }
+
+  Widget logInColumn(AppStateViewModel vm) {
+    return Column(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            phoneNumberString,
+            style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+          ),
+        ),
+        verySmallVerticalSizedBox,
+        MyAfyaHubPhoneInput(
+          phoneNumberFormatter: formatPhoneNumber,
+          inputController: phoneNumberInputController,
+          labelText: enterPhoneNumberString,
+          onChanged: (String? val) {
+            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
+              StoreProvider.dispatch(
+                context,
+                PhoneLoginStateAction(),
+              );
+            }
+            setState(() {
+              phoneNumber = val?.toString();
+            });
+          },
+          suffixIcon: Positioned(
+            right: 12,
+            height: 20,
+            width: 20,
+            child: SvgPicture.asset(
+              alertCircleIcon,
+              color: AppColors.secondaryColor,
+            ),
+          ),
+        ),
+        largeVerticalSizedBox,
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            pinString,
+            style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+          ),
+        ),
+        verySmallVerticalSizedBox,
+        CustomTextField(
+          formFieldKey: pinInputKey,
+          borderColor: Colors.grey[200],
+          maxLength: 4,
+          maxLines: 1,
+          keyboardType: TextInputType.number,
+          obscureText: true,
+          labelText: enterYourString,
+          validator: userPinValidator,
+          autovalidateMode: AutovalidateMode.disabled,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ],
+          onChanged: (String val) {
+            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
+              StoreProvider.dispatch(
+                context,
+                PhoneLoginStateAction(),
+              );
+            }
+            setState(() {
+              pin = val;
+            });
+          },
+        ),
+        if (vm.appState.miscState?.phoneLogin?.invalidCredentials ??
+            false) ...<Widget>[
+          const ErrorAlertBox(message: invalidCredentialsErrorMsg),
+        ],
+        if (vm.appState.wait!.isWaitingFor(phoneLoginFlag)) ...<Widget>[
+          const Center(
+            child: SILPlatformLoader(
+              color: AppColors.primaryColor,
+            ),
+          ),
+        ],
+      ],
+    );
   }
 
   @override
@@ -147,90 +231,6 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       ),
-    );
-  }
-
-  Widget logInColumn(AppStateViewModel vm) {
-    return Column(
-      children: <Widget>[
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            phoneNumberString,
-            style: TextThemes.boldSize14Text(AppColors.greyTextColor),
-          ),
-        ),
-        verySmallVerticalSizedBox,
-        MyAfyaHubPhoneInput(
-          phoneNumberFormatter: formatPhoneNumber,
-          inputController: phoneNumberInputController,
-          labelText: enterPhoneNumberString,
-          onChanged: (String? val) {
-            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
-              StoreProvider.dispatch(
-                context,
-                PhoneLoginStateAction(),
-              );
-            }
-            setState(() {
-              phoneNumber = val?.toString();
-            });
-          },
-          suffixIcon: Positioned(
-            right: 12,
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(
-              alertCircleIcon,
-              color: AppColors.secondaryColor,
-            ),
-          ),
-        ),
-        largeVerticalSizedBox,
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            pinString,
-            style: TextThemes.boldSize14Text(AppColors.greyTextColor),
-          ),
-        ),
-        verySmallVerticalSizedBox,
-        CustomTextField(
-          formFieldKey: pinInputKey,
-          borderColor: Colors.grey[200],
-          maxLength: 4,
-          maxLines: 1,
-          keyboardType: TextInputType.number,
-          obscureText: true,
-          labelText: enterYourString,
-          validator: userPinValidator,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ],
-          onChanged: (String val) {
-            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
-              StoreProvider.dispatch(
-                context,
-                PhoneLoginStateAction(),
-              );
-            }
-            setState(() {
-              pin = val;
-            });
-          },
-        ),
-        if (vm.appState.miscState?.phoneLogin?.invalidCredentials ??
-            false) ...<Widget>[
-          const ErrorAlertBox(message: invalidCredentialsErrorMsg),
-        ],
-        if (vm.appState.wait!.isWaitingFor(phoneLoginFlag)) ...<Widget>[
-          const Center(
-            child: SILPlatformLoader(
-              color: AppColors.primaryColor,
-            ),
-          ),
-        ],
-      ],
     );
   }
 }

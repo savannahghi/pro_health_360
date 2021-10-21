@@ -6,9 +6,6 @@ part 'phone_login.g.dart';
 
 @JsonSerializable()
 class PhoneLogin {
-  final bool invalidCredentials;
-  final String phoneNumber;
-  final String pinCode;
   PhoneLogin({
     this.invalidCredentials = false,
     required this.phoneNumber,
@@ -17,10 +14,15 @@ class PhoneLogin {
 
   factory PhoneLogin.fromJson(Map<String, dynamic> json) =>
       _$PhoneLoginFromJson(json);
-  Map<String, dynamic> toJson() => _$PhoneLoginToJson(this);
 
   factory PhoneLogin.initial() => PhoneLogin(
         phoneNumber: UNKNOWN,
         pinCode: UNKNOWN,
       );
+
+  final bool invalidCredentials;
+  final String phoneNumber;
+  final String pinCode;
+
+  Map<String, dynamic> toJson() => _$PhoneLoginToJson(this);
 }

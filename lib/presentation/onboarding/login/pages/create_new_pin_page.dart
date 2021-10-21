@@ -26,11 +26,11 @@ class CreateNewPINPage extends StatefulWidget {
 }
 
 class _CreateNewPINPageState extends State<CreateNewPINPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  TextEditingController pinController = TextEditingController();
-  late String pin = '';
   late String confirmPin = '';
+  late String pin = '';
+  TextEditingController pinController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                   verySmallVerticalSizedBox,
                   CustomTextField(
                     formFieldKey: pinInputKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     borderColor: Colors.grey[200],
                     maxLength: 4,
                     maxLines: 1,
@@ -80,6 +81,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                   ),
                   verySmallVerticalSizedBox,
                   CustomTextField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     formFieldKey: confirmPinInputKey,
                     borderColor: Colors.grey[200],
                     maxLength: 4,
