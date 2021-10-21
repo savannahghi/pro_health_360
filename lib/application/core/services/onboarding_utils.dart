@@ -31,6 +31,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -247,8 +248,7 @@ Future<AuthTokenStatus> checkTokenStatus({
 }
 
 // determines the path to route the user to based on the app state
-// TODO!!(abiud): make this return a concrete class implementation
-Map<String, dynamic> onboardingPath(
+OnboardingPathConfig onboardingPath(
   AppState state, {
   bool calledOnResume = false,
 }) {
@@ -256,7 +256,7 @@ Map<String, dynamic> onboardingPath(
 
   /// take the user to the homepage if they have passed
   /// the normal user profile checks
-  return <String, dynamic>{'route': BWRoutes.home, 'args': null};
+  return OnboardingPathConfig(BWRoutes.home);
 }
 
 Future<void> registerDeviceToken({required IGraphQlClient client}) async {
@@ -339,9 +339,9 @@ Future<String> getInitialRoute(
       default:
     }
 
-    final Map<String, dynamic> pathConfig =
+    final OnboardingPathConfig pathConfig =
         onboardingPath(appState, calledOnResume: true);
-    if (pathConfig['route'] == BWRoutes.setPin) {
+    if (pathConfig.route == BWRoutes.setPin) {
       return BWRoutes.setPin;
     }
 
@@ -350,7 +350,7 @@ Future<String> getInitialRoute(
             .toIso8601String();
 
     RefreshTokenManger().updateExpireTime(parsedExpiresAt).reset();
-    return Future<String>.value(pathConfig['route'].toString());
+    return Future<String>.value(pathConfig.route);
   } else {
     if (appState.userProfileState!.isFirstLaunch ?? false) {
       StoreProvider.dispatch<AppState>(
@@ -647,7 +647,7 @@ Future<dynamic> afterLoginOrCreateAccount({
 
     if (onboardActionType == OnboardActionType.login) {
       /// navigation to home page happens here
-      final Map<String, dynamic> routeContext = onboardingPath(updatedState);
+      final OnboardingPathConfig routeContext = onboardingPath(updatedState);
       final String appContext =
           getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
 
@@ -679,9 +679,9 @@ Future<dynamic> afterLoginOrCreateAccount({
 
       await Navigator.pushNamedAndRemoveUntil(
         context,
-        routeContext['route'].toString(),
+        routeContext.route,
         (Route<dynamic> route) => false,
-        arguments: routeContext['args'],
+        arguments: routeContext.arguments,
       );
 
       return;

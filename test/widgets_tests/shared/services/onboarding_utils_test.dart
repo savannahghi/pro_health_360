@@ -15,6 +15,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -75,10 +76,10 @@ void main() {
       // setup
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
-      final Map<String, dynamic> expectedOnboardingRouteConfigs =
-          <String, dynamic>{'route': BWRoutes.home, 'args': null};
+      final OnboardingPathConfig expectedOnboardingRouteConfigs =
+          OnboardingPathConfig(BWRoutes.home);
 
-      late Map<String, dynamic> actualOnboardingRouteConfigs;
+      late OnboardingPathConfig actualOnboardingRouteConfigs;
 
       // call the function
       // implementation/call the function
@@ -100,12 +101,9 @@ void main() {
               ),
             );
             return SILPrimaryButton(
-              buttonKey: const Key('check-onboarding-path-key'),
-              onPressed: () {
-                // call our check token status function
-                actualOnboardingRouteConfigs = onboardingPath(store.state);
-              },
-              text: 'Test',
+              onPressed: () =>
+                  actualOnboardingRouteConfigs = onboardingPath(store.state),
+              text: '',
             );
           },
         ),
@@ -113,14 +111,14 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      final Finder checkTokenStatusButton =
-          find.byKey(const Key('check-onboarding-path-key'));
+      final Finder checkTokenStatusButton = find.byType(SILPrimaryButton);
       await tester.tap(checkTokenStatusButton);
 
       await tester.pumpAndSettle();
 
       // verify functionality
-      expect(actualOnboardingRouteConfigs, expectedOnboardingRouteConfigs);
+      expect(actualOnboardingRouteConfigs.route,
+          expectedOnboardingRouteConfigs.route);
     });
 
     group('should update user pin', () {
@@ -298,7 +296,7 @@ void main() {
       testWidgets(
           'should return homepage for users who have filled in their user profile',
           (WidgetTester tester) async {
-        late Map<String, dynamic> _onboardingPath;
+        late OnboardingPathConfig _onboardingPath;
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -330,8 +328,8 @@ void main() {
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
 
-        expect(_onboardingPath['route'], BWRoutes.home);
-        expect(_onboardingPath['args'], null);
+        expect(_onboardingPath.route, BWRoutes.home);
+        expect(_onboardingPath.arguments, null);
       });
     });
 

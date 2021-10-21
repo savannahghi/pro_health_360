@@ -18,6 +18,7 @@ import 'package:myafyahub/application/redux/actions/update_pin_status_action.dar
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/dynamic_back_route_holder.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -102,11 +103,11 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
               deepLink.hasLink.add(false);
               Navigator.pushReplacementNamed(context, deepLink.link.value);
             } else {
-              final Map<String, dynamic> routeContext = onboardingPath(state);
+              final OnboardingPathConfig routeContext = onboardingPath(state);
               Navigator.pushReplacementNamed(
                 context,
-                routeContext['route'].toString(),
-                arguments: routeContext['args'],
+                routeContext.route,
+                arguments: routeContext.arguments,
               );
             }
           }
