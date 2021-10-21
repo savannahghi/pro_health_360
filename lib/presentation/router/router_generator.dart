@@ -30,14 +30,12 @@ import 'package:myafyahub/presentation/onboarding/security_questions/security_qu
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
-import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
-import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/widgets/article_details_page.dart';
 // Package imports:
@@ -95,12 +93,8 @@ class RouteGenerator {
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());
 
       case BWRoutes.userProfile:
-        return MaterialPageRoute<UserProfile>(builder: (_) => UserProfile());
-
-      case BWRoutes.contactInfo:
-        return MaterialPageRoute<ProfileContactDetails>(
-          builder: (_) => ProfileContactDetails(),
-        );
+        return MaterialPageRoute<UserProfilePage>(
+            builder: (_) => UserProfilePage());
 
       case BWRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(

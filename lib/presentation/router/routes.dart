@@ -33,7 +33,6 @@ class BWRoutes {
   // user profile routes
   static const String editProfileSettingsPage = '/editProfileSettingsPage';
   static const String userProfile = '/userProfile';
-  static const String contactInfo = '/contactInfo';
   static const String consent = '/consent';
   static const String personalInfo = '/personalInfo';
   static const String medicalData = '/medicalData';

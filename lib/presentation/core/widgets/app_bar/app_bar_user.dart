@@ -26,47 +26,51 @@ class AppbarUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      key: appBarUserKey,
-      onTap: () => editProfileNavigation(context),
-      child: StoreConnector<AppState, UserProfileViewModel>(
-        converter: (Store<AppState> store) =>
-            UserProfileViewModel.fromStore(store),
-        builder: (BuildContext context, UserProfileViewModel vm) {
-          final UserProfileState userProfileState = vm.userProfileState;
-          final String? photoUrl = userProfileState.userProfile!.photoUploadID;
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: GestureDetector(
+        key: appBarUserKey,
+        onTap: () => editProfileNavigation(context),
+        child: StoreConnector<AppState, UserProfileViewModel>(
+          converter: (Store<AppState> store) =>
+              UserProfileViewModel.fromStore(store),
+          builder: (BuildContext context, UserProfileViewModel vm) {
+            final UserProfileState userProfileState = vm.userProfileState;
+            final String? photoUrl =
+                userProfileState.userProfile!.photoUploadID;
 
-          // a sanity check for the photo url
-          final bool isUploadUrlInvalid =
-              photoUrl!.isEmpty || photoUrl == UNKNOWN;
+            // a sanity check for the photo url
+            final bool isUploadUrlInvalid =
+                photoUrl!.isEmpty || photoUrl == UNKNOWN;
 
-          return Container(
-            padding: EdgeInsets.all(isUploadUrlInvalid ? 2 : 0),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.whiteColor,
-            ),
-            child: Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
+            return Container(
+              padding: EdgeInsets.all(isUploadUrlInvalid ? 2 : 0),
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Theme.of(context).primaryColor,
+                color: AppColors.whiteColor,
               ),
-              child: Center(
-                child: isUploadUrlInvalid
-                    ? Text(
-                        extractNamesInitials(
-                          name: getDisplayName(userProfileState),
-                        ),
-                        style:
-                            TextThemes.boldSize14Text(AppColors.secondaryColor),
-                      )
-                    : CircleAvatar(backgroundImage: AssetImage(photoUrl)),
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Center(
+                  child: isUploadUrlInvalid
+                      ? Text(
+                          extractNamesInitials(
+                            name: getDisplayName(userProfileState),
+                          ),
+                          style: TextThemes.boldSize14Text(
+                              AppColors.secondaryColor),
+                        )
+                      : CircleAvatar(backgroundImage: AssetImage(photoUrl)),
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
