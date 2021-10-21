@@ -26,7 +26,6 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
@@ -387,12 +386,11 @@ ProcessedResponse processHttpResponse(
   if (response.statusCode == 400) {
     final Map<String, dynamic> body =
         json.decode(response.body) as Map<String, dynamic>;
-    if (body['code'] == 4 && context != null) {
-      StoreProvider.dispatch(
-        context,
-        PhoneSignUpStateAction(accountExists: true),
-      );
-    }
+
+    /**
+       *  TODO!!(abiud): confirm with the backend to remove error code 4 
+       */
+
     if ((body['code'] == 7 || body['code'] == 10) && context != null) {
       throw SILException(
         error: body,

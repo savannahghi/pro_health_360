@@ -11,9 +11,9 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
     phoneLogin: json['phoneLogin'] == null
         ? null
         : PhoneLogin.fromJson(json['phoneLogin'] as Map<String, dynamic>),
-    phoneSignUp: json['phoneSignUp'] == null
+    changePIN: json['changePIN'] == null
         ? null
-        : PhoneSignUp.fromJson(json['phoneSignUp'] as Map<String, dynamic>),
+        : ChangePIN.fromJson(json['changePIN'] as Map<String, dynamic>),
     userPin: json['userPin'] == null
         ? null
         : UserPin.fromJson(json['userPin'] as Map<String, dynamic>),
@@ -33,7 +33,7 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
     <String, dynamic>{
       'phoneLogin': instance.phoneLogin,
-      'phoneSignUp': instance.phoneSignUp,
+      'changePIN': instance.changePIN,
       'userPin': instance.userPin,
       'appErrorState': instance.appErrorState?.toList(),
       'bottomNavObj': instance.bottomNavObj,

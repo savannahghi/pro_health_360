@@ -11,12 +11,12 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/redux/actions/change_pin_state_action.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/actions/change_pin_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/my_afya_hub_phone_login_page.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -83,9 +83,9 @@ void main() {
                 );
                 StoreProvider.dispatch(
                   context,
-                  PhoneSignUpStateAction(
-                    createPin: testPin,
-                    confirmPin: testPin,
+                  ChangePINStateAction(
+                    createPIN: testPin,
+                    confirmPIN: testPin,
                   ),
                 );
                 await StoreProvider.dispatch(
@@ -159,9 +159,9 @@ void main() {
                 );
                 StoreProvider.dispatch(
                   context,
-                  PhoneSignUpStateAction(
-                    createPin: testPin,
-                    confirmPin: '4321',
+                  ChangePINStateAction(
+                    createPIN: testPin,
+                    confirmPIN: '4321',
                   ),
                 );
 
@@ -237,9 +237,9 @@ void main() {
                 );
                 StoreProvider.dispatch(
                   context,
-                  PhoneSignUpStateAction(
-                    createPin: testPin,
-                    confirmPin: testPin,
+                  ChangePINStateAction(
+                    createPIN: testPin,
+                    confirmPIN: testPin,
                   ),
                 );
 

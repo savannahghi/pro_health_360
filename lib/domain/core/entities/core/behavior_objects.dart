@@ -10,6 +10,7 @@ import 'package:myafyahub/domain/core/entities/core/profile_page_items.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
+// TODO!!(abiud): remove this. it is not being used
 class UtilizationBehaviorSubject {
   factory UtilizationBehaviorSubject() {
     return _singleton;
@@ -58,6 +59,7 @@ class UtilizationBehaviorSubject {
   }
 }
 
+// TODO!!(abiud): remove this. it is not being used
 /// [BookAppointmentSubject] holds information that will be used when booking/starting
 /// a visit. More specifically, the patient, the provider, reasons for the visit
 class BookAppointmentSubject {
@@ -141,6 +143,7 @@ class BookAppointmentSubject {
   }
 }
 
+// TODO!!(abiud): remove this. it is not being used
 class AuthorizationQueryDetailsBehaviorObject {
   factory AuthorizationQueryDetailsBehaviorObject() {
     return _singleton;
@@ -155,6 +158,7 @@ class AuthorizationQueryDetailsBehaviorObject {
       AuthorizationQueryDetailsBehaviorObject._internal();
 }
 
+// TODO!!(abiud): remove this. it is not being used
 class CardIndexBehaviorObject {
   factory CardIndexBehaviorObject() {
     return _singleton;
@@ -169,6 +173,7 @@ class CardIndexBehaviorObject {
       CardIndexBehaviorObject._internal();
 }
 
+// TODO!!(abiud): remove this. it is not being used
 class ManageDependantsBehaviorObject {
   factory ManageDependantsBehaviorObject() {
     return _singleton;
@@ -239,6 +244,7 @@ class EditProfilePageBehaviorObject {
       EditProfilePageBehaviorObject._internal();
 }
 
+// TODO!!(abiud): remove this. it is not being used
 class StartVisitIdentificationOTP {
   factory StartVisitIdentificationOTP() {
     return _singleton;

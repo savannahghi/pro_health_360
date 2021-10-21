@@ -483,51 +483,6 @@ void main() {
       });
 
       testWidgets(
-          'Onboarding utils should show that a user exists if a 400 '
-          ' is returned and a status code of 4', (WidgetTester tester) async {
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{
-            'code': 4,
-            'message': 'coverage is still not 100%'
-          }),
-          400,
-        );
-
-        late ProcessedResponse actualResponse;
-        final Store<AppState> store =
-            Store<AppState>(initialState: AppState.initial());
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(
-                onPressed: () {
-                  actualResponse =
-                      processHttpResponse(expectedErrorResponse, context);
-                },
-                text: 'process response',
-              );
-            },
-          ),
-        );
-        await tester.pump();
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        // expect a default error msg because context was not passed in
-        expect(actualResponse.message, userWithThatPhoneExists);
-
-        expect(store.state.miscState!.phoneSignUp!.accountExists, true);
-      });
-
-      testWidgets(
           'Onboarding utils should process response '
           'with a 400 and a status code of 8', (WidgetTester tester) async {
         final http.Response expectedErrorResponse = http.Response(

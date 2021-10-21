@@ -5,8 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/application/redux/states/app_error_state.dart';
 import 'package:myafyahub/domain/core/entities/core/app_review_obj.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_obj.dart';
+import 'package:myafyahub/domain/core/entities/login/change_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_signup.dart';
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
 
 part 'misc_state.freezed.dart';
@@ -16,7 +16,7 @@ part 'misc_state.g.dart';
 class MiscState with _$MiscState {
   factory MiscState({
     PhoneLogin? phoneLogin,
-    PhoneSignUp? phoneSignUp,
+    ChangePIN? changePIN,
     UserPin? userPin,
     Set<AppErrorState>? appErrorState,
     BottomNavObj? bottomNavObj,
@@ -29,7 +29,7 @@ class MiscState with _$MiscState {
 
   factory MiscState.initial() => MiscState(
         phoneLogin: PhoneLogin.initial(),
-        phoneSignUp: PhoneSignUp(),
+        changePIN: ChangePIN.initial(),
         userPin: UserPin(),
         appErrorState: <AppErrorState>{},
         bottomNavObj: BottomNavObj(),

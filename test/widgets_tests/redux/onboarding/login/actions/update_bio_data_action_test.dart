@@ -18,7 +18,6 @@ import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_bio_data_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';

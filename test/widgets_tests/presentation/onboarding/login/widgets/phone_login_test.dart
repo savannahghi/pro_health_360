@@ -13,7 +13,6 @@ import 'package:mockito/mockito.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_signup_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
@@ -95,9 +94,7 @@ void main() {
           widget: Builder(
             builder: (BuildContext context) {
               store.dispatch(
-                PhoneSignUpStateAction(
-                  invalidCredentials: true,
-                ),
+                PhoneLoginStateAction(invalidCredentials: true),
               );
 
               return MyAfyaHubPhoneLoginPage();
@@ -121,7 +118,7 @@ void main() {
         await tester.tap(pinInput);
         await tester.enterText(pinInput, '123');
 
-        expect(store.state.miscState!.phoneSignUp!.invalidCredentials, true);
+        expect(store.state.miscState!.phoneLogin!.invalidCredentials, true);
         expect(find.byType(ErrorAlertBox), findsOneWidget);
       },
     );

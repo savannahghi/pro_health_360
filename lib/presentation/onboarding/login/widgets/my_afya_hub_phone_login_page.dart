@@ -166,7 +166,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
           inputController: phoneNumberInputController,
           labelText: enterPhoneNumberString,
           onChanged: (String? val) {
-            if (vm.appState.miscState!.phoneSignUp!.invalidCredentials) {
+            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
               StoreProvider.dispatch(
                 context,
                 PhoneLoginStateAction(),
@@ -208,7 +208,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
             FilteringTextInputFormatter.digitsOnly
           ],
           onChanged: (String val) {
-            if (vm.appState.miscState!.phoneSignUp!.invalidCredentials) {
+            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
               StoreProvider.dispatch(
                 context,
                 PhoneLoginStateAction(),
@@ -219,7 +219,7 @@ class _MyAfyaHubPhoneLoginPageState extends State<MyAfyaHubPhoneLoginPage> {
             });
           },
         ),
-        if (vm.appState.miscState?.phoneSignUp?.invalidCredentials ??
+        if (vm.appState.miscState?.phoneLogin?.invalidCredentials ??
             false) ...<Widget>[
           const ErrorAlertBox(message: invalidCredentialsErrorMsg),
         ],

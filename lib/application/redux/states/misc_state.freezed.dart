@@ -22,7 +22,7 @@ class _$MiscStateTearOff {
 
   _MiscState call(
       {PhoneLogin? phoneLogin,
-      PhoneSignUp? phoneSignUp,
+      ChangePIN? changePIN,
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
@@ -30,7 +30,7 @@ class _$MiscStateTearOff {
       AppReviewObj? appReviewObj}) {
     return _MiscState(
       phoneLogin: phoneLogin,
-      phoneSignUp: phoneSignUp,
+      changePIN: changePIN,
       userPin: userPin,
       appErrorState: appErrorState,
       bottomNavObj: bottomNavObj,
@@ -50,7 +50,7 @@ const $MiscState = _$MiscStateTearOff();
 /// @nodoc
 mixin _$MiscState {
   PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
-  PhoneSignUp? get phoneSignUp => throw _privateConstructorUsedError;
+  ChangePIN? get changePIN => throw _privateConstructorUsedError;
   UserPin? get userPin => throw _privateConstructorUsedError;
   Set<AppErrorState>? get appErrorState => throw _privateConstructorUsedError;
   BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
@@ -69,7 +69,7 @@ abstract class $MiscStateCopyWith<$Res> {
       _$MiscStateCopyWithImpl<$Res>;
   $Res call(
       {PhoneLogin? phoneLogin,
-      PhoneSignUp? phoneSignUp,
+      ChangePIN? changePIN,
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
@@ -88,7 +88,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
   @override
   $Res call({
     Object? phoneLogin = freezed,
-    Object? phoneSignUp = freezed,
+    Object? changePIN = freezed,
     Object? userPin = freezed,
     Object? appErrorState = freezed,
     Object? bottomNavObj = freezed,
@@ -100,10 +100,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
               as PhoneLogin?,
-      phoneSignUp: phoneSignUp == freezed
-          ? _value.phoneSignUp
-          : phoneSignUp // ignore: cast_nullable_to_non_nullable
-              as PhoneSignUp?,
+      changePIN: changePIN == freezed
+          ? _value.changePIN
+          : changePIN // ignore: cast_nullable_to_non_nullable
+              as ChangePIN?,
       userPin: userPin == freezed
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
   @override
   $Res call(
       {PhoneLogin? phoneLogin,
-      PhoneSignUp? phoneSignUp,
+      ChangePIN? changePIN,
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
@@ -156,7 +156,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneLogin = freezed,
-    Object? phoneSignUp = freezed,
+    Object? changePIN = freezed,
     Object? userPin = freezed,
     Object? appErrorState = freezed,
     Object? bottomNavObj = freezed,
@@ -168,10 +168,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
               as PhoneLogin?,
-      phoneSignUp: phoneSignUp == freezed
-          ? _value.phoneSignUp
-          : phoneSignUp // ignore: cast_nullable_to_non_nullable
-              as PhoneSignUp?,
+      changePIN: changePIN == freezed
+          ? _value.changePIN
+          : changePIN // ignore: cast_nullable_to_non_nullable
+              as ChangePIN?,
       userPin: userPin == freezed
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
@@ -201,7 +201,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 class _$_MiscState implements _MiscState {
   _$_MiscState(
       {this.phoneLogin,
-      this.phoneSignUp,
+      this.changePIN,
       this.userPin,
       this.appErrorState,
       this.bottomNavObj,
@@ -214,7 +214,7 @@ class _$_MiscState implements _MiscState {
   @override
   final PhoneLogin? phoneLogin;
   @override
-  final PhoneSignUp? phoneSignUp;
+  final ChangePIN? changePIN;
   @override
   final UserPin? userPin;
   @override
@@ -228,7 +228,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, phoneSignUp: $phoneSignUp, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, appReviewObj: $appReviewObj)';
+    return 'MiscState(phoneLogin: $phoneLogin, changePIN: $changePIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, appReviewObj: $appReviewObj)';
   }
 
   @override
@@ -238,9 +238,9 @@ class _$_MiscState implements _MiscState {
             (identical(other.phoneLogin, phoneLogin) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneLogin, phoneLogin)) &&
-            (identical(other.phoneSignUp, phoneSignUp) ||
+            (identical(other.changePIN, changePIN) ||
                 const DeepCollectionEquality()
-                    .equals(other.phoneSignUp, phoneSignUp)) &&
+                    .equals(other.changePIN, changePIN)) &&
             (identical(other.userPin, userPin) ||
                 const DeepCollectionEquality()
                     .equals(other.userPin, userPin)) &&
@@ -262,7 +262,7 @@ class _$_MiscState implements _MiscState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(phoneLogin) ^
-      const DeepCollectionEquality().hash(phoneSignUp) ^
+      const DeepCollectionEquality().hash(changePIN) ^
       const DeepCollectionEquality().hash(userPin) ^
       const DeepCollectionEquality().hash(appErrorState) ^
       const DeepCollectionEquality().hash(bottomNavObj) ^
@@ -283,7 +283,7 @@ class _$_MiscState implements _MiscState {
 abstract class _MiscState implements MiscState {
   factory _MiscState(
       {PhoneLogin? phoneLogin,
-      PhoneSignUp? phoneSignUp,
+      ChangePIN? changePIN,
       UserPin? userPin,
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
@@ -296,7 +296,7 @@ abstract class _MiscState implements MiscState {
   @override
   PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
   @override
-  PhoneSignUp? get phoneSignUp => throw _privateConstructorUsedError;
+  ChangePIN? get changePIN => throw _privateConstructorUsedError;
   @override
   UserPin? get userPin => throw _privateConstructorUsedError;
   @override
