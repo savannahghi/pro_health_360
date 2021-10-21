@@ -37,12 +37,10 @@ import 'package:myafyahub/presentation/onboarding/security_questions/answer_secu
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
-import 'package:myafyahub/presentation/profile/pages/contact_details.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
-import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../mocks.dart';
@@ -195,10 +193,10 @@ void main() {
   });
   test('Test router returns incoming  userProfile page', () {
     const RouteSettings settings = RouteSettings(name: BWRoutes.userProfile);
-    final MaterialPageRoute<UserProfile> route =
-        routeGenerator(settings) as MaterialPageRoute<UserProfile>;
-    expect(route, isA<MaterialPageRoute<UserProfile>>());
-    expect(route.builder(context), isA<UserProfile>());
+    final MaterialPageRoute<UserProfilePage> route =
+        routeGenerator(settings) as MaterialPageRoute<UserProfilePage>;
+    expect(route, isA<MaterialPageRoute<UserProfilePage>>());
+    expect(route.builder(context), isA<UserProfilePage>());
   });
 
   test('Test router returns incoming  webView page', () {
@@ -208,14 +206,6 @@ void main() {
             as MaterialPageRoute<webview.TermsAndConditionsPage>;
     expect(route, isA<MaterialPageRoute<webview.TermsAndConditionsPage>>());
     expect(route.builder(context), isA<webview.TermsAndConditionsPage>());
-  });
-
-  test('Test router returns profile contact details page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.contactInfo);
-    final MaterialPageRoute<ProfileContactDetails> route =
-        routeGenerator(settings) as MaterialPageRoute<ProfileContactDetails>;
-    expect(route, isA<MaterialPageRoute<ProfileContactDetails>>());
-    expect(route.builder(context), isA<ProfileContactDetails>());
   });
 
   test('Test router returns security questions page', () {

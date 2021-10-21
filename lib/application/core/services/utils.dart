@@ -16,7 +16,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:launch_review/launch_review.dart';
-import 'package:misc_utilities/enums.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
@@ -478,14 +477,6 @@ double getWidthOfSymmetricalWidgetsSmallDevices({
           preferredPaddingOnStretchedScreens(context: context) * 2 -
           number10) /
       2;
-}
-
-bool isSmallScreenAndOnLandscape({required BuildContext context}) {
-  if (ResponsiveWidget.isLandscape(context: context) &&
-      getDeviceType(context) == DeviceScreensType.Mobile) {
-    return true;
-  }
-  return false;
 }
 
 bool isLargeScreenAndOnLandscape({required BuildContext context}) {

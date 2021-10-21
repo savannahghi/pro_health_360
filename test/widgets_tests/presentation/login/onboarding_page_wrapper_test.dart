@@ -17,7 +17,7 @@ import '../../../test_helpers.dart';
 
 void main() {
   group('onboarding page wrapper', () {
-    testWidgets('flat button can be pressed', (WidgetTester tester) async {
+    testWidgets('should render correctly', (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 

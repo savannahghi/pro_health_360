@@ -3,40 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:rxdart/rxdart.dart';
-import 'package:unicons/unicons.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/profile_page_items.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
-
-class ProfileSubject {
-  factory ProfileSubject() {
-    return _singleton;
-  }
-
-  ProfileSubject._internal();
-
-  BehaviorSubject<Color> color =
-      BehaviorSubject<Color>.seeded(Colors.purple[100]!);
-
-  BehaviorSubject<String> selectedTile =
-      BehaviorSubject<String>.seeded(contactInfo);
-
-  BehaviorSubject<ValueNotifier<ProfileItems>> selection =
-      BehaviorSubject<ValueNotifier<ProfileItems>>.seeded(
-    ValueNotifier<ProfileItems>(
-      const ProfileItems(
-        text: contactInfo,
-        section: ProfileItemType.account,
-        onTapRoute: BWRoutes.contactInfo,
-        iconData: UniconsLine.user_circle,
-      ),
-    ),
-  );
-
-  static final ProfileSubject _singleton = ProfileSubject._internal();
-}
 
 class InternetConnectivitySubject {
   factory InternetConnectivitySubject() {
