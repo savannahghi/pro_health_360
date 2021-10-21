@@ -6,10 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:afya_moja_core/buttons.dart';
 
 class UserDetailsCard extends StatelessWidget {
   /// [UserDetailsCard] is a shared widget used in [UserProfilePage]
@@ -130,15 +128,8 @@ class UserDetailsCard extends StatelessWidget {
                 ],
               ),
               mediumVerticalSizedBox,
-              const MyAfyaHubPrimaryButton(
-                text: correctionRequestString,
-                textColor: Colors.white,
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-              )
+              // TODO(abiud): return the request for correction button once the
+              // designs have been implemented
             ],
           ),
         ],
