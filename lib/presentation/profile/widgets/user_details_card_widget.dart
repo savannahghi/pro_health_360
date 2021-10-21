@@ -1,8 +1,13 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -17,14 +22,12 @@ class UserDetailsCard extends StatelessWidget {
   const UserDetailsCard({
     Key? key,
     required this.userInitials,
-    required this.name,
     required this.cccNumber,
     required this.age,
     required this.phoneNumber,
     required this.home,
   }) : super(key: key);
   final String userInitials;
-  final String name;
   final String cccNumber;
   final String age;
   final String phoneNumber;
@@ -33,107 +36,124 @@ class UserDetailsCard extends StatelessWidget {
   final String home;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        color: AppColors.userDetailsCardBackgroundColor,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(10.0),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.userInitialsColor,
-            ),
-            child: Text(
-              userInitials,
-              style: const TextStyle(
-                fontSize: 22,
-                color: AppColors.secondaryColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+    return StoreConnector<AppState, UserProfileViewModel>(
+      converter: (Store<AppState> store) =>
+          UserProfileViewModel.fromStore(store),
+      builder: (BuildContext context, UserProfileViewModel vm) {
+        final UserProfileState userProfile = vm.userProfileState;
+
+        final String firstName =
+            userProfile.userProfile?.userBioData?.firstName?.getValue() ??
+                UNKNOWN;
+        final String lastName =
+            userProfile.userProfile?.userBioData?.lastName?.getValue() ??
+                UNKNOWN;
+
+        final String name = '$firstName $lastName';
+
+        return Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: AppColors.userDetailsCardBackgroundColor,
           ),
-          smallHorizontalSizedBox,
-          Column(
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+              Container(
+                padding: const EdgeInsets.all(10.0),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.userInitialsColor,
                 ),
-              ),
-              smallVerticalSizedBox,
-              Text(
-                'CCC No: $cccNumber',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              smallVerticalSizedBox,
-              Text(
-                'Age: $age yrs',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              largeVerticalSizedBox,
-              Row(
-                children: <Widget>[
-                  SvgPicture.asset(
-                    phoneCallIcon,
-                    color: AppColors.whiteColor,
-                    width: 14,
-                    height: 18,
+                child: Text(
+                  userInitials,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    color: AppColors.secondaryColor,
+                    fontWeight: FontWeight.bold,
                   ),
-                  size15HorizontalSizedBox,
+                ),
+              ),
+              smallHorizontalSizedBox,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
                   Text(
-                    phoneNumber,
+                    name,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 13,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  smallVerticalSizedBox,
+                  Text(
+                    'CCC No: $cccNumber',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                ],
-              ),
-              size15VerticalSizedBox,
-              Row(
-                children: <Widget>[
-                  SvgPicture.asset(
-                    homeLocationIcon,
-                    color: AppColors.whiteColor,
-                    width: 15,
-                    height: 15,
-                  ),
-                  size15HorizontalSizedBox,
+                  smallVerticalSizedBox,
                   Text(
-                    home,
+                    'Age: $age yrs',
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
+                  largeVerticalSizedBox,
+                  Row(
+                    children: <Widget>[
+                      SvgPicture.asset(
+                        phoneCallIcon,
+                        color: AppColors.whiteColor,
+                        width: 14,
+                        height: 18,
+                      ),
+                      size15HorizontalSizedBox,
+                      Text(
+                        phoneNumber,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                  size15VerticalSizedBox,
+                  Row(
+                    children: <Widget>[
+                      SvgPicture.asset(
+                        homeLocationIcon,
+                        color: AppColors.whiteColor,
+                        width: 15,
+                        height: 15,
+                      ),
+                      size15HorizontalSizedBox,
+                      Text(
+                        home,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                  mediumVerticalSizedBox,
+                  // TODO(abiud): return the request for correction button once the
+                  // designs have been implemented
                 ],
               ),
-              mediumVerticalSizedBox,
-              // TODO(abiud): return the request for correction button once the
-              // designs have been implemented
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
