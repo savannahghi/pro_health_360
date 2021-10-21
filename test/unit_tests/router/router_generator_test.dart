@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
-import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
+import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_view_page.dart';
+import 'package:myafyahub/presentation/profile/pages/profile_faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
@@ -374,6 +376,23 @@ void main() {
     expect(route, isA<MaterialPageRoute<ProfileFaqsPage>>());
     expect(route.builder(context), isA<ProfileFaqsPage>());
   });
+
+  test('Test router returns FAQDetailViewPage', () {
+    final FAQContent payload = FAQContent.fromJson(<String, dynamic>{
+      'title': 'title',
+      'body': 'body',
+    });
+
+    final RouteSettings settings =
+        RouteSettings(name: BWRoutes.faqDetailViewPage, arguments: payload);
+
+    final MaterialPageRoute<FAQDetailViewPage> route =
+        routeGenerator(settings) as MaterialPageRoute<FAQDetailViewPage>;
+
+    expect(route, isA<MaterialPageRoute<FAQDetailViewPage>>());
+    expect(route.builder(context), isA<FAQDetailViewPage>());
+  });
+
   test('Test router returns ClinicInformationPage', () {
     const RouteSettings settings =
         RouteSettings(name: BWRoutes.clinicInformationPage);

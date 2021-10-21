@@ -6,10 +6,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
-import 'package:myafyahub/presentation/profile/widgets/expandable_content.dart';
-import '../../../../mocks.dart';
-import '../../../../test_helpers.dart';
+import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_view_page.dart';
+import 'package:myafyahub/presentation/profile/pages/profile_faqs/profile_faqs_page.dart';
+import 'package:myafyahub/presentation/profile/widgets/faq_item.dart';
+import '../../../../../mocks.dart';
+import '../../../../../test_helpers.dart';
 
 void main() {
   final Store<AppState> store =
@@ -32,15 +33,12 @@ void main() {
       expect(find.text(frequentlyAskedQuestions), findsOneWidget);
       expect(find.text(faqsText), findsOneWidget);
       expect(find.byKey(appBarBackButtonKey), findsOneWidget);
-      expect(find.byType(ExpandableContent), findsWidgets);
+      expect(find.byType(FAQItem), findsWidgets);
 
       await tester.tap(find.text(howDoIUpdateMyProfileText));
       await tester.pumpAndSettle();
 
-      final Finder text = find.text(loremIpsumText);
-      expect(text, findsOneWidget);
-      await tester.tap(text);
-      await tester.pumpAndSettle();
+      expect(find.byType(FAQDetailViewPage), findsWidgets);
 
       addTearDown(() {
         tester.binding.window.clearPhysicalSizeTestValue();

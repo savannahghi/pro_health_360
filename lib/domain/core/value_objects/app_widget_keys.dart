@@ -289,3 +289,5 @@ const Key pinInputPageBackKey = Key('pin_input_page_back_key');
 
 // consent page
 const Key termsAndConditionsKey = Key('termsAndConditionsKey');
+// Profile FAQs
+const Key profileFaqsListViewKey = Key('profile_faqs_view_key');

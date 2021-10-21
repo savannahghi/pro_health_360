@@ -3045,3 +3045,8 @@ Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
   'securityQuestionId': 'securityQuestionId',
   'response': 'response',
 };
+
+Map<String, dynamic> mockFAQContentResponse = <String, dynamic>{
+  'title': 'title',
+  'body': 'body',
+};

@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
+import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
@@ -33,7 +35,7 @@ import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
-import 'package:myafyahub/presentation/profile/pages/profile_faqs_page.dart';
+import 'package:myafyahub/presentation/profile/pages/profile_faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
@@ -229,6 +231,12 @@ class RouteGenerator {
               ArticleDetailsPage(payload: args as Map<String, dynamic>),
         );
 
+      case BWRoutes.faqDetailViewPage:
+        return MaterialPageRoute<FAQDetailViewPage>(
+          builder: (_) => FAQDetailViewPage(
+            payload: args as FAQContent,
+          ),
+        );
       default:
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());
     }
