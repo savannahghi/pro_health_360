@@ -5,47 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000446">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000365">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000576">
+      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000616">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="3.689672">
+      <testcase classname="fastlane.lanes" name="2: match" time="3.767222">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.028865">
+      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.004426">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="14.429363">
+      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="10.255082">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.938704">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.870059">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.00033">
+      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.000418">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000237">
+      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.001039">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: build_app" time="61.920581">
+      <testcase classname="fastlane.lanes" name="8: build_app" time="191.769319">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="522.923689">
         
       </testcase>
     

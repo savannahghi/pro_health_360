@@ -17,8 +17,9 @@ class ClinicInformationItemWidget extends StatelessWidget {
     required this.titleText,
     required this.bodyText,
   });
-  final String titleText;
+
   final String bodyText;
+  final String titleText;
 
   @override
   Widget build(BuildContext context) {
