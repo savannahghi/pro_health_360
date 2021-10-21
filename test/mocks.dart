@@ -2908,7 +2908,7 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'date': '',
     'isNew': true,
     'authorName': 'Ken Doe',
-    'bodyContent': loremIpsumString,
+    'bodyContent': defactoZeroStateString(),
     'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   },
   <String, dynamic>{
@@ -2917,7 +2917,7 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'date': '',
     'readTime': feedReadTime,
     'authorName': 'Ken Doe',
-    'bodyContent': loremIpsumString,
+    'bodyContent': defactoZeroStateString(),
     'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   },
   <String, dynamic>{
@@ -2925,7 +2925,7 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'header': feedHeader,
     'date': '',
     'authorName': 'Ken Doe',
-    'bodyContent': loremIpsumString,
+    'bodyContent': defactoZeroStateString(),
     'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   },
   <String, dynamic>{
@@ -2933,7 +2933,7 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'header': feedHeader,
     'date': '',
     'authorName': 'Ken Doe',
-    'bodyContent': loremIpsumString,
+    'bodyContent': defactoZeroStateString(),
     'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   }
 ];

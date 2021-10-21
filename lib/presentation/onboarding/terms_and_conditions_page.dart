@@ -56,9 +56,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                 ),
               ),
 
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
 
               // Terms and Conditions scrollable view
               Expanded(
@@ -78,7 +76,9 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            'Terms and Conditions will be available soon',
+                            defactoZeroStateString(
+                              topic: termsAndConditionsString,
+                            ),
                             style: TextThemes.normalSize18Text(
                               AppColors.secondaryColor.withOpacity(0.5),
                             ).copyWith(height: 1.8),
@@ -106,7 +106,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                 height: 48,
                 width: double.infinity,
                 child: MyAfyaHubPrimaryButton(
-                  text: 'Continue',
+                  text: continueString,
                   buttonColor: AppColors.secondaryColor,
                   onPressed: () {
                     if (isAgreed) {

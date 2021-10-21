@@ -12,15 +12,14 @@ import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widge
 import 'package:myafyahub/presentation/profile/widgets/clinic_information_item_widget.dart';
 import 'package:shared_themes/text_themes.dart';
 
+/// [ClinicInformationPage] is to display information of the clinic a client is registered to
+///
+/// It takes in required [contactNumber], [CHV], [treatmentBuddy], [age],
+/// and [keyProvider] parameters of type String
+///
 class ClinicInformationPage extends StatelessWidget {
   final String CHV = 'Name';
-  /// [ClinicInformationPage] is to display information of the clinic a client is registered to
-  ///
-  /// It takes in required [contactNumber], [CHV], [treatmentBuddy], [age],
-  /// and [keyProvider] parameters of type String
-  ///
   final String contactNumber = '0712345678';
-
   final String keyProvider = 'Name';
   final String treatmentBuddy = 'Name';
 

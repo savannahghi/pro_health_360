@@ -167,9 +167,11 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       );
                     },
-                    child: const Text(
-                      ' ',
+                    child: const SizedBox(
+                      height: 50,
+                      width: 50,
                       key: verifyOTPGestureKey,
+                      child: Text('    '),
                     ),
                   ),
                   Align(

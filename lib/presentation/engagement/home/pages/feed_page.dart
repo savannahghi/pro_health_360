@@ -63,7 +63,7 @@ class _FeedPageState extends State<FeedPage> {
         header: feedHeaderListSavedVideo,
         date: '21 Oct 2021',
         authorName: 'Ken Doe',
-        bodyContent: loremIpsumString,
+        bodyContent: defactoZeroStateString(),
         authorDisplayPic:
             'https://cloudcannon.com/blog/uploads/george-photo.jpg',
       ),
@@ -72,7 +72,7 @@ class _FeedPageState extends State<FeedPage> {
         header: feedHeaderListSavedVideo,
         date: '21 Oct 2021',
         authorName: 'Ken Doe',
-        bodyContent: loremIpsumString,
+        bodyContent: defactoZeroStateString(),
       )
     ];
 
