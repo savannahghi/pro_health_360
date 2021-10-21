@@ -137,13 +137,6 @@ class _LoginPageState extends State<LoginPage> {
             false) ...<Widget>[
           const ErrorAlertBox(message: invalidCredentialsErrorMsg),
         ],
-        if (vm.appState.wait!.isWaitingFor(phoneLoginFlag)) ...<Widget>[
-          const Center(
-            child: SILPlatformLoader(
-              color: AppColors.primaryColor,
-            ),
-          ),
-        ],
       ],
     );
   }
@@ -181,38 +174,41 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 52,
-                      child: MyAfyaHubPrimaryButton(
-                        buttonKey: phoneLoginContinueButtonKey,
-                        onPressed: () async {
-                          if (!InternetConnectivitySubject()
-                              .connectivitySubject
-                              .valueOrNull!) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(noInternetConnection),
-                              ),
-                            );
-                            return;
-                          }
-                          if (_formKey.currentState!.validate()) {
-                            if (pin != null && phoneNumber != null) {
-                              await signInUser(
-                                context: context,
-                                pin: pin!,
-                                phoneNumber: phoneNumber!,
-                              );
-                            }
-                            return;
-                          }
-                        },
-                        buttonColor: AppColors.secondaryColor,
-                        borderColor: Colors.transparent,
-                        text: continueString,
-                      ),
-                    ),
+                    child: (vm.appState.wait!.isWaitingFor(phoneLoginFlag))
+                        ? const SILPlatformLoader(
+                            color: AppColors.secondaryColor)
+                        : SizedBox(
+                            width: double.infinity,
+                            height: 52,
+                            child: MyAfyaHubPrimaryButton(
+                              buttonKey: phoneLoginContinueButtonKey,
+                              onPressed: () async {
+                                if (!InternetConnectivitySubject()
+                                    .connectivitySubject
+                                    .valueOrNull!) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(noInternetConnection),
+                                    ),
+                                  );
+                                  return;
+                                }
+                                if (_formKey.currentState!.validate()) {
+                                  if (pin != null && phoneNumber != null) {
+                                    await signInUser(
+                                      context: context,
+                                      pin: pin!,
+                                      phoneNumber: phoneNumber!,
+                                    );
+                                  }
+                                  return;
+                                }
+                              },
+                              buttonColor: AppColors.secondaryColor,
+                              borderColor: Colors.transparent,
+                              text: continueString,
+                            ),
+                          ),
                   ),
                 ],
               ),

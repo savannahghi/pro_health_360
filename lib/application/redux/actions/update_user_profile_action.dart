@@ -50,11 +50,11 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
     final CommunicationSettings settings =
         state.userProfileState!.communicationSettings!;
 
-    final List<SecurityQuestion> questions =
-        state.userProfileState!.securityQuestions!;
+    final List<SecurityQuestion>? securityQuestions =
+        state.userProfileState?.securityQuestions;
 
-    final Map<String, SecurityQuestionResponse> questionsResponses =
-        state.userProfileState!.securityQuestionsResponses!;
+    final Map<String, SecurityQuestionResponse>? questionsResponses =
+        state.userProfileState?.securityQuestionsResponses;
 
     final AppState newState = state.copyWith.userProfileState!.call(
       userProfile: UserProfile(
@@ -103,7 +103,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
       unmaskedPhoneNumbers: this.unmaskedPhoneNumbers ??
           state.userProfileState!.unmaskedPhoneNumbers,
       isFirstLaunch: this.isFirstLaunch,
-      securityQuestions: this.securityQuestions ?? questions,
+      securityQuestions: this.securityQuestions ?? securityQuestions,
       securityQuestionsResponses:
           this.securityQuestionsResponses ?? questionsResponses,
     );
