@@ -24,11 +24,13 @@ class CallContactActionWidget extends StatelessWidget {
     this.iconColor,
     this.iconBackground,
   });
+
   final Color? backgroundColor;
-  final Color? textColor;
-  final String phoneNumber;
-  final Color? iconColor;
   final Color? iconBackground;
+  final Color? iconColor;
+  final String phoneNumber;
+  final Color? textColor;
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -15,14 +15,14 @@ class PersonalInformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: myProfileString),
+      appBar: const CustomAppBar(title: personalInfoPageTitle),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Column(
             children: <Widget>[
-              //parent/caregiver/guardian details
+              // parent/caregiver/guardian details
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(

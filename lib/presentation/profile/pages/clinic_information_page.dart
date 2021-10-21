@@ -26,7 +26,7 @@ class ClinicInformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: myProfileString),
+      appBar: const CustomAppBar(title: clinicInfoPageTitle),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -42,9 +42,7 @@ class ClinicInformationPage extends StatelessWidget {
                     style: TextThemes.boldSize14Text(AppColors.secondaryColor),
                   ),
                   smallVerticalSizedBox,
-                  CallContactActionWidget(
-                    phoneNumber: contactNumber,
-                  ),
+                  CallContactActionWidget(phoneNumber: contactNumber),
                   size15VerticalSizedBox,
                   ClinicInformationItemWidget(
                     bodyText: chvString,

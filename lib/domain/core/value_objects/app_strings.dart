@@ -461,12 +461,16 @@ const String correctionRequestString = 'Request for correction';
 const String hotlineString = 'Hotline';
 const String hotlineNumberString = '0712345678';
 const String callString = 'Call';
-const String myProfileText = 'My Profile';
 const String clinicContactString = 'Clinic contacts';
 const String chvString = 'CHV';
 const String treatmentBuddyString = 'Treatment buddy';
 const String keyProviderString = 'Key provider';
-const String myProfileString = 'My Profile';
+
+// Page title strings
+const String myProfilePageTitle = 'My Profile';
+const String clinicInfoPageTitle = 'Clinic Information';
+const String personalInfoPageTitle = 'Personal Information';
+const String medicalDataPageTitle = 'Medical Data';
 
 //feed Item Widget
 const String feedHeader =

@@ -13,7 +13,7 @@ class MedicalDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: myProfileText),
+      appBar: const CustomAppBar(title: medicalDataPageTitle),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Padding(

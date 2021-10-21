@@ -898,7 +898,7 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: helpCircleIcon,
     route: BWRoutes.consent,
-    title: 'Concent',
+    title: 'Consent',
   ),
   UserProfileItemObj(
     iconAssetPath: feedbackIcon,
