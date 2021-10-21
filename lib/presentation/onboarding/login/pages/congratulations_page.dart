@@ -86,7 +86,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
             height: 52,
             child: MyAfyaHubPrimaryButton(
               customRadius: 4,
-              text: continueButtonText,
+              text: continueString,
               buttonColor: AppColors.secondaryColor,
               borderColor: AppColors.secondaryColor,
               onPressed: () async {

@@ -141,7 +141,7 @@ class _PinVerificationState extends State<PinVerification> {
                     },
                     buttonColor: Theme.of(context).primaryColor,
                     borderColor: Colors.transparent,
-                    text: 'Continue',
+                    text: continueString,
                   ),
                 ),
               Center(child: largeVerticalSizedBox),

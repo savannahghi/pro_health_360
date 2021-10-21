@@ -1051,7 +1051,7 @@ final List<FeedDetails> feedItems = <FeedDetails>[
     date: feedDate,
     isNew: true,
     authorName: 'Ken Doe',
-    bodyContent: loremIpsumString,
+    bodyContent: defactoZeroStateString(),
     authorDisplayPic: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
   ),
   FeedDetails(
@@ -1060,20 +1060,20 @@ final List<FeedDetails> feedItems = <FeedDetails>[
     date: feedDate,
     isNew: true,
     authorName: 'Ken Doe',
-    bodyContent: loremIpsumString,
+    bodyContent: defactoZeroStateString(),
   ),
   FeedDetails(
     coverImageUrl: feedImage1,
     header: feedHeader,
     date: feedDate,
     authorName: 'Ken Doe',
-    bodyContent: loremIpsumString,
+    bodyContent: defactoZeroStateString(),
   ),
   FeedDetails(
     coverImageUrl: feedImage3,
     header: feedHeader,
     date: feedDate,
     authorName: 'Ken Doe',
-    bodyContent: loremIpsumString,
+    bodyContent: defactoZeroStateString(),
   ),
 ];

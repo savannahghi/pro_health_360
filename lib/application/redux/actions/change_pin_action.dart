@@ -98,7 +98,7 @@ class ChangePinAction extends ReduxAction<AppState> {
               ),
             );
           },
-          primaryActionText: continueButtonText,
+          primaryActionText: continueString,
           buttonColor: AppColors.primaryColor,
         );
       } else {
