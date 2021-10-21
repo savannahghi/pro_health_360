@@ -251,18 +251,11 @@ Map<String, dynamic> onboardingPath(
   AppState state, {
   bool calledOnResume = false,
 }) {
-  final BioData bioData = state.userProfileState!.userProfile!.userBioData!;
+  // TODO!!(abiud): add more checks here when tying up the storyline
 
-  if (bioData.firstName?.getValue() == UNKNOWN ||
-      bioData.lastName?.getValue() == UNKNOWN ||
-      bioData.dateOfBirth == UNKNOWN) {
-    /// take the user to basic details if any of the above checks fail
-    return <String, dynamic>{'route': BWRoutes.basicDetails, 'args': null};
-  } else {
-    /// take the user to the homepage if they have passed
-    /// the normal user profile checks
-    return <String, dynamic>{'route': BWRoutes.home, 'args': null};
-  }
+  /// take the user to the homepage if they have passed
+  /// the normal user profile checks
+  return <String, dynamic>{'route': BWRoutes.home, 'args': null};
 }
 
 Future<void> registerDeviceToken({required IGraphQlClient client}) async {

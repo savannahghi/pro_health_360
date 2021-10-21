@@ -29,7 +29,6 @@ import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
@@ -163,16 +162,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<LibraryContent>>());
     expect(route.builder(context), isA<LibraryContent>());
-  });
-
-  test('Test router returns incoming  basicDetails page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.basicDetails);
-
-    final MaterialPageRoute<BasicDetailsPage> route =
-        routeGenerator(settings) as MaterialPageRoute<BasicDetailsPage>;
-
-    expect(route, isA<MaterialPageRoute<BasicDetailsPage>>());
-    expect(route.builder(context), isA<BasicDetailsPage>());
   });
 
   test('Test router returns incoming  resetPin page', () {

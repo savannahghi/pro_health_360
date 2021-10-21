@@ -16,7 +16,6 @@ import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/basic_details_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
@@ -77,11 +76,6 @@ class RouteGenerator {
       case BWRoutes.phoneLogin:
         return MaterialPageRoute<MyAfyaHubPhoneLoginPage>(
           builder: (_) => MyAfyaHubPhoneLoginPage(),
-        );
-
-      case BWRoutes.basicDetails:
-        return MaterialPageRoute<BasicDetailsPage>(
-          builder: (_) => BasicDetailsPage(),
         );
 
       case BWRoutes.resetPin:

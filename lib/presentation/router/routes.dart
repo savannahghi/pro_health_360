@@ -5,7 +5,6 @@
 class BWRoutes {
   // onboarding routes
   static const String phoneLogin = '/phoneLogin';
-  static const String basicDetails = '/basicDetails';
   static const String verifyPhoneNo = '/verifyPhoneNo';
   static const String verifyCode = '/verifyCode';
   static const String termsAndConditions = '/termsAndConditions';
