@@ -42,7 +42,7 @@ void main() {
       await tester.tap(find.text(pastAppointmentsText));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppointmentList), findsWidgets);
+      expect(find.byType(AppointmentListWrapper), findsWidgets);
     });
   });
 }

@@ -19,128 +19,107 @@ class NotificationListItem extends StatelessWidget {
     this.status,
   });
 
-  final String? status;
-  final String description;
-  final String date;
   final List<NotificationActions>? actions;
+  final String date;
+  final String description;
   final IconDetails icon;
+  final String? status;
 
   @override
   Widget build(BuildContext context) {
     final String iconString = icon.iconUrlSvgPath;
 
-    return SizedBox(
-      width: double.infinity,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            key: notificationIconContainerKey,
-            width: 70,
-            height: 70,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                iconString,
-                width: 30,
-                height: 30,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-            ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        // The leading icon
+        Container(
+          key: notificationIconContainerKey,
+          padding: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
           ),
-          mediumHorizontalSizedBox,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                if (status != null && status!.isNotEmpty)
-                  Transform(
-                    transform: Matrix4.identity()..scale(0.8),
-                    child: Chip(
-                      backgroundColor: AppColors.warningColor.withOpacity(0.2),
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      label: SizedBox(
-                        width: 70,
-                        child: Center(
-                          child: Text(
-                            status!,
-                            style: TextThemes.normalSize12Text(
-                              AppColors.warningColor,
+          child: SvgPicture.asset(
+            iconString,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+        smallHorizontalSizedBox,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // The status indicator badge
+              if (status != null && status!.isNotEmpty)
+                Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.redColor.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+                  margin: const EdgeInsets.only(bottom: 5),
+                  child: Text(
+                    status!,
+                    style: TextThemes.boldSize12Text(AppColors.redColor),
+                  ),
+                ),
+              // verySmallVerticalSizedBox,
+              Text(
+                description,
+                style: TextThemes.normalSize12Text(AppColors.secondaryColor),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                date,
+                style: TextThemes.normalSize12Text(Colors.grey),
+              ),
+              const SizedBox(height: 10),
+              if (actions != null && actions!.isNotEmpty)
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: actions!
+                      .map(
+                        (NotificationActions notificationActions) => Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: AppColors.secondaryColor,
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(7),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                SvgPicture.asset(
+                                  notificationActions.icon.iconUrlSvgPath,
+                                  width: 15,
+                                  height: 15,
+                                  color: AppColors.secondaryColor,
+                                ),
+                                smallHorizontalSizedBox,
+                                Text(
+                                  notificationActions.name,
+                                  style: TextThemes.normalSize11Text(
+                                    AppColors.secondaryColor,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                // verySmallVerticalSizedBox,
-                Text(
-                  description,
-                  style: TextThemes.normalSize14Text(
-                    AppColors.secondaryColor,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  date,
-                  style: TextThemes.normalSize12Text(Colors.grey),
-                ),
-                const SizedBox(height: 5),
-                if (actions != null && actions!.isNotEmpty)
-                  IntrinsicWidth(
-                    child: Row(
-                      children: actions!
-                          .map(
-                            (NotificationActions notificationActions) =>
-                                Expanded(
-                              child: Container(
-                                margin: const EdgeInsets.only(right: 10),
-                                width: 120,
-                                height: 27.5,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: AppColors.secondaryColor,
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(7),
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5),
-                                  child: Row(
-                                    children: <Widget>[
-                                      SvgPicture.asset(
-                                        notificationActions.icon.iconUrlSvgPath,
-                                        width: 15,
-                                        height: 15,
-                                        color: AppColors.secondaryColor,
-                                      ),
-                                      smallHorizontalSizedBox,
-                                      Expanded(
-                                        child: Text(
-                                          notificationActions.name,
-                                          style: TextThemes.normalSize11Text(
-                                            AppColors.secondaryColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  )
-              ],
-            ),
-          )
-        ],
-      ),
+                      )
+                      .toList(),
+                )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

@@ -4,11 +4,11 @@ import 'package:myafyahub/domain/core/entities/notification/notification_actions
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
 
-class AppointmentList extends StatelessWidget {
-  ///[AppointmentList] renders notifications as a list for appointments page
+class AppointmentListWrapper extends StatelessWidget {
+  ///[AppointmentListWrapper] renders notifications as a list for appointments page
   final List<NotificationDetails> appointments;
 
-  const AppointmentList({required this.appointments});
+  const AppointmentListWrapper({required this.appointments});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

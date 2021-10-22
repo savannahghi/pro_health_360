@@ -497,7 +497,7 @@ const String textString = 'Text';
 const String addDiaryString = 'Add diary entry';
 
 //Appointments
-const String appointmentsTitle = 'Appointments';
+const String appointmentsPageTitle = 'Appointments';
 const String upcomingAppointmentsText = 'Upcoming appointments';
 const String pastAppointmentsText = 'Past appointments';
 
