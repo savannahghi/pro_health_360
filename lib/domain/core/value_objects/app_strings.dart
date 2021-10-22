@@ -553,7 +553,7 @@ const String myHealthDiaryString = 'My Health Diary';
 //settings page
 const String nickNameString = 'Nickname';
 const String editString = 'Edit';
-const String settingsText = 'Settings';
+const String settingsPageTitle = 'Settings';
 const String saveString = 'Save';
 
 //Feedback Page
