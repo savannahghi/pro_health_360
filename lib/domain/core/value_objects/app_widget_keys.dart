@@ -260,6 +260,9 @@ const Key hotlineCallButtonKey = Key('hotline_call_button_key');
 
 // community page
 const Key communityListViewKey = Key('community_list_view_key');
+const Key communityListGestureDetectorKey =
+    Key('community_list_gesture_detector_key');
+
 const Key ratingDialogKey = Key('app_rating_dialog_key');
 
 // community chat page

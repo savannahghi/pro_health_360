@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -143,8 +144,11 @@ class RouteGenerator {
         );
 
       case BWRoutes.communityChatScreenPage:
+        final CommunityListItem chatDetailArguments = args as CommunityListItem;
         return MaterialPageRoute<CommunityChatScreenPage>(
-          builder: (_) => const CommunityChatScreenPage(),
+          builder: (_) => CommunityChatScreenPage(
+            communityChatData: chatDetailArguments,
+          ),
         );
 
       case BWRoutes.consent:

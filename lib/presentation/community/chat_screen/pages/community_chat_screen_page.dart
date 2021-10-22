@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,9 @@ import '../widgets/sender_type_widget.dart';
 import '../widgets/sent_message_item.dart';
 
 class CommunityChatScreenPage extends StatelessWidget {
-  const CommunityChatScreenPage();
+  const CommunityChatScreenPage({required this.communityChatData});
+
+  final CommunityListItem communityChatData;
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +81,11 @@ class CommunityChatScreenPage extends StatelessWidget {
         time: '12:00pm',
       ),
     ];
+
     return Scaffold(
       backgroundColor: AppColors.lightSkyBlueColor,
       appBar: CustomAppBar(
-        title: 'Ruaka Questions Group',
+        title: communityChatData.title,
         trailingWidget: IconButton(
           key: moreAppBarKey,
           icon: const Icon(Icons.more_vert),

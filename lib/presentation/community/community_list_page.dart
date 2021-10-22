@@ -6,6 +6,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 class CommunityListViewPage extends StatelessWidget {
   const CommunityListViewPage({Key? key}) : super(key: key);
@@ -54,7 +55,7 @@ class CommunityListViewPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: const CustomAppBar(title: communityString),
+      appBar: const CustomAppBar(title: communityPageString),
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
@@ -64,7 +65,16 @@ class CommunityListViewPage extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemCount: items.length,
             itemBuilder: (_, int index) {
-              return GestureDetector(child: items[index]);
+              return GestureDetector(
+                key: communityListGestureDetectorKey,
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    BWRoutes.communityChatScreenPage,
+                    arguments: items.elementAt(index),
+                  );
+                },
+                child: items[index],
+              );
             },
           ),
         ],

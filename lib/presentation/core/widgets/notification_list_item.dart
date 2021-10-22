@@ -32,6 +32,8 @@ class NotificationListItem extends StatelessWidget {
           ),
           child: SvgPicture.asset(
             iconString,
+            height: 25,
+            width: 25,
             color: Theme.of(context).colorScheme.secondary,
           ),
         ),
@@ -56,7 +58,6 @@ class NotificationListItem extends StatelessWidget {
                     style: TextThemes.boldSize12Text(AppColors.redColor),
                   ),
                 ),
-              // verySmallVerticalSizedBox,
               Text(
                 notificationDetails.description,
                 style: TextThemes.normalSize12Text(AppColors.secondaryColor),

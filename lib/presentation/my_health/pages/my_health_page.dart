@@ -45,9 +45,8 @@ class MyHealthPage extends StatelessWidget {
                     child: Center(
                       child: Text(
                         initials,
-                        style: TextThemes.boldSize20Text(
-                          AppColors.secondaryColor,
-                        ),
+                        style:
+                            TextThemes.boldSize20Text(AppColors.secondaryColor),
                       ),
                     ),
                   ),
@@ -94,7 +93,7 @@ class MyHealthPage extends StatelessWidget {
                       child: InformationListCard(
                         title: Text(
                           myHealthPageHealthDiary,
-                          style: TextThemes.normalSize14Text(
+                          style: TextThemes.normalSize12Text(
                             AppColors.secondaryColor,
                           ),
                         ),
@@ -124,7 +123,7 @@ class MyHealthPage extends StatelessWidget {
                       child: InformationListCard(
                         title: Text(
                           myHealthPageAppointments,
-                          style: TextThemes.normalSize14Text(
+                          style: TextThemes.normalSize12Text(
                             AppColors.secondaryColor,
                           ),
                         ),

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -247,8 +248,12 @@ void main() {
   });
 
   test('Test router returns CommunityChatScreenPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: BWRoutes.communityChatScreenPage);
+    const RouteSettings settings = RouteSettings(
+        name: BWRoutes.communityChatScreenPage,
+        arguments: CommunityListItem(
+            title: 'title',
+            message: 'message',
+            lastMessageDate: 'lastMessageDate'));
 
     final MaterialPageRoute<CommunityChatScreenPage> route =
         routeGenerator(settings) as MaterialPageRoute<CommunityChatScreenPage>;

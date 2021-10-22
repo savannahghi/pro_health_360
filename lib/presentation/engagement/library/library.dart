@@ -72,7 +72,7 @@ class _LibraryState extends State<Library> {
         return Scaffold(
           key: homepageContentKey,
           appBar:
-              const CustomAppBar(title: libraryString, showBackButton: false),
+              const CustomAppBar(title: libraryPageString, showBackButton: false),
           backgroundColor: Theme.of(context).backgroundColor,
           body: !hasLibraryItems(libraryListItems)
               ? StreamBuilder<Object>(

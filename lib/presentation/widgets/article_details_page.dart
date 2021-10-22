@@ -19,7 +19,7 @@ class ArticleDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: libraryString),
+      appBar: const CustomAppBar(title: libraryPageString),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(

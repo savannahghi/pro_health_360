@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -26,7 +27,13 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: const CommunityChatScreenPage(),
+        widget: const CommunityChatScreenPage(
+          communityChatData: CommunityListItem(
+            title: 'Some title',
+            message: 'some message',
+            lastMessageDate: '21 Oct, 2021',
+          ),
+        ),
       );
 
       expect(find.byType(ListView), findsOneWidget);

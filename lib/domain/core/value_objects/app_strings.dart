@@ -438,8 +438,8 @@ const String consentConfirmationText = 'I consent to be added to groups';
 const String consentText = 'Consent';
 
 // Community strings
-const String communityString = 'Community';
-const String libraryString = 'Library';
+const String communityPageString = 'Community';
+const String libraryPageString = 'Library';
 
 // Terms and conditions
 const String portalTermsText = 'Portal terms and conditions';
