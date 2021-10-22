@@ -7,24 +7,28 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
 
 void main() {
   group('NotificationListItem', () {
-    testWidgets('should render NotificationListItem without calendar',
+    testWidgets('should render NotificationListItem without actions',
         (WidgetTester tester) async {
       final Widget testWidget = MaterialApp(
         home: Builder(
           builder: (BuildContext context) {
             return Scaffold(
               body: NotificationListItem(
-                icon: IconDetails(
-                  iconUrlSvgPath: teleConsultVideoNotificationIcon,
+                notificationDetails: NotificationDetails(
+                  icon: IconDetails(
+                    iconUrlSvgPath: teleConsultVideoNotificationIcon,
+                  ),
+                  description:
+                      'Your Teleconsult with Dr Tibu for 11am has been set. '
+                      'Click this link to join ',
+                  date: 'July 12 2021',
                 ),
-                description:
-                    'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-                date: 'July 12 2021',
               ),
             );
           },
@@ -40,26 +44,29 @@ void main() {
       expect(find.text('Add to Calendar'), findsNothing);
     });
 
-    testWidgets('should render NotificationListItem with calendar',
+    testWidgets('should render NotificationListItem with actions',
         (WidgetTester tester) async {
       final Widget testWidget = MaterialApp(
         home: Builder(
           builder: (BuildContext context) {
             return Scaffold(
               body: NotificationListItem(
-                icon: IconDetails(
-                  iconUrlSvgPath: teleConsultVideoNotificationIcon,
+                notificationDetails: NotificationDetails(
+                  icon: IconDetails(
+                    iconUrlSvgPath: teleConsultVideoNotificationIcon,
+                  ),
+                  description:
+                      'Your Teleconsult with Dr Tibu for 11am has been set. '
+                      'Click this link to join ',
+                  date: 'July 12 2021',
+                  actions: <NotificationActions>[
+                    NotificationActions(
+                      icon: IconDetails(iconUrlSvgPath: calendarIcon),
+                      name: 'Add to Calendar',
+                      route: '',
+                    )
+                  ],
                 ),
-                description:
-                    'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-                date: 'July 12 2021',
-                actions: <NotificationActions>[
-                  NotificationActions(
-                    icon: IconDetails(iconUrlSvgPath: calendarIcon),
-                    name: 'Add to Calendar',
-                    route: '',
-                  )
-                ],
               ),
             );
           },

@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
@@ -11,23 +11,13 @@ import 'package:shared_themes/text_themes.dart';
 
 /// [NotificationListItem] Displays the notifications with Icons and a short description
 class NotificationListItem extends StatelessWidget {
-  const NotificationListItem({
-    required this.icon,
-    required this.description,
-    required this.date,
-    this.actions,
-    this.status,
-  });
+  const NotificationListItem({required this.notificationDetails});
 
-  final List<NotificationActions>? actions;
-  final String date;
-  final String description;
-  final IconDetails icon;
-  final String? status;
+  final NotificationDetails notificationDetails;
 
   @override
   Widget build(BuildContext context) {
-    final String iconString = icon.iconUrlSvgPath;
+    final String iconString = notificationDetails.icon.iconUrlSvgPath;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +41,8 @@ class NotificationListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // The status indicator badge
-              if (status != null && status!.isNotEmpty)
+              if (notificationDetails.status != null &&
+                  notificationDetails.status!.isNotEmpty)
                 Container(
                   decoration: BoxDecoration(
                     color: AppColors.redColor.withOpacity(0.4),
@@ -61,25 +52,26 @@ class NotificationListItem extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
                   margin: const EdgeInsets.only(bottom: 5),
                   child: Text(
-                    status!,
+                    notificationDetails.status!,
                     style: TextThemes.boldSize12Text(AppColors.redColor),
                   ),
                 ),
               // verySmallVerticalSizedBox,
               Text(
-                description,
+                notificationDetails.description,
                 style: TextThemes.normalSize12Text(AppColors.secondaryColor),
               ),
               const SizedBox(height: 5),
               Text(
-                date,
+                notificationDetails.date,
                 style: TextThemes.normalSize12Text(Colors.grey),
               ),
               const SizedBox(height: 10),
-              if (actions != null && actions!.isNotEmpty)
+              if (notificationDetails.actions != null &&
+                  notificationDetails.actions!.isNotEmpty)
                 Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: actions!
+                  children: notificationDetails.actions!
                       .map(
                         (NotificationActions notificationActions) => Container(
                           margin: const EdgeInsets.only(right: 10),
