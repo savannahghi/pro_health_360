@@ -83,7 +83,10 @@ class MyAfyaHubBottomNavigationBar extends StatelessWidget {
           );
         }
         if (BottomNavIndex.myHealth.index == currentIndex) {
-          Navigator.pushNamed(context, BWRoutes.pinInputPage);
+          Navigator.pushNamed(
+            context,
+            BWRoutes.pinInputPage,
+          );
         }
       },
       items: bottomNavItems

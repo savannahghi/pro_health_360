@@ -116,7 +116,6 @@ void main() {
       expect(find.byType(PINInputPage), findsOneWidget);
 
       await tester.tap(find.byKey(pinInputPageBackKey));
-      await tester.pumpAndSettle();
       expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 0);
     });
   });

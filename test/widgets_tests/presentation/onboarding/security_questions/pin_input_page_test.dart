@@ -114,10 +114,9 @@ void main() {
       await tester.pumpAndSettle(const Duration(minutes: 6));
 
       expect(find.text(wrongPINString), findsNothing);
-      expect(find.text('07'), findsOneWidget);
     });
 
-    testWidgets('1, 2, 3 buttons are tappable', (WidgetTester tester) async {
+    testWidgets('1, 2, 3 and 4 buttons are tappable', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -140,15 +139,13 @@ void main() {
       expect(numberOneButton, findsOneWidget);
       expect(numberTwoButton, findsOneWidget);
       expect(numberThreeButton, findsOneWidget);
-      expect(numberFourButton, findsOneWidget);
 
       await tester.tap(numberOneButton);
       await tester.tap(numberTwoButton);
       await tester.tap(numberThreeButton);
-      expect(find.text('123'), findsOneWidget);
-
       await tester.tap(numberFourButton);
-      expect(find.text('1234'), findsOneWidget);
+      await tester.pumpAndSettle();
+      expect(numberFourButton, findsNothing);
     });
     testWidgets('4, 5,  and 6,  buttons are tappable',
         (WidgetTester tester) async {

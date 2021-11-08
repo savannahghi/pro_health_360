@@ -63,7 +63,8 @@ class _PINInputPageState extends State<PINInputPage> {
             _start--;
             errorMessageStyle = TextThemes.heavySize12Text(AppColors.redColor);
             errorMessage = tooManyTriesString(_start);
-            canEnterPin = true;
+            canEnterPin = false;
+            widget._pinController.text = '';
           });
         }
       },
@@ -177,6 +178,10 @@ class _PINInputPageState extends State<PINInputPage> {
                           }
                         } else {
                           errorMessage = '';
+                          StoreProvider.dispatch<AppState>(
+                            context,
+                            BottomNavAction(currentBottomNavIndex: 3),
+                          );
                           Navigator.pop(context);
                         }
                       }
@@ -191,8 +196,8 @@ class _PINInputPageState extends State<PINInputPage> {
                   child: GestureDetector(
                     child: Text(
                       forgotPINString,
-                      style:
-                          TextThemes.normalSize15Text(AppColors.secondaryColor),
+                      style: TextThemes.normalSize15Text(
+                          AppColors.secondaryColor),
                     ),
                   ),
                 ),
