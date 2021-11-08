@@ -364,7 +364,7 @@ packages:
       name: domain_objects
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.31-nullsafety"
+    version: "0.0.32-nullsafety"
   dots_indicator:
     dependency: transitive
     description:
@@ -1273,7 +1273,7 @@ packages:
       name: shared_themes
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.4"
   shared_ui_components:
     dependency: "direct main"
     description:
@@ -1565,7 +1565,7 @@ packages:
       name: user_feed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.45-nullsafety"
+    version: "0.1.46-nullsafety"
   user_profile:
     dependency: "direct main"
     description:

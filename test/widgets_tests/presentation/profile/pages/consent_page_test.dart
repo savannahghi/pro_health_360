@@ -35,7 +35,7 @@ void main() {
       expect(find.text(consentConfirmationText), findsOneWidget);
     });
 
-    testWidgets('renders correctly', (WidgetTester tester) async {
+    testWidgets('terms page navigates correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,

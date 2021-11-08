@@ -8,7 +8,11 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class MedicalDataItem extends StatelessWidget {
-  const MedicalDataItem({required this.data, this.description, this.customWidth});
+  const MedicalDataItem({
+    required this.data,
+    this.description,
+    this.customWidth,
+  });
 
   final String data;
   final String? description;
@@ -17,10 +21,9 @@ class MedicalDataItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = customWidth ?? MediaQuery.of(context).size.width * 0.8;
-    const Color itemDescriptionColor = Color(0xFF11DDDF);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -36,7 +39,7 @@ class MedicalDataItem extends StatelessWidget {
           if (description != null)
             Text(
               description!,
-              style: TextThemes.normalSize10Text(itemDescriptionColor),
+              style: TextThemes.normalSize10Text(AppColors.userInitialsColor),
             )
         ],
       ),
