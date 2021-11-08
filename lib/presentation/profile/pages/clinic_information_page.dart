@@ -26,41 +26,37 @@ class ClinicInformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: const CustomAppBar(title: clinicInfoPageTitle),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Container(
-            color: Theme.of(context).backgroundColor,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  mediumVerticalSizedBox,
-                  Text(
-                    clinicContactString,
-                    style: TextThemes.boldSize14Text(AppColors.secondaryColor),
-                  ),
-                  smallVerticalSizedBox,
-                  CallContactActionWidget(phoneNumber: contactNumber),
-                  size15VerticalSizedBox,
-                  ClinicInformationItemWidget(
-                    bodyText: chvString,
-                    titleText: CHV,
-                  ),
-                  size15VerticalSizedBox,
-                  ClinicInformationItemWidget(
-                    bodyText: treatmentBuddyString,
-                    titleText: treatmentBuddy,
-                  ),
-                  size15VerticalSizedBox,
-                  ClinicInformationItemWidget(
-                    bodyText: keyProvider,
-                    titleText: keyProviderString,
-                  ),
-                ],
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              mediumVerticalSizedBox,
+              Text(
+                clinicContactString,
+                style: TextThemes.boldSize14Text(AppColors.secondaryColor),
               ),
-            ),
+              smallVerticalSizedBox,
+              CallContactActionWidget(phoneNumber: contactNumber),
+              size15VerticalSizedBox,
+              ClinicInformationItemWidget(
+                bodyText: chvString,
+                titleText: CHV,
+              ),
+              size15VerticalSizedBox,
+              ClinicInformationItemWidget(
+                bodyText: treatmentBuddyString,
+                titleText: treatmentBuddy,
+              ),
+              size15VerticalSizedBox,
+              ClinicInformationItemWidget(
+                bodyText: keyProvider,
+                titleText: keyProviderString,
+              ),
+            ],
           ),
         ),
       ),

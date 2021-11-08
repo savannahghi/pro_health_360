@@ -34,7 +34,7 @@ class ClinicInformationItemWidget extends StatelessWidget {
         ),
         smallVerticalSizedBox,
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
           decoration: BoxDecoration(
             color: AppColors.whiteColor,
             borderRadius: BorderRadius.circular(8),
@@ -43,7 +43,8 @@ class ClinicInformationItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                 child: Text(
                   titleText,
                   style:
