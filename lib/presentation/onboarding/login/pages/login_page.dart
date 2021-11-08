@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
           maxLines: 1,
           keyboardType: TextInputType.number,
           obscureText: true,
-          labelText: enterYourString,
+          hintText: enterYourString,
           validator: userPinValidator,
           autovalidateMode: AutovalidateMode.disabled,
           inputFormatters: <TextInputFormatter>[
