@@ -4,9 +4,6 @@ String hasLoggedInSuccessfullyEvent(String appContext) =>
 String hasFailedToLoggingEvent(String appContext) =>
     'consumer_failed_to_login_$appContext';
 
-String hasFailedToSignupEvent(String appContext) =>
-    'consumer_failed_to_signup_$appContext';
-
 String hasSuccessfulRefreshTokenEvent(String appContext) =>
     'consumer_refresh_token_$appContext';
 

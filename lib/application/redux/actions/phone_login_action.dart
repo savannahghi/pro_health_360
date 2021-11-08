@@ -21,7 +21,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend
 ///
@@ -90,9 +89,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       );
 
       if (processedResponse.ok == true) {
-        afterLoginOrCreateAccount(
+        processSignIn(
           context: context,
-          onboardActionType: OnboardActionType.login,
           processedResponse: processedResponse,
           store: store,
           graphQlClient: _httpClient,

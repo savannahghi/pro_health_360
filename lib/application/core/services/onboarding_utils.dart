@@ -581,15 +581,14 @@ Object actionWrapError({
   return error;
 }
 
-/// [afterLoginOrCreateAccount] is called after create account or login response has been received.
+/// [processSignIn] is called after create account or login response has been received.
 /// Since the working is the same,makes sense to have only one point to preprocess the response.
 /// The only difference is in the final step where for [login] the user is navigated to a suitable page
 /// depending on their onboarding path while for [createAccount] the used to navigated direct to basic details page.
-Future<dynamic> afterLoginOrCreateAccount({
+Future<dynamic> processSignIn({
   required ProcessedResponse processedResponse,
   required Store<AppState> store,
   required BuildContext context,
-  required OnboardActionType onboardActionType,
   required DateTimeParser dateTimeParser,
   required RefreshTokenManger refreshTokenManger,
   required IGraphQlClient graphQlClient,
@@ -624,7 +623,6 @@ Future<dynamic> afterLoginOrCreateAccount({
     );
 
     // dispatch an action to update the user profile
-
     await store.dispatch(
       UpdateUserProfileAction(
         profile: userProfile,
@@ -645,98 +643,68 @@ Future<dynamic> afterLoginOrCreateAccount({
       ),
     );
 
-    if (onboardActionType == OnboardActionType.login) {
-      /// navigation to home page happens here
-      final OnboardingPathConfig routeContext = onboardingPath(updatedState);
-      final String appContext =
-          getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
+    /// navigation to home page happens here
+    final OnboardingPathConfig routeContext = onboardingPath(updatedState);
+    final String appContext =
+        getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
 
-      publishEvent(
-        hasLoggedInSuccessfullyEvent(appContext),
-        EventObject(
-          firstName: userProfile!.userBioData!.firstName?.getValue(),
-          lastName: userProfile.userBioData!.lastName?.getValue(),
-          uid: auth.uid,
-          primaryPhoneNumber: userProfile.primaryPhoneNumber?.getValue(),
-          flavour: Flavour.CONSUMER.name,
-          timestamp: DateTime.now(),
-        ),
-      );
+    publishEvent(
+      hasLoggedInSuccessfullyEvent(appContext),
+      EventObject(
+        firstName: userProfile!.userBioData!.firstName?.getValue(),
+        lastName: userProfile.userBioData!.lastName?.getValue(),
+        uid: auth.uid,
+        primaryPhoneNumber: userProfile.primaryPhoneNumber?.getValue(),
+        flavour: Flavour.CONSUMER.name,
+        timestamp: DateTime.now(),
+      ),
+    );
 
-      // call register device token here but don't wait for it
-      registerDeviceToken(client: AppWrapperBase.of(context)!.graphQLClient);
+    // call register device token here but don't wait for it
+    registerDeviceToken(client: AppWrapperBase.of(context)!.graphQLClient);
 
-      final DeepLinkSubject deepLink = DeepLinkSubject();
-      if (deepLink.hasLink.value) {
-        deepLink.hasLink.add(false);
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          deepLink.link.value,
-          (Route<dynamic> route) => false,
-        );
-        return;
-      }
-
-      await Navigator.pushNamedAndRemoveUntil(
+    final DeepLinkSubject deepLink = DeepLinkSubject();
+    if (deepLink.hasLink.value) {
+      deepLink.hasLink.add(false);
+      Navigator.pushNamedAndRemoveUntil(
         context,
-        routeContext.route,
+        deepLink.link.value,
         (Route<dynamic> route) => false,
-        arguments: routeContext.arguments,
       );
-
       return;
     }
+
+    await Navigator.pushNamedAndRemoveUntil(
+      context,
+      routeContext.route,
+      (Route<dynamic> route) => false,
+      arguments: routeContext.arguments,
+    );
+
+    return;
   } catch (e, stackTrace) {
     final AppState? state = StoreProvider.state<AppState>(context);
     final String appContext =
         getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
 
-    if (onboardActionType == OnboardActionType.login) {
-      reportErrorToSentry(
-        context,
-        e,
-        stackTrace: stackTrace,
-        hint: 'Error logging in',
-      );
-      publishEvent(
-        hasFailedToLoggingEvent(appContext),
-        EventObject(
-          firstName: state!
-              .userProfileState!.userProfile!.userBioData!.firstName!
-              .getValue(),
-          lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-              .getValue(),
-          uid: state.userProfileState!.auth!.uid,
-          flavour: Flavour.CONSUMER.name,
-          timestamp: DateTime.now(),
-        ),
-      );
-    }
-
-    if (onboardActionType == OnboardActionType.createAccount) {
-      reportErrorToSentry(
-        context,
-        e,
-        stackTrace: stackTrace,
-        hint: 'Error signing up',
-      );
-      publishEvent(
-        hasFailedToSignupEvent(appContext),
-        EventObject(
-          firstName: state!
-              .userProfileState!.userProfile!.userBioData!.firstName!
-              .getValue(),
-          lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-              .getValue(),
-          uid: state.userProfileState!.auth!.uid,
-          primaryPhoneNumber: state
-              .userProfileState!.userProfile!.primaryPhoneNumber!
-              .getValue(),
-          flavour: Flavour.CONSUMER.name,
-          timestamp: DateTime.now(),
-        ),
-      );
-    }
+    reportErrorToSentry(
+      context,
+      e,
+      stackTrace: stackTrace,
+      hint: errorLoggingIn,
+    );
+    publishEvent(
+      hasFailedToLoggingEvent(appContext),
+      EventObject(
+        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
+            .getValue(),
+        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
+            .getValue(),
+        uid: state.userProfileState!.auth!.uid,
+        flavour: Flavour.CONSUMER.name,
+        timestamp: DateTime.now(),
+      ),
+    );
 
     // consider this a transaction rollback. if an exception is thrown, we set the user as not logged in otherwise
     // they will be considered as logged in if app is restart or hot-reloaded during development

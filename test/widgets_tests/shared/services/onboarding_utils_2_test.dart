@@ -11,7 +11,6 @@ import 'package:app_wrapper/app_wrapper.dart' show AppContext, AppWrapperBase;
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -168,10 +167,9 @@ void main() {
                   );
 
                   // call our check token status function
-                  await afterLoginOrCreateAccount(
+                  await processSignIn(
                     context: context,
                     dateTimeParser: dateTimeParser!,
-                    onboardActionType: OnboardActionType.login,
                     processedResponse: processHttpResponse(response),
                     store: store,
                     refreshTokenManger: refreshTimer!,
@@ -530,100 +528,9 @@ void main() {
             return SILPrimaryButton(
               onPressed: () async {
                 // call our check token status function
-                await afterLoginOrCreateAccount(
+                await processSignIn(
                   context: context,
                   dateTimeParser: dateTimeParser!,
-                  onboardActionType: OnboardActionType.login,
-                  processedResponse: processHttpResponse(response),
-                  store: store,
-                  refreshTokenManger: refreshTimer!,
-                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
-                );
-              },
-              text: 'Test',
-            );
-          },
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(find.byKey(feedbackBottomSheet), findsOneWidget);
-    });
-
-    testWidgets(
-        'should show bottomshet when afterLoginOrCreateAccount call catches an exception',
-        (WidgetTester tester) async {
-      final Store<AppState> store = Store<AppState>(
-        initialState: AppState.initial().copyWith(
-          userProfileState: UserProfileState(
-            onboardingTourComplete: true,
-            profileSetupComplete: true,
-            maskedPhoneNumbers: <PhoneNumber>[],
-            unmaskedPhoneNumbers: <PhoneNumber>[],
-            communicationSettings: CommunicationSettings(
-              allowEmail: true,
-              allowPush: true,
-              allowText: true,
-              allowWhatsApp: true,
-            ),
-            auth: AuthCredentialResponse.fromJson(
-              <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'},
-            ),
-            userProfile: UserProfile.initial().copyWith(
-              id: '123',
-              username: Name.withValue('ddsa'),
-              primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
-              primaryEmailAddress:
-                  EmailAddress.withValue('bobwere47@gmail.com'),
-              secondaryPhoneNumbers: <PhoneNumber>[
-                PhoneNumber.withValue('0715710345'),
-              ],
-              secondaryEmailAddresses: <EmailAddress>[
-                EmailAddress.withValue('bobwere47@gmail.com'),
-              ],
-              termsAccepted: true,
-              suspended: false,
-              photoUploadID: 'dskfdsn',
-              homeAddress: Address(
-                formattedAddress: '',
-                latitude: '',
-                locality: '',
-                longitude: '',
-                name: '',
-                placeID: '',
-              ),
-              userBioData: BioData.initial().copyWith(
-                dateOfBirth: '23 May 2019',
-                firstName: Name.withValue('bob'),
-                lastName: Name.withValue('were'),
-                gender: Gender.female,
-              ),
-            ),
-          ),
-        ),
-      );
-      final http.Response response = http.Response(
-        json.encode(null),
-        201,
-      );
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                // call our check token status function
-                await afterLoginOrCreateAccount(
-                  context: context,
-                  dateTimeParser: dateTimeParser!,
-                  onboardActionType: OnboardActionType.createAccount,
                   processedResponse: processHttpResponse(response),
                   store: store,
                   refreshTokenManger: refreshTimer!,
@@ -711,89 +618,9 @@ void main() {
                   ),
                 );
                 // call our check token status function
-                await afterLoginOrCreateAccount(
+                await processSignIn(
                   context: context,
                   dateTimeParser: dateTimeParser!,
-                  onboardActionType: OnboardActionType.login,
-                  processedResponse: processHttpResponse(response),
-                  store: store,
-                  refreshTokenManger: refreshTimer!,
-                  graphQlClient: AppWrapperBase.of(context)!.graphQLClient,
-                );
-              },
-              text: 'Test',
-            );
-          },
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(find.byKey(feedbackBottomSheet), findsOneWidget);
-    });
-
-    testWidgets('afterLoginOrCreateAccount should pass 2',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-      final http.Response response = http.Response(
-        json.encode(loginResponse),
-        201,
-      );
-
-      final Map<String, dynamic> responseData =
-          mockFeedResponse(hasItems: false);
-      // mocked response
-      final http.Response _response = http.Response(
-        json.encode(responseData),
-        200,
-      );
-
-      loginResponse.remove('auth');
-
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
-
-      queryWhenThenAnswer(
-        queryString: getFeedQuery,
-        variables: <String, dynamic>{
-          'flavour': Flavour.CONSUMER.name,
-          'persistent': 'BOTH',
-          'visibility': 'SHOW',
-          'isAnonymous': false,
-          'status': null,
-        },
-        response: _response,
-      );
-
-      when(baseGraphQlClientMock.toMap(_response))
-          .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
-
-      when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                StoreProvider.dispatch(
-                  context,
-                  UpdateUserProfileAction(
-                    profile: userProfile,
-                    userBioData: userProfile?.userBioData,
-                  ),
-                );
-                // call our check token status function
-                await afterLoginOrCreateAccount(
-                  context: context,
-                  dateTimeParser: dateTimeParser!,
-                  onboardActionType: OnboardActionType.createAccount,
                   processedResponse: processHttpResponse(response),
                   store: store,
                   refreshTokenManger: refreshTimer!,

@@ -7,8 +7,6 @@ List<String> kGenderTypes = <String>[
   Gender.unknown.name
 ];
 
-enum OnboardActionType { createAccount, login }
-
 enum AppErrorType { UserFeedError }
 
 enum UserType { normal, anonymous }
