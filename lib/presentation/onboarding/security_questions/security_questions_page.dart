@@ -63,42 +63,45 @@ class SecurityQuestionsPage extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 1.6,
         child: Stack(
           children: <Widget>[
-            ListView.builder(
-              itemCount: securityQuestions.length,
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              itemBuilder: (BuildContext context, int index) {
-                final SecurityQuestion question =
-                    securityQuestions.elementAt(index);
-                final SecurityQuestionResponse? questionResponse =
-                    securityQuestionsResponses[question.id];
-                final String response = questionResponse?.response ?? UNKNOWN;
-                return Container(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ExpandableQuestion(
-                    question: question.questionStem,
-                    hintText: answerHereString,
-                    initialValue: (response == UNKNOWN) ? null : response,
-                    onChanged: (String value) {
-                      securityQuestionsResponses[question.id] =
-                          SecurityQuestionResponse(
-                        id: userId,
-                        timeStamp: DateTime.now().toString(),
-                        userId: userId,
-                        securityQuestionId: question.id,
-                        response: value,
-                      );
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        UpdateUserProfileAction(
-                          securityQuestionsResponses:
-                              securityQuestionsResponses,
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: ListView.builder(
+                itemCount: securityQuestions.length,
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                itemBuilder: (BuildContext context, int index) {
+                  final SecurityQuestion question =
+                      securityQuestions.elementAt(index);
+                  final SecurityQuestionResponse? questionResponse =
+                      securityQuestionsResponses[question.id];
+                  final String response = questionResponse?.response ?? UNKNOWN;
+                  return Container(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ExpandableQuestion(
+                      question: question.questionStem,
+                      hintText: answerHereString,
+                      initialValue: (response == UNKNOWN) ? null : response,
+                      onChanged: (String value) {
+                        securityQuestionsResponses[question.id] =
+                            SecurityQuestionResponse(
+                          id: userId,
+                          timeStamp: DateTime.now().toString(),
+                          userId: userId,
+                          securityQuestionId: question.id,
+                          response: value,
+                        );
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          UpdateUserProfileAction(
+                            securityQuestionsResponses:
+                                securityQuestionsResponses,
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
