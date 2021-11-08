@@ -270,6 +270,11 @@ const Key messageInputAttachFileKey = Key('message_input_attach_file_key');
 const Key messageInputSendMessageKey = Key('message_input_send_message_key');
 const Key moreAppBarKey = Key('more_app_bar_key');
 
+// MoreMenuDropDown
+const Key popupMenuButtonKey = Key('popup_menu_Key');
+const Key groupInfoMenuItemKeyKey = Key('group_info_drop_down_menu_Key');
+const Key exitGroupMenuItemKeyKey = Key('exit_group_drop_down_menu_Key');
+
 // mood widget keys
 const Key excitedMoodKey = Key('excited_mood_key');
 const Key happyMoodKey = Key('happy_mood_key');
@@ -292,5 +297,6 @@ const Key pinInputPageBackKey = Key('pin_input_page_back_key');
 
 // consent page
 const Key termsAndConditionsKey = Key('termsAndConditionsKey');
+
 // Profile FAQs
 const Key profileFaqsListViewKey = Key('profile_faqs_view_key');

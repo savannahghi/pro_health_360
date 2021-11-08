@@ -39,16 +39,15 @@ void main() {
       expect(find.byType(ListView), findsOneWidget);
       expect(find.byType(MessageInput), findsOneWidget);
 
-      await tester.tap(find.byKey(moreAppBarKey));
-      await tester.pumpAndSettle();
-      expect(find.byType(ScaffoldMessenger), findsWidgets);
-
       final Finder textField = find.byType(TextField);
       expect(textField, findsOneWidget);
       await tester.showKeyboard(textField);
       await tester.enterText(textField, 'text');
       await tester.pumpAndSettle();
-      expect(find.byType(ScaffoldMessenger), findsWidgets);
+
+      await tester.tap(find.byKey(messageInputSendMessageKey));
+      await tester.pumpAndSettle();
+      expect(find.byType(ScaffoldMessenger), findsOneWidget);
 
       await tester.tap(find.byKey(appBarBackButtonKey));
       await tester.pumpAndSettle();

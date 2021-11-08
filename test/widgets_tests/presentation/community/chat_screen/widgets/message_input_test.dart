@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -9,6 +8,7 @@ import 'package:misc_utilities/misc.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/message_input.dart';
 import '../../../../../test_helpers.dart';
@@ -22,6 +22,7 @@ void main() {
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {
+      String message = messageText;
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -31,6 +32,14 @@ void main() {
             onChanged: (String value) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(snackbar(content: value));
+            },
+            onTap: () {
+              message = 'hello there';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(message),
+                ),
+              );
             },
           ),
         ),

@@ -427,6 +427,9 @@ const String importantInformationString = 'Important Information';
 
 // Community strings
 const String groupText = 'Group';
+const String groupInfoText = 'Group Info';
+const String exitGroupText = 'Exit Group';
+const String messageText = 'message';
 
 //Important Information Link Widget
 const String importantLinkString = 'Important Link';

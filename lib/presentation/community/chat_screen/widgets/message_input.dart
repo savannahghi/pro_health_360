@@ -16,13 +16,15 @@ class MessageInput extends StatelessWidget {
   /// [MessageInput] used within the community chat screen to take input of messages
   /// to send.
   ///
-  /// [onChanged] is required.
+  /// [onChanged] and [onTap] are required.
   ///
   const MessageInput({
     required this.onChanged,
+    required this.onTap,
   });
 
   final ValueChanged<String> onChanged;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +68,7 @@ class MessageInput extends StatelessWidget {
               smallHorizontalSizedBox,
               GestureDetector(
                 key: messageInputSendMessageKey,
-                onTap: () {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(snackbar(content: comingSoonText));
-                },
+                onTap: onTap,
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(

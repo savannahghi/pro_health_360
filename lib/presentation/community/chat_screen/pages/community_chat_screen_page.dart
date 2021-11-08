@@ -1,16 +1,15 @@
 // Flutter imports:
-import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:misc_utilities/misc.dart';
+import 'package:afya_moja_core/community_list_item.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/message_input.dart';
+import 'package:myafyahub/presentation/community/chat_screen/widgets/more_menu_drop_down.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/quoted_message_widget.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/time_classification_widget.dart';
@@ -20,13 +19,20 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import '../widgets/sender_type_widget.dart';
 import '../widgets/sent_message_item.dart';
 
-class CommunityChatScreenPage extends StatelessWidget {
+class CommunityChatScreenPage extends StatefulWidget {
   const CommunityChatScreenPage({required this.communityChatData});
 
   final CommunityListItem communityChatData;
 
   @override
+  _CommunityChatScreenPageState createState() =>
+      _CommunityChatScreenPageState();
+}
+
+class _CommunityChatScreenPageState extends State<CommunityChatScreenPage> {
+  @override
   Widget build(BuildContext context) {
+    String newMessage = messageText;
     const List<Widget> messages = <Widget>[
       TimeClassificationWidget(time: 'Today'),
       Align(
@@ -85,49 +91,53 @@ class CommunityChatScreenPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.lightSkyBlueColor,
       appBar: CustomAppBar(
-        title: communityChatData.title,
-        trailingWidget: IconButton(
-          key: moreAppBarKey,
-          icon: const Icon(Icons.more_vert),
-          onPressed: () {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text(comingSoonText)));
-          },
-        ),
+        title: widget.communityChatData.title,
+        trailingWidget: const MoreMenuDropDown(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Stack(
           children: <Widget>[
-            ListView.builder(
-              itemCount: messages.length,
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  padding: const EdgeInsets.only(
-                    left: 14,
-                    right: 14,
-                    top: 10,
-                    bottom: 10,
-                  ),
-                  child: Align(
-                    alignment: messages[index] is TimeClassificationWidget
-                        ? Alignment.topCenter
-                        : messages[index] is ReceivedMessageItem
-                            ? Alignment.topLeft
-                            : Alignment.topRight,
-                    child: messages[index],
-                  ),
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: ListView.builder(
+                itemCount: messages.length,
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    padding: const EdgeInsets.only(
+                      left: 14,
+                      right: 14,
+                      top: 10,
+                      bottom: 10,
+                    ),
+                    child: Align(
+                      alignment: messages[index] is TimeClassificationWidget
+                          ? Alignment.topCenter
+                          : messages[index] is ReceivedMessageItem
+                              ? Alignment.topLeft
+                              : Alignment.topRight,
+                      child: messages[index],
+                    ),
+                  );
+                },
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: MessageInput(
                 onChanged: (String value) {
+                  newMessage = value;
+                },
+                onTap: () {
                   ScaffoldMessenger.of(context)
-                      .showSnackBar(snackbar(content: value));
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        content: Text(newMessage),
+                      ),
+                    );
                 },
               ),
             )
