@@ -1,9 +1,12 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:domain_objects/entities.dart' as domain;
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
@@ -31,18 +34,15 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(MyHealthDiaryPage), findsOneWidget);
     });
-    testWidgets('navigates to Appointments Page ', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: MyHealthPage(),
-      );
-      await tester.tap(find.text(myHealthPageAppointments));
-      await tester.pumpAndSettle();
-      expect(find.byType(AppointmentsPage), findsOneWidget);
-    });
     testWidgets('navigates to UserProfilePage ', (WidgetTester tester) async {
+      store.dispatch(
+        UpdateUserProfileAction(
+          profile: domain.UserProfile(
+            primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
+            primaryEmailAddress: EmailAddress.withValue('s@g.com'),
+          ),
+        ),
+      );
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -53,6 +53,17 @@ void main() {
       await tester.tap(find.text(myHealthPageProfile));
       await tester.pumpAndSettle();
       expect(find.byType(UserProfilePage), findsOneWidget);
+    });
+    testWidgets('navigates to Appointments Page ', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: MyHealthPage(),
+      );
+      await tester.tap(find.text(myHealthPageAppointments));
+      await tester.pumpAndSettle();
+      expect(find.byType(AppointmentsPage), findsOneWidget);
     });
   });
 }

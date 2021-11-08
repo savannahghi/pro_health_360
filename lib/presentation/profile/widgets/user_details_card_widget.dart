@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
@@ -21,16 +22,13 @@ class UserDetailsCard extends StatelessWidget {
   /// and [home] parameters
   const UserDetailsCard({
     Key? key,
-    required this.userInitials,
     required this.cccNumber,
     required this.age,
-    required this.phoneNumber,
     required this.home,
   }) : super(key: key);
-  final String userInitials;
+
   final String cccNumber;
   final String age;
-  final String phoneNumber;
 
   ///
   final String home;
@@ -49,10 +47,13 @@ class UserDetailsCard extends StatelessWidget {
             userProfile.userProfile?.userBioData?.lastName?.getValue() ??
                 UNKNOWN;
 
+        final String phone =
+            userProfile.userProfile?.primaryPhoneNumber?.getValue() ?? '';
+
         final String name = '$firstName $lastName';
 
         return Container(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             color: AppColors.userDetailsCardBackgroundColor,
@@ -67,7 +68,7 @@ class UserDetailsCard extends StatelessWidget {
                   color: AppColors.userInitialsColor,
                 ),
                 child: Text(
-                  userInitials,
+                  extractNamesInitials(name: name),
                   style: const TextStyle(
                     fontSize: 22,
                     color: AppColors.secondaryColor,
@@ -116,7 +117,7 @@ class UserDetailsCard extends StatelessWidget {
                       ),
                       size15HorizontalSizedBox,
                       Text(
-                        phoneNumber,
+                        phone,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 13,
@@ -145,7 +146,7 @@ class UserDetailsCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  mediumVerticalSizedBox,
+
                   // TODO(abiud): return the request for correction button once the
                   // designs have been implemented
                 ],
