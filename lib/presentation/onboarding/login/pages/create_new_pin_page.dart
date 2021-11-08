@@ -123,7 +123,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                         context,
                         BWRoutes.congratulationsPage,
                         arguments: <String, String>{
-                          'duration': '2 years',
+                          'duration': twoYearText,
                         },
                       );
                     }

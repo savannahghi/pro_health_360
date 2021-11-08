@@ -577,3 +577,5 @@ String defactoZeroStateString({String topic = 'Content'}) =>
     '$topic will be available soon';
 
 const String termsAndConditionsString = 'Terms and conditions';
+
+const String twoYearText = '2 year';
