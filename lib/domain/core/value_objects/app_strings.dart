@@ -573,6 +573,10 @@ const String yesString = 'Yes';
 const String noString = 'No';
 const String sendFeedbackString = 'Send feedback';
 const String cancelString = 'Cancel';
+const String allString = 'All';
+const String recommendedString = 'Recommended';
+const String exerciseString = 'Exercise';
+const String dietString = 'Diet';
 
 //Article Details Page
 const String datePublishedString = 'Date published: ';

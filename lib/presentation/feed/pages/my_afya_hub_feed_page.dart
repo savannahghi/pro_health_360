@@ -20,35 +20,39 @@ class MyAfyaHubFeedPage extends StatelessWidget {
     final List<Widget> feedFilterItems = <Widget>[
       FeedItemFilter(
         filterIcon: Icons.grid_view_sharp,
-        filterText: 'All',
+        filterText: allString,
         onTap: () {
           ScaffoldMessenger.of(context)
-              .showSnackBar(snackbar(content: comingSoonText));
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackbar(content: comingSoonText));
         },
         isActive: true,
       ),
       FeedItemFilter(
         filterIcon: Icons.lightbulb_sharp,
-        filterText: 'Recommended',
+        filterText: recommendedString,
         onTap: () {
           ScaffoldMessenger.of(context)
-              .showSnackBar(snackbar(content: comingSoonText));
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackbar(content: comingSoonText));
         },
       ),
       FeedItemFilter(
         filterIcon: Icons.fitness_center_sharp,
-        filterText: 'Exercise',
+        filterText: exerciseString,
         onTap: () {
           ScaffoldMessenger.of(context)
-              .showSnackBar(snackbar(content: comingSoonText));
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackbar(content: comingSoonText));
         },
       ),
       FeedItemFilter(
         filterIcon: Icons.food_bank_outlined,
-        filterText: 'Diet',
+        filterText: dietString,
         onTap: () {
           ScaffoldMessenger.of(context)
-              .showSnackBar(snackbar(content: comingSoonText));
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackbar(content: comingSoonText));
         },
       ),
     ];
