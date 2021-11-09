@@ -24,7 +24,7 @@ void main() {
         widget: PersonalInformationPage(),
       );
 
-      expect(find.text(myProfileParentText), findsOneWidget);
+      expect(find.text(myProfileCaregiverText), findsOneWidget);
       expect(find.text(preferredLanguage), findsOneWidget);
       expect(find.text(preferredClinic), findsOneWidget);
       expect(find.text(preferredCommunication), findsOneWidget);

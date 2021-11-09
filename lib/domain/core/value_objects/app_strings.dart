@@ -510,7 +510,11 @@ const String newContentText = 'New Content';
 const String viewAllText = 'View All';
 
 //Personal Information
-const String myProfileParentText = 'Parent/guardian/caregiver information';
+const String myProfileCaregiverText = 'Caregiver information';
+const String myProfileCaregiverDescriptionText =
+    'Could be a parent, guardian or nurse';
+const String janeDoe = 'Jane Doe';
+const String father = 'Father';
 const String name = 'Name';
 const String phoneNumber = 'Phone number';
 const String relationText = 'How are you related';

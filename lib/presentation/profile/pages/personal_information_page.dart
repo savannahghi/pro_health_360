@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:myafyahub/presentation/core/widgets/personal_information_secondary_widget.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -23,52 +24,143 @@ class PersonalInformationPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               // parent/caregiver/guardian details
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  myProfileParentText,
-                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        myProfileCaregiverText,
+                        style: TextThemes.boldSize16Text(
+                          AppColors.secondaryColor,
+                        ),
+                      ),
+                      Text(
+                        myProfileCaregiverDescriptionText,
+                        style: TextThemes.normalSize14Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: AppColors.userInitialsColor,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Text(
+                      editString,
+                      textAlign: TextAlign.center,
+                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
+                    ),
+                  ),
+                ],
               ),
+
               smallVerticalSizedBox,
-              const PersonalInformationWidget(description: name),
+              const PersonalInformationSecondaryWidget(
+                fieldName: name,
+                fieldValue: janeDoe,
+              ),
               verySmallVerticalSizedBox,
-              const PersonalInformationWidget(description: phoneNumber),
+              const PersonalInformationSecondaryWidget(
+                fieldName: phoneNumber,
+                fieldValue: hotlineNumberString,
+              ),
               verySmallVerticalSizedBox,
-              const PersonalInformationWidget(description: relationText),
+              const PersonalInformationSecondaryWidget(
+                fieldName: relationText,
+                fieldValue: father,
+              ),
               largeVerticalSizedBox,
 
               //preferred language
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  preferredLanguage,
-                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    preferredLanguage,
+                    style:
+                        TextThemes.normalSize16Text(AppColors.secondaryColor),
+                  ),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: AppColors.userInitialsColor,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Text(
+                      editString,
+                      textAlign: TextAlign.center,
+                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
+                    ),
+                  ),
+                ],
               ),
               smallVerticalSizedBox,
               const PersonalInformationWidget(description: english),
               largeVerticalSizedBox,
 
               //preferred clinic
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  preferredClinic,
-                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    preferredClinic,
+                    style:
+                        TextThemes.normalSize16Text(AppColors.secondaryColor),
+                  ),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: AppColors.userInitialsColor,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Text(
+                      editString,
+                      textAlign: TextAlign.center,
+                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
+                    ),
+                  ),
+                ],
               ),
+
               smallVerticalSizedBox,
               const PersonalInformationWidget(description: clinic),
               largeVerticalSizedBox,
 
               //preferred communication
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  preferredCommunication,
-                  style: TextThemes.normalSize16Text(AppColors.secondaryColor),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    preferredCommunication,
+                    style:
+                        TextThemes.normalSize16Text(AppColors.secondaryColor),
+                  ),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: AppColors.userInitialsColor,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Text(
+                      editString,
+                      textAlign: TextAlign.center,
+                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
+                    ),
+                  ),
+                ],
               ),
               smallVerticalSizedBox,
               const PersonalInformationWidget(description: inApp),

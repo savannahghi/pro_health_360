@@ -25,7 +25,7 @@ class PersonalInformationWidget extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Text(description, style: TextThemes.normalSize14Text()),
         ),
       ),
