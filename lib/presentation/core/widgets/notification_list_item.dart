@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
@@ -32,8 +33,8 @@ class NotificationListItem extends StatelessWidget {
           ),
           child: SvgPicture.asset(
             iconString,
-            height: 25,
-            width: 25,
+            height: 18,
+            width: 18,
             color: Theme.of(context).colorScheme.secondary,
           ),
         ),
@@ -42,6 +43,7 @@ class NotificationListItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              const SizedBox(height: 6),
               // The status indicator badge
               if (notificationDetails.status != null &&
                   notificationDetails.status!.isNotEmpty)
