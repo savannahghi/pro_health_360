@@ -49,7 +49,7 @@ class NotificationListItem extends StatelessWidget {
                   notificationDetails.status!.isNotEmpty)
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColors.redColor.withOpacity(0.4),
+                    color: AppColors.redColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   padding:

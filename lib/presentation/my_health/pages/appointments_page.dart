@@ -33,12 +33,14 @@ class AppointmentsPage extends StatelessWidget {
                       Tab(
                         child: Text(
                           upcomingAppointmentsText,
+                          textAlign: TextAlign.center,
                           style: TextThemes.normalSize12Text(),
                         ),
                       ),
                       Tab(
                         child: Text(
                           pastAppointmentsText,
+                          textAlign: TextAlign.center,
                           style: TextThemes.normalSize12Text(),
                         ),
                       ),
