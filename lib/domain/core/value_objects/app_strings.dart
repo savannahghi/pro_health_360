@@ -407,16 +407,34 @@ String howAreYouFeelingTodayText(String user) {
   return 'Hi $user, how are you feeling today?';
 }
 
+// Mood Selection
 const String excitedString = 'Excited';
 const String happyString = 'Happy';
 const String mehString = 'Meh';
 const String sadString = 'Sad';
 const String verySadString = 'Very Sad';
+const String pleaseAddaNoteOnHowYouAreFeelingString =
+    'Neat, please add a note on how you are feeling';
+const String areYouFeelingAnyOfTheFollowingString =
+    'Are you feeling any of the following?';
+const String selectWhatBestDescribesHowYourCurrentConditionString =
+    'Select what best describes how your current condition';
+const String soSorryPleaseDescribeHowAreFeelingString =
+    'So sorry, please describe how you are feeling.';
+const String addNotesString = 'Add notes';
+const String iHaveNightSweatsString = 'I have night sweats';
+const String iHaveaFeverString = 'I have a fever';
+const String imCoughingString = 'I\'m coughing';
+const String iVeLostWeightString = 'I\'ve lost weight';
+const String nextString = 'Next';
+const String saveEntryString = 'Save Entry';
+
 const String confirmPinString = 'Confirm new PIN';
 const String createNewPINTitleString = 'Create new pin';
 const String createNewPINSubTitleString =
     'Enter a new 4 digit pin, make sure you remember it.';
 const String pinMustMatchString = 'PIN must match';
+
 //congratulations page
 String congratulationsPageTitle(String duration) =>
     'Congratulations on your $duration health journey';

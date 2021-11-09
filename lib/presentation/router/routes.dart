@@ -30,6 +30,8 @@ class BWRoutes {
   // homepage
   static const String home = 'home';
 
+  static const String moodFeedbackPage = '/moodFeedbackPage';
+
   // user profile routes
   static const String editProfileSettingsPage = '/editProfileSettingsPage';
   static const String userProfile = '/userProfile';
