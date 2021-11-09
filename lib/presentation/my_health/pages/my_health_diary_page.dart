@@ -26,9 +26,6 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
   /// [MyHealthDiaryPage] is used to display the contents of client's diary
   /// from a particular month
   ///
-  /// It requires [diaryItems] and [month] parameters
-  ///
-
   final List<HealthDiaryItemObj> diaryItemsList1 = <HealthDiaryItemObj>[
     HealthDiaryItemObj(
       date: 'Tuesday 13th',

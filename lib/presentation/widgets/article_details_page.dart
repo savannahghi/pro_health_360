@@ -20,7 +20,7 @@ class ArticleDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: libraryPageString),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -59,6 +59,7 @@ class ArticleDetailsPage extends StatelessWidget {
                 right: 30.0,
                 bottom: 10.0,
               ),
+              color: Colors.white,
               child: Column(
                 children: <Widget>[
                   Text(
@@ -129,11 +130,11 @@ class ArticleDetailsPage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              color: Theme.of(context).backgroundColor,
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.only(
-                  top: 20.0,
+                  top: 30.0,
                   left: 30.0,
                   right: 30.0,
                 ),
