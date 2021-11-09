@@ -57,7 +57,7 @@ class ProfileFaqsPage extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     frequentlyAskedQuestions,
-                    style: TextThemes.normalSize34Text(
+                    style: TextThemes.normalSize32Text(
                         Theme.of(context).primaryColor),
                   ),
                   mediumVerticalSizedBox,
