@@ -517,6 +517,7 @@ const String myHealthPageAppointments = 'Appointments';
 const String feelingString = 'Feeling';
 const String textString = 'Text';
 const String addDiaryString = 'Add diary entry';
+const String myHealthTimelineText = 'My Health Timeline';
 
 //Appointments
 const String appointmentsPageTitle = 'Appointments';

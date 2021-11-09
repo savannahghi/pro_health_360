@@ -10,7 +10,11 @@ void main() {
           home: MyHealthTimeline(),
         ),
       );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MyHealthTimeline), findsOneWidget);
       expect(find.text('My Health Timeline'), findsOneWidget);
+      expect(find.byType(TimelineIndicator), findsWidgets);
     });
   });
 }
