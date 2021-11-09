@@ -7,7 +7,7 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';

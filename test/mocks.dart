@@ -18,8 +18,9 @@ import 'package:mockito/mockito.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
-import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
-import 'package:myafyahub/domain/core/entities/core/health_diary_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
@@ -3006,6 +3007,12 @@ final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
       ),
     ],
   ),
+];
+
+final List<HealthDiaryMonthObj> mockDiaryMonthItems = <HealthDiaryMonthObj>[
+  HealthDiaryMonthObj(
+      diaryItems: mockDiaryItems, month: 'August', year: '2021'),
+  HealthDiaryMonthObj(diaryItems: mockDiaryItems, month: 'July', year: '2021'),
 ];
 
 // ignore_for_file: avoid_redundant_argument_values, null_argument_to_non_null_type

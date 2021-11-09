@@ -15,7 +15,7 @@ ChangePIN _$ChangePINFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$ChangePINToJson(ChangePIN instance) => <String, dynamic>{
-      'createPIN': instance.createPIN,
       'confirmPIN': instance.confirmPIN,
+      'createPIN': instance.createPIN,
       'invalidCredentials': instance.invalidCredentials,
     };

@@ -300,3 +300,7 @@ const Key termsAndConditionsKey = Key('termsAndConditionsKey');
 
 // Profile FAQs
 const Key profileFaqsListViewKey = Key('profile_faqs_view_key');
+
+//Health Diary Page
+const Key previousButtonKey = Key('previous_button_key');
+const Key nextButtonKey = Key('next_button_key');

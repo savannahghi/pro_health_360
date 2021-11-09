@@ -3,27 +3,33 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
-import 'package:myafyahub/domain/core/entities/core/health_diary_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/my_health/widgets/my_health_diary_item_widget.dart';
 
-class MyHealthDiaryPage extends StatelessWidget {
+class MyHealthDiaryPage extends StatefulWidget {
+  @override
+  State<MyHealthDiaryPage> createState() => _MyHealthDiaryPageState();
+}
+
+class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
   /// [MyHealthDiaryPage] is used to display the contents of client's diary
   /// from a particular month
   ///
   /// It requires [diaryItems] and [month] parameters
   ///
-  final String month = 'August 2021';
 
-  final List<HealthDiaryItemObj> diaryItems = <HealthDiaryItemObj>[
+  final List<HealthDiaryItemObj> diaryItemsList1 = <HealthDiaryItemObj>[
     HealthDiaryItemObj(
       date: 'Tuesday 13th',
       detailsList: <HealthDiaryDetailsItemObj>[
@@ -59,23 +65,6 @@ class MyHealthDiaryPage extends StatelessWidget {
       ],
     ),
     HealthDiaryItemObj(
-      date: 'Monday 21st',
-      detailsList: <HealthDiaryDetailsItemObj>[
-        HealthDiaryDetailsItemObj(
-          svgIconPath: sadMoodIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Sad',
-        ),
-        HealthDiaryDetailsItemObj(
-          svgIconPath: imageIconSvgPath,
-          time: '8:00 am',
-          description: 'Description of how you are feeling today',
-          title: 'Image',
-        ),
-      ],
-    ),
-    HealthDiaryItemObj(
       date: 'Wednesday 25th',
       detailsList: <HealthDiaryDetailsItemObj>[
         HealthDiaryDetailsItemObj(
@@ -93,6 +82,34 @@ class MyHealthDiaryPage extends StatelessWidget {
       ],
     ),
   ];
+
+  final List<HealthDiaryItemObj> diaryItemsList2 = <HealthDiaryItemObj>[
+    HealthDiaryItemObj(
+      date: 'Wednesday 19th',
+      detailsList: <HealthDiaryDetailsItemObj>[
+        HealthDiaryDetailsItemObj(
+          svgIconPath: happyMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Happy',
+        ),
+        HealthDiaryDetailsItemObj(
+          svgIconPath: mehMoodIconSvgPath,
+          time: '8:00 am',
+          description: 'Description of how you are feeling today',
+          title: 'Meh!',
+        ),
+      ],
+    ),
+  ];
+
+  late List<HealthDiaryMonthObj> monthlyDiaries = <HealthDiaryMonthObj>[
+    HealthDiaryMonthObj(
+        diaryItems: diaryItemsList1, year: '2021', month: 'August'),
+    HealthDiaryMonthObj(
+        diaryItems: diaryItemsList2, year: '2021', month: 'September'),
+  ];
+  late int itemIndex = monthlyDiaries.length - 1;
 
   @override
   Widget build(BuildContext context) {
@@ -120,10 +137,20 @@ class MyHealthDiaryPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        SvgPicture.asset(
-                          prevIconSvgPath,
-                          width: 16,
-                          height: 16,
+                        GestureDetector(
+                          key: previousButtonKey,
+                          child: SvgPicture.asset(
+                            prevIconSvgPath,
+                            width: 16,
+                            height: 16,
+                          ),
+                          onTap: () {
+                            setState(() {
+                              if (itemIndex > 0) {
+                                itemIndex--;
+                              }
+                            });
+                          },
                         ),
                         Row(
                           children: <Widget>[
@@ -135,17 +162,27 @@ class MyHealthDiaryPage extends StatelessWidget {
                             ),
                             smallHorizontalSizedBox,
                             Text(
-                              month,
+                              '${monthlyDiaries[itemIndex].month} ${monthlyDiaries[itemIndex].year}',
                               style: TextThemes.boldSize14Text(
                                 AppColors.secondaryColor,
                               ),
                             ),
                           ],
                         ),
-                        SvgPicture.asset(
-                          nextIconSvgPath,
-                          width: 16,
-                          height: 16,
+                        GestureDetector(
+                          key: nextButtonKey,
+                          child: SvgPicture.asset(
+                            nextIconSvgPath,
+                            width: 16,
+                            height: 16,
+                          ),
+                          onTap: () {
+                            setState(() {
+                              if (itemIndex < monthlyDiaries.length - 1) {
+                                itemIndex++;
+                              }
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -156,15 +193,25 @@ class MyHealthDiaryPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     children: <Widget>[
-                      ...List<Widget>.generate(diaryItems.length, (int index) {
-                        final String date = diaryItems.elementAt(index).date;
-                        final List<HealthDiaryDetailsItemObj> detailsList =
-                            diaryItems.elementAt(index).detailsList;
-                        return MyHealthDiaryItemWidget(
-                          detailsList: detailsList,
-                          date: date,
-                        );
-                      }),
+                      ...List<Widget>.generate(
+                        monthlyDiaries[itemIndex].diaryItems.length,
+                        (int index) {
+                          final String date = monthlyDiaries[itemIndex]
+                              .diaryItems
+                              .elementAt(index)
+                              .date;
+                          final List<HealthDiaryDetailsItemObj> detailsList =
+                              monthlyDiaries[itemIndex]
+                                  .diaryItems
+                                  .elementAt(index)
+                                  .detailsList;
+                          return MyHealthDiaryItemWidget(
+                            detailsList: detailsList,
+                            date: date,
+                          );
+                        },
+                      ),
+                      veryLargeVerticalSizedBox,
                     ],
                   ),
                 ),

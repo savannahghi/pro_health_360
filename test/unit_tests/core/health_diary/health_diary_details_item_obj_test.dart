@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/health_diary_details_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
 import '../../../mocks.dart';
 
 void main() {
