@@ -1,9 +1,15 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/svg.dart';
+import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -43,17 +49,28 @@ class MyHealthPage extends StatelessWidget {
                       color: Colors.cyan,
                     ),
                     child: Center(
-                      child: Text(
-                        initials,
-                        style:
-                            TextThemes.boldSize20Text(AppColors.secondaryColor),
-                      ),
+                      child: StoreConnector<AppState, UserProfileViewModel>(
+                          converter: (Store<AppState> store) =>
+                              UserProfileViewModel.fromStore(store),
+                          builder:
+                              (BuildContext context, UserProfileViewModel vm) {
+                            final UserProfileState userProfileState =
+                                vm.userProfileState;
+                            return Text(
+                              extractNamesInitials(
+                                name: getDisplayName(userProfileState),
+                              ),
+                              style: TextThemes.boldSize20Text(
+                                  AppColors.secondaryColor),
+                            );
+                          }),
                     ),
                   ),
                   body: Text(
                     myHealthPagePatient,
-                    style:
-                        TextThemes.normalSize14Text(AppColors.secondaryColor),
+                    style: TextThemes.normalSize14Text(
+                      AppColors.greyTextColor,
+                    ),
                   ),
                 ),
               ),

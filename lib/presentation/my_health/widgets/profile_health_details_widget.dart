@@ -49,7 +49,7 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                 child: RichText(
                   text: TextSpan(
                     text: description,
-                    style: TextThemes.veryBoldSize32Text(
+                    style: TextThemes.boldSize30Text(
                       AppColors.secondaryColor,
                     ),
                     children: <TextSpan>[
