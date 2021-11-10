@@ -129,7 +129,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 15.0,
-                      horizontal: 30.0,
+                      horizontal: 20.0,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
