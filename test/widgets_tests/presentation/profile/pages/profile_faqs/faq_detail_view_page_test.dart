@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
@@ -34,7 +35,8 @@ void main() {
       );
 
       expect(find.text('title'), findsOneWidget);
-      expect(find.text(loremIpsumText), findsOneWidget);
+      expect(find.text(comingSoonText), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
 
       addTearDown(() {
         tester.binding.window.clearPhysicalSizeTestValue();
