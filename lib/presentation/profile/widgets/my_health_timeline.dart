@@ -1,15 +1,64 @@
 import 'package:domain_objects/value_objects.dart';
-import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:myafyahub/domain/core/entities/profile/doctor.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:afya_moja_core/information_list_card.dart';
+import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
 import 'package:shared_themes/text_themes.dart';
 
-class MyHealthTimeline extends StatelessWidget {
+class MyHealthTimeline extends StatefulWidget {
   const MyHealthTimeline({Key? key}) : super(key: key);
+
+  @override
+  State<MyHealthTimeline> createState() => _MyHealthTimelineState();
+}
+
+class _MyHealthTimelineState extends State<MyHealthTimeline> {
+  Map<String, Key> keys = <String, Key>{};
+
+  List<OverlayEntry> entries = <OverlayEntry>[];
+
+  Map<String, double> heights = <String, double>{};
+
+  bool hasDoneCalculation = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    for (final String date in timelineItems.keys.toList()) {
+      final GlobalObjectKey<State<StatefulWidget>> widgetKey =
+          GlobalObjectKey(date);
+
+      keys[date] = widgetKey;
+    }
+
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
+      calculateHeights();
+    });
+  }
+
+  void calculateHeights() {
+    for (final String date in timelineItems.keys.toList()) {
+      final GlobalObjectKey<State<StatefulWidget>> widgetKey =
+          keys[date]! as GlobalObjectKey<State<StatefulWidget>>;
+
+      final BuildContext? keyContext = widgetKey.currentContext;
+
+      if (keyContext != null) {
+        final RenderBox? box = keyContext.findRenderObject() as RenderBox?;
+
+        heights[date] = box?.size.height ?? 1.0;
+      }
+    }
+
+    setState(() {
+      hasDoneCalculation = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +68,32 @@ class MyHealthTimeline extends StatelessWidget {
       final DateTime date = DateFormat('dd/MM/yy').parse(key);
 
       final Row row = Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        key: keys[key],
         children: <Widget>[
           Flexible(
             flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: TimelineIndicator(date: date),
-            ),
+            child: TimelineIndicator(date: date),
           ),
+          if (hasDoneCalculation)
+            Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: CustomPaint(
+                size: Size(1, heights[key] ?? 1),
+                painter: const DashedLine(
+                  dashSize: 5,
+                  gapSize: 2,
+                  color: AppColors.timelineDotColor,
+                ),
+              ),
+            ),
           Flexible(
             flex: 8,
-            child: Column(
-              children: getItemCards(timelineItems[key]!),
-            ),
+            child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              return Column(
+                children: getItemCards(timelineItems[key]!),
+              );
+            }),
           ),
         ],
       );
@@ -44,40 +105,11 @@ class MyHealthTimeline extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'My Health Timeline',
+          myHealthTimelineText,
           style: TextThemes.boldSize14Text(AppColors.greyTextColor),
         ),
         const SizedBox(height: 20),
-        Stack(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                ...rowWidgets,
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Flexible(
-                  flex: 2,
-                  child: Container(
-                    // height: MediaQuery.of(context).size.height,
-                    margin: const EdgeInsets.only(top: 30),
-                    decoration: DottedDecoration(
-                      color: Colors.black,
-                      strokeWidth: 0.5,
-                      linePosition: LinePosition.right,
-                    ),
-                  ),
-                ),
-                Flexible(
-                  flex: 8,
-                  child: Container(),
-                ),
-              ],
-            ),
-          ],
-        ),
+        ...rowWidgets,
       ],
     );
   }
@@ -88,12 +120,18 @@ class MyHealthTimeline extends StatelessWidget {
     for (final TimelineItem item in items) {
       results.add(
         InformationListCard(
+          borderRadius: 12,
           alternateLeadingIcon: Container(
+            decoration: BoxDecoration(
+              color: item.isDiary
+                  ? AppColors.diaryListCardColor
+                  : AppColors.listCardColor,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             padding: const EdgeInsets.all(12),
-            color: item.isDiary ? AppColors.diaryListCardColor : null,
             child: SvgPicture.asset(
               'assets/icons/${item.leadingIcon}.svg',
-              color: AppColors.secondaryColor,
+              color: AppColors.timelineDotColor,
             ),
           ),
           iconBackgroundColor:
