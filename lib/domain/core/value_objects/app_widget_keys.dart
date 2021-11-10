@@ -83,6 +83,9 @@ const Key searchBackButtonKey = Key('search_back_button');
 
 // homepage content keys
 const Key homepageContentKey = Key('home_page_content_scaffold');
+const Key moodFeedbackGestureDetectorKey =
+    Key('mood_feedback_gesture_detector_key');
+const Key moodFeedbackButtonKey = Key('mood_feedback_button_key');
 
 // user profile keys
 const Key editProfileKey = Key('save_profile');

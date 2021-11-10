@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
@@ -61,6 +63,20 @@ void main() {
     expect(route, isA<MaterialPageRoute<HomePage>>());
     expect(route.builder(context), isA<HomePage>());
   });
+
+  test('Test router returns mood feedback page', () {
+    const RouteSettings settings = RouteSettings(
+      name: BWRoutes.moodFeedbackPage,
+      arguments: MoodType.Excited,
+    );
+
+    final MaterialPageRoute<MoodFeedbackPage> route =
+        routeGenerator(settings) as MaterialPageRoute<MoodFeedbackPage>;
+
+    expect(route, isA<MaterialPageRoute<MoodFeedbackPage>>());
+    expect(route.builder(context), isA<MoodFeedbackPage>());
+  });
+
   test('Test router returns phoneLogin', () {
     const RouteSettings settings = RouteSettings(
       name: BWRoutes.phoneLogin,

@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
+import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_view_page.dart';
@@ -94,6 +96,13 @@ class RouteGenerator {
       // the homepage route config
       case BWRoutes.home:
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());
+
+      case BWRoutes.moodFeedbackPage:
+        return MaterialPageRoute<MoodFeedbackPage>(
+          builder: (_) => MoodFeedbackPage(
+            moodType: args as MoodType,
+          ),
+        );
 
       case BWRoutes.userProfile:
         return MaterialPageRoute<UserProfilePage>(

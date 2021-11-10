@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -59,8 +60,10 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   moodIcon: excitedIconSvgPath,
                   moodText: excitedString,
                   onTap: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(snackbar(content: comingSoonText));
+                    Navigator.of(context).pushNamed(
+                      BWRoutes.moodFeedbackPage,
+                      arguments: MoodType.Excited,
+                    );
                   },
                 ),
                 MoodItem(
@@ -68,8 +71,10 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   moodIcon: happyIconSvgPath,
                   moodText: happyString,
                   onTap: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(snackbar(content: comingSoonText));
+                    Navigator.of(context).pushNamed(
+                      BWRoutes.moodFeedbackPage,
+                      arguments: MoodType.Happy,
+                    );
                   },
                 ),
                 MoodItem(
@@ -77,8 +82,10 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   moodIcon: mehIconSvgPath,
                   moodText: mehString,
                   onTap: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(snackbar(content: comingSoonText));
+                    Navigator.of(context).pushNamed(
+                      BWRoutes.moodFeedbackPage,
+                      arguments: MoodType.Meh,
+                    );
                   },
                 ),
                 MoodItem(
@@ -86,8 +93,10 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   moodIcon: sadIconSvgPath,
                   moodText: sadString,
                   onTap: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(snackbar(content: comingSoonText));
+                    Navigator.of(context).pushNamed(
+                      BWRoutes.moodFeedbackPage,
+                      arguments: MoodType.Sad,
+                    );
                   },
                 ),
                 MoodItem(
@@ -95,8 +104,10 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
                   moodIcon: verySadIconSvgPath,
                   moodText: verySadString,
                   onTap: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(snackbar(content: comingSoonText));
+                    Navigator.of(context).pushNamed(
+                      BWRoutes.moodFeedbackPage,
+                      arguments: MoodType.VerySad,
+                    );
                   },
                 ),
               ],

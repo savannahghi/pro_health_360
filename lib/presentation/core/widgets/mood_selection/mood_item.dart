@@ -31,7 +31,7 @@ class MoodItem extends StatelessWidget {
           Text(
             moodText,
             style: const TextStyle(color: white),
-          )
+          ),
         ],
       ),
     );

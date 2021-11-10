@@ -58,6 +58,8 @@ class AppColors {
   static const Color secondaryColor = Color.fromARGB(255, 22, 20, 74);
   static const Color primaryColorLite = Color(0xFFF2E8FF);
   static const Color redColor = Color(0xFFE41518);
+  static const Color blueChillColor = Color(0xFF119496);
+  static const Color javaColor = Color(0xFF17D1D4);
   static ThemeColors themeColors = ThemeColors(
     primaryColor,
     primaryColor,
