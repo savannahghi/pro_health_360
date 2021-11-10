@@ -6,6 +6,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/text_themes.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
@@ -38,6 +39,8 @@ class MyAfyaHubBottomNavigationBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Theme.of(context).colorScheme.secondary,
       unselectedItemColor: AppColors.secondaryColor,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       onTap: (int currentIndex) {
         StoreProvider.dispatch<AppState>(
           context,
@@ -92,13 +95,45 @@ class MyAfyaHubBottomNavigationBar extends StatelessWidget {
       items: bottomNavItems
           .map(
             (BottomNavItem navItem) => BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                navItem.iconUrl,
-                color: AppColors.secondaryColor.withOpacity(0.8),
+              icon: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: SvgPicture.asset(
+                      navItem.iconUrl,
+                      color: AppColors.secondaryColor.withOpacity(0.8),
+                    ),
+                  ),
+                  Text(
+                    navItem.text,
+                    style: TextThemes.normalSize12Text(
+                      AppColors.secondaryColor.withOpacity(0.8),
+                    ),
+                  )
+                ],
               ),
-              activeIcon: SvgPicture.asset(
-                navItem.iconUrl,
-                color: Theme.of(context).colorScheme.secondary,
+              activeIcon: Container(
+                padding: const EdgeInsets.all(8.0),
+                width: 65,
+                decoration: BoxDecoration(
+                  color: AppColors.selectedBottomNavColor,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: SvgPicture.asset(
+                        navItem.iconUrl,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      navItem.text,
+                      style: TextThemes.normalSize12Text(Colors.white),
+                    )
+                  ],
+                ),
               ),
               label: navItem.text,
             ),

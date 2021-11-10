@@ -48,7 +48,7 @@ class SuggestedGroupCard extends StatelessWidget {
                 ),
               ),
             ),
-            smallVerticalSizedBox,
+            verySmallVerticalSizedBox,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
@@ -61,7 +61,7 @@ class SuggestedGroupCard extends StatelessWidget {
                 ),
               ),
             ),
-            smallVerticalSizedBox,
+            verySmallVerticalSizedBox,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Text(
@@ -74,7 +74,7 @@ class SuggestedGroupCard extends StatelessWidget {
                 ),
               ),
             ),
-            smallVerticalSizedBox,
+            verySmallVerticalSizedBox,
             RawMaterialButton(
               key: joinSuggestedGroupButtonKey,
               splashColor: AppColors.secondaryColor.withOpacity(0.2),

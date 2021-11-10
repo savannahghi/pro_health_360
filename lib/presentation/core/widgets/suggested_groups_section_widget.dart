@@ -39,7 +39,7 @@ class SuggestedGroupsSection extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 220,
+            height: 200,
             child: ListView.builder(
               itemCount: suggestedGroups.length,
               scrollDirection: Axis.horizontal,

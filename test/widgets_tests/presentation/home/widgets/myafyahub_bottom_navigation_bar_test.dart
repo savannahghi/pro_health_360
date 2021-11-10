@@ -75,10 +75,10 @@ void main() {
 
       // verify the bottom navigation bar exists
       expect(find.byKey(silBottomNavKey), findsOneWidget);
-      expect(find.text('Home'), findsOneWidget);
-      await tester.tap(find.text('Home'));
+      expect(find.text('Home'), findsWidgets);
+      await tester.tap(find.text('Home').first);
       await tester.pumpAndSettle();
-      expect(find.text('Feed'), findsOneWidget);
+      expect(find.text('Feed'), findsWidgets);
     });
 
     testWidgets('should navigate to the different tabs',
@@ -97,20 +97,20 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byKey(silBottomNavKey), findsOneWidget);
-      expect(find.text('Home'), findsOneWidget);
-      await tester.tap(find.text('Home'));
+      expect(find.text('Home'), findsWidgets);
+      await tester.tap(find.text('Home').first);
       await tester.pumpAndSettle();
 
       expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 0);
 
-      expect(find.text('Feed'), findsOneWidget);
-      await tester.tap(find.text('Feed'));
+      expect(find.text('Feed'), findsWidgets);
+      await tester.tap(find.text('Feed').first);
       await tester.pumpAndSettle();
 
       expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 1);
 
-      expect(find.text('My Health'), findsOneWidget);
-      await tester.tap(find.text('My Health'));
+      expect(find.text('My Health'), findsWidgets);
+      await tester.tap(find.text('My Health').first);
       await tester.pumpAndSettle();
       expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 3);
       expect(find.byType(PINInputPage), findsOneWidget);

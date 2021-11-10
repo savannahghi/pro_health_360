@@ -7,11 +7,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/core/widgets/new_content.dart';
+import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/feed/feed_details.dart';
 import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
+import 'package:myafyahub/presentation/widgets/article_details_page.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -43,11 +46,31 @@ void main() {
 
       // feed items renders correctly
       final Finder feedItem = find.byType(FeedItem);
+
       expect(feedItem, findsWidgets);
       await tester.ensureVisible(feedItem.first);
       await tester.tap(feedItem.first);
       await tester.pumpAndSettle();
-      expect(feedItem, findsNothing);
+      expect(find.byType(ArticleDetailsPage), findsOneWidget);
+    });
+    testWidgets('View All should navigate to FeedPage',
+        (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: const HomePage(),
+      );
+      
+      final Finder viewAllButton = find.byKey(viewAllButtonKey);
+
+      await tester.ensureVisible(viewAllButton);
+      await tester.pumpAndSettle();
+      await tester.tap(viewAllButton);
+      await tester.pumpAndSettle();
+      expect(viewAllButton, findsNothing);
     });
 
     testWidgets('navigates to feed page when view all is clicked',

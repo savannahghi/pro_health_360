@@ -85,6 +85,7 @@ class AppColors {
   static const Color greenHappyColor = Color(0xFF00BE33);
   static const Color mehMoodColor = Color(0xFF857C00);
   static const Color timelineDotColor = Color(0xFF06103B);
+  static const Color selectedBottomNavColor = Color(0xffb9b81d);
 }
 
 class ThemeColors {
