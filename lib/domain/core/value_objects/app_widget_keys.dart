@@ -293,6 +293,9 @@ const Key sendFeedbackButtonKey = Key('send_feedback_button_key');
 const Key cancelFeedbackButtonKey = Key('cancel_feedback_button_key');
 const Key noRadioButtonKey = Key('no_radio_button_key');
 const Key yesRadioButtonKey = Key('yes_radio_button_key');
+const Key yesButtonKey = Key('yes_button_key');
+const Key noButtonKey = Key('no_button_key');
+
 const Key pinInputPageBackKey = Key('pin_input_page_back_key');
 
 // consent page

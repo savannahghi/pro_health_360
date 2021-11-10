@@ -78,62 +78,87 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       ),
                       Row(
                         children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: Radio<FollowUpChoice>(
-                                  key: yesRadioButtonKey,
-                                  activeColor: AppColors.secondaryColor,
-                                  value: FollowUpChoice.Yes,
-                                  groupValue: followUpChoice,
-                                  onChanged: (FollowUpChoice? value) {
-                                    setState(() {
-                                      followUpChoice = value!;
-                                    });
-                                  },
-                                ),
+                          GestureDetector(
+                            key: yesButtonKey,
+                            onTap: () {
+                              setState(() {
+                                followUpChoice = FollowUpChoice.Yes;
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 14.0,
+                                right: 40.0,
                               ),
-                              verySmallHorizontalSizedBox,
-                              Text(
-                                yesString,
-                                style: TextThemes.lightSize16Text(
-                                  AppColors.greyTextColor,
-                                ).copyWith(
-                                  fontSize: 12,
-                                ),
-                              )
-                            ],
+                              child: Row(
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: Radio<FollowUpChoice>(
+                                      key: yesRadioButtonKey,
+                                      activeColor: AppColors.secondaryColor,
+                                      value: FollowUpChoice.Yes,
+                                      groupValue: followUpChoice,
+                                      onChanged: (FollowUpChoice? value) {
+                                        setState(() {
+                                          followUpChoice = value!;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  verySmallHorizontalSizedBox,
+                                  Text(
+                                    yesString,
+                                    style: TextThemes.lightSize16Text(
+                                      AppColors.greyTextColor,
+                                    ).copyWith(
+                                      fontSize: 12,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                          veryLargeHorizontalSizedBox,
                           smallHorizontalSizedBox,
-                          Row(
-                            children: <Widget>[
-                              SizedBox(
-                                width: 20,
-                                child: Radio<FollowUpChoice>(
-                                  key: noRadioButtonKey,
-                                  value: FollowUpChoice.No,
-                                  groupValue: followUpChoice,
-                                  onChanged: (FollowUpChoice? value) {
-                                    setState(() {
-                                      followUpChoice = value!;
-                                    });
-                                  },
-                                  activeColor: AppColors.secondaryColor,
-                                ),
+                          GestureDetector(
+                            key: noButtonKey,
+                            onTap: () {
+                              setState(() {
+                                followUpChoice = FollowUpChoice.No;
+                              });
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Row(
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 20,
+                                    child: Radio<FollowUpChoice>(
+                                      key: noRadioButtonKey,
+                                      value: FollowUpChoice.No,
+                                      groupValue: followUpChoice,
+                                      onChanged: (FollowUpChoice? value) {
+                                        setState(() {
+                                          followUpChoice = value!;
+                                        });
+                                      },
+                                      activeColor: AppColors.secondaryColor,
+                                    ),
+                                  ),
+                                  verySmallHorizontalSizedBox,
+                                  Text(
+                                    noString,
+                                    style: TextThemes.lightSize16Text(
+                                      AppColors.greyTextColor,
+                                    ).copyWith(
+                                      fontSize: 12,
+                                    ),
+                                  )
+                                ],
                               ),
-                              verySmallHorizontalSizedBox,
-                              Text(
-                                noString,
-                                style: TextThemes.lightSize16Text(
-                                  AppColors.greyTextColor,
-                                ).copyWith(
-                                  fontSize: 12,
-                                ),
-                              )
-                            ],
+                            ),
                           ),
                         ],
                       ),

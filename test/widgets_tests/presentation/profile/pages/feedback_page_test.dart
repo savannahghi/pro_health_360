@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
@@ -84,13 +85,24 @@ void main() {
 
     final Finder yesRadioButton = find.byKey(yesRadioButtonKey);
     final Finder noRadioButton = find.byKey(noRadioButtonKey);
+    final Finder yesButton = find.byKey(yesButtonKey);
+    final Finder noButton = find.byKey(noButtonKey);
 
     expect(yesRadioButton, findsOneWidget);
     expect(noRadioButton, findsOneWidget);
+    expect(yesButton, findsOneWidget);
+    expect(noButton, findsOneWidget);
+
+
+    await tester.tap(find.text(noString));
+    await tester.pumpAndSettle();
+    expect(
+      (tester.firstWidget(noRadioButton) as Radio<FollowUpChoice>).value,
+      FollowUpChoice.No,
+    );
 
     await tester.tap(yesRadioButton);
     await tester.pumpAndSettle();
-
     expect(
       (tester.firstWidget(yesRadioButton) as Radio<FollowUpChoice>).value,
       FollowUpChoice.Yes,
@@ -98,10 +110,16 @@ void main() {
 
     await tester.tap(noRadioButton);
     await tester.pumpAndSettle();
-
     expect(
       (tester.firstWidget(noRadioButton) as Radio<FollowUpChoice>).value,
       FollowUpChoice.No,
+    );
+
+    await tester.tap(find.text(yesString));
+    await tester.pumpAndSettle();
+    expect(
+      (tester.firstWidget(yesRadioButton) as Radio<FollowUpChoice>).value,
+      FollowUpChoice.Yes,
     );
   });
 }
