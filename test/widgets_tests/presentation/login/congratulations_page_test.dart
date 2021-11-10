@@ -8,7 +8,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/buttons.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/feed_page.dart';
+import 'package:myafyahub/presentation/engagement/home/pages/home_widget.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 
 import '../../../test_helpers.dart';
@@ -57,7 +57,7 @@ void main() {
         await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
         await tester.tap(find.byType(MyAfyaHubPrimaryButton));
         await tester.pumpAndSettle();
-        expect(find.byType(FeedPage), findsOneWidget);
+        expect(find.byType(HomeWidget), findsOneWidget);
       });
     });
   });

@@ -30,7 +30,7 @@ import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
-import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
+import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
@@ -129,7 +129,7 @@ void main() {
     expect(route.builder(context), isA<CongratulationsPage>());
   });
 
-  test('Test router returns HomePage', () {
+  test('Test router returns Home', () {
     const RouteSettings settings = RouteSettings(
       name: BWRoutes.home,
       arguments: <String, dynamic>{'test': 'value'},
@@ -278,14 +278,13 @@ void main() {
     expect(route.builder(context), isA<CommunityChatScreenPage>());
   });
 
-  test('Test router returns  MyAfyaHubFeedPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: BWRoutes.myAfyaHubFeedPage);
+  test('Test router returns  FeedPage', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.feedPage);
 
-    final MaterialPageRoute<MyAfyaHubFeedPage> route =
-        routeGenerator(settings) as MaterialPageRoute<MyAfyaHubFeedPage>;
-    expect(route, isA<MaterialPageRoute<MyAfyaHubFeedPage>>());
-    expect(route.builder(context), isA<MyAfyaHubFeedPage>());
+    final MaterialPageRoute<FeedPage> route =
+        routeGenerator(settings) as MaterialPageRoute<FeedPage>;
+    expect(route, isA<MaterialPageRoute<FeedPage>>());
+    expect(route.builder(context), isA<FeedPage>());
   });
 
   test('Test router returns ConsentPage', () {

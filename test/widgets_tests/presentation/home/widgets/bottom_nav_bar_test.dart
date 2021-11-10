@@ -11,7 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/engagement/home/widgets/myafyahub_bottom_navigation_bar.dart';
+import 'package:myafyahub/presentation/engagement/home/widgets/bottom_nav_bar.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -42,9 +42,7 @@ void main() {
         tester: tester,
         store: store,
         client: GraphQlClient,
-        widget: const MyAfyaHubBottomNavigationBar(
-          currentIndex: 0,
-        ),
+        widget: const BottomNavBar(),
       );
       await tester.pumpAndSettle();
 
@@ -63,9 +61,7 @@ void main() {
           builder: (BuildContext context) {
             return Scaffold(
               body: Container(),
-              bottomNavigationBar: const MyAfyaHubBottomNavigationBar(
-                currentIndex: 1,
-              ),
+              bottomNavigationBar: const BottomNavBar(),
             );
           },
         ),
@@ -89,9 +85,7 @@ void main() {
         client: GraphQlClient,
         widget: Scaffold(
           body: Container(),
-          bottomNavigationBar: const MyAfyaHubBottomNavigationBar(
-            currentIndex: 1,
-          ),
+          bottomNavigationBar: const BottomNavBar(),
         ),
       );
 

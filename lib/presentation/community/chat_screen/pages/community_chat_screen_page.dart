@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/message_input.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/more_menu_drop_down.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/quoted_message_widget.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/time_classification_widget.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
 import '../widgets/sender_type_widget.dart';
@@ -89,7 +88,7 @@ class _CommunityChatScreenPageState extends State<CommunityChatScreenPage> {
     ];
 
     return Scaffold(
-      backgroundColor: AppColors.lightSkyBlueColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: CustomAppBar(
         title: widget.communityChatData.title,
         trailingWidget: const MoreMenuDropDown(),

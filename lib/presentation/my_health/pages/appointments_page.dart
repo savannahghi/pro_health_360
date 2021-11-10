@@ -4,15 +4,15 @@ import 'package:myafyahub/domain/core/entities/notification/notification_details
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointments_list.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class AppointmentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       appBar: const CustomAppBar(title: appointmentsPageTitle),
-      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: DefaultTabController(

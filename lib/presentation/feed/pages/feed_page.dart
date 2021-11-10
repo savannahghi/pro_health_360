@@ -9,23 +9,24 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:myafyahub/presentation/feed/feed_details.dart';
 import '../feed_item_widget.dart';
 
-class MyAfyaHubFeedPage extends StatefulWidget {
-  const MyAfyaHubFeedPage();
+class FeedPage extends StatefulWidget {
+  const FeedPage();
 
   @override
-  State<MyAfyaHubFeedPage> createState() => _MyAfyaHubFeedPageState();
+  State<FeedPage> createState() => _FeedPageState();
 }
 
-class _MyAfyaHubFeedPageState extends State<MyAfyaHubFeedPage> {
+class _FeedPageState extends State<FeedPage> {
   int _choiceIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       appBar: const CustomAppBar(title: libraryTitle, showBackButton: false),
       body: Padding(
         padding: const EdgeInsets.all(20),

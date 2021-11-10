@@ -19,7 +19,7 @@ import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/engagement/library/library.dart';
 import 'package:myafyahub/presentation/engagement/library/library_content.dart';
-import 'package:myafyahub/presentation/feed/pages/my_afya_hub_feed_page.dart';
+import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
@@ -183,9 +183,9 @@ class RouteGenerator {
           builder: (_) => SavedPostPage(),
         );
 
-      case BWRoutes.myAfyaHubFeedPage:
-        return MaterialPageRoute<MyAfyaHubFeedPage>(
-          builder: (_) => const MyAfyaHubFeedPage(),
+      case BWRoutes.feedPage:
+        return MaterialPageRoute<FeedPage>(
+          builder: (_) => const FeedPage(),
         );
 
       case BWRoutes.notificationsPage:

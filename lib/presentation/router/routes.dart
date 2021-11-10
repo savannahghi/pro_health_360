@@ -68,7 +68,7 @@ class BWRoutes {
       '/answerSecurityQuestionPage';
 
   // Feed
-  static const String myAfyaHubFeedPage = '/feedPage';
+  static const String feedPage = '/feedPage';
 
   // Health Diary Page
   static const String myHealthDiaryPage = '/healthDiaryPage';

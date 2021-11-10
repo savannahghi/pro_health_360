@@ -30,19 +30,19 @@ List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   BottomNavItem(
     iconUrl: feedIconSvgPath,
     text: 'Feed',
-    onTapRoute: BWRoutes.library,
+    onTapRoute: BWRoutes.feedPage,
     index: BottomNavIndex.feed.index,
   ),
   BottomNavItem(
     iconUrl: communityIconSvgPath,
     text: 'Community',
-    onTapRoute: BWRoutes.library,
-    index: BottomNavIndex.feed.index,
+    onTapRoute: BWRoutes.communityListView,
+    index: BottomNavIndex.community.index,
   ),
   BottomNavItem(
     iconUrl: myHealthIconSvgPath,
     text: 'My Health',
-    onTapRoute: BWRoutes.library,
-    index: BottomNavIndex.feed.index,
+    onTapRoute: BWRoutes.myHealthPage,
+    index: BottomNavIndex.myHealth.index,
   ),
 ];

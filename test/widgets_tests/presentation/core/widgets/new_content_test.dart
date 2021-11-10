@@ -63,14 +63,14 @@ void main() {
         client: mockGraphQlClient,
         widget: const HomePage(),
       );
-      
+
       final Finder viewAllButton = find.byKey(viewAllButtonKey);
 
       await tester.ensureVisible(viewAllButton);
       await tester.pumpAndSettle();
       await tester.tap(viewAllButton);
       await tester.pumpAndSettle();
-      expect(viewAllButton, findsNothing);
+      expect(viewAllButton, findsWidgets);
     });
 
     testWidgets('navigates to feed page when view all is clicked',

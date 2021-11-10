@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -85,21 +86,22 @@ void main() {
       });
     });
 
-    testWidgets('Navigates to Home Page',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: const ForgotPINPage(),
-      );
+    testWidgets('Navigates to Home Page', (WidgetTester tester) async {
+      await mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: const ForgotPINPage(),
+        );
 
-      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
+        await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
 
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
+        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+        await tester.pumpAndSettle();
 
-      expect(find.byType(HomePage), findsOneWidget);
+        expect(find.byType(HomePage), findsOneWidget);
+      });
     });
   });
 }

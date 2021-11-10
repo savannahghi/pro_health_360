@@ -85,7 +85,10 @@ class _PINInputPageState extends State<PINInputPage> {
               context,
               BottomNavAction(currentBottomNavIndex: 0),
             );
-            Navigator.pop(context);
+            Navigator.popAndPushNamed(
+              context,
+              BWRoutes.home,
+            );
           },
           child: Padding(
             padding: const EdgeInsets.all(15.0),
