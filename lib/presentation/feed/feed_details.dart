@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'feed_details.freezed.dart';
 part 'feed_details.g.dart';
@@ -15,6 +16,7 @@ class FeedDetails with _$FeedDetails {
     @JsonKey(name: 'bodyContent') required String bodyContent,
     @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
     @JsonKey(name: 'isNew') bool? isNew,
+    @JsonKey(name: 'type') FeedType? type,
   }) = _FeedDetails;
 
   factory FeedDetails.fromJson(Map<String, dynamic> json) =>

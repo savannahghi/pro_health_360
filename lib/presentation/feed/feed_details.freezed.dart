@@ -28,7 +28,8 @@ class _$FeedDetailsTearOff {
       @JsonKey(name: 'authorName') required String authorName,
       @JsonKey(name: 'bodyContent') required String bodyContent,
       @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
-      @JsonKey(name: 'isNew') bool? isNew}) {
+      @JsonKey(name: 'isNew') bool? isNew,
+      @JsonKey(name: 'type') FeedType? type}) {
     return _FeedDetails(
       coverImageUrl: coverImageUrl,
       header: header,
@@ -38,6 +39,7 @@ class _$FeedDetailsTearOff {
       bodyContent: bodyContent,
       authorDisplayPic: authorDisplayPic,
       isNew: isNew,
+      type: type,
     );
   }
 
@@ -67,6 +69,8 @@ mixin _$FeedDetails {
   String? get authorDisplayPic => throw _privateConstructorUsedError;
   @JsonKey(name: 'isNew')
   bool? get isNew => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
+  FeedType? get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -87,7 +91,8 @@ abstract class $FeedDetailsCopyWith<$Res> {
       @JsonKey(name: 'authorName') String authorName,
       @JsonKey(name: 'bodyContent') String bodyContent,
       @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
-      @JsonKey(name: 'isNew') bool? isNew});
+      @JsonKey(name: 'isNew') bool? isNew,
+      @JsonKey(name: 'type') FeedType? type});
 }
 
 /// @nodoc
@@ -108,6 +113,7 @@ class _$FeedDetailsCopyWithImpl<$Res> implements $FeedDetailsCopyWith<$Res> {
     Object? bodyContent = freezed,
     Object? authorDisplayPic = freezed,
     Object? isNew = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       coverImageUrl: coverImageUrl == freezed
@@ -142,6 +148,10 @@ class _$FeedDetailsCopyWithImpl<$Res> implements $FeedDetailsCopyWith<$Res> {
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as FeedType?,
     ));
   }
 }
@@ -161,7 +171,8 @@ abstract class _$FeedDetailsCopyWith<$Res>
       @JsonKey(name: 'authorName') String authorName,
       @JsonKey(name: 'bodyContent') String bodyContent,
       @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
-      @JsonKey(name: 'isNew') bool? isNew});
+      @JsonKey(name: 'isNew') bool? isNew,
+      @JsonKey(name: 'type') FeedType? type});
 }
 
 /// @nodoc
@@ -184,6 +195,7 @@ class __$FeedDetailsCopyWithImpl<$Res> extends _$FeedDetailsCopyWithImpl<$Res>
     Object? bodyContent = freezed,
     Object? authorDisplayPic = freezed,
     Object? isNew = freezed,
+    Object? type = freezed,
   }) {
     return _then(_FeedDetails(
       coverImageUrl: coverImageUrl == freezed
@@ -218,6 +230,10 @@ class __$FeedDetailsCopyWithImpl<$Res> extends _$FeedDetailsCopyWithImpl<$Res>
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as FeedType?,
     ));
   }
 }
@@ -233,7 +249,8 @@ class _$_FeedDetails implements _FeedDetails {
       @JsonKey(name: 'authorName') required this.authorName,
       @JsonKey(name: 'bodyContent') required this.bodyContent,
       @JsonKey(name: 'authorDisplayPic') this.authorDisplayPic,
-      @JsonKey(name: 'isNew') this.isNew});
+      @JsonKey(name: 'isNew') this.isNew,
+      @JsonKey(name: 'type') this.type});
 
   factory _$_FeedDetails.fromJson(Map<String, dynamic> json) =>
       _$_$_FeedDetailsFromJson(json);
@@ -262,10 +279,13 @@ class _$_FeedDetails implements _FeedDetails {
   @override
   @JsonKey(name: 'isNew')
   final bool? isNew;
+  @override
+  @JsonKey(name: 'type')
+  final FeedType? type;
 
   @override
   String toString() {
-    return 'FeedDetails(coverImageUrl: $coverImageUrl, header: $header, date: $date, readTime: $readTime, authorName: $authorName, bodyContent: $bodyContent, authorDisplayPic: $authorDisplayPic, isNew: $isNew)';
+    return 'FeedDetails(coverImageUrl: $coverImageUrl, header: $header, date: $date, readTime: $readTime, authorName: $authorName, bodyContent: $bodyContent, authorDisplayPic: $authorDisplayPic, isNew: $isNew, type: $type)';
   }
 
   @override
@@ -292,7 +312,9 @@ class _$_FeedDetails implements _FeedDetails {
                 const DeepCollectionEquality()
                     .equals(other.authorDisplayPic, authorDisplayPic)) &&
             (identical(other.isNew, isNew) ||
-                const DeepCollectionEquality().equals(other.isNew, isNew)));
+                const DeepCollectionEquality().equals(other.isNew, isNew)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)));
   }
 
   @override
@@ -305,7 +327,8 @@ class _$_FeedDetails implements _FeedDetails {
       const DeepCollectionEquality().hash(authorName) ^
       const DeepCollectionEquality().hash(bodyContent) ^
       const DeepCollectionEquality().hash(authorDisplayPic) ^
-      const DeepCollectionEquality().hash(isNew);
+      const DeepCollectionEquality().hash(isNew) ^
+      const DeepCollectionEquality().hash(type);
 
   @JsonKey(ignore: true)
   @override
@@ -327,7 +350,8 @@ abstract class _FeedDetails implements FeedDetails {
       @JsonKey(name: 'authorName') required String authorName,
       @JsonKey(name: 'bodyContent') required String bodyContent,
       @JsonKey(name: 'authorDisplayPic') String? authorDisplayPic,
-      @JsonKey(name: 'isNew') bool? isNew}) = _$_FeedDetails;
+      @JsonKey(name: 'isNew') bool? isNew,
+      @JsonKey(name: 'type') FeedType? type}) = _$_FeedDetails;
 
   factory _FeedDetails.fromJson(Map<String, dynamic> json) =
       _$_FeedDetails.fromJson;
@@ -356,6 +380,9 @@ abstract class _FeedDetails implements FeedDetails {
   @override
   @JsonKey(name: 'isNew')
   bool? get isNew => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'type')
+  FeedType? get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FeedDetailsCopyWith<_FeedDetails> get copyWith =>

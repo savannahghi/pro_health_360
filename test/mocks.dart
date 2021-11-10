@@ -2928,6 +2928,7 @@ List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
     'authorName': 'Ken Doe',
     'bodyContent': defactoZeroStateString(),
     'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
+    'type': 'Video'
   },
   <String, dynamic>{
     'coverImageUrl': contentItemImageUrl,

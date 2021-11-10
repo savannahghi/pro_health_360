@@ -10,6 +10,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:shared_themes/text_themes.dart';
+import 'package:myafyahub/presentation/feed/feed_details.dart';
 import '../feed_item_widget.dart';
 
 class MyAfyaHubFeedPage extends StatefulWidget {
@@ -39,31 +40,11 @@ class _MyAfyaHubFeedPageState extends State<MyAfyaHubFeedPage> {
                   shrinkWrap: true,
                   itemCount: feedItems.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final String header = feedItems.elementAt(index).header;
-                    final String date = feedItems.elementAt(index).date;
-                    final String coverImageUrl =
-                        feedItems.elementAt(index).coverImageUrl;
-                    final String? readTime =
-                        feedItems.elementAt(index).readTime;
-                    final bool? isNew = feedItems.elementAt(index).isNew;
-                    final String authorName =
-                        feedItems.elementAt(index).authorName;
-                    final String? authorDisplayPic =
-                        feedItems.elementAt(index).authorDisplayPic;
-                    final String bodyContent =
-                        feedItems.elementAt(index).bodyContent;
-
+                    final FeedDetails feedDetails = feedItems.elementAt(index);
                     return Padding(
                       padding: EdgeInsets.only(top: index == 0 ? 15 : 7.5),
                       child: FeedItem(
-                        coverImagePath: coverImageUrl,
-                        contentHeader: header,
-                        date: date,
-                        readTime: readTime,
-                        isNew: isNew,
-                        authorName: authorName,
-                        bodyContent: bodyContent,
-                        authorDisplayPic: authorDisplayPic,
+                        feedDetails: feedDetails,
                       ),
                     );
                   }),

@@ -1,7 +1,11 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/feed/feed_details.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -15,28 +19,15 @@ import 'package:myafyahub/presentation/feed/feed_item_bottom_row.dart';
 /// [FeedItem] Displays the feed
 /// [isNew] renders the new tag
 class FeedItem extends StatelessWidget {
-  final String coverImagePath;
-  final String contentHeader;
-  final String date;
-  final String? readTime;
-  final String authorName;
-  final String bodyContent;
-  final String? authorDisplayPic;
-  final bool isNew;
+  final FeedDetails feedDetails;
 
   const FeedItem({
-    required this.coverImagePath,
-    required this.contentHeader,
-    required this.date,
-    bool? isNew,
-    this.readTime,
-    required this.authorName,
-    required this.bodyContent,
-    this.authorDisplayPic,
-  }) : this.isNew = isNew ?? false;
+    required this.feedDetails,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final bool isNew = feedDetails.isNew ?? false;
     return GestureDetector(
       child: Container(
         width: 370,
@@ -51,23 +42,34 @@ class FeedItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(7.0),
               child: Column(children: <Widget>[
-                Container(
-                  height: 170.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(coverImagePath),
+                Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 170.0,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(feedDetails.coverImageUrl),
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(7.0),
+                        ),
+                      ),
                     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(7.0),
-                    ),
-                  ),
+                    if (feedDetails.type == FeedType.Video)
+                      SvgPicture.asset(
+                        playIcon,
+                        width: 50,
+                        height: 50,
+                      ),
+                  ],
                 ),
                 smallVerticalSizedBox,
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    contentHeader,
+                    feedDetails.header,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style:
@@ -76,8 +78,8 @@ class FeedItem extends StatelessWidget {
                 ),
                 smallVerticalSizedBox,
                 FeedItemBottomRow(
-                  feedDate: date,
-                  readTime: readTime,
+                  feedDate: feedDetails.date,
+                  readTime: feedDetails.readTime,
                 )
               ]),
             ),
@@ -109,12 +111,12 @@ class FeedItem extends StatelessWidget {
       ),
       onTap: () => navigateToArticleDetailsPage(
         context,
-        authorName: authorName,
-        bodyText: bodyContent,
-        coverImagePath: coverImagePath,
-        date: date,
-        titleText: contentHeader,
-        authorDisplayPic: authorDisplayPic,
+        authorName: feedDetails.authorName,
+        bodyText: feedDetails.bodyContent,
+        coverImagePath: feedDetails.coverImageUrl,
+        date: feedDetails.date,
+        titleText: feedDetails.header,
+        authorDisplayPic: feedDetails.authorDisplayPic,
       ),
     );
   }

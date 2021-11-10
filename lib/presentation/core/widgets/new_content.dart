@@ -1,6 +1,9 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -36,10 +39,19 @@ class NewContent extends StatelessWidget {
                     AppColors.secondaryColor,
                   ),
                 ),
-                Text(
-                  viewAllText,
-                  style: TextThemes.normalSize16Text(
-                    AppColors.secondaryColor,
+                GestureDetector(
+                  onTap: () {
+                    //navigates to feed page
+                    StoreProvider.dispatch<AppState>(
+                      context,
+                      BottomNavAction(currentBottomNavIndex: 1),
+                    );
+                  },
+                  child: Text(
+                    viewAllText,
+                    style: TextThemes.normalSize16Text(
+                      AppColors.secondaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -53,29 +65,11 @@ class NewContent extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: feedItems.length,
               itemBuilder: (BuildContext context, int index) {
-                final String header = feedItems.elementAt(index).header;
-                final String date = feedItems.elementAt(index).date;
-                final String coverImageUrl =
-                    feedItems.elementAt(index).coverImageUrl;
-                final String? readTime = feedItems.elementAt(index).readTime;
-                final bool? isNew = feedItems.elementAt(index).isNew;
-                final String authorName = feedItems.elementAt(index).authorName;
-                final String? authorDisplayPic =
-                    feedItems.elementAt(index).authorDisplayPic;
-                final String bodyContent =
-                    feedItems.elementAt(index).bodyContent;
-
+                final FeedDetails feedDetails = feedItems.elementAt(index);
                 return Padding(
                   padding: EdgeInsets.only(left: index == 0 ? 15 : 7.5),
                   child: FeedItem(
-                    coverImagePath: coverImageUrl,
-                    contentHeader: header,
-                    date: date,
-                    readTime: readTime,
-                    isNew: isNew,
-                    authorName: authorName,
-                    bodyContent: bodyContent,
-                    authorDisplayPic: authorDisplayPic,
+                    feedDetails: feedDetails,
                   ),
                 );
               },

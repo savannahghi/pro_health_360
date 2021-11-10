@@ -17,28 +17,11 @@ class FeedList extends StatelessWidget {
           shrinkWrap: true,
           itemCount: feedItems.length,
           itemBuilder: (BuildContext context, int index) {
-            final String header = feedItems.elementAt(index).header;
-            final String date = feedItems.elementAt(index).date;
-            final String coverImageUrl =
-                feedItems.elementAt(index).coverImageUrl;
-            final String? readTime = feedItems.elementAt(index).readTime;
-            final bool? isNew = feedItems.elementAt(index).isNew;
-            final String authorName = feedItems.elementAt(index).authorName;
-            final String? authorDisplayPic =
-                feedItems.elementAt(index).authorDisplayPic;
-            final String bodyContent = feedItems.elementAt(index).bodyContent;
-
+            final FeedDetails feedDetails = feedItems.elementAt(index);
             return Padding(
               padding: const EdgeInsets.only(top: 7.5),
               child: FeedItem(
-                coverImagePath: coverImageUrl,
-                contentHeader: header,
-                date: date,
-                readTime: readTime,
-                isNew: isNew,
-                authorName: authorName,
-                bodyContent: bodyContent,
-                authorDisplayPic: authorDisplayPic,
+                feedDetails: feedDetails,
               ),
             );
           }),

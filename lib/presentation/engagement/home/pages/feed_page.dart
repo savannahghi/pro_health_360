@@ -8,6 +8,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_mood_selection.dart';
 import 'package:myafyahub/presentation/core/widgets/new_content.dart';
@@ -73,6 +74,7 @@ class _FeedPageState extends State<FeedPage> {
         date: '21 Oct 2021',
         authorName: 'Ken Doe',
         bodyContent: defactoZeroStateString(),
+        type: FeedType.Video,
       )
     ];
 

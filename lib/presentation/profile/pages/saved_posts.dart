@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/feed/feed_details.dart';
@@ -45,33 +46,33 @@ class SavedPostPage extends StatelessWidget {
                       FeedList(
                         feedItems: <FeedDetails>[
                           FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                          ),
+                              coverImageUrl: feedImage3,
+                              date: feedDate,
+                              header: feedHeaderListSavedVideo,
+                              authorName: treatmentBuddyString,
+                              bodyContent: defactoZeroStateString(),
+                              type: FeedType.Video),
                           FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                          ),
+                              coverImageUrl: feedImage3,
+                              date: feedDate,
+                              header: feedHeaderListSavedVideo,
+                              authorName: treatmentBuddyString,
+                              bodyContent: defactoZeroStateString(),
+                              type: FeedType.Video),
                           FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                          ),
+                              coverImageUrl: feedImage3,
+                              date: feedDate,
+                              header: feedHeaderListSavedVideo,
+                              authorName: treatmentBuddyString,
+                              bodyContent: defactoZeroStateString(),
+                              type: FeedType.Video),
                           FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                          )
+                              coverImageUrl: feedImage3,
+                              date: feedDate,
+                              header: feedHeaderListSavedVideo,
+                              authorName: treatmentBuddyString,
+                              bodyContent: defactoZeroStateString(),
+                              type: FeedType.Video)
                         ],
                       ),
                       FeedList(

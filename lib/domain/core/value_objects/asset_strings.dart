@@ -43,6 +43,7 @@ const String noDataImgUrl = 'assets/images/no_data.svg';
 const String genericNoDataIconUrl = 'assets/icons/not_found.svg';
 
 //feed
+const String playIcon = 'assets/icons/playIcon.svg';
 const String feedImage1 = 'assets/images/feed_image_1.png';
 const String feedImage2 = 'assets/images/feed_image_2.png';
 const String feedImage3 = 'assets/images/feed_image_3.png';

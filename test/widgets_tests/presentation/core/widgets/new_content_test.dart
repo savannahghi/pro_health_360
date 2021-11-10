@@ -6,6 +6,7 @@ import 'package:async_redux/async_redux.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/core/widgets/new_content.dart';
@@ -47,6 +48,30 @@ void main() {
       await tester.tap(feedItem.first);
       await tester.pumpAndSettle();
       expect(feedItem, findsNothing);
+    });
+
+    testWidgets('navigates to feed page when view all is clicked',
+        (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      final List<FeedDetails> mockListFeed = <FeedDetails>[];
+
+      for (final Map<String, dynamic> element in mockFeed) {
+        mockListFeed.add(FeedDetails.fromJson(element));
+      }
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: NewContent(
+          feedItems: mockListFeed,
+        ),
+      );
+
+      // click view all
+      await tester.tap(find.text(viewAllText));
+      await tester.pumpAndSettle();
+      expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 1);
     });
   });
 }
