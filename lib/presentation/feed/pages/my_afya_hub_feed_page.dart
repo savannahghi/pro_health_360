@@ -3,60 +3,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/filters/feed_item_filter.dart';
+import 'package:shared_themes/text_themes.dart';
 import '../feed_item_widget.dart';
 
-class MyAfyaHubFeedPage extends StatelessWidget {
+class MyAfyaHubFeedPage extends StatefulWidget {
   const MyAfyaHubFeedPage();
 
   @override
-  Widget build(BuildContext context) {
-    final List<Widget> feedFilterItems = <Widget>[
-      FeedItemFilter(
-        filterIcon: Icons.grid_view_sharp,
-        filterText: allString,
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(snackbar(content: comingSoonText));
-        },
-        isActive: true,
-      ),
-      FeedItemFilter(
-        filterIcon: Icons.lightbulb_sharp,
-        filterText: recommendedString,
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(snackbar(content: comingSoonText));
-        },
-      ),
-      FeedItemFilter(
-        filterIcon: Icons.fitness_center_sharp,
-        filterText: exerciseString,
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(snackbar(content: comingSoonText));
-        },
-      ),
-      FeedItemFilter(
-        filterIcon: Icons.food_bank_outlined,
-        filterText: dietString,
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(snackbar(content: comingSoonText));
-        },
-      ),
-    ];
+  State<MyAfyaHubFeedPage> createState() => _MyAfyaHubFeedPageState();
+}
 
+class _MyAfyaHubFeedPageState extends State<MyAfyaHubFeedPage> {
+  int _choiceIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: libraryTitle, showBackButton: false),
       body: Padding(
@@ -65,21 +32,7 @@ class MyAfyaHubFeedPage extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: SizedBox(
-                width: double.infinity,
-                height: 42,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: feedFilterItems.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
-                      child: feedFilterItems.elementAt(index),
-                    );
-                  },
-                ),
-              ),
+              child: _buildChoiceChips(context),
             ),
             Expanded(
               child: ListView.builder(
@@ -117,6 +70,54 @@ class MyAfyaHubFeedPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildChoiceChips(BuildContext context) {
+    final List<String> _choices = <String>[
+      allString,
+      recommendedString,
+      exerciseString,
+      dietString,
+    ];
+    return SizedBox(
+      width: double.infinity,
+      height: 42,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: _choices.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
+            child: ChoiceChip(
+              label: Text(
+                _choices[index],
+                style: TextThemes.normalSize16Text().copyWith(
+                  color: _choiceIndex == index
+                      ? AppColors.whiteColor
+                      : AppColors.secondaryColor,
+                ),
+              ),
+              labelStyle: const TextStyle(color: AppColors.whiteColor),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                  color: AppColors.whiteColor,
+                ),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              selected: _choiceIndex == index,
+              selectedColor: AppColors.secondaryColor,
+              onSelected: (bool selected) {
+                setState(() {
+                  _choiceIndex = selected ? index : 0;
+                });
+              },
+              backgroundColor: Colors.grey.shade300,
+            ),
+          );
+        },
       ),
     );
   }
