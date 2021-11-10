@@ -26,7 +26,7 @@ import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/my_afya_hub_app.dart';
+import 'package:myafyahub/presentation/core/widgets/my_app.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -119,7 +119,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
-        MyAfyaHubApp(
+        MyApp(
           store: store,
           navigatorObserver: navigatorObserver,
           connectivityStatus: connectivityStatus,

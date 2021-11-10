@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
@@ -11,28 +10,39 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class GenericEmptyData extends StatelessWidget {
-  const GenericEmptyData({required this.item, this.customMessage});
+  /// The item that is missing.Could be content, the feed etc
+  final String item;
 
   final String? customMessage;
-  final String item;
+
+  const GenericEmptyData({this.item = 'Content', this.customMessage});
 
   @override
   Widget build(BuildContext context) {
     final String noDataText =
-        'You have no ${item.toLowerCase()}. Check back later for more.';
+        'There is no ${item.toLowerCase()} available for you at this time. Kindly check back later for more';
+
     return Container(
       key: genericContainerKey,
-      padding: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(color: AppColors.whiteColor),
+      padding: const EdgeInsets.all(25),
+      decoration: BoxDecoration(
+        color: AppColors.whiteColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Center(
         child: Column(
           children: <Widget>[
-            SvgPicture.asset('assets/images/no_data.svg'),
-            mediumVerticalSizedBox,
+            Image.asset(emptyStateCover),
+            Text(
+              'No ${item.toLowerCase()} available',
+              style: TextThemes.boldSize22Text(),
+            ),
+            const SizedBox(height: 8),
             Text(
               customMessage ?? noDataText,
-              style: TextThemes.boldSize16Text(AppColors.greyColor),
-            )
+              textAlign: TextAlign.center,
+              style: TextThemes.normalSize15Text(AppColors.greyTextColor),
+            ),
           ],
         ),
       ),

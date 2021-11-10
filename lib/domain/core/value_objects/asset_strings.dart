@@ -136,3 +136,4 @@ const String moodSelectionBackgroundUrl =
 const String placeholderImageUrl = 'assets/images/placeholder_image.svg';
 
 const String attachmentIconSvg = 'assets/icons/attachment.svg';
+const String emptyStateCover = 'assets/images/empty_state.png';

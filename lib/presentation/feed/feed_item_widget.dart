@@ -29,6 +29,15 @@ class FeedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isNew = feedDetails.isNew ?? false;
     return GestureDetector(
+      onTap: () => navigateToArticleDetailsPage(
+        context,
+        authorName: feedDetails.authorName,
+        bodyText: feedDetails.bodyContent,
+        coverImagePath: feedDetails.coverImageUrl,
+        date: feedDetails.date,
+        titleText: feedDetails.header,
+        authorDisplayPic: feedDetails.authorDisplayPic,
+      ),
       child: Container(
         width: 370,
         decoration: BoxDecoration(
@@ -110,15 +119,6 @@ class FeedItem extends StatelessWidget {
               ),
           ],
         ),
-      ),
-      onTap: () => navigateToArticleDetailsPage(
-        context,
-        authorName: feedDetails.authorName,
-        bodyText: feedDetails.bodyContent,
-        coverImagePath: feedDetails.coverImageUrl,
-        date: feedDetails.date,
-        titleText: feedDetails.header,
-        authorDisplayPic: feedDetails.authorDisplayPic,
       ),
     );
   }
