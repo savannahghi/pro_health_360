@@ -11,7 +11,6 @@ import 'package:dart_fcm/dart_fcm.dart';
 import 'package:debug_logger/debug_logger.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_html/html_parser.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:rxdart/rxdart.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,7 +18,6 @@ import 'package:url_launcher/url_launcher.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'onboarding_utils.dart';
@@ -73,23 +71,6 @@ void registerFCMTokenListener(BuildContext context) {
   }
 
   SILFCM().configure(context: context, callback: navigateFromPush);
-}
-
-void moveCamera(
-  LatLng _locationData,
-  Completer<GoogleMapController> mapController,
-) {
-  mapController.future.then(
-    (GoogleMapController controller) => controller.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: _locationData,
-          zoom: CAMERA_ZOOM,
-          bearing: CAMERA_BEARING,
-        ),
-      ),
-    ),
-  );
 }
 
 Function linkStreamListener({

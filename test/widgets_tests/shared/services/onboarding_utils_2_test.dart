@@ -460,7 +460,6 @@ void main() {
                     AppContext.AppTest
                   ],
                 );
-                RefreshTokenManger().timer.cancel();
               },
               text: 'Test',
             );
