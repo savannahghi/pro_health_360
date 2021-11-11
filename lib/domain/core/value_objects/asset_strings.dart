@@ -57,11 +57,6 @@ const String clockIconUrl = 'assets/icons/clock.svg';
 
 const String profileImage = 'assets/images/profile_image.png';
 
-const String slideOneImg = 'assets/images/find_your_cover.svg';
-const String slideTwoImg = 'assets/images/add_your_card.svg';
-const String slideThreeImg = 'assets/images/track_your_expenses.svg';
-const String slideFourImg = 'assets/images/view_your_benefits.svg';
-const String slideFiveImg = 'assets/images/build_health_habits.svg';
 const String paperClipIcon = 'assets/icons/paper_clip_icon.svg';
 
 const String calendarIcon = 'assets/icons/calendar.svg';
