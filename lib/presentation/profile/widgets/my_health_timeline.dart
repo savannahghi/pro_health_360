@@ -62,44 +62,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> rowWidgets = <Widget>[];
-
-    for (final String key in timelineItems.keys.toList()) {
-      final DateTime date = DateFormat('dd/MM/yy').parse(key);
-
-      final Row row = Row(
-        key: keys[key],
-        children: <Widget>[
-          Flexible(
-            flex: 2,
-            child: TimelineIndicator(date: date),
-          ),
-          if (hasDoneCalculation)
-            Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: CustomPaint(
-                size: Size(1, heights[key] ?? 1),
-                painter: const DashedLine(
-                  dashSize: 5,
-                  gapSize: 2,
-                  color: AppColors.timelineDotColor,
-                ),
-              ),
-            ),
-          Flexible(
-            flex: 8,
-            child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-              return Column(
-                children: getItemCards(timelineItems[key]!),
-              );
-            }),
-          ),
-        ],
-      );
-
-      rowWidgets.add(row);
-    }
+    final List<String> items = timelineItems.keys.toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +72,63 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           style: TextThemes.boldSize14Text(AppColors.greyTextColor),
         ),
         const SizedBox(height: 20),
-        ...rowWidgets,
+        ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) {
+            final String key = items[index];
+
+            final DateTime date = DateFormat('dd/MM/yy').parse(key);
+
+            double height = heights[key] ?? 1;
+
+            if (hasDoneCalculation && index == 0) {
+              height = heights[key]! * 0.8;
+            }
+
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              key: keys[key],
+              children: <Widget>[
+                Flexible(
+                  flex: 2,
+                  child: Column(
+                    children: <Widget>[
+                      const SizedBox(height: 24),
+                      TimelineIndicator(date: date),
+                    ],
+                  ),
+                ),
+                if (hasDoneCalculation)
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: index == 0 ? height * 0.3 : 0.0,
+                        right: 12.0,
+                      ),
+                      child: CustomPaint(
+                        size: Size(1, height),
+                        painter: DashedLine(
+                          dotOffset: index != 0 ? 44.0 : 0.0,
+                          dashSize: 5,
+                          gapSize: 2,
+                          color: AppColors.timelineDotColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                Flexible(
+                  flex: 8,
+                  child: Column(
+                    children: getItemCards(timelineItems[key]!),
+                  ),
+                ),
+              ],
+            );
+          },
+          itemCount: items.length,
+        ),
       ],
     );
   }
@@ -138,7 +157,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
               item.isDiary ? AppColors.diaryListCardColor : null,
           title: Text(
             item.title,
-            style: TextThemes.normalSize12Text(AppColors.secondaryColor),
+            style: TextThemes.normalSize12Text(AppColors.timelineDotColor),
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

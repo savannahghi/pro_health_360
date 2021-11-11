@@ -6,11 +6,14 @@ class DashedLine extends CustomPainter {
     required this.dashSize,
     required this.gapSize,
     Color? color,
-  }) : color = color ?? Colors.black;
+    double? dotOffset,
+  })  : color = color ?? Colors.black,
+        dotOffset = dotOffset ?? 0;
 
   final double dashSize;
   final double gapSize;
   final Color color;
+  final double dotOffset;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -23,7 +26,7 @@ class DashedLine extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     double startY = 0;
-    canvas.drawCircle(Offset(0, startY), 4, circlePaint);
+    canvas.drawCircle(Offset(0, startY + dotOffset), 4, circlePaint);
 
     while (startY < size.height) {
       final Offset p1 = Offset(0, startY);
