@@ -18,7 +18,7 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: notificationsText),
+      appBar: const CustomAppBar(title: notificationsText, trailingWidget: SizedBox(),),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

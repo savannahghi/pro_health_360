@@ -35,12 +35,12 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
   Widget build(BuildContext context) {
     return Container(
       margin:
-          const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 30, top: 30),
+          const EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Container(
-            margin: const EdgeInsets.only(bottom: 20.0),
+            margin: const EdgeInsets.only(bottom: 18.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -51,7 +51,7 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 20.0),
+            margin: const EdgeInsets.only(bottom: 18.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -62,7 +62,7 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 20.0),
+            margin: const EdgeInsets.only(bottom: 18.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[

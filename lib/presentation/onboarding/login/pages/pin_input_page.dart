@@ -101,13 +101,13 @@ class _PINInputPageState extends State<PINInputPage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            veryLargeVerticalSizedBox,
+            largeVerticalSizedBox,
             SvgPicture.asset(
               lockIcon,
               width: 30.0,
               height: 40.0,
             ),
-            veryLargeVerticalSizedBox,
+            largeVerticalSizedBox,
             Column(
               children: <Widget>[
                 Container(
