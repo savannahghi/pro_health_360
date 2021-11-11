@@ -24,12 +24,9 @@ import 'package:myafyahub/presentation/widgets/article_details_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/engagement/library/library.dart';
-import 'package:myafyahub/presentation/engagement/library/library_content.dart';
 import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
@@ -150,36 +147,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<LoginPage>>());
     expect(route.builder(context), isA<LoginPage>());
-  });
-
-  test('Test router returns incoming library page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.library);
-
-    final MaterialPageRoute<Library> route =
-        routeGenerator(settings) as MaterialPageRoute<Library>;
-
-    expect(route, isA<MaterialPageRoute<Library>>());
-    expect(route.builder(context), isA<Library>());
-  });
-
-  test('Test router returns incoming  libraryContent page', () {
-    final RouteSettings settings = RouteSettings(
-      name: BWRoutes.libraryContent,
-      arguments: LibraryContentItemData(
-        'test',
-        'test',
-        'test',
-        'test',
-        libraryContentPublishDate: 'test',
-        libraryContentTitle: 'test',
-      ),
-    );
-
-    final MaterialPageRoute<LibraryContent> route =
-        routeGenerator(settings) as MaterialPageRoute<LibraryContent>;
-
-    expect(route, isA<MaterialPageRoute<LibraryContent>>());
-    expect(route.builder(context), isA<LibraryContent>());
   });
 
   test('Test router returns incoming  resetPin page', () {

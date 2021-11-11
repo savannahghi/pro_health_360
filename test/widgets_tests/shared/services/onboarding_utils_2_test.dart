@@ -150,8 +150,8 @@ void main() {
                     context,
                     AuthStatusAction(
                       signedIn: true,
-                      idToken: 'ajskdhbskjbdjhaskdbkash',
-                      refreshToken: 'ajskdhbskjbdjhaskdbkash',
+                      idToken: 'some-test-token',
+                      refreshToken: 'some-test-token',
                       expiresAt: DateTime.now()
                           .add(const Duration(seconds: 5))
                           .toIso8601String(),
@@ -386,107 +386,109 @@ void main() {
 
     testWidgets('for a token whose expiry is more than 12 hrs',
         (WidgetTester tester) async {
-      // setup
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
+      await tester.runAsync(() async {
+        // setup
+        final Store<AppState> store =
+            Store<AppState>(initialState: AppState.initial());
 
-      AuthTokenStatus? actualTokenStatus;
+        AuthTokenStatus? actualTokenStatus;
 
-      loginResponse.remove('auth');
+        loginResponse.remove('auth');
 
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
+        final UserResponse userResp = UserResponse.fromJson(loginResponse);
+        final UserProfile? userProfile = userResp.profile;
 
-      final http.Response response = http.Response(
-        json.encode(<String, dynamic>{
-          'can_experiment': true,
-          'customToken': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9',
-          'expires_in': '3600',
-          'id_token': 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRlMDBlO',
-          'is_admin': false,
-          'is_anonymous': false,
-          'refresh_token': 'AOvuKvSUUOtClp53pQ3x0Jf31cV4nUtXf2G',
-          'uid': 'tGeoFDacVxOaXNoBZhqqhbXINZr1'
-        }),
-        201,
-      );
+        final http.Response response = http.Response(
+          json.encode(<String, dynamic>{
+            'can_experiment': true,
+            'customToken': 'some-custom-token',
+            'expires_in': '3600',
+            'id_token': 'some-id-token',
+            'is_admin': false,
+            'is_anonymous': false,
+            'refresh_token': 'Some-refresh-token',
+            'uid': 'some-uid'
+          }),
+          201,
+        );
 
-      const String refreshTokenEndpoint = kTestRefreshTokenEndpoint;
+        const String refreshTokenEndpoint = kTestRefreshTokenEndpoint;
 
-      callRESTAPIWhenThenAnswer(
-        endpoint: refreshTokenEndpoint,
-        variables: <String, dynamic>{
-          'refreshToken': 'oldRefreshToken',
-          'appVersion': APPVERSION,
-        },
-        response: response,
-      );
-
-      // implementation/call the function
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(
-                signedIn: true,
-                idToken: 'oldIdToken',
-                refreshToken: 'oldRefreshToken',
-                expiresAt: DateTime.now()
-                    .add(const Duration(days: 2))
-                    .toIso8601String(),
-              ),
-            );
-
-            StoreProvider.dispatch(
-              context,
-              UpdateUserProfileAction(
-                profile: userProfile,
-                userBioData: userProfile?.userBioData,
-              ),
-            );
-
-            return SILPrimaryButton(
-              onPressed: () async {
-                // call our check token status function
-                actualTokenStatus = await checkTokenStatus(
-                  context: context,
-                  profileState: store.state.userProfileState!,
-                  thisAppContexts: <AppContext>[
-                    AppContext.BewellCONSUMER,
-                    AppContext.AppTest
-                  ],
-                );
-              },
-              text: 'Test',
-            );
+        callRESTAPIWhenThenAnswer(
+          endpoint: refreshTokenEndpoint,
+          variables: <String, dynamic>{
+            'refreshToken': 'oldRefreshToken',
+            'appVersion': APPVERSION,
           },
-        ),
-      );
+          response: response,
+        );
 
-      await tester.pumpAndSettle();
-      final UserProfileState state = store.state.userProfileState!;
-      // verify current state
-      expect(state.isSignedIn, true);
-      expect(state.auth!.refreshToken, 'oldRefreshToken');
-      expect(state.auth!.idToken, 'oldIdToken');
+        // implementation/call the function
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              StoreProvider.dispatch(
+                context,
+                AuthStatusAction(
+                  signedIn: true,
+                  idToken: 'oldIdToken',
+                  refreshToken: 'oldRefreshToken',
+                  expiresAt: DateTime.now()
+                      .add(const Duration(days: 2))
+                      .toIso8601String(),
+                ),
+              );
 
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
+              StoreProvider.dispatch(
+                context,
+                UpdateUserProfileAction(
+                  profile: userProfile,
+                  userBioData: userProfile?.userBioData,
+                ),
+              );
 
-      expect(store.state.userProfileState!.isSignedIn, true);
-      expect(
-        store.state.userProfileState!.auth!.refreshToken,
-        'AOvuKvSUUOtClp53pQ3x0Jf31cV4nUtXf2G',
-      );
-      expect(
-        store.state.userProfileState!.auth!.idToken,
-        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjRlMDBlO',
-      );
-      expect(actualTokenStatus, AuthTokenStatus.requiresPin);
+              return SILPrimaryButton(
+                onPressed: () async {
+                  // call our check token status function
+                  actualTokenStatus = await checkTokenStatus(
+                    context: context,
+                    profileState: store.state.userProfileState!,
+                    thisAppContexts: <AppContext>[
+                      AppContext.BewellCONSUMER,
+                      AppContext.AppTest
+                    ],
+                  );
+                },
+                text: 'Test',
+              );
+            },
+          ),
+        );
+
+        await tester.pumpAndSettle();
+        final UserProfileState state = store.state.userProfileState!;
+        // verify current state
+        expect(state.isSignedIn, true);
+        expect(state.auth!.refreshToken, 'oldRefreshToken');
+        expect(state.auth!.idToken, 'oldIdToken');
+
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
+
+        expect(store.state.userProfileState!.isSignedIn, true);
+        expect(
+          store.state.userProfileState!.auth!.refreshToken,
+          'Some-refresh-token',
+        );
+        expect(
+          store.state.userProfileState!.auth!.idToken,
+          'some-id-token',
+        );
+        expect(actualTokenStatus, AuthTokenStatus.requiresPin);
+      });
     });
 
     test('should register device token', () async {
@@ -509,7 +511,7 @@ void main() {
       );
     });
 
-    testWidgets('should show bottomshet when afterLoginOrCreateAccount',
+    testWidgets('should show bottom sheet when afterLoginOrCreateAccount',
         (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
@@ -601,8 +603,8 @@ void main() {
                   context,
                   AuthStatusAction(
                     signedIn: true,
-                    idToken: 'ajskdhbskjbdjhaskdbkash',
-                    refreshToken: 'ajskdhbskjbdjhaskdbkash',
+                    idToken: 'some-test-token',
+                    refreshToken: 'some-test-token',
                     expiresAt: DateTime.now()
                         .add(const Duration(seconds: 5))
                         .toIso8601String(),

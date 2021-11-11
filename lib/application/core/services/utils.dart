@@ -13,7 +13,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:launch_review/launch_review.dart';
-import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
 
 // Project imports:
@@ -23,21 +22,18 @@ import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
-import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/circular_background_icons.dart';
 import 'package:myafyahub/presentation/feed/feed_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 import 'package:unicons/unicons.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
 
@@ -391,86 +387,6 @@ Widget sortDate({
         const SizedBox(),
     ],
   );
-}
-
-String removeHyphens(String sentence) {
-  return titleCase(sentence.replaceAll('-', ' ').toLowerCase());
-}
-
-Widget SILLoaderWithText() {
-  return Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        const SILPlatformLoader(),
-        smallVerticalSizedBox,
-        Text(
-          loadingText,
-          style: TextThemes.boldSize12Text(),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget LibraryIconButton({
-  required BuildContext context,
-  required Color backgroundColor,
-  required Color iconColor,
-}) {
-  return GestureDetector(
-    key: libraryIconButtonKey,
-    onTap: () => Navigator.pop(context),
-    child: Container(
-      padding: const EdgeInsets.only(
-        right: 24,
-        left: 18,
-        top: 48,
-      ),
-      child: CircularBackGroundIcons(
-        backgroundColor: backgroundColor,
-        iconBackgroundPadding: 12,
-        loadIcon: UniconsLine.multiply,
-        iconColor: iconColor,
-      ),
-    ),
-  );
-}
-
-void libraryContentNavigation(
-  BuildContext context,
-  LibraryContentItemData libraryContentItem,
-) {
-  Navigator.pushNamed(
-    context,
-    BWRoutes.libraryContent,
-    arguments: libraryContentItem,
-  );
-}
-
-LibraryContentItemData listLibraryDataItems(
-  int index,
-  List<dynamic> libContent,
-) {
-  final String libraryContentTitle = libContent[index]['title'].toString();
-  final String image = libContent[index]['featureImage'].toString();
-  final String readingTime = libContent[index]['readingTime'].toString();
-  final String libraryBody = libContent[index]['html'].toString();
-  final String libraryPublishedDate =
-      libContent[index]['publishedAt'].toString();
-  final String libraryContentTags =
-      libContent[index]['tags'][0]['name'].toString();
-  final String formattedLibraryContentTag = removeHyphens(libraryContentTags);
-
-  final LibraryContentItemData libraryContentItemData = LibraryContentItemData(
-    image,
-    readingTime,
-    libraryBody,
-    formattedLibraryContentTag,
-    libraryContentPublishDate: libraryPublishedDate,
-    libraryContentTitle: libraryContentTitle,
-  );
-  return libraryContentItemData;
 }
 
 String getEnvironmentContext(List<AppContext> contexts) {

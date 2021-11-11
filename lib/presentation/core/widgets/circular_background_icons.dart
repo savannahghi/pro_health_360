@@ -11,12 +11,11 @@ class CircularBackGroundIcons extends StatelessWidget {
   final Color? iconColor;
 
   const CircularBackGroundIcons({
-    Key? key,
     required this.backgroundColor,
     required this.loadIcon,
     required this.iconBackgroundPadding,
     this.iconColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

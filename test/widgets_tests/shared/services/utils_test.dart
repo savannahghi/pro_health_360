@@ -565,5 +565,31 @@ void main() {
       expect(find.text('at '), findsOneWidget);
       expect(find.text('1:27 PM'), findsOneWidget);
     });
+
+    testWidgets('fails to display time', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return sortDate(
+              dateTextStyle:
+                  TextThemes.normalSize12Text(AppColors.darkGreyColor),
+              context: context,
+              loadedDate: '2012-02-27 13:27:00',
+            );
+          },
+        ),
+      );
+
+      await tester.pump();
+      expect(find.byType(Row), findsOneWidget);
+      expect(find.text('27 '), findsOneWidget);
+      expect(find.text('February '), findsOneWidget);
+      expect(find.text('2012 '), findsOneWidget);
+      expect(find.text('at '), findsNothing);
+      expect(find.byType(SizedBox), findsWidgets);
+    });
   });
 }

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
-import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
@@ -17,8 +16,6 @@ import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_vie
 import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/engagement/library/library.dart';
-import 'package:myafyahub/presentation/engagement/library/library_content.dart';
 import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
@@ -112,16 +109,6 @@ class RouteGenerator {
       case BWRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
           builder: (_) => const ProfileFaqsPage(),
-        );
-
-      case BWRoutes.library:
-        return MaterialPageRoute<Library>(builder: (_) => Library());
-
-      case BWRoutes.libraryContent:
-        return MaterialPageRoute<LibraryContent>(
-          builder: (_) => LibraryContent(
-            libraryContentItem: args as LibraryContentItemData,
-          ),
         );
 
       // search page

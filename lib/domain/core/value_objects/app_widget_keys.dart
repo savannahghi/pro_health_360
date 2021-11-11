@@ -157,7 +157,6 @@ const Key sliverAppBarKey = Key('sliver_app_bar_key');
 const Key libraryListItemKey = Key('library_list_item');
 const Key libraryErrorWidgetKey = Key('library_error_widget');
 const Key libraryNullWidgetKey = Key('library_null_widget');
-const Key libraryIconButtonKey = Key('library_icon_button_keys');
 
 const Key helpNoDataWidgetKey = Key('help_no_data_widget_key');
 

@@ -49,10 +49,6 @@ class BWRoutes {
   // Appointments page
   static const String appointmentsPage = '/appointmentsPage';
 
-  // library
-  static const String library = '/library';
-  static const String libraryContent = '/libraryContent';
-
   static const String webView = '/webView';
 
   static const String introduction = 'introduction';
