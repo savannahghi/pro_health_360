@@ -1,15 +1,12 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,18 +15,15 @@ import 'package:intl/intl.dart';
 import 'package:launch_review/launch_review.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
-import 'package:misc_utilities/responsive_widget.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/app_review_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/library/library_content_item.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -45,7 +39,6 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:unicons/unicons.dart';
-import 'package:user_profile/contact_utils.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
 
 Future<bool> onWillPopCallback() {
@@ -116,172 +109,6 @@ void showToast(String message) {
     textColor: AppColors.whiteColor,
     fontSize: 16.0,
   );
-}
-
-Future<void> updateStateContacts({
-  required BuildContext context,
-  required StateContactType type,
-  String? value,
-}) async {
-  final UserProfileState profile =
-      StoreProvider.state<AppState>(context)!.userProfileState!;
-  switch (type) {
-    case StateContactType.retireSecondaryPhone:
-      final List<PhoneNumber>? phones =
-          profile.userProfile!.secondaryPhoneNumbers;
-      phones!.remove(PhoneNumber.withValue(value!));
-
-      StoreProvider.dispatch(
-        context,
-        UpdateUserProfileAction(
-          profile: UserProfile(secondaryPhoneNumbers: phones),
-        ),
-      );
-      break;
-    case StateContactType.retireSecondaryEmail:
-      final List<EmailAddress>? emails =
-          profile.userProfile!.secondaryEmailAddresses;
-
-      emails!.remove(EmailAddress.withValue(value!));
-      StoreProvider.dispatch(
-        context,
-        UpdateUserProfileAction(
-          profile: UserProfile(secondaryEmailAddresses: emails),
-        ),
-      );
-
-      break;
-    case StateContactType.setPrimaryPhone:
-      final List<PhoneNumber>? phones =
-          profile.userProfile!.secondaryPhoneNumbers;
-
-      phones!.remove(PhoneNumber.withValue(value!));
-
-      if (profile.userProfile!.primaryPhoneNumber != null) {
-        phones.add(profile.userProfile!.primaryPhoneNumber!);
-      }
-      StoreProvider.dispatch(
-        context,
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            secondaryPhoneNumbers: phones,
-            primaryPhoneNumber: PhoneNumber.withValue(value),
-          ),
-        ),
-      );
-      break;
-    case StateContactType.setPrimaryEmail:
-      final List<EmailAddress>? emails =
-          profile.userProfile!.secondaryEmailAddresses;
-
-      emails!.remove(EmailAddress.withValue(value!));
-
-      if (profile.userProfile!.primaryEmailAddress != null) {
-        emails.add(profile.userProfile!.primaryEmailAddress!);
-      }
-      StoreProvider.dispatch(
-        context,
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            secondaryEmailAddresses: emails,
-            primaryEmailAddress: EmailAddress.withValue(value),
-          ),
-        ),
-      );
-      break;
-    case StateContactType.primaryEmail:
-      StoreProvider.dispatch(
-        context,
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            primaryEmailAddress: EmailAddress.withValue(value!),
-          ),
-        ),
-      );
-
-      break;
-    case StateContactType.secondaryPhones:
-      final List<PhoneNumber> phones = <PhoneNumber>[
-        PhoneNumber.withValue(value!)
-      ];
-
-      phones.addAll(
-        StoreProvider.state<AppState>(context)!
-            .userProfileState!
-            .userProfile!
-            .secondaryPhoneNumbers!,
-      );
-
-      StoreProvider.dispatch(
-        context,
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            secondaryPhoneNumbers: phones,
-          ),
-        ),
-      );
-      break;
-    default:
-      final List<EmailAddress> emails = <EmailAddress>[
-        EmailAddress.withValue(value!)
-      ];
-
-      emails.addAll(
-        StoreProvider.state<AppState>(context)!
-            .userProfileState!
-            .userProfile!
-            .secondaryEmailAddresses!,
-      );
-      StoreProvider.dispatch(
-        context,
-        UpdateUserProfileAction(
-          profile: UserProfile(
-            secondaryEmailAddresses: emails,
-          ),
-        ),
-      );
-  }
-}
-
-Future<String> getUploadID({
-  required Map<String, dynamic> fileData,
-  required BuildContext context,
-}) async {
-  try {
-    /// initialize the http client from [AppWrapperBase]
-    final IGraphQlClient _httpClient =
-        AppWrapperBase.of(context)!.graphQLClient;
-
-    /// initialize the [uploadFileEndpoint]
-    final String endPoint =
-        AppWrapperBase.of(context)!.customContext!.uploadFileEndPoint;
-
-    final ProcessedResponse processedResponse = processHttpResponse(
-      await _httpClient.callRESTAPI(
-        endpoint: endPoint,
-        variables: fileData,
-        method: httpPOST,
-      ),
-      context,
-    );
-
-    if (processedResponse.ok == true &&
-        json.decode(processedResponse.response.body)['id'] != null) {
-      final Map<String, dynamic> body =
-          json.decode(processedResponse.response.body) as Map<String, dynamic>;
-      return body['id']!.toString();
-    } else {
-      throw processedResponse.response;
-    }
-  } catch (e, stackTrace) {
-    reportErrorToSentry(
-      context,
-      e,
-      stackTrace: stackTrace,
-      hint: 'Failed To Get UploadID',
-    );
-    return 'err';
-  }
 }
 
 String? userPinValidator(dynamic val) {
@@ -423,28 +250,6 @@ void genericBottomSheet({
   );
 }
 
-void showMedicationBottomSheet({
-  required BuildContext context,
-  required Widget child,
-}) {
-  showModalBottomSheet(
-    backgroundColor: AppColors.whiteColor,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(16),
-        topRight: Radius.circular(16),
-      ),
-    ),
-    context: context,
-    builder: (BuildContext ctx) {
-      return Container(
-        key: actionsContainerKey,
-        child: child,
-      );
-    },
-  );
-}
-
 /// [preferredPaddingOnStretchedScreens] function is used to calculate give a
 /// constant size in width of the items to be displayed on the screen
 /// First it gets the width of the device
@@ -464,27 +269,6 @@ double preferredPaddingOnStretchedScreens({required BuildContext context}) {
   } else {
     return number15;
   }
-}
-
-double getWidthOfSymmetricalWidgetsOnLargeDevice() {
-  return 420 / 2 - 20;
-}
-
-double getWidthOfSymmetricalWidgetsSmallDevices({
-  required BuildContext context,
-}) {
-  return (MediaQuery.of(context).size.width -
-          preferredPaddingOnStretchedScreens(context: context) * 2 -
-          number10) /
-      2;
-}
-
-bool isLargeScreenAndOnLandscape({required BuildContext context}) {
-  if (ResponsiveWidget.isLargeScreen(context) &&
-      ResponsiveWidget.isLandscape(context: context)) {
-    return true;
-  }
-  return false;
 }
 
 String sentenceCaseUserName({

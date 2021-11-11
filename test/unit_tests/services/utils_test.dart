@@ -27,10 +27,6 @@ void main() {
       expect(sentenceCaseUserName(firstName: '', lastName: ''), ' ');
     });
 
-    test('should getWidthOfSymmetricalWidgetsSmallDevices', () {
-      expect(getWidthOfSymmetricalWidgetsOnLargeDevice(), 190.0);
-    });
-
     test('should return false on onWillPopCallback call', () async {
       final bool res = await onWillPopCallback();
       expect(res, false);
