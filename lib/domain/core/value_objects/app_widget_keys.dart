@@ -311,3 +311,6 @@ const Key profileFaqsListViewKey = Key('profile_faqs_view_key');
 //Health Diary Page
 const Key previousButtonKey = Key('previous_button_key');
 const Key nextButtonKey = Key('next_button_key');
+
+//Forgot PIN Page
+const Key forgotPINButtonKey = Key('forgot_PIN_button_key');

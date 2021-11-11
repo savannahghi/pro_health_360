@@ -610,3 +610,6 @@ String defactoZeroStateString({String topic = 'Content'}) =>
 const String termsAndConditionsString = 'Terms and conditions';
 
 const String twoYearText = '2 year';
+
+//Forgot PIN Page
+const String answerToGainAccessString = 'Answer correctly to gain access';

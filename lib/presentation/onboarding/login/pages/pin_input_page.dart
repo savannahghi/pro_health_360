@@ -10,6 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -191,13 +192,15 @@ class _PINInputPageState extends State<PINInputPage> {
                   isCorrectPin: isCorrectPin,
                   canEnterPin: canEnterPin,
                 ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  child: GestureDetector(
+                GestureDetector(
+                  key: forgotPINButtonKey,
+                  onTap: ()=> Navigator.pushNamed(context, BWRoutes.forgotPINPage),
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
                     child: Text(
                       forgotPINString,
-                      style: TextThemes.normalSize15Text(
-                          AppColors.secondaryColor),
+                      style:
+                          TextThemes.normalSize15Text(AppColors.secondaryColor),
                     ),
                   ),
                 ),

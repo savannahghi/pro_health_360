@@ -10,6 +10,7 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
 import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_feedback_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_view_page.dart';
@@ -245,6 +246,11 @@ class RouteGenerator {
           builder: (_) => FAQDetailViewPage(
             payload: args as FAQContent,
           ),
+        );
+
+      case BWRoutes.forgotPINPage:
+        return MaterialPageRoute<ForgotPINPage>(
+          builder: (_) => const ForgotPINPage(),
         );
       default:
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());

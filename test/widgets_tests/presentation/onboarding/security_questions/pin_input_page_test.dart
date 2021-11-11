@@ -15,6 +15,7 @@ import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
 
@@ -116,7 +117,8 @@ void main() {
       expect(find.text(wrongPINString), findsNothing);
     });
 
-    testWidgets('1, 2, 3 and 4 buttons are tappable', (WidgetTester tester) async {
+    testWidgets('1, 2, 3 and 4 buttons are tappable',
+        (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -181,6 +183,23 @@ void main() {
       await tester.tap(numberSixButton);
 
       expect(find.text('646'), findsOneWidget);
+    });
+    testWidgets('navigates to Forgot PIN Page', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: PINInputPage(),
+      );
+
+      final Finder forgotPINButton = find.byKey(forgotPINButtonKey);
+      expect(forgotPINButton, findsOneWidget);
+
+      await tester.ensureVisible(forgotPINButton);
+      await tester.tap(forgotPINButton);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ForgotPINPage), findsOneWidget);
     });
   });
 }

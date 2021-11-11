@@ -9,6 +9,7 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
@@ -445,5 +446,15 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ArticleDetailsPage>;
     expect(route, isA<MaterialPageRoute<ArticleDetailsPage>>());
     expect(route.builder(context), isA<ArticleDetailsPage>());
+  });
+
+  test('Test router returns ForgotPINPage', () {
+    const RouteSettings settings = RouteSettings(
+        name: BWRoutes.forgotPINPage,
+        arguments: <String, dynamic>{'test': 'value'});
+    final MaterialPageRoute<ForgotPINPage> route =
+        routeGenerator(settings) as MaterialPageRoute<ForgotPINPage>;
+    expect(route, isA<MaterialPageRoute<ForgotPINPage>>());
+    expect(route.builder(context), isA<ForgotPINPage>());
   });
 }
