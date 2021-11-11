@@ -61,7 +61,7 @@ class PersonalInformationPage extends StatelessWidget {
                 ],
               ),
 
-              smallVerticalSizedBox,
+              mediumVerticalSizedBox,
               const PersonalInformationSecondaryWidget(
                 fieldName: name,
                 fieldValue: janeDoe,

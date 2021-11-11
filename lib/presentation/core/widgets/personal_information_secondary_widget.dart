@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
 
@@ -35,7 +36,7 @@ class PersonalInformationSecondaryWidget extends StatelessWidget {
             ),
             Text(
               fieldValue,
-              style: TextThemes.normalSize14Text(),
+              style: TextThemes.normalSize14Text(AppColors.greyTextColor),
             ),
           ],
         ),

@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -26,7 +27,8 @@ class PersonalInformationWidget extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Text(description, style: TextThemes.normalSize14Text()),
+          child: Text(description,
+              style: TextThemes.normalSize14Text(AppColors.greyTextColor)),
         ),
       ),
     );
