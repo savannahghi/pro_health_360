@@ -619,3 +619,17 @@ const String imageFileText = 'Image file';
 
 String getDoctorName(String? firstName, String? lastName) =>
     'Dr $firstName $lastName';
+
+//Edit information page
+const String mother = 'Mother';
+const String sibling = 'Sibling';
+const String selectYourPreferredLanguage = 'Select your preferred language';
+const String swahili = 'Swahili';
+const String selectYourPreferredClinic = 'Select your preferred Clinic';
+const String equityAfiaUmoja = 'Equity Afia Umoja';
+const String kenyattaHospital = 'Kenyatta National Hospital';
+const String selectYourPreferredCommunication =
+    'Select your preferred communication channel';
+const String communicationChannel = 'Communication channel';
+const String nickNameFieldName = 'Enter your nickname';
+String editInfoTitle(String title) => 'Edit $title';

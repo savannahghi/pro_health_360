@@ -1,7 +1,7 @@
 const String transparentLogo = 'assets/images/transparent_logo.svg';
 const String landingBackgroundImg = 'assets/images/landing.jpg';
-
 const String closeIconUrl = 'assets/icons/close.png';
+const String closeIconSvg = 'assets/icons/close_icon.svg';
 const String errorIconUrl = 'assets/icons/error.svg';
 const String infoIconUrl = 'assets/icons/info.svg';
 

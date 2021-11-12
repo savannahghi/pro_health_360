@@ -95,6 +95,9 @@ class BWRoutes {
 
   //Forgot PIN Page
   static const String forgotPINPage = '/forgotPINPage';
+
+  //Edit Information Page
+  static const String editInformationPage = '/editInformationPage';
 }
 
 List<String> unProtectedRoutes = <String>[

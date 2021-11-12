@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/presentation/core/widgets/personal_information_secondary_widget.dart';
+import 'package:myafyahub/presentation/profile/widgets/edit_info_button_widget.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -45,18 +47,8 @@ class PersonalInformationPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.userInitialsColor,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Text(
-                      editString,
-                      textAlign: TextAlign.center,
-                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
-                    ),
+                  EditInformationButtonWidget(
+                    editInformationItem: careGiverEditInfo,
                   ),
                 ],
               ),
@@ -88,18 +80,8 @@ class PersonalInformationPage extends StatelessWidget {
                     style:
                         TextThemes.normalSize16Text(AppColors.secondaryColor),
                   ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.userInitialsColor,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Text(
-                      editString,
-                      textAlign: TextAlign.center,
-                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
-                    ),
+                  EditInformationButtonWidget(
+                    editInformationItem: preferredLanguageEditInfo,
                   ),
                 ],
               ),
@@ -117,18 +99,8 @@ class PersonalInformationPage extends StatelessWidget {
                     style:
                         TextThemes.normalSize16Text(AppColors.secondaryColor),
                   ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.userInitialsColor,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Text(
-                      editString,
-                      textAlign: TextAlign.center,
-                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
-                    ),
+                  EditInformationButtonWidget(
+                    editInformationItem: preferredClinicEditInfo,
                   ),
                 ],
               ),
@@ -147,18 +119,8 @@ class PersonalInformationPage extends StatelessWidget {
                     style:
                         TextThemes.normalSize16Text(AppColors.secondaryColor),
                   ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppColors.userInitialsColor,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Text(
-                      editString,
-                      textAlign: TextAlign.center,
-                      style: TextThemes.normalSize14Text(AppColors.whiteColor),
-                    ),
+                  EditInformationButtonWidget(
+                    editInformationItem: preferredCommunicationEditInfo,
                   ),
                 ],
               ),

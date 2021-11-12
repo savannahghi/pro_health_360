@@ -25,9 +25,11 @@ import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
+import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/feed/feed_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -800,3 +802,110 @@ bool shouldInputPIN(BuildContext context) {
     }
   }
 }
+
+final EditInformationInputItem nameInputItem = EditInformationInputItem(
+  fieldName: name,
+  hintText: janeDoe,
+  inputType: EditInformationInputType.Text,
+  inputController: TextEditingController(),
+);
+
+final EditInformationInputItem phoneInputItem = EditInformationInputItem(
+  fieldName: phoneNumber,
+  hintText: hotlineNumberString,
+  inputType: EditInformationInputType.Text,
+  inputController: TextEditingController(),
+);
+
+final EditInformationInputItem relationInputItem = EditInformationInputItem(
+  fieldName: relationText,
+  hintText: relationText,
+  inputType: EditInformationInputType.DropDown,
+  inputController: TextEditingController(),
+  dropDownOptionList: <String>[
+    father,
+    mother,
+    sibling,
+  ],
+);
+
+final EditInformationItem careGiverEditInfo = EditInformationItem(
+  title: myProfileCaregiverText,
+  description: myProfileCaregiverDescriptionText,
+  editInformationInputItem: <EditInformationInputItem>[
+    nameInputItem,
+    phoneInputItem,
+    relationInputItem,
+  ],
+);
+
+final EditInformationInputItem preferredLanguageInputItem =
+    EditInformationInputItem(
+  fieldName: selectYourPreferredLanguage,
+  hintText: selectYourPreferredLanguage,
+  inputType: EditInformationInputType.DropDown,
+  inputController: TextEditingController(),
+  dropDownOptionList: <String>[
+    english,
+    swahili,
+  ],
+);
+
+final EditInformationItem preferredLanguageEditInfo = EditInformationItem(
+  title: preferredLanguage,
+  editInformationInputItem: <EditInformationInputItem>[
+    preferredLanguageInputItem
+  ],
+);
+
+final EditInformationInputItem preferredClinicInputItem =
+    EditInformationInputItem(
+  fieldName: selectYourPreferredClinic,
+  hintText: selectYourPreferredClinic,
+  inputType: EditInformationInputType.DropDown,
+  inputController: TextEditingController(),
+  dropDownOptionList: <String>[
+    clinic,
+    equityAfiaUmoja,
+    kenyattaHospital,
+  ],
+);
+
+final EditInformationItem preferredClinicEditInfo = EditInformationItem(
+  title: preferredClinic,
+  editInformationInputItem: <EditInformationInputItem>[
+    preferredClinicInputItem
+  ],
+);
+
+final EditInformationInputItem preferredCommunicationInputItem =
+    EditInformationInputItem(
+  fieldName: selectYourPreferredCommunication,
+  hintText: selectYourPreferredCommunication,
+  inputType: EditInformationInputType.DropDown,
+  inputController: TextEditingController(),
+  dropDownOptionList: <String>[
+    inApp,
+    whatsAppText,
+    textString,
+  ],
+);
+
+final EditInformationItem preferredCommunicationEditInfo = EditInformationItem(
+  title: communicationChannel,
+  editInformationInputItem: <EditInformationInputItem>[
+    preferredCommunicationInputItem
+  ],
+);
+
+final EditInformationInputItem nickNameInputItem = EditInformationInputItem(
+  fieldName: nickNameFieldName,
+  hintText: janeDoe,
+  inputType: EditInformationInputType.Text,
+  inputController: TextEditingController(),
+);
+
+final EditInformationItem nickNameEditInfo = EditInformationItem(
+  title: nickNameString,
+  editInformationInputItem: <EditInformationInputItem>[nickNameInputItem],
+);

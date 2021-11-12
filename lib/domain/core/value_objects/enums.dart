@@ -62,3 +62,5 @@ extension MoodTypeEx on MoodType {
 }
 
 enum FeedType { Video, Article }
+
+enum EditInformationInputType { Text, DropDown }

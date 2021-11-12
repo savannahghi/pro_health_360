@@ -126,6 +126,9 @@ const Key editButtonKey = Key('edit_button');
 const Key cancelButtonKey = Key('cancel_button');
 const Key genderOptionFieldKey = Key('gender_option_field');
 
+//EditInformationPage
+const Key editInformationDropdownOptionFieldKey = Key('gender_option_field');
+
 //welcome page keys
 const Key skipOnboardingTourKey = Key('skip_onboarding_tour_key');
 const Key welcomePageNextKey = Key('welcome_page_next_key');
