@@ -1,10 +1,9 @@
 // Flutter imports:
+import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/material.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:afya_moja_core/community_list_item.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -56,7 +55,8 @@ class CommunityListViewPage extends StatelessWidget {
     ];
 
     return AppScaffold(
-      appBar: const CustomAppBar(title: communityPageString),
+      appBar:
+          const CustomAppBar(title: communityPageString, showBackButton: false),
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
