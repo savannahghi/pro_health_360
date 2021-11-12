@@ -132,3 +132,7 @@ const String verySadIconSvgPath = 'assets/icons/very_sad.svg';
 
 const String moodSelectionBackgroundUrl =
     'assets/images/mood_selection_background.png';
+
+const String placeholderImageUrl = 'assets/images/placeholder_image.svg';
+
+const String attachmentIconSvg = 'assets/icons/attachment.svg';

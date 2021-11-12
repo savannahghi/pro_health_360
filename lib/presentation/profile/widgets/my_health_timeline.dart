@@ -1,12 +1,13 @@
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:myafyahub/domain/core/entities/profile/doctor.dart';
+import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:afya_moja_core/information_list_card.dart';
+import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item.dart';
 import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
+import 'package:myafyahub/presentation/profile/widgets/timeline_indicator.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class MyHealthTimeline extends StatefulWidget {
@@ -100,21 +101,18 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                   ),
                 ),
                 if (hasDoneCalculation)
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: index == 0 ? height * 0.3 : 0.0,
-                        right: 12.0,
-                      ),
-                      child: CustomPaint(
-                        size: Size(1, height),
-                        painter: DashedLine(
-                          dotOffset: index != 0 ? 44.0 : 0.0,
-                          dashSize: 5,
-                          gapSize: 2,
-                          color: AppColors.timelineDotColor,
-                        ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: index == 0 ? height * 0.3 : 0.0,
+                      right: 12.0,
+                    ),
+                    child: CustomPaint(
+                      size: Size(1, height),
+                      painter: DashedLine(
+                        dotOffset: index != 0 ? 44.0 : 0.0,
+                        dashSize: 5,
+                        gapSize: 2,
+                        color: AppColors.timelineDotColor,
                       ),
                     ),
                   ),
@@ -138,128 +136,13 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
     for (final TimelineItem item in items) {
       results.add(
-        InformationListCard(
-          borderRadius: 12,
-          alternateLeadingIcon: Container(
-            decoration: BoxDecoration(
-              color: item.isDiary
-                  ? AppColors.diaryListCardColor
-                  : AppColors.listCardColor,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset(
-              'assets/icons/${item.leadingIcon}.svg',
-              color: AppColors.timelineDotColor,
-            ),
-          ),
-          iconBackgroundColor:
-              item.isDiary ? AppColors.diaryListCardColor : null,
-          title: Text(
-            item.title,
-            style: TextThemes.normalSize12Text(AppColors.timelineDotColor),
-          ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ...getItemContent(item),
-              const SizedBox(height: 4),
-              Text(
-                item.time,
-                style: TextThemes.normalSize10Text(AppColors.greyTextColor),
-              ),
-            ],
-          ),
-        ),
+        CustomTimelineListItem(item: item),
       );
       results.add(const SizedBox(height: 10));
     }
 
     return results;
   }
-
-  List<Widget> getItemContent(TimelineItem item) {
-    final List<Widget> content = <Widget>[];
-
-    if (item.doctor != null) {
-      final String? firstName = item.doctor?.firstName.getValue();
-      final String? lastName = item.doctor?.lastName.getValue();
-      final String venue = item.venue!;
-
-      content.add(
-        Row(
-          children: <Widget>[
-            Text(
-              'Dr $firstName $lastName',
-              style: TextThemes.normalSize10Text(AppColors.greyTextColor),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              venue,
-              style: TextThemes.normalSize10Text(AppColors.greyTextColor),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return content;
-  }
-}
-
-class TimelineIndicator extends StatelessWidget {
-  const TimelineIndicator({
-    Key? key,
-    required this.date,
-  }) : super(key: key);
-
-  final DateTime date;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Flexible(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                date.day.toString(),
-                style: TextThemes.boldSize22Text(AppColors.greyTextColor),
-              ),
-              Text(
-                '${date.month}/${date.year}',
-                style: TextThemes.normalSize10Text(AppColors.greyTextColor),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class TimelineItem {
-  const TimelineItem({
-    required this.leadingIcon,
-    required this.title,
-    required this.time,
-    this.doctor,
-    this.venue,
-    this.file,
-    this.fileType,
-    bool? isDiary,
-  }) : isDiary = isDiary ?? false;
-
-  final String leadingIcon;
-  final String title;
-  final String time;
-  final Doctor? doctor;
-  final String? venue;
-  final String? file;
-  final String? fileType;
-  final bool isDiary;
 }
 
 final Map<String, List<TimelineItem>> timelineItems =
@@ -312,7 +195,7 @@ final Map<String, List<TimelineItem>> timelineItems =
     ),
     TimelineItem(
       leadingIcon: 'syringe',
-      title: 'Bloodwork',
+      title: 'Diary',
       doctor: Doctor(
         firstName: Name.withValue('James'),
         lastName: Name.withValue('Jerms'),
@@ -320,6 +203,8 @@ final Map<String, List<TimelineItem>> timelineItems =
       venue: 'Stay Well Center',
       time: '12:00pm',
       isDiary: true,
+      fileType: AttachmentFileType.image,
+      attachmentUrl: 'https://picsum.photos/250?image=9',
     ),
   ],
 };

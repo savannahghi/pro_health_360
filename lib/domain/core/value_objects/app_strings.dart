@@ -613,3 +613,9 @@ const String twoYearText = '2 year';
 
 //Forgot PIN Page
 const String answerToGainAccessString = 'Answer correctly to gain access';
+
+const String textEntryText = 'Text entry';
+const String imageFileText = 'Image file';
+
+String getDoctorName(String? firstName, String? lastName) =>
+    'Dr $firstName $lastName';

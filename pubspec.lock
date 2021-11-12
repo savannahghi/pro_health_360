@@ -135,7 +135,7 @@ packages:
     source: hosted
     version: "1.0.1"
   camera:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: camera
       url: "https://pub.dartlang.org"
@@ -289,7 +289,7 @@ packages:
     source: hosted
     version: "0.17.0"
   cupertino_icons:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
@@ -365,27 +365,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.32-nullsafety"
-  dots_indicator:
-    dependency: transitive
-    description:
-      name: dots_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   dotted_border:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dotted_border
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0+1"
-  dotted_decoration:
-    dependency: "direct main"
-    description:
-      name: dotted_decoration
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   double_back_to_close_app:
     dependency: "direct main"
     description:
@@ -393,13 +379,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
   facebook_app_events:
     dependency: "direct main"
     description:
@@ -436,7 +415,7 @@ packages:
     source: hosted
     version: "6.1.2"
   file_picker:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: file_picker
       url: "https://pub.dartlang.org"
@@ -547,13 +526,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  fl_chart:
-    dependency: "direct main"
-    description:
-      name: fl_chart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.36.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -742,20 +714,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  google_maps_flutter:
-    dependency: "direct main"
-    description:
-      name: google_maps_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.9"
-  google_maps_flutter_platform_interface:
-    dependency: transitive
-    description:
-      name: google_maps_flutter_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
   gql:
     dependency: transitive
     description:
@@ -826,13 +784,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
-  introduction_screen:
-    dependency: "direct main"
-    description:
-      name: introduction_screen
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   io:
     dependency: transitive
     description:
@@ -882,34 +833,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.7"
-  localstorage:
-    dependency: "direct main"
-    description:
-      name: localstorage
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.0+1"
-  location:
-    dependency: "direct main"
-    description:
-      name: location
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.3.0"
-  location_platform_interface:
-    dependency: transitive
-    description:
-      name: location_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.3.0"
-  location_web:
-    dependency: transitive
-    description:
-      name: location_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.1"
   logger:
     dependency: transitive
     description:
@@ -1321,15 +1244,8 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  smooth_page_indicator:
-    dependency: "direct main"
-    description:
-      name: smooth_page_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0-nullsafety.0"
   sms_autofill:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sms_autofill
       url: "https://pub.dartlang.org"
