@@ -6,6 +6,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -79,6 +81,12 @@ void main() {
 
     testWidgets('should navigate to the different tabs',
         (WidgetTester tester) async {
+      store.dispatch(AuthStatusAction(
+          signedInTime:
+              DateTime.now().subtract(const Duration(minutes: 30)).toString()));
+      store.dispatch(HealthPagePINInputAction(
+          lastPINInputTime:
+              DateTime.now().subtract(const Duration(minutes: 30)).toString()));
       await buildTestWidget(
         tester: tester,
         store: store,

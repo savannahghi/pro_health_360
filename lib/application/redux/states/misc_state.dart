@@ -22,6 +22,7 @@ class MiscState with _$MiscState {
     BottomNavObj? bottomNavObj,
     List<dynamic>? libraryListItems,
     AppReviewObj? appReviewObj,
+    String? healthPagePINInputTime,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -35,5 +36,6 @@ class MiscState with _$MiscState {
         bottomNavObj: BottomNavObj(),
         libraryListItems: <dynamic>[],
         appReviewObj: AppReviewObj(),
+        healthPagePINInputTime: '',
       );
 }

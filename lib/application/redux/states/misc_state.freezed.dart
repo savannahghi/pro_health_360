@@ -27,7 +27,8 @@ class _$MiscStateTearOff {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj}) {
+      AppReviewObj? appReviewObj,
+      String? healthPagePINInputTime}) {
     return _MiscState(
       phoneLogin: phoneLogin,
       changePIN: changePIN,
@@ -36,6 +37,7 @@ class _$MiscStateTearOff {
       bottomNavObj: bottomNavObj,
       libraryListItems: libraryListItems,
       appReviewObj: appReviewObj,
+      healthPagePINInputTime: healthPagePINInputTime,
     );
   }
 
@@ -56,6 +58,7 @@ mixin _$MiscState {
   BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   AppReviewObj? get appReviewObj => throw _privateConstructorUsedError;
+  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +77,8 @@ abstract class $MiscStateCopyWith<$Res> {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj});
+      AppReviewObj? appReviewObj,
+      String? healthPagePINInputTime});
 }
 
 /// @nodoc
@@ -94,6 +98,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? bottomNavObj = freezed,
     Object? libraryListItems = freezed,
     Object? appReviewObj = freezed,
+    Object? healthPagePINInputTime = freezed,
   }) {
     return _then(_value.copyWith(
       phoneLogin: phoneLogin == freezed
@@ -124,6 +129,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.appReviewObj
           : appReviewObj // ignore: cast_nullable_to_non_nullable
               as AppReviewObj?,
+      healthPagePINInputTime: healthPagePINInputTime == freezed
+          ? _value.healthPagePINInputTime
+          : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -141,7 +150,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj});
+      AppReviewObj? appReviewObj,
+      String? healthPagePINInputTime});
 }
 
 /// @nodoc
@@ -162,6 +172,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? bottomNavObj = freezed,
     Object? libraryListItems = freezed,
     Object? appReviewObj = freezed,
+    Object? healthPagePINInputTime = freezed,
   }) {
     return _then(_MiscState(
       phoneLogin: phoneLogin == freezed
@@ -192,6 +203,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.appReviewObj
           : appReviewObj // ignore: cast_nullable_to_non_nullable
               as AppReviewObj?,
+      healthPagePINInputTime: healthPagePINInputTime == freezed
+          ? _value.healthPagePINInputTime
+          : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -206,7 +221,8 @@ class _$_MiscState implements _MiscState {
       this.appErrorState,
       this.bottomNavObj,
       this.libraryListItems,
-      this.appReviewObj});
+      this.appReviewObj,
+      this.healthPagePINInputTime});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$_$_MiscStateFromJson(json);
@@ -225,10 +241,12 @@ class _$_MiscState implements _MiscState {
   final List<dynamic>? libraryListItems;
   @override
   final AppReviewObj? appReviewObj;
+  @override
+  final String? healthPagePINInputTime;
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, changePIN: $changePIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, appReviewObj: $appReviewObj)';
+    return 'MiscState(phoneLogin: $phoneLogin, changePIN: $changePIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, appReviewObj: $appReviewObj, healthPagePINInputTime: $healthPagePINInputTime)';
   }
 
   @override
@@ -255,7 +273,10 @@ class _$_MiscState implements _MiscState {
                     .equals(other.libraryListItems, libraryListItems)) &&
             (identical(other.appReviewObj, appReviewObj) ||
                 const DeepCollectionEquality()
-                    .equals(other.appReviewObj, appReviewObj)));
+                    .equals(other.appReviewObj, appReviewObj)) &&
+            (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
+                const DeepCollectionEquality().equals(
+                    other.healthPagePINInputTime, healthPagePINInputTime)));
   }
 
   @override
@@ -267,7 +288,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(appErrorState) ^
       const DeepCollectionEquality().hash(bottomNavObj) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
-      const DeepCollectionEquality().hash(appReviewObj);
+      const DeepCollectionEquality().hash(appReviewObj) ^
+      const DeepCollectionEquality().hash(healthPagePINInputTime);
 
   @JsonKey(ignore: true)
   @override
@@ -288,7 +310,8 @@ abstract class _MiscState implements MiscState {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj}) = _$_MiscState;
+      AppReviewObj? appReviewObj,
+      String? healthPagePINInputTime}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -307,6 +330,8 @@ abstract class _MiscState implements MiscState {
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override
   AppReviewObj? get appReviewObj => throw _privateConstructorUsedError;
+  @override
+  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

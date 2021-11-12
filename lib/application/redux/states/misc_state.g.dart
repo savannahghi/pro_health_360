@@ -27,6 +27,7 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
     appReviewObj: json['appReviewObj'] == null
         ? null
         : AppReviewObj.fromJson(json['appReviewObj'] as Map<String, dynamic>),
+    healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
   );
 }
 
@@ -39,4 +40,5 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'bottomNavObj': instance.bottomNavObj,
       'libraryListItems': instance.libraryListItems,
       'appReviewObj': instance.appReviewObj,
+      'healthPagePINInputTime': instance.healthPagePINInputTime,
     };

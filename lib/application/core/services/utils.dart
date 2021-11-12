@@ -18,6 +18,7 @@ import 'package:misc_utilities/number_constants.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/actions/app_review_action.dart';
+import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
@@ -768,3 +769,34 @@ final List<FeedDetails> feedItems = <FeedDetails>[
     bodyContent: defactoZeroStateString(),
   ),
 ];
+
+bool shouldInputPIN(BuildContext context) {
+  final DateTime signedInTime = DateTime.parse(
+      StoreProvider.state<AppState>(context)!.userProfileState!.signedInTime!);
+
+  final String lastPINInputTime = StoreProvider.state<AppState>(context)!
+          .miscState!
+          .healthPagePINInputTime ??
+      '';
+
+  final int differenceFromSignIn =
+      DateTime.now().difference(signedInTime).inMinutes;
+
+  final int differenceFromLastInput = lastPINInputTime.isNotEmpty
+      ? DateTime.now().difference(DateTime.parse(lastPINInputTime)).inMinutes
+      : 0;
+
+  if (differenceFromSignIn > 20 && lastPINInputTime.isEmpty) {
+    StoreProvider.dispatch(context,
+        HealthPagePINInputAction(lastPINInputTime: DateTime.now().toString()));
+    return true;
+  } else {
+    if (differenceFromLastInput > 20) {
+      StoreProvider.dispatch(
+          context, HealthPagePINInputAction(lastPINInputTime: ''));
+      return true;
+    } else {
+      return false;
+    }
+  }
+}

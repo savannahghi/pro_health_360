@@ -11,6 +11,8 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:misc_utilities/misc.dart' as misc;
 import 'package:mockito/annotations.dart';
+import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -590,6 +592,62 @@ void main() {
       expect(find.text('2012 '), findsOneWidget);
       expect(find.text('at '), findsNothing);
       expect(find.byType(SizedBox), findsWidgets);
+    });
+  });
+  group('shouldInputPIN', () {
+    late bool testBool;
+    store.dispatch(AuthStatusAction(
+        signedInTime:
+            DateTime.now().subtract(const Duration(minutes: 30)).toString()));
+    testWidgets(
+        'should return false if difference between current time and signed in time is greater than 20 minutes',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: StoreConnector<AppState, AppState>(
+            converter: (Store<AppState> store) {
+              return store.state;
+            },
+            builder: (BuildContext context, AppState appState) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Builder(
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: SILPrimaryButton(
+                          buttonKey: const Key('update_contacts'),
+                          onPressed: () {
+                            testBool = shouldInputPIN(context);
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
+
+      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.pumpAndSettle();
+      expect(testBool, true);
+
+      store.dispatch(HealthPagePINInputAction(
+          lastPINInputTime:
+              DateTime.now().subtract(const Duration(minutes: 30)).toString()));
+      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.pumpAndSettle();
+      expect(testBool, true);
+
+      store.dispatch(HealthPagePINInputAction(
+          lastPINInputTime:
+              DateTime.now().subtract(const Duration(minutes: 10)).toString()));
+      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.pumpAndSettle();
+      expect(testBool, false);
     });
   });
 }

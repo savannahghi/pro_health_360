@@ -3,6 +3,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -41,7 +42,8 @@ class BottomNavBar extends StatelessWidget {
                 Navigator.pushReplacementNamed(
                     context, bottomNavItems[currentIndex].onTapRoute);
 
-                if (BottomNavIndex.myHealth.index == currentIndex) {
+                if (BottomNavIndex.myHealth.index == currentIndex &&
+                    shouldInputPIN(context)) {
                   Navigator.pushReplacementNamed(
                     context,
                     BWRoutes.pinInputPage,
