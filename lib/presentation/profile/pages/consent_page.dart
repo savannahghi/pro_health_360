@@ -50,11 +50,14 @@ class _ConsentPageState extends State<ConsentPage> {
                   title: Text(
                     portalTermsText,
                     style: TextThemes.normalSize16Text(
-                        Theme.of(context).primaryColor),
+                      Theme.of(context).primaryColor,
+                    ),
                   ),
                   body: Text(
                     viewTermsText,
-                    style: TextThemes.normalSize14Text(Colors.grey),
+                    style: TextThemes.normalSize14Text(
+                      Colors.grey,
+                    ),
                   ),
                 ),
               ),

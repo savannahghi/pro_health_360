@@ -19,14 +19,17 @@ void main() {
     });
     testWidgets('should render correctly', (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
             return const MoodFeedbackPage(
               moodType: MoodType.Excited,
             );
-          }));
+          },
+        ),
+      );
 
       expect(find.byType(MoodFeedbackPage), findsWidgets);
       expect(find.byType(TextField), findsOneWidget);
@@ -35,14 +38,17 @@ void main() {
     testWidgets('should pop when cancel button is clicked',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
             return const MoodFeedbackPage(
               moodType: MoodType.Happy,
             );
-          }));
+          },
+        ),
+      );
 
       final Finder cancelButton = find.byKey(moodFeedbackGestureDetectorKey);
 
@@ -55,14 +61,17 @@ void main() {
     testWidgets('should pop when save entry button is clicked',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
             return const MoodFeedbackPage(
               moodType: MoodType.Excited,
             );
-          }));
+          },
+        ),
+      );
 
       final Finder moodFeedbackButton = find.byKey(moodFeedbackButtonKey);
 
@@ -75,14 +84,17 @@ void main() {
     testWidgets('renders correctly if patient isn\'t in a good mood',
         (WidgetTester tester) async {
       await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(builder: (BuildContext context) {
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
             return const MoodFeedbackPage(
               moodType: MoodType.Sad,
             );
-          }));
+          },
+        ),
+      );
 
       final Finder moodFeedbackButton = find.byKey(moodFeedbackButtonKey);
 

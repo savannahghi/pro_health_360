@@ -774,7 +774,8 @@ final List<FeedDetails> feedItems = <FeedDetails>[
 
 bool shouldInputPIN(BuildContext context) {
   final DateTime signedInTime = DateTime.parse(
-      StoreProvider.state<AppState>(context)!.userProfileState!.signedInTime!);
+    StoreProvider.state<AppState>(context)!.userProfileState!.signedInTime!,
+  );
 
   final String lastPINInputTime = StoreProvider.state<AppState>(context)!
           .miscState!
@@ -789,13 +790,19 @@ bool shouldInputPIN(BuildContext context) {
       : 0;
 
   if (differenceFromSignIn > 20 && lastPINInputTime.isEmpty) {
-    StoreProvider.dispatch(context,
-        HealthPagePINInputAction(lastPINInputTime: DateTime.now().toString()));
+    StoreProvider.dispatch(
+      context,
+      HealthPagePINInputAction(
+        lastPINInputTime: DateTime.now().toString(),
+      ),
+    );
     return true;
   } else {
     if (differenceFromLastInput > 20) {
       StoreProvider.dispatch(
-          context, HealthPagePINInputAction(lastPINInputTime: ''));
+        context,
+        HealthPagePINInputAction(lastPINInputTime: ''),
+      );
       return true;
     } else {
       return false;

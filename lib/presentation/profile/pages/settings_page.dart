@@ -39,7 +39,7 @@ class SettingsPage extends StatelessWidget {
                         Text(
                           nickNameString,
                           style: TextThemes.boldSize15Text(
-                              AppColors.secondaryColor),
+                              AppColors.secondaryColor,),
                         ),
                         EditInformationButtonWidget(
                           editInformationItem: nickNameEditInfo,

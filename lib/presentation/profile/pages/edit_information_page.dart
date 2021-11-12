@@ -70,7 +70,8 @@ class EditInformationPage extends StatelessWidget {
                           Text(
                             editInformationInputItem.fieldName,
                             style: TextThemes.boldSize14Text(
-                                AppColors.greyTextColor),
+                              AppColors.greyTextColor,
+                            ),
                           ),
                           verySmallVerticalSizedBox,
                           CustomTextField(
@@ -108,7 +109,9 @@ class EditInformationPage extends StatelessWidget {
                             filled: true,
                             fillColor: white,
                             contentPadding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 15),
+                              vertical: 15,
+                              horizontal: 15,
+                            ),
                             labelStyle: const TextStyle(
                               fontWeight: FontWeight.w300,
                               color: Colors.grey,
@@ -128,8 +131,8 @@ class EditInformationPage extends StatelessWidget {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(5)),
                             ),

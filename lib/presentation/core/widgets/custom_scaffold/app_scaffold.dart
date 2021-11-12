@@ -18,12 +18,13 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100),
-          child: appBar,
-        ),
-        body: body,
-        bottomNavigationBar: const BottomNavBar());
+      backgroundColor: Theme.of(context).backgroundColor,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: appBar,
+      ),
+      body: body,
+      bottomNavigationBar: const BottomNavBar(),
+    );
   }
 }

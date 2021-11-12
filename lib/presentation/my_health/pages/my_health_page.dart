@@ -51,20 +51,22 @@ class MyHealthPage extends StatelessWidget {
                     ),
                     child: Center(
                       child: StoreConnector<AppState, UserProfileViewModel>(
-                          converter: (Store<AppState> store) =>
-                              UserProfileViewModel.fromStore(store),
-                          builder:
-                              (BuildContext context, UserProfileViewModel vm) {
-                            final UserProfileState userProfileState =
-                                vm.userProfileState;
-                            return Text(
-                              extractNamesInitials(
-                                name: getDisplayName(userProfileState),
-                              ),
-                              style: TextThemes.boldSize20Text(
-                                  AppColors.secondaryColor),
-                            );
-                          }),
+                        converter: (Store<AppState> store) =>
+                            UserProfileViewModel.fromStore(store),
+                        builder:
+                            (BuildContext context, UserProfileViewModel vm) {
+                          final UserProfileState userProfileState =
+                              vm.userProfileState;
+                          return Text(
+                            extractNamesInitials(
+                              name: getDisplayName(userProfileState),
+                            ),
+                            style: TextThemes.boldSize20Text(
+                              AppColors.secondaryColor,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   body: Text(

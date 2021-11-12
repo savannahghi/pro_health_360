@@ -93,7 +93,11 @@ class ForgotPINPage extends StatelessWidget {
                   buttonColor: AppColors.secondaryColor,
                   onPressed: () {
                     StoreProvider.dispatch(
-                        context, BottomNavAction(currentBottomNavIndex: 3));
+                      context,
+                      BottomNavAction(
+                        currentBottomNavIndex: 3,
+                      ),
+                    );
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       BWRoutes.home,

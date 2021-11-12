@@ -103,15 +103,15 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                               Text(
                                 areYouFeelingAnyOfTheFollowingString,
                                 style: TextThemes.lightSize16Text(
-                                        AppColors.whiteColor)
-                                    .copyWith(fontSize: 20),
+                                  AppColors.whiteColor,
+                                ).copyWith(fontSize: 20),
                               ),
                               smallVerticalSizedBox,
                               Text(
                                 selectWhatBestDescribesHowYourCurrentConditionString,
                                 style: TextThemes.normalSize14Text(
-                                        AppColors.whiteColor)
-                                    .copyWith(
+                                  AppColors.whiteColor,
+                                ).copyWith(
                                   fontSize: 12,
                                   fontStyle: FontStyle.italic,
                                 ),
@@ -123,8 +123,8 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                             child: Text(
                               soSorryPleaseDescribeHowAreFeelingString,
                               style: TextThemes.lightSize16Text(
-                                      AppColors.whiteColor)
-                                  .copyWith(fontSize: 20),
+                                AppColors.whiteColor,
+                              ).copyWith(fontSize: 20),
                             ),
                           ),
                         mediumVerticalSizedBox,
@@ -136,13 +136,15 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                               controller: feedBackInputController,
                               keyboardType: TextInputType.multiline,
                               style: TextThemes.normalSize14Text(
-                                  AppColors.whiteColor),
+                                AppColors.whiteColor,
+                              ),
                               maxLines: 9,
                               minLines: 8,
                               decoration: InputDecoration(
                                 hintText: addNotesString,
                                 hintStyle: TextThemes.normalSize14Text(
-                                    AppColors.whiteColor),
+                                  AppColors.whiteColor,
+                                ),
                                 filled: true,
                                 fillColor: AppColors.blueChillColor,
                                 enabledBorder: const OutlineInputBorder(

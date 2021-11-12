@@ -596,9 +596,12 @@ void main() {
   });
   group('shouldInputPIN', () {
     late bool testBool;
-    store.dispatch(AuthStatusAction(
+    store.dispatch(
+      AuthStatusAction(
         signedInTime:
-            DateTime.now().subtract(const Duration(minutes: 30)).toString()));
+            DateTime.now().subtract(const Duration(minutes: 30)).toString(),
+      ),
+    );
     testWidgets(
         'should return false if difference between current time and signed in time is greater than 20 minutes',
         (WidgetTester tester) async {
@@ -635,16 +638,22 @@ void main() {
       await tester.pumpAndSettle();
       expect(testBool, true);
 
-      store.dispatch(HealthPagePINInputAction(
+      store.dispatch(
+        HealthPagePINInputAction(
           lastPINInputTime:
-              DateTime.now().subtract(const Duration(minutes: 30)).toString()));
+              DateTime.now().subtract(const Duration(minutes: 30)).toString(),
+        ),
+      );
       await tester.tap(find.byKey(const Key('update_contacts')));
       await tester.pumpAndSettle();
       expect(testBool, true);
 
-      store.dispatch(HealthPagePINInputAction(
+      store.dispatch(
+        HealthPagePINInputAction(
           lastPINInputTime:
-              DateTime.now().subtract(const Duration(minutes: 10)).toString()));
+              DateTime.now().subtract(const Duration(minutes: 10)).toString(),
+        ),
+      );
       await tester.tap(find.byKey(const Key('update_contacts')));
       await tester.pumpAndSettle();
       expect(testBool, false);

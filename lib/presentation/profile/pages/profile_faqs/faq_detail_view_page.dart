@@ -35,8 +35,9 @@ class FAQDetailViewPage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(12)),
+                color: AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Column(
@@ -49,7 +50,8 @@ class FAQDetailViewPage extends StatelessWidget {
                     Text(
                       comingSoonText,
                       style: TextThemes.normalSize16Text(
-                          AppColors.blackColor.withOpacity(0.6)),
+                        AppColors.blackColor.withOpacity(0.6),
+                      ),
                     ),
                   ],
                 ),

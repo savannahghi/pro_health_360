@@ -85,7 +85,8 @@ class CustomTimelineListItem extends StatelessWidget {
                         Text(
                           item.time,
                           style: TextThemes.normalSize10Text(
-                              AppColors.greyTextColor),
+                            AppColors.greyTextColor,
+                          ),
                         ),
                         const SizedBox(height: 4),
                       ],

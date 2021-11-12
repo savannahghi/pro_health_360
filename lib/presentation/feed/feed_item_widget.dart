@@ -41,47 +41,49 @@ class FeedItem extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(7.0),
-              child: Column(children: <Widget>[
-                Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    Container(
-                      height: 170.0,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(feedDetails.coverImageUrl),
-                        ),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(7.0),
+              child: Column(
+                children: <Widget>[
+                  Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 170.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(feedDetails.coverImageUrl),
+                          ),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(7.0),
+                          ),
                         ),
                       ),
-                    ),
-                    if (feedDetails.type == FeedType.Video)
-                      SvgPicture.asset(
-                        playIcon,
-                        width: 50,
-                        height: 50,
-                      ),
-                  ],
-                ),
-                smallVerticalSizedBox,
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    feedDetails.header,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor),
+                      if (feedDetails.type == FeedType.Video)
+                        SvgPicture.asset(
+                          playIcon,
+                          width: 50,
+                          height: 50,
+                        ),
+                    ],
                   ),
-                ),
-                smallVerticalSizedBox,
-                FeedItemBottomRow(
-                  feedDate: feedDetails.date,
-                  readTime: feedDetails.readTime,
-                )
-              ]),
+                  smallVerticalSizedBox,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      feedDetails.header,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextThemes.normalSize16Text(AppColors.secondaryColor),
+                    ),
+                  ),
+                  smallVerticalSizedBox,
+                  FeedItemBottomRow(
+                    feedDate: feedDetails.date,
+                    readTime: feedDetails.readTime,
+                  )
+                ],
+              ),
             ),
             if (isNew)
               Align(

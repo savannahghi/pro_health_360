@@ -58,7 +58,8 @@ class ProfileFaqsPage extends StatelessWidget {
                   Text(
                     frequentlyAskedQuestions,
                     style: TextThemes.normalSize32Text(
-                        Theme.of(context).primaryColor),
+                      Theme.of(context).primaryColor,
+                    ),
                   ),
                   mediumVerticalSizedBox,
                   ListView.builder(
@@ -69,8 +70,10 @@ class ProfileFaqsPage extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, BWRoutes.faqDetailViewPage,
-                              arguments: items[index].faqContent);
+                            context,
+                            BWRoutes.faqDetailViewPage,
+                            arguments: items[index].faqContent,
+                          );
                         },
                         child: items[index],
                       );

@@ -72,41 +72,44 @@ class ArticleDetailsPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Row(children: <Widget>[
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: payload['authorDisplayPic'] == null
-                                  ? const AssetImage(profileImage)
-                                  : NetworkImage(payload['authorDisplayPic']
-                                      .toString()) as ImageProvider,
-                            ),
-                          ),
-                        ),
-                        smallHorizontalSizedBox,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              payload['authorName'].toString(),
-                              style: TextThemes.veryBoldSize15Text(
-                                AppColors.secondaryColor,
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: payload['authorDisplayPic'] == null
+                                    ? const AssetImage(profileImage)
+                                    : NetworkImage(
+                                        payload['authorDisplayPic'].toString(),
+                                      ) as ImageProvider,
                               ),
                             ),
-                            Text(
-                              '$datePublishedString${payload['date'].toString()}',
-                              style: TextThemes.lightSize16Text(
-                                AppColors.greyTextColor,
-                              ).copyWith(fontSize: 12),
-                            ),
-                          ],
-                        )
-                      ]),
+                          ),
+                          smallHorizontalSizedBox,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                payload['authorName'].toString(),
+                                style: TextThemes.veryBoldSize15Text(
+                                  AppColors.secondaryColor,
+                                ),
+                              ),
+                              Text(
+                                '$datePublishedString${payload['date'].toString()}',
+                                style: TextThemes.lightSize16Text(
+                                  AppColors.greyTextColor,
+                                ).copyWith(fontSize: 12),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                       Row(
                         children: <Widget>[
                           FeedItemReactionIcon(

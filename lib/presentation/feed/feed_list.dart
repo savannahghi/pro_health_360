@@ -14,17 +14,18 @@ class FeedList extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: feedItems.length,
-          itemBuilder: (BuildContext context, int index) {
-            final FeedDetails feedDetails = feedItems.elementAt(index);
-            return Padding(
-              padding: const EdgeInsets.only(top: 7.5),
-              child: FeedItem(
-                feedDetails: feedDetails,
-              ),
-            );
-          }),
+        shrinkWrap: true,
+        itemCount: feedItems.length,
+        itemBuilder: (BuildContext context, int index) {
+          final FeedDetails feedDetails = feedItems.elementAt(index);
+          return Padding(
+            padding: const EdgeInsets.only(top: 7.5),
+            child: FeedItem(
+              feedDetails: feedDetails,
+            ),
+          );
+        },
+      ),
     );
   }
 }

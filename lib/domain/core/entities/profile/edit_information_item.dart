@@ -21,9 +21,11 @@ class EditInformationInputItem {
     required this.inputController,
     this.dropDownOptionList,
   }) // Asserts that the dropDown cannot be null if it is a dropdown
-  : assert(inputType == EditInformationInputType.DropDown
-            ? dropDownOptionList != null && dropDownOptionList.isNotEmpty
-            : dropDownOptionList == null);
+  : assert(
+          inputType == EditInformationInputType.DropDown
+              ? dropDownOptionList != null && dropDownOptionList.isNotEmpty
+              : dropDownOptionList == null,
+        );
 
   final String fieldName;
   final String hintText;

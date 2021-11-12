@@ -18,10 +18,14 @@ void main() {
       expect(line1, findsOneWidget);
       expect(
         tester.widget(line1),
-        isA<CustomPaint>().having((CustomPaint painter) {
-          final DashedLine? line = painter.painter as DashedLine?;
-          return line?.dashSize;
-        }, 'dashSize', 5),
+        isA<CustomPaint>().having(
+          (CustomPaint painter) {
+            final DashedLine? line = painter.painter as DashedLine?;
+            return line?.dashSize;
+          },
+          'dashSize',
+          5,
+        ),
       );
 
       await tester.pumpWidget(
@@ -37,10 +41,14 @@ void main() {
 
       expect(
         tester.widget(line2),
-        isA<CustomPaint>().having((CustomPaint painter) {
-          final DashedLine? line = painter.painter as DashedLine?;
-          return line?.dashSize;
-        }, 'dashSize', 4),
+        isA<CustomPaint>().having(
+          (CustomPaint painter) {
+            final DashedLine? line = painter.painter as DashedLine?;
+            return line?.dashSize;
+          },
+          'dashSize',
+          4,
+        ),
       );
     });
   });

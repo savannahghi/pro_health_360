@@ -81,12 +81,18 @@ void main() {
 
     testWidgets('should navigate to the different tabs',
         (WidgetTester tester) async {
-      store.dispatch(AuthStatusAction(
+      store.dispatch(
+        AuthStatusAction(
           signedInTime:
-              DateTime.now().subtract(const Duration(minutes: 30)).toString()));
-      store.dispatch(HealthPagePINInputAction(
+              DateTime.now().subtract(const Duration(minutes: 30)).toString(),
+        ),
+      );
+      store.dispatch(
+        HealthPagePINInputAction(
           lastPINInputTime:
-              DateTime.now().subtract(const Duration(minutes: 30)).toString()));
+              DateTime.now().subtract(const Duration(minutes: 30)).toString(),
+        ),
+      );
       await buildTestWidget(
         tester: tester,
         store: store,

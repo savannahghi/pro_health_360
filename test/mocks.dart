@@ -3012,7 +3012,10 @@ final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
 
 final List<HealthDiaryMonthObj> mockDiaryMonthItems = <HealthDiaryMonthObj>[
   HealthDiaryMonthObj(
-      diaryItems: mockDiaryItems, month: 'August', year: '2021'),
+    diaryItems: mockDiaryItems,
+    month: 'August',
+    year: '2021',
+  ),
   HealthDiaryMonthObj(diaryItems: mockDiaryItems, month: 'July', year: '2021'),
 ];
 

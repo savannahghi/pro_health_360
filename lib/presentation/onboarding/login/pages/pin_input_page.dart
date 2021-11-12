@@ -214,7 +214,8 @@ class _PINInputPageState extends State<PINInputPage> {
                       child: Text(
                         forgotPINString,
                         style: TextThemes.normalSize15Text(
-                            AppColors.secondaryColor),
+                          AppColors.secondaryColor,
+                        ),
                       ),
                     ),
                   ),

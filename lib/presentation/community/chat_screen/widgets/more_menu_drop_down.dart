@@ -18,21 +18,28 @@ class MoreMenuDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
+        ),
+      ),
       key: popupMenuButtonKey,
       onSelected: (int result) async {
         switch (result) {
           case 1:
 
             /// Notify user
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('$exitGroupText $comingSoonText'),
-            ));
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('$exitGroupText $comingSoonText'),
+              ),
+            );
             break;
           case 2:
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('$groupInfoText  $comingSoonText'),
-            ));
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('$groupInfoText  $comingSoonText'),
+              ),
+            );
             break;
           default:
         }

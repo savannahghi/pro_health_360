@@ -233,11 +233,13 @@ void main() {
 
   test('Test router returns CommunityChatScreenPage', () {
     const RouteSettings settings = RouteSettings(
-        name: BWRoutes.communityChatScreenPage,
-        arguments: CommunityListItem(
-            title: 'title',
-            message: 'message',
-            lastMessageDate: 'lastMessageDate'));
+      name: BWRoutes.communityChatScreenPage,
+      arguments: CommunityListItem(
+        title: 'title',
+        message: 'message',
+        lastMessageDate: 'lastMessageDate',
+      ),
+    );
 
     final MaterialPageRoute<CommunityChatScreenPage> route =
         routeGenerator(settings) as MaterialPageRoute<CommunityChatScreenPage>;
@@ -406,8 +408,9 @@ void main() {
 
   test('Test router returns ArticleDetailsPage', () {
     const RouteSettings settings = RouteSettings(
-        name: BWRoutes.articleDetailsPage,
-        arguments: <String, dynamic>{'test': 'value'});
+      name: BWRoutes.articleDetailsPage,
+      arguments: <String, dynamic>{'test': 'value'},
+    );
     final MaterialPageRoute<ArticleDetailsPage> route =
         routeGenerator(settings) as MaterialPageRoute<ArticleDetailsPage>;
     expect(route, isA<MaterialPageRoute<ArticleDetailsPage>>());
@@ -416,8 +419,9 @@ void main() {
 
   test('Test router returns ForgotPINPage', () {
     const RouteSettings settings = RouteSettings(
-        name: BWRoutes.forgotPINPage,
-        arguments: <String, dynamic>{'test': 'value'});
+      name: BWRoutes.forgotPINPage,
+      arguments: <String, dynamic>{'test': 'value'},
+    );
     final MaterialPageRoute<ForgotPINPage> route =
         routeGenerator(settings) as MaterialPageRoute<ForgotPINPage>;
     expect(route, isA<MaterialPageRoute<ForgotPINPage>>());

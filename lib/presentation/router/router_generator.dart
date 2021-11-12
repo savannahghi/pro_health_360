@@ -115,7 +115,8 @@ class RouteGenerator {
 
       case BWRoutes.userProfile:
         return MaterialPageRoute<UserProfilePage>(
-            builder: (_) => UserProfilePage());
+          builder: (_) => UserProfilePage(),
+        );
 
       case BWRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(

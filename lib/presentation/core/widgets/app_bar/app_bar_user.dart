@@ -63,7 +63,8 @@ class AppbarUser extends StatelessWidget {
                             name: getDisplayName(userProfileState),
                           ),
                           style: TextThemes.boldSize14Text(
-                              AppColors.secondaryColor),
+                            AppColors.secondaryColor,
+                          ),
                         )
                       : CircleAvatar(backgroundImage: AssetImage(photoUrl)),
                 ),

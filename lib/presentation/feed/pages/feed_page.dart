@@ -38,17 +38,18 @@ class _FeedPageState extends State<FeedPage> {
             ),
             Expanded(
               child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: feedItems.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final FeedDetails feedDetails = feedItems.elementAt(index);
-                    return Padding(
-                      padding: EdgeInsets.only(top: index == 0 ? 15 : 7.5),
-                      child: FeedItem(
-                        feedDetails: feedDetails,
-                      ),
-                    );
-                  }),
+                shrinkWrap: true,
+                itemCount: feedItems.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final FeedDetails feedDetails = feedItems.elementAt(index);
+                  return Padding(
+                    padding: EdgeInsets.only(top: index == 0 ? 15 : 7.5),
+                    child: FeedItem(
+                      feedDetails: feedDetails,
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),

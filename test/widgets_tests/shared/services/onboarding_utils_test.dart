@@ -117,8 +117,10 @@ void main() {
       await tester.pumpAndSettle();
 
       // verify functionality
-      expect(actualOnboardingRouteConfigs.route,
-          expectedOnboardingRouteConfigs.route);
+      expect(
+        actualOnboardingRouteConfigs.route,
+        expectedOnboardingRouteConfigs.route,
+      );
     });
 
     group('should update user pin', () {
@@ -1234,7 +1236,9 @@ void main() {
               onPressed: () async {
                 actionWrapError(
                   error: SILException(
-                      cause: 'some-other-cause', message: 'some message'),
+                    cause: 'some-other-cause',
+                    message: 'some message',
+                  ),
                   context: context,
                 );
               },
@@ -1399,7 +1403,9 @@ void main() {
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
         expect(
-            store.state.userProfileState!.auth!.refreshToken, testRefreshToken);
+          store.state.userProfileState!.auth!.refreshToken,
+          testRefreshToken,
+        );
       });
     });
 

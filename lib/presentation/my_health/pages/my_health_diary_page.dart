@@ -103,9 +103,15 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
 
   late List<HealthDiaryMonthObj> monthlyDiaries = <HealthDiaryMonthObj>[
     HealthDiaryMonthObj(
-        diaryItems: diaryItemsList1, year: '2021', month: 'August'),
+      diaryItems: diaryItemsList1,
+      year: '2021',
+      month: 'August',
+    ),
     HealthDiaryMonthObj(
-        diaryItems: diaryItemsList2, year: '2021', month: 'September'),
+      diaryItems: diaryItemsList2,
+      year: '2021',
+      month: 'September',
+    ),
   ];
   late int itemIndex = monthlyDiaries.length - 1;
 

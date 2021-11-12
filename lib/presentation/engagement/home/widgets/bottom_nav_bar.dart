@@ -20,85 +20,87 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, BottomNavViewModel>(
-        converter: (Store<AppState> store) =>
-            BottomNavViewModel.fromStore(store),
-        builder: (BuildContext context, BottomNavViewModel vm) {
-          return BottomNavigationBar(
-            key: silBottomNavKey,
-            currentIndex: vm.currentIndex,
-            backgroundColor: AppColors.whiteColor,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: Theme.of(context).colorScheme.secondary,
-            unselectedItemColor: AppColors.secondaryColor,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            onTap: (int currentIndex) {
-              StoreProvider.dispatch<AppState>(
+      converter: (Store<AppState> store) => BottomNavViewModel.fromStore(store),
+      builder: (BuildContext context, BottomNavViewModel vm) {
+        return BottomNavigationBar(
+          key: silBottomNavKey,
+          currentIndex: vm.currentIndex,
+          backgroundColor: AppColors.whiteColor,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Theme.of(context).colorScheme.secondary,
+          unselectedItemColor: AppColors.secondaryColor,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          onTap: (int currentIndex) {
+            StoreProvider.dispatch<AppState>(
+              context,
+              BottomNavAction(currentBottomNavIndex: currentIndex),
+            );
+
+            if (vm.currentIndex != currentIndex) {
+              Navigator.pushReplacementNamed(
                 context,
-                BottomNavAction(currentBottomNavIndex: currentIndex),
+                bottomNavItems[currentIndex].onTapRoute,
               );
 
-              if (vm.currentIndex != currentIndex) {
+              if (BottomNavIndex.myHealth.index == currentIndex &&
+                  shouldInputPIN(context)) {
                 Navigator.pushReplacementNamed(
-                    context, bottomNavItems[currentIndex].onTapRoute);
-
-                if (BottomNavIndex.myHealth.index == currentIndex &&
-                    shouldInputPIN(context)) {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    BWRoutes.pinInputPage,
-                  );
-                }
+                  context,
+                  BWRoutes.pinInputPage,
+                );
               }
-            },
-            items: bottomNavItems
-                .map(
-                  (BottomNavItem navItem) => BottomNavigationBarItem(
-                    icon: Column(
+            }
+          },
+          items: bottomNavItems
+              .map(
+                (BottomNavItem navItem) => BottomNavigationBarItem(
+                  icon: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: SvgPicture.asset(
+                          navItem.iconUrl,
+                          color: AppColors.secondaryColor.withOpacity(0.8),
+                        ),
+                      ),
+                      Text(
+                        navItem.text,
+                        style: TextThemes.normalSize12Text(
+                          AppColors.secondaryColor.withOpacity(0.8),
+                        ),
+                      )
+                    ],
+                  ),
+                  activeIcon: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    width: 65,
+                    decoration: BoxDecoration(
+                      color: AppColors.selectedBottomNavColor,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Column(
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: SvgPicture.asset(
                             navItem.iconUrl,
-                            color: AppColors.secondaryColor.withOpacity(0.8),
+                            color: Colors.white,
                           ),
                         ),
                         Text(
                           navItem.text,
-                          style: TextThemes.normalSize12Text(
-                            AppColors.secondaryColor.withOpacity(0.8),
-                          ),
+                          style: TextThemes.normalSize12Text(Colors.white),
                         )
                       ],
                     ),
-                    activeIcon: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      width: 65,
-                      decoration: BoxDecoration(
-                        color: AppColors.selectedBottomNavColor,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: SvgPicture.asset(
-                              navItem.iconUrl,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            navItem.text,
-                            style: TextThemes.normalSize12Text(Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                    label: navItem.text,
                   ),
-                )
-                .toList(),
-          );
-        });
+                  label: navItem.text,
+                ),
+              )
+              .toList(),
+        );
+      },
+    );
   }
 }

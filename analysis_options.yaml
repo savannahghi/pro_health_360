@@ -20,6 +20,7 @@ analyzer:
 
 linter:
   rules:
+    require_trailing_commas: true
     prefer_single_quotes: true
     always_declare_return_types: true
     argument_type_not_assignable: true
@@ -81,5 +82,4 @@ linter:
     no_adjacent_strings_in_list: false
     use_setters_to_change_properties: false
     directives_ordering: false
-    #Todo: Remove Trailing commas
-    require_trailing_commas: false
+  
