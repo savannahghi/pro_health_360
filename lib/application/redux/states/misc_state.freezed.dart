@@ -27,7 +27,6 @@ class _$MiscStateTearOff {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj,
       String? healthPagePINInputTime}) {
     return _MiscState(
       phoneLogin: phoneLogin,
@@ -36,7 +35,6 @@ class _$MiscStateTearOff {
       appErrorState: appErrorState,
       bottomNavObj: bottomNavObj,
       libraryListItems: libraryListItems,
-      appReviewObj: appReviewObj,
       healthPagePINInputTime: healthPagePINInputTime,
     );
   }
@@ -57,7 +55,6 @@ mixin _$MiscState {
   Set<AppErrorState>? get appErrorState => throw _privateConstructorUsedError;
   BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
-  AppReviewObj? get appReviewObj => throw _privateConstructorUsedError;
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -77,7 +74,6 @@ abstract class $MiscStateCopyWith<$Res> {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj,
       String? healthPagePINInputTime});
 }
 
@@ -97,7 +93,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? appErrorState = freezed,
     Object? bottomNavObj = freezed,
     Object? libraryListItems = freezed,
-    Object? appReviewObj = freezed,
     Object? healthPagePINInputTime = freezed,
   }) {
     return _then(_value.copyWith(
@@ -125,10 +120,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      appReviewObj: appReviewObj == freezed
-          ? _value.appReviewObj
-          : appReviewObj // ignore: cast_nullable_to_non_nullable
-              as AppReviewObj?,
       healthPagePINInputTime: healthPagePINInputTime == freezed
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
@@ -150,7 +141,6 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj,
       String? healthPagePINInputTime});
 }
 
@@ -171,7 +161,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? appErrorState = freezed,
     Object? bottomNavObj = freezed,
     Object? libraryListItems = freezed,
-    Object? appReviewObj = freezed,
     Object? healthPagePINInputTime = freezed,
   }) {
     return _then(_MiscState(
@@ -199,10 +188,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      appReviewObj: appReviewObj == freezed
-          ? _value.appReviewObj
-          : appReviewObj // ignore: cast_nullable_to_non_nullable
-              as AppReviewObj?,
       healthPagePINInputTime: healthPagePINInputTime == freezed
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
@@ -221,7 +206,6 @@ class _$_MiscState implements _MiscState {
       this.appErrorState,
       this.bottomNavObj,
       this.libraryListItems,
-      this.appReviewObj,
       this.healthPagePINInputTime});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
@@ -240,13 +224,11 @@ class _$_MiscState implements _MiscState {
   @override
   final List<dynamic>? libraryListItems;
   @override
-  final AppReviewObj? appReviewObj;
-  @override
   final String? healthPagePINInputTime;
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, changePIN: $changePIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, appReviewObj: $appReviewObj, healthPagePINInputTime: $healthPagePINInputTime)';
+    return 'MiscState(phoneLogin: $phoneLogin, changePIN: $changePIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime)';
   }
 
   @override
@@ -271,9 +253,6 @@ class _$_MiscState implements _MiscState {
             (identical(other.libraryListItems, libraryListItems) ||
                 const DeepCollectionEquality()
                     .equals(other.libraryListItems, libraryListItems)) &&
-            (identical(other.appReviewObj, appReviewObj) ||
-                const DeepCollectionEquality()
-                    .equals(other.appReviewObj, appReviewObj)) &&
             (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
                 const DeepCollectionEquality().equals(
                     other.healthPagePINInputTime, healthPagePINInputTime)));
@@ -288,7 +267,6 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(appErrorState) ^
       const DeepCollectionEquality().hash(bottomNavObj) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
-      const DeepCollectionEquality().hash(appReviewObj) ^
       const DeepCollectionEquality().hash(healthPagePINInputTime);
 
   @JsonKey(ignore: true)
@@ -310,7 +288,6 @@ abstract class _MiscState implements MiscState {
       Set<AppErrorState>? appErrorState,
       BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
-      AppReviewObj? appReviewObj,
       String? healthPagePINInputTime}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
@@ -328,8 +305,6 @@ abstract class _MiscState implements MiscState {
   BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
   @override
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
-  @override
-  AppReviewObj? get appReviewObj => throw _privateConstructorUsedError;
   @override
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   @override

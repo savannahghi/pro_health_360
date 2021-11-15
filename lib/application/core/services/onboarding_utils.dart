@@ -316,15 +316,6 @@ Future<String> getInitialRoute(
   AppState appState,
   List<AppContext> thisAppContexts,
 ) async {
-  if (appState.miscState!.appReviewObj != null &&
-      appState.miscState!.appReviewObj!.shouldRateApp != null) {
-    updateAppReviewVariables(
-      context: context,
-      days: appState.miscState!.appReviewObj!.days!,
-      lastLaunchDate: appState.miscState!.appReviewObj!.lastLaunchDate!,
-      launches: appState.miscState!.appReviewObj!.launches!,
-    );
-  }
   if (appState.userProfileState!.isSignedIn!) {
     final AuthTokenStatus checkTokenStatusResult = await checkTokenStatus(
       context: context,

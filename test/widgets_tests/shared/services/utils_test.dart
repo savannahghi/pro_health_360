@@ -23,7 +23,6 @@ import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
@@ -499,45 +498,6 @@ void main() {
       expect(primaryButtonTaps, isNotEmpty);
       expect(primaryButtonTaps.length, 1);
     });
-  });
-
-  testWidgets('test showRatingBottomSheet', (WidgetTester tester) async {
-    final Store<AppState> store =
-        Store<AppState>(initialState: AppState.initial());
-
-    await buildTestWidget(
-      tester: tester,
-      store: store,
-      client: mockGraphQlClient,
-      widget: Material(
-        child: Builder(
-          builder: (BuildContext context) {
-            return RawMaterialButton(
-              onPressed: () => showRatingBottomSheet(context),
-            );
-          },
-        ),
-      ),
-    );
-
-    await tester.pump();
-    await tester.tap(find.byType(RawMaterialButton));
-    await tester.pumpAndSettle();
-
-    final Finder laterButton = find.text(later);
-    expect(laterButton, findsOneWidget);
-
-    await tester.tap(laterButton);
-    await tester.pumpAndSettle();
-    expect(laterButton, findsNothing);
-    await tester.tap(find.byType(RawMaterialButton));
-    await tester.pumpAndSettle();
-
-    final Finder rateButton = find.text(rateNow);
-    expect(rateButton, findsOneWidget);
-    await tester.tap(rateButton);
-    await tester.pumpAndSettle();
-    expect(laterButton, findsNothing);
   });
 
   group('sortDate', () {

@@ -24,9 +24,6 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
         ? null
         : BottomNavObj.fromJson(json['bottomNavObj'] as Map<String, dynamic>),
     libraryListItems: json['libraryListItems'] as List<dynamic>?,
-    appReviewObj: json['appReviewObj'] == null
-        ? null
-        : AppReviewObj.fromJson(json['appReviewObj'] as Map<String, dynamic>),
     healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
   );
 }
@@ -39,6 +36,5 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'appErrorState': instance.appErrorState?.toList(),
       'bottomNavObj': instance.bottomNavObj,
       'libraryListItems': instance.libraryListItems,
-      'appReviewObj': instance.appReviewObj,
       'healthPagePINInputTime': instance.healthPagePINInputTime,
     };

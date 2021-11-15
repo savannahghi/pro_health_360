@@ -12,12 +12,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:launch_review/launch_review.dart';
 import 'package:misc_utilities/number_constants.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/redux/actions/app_review_action.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -436,125 +434,6 @@ dynamic reportErrorToSentry(
   Sentry.captureException(errorTrace, hint: hint);
 }
 
-void updateAppReviewVariables({
-  required BuildContext context,
-  required String lastLaunchDate,
-  required int launches,
-  required int days,
-}) {
-  final DateTime dateToday = DateTime.now();
-  late DateTime convertedLastLaunchDate;
-  if (lastLaunchDate.isEmpty) {
-    lastLaunchDate = dateToday.toString();
-  }
-  convertedLastLaunchDate = DateTime.parse(lastLaunchDate);
-  if (dateToday.difference(convertedLastLaunchDate).inDays > number0) {
-    days++;
-    lastLaunchDate = convertedLastLaunchDate.toString();
-  }
-  launches++;
-  StoreProvider.dispatch<AppState>(
-    context,
-    AppReviewAction(
-      days: days,
-      lastLaunchDate: lastLaunchDate,
-      launches: launches,
-    ),
-  );
-}
-
-Future<void> showRatingBottomSheet(BuildContext context) async {
-  await showModalBottomSheet(
-    isDismissible: false,
-    enableDrag: false,
-    context: context,
-    builder: (BuildContext context) => Padding(
-      padding: const EdgeInsets.all(number2),
-      child: Container(
-        key: ratingDialogKey,
-        decoration: const BoxDecoration(color: Colors.white),
-        constraints: const BoxConstraints(maxWidth: 420),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              mediumVerticalSizedBox,
-              Column(
-                children: <Widget>[
-                  Text(
-                    dialogTitle,
-                    style: TextThemes.normalSize18Text(Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                  smallVerticalSizedBox,
-                  Text(
-                    dialogSubtitle,
-                    style: TextThemes.normalSize18Text(Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              size40VerticalSizedBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List<Widget>.generate(
-                  5,
-                  (_) => const Icon(Icons.star, color: Colors.orange, size: 32),
-                ),
-              ),
-              size40VerticalSizedBox,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: number20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Expanded(
-                      child: SizedBox(
-                        height: number48,
-                        child: SILSecondaryButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            StoreProvider.dispatch<AppState>(
-                              context,
-                              AppReviewAction(launches: 0),
-                            );
-                          },
-                          text: later,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: number20),
-                    Expanded(
-                      child: SizedBox(
-                        height: number48,
-                        child: SILPrimaryButton(
-                          onPressed: () {
-                            StoreProvider.dispatch<AppState>(
-                              context,
-                              AppReviewAction(
-                                shouldRateApp: false,
-                              ),
-                            );
-                            Navigator.pop(context);
-                            LaunchReview.launch(
-                              androidAppId: googlePlayIdentifier,
-                              iOSAppId: appStoreID,
-                            );
-                          },
-                          text: rateNow,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              size40VerticalSizedBox,
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
-}
 
 bool confirmPinValidator(String pin, String confirmPin) {
   if (pin != confirmPin) {

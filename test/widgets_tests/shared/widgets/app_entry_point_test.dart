@@ -12,7 +12,6 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/redux/actions/app_review_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -47,15 +46,6 @@ void main() {
 
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
-      store.dispatch(
-        AppReviewAction(
-          lastLaunchDate: '2020-08-23 08:48:24.731',
-          days: 0,
-          launches: 0,
-          shouldRateApp: true,
-        ),
-      );
-
       await tester.pumpWidget(
         MaterialApp(
           home: Center(

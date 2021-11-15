@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_error_state.dart';
-import 'package:myafyahub/domain/core/entities/core/app_review_obj.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_obj.dart';
 import 'package:myafyahub/domain/core/entities/login/change_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
@@ -21,7 +20,6 @@ class MiscState with _$MiscState {
     Set<AppErrorState>? appErrorState,
     BottomNavObj? bottomNavObj,
     List<dynamic>? libraryListItems,
-    AppReviewObj? appReviewObj,
     String? healthPagePINInputTime,
   }) = _MiscState;
 
@@ -35,7 +33,6 @@ class MiscState with _$MiscState {
         appErrorState: <AppErrorState>{},
         bottomNavObj: BottomNavObj(),
         libraryListItems: <dynamic>[],
-        appReviewObj: AppReviewObj(),
         healthPagePINInputTime: '',
       );
 }
