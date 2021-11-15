@@ -492,6 +492,7 @@ class MockGraphQlClientForFailures2 extends Mock implements GraphQlClient {
         ),
       );
     }
+
     return Future<http.Response>.value();
   }
 }
@@ -1188,6 +1189,36 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (queryString.contains('getErrorFAQ')) {
       return Future<http.Response>.value(
         http.Response(json.encode(<String, dynamic>{'error': 'no FAQ'}), 201),
+      );
+    }
+
+    if (queryString.contains('resendOTP')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'resendOTP': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains('sendOTP')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'sendOTP': true,
+              }
+            },
+          ),
+          201,
+        ),
       );
     }
 

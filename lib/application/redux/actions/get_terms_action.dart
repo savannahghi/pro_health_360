@@ -3,12 +3,10 @@ import 'dart:convert';
 
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
 import 'package:domain_objects/failures.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';

@@ -1,10 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:intl/intl.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/profile/profile_utils.dart';
 
@@ -367,6 +365,12 @@ const String verifyPhoneNumberDescription =
 const String enterOTPString = 'Enter OTP to proceed';
 const String confirmOTPButtonString = 'Confirm OTP';
 const String invalidOTPString = 'Invalid OTP *';
+String anOtpHasBeenSentText(String phoneNumber) {
+  return 'An OTP has been sent to $phoneNumber';
+}
+
+const String verifyOTPState = 'verifyOTPState';
+
 const String setSecurityQuestionsString = 'Set security questions';
 const String securityQuestionsDescriptionString =
     'Choose one security question. Make sure to remember the answer';
