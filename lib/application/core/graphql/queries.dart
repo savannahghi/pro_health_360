@@ -60,108 +60,49 @@ query GetLibrary{
 }
 ''';
 
-// Feed content query
-const String getFeedQuery = r'''
-query GetFeed(
-  $flavour: Flavour!,
-  $isAnonymous: Boolean!,
-  $persistent: BooleanFilter!,
-  $status: Status,
-	$visibility: Visibility,
-	$expired: BooleanFilter
-) {
-  getFeed(
-    flavour:$flavour,
-    isAnonymous:$isAnonymous,
-    persistent:$persistent, 
-    status:$status, 
-    visibility:$visibility,
-    expired:$expired
-  ) {
-    uid
-    isAnonymous
-    flavour
-    actions {
-      id
-      sequenceNumber
-      name
-      actionType
-      handling
-      allowAnonymous
-      icon {
-        url
-        thumbnail
-      }
-    }
-    nudges {
-      id
-      sequenceNumber
-      visibility
-      status
-      title
-      text
-      actions {
-        id
-        sequenceNumber
-        name
-        actionType
-        handling
-        allowAnonymous
-      }
-      groups
-      users
-      links {
-        id
-        url
-        linkType
-      }
-      notificationChannels
-    }
-    items {
-      id
-      sequenceNumber
-      expiry
-      persistent
-      status
-      visibility
-      label
-      icon {
-        id
-        url
-        linkType
-      }
-      author
-      tagline
-      label
-      timestamp
-      summary
-      text
-      links {
-        id
-        url
-        linkType
-        title
-        description
-        thumbnail
-      }
-      actions {
-        id
-        sequenceNumber
-        name
-        actionType
-        handling
-        allowAnonymous
-      }
-      conversations {
-        id
-        sequenceNumber
-        text
-        replyTo
-        postedByUID
-        postedByName
-        timestamp
-      }
-    }
+const String fetchRecentContentQuery = '''
+query fetchRecentContent {
+  fetchRecentContent {
+    author
+    authorAvatar
+    body
+    contentID
+    contentType
+    createdAt
+    estimate
+    heroImage
+    isNew
+    publicLink
+    tags
+    title
   }
 }
 ''';
+
+const String fetchSuggestedGroupsQuery = '''
+query fetchSuggestedGroups {
+  fetchSuggestedGroups {
+    avatar
+    members
+    name
+  }
+}
+''';
+
+const String fetchContentQuery = r'''
+  query fetchContent($limit: Int!, $tags: [String!]! ) {
+  fetchContent(limit: $limit, tags: $tags) {
+    author
+    authorAvatar
+    body
+    contentID
+    contentType
+    createdAt
+    estimate
+    heroImage
+    isNew
+    publicLink
+    tags
+    title
+  }
+}''';

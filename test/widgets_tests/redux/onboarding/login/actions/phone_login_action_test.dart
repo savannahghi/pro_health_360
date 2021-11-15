@@ -11,12 +11,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
@@ -280,7 +280,7 @@ void main() {
         );
 
         queryWhenThenAnswer(
-          queryString: getFeedQuery,
+          queryString: fetchContentQuery,
           variables: <String, dynamic>{
             'flavour': Flavour.CONSUMER.name,
             'persistent': 'BOTH',

@@ -116,7 +116,7 @@ void main() {
         final UserProfile? userProfile = userResp.profile;
 
         queryWhenThenAnswer(
-          queryString: getFeedQuery,
+          queryString: fetchContentQuery,
           variables: <String, dynamic>{
             'flavour': Flavour.CONSUMER.name,
             'persistent': 'BOTH',
@@ -575,7 +575,7 @@ void main() {
       final UserProfile? userProfile = userResp.profile;
 
       queryWhenThenAnswer(
-        queryString: getFeedQuery,
+        queryString: fetchContentQuery,
         variables: <String, dynamic>{
           'flavour': Flavour.CONSUMER.name,
           'persistent': 'BOTH',

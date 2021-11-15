@@ -602,7 +602,7 @@ const String exerciseString = 'Exercise';
 const String dietString = 'Diet';
 
 //Article Details Page
-const String datePublishedString = 'Date published: ';
+const String datePublishedString = 'Published on ';
 
 String defactoZeroStateString({String topic = 'Content'}) =>
     '$topic will be available soon';

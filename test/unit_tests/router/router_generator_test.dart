@@ -20,7 +20,7 @@ import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
-import 'package:myafyahub/presentation/widgets/article_details_page.dart';
+import 'package:myafyahub/presentation/feed/content_details_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -411,10 +411,10 @@ void main() {
       name: BWRoutes.articleDetailsPage,
       arguments: <String, dynamic>{'test': 'value'},
     );
-    final MaterialPageRoute<ArticleDetailsPage> route =
-        routeGenerator(settings) as MaterialPageRoute<ArticleDetailsPage>;
-    expect(route, isA<MaterialPageRoute<ArticleDetailsPage>>());
-    expect(route.builder(context), isA<ArticleDetailsPage>());
+    final MaterialPageRoute<ContentDetailPage> route =
+        routeGenerator(settings) as MaterialPageRoute<ContentDetailPage>;
+    expect(route, isA<MaterialPageRoute<ContentDetailPage>>());
+    expect(route.builder(context), isA<ContentDetailPage>());
   });
 
   test('Test router returns ForgotPINPage', () {

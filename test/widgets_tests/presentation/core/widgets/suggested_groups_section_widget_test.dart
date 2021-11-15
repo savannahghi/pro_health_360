@@ -22,11 +22,9 @@ void main() {
   testWidgets('SuggestedGroupsSection should render correctly',
       (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
-          body: SuggestedGroupsSection(
-            suggestedGroups: mockSuggestions,
-          ),
+          body: SuggestedGroupsSection(),
         ),
       ),
     );
@@ -35,6 +33,9 @@ void main() {
     expect(joinButton, findsNWidgets(4));
     await tester.tap(joinButton.first);
     await tester.pump(const Duration(seconds: 1));
-    expect(find.text(mockSuggestions.first['title'].toString()), findsNWidgets(2));
+    expect(
+      find.text(mockSuggestions.first['title'].toString()),
+      findsNWidgets(2),
+    );
   });
 }

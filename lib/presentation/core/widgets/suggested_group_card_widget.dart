@@ -20,91 +20,90 @@ class SuggestedGroupCard extends StatelessWidget {
     required this.groupTitle,
     required this.groupTotalMembers,
   }) : super(key: key);
+
   final String groupIconUrl;
   final String groupTitle;
   final String groupTotalMembers;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-      child: Container(
-        width: 110,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          color: Colors.white,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          children: <Widget>[
-            smallVerticalSizedBox,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ClipOval(
-                child: Image.network(
-                  groupIconUrl,
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.cover,
-                ),
+    return Container(
+      width: 110,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.white,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        children: <Widget>[
+          smallVerticalSizedBox,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipOval(
+              child: Image.network(
+                groupIconUrl,
+                height: 80,
+                width: 80,
+                fit: BoxFit.cover,
               ),
             ),
-            verySmallVerticalSizedBox,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                groupTitle,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.secondaryColor,
-                ),
+          ),
+          verySmallVerticalSizedBox,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              groupTitle,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: AppColors.secondaryColor,
               ),
             ),
-            verySmallVerticalSizedBox,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: Text(
-                groupTotalMembers,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.greyTextColor,
-                ),
+          ),
+          verySmallVerticalSizedBox,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Text(
+              '$groupTotalMembers members',
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: AppColors.greyTextColor,
               ),
             ),
-            verySmallVerticalSizedBox,
-            RawMaterialButton(
-              key: joinSuggestedGroupButtonKey,
-              splashColor: AppColors.secondaryColor.withOpacity(0.2),
-              highlightColor: Colors.transparent,
-              elevation: 0,
-              onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(groupTitle),
-                  duration: const Duration(seconds: 2),
-                ),
-              ),
-              constraints: const BoxConstraints(minHeight: 25, minWidth: 80),
-              fillColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-                side: const BorderSide(
-                  color: AppColors.secondaryColor,
-                ),
-              ),
-              child: const Text(
-                joinString,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.secondaryColor,
-                ),
+          ),
+          verySmallVerticalSizedBox,
+          RawMaterialButton(
+            key: joinSuggestedGroupButtonKey,
+            splashColor: AppColors.secondaryColor.withOpacity(0.2),
+            highlightColor: Colors.transparent,
+            elevation: 0,
+            onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(groupTitle),
+                duration: const Duration(seconds: 2),
               ),
             ),
-          ],
-        ),
+            constraints: const BoxConstraints(minHeight: 25, minWidth: 80),
+            fillColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              side: const BorderSide(
+                color: AppColors.secondaryColor,
+              ),
+            ),
+            child: const Text(
+              joinString,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColors.secondaryColor,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

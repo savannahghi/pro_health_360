@@ -1,37 +1,37 @@
 // Flutter imports:
 import 'dart:async';
 
+import 'package:async_redux/async_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/communities/group.dart';
-
-// Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/suggested_group_card_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/widgets/text_loading_shimmer.dart';
 import 'package:shared_themes/spaces.dart';
+
+// Package imports:
 import 'package:shared_themes/text_themes.dart';
 
-/// [SuggestedGroupsSection] is a widget used in the Feed Page
-///
-/// It takes in a required [suggestedGroups] parameter which is a List of
-/// the suggested groups or communities a user can join
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/presentation/feed/content_item.dart';
 
-class SuggestedGroupsSection extends StatefulWidget {
-  const SuggestedGroupsSection();
+class RecentFeedContent extends StatefulWidget {
+  const RecentFeedContent();
 
   @override
-  State<SuggestedGroupsSection> createState() => _SuggestedGroupsSectionState();
+  State<RecentFeedContent> createState() => _RecentFeedContentState();
 }
 
-class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
+class _RecentFeedContentState extends State<RecentFeedContent> {
   late Stream<Object> _stream;
   late StreamController<Object> _streamController;
 
@@ -43,8 +43,8 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
       await customFetchData(
         streamController: _streamController,
         context: context,
-        logTitle: 'Fetch suggested groups',
-        queryString: fetchSuggestedGroupsQuery,
+        logTitle: 'Fetch recent content content',
+        queryString: fetchRecentContentQuery,
         variables: <String, dynamic>{},
       );
     });
@@ -53,7 +53,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<dynamic>(
+    return StreamBuilder<Object>(
       stream: _stream,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         //show the loader before the data is displayed
@@ -95,8 +95,8 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
               await customFetchData(
                 streamController: _streamController,
                 context: context,
-                logTitle: 'Fetch suggested groups',
-                queryString: fetchSuggestedGroupsQuery,
+                logTitle: 'Fetch recent content content',
+                queryString: fetchRecentContentQuery,
                 variables: <String, dynamic>{},
               );
             },
@@ -105,45 +105,59 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
         }
 
         if (snapshot.hasData) {
-          final List<dynamic> suggestedGroups =
-              snapshot.data['fetchSuggestedGroups'] as List<dynamic>;
+          final List<dynamic> recentContent =
+              snapshot.data['fetchRecentContent'] as List<dynamic>;
 
-          return Container(
-            padding: const EdgeInsets.all(5.0),
-            color: Theme.of(context).backgroundColor,
+          return SizedBox(
+            width: double.infinity,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    suggestedGroupsString,
-                    overflow: TextOverflow.ellipsis,
-                    style:
-                        TextThemes.veryBoldSize16Text(AppColors.secondaryColor),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0,
+                    vertical: 10.0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        newContentText,
+                        style: TextThemes.veryBoldSize16Text(
+                          AppColors.secondaryColor,
+                        ),
+                      ),
+                      verySmallVerticalSizedBox,
+                      GestureDetector(
+                        key: viewAllButtonKey,
+                        onTap: () => StoreProvider.dispatch<AppState>(
+                          context,
+                          BottomNavAction(currentBottomNavIndex: 1),
+                        ),
+                        child: Text(
+                          viewAllText,
+                          style: TextThemes.normalSize16Text(
+                            AppColors.secondaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                verySmallVerticalSizedBox,
                 SizedBox(
-                  height: 200,
+                  width: double.infinity,
+                  height: 250,
                   child: ListView.builder(
-                    itemCount: suggestedGroups.length,
+                    shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
+                    itemCount: recentContent.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final Group currentGroup = Group.fromJson(
-                        suggestedGroups.elementAt(index)
-                            as Map<String, dynamic>,
+                      final Content feedDetails = Content.fromJson(
+                        recentContent.elementAt(index) as Map<String, dynamic>,
                       );
-                      final String title = currentGroup.name;
-                      final String totalMembers = currentGroup.members;
-                      final String iconUrl = currentGroup.avatar;
                       return Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: SuggestedGroupCard(
-                          groupIconUrl: iconUrl,
-                          groupTitle: title,
-                          groupTotalMembers: totalMembers,
-                        ),
+                        padding: EdgeInsets.only(left: index == 0 ? 15 : 10),
+                        child: ContentItem(contentDetails: feedDetails),
                       );
                     },
                   ),
@@ -152,7 +166,6 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
             ),
           );
         }
-
         return const SizedBox();
       },
     );

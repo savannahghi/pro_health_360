@@ -7,11 +7,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
 
 // Project imports:
@@ -27,9 +30,9 @@ import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dar
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/feed/feed_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
@@ -434,7 +437,6 @@ dynamic reportErrorToSentry(
   Sentry.captureException(errorTrace, hint: hint);
 }
 
-
 bool confirmPinValidator(String pin, String confirmPin) {
   if (pin != confirmPin) {
     return false;
@@ -508,7 +510,7 @@ List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
     description:
-        'You have a tele consult with doctor Wellman. Click  Here to schedule the call ',
+        'You have a teleconsult with doctor Wellman. Click  Here to schedule the call ',
     date: feedDate,
   ),
   NotificationDetails(
@@ -525,12 +527,6 @@ String tooManyTriesString(int timeLeft) {
 
   return 'Too may tries, try again in $convertedTime minutes';
 }
-
-//Todo : Remove after testing
-const String dGraphEndpoint =
-    'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
-
-const String dGraphToken = 'N2Y1MjQ2YmFiNTkwZmE4MDkxODViOTVlMmY4YmRlMWI=';
 
 //Mock UserProfile
 final Map<String, Map<String, dynamic>?> loginResponse =
@@ -600,61 +596,6 @@ List<NotificationDetails> pastAppointments = <NotificationDetails>[
     actions: <NotificationActions>[calendarAction, rescheduleAction],
   ),
   ...upcomingAppointments
-];
-
-void navigateToArticleDetailsPage(
-  BuildContext context, {
-  required String coverImagePath,
-  required String authorName,
-  required String date,
-  required String titleText,
-  required String bodyText,
-  String? authorDisplayPic,
-}) {
-  final Map<String, dynamic> payLoad = <String, dynamic>{
-    'authorName': authorName,
-    'coverImagePath': coverImagePath,
-    'date': date,
-    'titleText': titleText,
-    'bodyText': bodyText,
-    'authorDisplayPic': authorDisplayPic,
-  };
-  Navigator.of(context)
-      .pushNamed(BWRoutes.articleDetailsPage, arguments: payLoad);
-}
-
-final List<FeedDetails> feedItems = <FeedDetails>[
-  FeedDetails(
-    coverImageUrl: feedImage3,
-    header: feedHeader,
-    date: feedDate,
-    isNew: true,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
-    authorDisplayPic: 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
-  ),
-  FeedDetails(
-    coverImageUrl: feedImage2,
-    header: feedHeader,
-    date: feedDate,
-    isNew: true,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
-  ),
-  FeedDetails(
-    coverImageUrl: feedImage1,
-    header: feedHeader,
-    date: feedDate,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
-  ),
-  FeedDetails(
-    coverImageUrl: feedImage3,
-    header: feedHeader,
-    date: feedDate,
-    authorName: 'Ken Doe',
-    bodyContent: defactoZeroStateString(),
-  ),
 ];
 
 bool shouldInputPIN(BuildContext context) {
@@ -801,3 +742,38 @@ final EditInformationItem nickNameEditInfo = EditInformationItem(
   title: nickNameString,
   editInformationInputItem: <EditInformationInputItem>[nickNameInputItem],
 );
+
+Future<void> customFetchData({
+  required StreamController<dynamic> streamController,
+  required BuildContext context,
+  required String queryString,
+  required Map<String, dynamic> variables,
+  required String logTitle,
+  String? logDescription,
+}) async {
+  streamController.add(<String, dynamic>{'loading': true});
+
+  final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+
+  _client
+    ..endpoint = dGraphEndpoint
+    ..idToken = dGraphToken;
+
+  /// fetch the data from the api
+  final Response response = await _client.query(
+    queryString,
+    variables,
+  );
+
+  final Map<String, dynamic> payLoad = _client.toMap(response);
+  final String? error = parseError(payLoad);
+
+  if (error != null) {
+    return streamController
+        .addError(<String, dynamic>{'error': _client.parseError(payLoad)});
+  }
+
+  return (payLoad['data'] != null)
+      ? streamController.add(payLoad['data'])
+      : streamController.add(null);
+}

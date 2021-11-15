@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/buttons.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
@@ -23,6 +22,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
+import 'package:user_feed/user_feed.dart';
 import '../../../../../mock_feed_response.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -277,7 +277,7 @@ void main() {
         final UserProfile? userProfile = userResp.profile;
 
         queryWhenThenAnswer(
-          queryString: getFeedQuery,
+          queryString: fetchContentQuery,
           variables: <String, dynamic>{
             'flavour': Flavour.CONSUMER.name,
             'persistent': 'BOTH',

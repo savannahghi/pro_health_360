@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/feed/feed_item_widget.dart';
+import 'package:myafyahub/presentation/feed/content_item.dart';
 import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
 import '../../../../../test_helpers.dart';
 
@@ -36,7 +36,7 @@ void main() {
       await tester.tap(find.text('Diet'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(FeedItem), findsWidgets);
+      expect(find.byType(ContentItem), findsWidgets);
     });
   });
 }

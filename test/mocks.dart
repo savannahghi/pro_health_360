@@ -1102,7 +1102,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains(getFeedQuery)) {
+    if (queryString.contains(fetchContentQuery)) {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(

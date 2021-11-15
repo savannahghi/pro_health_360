@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -9,17 +11,24 @@ import 'package:myafyahub/presentation/feed/feed_item_reaction_icon.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
-class ArticleDetailsPage extends StatelessWidget {
-  /// [ArticleDetailsPage] is used to display the article details
+class ContentDetailPage extends StatelessWidget {
+  /// [ContentDetailPage] is used to display the article details
   ///
-  /// It takes in a required [payload] parameter which is a map of the
+  /// It takes in a required [articleDetails] parameter which is a map of the
   /// the information to be displayed on this screen
   ///
-  const ArticleDetailsPage({required this.payload});
-  final Map<String, dynamic> payload;
+  const ContentDetailPage({required this.articleDetails});
+
+  final Content articleDetails;
 
   @override
   Widget build(BuildContext context) {
+    final Widget publishDate = sortDate(
+      dateTextStyle: TextThemes.normalSize12Text(AppColors.greyTextColor),
+      context: context,
+      loadedDate: articleDetails.createdAt!,
+    );
+
     return AppScaffold(
       appBar: const CustomAppBar(title: libraryPageString),
       body: SingleChildScrollView(
@@ -33,7 +42,7 @@ class ArticleDetailsPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(payload['coverImagePath'].toString()),
+                      image: NetworkImage(articleDetails.heroImage!),
                     ),
                   ),
                 ),
@@ -64,7 +73,7 @@ class ArticleDetailsPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    payload['titleText'].toString(),
+                    articleDetails.title!,
                     style: TextThemes.veryHeavySize20Text(
                       Colors.black,
                     ),
@@ -82,10 +91,10 @@ class ArticleDetailsPage extends StatelessWidget {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: payload['authorDisplayPic'] == null
+                                image: articleDetails.authorAvatar == null
                                     ? const AssetImage(profileImage)
                                     : NetworkImage(
-                                        payload['authorDisplayPic'].toString(),
+                                        articleDetails.authorAvatar!,
                                       ) as ImageProvider,
                               ),
                             ),
@@ -96,16 +105,22 @@ class ArticleDetailsPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                payload['authorName'].toString(),
+                                articleDetails.author!,
                                 style: TextThemes.veryBoldSize15Text(
                                   AppColors.secondaryColor,
                                 ),
                               ),
-                              Text(
-                                '$datePublishedString${payload['date'].toString()}',
-                                style: TextThemes.lightSize16Text(
-                                  AppColors.greyTextColor,
-                                ).copyWith(fontSize: 12),
+                              verySmallVerticalSizedBox,
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Published on ',
+                                    style: TextThemes.normalSize12Text(
+                                      AppColors.greyTextColor,
+                                    ),
+                                  ),
+                                  publishDate,
+                                ],
                               ),
                             ],
                           )
