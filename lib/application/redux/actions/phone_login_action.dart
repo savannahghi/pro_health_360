@@ -1,16 +1,23 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:convert';
 
 // Flutter imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
+import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
@@ -18,7 +25,6 @@ import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
@@ -63,40 +69,36 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     /// Check to verify the PIN is `not null` and contains four digits
     if (pin != UNKNOWN && pin.length == 4) {
       // make the variables
-      final Map<String, dynamic> _variables = <String, dynamic>{
+      final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'pin': pin,
         'flavour': Flavour.CONSUMER.name,
-        'appVersion': APPVERSION,
       };
 
       /// initialize the http client from [AppWrapperBase]
-      final IGraphQlClient _httpClient =
+      final IGraphQlClient httpClient =
           AppWrapperBase.of(context)!.graphQLClient;
 
-      /// initialize the [loginByPhoneEndpoint] endpoint used to verify user logging in with phone number and PIN
-      final String endPoint =
-          AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
+      httpClient.idToken = dGraphToken;
+      httpClient.endpoint = dgraphApiEndpoint;
 
-      /// network request is made to the backend to verify that the user provided credentials match those stored in our backend and result store in [processedResponse] variable
-      final ProcessedResponse processedResponse = processHttpResponse(
-        await _httpClient.callRESTAPI(
-          endpoint: endPoint,
-          variables: _variables,
-          method: httpPOST,
-        ),
-        context,
-      );
+      final Response httpResponse =
+          await httpClient.query(loginQuery, variables);
+
+      final ProcessedResponse processedResponse =
+          processHttpResponse(httpResponse, context);
 
       if (processedResponse.ok == true) {
-        processSignIn(
-          context: context,
-          processedResponse: processedResponse,
-          store: store,
-          graphQlClient: _httpClient,
-          dateTimeParser: this.dateTimeParser,
-          refreshTokenManger: this.tokenManger,
-        );
+        final Map<String, dynamic> parsed =
+            jsonDecode(httpResponse.body) as Map<String, dynamic>;
+
+        final PhoneLoginResponse response = PhoneLoginResponse.fromJson(parsed);
+
+        // TODO: update user profile after testing
+        response.toJson();
+        // await store.dispatch(UpdateUserProfileAction())
+
+        Navigator.of(context).pushReplacementNamed(BWRoutes.home);
         return state;
       } else {
         // exception thrown if the backend could not match the provided credentials with those stored in the backend
@@ -130,13 +132,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     if (error.runtimeType == SILException && error.error != null) {
       reportErrorToSentry(context, error.error, hint: errorLoggingIn);
     }
-    if (error.cause == noUserFound) {
-      showFeedbackBottomSheet(
-        context: context,
-        modalContent: noUserFoundString,
-        imageAssetPath: errorIconUrl,
-      );
-    }
+
     return error;
   }
 }

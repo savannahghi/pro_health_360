@@ -434,7 +434,6 @@ dynamic reportErrorToSentry(
   Sentry.captureException(errorTrace, hint: hint);
 }
 
-
 bool confirmPinValidator(String pin, String confirmPin) {
   if (pin != confirmPin) {
     return false;

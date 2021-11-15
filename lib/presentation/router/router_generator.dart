@@ -26,7 +26,6 @@ import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
@@ -86,11 +85,6 @@ class RouteGenerator {
       case BWRoutes.resetPin:
         return MaterialPageRoute<RequestPinResetPage>(
           builder: (_) => RequestPinResetPage(),
-        );
-
-      case BWRoutes.resumeWithPin:
-        return MaterialPageRoute<ResumeWithPinPage>(
-          builder: (_) => ResumeWithPinPage(),
         );
 
       // the homepage route config

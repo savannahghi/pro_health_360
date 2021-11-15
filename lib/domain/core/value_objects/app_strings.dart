@@ -45,18 +45,6 @@ class OnboardingStrings {
             'Text used in buttons to show an action takes user to a previous screen',
       );
 
-  String greetUser(String name) => Intl.message(
-        'Hey, $name',
-        args: <String>[name],
-        name: 'greetUser',
-        desc: 'greet user with their name',
-      );
-  String enterPinToContinueText() => Intl.message(
-        'Enter your PIN to continue',
-        name: 'enterPinToContinueText',
-        desc: 'user to enter their PIN to proceed',
-      );
-
   String enterPinText() => Intl.message(
         'Enter your PIN',
         name: 'enterPinText',

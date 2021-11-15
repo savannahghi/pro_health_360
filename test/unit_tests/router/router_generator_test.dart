@@ -33,7 +33,6 @@ import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/resume_with_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
@@ -157,15 +156,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<RequestPinResetPage>>());
     expect(route.builder(context), isA<RequestPinResetPage>());
-  });
-  test('Test router returns incoming  resumeWithPin page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.resumeWithPin);
-
-    final MaterialPageRoute<ResumeWithPinPage> route =
-        routeGenerator(settings) as MaterialPageRoute<ResumeWithPinPage>;
-
-    expect(route, isA<MaterialPageRoute<ResumeWithPinPage>>());
-    expect(route.builder(context), isA<ResumeWithPinPage>());
   });
 
   test('Test router returns incoming  editProfileSettingsPage page', () {

@@ -7,10 +7,12 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/core/graphql/queries.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
@@ -22,9 +24,11 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/buttons.dart';
+import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_ui_components/platform_loader.dart';
+import 'package:user_feed/user_feed.dart';
 
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
@@ -32,6 +36,10 @@ import '../../../../../test_helpers.dart';
 import '../../../../../test_utils.dart';
 
 void main() {
+  FlutterConfig.loadValueForTesting(<String, String>{
+    'API_KEY': 'test_key',
+  });
+
   group('LoginPage', () {
     // initial set up
     setupFirebaseAuthMocks();
@@ -196,6 +204,7 @@ void main() {
       },
     );
   });
+
   group('LoginPage', () {
     // initial set up
     setupFirebaseAuthMocks();
@@ -214,37 +223,21 @@ void main() {
       'should login user',
       (WidgetTester tester) async {
         mockNetworkImages(() async {
-          tester.binding.window.devicePixelRatioTestValue = 1.0;
-          tester.binding.window.physicalSizeTestValue = tabletLandscape;
+          final Map<String, dynamic> queryVariables = <String, dynamic>{
+            'phoneNumber': '+254710000000',
+            'pin': testPin,
+            'flavour': Flavour.CONSUMER.name,
+          };
+
           final http.Response response = http.Response(
-            json.encode(createUserMock()),
+            json.encode(mockLoginResponse),
             200,
           );
-          when(
-            baseGraphQlClientMock.callRESTAPI(
-              endpoint:
-                  'https://onboarding-testing.savannahghi.org/login_by_phone',
-              variables: <String, dynamic>{
-                'phoneNumber': '+254710000000',
-                'pin': '1234',
-                'flavour': 'CONSUMER',
-                'appVersion': APPVERSION,
-              },
-              method: 'POST',
-            ),
-          ).thenAnswer(
-            (_) => Future<http.Response>.value(response),
-          );
 
-          when(baseGraphQlClientMock.toMap(any)).thenReturn(
-            <String, dynamic>{
-              'data': <String, dynamic>{
-                'phoneNumber': '+254710000000',
-                'pin': '1234',
-                'flavour': 'CONSUMER'
-              }
-            },
-          );
+          reset(baseGraphQlClientMock);
+
+          when(baseGraphQlClientMock.query(loginQuery, queryVariables))
+              .thenAnswer((_) async => Future<http.Response>.value(response));
 
           await buildTestWidget(
             tester: tester,
@@ -268,24 +261,18 @@ void main() {
             testPhoneNumber,
           );
 
-          final Finder finder = find
-              .byWidgetPredicate((Widget widget) => widget.key == pinInputKey);
+          final Finder finder = find.byKey(pinInputKey);
           expect(finder, findsOneWidget);
           await tester.tap(finder);
           await tester.enterText(finder, testPin);
 
           final Finder completeButton = find.byType(MyAfyaHubPrimaryButton);
-
           expect(completeButton, findsOneWidget);
           await tester.ensureVisible(completeButton);
           await tester.tap(completeButton);
+          await tester.pumpAndSettle();
 
-          await tester.pump(const Duration(minutes: 35));
-
-          addTearDown(() {
-            tester.binding.window.clearPhysicalSizeTestValue();
-            tester.binding.window.clearDevicePixelRatioTestValue();
-          });
+          expect(find.byType(HomePage), findsOneWidget);
         });
       },
     );

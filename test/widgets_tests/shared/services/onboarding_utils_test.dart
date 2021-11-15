@@ -16,6 +16,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
@@ -382,6 +383,17 @@ void main() {
       testWidgets(
           'Onboarding utils should process response with a 400 and a status code of 4',
           (WidgetTester tester) async {
+        store = Store<AppState>(
+          initialState: AppState.initial(
+            userProfileState: UserProfileState(
+              isSignedIn: true,
+              userProfile: UserProfile(
+                primaryPhoneNumber: PhoneNumber.withValue('+254123456789'),
+              ),
+            ),
+          ),
+        );
+
         final http.Response expectedErrorResponse = http.Response(
           json.encode(<String, dynamic>{
             'error': <String, dynamic>{
@@ -395,18 +407,26 @@ void main() {
         const String processBtnText = 'process response';
         late ProcessedResponse actualResponse;
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse = processHttpResponse(expectedErrorResponse);
-                  },
-                  text: processBtnText,
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockGraphQlClient,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return MaterialApp(
+                home: Scaffold(
+                  body: Center(
+                    child: SILPrimaryButton(
+                      onPressed: () {
+                        actualResponse =
+                            processHttpResponse(expectedErrorResponse, context);
+                      },
+                      text: processBtnText,
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         );
 
@@ -791,89 +811,6 @@ void main() {
       // trigger the bottom sheet
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle(const Duration(seconds: 3));
-    });
-
-    testWidgets(
-        'should return resume with PIN page for a user who is signed in',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      late String initialRoute;
-
-      // mocked response
-      final http.Response response = http.Response(
-        json.encode(
-          <String, dynamic>{
-            'id_token': 'newAuthToken',
-            'refresh_token': 'newRefreshToken',
-            'expires_in': '2'
-          },
-        ),
-        201,
-      );
-
-      callRESTAPIWhenThenAnswer(
-        endpoint: 'https://onboarding-testing.savannahghi.org/refresh_token',
-        variables: <String, dynamic>{
-          'refreshToken': 'oldRefreshToken',
-          'appVersion': APPVERSION,
-        },
-        response: response,
-      );
-
-      loginResponse.remove('auth');
-
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(isAnonymous: true),
-            );
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(
-                signedIn: true,
-                idToken: 'oldAuthToken',
-                refreshToken: 'oldRefreshToken',
-                expiresAt: DateTime.now()
-                    .add(const Duration(hours: 2))
-                    .toIso8601String(),
-              ),
-            );
-
-            StoreProvider.dispatch(
-              context,
-              UpdateUserProfileAction(
-                profile: userProfile,
-                userBioData: userProfile?.userBioData,
-              ),
-            );
-
-            return SILPrimaryButton(
-              onPressed: () async {
-                initialRoute = await getInitialRoute(
-                  context,
-                  store.state,
-                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      // trigger the bottom sheet
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.resumeWithPin);
     });
 
     testWidgets('should save profile details successfully',

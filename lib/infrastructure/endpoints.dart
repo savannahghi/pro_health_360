@@ -30,6 +30,9 @@ const String kTestSendContactVerificationOTPEndpoint =
 const String kTestVerifyContactOTPEndpoint =
     'https://edi-testing.healthcloud.co.ke/verify_otp';
 
+const String dgraphApiEndpoint =
+    'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
+
 /* PROD ENDPOINTS */
 const String kProdGraphqlEndpoint = 'https://gateway.savannahghi.org/graphql';
 const String kProdLoginByPhoneEndpoint =

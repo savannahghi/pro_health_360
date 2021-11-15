@@ -15,14 +15,13 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 
 class OnboardingPageWrapper extends StatelessWidget {
   const OnboardingPageWrapper({
-    Key? key,
     required this.child,
     required this.title,
     required this.svgPath,
     required this.description,
     this.previousRoute,
     this.hasAppBar = false,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final String description;

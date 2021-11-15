@@ -1,3 +1,55 @@
+const String loginQuery = r'''
+query login($phoneNumber: String!, $pin: String!, $flavour: Flavour!) {
+  login(flavour: $flavour, phoneNumber: $phoneNumber, pin: $pin) {
+    code
+    message
+    credentials {
+      authCredentials {
+        expiresIn
+        idToken
+        refreshToken
+      }
+      clientProfile {
+        treatmentEnrollmentDate
+        treatmentBuddy
+        active
+        addresses {
+          active
+          addressType
+          country
+          county
+          postalCode
+          text
+        }
+        clientCounselled
+        clientType
+        facilityID
+        user {
+          userID
+          active
+          displayName
+          firstName
+          gender
+          languages
+          lastName
+          middleName
+          termsAccepted
+          userName
+          userType
+          contacts {
+            active
+            contact
+            contactType
+            optedIn
+          }
+        }
+      }
+      pinChangeRequired
+    }
+  }
+}
+''';
+
 const String resumeWithPinQuery = r'''
 query resumeWithPhoneAndPin($pin: String!) {
    resumeWithPIN(pin: $pin)

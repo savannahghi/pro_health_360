@@ -23,7 +23,6 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/connectivity_helper.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
@@ -329,7 +328,7 @@ Future<String> getInitialRoute(
       case AuthTokenStatus.requiresLogin:
         return BWRoutes.phoneLogin;
       case AuthTokenStatus.requiresPin:
-        return BWRoutes.resumeWithPin;
+        return BWRoutes.phoneLogin;
       default:
     }
 
@@ -573,151 +572,6 @@ Object actionWrapError({
     imageAssetPath: errorIconUrl,
   );
   return error;
-}
-
-/// [processSignIn] is called after create account or login response has been received.
-/// Since the working is the same,makes sense to have only one point to preprocess the response.
-/// The only difference is in the final step where for [login] the user is navigated to a suitable page
-/// depending on their onboarding path while for [createAccount] the used to navigated direct to basic details page.
-Future<dynamic> processSignIn({
-  required ProcessedResponse processedResponse,
-  required Store<AppState> store,
-  required BuildContext context,
-  required DateTimeParser dateTimeParser,
-  required RefreshTokenManger refreshTokenManger,
-  required IGraphQlClient graphQlClient,
-}) async {
-  try {
-    final http.Response jsonResponse = processedResponse.response;
-    final Map<String, dynamic> response =
-        json.decode(jsonResponse.body) as Map<String, dynamic>;
-
-    final UserResponse userResponse = UserResponse.fromJson(response);
-
-    final UserProfile? userProfile = userResponse.profile;
-
-    // customer profile
-    final Customer? customerProfile = userResponse.customerProfile;
-
-    final CommunicationSettings? commSettings =
-        userResponse.communicationSettings;
-
-    final AuthCredentialResponse auth = userResponse.auth!;
-
-    await store.dispatch(
-      ManageTokenAction(
-        context: context,
-        refreshToken: auth.refreshToken!,
-        idToken: auth.idToken!,
-        parsedExpiresAt:
-            dateTimeParser.parsedExpireAt(int.parse(auth.expiresIn!)),
-        refreshTokenManger: refreshTokenManger,
-        canExperiment: auth.canExperiment,
-      ),
-    );
-
-    // dispatch an action to update the user profile
-    await store.dispatch(
-      UpdateUserProfileAction(
-        profile: userProfile,
-        communicationSettings: commSettings,
-        userBioData: userProfile?.userBioData,
-        customerProfile: customerProfile,
-      ),
-    );
-
-    final AppState updatedState = store.state;
-
-    await store.dispatch(
-      AuthStatusAction(
-        signedIn: true,
-        uid: auth.uid,
-        signedInTime: DateTime.now().toIso8601String(),
-        isChangePin: auth.isChangePin,
-      ),
-    );
-
-    /// navigation to home page happens here
-    final OnboardingPathConfig routeContext = onboardingPath(updatedState);
-    final String appContext =
-        getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
-
-    publishEvent(
-      hasLoggedInSuccessfullyEvent(appContext),
-      EventObject(
-        firstName: userProfile!.userBioData!.firstName?.getValue(),
-        lastName: userProfile.userBioData!.lastName?.getValue(),
-        uid: auth.uid,
-        primaryPhoneNumber: userProfile.primaryPhoneNumber?.getValue(),
-        flavour: Flavour.CONSUMER.name,
-        timestamp: DateTime.now(),
-      ),
-    );
-
-    // call register device token here but don't wait for it
-    registerDeviceToken(client: AppWrapperBase.of(context)!.graphQLClient);
-
-    final DeepLinkSubject deepLink = DeepLinkSubject();
-    if (deepLink.hasLink.value) {
-      deepLink.hasLink.add(false);
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        deepLink.link.value,
-        (Route<dynamic> route) => false,
-      );
-      return;
-    }
-
-    await Navigator.pushNamedAndRemoveUntil(
-      context,
-      routeContext.route,
-      (Route<dynamic> route) => false,
-      arguments: routeContext.arguments,
-    );
-
-    return;
-  } catch (e, stackTrace) {
-    final AppState? state = StoreProvider.state<AppState>(context);
-    final String appContext =
-        getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
-
-    reportErrorToSentry(
-      context,
-      e,
-      stackTrace: stackTrace,
-      hint: errorLoggingIn,
-    );
-    publishEvent(
-      hasFailedToLoggingEvent(appContext),
-      EventObject(
-        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
-            .getValue(),
-        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-            .getValue(),
-        uid: state.userProfileState!.auth!.uid,
-        flavour: Flavour.CONSUMER.name,
-        timestamp: DateTime.now(),
-      ),
-    );
-
-    // consider this a transaction rollback. if an exception is thrown, we set the user as not logged in otherwise
-    // they will be considered as logged in if app is restart or hot-reloaded during development
-    await store.dispatch(
-      AuthStatusAction(
-        signedIn: false,
-        refreshToken: UNKNOWN,
-        idToken: UNKNOWN,
-        signedInTime: DateTime.now().toIso8601String(),
-      ),
-    );
-
-    // tell the user that something went wrong
-    showFeedbackBottomSheet(
-      context: context,
-      modalContent: UserFeedBackTexts.getErrorMessage(),
-      imageAssetPath: errorIconUrl,
-    );
-  }
 }
 
 Function checkWaitingForFunc(BuildContext context) {

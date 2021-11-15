@@ -19,8 +19,6 @@ class BWRoutes {
   static const String createPin = '/createPin';
   static const String confirmCreatePin = '/confirmCreatePin';
 
-  static const String resumeWithPin = '/resumeWithPin';
-
   // onboarding routes
   static const String setupUserAsTester = '/setupUserAsTester';
 

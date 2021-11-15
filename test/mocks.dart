@@ -3113,3 +3113,65 @@ final Map<String, dynamic> termsMock = <String, dynamic>{
   'termsID': 'some-terms-id',
   'text': 'Terms will be available here soon'
 };
+
+final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
+  'data': <String, dynamic>{
+    'login': <String, dynamic>{
+      'code': '0',
+      'message': 'success',
+      'credentials': <String, dynamic>{
+        'authCredentials': <String, dynamic>{
+          'expiresIn': '3600',
+          'idToken': 'some id token',
+          'refreshToken': 'some refresh token'
+        },
+        'clientProfile': <String, dynamic>{
+          'treatmentEnrollmentDate': '21 Nov 2021',
+          'treatmentBuddy': null,
+          'active': true,
+          'addresses': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'active': true,
+              'addressType': 'POSTAL',
+              'country': 'Kenya',
+              'county': null,
+              'postalCode': '00300',
+              'text': 'One Padmore'
+            }
+          ],
+          'clientCounselled': true,
+          'clientType': 'PMTCT',
+          'facilityID': 'some-facility-id',
+          'user': <String, dynamic>{
+            'userID': 'some-user-id',
+            'active': true,
+            'displayName': 'Kowalski',
+            'firstName': 'Juha',
+            'gender': 'MALE',
+            'languages': <String>['en', 'sw'],
+            'lastName': 'Kalulu',
+            'middleName': null,
+            'termsAccepted': true,
+            'userName': 'Kowalski',
+            'userType': 'CLIENT',
+            'contacts': <Map<String, dynamic>>[
+              <String, dynamic>{
+                'active': true,
+                'contact': '+254717356476',
+                'contactType': 'PRIMARY',
+                'optedIn': true
+              },
+              <String, dynamic>{
+                'active': true,
+                'contact': '+254712345678',
+                'contactType': 'SECONDARY',
+                'optedIn': true
+              }
+            ]
+          }
+        },
+        'pinChangeRequired': true
+      }
+    }
+  }
+};
