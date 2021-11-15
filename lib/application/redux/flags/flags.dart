@@ -8,6 +8,10 @@
 const String feedRefreshFlag = 'refresh_user_feed';
 const String fetchUserFeedFlag = 'fetch_user_feed';
 
+//Terms and Conditions
+const String getTermsFlag = 'get_terms';
+const String acceptTermsFlag = 'accept_terms';
+
 // basic details
 const String updateBasicDetailsFlag = 'update_basic_details';
 

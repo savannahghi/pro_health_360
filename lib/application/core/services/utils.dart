@@ -526,6 +526,12 @@ String tooManyTriesString(int timeLeft) {
   return 'Too may tries, try again in $convertedTime minutes';
 }
 
+//Todo : Remove after testing
+const String dGraphEndpoint =
+    'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
+
+const String dGraphToken = 'N2Y1MjQ2YmFiNTkwZmE4MDkxODViOTVlMmY4YmRlMWI=';
+
 //Mock UserProfile
 final Map<String, Map<String, dynamic>?> loginResponse =
     <String, Map<String, Object?>?>{

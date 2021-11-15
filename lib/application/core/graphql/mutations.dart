@@ -28,3 +28,19 @@ mutation UpdateUserPin($phone: String!, $pin: String!) {
   updateUserPIN(phone: $phone, pin: $pin)
 }
  ''';
+
+const String acceptTermsAndConditionsMutation = r'''
+mutation acceptTerms($userID: String!, $termsID: String!){
+  acceptTerms(userID: $userID, termsID: $termsID)
+}
+ ''';
+
+Map<String, dynamic> getTermsVariables({
+  required String userId,
+  required String termsId,
+}) {
+  return <String, dynamic>{
+    'userID': userId,
+    'termsID': termsId,
+  };
+}

@@ -633,3 +633,5 @@ const String selectYourPreferredCommunication =
 const String communicationChannel = 'Communication channel';
 const String nickNameFieldName = 'Enter your nickname';
 String editInfoTitle(String title) => 'Edit $title';
+
+const String somethingWentWrongText = 'Something went wrong';

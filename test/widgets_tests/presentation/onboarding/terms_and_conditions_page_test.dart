@@ -1,4 +1,6 @@
 // Package imports:
+import 'dart:convert';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,8 +9,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:afya_moja_core/buttons.dart';
-import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:http/http.dart' as http;
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -20,10 +23,22 @@ void main() {
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getCurrentTerms': termsMock}
+          }),
+          201,
+        ),
+      );
+
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: mockShortSILGraphQlClient,
         widget: const TermsAndConditionsPage(),
       );
 
@@ -34,27 +49,28 @@ void main() {
 
     testWidgets('Checks whether terms have been selected',
         (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getCurrentTerms': termsMock,
+              'acceptTerms': true
+            },
+          }),
+          201,
+        ),
+      );
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: mockShortSILGraphQlClient,
         widget: const TermsAndConditionsPage(),
       );
-      final Finder proceedButton = find.byType(MyAfyaHubPrimaryButton);
-      await tester.tap(proceedButton);
+
       await tester.pumpAndSettle();
-
-      expect(find.text(acceptTermsErrorMessage), findsOneWidget);
-    });
-
-    testWidgets('Navigates to set security questions page if checked',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: const TermsAndConditionsPage(),
-      );
       final Finder checkBox = find.byType(Checkbox);
       final Finder proceedButton = find.byType(MyAfyaHubPrimaryButton);
       await tester.tap(checkBox);
@@ -62,7 +78,7 @@ void main() {
       await tester.tap(proceedButton);
       await tester.pumpAndSettle();
 
-      expect(find.byType(SecurityQuestionsPage), findsOneWidget);
+      expect(find.byType(TermsAndConditionsPage), findsNothing);
     });
   });
 }

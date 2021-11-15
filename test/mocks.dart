@@ -495,6 +495,40 @@ class MockGraphQlClientForFailures2 extends Mock implements GraphQlClient {
   }
 }
 
+/// a short client for providing custom responses
+///
+/// a good use case is when you want to return error responses
+class MockShortSILGraphQlClient extends IGraphQlClient {
+  MockShortSILGraphQlClient.withResponse(
+    String idToken,
+    String endpoint,
+    this.response,
+  ) {
+    super.idToken = idToken;
+    super.endpoint = endpoint;
+  }
+
+  final http.Response response;
+
+  @override
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
+    return Future<http.Response>.value(response);
+  }
+
+  @override
+  Future<http.Response> query(
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
+    return Future<http.Response>.value(response);
+  }
+}
+
 // ignore: subtype_of_sealed_class
 class MockGraphQlClient extends Mock implements GraphQlClient {
   String removeUserAsExperimenterVariables =
@@ -3060,4 +3094,9 @@ Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
 Map<String, dynamic> mockFAQContentResponse = <String, dynamic>{
   'title': 'title',
   'body': 'body',
+};
+
+final Map<String, dynamic> termsMock = <String, dynamic>{
+  'termsID': 'some-terms-id',
+  'text': 'Terms will be available here soon'
 };

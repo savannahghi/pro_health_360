@@ -29,6 +29,15 @@ query GetFaq ($flavour: Flavour!){
 }
 ''';
 
+const String getTermsQuery = '''
+query getCurrentTerms {
+  getCurrentTerms {
+    termsID
+    text
+  }
+}
+''';
+
 // get library query
 const String getLibraryQuery = '''
 query GetLibrary{

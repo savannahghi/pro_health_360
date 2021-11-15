@@ -7,6 +7,7 @@ import 'package:myafyahub/domain/core/entities/home/bottom_nav_obj.dart';
 import 'package:myafyahub/domain/core/entities/login/change_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
+import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';
@@ -21,6 +22,7 @@ class MiscState with _$MiscState {
     BottomNavObj? bottomNavObj,
     List<dynamic>? libraryListItems,
     String? healthPagePINInputTime,
+    TermsAndConditions? termsAndConditions,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -34,5 +36,6 @@ class MiscState with _$MiscState {
         bottomNavObj: BottomNavObj(),
         libraryListItems: <dynamic>[],
         healthPagePINInputTime: '',
+        termsAndConditions: TermsAndConditions.initial(),
       );
 }

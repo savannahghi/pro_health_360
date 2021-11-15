@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,6 +13,9 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
+import 'package:http/http.dart' as http;
+
+import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
@@ -36,10 +41,22 @@ void main() {
     });
 
     testWidgets('terms page navigates correctly', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'getCurrentTerms': termsMock}
+          }),
+          201,
+        ),
+      );
+
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: mockShortSILGraphQlClient,
         widget: const ConsentPage(),
       );
 
