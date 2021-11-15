@@ -10,7 +10,7 @@ import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold
 import 'package:myafyahub/presentation/core/widgets/my_afya_hub_mood_selection.dart';
 import 'package:myafyahub/presentation/core/widgets/new_content.dart';
 import 'package:myafyahub/presentation/core/widgets/suggested_groups_section_widget.dart';
-import 'package:myafyahub/presentation/engagement/home/widgets/bewell_upgrader.dart';
+import 'package:myafyahub/presentation/engagement/home/widgets/app_upgrader.dart';
 import 'package:myafyahub/presentation/feed/feed_details.dart';
 
 class HomeWidget extends StatefulWidget {

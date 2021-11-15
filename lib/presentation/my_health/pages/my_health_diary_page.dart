@@ -142,11 +142,6 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                       children: <Widget>[
                         GestureDetector(
                           key: previousButtonKey,
-                          child: SvgPicture.asset(
-                            prevIconSvgPath,
-                            width: 16,
-                            height: 16,
-                          ),
                           onTap: () {
                             setState(() {
                               if (itemIndex > 0) {
@@ -154,6 +149,11 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                               }
                             });
                           },
+                          child: SvgPicture.asset(
+                            prevIconSvgPath,
+                            width: 16,
+                            height: 16,
+                          ),
                         ),
                         Row(
                           children: <Widget>[
@@ -174,11 +174,6 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                         ),
                         GestureDetector(
                           key: nextButtonKey,
-                          child: SvgPicture.asset(
-                            nextIconSvgPath,
-                            width: 16,
-                            height: 16,
-                          ),
                           onTap: () {
                             setState(() {
                               if (itemIndex < monthlyDiaries.length - 1) {
@@ -186,6 +181,11 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                               }
                             });
                           },
+                          child: SvgPicture.asset(
+                            nextIconSvgPath,
+                            width: 16,
+                            height: 16,
+                          ),
                         ),
                       ],
                     ),

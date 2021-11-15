@@ -16,8 +16,8 @@ import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart'
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 
-class MyAfyaHubApp extends StatefulWidget {
-  const MyAfyaHubApp({
+class MyApp extends StatefulWidget {
+  const MyApp({
     Key? key,
     required this.navigatorObserver,
     required this.store,
@@ -33,13 +33,13 @@ class MyAfyaHubApp extends StatefulWidget {
   final AppSetupData appSetupData;
 
   @override
-  _MyAfyaHubAppState createState() => _MyAfyaHubAppState();
+  _MyAppState createState() => _MyAppState();
 
   @override
   String toStringShort() => 'myafyahub.app.main';
 }
 
-class _MyAfyaHubAppState extends State<MyAfyaHubApp> {
+class _MyAppState extends State<MyApp> {
   FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics();
 
   @override
