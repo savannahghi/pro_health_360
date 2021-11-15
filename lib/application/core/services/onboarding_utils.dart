@@ -24,9 +24,12 @@ import 'package:myafyahub/application/core/services/connectivity_helper.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
+import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
@@ -781,4 +784,32 @@ void refreshTokenAndUpdateState({
       });
     }
   }
+}
+
+Future<void> setUserPIN({
+  required BuildContext context,
+  required String newPIN,
+  required String confirmPIN,
+  required String flavour,
+}) async {
+  // this is the Redux Action that store the PINs user enters
+  StoreProvider.dispatch(
+    context,
+    CreatePINStateAction(
+      newPIN: newPIN,
+      confirmPIN: confirmPIN,
+    ),
+  );
+
+  // this is the Redux Action that handles set PIN for an existing user
+  await StoreProvider.dispatch<AppState>(
+    context,
+    CreatePINAction(
+      context: context,
+      flag: createPinFlag,
+      newPIN: newPIN,
+      confirmPIN: confirmPIN,
+      flavour: flavour,
+    ),
+  );
 }

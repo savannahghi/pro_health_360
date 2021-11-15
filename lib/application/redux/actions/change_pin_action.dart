@@ -56,10 +56,10 @@ class ChangePinAction extends ReduxAction<AppState> {
         .state.userProfileState!.userProfile!.primaryPhoneNumber!
         .getValue();
 
-    final String? newChangedPin = store.state.miscState!.changePIN!.createPIN;
+    final String? newChangedPin = store.state.miscState!.createPIN!.newPIN;
 
     final String? confirmedChangePin =
-        store.state.miscState!.changePIN!.confirmPIN;
+        store.state.miscState!.createPIN!.confirmPIN;
 
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newChangedPin == confirmedChangePin) {

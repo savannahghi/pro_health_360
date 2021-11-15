@@ -15,6 +15,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/core/graphql/mutations.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
@@ -1413,6 +1414,18 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{'resumeWithPIN': true}
+          }),
+          201,
+        ),
+      );
+    }
+
+    //set User PIN
+    if (queryString == setUserPINMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'setUserPIN': true}
           }),
           201,
         ),

@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:convert';
+import 'dart:io';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -34,6 +36,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:user_feed/user_feed.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import '../../../test_utils.dart';
@@ -1509,6 +1512,68 @@ void main() {
         InternetConnectivitySubject().connectivitySubject.valueOrNull,
         true,
       );
+    });
+  });
+  group('setUserPIN', () {
+    late Store<AppState> store;
+
+    setUpAll(() {
+      store = Store<AppState>(initialState: AppState.initial());
+      HttpOverrides.global = null;
+    });
+    testWidgets('Navigates to Congratulations page if PINs are valid  ',
+        (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                await setUserPIN(
+                  confirmPIN: '0000',
+                  context: context,
+                  newPIN: '0000',
+                  flavour: Flavour.CONSUMER.name,
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+      expect(find.byType(CongratulationsPage), findsOneWidget);
+    });
+    testWidgets('Shows snackbar when pins do not match',
+        (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                await setUserPIN(
+                  confirmPIN: '0001',
+                  context: context,
+                  newPIN: '0000',
+                  flavour: Flavour.CONSUMER.name,
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pump(const Duration(seconds: 1));
+      expect(find.text(pinMustMatchString), findsOneWidget);
     });
   });
 }

@@ -635,3 +635,4 @@ const String nickNameFieldName = 'Enter your nickname';
 String editInfoTitle(String title) => 'Edit $title';
 
 const String somethingWentWrongText = 'Something went wrong';
+const String pinSuccessString = 'PIN created successfully';

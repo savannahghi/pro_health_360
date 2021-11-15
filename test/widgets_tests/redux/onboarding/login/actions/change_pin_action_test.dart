@@ -11,7 +11,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/redux/actions/change_pin_state_action.dart';
+import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -83,8 +83,8 @@ void main() {
                 );
                 StoreProvider.dispatch(
                   context,
-                  ChangePINStateAction(
-                    createPIN: testPin,
+                  CreatePINStateAction(
+                    newPIN: testPin,
                     confirmPIN: testPin,
                   ),
                 );
@@ -159,8 +159,8 @@ void main() {
                 );
                 StoreProvider.dispatch(
                   context,
-                  ChangePINStateAction(
-                    createPIN: testPin,
+                  CreatePINStateAction(
+                    newPIN: testPin,
                     confirmPIN: '4321',
                   ),
                 );
@@ -237,8 +237,8 @@ void main() {
                 );
                 StoreProvider.dispatch(
                   context,
-                  ChangePINStateAction(
-                    createPIN: testPin,
+                  CreatePINStateAction(
+                    newPIN: testPin,
                     confirmPIN: testPin,
                   ),
                 );
