@@ -7,20 +7,21 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
+// Flutter imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:user_feed/user_feed.dart';
-
-// Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
+// Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:user_feed/user_feed.dart';
+
 import '../../../../../mock_utils.dart';
 import '../../../../../test_helpers.dart';
 import '../../../../shared/services/onboarding_utils_2_test.mocks.dart';

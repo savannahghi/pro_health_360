@@ -9,10 +9,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:myafyahub/application/core/graphql/queries.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
@@ -28,7 +28,6 @@ import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-import 'package:user_feed/user_feed.dart';
 
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
@@ -56,8 +55,8 @@ void main() {
     });
 
     testWidgets(
-        'should not show an error alert box since state is reset upon mounting PhoneLogin',
-        (WidgetTester tester) async {
+        'should not show an error alert box since state is reset upon mounting'
+        ' PhoneLogin', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -154,8 +153,8 @@ void main() {
             method: httpPOST,
           ),
         ).thenAnswer(
-          (_) => Future<http.Response>.value(
-            http.Response(
+          (_) => Future<Response>.value(
+            Response(
               json.encode(createUserMock()),
               200,
             ),
@@ -223,26 +222,20 @@ void main() {
       'should login user',
       (WidgetTester tester) async {
         mockNetworkImages(() async {
-          final Map<String, dynamic> queryVariables = <String, dynamic>{
-            'phoneNumber': '+254710000000',
-            'pin': testPin,
-            'flavour': Flavour.CONSUMER.name,
-          };
-
-          final http.Response response = http.Response(
-            json.encode(mockLoginResponse),
-            200,
+          final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+              MockShortSILGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              json.encode(mockLoginResponse),
+              201,
+            ),
           );
-
-          reset(baseGraphQlClientMock);
-
-          when(baseGraphQlClientMock.query(loginQuery, queryVariables))
-              .thenAnswer((_) async => Future<http.Response>.value(response));
 
           await buildTestWidget(
             tester: tester,
             store: store,
-            client: baseGraphQlClientMock,
+            client: mockShortSILGraphQlClient,
             widget: Builder(
               builder: (BuildContext context) {
                 EndPointsContextSubject().contexts.add(testAppContexts);
@@ -270,7 +263,7 @@ void main() {
           expect(completeButton, findsOneWidget);
           await tester.ensureVisible(completeButton);
           await tester.tap(completeButton);
-          await tester.pumpAndSettle();
+          await tester.pumpAndSettle(const Duration(seconds: 5));
 
           expect(find.byType(HomePage), findsOneWidget);
         });

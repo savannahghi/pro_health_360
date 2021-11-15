@@ -18,7 +18,9 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/domain/core/entities/communities/group.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
@@ -1104,7 +1106,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains(getFeedQuery)) {
+    if (queryString.contains(fetchContentQuery)) {
       /// return fake data here
       return Future<http.Response>.value(
         http.Response(
@@ -2959,64 +2961,17 @@ void setUpRemoteConfigStubs() {
 
 List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
   <String, dynamic>{
-    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
-    'title': 'Kilimani',
-    'totalMembers': '1.3k Members',
+    'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'members': '20',
+    'name': 'Ruaraka'
   },
   <String, dynamic>{
-    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
-    'title': 'Ruaraka',
-    'totalMembers': '1.3k Members',
+    'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'members': '50',
+    'name': 'Mental health'
   },
-  <String, dynamic>{
-    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
-    'title': 'Ruaraka',
-    'totalMembers': '1.3k Members',
-  },
-  <String, dynamic>{
-    'iconUrl': 'https://wallpaperaccess.com/full/2213426.jpg',
-    'title': 'Ruaraka',
-    'totalMembers': '1.3k Members',
-  }
 ];
 
-List<Map<String, dynamic>> mockFeed = <Map<String, dynamic>>[
-  <String, dynamic>{
-    'coverImageUrl': contentItemImageUrl,
-    'header': feedHeader,
-    'date': '',
-    'isNew': true,
-    'authorName': 'Ken Doe',
-    'bodyContent': defactoZeroStateString(),
-    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
-  },
-  <String, dynamic>{
-    'coverImageUrl': contentItemImageUrl,
-    'header': feedHeader,
-    'date': '',
-    'readTime': feedReadTime,
-    'authorName': 'Ken Doe',
-    'bodyContent': defactoZeroStateString(),
-    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
-  },
-  <String, dynamic>{
-    'coverImageUrl': contentItemImageUrl,
-    'header': feedHeader,
-    'date': '',
-    'authorName': 'Ken Doe',
-    'bodyContent': defactoZeroStateString(),
-    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
-    'type': 'Video'
-  },
-  <String, dynamic>{
-    'coverImageUrl': contentItemImageUrl,
-    'header': feedHeader,
-    'date': '',
-    'authorName': 'Ken Doe',
-    'bodyContent': defactoZeroStateString(),
-    'authorDisplayPic': 'https://cloudcannon.com/blog/uploads/george-photo.jpg',
-  }
-];
 final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
   HealthDiaryItemObj(
     date: 'Tuesday 13th',
@@ -3203,6 +3158,64 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
         },
         'pinChangeRequired': true
       }
-    }
+    },
+    'fetchRecentContent': <dynamic>[
+      mockContent,
+    ],
+    'fetchSuggestedGroups': <dynamic>[
+      mockGroup,
+    ]
   }
 };
+final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'author': 'Abiud Orina',
+    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'body':
+        'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
+    'contentID': 'some-content-id',
+    'contentType': 'ARTICLE',
+    'createdAt': '2021-08-23T06:42:05.085216Z',
+    'heroImage': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    'isNew': true,
+    'publicLink': 'https://bewell.co.ke/',
+    'tags': <String>['Recommended', 'Health', 'Fitness'],
+    'title': 'Tips on how to keep yourself healthy',
+    'estimate': '3 minutes'
+  },
+  <String, dynamic>{
+    'author': 'Abiud Orina',
+    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'body':
+        "An ideal daily intake of calories varies depending on age, metabolism and levels of physical activity, among other things. Generally, the recommended daily calorie intake is 2,000 calories a day for women and 2,500 for men. The term calorie is commonly used as shorthand for kilocalorie. You will find this written as kcal on food packets. Kilojoules (kJ) are the equivalent of kilocalories within the International System of Units, and you'll see both kJ and kcal on nutrition labels. 4.2kJ is equivalent to approximately 1kcal.",
+    'contentID': 'some-content-id',
+    'contentType': 'ARTICLE',
+    'createdAt': '2021-08-23T06:42:05.085216Z',
+    'heroImage': 'https://i.postimg.cc/1t1XXvyz/lemon.jpg',
+    'isNew': true,
+    'publicLink': 'https://bewell.co.ke/',
+    'tags': <String>['Recommended', 'Health', 'Fitness'],
+    'title': 'What should my daily intake of calories be?',
+    'estimate': '3 minutes'
+  }
+];
+
+final Content mockContent = Content(
+  author: 'test',
+  contentID: 'test',
+  title: 'test',
+  body: 'test',
+  authorAvatar: 'test',
+  createdAt: DateTime.now().toString(),
+  tags: <String>['test', 'test'],
+  estimate: 'test',
+  heroImage: 'test',
+  publicLink: 'test',
+  isNew: true,
+);
+
+final Group mockGroup = Group(
+  name: 'test',
+  avatar: 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+  members: '523',
+);

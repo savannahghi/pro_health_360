@@ -52,7 +52,7 @@ class GenericTimeoutWidget extends StatelessWidget {
             child: Text(
               UserFeedBackTexts.getErrorMessage(action),
               textAlign: TextAlign.center,
-              style: TextThemes.normalSize14Text(),
+              style: TextThemes.normalSize14Text(AppColors.blackColor),
             ),
           ),
           smallVerticalSizedBox,

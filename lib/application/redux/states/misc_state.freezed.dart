@@ -264,7 +264,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, createPIN: $createPIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime)';
+    return 'MiscState(phoneLogin: $phoneLogin, createPIN: $createPIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, termsAndConditions: $termsAndConditions)';
   }
 
   @override

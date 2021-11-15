@@ -12,6 +12,7 @@ import 'package:myafyahub/domain/core/value_objects/extensions.dart';
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';
 
+// TODO(abiud): rework this state after architecture rewrite
 // AppState assembles all features states into one that can the pushed during creation
 // to create on global app store
 @freezed

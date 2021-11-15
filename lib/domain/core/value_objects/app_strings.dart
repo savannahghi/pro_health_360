@@ -121,7 +121,7 @@ const String pinMismatchException =
     'You entered an incorrect PIN, please try again';
 const String enterPINText = 'Enter your PIN to continue';
 const String fourDigitPin = 'Please enter a 4 digit PIN';
-const String landingPageTitle = 'Welcome to My Afya Hub';
+const String landingPageTitle = 'Welcome to myCareHub';
 const String logoutButtonText = 'Logout';
 const String phoneNumberSignInSubtitle = 'Use your phone number and PIN';
 const String pinUpdateSuccess = 'Your PIN was updated successfully';
@@ -379,10 +379,12 @@ const String answerSecurityQuestionString = 'Answer security question';
 const String answerCorrectlyToGainAccessString =
     'Answer correctly to gain access';
 
-const String whereWereYouBornString = 'Where were you born?';
-const String whatsTheNameOfYourPetString = 'What\'s the name of your pet?';
-const String whatsYourFavouriteFoodString = 'What\'s your favourite food?';
-const String whereDidYouFirstLiveString = 'Where did you first live?';
+const String whereWereYouBornString =
+    'What are the last 3 digits of your CCC number?';
+const String whatsTheNameOfYourPetString =
+    'Which month did you start your treatment?';
+const String whereDidYouFirstLiveString =
+    'Which county is your clinic located?';
 const String answerHereString = 'Answer here';
 const String saveAndContinueButtonText = 'Save & Continue';
 const String doneText = 'Done';
@@ -594,7 +596,7 @@ const String exerciseString = 'Exercise';
 const String dietString = 'Diet';
 
 //Article Details Page
-const String datePublishedString = 'Date published: ';
+const String datePublishedString = 'Published on ';
 
 String defactoZeroStateString({String topic = 'Content'}) =>
     '$topic will be available soon';

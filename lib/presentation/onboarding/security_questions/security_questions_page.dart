@@ -42,12 +42,6 @@ class SecurityQuestionsPage extends StatelessWidget {
         flavour: Flavour.CONSUMER.name,
       ),
       SecurityQuestion(
-        id: 'sec_q_3',
-        questionStem: whatsYourFavouriteFoodString,
-        responseType: '',
-        flavour: Flavour.CONSUMER.name,
-      ),
-      SecurityQuestion(
         id: 'sec_q_4',
         questionStem: whereDidYouFirstLiveString,
         responseType: '',

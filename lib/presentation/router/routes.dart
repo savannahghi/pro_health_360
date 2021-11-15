@@ -89,7 +89,7 @@ class BWRoutes {
   static const String pinInputPage = '/pinInputPage';
 
   //Article Details Page
-  static const String articleDetailsPage = '/articleDetailsPage';
+  static const String contentDetailPage = '/contentDetailPage';
 
   //Forgot PIN Page
   static const String forgotPINPage = '/forgotPINPage';

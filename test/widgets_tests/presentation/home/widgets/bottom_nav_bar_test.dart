@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -6,6 +8,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 
@@ -25,7 +29,7 @@ void main() {
       initialState: AppState.initial().copyWith(
         userProfileState: UserProfileState(
           auth: AuthCredentialResponse.fromJson(
-            <String, dynamic>{'uid': 'ajskdhbskjbdjhaskdbkash'},
+            <String, dynamic>{'uid': 'some-uid'},
           ),
           userProfile: UserProfile.initial().copyWith(
             primaryPhoneNumber: PhoneNumber.withValue('0715710345'),
@@ -81,50 +85,74 @@ void main() {
 
     testWidgets('should navigate to the different tabs',
         (WidgetTester tester) async {
-      store.dispatch(
-        AuthStatusAction(
-          signedInTime:
-              DateTime.now().subtract(const Duration(minutes: 30)).toString(),
-        ),
-      );
-      store.dispatch(
-        HealthPagePINInputAction(
-          lastPINInputTime:
-              DateTime.now().subtract(const Duration(minutes: 30)).toString(),
-        ),
-      );
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: GraphQlClient,
-        widget: Scaffold(
-          body: Container(),
-          bottomNavigationBar: const BottomNavBar(),
-        ),
-      );
+      mockNetworkImages(() async {
+        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+            MockShortSILGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'fetchRecentContent': <dynamic>[
+                  mockContent,
+                  mockContent,
+                ],
+                'fetchContent': <dynamic>[
+                  mockContent,
+                  mockContent,
+                ],
+                'fetchSuggestedGroups': <dynamic>[mockGroup]
+              }
+            }),
+            201,
+          ),
+        );
 
-      await tester.pumpAndSettle();
-      expect(find.byKey(silBottomNavKey), findsOneWidget);
-      expect(find.text('Home'), findsWidgets);
-      await tester.tap(find.text('Home').first);
-      await tester.pumpAndSettle();
+        store.dispatch(
+          AuthStatusAction(
+            signedInTime:
+                DateTime.now().subtract(const Duration(minutes: 30)).toString(),
+          ),
+        );
+        store.dispatch(
+          HealthPagePINInputAction(
+            lastPINInputTime:
+                DateTime.now().subtract(const Duration(minutes: 30)).toString(),
+          ),
+        );
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: Scaffold(
+            body: Container(),
+            bottomNavigationBar: const BottomNavBar(),
+          ),
+        );
 
-      expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 0);
+        await tester.pumpAndSettle();
+        expect(find.byKey(silBottomNavKey), findsOneWidget);
+        expect(find.text('Home'), findsWidgets);
+        await tester.tap(find.text('Home').first);
+        await tester.pumpAndSettle();
 
-      expect(find.text('Feed'), findsWidgets);
-      await tester.tap(find.text('Feed').first);
-      await tester.pumpAndSettle();
+        expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 0);
 
-      expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 1);
+        expect(find.text('Feed'), findsWidgets);
+        await tester.tap(find.text('Feed').first);
+        await tester.pumpAndSettle();
 
-      expect(find.text('My Health'), findsWidgets);
-      await tester.tap(find.text('My Health').first);
-      await tester.pumpAndSettle();
-      expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 3);
-      expect(find.byType(PINInputPage), findsOneWidget);
+        expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 1);
 
-      await tester.tap(find.byKey(pinInputPageBackKey));
-      expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 0);
+        expect(find.text('My Health'), findsWidgets);
+        await tester.tap(find.text('My Health').first);
+        await tester.pumpAndSettle();
+        expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 3);
+        expect(find.byType(PINInputPage), findsOneWidget);
+
+        await tester.tap(find.byKey(pinInputPageBackKey));
+        expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 0);
+      });
     });
   });
 }

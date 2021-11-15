@@ -99,15 +99,17 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                               padding: const EdgeInsets.all(16.0),
                               child:
                                   vm.appState.wait!.isWaitingFor(getTermsFlag)
-                                      ? const SILPlatformLoader(
-                                          color: AppColors.secondaryColor,
+                                      ? Container(
+                                          height: 300,
+                                          padding: const EdgeInsets.all(20),
+                                          child: const SILPlatformLoader(),
                                         )
                                       : SizedBox(
                                           width: double.infinity,
                                           child: Text(
                                             vm.appState.miscState!
                                                 .termsAndConditions!.text,
-                                            style: TextThemes.normalSize18Text(
+                                            style: TextThemes.normalSize15Text(
                                               AppColors.secondaryColor
                                                   .withOpacity(0.5),
                                             ).copyWith(height: 1.8),

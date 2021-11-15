@@ -182,9 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: (vm.appState.wait!.isWaitingFor(phoneLoginFlag))
-                        ? const SILPlatformLoader(
-                            color: AppColors.secondaryColor,
-                          )
+                        ? const SILPlatformLoader()
                         : SizedBox(
                             width: double.infinity,
                             height: 52,

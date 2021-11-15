@@ -1,4 +1,6 @@
 // Package imports:
+import 'dart:convert';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
@@ -8,9 +10,11 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/buttons.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/home_widget.dart';
+import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
+import 'package:http/http.dart' as http;
 
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -39,11 +43,25 @@ void main() {
 
     testWidgets('continue button is clickable if input is valid',
         (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'fetchRecentContent': contentMock,
+              'fetchSuggestedGroups': mockSuggestions
+            }
+          }),
+          201,
+        ),
+      );
       mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: baseGraphQlClientMock,
+          client: mockShortSILGraphQlClient,
           widget: const CongratulationsPage(
             duration: '3 years',
           ),
@@ -57,7 +75,7 @@ void main() {
         await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
         await tester.tap(find.byType(MyAfyaHubPrimaryButton));
         await tester.pumpAndSettle();
-        expect(find.byType(HomeWidget), findsOneWidget);
+        expect(find.byType(HomePage), findsOneWidget);
       });
     });
   });

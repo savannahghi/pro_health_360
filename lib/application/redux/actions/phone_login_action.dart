@@ -16,6 +16,7 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
+import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_feed/user_feed.dart';
@@ -80,7 +81,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           AppWrapperBase.of(context)!.graphQLClient;
 
       httpClient.idToken = dGraphToken;
-      httpClient.endpoint = dgraphApiEndpoint;
+      httpClient.endpoint = dGraphEndpoint;
 
       final Response httpResponse =
           await httpClient.query(loginQuery, variables);

@@ -8,11 +8,11 @@ import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
-/// [FeedItemReactionIcon] Displays reaction Icons on the feed
-class FeedItemReactionIcon extends StatelessWidget {
+/// [ContentItemReactionIcon] Displays reaction Icons on the feed
+class ContentItemReactionIcon extends StatelessWidget {
   final String svgPath;
   final Color backgroundColor;
-  const FeedItemReactionIcon({required this.svgPath, this.backgroundColor = Colors.white});
+  const ContentItemReactionIcon({required this.svgPath, this.backgroundColor = Colors.white});
   @override
   Widget build(BuildContext context) {
     return Container(

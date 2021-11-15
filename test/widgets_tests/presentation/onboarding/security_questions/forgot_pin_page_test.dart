@@ -1,9 +1,12 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 // Project imports:
@@ -87,11 +90,26 @@ void main() {
     });
 
     testWidgets('Navigates to Home Page', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'fetchRecentContent': <dynamic>[],
+              'fetchSuggestedGroups': <dynamic>[]
+            }
+          }),
+          201,
+        ),
+      );
+
       await mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: baseGraphQlClientMock,
+          client: mockShortSILGraphQlClient,
           widget: const ForgotPINPage(),
         );
 

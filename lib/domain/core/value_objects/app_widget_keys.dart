@@ -317,3 +317,7 @@ const Key nextButtonKey = Key('next_button_key');
 
 //Forgot PIN Page
 const Key forgotPINButtonKey = Key('forgot_PIN_button_key');
+
+const Key feedContentItemKey = Key('feed_content_item_key');
+const Key feedVideoPlayIconKey = Key('feed_video_play_icon_key');
+

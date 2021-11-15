@@ -1,18 +1,26 @@
 // Flutter imports:
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 
 // Package imports:
-import 'package:myafyahub/application/core/services/utils.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:myafyahub/presentation/feed/widgets/content_item.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/text_themes.dart';
-import 'package:myafyahub/presentation/feed/feed_details.dart';
-import '../feed_item_widget.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage();
@@ -24,6 +32,28 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   int _choiceIndex = 0;
 
+  late Stream<Object> _stream;
+  late StreamController<Object> _streamController;
+
+  @override
+  void initState() {
+    _streamController = StreamController<Object>.broadcast();
+    _stream = _streamController.stream;
+    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+      await customFetchData(
+        streamController: _streamController,
+        context: context,
+        logTitle: 'Fetch recent content',
+        queryString: fetchContentQuery,
+        variables: <String, dynamic>{
+          'limit': 10,
+          'tags': <String>['health', 'fitness']
+        },
+      );
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -34,22 +64,88 @@ class _FeedPageState extends State<FeedPage> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: _buildChoiceChips(context),
+              child: _buildFeedFilters(context),
             ),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: feedItems.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final FeedDetails feedDetails = feedItems.elementAt(index);
-                  return Padding(
-                    padding: EdgeInsets.only(top: index == 0 ? 15 : 7.5),
-                    child: FeedItem(
-                      feedDetails: feedDetails,
+            StreamBuilder<dynamic>(
+              stream: _stream,
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                //show the loader before the data is displayed
+                if (snapshot.data is Map<String, dynamic> &&
+                    snapshot.data != null &&
+                    snapshot.data['loading'] != null &&
+                    snapshot.data['loading'] == true) {
+                  return Container(
+                    height: 300,
+                    padding: const EdgeInsets.all(20),
+                    child: const SILPlatformLoader(),
+                  );
+                }
+
+                //error checking
+                if (snapshot.hasError) {
+                  reportErrorToSentry(
+                    context,
+                    snapshot.error,
+                    hint: 'Error while fetching your content',
+                  );
+                  final dynamic valueHolder = snapshot.error;
+                  final Map<String, dynamic>? error = snapshot.error == null
+                      ? null
+                      : valueHolder as Map<String, dynamic>;
+
+                  /// check if the error is a timeout error and return an appropriate widget
+                  if (error == null || error['error'] == 'timeout') {
+                    return const GenericTimeoutWidget(
+                      route: BWRoutes.home,
+                      action: 'fetching your feed',
+                    );
+                  }
+
+                  return GenericNoData(
+                    key: helpNoDataWidgetKey,
+                    type: GenericNoDataTypes.ErrorInData,
+                    actionText: actionTextGenericNoData,
+                    recoverCallback: () async {
+                      await customFetchData(
+                        streamController: _streamController,
+                        context: context,
+                        logTitle: 'Fetch suggested groups',
+                        queryString: fetchContentQuery,
+                        variables: <String, dynamic>{},
+                      );
+                    },
+                    messageBody: messageBodyGenericNoData,
+                  );
+                }
+
+                if (snapshot.hasData) {
+                  final List<dynamic> feedItems =
+                      snapshot.data['fetchContent'] as List<dynamic>;
+
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: feedItems.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final Content currentFeedItem = Content.fromJson(
+                          feedItems.elementAt(index) as Map<String, dynamic>,
+                        );
+
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            top: index == 0 ? 15 : 7.5,
+                            bottom: 10,
+                          ),
+                          child: ContentItem(
+                            contentDetails: currentFeedItem,
+                          ),
+                        );
+                      },
                     ),
                   );
-                },
-              ),
+                }
+                return const SizedBox();
+              },
             ),
           ],
         ),
@@ -57,7 +153,7 @@ class _FeedPageState extends State<FeedPage> {
     );
   }
 
-  Widget _buildChoiceChips(BuildContext context) {
+  Widget _buildFeedFilters(BuildContext context) {
     final List<String> _choices = <String>[
       allString,
       recommendedString,

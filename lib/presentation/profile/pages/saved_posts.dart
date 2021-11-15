@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/feed/feed_details.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/presentation/feed/feed_list.dart';
 
 class SavedPostPage extends StatelessWidget {
@@ -44,71 +43,29 @@ class SavedPostPage extends StatelessWidget {
                   child: TabBarView(
                     children: <Widget>[
                       FeedList(
-                        feedItems: <FeedDetails>[
-                          FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                            type: FeedType.Video,
+                        feedItems: <Content>[
+                          Content(
+                            contentID: 'some-content-id',
+                            authorAvatar: feedImage1,
+                            heroImage: feedImage2,
+                            createdAt: feedDate,
+                            title: feedHeader,
+                            author: treatmentBuddyString,
+                            body: defactoZeroStateString(),
                           ),
-                          FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                            type: FeedType.Video,
-                          ),
-                          FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                            type: FeedType.Video,
-                          ),
-                          FeedDetails(
-                            coverImageUrl: feedImage3,
-                            date: feedDate,
-                            header: feedHeaderListSavedVideo,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                            type: FeedType.Video,
-                          )
                         ],
                       ),
                       FeedList(
-                        feedItems: <FeedDetails>[
-                          FeedDetails(
-                            coverImageUrl: feedImage2,
-                            date: feedDate,
-                            header: feedHeader,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
+                        feedItems: <Content>[
+                          Content(
+                            contentID: 'some-content-id',
+                            authorAvatar: feedImage1,
+                            heroImage: feedImage2,
+                            createdAt: feedDate,
+                            title: feedHeader,
+                            author: treatmentBuddyString,
+                            body: defactoZeroStateString(),
                           ),
-                          FeedDetails(
-                            coverImageUrl: feedImage1,
-                            date: feedDate,
-                            header: feedHeader,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                          ),
-                          FeedDetails(
-                            coverImageUrl: feedImage4,
-                            date: feedDate,
-                            header: feedHeader,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                          ),
-                          FeedDetails(
-                            coverImageUrl: feedImage5,
-                            date: feedDate,
-                            header: feedHeader,
-                            authorName: treatmentBuddyString,
-                            bodyContent: defactoZeroStateString(),
-                          )
                         ],
                       ),
                     ],

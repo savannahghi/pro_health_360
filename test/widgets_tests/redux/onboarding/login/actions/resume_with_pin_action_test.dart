@@ -9,13 +9,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/buttons.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/resume_with_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
@@ -23,7 +22,6 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import '../../../../../mock_feed_response.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -240,69 +238,39 @@ void main() {
         'should navigate to home when user enters app via deep link and resumes by pin',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
+        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+            MockShortSILGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'fetchRecentContent': <dynamic>[
+                  mockContent,
+                  mockContent,
+                ],
+                'fetchContent': <dynamic>[
+                  mockContent,
+                  mockContent,
+                ],
+                'fetchSuggestedGroups': <dynamic>[mockGroup],
+                'resumeWithPIN': true
+              }
+            }),
+            201,
+          ),
+        );
+
         deepLink.hasLink.add(true);
         deepLink.link.add('home');
-
-        final Map<String, dynamic> resp = <String, dynamic>{
-          'data': <String, dynamic>{'resumeWithPIN': true}
-        };
-
-        final http.Response response = http.Response(
-          json.encode(resp),
-          200,
-        );
-
-        queryWhenThenAnswer(
-          queryString: resumeWithPinQuery,
-          variables: <String, dynamic>{'pin': '1234'},
-          response: response,
-        );
-
-        when(baseGraphQlClientMock.toMap(response))
-            .thenReturn(json.decode(response.body) as Map<String, dynamic>);
-
-        when(baseGraphQlClientMock.parseError(resp)).thenReturn(null);
-
-        final Map<String, dynamic> responseData =
-            mockFeedResponse(hasItems: false);
-        // mocked response
-        final http.Response _response = http.Response(
-          json.encode(responseData),
-          200,
-        );
-
-        loginResponse.remove('auth');
 
         final UserResponse userResp = UserResponse.fromJson(loginResponse);
         final UserProfile? userProfile = userResp.profile;
 
-        queryWhenThenAnswer(
-          queryString: getFeedQuery,
-          variables: <String, dynamic>{
-            'flavour': Flavour.CONSUMER.name,
-            'persistent': 'BOTH',
-            'visibility': 'SHOW',
-            'isAnonymous': false,
-            'status': null,
-          },
-          response: _response,
-        );
-
-        queryWhenThenAnswer(
-          queryString: registerDeviceTokenQuery,
-          variables: <String, dynamic>{'token': 'sampleToken'},
-          response: _response,
-        );
-
-        when(baseGraphQlClientMock.toMap(_response))
-            .thenReturn(json.decode(_response.body) as Map<String, dynamic>);
-
-        when(baseGraphQlClientMock.parseError(responseData)).thenReturn(null);
-
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: baseGraphQlClientMock,
+          client: mockShortSILGraphQlClient,
           widget: Builder(
             builder: (BuildContext context) {
               return SILPrimaryButton(
