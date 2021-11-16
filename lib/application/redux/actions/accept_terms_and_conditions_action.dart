@@ -11,7 +11,8 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/update_profile_terms_and_conditions_action.dart';
+import 'package:myafyahub/application/redux/actions/update_terms_and_conditions_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/accept_terms_and_conditions_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -23,25 +24,23 @@ import 'package:shared_themes/constants.dart';
 class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   AcceptTermsAndConditionsAction({
     required this.context,
-    required this.flag,
     required this.userId,
     required this.termsId,
   });
 
   final BuildContext context;
-  final String flag;
   final String termsId;
   final String userId;
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(flag));
+    dispatch(WaitAction<AppState>.remove(acceptTermsFlag));
     super.after();
   }
 
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(flag));
+    dispatch(WaitAction<AppState>.add(acceptTermsFlag));
     super.before();
   }
 
@@ -49,7 +48,7 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
-    //Todo: Remove after
+    //Todo: Remove after testing
     _client.idToken = dGraphToken;
     _client.endpoint = dGraphEndpoint;
 
@@ -81,7 +80,7 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
     );
 
     dispatch(
-      UpdateProfileTermsAndConditionsAction(
+      UpdateTermsAndConditionsAction(
         isAccepted: acceptTermsAndConditionsResponse.acceptTerms,
       ),
     );

@@ -3,10 +3,8 @@ import 'dart:convert';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:myafyahub/application/redux/actions/get_terms_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:shared_ui_components/buttons.dart';
 
@@ -51,7 +49,6 @@ void main() {
                   await store.dispatch(
                     GetTermsAction(
                       context: context,
-                      flag: getTermsFlag,
                     ),
                   );
                 } catch (e) {
