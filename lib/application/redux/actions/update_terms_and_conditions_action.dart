@@ -5,19 +5,33 @@ import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_co
 
 class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
   UpdateTermsAndConditionsAction({
-    required this.id,
-    required this.termsString,
+    this.id,
+    this.termsString,
+    this.isAccepted,
   });
 
-  final String id;
-  final String termsString;
+  final String? id;
+  final String? termsString;
+  final bool? isAccepted;
 
   @override
   AppState reduce() {
-    final AppState newState = state.copyWith.miscState!.call(
-      termsAndConditions: TermsAndConditions(
-        termsId: id,
-        text: termsString,
+    final bool termsAccepted =
+        state.userProfileState!.userProfile!.termsAccepted!;
+    final TermsAndConditions termsAndConditions =
+        state.miscState!.termsAndConditions!;
+
+    final AppState newState = state.copyWith.call(
+      miscState: state.miscState!.copyWith.call(
+        termsAndConditions: TermsAndConditions(
+          termsId: id ?? termsAndConditions.termsId,
+          text: termsString ?? termsAndConditions.text,
+        ),
+      ),
+      userProfileState: state.userProfileState!.copyWith.call(
+        userProfile: state.userProfileState!.userProfile!.copyWith.call(
+          termsAccepted: isAccepted ?? termsAccepted,
+        ),
       ),
     );
 

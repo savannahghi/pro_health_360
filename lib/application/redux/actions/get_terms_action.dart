@@ -14,6 +14,7 @@ import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_terms_and_conditions_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -24,21 +25,19 @@ import 'package:shared_themes/constants.dart';
 class GetTermsAction extends ReduxAction<AppState> {
   GetTermsAction({
     required this.context,
-    required this.flag,
   });
 
   final BuildContext context;
-  final String flag;
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(flag));
+    dispatch(WaitAction<AppState>.remove(getTermsFlag));
     super.after();
   }
 
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(flag));
+    dispatch(WaitAction<AppState>.add(getTermsFlag));
     super.before();
   }
 

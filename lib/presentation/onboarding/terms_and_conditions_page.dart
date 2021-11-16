@@ -39,7 +39,6 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
         // retrieve the terms & conditions
         GetTermsAction(
           context: context,
-          flag: getTermsFlag,
         ),
       ),
     );
@@ -164,7 +163,6 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                         userId: vm.appState.userProfileState!
                                             .userProfile!.id!,
                                         context: context,
-                                        flag: acceptTermsFlag,
                                       ),
                                     );
                                   },
