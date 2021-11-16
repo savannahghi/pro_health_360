@@ -43,9 +43,12 @@ class _FeedPageState extends State<FeedPage> {
       await customFetchData(
         streamController: _streamController,
         context: context,
-        logTitle: 'Fetch recent content content',
+        logTitle: 'Fetch recent content',
         queryString: fetchContentQuery,
-        variables: <String, dynamic>{},
+        variables: <String, dynamic>{
+          'limit': 10,
+          'tags': <String>['health', 'fitness']
+        },
       );
     });
     super.initState();
@@ -82,7 +85,7 @@ class _FeedPageState extends State<FeedPage> {
                   reportErrorToSentry(
                     context,
                     snapshot.error,
-                    hint: 'Timeout fetching recent content',
+                    hint: 'Timeout while fetching your content',
                   );
                   final dynamic valueHolder = snapshot.error;
                   final Map<String, dynamic>? error = snapshot.error == null
@@ -106,7 +109,7 @@ class _FeedPageState extends State<FeedPage> {
                         streamController: _streamController,
                         context: context,
                         logTitle: 'Fetch suggested groups',
-                        queryString: fetchSuggestedGroupsQuery,
+                        queryString: fetchContentQuery,
                         variables: <String, dynamic>{},
                       );
                     },
@@ -116,7 +119,7 @@ class _FeedPageState extends State<FeedPage> {
 
                 if (snapshot.hasData) {
                   final List<dynamic> feedItems =
-                      snapshot.data['fetchSuggestedGroups'] as List<dynamic>;
+                      snapshot.data['fetchContent'] as List<dynamic>;
 
                   return Expanded(
                     child: ListView.builder(
@@ -128,7 +131,10 @@ class _FeedPageState extends State<FeedPage> {
                         );
 
                         return Padding(
-                          padding: EdgeInsets.only(top: index == 0 ? 15 : 7.5),
+                          padding: EdgeInsets.only(
+                            top: index == 0 ? 15 : 7.5,
+                            bottom: 10,
+                          ),
                           child: ContentItem(
                             contentDetails: currentFeedItem,
                           ),

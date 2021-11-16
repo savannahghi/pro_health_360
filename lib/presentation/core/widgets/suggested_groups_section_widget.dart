@@ -62,7 +62,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
             snapshot.data['loading'] != null &&
             snapshot.data['loading'] == true) {
           return Container(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: TextLoadingShimmer(),
           );
         }

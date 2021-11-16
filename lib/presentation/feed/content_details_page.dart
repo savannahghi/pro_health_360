@@ -149,13 +149,28 @@ class ContentDetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: const Padding(
-                padding: EdgeInsets.all(15),
-                child: GenericEmptyData(),
-              ),
-            )
+            if (articleDetails.body != null)
+              Container(
+                padding: const EdgeInsets.all(25),
+                decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  articleDetails.body!,
+                  style: TextThemes.normalSize16Text(
+                    AppColors.greyTextColor,
+                  ),
+                ),
+              )
+            else
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: GenericEmptyData(),
+                ),
+              )
           ],
         ),
       ),

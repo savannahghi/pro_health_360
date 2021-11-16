@@ -43,19 +43,20 @@ class ContentItem extends StatelessWidget {
                 Stack(
                   alignment: Alignment.center,
                   children: <Widget>[
-                    Container(
-                      height: 170.0,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(contentDetails.heroImage!),
-                        ),
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(7.0),
-                          topLeft: Radius.circular(7.0),
+                    if (contentDetails.heroImage != null)
+                      Container(
+                        height: 170.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(contentDetails.heroImage!),
+                          ),
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(7.0),
+                            topLeft: Radius.circular(7.0),
+                          ),
                         ),
                       ),
-                    ),
                     if (contentDetails.contentType == ContentType.VIDEO)
                       SvgPicture.asset(
                         playIcon,
