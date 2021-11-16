@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
@@ -28,6 +29,7 @@ class ContentItem extends StatelessWidget {
     final bool isNew = contentDetails.isNew ?? false;
 
     return GestureDetector(
+      key: feedContentItemKey,
       onTap: () => Navigator.of(context)
           .pushNamed(BWRoutes.contentDetailPage, arguments: contentDetails),
       child: Container(

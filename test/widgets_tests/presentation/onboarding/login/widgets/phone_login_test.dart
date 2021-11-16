@@ -9,10 +9,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
@@ -154,8 +155,8 @@ void main() {
             method: httpPOST,
           ),
         ).thenAnswer(
-          (_) => Future<http.Response>.value(
-            http.Response(
+          (_) => Future<Response>.value(
+            Response(
               json.encode(createUserMock()),
               200,
             ),
@@ -229,7 +230,7 @@ void main() {
             'flavour': Flavour.CONSUMER.name,
           };
 
-          final http.Response response = http.Response(
+          final Response response = Response(
             json.encode(mockLoginResponse),
             200,
           );
@@ -237,7 +238,7 @@ void main() {
           reset(baseGraphQlClientMock);
 
           when(baseGraphQlClientMock.query(loginQuery, queryVariables))
-              .thenAnswer((_) async => Future<http.Response>.value(response));
+              .thenAnswer((_) async => Future<Response>.value(response));
 
           await buildTestWidget(
             tester: tester,

@@ -86,7 +86,7 @@ class _FeedPageState extends State<FeedPage> {
                   reportErrorToSentry(
                     context,
                     snapshot.error,
-                    hint: 'Timeout while fetching your content',
+                    hint: 'Error while fetching your content',
                   );
                   final dynamic valueHolder = snapshot.error;
                   final Map<String, dynamic>? error = snapshot.error == null
