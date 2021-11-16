@@ -29,7 +29,7 @@ class ContentItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => Navigator.of(context)
-          .pushNamed(BWRoutes.articleDetailsPage, arguments: contentDetails),
+          .pushNamed(BWRoutes.contentDetailPage, arguments: contentDetails),
       child: Container(
         width: 380,
         decoration: BoxDecoration(
