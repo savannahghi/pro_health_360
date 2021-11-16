@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
@@ -406,10 +407,23 @@ void main() {
     expect(route.builder(context), isA<PINInputPage>());
   });
 
-  test('Test router returns ArticleDetailsPage', () {
-    const RouteSettings settings = RouteSettings(
-      name: BWRoutes.articleDetailsPage,
-      arguments: <String, dynamic>{'test': 'value'},
+  test('Test router returns ContentDetailPage', () {
+    final RouteSettings settings = RouteSettings(
+      name: BWRoutes.contentDetailPage,
+      arguments: Content(
+        author: '',
+        contentID: '',
+        title: '',
+        body: '',
+        authorAvatar: '',
+        createdAt: '',
+        tags: <String>['', ''],
+        estimate: '',
+        heroImage: '',
+        contentType: ContentType.ARTICLE,
+        publicLink: '',
+        isNew: true,
+      ),
     );
     final MaterialPageRoute<ContentDetailPage> route =
         routeGenerator(settings) as MaterialPageRoute<ContentDetailPage>;
