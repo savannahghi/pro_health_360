@@ -12,7 +12,7 @@ import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
-  group('ArticleDetailsPage', () {
+  group('ContentDetailPage', () {
     late Store<AppState> store;
 
     setUpAll(() {
@@ -26,8 +26,7 @@ void main() {
         store: store,
         client: mockGraphQlClient,
         widget: ContentDetailPage(
-          // TODO(abiud): populate this properly with all the required fields
-          articleDetails: Content(),
+          articleDetails: mockContent,
         ),
       );
       expect(find.byType(CustomAppBar), findsOneWidget);
