@@ -128,6 +128,11 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
         ),
       ),
     );
+
+    FlutterError.onError = (FlutterErrorDetails details) {
+      FlutterError.presentError(details);
+      Sentry.captureException(details.exceptionAsString());
+    };
   }, (Object exception, StackTrace stackTrace) async {
     await Sentry.captureException(exception, stackTrace: stackTrace);
   });
