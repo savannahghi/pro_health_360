@@ -111,6 +111,7 @@ void main() {
       expect(find.byType(ScaffoldMessenger), findsOneWidget);
       await tester.tap(find.text(whereDidYouFirstLiveString));
       await tester.pumpAndSettle();
+      // TODO(paul)!: restore the JnJ standards w.r.t test expectations
 
       addTearDown(() {
         tester.binding.window.clearPhysicalSizeTestValue();

@@ -42,6 +42,8 @@ class ContentDetailPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
+                      // TODO(abiud): replace with cached network image to
+                      // handle showing an image before the network one loads
                       image: NetworkImage(articleDetails.heroImage!),
                     ),
                   ),

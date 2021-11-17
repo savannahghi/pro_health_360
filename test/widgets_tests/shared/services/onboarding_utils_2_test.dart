@@ -161,6 +161,7 @@ void main() {
         201,
       );
 
+      // TODO(abiud): remove this hardcoded login response
       final UserResponse userResp = UserResponse.fromJson(loginResponse);
       final UserProfile? userProfile = userResp.profile;
 
@@ -285,6 +286,7 @@ void main() {
 
         loginResponse.remove('auth');
 
+        // TODO(abiud): remove this hardcoded login response
         final UserResponse userResp = UserResponse.fromJson(loginResponse);
         final UserProfile? userProfile = userResp.profile;
 

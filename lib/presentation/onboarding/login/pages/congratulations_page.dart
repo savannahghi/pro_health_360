@@ -91,6 +91,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
               borderColor: AppColors.secondaryColor,
               onPressed: () async {
                 if (_congratulationsFormKey.currentState!.validate()) {
+                  // TODO(abiud): remove this hardcoded login response
                   final UserProfile userProfile =
                       UserProfile.fromJson(loginResponse['profile']!);
 

@@ -379,12 +379,14 @@ const String answerSecurityQuestionString = 'Answer security question';
 const String answerCorrectlyToGainAccessString =
     'Answer correctly to gain access';
 
+// TODO(abiud): remove these strings. they should be fetched from the backend
 const String whereWereYouBornString =
     'What are the last 3 digits of your CCC number?';
 const String whatsTheNameOfYourPetString =
     'Which month did you start your treatment?';
 const String whereDidYouFirstLiveString =
     'Which county is your clinic located?';
+
 const String answerHereString = 'Answer here';
 const String saveAndContinueButtonText = 'Save & Continue';
 const String doneText = 'Done';

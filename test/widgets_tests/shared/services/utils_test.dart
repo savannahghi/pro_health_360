@@ -677,6 +677,8 @@ void main() {
 
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
+      // There are no required expectations here because they have been already
+      // verified in the setup above
     });
   });
 }

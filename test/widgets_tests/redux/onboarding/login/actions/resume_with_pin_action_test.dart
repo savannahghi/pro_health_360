@@ -264,6 +264,7 @@ void main() {
         deepLink.hasLink.add(true);
         deepLink.link.add('home');
 
+        // TODO(abiud): remove this hardcoded login response
         final UserResponse userResp = UserResponse.fromJson(loginResponse);
         final UserProfile? userProfile = userResp.profile;
 
