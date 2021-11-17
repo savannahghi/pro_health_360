@@ -24,20 +24,18 @@ class _$MiscStateTearOff {
       {PhoneLogin? phoneLogin,
       CreatePIN? createPIN,
       UserPin? userPin,
-      Set<AppErrorState>? appErrorState,
-      BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions}) {
+      TermsAndConditions? termsAndConditions,
+      FAQState? faqState}) {
     return _MiscState(
       phoneLogin: phoneLogin,
       createPIN: createPIN,
       userPin: userPin,
-      appErrorState: appErrorState,
-      bottomNavObj: bottomNavObj,
       libraryListItems: libraryListItems,
       healthPagePINInputTime: healthPagePINInputTime,
       termsAndConditions: termsAndConditions,
+      faqState: faqState,
     );
   }
 
@@ -54,12 +52,11 @@ mixin _$MiscState {
   PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
   CreatePIN? get createPIN => throw _privateConstructorUsedError;
   UserPin? get userPin => throw _privateConstructorUsedError;
-  Set<AppErrorState>? get appErrorState => throw _privateConstructorUsedError;
-  BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   TermsAndConditions? get termsAndConditions =>
       throw _privateConstructorUsedError;
+  FAQState? get faqState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,13 +72,13 @@ abstract class $MiscStateCopyWith<$Res> {
       {PhoneLogin? phoneLogin,
       CreatePIN? createPIN,
       UserPin? userPin,
-      Set<AppErrorState>? appErrorState,
-      BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions});
+      TermsAndConditions? termsAndConditions,
+      FAQState? faqState});
 
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
+  $FAQStateCopyWith<$Res>? get faqState;
 }
 
 /// @nodoc
@@ -97,11 +94,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? phoneLogin = freezed,
     Object? createPIN = freezed,
     Object? userPin = freezed,
-    Object? appErrorState = freezed,
-    Object? bottomNavObj = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
     Object? termsAndConditions = freezed,
+    Object? faqState = freezed,
   }) {
     return _then(_value.copyWith(
       phoneLogin: phoneLogin == freezed
@@ -116,14 +112,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
               as UserPin?,
-      appErrorState: appErrorState == freezed
-          ? _value.appErrorState
-          : appErrorState // ignore: cast_nullable_to_non_nullable
-              as Set<AppErrorState>?,
-      bottomNavObj: bottomNavObj == freezed
-          ? _value.bottomNavObj
-          : bottomNavObj // ignore: cast_nullable_to_non_nullable
-              as BottomNavObj?,
       libraryListItems: libraryListItems == freezed
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
@@ -136,6 +124,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions?,
+      faqState: faqState == freezed
+          ? _value.faqState
+          : faqState // ignore: cast_nullable_to_non_nullable
+              as FAQState?,
     ));
   }
 
@@ -150,6 +142,17 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
       return _then(_value.copyWith(termsAndConditions: value));
     });
   }
+
+  @override
+  $FAQStateCopyWith<$Res>? get faqState {
+    if (_value.faqState == null) {
+      return null;
+    }
+
+    return $FAQStateCopyWith<$Res>(_value.faqState!, (value) {
+      return _then(_value.copyWith(faqState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -162,14 +165,15 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       {PhoneLogin? phoneLogin,
       CreatePIN? createPIN,
       UserPin? userPin,
-      Set<AppErrorState>? appErrorState,
-      BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions});
+      TermsAndConditions? termsAndConditions,
+      FAQState? faqState});
 
   @override
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
+  @override
+  $FAQStateCopyWith<$Res>? get faqState;
 }
 
 /// @nodoc
@@ -186,11 +190,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? phoneLogin = freezed,
     Object? createPIN = freezed,
     Object? userPin = freezed,
-    Object? appErrorState = freezed,
-    Object? bottomNavObj = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
     Object? termsAndConditions = freezed,
+    Object? faqState = freezed,
   }) {
     return _then(_MiscState(
       phoneLogin: phoneLogin == freezed
@@ -205,14 +208,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
               as UserPin?,
-      appErrorState: appErrorState == freezed
-          ? _value.appErrorState
-          : appErrorState // ignore: cast_nullable_to_non_nullable
-              as Set<AppErrorState>?,
-      bottomNavObj: bottomNavObj == freezed
-          ? _value.bottomNavObj
-          : bottomNavObj // ignore: cast_nullable_to_non_nullable
-              as BottomNavObj?,
       libraryListItems: libraryListItems == freezed
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
@@ -225,6 +220,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions?,
+      faqState: faqState == freezed
+          ? _value.faqState
+          : faqState // ignore: cast_nullable_to_non_nullable
+              as FAQState?,
     ));
   }
 }
@@ -236,11 +235,10 @@ class _$_MiscState implements _MiscState {
       {this.phoneLogin,
       this.createPIN,
       this.userPin,
-      this.appErrorState,
-      this.bottomNavObj,
       this.libraryListItems,
       this.healthPagePINInputTime,
-      this.termsAndConditions});
+      this.termsAndConditions,
+      this.faqState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$_$_MiscStateFromJson(json);
@@ -252,19 +250,17 @@ class _$_MiscState implements _MiscState {
   @override
   final UserPin? userPin;
   @override
-  final Set<AppErrorState>? appErrorState;
-  @override
-  final BottomNavObj? bottomNavObj;
-  @override
   final List<dynamic>? libraryListItems;
   @override
   final String? healthPagePINInputTime;
   @override
   final TermsAndConditions? termsAndConditions;
+  @override
+  final FAQState? faqState;
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, createPIN: $createPIN, userPin: $userPin, appErrorState: $appErrorState, bottomNavObj: $bottomNavObj, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, termsAndConditions: $termsAndConditions)';
+    return 'MiscState(phoneLogin: $phoneLogin, createPIN: $createPIN, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, termsAndConditions: $termsAndConditions, faqState: $faqState)';
   }
 
   @override
@@ -280,12 +276,6 @@ class _$_MiscState implements _MiscState {
             (identical(other.userPin, userPin) ||
                 const DeepCollectionEquality()
                     .equals(other.userPin, userPin)) &&
-            (identical(other.appErrorState, appErrorState) ||
-                const DeepCollectionEquality()
-                    .equals(other.appErrorState, appErrorState)) &&
-            (identical(other.bottomNavObj, bottomNavObj) ||
-                const DeepCollectionEquality()
-                    .equals(other.bottomNavObj, bottomNavObj)) &&
             (identical(other.libraryListItems, libraryListItems) ||
                 const DeepCollectionEquality()
                     .equals(other.libraryListItems, libraryListItems)) &&
@@ -294,7 +284,10 @@ class _$_MiscState implements _MiscState {
                     other.healthPagePINInputTime, healthPagePINInputTime)) &&
             (identical(other.termsAndConditions, termsAndConditions) ||
                 const DeepCollectionEquality()
-                    .equals(other.termsAndConditions, termsAndConditions)));
+                    .equals(other.termsAndConditions, termsAndConditions)) &&
+            (identical(other.faqState, faqState) ||
+                const DeepCollectionEquality()
+                    .equals(other.faqState, faqState)));
   }
 
   @override
@@ -303,11 +296,10 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(phoneLogin) ^
       const DeepCollectionEquality().hash(createPIN) ^
       const DeepCollectionEquality().hash(userPin) ^
-      const DeepCollectionEquality().hash(appErrorState) ^
-      const DeepCollectionEquality().hash(bottomNavObj) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
       const DeepCollectionEquality().hash(healthPagePINInputTime) ^
-      const DeepCollectionEquality().hash(termsAndConditions);
+      const DeepCollectionEquality().hash(termsAndConditions) ^
+      const DeepCollectionEquality().hash(faqState);
 
   @JsonKey(ignore: true)
   @override
@@ -325,11 +317,10 @@ abstract class _MiscState implements MiscState {
       {PhoneLogin? phoneLogin,
       CreatePIN? createPIN,
       UserPin? userPin,
-      Set<AppErrorState>? appErrorState,
-      BottomNavObj? bottomNavObj,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions}) = _$_MiscState;
+      TermsAndConditions? termsAndConditions,
+      FAQState? faqState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -341,10 +332,6 @@ abstract class _MiscState implements MiscState {
   @override
   UserPin? get userPin => throw _privateConstructorUsedError;
   @override
-  Set<AppErrorState>? get appErrorState => throw _privateConstructorUsedError;
-  @override
-  BottomNavObj? get bottomNavObj => throw _privateConstructorUsedError;
-  @override
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
@@ -352,7 +339,98 @@ abstract class _MiscState implements MiscState {
   TermsAndConditions? get termsAndConditions =>
       throw _privateConstructorUsedError;
   @override
+  FAQState? get faqState => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+FAQState _$FAQStateFromJson(Map<String, dynamic> json) {
+  return _FAQState.fromJson(json);
+}
+
+/// @nodoc
+class _$FAQStateTearOff {
+  const _$FAQStateTearOff();
+
+  _FAQState call() {
+    return _FAQState();
+  }
+
+  FAQState fromJson(Map<String, Object> json) {
+    return FAQState.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $FAQState = _$FAQStateTearOff();
+
+/// @nodoc
+mixin _$FAQState {
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FAQStateCopyWith<$Res> {
+  factory $FAQStateCopyWith(FAQState value, $Res Function(FAQState) then) =
+      _$FAQStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FAQStateCopyWithImpl<$Res> implements $FAQStateCopyWith<$Res> {
+  _$FAQStateCopyWithImpl(this._value, this._then);
+
+  final FAQState _value;
+  // ignore: unused_field
+  final $Res Function(FAQState) _then;
+}
+
+/// @nodoc
+abstract class _$FAQStateCopyWith<$Res> {
+  factory _$FAQStateCopyWith(_FAQState value, $Res Function(_FAQState) then) =
+      __$FAQStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$FAQStateCopyWithImpl<$Res> extends _$FAQStateCopyWithImpl<$Res>
+    implements _$FAQStateCopyWith<$Res> {
+  __$FAQStateCopyWithImpl(_FAQState _value, $Res Function(_FAQState) _then)
+      : super(_value, (v) => _then(v as _FAQState));
+
+  @override
+  _FAQState get _value => super._value as _FAQState;
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FAQState implements _FAQState {
+  _$_FAQState();
+
+  factory _$_FAQState.fromJson(Map<String, dynamic> json) =>
+      _$_$_FAQStateFromJson(json);
+
+  @override
+  String toString() {
+    return 'FAQState()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _FAQState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_FAQStateToJson(this);
+  }
+}
+
+abstract class _FAQState implements FAQState {
+  factory _FAQState() = _$_FAQState;
+
+  factory _FAQState.fromJson(Map<String, dynamic> json) = _$_FAQState.fromJson;
 }

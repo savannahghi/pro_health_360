@@ -12,6 +12,7 @@ _$_ClientProfile _$_$_ClientProfileFromJson(Map<String, dynamic> json) {
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>),
     active: json['active'] as bool?,
+    lastMoodRecordedDate: json['lastMoodRecordedDate'] as String?,
   );
 }
 
@@ -19,4 +20,5 @@ Map<String, dynamic> _$_$_ClientProfileToJson(_$_ClientProfile instance) =>
     <String, dynamic>{
       'user': instance.user,
       'active': instance.active,
+      'lastMoodRecordedDate': instance.lastMoodRecordedDate,
     };

@@ -1,3 +1,4 @@
+import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 
@@ -9,8 +10,14 @@ class ClientProfile with _$ClientProfile {
   factory ClientProfile({
     @JsonKey(name: 'user') User? user,
     @JsonKey(name: 'active') bool? active,
+    @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
   }) = _ClientProfile;
 
   factory ClientProfile.fromJson(Map<String, dynamic> json) =>
       _$ClientProfileFromJson(json);
+
+  factory ClientProfile.initial() => ClientProfile(
+        user: User.initial(),
+        lastMoodRecordedDate: UNKNOWN,
+      );
 }

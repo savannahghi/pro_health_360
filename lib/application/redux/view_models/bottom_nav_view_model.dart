@@ -14,10 +14,10 @@ class BottomNavViewModel extends Vm {
           ],
         );
 
-  static BottomNavViewModel fromStore(Store<AppState> store) {
+  static BottomNavViewModel fromStore(Store<MainAppState> store) {
     return BottomNavViewModel(
       currentIndex:
-          store.state.miscState?.bottomNavObj?.currentBottomNavIndex ?? 0,
+          store.state.bottomNavigationState?.currentBottomNavIndex ?? 0,
     );
   }
 }

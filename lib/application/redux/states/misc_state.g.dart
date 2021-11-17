@@ -17,18 +17,15 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
     userPin: json['userPin'] == null
         ? null
         : UserPin.fromJson(json['userPin'] as Map<String, dynamic>),
-    appErrorState: (json['appErrorState'] as List<dynamic>?)
-        ?.map((e) => AppErrorState.fromJson(e as Map<String, dynamic>))
-        .toSet(),
-    bottomNavObj: json['bottomNavObj'] == null
-        ? null
-        : BottomNavObj.fromJson(json['bottomNavObj'] as Map<String, dynamic>),
     libraryListItems: json['libraryListItems'] as List<dynamic>?,
     healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
     termsAndConditions: json['termsAndConditions'] == null
         ? null
         : TermsAndConditions.fromJson(
             json['termsAndConditions'] as Map<String, dynamic>),
+    faqState: json['faqState'] == null
+        ? null
+        : FAQState.fromJson(json['faqState'] as Map<String, dynamic>),
   );
 }
 
@@ -37,9 +34,15 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'phoneLogin': instance.phoneLogin,
       'createPIN': instance.createPIN,
       'userPin': instance.userPin,
-      'appErrorState': instance.appErrorState?.toList(),
-      'bottomNavObj': instance.bottomNavObj,
       'libraryListItems': instance.libraryListItems,
       'healthPagePINInputTime': instance.healthPagePINInputTime,
       'termsAndConditions': instance.termsAndConditions,
+      'faqState': instance.faqState,
     };
+
+_$_FAQState _$_$_FAQStateFromJson(Map<String, dynamic> json) {
+  return _$_FAQState();
+}
+
+Map<String, dynamic> _$_$_FAQStateToJson(_$_FAQState instance) =>
+    <String, dynamic>{};

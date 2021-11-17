@@ -11,7 +11,7 @@ import 'package:myafyahub/domain/core/entities/security_questions/security_quest
 /// - [profileSetupComplete]
 /// - [unmaskedPhoneNumbers]
 /// - [maskedPhoneNumber]
-
+// TODO(abiud): rewrite this action to cater for the new fields
 class UpdateUserProfileAction extends ReduxAction<AppState> {
   UpdateUserProfileAction({
     this.profile,

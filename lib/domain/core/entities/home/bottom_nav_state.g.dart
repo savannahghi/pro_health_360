@@ -1,18 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bottom_nav_obj.dart';
+part of 'bottom_nav_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-BottomNavObj _$BottomNavObjFromJson(Map<String, dynamic> json) {
-  return BottomNavObj(
-    currentBottomNavIndex: json['currentBottomNavIndex'] as int,
+_$_BottomNavigationState _$_$_BottomNavigationStateFromJson(
+    Map<String, dynamic> json) {
+  return _$_BottomNavigationState(
+    currentBottomNavIndex: json['currentBottomNavIndex'] as int?,
   );
 }
 
-Map<String, dynamic> _$BottomNavObjToJson(BottomNavObj instance) =>
+Map<String, dynamic> _$_$_BottomNavigationStateToJson(
+        _$_BottomNavigationState instance) =>
     <String, dynamic>{
       'currentBottomNavIndex': instance.currentBottomNavIndex,
     };
