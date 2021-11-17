@@ -30,6 +30,7 @@ import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:platform/platform.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
 
 import 'test_helpers.dart';
 import 'test_utils.dart';
@@ -3073,13 +3074,43 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
 };
 
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
-  'id': 'id',
+  'active': true,
+  'securityQuestionID': 'id',
   'questionStem': 'question_stem',
   'description': 'description',
   'responseType': 'response_type',
-  'flavour': 'flavour',
-  'active': true,
-  'sequence': 1,
+  'flavour': Flavour.CONSUMER.name,
+};
+
+final List<dynamic> securityQuestionsMock = <dynamic>[
+  <String, dynamic>{
+    'securityQuestionID': 'id',
+    'questionStem': 'What are the last 4 digits of your CCC number?',
+    'description': 'Please provide the last 4 digits of your clinic number',
+    'responseType': 'response_type',
+    'flavour': Flavour.CONSUMER.name,
+    'active': true,
+  },
+  <String, dynamic>{
+    'securityQuestionID': 'id',
+    'questionStem': 'Which month did you start your treatment?',
+    'description': 'Enter the month you started your treatment',
+    'responseType': 'response_type',
+    'flavour': Flavour.CONSUMER.name,
+    'active': true,
+  },
+  <String, dynamic>{
+    'securityQuestionID': 'id',
+    'questionStem': 'Which county is your clinic located?',
+    'description': 'nter the name of the county in small letters',
+    'responseType': 'response_type',
+    'flavour': Flavour.CONSUMER.name,
+    'active': true,
+  },
+];
+
+Map<String, dynamic> mockSecurityQuestionsData = <String, dynamic>{
+  'getSecurityQuestions': securityQuestionsMock
 };
 
 Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{

@@ -10,20 +10,5 @@ void main() {
           SecurityQuestion.fromJson(mockSecurityQuestion);
       expect(mockQuestion, isA<SecurityQuestion>());
     });
-
-    test('SecurityQuestion toJson', () {
-      expect(
-        SecurityQuestion(
-          id: 'id',
-          questionStem: 'question_stem',
-          description: 'description',
-          responseType: 'response_type',
-          flavour: 'flavour',
-          active: true,
-          sequence: 1,
-        ).toJson(),
-        mockSecurityQuestion,
-      );
-    });
   });
 }

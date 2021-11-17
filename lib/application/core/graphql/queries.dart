@@ -98,6 +98,19 @@ Map<String, dynamic> resendOTPQueryVariables(
   };
 }
 
+const String getSecurityQuestionsQuery = r'''
+query getSecurityQuestions($flavour: Flavour!) {
+  getSecurityQuestions(flavour: $flavour) {
+    securityQuestionID
+    active
+    description
+    flavour
+    questionStem
+    responseType
+  }
+}
+''';
+
 const String getFAQQuery = r'''
 query GetFaq ($flavour: Flavour!){
     getFaqsContent (flavour: $flavour){

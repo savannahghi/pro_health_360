@@ -28,12 +28,15 @@ class ForgotPINPage extends StatelessWidget {
 
     final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
       SecurityQuestion(
-        id: 'sec_q_1',
+        active: true,
+        securityQuestionID: 'sec_q_1',
         questionStem: whereWereYouBornString,
+        description: whereWereYouBornString,
         responseType: '',
-        flavour: Flavour.CONSUMER.name,
+        flavour: Flavour.CONSUMER,
       ),
     ];
+
     final bool isLargeScreen = ResponsiveWidget.isLargeScreen(context);
     return OnboardingScaffold(
       title: answerSecurityQuestionString,
@@ -53,7 +56,7 @@ class ForgotPINPage extends StatelessWidget {
                   final SecurityQuestion question =
                       securityQuestions.elementAt(index);
                   final SecurityQuestionResponse? questionResponse =
-                      securityQuestionsResponses[question.id];
+                      securityQuestionsResponses[question.securityQuestionID];
                   final String response = questionResponse?.response ?? UNKNOWN;
                   return Container(
                     padding: const EdgeInsets.all(10.0),
@@ -62,12 +65,12 @@ class ForgotPINPage extends StatelessWidget {
                       hintText: answerHereString,
                       initialValue: (response == UNKNOWN) ? null : response,
                       onChanged: (String value) {
-                        securityQuestionsResponses[question.id] =
-                            SecurityQuestionResponse(
+                        securityQuestionsResponses[question
+                            .securityQuestionID] = SecurityQuestionResponse(
                           id: userId,
                           timeStamp: DateTime.now().toString(),
                           userId: userId,
-                          securityQuestionId: question.id,
+                          securityQuestionId: question.securityQuestionID,
                           response: value,
                         );
                         StoreProvider.dispatch<AppState>(

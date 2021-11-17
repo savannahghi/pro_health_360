@@ -6,25 +6,56 @@ part of 'security_question.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SecurityQuestion _$SecurityQuestionFromJson(Map<String, dynamic> json) {
-  return SecurityQuestion(
+_$_SecurityQuestion _$_$_SecurityQuestionFromJson(Map<String, dynamic> json) {
+  return _$_SecurityQuestion(
+    securityQuestionID: json['securityQuestionID'] as String,
     active: json['active'] as bool,
-    sequence: json['sequence'] as int?,
-    description: json['description'] as String?,
-    id: json['id'] as String,
+    description: json['description'] as String,
+    flavour: _$enumDecode(_$FlavourEnumMap, json['flavour']),
     questionStem: json['questionStem'] as String,
-    responseType: json['responseType'] as String?,
-    flavour: json['flavour'] as String?,
+    responseType: json['responseType'] as String,
   );
 }
 
-Map<String, dynamic> _$SecurityQuestionToJson(SecurityQuestion instance) =>
+Map<String, dynamic> _$_$_SecurityQuestionToJson(
+        _$_SecurityQuestion instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'questionStem': instance.questionStem,
-      'description': instance.description,
-      'responseType': instance.responseType,
-      'flavour': instance.flavour,
+      'securityQuestionID': instance.securityQuestionID,
       'active': instance.active,
-      'sequence': instance.sequence,
+      'description': instance.description,
+      'flavour': _$FlavourEnumMap[instance.flavour],
+      'questionStem': instance.questionStem,
+      'responseType': instance.responseType,
     };
+
+K _$enumDecode<K, V>(
+  Map<K, V> enumValues,
+  Object? source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError(
+      'A value must be provided. Supported values: '
+      '${enumValues.values.join(', ')}',
+    );
+  }
+
+  return enumValues.entries.singleWhere(
+    (e) => e.value == source,
+    orElse: () {
+      if (unknownValue == null) {
+        throw ArgumentError(
+          '`$source` is not one of the supported values: '
+          '${enumValues.values.join(', ')}',
+        );
+      }
+      return MapEntry(unknownValue, enumValues.values.first);
+    },
+  ).key;
+}
+
+const _$FlavourEnumMap = {
+  Flavour.CONSUMER: 'CONSUMER',
+  Flavour.PRO: 'PRO',
+  Flavour.UNKNOWN: 'UNKNOWN',
+};
