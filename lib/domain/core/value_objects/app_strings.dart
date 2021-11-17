@@ -632,3 +632,4 @@ String editInfoTitle(String title) => 'Edit $title';
 
 const String somethingWentWrongText = 'Something went wrong';
 const String pinSuccessString = 'PIN created successfully';
+const String requestCorrectionString = 'Request for correction';

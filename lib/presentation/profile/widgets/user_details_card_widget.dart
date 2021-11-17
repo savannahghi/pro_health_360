@@ -9,11 +9,13 @@ import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/text_themes.dart';
 
 class UserDetailsCard extends StatelessWidget {
   /// [UserDetailsCard] is a shared widget used in [UserProfilePage]
@@ -146,9 +148,23 @@ class UserDetailsCard extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  // TODO(abiud): return the request for correction button once the
-                  // designs have been implemented
+                  mediumVerticalSizedBox,
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      requestCorrectionString,
+                      style: TextThemes.boldSize13Text(
+                        Colors.white,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
