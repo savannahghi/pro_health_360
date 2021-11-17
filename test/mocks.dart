@@ -3181,7 +3181,6 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'publicLink': 'https://bewell.co.ke/',
     'tags': <String>['Recommended', 'Health', 'Fitness'],
     'title': 'Tips on how to keep yourself healthy',
-    'estimate': '3 minutes'
   },
   <String, dynamic>{
     'author': 'Abiud Orina',
@@ -3196,7 +3195,6 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'publicLink': 'https://bewell.co.ke/',
     'tags': <String>['Recommended', 'Health', 'Fitness'],
     'title': 'What should my daily intake of calories be?',
-    'estimate': '3 minutes'
   }
 ];
 
@@ -3208,7 +3206,6 @@ final Content mockContent = Content(
   authorAvatar: 'test',
   createdAt: DateTime.now().toString(),
   tags: <String>['test', 'test'],
-  estimate: 'test',
   heroImage: 'test',
   publicLink: 'test',
   isNew: true,

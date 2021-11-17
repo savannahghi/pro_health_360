@@ -158,6 +158,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                     width: double.infinity,
                     height: 250,
                     child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemCount: recentContent.length,

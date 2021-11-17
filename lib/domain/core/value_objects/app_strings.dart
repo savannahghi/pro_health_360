@@ -492,7 +492,7 @@ const String medicalDataPageTitle = 'Medical Data';
 //feed Item Widget
 const String feedHeader =
     'Tips on how to keep yourself properly hydrated while exercising';
-const String feedDate = 'July 12 2021';
+const String feedDate = '2021-08-23T06:42:05.085216Z';
 const String feedReadTime = '5 minutes';
 String contentReadDuration(String duration) => '$duration read';
 const String newString = 'New';

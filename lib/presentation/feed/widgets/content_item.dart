@@ -6,6 +6,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/presentation/feed/widgets/content_item_footer.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
@@ -85,11 +86,10 @@ class ContentItem extends StatelessWidget {
                         ),
                       ),
                       verySmallVerticalSizedBox,
-                      // TODO!!(abiud): investigate why this fails in tests
-                      // ContentItemFooter(
-                      //   feedDate: contentDetails.createdAt!,
-                      //   readTime: contentDetails.estimate,
-                      // )
+                      ContentItemFooter(
+                        datePublished: contentDetails.createdAt!,
+                        estimatedReadingTime: contentDetails.estimate,
+                      )
                     ],
                   ),
                 ),
