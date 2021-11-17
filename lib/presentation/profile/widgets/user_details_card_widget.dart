@@ -10,6 +10,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -149,19 +150,27 @@ class UserDetailsCard extends StatelessWidget {
                     ],
                   ),
                   mediumVerticalSizedBox,
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Text(
-                      requestCorrectionString,
-                      style: TextThemes.boldSize13Text(
-                        Colors.white,
+                  GestureDetector(
+                    key: requestCorrectionButtonKey,
+                    onTap: () => ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(
+                      content: Text(comingSoonText),
+                      duration: Duration(seconds: 2),
+                    ),),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        requestCorrectionString,
+                        style: TextThemes.boldSize13Text(
+                          Colors.white,
+                        ),
                       ),
                     ),
                   ),

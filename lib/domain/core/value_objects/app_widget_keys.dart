@@ -97,6 +97,7 @@ const Key editProfileAnimatedSwitchKey = Key('animated_switch');
 const Key editProfileTesterPaddingKey = Key('tester_padding');
 const Key editProfileTesterButtonKey = Key('tester_button');
 const Key editProfileChangePinKey = Key('change_pin');
+const Key requestCorrectionButtonKey = Key('request_correction_button_key');
 
 const Key editProfileFirstNameKey = Key('first_name');
 const Key editProfileLastNameKey = Key('last_name');
@@ -320,4 +321,3 @@ const Key forgotPINButtonKey = Key('forgot_PIN_button_key');
 
 const Key feedContentItemKey = Key('feed_content_item_key');
 const Key feedVideoPlayIconKey = Key('feed_video_play_icon_key');
-
