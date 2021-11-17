@@ -97,7 +97,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
 
                   await StoreProvider.dispatch<AppState>(
                     context,
-                    UpdateUserProfileAction(
+                    UpdateClientProfileAction(
                       profile: userProfile,
                       userBioData: userProfile.userBioData,
                     ),

@@ -14,6 +14,12 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/entities/login/login_data.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
@@ -96,10 +102,53 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final PhoneLoginResponse response = PhoneLoginResponse.fromJson(parsed);
 
         // TODO: update user profile after testing
-        response.toJson();
-        // await store.dispatch(UpdateUserProfileAction())
+        final LoginData? loginData = response.phoneLoginData?.loginData;
 
-        Navigator.of(context).pushReplacementNamed(BWRoutes.home);
+        final AuthCredentials? authCredentials = loginData?.credentials;
+
+        await store.dispatch(
+          ManageTokenAction(
+            context: context,
+            refreshToken: authCredentials?.refreshToken ?? UNKNOWN,
+            idToken: authCredentials?.idToken ?? UNKNOWN,
+            parsedExpiresAt: dateTimeParser.parsedExpireAt(
+              int.parse(authCredentials?.refreshToken ?? UNKNOWN),
+            ),
+            refreshTokenManger: this.tokenManger,
+          ),
+        );
+
+        final User? user = loginData?.clientProfile?.user;
+
+        // dispatch an action to update the user profile
+        await store.dispatch(
+          UpdateClientProfileAction(
+            user: user,
+            active: true,
+          ),
+        );
+
+        await store.dispatch(
+          AuthStatusAction(
+            signedIn: true,
+            signedInTime: DateTime.now().toIso8601String(),
+            // isChangePin: ,
+          ),
+        );
+
+        final bool termsAccepted =
+            loginData?.clientProfile?.user?.termsAccepted ?? false;
+
+        String routeToNavigate = BWRoutes.home;
+
+        if (!termsAccepted) {
+          routeToNavigate = BWRoutes.verifyCode;
+        }
+
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          routeToNavigate,
+          (Route<dynamic> route) => false,
+        );
         return state;
       } else {
         // exception thrown if the backend could not match the provided credentials with those stored in the backend

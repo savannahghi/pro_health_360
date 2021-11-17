@@ -280,7 +280,7 @@ void main() {
                     UpdatePinStatusAction(pin: '1234', isChangingPin: false),
                   );
                   await store.dispatch(
-                    UpdateUserProfileAction(
+                    UpdateClientProfileAction(
                       profile: userProfile,
                       userBioData: userProfile?.userBioData,
                     ),

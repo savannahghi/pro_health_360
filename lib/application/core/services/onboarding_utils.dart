@@ -7,44 +7,34 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dart_fcm/dart_fcm.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/services/connectivity_helper.dart';
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
-import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
-import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/domain/core/value_objects/events.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/sil_progress_dialog.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// [updateUserPin] resets a user's PIN
 ///
@@ -117,150 +107,6 @@ Future<ProcessedResponse> requestForANewToken({
   );
 }
 
-Future<bool> updateStateAuth({
-  required ProcessedResponse processedResponse,
-  required BuildContext context,
-}) async {
-  /// the response is passed to a variable of type `http.Response`
-  final http.Response okResponse = processedResponse.response;
-
-  final Map<String, dynamic> body =
-      json.decode(okResponse.body) as Map<String, dynamic>;
-
-  final AuthCredentialResponse auth = AuthCredentialResponse.fromJson(body);
-
-  final AppState? state = StoreProvider.state<AppState>(context);
-  final String appContext =
-      getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
-
-  if (auth.idToken != null &&
-      auth.refreshToken != null &&
-      auth.expiresIn != null) {
-    publishEvent(
-      hasSuccessfulRefreshTokenEvent(appContext),
-      EventObject(
-        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
-            .getValue(),
-        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-            .getValue(),
-        primaryPhoneNumber:
-            state.userProfileState!.userProfile!.primaryPhoneNumber!.getValue(),
-        uid: state.userProfileState!.auth!.uid,
-        flavour: Flavour.CONSUMER.name,
-        timestamp: DateTime.now(),
-        appVersion: APPVERSION,
-      ),
-    );
-
-    await StoreProvider.dispatch<AppState>(
-      context,
-      ManageTokenAction(
-        refreshToken: auth.refreshToken!,
-        idToken: auth.idToken!,
-        context: context,
-        refreshTokenManger: RefreshTokenManger(),
-        canExperiment: auth.canExperiment,
-        parsedExpiresAt:
-            DateTimeParser().parsedExpireAt(int.parse(auth.expiresIn!)),
-      ),
-    );
-    return true;
-  } else {
-    reportErrorToSentry(
-      context,
-      okResponse,
-      hint: 'Error failed to refresh token',
-    );
-
-    /// we failed to refresh the token so require the user to login
-    publishEvent(
-      hasFailedToRefreshTokenEvent(appContext),
-      EventObject(
-        firstName: state!.userProfileState!.userProfile!.userBioData!.firstName!
-            .getValue(),
-        lastName: state.userProfileState!.userProfile!.userBioData!.lastName!
-            .getValue(),
-        primaryPhoneNumber:
-            state.userProfileState!.userProfile!.primaryPhoneNumber!.getValue(),
-        uid: state.userProfileState!.auth!.uid,
-        flavour: Flavour.CONSUMER.name,
-        timestamp: DateTime.now(),
-        appVersion: APPVERSION,
-      ),
-    );
-    return false;
-  }
-}
-
-/// [checkTokenStatus] is used to check if the Auth Token has expired and if it need refreshing
-///
-/// #### [checkTokenStatus] Variables
-/// [context] requires context of widget where it is used.
-///
-/// [authState] abstract class that hold the values of user signedIn Status.
-///
-/// - authToken (value of the current active Auth token)
-/// - refreshToken (value of the refresh token) and
-/// - expiresAt (time the token expires).
-/// [thisAppContexts] app requires to know which appContext is in use to determine what endpoint to use.
-///
-/// [customHttpClient] our custom http client that we use to make network requests to our backend services mainly.
-
-Future<AuthTokenStatus> checkTokenStatus({
-  required BuildContext context,
-  required UserProfileState profileState,
-  required List<AppContext> thisAppContexts,
-}) async {
-  final DateTime now = DateTime.now();
-
-  final DateTime expiresAt = DateTime.parse(profileState.auth!.expiresIn!);
-
-  /// first check if token has expired
-  if (expiresAt.difference(now).inMinutes < 50 &&
-      expiresAt.difference(now).inSeconds > 0) {
-    return AuthTokenStatus.okay;
-  }
-
-  /// since it's expired, we check if 72 hours has elapsed since the token was issued
-  if (now.difference(expiresAt).inHours < 72) {
-    final ProcessedResponse processedResponse = await requestForANewToken(
-      context: context,
-      thisAppContexts: thisAppContexts,
-      refreshToken: profileState.auth!.refreshToken!,
-    );
-
-    /// check if the response from the network call returns `ok`
-    ///  set by the backend to mean user credentials matched
-    if (processedResponse.ok) {
-      if (await updateStateAuth(
-        context: context,
-        processedResponse: processedResponse,
-      )) {
-        return AuthTokenStatus.requiresPin;
-      } else {
-        /// we failed to refresh the token so require the user to login
-        return AuthTokenStatus.requiresLogin;
-      }
-    }
-  }
-
-  /// token is expired and 72 hours have elapsed since last refresh
-  /// so require the user to log in.
-  return AuthTokenStatus.requiresLogin;
-}
-
-// determines the path to route the user to based on the app state
-OnboardingPathConfig onboardingPath(
-  AppState state, {
-  bool calledOnResume = false,
-}) {
-  // TODO!!(abiud): add more checks here when tying up the storyline
-
-  /// take the user to the homepage if they have passed
-  /// the normal user profile checks
-  return OnboardingPathConfig(BWRoutes.home);
-}
-
 Future<void> registerDeviceToken({required IGraphQlClient client}) async {
   final Map<String, dynamic> _variables = <String, dynamic>{
     'token': await SILFCM().getDeviceToken()
@@ -274,87 +120,16 @@ Future<void> registerDeviceToken({required IGraphQlClient client}) async {
 /// The selection of the Page(route) to show is determined by if the user
 /// is already signed in/logged in or not.
 ///
-/// 1. Signed in/ logged in user
-///     - If a user is signed in/ logged in the
-/// [OnboardingUtils.checkTokenStatus] routine goes on to check if a user has
-/// a valid AuthToken.
-///     - When the [OnboardingUtils.checkTokenStatus] routine returns
-/// a `true` value then the user is redirected to the [Home Page].
-///     - When the [OnboardingUtils.checkTokenStatus] routine returns
-/// a `false` value then the user is redirected to the
-/// [Resume with PIN Page ]to allow for renew of their AuthToken.
-///
-/// 2. User is NOT Signed in/ logged in
-///     - If a user is not signed in/logged in they are routed to the phone
-/// login page.
-///     - If successful the user is routed to the Home page.
-///     - If the user had completed the Onboarding tour they are
-/// directed to the [Login Page] where there are options to
-/// Login.
-///     - If the user had `NOT` completed the Onboarding tour
-///  they are directed to the Login page where they can browse through the
-///  tour
+/// 1. Signed in/ logged i// determines the path to route the user to based on the app state
+OnboardingPathConfig onboardingPath(
+  AppState state, {
+  bool calledOnResume = false,
+}) {
+  // TODO!!(abiud): add more checks here when tying up the storyline
 
-/// 3. First time user to MyAfyaHub
-///     - If a user is a first time user they are routed to the phone login page.
-/// They enter the one time pin sent with the invite.
-///     - They are routed to the Verify OTP page where an OTP is sent to their
-/// invite device
-///     -They are then routed to the Terms and Conditions page
-///     -They are then routed to the Set Security Questions page
-///     -They are then routed to the Set change PIN page
-///     -They are then routed to the Congratulations page
-///     - If successful the user is routed to the Home page.
-///
-/// #### Routes and corresponding pages
-/// - [Routes.home] ---> home_page.dart
-/// - [Routes.phoneLogin] ---> phone_number_login_page.dart
-/// - [Routes.verifySignUpOTP] ---> verify_phone_page.dart
-/// - [Routes.termsAndConditions] ---> terms_and_conditions.dart
-/// - [Routes.setPIN] ---> create_new_pin.dart
-/// - [Routes.securityQuestions] ---> security_questions_page.dart
-Future<String> getInitialRoute(
-  BuildContext context,
-  AppState appState,
-  List<AppContext> thisAppContexts,
-) async {
-  if (appState.userProfileState!.isSignedIn!) {
-    final AuthTokenStatus checkTokenStatusResult = await checkTokenStatus(
-      context: context,
-      profileState: appState.userProfileState!,
-      thisAppContexts: thisAppContexts,
-    );
-    switch (checkTokenStatusResult) {
-      case AuthTokenStatus.requiresLogin:
-        return BWRoutes.phoneLogin;
-      case AuthTokenStatus.requiresPin:
-        return BWRoutes.phoneLogin;
-      default:
-    }
-
-    final OnboardingPathConfig pathConfig =
-        onboardingPath(appState, calledOnResume: true);
-    if (pathConfig.route == BWRoutes.setPin) {
-      return BWRoutes.setPin;
-    }
-
-    final String parsedExpiresAt =
-        DateTime.parse(appState.userProfileState!.auth!.expiresIn!)
-            .toIso8601String();
-
-    RefreshTokenManger().updateExpireTime(parsedExpiresAt).reset();
-    return Future<String>.value(pathConfig.route);
-  } else {
-    if (appState.userProfileState!.isFirstLaunch ?? false) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        UpdateUserProfileAction(
-          isFirstLaunch: false,
-        ),
-      );
-    }
-    return BWRoutes.phoneLogin;
-  }
+  /// take the user to the homepage if they have passed
+  /// the normal user profile checks
+  return OnboardingPathConfig(BWRoutes.home);
 }
 
 /// [processHttpResponse] routine is used to process a network call response, for errors, bad requests, timeouts and correct responses.
@@ -474,68 +249,6 @@ Widget showSaveProfileDetailsSILProgressDialog(BuildContext context) {
   return const SILProgressDialog(message: Text(updatingProfileDetails));
 }
 
-Future<void> saveProfileDetails({
-  required Map<String, String> variables,
-  required String checkGender,
-  required String checkDisplayName,
-  required BuildContext context,
-}) async {
-  /// show progress indicator
-  showDialog(
-    context: context,
-    builder: showSaveProfileDetailsSILProgressDialog,
-  );
-
-  if (variables['gender'] == null) {
-    variables['gender'] = checkGender;
-  }
-
-  final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-  final http.Response result = await _client
-      .query(updateUserProfileMutation, <String, dynamic>{'input': variables});
-
-  final Map<String, dynamic> body = _client.toMap(result);
-  hideProgressDialog(context);
-
-  //check first for errors
-  if (_client.parseError(body) != null) {
-    reportErrorToSentry(
-      context,
-      result,
-      hint: 'Failed to save profile details',
-    );
-    ScaffoldMessenger.of(context)
-        .showSnackBar(snackbar(content: UserFeedBackTexts.getErrorMessage()));
-    return;
-  }
-
-  if (body['data'] != null) {
-    await StoreProvider.dispatch<AppState>(
-      context,
-      UpdateUserProfileAction(
-        userBioData: BioData(
-          firstName: Name.withValue(
-            variables['firstName']!,
-          ),
-          dateOfBirth: variables['dateOfBirth'],
-          lastName: Name.withValue(variables['lastName']!),
-          gender: genderFromString(variables['gender']!),
-        ),
-      ),
-    );
-    ScaffoldMessenger.of(context)
-        .showSnackBar(snackbar(content: profileUpdated));
-
-    await Future<void>.delayed(const Duration(seconds: 1));
-
-    Navigator.pop(context);
-
-    return;
-  }
-  ScaffoldMessenger.of(context)
-      .showSnackBar(snackbar(content: UserFeedBackTexts.getErrorMessage()));
-}
-
 Object actionWrapError({
   required dynamic error,
   required BuildContext context,
@@ -614,31 +327,31 @@ void listenForConnectivityChanges(ConnectivityResult result) {
   }
 }
 
-void refreshTokenAndUpdateState({
-  required bool value,
-  required bool signedIn,
-  required BuildContext context,
-  required List<AppContext> appContexts,
-  required String refreshToken,
-}) {
-  if (value) {
-    // check if user is logged in
-    if (signedIn) {
-      // request for a new token
-      requestForANewToken(
-        context: context,
-        thisAppContexts: appContexts,
-        refreshToken: refreshToken,
-      ).then((ProcessedResponse response) {
-        //check if the request was successful
-        if (response.ok) {
-          // update state with the new token
-          updateStateAuth(context: context, processedResponse: response);
-        }
-      });
-    }
-  }
-}
+// void refreshTokenAndUpdateState({
+//   required bool value,
+//   required bool signedIn,
+//   required BuildContext context,
+//   required List<AppContext> appContexts,
+//   required String refreshToken,
+// }) {
+//   if (value) {
+//     // check if user is logged in
+//     if (signedIn) {
+//       // request for a new token
+//       requestForANewToken(
+//         context: context,
+//         thisAppContexts: appContexts,
+//         refreshToken: refreshToken,
+//       ).then((ProcessedResponse response) {
+//         //check if the request was successful
+//         if (response.ok) {
+//           // update state with the new token
+//           updateStateAuth(context: context, processedResponse: response);
+//         }
+//       });
+//     }
+//   }
+// }
 
 Future<void> setUserPIN({
   required BuildContext context,

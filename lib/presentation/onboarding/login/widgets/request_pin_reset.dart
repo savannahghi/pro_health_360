@@ -64,7 +64,7 @@ class _RequestPinResetState extends State<RequestPinReset> {
     if (formKey.currentState!.validate()) {
       StoreProvider.dispatch(
         context,
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue(phoneNumber),
           ),

@@ -115,7 +115,7 @@ void main() {
                 // call our check token status function
                 actualTokenStatus = await checkTokenStatus(
                   context: context,
-                  profileState: store.state.userProfileState!,
+                  profileState: store.state.clientProfile!,
                   thisAppContexts: <AppContext>[
                     AppContext.BewellCONSUMER,
                     AppContext.AppTest
@@ -129,7 +129,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final UserProfileState state = store.state.userProfileState!;
+      final UserProfileState state = store.state.clientProfile!;
       // verify current state
       expect(state.isSignedIn, true);
       expect(state.auth!.refreshToken, oldRefreshToken);
@@ -174,7 +174,7 @@ void main() {
           builder: (BuildContext context) {
             StoreProvider.dispatch(
               context,
-              UpdateUserProfileAction(
+              UpdateClientProfileAction(
                 profile: userProfile,
                 userBioData: userProfile?.userBioData,
               ),
@@ -196,7 +196,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final UserProfileState state = store.state.userProfileState!;
+      final UserProfileState state = store.state.clientProfile!;
       // verify current state
       expect(state.userProfile!.primaryPhoneNumber!.getValue(), isNotNull);
       expect(state.userProfile!.userBioData!.firstName!.getValue(), isNotNull);
@@ -244,7 +244,7 @@ void main() {
                 // call our check token status function
                 actualTokenStatus = await checkTokenStatus(
                   context: context,
-                  profileState: store.state.userProfileState!,
+                  profileState: store.state.clientProfile!,
                   thisAppContexts: <AppContext>[
                     AppContext.BewellCONSUMER,
                     AppContext.AppTest
@@ -258,7 +258,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final UserProfileState state = store.state.userProfileState!;
+      final UserProfileState state = store.state.clientProfile!;
       // verify current state
       expect(state.isSignedIn, true);
       expect(state.auth!.refreshToken, oldRefreshToken);
@@ -336,7 +336,7 @@ void main() {
 
               StoreProvider.dispatch(
                 context,
-                UpdateUserProfileAction(
+                UpdateClientProfileAction(
                   profile: userProfile,
                   userBioData: userProfile?.userBioData,
                 ),
@@ -347,7 +347,7 @@ void main() {
                   // call our check token status function
                   actualTokenStatus = await checkTokenStatus(
                     context: context,
-                    profileState: store.state.userProfileState!,
+                    profileState: store.state.clientProfile!,
                     thisAppContexts: <AppContext>[
                       AppContext.BewellCONSUMER,
                       AppContext.AppTest
@@ -361,7 +361,7 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-        final UserProfileState state = store.state.userProfileState!;
+        final UserProfileState state = store.state.clientProfile!;
         // verify current state
         expect(state.isSignedIn, true);
         expect(state.auth!.refreshToken, 'oldRefreshToken');
@@ -370,13 +370,13 @@ void main() {
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
 
-        expect(store.state.userProfileState!.isSignedIn, true);
+        expect(store.state.clientProfile!.isSignedIn, true);
         expect(
-          store.state.userProfileState!.auth!.refreshToken,
+          store.state.clientProfile!.auth!.refreshToken,
           'Some-refresh-token',
         );
         expect(
-          store.state.userProfileState!.auth!.idToken,
+          store.state.clientProfile!.auth!.idToken,
           'some-id-token',
         );
         expect(actualTokenStatus, AuthTokenStatus.requiresPin);

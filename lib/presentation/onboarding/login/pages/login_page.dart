@@ -4,6 +4,7 @@ import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:afya_moja_core/phone_input.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +19,10 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -150,6 +154,15 @@ class _LoginPageState extends State<LoginPage> {
         converter: (Store<AppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
+          final User? userState =
+              vm.appState.userState?.clientState?.clientProfile?.user;
+          final Contact? phoneNumber =
+              userState?.contacts?.where((Contact contact) {
+            return contact.contactType == ContactType.PRIMARY;
+          }).first;
+
+          final String? userId = userState?.userId;
+
           return SizedBox(
             height: MediaQuery.of(context).size.height / 1.6,
             child: Form(
@@ -164,11 +177,8 @@ class _LoginPageState extends State<LoginPage> {
                         BWRoutes.verifySignUpOTP,
                         arguments: <String, dynamic>{
                           'OTP': 1234,
-                          'userID':
-                              vm.appState.userProfileState!.userProfile!.id,
-                          'phoneNumber': vm.appState.userProfileState!
-                              .userProfile!.primaryPhoneNumber!
-                              .getValue(),
+                          'userID': userId,
+                          'phoneNumber': phoneNumber,
                         },
                       );
                     },
@@ -204,7 +214,9 @@ class _LoginPageState extends State<LoginPage> {
                                     await signInUser(
                                       context: context,
                                       pin: pin!,
-                                      phoneNumber: phoneNumber!,
+                                      phoneNumber:
+                                          phoneNumber.contact?.getValue() ??
+                                              UNKNOWN,
                                     );
                                   }
                                   return;

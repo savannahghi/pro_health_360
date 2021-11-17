@@ -26,7 +26,9 @@ class _$UserTearOff {
       @JsonKey(name: 'userName') String? username,
       @JsonKey(name: 'firstName') String? firstName,
       @JsonKey(name: 'lastName') String? lastName,
-      @JsonKey(name: 'active') bool? active}) {
+      bool? active,
+      @JsonKey(name: 'contacts') List<Contact>? contacts,
+      @JsonKey(name: 'termsAccepted') bool? termsAccepted}) {
     return _User(
       userId: userId,
       displayName: displayName,
@@ -34,6 +36,8 @@ class _$UserTearOff {
       firstName: firstName,
       lastName: lastName,
       active: active,
+      contacts: contacts,
+      termsAccepted: termsAccepted,
     );
   }
 
@@ -57,8 +61,11 @@ mixin _$User {
   String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'active')
   bool? get active => throw _privateConstructorUsedError;
+  @JsonKey(name: 'contacts')
+  List<Contact>? get contacts => throw _privateConstructorUsedError;
+  @JsonKey(name: 'termsAccepted')
+  bool? get termsAccepted => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +82,9 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'userName') String? username,
       @JsonKey(name: 'firstName') String? firstName,
       @JsonKey(name: 'lastName') String? lastName,
-      @JsonKey(name: 'active') bool? active});
+      bool? active,
+      @JsonKey(name: 'contacts') List<Contact>? contacts,
+      @JsonKey(name: 'termsAccepted') bool? termsAccepted});
 }
 
 /// @nodoc
@@ -94,6 +103,8 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? active = freezed,
+    Object? contacts = freezed,
+    Object? termsAccepted = freezed,
   }) {
     return _then(_value.copyWith(
       userId: userId == freezed
@@ -120,6 +131,14 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
+      contacts: contacts == freezed
+          ? _value.contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact>?,
+      termsAccepted: termsAccepted == freezed
+          ? _value.termsAccepted
+          : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -135,7 +154,9 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'userName') String? username,
       @JsonKey(name: 'firstName') String? firstName,
       @JsonKey(name: 'lastName') String? lastName,
-      @JsonKey(name: 'active') bool? active});
+      bool? active,
+      @JsonKey(name: 'contacts') List<Contact>? contacts,
+      @JsonKey(name: 'termsAccepted') bool? termsAccepted});
 }
 
 /// @nodoc
@@ -155,6 +176,8 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? active = freezed,
+    Object? contacts = freezed,
+    Object? termsAccepted = freezed,
   }) {
     return _then(_User(
       userId: userId == freezed
@@ -181,6 +204,14 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
+      contacts: contacts == freezed
+          ? _value.contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact>?,
+      termsAccepted: termsAccepted == freezed
+          ? _value.termsAccepted
+          : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -194,7 +225,9 @@ class _$_User implements _User {
       @JsonKey(name: 'userName') this.username,
       @JsonKey(name: 'firstName') this.firstName,
       @JsonKey(name: 'lastName') this.lastName,
-      @JsonKey(name: 'active') this.active});
+      this.active,
+      @JsonKey(name: 'contacts') this.contacts,
+      @JsonKey(name: 'termsAccepted') this.termsAccepted});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -215,12 +248,17 @@ class _$_User implements _User {
   @JsonKey(name: 'lastName')
   final String? lastName;
   @override
-  @JsonKey(name: 'active')
   final bool? active;
+  @override
+  @JsonKey(name: 'contacts')
+  final List<Contact>? contacts;
+  @override
+  @JsonKey(name: 'termsAccepted')
+  final bool? termsAccepted;
 
   @override
   String toString() {
-    return 'User(userId: $userId, displayName: $displayName, username: $username, firstName: $firstName, lastName: $lastName, active: $active)';
+    return 'User(userId: $userId, displayName: $displayName, username: $username, firstName: $firstName, lastName: $lastName, active: $active, contacts: $contacts, termsAccepted: $termsAccepted)';
   }
 
   @override
@@ -242,7 +280,13 @@ class _$_User implements _User {
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
             (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)));
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.contacts, contacts) ||
+                const DeepCollectionEquality()
+                    .equals(other.contacts, contacts)) &&
+            (identical(other.termsAccepted, termsAccepted) ||
+                const DeepCollectionEquality()
+                    .equals(other.termsAccepted, termsAccepted)));
   }
 
   @override
@@ -253,7 +297,9 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(active);
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(contacts) ^
+      const DeepCollectionEquality().hash(termsAccepted);
 
   @JsonKey(ignore: true)
   @override
@@ -273,7 +319,9 @@ abstract class _User implements User {
       @JsonKey(name: 'userName') String? username,
       @JsonKey(name: 'firstName') String? firstName,
       @JsonKey(name: 'lastName') String? lastName,
-      @JsonKey(name: 'active') bool? active}) = _$_User;
+      bool? active,
+      @JsonKey(name: 'contacts') List<Contact>? contacts,
+      @JsonKey(name: 'termsAccepted') bool? termsAccepted}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -293,8 +341,13 @@ abstract class _User implements User {
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'active')
   bool? get active => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'contacts')
+  List<Contact>? get contacts => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'termsAccepted')
+  bool? get termsAccepted => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

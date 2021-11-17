@@ -36,7 +36,7 @@ void main() {
     });
     testWidgets('navigates to UserProfilePage ', (WidgetTester tester) async {
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: domain.UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),

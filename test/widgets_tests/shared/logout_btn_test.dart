@@ -82,7 +82,7 @@ void main() {
     await tester.pumpAndSettle();
     // verify(mockNavigatorObserver.didPush(sampleRoute, any));
 
-    expect(store.state.userProfileState!.isSignedIn, false);
+    expect(store.state.clientProfile!.isSignedIn, false);
     // TOD: (vincent) confirm state reset
     addTearDown(() {
       tester.binding.window.clearPhysicalSizeTestValue();

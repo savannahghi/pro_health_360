@@ -156,7 +156,7 @@ void main() {
               builder: (BuildContext context) {
                 StoreProvider.dispatch<AppState>(
                   context,
-                  UpdateUserProfileAction(
+                  UpdateClientProfileAction(
                     userBioData: BioData(
                       dateOfBirth: '12-12-12',
                       firstName: Name.withValue('Test'),

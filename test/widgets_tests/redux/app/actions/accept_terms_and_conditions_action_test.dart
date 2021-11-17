@@ -51,7 +51,7 @@ void main() {
                     AcceptTermsAndConditionsAction(
                       termsId:
                           store.state.miscState!.termsAndConditions!.termsId,
-                      userId: store.state.userProfileState!.userProfile!.id!,
+                      userId: store.state.clientProfile!.userProfile!.id!,
                       context: context,
                     ),
                   );

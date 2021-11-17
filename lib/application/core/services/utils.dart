@@ -23,6 +23,8 @@ import 'package:myafyahub/application/redux/actions/health_page_pin_input_action
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
@@ -420,12 +422,19 @@ dynamic reportErrorToSentry(
   if (context != null) {
     try {
       final AppState state = StoreProvider.state<AppState>(context)!;
-      if (state.userProfileState?.isSignedIn != null &&
-          state.userProfileState!.isSignedIn!) {
+      final Contact? contact =
+          state.userState?.clientState?.clientProfile?.user?.contacts
+              ?.where(
+                (Contact contact) => contact.contactType == ContactType.PRIMARY,
+              )
+              .first;
+
+      final bool isSignedIn =
+          state.userState?.clientState?.clientProfile?.isSignedIn ?? false;
+
+      if (isSignedIn) {
         errorTrace = <String, dynamic>{
-          'phoneNumber': state
-              .userProfileState!.userProfile!.primaryPhoneNumber!
-              .getValue(),
+          'phoneNumber': contact?.contact?.getValue() ?? UNKNOWN,
           'error': errorTrace,
         };
       }
@@ -598,9 +607,12 @@ List<NotificationDetails> pastAppointments = <NotificationDetails>[
 ];
 
 bool shouldInputPIN(BuildContext context) {
-  final DateTime signedInTime = DateTime.parse(
-    StoreProvider.state<AppState>(context)!.userProfileState!.signedInTime!,
-  );
+  // final DateTime signedInTime = DateTime.parse(
+  //   StoreProvider.state<AppState>(context)!.clientProfile!.signedInTime!,
+  // );
+
+  // TODO: store signed in time in the app state
+  final DateTime signedInTime = DateTime.now();
 
   final String lastPINInputTime = StoreProvider.state<AppState>(context)!
           .miscState!

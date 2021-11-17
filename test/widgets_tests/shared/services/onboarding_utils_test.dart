@@ -95,7 +95,7 @@ void main() {
           builder: (BuildContext context) {
             StoreProvider.dispatch<AppState>(
               context,
-              UpdateUserProfileAction(
+              UpdateClientProfileAction(
                 userBioData: BioData(
                   dateOfBirth: '12-12-12',
                   firstName: Name.withValue('Test'),
@@ -313,7 +313,7 @@ void main() {
                 onPressed: () async {
                   await StoreProvider.dispatch<AppState>(
                     context,
-                    UpdateUserProfileAction(
+                    UpdateClientProfileAction(
                       userBioData: BioData(
                         dateOfBirth: '12-12-12',
                         firstName: Name.withValue('Test'),
@@ -385,7 +385,7 @@ void main() {
           (WidgetTester tester) async {
         store = Store<AppState>(
           initialState: AppState.initial(
-            userProfileState: UserProfileState(
+            clientProfile: UserProfileState(
               isSignedIn: true,
               userProfile: UserProfile(
                 primaryPhoneNumber: PhoneNumber.withValue('+254123456789'),
@@ -782,7 +782,7 @@ void main() {
           builder: (BuildContext context) {
             StoreProvider.dispatch(
               context,
-              UpdateUserProfileAction(onboardingTourComplete: false),
+              UpdateClientProfileAction(onboardingTourComplete: false),
             );
             StoreProvider.dispatch(
               context,
@@ -887,7 +887,7 @@ void main() {
 
       // verify(mockNavigatorObserver.didPush(sampleRoute, any));
       final BioData bioData =
-          store.state.userProfileState!.userProfile!.userBioData!;
+          store.state.clientProfile!.userProfile!.userBioData!;
       expect(bioData.gender, Gender.male);
       expect(bioData.firstName!.getValue(), testFirstName);
       expect(bioData.lastName!.getValue(), testLastName);
@@ -1018,7 +1018,7 @@ void main() {
 
       // verify(mockNavigatorObserver.didPush(sampleRoute, any));
       final BioData bioData =
-          store.state.userProfileState!.userProfile!.userBioData!;
+          store.state.clientProfile!.userProfile!.userBioData!;
       expect(bioData.gender, Gender.unknown);
       expect(bioData.firstName!.getValue(), UNKNOWN);
       expect(bioData.lastName!.getValue(), UNKNOWN);
@@ -1317,7 +1317,7 @@ void main() {
             builder: (BuildContext context) {
               StoreProvider.dispatch(
                 context,
-                UpdateUserProfileAction(
+                UpdateClientProfileAction(
                   profile: userProfile,
                   userBioData: userProfile?.userBioData,
                 ),
@@ -1343,7 +1343,7 @@ void main() {
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
         expect(
-          store.state.userProfileState!.auth!.refreshToken,
+          store.state.clientProfile!.auth!.refreshToken,
           testRefreshToken,
         );
       });
@@ -1382,7 +1382,7 @@ void main() {
 
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
-        expect(store.state.userProfileState!.auth!.refreshToken, UNKNOWN);
+        expect(store.state.clientProfile!.auth!.refreshToken, UNKNOWN);
       });
     });
 
@@ -1419,7 +1419,7 @@ void main() {
 
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
-        expect(store.state.userProfileState!.auth!.refreshToken, UNKNOWN);
+        expect(store.state.clientProfile!.auth!.refreshToken, UNKNOWN);
       });
     });
 

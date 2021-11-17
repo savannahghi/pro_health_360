@@ -36,7 +36,7 @@ class ForgotPinOtpWidget extends StatelessWidget {
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           final String phoneNumber = vm
-              .appState.userProfileState!.userProfile!.primaryPhoneNumber!
+              .appState.clientProfile!.userProfile!.primaryPhoneNumber!
               .getValue();
           return SafeArea(
             child: Padding(

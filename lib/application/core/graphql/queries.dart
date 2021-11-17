@@ -3,50 +3,58 @@ import 'package:user_feed/user_feed.dart';
 const String loginQuery = r'''
 query login($phoneNumber: String!, $pin: String!, $flavour: Flavour!) {
   login(flavour: $flavour, phoneNumber: $phoneNumber, pin: $pin) {
-    code
+   code
     message
     credentials {
-      authCredentials {
-        expiresIn
-        idToken
-        refreshToken
-      }
-      clientProfile {
-        treatmentEnrollmentDate
-        treatmentBuddy
+      expiresIn
+      idToken
+      refreshToken
+    }
+    clientProfile {
+      active
+      addresses {
         active
-        addresses {
-          active
-          addressType
-          country
-          county
-          postalCode
-          text
-        }
-        clientCounselled
-        clientType
-        facilityID
-        user {
-          userID
-          active
-          displayName
-          firstName
-          gender
-          languages
-          lastName
-          middleName
-          termsAccepted
-          userName
-          userType
-          contacts {
-            active
-            contact
-            contactType
-            optedIn
-          }
-        }
+        addressType
+        country
+        county
+        postalCode
+        text
       }
-      pinChangeRequired
+      clientCounselled
+      clientType
+      facilityID
+      relatedPersons {
+        active
+        dateOfBirth
+        firstName
+        gender
+        lastName
+        otherName
+        relatedTo
+        relationshipType
+      }
+      treatmentBuddy
+      treatmentEnrollmentDate
+      user {
+        active
+        displayName
+        firstName
+        gender
+        languages
+        contacts {
+          active
+          contact
+          contactType
+          optedIn
+        }
+        lastName
+        middleName
+        pinChangeRequired
+        termsAccepted
+        userID
+        userName
+        userType
+      }
     }
   }
 }

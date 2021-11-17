@@ -30,7 +30,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           userBioData: BioData(
             firstName: Name.withValue('Test'),
             lastName: Name.withValue('Name'),
@@ -71,7 +71,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           userBioData: BioData(
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),
@@ -122,7 +122,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           userBioData: BioData(
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),
@@ -165,7 +165,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           userBioData: BioData(
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),
@@ -204,7 +204,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           userBioData: BioData(
             firstName: Name.withValue(testFirstName),
             lastName: Name.withValue(testLastName),

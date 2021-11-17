@@ -22,9 +22,7 @@ import 'package:myafyahub/application/core/services/remote_config_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
-import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app.dart';
 
@@ -48,26 +46,27 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
       await RemoteConfigService.getInstance();
   remoteConfig.init();
 
-  final BeWellStateDatabase stateDB =
-      BeWellStateDatabase(dataBaseName: silDatabaseName);
+  // final BeWellStateDatabase stateDB =
+  //     BeWellStateDatabase(dataBaseName: silDatabaseName);
 
   final ConnectivityStatus connectivityStatus = ConnectivityStatus.initial();
 
   /// initialize the database
-  await stateDB.init();
+  // await stateDB.init();
 
   /// retrieve state from the database
-  final AppState initialState = await stateDB.readState();
+  // final AppState initialState = await stateDB.readState();
+  final AppState initialState = AppState.initial();
 
   /// initialize a fresh database if [initialState] is `null`,
   /// and populate the database with the default values for each state
-  if (initialState == AppState.initial()) {
-    await stateDB.saveInitialState(initialState);
-  }
+  // if (initialState == AppState.initial()) {
+  //   await stateDB.saveInitialState(initialState);
+  // }
 
   final Store<AppState> store = Store<AppState>(
     initialState: initialState,
-    persistor: PersistorPrinterDecorator<AppState>(stateDB),
+    // persistor: PersistorPrinterDecorator<AppState>(stateDB),
     defaultDistinct: true,
   );
 

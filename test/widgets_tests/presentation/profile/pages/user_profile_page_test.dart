@@ -29,7 +29,7 @@ void main() {
 
     testWidgets('renders correctly', (WidgetTester tester) async {
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: domain.UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),
@@ -60,7 +60,7 @@ void main() {
     testWidgets('navigates to PersonalInformationPage correctly',
         (WidgetTester tester) async {
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: domain.UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
             primaryEmailAddress: EmailAddress.withValue('s@g.com'),

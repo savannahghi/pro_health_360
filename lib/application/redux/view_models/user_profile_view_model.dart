@@ -3,16 +3,17 @@ import 'package:async_redux/async_redux.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
+import 'package:myafyahub/domain/core/entities/core/client_profile.dart';
 
-class UserProfileViewModel {
-  final UserProfileState userProfileState;
+class ClientProfileViewModel extends Vm {
+  final ClientProfile? clientProfile;
 
-  UserProfileViewModel({required this.userProfileState});
+  ClientProfileViewModel({required this.clientProfile})
+      : super(equals: <Object?>[clientProfile]);
 
-  static UserProfileViewModel fromStore(Store<AppState> store) {
-    return UserProfileViewModel(
-      userProfileState: store.state.userProfileState!,
+  static ClientProfileViewModel fromStore(Store<AppState> store) {
+    return ClientProfileViewModel(
+      clientProfile: store.state.userState?.clientState?.clientProfile,
     );
   }
 }

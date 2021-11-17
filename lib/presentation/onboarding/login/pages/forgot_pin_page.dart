@@ -23,8 +23,8 @@ class ForgotPINPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppState appState = StoreProvider.state<AppState>(context)!;
     final Map<String, SecurityQuestionResponse> securityQuestionsResponses =
-        appState.userProfileState!.securityQuestionsResponses!;
-    final String userId = appState.userProfileState!.userProfile!.id!;
+        appState.clientProfile!.securityQuestionsResponses!;
+    final String userId = appState.clientProfile!.userProfile!.id!;
 
     final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
       SecurityQuestion(
@@ -72,7 +72,7 @@ class ForgotPINPage extends StatelessWidget {
                         );
                         StoreProvider.dispatch<AppState>(
                           context,
-                          UpdateUserProfileAction(
+                          UpdateClientProfileAction(
                             securityQuestionsResponses:
                                 securityQuestionsResponses,
                           ),
