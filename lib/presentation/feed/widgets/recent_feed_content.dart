@@ -32,12 +32,12 @@ class RecentFeedContent extends StatefulWidget {
 }
 
 class _RecentFeedContentState extends State<RecentFeedContent> {
-  late Stream<Object> _stream;
-  late StreamController<Object> _streamController;
+  late Stream<dynamic> _stream;
+  late StreamController<dynamic> _streamController;
 
   @override
   void initState() {
-    _streamController = StreamController<Object>.broadcast();
+    _streamController = StreamController<dynamic>.broadcast();
     _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
       await customFetchData(
@@ -59,7 +59,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
+    return StreamBuilder<dynamic>(
       stream: _stream,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         //show the loader before the data is displayed

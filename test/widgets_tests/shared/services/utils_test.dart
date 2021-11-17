@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +12,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart' as misc;
 import 'package:mockito/annotations.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
@@ -613,6 +617,66 @@ void main() {
       await tester.tap(find.byKey(const Key('update_contacts')));
       await tester.pumpAndSettle();
       expect(testBool, false);
+    });
+  });
+
+  group('customFetchData', () {
+    testWidgets('adds null when there is not data in the stream',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient client =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'data': null}),
+          201,
+        ),
+      );
+
+      late Stream<dynamic> _stream;
+      late StreamController<dynamic> _streamController;
+
+      _streamController = StreamController<dynamic>.broadcast();
+      _stream = _streamController.stream;
+
+      _stream.listen((dynamic event) {
+        emitsInOrder(<dynamic>[
+          emits(<String, dynamic>{'loading': true}),
+          emits(null),
+        ]);
+      });
+
+      expectLater(
+        _stream,
+        emitsInOrder(<dynamic>[
+          emits(<String, dynamic>{'loading': true}),
+          emits(null),
+        ]),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                await customFetchData(
+                  streamController: _streamController,
+                  context: context,
+                  logTitle: 'Fetch recent content content',
+                  queryString: 'some-query',
+                  variables: <String, dynamic>{},
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
     });
   });
 }
