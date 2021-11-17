@@ -29,7 +29,7 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: UserProfile(
             photoUploadID: '$dir/test/tests_resources/test_file.png',
           ),
@@ -37,7 +37,7 @@ void main() {
       );
 
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           userBioData: BioData(
             firstName: Name.withValue('Test'),
             lastName: Name.withValue('Name'),

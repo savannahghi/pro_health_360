@@ -37,11 +37,11 @@ class UserDetailsCard extends StatelessWidget {
   final String home;
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, UserProfileViewModel>(
+    return StoreConnector<AppState, ClientProfileViewModel>(
       converter: (Store<AppState> store) =>
-          UserProfileViewModel.fromStore(store),
-      builder: (BuildContext context, UserProfileViewModel vm) {
-        final UserProfileState userProfile = vm.userProfileState;
+          ClientProfileViewModel.fromStore(store),
+      builder: (BuildContext context, ClientProfileViewModel vm) {
+        final UserProfileState userProfile = vm.clientProfile;
 
         final String firstName =
             userProfile.userProfile?.userBioData?.firstName?.getValue() ??
@@ -152,11 +152,12 @@ class UserDetailsCard extends StatelessWidget {
                   mediumVerticalSizedBox,
                   GestureDetector(
                     key: requestCorrectionButtonKey,
-                    onTap: () => ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(
-                      content: Text(comingSoonText),
-                      duration: Duration(seconds: 2),
-                    ),),
+                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(comingSoonText),
+                        duration: Duration(seconds: 2),
+                      ),
+                    ),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 8,

@@ -81,7 +81,7 @@ void main() {
           Store<AppState>(initialState: AppState.initial());
       late String actualNameFromState;
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           userBioData: BioData(
             firstName: Name.withValue('Test'),
             lastName: Name.withValue('Name'),
@@ -98,7 +98,7 @@ void main() {
               buttonKey: const Key('get_first_name_Key'),
               onPressed: () {
                 actualNameFromState =
-                    getDisplayName(store.state.userProfileState!);
+                    getDisplayName(store.state.clientProfile!);
               },
             );
           },
@@ -131,7 +131,7 @@ void main() {
                     buttonKey: const Key('get_first_name_Key'),
                     onPressed: () {
                       actualNameFromState =
-                          getDisplayName(store.state.userProfileState!);
+                          getDisplayName(store.state.clientProfile!);
                     },
                   );
                 },

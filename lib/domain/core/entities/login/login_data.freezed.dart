@@ -20,9 +20,16 @@ LoginData _$LoginDataFromJson(Map<String, dynamic> json) {
 class _$LoginDataTearOff {
   const _$LoginDataTearOff();
 
-  _LoginData call({@JsonKey(name: 'credentials') Credentials? credentials}) {
+  _LoginData call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'credentials') AuthCredentials? credentials,
+      @JsonKey(name: 'clientProfile') ClientProfile? clientProfile}) {
     return _LoginData(
+      code: code,
+      message: message,
       credentials: credentials,
+      clientProfile: clientProfile,
     );
   }
 
@@ -36,8 +43,14 @@ const $LoginData = _$LoginDataTearOff();
 
 /// @nodoc
 mixin _$LoginData {
+  @JsonKey(name: 'code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
   @JsonKey(name: 'credentials')
-  Credentials? get credentials => throw _privateConstructorUsedError;
+  AuthCredentials? get credentials => throw _privateConstructorUsedError;
+  @JsonKey(name: 'clientProfile')
+  ClientProfile? get clientProfile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,9 +62,14 @@ mixin _$LoginData {
 abstract class $LoginDataCopyWith<$Res> {
   factory $LoginDataCopyWith(LoginData value, $Res Function(LoginData) then) =
       _$LoginDataCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'credentials') Credentials? credentials});
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'credentials') AuthCredentials? credentials,
+      @JsonKey(name: 'clientProfile') ClientProfile? clientProfile});
 
-  $CredentialsCopyWith<$Res>? get credentials;
+  $AuthCredentialsCopyWith<$Res>? get credentials;
+  $ClientProfileCopyWith<$Res>? get clientProfile;
 }
 
 /// @nodoc
@@ -64,24 +82,50 @@ class _$LoginDataCopyWithImpl<$Res> implements $LoginDataCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? code = freezed,
+    Object? message = freezed,
     Object? credentials = freezed,
+    Object? clientProfile = freezed,
   }) {
     return _then(_value.copyWith(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       credentials: credentials == freezed
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
-              as Credentials?,
+              as AuthCredentials?,
+      clientProfile: clientProfile == freezed
+          ? _value.clientProfile
+          : clientProfile // ignore: cast_nullable_to_non_nullable
+              as ClientProfile?,
     ));
   }
 
   @override
-  $CredentialsCopyWith<$Res>? get credentials {
+  $AuthCredentialsCopyWith<$Res>? get credentials {
     if (_value.credentials == null) {
       return null;
     }
 
-    return $CredentialsCopyWith<$Res>(_value.credentials!, (value) {
+    return $AuthCredentialsCopyWith<$Res>(_value.credentials!, (value) {
       return _then(_value.copyWith(credentials: value));
+    });
+  }
+
+  @override
+  $ClientProfileCopyWith<$Res>? get clientProfile {
+    if (_value.clientProfile == null) {
+      return null;
+    }
+
+    return $ClientProfileCopyWith<$Res>(_value.clientProfile!, (value) {
+      return _then(_value.copyWith(clientProfile: value));
     });
   }
 }
@@ -92,10 +136,16 @@ abstract class _$LoginDataCopyWith<$Res> implements $LoginDataCopyWith<$Res> {
           _LoginData value, $Res Function(_LoginData) then) =
       __$LoginDataCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'credentials') Credentials? credentials});
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'credentials') AuthCredentials? credentials,
+      @JsonKey(name: 'clientProfile') ClientProfile? clientProfile});
 
   @override
-  $CredentialsCopyWith<$Res>? get credentials;
+  $AuthCredentialsCopyWith<$Res>? get credentials;
+  @override
+  $ClientProfileCopyWith<$Res>? get clientProfile;
 }
 
 /// @nodoc
@@ -109,13 +159,28 @@ class __$LoginDataCopyWithImpl<$Res> extends _$LoginDataCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? code = freezed,
+    Object? message = freezed,
     Object? credentials = freezed,
+    Object? clientProfile = freezed,
   }) {
     return _then(_LoginData(
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       credentials: credentials == freezed
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
-              as Credentials?,
+              as AuthCredentials?,
+      clientProfile: clientProfile == freezed
+          ? _value.clientProfile
+          : clientProfile // ignore: cast_nullable_to_non_nullable
+              as ClientProfile?,
     ));
   }
 }
@@ -123,32 +188,57 @@ class __$LoginDataCopyWithImpl<$Res> extends _$LoginDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LoginData implements _LoginData {
-  _$_LoginData({@JsonKey(name: 'credentials') this.credentials});
+  _$_LoginData(
+      {@JsonKey(name: 'code') this.code,
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'credentials') this.credentials,
+      @JsonKey(name: 'clientProfile') this.clientProfile});
 
   factory _$_LoginData.fromJson(Map<String, dynamic> json) =>
       _$_$_LoginDataFromJson(json);
 
   @override
+  @JsonKey(name: 'code')
+  final String? code;
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+  @override
   @JsonKey(name: 'credentials')
-  final Credentials? credentials;
+  final AuthCredentials? credentials;
+  @override
+  @JsonKey(name: 'clientProfile')
+  final ClientProfile? clientProfile;
 
   @override
   String toString() {
-    return 'LoginData(credentials: $credentials)';
+    return 'LoginData(code: $code, message: $message, credentials: $credentials, clientProfile: $clientProfile)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LoginData &&
+            (identical(other.code, code) ||
+                const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality()
+                    .equals(other.message, message)) &&
             (identical(other.credentials, credentials) ||
                 const DeepCollectionEquality()
-                    .equals(other.credentials, credentials)));
+                    .equals(other.credentials, credentials)) &&
+            (identical(other.clientProfile, clientProfile) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientProfile, clientProfile)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(credentials);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(credentials) ^
+      const DeepCollectionEquality().hash(clientProfile);
 
   @JsonKey(ignore: true)
   @override
@@ -162,15 +252,28 @@ class _$_LoginData implements _LoginData {
 }
 
 abstract class _LoginData implements LoginData {
-  factory _LoginData({@JsonKey(name: 'credentials') Credentials? credentials}) =
+  factory _LoginData(
+          {@JsonKey(name: 'code') String? code,
+          @JsonKey(name: 'message') String? message,
+          @JsonKey(name: 'credentials') AuthCredentials? credentials,
+          @JsonKey(name: 'clientProfile') ClientProfile? clientProfile}) =
       _$_LoginData;
 
   factory _LoginData.fromJson(Map<String, dynamic> json) =
       _$_LoginData.fromJson;
 
   @override
+  @JsonKey(name: 'code')
+  String? get code => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'credentials')
-  Credentials? get credentials => throw _privateConstructorUsedError;
+  AuthCredentials? get credentials => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'clientProfile')
+  ClientProfile? get clientProfile => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LoginDataCopyWith<_LoginData> get copyWith =>

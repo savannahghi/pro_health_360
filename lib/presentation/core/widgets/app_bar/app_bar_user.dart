@@ -31,11 +31,11 @@ class AppbarUser extends StatelessWidget {
       child: GestureDetector(
         key: appBarUserKey,
         onTap: () => editProfileNavigation(context),
-        child: StoreConnector<AppState, UserProfileViewModel>(
+        child: StoreConnector<AppState, ClientProfileViewModel>(
           converter: (Store<AppState> store) =>
-              UserProfileViewModel.fromStore(store),
-          builder: (BuildContext context, UserProfileViewModel vm) {
-            final UserProfileState userProfileState = vm.userProfileState;
+              ClientProfileViewModel.fromStore(store),
+          builder: (BuildContext context, ClientProfileViewModel vm) {
+            final UserProfileState userProfileState = vm.clientProfile;
             final String? photoUrl =
                 userProfileState.userProfile!.photoUploadID;
 

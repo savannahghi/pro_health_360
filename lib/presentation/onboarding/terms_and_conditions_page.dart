@@ -162,7 +162,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                       AcceptTermsAndConditionsAction(
                                         termsId: vm.appState.miscState!
                                             .termsAndConditions!.termsId,
-                                        userId: vm.appState.userProfileState!
+                                        userId: vm.appState.clientProfile!
                                             .userProfile!.id!,
                                         context: context,
                                       ),

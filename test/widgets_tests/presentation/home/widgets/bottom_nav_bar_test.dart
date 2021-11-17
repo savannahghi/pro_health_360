@@ -27,7 +27,7 @@ void main() {
     final MockGraphQlClient GraphQlClient = MockGraphQlClient();
     final Store<AppState> store = Store<AppState>(
       initialState: AppState.initial().copyWith(
-        userProfileState: UserProfileState(
+        clientProfile: UserProfileState(
           auth: AuthCredentialResponse.fromJson(
             <String, dynamic>{'uid': 'some-uid'},
           ),

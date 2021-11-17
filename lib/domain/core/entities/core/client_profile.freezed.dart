@@ -23,11 +23,13 @@ class _$ClientProfileTearOff {
   _ClientProfile call(
       {@JsonKey(name: 'user') User? user,
       @JsonKey(name: 'active') bool? active,
-      @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate}) {
+      @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
+      @JsonKey(name: 'isSignedIn') bool? isSignedIn}) {
     return _ClientProfile(
       user: user,
       active: active,
       lastMoodRecordedDate: lastMoodRecordedDate,
+      isSignedIn: isSignedIn,
     );
   }
 
@@ -47,6 +49,8 @@ mixin _$ClientProfile {
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastMoodRecordedDate')
   String? get lastMoodRecordedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isSignedIn')
+  bool? get isSignedIn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +66,8 @@ abstract class $ClientProfileCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'user') User? user,
       @JsonKey(name: 'active') bool? active,
-      @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate});
+      @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
+      @JsonKey(name: 'isSignedIn') bool? isSignedIn});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -81,6 +86,7 @@ class _$ClientProfileCopyWithImpl<$Res>
     Object? user = freezed,
     Object? active = freezed,
     Object? lastMoodRecordedDate = freezed,
+    Object? isSignedIn = freezed,
   }) {
     return _then(_value.copyWith(
       user: user == freezed
@@ -95,6 +101,10 @@ class _$ClientProfileCopyWithImpl<$Res>
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      isSignedIn: isSignedIn == freezed
+          ? _value.isSignedIn
+          : isSignedIn // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -120,7 +130,8 @@ abstract class _$ClientProfileCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'user') User? user,
       @JsonKey(name: 'active') bool? active,
-      @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate});
+      @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
+      @JsonKey(name: 'isSignedIn') bool? isSignedIn});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -142,6 +153,7 @@ class __$ClientProfileCopyWithImpl<$Res>
     Object? user = freezed,
     Object? active = freezed,
     Object? lastMoodRecordedDate = freezed,
+    Object? isSignedIn = freezed,
   }) {
     return _then(_ClientProfile(
       user: user == freezed
@@ -156,6 +168,10 @@ class __$ClientProfileCopyWithImpl<$Res>
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      isSignedIn: isSignedIn == freezed
+          ? _value.isSignedIn
+          : isSignedIn // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -166,7 +182,8 @@ class _$_ClientProfile implements _ClientProfile {
   _$_ClientProfile(
       {@JsonKey(name: 'user') this.user,
       @JsonKey(name: 'active') this.active,
-      @JsonKey(name: 'lastMoodRecordedDate') this.lastMoodRecordedDate});
+      @JsonKey(name: 'lastMoodRecordedDate') this.lastMoodRecordedDate,
+      @JsonKey(name: 'isSignedIn') this.isSignedIn});
 
   factory _$_ClientProfile.fromJson(Map<String, dynamic> json) =>
       _$_$_ClientProfileFromJson(json);
@@ -180,10 +197,13 @@ class _$_ClientProfile implements _ClientProfile {
   @override
   @JsonKey(name: 'lastMoodRecordedDate')
   final String? lastMoodRecordedDate;
+  @override
+  @JsonKey(name: 'isSignedIn')
+  final bool? isSignedIn;
 
   @override
   String toString() {
-    return 'ClientProfile(user: $user, active: $active, lastMoodRecordedDate: $lastMoodRecordedDate)';
+    return 'ClientProfile(user: $user, active: $active, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn)';
   }
 
   @override
@@ -195,8 +215,11 @@ class _$_ClientProfile implements _ClientProfile {
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
             (identical(other.lastMoodRecordedDate, lastMoodRecordedDate) ||
+                const DeepCollectionEquality().equals(
+                    other.lastMoodRecordedDate, lastMoodRecordedDate)) &&
+            (identical(other.isSignedIn, isSignedIn) ||
                 const DeepCollectionEquality()
-                    .equals(other.lastMoodRecordedDate, lastMoodRecordedDate)));
+                    .equals(other.isSignedIn, isSignedIn)));
   }
 
   @override
@@ -204,7 +227,8 @@ class _$_ClientProfile implements _ClientProfile {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(lastMoodRecordedDate);
+      const DeepCollectionEquality().hash(lastMoodRecordedDate) ^
+      const DeepCollectionEquality().hash(isSignedIn);
 
   @JsonKey(ignore: true)
   @override
@@ -219,12 +243,10 @@ class _$_ClientProfile implements _ClientProfile {
 
 abstract class _ClientProfile implements ClientProfile {
   factory _ClientProfile(
-      {@JsonKey(name: 'user')
-          User? user,
-      @JsonKey(name: 'active')
-          bool? active,
-      @JsonKey(name: 'lastMoodRecordedDate')
-          String? lastMoodRecordedDate}) = _$_ClientProfile;
+      {@JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'active') bool? active,
+      @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
+      @JsonKey(name: 'isSignedIn') bool? isSignedIn}) = _$_ClientProfile;
 
   factory _ClientProfile.fromJson(Map<String, dynamic> json) =
       _$_ClientProfile.fromJson;
@@ -238,6 +260,9 @@ abstract class _ClientProfile implements ClientProfile {
   @override
   @JsonKey(name: 'lastMoodRecordedDate')
   String? get lastMoodRecordedDate => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'isSignedIn')
+  bool? get isSignedIn => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ClientProfileCopyWith<_ClientProfile> get copyWith =>

@@ -11,6 +11,7 @@ class ClientProfile with _$ClientProfile {
     @JsonKey(name: 'user') User? user,
     @JsonKey(name: 'active') bool? active,
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
+    @JsonKey(name: 'isSignedIn') bool? isSignedIn,
   }) = _ClientProfile;
 
   factory ClientProfile.fromJson(Map<String, dynamic> json) =>

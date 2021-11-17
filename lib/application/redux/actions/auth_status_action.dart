@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 
 class AuthStatusAction extends ReduxAction<AppState> {
   AuthStatusAction({
@@ -11,14 +11,12 @@ class AuthStatusAction extends ReduxAction<AppState> {
     this.refreshToken,
     this.expiresAt,
     this.isAnonymous,
-    this.canExperiment,
     this.signedIn,
     this.uid,
     this.signedInTime,
     this.isChangePin,
   });
 
-  final bool? canExperiment;
   final String? expiresAt;
   final String? idToken;
   final bool? isAnonymous;
@@ -29,22 +27,16 @@ class AuthStatusAction extends ReduxAction<AppState> {
   final String? uid;
 
   @override
-  AppState reduce() {
-    final AuthCredentialResponse authFromState = state.userProfileState!.auth!;
-    final AppState newState = state.copyWith.userProfileState!.call(
-      isSignedIn: this.signedIn ?? state.userProfileState!.isSignedIn,
-      signedInTime: this.signedInTime ?? state.userProfileState!.signedInTime,
-      auth: AuthCredentialResponse(
-        idToken: idToken ?? authFromState.idToken,
-        expiresIn: expiresAt ?? authFromState.expiresIn,
-        refreshToken: refreshToken ?? authFromState.refreshToken,
-        isAnonymous: isAnonymous ?? authFromState.isAnonymous,
-        canExperiment: canExperiment ?? authFromState.canExperiment,
-        uid: uid ?? authFromState.uid,
-        isChangePin: isChangePin ?? authFromState.isChangePin,
+  AppState? reduce() {
+    final AuthCredentials? authCredentials = state.credentials?.authCredentials;
+    final AppState? newState = state.copyWith.credentials?.call(
+      authCredentials: AuthCredentials(
+        idToken: idToken ?? authCredentials?.idToken,
+        expiresIn: expiresAt ?? authCredentials?.expiresIn,
+        refreshToken: refreshToken ?? authCredentials?.refreshToken,
       ),
     );
 
-    return newState;
+    return newState ?? state;
   }
 }

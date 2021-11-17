@@ -83,7 +83,7 @@ void main() {
       );
 
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
           ),
@@ -139,7 +139,7 @@ void main() {
       );
 
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
           ),
@@ -195,7 +195,7 @@ void main() {
       );
 
       store.dispatch(
-        UpdateUserProfileAction(
+        UpdateClientProfileAction(
           profile: UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
           ),

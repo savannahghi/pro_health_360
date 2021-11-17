@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -18,6 +19,8 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -52,9 +55,14 @@ class ChangePinAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String phoneNumber = store
-        .state.userProfileState!.userProfile!.primaryPhoneNumber!
-        .getValue();
+    final Contact? phone = state
+        .userState?.clientState?.clientProfile?.user?.contacts
+        ?.where((Contact contact) => contact.contactType == ContactType.PRIMARY)
+        .first;
+
+    final String phoneNumber = phone?.contact?.getValue() ?? UNKNOWN;
+
+    assert(phoneNumber != UNKNOWN);
 
     final String? newChangedPin = store.state.miscState!.createPIN!.newPIN;
 

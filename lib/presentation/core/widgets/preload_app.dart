@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:uni_links/uni_links.dart';
@@ -55,20 +54,6 @@ class _PreLoadAppState extends State<PreLoadApp> {
   StreamSubscription<dynamic>? _sub;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    Future<dynamic>.delayed(Duration.zero, () async {
-      appInitialRoute.add(
-        await getInitialRoute(
-          widget.entryPointContext,
-          widget.appState,
-          widget.thisAppContexts,
-        ),
-      );
-    });
-  }
-
-  @override
   void dispose() {
     _sub?.cancel();
     super.dispose();
@@ -91,7 +76,9 @@ class _PreLoadAppState extends State<PreLoadApp> {
       linkStreamListener(
         mounted: mounted,
         nav: widget.appNavigatorKey,
-        signedIn: widget.appState.userProfileState!.isSignedIn!,
+        signedIn:
+            widget.appState.userState?.clientState?.clientProfile?.isSignedIn ??
+                false,
       ) as void Function(Uri?)?,
     );
   }
@@ -115,7 +102,9 @@ class _PreLoadAppState extends State<PreLoadApp> {
         isInitialUri: true,
         uri: _uri,
         navigatorKey: widget.appNavigatorKey,
-        signedIn: widget.appState.userProfileState!.isSignedIn!,
+        signedIn:
+            widget.appState.userState?.clientState?.clientProfile?.isSignedIn ??
+                false,
       );
     }
   }
@@ -134,16 +123,16 @@ class _PreLoadAppState extends State<PreLoadApp> {
             stream: appInitialRoute.stream,
             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
               // listen for token expiry here
-              RefreshTokenManger().listen.listen((dynamic value) {
-                refreshTokenAndUpdateState(
-                  value: value as bool,
-                  context: context,
-                  appContexts: widget.thisAppContexts,
-                  signedIn: widget.appState.userProfileState!.isSignedIn!,
-                  refreshToken:
-                      widget.appState.userProfileState!.auth!.refreshToken!,
-                );
-              });
+              // RefreshTokenManger().listen.listen((dynamic value) {
+              //   refreshTokenAndUpdateState(
+              //     value: value as bool,
+              //     context: context,
+              //     appContexts: widget.thisAppContexts,
+              //     signedIn: widget.appState.clientProfile!.isSignedIn!,
+              //     refreshToken:
+              //         widget.appState.clientProfile!.auth!.refreshToken!,
+              //   );
+              // });
 
               registerFCMTokenListener(context);
 

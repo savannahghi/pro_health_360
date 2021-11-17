@@ -70,7 +70,7 @@ void main() {
               onPressed: () async {
                 StoreProvider.dispatch(
                   context,
-                  UpdateUserProfileAction(
+                  UpdateClientProfileAction(
                     profile: UserProfile(
                       primaryPhoneNumber:
                           PhoneNumber.withValue(testPhoneNumber),
@@ -146,7 +146,7 @@ void main() {
               onPressed: () async {
                 StoreProvider.dispatch(
                   context,
-                  UpdateUserProfileAction(
+                  UpdateClientProfileAction(
                     profile: UserProfile(
                       primaryPhoneNumber:
                           PhoneNumber.withValue(testPhoneNumber),
@@ -224,7 +224,7 @@ void main() {
               onPressed: () async {
                 StoreProvider.dispatch(
                   context,
-                  UpdateUserProfileAction(
+                  UpdateClientProfileAction(
                     profile: UserProfile(
                       primaryPhoneNumber:
                           PhoneNumber.withValue(testPhoneNumber),

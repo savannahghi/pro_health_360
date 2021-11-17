@@ -36,7 +36,6 @@ class ManageTokenAction extends ReduxAction<AppState> {
         refreshToken: refreshToken,
         expiresAt: parsedExpiresAt,
         isAnonymous: false,
-        canExperiment: this.canExperiment,
       ),
     );
 
