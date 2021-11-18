@@ -9,7 +9,7 @@ import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
+import 'package:myafyahub/application/redux/view_models/main_app_state_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -44,10 +44,10 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
     return OnboardingScaffold(
       title: createNewPINTitleString,
       description: createNewPINSubTitleString,
-      child: StoreConnector<AppState, AppStateViewModel>(
-        converter: (Store<AppState> store) =>
-            AppStateViewModel.fromStore(store),
-        builder: (BuildContext context, AppStateViewModel vm) {
+      child: StoreConnector<MainAppState, MainAppStateViewModel>(
+        converter: (Store<MainAppState> store) =>
+            MainAppStateViewModel.fromStore(store),
+        builder: (BuildContext context, MainAppStateViewModel vm) {
           return SizedBox(
             height: MediaQuery.of(context).size.height / 1.6,
             child: Stack(

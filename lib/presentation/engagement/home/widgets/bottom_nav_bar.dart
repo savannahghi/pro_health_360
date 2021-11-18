@@ -19,8 +19,8 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, BottomNavViewModel>(
-      converter: (Store<AppState> store) => BottomNavViewModel.fromStore(store),
+    return StoreConnector<MainAppState, BottomNavViewModel>(
+      converter: (Store<MainAppState> store) => BottomNavViewModel.fromStore(store),
       builder: (BuildContext context, BottomNavViewModel vm) {
         return BottomNavigationBar(
           key: silBottomNavKey,
@@ -32,7 +32,7 @@ class BottomNavBar extends StatelessWidget {
           showSelectedLabels: false,
           showUnselectedLabels: false,
           onTap: (int currentIndex) {
-            StoreProvider.dispatch<AppState>(
+            StoreProvider.dispatch<MainAppState>(
               context,
               BottomNavAction(currentBottomNavIndex: currentIndex),
             );
