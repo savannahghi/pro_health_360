@@ -20,9 +20,11 @@ OnboardingState _$OnboardingStateFromJson(Map<String, dynamic> json) {
 class _$OnboardingStateTearOff {
   const _$OnboardingStateTearOff();
 
-  _OnboardingState call({CreatePIN? createPIN}) {
+  _OnboardingState call(
+      {CreatePIN? createPIN, TermsAndConditions? termsAndConditions}) {
     return _OnboardingState(
       createPIN: createPIN,
+      termsAndConditions: termsAndConditions,
     );
   }
 
@@ -37,6 +39,8 @@ const $OnboardingState = _$OnboardingStateTearOff();
 /// @nodoc
 mixin _$OnboardingState {
   CreatePIN? get createPIN => throw _privateConstructorUsedError;
+  TermsAndConditions? get termsAndConditions =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +53,9 @@ abstract class $OnboardingStateCopyWith<$Res> {
   factory $OnboardingStateCopyWith(
           OnboardingState value, $Res Function(OnboardingState) then) =
       _$OnboardingStateCopyWithImpl<$Res>;
-  $Res call({CreatePIN? createPIN});
+  $Res call({CreatePIN? createPIN, TermsAndConditions? termsAndConditions});
+
+  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
 }
 
 /// @nodoc
@@ -64,13 +70,30 @@ class _$OnboardingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? createPIN = freezed,
+    Object? termsAndConditions = freezed,
   }) {
     return _then(_value.copyWith(
       createPIN: createPIN == freezed
           ? _value.createPIN
           : createPIN // ignore: cast_nullable_to_non_nullable
               as CreatePIN?,
+      termsAndConditions: termsAndConditions == freezed
+          ? _value.termsAndConditions
+          : termsAndConditions // ignore: cast_nullable_to_non_nullable
+              as TermsAndConditions?,
     ));
+  }
+
+  @override
+  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions {
+    if (_value.termsAndConditions == null) {
+      return null;
+    }
+
+    return $TermsAndConditionsCopyWith<$Res>(_value.termsAndConditions!,
+        (value) {
+      return _then(_value.copyWith(termsAndConditions: value));
+    });
   }
 }
 
@@ -81,7 +104,10 @@ abstract class _$OnboardingStateCopyWith<$Res>
           _OnboardingState value, $Res Function(_OnboardingState) then) =
       __$OnboardingStateCopyWithImpl<$Res>;
   @override
-  $Res call({CreatePIN? createPIN});
+  $Res call({CreatePIN? createPIN, TermsAndConditions? termsAndConditions});
+
+  @override
+  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
 }
 
 /// @nodoc
@@ -98,12 +124,17 @@ class __$OnboardingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? createPIN = freezed,
+    Object? termsAndConditions = freezed,
   }) {
     return _then(_OnboardingState(
       createPIN: createPIN == freezed
           ? _value.createPIN
           : createPIN // ignore: cast_nullable_to_non_nullable
               as CreatePIN?,
+      termsAndConditions: termsAndConditions == freezed
+          ? _value.termsAndConditions
+          : termsAndConditions // ignore: cast_nullable_to_non_nullable
+              as TermsAndConditions?,
     ));
   }
 }
@@ -111,17 +142,19 @@ class __$OnboardingStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_OnboardingState implements _OnboardingState {
-  _$_OnboardingState({this.createPIN});
+  _$_OnboardingState({this.createPIN, this.termsAndConditions});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$_$_OnboardingStateFromJson(json);
 
   @override
   final CreatePIN? createPIN;
+  @override
+  final TermsAndConditions? termsAndConditions;
 
   @override
   String toString() {
-    return 'OnboardingState(createPIN: $createPIN)';
+    return 'OnboardingState(createPIN: $createPIN, termsAndConditions: $termsAndConditions)';
   }
 
   @override
@@ -130,12 +163,17 @@ class _$_OnboardingState implements _OnboardingState {
         (other is _OnboardingState &&
             (identical(other.createPIN, createPIN) ||
                 const DeepCollectionEquality()
-                    .equals(other.createPIN, createPIN)));
+                    .equals(other.createPIN, createPIN)) &&
+            (identical(other.termsAndConditions, termsAndConditions) ||
+                const DeepCollectionEquality()
+                    .equals(other.termsAndConditions, termsAndConditions)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(createPIN);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(createPIN) ^
+      const DeepCollectionEquality().hash(termsAndConditions);
 
   @JsonKey(ignore: true)
   @override
@@ -149,13 +187,18 @@ class _$_OnboardingState implements _OnboardingState {
 }
 
 abstract class _OnboardingState implements OnboardingState {
-  factory _OnboardingState({CreatePIN? createPIN}) = _$_OnboardingState;
+  factory _OnboardingState(
+      {CreatePIN? createPIN,
+      TermsAndConditions? termsAndConditions}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
 
   @override
   CreatePIN? get createPIN => throw _privateConstructorUsedError;
+  @override
+  TermsAndConditions? get termsAndConditions =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>

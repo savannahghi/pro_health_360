@@ -11,10 +11,15 @@ _$_OnboardingState _$_$_OnboardingStateFromJson(Map<String, dynamic> json) {
     createPIN: json['createPIN'] == null
         ? null
         : CreatePIN.fromJson(json['createPIN'] as Map<String, dynamic>),
+    termsAndConditions: json['termsAndConditions'] == null
+        ? null
+        : TermsAndConditions.fromJson(
+            json['termsAndConditions'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$_$_OnboardingStateToJson(_$_OnboardingState instance) =>
     <String, dynamic>{
       'createPIN': instance.createPIN,
+      'termsAndConditions': instance.termsAndConditions,
     };

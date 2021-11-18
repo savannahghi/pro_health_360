@@ -18,7 +18,6 @@ class MiscState with _$MiscState {
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     String? healthPagePINInputTime,
-    TermsAndConditions? termsAndConditions,
     FAQState? faqState,
   }) = _MiscState;
 
@@ -30,7 +29,6 @@ class MiscState with _$MiscState {
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         healthPagePINInputTime: UNKNOWN,
-        termsAndConditions: TermsAndConditions.initial(),
         faqState: FAQState.initial(),
       );
 }
