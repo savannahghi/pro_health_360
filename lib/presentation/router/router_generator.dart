@@ -84,11 +84,6 @@ class RouteGenerator {
           builder: (_) => LoginPage(),
         );
 
-      case BWRoutes.resetPin:
-        return MaterialPageRoute<RequestPinResetPage>(
-          builder: (_) => RequestPinResetPage(),
-        );
-
       // the homepage route config
       case BWRoutes.home:
         return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());

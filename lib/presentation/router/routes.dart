@@ -14,7 +14,6 @@ class BWRoutes {
   static const String congratulationsPage = '/congratulationsPage';
 
   static const String setPin = '/setPin';
-  static const String resetPin = '/resetPin';
 
   static const String createPin = '/createPin';
   static const String confirmCreatePin = '/confirmCreatePin';
@@ -98,7 +97,4 @@ class BWRoutes {
   static const String editInformationPage = '/editInformationPage';
 }
 
-List<String> unProtectedRoutes = <String>[
-  BWRoutes.phoneLogin,
-  BWRoutes.resetPin,
-];
+List<String> unProtectedRoutes = <String>[BWRoutes.phoneLogin];

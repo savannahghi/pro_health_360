@@ -32,12 +32,10 @@ import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
-import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
@@ -153,24 +151,6 @@ void main() {
     expect(route.builder(context), isA<LoginPage>());
   });
 
-  test('Test router returns incoming  resetPin page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.resetPin);
-
-    final MaterialPageRoute<RequestPinResetPage> route =
-        routeGenerator(settings) as MaterialPageRoute<RequestPinResetPage>;
-
-    expect(route, isA<MaterialPageRoute<RequestPinResetPage>>());
-    expect(route.builder(context), isA<RequestPinResetPage>());
-  });
-
-  test('Test router returns incoming  editProfileSettingsPage page', () {
-    const RouteSettings settings =
-        RouteSettings(name: BWRoutes.editProfileSettingsPage);
-    final MaterialPageRoute<EditProfilePage> route =
-        routeGenerator(settings) as MaterialPageRoute<EditProfilePage>;
-    expect(route, isA<MaterialPageRoute<dynamic>>());
-    expect(route.builder(context), isA<EditProfilePage>());
-  });
   test('Test router returns incoming  userProfile page', () {
     const RouteSettings settings = RouteSettings(name: BWRoutes.userProfile);
     final MaterialPageRoute<UserProfilePage> route =
