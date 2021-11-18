@@ -21,23 +21,43 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {@JsonKey(name: 'userID') String? userId,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'userName') String? username,
-      @JsonKey(name: 'firstName') String? firstName,
-      @JsonKey(name: 'lastName') String? lastName,
-      bool? active,
-      @JsonKey(name: 'contacts') List<Contact>? contacts,
-      @JsonKey(name: 'termsAccepted') bool? termsAccepted}) {
+      {@JsonKey(name: 'userID')
+          String? userId,
+      @JsonKey(name: 'userName')
+          String? username,
+      @JsonKey(name: 'displayName')
+          String? displayName,
+      @JsonKey(name: 'firstName')
+          String? firstName,
+      @JsonKey(name: 'middleName')
+          String? middleName,
+      @JsonKey(name: 'lastName')
+          String? lastName,
+      @JsonKey(name: 'gender')
+          Gender? gender,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'contacts')
+          List<Contact>? contacts,
+      @JsonKey(name: 'languages')
+          List<String>? languages,
+      @JsonKey(name: 'termsAccepted')
+          bool? termsAccepted,
+      @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+          bool? pinChangeRequired}) {
     return _User(
       userId: userId,
-      displayName: displayName,
       username: username,
+      displayName: displayName,
       firstName: firstName,
+      middleName: middleName,
       lastName: lastName,
+      gender: gender,
       active: active,
       contacts: contacts,
+      languages: languages,
       termsAccepted: termsAccepted,
+      pinChangeRequired: pinChangeRequired,
     );
   }
 
@@ -53,19 +73,28 @@ const $User = _$UserTearOff();
 mixin _$User {
   @JsonKey(name: 'userID')
   String? get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'displayName')
-  String? get displayName => throw _privateConstructorUsedError;
   @JsonKey(name: 'userName')
   String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'displayName')
+  String? get displayName => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstName')
   String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'middleName')
+  String? get middleName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gender')
+  Gender? get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'contacts')
   List<Contact>? get contacts => throw _privateConstructorUsedError;
+  @JsonKey(name: 'languages')
+  List<String>? get languages => throw _privateConstructorUsedError;
   @JsonKey(name: 'termsAccepted')
   bool? get termsAccepted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+  bool? get pinChangeRequired => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -77,14 +106,30 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'userID') String? userId,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'userName') String? username,
-      @JsonKey(name: 'firstName') String? firstName,
-      @JsonKey(name: 'lastName') String? lastName,
-      bool? active,
-      @JsonKey(name: 'contacts') List<Contact>? contacts,
-      @JsonKey(name: 'termsAccepted') bool? termsAccepted});
+      {@JsonKey(name: 'userID')
+          String? userId,
+      @JsonKey(name: 'userName')
+          String? username,
+      @JsonKey(name: 'displayName')
+          String? displayName,
+      @JsonKey(name: 'firstName')
+          String? firstName,
+      @JsonKey(name: 'middleName')
+          String? middleName,
+      @JsonKey(name: 'lastName')
+          String? lastName,
+      @JsonKey(name: 'gender')
+          Gender? gender,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'contacts')
+          List<Contact>? contacts,
+      @JsonKey(name: 'languages')
+          List<String>? languages,
+      @JsonKey(name: 'termsAccepted')
+          bool? termsAccepted,
+      @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+          bool? pinChangeRequired});
 }
 
 /// @nodoc
@@ -98,35 +143,47 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object? userId = freezed,
-    Object? displayName = freezed,
     Object? username = freezed,
+    Object? displayName = freezed,
     Object? firstName = freezed,
+    Object? middleName = freezed,
     Object? lastName = freezed,
+    Object? gender = freezed,
     Object? active = freezed,
     Object? contacts = freezed,
+    Object? languages = freezed,
     Object? termsAccepted = freezed,
+    Object? pinChangeRequired = freezed,
   }) {
     return _then(_value.copyWith(
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
+      middleName: middleName == freezed
+          ? _value.middleName
+          : middleName // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastName: lastName == freezed
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
+      gender: gender == freezed
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -135,9 +192,17 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<Contact>?,
+      languages: languages == freezed
+          ? _value.languages
+          : languages // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       termsAccepted: termsAccepted == freezed
           ? _value.termsAccepted
           : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      pinChangeRequired: pinChangeRequired == freezed
+          ? _value.pinChangeRequired
+          : pinChangeRequired // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -149,14 +214,30 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'userID') String? userId,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'userName') String? username,
-      @JsonKey(name: 'firstName') String? firstName,
-      @JsonKey(name: 'lastName') String? lastName,
-      bool? active,
-      @JsonKey(name: 'contacts') List<Contact>? contacts,
-      @JsonKey(name: 'termsAccepted') bool? termsAccepted});
+      {@JsonKey(name: 'userID')
+          String? userId,
+      @JsonKey(name: 'userName')
+          String? username,
+      @JsonKey(name: 'displayName')
+          String? displayName,
+      @JsonKey(name: 'firstName')
+          String? firstName,
+      @JsonKey(name: 'middleName')
+          String? middleName,
+      @JsonKey(name: 'lastName')
+          String? lastName,
+      @JsonKey(name: 'gender')
+          Gender? gender,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'contacts')
+          List<Contact>? contacts,
+      @JsonKey(name: 'languages')
+          List<String>? languages,
+      @JsonKey(name: 'termsAccepted')
+          bool? termsAccepted,
+      @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+          bool? pinChangeRequired});
 }
 
 /// @nodoc
@@ -171,35 +252,47 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = freezed,
-    Object? displayName = freezed,
     Object? username = freezed,
+    Object? displayName = freezed,
     Object? firstName = freezed,
+    Object? middleName = freezed,
     Object? lastName = freezed,
+    Object? gender = freezed,
     Object? active = freezed,
     Object? contacts = freezed,
+    Object? languages = freezed,
     Object? termsAccepted = freezed,
+    Object? pinChangeRequired = freezed,
   }) {
     return _then(_User(
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      displayName: displayName == freezed
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
+      middleName: middleName == freezed
+          ? _value.middleName
+          : middleName // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastName: lastName == freezed
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
+      gender: gender == freezed
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -208,9 +301,17 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<Contact>?,
+      languages: languages == freezed
+          ? _value.languages
+          : languages // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       termsAccepted: termsAccepted == freezed
           ? _value.termsAccepted
           : termsAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      pinChangeRequired: pinChangeRequired == freezed
+          ? _value.pinChangeRequired
+          : pinChangeRequired // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -220,14 +321,30 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User implements _User {
   _$_User(
-      {@JsonKey(name: 'userID') this.userId,
-      @JsonKey(name: 'displayName') this.displayName,
-      @JsonKey(name: 'userName') this.username,
-      @JsonKey(name: 'firstName') this.firstName,
-      @JsonKey(name: 'lastName') this.lastName,
-      this.active,
-      @JsonKey(name: 'contacts') this.contacts,
-      @JsonKey(name: 'termsAccepted') this.termsAccepted});
+      {@JsonKey(name: 'userID')
+          this.userId,
+      @JsonKey(name: 'userName')
+          this.username,
+      @JsonKey(name: 'displayName')
+          this.displayName,
+      @JsonKey(name: 'firstName')
+          this.firstName,
+      @JsonKey(name: 'middleName')
+          this.middleName,
+      @JsonKey(name: 'lastName')
+          this.lastName,
+      @JsonKey(name: 'gender')
+          this.gender,
+      @JsonKey(name: 'active', defaultValue: false)
+          this.active,
+      @JsonKey(name: 'contacts')
+          this.contacts,
+      @JsonKey(name: 'languages')
+          this.languages,
+      @JsonKey(name: 'termsAccepted')
+          this.termsAccepted,
+      @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+          this.pinChangeRequired});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -236,29 +353,42 @@ class _$_User implements _User {
   @JsonKey(name: 'userID')
   final String? userId;
   @override
-  @JsonKey(name: 'displayName')
-  final String? displayName;
-  @override
   @JsonKey(name: 'userName')
   final String? username;
+  @override
+  @JsonKey(name: 'displayName')
+  final String? displayName;
   @override
   @JsonKey(name: 'firstName')
   final String? firstName;
   @override
+  @JsonKey(name: 'middleName')
+  final String? middleName;
+  @override
   @JsonKey(name: 'lastName')
   final String? lastName;
   @override
+  @JsonKey(name: 'gender')
+  final Gender? gender;
+  @override
+  @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
   @JsonKey(name: 'contacts')
   final List<Contact>? contacts;
   @override
+  @JsonKey(name: 'languages')
+  final List<String>? languages;
+  @override
   @JsonKey(name: 'termsAccepted')
   final bool? termsAccepted;
+  @override
+  @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+  final bool? pinChangeRequired;
 
   @override
   String toString() {
-    return 'User(userId: $userId, displayName: $displayName, username: $username, firstName: $firstName, lastName: $lastName, active: $active, contacts: $contacts, termsAccepted: $termsAccepted)';
+    return 'User(userId: $userId, username: $username, displayName: $displayName, firstName: $firstName, middleName: $middleName, lastName: $lastName, gender: $gender, active: $active, contacts: $contacts, languages: $languages, termsAccepted: $termsAccepted, pinChangeRequired: $pinChangeRequired)';
   }
 
   @override
@@ -267,39 +397,54 @@ class _$_User implements _User {
         (other is _User &&
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.displayName, displayName) ||
-                const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
+            (identical(other.displayName, displayName) ||
+                const DeepCollectionEquality()
+                    .equals(other.displayName, displayName)) &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
+            (identical(other.middleName, middleName) ||
+                const DeepCollectionEquality()
+                    .equals(other.middleName, middleName)) &&
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
             (identical(other.contacts, contacts) ||
                 const DeepCollectionEquality()
                     .equals(other.contacts, contacts)) &&
+            (identical(other.languages, languages) ||
+                const DeepCollectionEquality()
+                    .equals(other.languages, languages)) &&
             (identical(other.termsAccepted, termsAccepted) ||
                 const DeepCollectionEquality()
-                    .equals(other.termsAccepted, termsAccepted)));
+                    .equals(other.termsAccepted, termsAccepted)) &&
+            (identical(other.pinChangeRequired, pinChangeRequired) ||
+                const DeepCollectionEquality()
+                    .equals(other.pinChangeRequired, pinChangeRequired)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(middleName) ^
       const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(contacts) ^
-      const DeepCollectionEquality().hash(termsAccepted);
+      const DeepCollectionEquality().hash(languages) ^
+      const DeepCollectionEquality().hash(termsAccepted) ^
+      const DeepCollectionEquality().hash(pinChangeRequired);
 
   @JsonKey(ignore: true)
   @override
@@ -314,14 +459,30 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {@JsonKey(name: 'userID') String? userId,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'userName') String? username,
-      @JsonKey(name: 'firstName') String? firstName,
-      @JsonKey(name: 'lastName') String? lastName,
-      bool? active,
-      @JsonKey(name: 'contacts') List<Contact>? contacts,
-      @JsonKey(name: 'termsAccepted') bool? termsAccepted}) = _$_User;
+      {@JsonKey(name: 'userID')
+          String? userId,
+      @JsonKey(name: 'userName')
+          String? username,
+      @JsonKey(name: 'displayName')
+          String? displayName,
+      @JsonKey(name: 'firstName')
+          String? firstName,
+      @JsonKey(name: 'middleName')
+          String? middleName,
+      @JsonKey(name: 'lastName')
+          String? lastName,
+      @JsonKey(name: 'gender')
+          Gender? gender,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'contacts')
+          List<Contact>? contacts,
+      @JsonKey(name: 'languages')
+          List<String>? languages,
+      @JsonKey(name: 'termsAccepted')
+          bool? termsAccepted,
+      @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+          bool? pinChangeRequired}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -329,25 +490,38 @@ abstract class _User implements User {
   @JsonKey(name: 'userID')
   String? get userId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'displayName')
-  String? get displayName => throw _privateConstructorUsedError;
-  @override
   @JsonKey(name: 'userName')
   String? get username => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'displayName')
+  String? get displayName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'firstName')
   String? get firstName => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'middleName')
+  String? get middleName => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'gender')
+  Gender? get gender => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'contacts')
   List<Contact>? get contacts => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'languages')
+  List<String>? get languages => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'termsAccepted')
   bool? get termsAccepted => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'pinChangeRequired', defaultValue: false)
+  bool? get pinChangeRequired => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

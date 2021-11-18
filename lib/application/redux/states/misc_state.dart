@@ -3,10 +3,8 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
-import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';

@@ -5,7 +5,6 @@ import 'package:myafyahub/application/redux/states/client_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/application/redux/states/user_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/client_profile.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
 import 'package:user_feed/user_feed.dart';
 

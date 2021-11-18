@@ -14,7 +14,8 @@ class CreatePINStateAction extends ReduxAction<MainAppState> {
   @override
   MainAppState reduce() {
     final MainAppState newState = state.copyWith.onboardingState!.call(
-        createPINState: CreatePINState(newPIN: newPIN, confirmPIN: confirmPIN));
+      createPINState: CreatePINState(newPIN: newPIN, confirmPIN: confirmPIN),
+    );
 
     return newState;
   }
