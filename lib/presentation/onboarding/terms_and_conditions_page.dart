@@ -34,7 +34,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback(
-      (_) => StoreProvider.dispatch<AppState>(
+      (_) => StoreProvider.dispatch<MainAppState>(
         context,
         // retrieve the terms & conditions
         GetTermsAction(
@@ -157,19 +157,14 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                             onPressed: !isAgreed
                                 ? null
                                 : () {
-                                    StoreProvider.dispatch<AppState>(
+                                    StoreProvider.dispatch<MainAppState>(
                                       context,
                                       // retrieve the terms and conditions
                                       AcceptTermsAndConditionsAction(
                                         termsId: vm.appState.onboardingState!
                                             .termsAndConditions!.termsId,
-                                        userId: vm
-                                            .appState
-                                            .userState!
-                                            .clientState!
-                                            .clientProfile!
-                                            .user!
-                                            .userId!,
+                                        userId: vm.appState.clientState!
+                                            .clientProfile!.user!.userId!,
                                         context: context,
                                       ),
                                     );

@@ -31,13 +31,14 @@ class ForgotPinOtpWidget extends StatelessWidget {
     const String flag = 'forgot_pin_otp_widget';
 
     return Scaffold(
-      body: StoreConnector<AppState, AppStateViewModel>(
-        converter: (Store<AppState> store) =>
+      body: StoreConnector<MainAppState, AppStateViewModel>(
+        converter: (Store<MainAppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
-          final String phoneNumber = vm
-              .appState.clientProfile!.userProfile!.primaryPhoneNumber!
-              .getValue();
+          // TODO(abiud): add sanity checks since the phone number is now a list of contacts
+          final String? phoneNumber = vm.appState.clientState?.clientProfile!
+              .user?.contacts?.first.contact;
+
           return SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -72,7 +73,7 @@ class ForgotPinOtpWidget extends StatelessWidget {
                   mediumVerticalSizedBox,
                   Center(
                     child: VerifyPhoneOtp(
-                      phoneNo: phoneNumber,
+                      phoneNo: phoneNumber!,
                       otp: vm.appState.miscState!.userPin!.recoveryOtp!,
                       loader: const SILPlatformLoader(),
                       generateOtpFunc: GraphQlUtils().generateRetryOtp,

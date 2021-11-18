@@ -20,11 +20,11 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
           inputController: phoneNumberInputController,
           labelText: enterPhoneNumberString,
           onChanged: (String? val) {
-            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
+            if (vm.appState.onboardingState!.phoneLogin!.invalidCredentials) {
               StoreProvider.dispatch(
                 context,
                 PhoneLoginStateAction(),
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
             FilteringTextInputFormatter.digitsOnly
           ],
           onChanged: (String val) {
-            if (vm.appState.miscState!.phoneLogin!.invalidCredentials) {
+            if (vm.appState.onboardingState!.phoneLogin!.invalidCredentials) {
               StoreProvider.dispatch(
                 context,
                 PhoneLoginStateAction(),
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
         ),
-        if (vm.appState.miscState?.phoneLogin?.invalidCredentials ??
+        if (vm.appState.onboardingState?.phoneLogin?.invalidCredentials ??
             false) ...<Widget>[
           const ErrorAlertBox(message: invalidCredentialsErrorMsg),
         ],
@@ -150,12 +150,11 @@ class _LoginPageState extends State<LoginPage> {
     return OnboardingScaffold(
       title: loginPageTitleString,
       description: loginPageSubTitleString,
-      child: StoreConnector<AppState, AppStateViewModel>(
-        converter: (Store<AppState> store) =>
+      child: StoreConnector<MainAppState, AppStateViewModel>(
+        converter: (Store<MainAppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
-          final User? userState =
-              vm.appState.userState?.clientState?.clientProfile?.user;
+          final User? userState = vm.appState.clientState?.clientProfile?.user;
           final Contact? phoneNumber =
               userState?.contacts?.where((Contact contact) {
             return contact.contactType == ContactType.PRIMARY;
@@ -215,8 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                                       context: context,
                                       pin: pin!,
                                       phoneNumber:
-                                          phoneNumber.contact?.getValue() ??
-                                              UNKNOWN,
+                                          phoneNumber.contact ?? UNKNOWN,
                                     );
                                   }
                                   return;

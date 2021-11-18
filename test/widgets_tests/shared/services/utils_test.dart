@@ -83,7 +83,7 @@ void main() {
       store.dispatch(
         UpdateClientProfileAction(
           userBioData: BioData(
-            firstName: Name.withValue('Test'),
+            firstName: 'Test',
             lastName: Name.withValue('Name'),
           ),
         ),

@@ -20,10 +20,10 @@ class UpdateTermsAndConditionsAction extends ReduxAction<MainAppState> {
         state.clientState?.clientProfile?.user?.termsAccepted;
 
     final TermsAndConditions termsAndConditions =
-        state.miscState!.termsAndConditions!;
+        state.onboardingState!.termsAndConditions!;
 
     final MainAppState newState = state.copyWith(
-      miscState: state.miscState?.copyWith(
+      onboardingState: state.onboardingState?.copyWith(
         termsAndConditions: TermsAndConditions(
           termsId: id ?? termsAndConditions.termsId,
           text: termsString ?? termsAndConditions.text,

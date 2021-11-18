@@ -8,7 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
@@ -23,10 +22,9 @@ class SecurityQuestionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppState appState = StoreProvider.state<AppState>(context)!;
-    final Map<String, SecurityQuestionResponse> securityQuestionsResponses =
-        appState.clientProfile!.securityQuestionsResponses!;
-    final String userId = appState.clientProfile!.userProfile!.id!;
+    final MainAppState appState = StoreProvider.state<MainAppState>(context)!;
+    final List<SecurityQuestionResponse>? securityQuestionsResponses =
+        appState.onboardingState!.securityQuestionResponses;
 
     final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
       SecurityQuestion(
@@ -67,7 +65,12 @@ class SecurityQuestionsPage extends StatelessWidget {
                   final SecurityQuestion question =
                       securityQuestions.elementAt(index);
                   final SecurityQuestionResponse? questionResponse =
-                      securityQuestionsResponses[question.id];
+                      securityQuestionsResponses?.singleWhere(
+                    (SecurityQuestionResponse response) =>
+                        response.securityQuestionId == question.id,
+                    orElse: () => SecurityQuestionResponse.initial(),
+                  );
+
                   final String response = questionResponse?.response ?? UNKNOWN;
                   return Container(
                     padding: const EdgeInsets.all(10.0),
@@ -76,21 +79,23 @@ class SecurityQuestionsPage extends StatelessWidget {
                       hintText: answerHereString,
                       initialValue: (response == UNKNOWN) ? null : response,
                       onChanged: (String value) {
-                        securityQuestionsResponses[question.id] =
-                            SecurityQuestionResponse(
-                          id: userId,
-                          timeStamp: DateTime.now().toString(),
-                          userId: userId,
-                          securityQuestionId: question.id,
-                          response: value,
-                        );
-                        StoreProvider.dispatch<AppState>(
-                          context,
-                          UpdateClientProfileAction(
-                            securityQuestionsResponses:
-                                securityQuestionsResponses,
-                          ),
-                        );
+                        // TODO(abiud): change this implementation to cater for the changes above
+
+                        // securityQuestionsResponses[question.id] =
+                        //     SecurityQuestionResponse(
+                        //   id: userId,
+                        //   timeStamp: DateTime.now().toString(),
+                        //   userId: userId,
+                        //   securityQuestionId: question.id,
+                        //   response: value,
+                        // );
+                        // StoreProvider.dispatch<AppState>(
+                        //   context,
+                        //   UpdateClientProfileAction(
+                        //     securityQuestionsResponses:
+                        //         securityQuestionsResponses,
+                        //   ),
+                        // );
                       },
                     ),
                   );

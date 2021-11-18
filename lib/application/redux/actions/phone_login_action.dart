@@ -70,8 +70,8 @@ class PhoneLoginAction extends ReduxAction<MainAppState> {
   Future<MainAppState> reduce() async {
     /// [pin] variable is retrieving the PIN the user input in the [PhoneLogin] page from state
     /// [phoneNumber] variable is retrieving the Phone Number the user input in the [PhoneLogin] page from state
-    final String pin = store.state.miscState!.phoneLogin!.pinCode;
-    final String phoneNumber = store.state.miscState!.phoneLogin!.phoneNumber;
+    final String pin = state.onboardingState!.phoneLogin!.pinCode;
+    final String phoneNumber = state.onboardingState!.phoneLogin!.phoneNumber;
 
     /// Check to verify the PIN is `not null` and contains four digits
     if (pin != UNKNOWN && pin.length == 4) {

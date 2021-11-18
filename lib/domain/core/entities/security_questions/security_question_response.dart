@@ -1,3 +1,4 @@
+import 'package:domain_objects/value_objects.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'security_question_response.g.dart';
@@ -20,5 +21,14 @@ class SecurityQuestionResponse {
 
   factory SecurityQuestionResponse.fromJson(Map<String, dynamic> json) =>
       _$SecurityQuestionResponseFromJson(json);
+
   Map<String, dynamic> toJson() => _$SecurityQuestionResponseToJson(this);
+
+  factory SecurityQuestionResponse.initial() => SecurityQuestionResponse(
+        id: UNKNOWN,
+        timeStamp: UNKNOWN,
+        userId: UNKNOWN,
+        securityQuestionId: UNKNOWN,
+        response: UNKNOWN,
+      );
 }

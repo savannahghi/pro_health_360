@@ -50,8 +50,8 @@ class MyHealthPage extends StatelessWidget {
                       color: Colors.cyan,
                     ),
                     child: Center(
-                      child: StoreConnector<AppState, ClientProfileViewModel>(
-                        converter: (Store<AppState> store) =>
+                      child: StoreConnector<MainAppState, ClientProfileViewModel>(
+                        converter: (Store<MainAppState> store) =>
                             ClientProfileViewModel.fromStore(store),
                         builder:
                             (BuildContext context, ClientProfileViewModel vm) {

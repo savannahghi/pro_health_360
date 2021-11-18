@@ -17,7 +17,6 @@ import 'package:shared_ui_components/platform_loader.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/request_reset_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -64,19 +63,19 @@ class _RequestPinResetState extends State<RequestPinReset> {
     if (formKey.currentState!.validate()) {
       StoreProvider.dispatch(
         context,
-        UpdateClientProfileAction(
+        UpdateUserProfileAction(
           profile: UserProfile(
             primaryPhoneNumber: PhoneNumber.withValue(phoneNumber),
           ),
         ),
       );
       // dispatch action to show user forgot PIN and wants to request a reset
-      StoreProvider.dispatch<AppState>(
+      StoreProvider.dispatch<MainAppState>(
         context,
         UpdatePinStatusAction(forgotPIN: true),
       );
       // dispatch action to send OTP to the user
-      await StoreProvider.dispatch<AppState>(
+      await StoreProvider.dispatch<MainAppState>(
         context,
         RequestResetPinAction(context: context, flag: flag),
       );
@@ -93,8 +92,8 @@ class _RequestPinResetState extends State<RequestPinReset> {
 
     return BeWellScaffold(
       gradient: defaultGradient(Theme.of(context).primaryColor),
-      child: StoreConnector<AppState, AppStateViewModel>(
-        converter: (Store<AppState> store) =>
+      child: StoreConnector<MainAppState, AppStateViewModel>(
+        converter: (Store<MainAppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           return Padding(

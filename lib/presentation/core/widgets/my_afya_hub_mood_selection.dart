@@ -43,8 +43,8 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             smallVerticalSizedBox,
-            StoreConnector<AppState, ClientProfileViewModel>(
-              converter: (Store<AppState> store) =>
+            StoreConnector<MainAppState, ClientProfileViewModel>(
+              converter: (Store<MainAppState> store) =>
                   ClientProfileViewModel.fromStore(store),
               builder: (BuildContext context, ClientProfileViewModel vm) {
                 final String? lastName = vm.clientProfile?.user?.lastName;
