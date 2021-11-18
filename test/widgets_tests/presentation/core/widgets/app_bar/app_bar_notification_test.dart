@@ -8,8 +8,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
-import 'package:domain_objects/entities.dart' as domain;
-import 'package:domain_objects/value_objects.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -30,22 +28,10 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
-        UpdateClientProfileAction(
-          profile: domain.UserProfile(
-            photoUploadID: '$dir/test/tests_resources/test_file.png',
-          ),
-        ),
-      );
-      store.dispatch(
-        UpdateClientProfileAction(
-          userBioData: domain.BioData(
-            firstName: Name.withValue('Test'),
-            lastName: Name.withValue('Name'),
-          ),
-          profile: domain.UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
-            primaryEmailAddress: EmailAddress.withValue('s@g.com'),
-          ),
+        UpdateUserProfileAction(
+          avatar: '$dir/test/tests_resources/test_file.png',
+          firstName: 'Test',
+          lastName: 'Name',
         ),
       );
     });

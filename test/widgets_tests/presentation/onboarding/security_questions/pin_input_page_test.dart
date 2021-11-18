@@ -4,8 +4,6 @@ import 'dart:io';
 
 import 'package:async_redux/async_redux.dart';
 // Project imports:
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 // Package imports:
@@ -33,22 +31,10 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
-        UpdateClientProfileAction(
-          profile: UserProfile(
-            photoUploadID: '$dir/test/tests_resources/test_file.png',
-          ),
-        ),
-      );
-      store.dispatch(
-        UpdateClientProfileAction(
-          userBioData: BioData(
-            firstName: Name.withValue('Test'),
-            lastName: Name.withValue('Name'),
-          ),
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
-            primaryEmailAddress: EmailAddress.withValue('s@g.com'),
-          ),
+        UpdateUserProfileAction(
+          avatar: '$dir/test/tests_resources/test_file.png',
+          firstName: 'Test',
+          lastName: 'Name',
         ),
       );
     });

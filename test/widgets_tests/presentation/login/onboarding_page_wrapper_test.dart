@@ -11,7 +11,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/onboarding_page_wrapper.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/pin_verification.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../test_helpers.dart';
 
@@ -31,7 +30,7 @@ void main() {
             description: enterPINText,
             svgPath: shieldIconImgUrl,
             previousRoute: BWRoutes.phoneLogin,
-            child: PinVerification(),
+            child: SizedBox(),
           ),
         ),
       );

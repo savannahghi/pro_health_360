@@ -67,7 +67,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
     Connectivity().onConnectivityChanged.listen(listenForConnectivityChanges);
   }
 
-  /// Handle incoming links - the ones that the app will recieve from the OS
+  /// Handle incoming links - the ones that the app will receive from the OS
   /// while already started.
   void _handleIncomingLinks() {
     // It will handle app links while the app is already started - be it in
@@ -77,8 +77,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
         mounted: mounted,
         nav: widget.appNavigatorKey,
         signedIn:
-            widget.appState.userState?.clientState?.clientProfile?.isSignedIn ??
-                false,
+            widget.appState.clientState?.clientProfile?.isSignedIn ?? false,
       ) as void Function(Uri?)?,
     );
   }
@@ -103,8 +102,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
         uri: _uri,
         navigatorKey: widget.appNavigatorKey,
         signedIn:
-            widget.appState.userState?.clientState?.clientProfile?.isSignedIn ??
-                false,
+            widget.appState.clientState?.clientProfile?.isSignedIn ?? false,
       );
     }
   }

@@ -1,12 +1,10 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:domain_objects/entities.dart' as domain;
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
@@ -36,12 +34,7 @@ void main() {
     });
     testWidgets('navigates to UserProfilePage ', (WidgetTester tester) async {
       store.dispatch(
-        UpdateClientProfileAction(
-          profile: domain.UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
-            primaryEmailAddress: EmailAddress.withValue('s@g.com'),
-          ),
-        ),
+        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
       );
       await buildTestWidget(
         tester: tester,

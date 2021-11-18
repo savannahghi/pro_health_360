@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -20,7 +18,6 @@ import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dar
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
-import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 import '../../../../../test_utils.dart';
 
@@ -30,16 +27,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateClientProfileAction(
-          userBioData: BioData(
-            firstName: Name.withValue('Test'),
-            lastName: Name.withValue('Name'),
-          ),
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue('+254728101710'),
-            primaryEmailAddress: EmailAddress.withValue('s@g.com'),
-          ),
-        ),
+        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
       );
 
       await buildTestWidget(
@@ -71,16 +59,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateClientProfileAction(
-          userBioData: BioData(
-            firstName: Name.withValue(testFirstName),
-            lastName: Name.withValue(testLastName),
-          ),
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
-            primaryEmailAddress: EmailAddress.withValue(testEmail),
-          ),
-        ),
+        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
       );
 
       await buildTestWidget(
@@ -122,16 +101,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateClientProfileAction(
-          userBioData: BioData(
-            firstName: Name.withValue(testFirstName),
-            lastName: Name.withValue(testLastName),
-          ),
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
-            primaryEmailAddress: EmailAddress.withValue(testEmail),
-          ),
-        ),
+        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
       );
 
       await buildTestWidget(
@@ -165,16 +135,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateClientProfileAction(
-          userBioData: BioData(
-            firstName: Name.withValue(testFirstName),
-            lastName: Name.withValue(testLastName),
-          ),
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
-            primaryEmailAddress: EmailAddress.withValue(testEmail),
-          ),
-        ),
+        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
       );
 
       await buildTestWidget(
@@ -204,16 +165,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
       store.dispatch(
-        UpdateClientProfileAction(
-          userBioData: BioData(
-            firstName: Name.withValue(testFirstName),
-            lastName: Name.withValue(testLastName),
-          ),
-          profile: UserProfile(
-            primaryPhoneNumber: PhoneNumber.withValue(testPhoneNumber),
-            primaryEmailAddress: EmailAddress.withValue(testEmail),
-          ),
-        ),
+        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
       );
 
       const String flag = 'forgot_pin_otp_widget';

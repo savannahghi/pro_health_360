@@ -119,7 +119,10 @@ void main() {
         await tester.enterText(phoneInput, testPhoneNumber);
         await tester.pump();
 
-        expect(store.state.miscState!.phoneLogin!.invalidCredentials, false);
+        expect(
+          store.state.onboardingState!.phoneLogin!.invalidCredentials,
+          false,
+        );
 
         store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
         await tester.pump();
@@ -128,7 +131,10 @@ void main() {
         await tester.enterText(pinInput, '123');
         await tester.pump();
 
-        expect(store.state.miscState!.phoneLogin!.invalidCredentials, false);
+        expect(
+          store.state.onboardingState!.phoneLogin!.invalidCredentials,
+          false,
+        );
 
         store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
         await tester.pump();
@@ -326,7 +332,10 @@ void main() {
         await tester.tap(finder);
         await tester.enterText(finder, testPin);
 
-        expect(store.state.miscState!.phoneLogin!.invalidCredentials, false);
+        expect(
+          store.state.onboardingState!.phoneLogin!.invalidCredentials,
+          false,
+        );
       },
     );
 

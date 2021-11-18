@@ -95,13 +95,9 @@ void main() {
           builder: (BuildContext context) {
             StoreProvider.dispatch<AppState>(
               context,
-              UpdateClientProfileAction(
-                userBioData: BioData(
-                  dateOfBirth: '12-12-12',
-                  firstName: Name.withValue('Test'),
-                  lastName: Name.withValue('Coverage'),
-                  gender: Gender.male,
-                ),
+              UpdateUserProfileAction(
+                firstName: 'Test',
+                lastName: 'Name',
               ),
             );
             return SILPrimaryButton(
@@ -311,15 +307,11 @@ void main() {
             builder: (BuildContext context) {
               return SILPrimaryButton(
                 onPressed: () async {
-                  await StoreProvider.dispatch<AppState>(
+                  StoreProvider.dispatch<AppState>(
                     context,
-                    UpdateClientProfileAction(
-                      userBioData: BioData(
-                        dateOfBirth: '12-12-12',
-                        firstName: Name.withValue('Test'),
-                        lastName: Name.withValue('Coverage'),
-                        gender: Gender.male,
-                      ),
+                    UpdateUserProfileAction(
+                      firstName: 'Test',
+                      lastName: 'Name',
                     ),
                   );
                   _onboardingPath = onboardingPath(store.state);
@@ -383,6 +375,14 @@ void main() {
       testWidgets(
           'Onboarding utils should process response with a 400 and a status code of 4',
           (WidgetTester tester) async {
+             StoreProvider.dispatch<AppState>(
+              context,
+              UpdateUserProfileAction(
+                firstName: 'Test',
+                lastName: 'Name',
+              ),
+            );
+            
         store = Store<AppState>(
           initialState: AppState.initial(
             clientProfile: UserProfileState(

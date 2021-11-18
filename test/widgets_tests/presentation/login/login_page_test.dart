@@ -1,12 +1,9 @@
 // Flutter imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -154,21 +151,6 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                StoreProvider.dispatch<AppState>(
-                  context,
-                  UpdateClientProfileAction(
-                    userBioData: BioData(
-                      dateOfBirth: '12-12-12',
-                      firstName: Name.withValue('Test'),
-                      lastName: Name.withValue('Coverage'),
-                      gender: Gender.male,
-                    ),
-                    profile: UserProfile(
-                      id: 'some-user-id',
-                      primaryPhoneNumber: PhoneNumber.withValue('0700111222'),
-                    ),
-                  ),
-                );
                 return LoginPage();
               },
             ),

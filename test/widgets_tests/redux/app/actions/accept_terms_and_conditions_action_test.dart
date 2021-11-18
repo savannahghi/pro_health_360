@@ -49,9 +49,10 @@ void main() {
                 try {
                   await store.dispatch(
                     AcceptTermsAndConditionsAction(
-                      termsId:
-                          store.state.miscState!.termsAndConditions!.termsId,
-                      userId: store.state.clientProfile!.userProfile!.id!,
+                      termsId: store
+                          .state.onboardingState!.termsAndConditions!.termsId,
+                      userId:
+                          store.state.clientState!.clientProfile!.user!.userId!,
                       context: context,
                     ),
                   );

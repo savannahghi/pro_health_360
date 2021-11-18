@@ -419,15 +419,14 @@ dynamic reportErrorToSentry(
   if (context != null) {
     try {
       final AppState state = StoreProvider.state<AppState>(context)!;
-      final Contact? contact =
-          state.userState?.clientState?.clientProfile?.user?.contacts
-              ?.where(
-                (Contact contact) => contact.contactType == ContactType.PRIMARY,
-              )
-              .first;
+      final Contact? contact = state.clientState?.clientProfile?.user?.contacts
+          ?.where(
+            (Contact contact) => contact.contactType == ContactType.PRIMARY,
+          )
+          .first;
 
       final bool isSignedIn =
-          state.userState?.clientState?.clientProfile?.isSignedIn ?? false;
+          state.clientState?.clientProfile?.isSignedIn ?? false;
 
       if (isSignedIn) {
         errorTrace = <String, dynamic>{

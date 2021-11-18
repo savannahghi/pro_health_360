@@ -40,11 +40,10 @@ class AppbarUser extends StatelessWidget {
             final String? avatar = user?.avatar;
 
             // a sanity check for the photo url
-            final bool isUploadUrlInvalid =
-                avatar!.isEmpty || avatar == UNKNOWN;
+            final bool isAvatarInvalid = avatar!.isEmpty || avatar == UNKNOWN;
 
             return Container(
-              padding: EdgeInsets.all(isUploadUrlInvalid ? 2 : 0),
+              padding: EdgeInsets.all(isAvatarInvalid ? 2 : 0),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.whiteColor,
@@ -57,7 +56,7 @@ class AppbarUser extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
                 child: Center(
-                  child: isUploadUrlInvalid
+                  child: isAvatarInvalid
                       ? Text(
                           extractNamesInitials(
                             name: getDisplayName(user),

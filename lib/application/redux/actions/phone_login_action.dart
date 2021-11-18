@@ -19,7 +19,6 @@ import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
-import 'package:myafyahub/domain/core/entities/login/login_data.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
@@ -99,12 +98,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        final PhoneLoginResponse response = PhoneLoginResponse.fromJson(parsed);
+        final PhoneLoginResponse loginResponse =
+            PhoneLoginResponse.fromJson(parsed);
 
-        // TODO: update user profile after testing
-        final LoginData? loginData = response.phoneLoginData?.loginData;
-
-        final AuthCredentials? authCredentials = loginData?.credentials;
+        final AuthCredentials? authCredentials = loginResponse.credentials;
 
         await store.dispatch(
           ManageTokenAction(
@@ -118,7 +115,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final User? user = loginData?.clientProfile?.user;
+        final User? user = loginResponse.clientProfile!.user;
 
         // dispatch an action to update the user profile
         await store.dispatch(UpdateUserAction(user: user));
@@ -132,7 +129,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         );
 
         final bool termsAccepted =
-            loginData?.clientProfile?.user?.termsAccepted ?? false;
+            loginResponse.clientProfile?.user?.termsAccepted ?? false;
 
         String routeToNavigate = BWRoutes.home;
 

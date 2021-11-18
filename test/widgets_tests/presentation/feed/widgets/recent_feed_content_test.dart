@@ -130,7 +130,7 @@ void main() {
       // click view all
       await tester.tap(find.text(viewAllText));
       await tester.pumpAndSettle();
-      expect(store.state.miscState!.bottomNavObj!.currentBottomNavIndex, 1);
+      expect(store.state.bottomNavigationState!.currentBottomNavIndex, 1);
     });
 
     testWidgets('shows a loading indicator when fetching data',
