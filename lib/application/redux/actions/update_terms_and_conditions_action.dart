@@ -3,7 +3,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 
-class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
+class UpdateTermsAndConditionsAction extends ReduxAction<MainAppState> {
   UpdateTermsAndConditionsAction({
     this.id,
     this.termsString,
@@ -15,21 +15,22 @@ class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
   final bool? isAccepted;
 
   @override
-  AppState reduce() {
-    final bool? termsAccepted = state.clientProfile?.user?.termsAccepted;
+  MainAppState reduce() {
+    final bool? termsAccepted =
+        state.clientState?.clientProfile?.user?.termsAccepted;
 
     final TermsAndConditions termsAndConditions =
         state.miscState!.termsAndConditions!;
 
-    final AppState newState = state.copyWith(
+    final MainAppState newState = state.copyWith(
       miscState: state.miscState?.copyWith(
         termsAndConditions: TermsAndConditions(
           termsId: id ?? termsAndConditions.termsId,
           text: termsString ?? termsAndConditions.text,
         ),
       ),
-      clientProfile: state.clientProfile?.copyWith(
-        user: state.clientProfile?.user?.copyWith(
+      clientState: state.clientState?.copyWith.clientProfile?.call(
+        user: state.clientState?.clientProfile?.user?.copyWith(
           termsAccepted: isAccepted ?? termsAccepted,
         ),
       ),

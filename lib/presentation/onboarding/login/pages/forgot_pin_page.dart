@@ -21,7 +21,7 @@ class ForgotPINPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppState appState = StoreProvider.state<AppState>(context)!;
+    final MainAppState appState = StoreProvider.state<MainAppState>(context)!;
     final Map<String, SecurityQuestionResponse> securityQuestionsResponses =
         appState.clientProfile!.securityQuestionsResponses!;
     final String userId = appState.clientProfile!.userProfile!.id!;
@@ -34,6 +34,7 @@ class ForgotPINPage extends StatelessWidget {
         flavour: Flavour.CONSUMER.name,
       ),
     ];
+
     final bool isLargeScreen = ResponsiveWidget.isLargeScreen(context);
     return OnboardingScaffold(
       title: answerSecurityQuestionString,

@@ -8,6 +8,7 @@ import 'package:myafyahub/domain/core/entities/security_questions/security_quest
 part 'user_profile_state.freezed.dart';
 part 'user_profile_state.g.dart';
 
+// TODO(abiud): delete this after completing the state rewrite
 @freezed
 class UserProfileState with _$UserProfileState {
   factory UserProfileState({

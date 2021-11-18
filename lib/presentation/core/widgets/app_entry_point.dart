@@ -73,7 +73,7 @@ class _AppEntryPointState extends State<AppEntryPoint>
             appName: widget.appName,
             appContexts: widget.appSetupData.appContexts,
             graphQLClient: GraphQlClient(
-              appState.clientProfile!.auth!.idToken!,
+              appState.credentials!.idToken!,
               widget.appSetupData.customContext!.graphqlEndpoint,
             ),
             baseContext: widget.appSetupData.customContext,

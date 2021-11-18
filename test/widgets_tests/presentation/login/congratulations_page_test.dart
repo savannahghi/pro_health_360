@@ -31,7 +31,7 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: const CongratulationsPage(
-          duration: '3 years',
+          lengthOfTreatment: '3 years',
         ),
       );
       await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
@@ -63,7 +63,7 @@ void main() {
           store: store,
           client: mockShortSILGraphQlClient,
           widget: const CongratulationsPage(
-            duration: '3 years',
+            lengthOfTreatment: '3 years',
           ),
         );
 

@@ -8,15 +8,19 @@ part of 'auth_credentials.dart';
 
 _$_AuthCredentials _$_$_AuthCredentialsFromJson(Map<String, dynamic> json) {
   return _$_AuthCredentials(
-    expiresIn: json['expiresIn'] as String?,
     idToken: json['idToken'] as String?,
+    expiresIn: json['expiresIn'] as String?,
     refreshToken: json['refreshToken'] as String?,
+    isSignedIn: json['isSignedIn'] as bool?,
+    signedInTime: json['signedInTime'] as String?,
   );
 }
 
 Map<String, dynamic> _$_$_AuthCredentialsToJson(_$_AuthCredentials instance) =>
     <String, dynamic>{
-      'expiresIn': instance.expiresIn,
       'idToken': instance.idToken,
+      'expiresIn': instance.expiresIn,
       'refreshToken': instance.refreshToken,
+      'isSignedIn': instance.isSignedIn,
+      'signedInTime': instance.signedInTime,
     };

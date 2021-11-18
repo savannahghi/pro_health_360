@@ -5,6 +5,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
+import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';
@@ -12,7 +15,6 @@ part 'misc_state.g.dart';
 @freezed
 class MiscState with _$MiscState {
   factory MiscState({
-    PhoneLogin? phoneLogin,
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     String? healthPagePINInputTime,
@@ -23,7 +25,6 @@ class MiscState with _$MiscState {
       _$MiscStateFromJson(json);
 
   factory MiscState.initial() => MiscState(
-        phoneLogin: PhoneLogin.initial(),
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         healthPagePINInputTime: UNKNOWN,

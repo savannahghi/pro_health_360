@@ -1,9 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 // Project imports:
@@ -19,18 +17,16 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class CongratulationsPage extends StatefulWidget {
-  const CongratulationsPage({
-    required this.duration,
-  });
+  const CongratulationsPage({required this.lengthOfTreatment});
 
-  final String duration;
+  final String lengthOfTreatment;
 
   @override
   _CongratulationsPageState createState() => _CongratulationsPageState();
 }
 
 class _CongratulationsPageState extends State<CongratulationsPage> {
-  String? name;
+  String? nickName;
 
   final GlobalKey<FormState> _congratulationsFormKey = GlobalKey<FormState>();
 
@@ -39,7 +35,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 6;
 
     return OnboardingScaffold(
-      title: congratulationsPageTitle(widget.duration),
+      title: congratulationsPageTitle(widget.lengthOfTreatment),
       description: congratulationsPageDescription,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +60,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
               },
               onChanged: (String val) {
                 setState(() {
-                  name = val;
+                  nickName = val;
                 });
               },
             ),
@@ -91,16 +87,9 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
               borderColor: AppColors.secondaryColor,
               onPressed: () async {
                 if (_congratulationsFormKey.currentState!.validate()) {
-                  // TODO(abiud): remove this hardcoded login response
-                  final UserProfile userProfile =
-                      UserProfile.fromJson(loginResponse['profile']!);
-
-                  await StoreProvider.dispatch<AppState>(
+                  await StoreProvider.dispatch<MainAppState>(
                     context,
-                    UpdateClientProfileAction(
-                      profile: userProfile,
-                      userBioData: userProfile.userBioData,
-                    ),
+                    UpdateClientProfileAction(nickName: nickName),
                   );
 
                   Navigator.pushReplacementNamed(

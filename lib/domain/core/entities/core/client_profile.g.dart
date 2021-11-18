@@ -14,8 +14,12 @@ _$_ClientProfile _$_$_ClientProfileFromJson(Map<String, dynamic> json) {
     treatmentEnrollmentDate: json['treatmentEnrollmentDate'] as String?,
     clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']),
     active: json['active'] as bool? ?? false,
-    addresses: json['addresses'] as List<dynamic>?,
-    relatedPersons: json['relatedPersons'] as List<dynamic>?,
+    addresses: (json['addresses'] as List<dynamic>?)
+        ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    relatedPersons: (json['relatedPersons'] as List<dynamic>?)
+        ?.map((e) => RelatedPerson.fromJson(e as Map<String, dynamic>))
+        .toList(),
     facilityID: json['facilityID'] as String?,
     treatmentBuddy: json['treatmentBuddy'] as String?,
     clientCounselled: json['clientCounselled'] as bool? ?? false,

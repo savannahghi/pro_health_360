@@ -9,21 +9,15 @@ class AuthStatusAction extends ReduxAction<MainAppState> {
     this.idToken,
     this.refreshToken,
     this.expiresAt,
-    this.isAnonymous,
-    this.signedIn,
-    this.uid,
+    this.isSignedIn,
     this.signedInTime,
-    this.isChangePin,
   });
 
   final String? expiresAt;
   final String? idToken;
-  final bool? isAnonymous;
-  final bool? isChangePin;
+  final bool? isSignedIn;
   final String? refreshToken;
-  final bool? signedIn;
   final String? signedInTime;
-  final String? uid;
 
   @override
   MainAppState? reduce() {
@@ -31,6 +25,8 @@ class AuthStatusAction extends ReduxAction<MainAppState> {
       idToken: idToken ?? state.credentials?.idToken,
       expiresIn: expiresAt ?? state.credentials?.expiresIn,
       refreshToken: refreshToken ?? state.credentials?.refreshToken,
+      isSignedIn: isSignedIn ?? state.credentials?.isSignedIn,
+      signedInTime: signedInTime ?? state.credentials?.signedInTime,
     );
 
     return newState;

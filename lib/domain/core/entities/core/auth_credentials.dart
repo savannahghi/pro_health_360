@@ -7,9 +7,13 @@ part 'auth_credentials.g.dart';
 @freezed
 class AuthCredentials with _$AuthCredentials {
   factory AuthCredentials({
-    String? expiresIn,
-    String? idToken,
-    String? refreshToken,
+    @JsonKey(name: 'idToken') String? idToken,
+    @JsonKey(name: 'expiresIn') String? expiresIn,
+    @JsonKey(name: 'refreshToken') String? refreshToken,
+
+    // Other supporting fields that are not returned by the backend
+    bool? isSignedIn,
+    String? signedInTime,
   }) = _AuthCredentials;
 
   factory AuthCredentials.fromJson(Map<String, dynamic> json) =>
@@ -19,5 +23,7 @@ class AuthCredentials with _$AuthCredentials {
         expiresIn: UNKNOWN,
         idToken: UNKNOWN,
         refreshToken: UNKNOWN,
+        isSignedIn: false,
+        signedInTime: UNKNOWN,
       );
 }

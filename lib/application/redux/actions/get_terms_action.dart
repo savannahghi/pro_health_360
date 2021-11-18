@@ -21,7 +21,7 @@ import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
-class GetTermsAction extends ReduxAction<AppState> {
+class GetTermsAction extends ReduxAction<MainAppState> {
   GetTermsAction({
     required this.context,
   });
@@ -30,18 +30,18 @@ class GetTermsAction extends ReduxAction<AppState> {
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(getTermsFlag));
+    dispatch(WaitAction<MainAppState>.remove(getTermsFlag));
     super.after();
   }
 
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(getTermsFlag));
+    dispatch(WaitAction<MainAppState>.add(getTermsFlag));
     super.before();
   }
 
   @override
-  Future<AppState> reduce() async {
+  Future<MainAppState> reduce() async {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
     //Todo: Remove

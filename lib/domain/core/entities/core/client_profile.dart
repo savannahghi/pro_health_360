@@ -1,6 +1,7 @@
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/address.dart';
+import 'package:myafyahub/domain/core/entities/core/related_person.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 

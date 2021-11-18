@@ -25,6 +25,8 @@ class _$UserTearOff {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
+      @JsonKey(name: 'avatar')
+          String? avatar,
       @JsonKey(name: 'displayName')
           String? displayName,
       @JsonKey(name: 'firstName')
@@ -44,10 +46,13 @@ class _$UserTearOff {
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
-          bool? pinChangeRequired}) {
+          bool? pinChangeRequired,
+      @JsonKey(name: 'suspended', defaultValue: false)
+          bool? suspended}) {
     return _User(
       userId: userId,
       username: username,
+      avatar: avatar,
       displayName: displayName,
       firstName: firstName,
       middleName: middleName,
@@ -58,6 +63,7 @@ class _$UserTearOff {
       languages: languages,
       termsAccepted: termsAccepted,
       pinChangeRequired: pinChangeRequired,
+      suspended: suspended,
     );
   }
 
@@ -74,9 +80,13 @@ mixin _$User {
   @JsonKey(name: 'userID')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'userName')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username =>
+      throw _privateConstructorUsedError; // This is the nickname
+  @JsonKey(name: 'avatar')
+  String? get avatar => throw _privateConstructorUsedError;
   @JsonKey(name: 'displayName')
-  String? get displayName => throw _privateConstructorUsedError;
+  String? get displayName =>
+      throw _privateConstructorUsedError; // This is the @handle
   @JsonKey(name: 'firstName')
   String? get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'middleName')
@@ -95,6 +105,8 @@ mixin _$User {
   bool? get termsAccepted => throw _privateConstructorUsedError;
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
   bool? get pinChangeRequired => throw _privateConstructorUsedError;
+  @JsonKey(name: 'suspended', defaultValue: false)
+  bool? get suspended => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -110,6 +122,8 @@ abstract class $UserCopyWith<$Res> {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
+      @JsonKey(name: 'avatar')
+          String? avatar,
       @JsonKey(name: 'displayName')
           String? displayName,
       @JsonKey(name: 'firstName')
@@ -129,7 +143,9 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
-          bool? pinChangeRequired});
+          bool? pinChangeRequired,
+      @JsonKey(name: 'suspended', defaultValue: false)
+          bool? suspended});
 }
 
 /// @nodoc
@@ -144,6 +160,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   $Res call({
     Object? userId = freezed,
     Object? username = freezed,
+    Object? avatar = freezed,
     Object? displayName = freezed,
     Object? firstName = freezed,
     Object? middleName = freezed,
@@ -154,6 +171,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? languages = freezed,
     Object? termsAccepted = freezed,
     Object? pinChangeRequired = freezed,
+    Object? suspended = freezed,
   }) {
     return _then(_value.copyWith(
       userId: userId == freezed
@@ -163,6 +181,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: avatar == freezed
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
       displayName: displayName == freezed
           ? _value.displayName
@@ -203,6 +225,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       pinChangeRequired: pinChangeRequired == freezed
           ? _value.pinChangeRequired
           : pinChangeRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      suspended: suspended == freezed
+          ? _value.suspended
+          : suspended // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -218,6 +244,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
+      @JsonKey(name: 'avatar')
+          String? avatar,
       @JsonKey(name: 'displayName')
           String? displayName,
       @JsonKey(name: 'firstName')
@@ -237,7 +265,9 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
-          bool? pinChangeRequired});
+          bool? pinChangeRequired,
+      @JsonKey(name: 'suspended', defaultValue: false)
+          bool? suspended});
 }
 
 /// @nodoc
@@ -253,6 +283,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   $Res call({
     Object? userId = freezed,
     Object? username = freezed,
+    Object? avatar = freezed,
     Object? displayName = freezed,
     Object? firstName = freezed,
     Object? middleName = freezed,
@@ -263,6 +294,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? languages = freezed,
     Object? termsAccepted = freezed,
     Object? pinChangeRequired = freezed,
+    Object? suspended = freezed,
   }) {
     return _then(_User(
       userId: userId == freezed
@@ -272,6 +304,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: avatar == freezed
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
       displayName: displayName == freezed
           ? _value.displayName
@@ -313,6 +349,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.pinChangeRequired
           : pinChangeRequired // ignore: cast_nullable_to_non_nullable
               as bool?,
+      suspended: suspended == freezed
+          ? _value.suspended
+          : suspended // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -325,6 +365,8 @@ class _$_User implements _User {
           this.userId,
       @JsonKey(name: 'userName')
           this.username,
+      @JsonKey(name: 'avatar')
+          this.avatar,
       @JsonKey(name: 'displayName')
           this.displayName,
       @JsonKey(name: 'firstName')
@@ -344,7 +386,9 @@ class _$_User implements _User {
       @JsonKey(name: 'termsAccepted')
           this.termsAccepted,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
-          this.pinChangeRequired});
+          this.pinChangeRequired,
+      @JsonKey(name: 'suspended', defaultValue: false)
+          this.suspended});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -355,10 +399,13 @@ class _$_User implements _User {
   @override
   @JsonKey(name: 'userName')
   final String? username;
+  @override // This is the nickname
+  @JsonKey(name: 'avatar')
+  final String? avatar;
   @override
   @JsonKey(name: 'displayName')
   final String? displayName;
-  @override
+  @override // This is the @handle
   @JsonKey(name: 'firstName')
   final String? firstName;
   @override
@@ -385,10 +432,13 @@ class _$_User implements _User {
   @override
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
   final bool? pinChangeRequired;
+  @override
+  @JsonKey(name: 'suspended', defaultValue: false)
+  final bool? suspended;
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, displayName: $displayName, firstName: $firstName, middleName: $middleName, lastName: $lastName, gender: $gender, active: $active, contacts: $contacts, languages: $languages, termsAccepted: $termsAccepted, pinChangeRequired: $pinChangeRequired)';
+    return 'User(userId: $userId, username: $username, avatar: $avatar, displayName: $displayName, firstName: $firstName, middleName: $middleName, lastName: $lastName, gender: $gender, active: $active, contacts: $contacts, languages: $languages, termsAccepted: $termsAccepted, pinChangeRequired: $pinChangeRequired, suspended: $suspended)';
   }
 
   @override
@@ -400,6 +450,8 @@ class _$_User implements _User {
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
+            (identical(other.avatar, avatar) ||
+                const DeepCollectionEquality().equals(other.avatar, avatar)) &&
             (identical(other.displayName, displayName) ||
                 const DeepCollectionEquality()
                     .equals(other.displayName, displayName)) &&
@@ -427,7 +479,10 @@ class _$_User implements _User {
                     .equals(other.termsAccepted, termsAccepted)) &&
             (identical(other.pinChangeRequired, pinChangeRequired) ||
                 const DeepCollectionEquality()
-                    .equals(other.pinChangeRequired, pinChangeRequired)));
+                    .equals(other.pinChangeRequired, pinChangeRequired)) &&
+            (identical(other.suspended, suspended) ||
+                const DeepCollectionEquality()
+                    .equals(other.suspended, suspended)));
   }
 
   @override
@@ -435,6 +490,7 @@ class _$_User implements _User {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(avatar) ^
       const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(middleName) ^
@@ -444,7 +500,8 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(contacts) ^
       const DeepCollectionEquality().hash(languages) ^
       const DeepCollectionEquality().hash(termsAccepted) ^
-      const DeepCollectionEquality().hash(pinChangeRequired);
+      const DeepCollectionEquality().hash(pinChangeRequired) ^
+      const DeepCollectionEquality().hash(suspended);
 
   @JsonKey(ignore: true)
   @override
@@ -463,6 +520,8 @@ abstract class _User implements User {
           String? userId,
       @JsonKey(name: 'userName')
           String? username,
+      @JsonKey(name: 'avatar')
+          String? avatar,
       @JsonKey(name: 'displayName')
           String? displayName,
       @JsonKey(name: 'firstName')
@@ -482,7 +541,9 @@ abstract class _User implements User {
       @JsonKey(name: 'termsAccepted')
           bool? termsAccepted,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
-          bool? pinChangeRequired}) = _$_User;
+          bool? pinChangeRequired,
+      @JsonKey(name: 'suspended', defaultValue: false)
+          bool? suspended}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -492,10 +553,13 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'userName')
   String? get username => throw _privateConstructorUsedError;
+  @override // This is the nickname
+  @JsonKey(name: 'avatar')
+  String? get avatar => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'displayName')
   String? get displayName => throw _privateConstructorUsedError;
-  @override
+  @override // This is the @handle
   @JsonKey(name: 'firstName')
   String? get firstName => throw _privateConstructorUsedError;
   @override
@@ -522,6 +586,9 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
   bool? get pinChangeRequired => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'suspended', defaultValue: false)
+  bool? get suspended => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

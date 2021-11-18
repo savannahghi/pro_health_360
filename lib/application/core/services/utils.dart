@@ -25,6 +25,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
@@ -90,13 +91,11 @@ Function() logoutUser({required BuildContext context}) {
   };
 }
 
-String getDisplayName(UserProfileState state) {
-  final String firstName =
-      state.userProfile?.userBioData?.firstName?.getValue() ?? UNKNOWN;
+String getDisplayName(User? user) {
+  final String firstName = user?.firstName ?? UNKNOWN;
   final String formattedFirstName = firstName.replaceAll(' ', '');
 
-  final String lastName =
-      state.userProfile?.userBioData?.lastName?.getValue() ?? UNKNOWN;
+  final String lastName = user?.lastName ?? UNKNOWN;
   final String formattedLastName = lastName.replaceAll(' ', '');
 
   return '$formattedFirstName $formattedLastName';

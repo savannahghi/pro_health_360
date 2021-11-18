@@ -10,7 +10,7 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
 /// [ManageTokenAction] called when a valid auth has been received. In this regarded, [signedIn] will always be [true]
-class ManageTokenAction extends ReduxAction<AppState> {
+class ManageTokenAction extends ReduxAction<MainAppState> {
   ManageTokenAction({
     required this.context,
     required this.refreshToken,
@@ -28,14 +28,13 @@ class ManageTokenAction extends ReduxAction<AppState> {
   RefreshTokenManger refreshTokenManger;
 
   @override
-  Future<AppState> reduce() async {
+  Future<MainAppState> reduce() async {
     await dispatch(
       AuthStatusAction(
-        signedIn: true,
+        isSignedIn: true,
         idToken: idToken,
         refreshToken: refreshToken,
         expiresAt: parsedExpiresAt,
-        isAnonymous: false,
       ),
     );
 

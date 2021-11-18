@@ -9,8 +9,9 @@ part 'user.g.dart';
 class User with _$User {
   factory User({
     @JsonKey(name: 'userID') String? userId,
-    @JsonKey(name: 'userName') String? username,
-    @JsonKey(name: 'displayName') String? displayName,
+    @JsonKey(name: 'userName') String? username, // This is the nickname
+    @JsonKey(name: 'avatar') String? avatar,
+    @JsonKey(name: 'displayName') String? displayName, // This is the @handle
     @JsonKey(name: 'firstName') String? firstName,
     @JsonKey(name: 'middleName') String? middleName,
     @JsonKey(name: 'lastName') String? lastName,
@@ -21,6 +22,7 @@ class User with _$User {
     @JsonKey(name: 'termsAccepted') bool? termsAccepted,
     @JsonKey(name: 'pinChangeRequired', defaultValue: false)
         bool? pinChangeRequired,
+    @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

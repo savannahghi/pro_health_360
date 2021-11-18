@@ -11,14 +11,14 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 
-class LogoutAction extends ReduxAction<AppState> {
+class LogoutAction extends ReduxAction<MainAppState> {
   LogoutAction({required this.navigationCallback, required this.context});
 
   final BuildContext context;
   final Function navigationCallback;
 
   @override
-  Future<AppState> reduce() async {
+  Future<MainAppState> reduce() async {
     this.navigationCallback();
 
     try {
@@ -26,7 +26,7 @@ class LogoutAction extends ReduxAction<AppState> {
       /// which may affect app performance
       await store.dispatch(
         AuthStatusAction(
-          signedIn: false,
+          isSignedIn: false,
           idToken: UNDEFINED_AUTH_TOKEN,
           refreshToken: UNDEFINED_REFRESH_TOKEN,
           expiresAt:
@@ -39,6 +39,6 @@ class LogoutAction extends ReduxAction<AppState> {
       await Sentry.captureException(error, stackTrace: stackTrace);
     }
 
-    return AppState.initial();
+    return MainAppState.initial();
   }
 }

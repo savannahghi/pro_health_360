@@ -10,6 +10,7 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
   return _$_User(
     userId: json['userID'] as String?,
     username: json['userName'] as String?,
+    avatar: json['avatar'] as String?,
     displayName: json['displayName'] as String?,
     firstName: json['firstName'] as String?,
     middleName: json['middleName'] as String?,
@@ -23,12 +24,14 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
         (json['languages'] as List<dynamic>?)?.map((e) => e as String).toList(),
     termsAccepted: json['termsAccepted'] as bool?,
     pinChangeRequired: json['pinChangeRequired'] as bool? ?? false,
+    suspended: json['suspended'] as bool? ?? false,
   );
 }
 
 Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'userID': instance.userId,
       'userName': instance.username,
+      'avatar': instance.avatar,
       'displayName': instance.displayName,
       'firstName': instance.firstName,
       'middleName': instance.middleName,
@@ -39,6 +42,7 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'languages': instance.languages,
       'termsAccepted': instance.termsAccepted,
       'pinChangeRequired': instance.pinChangeRequired,
+      'suspended': instance.suspended,
     };
 
 K _$enumDecode<K, V>(

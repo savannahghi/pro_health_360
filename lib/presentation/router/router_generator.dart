@@ -70,7 +70,7 @@ class RouteGenerator {
       case BWRoutes.congratulationsPage:
         return MaterialPageRoute<CongratulationsPage>(
           builder: (_) => CongratulationsPage(
-            duration: args['duration'] as String,
+            lengthOfTreatment: args['duration'] as String,
           ),
         );
 
