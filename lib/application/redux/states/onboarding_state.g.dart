@@ -8,9 +8,10 @@ part of 'onboarding_state.dart';
 
 _$_OnboardingState _$_$_OnboardingStateFromJson(Map<String, dynamic> json) {
   return _$_OnboardingState(
-    createPIN: json['createPIN'] == null
+    createPINState: json['createPINState'] == null
         ? null
-        : CreatePIN.fromJson(json['createPIN'] as Map<String, dynamic>),
+        : CreatePINState.fromJson(
+            json['createPINState'] as Map<String, dynamic>),
     termsAndConditions: json['termsAndConditions'] == null
         ? null
         : TermsAndConditions.fromJson(
@@ -20,6 +21,6 @@ _$_OnboardingState _$_$_OnboardingStateFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_OnboardingStateToJson(_$_OnboardingState instance) =>
     <String, dynamic>{
-      'createPIN': instance.createPIN,
+      'createPINState': instance.createPINState,
       'termsAndConditions': instance.termsAndConditions,
     };

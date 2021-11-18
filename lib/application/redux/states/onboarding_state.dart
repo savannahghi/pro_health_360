@@ -8,7 +8,7 @@ part 'onboarding_state.g.dart';
 @freezed
 class OnboardingState with _$OnboardingState {
   factory OnboardingState({
-    CreatePIN? createPIN,
+    CreatePINState? createPINState,
     TermsAndConditions? termsAndConditions,
   }) = _OnboardingState;
 
@@ -19,7 +19,7 @@ class OnboardingState with _$OnboardingState {
         ///   - Login state
         ///   - Terms and conditions
         termsAndConditions: TermsAndConditions.initial(),
-        createPIN: CreatePIN.initial(),
+        createPINState: CreatePINState.initial(),
 
         ///   - security questions
         ///   - nickname

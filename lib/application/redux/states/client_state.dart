@@ -11,7 +11,6 @@ class ClientState with _$ClientState {
   factory ClientState.fromJson(Map<String, dynamic> json) =>
       _$ClientStateFromJson(json);
 
-  factory ClientState.initial() => ClientState(
-        clientProfile: ClientProfile.initial(),
-      );
+  factory ClientState.initial() =>
+      ClientState(clientProfile: ClientProfile.initial());
 }

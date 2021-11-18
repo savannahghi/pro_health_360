@@ -11,7 +11,7 @@ void main() {
   };
   test('ChangePIN toJson', () {
     expect(
-      CreatePIN(
+      CreatePINState(
         newPIN: '1234',
         confirmPIN: '1234',
       ).toJson(),
@@ -21,8 +21,8 @@ void main() {
 
   test('ChangePIN fromJson', () {
     expect(
-      CreatePIN.fromJson(data),
-      isA<CreatePIN>(),
+      CreatePINState.fromJson(data),
+      isA<CreatePINState>(),
     );
   });
 }

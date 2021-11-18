@@ -8,21 +8,19 @@ part of 'contact.dart';
 
 _$_Contact _$_$_ContactFromJson(Map<String, dynamic> json) {
   return _$_Contact(
-    active: json['active'] as bool?,
-    contact: json['contact'] == null
-        ? null
-        : PhoneNumber.fromJson(json['contact'] as String),
     contactType:
         _$enumDecodeNullable(_$ContactTypeEnumMap, json['contactType']),
-    optedIn: json['optedIn'] as bool?,
+    contact: json['contact'] as String?,
+    active: json['active'] as bool? ?? false,
+    optedIn: json['optedIn'] as bool? ?? false,
   );
 }
 
 Map<String, dynamic> _$_$_ContactToJson(_$_Contact instance) =>
     <String, dynamic>{
-      'active': instance.active,
-      'contact': instance.contact,
       'contactType': _$ContactTypeEnumMap[instance.contactType],
+      'contact': instance.contact,
+      'active': instance.active,
       'optedIn': instance.optedIn,
     };
 
@@ -67,4 +65,5 @@ const _$ContactTypeEnumMap = {
   ContactType.PRIMARY: 'PRIMARY',
   ContactType.SECONDARY: 'SECONDARY',
   ContactType.OFFICIAL: 'OFFICIAL',
+  ContactType.UNKNOWN: 'UNKNOWN',
 };

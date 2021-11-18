@@ -48,8 +48,7 @@ mixin _$MiscState {
   PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
   UserPin? get userPin => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
-  String? get healthPagePINInputTime =>
-      throw _privateConstructorUsedError; // TermsAndConditions? termsAndConditions,
+  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   FAQState? get faqState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -204,7 +203,7 @@ class _$_MiscState implements _MiscState {
   final List<dynamic>? libraryListItems;
   @override
   final String? healthPagePINInputTime;
-  @override // TermsAndConditions? termsAndConditions,
+  @override
   final FAQState? faqState;
 
   @override
@@ -272,7 +271,7 @@ abstract class _MiscState implements MiscState {
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
-  @override // TermsAndConditions? termsAndConditions,
+  @override
   FAQState? get faqState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

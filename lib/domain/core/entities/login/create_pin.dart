@@ -4,8 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'create_pin.g.dart';
 
 @JsonSerializable()
-class CreatePIN {
-  CreatePIN({
+class CreatePINState {
+  CreatePINState({
     required this.newPIN,
     required this.confirmPIN,
   });
@@ -13,10 +13,10 @@ class CreatePIN {
   final String? newPIN;
   final String? confirmPIN;
   
-  factory CreatePIN.fromJson(Map<String, dynamic> json) =>
+  factory CreatePINState.fromJson(Map<String, dynamic> json) =>
       _$CreatePINFromJson(json);
 
-  factory CreatePIN.initial() => CreatePIN(
+  factory CreatePINState.initial() => CreatePINState(
         newPIN: UNKNOWN,
         confirmPIN: UNKNOWN,
       );

@@ -61,6 +61,26 @@ extension MoodTypeEx on MoodType {
   }
 }
 
+/// The type of content being served to the user
 enum ContentType { VIDEO, AUDIO, ARTICLE }
 
 enum EditInformationInputType { Text, DropDown }
+
+/// The type of the client
+enum ClientType { PMTCT, OVC, UNKNOWN }
+
+/// The type of the address being used
+enum AddressType { POSTAL, PHYSICAL, BOTH, UNKNOWN }
+
+/// The relationship type. Used in next of kin
+enum RelationshipType {
+  NEXT_OF_KIN,
+  EMPLOYER,
+  EMERGENCY_CONTACT,
+  CHILD,
+  OTHER,
+  UNKNOWN
+}
+
+/// The type of contact being used
+enum ContactType { PRIMARY, SECONDARY, OFFICIAL, UNKNOWN }

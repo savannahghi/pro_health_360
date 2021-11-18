@@ -42,9 +42,6 @@ _$_MainAppState _$_$_MainAppStateFromJson(Map<String, dynamic> json) {
     credentials: json['credentials'] == null
         ? null
         : AuthCredentials.fromJson(json['credentials'] as Map<String, dynamic>),
-    userState: json['userState'] == null
-        ? null
-        : UserState.fromJson(json['userState'] as Map<String, dynamic>),
     onboardingState: json['onboardingState'] == null
         ? null
         : OnboardingState.fromJson(
@@ -56,36 +53,17 @@ _$_MainAppState _$_$_MainAppStateFromJson(Map<String, dynamic> json) {
     miscState: json['miscState'] == null
         ? null
         : MiscState.fromJson(json['miscState'] as Map<String, dynamic>),
+    clientState: json['clientState'] == null
+        ? null
+        : ClientState.fromJson(json['clientState'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$_$_MainAppStateToJson(_$_MainAppState instance) =>
     <String, dynamic>{
       'credentials': instance.credentials,
-      'userState': instance.userState,
       'onboardingState': instance.onboardingState,
       'bottomNavigationState': instance.bottomNavigationState,
       'miscState': instance.miscState,
+      'clientState': instance.clientState,
     };
-
-_$_FeedState _$_$_FeedStateFromJson(Map<String, dynamic> json) {
-  return _$_FeedState();
-}
-
-Map<String, dynamic> _$_$_FeedStateToJson(_$_FeedState instance) =>
-    <String, dynamic>{};
-
-_$_HomeState _$_$_HomeStateFromJson(Map<String, dynamic> json) {
-  return _$_HomeState();
-}
-
-Map<String, dynamic> _$_$_HomeStateToJson(_$_HomeState instance) =>
-    <String, dynamic>{};
-
-_$_CommunitiesState _$_$_CommunitiesStateFromJson(Map<String, dynamic> json) {
-  return _$_CommunitiesState();
-}
-
-Map<String, dynamic> _$_$_CommunitiesStateToJson(
-        _$_CommunitiesState instance) =>
-    <String, dynamic>{};

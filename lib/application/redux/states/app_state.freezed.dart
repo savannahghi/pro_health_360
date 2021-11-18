@@ -372,17 +372,17 @@ class _$MainAppStateTearOff {
 
   _MainAppState call(
       {AuthCredentials? credentials,
-      UserState? userState,
       OnboardingState? onboardingState,
       BottomNavigationState? bottomNavigationState,
       MiscState? miscState,
+      ClientState? clientState,
       @JsonKey(ignore: true) Wait? wait}) {
     return _MainAppState(
       credentials: credentials,
-      userState: userState,
       onboardingState: onboardingState,
       bottomNavigationState: bottomNavigationState,
       miscState: miscState,
+      clientState: clientState,
       wait: wait,
     );
   }
@@ -398,11 +398,11 @@ const $MainAppState = _$MainAppStateTearOff();
 /// @nodoc
 mixin _$MainAppState {
   AuthCredentials? get credentials => throw _privateConstructorUsedError;
-  UserState? get userState => throw _privateConstructorUsedError;
   OnboardingState? get onboardingState => throw _privateConstructorUsedError;
   BottomNavigationState? get bottomNavigationState =>
       throw _privateConstructorUsedError;
   MiscState? get miscState => throw _privateConstructorUsedError;
+  ClientState? get clientState => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   Wait? get wait => throw _privateConstructorUsedError;
 
@@ -419,17 +419,17 @@ abstract class $MainAppStateCopyWith<$Res> {
       _$MainAppStateCopyWithImpl<$Res>;
   $Res call(
       {AuthCredentials? credentials,
-      UserState? userState,
       OnboardingState? onboardingState,
       BottomNavigationState? bottomNavigationState,
       MiscState? miscState,
+      ClientState? clientState,
       @JsonKey(ignore: true) Wait? wait});
 
   $AuthCredentialsCopyWith<$Res>? get credentials;
-  $UserStateCopyWith<$Res>? get userState;
   $OnboardingStateCopyWith<$Res>? get onboardingState;
   $BottomNavigationStateCopyWith<$Res>? get bottomNavigationState;
   $MiscStateCopyWith<$Res>? get miscState;
+  $ClientStateCopyWith<$Res>? get clientState;
 }
 
 /// @nodoc
@@ -443,10 +443,10 @@ class _$MainAppStateCopyWithImpl<$Res> implements $MainAppStateCopyWith<$Res> {
   @override
   $Res call({
     Object? credentials = freezed,
-    Object? userState = freezed,
     Object? onboardingState = freezed,
     Object? bottomNavigationState = freezed,
     Object? miscState = freezed,
+    Object? clientState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_value.copyWith(
@@ -454,10 +454,6 @@ class _$MainAppStateCopyWithImpl<$Res> implements $MainAppStateCopyWith<$Res> {
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
-      userState: userState == freezed
-          ? _value.userState
-          : userState // ignore: cast_nullable_to_non_nullable
-              as UserState?,
       onboardingState: onboardingState == freezed
           ? _value.onboardingState
           : onboardingState // ignore: cast_nullable_to_non_nullable
@@ -470,6 +466,10 @@ class _$MainAppStateCopyWithImpl<$Res> implements $MainAppStateCopyWith<$Res> {
           ? _value.miscState
           : miscState // ignore: cast_nullable_to_non_nullable
               as MiscState?,
+      clientState: clientState == freezed
+          ? _value.clientState
+          : clientState // ignore: cast_nullable_to_non_nullable
+              as ClientState?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -485,17 +485,6 @@ class _$MainAppStateCopyWithImpl<$Res> implements $MainAppStateCopyWith<$Res> {
 
     return $AuthCredentialsCopyWith<$Res>(_value.credentials!, (value) {
       return _then(_value.copyWith(credentials: value));
-    });
-  }
-
-  @override
-  $UserStateCopyWith<$Res>? get userState {
-    if (_value.userState == null) {
-      return null;
-    }
-
-    return $UserStateCopyWith<$Res>(_value.userState!, (value) {
-      return _then(_value.copyWith(userState: value));
     });
   }
 
@@ -532,6 +521,17 @@ class _$MainAppStateCopyWithImpl<$Res> implements $MainAppStateCopyWith<$Res> {
       return _then(_value.copyWith(miscState: value));
     });
   }
+
+  @override
+  $ClientStateCopyWith<$Res>? get clientState {
+    if (_value.clientState == null) {
+      return null;
+    }
+
+    return $ClientStateCopyWith<$Res>(_value.clientState!, (value) {
+      return _then(_value.copyWith(clientState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -543,22 +543,22 @@ abstract class _$MainAppStateCopyWith<$Res>
   @override
   $Res call(
       {AuthCredentials? credentials,
-      UserState? userState,
       OnboardingState? onboardingState,
       BottomNavigationState? bottomNavigationState,
       MiscState? miscState,
+      ClientState? clientState,
       @JsonKey(ignore: true) Wait? wait});
 
   @override
   $AuthCredentialsCopyWith<$Res>? get credentials;
-  @override
-  $UserStateCopyWith<$Res>? get userState;
   @override
   $OnboardingStateCopyWith<$Res>? get onboardingState;
   @override
   $BottomNavigationStateCopyWith<$Res>? get bottomNavigationState;
   @override
   $MiscStateCopyWith<$Res>? get miscState;
+  @override
+  $ClientStateCopyWith<$Res>? get clientState;
 }
 
 /// @nodoc
@@ -574,10 +574,10 @@ class __$MainAppStateCopyWithImpl<$Res> extends _$MainAppStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? credentials = freezed,
-    Object? userState = freezed,
     Object? onboardingState = freezed,
     Object? bottomNavigationState = freezed,
     Object? miscState = freezed,
+    Object? clientState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_MainAppState(
@@ -585,10 +585,6 @@ class __$MainAppStateCopyWithImpl<$Res> extends _$MainAppStateCopyWithImpl<$Res>
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
-      userState: userState == freezed
-          ? _value.userState
-          : userState // ignore: cast_nullable_to_non_nullable
-              as UserState?,
       onboardingState: onboardingState == freezed
           ? _value.onboardingState
           : onboardingState // ignore: cast_nullable_to_non_nullable
@@ -601,6 +597,10 @@ class __$MainAppStateCopyWithImpl<$Res> extends _$MainAppStateCopyWithImpl<$Res>
           ? _value.miscState
           : miscState // ignore: cast_nullable_to_non_nullable
               as MiscState?,
+      clientState: clientState == freezed
+          ? _value.clientState
+          : clientState // ignore: cast_nullable_to_non_nullable
+              as ClientState?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -614,10 +614,10 @@ class __$MainAppStateCopyWithImpl<$Res> extends _$MainAppStateCopyWithImpl<$Res>
 class _$_MainAppState implements _MainAppState {
   _$_MainAppState(
       {this.credentials,
-      this.userState,
       this.onboardingState,
       this.bottomNavigationState,
       this.miscState,
+      this.clientState,
       @JsonKey(ignore: true) this.wait});
 
   factory _$_MainAppState.fromJson(Map<String, dynamic> json) =>
@@ -626,20 +626,20 @@ class _$_MainAppState implements _MainAppState {
   @override
   final AuthCredentials? credentials;
   @override
-  final UserState? userState;
-  @override
   final OnboardingState? onboardingState;
   @override
   final BottomNavigationState? bottomNavigationState;
   @override
   final MiscState? miscState;
   @override
+  final ClientState? clientState;
+  @override
   @JsonKey(ignore: true)
   final Wait? wait;
 
   @override
   String toString() {
-    return 'MainAppState(credentials: $credentials, userState: $userState, onboardingState: $onboardingState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, wait: $wait)';
+    return 'MainAppState(credentials: $credentials, onboardingState: $onboardingState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, wait: $wait)';
   }
 
   @override
@@ -649,9 +649,6 @@ class _$_MainAppState implements _MainAppState {
             (identical(other.credentials, credentials) ||
                 const DeepCollectionEquality()
                     .equals(other.credentials, credentials)) &&
-            (identical(other.userState, userState) ||
-                const DeepCollectionEquality()
-                    .equals(other.userState, userState)) &&
             (identical(other.onboardingState, onboardingState) ||
                 const DeepCollectionEquality()
                     .equals(other.onboardingState, onboardingState)) &&
@@ -661,6 +658,9 @@ class _$_MainAppState implements _MainAppState {
             (identical(other.miscState, miscState) ||
                 const DeepCollectionEquality()
                     .equals(other.miscState, miscState)) &&
+            (identical(other.clientState, clientState) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientState, clientState)) &&
             (identical(other.wait, wait) ||
                 const DeepCollectionEquality().equals(other.wait, wait)));
   }
@@ -669,10 +669,10 @@ class _$_MainAppState implements _MainAppState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(credentials) ^
-      const DeepCollectionEquality().hash(userState) ^
       const DeepCollectionEquality().hash(onboardingState) ^
       const DeepCollectionEquality().hash(bottomNavigationState) ^
       const DeepCollectionEquality().hash(miscState) ^
+      const DeepCollectionEquality().hash(clientState) ^
       const DeepCollectionEquality().hash(wait);
 
   @JsonKey(ignore: true)
@@ -689,10 +689,10 @@ class _$_MainAppState implements _MainAppState {
 abstract class _MainAppState implements MainAppState {
   factory _MainAppState(
       {AuthCredentials? credentials,
-      UserState? userState,
       OnboardingState? onboardingState,
       BottomNavigationState? bottomNavigationState,
       MiscState? miscState,
+      ClientState? clientState,
       @JsonKey(ignore: true) Wait? wait}) = _$_MainAppState;
 
   factory _MainAppState.fromJson(Map<String, dynamic> json) =
@@ -701,8 +701,6 @@ abstract class _MainAppState implements MainAppState {
   @override
   AuthCredentials? get credentials => throw _privateConstructorUsedError;
   @override
-  UserState? get userState => throw _privateConstructorUsedError;
-  @override
   OnboardingState? get onboardingState => throw _privateConstructorUsedError;
   @override
   BottomNavigationState? get bottomNavigationState =>
@@ -710,287 +708,12 @@ abstract class _MainAppState implements MainAppState {
   @override
   MiscState? get miscState => throw _privateConstructorUsedError;
   @override
+  ClientState? get clientState => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   Wait? get wait => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MainAppStateCopyWith<_MainAppState> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-FeedState _$FeedStateFromJson(Map<String, dynamic> json) {
-  return _FeedState.fromJson(json);
-}
-
-/// @nodoc
-class _$FeedStateTearOff {
-  const _$FeedStateTearOff();
-
-  _FeedState call() {
-    return _FeedState();
-  }
-
-  FeedState fromJson(Map<String, Object> json) {
-    return FeedState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $FeedState = _$FeedStateTearOff();
-
-/// @nodoc
-mixin _$FeedState {
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FeedStateCopyWith<$Res> {
-  factory $FeedStateCopyWith(FeedState value, $Res Function(FeedState) then) =
-      _$FeedStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$FeedStateCopyWithImpl<$Res> implements $FeedStateCopyWith<$Res> {
-  _$FeedStateCopyWithImpl(this._value, this._then);
-
-  final FeedState _value;
-  // ignore: unused_field
-  final $Res Function(FeedState) _then;
-}
-
-/// @nodoc
-abstract class _$FeedStateCopyWith<$Res> {
-  factory _$FeedStateCopyWith(
-          _FeedState value, $Res Function(_FeedState) then) =
-      __$FeedStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$FeedStateCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
-    implements _$FeedStateCopyWith<$Res> {
-  __$FeedStateCopyWithImpl(_FeedState _value, $Res Function(_FeedState) _then)
-      : super(_value, (v) => _then(v as _FeedState));
-
-  @override
-  _FeedState get _value => super._value as _FeedState;
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_FeedState implements _FeedState {
-  _$_FeedState();
-
-  factory _$_FeedState.fromJson(Map<String, dynamic> json) =>
-      _$_$_FeedStateFromJson(json);
-
-  @override
-  String toString() {
-    return 'FeedState()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _FeedState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_FeedStateToJson(this);
-  }
-}
-
-abstract class _FeedState implements FeedState {
-  factory _FeedState() = _$_FeedState;
-
-  factory _FeedState.fromJson(Map<String, dynamic> json) =
-      _$_FeedState.fromJson;
-}
-
-HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
-  return _HomeState.fromJson(json);
-}
-
-/// @nodoc
-class _$HomeStateTearOff {
-  const _$HomeStateTearOff();
-
-  _HomeState call() {
-    return _HomeState();
-  }
-
-  HomeState fromJson(Map<String, Object> json) {
-    return HomeState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $HomeState = _$HomeStateTearOff();
-
-/// @nodoc
-mixin _$HomeState {
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $HomeStateCopyWith<$Res> {
-  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
-      _$HomeStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
-  _$HomeStateCopyWithImpl(this._value, this._then);
-
-  final HomeState _value;
-  // ignore: unused_field
-  final $Res Function(HomeState) _then;
-}
-
-/// @nodoc
-abstract class _$HomeStateCopyWith<$Res> {
-  factory _$HomeStateCopyWith(
-          _HomeState value, $Res Function(_HomeState) then) =
-      __$HomeStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$HomeStateCopyWith<$Res> {
-  __$HomeStateCopyWithImpl(_HomeState _value, $Res Function(_HomeState) _then)
-      : super(_value, (v) => _then(v as _HomeState));
-
-  @override
-  _HomeState get _value => super._value as _HomeState;
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_HomeState implements _HomeState {
-  _$_HomeState();
-
-  factory _$_HomeState.fromJson(Map<String, dynamic> json) =>
-      _$_$_HomeStateFromJson(json);
-
-  @override
-  String toString() {
-    return 'HomeState()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _HomeState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_HomeStateToJson(this);
-  }
-}
-
-abstract class _HomeState implements HomeState {
-  factory _HomeState() = _$_HomeState;
-
-  factory _HomeState.fromJson(Map<String, dynamic> json) =
-      _$_HomeState.fromJson;
-}
-
-CommunitiesState _$CommunitiesStateFromJson(Map<String, dynamic> json) {
-  return _CommunitiesState.fromJson(json);
-}
-
-/// @nodoc
-class _$CommunitiesStateTearOff {
-  const _$CommunitiesStateTearOff();
-
-  _CommunitiesState call() {
-    return _CommunitiesState();
-  }
-
-  CommunitiesState fromJson(Map<String, Object> json) {
-    return CommunitiesState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $CommunitiesState = _$CommunitiesStateTearOff();
-
-/// @nodoc
-mixin _$CommunitiesState {
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CommunitiesStateCopyWith<$Res> {
-  factory $CommunitiesStateCopyWith(
-          CommunitiesState value, $Res Function(CommunitiesState) then) =
-      _$CommunitiesStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CommunitiesStateCopyWithImpl<$Res>
-    implements $CommunitiesStateCopyWith<$Res> {
-  _$CommunitiesStateCopyWithImpl(this._value, this._then);
-
-  final CommunitiesState _value;
-  // ignore: unused_field
-  final $Res Function(CommunitiesState) _then;
-}
-
-/// @nodoc
-abstract class _$CommunitiesStateCopyWith<$Res> {
-  factory _$CommunitiesStateCopyWith(
-          _CommunitiesState value, $Res Function(_CommunitiesState) then) =
-      __$CommunitiesStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$CommunitiesStateCopyWithImpl<$Res>
-    extends _$CommunitiesStateCopyWithImpl<$Res>
-    implements _$CommunitiesStateCopyWith<$Res> {
-  __$CommunitiesStateCopyWithImpl(
-      _CommunitiesState _value, $Res Function(_CommunitiesState) _then)
-      : super(_value, (v) => _then(v as _CommunitiesState));
-
-  @override
-  _CommunitiesState get _value => super._value as _CommunitiesState;
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_CommunitiesState implements _CommunitiesState {
-  _$_CommunitiesState();
-
-  factory _$_CommunitiesState.fromJson(Map<String, dynamic> json) =>
-      _$_$_CommunitiesStateFromJson(json);
-
-  @override
-  String toString() {
-    return 'CommunitiesState()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _CommunitiesState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_CommunitiesStateToJson(this);
-  }
-}
-
-abstract class _CommunitiesState implements CommunitiesState {
-  factory _CommunitiesState() = _$_CommunitiesState;
-
-  factory _CommunitiesState.fromJson(Map<String, dynamic> json) =
-      _$_CommunitiesState.fromJson;
 }

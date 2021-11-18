@@ -1,9 +1,11 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/redux/states/client_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/application/redux/states/user_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/client_profile.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -55,10 +57,10 @@ class AppState with _$AppState {
 class MainAppState with _$MainAppState {
   factory MainAppState({
     AuthCredentials? credentials,
-    UserState? userState,
     OnboardingState? onboardingState,
     BottomNavigationState? bottomNavigationState,
     MiscState? miscState,
+    ClientState? clientState,
     @JsonKey(ignore: true) Wait? wait,
   }) = _MainAppState;
 
@@ -67,48 +69,10 @@ class MainAppState with _$MainAppState {
 
   factory MainAppState.initial() => MainAppState(
         credentials: AuthCredentials.initial(),
-        userState: UserState.initial(),
+        clientState: ClientState.initial(),
         onboardingState: OnboardingState.initial(),
         miscState: MiscState.initial(),
         bottomNavigationState: BottomNavigationState.initial(),
         wait: Wait(),
-      );
-}
-
-@freezed
-class FeedState with _$FeedState {
-  factory FeedState() = _FeedState;
-
-  factory FeedState.fromJson(Map<String, dynamic> json) =>
-      _$FeedStateFromJson(json);
-
-  factory FeedState.initial() => FeedState();
-}
-
-@freezed
-class HomeState with _$HomeState {
-  factory HomeState() = _HomeState;
-
-  factory HomeState.fromJson(Map<String, dynamic> json) =>
-      _$HomeStateFromJson(json);
-
-  factory HomeState.initial() => HomeState(
-
-      ///   - RecentContentState
-      ///   - SuggestedGroupsState
-      );
-}
-
-@freezed
-class CommunitiesState with _$CommunitiesState {
-  factory CommunitiesState() = _CommunitiesState;
-
-  factory CommunitiesState.fromJson(Map<String, dynamic> json) =>
-      _$CommunitiesStateFromJson(json);
-
-  factory CommunitiesState.initial() => CommunitiesState(
-
-      ///   - RecentContentState
-      ///   - SuggestedGroupsState
       );
 }
