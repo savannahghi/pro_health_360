@@ -20,8 +20,10 @@ OnboardingState _$OnboardingStateFromJson(Map<String, dynamic> json) {
 class _$OnboardingStateTearOff {
   const _$OnboardingStateTearOff();
 
-  _OnboardingState call() {
-    return _OnboardingState();
+  _OnboardingState call({CreatePIN? createPIN}) {
+    return _OnboardingState(
+      createPIN: createPIN,
+    );
   }
 
   OnboardingState fromJson(Map<String, Object> json) {
@@ -34,7 +36,12 @@ const $OnboardingState = _$OnboardingStateTearOff();
 
 /// @nodoc
 mixin _$OnboardingState {
+  CreatePIN? get createPIN => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OnboardingStateCopyWith<OnboardingState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -42,6 +49,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
   factory $OnboardingStateCopyWith(
           OnboardingState value, $Res Function(OnboardingState) then) =
       _$OnboardingStateCopyWithImpl<$Res>;
+  $Res call({CreatePIN? createPIN});
 }
 
 /// @nodoc
@@ -52,13 +60,28 @@ class _$OnboardingStateCopyWithImpl<$Res>
   final OnboardingState _value;
   // ignore: unused_field
   final $Res Function(OnboardingState) _then;
+
+  @override
+  $Res call({
+    Object? createPIN = freezed,
+  }) {
+    return _then(_value.copyWith(
+      createPIN: createPIN == freezed
+          ? _value.createPIN
+          : createPIN // ignore: cast_nullable_to_non_nullable
+              as CreatePIN?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$OnboardingStateCopyWith<$Res> {
+abstract class _$OnboardingStateCopyWith<$Res>
+    implements $OnboardingStateCopyWith<$Res> {
   factory _$OnboardingStateCopyWith(
           _OnboardingState value, $Res Function(_OnboardingState) then) =
       __$OnboardingStateCopyWithImpl<$Res>;
+  @override
+  $Res call({CreatePIN? createPIN});
 }
 
 /// @nodoc
@@ -71,28 +94,53 @@ class __$OnboardingStateCopyWithImpl<$Res>
 
   @override
   _OnboardingState get _value => super._value as _OnboardingState;
+
+  @override
+  $Res call({
+    Object? createPIN = freezed,
+  }) {
+    return _then(_OnboardingState(
+      createPIN: createPIN == freezed
+          ? _value.createPIN
+          : createPIN // ignore: cast_nullable_to_non_nullable
+              as CreatePIN?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_OnboardingState implements _OnboardingState {
-  _$_OnboardingState();
+  _$_OnboardingState({this.createPIN});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$_$_OnboardingStateFromJson(json);
 
   @override
+  final CreatePIN? createPIN;
+
+  @override
   String toString() {
-    return 'OnboardingState()';
+    return 'OnboardingState(createPIN: $createPIN)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _OnboardingState);
+    return identical(this, other) ||
+        (other is _OnboardingState &&
+            (identical(other.createPIN, createPIN) ||
+                const DeepCollectionEquality()
+                    .equals(other.createPIN, createPIN)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(createPIN);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>
+      __$OnboardingStateCopyWithImpl<_OnboardingState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -101,8 +149,15 @@ class _$_OnboardingState implements _OnboardingState {
 }
 
 abstract class _OnboardingState implements OnboardingState {
-  factory _OnboardingState() = _$_OnboardingState;
+  factory _OnboardingState({CreatePIN? createPIN}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
+
+  @override
+  CreatePIN? get createPIN => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

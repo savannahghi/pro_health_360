@@ -22,7 +22,6 @@ class _$MiscStateTearOff {
 
   _MiscState call(
       {PhoneLogin? phoneLogin,
-      CreatePIN? createPIN,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
@@ -30,7 +29,6 @@ class _$MiscStateTearOff {
       FAQState? faqState}) {
     return _MiscState(
       phoneLogin: phoneLogin,
-      createPIN: createPIN,
       userPin: userPin,
       libraryListItems: libraryListItems,
       healthPagePINInputTime: healthPagePINInputTime,
@@ -50,7 +48,6 @@ const $MiscState = _$MiscStateTearOff();
 /// @nodoc
 mixin _$MiscState {
   PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
-  CreatePIN? get createPIN => throw _privateConstructorUsedError;
   UserPin? get userPin => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
@@ -70,7 +67,6 @@ abstract class $MiscStateCopyWith<$Res> {
       _$MiscStateCopyWithImpl<$Res>;
   $Res call(
       {PhoneLogin? phoneLogin,
-      CreatePIN? createPIN,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
@@ -92,7 +88,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
   @override
   $Res call({
     Object? phoneLogin = freezed,
-    Object? createPIN = freezed,
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
@@ -104,10 +99,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
               as PhoneLogin?,
-      createPIN: createPIN == freezed
-          ? _value.createPIN
-          : createPIN // ignore: cast_nullable_to_non_nullable
-              as CreatePIN?,
       userPin: userPin == freezed
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
@@ -163,7 +154,6 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
   @override
   $Res call(
       {PhoneLogin? phoneLogin,
-      CreatePIN? createPIN,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
@@ -188,7 +178,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneLogin = freezed,
-    Object? createPIN = freezed,
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
@@ -200,10 +189,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
               as PhoneLogin?,
-      createPIN: createPIN == freezed
-          ? _value.createPIN
-          : createPIN // ignore: cast_nullable_to_non_nullable
-              as CreatePIN?,
       userPin: userPin == freezed
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
@@ -233,7 +218,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 class _$_MiscState implements _MiscState {
   _$_MiscState(
       {this.phoneLogin,
-      this.createPIN,
       this.userPin,
       this.libraryListItems,
       this.healthPagePINInputTime,
@@ -245,8 +229,6 @@ class _$_MiscState implements _MiscState {
 
   @override
   final PhoneLogin? phoneLogin;
-  @override
-  final CreatePIN? createPIN;
   @override
   final UserPin? userPin;
   @override
@@ -260,7 +242,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, createPIN: $createPIN, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, termsAndConditions: $termsAndConditions, faqState: $faqState)';
+    return 'MiscState(phoneLogin: $phoneLogin, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, termsAndConditions: $termsAndConditions, faqState: $faqState)';
   }
 
   @override
@@ -270,9 +252,6 @@ class _$_MiscState implements _MiscState {
             (identical(other.phoneLogin, phoneLogin) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneLogin, phoneLogin)) &&
-            (identical(other.createPIN, createPIN) ||
-                const DeepCollectionEquality()
-                    .equals(other.createPIN, createPIN)) &&
             (identical(other.userPin, userPin) ||
                 const DeepCollectionEquality()
                     .equals(other.userPin, userPin)) &&
@@ -294,7 +273,6 @@ class _$_MiscState implements _MiscState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(phoneLogin) ^
-      const DeepCollectionEquality().hash(createPIN) ^
       const DeepCollectionEquality().hash(userPin) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
       const DeepCollectionEquality().hash(healthPagePINInputTime) ^
@@ -315,7 +293,6 @@ class _$_MiscState implements _MiscState {
 abstract class _MiscState implements MiscState {
   factory _MiscState(
       {PhoneLogin? phoneLogin,
-      CreatePIN? createPIN,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
@@ -327,8 +304,6 @@ abstract class _MiscState implements MiscState {
 
   @override
   PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
-  @override
-  CreatePIN? get createPIN => throw _privateConstructorUsedError;
   @override
   UserPin? get userPin => throw _privateConstructorUsedError;
   @override

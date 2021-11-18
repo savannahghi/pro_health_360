@@ -138,7 +138,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                       verySmallVerticalSizedBox,
                       GestureDetector(
                         key: viewAllButtonKey,
-                        onTap: () => StoreProvider.dispatch<AppState>(
+                        onTap: () => StoreProvider.dispatch<MainAppState>(
                           context,
                           BottomNavAction(currentBottomNavIndex: 1),
                         ),

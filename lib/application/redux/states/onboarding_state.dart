@@ -1,21 +1,23 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 
 part 'onboarding_state.freezed.dart';
 part 'onboarding_state.g.dart';
 
 @freezed
 class OnboardingState with _$OnboardingState {
-  factory OnboardingState() = _OnboardingState;
+  factory OnboardingState({
+    CreatePIN? createPIN,
+  }) = _OnboardingState;
 
   factory OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$OnboardingStateFromJson(json);
 
   factory OnboardingState.initial() => OnboardingState(
-
-      ///   - Login state
-      ///   - Terms and conditions
-      ///   - create pin
-      ///   - security questions
-      ///   - nickname
+        ///   - Login state
+        ///   - Terms and conditions
+        createPIN: CreatePIN.initial(),
+        ///   - security questions
+        ///   - nickname
       );
 }

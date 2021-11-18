@@ -15,7 +15,6 @@ part 'misc_state.g.dart';
 class MiscState with _$MiscState {
   factory MiscState({
     PhoneLogin? phoneLogin,
-    CreatePIN? createPIN,
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     String? healthPagePINInputTime,
@@ -28,7 +27,6 @@ class MiscState with _$MiscState {
 
   factory MiscState.initial() => MiscState(
         phoneLogin: PhoneLogin.initial(),
-        createPIN: CreatePIN.initial(),
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         healthPagePINInputTime: UNKNOWN,
