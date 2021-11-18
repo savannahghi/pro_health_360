@@ -105,8 +105,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
           );
         }
 
-        if (snapshot.hasData) {
-          // TODO!!(abiud): the data could be missing this key
+        if (snapshot.hasData && snapshot.data['fetchSuggestedGroups'] != null) {
           final List<dynamic> suggestedGroups =
               snapshot.data['fetchSuggestedGroups'] as List<dynamic>;
 
@@ -116,18 +115,18 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    suggestedGroupsString,
-                    overflow: TextOverflow.ellipsis,
-                    style:
-                        TextThemes.veryBoldSize16Text(AppColors.secondaryColor),
+                if (suggestedGroups.isNotEmpty) ...<Widget>{
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      suggestedGroupsString,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextThemes.veryBoldSize16Text(
+                        AppColors.secondaryColor,
+                      ),
+                    ),
                   ),
-                ),
-                verySmallVerticalSizedBox,
-                // TODO!!(abiud): handle empty suggested groups
-                if (suggestedGroups.isNotEmpty)
+                  verySmallVerticalSizedBox,
                   SizedBox(
                     height: 200,
                     child: ListView.builder(
@@ -146,6 +145,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
                       },
                     ),
                   ),
+                },
               ],
             ),
           );
