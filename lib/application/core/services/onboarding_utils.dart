@@ -115,7 +115,7 @@ Future<void> registerDeviceToken({required IGraphQlClient client}) async {
   await client.query(registerDeviceTokenQuery, _variables);
 }
 
-/// [getInitialRoute] routine is used to determine what should be the
+/// [onboardingPath] routine is used to determine what should be the
 /// first Page(route) a user should see on launching the application.
 /// The selection of the Page(route) to show is determined by if the user
 /// is already signed in/logged in or not.
@@ -380,3 +380,4 @@ Future<void> setUserPIN({
     ),
   );
 }
+

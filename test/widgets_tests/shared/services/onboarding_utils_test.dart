@@ -7,16 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart' show AppContext;
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
@@ -24,9 +20,7 @@ import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
@@ -48,7 +42,6 @@ void main() {
 
   group('OnboardingUtils', () {
     late MockGraphQlClient mockGraphQlClient;
-    late MockShortGraphQlClient mockShortGraphQlClient;
     MockDateTimeParser? dateTimeParser;
     MockSILFCM? fcm;
 
@@ -62,7 +55,6 @@ void main() {
 
     setUp(() {
       mockGraphQlClient = MockGraphQlClient();
-      mockShortGraphQlClient = MockShortGraphQlClient();
       dateTimeParser = MockDateTimeParser();
       fcm = MockSILFCM();
       when(dateTimeParser!.parsedExpireAt(int.parse('3600')))
@@ -375,22 +367,10 @@ void main() {
       testWidgets(
           'Onboarding utils should process response with a 400 and a status code of 4',
           (WidgetTester tester) async {
-             StoreProvider.dispatch<AppState>(
-              context,
-              UpdateUserProfileAction(
-                firstName: 'Test',
-                lastName: 'Name',
-              ),
-            );
-            
-        store = Store<AppState>(
-          initialState: AppState.initial(
-            clientProfile: UserProfileState(
-              isSignedIn: true,
-              userProfile: UserProfile(
-                primaryPhoneNumber: PhoneNumber.withValue('+254123456789'),
-              ),
-            ),
+        store.dispatch(
+          UpdateUserProfileAction(
+            firstName: 'Test',
+            lastName: 'Name',
           ),
         );
 
@@ -485,7 +465,10 @@ void main() {
         // expect a default error msg because context was not passed in
         expect(actualResponse.message, wrongLoginCredentials);
 
-        expect(store.state.miscState!.phoneLogin!.invalidCredentials, true);
+        expect(
+          store.state.onboardingState!.phoneLogin!.invalidCredentials,
+          true,
+        );
       });
 
       testWidgets(
@@ -722,306 +705,6 @@ void main() {
 
         expect(store.state.wait!.isWaitingFor(testFlag), false);
       });
-    });
-
-    testWidgets('should return home route for a user with a valid token',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-      late String initialRoute;
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(
-                signedIn: true,
-                idToken: 'oldAuthToken',
-                refreshToken: 'oldRefreshToken',
-                expiresAt: DateTime.now()
-                    .add(const Duration(seconds: 2))
-                    .toIso8601String(),
-              ),
-            );
-            return SILPrimaryButton(
-              onPressed: () async {
-                initialRoute = await getInitialRoute(
-                  context,
-                  store.state,
-                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      // trigger the bottom sheet
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.home);
-    });
-
-    testWidgets(
-        'should return landing page for a user who is not signed in and '
-        'has not completed the onboarding tour ', (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-      // ignore: unused_local_variable
-      late String initialRoute;
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              UpdateClientProfileAction(onboardingTourComplete: false),
-            );
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(
-                signedIn: false,
-                idToken: 'oldAuthToken',
-                refreshToken: 'oldRefreshToken',
-                expiresAt: DateTime.now()
-                    .add(const Duration(seconds: 2))
-                    .toIso8601String(),
-              ),
-            );
-            return SILPrimaryButton(
-              onPressed: () async {
-                initialRoute = await getInitialRoute(
-                  context,
-                  store.state,
-                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      // trigger the bottom sheet
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-    });
-
-    testWidgets('should save profile details successfully',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      final Map<String, String> variables = <String, String>{
-        'firstName': testFirstName,
-        'lastName': testLastName,
-        'gender': 'Male',
-        'dateOfBirth': testDOB
-      };
-
-      when(
-        baseGraphQlClientMock.query(
-          updateUserProfileMutation,
-          <String, dynamic>{
-            // ignore: always_specify_types
-            'input': variables,
-          },
-        ),
-      ).thenAnswer(
-        (_) => Future<http.Response>.value(
-          http.Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{
-                'updateUserProfile': <String, dynamic>{
-                  'userBioData': variables
-                },
-              }
-            }),
-            201,
-          ),
-        ),
-      );
-
-      when(baseGraphQlClientMock.toMap(any)).thenReturn(<String, dynamic>{
-        'data': <String, dynamic>{
-          'updateUserProfile': <String, dynamic>{'userBioData': variables},
-        }
-      });
-
-      when(
-        baseGraphQlClientMock.parseError(<String, dynamic>{
-          'data': <String, dynamic>{
-            'updateUserProfile': <String, dynamic>{'userBioData': variables},
-          }
-        }),
-      ).thenReturn(null);
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                await saveProfileDetails(
-                  variables: variables,
-                  checkGender: 'Male',
-                  checkDisplayName: testFirstName,
-                  context: context,
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pump(const Duration(seconds: 1));
-
-      // verify(mockNavigatorObserver.didPush(sampleRoute, any));
-      final BioData bioData =
-          store.state.clientProfile!.userProfile!.userBioData!;
-      expect(bioData.gender, Gender.male);
-      expect(bioData.firstName!.getValue(), testFirstName);
-      expect(bioData.lastName!.getValue(), testLastName);
-      expect(bioData.dateOfBirth, testDOB);
-    });
-
-    testWidgets('should show error showSnackBar when save profile fails',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      final Map<String, String> variables = <String, String>{
-        'firstName': testFirstName,
-        'lastName': testLastName,
-        'gender': 'Male',
-        'dateOfBirth': testDOB
-      };
-
-      when(
-        baseGraphQlClientMock.query(
-          updateUserProfileMutation,
-          <String, dynamic>{
-            // ignore: always_specify_types
-            'input': variables,
-          },
-        ),
-      ).thenAnswer(
-        (_) => Future<http.Response>.value(
-          http.Response(
-            json.encode(<String, dynamic>{'data': null}),
-            201,
-          ),
-        ),
-      );
-
-      when(baseGraphQlClientMock.toMap(any))
-          .thenReturn(<String, dynamic>{'data': null});
-
-      when(baseGraphQlClientMock.parseError(<String, dynamic>{'data': null}))
-          .thenReturn(null);
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                await saveProfileDetails(
-                  variables: variables,
-                  checkGender: 'Male',
-                  checkDisplayName: testFirstName,
-                  context: context,
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle(const Duration(seconds: 1));
-      expect(find.byType(ScaffoldMessenger), findsOneWidget);
-    });
-
-    testWidgets('should return error when saving profile details',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      when(
-        baseGraphQlClientMock.query(
-          updateUserProfileMutation,
-          <String, dynamic>{
-            // ignore: always_specify_types
-            'input': {
-              'firstName': 'Test',
-              'lastName': 'Name',
-              'gender': 'Male'
-            },
-          },
-        ),
-      ).thenAnswer(
-        (_) => Future<http.Response>.value(
-          http.Response(
-            json.encode(<String, dynamic>{'error': 'An error occurred'}),
-            401,
-          ),
-        ),
-      );
-
-      when(baseGraphQlClientMock.toMap(any))
-          .thenReturn(<String, dynamic>{'error': 'An error occurred'});
-
-      when(
-        baseGraphQlClientMock
-            .parseError(<String, dynamic>{'error': 'An error occurred'}),
-      ).thenReturn('error');
-
-      final Map<String, String> variables = <String, String>{
-        'firstName': 'Test',
-        'lastName': 'Name',
-      };
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                await saveProfileDetails(
-                  variables: variables,
-                  checkGender: 'Male',
-                  checkDisplayName: 'Test Name',
-                  context: context,
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pump(const Duration(seconds: 1));
-
-      // verify(mockNavigatorObserver.didPush(sampleRoute, any));
-      final BioData bioData =
-          store.state.clientProfile!.userProfile!.userBioData!;
-      expect(bioData.gender, Gender.unknown);
-      expect(bioData.firstName!.getValue(), UNKNOWN);
-      expect(bioData.lastName!.getValue(), UNKNOWN);
     });
 
     testWidgets(
@@ -1272,154 +955,6 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(store.state.wait!.isWaitingFor(flag), false);
-      });
-    });
-
-    testWidgets('refreshTokenAndUpdateState should get a new token',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      const String testRefreshToken = 'some-valid-token';
-
-      // mocked response
-      final http.Response response = http.Response(
-        json.encode(
-          <String, dynamic>{
-            'id_token': 'newAuthToken',
-            'refresh_token': testRefreshToken,
-            'expires_in': '2'
-          },
-        ),
-        201,
-      );
-
-      callRESTAPIWhenThenAnswer(
-        endpoint: 'https://onboarding-testing.savannahghi.org/refresh_token',
-        variables: <String, dynamic>{
-          'refreshToken': testRefreshToken,
-          'appVersion': APPVERSION,
-        },
-        response: response,
-      );
-
-      loginResponse.remove('auth');
-
-      final UserResponse userResp = UserResponse.fromJson(loginResponse);
-      final UserProfile? userProfile = userResp.profile;
-
-      await tester.runAsync(() async {
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              StoreProvider.dispatch(
-                context,
-                UpdateClientProfileAction(
-                  profile: userProfile,
-                  userBioData: userProfile?.userBioData,
-                ),
-              );
-
-              return SILPrimaryButton(
-                onPressed: () async {
-                  refreshTokenAndUpdateState(
-                    context: context,
-                    signedIn: true,
-                    value: true,
-                    refreshToken: testRefreshToken,
-                    appContexts: testAppContexts,
-                  );
-                },
-              );
-            },
-          ),
-        );
-
-        await tester.pump();
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-        expect(
-          store.state.clientProfile!.auth!.refreshToken,
-          testRefreshToken,
-        );
-      });
-    });
-
-    testWidgets('refreshTokenAndUpdateState should not get a new token',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      const String testRefreshToken = 'some-valid-token';
-
-      await tester.runAsync(() async {
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(
-                onPressed: () async {
-                  refreshTokenAndUpdateState(
-                    context: context,
-                    signedIn: true,
-                    value: false,
-                    refreshToken: testRefreshToken,
-                    appContexts: testAppContexts,
-                  );
-                },
-              );
-            },
-          ),
-        );
-
-        await tester.pump();
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-        expect(store.state.clientProfile!.auth!.refreshToken, UNKNOWN);
-      });
-    });
-
-    testWidgets('refreshTokenAndUpdateState should fail to get a new token',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      const String testRefreshToken = 'some-valid-token';
-
-      await tester.runAsync(() async {
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(
-                onPressed: () async {
-                  refreshTokenAndUpdateState(
-                    context: context,
-                    signedIn: false,
-                    value: true,
-                    refreshToken: testRefreshToken,
-                    appContexts: testAppContexts,
-                  );
-                },
-              );
-            },
-          ),
-        );
-
-        await tester.pump();
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-        expect(store.state.clientProfile!.auth!.refreshToken, UNKNOWN);
       });
     });
 
