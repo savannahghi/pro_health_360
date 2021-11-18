@@ -32,12 +32,11 @@ class OnboardingPageWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool? isFirstTimeChangePin =
-        StoreProvider.state<MainAppState>(context)!
-            .clientState!
-            .clientProfile!
-            .user!
-            .pinChangeRequired;
+    final bool? isFirstTimeChangePin = StoreProvider.state<AppState>(context)!
+        .clientState!
+        .clientProfile!
+        .user!
+        .pinChangeRequired;
 
     return Scaffold(
       appBar: hasAppBar ? SILSmallAppBar(title: title) : null,

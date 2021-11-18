@@ -7,9 +7,9 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 class AppStateViewModel {
   AppStateViewModel({required this.appState});
 
-  final MainAppState appState;
+  final AppState appState;
 
-  static AppStateViewModel fromStore(Store<MainAppState> store) {
+  static AppStateViewModel fromStore(Store<AppState> store) {
     return AppStateViewModel(appState: store.state);
   }
 }

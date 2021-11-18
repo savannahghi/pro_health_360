@@ -6,7 +6,7 @@ import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 
 // TODO(abiud): rewrite this action to cater for the new fields
-class UpdateOnboardingStateAction extends ReduxAction<MainAppState> {
+class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   UpdateOnboardingStateAction({
     this.securityQuestionsResponses,
   });
@@ -14,11 +14,11 @@ class UpdateOnboardingStateAction extends ReduxAction<MainAppState> {
   List<SecurityQuestionResponse>? securityQuestionsResponses;
 
   @override
-  MainAppState reduce() {
+  AppState reduce() {
     final OnboardingState? newOnboardingState = state.onboardingState?.copyWith
         .call(securityQuestionResponses: securityQuestionsResponses);
 
-    final MainAppState newState =
+    final AppState newState =
         state.copyWith(onboardingState: newOnboardingState);
 
     return newState;

@@ -75,7 +75,7 @@ class _PINInputPageState extends State<PINInputPage> {
     late String enteredPin = '';
     return WillPopScope(
       onWillPop: () async {
-        StoreProvider.dispatch<MainAppState>(
+        StoreProvider.dispatch<AppState>(
           context,
           BottomNavAction(currentBottomNavIndex: 0),
         );
@@ -91,7 +91,7 @@ class _PINInputPageState extends State<PINInputPage> {
           leadingWidget: GestureDetector(
             key: pinInputPageBackKey,
             onTap: () {
-              StoreProvider.dispatch<MainAppState>(
+              StoreProvider.dispatch<AppState>(
                 context,
                 BottomNavAction(currentBottomNavIndex: 0),
               );
@@ -192,7 +192,7 @@ class _PINInputPageState extends State<PINInputPage> {
                             }
                           } else {
                             errorMessage = '';
-                            StoreProvider.dispatch<MainAppState>(
+                            StoreProvider.dispatch<AppState>(
                               context,
                               BottomNavAction(currentBottomNavIndex: 3),
                             );

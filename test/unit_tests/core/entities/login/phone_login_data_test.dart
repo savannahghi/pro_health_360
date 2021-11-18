@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/client_profile.dart';
-import 'package:myafyahub/domain/core/entities/core/credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/login_data.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_data.dart';

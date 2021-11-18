@@ -31,8 +31,8 @@ class AppbarUser extends StatelessWidget {
       child: GestureDetector(
         key: appBarUserKey,
         onTap: () => editProfileNavigation(context),
-        child: StoreConnector<MainAppState, ClientProfileViewModel>(
-          converter: (Store<MainAppState> store) =>
+        child: StoreConnector<AppState, ClientProfileViewModel>(
+          converter: (Store<AppState> store) =>
               ClientProfileViewModel.fromStore(store),
           builder: (BuildContext context, ClientProfileViewModel vm) {
             final User? user = vm.clientProfile?.user;

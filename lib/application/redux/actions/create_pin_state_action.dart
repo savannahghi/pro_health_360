@@ -2,7 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 
-class CreatePINStateAction extends ReduxAction<MainAppState> {
+class CreatePINStateAction extends ReduxAction<AppState> {
   CreatePINStateAction({
     this.confirmPIN,
     this.newPIN,
@@ -12,8 +12,8 @@ class CreatePINStateAction extends ReduxAction<MainAppState> {
   final String? newPIN;
 
   @override
-  MainAppState reduce() {
-    final MainAppState newState = state.copyWith.onboardingState!.call(
+  AppState reduce() {
+    final AppState newState = state.copyWith.onboardingState!.call(
       createPINState: CreatePINState(newPIN: newPIN, confirmPIN: confirmPIN),
     );
 

@@ -4,7 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
 // TODO(abiud): rewrite this action to cater for the new fields
-class UpdateClientProfileAction extends ReduxAction<MainAppState> {
+class UpdateClientProfileAction extends ReduxAction<AppState> {
   UpdateClientProfileAction({
     this.active,
     this.lastMoodRecordedDate,
@@ -16,8 +16,8 @@ class UpdateClientProfileAction extends ReduxAction<MainAppState> {
   final String? nickName;
 
   @override
-  MainAppState reduce() {
-    final MainAppState newState = state.copyWith(
+  AppState reduce() {
+    final AppState newState = state.copyWith(
       clientState: state.clientState?.copyWith.call(
         clientProfile: state.clientState?.clientProfile?.copyWith(
           active: this.active ?? state.clientState?.clientProfile?.active,

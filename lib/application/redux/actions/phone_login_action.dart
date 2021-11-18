@@ -40,7 +40,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 /// Otherwise delightfully notify user of a Login Error or credentials mismatch
 ///
 /// should initiate phone login process
-class PhoneLoginAction extends ReduxAction<MainAppState> {
+class PhoneLoginAction extends ReduxAction<AppState> {
   PhoneLoginAction({
     required this.context,
     required this.flag,
@@ -67,7 +67,7 @@ class PhoneLoginAction extends ReduxAction<MainAppState> {
   }
 
   @override
-  Future<MainAppState> reduce() async {
+  Future<AppState> reduce() async {
     /// [pin] variable is retrieving the PIN the user input in the [PhoneLogin] page from state
     /// [phoneNumber] variable is retrieving the Phone Number the user input in the [PhoneLogin] page from state
     final String pin = state.onboardingState!.phoneLogin!.pinCode;
@@ -121,12 +121,7 @@ class PhoneLoginAction extends ReduxAction<MainAppState> {
         final User? user = loginData?.clientProfile?.user;
 
         // dispatch an action to update the user profile
-        await store.dispatch(
-          UpdateClientProfileAction(
-            user: user,
-            active: true,
-          ),
-        );
+        await store.dispatch(UpdateUserAction(user: user));
 
         await store.dispatch(
           AuthStatusAction(

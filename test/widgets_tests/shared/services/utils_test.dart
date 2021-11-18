@@ -131,7 +131,7 @@ void main() {
                     buttonKey: const Key('get_first_name_Key'),
                     onPressed: () {
                       actualNameFromState =
-                          getDisplayName(store.state.clientProfile!);
+                          getDisplayName(store.state.);
                     },
                   );
                 },

@@ -150,8 +150,8 @@ class _LoginPageState extends State<LoginPage> {
     return OnboardingScaffold(
       title: loginPageTitleString,
       description: loginPageSubTitleString,
-      child: StoreConnector<MainAppState, AppStateViewModel>(
-        converter: (Store<MainAppState> store) =>
+      child: StoreConnector<AppState, AppStateViewModel>(
+        converter: (Store<AppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           final User? userState = vm.appState.clientState?.clientProfile?.user;

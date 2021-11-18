@@ -15,7 +15,7 @@ void main() {
       'libraryListItems': <String>['test']
     });
 
-    expect(result2.phoneLogin, isNull);
+    expect(result2.healthPagePINInputTime, isNull);
     expect(result2.libraryListItems, isA<List<dynamic>>());
   });
 }

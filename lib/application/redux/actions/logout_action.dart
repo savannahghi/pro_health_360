@@ -11,14 +11,14 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 
-class LogoutAction extends ReduxAction<MainAppState> {
+class LogoutAction extends ReduxAction<AppState> {
   LogoutAction({required this.navigationCallback, required this.context});
 
   final BuildContext context;
   final Function navigationCallback;
 
   @override
-  Future<MainAppState> reduce() async {
+  Future<AppState> reduce() async {
     this.navigationCallback();
 
     try {
@@ -39,6 +39,6 @@ class LogoutAction extends ReduxAction<MainAppState> {
       await Sentry.captureException(error, stackTrace: stackTrace);
     }
 
-    return MainAppState.initial();
+    return AppState.initial();
   }
 }

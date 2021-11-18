@@ -11,7 +11,7 @@ class ClientProfileViewModel extends Vm {
   ClientProfileViewModel({required this.clientProfile})
       : super(equals: <Object?>[clientProfile]);
 
-  static ClientProfileViewModel fromStore(Store<MainAppState> store) {
+  static ClientProfileViewModel fromStore(Store<AppState> store) {
     return ClientProfileViewModel(
       clientProfile: store.state.clientState?.clientProfile,
     );

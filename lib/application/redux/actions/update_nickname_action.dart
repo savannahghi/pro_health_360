@@ -4,17 +4,17 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 
-class UpdateNickNameAction extends ReduxAction<MainAppState> {
+class UpdateNickNameAction extends ReduxAction<AppState> {
   UpdateNickNameAction({this.nickName});
 
   final String? nickName;
 
   @override
-  MainAppState reduce() {
+  AppState reduce() {
     final User? newUserState =
         state.clientState?.clientProfile?.user?.copyWith(username: nickName);
 
-    final MainAppState newState =
+    final AppState newState =
         state.copyWith.clientState!.clientProfile!.call(user: newUserState);
 
     return newState;

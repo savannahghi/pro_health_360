@@ -39,7 +39,7 @@ Future<void> signInUser({
   );
 
   // this is the Redux Action that handles Login for an existing user
-  await StoreProvider.dispatch<MainAppState>(
+  await StoreProvider.dispatch<AppState>(
     context,
     PhoneLoginAction(
       context: context,

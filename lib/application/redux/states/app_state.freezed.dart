@@ -362,7 +362,7 @@ abstract class _AppState implements AppState {
       throw _privateConstructorUsedError;
 }
 
-MainAppState _$MainAppStateFromJson(Map<String, dynamic> json) {
+AppState _$MainAppStateFromJson(Map<String, dynamic> json) {
   return _MainAppState.fromJson(json);
 }
 
@@ -387,16 +387,16 @@ class _$MainAppStateTearOff {
     );
   }
 
-  MainAppState fromJson(Map<String, Object> json) {
-    return MainAppState.fromJson(json);
+  AppState fromJson(Map<String, Object> json) {
+    return AppState.fromJson(json);
   }
 }
 
 /// @nodoc
-const $MainAppState = _$MainAppStateTearOff();
+const $AppState = _$MainAppStateTearOff();
 
 /// @nodoc
-mixin _$MainAppState {
+mixin _$AppState {
   AuthCredentials? get credentials => throw _privateConstructorUsedError;
   OnboardingState? get onboardingState => throw _privateConstructorUsedError;
   BottomNavigationState? get bottomNavigationState =>
@@ -408,14 +408,13 @@ mixin _$MainAppState {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MainAppStateCopyWith<MainAppState> get copyWith =>
+  $MainAppStateCopyWith<AppState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $MainAppStateCopyWith<$Res> {
-  factory $MainAppStateCopyWith(
-          MainAppState value, $Res Function(MainAppState) then) =
+  factory $MainAppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$MainAppStateCopyWithImpl<$Res>;
   $Res call(
       {AuthCredentials? credentials,
@@ -436,9 +435,9 @@ abstract class $MainAppStateCopyWith<$Res> {
 class _$MainAppStateCopyWithImpl<$Res> implements $MainAppStateCopyWith<$Res> {
   _$MainAppStateCopyWithImpl(this._value, this._then);
 
-  final MainAppState _value;
+  final AppState _value;
   // ignore: unused_field
-  final $Res Function(MainAppState) _then;
+  final $Res Function(AppState) _then;
 
   @override
   $Res call({
@@ -639,7 +638,7 @@ class _$_MainAppState implements _MainAppState {
 
   @override
   String toString() {
-    return 'MainAppState(credentials: $credentials, onboardingState: $onboardingState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, wait: $wait)';
+    return 'AppState(credentials: $credentials, onboardingState: $onboardingState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, wait: $wait)';
   }
 
   @override
@@ -686,7 +685,7 @@ class _$_MainAppState implements _MainAppState {
   }
 }
 
-abstract class _MainAppState implements MainAppState {
+abstract class _MainAppState implements AppState {
   factory _MainAppState(
       {AuthCredentials? credentials,
       OnboardingState? onboardingState,

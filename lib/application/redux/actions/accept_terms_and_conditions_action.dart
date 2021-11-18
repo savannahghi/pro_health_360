@@ -22,7 +22,7 @@ import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
-class AcceptTermsAndConditionsAction extends ReduxAction<MainAppState> {
+class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   AcceptTermsAndConditionsAction({
     required this.context,
     required this.userId,
@@ -35,18 +35,18 @@ class AcceptTermsAndConditionsAction extends ReduxAction<MainAppState> {
 
   @override
   void after() {
-    dispatch(WaitAction<MainAppState>.remove(acceptTermsFlag));
+    dispatch(WaitAction<AppState>.remove(acceptTermsFlag));
     super.after();
   }
 
   @override
   void before() {
-    dispatch(WaitAction<MainAppState>.add(acceptTermsFlag));
+    dispatch(WaitAction<AppState>.add(acceptTermsFlag));
     super.before();
   }
 
   @override
-  Future<MainAppState> reduce() async {
+  Future<AppState> reduce() async {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
     //Todo: Remove after testing

@@ -31,8 +31,8 @@ class ForgotPinOtpWidget extends StatelessWidget {
     const String flag = 'forgot_pin_otp_widget';
 
     return Scaffold(
-      body: StoreConnector<MainAppState, AppStateViewModel>(
-        converter: (Store<MainAppState> store) =>
+      body: StoreConnector<AppState, AppStateViewModel>(
+        converter: (Store<AppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           // TODO(abiud): add sanity checks since the phone number is now a list of contacts

@@ -21,7 +21,6 @@ import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_pag
 import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/request_pin_reset_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
@@ -30,7 +29,6 @@ import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
-import 'package:myafyahub/presentation/profile/pages/edit_profile_page.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
@@ -112,12 +110,6 @@ class RouteGenerator {
       case BWRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
           builder: (_) => const ProfileFaqsPage(),
-        );
-
-      // search page
-      case BWRoutes.editProfileSettingsPage:
-        return MaterialPageRoute<EditProfilePage>(
-          builder: (_) => EditProfilePage(),
         );
 
       case BWRoutes.webView:

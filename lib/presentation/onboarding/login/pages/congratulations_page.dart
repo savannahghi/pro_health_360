@@ -87,9 +87,9 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
               borderColor: AppColors.secondaryColor,
               onPressed: () async {
                 if (_congratulationsFormKey.currentState!.validate()) {
-                  await StoreProvider.dispatch<MainAppState>(
+                  await StoreProvider.dispatch<AppState>(
                     context,
-                    UpdateClientProfileAction(nickName: nickName),
+                    UpdateUserProfileAction(nickName: nickName),
                   );
 
                   Navigator.pushReplacementNamed(

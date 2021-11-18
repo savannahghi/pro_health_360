@@ -4,7 +4,7 @@ import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
-class AuthStatusAction extends ReduxAction<MainAppState> {
+class AuthStatusAction extends ReduxAction<AppState> {
   AuthStatusAction({
     this.idToken,
     this.refreshToken,
@@ -20,8 +20,8 @@ class AuthStatusAction extends ReduxAction<MainAppState> {
   final String? signedInTime;
 
   @override
-  MainAppState? reduce() {
-    final MainAppState newState = state.copyWith.credentials!.call(
+  AppState? reduce() {
+    final AppState newState = state.copyWith.credentials!.call(
       idToken: idToken ?? state.credentials?.idToken,
       expiresIn: expiresAt ?? state.credentials?.expiresIn,
       refreshToken: refreshToken ?? state.credentials?.refreshToken,

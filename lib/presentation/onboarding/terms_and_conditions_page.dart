@@ -34,7 +34,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback(
-      (_) => StoreProvider.dispatch<MainAppState>(
+      (_) => StoreProvider.dispatch<AppState>(
         context,
         // retrieve the terms & conditions
         GetTermsAction(
@@ -51,8 +51,8 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: StoreConnector<MainAppState, MainAppStateViewModel>(
-            converter: (Store<MainAppState> store) =>
+          child: StoreConnector<AppState, MainAppStateViewModel>(
+            converter: (Store<AppState> store) =>
                 MainAppStateViewModel.fromStore(store),
             builder: (BuildContext context, MainAppStateViewModel vm) {
               return Column(
@@ -157,7 +157,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                             onPressed: !isAgreed
                                 ? null
                                 : () {
-                                    StoreProvider.dispatch<MainAppState>(
+                                    StoreProvider.dispatch<AppState>(
                                       context,
                                       // retrieve the terms and conditions
                                       AcceptTermsAndConditionsAction(

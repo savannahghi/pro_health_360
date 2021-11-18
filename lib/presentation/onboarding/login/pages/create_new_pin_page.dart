@@ -44,8 +44,8 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
     return OnboardingScaffold(
       title: createNewPINTitleString,
       description: createNewPINSubTitleString,
-      child: StoreConnector<MainAppState, MainAppStateViewModel>(
-        converter: (Store<MainAppState> store) =>
+      child: StoreConnector<AppState, MainAppStateViewModel>(
+        converter: (Store<AppState> store) =>
             MainAppStateViewModel.fromStore(store),
         builder: (BuildContext context, MainAppStateViewModel vm) {
           return SizedBox(
@@ -155,7 +155,8 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                                 setUserPIN(
                                   context: context,
                                   newPIN: pin,
-                                  confirmPIN: confirmPin, flavour: Flavour.CONSUMER.name,
+                                  confirmPIN: confirmPin,
+                                  flavour: Flavour.CONSUMER.name,
                                 );
                               }
                             },

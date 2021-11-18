@@ -22,7 +22,7 @@ class SecurityQuestionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MainAppState appState = StoreProvider.state<MainAppState>(context)!;
+    final AppState appState = StoreProvider.state<AppState>(context)!;
     final List<SecurityQuestionResponse>? securityQuestionsResponses =
         appState.onboardingState!.securityQuestionResponses;
 

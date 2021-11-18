@@ -38,8 +38,8 @@ class UserDetailsCard extends StatelessWidget {
   final String home;
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<MainAppState, ClientProfileViewModel>(
-      converter: (Store<MainAppState> store) =>
+    return StoreConnector<AppState, ClientProfileViewModel>(
+      converter: (Store<AppState> store) =>
           ClientProfileViewModel.fromStore(store),
       builder: (BuildContext context, ClientProfileViewModel vm) {
         final User? user = vm.clientProfile?.user;
