@@ -34,7 +34,6 @@ void main() {
 
       await tester.tap(find.byType(EditInformationButtonWidget));
       await tester.pumpAndSettle();
-
       expect(find.byType(EditInformationPage), findsOneWidget);
     });
 
@@ -57,32 +56,6 @@ void main() {
       expect(
         (tester.firstWidget(find.byType(SizedBox).last) as SizedBox).height,
         26.0,
-      );
-    });
-
-    testWidgets('dropdown button renders a list', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: EditInformationButtonWidget(
-          editInformationItem: careGiverEditInfo,
-        ),
-      );
-
-      await tester.tap(find.byType(EditInformationButtonWidget));
-      await tester.pumpAndSettle();
-
-      await tester.ensureVisible(find.byType(DropdownButtonHideUnderline));
-      await tester.tap(find.byType(DropdownButtonHideUnderline));
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.text(father).last);
-      await tester.pumpAndSettle();
-
-      expect(
-        find.text(father),
-        findsOneWidget,
       );
     });
 
@@ -126,6 +99,33 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(EditInformationPage), findsNothing);
+    });
+
+    testWidgets('EditInformationDropDown onChange on tap',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: EditInformationButtonWidget(
+          editInformationItem: careGiverEditInfo,
+        ),
+      );
+
+      await tester.tap(find.byType(EditInformationButtonWidget));
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.byType(DropdownButtonHideUnderline));
+      await tester.tap(find.byType(DropdownButtonHideUnderline));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(father).last);
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text(father),
+        findsOneWidget,
+      );
     });
   });
 }
