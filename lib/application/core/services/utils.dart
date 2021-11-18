@@ -24,7 +24,6 @@ import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/user_profile_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:myafyahub/domain/core/entities/core/contact_type.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
@@ -434,7 +433,7 @@ dynamic reportErrorToSentry(
 
       if (isSignedIn) {
         errorTrace = <String, dynamic>{
-          'phoneNumber': contact?.contact?.getValue() ?? UNKNOWN,
+          'phoneNumber': contact?.contact ?? UNKNOWN,
           'error': errorTrace,
         };
       }
