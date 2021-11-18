@@ -111,8 +111,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
           );
         }
 
-        if (snapshot.hasData) {
-          // TODO!!(abiud): the data could be missing this key
+        if (snapshot.hasData && snapshot.data['fetchRecentContent'] != null) {
           final List<dynamic> recentContent =
               snapshot.data['fetchRecentContent'] as List<dynamic>;
 
@@ -121,39 +120,38 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15.0,
-                    vertical: 10.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        newContentText,
-                        style: TextThemes.veryBoldSize16Text(
-                          AppColors.secondaryColor,
-                        ),
-                      ),
-                      verySmallVerticalSizedBox,
-                      GestureDetector(
-                        key: viewAllButtonKey,
-                        onTap: () => StoreProvider.dispatch<AppState>(
-                          context,
-                          BottomNavAction(currentBottomNavIndex: 1),
-                        ),
-                        child: Text(
-                          viewAllText,
-                          style: TextThemes.normalSize16Text(
+                if (recentContent.isNotEmpty) ...<Widget>{
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 10.0,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          newContentText,
+                          style: TextThemes.veryBoldSize16Text(
                             AppColors.secondaryColor,
                           ),
                         ),
-                      ),
-                    ],
+                        verySmallVerticalSizedBox,
+                        GestureDetector(
+                          key: viewAllButtonKey,
+                          onTap: () => StoreProvider.dispatch<AppState>(
+                            context,
+                            BottomNavAction(currentBottomNavIndex: 1),
+                          ),
+                          child: Text(
+                            viewAllText,
+                            style: TextThemes.normalSize16Text(
+                              AppColors.secondaryColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                // TODO!!(abiud): handle empty recent content
-                if (recentContent.isNotEmpty)
                   SizedBox(
                     width: double.infinity,
                     height: 250,
@@ -174,6 +172,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                       },
                     ),
                   ),
+                },
               ],
             ),
           );
