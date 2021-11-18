@@ -54,6 +54,8 @@ class AppState with _$AppState {
 @freezed
 class MainAppState with _$MainAppState {
   factory MainAppState({
+    AuthCredentials? credentials,
+    UserState? userState,
     OnboardingState? onboardingState,
     BottomNavigationState? bottomNavigationState,
     MiscState? miscState,
@@ -64,6 +66,8 @@ class MainAppState with _$MainAppState {
       _$MainAppStateFromJson(json);
 
   factory MainAppState.initial() => MainAppState(
+        credentials: AuthCredentials.initial(),
+        userState: UserState.initial(),
         onboardingState: OnboardingState.initial(),
         miscState: MiscState.initial(),
         bottomNavigationState: BottomNavigationState.initial(),

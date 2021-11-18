@@ -6,8 +6,8 @@ import 'package:myafyahub/application/redux/actions/accept_terms_and_conditions_
 import 'package:myafyahub/application/redux/actions/get_terms_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:afya_moja_core/checkbox_component.dart';
+import 'package:myafyahub/application/redux/view_models/main_app_state_view_model.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -51,10 +51,10 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: StoreConnector<AppState, AppStateViewModel>(
-            converter: (Store<AppState> store) =>
-                AppStateViewModel.fromStore(store),
-            builder: (BuildContext context, AppStateViewModel vm) {
+          child: StoreConnector<MainAppState, MainAppStateViewModel>(
+            converter: (Store<MainAppState> store) =>
+                MainAppStateViewModel.fromStore(store),
+            builder: (BuildContext context, MainAppStateViewModel vm) {
               return Column(
                 children: <Widget>[
                   // Terms and Conditions Card
@@ -107,7 +107,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                       : SizedBox(
                                           width: double.infinity,
                                           child: Text(
-                                            vm.appState.miscState!
+                                            vm.appState.onboardingState!
                                                 .termsAndConditions!.text,
                                             style: TextThemes.normalSize15Text(
                                               AppColors.secondaryColor
@@ -128,7 +128,8 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     value: isAgreed,
                     color: AppColors.secondaryColor,
                     onChanged: (bool? value) async {
-                      if (vm.appState.miscState!.termsAndConditions!.text !=
+                      if (vm.appState.onboardingState!.termsAndConditions!
+                              .text !=
                           UNKNOWN) {
                         setState(() {
                           isAgreed = value!;
@@ -147,7 +148,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                           )
                         : MyAfyaHubPrimaryButton(
                             text: continueString,
-                            buttonColor: vm.appState.miscState!
+                            buttonColor: vm.appState.onboardingState!
                                             .termsAndConditions!.text !=
                                         UNKNOWN &&
                                     isAgreed
@@ -160,10 +161,15 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                       context,
                                       // retrieve the terms and conditions
                                       AcceptTermsAndConditionsAction(
-                                        termsId: vm.appState.miscState!
+                                        termsId: vm.appState.onboardingState!
                                             .termsAndConditions!.termsId,
-                                        userId: vm.appState.clientProfile!
-                                            .userProfile!.id!,
+                                        userId: vm
+                                            .appState
+                                            .userState!
+                                            .clientState!
+                                            .clientProfile!
+                                            .user!
+                                            .userId!,
                                         context: context,
                                       ),
                                     );

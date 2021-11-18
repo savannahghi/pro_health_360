@@ -25,14 +25,12 @@ class _$MiscStateTearOff {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions,
       FAQState? faqState}) {
     return _MiscState(
       phoneLogin: phoneLogin,
       userPin: userPin,
       libraryListItems: libraryListItems,
       healthPagePINInputTime: healthPagePINInputTime,
-      termsAndConditions: termsAndConditions,
       faqState: faqState,
     );
   }
@@ -50,9 +48,8 @@ mixin _$MiscState {
   PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
   UserPin? get userPin => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
-  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
-  TermsAndConditions? get termsAndConditions =>
-      throw _privateConstructorUsedError;
+  String? get healthPagePINInputTime =>
+      throw _privateConstructorUsedError; // TermsAndConditions? termsAndConditions,
   FAQState? get faqState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -70,10 +67,8 @@ abstract class $MiscStateCopyWith<$Res> {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions,
       FAQState? faqState});
 
-  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   $FAQStateCopyWith<$Res>? get faqState;
 }
 
@@ -91,7 +86,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
-    Object? termsAndConditions = freezed,
     Object? faqState = freezed,
   }) {
     return _then(_value.copyWith(
@@ -111,27 +105,11 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      termsAndConditions: termsAndConditions == freezed
-          ? _value.termsAndConditions
-          : termsAndConditions // ignore: cast_nullable_to_non_nullable
-              as TermsAndConditions?,
       faqState: faqState == freezed
           ? _value.faqState
           : faqState // ignore: cast_nullable_to_non_nullable
               as FAQState?,
     ));
-  }
-
-  @override
-  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions {
-    if (_value.termsAndConditions == null) {
-      return null;
-    }
-
-    return $TermsAndConditionsCopyWith<$Res>(_value.termsAndConditions!,
-        (value) {
-      return _then(_value.copyWith(termsAndConditions: value));
-    });
   }
 
   @override
@@ -157,11 +135,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions,
       FAQState? faqState});
 
-  @override
-  $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   @override
   $FAQStateCopyWith<$Res>? get faqState;
 }
@@ -181,7 +156,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
-    Object? termsAndConditions = freezed,
     Object? faqState = freezed,
   }) {
     return _then(_MiscState(
@@ -201,10 +175,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      termsAndConditions: termsAndConditions == freezed
-          ? _value.termsAndConditions
-          : termsAndConditions // ignore: cast_nullable_to_non_nullable
-              as TermsAndConditions?,
       faqState: faqState == freezed
           ? _value.faqState
           : faqState // ignore: cast_nullable_to_non_nullable
@@ -221,7 +191,6 @@ class _$_MiscState implements _MiscState {
       this.userPin,
       this.libraryListItems,
       this.healthPagePINInputTime,
-      this.termsAndConditions,
       this.faqState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
@@ -235,14 +204,12 @@ class _$_MiscState implements _MiscState {
   final List<dynamic>? libraryListItems;
   @override
   final String? healthPagePINInputTime;
-  @override
-  final TermsAndConditions? termsAndConditions;
-  @override
+  @override // TermsAndConditions? termsAndConditions,
   final FAQState? faqState;
 
   @override
   String toString() {
-    return 'MiscState(phoneLogin: $phoneLogin, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, termsAndConditions: $termsAndConditions, faqState: $faqState)';
+    return 'MiscState(phoneLogin: $phoneLogin, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, faqState: $faqState)';
   }
 
   @override
@@ -261,9 +228,6 @@ class _$_MiscState implements _MiscState {
             (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
                 const DeepCollectionEquality().equals(
                     other.healthPagePINInputTime, healthPagePINInputTime)) &&
-            (identical(other.termsAndConditions, termsAndConditions) ||
-                const DeepCollectionEquality()
-                    .equals(other.termsAndConditions, termsAndConditions)) &&
             (identical(other.faqState, faqState) ||
                 const DeepCollectionEquality()
                     .equals(other.faqState, faqState)));
@@ -276,7 +240,6 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(userPin) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
       const DeepCollectionEquality().hash(healthPagePINInputTime) ^
-      const DeepCollectionEquality().hash(termsAndConditions) ^
       const DeepCollectionEquality().hash(faqState);
 
   @JsonKey(ignore: true)
@@ -296,7 +259,6 @@ abstract class _MiscState implements MiscState {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime,
-      TermsAndConditions? termsAndConditions,
       FAQState? faqState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
@@ -310,10 +272,7 @@ abstract class _MiscState implements MiscState {
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
-  @override
-  TermsAndConditions? get termsAndConditions =>
-      throw _privateConstructorUsedError;
-  @override
+  @override // TermsAndConditions? termsAndConditions,
   FAQState? get faqState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
