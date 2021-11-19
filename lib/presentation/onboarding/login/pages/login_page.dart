@@ -156,10 +156,12 @@ class _LoginPageState extends State<LoginPage> {
         builder: (BuildContext context, AppStateViewModel vm) {
           final User? userState = vm.appState.clientState?.clientProfile?.user;
 
-          final Contact? phoneNumber = userState?.contacts?.firstWhere(
-            (Contact contact) => contact.contactType == ContactType.PRIMARY,
-            orElse: () => Contact.initial(),
-          );
+          final String? phoneNumber = userState?.contacts
+              ?.firstWhere(
+                (Contact contact) => contact.contactType == ContactType.PRIMARY,
+                orElse: () => Contact.initial(),
+              )
+              .contact;
 
           final String? userId = userState?.userId;
 
@@ -178,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                         arguments: <String, dynamic>{
                           'OTP': 1234,
                           'userID': userId,
-                          'phoneNumber': phoneNumber,
+                          'phoneNumber': phoneNumber ?? UNKNOWN,
                         },
                       );
                     },
@@ -214,8 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                                     await signInUser(
                                       context: context,
                                       pin: pin!,
-                                      phoneNumber:
-                                          phoneNumber.contact ?? UNKNOWN,
+                                      phoneNumber: phoneNumber,
                                     );
                                   }
                                   return;

@@ -8,7 +8,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/failures.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -16,7 +15,6 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/string_constant.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -380,4 +378,3 @@ Future<void> setUserPIN({
     ),
   );
 }
-
