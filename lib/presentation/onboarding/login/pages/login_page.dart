@@ -19,7 +19,6 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -154,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           final User? userState = vm.appState.clientState?.clientProfile?.user;
-          final Contact? phoneNumber = userState?.primaryContact;
+          final String? phoneNumber = userState?.primaryContact!.contact;
 
           final String? userId = userState?.userId;
 
@@ -209,7 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                                     await signInUser(
                                       context: context,
                                       pin: pin!,
-                                      phoneNumber: phoneNumber.contact!,
+                                      phoneNumber: phoneNumber,
                                     );
                                   }
                                   return;
