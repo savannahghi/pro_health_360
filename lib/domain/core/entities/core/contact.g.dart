@@ -62,8 +62,7 @@ K? _$enumDecodeNullable<K, V>(
 }
 
 const _$ContactTypeEnumMap = {
-  ContactType.PRIMARY: 'PRIMARY',
-  ContactType.SECONDARY: 'SECONDARY',
-  ContactType.OFFICIAL: 'OFFICIAL',
+  ContactType.PHONE: 'PHONE',
+  ContactType.EMAIL: 'EMAIL',
   ContactType.UNKNOWN: 'UNKNOWN',
 };

@@ -10,17 +10,29 @@ part 'related_person.freezed.dart';
 @freezed
 class RelatedPerson with _$RelatedPerson {
   factory RelatedPerson({
-    @JsonKey(name: 'active') bool? active,
-    @JsonKey(name: 'relatedTo') String? relatedTo,
-    @JsonKey(name: 'relationshipType', defaultValue: RelationshipType.UNKNOWN)
+    @JsonKey(name: 'active')
+        bool? active,
+    @JsonKey(name: 'relatedTo')
+        String? relatedTo,
+    @JsonKey(
+      name: 'relationshipType',
+      defaultValue: RelationshipType.UNKNOWN,
+    )
         RelationshipType? relationshipType,
-    @JsonKey(name: 'firstName') String? firstName,
-    @JsonKey(name: 'lastName') String? lastName,
-    @JsonKey(name: 'otherName') String? otherName,
-    @JsonKey(name: 'gender') Gender? gender,
-    @JsonKey(name: 'dateOfBirth') String? dateOfBirth,
-    @JsonKey(name: 'addresses') List<Address>? addresses,
-    @JsonKey(name: 'contacts') List<Contact>? contacts,
+    @JsonKey(name: 'firstName')
+        String? firstName,
+    @JsonKey(name: 'lastName')
+        String? lastName,
+    @JsonKey(name: 'otherName')
+        String? otherName,
+    @JsonKey(name: 'gender')
+        Gender? gender,
+    @JsonKey(name: 'dateOfBirth')
+        String? dateOfBirth,
+    @JsonKey(name: 'addresses')
+        List<Address>? addresses,
+    @JsonKey(name: 'contacts')
+        List<Contact>? contacts,
   }) = _RelatedPerson;
 
   factory RelatedPerson.fromJson(Map<String, dynamic> json) =>
@@ -38,4 +50,7 @@ class RelatedPerson with _$RelatedPerson {
         addresses: <Address>[],
         contacts: <Contact>[],
       );
+
+  // static Gender _genderFromCapitalString(String gender) =>
+  //     genderFromString(gender);
 }

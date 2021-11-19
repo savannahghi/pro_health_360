@@ -76,4 +76,4 @@ enum RelationshipType {
 }
 
 /// The type of contact being used
-enum ContactType { PRIMARY, SECONDARY, OFFICIAL, UNKNOWN }
+enum ContactType { PHONE, EMAIL, UNKNOWN }

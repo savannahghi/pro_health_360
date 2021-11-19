@@ -13,7 +13,6 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_themes/constants.dart';
@@ -30,7 +29,6 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_feed/user_feed.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -65,53 +63,6 @@ void main() {
 
       when(fcm!.getDeviceToken()).thenAnswer(
         (Invocation realInvocation) => Future<String>.value('test-token'),
-      );
-    });
-
-    testWidgets('should return homepage route', (WidgetTester tester) async {
-      // setup
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-      final OnboardingPathConfig expectedOnboardingRouteConfigs =
-          OnboardingPathConfig(BWRoutes.home);
-
-      late OnboardingPathConfig actualOnboardingRouteConfigs;
-
-      // call the function
-      // implementation/call the function
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch<AppState>(
-              context,
-              UpdateUserProfileAction(
-                firstName: 'Test',
-                lastName: 'Name',
-              ),
-            );
-            return SILPrimaryButton(
-              onPressed: () =>
-                  actualOnboardingRouteConfigs = onboardingPath(store.state),
-              text: '',
-            );
-          },
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      final Finder checkTokenStatusButton = find.byType(SILPrimaryButton);
-      await tester.tap(checkTokenStatusButton);
-
-      await tester.pumpAndSettle();
-
-      // verify functionality
-      expect(
-        actualOnboardingRouteConfigs.route,
-        expectedOnboardingRouteConfigs.route,
       );
     });
 
@@ -280,46 +231,6 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byKey(feedbackBottomSheet), findsOneWidget);
-      });
-    });
-
-    group('Onboarding path', () {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      testWidgets(
-          'should return homepage for users who have filled in their user profile',
-          (WidgetTester tester) async {
-        late OnboardingPathConfig _onboardingPath;
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: baseGraphQlClientMock,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(
-                onPressed: () async {
-                  StoreProvider.dispatch<AppState>(
-                    context,
-                    UpdateUserProfileAction(
-                      firstName: 'Test',
-                      lastName: 'Name',
-                    ),
-                  );
-                  _onboardingPath = onboardingPath(store.state);
-                },
-              );
-            },
-          ),
-        );
-        await tester.pumpAndSettle();
-
-        // trigger the bottom sheet
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(_onboardingPath.route, BWRoutes.home);
-        expect(_onboardingPath.arguments, null);
       });
     });
 

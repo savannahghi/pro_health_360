@@ -24,7 +24,6 @@ import 'package:myafyahub/application/redux/actions/phone_login_state_action.dar
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
-import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -111,23 +110,6 @@ Future<void> registerDeviceToken({required IGraphQlClient client}) async {
   };
 
   await client.query(registerDeviceTokenQuery, _variables);
-}
-
-/// [onboardingPath] routine is used to determine what should be the
-/// first Page(route) a user should see on launching the application.
-/// The selection of the Page(route) to show is determined by if the user
-/// is already signed in/logged in or not.
-///
-/// 1. Signed in/ logged i// determines the path to route the user to based on the app state
-OnboardingPathConfig onboardingPath(
-  AppState state, {
-  bool calledOnResume = false,
-}) {
-  // TODO!!(abiud): add more checks here when tying up the storyline
-
-  /// take the user to the homepage if they have passed
-  /// the normal user profile checks
-  return OnboardingPathConfig(BWRoutes.home);
 }
 
 /// [processHttpResponse] routine is used to process a network call response, for errors, bad requests, timeouts and correct responses.

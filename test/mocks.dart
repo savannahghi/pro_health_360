@@ -35,6 +35,7 @@ import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:platform/platform.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
 
 import 'test_helpers.dart';
 import 'test_utils.dart';
@@ -3236,4 +3237,95 @@ final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
     SecurityQuestionResponse.initial().toJson(),
   ],
   'phoneLogin': PhoneLogin.initial().toJson(),
+};
+
+final Map<String, dynamic> mockAddress = <String, dynamic>{
+  'active': true,
+  'addressType': 'POSTAL',
+  'country': 'Kenya',
+  'county': null,
+  'postalCode': '00300',
+  'text': 'One Padmore'
+};
+
+final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
+  'expiresIn': '3600',
+  'idToken': 'some id token',
+  'refreshToken': 'some refresh token'
+};
+
+final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{
+  'active': true,
+  'contact': '+254717356476',
+  'contactType': 'PHONE',
+  'optedIn': true
+};
+final Map<String, dynamic> mockRelatedPerson = <String, dynamic>{
+  'active': true,
+  'dateOfBirth': '21 Nov 2002',
+  'firstName': 'Juha',
+  'gender': 'male',
+  'lastName': 'Kalulu',
+  'otherName': null,
+  'relatedTo': 'some-user-id',
+  'relationshipType': 'NEXT_OF_KIN',
+  'addresses': <dynamic>[mockAddress],
+  'primaryContact': mockPrimaryContact,
+  'secondaryContacts': <dynamic>[mockPrimaryContact]
+};
+
+final Map<String, dynamic> mockUser = <String, dynamic>{
+  'active': true,
+  'displayName': 'Kowalski',
+  'firstName': 'Juha',
+  'gender': 'male',
+  'languages': <dynamic>['en', 'sw'],
+  'suspended': false,
+  'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+  'primaryContact': <String, dynamic>{
+    'active': true,
+    'contact': '+254717356476',
+    'contactType': 'PHONE',
+    'optedIn': true
+  },
+  'secondaryContacts': <dynamic>[
+    <String, dynamic>{
+      'active': true,
+      'contact': '+254717356476',
+      'contactType': 'PHONE',
+      'optedIn': true
+    }
+  ],
+  'lastName': 'Kalulu',
+  'middleName': null,
+  'pinChangeRequired': false,
+  'termsAccepted': true,
+  'userID': 'some-user-id',
+  'userName': 'Kowalski',
+  'userType': 'CLIENT',
+  'dateOfBirth': '21 Nov 2002'
+};
+
+final Map<String, dynamic> mockClientProfile = <String, dynamic>{
+  'clientProfile': <String, dynamic>{
+    'active': true,
+    'addresses': <dynamic>[mockAddress],
+    'clientCounselled': true,
+    'clientType': 'PMTCT',
+    'facilityID': 'some-facility-id',
+    'relatedPersons': <dynamic>[mockRelatedPerson],
+    'treatmentBuddy': null,
+    'treatmentEnrollmentDate': '21 Nov 2021',
+    'user': mockUser
+  }
+};
+
+final Map<String, dynamic> mockEventObject = <String, dynamic>{
+  'firstName': 'Kowalski',
+  'lastName': 'Juha',
+  'primaryPhoneNumber': '0712345678',
+  'uid': 'some-id',
+  'flavour': Flavour.CONSUMER.name,
+  'timestamp': DateTime.now().toString(),
+  'appVersion': APPVERSION,
 };
