@@ -37,7 +37,7 @@ class User with _$User {
         lastName: UNKNOWN,
         gender: Gender.unknown,
         active: false,
-        contacts: <Contact>[],
+        contacts: <Contact>[Contact.initial()],
         languages: <String>[],
         termsAccepted: false,
         pinChangeRequired: false,
