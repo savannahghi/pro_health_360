@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports
 import 'package:afya_moja_core/buttons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_filter_chip.dart';
+import 'package:myafyahub/presentation/engagement/home/mood_selection/mood_filter_chip.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -209,7 +209,7 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
       runSpacing: 6.0,
       children: const <Widget>[
         MoodFilterChip(labelText: iHaveNightSweatsString),
-        MoodFilterChip(labelText: iHaveaFeverString),
+        MoodFilterChip(labelText: iHaveAFeverString),
         MoodFilterChip(labelText: imCoughingString),
         MoodFilterChip(labelText: iVeLostWeightString),
       ],

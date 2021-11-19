@@ -62,7 +62,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
     return otp as bool;
   }
 
-  Future<void> graphsendOtp({
+  Future<void> graphSendOtp({
     required String userID,
     required String phoneNumber,
   }) async {
@@ -78,7 +78,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await graphsendOtp(
+      await graphSendOtp(
         userID: widget.userID,
         phoneNumber: widget.phoneNumber,
       );

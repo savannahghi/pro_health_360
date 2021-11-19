@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/engagement/home/mood_selection/mood_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/spaces.dart';
@@ -16,7 +17,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/widgets/mood_selection/mood_item.dart';
 
 class MyAfyaHubMoodSelection extends StatelessWidget {
   const MyAfyaHubMoodSelection();

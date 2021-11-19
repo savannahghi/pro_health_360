@@ -419,7 +419,7 @@ const String soSorryPleaseDescribeHowAreFeelingString =
     'So sorry, please describe how you are feeling.';
 const String addNotesString = 'Add notes';
 const String iHaveNightSweatsString = 'I have night sweats';
-const String iHaveaFeverString = 'I have a fever';
+const String iHaveAFeverString = 'I have a fever';
 const String imCoughingString = 'I\'m coughing';
 const String iVeLostWeightString = 'I\'ve lost weight';
 const String nextString = 'Next';

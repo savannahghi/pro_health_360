@@ -36,7 +36,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            StoreProvider.dispatch(
+            StoreProvider.dispatch<AppState>(
               context,
               UpdatePinStatusAction(invalidPin: false, recoveryOtp: testOTP),
             );
