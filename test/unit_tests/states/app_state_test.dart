@@ -16,7 +16,7 @@ void main() {
       }
     });
 
-    expect(result2.clientState!.clientProfile, isNull);
+    expect(result2.clientState, isNull);
     expect(result2.miscState, isNotNull);
   });
 }

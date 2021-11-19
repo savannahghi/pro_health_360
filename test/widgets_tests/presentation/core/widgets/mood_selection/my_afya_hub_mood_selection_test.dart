@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
@@ -29,7 +30,7 @@ void main() {
         widget: const MyAfyaHubMoodSelection(),
       );
 
-      expect(find.text(howAreYouFeelingTodayText('john')), findsOneWidget);
+      expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
 
       await tester.tap(find.byKey(excitedMoodKey));
       await tester.pump();
@@ -46,7 +47,7 @@ void main() {
         widget: const MyAfyaHubMoodSelection(),
       );
 
-      expect(find.text(howAreYouFeelingTodayText('john')), findsOneWidget);
+      expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
 
       await tester.tap(find.byKey(happyMoodKey));
       await tester.pump();
@@ -63,7 +64,7 @@ void main() {
         widget: const MyAfyaHubMoodSelection(),
       );
 
-      expect(find.text(howAreYouFeelingTodayText('john')), findsOneWidget);
+      expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
 
       await tester.tap(find.byKey(mehMoodKey));
       await tester.pump();
@@ -80,7 +81,7 @@ void main() {
         widget: const MyAfyaHubMoodSelection(),
       );
 
-      expect(find.text(howAreYouFeelingTodayText('john')), findsOneWidget);
+      expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
 
       await tester.tap(find.byKey(sadMoodKey));
       await tester.pump();
@@ -97,7 +98,7 @@ void main() {
         widget: const MyAfyaHubMoodSelection(),
       );
 
-      expect(find.text(howAreYouFeelingTodayText('john')), findsOneWidget);
+      expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
 
       await tester.tap(find.byKey(verySadMoodKey));
       await tester.pump();

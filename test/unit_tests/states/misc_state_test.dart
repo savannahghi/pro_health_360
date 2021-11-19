@@ -9,7 +9,6 @@ void main() {
     final MiscState state = MiscState.initial();
     final Map<String, dynamic> result = state.toJson();
     expect(result, isA<Map<String, dynamic>>());
-    expect(result['phoneLogin'], isNotNull);
 
     final MiscState result2 = MiscState.fromJson(<String, dynamic>{
       'libraryListItems': <String>['test']
