@@ -560,6 +560,7 @@ void main() {
             DateTime.now().subtract(const Duration(minutes: 30)).toString(),
       ),
     );
+
     testWidgets(
         'should return false if difference between current time and signed in time is greater than 20 minutes',
         (WidgetTester tester) async {
