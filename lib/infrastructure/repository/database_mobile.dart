@@ -43,12 +43,14 @@ class BeWellDatabaseMobile<T extends DatabaseExecutor>
 
   @override
   Future<bool> isDatabaseEmpty() async {
-    final int t1 = await countTableRecords(Tables.userProfileState.name);
-    final int t2 = await countTableRecords(Tables.connectivityState.name);
-    final int t3 = await countTableRecords(Tables.userFeedState.name);
-    final int t4 = await countTableRecords(Tables.miscState.name);
+    final int t1 = await countTableRecords(Tables.credentials.name);
+    final int t2 = await countTableRecords(Tables.clientState.name);
+    final int t3 = await countTableRecords(Tables.onboardingState.name);
+    final int t4 = await countTableRecords(Tables.bottomNavigationState.name);
+    final int t5 = await countTableRecords(Tables.connectivityState.name);
+    final int t6 = await countTableRecords(Tables.miscState.name);
 
-    final int counts = t1 + t2 + t3 + t4;
+    final int counts = t1 + t2 + t3 + t4 + t5 + t6;
     if (counts > 0) {
       return false;
     }

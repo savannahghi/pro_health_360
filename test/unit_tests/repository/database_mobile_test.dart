@@ -75,18 +75,24 @@ void main() {
     }
 
     test('isDatabaseEmpty should return false', () async {
-      buildWhenMock('userProfileState', 10);
+      buildWhenMock('credentials', 10);
+      buildWhenMock('clientState', 10);
+      buildWhenMock('onboardingState', 10);
+      buildWhenMock('bottomNavigationState', 10);
       buildWhenMock('connectivityState', 10);
-      buildWhenMock('userFeedState', 10);
       buildWhenMock('miscState', 10);
+
       expect(await db.isDatabaseEmpty(), false);
     });
 
     test('isDatabaseEmpty should return true', () async {
-      buildWhenMock('userProfileState', 0);
+      buildWhenMock('credentials', 0);
+      buildWhenMock('clientState', 0);
+      buildWhenMock('onboardingState', 0);
+      buildWhenMock('bottomNavigationState', 0);
       buildWhenMock('connectivityState', 0);
-      buildWhenMock('userFeedState', 0);
       buildWhenMock('miscState', 0);
+
       expect(await db.isDatabaseEmpty(), true);
     });
   });
@@ -94,34 +100,31 @@ void main() {
   test('retrieveWorker should return record from database', () async {
     when(
       mockDb.rawQuery(
-        'SELECT * FROM userProfileState ORDER BY id DESC LIMIT 1',
+        'SELECT * FROM credentials ORDER BY id DESC LIMIT 1',
       ),
     ).thenAnswer((_) => returnVal(10));
     expect(
-      await db.retrieveWorker(Tables.userProfileState),
-      <String, Object?>{
-        'users': 10,
-      },
+      await db.retrieveWorker(Tables.credentials),
+      <String, Object?>{'users': 10},
     );
   });
 
-  test('retrieveState should return state from userProfileState table',
-      () async {
+  test('retrieveState should return state from credentials table', () async {
     when(
       mockDb.rawQuery(
-        'SELECT * FROM userProfileState ORDER BY id DESC LIMIT 1',
+        'SELECT * FROM credentials ORDER BY id DESC LIMIT 1',
       ),
     ).thenAnswer(
       (_) => Future<List<Map<String, Object?>>>.value(<Map<String, Object?>>[
         <String, Object?>{
-          'userProfileState':
-              json.encode(<String, String>{'name': 'Vincent Michuki'})
+          'credentials':
+              json.encode(<String, String>{'idToken': 'some-id-token'})
         }
       ]),
     );
     expect(
-      await db.retrieveState(Tables.userProfileState),
-      <String, Object?>{'name': 'Vincent Michuki'},
+      await db.retrieveState(Tables.credentials),
+      <String, String>{'idToken': 'some-id-token'},
     );
   });
 
@@ -141,12 +144,12 @@ void main() {
   });
 
   test('saveState should call rawInsert', () async {
-    final String tableName = Tables.userProfileState.name;
+    final String tableName = Tables.credentials.name;
     final Map<String, dynamic> data = <String, dynamic>{'name': 'Vincent'};
     final String query = 'INSERT INTO $tableName($tableName) VALUES(?)';
     when(mockDb.rawInsert(query, <dynamic>[jsonEncode(data)]))
         .thenAnswer((_) => Future<int>.value(10));
-    await db.saveState(data: data, table: Tables.userProfileState);
+    await db.saveState(data: data, table: Tables.credentials);
     verify(await mockDb.rawInsert(query, <dynamic>[jsonEncode(data)]))
         .called(1);
   });

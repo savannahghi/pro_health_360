@@ -1,154 +1,179 @@
-// // Flutter imports:
-// import 'package:flutter/foundation.dart';
+// Flutter imports:
 
-// // Package imports:
-// import 'package:async_redux/async_redux.dart';
-// import 'package:sqflite/sqflite.dart';
-// import 'package:user_feed/user_feed.dart';
+import 'package:flutter/foundation.dart';
 
-// // Project imports:
-// import 'package:myafyahub/application/redux/states/app_state.dart';
-// import 'package:myafyahub/application/redux/states/connectivity_state.dart';
-// import 'package:myafyahub/application/redux/states/misc_state.dart';
-// import 'package:myafyahub/application/redux/states/user_profile_state.dart';
-// import 'package:myafyahub/infrastructure/repository/database_base.dart';
-// import 'package:myafyahub/infrastructure/repository/database_mobile.dart';
-// import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
+// Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/states/client_state.dart';
+import 'package:myafyahub/application/redux/states/onboarding_state.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
+import 'package:sqflite/sqflite.dart';
 
-// /// [BeWellStateDatabase] is the middleware that interacts with the database on behalf
-// /// of the application. From the apps perspective, it doesn't care which database
-// /// its saving its state on. BeWellStateDatabase therefore offers different implementations
-// /// for its method.
-// class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
-//   BeWellStateDatabase({
-//     Duration throttle = const Duration(seconds: 2),
-//     Duration saveDuration = Duration.zero,
-//     required this.dataBaseName,
-//   })  : _throttle = throttle,
-//         _saveDuration = saveDuration;
+// Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/connectivity_state.dart';
+import 'package:myafyahub/application/redux/states/misc_state.dart';
+import 'package:myafyahub/infrastructure/repository/database_base.dart';
+import 'package:myafyahub/infrastructure/repository/database_mobile.dart';
+import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 
-//   final String dataBaseName;
+/// [BeWellStateDatabase] is the middleware that interacts with the database on behalf
+/// of the application. From the apps perspective, it doesn't care which database
+/// its saving its state on. BeWellStateDatabase therefore offers different implementations
+/// for its method.
+class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
+  BeWellStateDatabase({
+    Duration throttle = const Duration(seconds: 2),
+    Duration saveDuration = Duration.zero,
+    required this.dataBaseName,
+  })  : _throttle = throttle,
+        _saveDuration = saveDuration;
 
-//   final Duration _saveDuration;
-//   final Duration _throttle;
+  final String dataBaseName;
 
-//   @override
-//   Future<void> deleteState() async {
-//     await BeWellDatabaseMobile<Database>(
-//       initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
-//     ).clearDatabase();
-//   }
+  final Duration _saveDuration;
+  final Duration _throttle;
 
-//   @override
-//   Future<void> persistDifference({
-//     AppState? lastPersistedState,
-//     required AppState newState,
-//   }) async {
-//     await Future<dynamic>.delayed(saveDuration);
+  @override
+  Future<void> deleteState() async {
+    await BeWellDatabaseMobile<Database>(
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).clearDatabase();
+  }
 
-//     if (lastPersistedState == null ||
-//         lastPersistedState.userProfileState != newState.userProfileState ||
-//         lastPersistedState.connectivityState != newState.connectivityState ||
-//         lastPersistedState.userFeedState != newState.userFeedState ||
-//         lastPersistedState.miscState != newState.miscState) {
-//       await persistState(
-//         newState,
-//         BeWellDatabaseMobile<Database>(
-//           initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
-//         ),
-//       );
-//     }
-//   }
+  @override
+  Future<void> persistDifference({
+    AppState? lastPersistedState,
+    required AppState newState,
+  }) async {
+    await Future<dynamic>.delayed(saveDuration);
 
-//   /// we first check whether the database is empty
-//   ///
-//   /// - if the database is empty, we return null
-//   /// - else, we retrieve the state from the database
-//   @override
-//   Future<AppState> readState() async {
-//     if (await BeWellDatabaseMobile<Database>(
-//       initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
-//     ).isDatabaseEmpty()) {
-//       return AppState.initial();
-//     } else {
-//       return retrieveState(
-//         BeWellDatabaseMobile<Database>(
-//           initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
-//         ),
-//       );
-//     }
-//   }
+    if (lastPersistedState == null ||
+        lastPersistedState.credentials != newState.credentials ||
+        lastPersistedState.clientState != newState.clientState ||
+        lastPersistedState.onboardingState != newState.onboardingState ||
+        lastPersistedState.bottomNavigationState !=
+            newState.bottomNavigationState ||
+        lastPersistedState.connectivityState != newState.connectivityState ||
+        lastPersistedState.miscState != newState.miscState) {
+      await persistState(
+        newState,
+        BeWellDatabaseMobile<Database>(
+          initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+        ),
+      );
+    }
+  }
 
-//   @override
-//   Future<void> saveInitialState(AppState state) async =>
-//       persistDifference(newState: state);
+  /// we first check whether the database is empty
+  ///
+  /// - if the database is empty, we return null
+  /// - else, we retrieve the state from the database
+  @override
+  Future<AppState> readState() async {
+    if (await BeWellDatabaseMobile<Database>(
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).isDatabaseEmpty()) {
+      return AppState.initial();
+    } else {
+      return retrieveState(
+        BeWellDatabaseMobile<Database>(
+          initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+        ),
+      );
+    }
+  }
 
-//   @override
-//   Duration get throttle => _throttle;
+  @override
+  Future<void> saveInitialState(AppState state) async =>
+      persistDifference(newState: state);
 
-//   Duration get saveDuration => _saveDuration;
+  @override
+  Duration get throttle => _throttle;
 
-//   Future<void> init() async {
-//     await BeWellDatabaseMobile<Database>(
-//       initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
-//     ).database;
-//   }
+  Duration get saveDuration => _saveDuration;
 
-//   /// saves app state to the database
-//   @visibleForTesting
-//   Future<void> persistState(
-//     AppState newState,
-//     BeWellDatabaseBase<dynamic> database,
-//   ) async {
-//     // save user state
-//     await database.saveState(
-//       data: newState.userProfileState!.toJson(),
-//       table: Tables.userProfileState,
-//     );
+  Future<void> init() async {
+    await BeWellDatabaseMobile<Database>(
+      initializeDB: InitializeDB<Database>(dbName: this.dataBaseName),
+    ).database;
+  }
 
-//     // save connectivity state
-//     await database.saveState(
-//       data: newState.connectivityState!.toJson(),
-//       table: Tables.connectivityState,
-//     );
+  /// saves app state to the database
+  @visibleForTesting
+  Future<void> persistState(
+    AppState newState,
+    BeWellDatabaseBase<dynamic> database,
+  ) async {
+    // save credentials state
+    await database.saveState(
+      data: newState.credentials!.toJson(),
+      table: Tables.credentials,
+    );
 
-//     // save user feed state
-//     await database.saveState(
-//       data: newState.userFeedState!.toJson(),
-//       table: Tables.userFeedState,
-//     );
+    // save clientState state
+    await database.saveState(
+      data: newState.clientState!.toJson(),
+      table: Tables.clientState,
+    );
 
-//     // save misc state
-//     await database.saveState(
-//       data: newState.miscState!.toJson(),
-//       table: Tables.miscState,
-//     );
-//   }
+    // save onboardingState state
+    await database.saveState(
+      data: newState.onboardingState!.toJson(),
+      table: Tables.onboardingState,
+    );
 
-//   /// retrieves app state to the database
-//   @visibleForTesting
-//   Future<AppState> retrieveState(BeWellDatabaseBase<dynamic> database) async {
-//     return AppState().copyWith(
-//       // retrieve user state
-//       userProfileState: UserProfileState.fromJson(
-//         await database.retrieveState(Tables.userProfileState),
-//       ),
+    // save bottomNavigationState state
+    await database.saveState(
+      data: newState.bottomNavigationState!.toJson(),
+      table: Tables.bottomNavigationState,
+    );
 
-//       // retrieve connectivity state
-//       connectivityState: ConnectivityState.fromJson(
-//         await database.retrieveState(Tables.connectivityState),
-//       ),
+    // save connectivityState state
+    await database.saveState(
+      data: newState.connectivityState!.toJson(),
+      table: Tables.connectivityState,
+    );
 
-//       // retrieve user feed state
-//       userFeedState: FeedResponsePayload.fromJson(
-//         await database.retrieveState(Tables.userFeedState),
-//       ),
+    // save miscState state
+    await database.saveState(
+      data: newState.miscState!.toJson(),
+      table: Tables.miscState,
+    );
+  }
 
-//       // retrieve misc state
-//       miscState:
-//           MiscState.fromJson(await database.retrieveState(Tables.miscState)),
+  /// retrieves app state to the database
+  @visibleForTesting
+  Future<AppState> retrieveState(BeWellDatabaseBase<dynamic> database) async {
+    return AppState().copyWith(
+      // retrieve user state
+      credentials: AuthCredentials.fromJson(
+        await database.retrieveState(Tables.credentials),
+      ),
 
-//       wait: Wait(),
-//     );
-//   }
-// }
+      clientState: ClientState.fromJson(
+        await database.retrieveState(Tables.clientState),
+      ),
+
+      onboardingState: OnboardingState.fromJson(
+        await database.retrieveState(Tables.onboardingState),
+      ),
+
+      bottomNavigationState: BottomNavigationState.fromJson(
+        await database.retrieveState(Tables.bottomNavigationState),
+      ),
+
+      connectivityState: ConnectivityState.fromJson(
+        await database.retrieveState(Tables.connectivityState),
+      ),
+
+      miscState: MiscState.fromJson(
+        await database.retrieveState(Tables.miscState),
+      ),
+
+      wait: Wait(),
+    );
+  }
+}

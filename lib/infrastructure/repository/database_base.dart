@@ -25,10 +25,12 @@ abstract class BeWellDatabaseBase<T> {
 
 /// [Tables] definitions
 enum Tables {
-  userProfileState,
-  connectivityState,
-  userFeedState,
+  credentials,
+  clientState,
+  onboardingState,
   miscState,
+  bottomNavigationState,
+  connectivityState,
   unknown,
 }
 
@@ -37,12 +39,16 @@ enum Tables {
 extension TablesEx on Tables {
   String get name {
     switch (this) {
-      case Tables.userProfileState:
-        return 'userProfileState';
+      case Tables.credentials:
+        return 'credentials';
+      case Tables.clientState:
+        return 'clientState';
+      case Tables.onboardingState:
+        return 'onboardingState';
+      case Tables.bottomNavigationState:
+        return 'bottomNavigationState';
       case Tables.connectivityState:
         return 'connectivityState';
-      case Tables.userFeedState:
-        return 'userFeedState';
       case Tables.miscState:
         return 'miscState';
       default:
