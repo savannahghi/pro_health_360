@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
@@ -21,23 +20,19 @@ class LogoutAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     this.navigationCallback();
 
-    try {
-      /// set [expiresAt] to a extreme time. This will ensure the refresh logic does not kick in
-      /// which may affect app performance
-      await store.dispatch(
-        AuthStatusAction(
-          isSignedIn: false,
-          idToken: UNDEFINED_AUTH_TOKEN,
-          refreshToken: UNDEFINED_REFRESH_TOKEN,
-          expiresAt:
-              DateTime.now().add(const Duration(days: 1000)).toIso8601String(),
-        ),
-      );
+    /// set [expiresAt] to a extreme time. This will ensure the refresh
+    /// logic does not kick in which may affect app performance
+    await store.dispatch(
+      AuthStatusAction(
+        isSignedIn: false,
+        idToken: UNDEFINED_AUTH_TOKEN,
+        refreshToken: UNDEFINED_REFRESH_TOKEN,
+        expiresAt:
+            DateTime.now().add(const Duration(days: 1000)).toIso8601String(),
+      ),
+    );
 
-      await SILFCM().resetToken();
-    } catch (error, stackTrace) {
-      await Sentry.captureException(error, stackTrace: stackTrace);
-    }
+    await SILFCM().resetToken();
 
     return AppState.initial();
   }

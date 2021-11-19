@@ -9,8 +9,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class ErrorAlertBox extends StatelessWidget {
-  const ErrorAlertBox({Key? key, required this.message, this.actionSpan})
-      : super(key: key);
+  const ErrorAlertBox({required this.message, this.actionSpan});
 
   final TextSpan? actionSpan;
   final String message;
