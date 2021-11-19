@@ -14,6 +14,7 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 import '../../../mock_utils.dart';
@@ -28,6 +29,55 @@ void main() {
   setUpAll(() async {
     await Firebase.initializeApp();
   });
+
+  testWidgets(
+    'AppEntryPoint should render correctly',
+    (WidgetTester tester) async {
+      channel.setMockMethodCallHandler((MethodCall methodCall) async {
+        if (methodCall.method == 'getInitialLink') {
+          return 'https//:bewell.co.ke/phoneLogin';
+        }
+        return null;
+      });
+
+      final GlobalKey<NavigatorState> navigatorKey =
+          GlobalKey<NavigatorState>();
+      final NavigatorObserver navigatorObserver = NavigatorObserver();
+
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Center(
+            child: AppEntryPoint(
+              appSetupData: devAppSetupData,
+              appName: testAppName,
+              appNavigatorKey: navigatorKey,
+              appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
+              appStore: store,
+            ),
+          ),
+        ),
+      );
+
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      RefreshTokenManger().listen.add(true);
+
+      await tester.pumpAndSettle();
+
+      final Finder silAppWrapperWidget = find.byType(AppWrapper);
+      expect(silAppWrapperWidget, findsOneWidget);
+
+      final Finder preLoadAppWidget = find.byType(PreLoadApp);
+      expect(preLoadAppWidget, findsOneWidget);
+
+      RefreshTokenManger().listen.add(true);
+
+      await tester.pumpAndSettle();
+      final Finder storeProviderWidget = find.byKey(globalStoreKey);
+      expect(storeProviderWidget, findsWidgets);
+    },
+  );
 
   testWidgets(
     'AppEntryPoint should not render when paused',

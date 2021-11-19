@@ -84,6 +84,20 @@ class _PreLoadAppState extends State<PreLoadApp> {
     );
   }
 
+    @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Future<dynamic>.delayed(Duration.zero, () async {
+      appInitialRoute.add(
+        await getInitialRoute(
+          widget.entryPointContext,
+          widget.appState,
+          widget.thisAppContexts,
+        ),
+      );
+    });
+  }
+
   /// Handle the initial Uri - the one the app was started with
   ///
   /// **ATTENTION**: `getInitialLink`/`getInitialUri` should be handled
