@@ -3,23 +3,19 @@ import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
+import 'package:app_wrapper/app_wrapper.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:domain_objects/failures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:shared_ui_components/buttons.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
@@ -28,12 +24,18 @@ import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart' as endpoints;
+import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:shared_ui_components/buttons.dart';
 import 'package:user_feed/user_feed.dart';
+
+import './onboarding_utils_2_test.mocks.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import '../../../test_utils.dart';
-import './onboarding_utils_2_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -120,7 +122,7 @@ void main() {
             Store<AppState>(initialState: AppState.initial());
         when(
           baseGraphQlClientMock.callRESTAPI(
-            endpoint: kTestUpdateUserPinEndpoint,
+            endpoint: endpoints.kTestUpdateUserPinEndpoint,
             variables: <String, String>{
               'phoneNumber': testPhoneNumber,
               'OTP': testOTP,
@@ -957,6 +959,49 @@ void main() {
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pump(const Duration(seconds: 1));
       expect(find.text(pinMustMatchString), findsOneWidget);
+    });
+
+    testWidgets('should return home route for a user with a valid token',
+        (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+      late String initialRoute;
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            StoreProvider.dispatch(
+              context,
+              AuthStatusAction(
+                isSignedIn: true,
+                idToken: 'oldAuthToken',
+                refreshToken: 'oldRefreshToken',
+                expiresAt: DateTime.now()
+                    .add(const Duration(seconds: 2))
+                    .toIso8601String(),
+              ),
+            );
+            return SILPrimaryButton(
+              onPressed: () async {
+                initialRoute = await getInitialRoute(
+                  context,
+                  store.state,
+                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
+                );
+              },
+            );
+          },
+        ),
+      );
+      await tester.pump();
+      // trigger the bottom sheet
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle(const Duration(seconds: 3));
+      expect(initialRoute, BWRoutes.home);
     });
   });
 }
