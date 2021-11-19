@@ -34,7 +34,6 @@ class OnboardingPageWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool? isFirstTimeChangePin = StoreProvider.state<AppState>(context)!
         .clientState!
-        .clientProfile!
         .user!
         .pinChangeRequired;
 

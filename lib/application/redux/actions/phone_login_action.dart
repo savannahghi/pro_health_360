@@ -123,7 +123,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final User? user = loginResponse.clientProfile?.user;
+        final User? user = loginResponse.clientState?.user;
 
         // dispatch an action to update the user profile
         await store.dispatch(UpdateUserAction(user: user));
@@ -136,7 +136,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         );
 
         final bool termsAccepted =
-            loginResponse.clientProfile?.user?.termsAccepted ?? false;
+            loginResponse.clientState?.user?.termsAccepted ?? false;
 
         String routeToNavigate = BWRoutes.home;
 

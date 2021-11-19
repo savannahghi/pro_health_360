@@ -46,12 +46,11 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     widget.connectivityStatus.onConnectivityChanged
         .listen((bool hasConnection) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        CheckConnectivityAction(hasConnection: hasConnection),
+      );
       if (hasConnection == false) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          CheckConnectivityAction(hasConnection: hasConnection),
-        );
-
         showToast('Internet connection lost');
       }
     });

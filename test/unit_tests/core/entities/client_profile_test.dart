@@ -1,20 +1,20 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/core/client_profile.dart';
+import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 
 import '../../../mocks.dart';
 
 void main() {
   test('ClientProfile fromJson', () {
     expect(
-      ClientProfile.fromJson(mockClientProfile),
-      isA<ClientProfile>(),
+      ClientState.fromJson(mockClientProfile),
+      isA<ClientState>(),
     );
   });
 
   test('ClientProfile initial is set', () {
-    final ClientProfile initialClientProfile = ClientProfile.initial();
+    final ClientState initialClientProfile = ClientState.initial();
 
     expect(
       initialClientProfile.treatmentEnrollmentDate,

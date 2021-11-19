@@ -172,21 +172,10 @@ class _LoginPageState extends State<LoginPage> {
                             child: MyAfyaHubPrimaryButton(
                               buttonKey: phoneLoginContinueButtonKey,
                               onPressed: () async {
-                                final bool? isConnected =
-                                    vm.appState.connectivityState?.isConnected;
-
-                                if (isConnected != null && !isConnected) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(noInternetConnection),
-                                    ),
-                                  );
-                                  return;
-                                }
-
                                 final bool? isFormValid =
                                     _formKey.currentState?.validate();
 
+                                // TODO(abiud): check for connectivity before logging in
                                 if (isFormValid != null &&
                                     isFormValid &&
                                     pin != null &&

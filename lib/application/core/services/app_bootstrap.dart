@@ -12,6 +12,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
+import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -44,29 +46,29 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
   // initialize firebase remote config
   final RemoteConfigService remoteConfig =
       await RemoteConfigService.getInstance();
+
   remoteConfig.init();
 
-  // final BeWellStateDatabase stateDB =
-  //     BeWellStateDatabase(dataBaseName: silDatabaseName);
+  final BeWellStateDatabase stateDB =
+      BeWellStateDatabase(dataBaseName: silDatabaseName);
 
   final ConnectivityStatus connectivityStatus = ConnectivityStatus.initial();
 
   /// initialize the database
-  // await stateDB.init();
+  await stateDB.init();
 
   /// retrieve state from the database
-  // final AppState initialState = await stateDB.readState();
-  final AppState initialState = AppState.initial();
+  final AppState initialState = await stateDB.readState();
 
   /// initialize a fresh database if [initialState] is `null`,
   /// and populate the database with the default values for each state
-  // if (initialState == AppState.initial()) {
-  //   await stateDB.saveInitialState(initialState);
-  // }
+  if (initialState == AppState.initial()) {
+    await stateDB.saveInitialState(initialState);
+  }
 
   final Store<AppState> store = Store<AppState>(
     initialState: initialState,
-    // persistor: PersistorPrinterDecorator<AppState>(stateDB),
+    persistor: PersistorPrinterDecorator<AppState>(stateDB),
     defaultDistinct: true,
   );
 

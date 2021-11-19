@@ -24,12 +24,12 @@ class _$PhoneLoginResponseTearOff {
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
       @JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'clientProfile') ClientProfile? clientProfile}) {
+      @JsonKey(name: 'clientProfile') ClientState? clientState}) {
     return _PhoneLoginResponse(
       code: code,
       message: message,
       credentials: credentials,
-      clientProfile: clientProfile,
+      clientState: clientState,
     );
   }
 
@@ -50,7 +50,7 @@ mixin _$PhoneLoginResponse {
   @JsonKey(name: 'credentials')
   AuthCredentials? get credentials => throw _privateConstructorUsedError;
   @JsonKey(name: 'clientProfile')
-  ClientProfile? get clientProfile => throw _privateConstructorUsedError;
+  ClientState? get clientState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -67,10 +67,10 @@ abstract class $PhoneLoginResponseCopyWith<$Res> {
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
       @JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'clientProfile') ClientProfile? clientProfile});
+      @JsonKey(name: 'clientProfile') ClientState? clientState});
 
   $AuthCredentialsCopyWith<$Res>? get credentials;
-  $ClientProfileCopyWith<$Res>? get clientProfile;
+  $ClientStateCopyWith<$Res>? get clientState;
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
     Object? code = freezed,
     Object? message = freezed,
     Object? credentials = freezed,
-    Object? clientProfile = freezed,
+    Object? clientState = freezed,
   }) {
     return _then(_value.copyWith(
       code: code == freezed
@@ -102,10 +102,10 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
-      clientProfile: clientProfile == freezed
-          ? _value.clientProfile
-          : clientProfile // ignore: cast_nullable_to_non_nullable
-              as ClientProfile?,
+      clientState: clientState == freezed
+          ? _value.clientState
+          : clientState // ignore: cast_nullable_to_non_nullable
+              as ClientState?,
     ));
   }
 
@@ -121,13 +121,13 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
   }
 
   @override
-  $ClientProfileCopyWith<$Res>? get clientProfile {
-    if (_value.clientProfile == null) {
+  $ClientStateCopyWith<$Res>? get clientState {
+    if (_value.clientState == null) {
       return null;
     }
 
-    return $ClientProfileCopyWith<$Res>(_value.clientProfile!, (value) {
-      return _then(_value.copyWith(clientProfile: value));
+    return $ClientStateCopyWith<$Res>(_value.clientState!, (value) {
+      return _then(_value.copyWith(clientState: value));
     });
   }
 }
@@ -143,12 +143,12 @@ abstract class _$PhoneLoginResponseCopyWith<$Res>
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
       @JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'clientProfile') ClientProfile? clientProfile});
+      @JsonKey(name: 'clientProfile') ClientState? clientState});
 
   @override
   $AuthCredentialsCopyWith<$Res>? get credentials;
   @override
-  $ClientProfileCopyWith<$Res>? get clientProfile;
+  $ClientStateCopyWith<$Res>? get clientState;
 }
 
 /// @nodoc
@@ -167,7 +167,7 @@ class __$PhoneLoginResponseCopyWithImpl<$Res>
     Object? code = freezed,
     Object? message = freezed,
     Object? credentials = freezed,
-    Object? clientProfile = freezed,
+    Object? clientState = freezed,
   }) {
     return _then(_PhoneLoginResponse(
       code: code == freezed
@@ -182,10 +182,10 @@ class __$PhoneLoginResponseCopyWithImpl<$Res>
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as AuthCredentials?,
-      clientProfile: clientProfile == freezed
-          ? _value.clientProfile
-          : clientProfile // ignore: cast_nullable_to_non_nullable
-              as ClientProfile?,
+      clientState: clientState == freezed
+          ? _value.clientState
+          : clientState // ignore: cast_nullable_to_non_nullable
+              as ClientState?,
     ));
   }
 }
@@ -197,7 +197,7 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
       {@JsonKey(name: 'code') this.code,
       @JsonKey(name: 'message') this.message,
       @JsonKey(name: 'credentials') this.credentials,
-      @JsonKey(name: 'clientProfile') this.clientProfile});
+      @JsonKey(name: 'clientProfile') this.clientState});
 
   factory _$_PhoneLoginResponse.fromJson(Map<String, dynamic> json) =>
       _$_$_PhoneLoginResponseFromJson(json);
@@ -213,11 +213,11 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
   final AuthCredentials? credentials;
   @override
   @JsonKey(name: 'clientProfile')
-  final ClientProfile? clientProfile;
+  final ClientState? clientState;
 
   @override
   String toString() {
-    return 'PhoneLoginResponse(code: $code, message: $message, credentials: $credentials, clientProfile: $clientProfile)';
+    return 'PhoneLoginResponse(code: $code, message: $message, credentials: $credentials, clientState: $clientState)';
   }
 
   @override
@@ -232,9 +232,9 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
             (identical(other.credentials, credentials) ||
                 const DeepCollectionEquality()
                     .equals(other.credentials, credentials)) &&
-            (identical(other.clientProfile, clientProfile) ||
+            (identical(other.clientState, clientState) ||
                 const DeepCollectionEquality()
-                    .equals(other.clientProfile, clientProfile)));
+                    .equals(other.clientState, clientState)));
   }
 
   @override
@@ -243,7 +243,7 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(credentials) ^
-      const DeepCollectionEquality().hash(clientProfile);
+      const DeepCollectionEquality().hash(clientState);
 
   @JsonKey(ignore: true)
   @override
@@ -261,7 +261,7 @@ abstract class _PhoneLoginResponse implements PhoneLoginResponse {
           {@JsonKey(name: 'code') int? code,
           @JsonKey(name: 'message') String? message,
           @JsonKey(name: 'credentials') AuthCredentials? credentials,
-          @JsonKey(name: 'clientProfile') ClientProfile? clientProfile}) =
+          @JsonKey(name: 'clientProfile') ClientState? clientState}) =
       _$_PhoneLoginResponse;
 
   factory _PhoneLoginResponse.fromJson(Map<String, dynamic> json) =
@@ -278,7 +278,7 @@ abstract class _PhoneLoginResponse implements PhoneLoginResponse {
   AuthCredentials? get credentials => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'clientProfile')
-  ClientProfile? get clientProfile => throw _privateConstructorUsedError;
+  ClientState? get clientState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PhoneLoginResponseCopyWith<_PhoneLoginResponse> get copyWith =>

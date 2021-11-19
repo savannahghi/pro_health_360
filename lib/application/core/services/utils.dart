@@ -397,11 +397,9 @@ dynamic reportErrorToSentry(
   if (context != null) {
     try {
       final AppState state = StoreProvider.state<AppState>(context)!;
-      final Contact? contact =
-          state.clientState?.clientProfile?.user?.primaryContact;
+      final Contact? contact = state.clientState?.user?.primaryContact;
 
-      final bool isSignedIn =
-          state.clientState?.clientProfile?.isSignedIn ?? false;
+      final bool isSignedIn = state.clientState?.isSignedIn ?? false;
 
       if (isSignedIn) {
         errorTrace = <String, dynamic>{
@@ -728,6 +726,7 @@ Future<void> customFetchData({
       ? streamController.add(payLoad['data'])
       : streamController.add(null);
 }
+
 void refreshTokenAndUpdateState({
   required bool value,
   required bool signedIn,
@@ -776,11 +775,11 @@ Future<bool> updateStateAuth({
     publishEvent(
       hasSuccessfulRefreshTokenEvent(appContext),
       EventObject(
-        firstName: state!.clientState!.clientProfile!.user!.firstName,
-        lastName: state.clientState!.clientProfile!.user!.lastName,
+        firstName: state!.clientState!.user!.firstName,
+        lastName: state.clientState!.user!.lastName,
         primaryPhoneNumber:
-            state.clientState!.clientProfile!.user!.primaryContact!.contact,
-        uid: state.clientState!.clientProfile!.user!.userId,
+            state.clientState!.user!.primaryContact!.contact,
+        uid: state.clientState!.user!.userId,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),
         appVersion: APPVERSION,
@@ -811,11 +810,11 @@ Future<bool> updateStateAuth({
     publishEvent(
       hasFailedToRefreshTokenEvent(appContext),
       EventObject(
-        firstName: state!.clientState!.clientProfile!.user!.firstName,
-        lastName: state.clientState!.clientProfile!.user!.lastName,
+        firstName: state!.clientState!.user!.firstName,
+        lastName: state.clientState!.user!.lastName,
         primaryPhoneNumber:
-            state.clientState!.clientProfile!.user!.primaryContact!.contact,
-        uid: state.clientState!.clientProfile!.user!.userId,
+            state.clientState!.user!.primaryContact!.contact,
+        uid: state.clientState!.user!.userId,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),
         appVersion: APPVERSION,

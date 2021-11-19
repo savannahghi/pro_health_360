@@ -247,8 +247,8 @@ void main() {
         expect(find.byType(HomePage), findsOneWidget);
 
         expect(
-          store.state.clientState?.clientProfile?.user,
-          phoneLoginResponse.clientProfile?.user,
+          store.state.clientState?.user,
+          phoneLoginResponse.clientState?.user,
         );
 
         final AuthCredentials? credentials = store.state.credentials;

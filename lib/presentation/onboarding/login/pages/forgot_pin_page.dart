@@ -24,7 +24,7 @@ class ForgotPINPage extends StatelessWidget {
     final AppState appState = StoreProvider.state<AppState>(context)!;
     final List<SecurityQuestionResponse>? securityQuestionsResponses =
         appState.onboardingState!.securityQuestionResponses;
-    final String userId = appState.clientState!.clientProfile!.user!.userId!;
+    final String userId = appState.clientState!.user!.userId!;
     final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
       SecurityQuestion(
         securityQuestionID: 'sec_q_1',
