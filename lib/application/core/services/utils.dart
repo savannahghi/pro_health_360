@@ -603,26 +603,36 @@ List<NotificationDetails> pastAppointments = <NotificationDetails>[
 ];
 
 bool shouldInputPIN(BuildContext context) {
-  // final DateTime signedInTime = DateTime.parse(
-  //   StoreProvider.state<AppState>(context)!.clientProfile!.signedInTime!,
-  // );
+  final String lastUserSignInTime =
+      StoreProvider.state<AppState>(context)!.credentials!.signedInTime ==
+              UNKNOWN
+          ? DateTime.now().toString()
+          : StoreProvider.state<AppState>(context)!.credentials!.signedInTime!;
+
+  final DateTime signedInTime = DateTime.parse(
+    lastUserSignInTime,
+  );
 
   // TODO: store signed in time in the app state
-  final DateTime signedInTime = DateTime.now();
+
 
   final String lastPINInputTime = StoreProvider.state<AppState>(context)!
+              .miscState!
+              .healthPagePINInputTime ==
+          null
+      ? UNKNOWN
+      : StoreProvider.state<AppState>(context)!
           .miscState!
-          .healthPagePINInputTime ??
-      '';
+          .healthPagePINInputTime!;
 
   final int differenceFromSignIn =
       DateTime.now().difference(signedInTime).inMinutes;
 
-  final int differenceFromLastInput = lastPINInputTime.isNotEmpty
+  final int differenceFromLastInput = lastPINInputTime != UNKNOWN
       ? DateTime.now().difference(DateTime.parse(lastPINInputTime)).inMinutes
       : 0;
 
-  if (differenceFromSignIn > 20 && lastPINInputTime.isEmpty) {
+  if (differenceFromSignIn > 20 && lastPINInputTime == UNKNOWN) {
     StoreProvider.dispatch(
       context,
       HealthPagePINInputAction(
