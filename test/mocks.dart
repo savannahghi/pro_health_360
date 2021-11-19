@@ -3078,7 +3078,7 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
 };
 
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
-  'id': 'id',
+  'securityQuestionID': 'id',
   'questionStem': 'question_stem',
   'description': 'description',
   'responseType': 'response_type',

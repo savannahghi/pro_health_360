@@ -7,7 +7,7 @@ part 'security_question.g.dart';
 @freezed
 class SecurityQuestion with _$SecurityQuestion {
   factory SecurityQuestion({
-    String? id,
+    String? securityQuestionID,
     String? questionStem,
     String? description,
     String? responseType,
@@ -20,7 +20,7 @@ class SecurityQuestion with _$SecurityQuestion {
       _$SecurityQuestionFromJson(json);
 
   factory SecurityQuestion.initial() => SecurityQuestion(
-        id: UNKNOWN,
+        securityQuestionID: UNKNOWN,
         questionStem: UNKNOWN,
         description: UNKNOWN,
         responseType: UNKNOWN,
