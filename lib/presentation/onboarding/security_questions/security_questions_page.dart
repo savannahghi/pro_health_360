@@ -75,7 +75,7 @@ class SecurityQuestionsPage extends StatelessWidget {
                   return Container(
                     padding: const EdgeInsets.all(10.0),
                     child: ExpandableQuestion(
-                      question: question.questionStem,
+                      question: question.questionStem ?? UNKNOWN,
                       hintText: answerHereString,
                       initialValue: (response == UNKNOWN) ? null : response,
                       onChanged: (String value) {

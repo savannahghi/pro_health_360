@@ -24,6 +24,11 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
+import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
+import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
@@ -3219,3 +3224,15 @@ final Group mockGroup = Group(
   avatar: 'https://i.postimg.cc/9XpbrC25/profile-image.png',
   members: '523',
 );
+
+final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
+  'createPINState': CreatePINState.initial().toJson(),
+  'termsAndConditions': TermsAndConditions.initial().toJson(),
+  'securityQuestions': <Map<String, dynamic>>[
+    SecurityQuestion.initial().toJson(),
+  ],
+  'securityQuestionResponses': <Map<String, dynamic>>[
+    SecurityQuestionResponse.initial().toJson(),
+  ],
+  'phoneLogin': PhoneLogin.initial().toJson(),
+};

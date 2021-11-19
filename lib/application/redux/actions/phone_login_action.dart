@@ -69,11 +69,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     /// [pin] variable is retrieving the PIN the user input in the [PhoneLogin] page from state
     /// [phoneNumber] variable is retrieving the Phone Number the user input in the [PhoneLogin] page from state
-    final String pin = state.onboardingState!.phoneLogin!.pinCode;
-    final String phoneNumber = state.onboardingState!.phoneLogin!.phoneNumber;
+    final String? pin = state.onboardingState?.phoneLogin?.pinCode;
+    final String? phoneNumber = state.onboardingState?.phoneLogin?.phoneNumber;
 
     /// Check to verify the PIN is `not null` and contains four digits
-    if (pin != UNKNOWN && pin.length == 4) {
+    if (pin != null &&
+        pin != UNKNOWN &&
+        pin.length == 4 &&
+        phoneNumber != null) {
       // make the variables
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,

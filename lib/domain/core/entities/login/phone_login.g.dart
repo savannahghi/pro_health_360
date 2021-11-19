@@ -6,15 +6,15 @@ part of 'phone_login.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PhoneLogin _$PhoneLoginFromJson(Map<String, dynamic> json) {
-  return PhoneLogin(
-    invalidCredentials: json['invalidCredentials'] as bool,
-    phoneNumber: json['phoneNumber'] as String,
-    pinCode: json['pinCode'] as String,
+_$_PhoneLogin _$_$_PhoneLoginFromJson(Map<String, dynamic> json) {
+  return _$_PhoneLogin(
+    invalidCredentials: json['invalidCredentials'] as bool? ?? false,
+    phoneNumber: json['phoneNumber'] as String?,
+    pinCode: json['pinCode'] as String?,
   );
 }
 
-Map<String, dynamic> _$PhoneLoginToJson(PhoneLogin instance) =>
+Map<String, dynamic> _$_$_PhoneLoginToJson(_$_PhoneLogin instance) =>
     <String, dynamic>{
       'invalidCredentials': instance.invalidCredentials,
       'phoneNumber': instance.phoneNumber,

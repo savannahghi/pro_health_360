@@ -74,6 +74,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
 
   $CreatePINStateCopyWith<$Res>? get createPINState;
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
+  $PhoneLoginCopyWith<$Res>? get phoneLogin;
 }
 
 /// @nodoc
@@ -139,6 +140,17 @@ class _$OnboardingStateCopyWithImpl<$Res>
       return _then(_value.copyWith(termsAndConditions: value));
     });
   }
+
+  @override
+  $PhoneLoginCopyWith<$Res>? get phoneLogin {
+    if (_value.phoneLogin == null) {
+      return null;
+    }
+
+    return $PhoneLoginCopyWith<$Res>(_value.phoneLogin!, (value) {
+      return _then(_value.copyWith(phoneLogin: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -159,6 +171,8 @@ abstract class _$OnboardingStateCopyWith<$Res>
   $CreatePINStateCopyWith<$Res>? get createPINState;
   @override
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
+  @override
+  $PhoneLoginCopyWith<$Res>? get phoneLogin;
 }
 
 /// @nodoc
