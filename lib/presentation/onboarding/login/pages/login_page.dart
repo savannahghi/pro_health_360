@@ -18,14 +18,11 @@ import 'package:myafyahub/application/redux/actions/phone_login_state_action.dar
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
-import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -41,10 +38,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String? phoneNumber;
+  String? pin;
+
   final TextEditingController phoneNumberInputController =
       TextEditingController();
-
-  String? pin;
   TextEditingController pinController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -74,75 +71,6 @@ class _LoginPageState extends State<LoginPage> {
     clearAllFlags(context);
   }
 
-  Widget logInColumn(AppStateViewModel vm) {
-    return Column(
-      children: <Widget>[
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            phoneNumberString,
-            style: TextThemes.boldSize14Text(AppColors.greyTextColor),
-          ),
-        ),
-        verySmallVerticalSizedBox,
-        MyAfyaHubPhoneInput(
-          phoneNumberFormatter: formatPhoneNumber,
-          inputController: phoneNumberInputController,
-          labelText: enterPhoneNumberString,
-          onChanged: (String? val) {
-            if (vm.appState.onboardingState!.phoneLogin!.invalidCredentials) {
-              StoreProvider.dispatch(
-                context,
-                PhoneLoginStateAction(),
-              );
-            }
-            setState(() {
-              phoneNumber = val?.toString();
-            });
-          },
-        ),
-        largeVerticalSizedBox,
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            pinString,
-            style: TextThemes.boldSize14Text(AppColors.greyTextColor),
-          ),
-        ),
-        verySmallVerticalSizedBox,
-        CustomTextField(
-          formFieldKey: pinInputKey,
-          borderColor: Colors.grey[200],
-          maxLength: 4,
-          maxLines: 1,
-          keyboardType: TextInputType.number,
-          obscureText: true,
-          hintText: enterYourString,
-          validator: userPinValidator,
-          autovalidateMode: AutovalidateMode.disabled,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ],
-          onChanged: (String val) {
-            if (vm.appState.onboardingState!.phoneLogin!.invalidCredentials) {
-              StoreProvider.dispatch(
-                context,
-                PhoneLoginStateAction(),
-              );
-            }
-            setState(() {
-              pin = val;
-            });
-          },
-        ),
-        if (vm.appState.onboardingState?.phoneLogin?.invalidCredentials ??
-            false) ...<Widget>[
-          const ErrorAlertBox(message: invalidCredentialsErrorMsg),
-        ],
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return OnboardingScaffold(
@@ -152,36 +80,87 @@ class _LoginPageState extends State<LoginPage> {
         converter: (Store<AppState> store) =>
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
-          final User? userState = vm.appState.clientState?.clientProfile?.user;
-          final String? phoneNumber = userState?.primaryContact!.contact;
-
-          final String? userId = userState?.userId;
-
           return SizedBox(
             height: MediaQuery.of(context).size.height / 1.6,
             child: Form(
               key: _formKey,
               child: Stack(
                 children: <Widget>[
-                  logInColumn(vm),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        BWRoutes.verifySignUpOTP,
-                        arguments: <String, dynamic>{
-                          'OTP': 1234,
-                          'userID': userId,
-                          'phoneNumber': phoneNumber ?? UNKNOWN,
+                  Column(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          phoneNumberString,
+                          style: TextThemes.boldSize14Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                      ),
+                      verySmallVerticalSizedBox,
+                      MyAfyaHubPhoneInput(
+                        phoneNumberFormatter: formatPhoneNumber,
+                        inputController: phoneNumberInputController,
+                        labelText: enterPhoneNumberString,
+                        onChanged: (String? val) {
+                          if (vm.appState.onboardingState!.phoneLogin!
+                              .invalidCredentials) {
+                            StoreProvider.dispatch(
+                              context,
+                              PhoneLoginStateAction(),
+                            );
+                          }
+
+                          setState(() {
+                            phoneNumber = val;
+                          });
                         },
-                      );
-                    },
-                    child: const SizedBox(
-                      height: 50,
-                      width: 50,
-                      key: verifyOTPGestureKey,
-                      child: Text('    '),
-                    ),
+                      ),
+                      largeVerticalSizedBox,
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          pinString,
+                          style: TextThemes.boldSize14Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                      ),
+                      verySmallVerticalSizedBox,
+                      CustomTextField(
+                        formFieldKey: pinInputKey,
+                        borderColor: Colors.grey[200],
+                        maxLength: 4,
+                        maxLines: 1,
+                        keyboardType: TextInputType.number,
+                        obscureText: true,
+                        hintText: enterYourString,
+                        validator: userPinValidator,
+                        autovalidateMode: AutovalidateMode.disabled,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        onChanged: (String val) {
+                          if (vm.appState.onboardingState!.phoneLogin!
+                              .invalidCredentials) {
+                            StoreProvider.dispatch(
+                              context,
+                              PhoneLoginStateAction(),
+                            );
+                          }
+                          setState(() {
+                            pin = val;
+                          });
+                        },
+                      ),
+                      if (vm.appState.onboardingState?.phoneLogin
+                              ?.invalidCredentials ??
+                          false) ...<Widget>[
+                        const ErrorAlertBox(
+                          message: invalidCredentialsErrorMsg,
+                        ),
+                      ],
+                    ],
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -193,9 +172,10 @@ class _LoginPageState extends State<LoginPage> {
                             child: MyAfyaHubPrimaryButton(
                               buttonKey: phoneLoginContinueButtonKey,
                               onPressed: () async {
-                                if (!InternetConnectivitySubject()
-                                    .connectivitySubject
-                                    .valueOrNull!) {
+                                final bool? isConnected =
+                                    vm.appState.connectivityState?.isConnected;
+
+                                if (isConnected != null && !isConnected) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text(noInternetConnection),
@@ -203,15 +183,16 @@ class _LoginPageState extends State<LoginPage> {
                                   );
                                   return;
                                 }
-                                if (_formKey.currentState!.validate()) {
-                                  if (pin != null && phoneNumber != null) {
-                                    await signInUser(
-                                      context: context,
-                                      pin: pin!,
-                                      phoneNumber: phoneNumber,
-                                    );
-                                  }
-                                  return;
+
+                                if (pin != null &&
+                                    phoneNumber != null &&
+                                    pin != UNKNOWN &&
+                                    phoneNumber != UNKNOWN) {
+                                  await signInUser(
+                                    context: context,
+                                    pin: pin!,
+                                    phoneNumber: phoneNumber!,
+                                  );
                                 }
                               },
                               buttonColor: AppColors.secondaryColor,
