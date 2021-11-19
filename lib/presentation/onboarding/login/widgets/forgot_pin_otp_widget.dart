@@ -1,28 +1,28 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-import 'package:shared_ui_components/verify_phone_otp.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/dynamic_back_route_holder.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:shared_ui_components/verify_phone_otp.dart';
 
 class ForgotPinOtpWidget extends StatelessWidget {
   @override
@@ -36,8 +36,14 @@ class ForgotPinOtpWidget extends StatelessWidget {
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           // TODO(abiud): add sanity checks since the phone number is now a list of contacts
-          final String? phoneNumber = vm.appState.clientState?.clientProfile!
-              .user?.contacts?.first.contact;
+          final String? phoneNumber =
+              vm.appState.clientState?.clientProfile!.user?.contacts
+                  ?.firstWhere(
+                    (Contact contact) =>
+                        contact.contactType == ContactType.PRIMARY,
+                    orElse: () => Contact.initial(),
+                  )
+                  .contact;
 
           return SafeArea(
             child: Padding(
