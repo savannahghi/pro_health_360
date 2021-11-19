@@ -17,7 +17,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 
 // Project imports:
@@ -56,17 +55,6 @@ import 'package:user_feed/user_feed.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
-}
-
-Gender genderFromString(String g) {
-  if (g.toLowerCase() == Gender.male.name.toLowerCase()) {
-    return Gender.male;
-  }
-  if (g.toLowerCase() == Gender.female.name.toLowerCase()) {
-    return Gender.female;
-  }
-
-  return Gender.unknown;
 }
 
 AppSetupData getAppSetupData(AppContext context) {
@@ -259,27 +247,6 @@ void genericBottomSheet({
       );
     },
   );
-}
-
-/// [preferredPaddingOnStretchedScreens] function is used to calculate give a
-/// constant size in width of the items to be displayed on the screen
-/// First it gets the width of the device
-/// Subtracts `420` which is a one size fit all constant for widgets on a
-///  stretched view/display
-/// The difference is then divided by `2` to get the size that will be feed to
-/// our padding so that the widgets take up a width of `420`
-double preferredPaddingOnStretchedScreens({required BuildContext context}) {
-  final double deviceWidth = MediaQuery.of(context).size.width;
-  if (deviceWidth >= number420) {
-    final double paddingSize = (deviceWidth - number420) / number2;
-
-    if (paddingSize <= number15) {
-      return number15;
-    }
-    return paddingSize;
-  } else {
-    return number15;
-  }
 }
 
 String sentenceCaseUserName({
@@ -540,40 +507,6 @@ String tooManyTriesString(int timeLeft) {
   return 'Too may tries, try again in $convertedTime minutes';
 }
 
-//Mock UserProfile
-final Map<String, Map<String, dynamic>?> loginResponse =
-    <String, Map<String, Object?>?>{
-  'profile': <String, dynamic>{
-    'primaryEmailAddress': null,
-    'primaryPhone': '+254712654897',
-    'covers': <Map<String, dynamic>>[
-      <String, dynamic>{
-        'payer_name': 'JICK',
-        'payer_slade_code': 123,
-        'member_number': '123255',
-        'member_name': 'Bewell Test'
-      }
-    ],
-    'secondaryEmailAddresses': null,
-    'secondaryPhoneNumbers': <String>['+254712654897', '+254712654897'],
-    'suspended': false,
-    'terms_accepted': true,
-    'userBioData': <String, dynamic>{
-      'dateOfBirth': '1996-02-07',
-      'firstName': 'Abiud',
-      'gender': 'unknown',
-      'lastName': 'Orina'
-    },
-    'userName': '@suspicious_ishizaka8254254',
-    'verifiedIdentifiers': <Map<String, dynamic>>[
-      <String, dynamic>{
-        'loginProvider': 'PHONE',
-        'timeStamp': '2021-02-19T10:04:39.795501Z',
-      }
-    ],
-  },
-};
-
 List<NotificationDetails> upcomingAppointments = <NotificationDetails>[
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
@@ -795,31 +728,6 @@ Future<void> customFetchData({
       ? streamController.add(payLoad['data'])
       : streamController.add(null);
 }
-
-Future<ProcessedResponse> requestForANewToken({
-  required List<AppContext> thisAppContexts,
-  required String refreshToken,
-  required BuildContext context,
-}) async {
-  final IGraphQlClient _httpClient = AppWrapperBase.of(context)!.graphQLClient;
-  final String refreshTokenEndpoint =
-      AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint;
-
-  final Map<String, dynamic> refreshTokenVariables = <String, dynamic>{
-    'refreshToken': refreshToken,
-    'appVersion': APPVERSION,
-  };
-
-  return processHttpResponse(
-    await _httpClient.callRESTAPI(
-      endpoint: refreshTokenEndpoint,
-      method: 'POST',
-      variables: refreshTokenVariables,
-    ),
-    context,
-  );
-}
-
 void refreshTokenAndUpdateState({
   required bool value,
   required bool signedIn,

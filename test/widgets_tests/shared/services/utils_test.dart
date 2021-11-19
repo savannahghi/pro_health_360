@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,11 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart' as misc;
+import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
+import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -560,7 +563,6 @@ void main() {
             DateTime.now().subtract(const Duration(minutes: 30)).toString(),
       ),
     );
-
     testWidgets(
         'should return false if difference between current time and signed in time is greater than 20 minutes',
         (WidgetTester tester) async {
@@ -611,6 +613,15 @@ void main() {
         HealthPagePINInputAction(
           lastPINInputTime:
               DateTime.now().subtract(const Duration(minutes: 10)).toString(),
+        ),
+      );
+      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.pumpAndSettle();
+      expect(testBool, false);
+
+      store.dispatch(
+        AuthStatusAction(
+          signedInTime: UNKNOWN,
         ),
       );
       await tester.tap(find.byKey(const Key('update_contacts')));
@@ -678,6 +689,52 @@ void main() {
       await tester.pumpAndSettle();
       // There are no required expectations here because they have been already
       // verified in the setup above
+    });
+  });
+  group('reportErrorToSentry', () {
+    testWidgets('sends to sentry', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient client =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'data': null}),
+          201,
+        ),
+      );
+      late bool errorReported = false;
+      store.dispatch(UpdateClientProfileAction(isSignedIn: true));
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () {
+                reportErrorToSentry(
+                  context,
+                  http.Response(
+                    json.encode(<String, dynamic>{
+                      'errors': <Object>[
+                        <String, dynamic>{
+                          'message': '4: error',
+                        }
+                      ]
+                    }),
+                    401,
+                  ),
+                );
+                errorReported = true;
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+      expect(errorReported, true);
     });
   });
 }

@@ -9,11 +9,13 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.active,
     this.lastMoodRecordedDate,
     this.nickName,
+    this.isSignedIn,
   });
 
   final bool? active;
   final String? lastMoodRecordedDate;
   final String? nickName;
+  final bool? isSignedIn;
 
   @override
   AppState reduce() {
@@ -21,6 +23,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
       clientState: state.clientState?.copyWith.call(
         clientProfile: state.clientState?.clientProfile?.copyWith(
           active: this.active ?? state.clientState?.clientProfile?.active,
+          isSignedIn: this.isSignedIn ?? state.clientState?.clientProfile?.isSignedIn,
         ),
       ),
     );
