@@ -184,7 +184,12 @@ class _LoginPageState extends State<LoginPage> {
                                   return;
                                 }
 
-                                if (pin != null &&
+                                final bool? isFormValid =
+                                    _formKey.currentState?.validate();
+
+                                if (isFormValid != null &&
+                                    isFormValid &&
+                                    pin != null &&
                                     phoneNumber != null &&
                                     pin != UNKNOWN &&
                                     phoneNumber != UNKNOWN) {

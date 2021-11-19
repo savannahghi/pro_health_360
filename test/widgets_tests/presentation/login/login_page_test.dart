@@ -36,6 +36,7 @@ void main() {
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
+      store.dispatch(CheckConnectivityAction(hasConnection: true));
     });
 
     testWidgets('MyAfyaHubCountryPicker should render a list of countries',
@@ -142,8 +143,6 @@ void main() {
         (WidgetTester tester) async {
       final MockRefreshTokenManger refreshTimer = MockRefreshTokenManger();
 
-      store.dispatch(CheckConnectivityAction(hasConnection: true));
-
       final Response loginResponse = Response(
         json.encode(mockLoginResponse),
         200,
@@ -164,6 +163,15 @@ void main() {
         }),
         200,
       );
+
+      final Map<String, dynamic> queryVariables = <String, dynamic>{
+        'phoneNumber': '+254723456789',
+        'pin': '1234',
+        'flavour': Flavour.CONSUMER.name,
+      };
+
+      when(baseGraphQlClientMock.query(loginQuery, queryVariables))
+          .thenAnswer((_) async => Future<Response>.value(loginResponse));
 
       when(
         baseGraphQlClientMock
@@ -190,15 +198,6 @@ void main() {
         json.decode(contentResponse.body) as Map<String, dynamic>,
       );
 
-      final Map<String, dynamic> queryVariables = <String, dynamic>{
-        'phoneNumber': '+254123456789',
-        'pin': '1234',
-        'flavour': Flavour.CONSUMER.name,
-      };
-
-      when(baseGraphQlClientMock.query(loginQuery, queryVariables))
-          .thenAnswer((_) async => Future<Response>.value(loginResponse));
-
       await mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
@@ -218,7 +217,7 @@ void main() {
         final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
 
         await tester.showKeyboard(phoneInputField);
-        await tester.enterText(phoneInputField, '123456789');
+        await tester.enterText(phoneInputField, '723456789');
         await tester.pumpAndSettle();
 
         await tester.showKeyboard(pinInputField);
