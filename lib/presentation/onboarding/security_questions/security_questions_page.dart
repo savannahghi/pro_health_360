@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
@@ -26,21 +27,23 @@ class SecurityQuestionsPage extends StatelessWidget {
     final List<SecurityQuestionResponse>? securityQuestionsResponses =
         appState.onboardingState!.securityQuestionResponses;
 
+    final String userId = appState.clientState!.clientProfile!.user!.userId!;
+
     final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
       SecurityQuestion(
-        id: 'sec_q_1',
+        securityQuestionID: 'sec_q_1',
         questionStem: whereWereYouBornString,
         responseType: '',
         flavour: Flavour.CONSUMER.name,
       ),
       SecurityQuestion(
-        id: 'sec_q_2',
+        securityQuestionID: 'sec_q_2',
         questionStem: whatsTheNameOfYourPetString,
         responseType: '',
         flavour: Flavour.CONSUMER.name,
       ),
       SecurityQuestion(
-        id: 'sec_q_4',
+        securityQuestionID: 'sec_q_4',
         questionStem: whereDidYouFirstLiveString,
         responseType: '',
         flavour: Flavour.CONSUMER.name,
@@ -67,7 +70,8 @@ class SecurityQuestionsPage extends StatelessWidget {
                   final SecurityQuestionResponse? questionResponse =
                       securityQuestionsResponses?.singleWhere(
                     (SecurityQuestionResponse response) =>
-                        response.securityQuestionId == question.id,
+                        response.securityQuestionId ==
+                        question.securityQuestionID,
                     orElse: () => SecurityQuestionResponse.initial(),
                   );
 
@@ -79,23 +83,22 @@ class SecurityQuestionsPage extends StatelessWidget {
                       hintText: answerHereString,
                       initialValue: (response == UNKNOWN) ? null : response,
                       onChanged: (String value) {
-                        // TODO(abiud): change this implementation to cater for the changes above
-
-                        // securityQuestionsResponses[question.id] =
-                        //     SecurityQuestionResponse(
-                        //   id: userId,
-                        //   timeStamp: DateTime.now().toString(),
-                        //   userId: userId,
-                        //   securityQuestionId: question.id,
-                        //   response: value,
-                        // );
-                        // StoreProvider.dispatch<AppState>(
-                        //   context,
-                        //   UpdateClientProfileAction(
-                        //     securityQuestionsResponses:
-                        //         securityQuestionsResponses,
-                        //   ),
-                        // );
+                        securityQuestionsResponses!.add(
+                          SecurityQuestionResponse(
+                            id: userId,
+                            timeStamp: DateTime.now().toString(),
+                            userId: userId,
+                            securityQuestionId: question.securityQuestionID,
+                            response: value,
+                          ),
+                        );
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          UpdateOnboardingStateAction(
+                            securityQuestionsResponses:
+                                securityQuestionsResponses,
+                          ),
+                        );
                       },
                     ),
                   );

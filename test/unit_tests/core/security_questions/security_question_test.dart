@@ -14,7 +14,7 @@ void main() {
     test('SecurityQuestion toJson', () {
       expect(
         SecurityQuestion(
-          id: 'id',
+          securityQuestionID: 'id',
           questionStem: 'question_stem',
           description: 'description',
           responseType: 'response_type',

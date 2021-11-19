@@ -21,7 +21,7 @@ class _$SecurityQuestionTearOff {
   const _$SecurityQuestionTearOff();
 
   _SecurityQuestion call(
-      {String? id,
+      {String? securityQuestionID,
       String? questionStem,
       String? description,
       String? responseType,
@@ -29,7 +29,7 @@ class _$SecurityQuestionTearOff {
       bool? active = false,
       int? sequence}) {
     return _SecurityQuestion(
-      id: id,
+      securityQuestionID: securityQuestionID,
       questionStem: questionStem,
       description: description,
       responseType: responseType,
@@ -49,7 +49,7 @@ const $SecurityQuestion = _$SecurityQuestionTearOff();
 
 /// @nodoc
 mixin _$SecurityQuestion {
-  String? get id => throw _privateConstructorUsedError;
+  String? get securityQuestionID => throw _privateConstructorUsedError;
   String? get questionStem => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get responseType => throw _privateConstructorUsedError;
@@ -69,7 +69,7 @@ abstract class $SecurityQuestionCopyWith<$Res> {
           SecurityQuestion value, $Res Function(SecurityQuestion) then) =
       _$SecurityQuestionCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {String? securityQuestionID,
       String? questionStem,
       String? description,
       String? responseType,
@@ -89,7 +89,7 @@ class _$SecurityQuestionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? securityQuestionID = freezed,
     Object? questionStem = freezed,
     Object? description = freezed,
     Object? responseType = freezed,
@@ -98,9 +98,9 @@ class _$SecurityQuestionCopyWithImpl<$Res>
     Object? sequence = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      securityQuestionID: securityQuestionID == freezed
+          ? _value.securityQuestionID
+          : securityQuestionID // ignore: cast_nullable_to_non_nullable
               as String?,
       questionStem: questionStem == freezed
           ? _value.questionStem
@@ -138,7 +138,7 @@ abstract class _$SecurityQuestionCopyWith<$Res>
       __$SecurityQuestionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {String? securityQuestionID,
       String? questionStem,
       String? description,
       String? responseType,
@@ -160,7 +160,7 @@ class __$SecurityQuestionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? securityQuestionID = freezed,
     Object? questionStem = freezed,
     Object? description = freezed,
     Object? responseType = freezed,
@@ -169,9 +169,9 @@ class __$SecurityQuestionCopyWithImpl<$Res>
     Object? sequence = freezed,
   }) {
     return _then(_SecurityQuestion(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      securityQuestionID: securityQuestionID == freezed
+          ? _value.securityQuestionID
+          : securityQuestionID // ignore: cast_nullable_to_non_nullable
               as String?,
       questionStem: questionStem == freezed
           ? _value.questionStem
@@ -205,7 +205,7 @@ class __$SecurityQuestionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SecurityQuestion implements _SecurityQuestion {
   _$_SecurityQuestion(
-      {this.id,
+      {this.securityQuestionID,
       this.questionStem,
       this.description,
       this.responseType,
@@ -217,7 +217,7 @@ class _$_SecurityQuestion implements _SecurityQuestion {
       _$_$_SecurityQuestionFromJson(json);
 
   @override
-  final String? id;
+  final String? securityQuestionID;
   @override
   final String? questionStem;
   @override
@@ -234,15 +234,16 @@ class _$_SecurityQuestion implements _SecurityQuestion {
 
   @override
   String toString() {
-    return 'SecurityQuestion(id: $id, questionStem: $questionStem, description: $description, responseType: $responseType, flavour: $flavour, active: $active, sequence: $sequence)';
+    return 'SecurityQuestion(securityQuestionID: $securityQuestionID, questionStem: $questionStem, description: $description, responseType: $responseType, flavour: $flavour, active: $active, sequence: $sequence)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SecurityQuestion &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.securityQuestionID, securityQuestionID) ||
+                const DeepCollectionEquality()
+                    .equals(other.securityQuestionID, securityQuestionID)) &&
             (identical(other.questionStem, questionStem) ||
                 const DeepCollectionEquality()
                     .equals(other.questionStem, questionStem)) &&
@@ -265,7 +266,7 @@ class _$_SecurityQuestion implements _SecurityQuestion {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(securityQuestionID) ^
       const DeepCollectionEquality().hash(questionStem) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(responseType) ^
@@ -286,7 +287,7 @@ class _$_SecurityQuestion implements _SecurityQuestion {
 
 abstract class _SecurityQuestion implements SecurityQuestion {
   factory _SecurityQuestion(
-      {String? id,
+      {String? securityQuestionID,
       String? questionStem,
       String? description,
       String? responseType,
@@ -298,7 +299,7 @@ abstract class _SecurityQuestion implements SecurityQuestion {
       _$_SecurityQuestion.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get securityQuestionID => throw _privateConstructorUsedError;
   @override
   String? get questionStem => throw _privateConstructorUsedError;
   @override
