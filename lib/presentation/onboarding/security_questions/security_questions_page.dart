@@ -27,7 +27,7 @@ class SecurityQuestionsPage extends StatelessWidget {
     final List<SecurityQuestionResponse>? securityQuestionsResponses =
         appState.onboardingState!.securityQuestionResponses;
 
-    final String userId = appState.clientState!.clientProfile!.user!.userId!;
+    final String userId = appState.clientState!.user!.userId!;
 
     final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
       SecurityQuestion(

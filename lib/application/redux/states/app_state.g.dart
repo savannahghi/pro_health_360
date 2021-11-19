@@ -6,8 +6,8 @@ part of 'app_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MainAppState _$_$_MainAppStateFromJson(Map<String, dynamic> json) {
-  return _$_MainAppState(
+_$_AppState _$_$_AppStateFromJson(Map<String, dynamic> json) {
+  return _$_AppState(
     credentials: json['credentials'] == null
         ? null
         : AuthCredentials.fromJson(json['credentials'] as Map<String, dynamic>),
@@ -32,7 +32,7 @@ _$_MainAppState _$_$_MainAppStateFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_MainAppStateToJson(_$_MainAppState instance) =>
+Map<String, dynamic> _$_$_AppStateToJson(_$_AppState instance) =>
     <String, dynamic>{
       'credentials': instance.credentials,
       'onboardingState': instance.onboardingState,

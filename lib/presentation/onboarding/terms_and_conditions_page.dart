@@ -51,10 +51,10 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: StoreConnector<AppState, MainAppStateViewModel>(
+          child: StoreConnector<AppState, AppStateViewModel>(
             converter: (Store<AppState> store) =>
-                MainAppStateViewModel.fromStore(store),
-            builder: (BuildContext context, MainAppStateViewModel vm) {
+                AppStateViewModel.fromStore(store),
+            builder: (BuildContext context, AppStateViewModel vm) {
               return Column(
                 children: <Widget>[
                   // Terms and Conditions Card
@@ -163,8 +163,8 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                       AcceptTermsAndConditionsAction(
                                         termsId: vm.appState.onboardingState!
                                             .termsAndConditions!.termsId,
-                                        userId: vm.appState.clientState!
-                                            .clientProfile!.user!.userId!,
+                                        userId: vm.appState.clientState!.user!
+                                            .userId!,
                                         context: context,
                                       ),
                                     );

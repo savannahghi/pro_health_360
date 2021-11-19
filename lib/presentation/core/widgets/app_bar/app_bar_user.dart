@@ -35,7 +35,7 @@ class AppbarUser extends StatelessWidget {
           converter: (Store<AppState> store) =>
               ClientProfileViewModel.fromStore(store),
           builder: (BuildContext context, ClientProfileViewModel vm) {
-            final User? user = vm.clientProfile?.user;
+            final User? user = vm.clientState?.user;
 
             final String? avatar = user?.avatar;
 

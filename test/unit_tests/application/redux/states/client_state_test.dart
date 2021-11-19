@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/client_state.dart';
+import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 
 void main() {
   group('ClientState', () {
@@ -18,12 +18,12 @@ void main() {
       };
 
       expect(
-        ClientState.fromJson(clientProfile).clientProfile?.clientCounselled,
+        ClientState.fromJson(clientProfile).clientCounselled,
         isNotNull,
       );
 
       expect(
-        ClientState.fromJson(clientProfile).clientProfile?.clientCounselled,
+        ClientState.fromJson(clientProfile).clientCounselled,
         true,
       );
     });

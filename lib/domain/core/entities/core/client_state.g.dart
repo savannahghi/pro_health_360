@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'client_profile.dart';
+part of 'client_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ClientProfile _$_$_ClientProfileFromJson(Map<String, dynamic> json) {
-  return _$_ClientProfile(
+_$_ClientState _$_$_ClientStateFromJson(Map<String, dynamic> json) {
+  return _$_ClientState(
     active: json['active'] as bool? ?? false,
     addresses: (json['addresses'] as List<dynamic>?)
         ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
@@ -28,7 +28,7 @@ _$_ClientProfile _$_$_ClientProfileFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_ClientProfileToJson(_$_ClientProfile instance) =>
+Map<String, dynamic> _$_$_ClientStateToJson(_$_ClientState instance) =>
     <String, dynamic>{
       'active': instance.active,
       'addresses': instance.addresses,

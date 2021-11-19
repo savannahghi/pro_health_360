@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'client_profile.dart';
+part of 'client_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,15 +12,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ClientProfile _$ClientProfileFromJson(Map<String, dynamic> json) {
-  return _ClientProfile.fromJson(json);
+ClientState _$ClientStateFromJson(Map<String, dynamic> json) {
+  return _ClientState.fromJson(json);
 }
 
 /// @nodoc
-class _$ClientProfileTearOff {
-  const _$ClientProfileTearOff();
+class _$ClientStateTearOff {
+  const _$ClientStateTearOff();
 
-  _ClientProfile call(
+  _ClientState call(
       {@JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
@@ -43,7 +43,7 @@ class _$ClientProfileTearOff {
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           bool? isSignedIn}) {
-    return _ClientProfile(
+    return _ClientState(
       active: active,
       addresses: addresses,
       clientCounselled: clientCounselled,
@@ -58,16 +58,16 @@ class _$ClientProfileTearOff {
     );
   }
 
-  ClientProfile fromJson(Map<String, Object> json) {
-    return ClientProfile.fromJson(json);
+  ClientState fromJson(Map<String, Object> json) {
+    return ClientState.fromJson(json);
   }
 }
 
 /// @nodoc
-const $ClientProfile = _$ClientProfileTearOff();
+const $ClientState = _$ClientStateTearOff();
 
 /// @nodoc
-mixin _$ClientProfile {
+mixin _$ClientState {
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'addresses')
@@ -95,15 +95,15 @@ mixin _$ClientProfile {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ClientProfileCopyWith<ClientProfile> get copyWith =>
+  $ClientStateCopyWith<ClientState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ClientProfileCopyWith<$Res> {
-  factory $ClientProfileCopyWith(
-          ClientProfile value, $Res Function(ClientProfile) then) =
-      _$ClientProfileCopyWithImpl<$Res>;
+abstract class $ClientStateCopyWith<$Res> {
+  factory $ClientStateCopyWith(
+          ClientState value, $Res Function(ClientState) then) =
+      _$ClientStateCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'active', defaultValue: false)
           bool? active,
@@ -132,13 +132,12 @@ abstract class $ClientProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ClientProfileCopyWithImpl<$Res>
-    implements $ClientProfileCopyWith<$Res> {
-  _$ClientProfileCopyWithImpl(this._value, this._then);
+class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
+  _$ClientStateCopyWithImpl(this._value, this._then);
 
-  final ClientProfile _value;
+  final ClientState _value;
   // ignore: unused_field
-  final $Res Function(ClientProfile) _then;
+  final $Res Function(ClientState) _then;
 
   @override
   $Res call({
@@ -215,11 +214,11 @@ class _$ClientProfileCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ClientProfileCopyWith<$Res>
-    implements $ClientProfileCopyWith<$Res> {
-  factory _$ClientProfileCopyWith(
-          _ClientProfile value, $Res Function(_ClientProfile) then) =
-      __$ClientProfileCopyWithImpl<$Res>;
+abstract class _$ClientStateCopyWith<$Res>
+    implements $ClientStateCopyWith<$Res> {
+  factory _$ClientStateCopyWith(
+          _ClientState value, $Res Function(_ClientState) then) =
+      __$ClientStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'active', defaultValue: false)
@@ -250,15 +249,14 @@ abstract class _$ClientProfileCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ClientProfileCopyWithImpl<$Res>
-    extends _$ClientProfileCopyWithImpl<$Res>
-    implements _$ClientProfileCopyWith<$Res> {
-  __$ClientProfileCopyWithImpl(
-      _ClientProfile _value, $Res Function(_ClientProfile) _then)
-      : super(_value, (v) => _then(v as _ClientProfile));
+class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
+    implements _$ClientStateCopyWith<$Res> {
+  __$ClientStateCopyWithImpl(
+      _ClientState _value, $Res Function(_ClientState) _then)
+      : super(_value, (v) => _then(v as _ClientState));
 
   @override
-  _ClientProfile get _value => super._value as _ClientProfile;
+  _ClientState get _value => super._value as _ClientState;
 
   @override
   $Res call({
@@ -274,7 +272,7 @@ class __$ClientProfileCopyWithImpl<$Res>
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
   }) {
-    return _then(_ClientProfile(
+    return _then(_ClientState(
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -325,8 +323,8 @@ class __$ClientProfileCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ClientProfile implements _ClientProfile {
-  _$_ClientProfile(
+class _$_ClientState implements _ClientState {
+  _$_ClientState(
       {@JsonKey(name: 'active', defaultValue: false)
           this.active,
       @JsonKey(name: 'addresses')
@@ -350,8 +348,8 @@ class _$_ClientProfile implements _ClientProfile {
       @JsonKey(name: 'isSignedIn')
           this.isSignedIn});
 
-  factory _$_ClientProfile.fromJson(Map<String, dynamic> json) =>
-      _$_$_ClientProfileFromJson(json);
+  factory _$_ClientState.fromJson(Map<String, dynamic> json) =>
+      _$_$_ClientStateFromJson(json);
 
   @override
   @JsonKey(name: 'active', defaultValue: false)
@@ -391,13 +389,13 @@ class _$_ClientProfile implements _ClientProfile {
 
   @override
   String toString() {
-    return 'ClientProfile(active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn)';
+    return 'ClientState(active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ClientProfile &&
+        (other is _ClientState &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
             (identical(other.addresses, addresses) ||
@@ -449,17 +447,17 @@ class _$_ClientProfile implements _ClientProfile {
 
   @JsonKey(ignore: true)
   @override
-  _$ClientProfileCopyWith<_ClientProfile> get copyWith =>
-      __$ClientProfileCopyWithImpl<_ClientProfile>(this, _$identity);
+  _$ClientStateCopyWith<_ClientState> get copyWith =>
+      __$ClientStateCopyWithImpl<_ClientState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ClientProfileToJson(this);
+    return _$_$_ClientStateToJson(this);
   }
 }
 
-abstract class _ClientProfile implements ClientProfile {
-  factory _ClientProfile(
+abstract class _ClientState implements ClientState {
+  factory _ClientState(
       {@JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
@@ -481,10 +479,10 @@ abstract class _ClientProfile implements ClientProfile {
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
-          bool? isSignedIn}) = _$_ClientProfile;
+          bool? isSignedIn}) = _$_ClientState;
 
-  factory _ClientProfile.fromJson(Map<String, dynamic> json) =
-      _$_ClientProfile.fromJson;
+  factory _ClientState.fromJson(Map<String, dynamic> json) =
+      _$_ClientState.fromJson;
 
   @override
   @JsonKey(name: 'active', defaultValue: false)
@@ -523,6 +521,6 @@ abstract class _ClientProfile implements ClientProfile {
   bool? get isSignedIn => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ClientProfileCopyWith<_ClientProfile> get copyWith =>
+  _$ClientStateCopyWith<_ClientState> get copyWith =>
       throw _privateConstructorUsedError;
 }

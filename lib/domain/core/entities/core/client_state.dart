@@ -5,12 +5,12 @@ import 'package:myafyahub/domain/core/entities/core/related_person.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
-part 'client_profile.freezed.dart';
-part 'client_profile.g.dart';
+part 'client_state.freezed.dart';
+part 'client_state.g.dart';
 
 @freezed
-class ClientProfile with _$ClientProfile {
-  factory ClientProfile({
+class ClientState with _$ClientState {
+  factory ClientState({
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'addresses') List<Address>? addresses,
     @JsonKey(name: 'clientCounselled', defaultValue: false)
@@ -25,12 +25,12 @@ class ClientProfile with _$ClientProfile {
     ///others
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
     @JsonKey(name: 'isSignedIn') bool? isSignedIn,
-  }) = _ClientProfile;
+  }) = _ClientState;
 
-  factory ClientProfile.fromJson(Map<String, dynamic> json) =>
-      _$ClientProfileFromJson(json);
+  factory ClientState.fromJson(Map<String, dynamic> json) =>
+      _$ClientStateFromJson(json);
 
-  factory ClientProfile.initial() => ClientProfile(
+  factory ClientState.initial() => ClientState(
         user: User.initial(),
         treatmentEnrollmentDate: UNKNOWN,
         clientType: ClientType.UNKNOWN,

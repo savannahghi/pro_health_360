@@ -47,7 +47,7 @@ class MyAfyaHubMoodSelection extends StatelessWidget {
               converter: (Store<AppState> store) =>
                   ClientProfileViewModel.fromStore(store),
               builder: (BuildContext context, ClientProfileViewModel vm) {
-                final String? lastName = vm.clientProfile?.user?.lastName;
+                final String? lastName = vm.clientState?.user?.lastName;
                 return Text(
                   howAreYouFeelingTodayText(lastName ?? UNKNOWN),
                   style: TextThemes.boldSize24Text().copyWith(color: white),

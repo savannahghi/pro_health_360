@@ -21,10 +21,10 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   AppState reduce() {
     final AppState newState = state.copyWith(
       clientState: state.clientState?.copyWith.call(
-        clientProfile: state.clientState?.clientProfile?.copyWith(
-          active: this.active ?? state.clientState?.clientProfile?.active,
-          isSignedIn: this.isSignedIn ?? state.clientState?.clientProfile?.isSignedIn,
-        ),
+        active: this.active ?? state.clientState?.active,
+        isSignedIn: this.isSignedIn ?? state.clientState?.isSignedIn,
+        lastMoodRecordedDate: this.lastMoodRecordedDate ??
+            state.clientState?.lastMoodRecordedDate,
       ),
     );
 

@@ -55,7 +55,7 @@ class MyHealthPage extends StatelessWidget {
                             ClientProfileViewModel.fromStore(store),
                         builder:
                             (BuildContext context, ClientProfileViewModel vm) {
-                          final User? userProfileState = vm.clientProfile?.user;
+                          final User? userProfileState = vm.clientState?.user;
 
                           return Text(
                             extractNamesInitials(

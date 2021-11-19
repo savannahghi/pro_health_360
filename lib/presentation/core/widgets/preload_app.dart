@@ -78,13 +78,12 @@ class _PreLoadAppState extends State<PreLoadApp> {
       linkStreamListener(
         mounted: mounted,
         nav: widget.appNavigatorKey,
-        signedIn:
-            widget.appState.clientState?.clientProfile?.isSignedIn ?? false,
+        signedIn: widget.appState.clientState?.isSignedIn ?? false,
       ) as void Function(Uri?)?,
     );
   }
 
-    @override
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     Future<dynamic>.delayed(Duration.zero, () async {
@@ -117,8 +116,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
         isInitialUri: true,
         uri: _uri,
         navigatorKey: widget.appNavigatorKey,
-        signedIn:
-            widget.appState.clientState?.clientProfile?.isSignedIn ?? false,
+        signedIn: widget.appState.clientState?.isSignedIn ?? false,
       );
     }
   }

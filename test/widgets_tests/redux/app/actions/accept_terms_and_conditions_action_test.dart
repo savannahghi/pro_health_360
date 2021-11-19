@@ -51,8 +51,7 @@ void main() {
                     AcceptTermsAndConditionsAction(
                       termsId: store
                           .state.onboardingState!.termsAndConditions!.termsId,
-                      userId:
-                          store.state.clientState!.clientProfile!.user!.userId!,
+                      userId: store.state.clientState!.user!.userId!,
                       context: context,
                     ),
                   );

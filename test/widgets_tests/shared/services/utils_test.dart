@@ -97,7 +97,7 @@ void main() {
               buttonKey: const Key('get_first_name_Key'),
               onPressed: () {
                 actualNameFromState = getDisplayName(
-                  store.state.clientState!.clientProfile!.user,
+                  store.state.clientState!.user,
                 );
               },
             );
@@ -130,9 +130,8 @@ void main() {
                   return SILPrimaryButton(
                     buttonKey: const Key('get_first_name_Key'),
                     onPressed: () {
-                      actualNameFromState = getDisplayName(
-                        store.state.clientState!.clientProfile!.user,
-                      );
+                      actualNameFromState =
+                          getDisplayName(store.state.clientState!.user);
                     },
                   );
                 },

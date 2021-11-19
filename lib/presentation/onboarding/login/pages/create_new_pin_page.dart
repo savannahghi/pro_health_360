@@ -44,10 +44,10 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
     return OnboardingScaffold(
       title: createNewPINTitleString,
       description: createNewPINSubTitleString,
-      child: StoreConnector<AppState, MainAppStateViewModel>(
+      child: StoreConnector<AppState, AppStateViewModel>(
         converter: (Store<AppState> store) =>
-            MainAppStateViewModel.fromStore(store),
-        builder: (BuildContext context, MainAppStateViewModel vm) {
+            AppStateViewModel.fromStore(store),
+        builder: (BuildContext context, AppStateViewModel vm) {
           return SizedBox(
             height: MediaQuery.of(context).size.height / 1.6,
             child: Stack(

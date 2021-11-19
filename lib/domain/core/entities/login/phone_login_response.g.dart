@@ -14,9 +14,9 @@ _$_PhoneLoginResponse _$_$_PhoneLoginResponseFromJson(
     credentials: json['credentials'] == null
         ? null
         : AuthCredentials.fromJson(json['credentials'] as Map<String, dynamic>),
-    clientProfile: json['clientProfile'] == null
+    clientState: json['clientProfile'] == null
         ? null
-        : ClientProfile.fromJson(json['clientProfile'] as Map<String, dynamic>),
+        : ClientState.fromJson(json['clientProfile'] as Map<String, dynamic>),
   );
 }
 
@@ -26,5 +26,5 @@ Map<String, dynamic> _$_$_PhoneLoginResponseToJson(
       'code': instance.code,
       'message': instance.message,
       'credentials': instance.credentials,
-      'clientProfile': instance.clientProfile,
+      'clientProfile': instance.clientState,
     };

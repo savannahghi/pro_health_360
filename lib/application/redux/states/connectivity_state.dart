@@ -8,7 +8,7 @@ part 'connectivity_state.g.dart';
 class ConnectivityState with _$ConnectivityState {
   factory ConnectivityState({required bool isConnected}) = _ConnectivityState;
 
-  factory ConnectivityState.initial() => ConnectivityState(isConnected: false);
+  factory ConnectivityState.initial() => ConnectivityState(isConnected: true);
 
   factory ConnectivityState.fromJson(Map<String, dynamic> json) =>
       _$ConnectivityStateFromJson(json);
