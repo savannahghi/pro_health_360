@@ -21,38 +21,38 @@ class _$ClientProfileTearOff {
   const _$ClientProfileTearOff();
 
   _ClientProfile call(
-      {@JsonKey(name: 'user')
-          User? user,
-      @JsonKey(name: 'treatmentEnrollmentDate')
-          String? treatmentEnrollmentDate,
-      @JsonKey(name: 'clientType')
-          ClientType? clientType,
-      @JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'relatedPersons')
-          List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'facilityID')
-          String? facilityID,
-      @JsonKey(name: 'treatmentBuddy')
-          String? treatmentBuddy,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'facilityID')
+          String? facilityID,
+      @JsonKey(name: 'relatedPersons')
+          List<RelatedPerson>? relatedPersons,
+      @JsonKey(name: 'treatmentBuddy')
+          String? treatmentBuddy,
+      @JsonKey(name: 'treatmentEnrollmentDate')
+          String? treatmentEnrollmentDate,
+      @JsonKey(name: 'user')
+          User? user,
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           bool? isSignedIn}) {
     return _ClientProfile(
-      user: user,
-      treatmentEnrollmentDate: treatmentEnrollmentDate,
-      clientType: clientType,
       active: active,
       addresses: addresses,
-      relatedPersons: relatedPersons,
-      facilityID: facilityID,
-      treatmentBuddy: treatmentBuddy,
       clientCounselled: clientCounselled,
+      clientType: clientType,
+      facilityID: facilityID,
+      relatedPersons: relatedPersons,
+      treatmentBuddy: treatmentBuddy,
+      treatmentEnrollmentDate: treatmentEnrollmentDate,
+      user: user,
       lastMoodRecordedDate: lastMoodRecordedDate,
       isSignedIn: isSignedIn,
     );
@@ -68,24 +68,24 @@ const $ClientProfile = _$ClientProfileTearOff();
 
 /// @nodoc
 mixin _$ClientProfile {
-  @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
-  @JsonKey(name: 'treatmentEnrollmentDate')
-  String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'clientType')
-  ClientType? get clientType => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'addresses')
   List<Address>? get addresses => throw _privateConstructorUsedError;
-  @JsonKey(name: 'relatedPersons')
-  List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
-  @JsonKey(name: 'facilityID')
-  String? get facilityID => throw _privateConstructorUsedError;
-  @JsonKey(name: 'treatmentBuddy')
-  String? get treatmentBuddy => throw _privateConstructorUsedError;
   @JsonKey(name: 'clientCounselled', defaultValue: false)
   bool? get clientCounselled => throw _privateConstructorUsedError;
+  @JsonKey(name: 'clientType')
+  ClientType? get clientType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'facilityID')
+  String? get facilityID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'relatedPersons')
+  List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
+  @JsonKey(name: 'treatmentBuddy')
+  String? get treatmentBuddy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'treatmentEnrollmentDate')
+  String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user')
+  User? get user => throw _privateConstructorUsedError;
 
   ///others
   @JsonKey(name: 'lastMoodRecordedDate')
@@ -105,24 +105,24 @@ abstract class $ClientProfileCopyWith<$Res> {
           ClientProfile value, $Res Function(ClientProfile) then) =
       _$ClientProfileCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'user')
-          User? user,
-      @JsonKey(name: 'treatmentEnrollmentDate')
-          String? treatmentEnrollmentDate,
-      @JsonKey(name: 'clientType')
-          ClientType? clientType,
-      @JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'relatedPersons')
-          List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'facilityID')
-          String? facilityID,
-      @JsonKey(name: 'treatmentBuddy')
-          String? treatmentBuddy,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'facilityID')
+          String? facilityID,
+      @JsonKey(name: 'relatedPersons')
+          List<RelatedPerson>? relatedPersons,
+      @JsonKey(name: 'treatmentBuddy')
+          String? treatmentBuddy,
+      @JsonKey(name: 'treatmentEnrollmentDate')
+          String? treatmentEnrollmentDate,
+      @JsonKey(name: 'user')
+          User? user,
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
@@ -142,31 +142,19 @@ class _$ClientProfileCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
-    Object? treatmentEnrollmentDate = freezed,
-    Object? clientType = freezed,
     Object? active = freezed,
     Object? addresses = freezed,
-    Object? relatedPersons = freezed,
-    Object? facilityID = freezed,
-    Object? treatmentBuddy = freezed,
     Object? clientCounselled = freezed,
+    Object? clientType = freezed,
+    Object? facilityID = freezed,
+    Object? relatedPersons = freezed,
+    Object? treatmentBuddy = freezed,
+    Object? treatmentEnrollmentDate = freezed,
+    Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
   }) {
     return _then(_value.copyWith(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      treatmentEnrollmentDate: treatmentEnrollmentDate == freezed
-          ? _value.treatmentEnrollmentDate
-          : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      clientType: clientType == freezed
-          ? _value.clientType
-          : clientType // ignore: cast_nullable_to_non_nullable
-              as ClientType?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -175,22 +163,34 @@ class _$ClientProfileCopyWithImpl<$Res>
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      relatedPersons: relatedPersons == freezed
-          ? _value.relatedPersons
-          : relatedPersons // ignore: cast_nullable_to_non_nullable
-              as List<RelatedPerson>?,
-      facilityID: facilityID == freezed
-          ? _value.facilityID
-          : facilityID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      treatmentBuddy: treatmentBuddy == freezed
-          ? _value.treatmentBuddy
-          : treatmentBuddy // ignore: cast_nullable_to_non_nullable
-              as String?,
       clientCounselled: clientCounselled == freezed
           ? _value.clientCounselled
           : clientCounselled // ignore: cast_nullable_to_non_nullable
               as bool?,
+      clientType: clientType == freezed
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as ClientType?,
+      facilityID: facilityID == freezed
+          ? _value.facilityID
+          : facilityID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      relatedPersons: relatedPersons == freezed
+          ? _value.relatedPersons
+          : relatedPersons // ignore: cast_nullable_to_non_nullable
+              as List<RelatedPerson>?,
+      treatmentBuddy: treatmentBuddy == freezed
+          ? _value.treatmentBuddy
+          : treatmentBuddy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      treatmentEnrollmentDate: treatmentEnrollmentDate == freezed
+          ? _value.treatmentEnrollmentDate
+          : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       lastMoodRecordedDate: lastMoodRecordedDate == freezed
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
@@ -222,24 +222,24 @@ abstract class _$ClientProfileCopyWith<$Res>
       __$ClientProfileCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'user')
-          User? user,
-      @JsonKey(name: 'treatmentEnrollmentDate')
-          String? treatmentEnrollmentDate,
-      @JsonKey(name: 'clientType')
-          ClientType? clientType,
-      @JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'relatedPersons')
-          List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'facilityID')
-          String? facilityID,
-      @JsonKey(name: 'treatmentBuddy')
-          String? treatmentBuddy,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'facilityID')
+          String? facilityID,
+      @JsonKey(name: 'relatedPersons')
+          List<RelatedPerson>? relatedPersons,
+      @JsonKey(name: 'treatmentBuddy')
+          String? treatmentBuddy,
+      @JsonKey(name: 'treatmentEnrollmentDate')
+          String? treatmentEnrollmentDate,
+      @JsonKey(name: 'user')
+          User? user,
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
@@ -262,31 +262,19 @@ class __$ClientProfileCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
-    Object? treatmentEnrollmentDate = freezed,
-    Object? clientType = freezed,
     Object? active = freezed,
     Object? addresses = freezed,
-    Object? relatedPersons = freezed,
-    Object? facilityID = freezed,
-    Object? treatmentBuddy = freezed,
     Object? clientCounselled = freezed,
+    Object? clientType = freezed,
+    Object? facilityID = freezed,
+    Object? relatedPersons = freezed,
+    Object? treatmentBuddy = freezed,
+    Object? treatmentEnrollmentDate = freezed,
+    Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
   }) {
     return _then(_ClientProfile(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      treatmentEnrollmentDate: treatmentEnrollmentDate == freezed
-          ? _value.treatmentEnrollmentDate
-          : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      clientType: clientType == freezed
-          ? _value.clientType
-          : clientType // ignore: cast_nullable_to_non_nullable
-              as ClientType?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -295,22 +283,34 @@ class __$ClientProfileCopyWithImpl<$Res>
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      relatedPersons: relatedPersons == freezed
-          ? _value.relatedPersons
-          : relatedPersons // ignore: cast_nullable_to_non_nullable
-              as List<RelatedPerson>?,
-      facilityID: facilityID == freezed
-          ? _value.facilityID
-          : facilityID // ignore: cast_nullable_to_non_nullable
-              as String?,
-      treatmentBuddy: treatmentBuddy == freezed
-          ? _value.treatmentBuddy
-          : treatmentBuddy // ignore: cast_nullable_to_non_nullable
-              as String?,
       clientCounselled: clientCounselled == freezed
           ? _value.clientCounselled
           : clientCounselled // ignore: cast_nullable_to_non_nullable
               as bool?,
+      clientType: clientType == freezed
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as ClientType?,
+      facilityID: facilityID == freezed
+          ? _value.facilityID
+          : facilityID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      relatedPersons: relatedPersons == freezed
+          ? _value.relatedPersons
+          : relatedPersons // ignore: cast_nullable_to_non_nullable
+              as List<RelatedPerson>?,
+      treatmentBuddy: treatmentBuddy == freezed
+          ? _value.treatmentBuddy
+          : treatmentBuddy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      treatmentEnrollmentDate: treatmentEnrollmentDate == freezed
+          ? _value.treatmentEnrollmentDate
+          : treatmentEnrollmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       lastMoodRecordedDate: lastMoodRecordedDate == freezed
           ? _value.lastMoodRecordedDate
           : lastMoodRecordedDate // ignore: cast_nullable_to_non_nullable
@@ -327,24 +327,24 @@ class __$ClientProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ClientProfile implements _ClientProfile {
   _$_ClientProfile(
-      {@JsonKey(name: 'user')
-          this.user,
-      @JsonKey(name: 'treatmentEnrollmentDate')
-          this.treatmentEnrollmentDate,
-      @JsonKey(name: 'clientType')
-          this.clientType,
-      @JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'active', defaultValue: false)
           this.active,
       @JsonKey(name: 'addresses')
           this.addresses,
-      @JsonKey(name: 'relatedPersons')
-          this.relatedPersons,
-      @JsonKey(name: 'facilityID')
-          this.facilityID,
-      @JsonKey(name: 'treatmentBuddy')
-          this.treatmentBuddy,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           this.clientCounselled,
+      @JsonKey(name: 'clientType')
+          this.clientType,
+      @JsonKey(name: 'facilityID')
+          this.facilityID,
+      @JsonKey(name: 'relatedPersons')
+          this.relatedPersons,
+      @JsonKey(name: 'treatmentBuddy')
+          this.treatmentBuddy,
+      @JsonKey(name: 'treatmentEnrollmentDate')
+          this.treatmentEnrollmentDate,
+      @JsonKey(name: 'user')
+          this.user,
       @JsonKey(name: 'lastMoodRecordedDate')
           this.lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
@@ -354,32 +354,32 @@ class _$_ClientProfile implements _ClientProfile {
       _$_$_ClientProfileFromJson(json);
 
   @override
-  @JsonKey(name: 'user')
-  final User? user;
-  @override
-  @JsonKey(name: 'treatmentEnrollmentDate')
-  final String? treatmentEnrollmentDate;
-  @override
-  @JsonKey(name: 'clientType')
-  final ClientType? clientType;
-  @override
   @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
   @JsonKey(name: 'addresses')
   final List<Address>? addresses;
   @override
-  @JsonKey(name: 'relatedPersons')
-  final List<RelatedPerson>? relatedPersons;
+  @JsonKey(name: 'clientCounselled', defaultValue: false)
+  final bool? clientCounselled;
+  @override
+  @JsonKey(name: 'clientType')
+  final ClientType? clientType;
   @override
   @JsonKey(name: 'facilityID')
   final String? facilityID;
   @override
+  @JsonKey(name: 'relatedPersons')
+  final List<RelatedPerson>? relatedPersons;
+  @override
   @JsonKey(name: 'treatmentBuddy')
   final String? treatmentBuddy;
   @override
-  @JsonKey(name: 'clientCounselled', defaultValue: false)
-  final bool? clientCounselled;
+  @JsonKey(name: 'treatmentEnrollmentDate')
+  final String? treatmentEnrollmentDate;
+  @override
+  @JsonKey(name: 'user')
+  final User? user;
   @override
 
   ///others
@@ -391,39 +391,39 @@ class _$_ClientProfile implements _ClientProfile {
 
   @override
   String toString() {
-    return 'ClientProfile(user: $user, treatmentEnrollmentDate: $treatmentEnrollmentDate, clientType: $clientType, active: $active, addresses: $addresses, relatedPersons: $relatedPersons, facilityID: $facilityID, treatmentBuddy: $treatmentBuddy, clientCounselled: $clientCounselled, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn)';
+    return 'ClientProfile(active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ClientProfile &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(
-                    other.treatmentEnrollmentDate, treatmentEnrollmentDate) ||
-                const DeepCollectionEquality().equals(
-                    other.treatmentEnrollmentDate, treatmentEnrollmentDate)) &&
-            (identical(other.clientType, clientType) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientType, clientType)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
             (identical(other.addresses, addresses) ||
                 const DeepCollectionEquality()
                     .equals(other.addresses, addresses)) &&
-            (identical(other.relatedPersons, relatedPersons) ||
-                const DeepCollectionEquality()
-                    .equals(other.relatedPersons, relatedPersons)) &&
-            (identical(other.facilityID, facilityID) ||
-                const DeepCollectionEquality()
-                    .equals(other.facilityID, facilityID)) &&
-            (identical(other.treatmentBuddy, treatmentBuddy) ||
-                const DeepCollectionEquality()
-                    .equals(other.treatmentBuddy, treatmentBuddy)) &&
             (identical(other.clientCounselled, clientCounselled) ||
                 const DeepCollectionEquality()
                     .equals(other.clientCounselled, clientCounselled)) &&
+            (identical(other.clientType, clientType) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientType, clientType)) &&
+            (identical(other.facilityID, facilityID) ||
+                const DeepCollectionEquality()
+                    .equals(other.facilityID, facilityID)) &&
+            (identical(other.relatedPersons, relatedPersons) ||
+                const DeepCollectionEquality()
+                    .equals(other.relatedPersons, relatedPersons)) &&
+            (identical(other.treatmentBuddy, treatmentBuddy) ||
+                const DeepCollectionEquality()
+                    .equals(other.treatmentBuddy, treatmentBuddy)) &&
+            (identical(
+                    other.treatmentEnrollmentDate, treatmentEnrollmentDate) ||
+                const DeepCollectionEquality().equals(
+                    other.treatmentEnrollmentDate, treatmentEnrollmentDate)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.lastMoodRecordedDate, lastMoodRecordedDate) ||
                 const DeepCollectionEquality().equals(
                     other.lastMoodRecordedDate, lastMoodRecordedDate)) &&
@@ -435,15 +435,15 @@ class _$_ClientProfile implements _ClientProfile {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(treatmentEnrollmentDate) ^
-      const DeepCollectionEquality().hash(clientType) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(addresses) ^
-      const DeepCollectionEquality().hash(relatedPersons) ^
-      const DeepCollectionEquality().hash(facilityID) ^
-      const DeepCollectionEquality().hash(treatmentBuddy) ^
       const DeepCollectionEquality().hash(clientCounselled) ^
+      const DeepCollectionEquality().hash(clientType) ^
+      const DeepCollectionEquality().hash(facilityID) ^
+      const DeepCollectionEquality().hash(relatedPersons) ^
+      const DeepCollectionEquality().hash(treatmentBuddy) ^
+      const DeepCollectionEquality().hash(treatmentEnrollmentDate) ^
+      const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(lastMoodRecordedDate) ^
       const DeepCollectionEquality().hash(isSignedIn);
 
@@ -460,24 +460,24 @@ class _$_ClientProfile implements _ClientProfile {
 
 abstract class _ClientProfile implements ClientProfile {
   factory _ClientProfile(
-      {@JsonKey(name: 'user')
-          User? user,
-      @JsonKey(name: 'treatmentEnrollmentDate')
-          String? treatmentEnrollmentDate,
-      @JsonKey(name: 'clientType')
-          ClientType? clientType,
-      @JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'relatedPersons')
-          List<RelatedPerson>? relatedPersons,
-      @JsonKey(name: 'facilityID')
-          String? facilityID,
-      @JsonKey(name: 'treatmentBuddy')
-          String? treatmentBuddy,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
+      @JsonKey(name: 'clientType')
+          ClientType? clientType,
+      @JsonKey(name: 'facilityID')
+          String? facilityID,
+      @JsonKey(name: 'relatedPersons')
+          List<RelatedPerson>? relatedPersons,
+      @JsonKey(name: 'treatmentBuddy')
+          String? treatmentBuddy,
+      @JsonKey(name: 'treatmentEnrollmentDate')
+          String? treatmentEnrollmentDate,
+      @JsonKey(name: 'user')
+          User? user,
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
@@ -487,32 +487,32 @@ abstract class _ClientProfile implements ClientProfile {
       _$_ClientProfile.fromJson;
 
   @override
-  @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'treatmentEnrollmentDate')
-  String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'clientType')
-  ClientType? get clientType => throw _privateConstructorUsedError;
-  @override
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'addresses')
   List<Address>? get addresses => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'relatedPersons')
-  List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
+  @JsonKey(name: 'clientCounselled', defaultValue: false)
+  bool? get clientCounselled => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'clientType')
+  ClientType? get clientType => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'facilityID')
   String? get facilityID => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'relatedPersons')
+  List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'treatmentBuddy')
   String? get treatmentBuddy => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'clientCounselled', defaultValue: false)
-  bool? get clientCounselled => throw _privateConstructorUsedError;
+  @JsonKey(name: 'treatmentEnrollmentDate')
+  String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'user')
+  User? get user => throw _privateConstructorUsedError;
   @override
 
   ///others

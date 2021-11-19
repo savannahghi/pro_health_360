@@ -19,7 +19,7 @@ class Contact with _$Contact {
       _$ContactFromJson(json);
 
   factory Contact.initial() => Contact(
-        contactType: ContactType.UNKNOWN,
+        contactType: ContactType.PHONE,
         contact: UNKNOWN,
         active: false,
         optedIn: false,

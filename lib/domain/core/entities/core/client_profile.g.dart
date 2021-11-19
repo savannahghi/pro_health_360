@@ -8,21 +8,21 @@ part of 'client_profile.dart';
 
 _$_ClientProfile _$_$_ClientProfileFromJson(Map<String, dynamic> json) {
   return _$_ClientProfile(
-    user: json['user'] == null
-        ? null
-        : User.fromJson(json['user'] as Map<String, dynamic>),
-    treatmentEnrollmentDate: json['treatmentEnrollmentDate'] as String?,
-    clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']),
     active: json['active'] as bool? ?? false,
     addresses: (json['addresses'] as List<dynamic>?)
         ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
         .toList(),
+    clientCounselled: json['clientCounselled'] as bool? ?? false,
+    clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']),
+    facilityID: json['facilityID'] as String?,
     relatedPersons: (json['relatedPersons'] as List<dynamic>?)
         ?.map((e) => RelatedPerson.fromJson(e as Map<String, dynamic>))
         .toList(),
-    facilityID: json['facilityID'] as String?,
     treatmentBuddy: json['treatmentBuddy'] as String?,
-    clientCounselled: json['clientCounselled'] as bool? ?? false,
+    treatmentEnrollmentDate: json['treatmentEnrollmentDate'] as String?,
+    user: json['user'] == null
+        ? null
+        : User.fromJson(json['user'] as Map<String, dynamic>),
     lastMoodRecordedDate: json['lastMoodRecordedDate'] as String?,
     isSignedIn: json['isSignedIn'] as bool?,
   );
@@ -30,15 +30,15 @@ _$_ClientProfile _$_$_ClientProfileFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ClientProfileToJson(_$_ClientProfile instance) =>
     <String, dynamic>{
-      'user': instance.user,
-      'treatmentEnrollmentDate': instance.treatmentEnrollmentDate,
-      'clientType': _$ClientTypeEnumMap[instance.clientType],
       'active': instance.active,
       'addresses': instance.addresses,
-      'relatedPersons': instance.relatedPersons,
-      'facilityID': instance.facilityID,
-      'treatmentBuddy': instance.treatmentBuddy,
       'clientCounselled': instance.clientCounselled,
+      'clientType': _$ClientTypeEnumMap[instance.clientType],
+      'facilityID': instance.facilityID,
+      'relatedPersons': instance.relatedPersons,
+      'treatmentBuddy': instance.treatmentBuddy,
+      'treatmentEnrollmentDate': instance.treatmentEnrollmentDate,
+      'user': instance.user,
       'lastMoodRecordedDate': instance.lastMoodRecordedDate,
       'isSignedIn': instance.isSignedIn,
     };

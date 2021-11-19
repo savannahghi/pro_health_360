@@ -3,7 +3,7 @@ import 'package:user_feed/user_feed.dart';
 const String loginQuery = r'''
 query login($phoneNumber: String!, $pin: String!, $flavour: Flavour!) {
   login(flavour: $flavour, phoneNumber: $phoneNumber, pin: $pin) {
-   code
+    code
     message
     credentials {
       expiresIn
@@ -32,6 +32,26 @@ query login($phoneNumber: String!, $pin: String!, $flavour: Flavour!) {
         otherName
         relatedTo
         relationshipType
+        addresses {
+          active
+          addressType
+          country
+          county
+          postalCode
+          text
+        }
+        primaryContact {
+          active
+          contact
+          contactType
+          optedIn
+        }
+        secondaryContacts {
+          active
+          contact
+          contactType
+          optedIn
+        }
       }
       treatmentBuddy
       treatmentEnrollmentDate
@@ -41,7 +61,15 @@ query login($phoneNumber: String!, $pin: String!, $flavour: Flavour!) {
         firstName
         gender
         languages
-        contacts {
+        suspended
+        avatar
+        primaryContact {
+          active
+          contact
+          contactType
+          optedIn
+        }
+        secondaryContacts {
           active
           contact
           contactType
@@ -54,6 +82,7 @@ query login($phoneNumber: String!, $pin: String!, $flavour: Flavour!) {
         userID
         userName
         userType
+        dateOfBirth
       }
     }
   }

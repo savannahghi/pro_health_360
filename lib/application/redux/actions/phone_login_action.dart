@@ -101,27 +101,29 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        final PhoneLoginResponse loginResponse =
-            PhoneLoginResponse.fromJson(parsed);
+        final PhoneLoginResponse loginResponse = PhoneLoginResponse.fromJson(
+          parsed['data']['login'] as Map<String, dynamic>,
+        );
 
         final AuthCredentials? authCredentials = loginResponse.credentials;
         authCredentials?.copyWith(
           signedInTime: DateTime.now().toIso8601String(),
         );
 
+        final int expiresIn = int.parse(authCredentials?.expiresIn ?? '0');
+        final String parsedExpireAt = dateTimeParser.parsedExpireAt(expiresIn);
+
         await store.dispatch(
           ManageTokenAction(
             context: context,
             refreshToken: authCredentials?.refreshToken ?? UNKNOWN,
             idToken: authCredentials?.idToken ?? UNKNOWN,
-            parsedExpiresAt: dateTimeParser.parsedExpireAt(
-              int.parse(authCredentials?.refreshToken ?? UNKNOWN),
-            ),
+            parsedExpiresAt: parsedExpireAt,
             refreshTokenManger: this.tokenManger,
           ),
         );
 
-        final User? user = loginResponse.clientProfile!.user;
+        final User? user = loginResponse.clientProfile?.user;
 
         // dispatch an action to update the user profile
         await store.dispatch(UpdateUserAction(user: user));
@@ -130,7 +132,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           AuthStatusAction(
             isSignedIn: true,
             signedInTime: DateTime.now().toIso8601String(),
-            // isChangePin: ,
           ),
         );
 

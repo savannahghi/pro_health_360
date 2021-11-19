@@ -8,11 +8,12 @@ class DateTimeParser {
   DateTimeParser({this.useCustomDateTime = false, this.customDateTime});
   String parsedExpireAt(int expiresIn) {
     DateTime dateTimeToUse;
-    if (!this.useCustomDateTime) {
-      dateTimeToUse = DateTime.now();
-    } else {
+    if (this.useCustomDateTime && customDateTime != null) {
       dateTimeToUse = this.customDateTime!;
+    } else {
+      dateTimeToUse = DateTime.now();
     }
+
     final String parsedExpiresAt = dateTimeToUse
         .add(
           Duration(

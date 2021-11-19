@@ -11,16 +11,16 @@ part 'client_profile.g.dart';
 @freezed
 class ClientProfile with _$ClientProfile {
   factory ClientProfile({
-    @JsonKey(name: 'user') User? user,
-    @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
-    @JsonKey(name: 'clientType') ClientType? clientType,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'addresses') List<Address>? addresses,
-    @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
-    @JsonKey(name: 'facilityID') String? facilityID,
-    @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
     @JsonKey(name: 'clientCounselled', defaultValue: false)
         bool? clientCounselled,
+    @JsonKey(name: 'clientType') ClientType? clientType,
+    @JsonKey(name: 'facilityID') String? facilityID,
+    @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
+    @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,
+    @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
+    @JsonKey(name: 'user') User? user,
 
     ///others
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,

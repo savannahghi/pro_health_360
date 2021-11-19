@@ -3113,68 +3113,100 @@ final Map<String, dynamic> termsMock = <String, dynamic>{
 final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
   'data': <String, dynamic>{
     'login': <String, dynamic>{
-      'code': '0',
+      'code': 0,
       'message': 'success',
       'credentials': <String, dynamic>{
-        'authCredentials': <String, dynamic>{
-          'expiresIn': '3600',
-          'idToken': 'some id token',
-          'refreshToken': 'some refresh token'
-        },
-        'clientProfile': <String, dynamic>{
-          'treatmentEnrollmentDate': '21 Nov 2021',
-          'treatmentBuddy': null,
-          'active': true,
-          'addresses': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'active': true,
-              'addressType': 'POSTAL',
-              'country': 'Kenya',
-              'county': null,
-              'postalCode': '00300',
-              'text': 'One Padmore'
-            }
-          ],
-          'clientCounselled': true,
-          'clientType': 'PMTCT',
-          'facilityID': 'some-facility-id',
-          'user': <String, dynamic>{
-            'userID': 'some-user-id',
+        'expiresIn': '3600',
+        'idToken': 'some id token',
+        'refreshToken':
+            'AFxQ4_oifdQ1-N_qkk4f2t5YXLNPSCzKwGnkL_-8ueao5jr02A7DlU8EFIuF4tLclD1Hpg7cyU8aT81jPn-rjBR3eqtCMtwWB62RsLIQY2acdc-A0YcWuyRM63gZaxlivkxxAYdiWPBrF2M3txlpab7vOkHBurzU5BM_UUbfmbTUmZ8OPnQyvuUrpaqp1WTcj60Zez02H2uS'
+      },
+      'clientProfile': <String, dynamic>{
+        'active': true,
+        'addresses': <Map<String, dynamic>>[
+          <String, dynamic>{
             'active': true,
-            'displayName': 'Kowalski',
+            'addressType': 'POSTAL',
+            'country': 'Kenya',
+            'county': null,
+            'postalCode': '00300',
+            'text': 'One Padmore'
+          }
+        ],
+        'clientCounselled': true,
+        'clientType': 'PMTCT',
+        'facilityID': 'some-facility-id',
+        'relatedPersons': <Map<String, dynamic>>[
+          <String, dynamic>{
+            'active': true,
+            'dateOfBirth': '21 Nov 2002',
             'firstName': 'Juha',
-            'gender': 'MALE',
-            'languages': <String>['en', 'sw'],
+            'gender': 'male',
             'lastName': 'Kalulu',
-            'middleName': null,
-            'termsAccepted': true,
-            'userName': 'Kowalski',
-            'userType': 'CLIENT',
-            'contacts': <Map<String, dynamic>>[
+            'otherName': null,
+            'relatedTo': 'some-user-id',
+            'relationshipType': 'NEXT_OF_KIN',
+            'addresses': <Map<String, dynamic>>[
+              <String, dynamic>{
+                'active': true,
+                'addressType': 'POSTAL',
+                'country': 'Kenya',
+                'county': null,
+                'postalCode': '00300',
+                'text': 'One Padmore'
+              }
+            ],
+            'primaryContact': <String, dynamic>{
+              'active': true,
+              'contact': '+254717356476',
+              'contactType': 'PHONE',
+              'optedIn': true
+            },
+            'secondaryContacts': <Map<String, dynamic>>[
               <String, dynamic>{
                 'active': true,
                 'contact': '+254717356476',
-                'contactType': 'PRIMARY',
-                'optedIn': true
-              },
-              <String, dynamic>{
-                'active': true,
-                'contact': '+254712345678',
-                'contactType': 'SECONDARY',
+                'contactType': 'PHONE',
                 'optedIn': true
               }
             ]
           }
+        ],
+        'treatmentBuddy': null,
+        'treatmentEnrollmentDate': '21 Nov 2021',
+        'user': <String, dynamic>{
+          'active': true,
+          'displayName': 'Kowalski',
+          'firstName': 'Juha',
+          'gender': 'male',
+          'languages': <String>['en', 'sw'],
+          'suspended': false,
+          'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+          'primaryContact': <String, dynamic>{
+            'active': true,
+            'contact': '+254717356476',
+            'contactType': 'PHONE',
+            'optedIn': true
+          },
+          'secondaryContacts': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'active': true,
+              'contact': '+254717356476',
+              'contactType': 'PHONE',
+              'optedIn': true
+            }
+          ],
+          'lastName': 'Kalulu',
+          'middleName': null,
+          'pinChangeRequired': false,
+          'termsAccepted': true,
+          'userID': 'some-user-id',
+          'userName': 'Kowalski',
+          'userType': 'CLIENT',
+          'dateOfBirth': '21 Nov 2002'
         },
-        'pinChangeRequired': true
       }
     },
-    'fetchRecentContent': <dynamic>[
-      mockContent,
-    ],
-    'fetchSuggestedGroups': <dynamic>[
-      mockGroup,
-    ]
   }
 };
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[

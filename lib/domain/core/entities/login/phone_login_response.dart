@@ -8,7 +8,7 @@ part 'phone_login_response.g.dart';
 @freezed
 class PhoneLoginResponse with _$PhoneLoginResponse {
   factory PhoneLoginResponse({
-    @JsonKey(name: 'code') String? code,
+    @JsonKey(name: 'code') int? code,
     @JsonKey(name: 'message') String? message,
     @JsonKey(name: 'credentials') AuthCredentials? credentials,
     @JsonKey(name: 'clientProfile') ClientProfile? clientProfile,

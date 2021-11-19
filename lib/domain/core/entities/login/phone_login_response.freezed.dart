@@ -21,7 +21,7 @@ class _$PhoneLoginResponseTearOff {
   const _$PhoneLoginResponseTearOff();
 
   _PhoneLoginResponse call(
-      {@JsonKey(name: 'code') String? code,
+      {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
       @JsonKey(name: 'credentials') AuthCredentials? credentials,
       @JsonKey(name: 'clientProfile') ClientProfile? clientProfile}) {
@@ -44,7 +44,7 @@ const $PhoneLoginResponse = _$PhoneLoginResponseTearOff();
 /// @nodoc
 mixin _$PhoneLoginResponse {
   @JsonKey(name: 'code')
-  String? get code => throw _privateConstructorUsedError;
+  int? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
   @JsonKey(name: 'credentials')
@@ -64,7 +64,7 @@ abstract class $PhoneLoginResponseCopyWith<$Res> {
           PhoneLoginResponse value, $Res Function(PhoneLoginResponse) then) =
       _$PhoneLoginResponseCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'code') String? code,
+      {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
       @JsonKey(name: 'credentials') AuthCredentials? credentials,
       @JsonKey(name: 'clientProfile') ClientProfile? clientProfile});
@@ -93,7 +93,7 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ abstract class _$PhoneLoginResponseCopyWith<$Res>
       __$PhoneLoginResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'code') String? code,
+      {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
       @JsonKey(name: 'credentials') AuthCredentials? credentials,
       @JsonKey(name: 'clientProfile') ClientProfile? clientProfile});
@@ -173,7 +173,7 @@ class __$PhoneLoginResponseCopyWithImpl<$Res>
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -204,7 +204,7 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
 
   @override
   @JsonKey(name: 'code')
-  final String? code;
+  final int? code;
   @override
   @JsonKey(name: 'message')
   final String? message;
@@ -258,7 +258,7 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
 
 abstract class _PhoneLoginResponse implements PhoneLoginResponse {
   factory _PhoneLoginResponse(
-          {@JsonKey(name: 'code') String? code,
+          {@JsonKey(name: 'code') int? code,
           @JsonKey(name: 'message') String? message,
           @JsonKey(name: 'credentials') AuthCredentials? credentials,
           @JsonKey(name: 'clientProfile') ClientProfile? clientProfile}) =
@@ -269,7 +269,7 @@ abstract class _PhoneLoginResponse implements PhoneLoginResponse {
 
   @override
   @JsonKey(name: 'code')
-  String? get code => throw _privateConstructorUsedError;
+  int? get code => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;

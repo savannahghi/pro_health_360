@@ -9,7 +9,7 @@ part of 'phone_login_response.dart';
 _$_PhoneLoginResponse _$_$_PhoneLoginResponseFromJson(
     Map<String, dynamic> json) {
   return _$_PhoneLoginResponse(
-    code: json['code'] as String?,
+    code: json['code'] as int?,
     message: json['message'] as String?,
     credentials: json['credentials'] == null
         ? null

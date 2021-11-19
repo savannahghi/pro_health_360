@@ -65,7 +65,7 @@ class AppbarUser extends StatelessWidget {
                             AppColors.secondaryColor,
                           ),
                         )
-                      : CircleAvatar(backgroundImage: AssetImage(avatar)),
+                      : CircleAvatar(backgroundImage: NetworkImage(avatar)),
                 ),
               ),
             );
