@@ -3077,6 +3077,10 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'status': 'Missed'
 };
 
+Map<String, dynamic> mockBottomNavigationState = <String, dynamic>{
+  'currentBottomNavIndex': 0,
+};
+
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
   'securityQuestionID': 'id',
   'questionStem': 'question_stem',
