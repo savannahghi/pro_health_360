@@ -1,28 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'security_question.freezed.dart';
 part 'security_question.g.dart';
 
-@JsonSerializable()
-class SecurityQuestion {
-  final String id;
-  final String questionStem;
-  final String? description;
-  final String? responseType;
-  final String? flavour;
-  final bool active;
-  final int? sequence;
-
-  SecurityQuestion({
-    this.active = false,
-    this.sequence,
-    this.description,
-    required this.id,
-    required this.questionStem,
-    required this.responseType,
-    required this.flavour,
-  });
+@freezed
+class SecurityQuestion with _$SecurityQuestion {
+  factory SecurityQuestion({
+    String? id,
+    String? questionStem,
+    String? description,
+    String? responseType,
+    String? flavour,
+    @Default(false) bool? active,
+    int? sequence,
+  }) = _SecurityQuestion;
 
   factory SecurityQuestion.fromJson(Map<String, dynamic> json) =>
       _$SecurityQuestionFromJson(json);
-  Map<String, dynamic> toJson() => _$SecurityQuestionToJson(this);
+
+  factory SecurityQuestion.initial() => SecurityQuestion(
+        id: UNKNOWN,
+        questionStem: UNKNOWN,
+        description: UNKNOWN,
+        responseType: UNKNOWN,
+        flavour: UNKNOWN,
+        active: false,
+        sequence: 0,
+      );
 }

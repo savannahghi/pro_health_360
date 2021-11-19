@@ -6,19 +6,20 @@ part of 'security_question.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SecurityQuestion _$SecurityQuestionFromJson(Map<String, dynamic> json) {
-  return SecurityQuestion(
-    active: json['active'] as bool,
-    sequence: json['sequence'] as int?,
+_$_SecurityQuestion _$_$_SecurityQuestionFromJson(Map<String, dynamic> json) {
+  return _$_SecurityQuestion(
+    id: json['id'] as String?,
+    questionStem: json['questionStem'] as String?,
     description: json['description'] as String?,
-    id: json['id'] as String,
-    questionStem: json['questionStem'] as String,
     responseType: json['responseType'] as String?,
     flavour: json['flavour'] as String?,
+    active: json['active'] as bool? ?? false,
+    sequence: json['sequence'] as int?,
   );
 }
 
-Map<String, dynamic> _$SecurityQuestionToJson(SecurityQuestion instance) =>
+Map<String, dynamic> _$_$_SecurityQuestionToJson(
+        _$_SecurityQuestion instance) =>
     <String, dynamic>{
       'id': instance.id,
       'questionStem': instance.questionStem,
