@@ -18,22 +18,10 @@ class OnboardingStrings {
     return Localizations.of<OnboardingStrings>(context, OnboardingStrings);
   }
 
-  String loginTextV2() => Intl.message(
-        'Sign in here',
-        name: 'signText',
-        desc: 'SignIn text, used in links',
-      );
-
   String phoneRequiredText() => Intl.message(
         'A valid phone number is required',
         name: 'phoneNo',
         desc: 'PhoneNumber text, used in errors',
-      );
-
-  String selectGenderText() => Intl.message(
-        'Select gender',
-        name: 'selectGenderText',
-        desc: 'persons gender',
       );
 
   String previousText() => Intl.message(
@@ -43,54 +31,11 @@ class OnboardingStrings {
             'Text used in buttons to show an action takes user to a previous screen',
       );
 
-  String enterPinText() => Intl.message(
-        'Enter your PIN',
-        name: 'enterPinText',
-        desc: 'user to enter their PIN',
-      );
-
   String backText() => Intl.message(
         'Back',
         name: 'backText',
         desc:
             'used in buttons for an action that takes user to previous screen',
-      );
-
-  String phoneNumberText() => Intl.message(
-        'Enter phone number',
-        name: 'phoneNumberText',
-        desc: 'phone number',
-      );
-
-  String forgotPINText() => Intl.message(
-        'Forgot PIN?',
-        name: 'forgotPINText',
-        desc: 'ask user if they can remember their PIN',
-      );
-
-  String wrongPinEntered() => Intl.message(
-        'Sorry, you entered the wrong PIN. Please try again',
-        name: 'wrongPinEntered',
-        desc: 'user entered wrong PIN',
-      );
-
-  String noAccountWithPhoneNumber() => Intl.message(
-        'No account with that phone number',
-        name: 'noAccountWithPhoneNumber',
-        desc:
-            'user provided a phone number that is not registered on any account',
-      );
-
-  String requestText() => Intl.message(
-        'Request',
-        name: 'requestText',
-        desc: 'an action to request, used in buttons',
-      );
-
-  String haveAnAccountText() => Intl.message(
-        'Already have an account?  ',
-        name: 'haveAnAccountText',
-        desc: 'ask user if they have an existing account',
       );
 
   String verifyPhoneNumberText() => Intl.message(

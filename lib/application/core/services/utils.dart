@@ -540,40 +540,6 @@ String tooManyTriesString(int timeLeft) {
   return 'Too may tries, try again in $convertedTime minutes';
 }
 
-//Mock UserProfile
-final Map<String, Map<String, dynamic>?> loginResponse =
-    <String, Map<String, Object?>?>{
-  'profile': <String, dynamic>{
-    'primaryEmailAddress': null,
-    'primaryPhone': '+254712654897',
-    'covers': <Map<String, dynamic>>[
-      <String, dynamic>{
-        'payer_name': 'JICK',
-        'payer_slade_code': 123,
-        'member_number': '123255',
-        'member_name': 'Bewell Test'
-      }
-    ],
-    'secondaryEmailAddresses': null,
-    'secondaryPhoneNumbers': <String>['+254712654897', '+254712654897'],
-    'suspended': false,
-    'terms_accepted': true,
-    'userBioData': <String, dynamic>{
-      'dateOfBirth': '1996-02-07',
-      'firstName': 'Abiud',
-      'gender': 'unknown',
-      'lastName': 'Orina'
-    },
-    'userName': '@suspicious_ishizaka8254254',
-    'verifiedIdentifiers': <Map<String, dynamic>>[
-      <String, dynamic>{
-        'loginProvider': 'PHONE',
-        'timeStamp': '2021-02-19T10:04:39.795501Z',
-      }
-    ],
-  },
-};
-
 List<NotificationDetails> upcomingAppointments = <NotificationDetails>[
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
