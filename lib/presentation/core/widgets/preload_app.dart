@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:uni_links/uni_links.dart';
@@ -121,16 +123,15 @@ class _PreLoadAppState extends State<PreLoadApp> {
             stream: appInitialRoute.stream,
             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
               // listen for token expiry here
-              // RefreshTokenManger().listen.listen((dynamic value) {
-              //   refreshTokenAndUpdateState(
-              //     value: value as bool,
-              //     context: context,
-              //     appContexts: widget.thisAppContexts,
-              //     signedIn: widget.appState.clientProfile!.isSignedIn!,
-              //     refreshToken:
-              //         widget.appState.clientProfile!.auth!.refreshToken!,
-              //   );
-              // });
+              RefreshTokenManger().listen.listen((dynamic value) {
+                refreshTokenAndUpdateState(
+                  value: value as bool,
+                  context: context,
+                  appContexts: widget.thisAppContexts,
+                  signedIn: widget.appState.credentials!.isSignedIn!,
+                  refreshToken: widget.appState.credentials!.refreshToken!,
+                );
+              });
 
               registerFCMTokenListener(context);
 

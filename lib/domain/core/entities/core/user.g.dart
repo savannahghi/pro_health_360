@@ -15,10 +15,15 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     firstName: json['firstName'] as String?,
     middleName: json['middleName'] as String?,
     lastName: json['lastName'] as String?,
+    dateOfBirth: json['dateOfBirth'] as String?,
     gender: _$enumDecodeNullable(_$GenderEnumMap, json['gender']),
     active: json['active'] as bool? ?? false,
-    contacts: (json['contacts'] as List<dynamic>?)
-        ?.map((e) => Contact.fromJson(e as Map<String, dynamic>))
+    primaryContact: json['primaryContact'] == null
+        ? null
+        : Contact.fromJson(json['primaryContact'] as Map<String, dynamic>),
+    secondaryContacts: (json['secondaryContacts'] as List<dynamic>?)
+        ?.map((e) =>
+            e == null ? null : Contact.fromJson(e as Map<String, dynamic>))
         .toList(),
     languages:
         (json['languages'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -36,9 +41,11 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'firstName': instance.firstName,
       'middleName': instance.middleName,
       'lastName': instance.lastName,
+      'dateOfBirth': instance.dateOfBirth,
       'gender': _$GenderEnumMap[instance.gender],
       'active': instance.active,
-      'contacts': instance.contacts,
+      'primaryContact': instance.primaryContact,
+      'secondaryContacts': instance.secondaryContacts,
       'languages': instance.languages,
       'termsAccepted': instance.termsAccepted,
       'pinChangeRequired': instance.pinChangeRequired,

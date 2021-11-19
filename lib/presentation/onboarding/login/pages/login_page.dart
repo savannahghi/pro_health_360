@@ -24,7 +24,6 @@ import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart'
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -155,13 +154,7 @@ class _LoginPageState extends State<LoginPage> {
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           final User? userState = vm.appState.clientState?.clientProfile?.user;
-
-          final String? phoneNumber = userState?.contacts
-              ?.firstWhere(
-                (Contact contact) => contact.contactType == ContactType.PRIMARY,
-                orElse: () => Contact.initial(),
-              )
-              .contact;
+          final Contact? phoneNumber = userState?.primaryContact;
 
           final String? userId = userState?.userId;
 
@@ -216,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                                     await signInUser(
                                       context: context,
                                       pin: pin!,
-                                      phoneNumber: phoneNumber,
+                                      phoneNumber: phoneNumber.contact!,
                                     );
                                   }
                                   return;

@@ -65,9 +65,7 @@ class _AppEntryPointState extends State<AppEntryPoint>
       key: globalStoreKey,
       store: widget.appStore,
       child: StoreConnector<AppState, AppState>(
-        converter: (Store<AppState> store) {
-          return store.state;
-        },
+        converter: (Store<AppState> store) => store.state,
         builder: (BuildContext context, AppState appState) {
           return AppWrapper(
             appName: widget.appName,
