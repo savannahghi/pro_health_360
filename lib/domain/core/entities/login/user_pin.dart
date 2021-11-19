@@ -20,5 +20,6 @@ class UserPin {
 
   factory UserPin.fromJson(Map<String, dynamic> json) =>
       _$UserPinFromJson(json);
+
   Map<String, dynamic> toJson() => _$UserPinToJson(this);
 }

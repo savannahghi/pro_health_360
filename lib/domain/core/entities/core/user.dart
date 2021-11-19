@@ -37,6 +37,7 @@ class User with _$User {
         firstName: UNKNOWN,
         middleName: UNKNOWN,
         lastName: UNKNOWN,
+        dateOfBirth: UNKNOWN,
         gender: Gender.unknown,
         active: false,
         secondaryContacts: <Contact>[],

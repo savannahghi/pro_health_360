@@ -40,5 +40,7 @@ class ClientProfile with _$ClientProfile {
         facilityID: UNKNOWN,
         treatmentBuddy: UNKNOWN,
         clientCounselled: false,
+        lastMoodRecordedDate: UNKNOWN,
+        isSignedIn: false,
       );
 }

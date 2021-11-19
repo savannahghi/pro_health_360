@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/redux/states/faq_state.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
@@ -26,14 +27,4 @@ class MiscState with _$MiscState {
         healthPagePINInputTime: UNKNOWN,
         faqState: FAQState.initial(),
       );
-}
-
-@freezed
-class FAQState with _$FAQState {
-  factory FAQState() = _FAQState;
-
-  factory FAQState.fromJson(Map<String, dynamic> json) =>
-      _$FAQStateFromJson(json);
-
-  factory FAQState.initial() => FAQState();
 }

@@ -26,10 +26,3 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'healthPagePINInputTime': instance.healthPagePINInputTime,
       'faqState': instance.faqState,
     };
-
-_$_FAQState _$_$_FAQStateFromJson(Map<String, dynamic> json) {
-  return _$_FAQState();
-}
-
-Map<String, dynamic> _$_$_FAQStateToJson(_$_FAQState instance) =>
-    <String, dynamic>{};
