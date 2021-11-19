@@ -155,10 +155,11 @@ class _LoginPageState extends State<LoginPage> {
             AppStateViewModel.fromStore(store),
         builder: (BuildContext context, AppStateViewModel vm) {
           final User? userState = vm.appState.clientState?.clientProfile?.user;
-          final Contact? phoneNumber =
-              userState?.contacts?.where((Contact contact) {
-            return contact.contactType == ContactType.PRIMARY;
-          }).first;
+
+          final Contact? phoneNumber = userState?.contacts?.firstWhere(
+            (Contact contact) => contact.contactType == ContactType.PRIMARY,
+            orElse: () => Contact.initial(),
+          );
 
           final String? userId = userState?.userId;
 
