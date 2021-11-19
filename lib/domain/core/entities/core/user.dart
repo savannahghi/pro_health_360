@@ -28,6 +28,7 @@ class User with _$User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   factory User.initial() => User(
+        avatar: UNKNOWN,
         userId: UNKNOWN,
         username: UNKNOWN,
         displayName: UNKNOWN,
