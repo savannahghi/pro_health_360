@@ -19,7 +19,7 @@ void main() {
     expect(state.isConnected, false);
   });
 
-  test('should convert intial to json', () {
+  test('should convert initial to json', () {
     final ConnectivityState state = ConnectivityState.initial();
     final Map<String, dynamic> result = state.toJson();
     expect(result, isA<Map<String, dynamic>>());
