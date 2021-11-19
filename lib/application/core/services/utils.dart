@@ -1,9 +1,11 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:convert';
 
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -16,15 +18,22 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/number_constants.dart';
+import 'package:misc_utilities/refresh_token_manager.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
+import 'package:myafyahub/application/core/services/connectivity_helper.dart';
+import 'package:myafyahub/application/core/services/datatime_parser.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
+import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
@@ -33,6 +42,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/domain/core/value_objects/events.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -42,6 +52,7 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:unicons/unicons.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
+import 'package:user_feed/user_feed.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -419,11 +430,8 @@ dynamic reportErrorToSentry(
   if (context != null) {
     try {
       final AppState state = StoreProvider.state<AppState>(context)!;
-      final Contact? contact = state.clientState?.clientProfile?.user?.contacts
-          ?.where(
-            (Contact contact) => contact.contactType == ContactType.PRIMARY,
-          )
-          .first;
+      final Contact? contact =
+          state.clientState?.clientProfile?.user?.primaryContact;
 
       final bool isSignedIn =
           state.clientState?.clientProfile?.isSignedIn ?? false;
@@ -786,4 +794,125 @@ Future<void> customFetchData({
   return (payLoad['data'] != null)
       ? streamController.add(payLoad['data'])
       : streamController.add(null);
+}
+
+Future<ProcessedResponse> requestForANewToken({
+  required List<AppContext> thisAppContexts,
+  required String refreshToken,
+  required BuildContext context,
+}) async {
+  final IGraphQlClient _httpClient = AppWrapperBase.of(context)!.graphQLClient;
+  final String refreshTokenEndpoint =
+      AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint;
+
+  final Map<String, dynamic> refreshTokenVariables = <String, dynamic>{
+    'refreshToken': refreshToken,
+    'appVersion': APPVERSION,
+  };
+
+  return processHttpResponse(
+    await _httpClient.callRESTAPI(
+      endpoint: refreshTokenEndpoint,
+      method: 'POST',
+      variables: refreshTokenVariables,
+    ),
+    context,
+  );
+}
+
+void refreshTokenAndUpdateState({
+  required bool value,
+  required bool signedIn,
+  required BuildContext context,
+  required List<AppContext> appContexts,
+  required String refreshToken,
+}) {
+  if (value) {
+    // check if user is logged in
+    if (signedIn) {
+      // request for a new token
+      requestForANewToken(
+        context: context,
+        thisAppContexts: appContexts,
+        refreshToken: refreshToken,
+      ).then((ProcessedResponse response) {
+        //check if the request was successful
+        if (response.ok) {
+          // update state with the new token
+          updateStateAuth(context: context, processedResponse: response);
+        }
+      });
+    }
+  }
+}
+
+Future<bool> updateStateAuth({
+  required ProcessedResponse processedResponse,
+  required BuildContext context,
+}) async {
+  /// the response is passed to a variable of type `http.Response`
+  final http.Response okResponse = processedResponse.response;
+
+  final Map<String, dynamic> body =
+      json.decode(okResponse.body) as Map<String, dynamic>;
+
+  final AuthCredentialResponse auth = AuthCredentialResponse.fromJson(body);
+
+  final AppState? state = StoreProvider.state<AppState>(context);
+  final String appContext =
+      getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
+
+  if (auth.idToken != null &&
+      auth.refreshToken != null &&
+      auth.expiresIn != null) {
+    publishEvent(
+      hasSuccessfulRefreshTokenEvent(appContext),
+      EventObject(
+        firstName: state!.clientState!.clientProfile!.user!.firstName,
+        lastName: state.clientState!.clientProfile!.user!.lastName,
+        primaryPhoneNumber:
+            state.clientState!.clientProfile!.user!.primaryContact!.contact,
+        uid: state.clientState!.clientProfile!.user!.userId,
+        flavour: Flavour.CONSUMER.name,
+        timestamp: DateTime.now(),
+        appVersion: APPVERSION,
+      ),
+    );
+
+    await StoreProvider.dispatch<AppState>(
+      context,
+      ManageTokenAction(
+        refreshToken: auth.refreshToken!,
+        idToken: auth.idToken!,
+        context: context,
+        refreshTokenManger: RefreshTokenManger(),
+        canExperiment: auth.canExperiment,
+        parsedExpiresAt:
+            DateTimeParser().parsedExpireAt(int.parse(auth.expiresIn!)),
+      ),
+    );
+    return true;
+  } else {
+    reportErrorToSentry(
+      context,
+      okResponse,
+      hint: 'Error failed to refresh token',
+    );
+
+    /// we failed to refresh the token so require the user to login
+    publishEvent(
+      hasFailedToRefreshTokenEvent(appContext),
+      EventObject(
+        firstName: state!.clientState!.clientProfile!.user!.firstName,
+        lastName: state.clientState!.clientProfile!.user!.lastName,
+        primaryPhoneNumber:
+            state.clientState!.clientProfile!.user!.primaryContact!.contact,
+        uid: state.clientState!.clientProfile!.user!.userId,
+        flavour: Flavour.CONSUMER.name,
+        timestamp: DateTime.now(),
+        appVersion: APPVERSION,
+      ),
+    );
+    return false;
+  }
 }

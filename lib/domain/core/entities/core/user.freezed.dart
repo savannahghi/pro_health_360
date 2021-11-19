@@ -35,12 +35,16 @@ class _$UserTearOff {
           String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
+      @JsonKey(name: 'dateOfBirth')
+          String? dateOfBirth,
       @JsonKey(name: 'gender')
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
-      @JsonKey(name: 'contacts')
-          List<Contact>? contacts,
+      @JsonKey(name: 'primaryContact')
+          Contact? primaryContact,
+      @JsonKey(name: 'secondaryContacts')
+          List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
       @JsonKey(name: 'termsAccepted')
@@ -57,9 +61,11 @@ class _$UserTearOff {
       firstName: firstName,
       middleName: middleName,
       lastName: lastName,
+      dateOfBirth: dateOfBirth,
       gender: gender,
       active: active,
-      contacts: contacts,
+      primaryContact: primaryContact,
+      secondaryContacts: secondaryContacts,
       languages: languages,
       termsAccepted: termsAccepted,
       pinChangeRequired: pinChangeRequired,
@@ -93,12 +99,16 @@ mixin _$User {
   String? get middleName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'dateOfBirth')
+  String? get dateOfBirth => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender')
   Gender? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
-  @JsonKey(name: 'contacts')
-  List<Contact>? get contacts => throw _privateConstructorUsedError;
+  @JsonKey(name: 'primaryContact')
+  Contact? get primaryContact => throw _privateConstructorUsedError;
+  @JsonKey(name: 'secondaryContacts')
+  List<Contact?>? get secondaryContacts => throw _privateConstructorUsedError;
   @JsonKey(name: 'languages')
   List<String>? get languages => throw _privateConstructorUsedError;
   @JsonKey(name: 'termsAccepted')
@@ -132,12 +142,16 @@ abstract class $UserCopyWith<$Res> {
           String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
+      @JsonKey(name: 'dateOfBirth')
+          String? dateOfBirth,
       @JsonKey(name: 'gender')
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
-      @JsonKey(name: 'contacts')
-          List<Contact>? contacts,
+      @JsonKey(name: 'primaryContact')
+          Contact? primaryContact,
+      @JsonKey(name: 'secondaryContacts')
+          List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
       @JsonKey(name: 'termsAccepted')
@@ -146,6 +160,8 @@ abstract class $UserCopyWith<$Res> {
           bool? pinChangeRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended});
+
+  $ContactCopyWith<$Res>? get primaryContact;
 }
 
 /// @nodoc
@@ -165,9 +181,11 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? firstName = freezed,
     Object? middleName = freezed,
     Object? lastName = freezed,
+    Object? dateOfBirth = freezed,
     Object? gender = freezed,
     Object? active = freezed,
-    Object? contacts = freezed,
+    Object? primaryContact = freezed,
+    Object? secondaryContacts = freezed,
     Object? languages = freezed,
     Object? termsAccepted = freezed,
     Object? pinChangeRequired = freezed,
@@ -202,6 +220,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String?,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -210,10 +232,14 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      contacts: contacts == freezed
-          ? _value.contacts
-          : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Contact>?,
+      primaryContact: primaryContact == freezed
+          ? _value.primaryContact
+          : primaryContact // ignore: cast_nullable_to_non_nullable
+              as Contact?,
+      secondaryContacts: secondaryContacts == freezed
+          ? _value.secondaryContacts
+          : secondaryContacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact?>?,
       languages: languages == freezed
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
@@ -231,6 +257,17 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           : suspended // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
+  }
+
+  @override
+  $ContactCopyWith<$Res>? get primaryContact {
+    if (_value.primaryContact == null) {
+      return null;
+    }
+
+    return $ContactCopyWith<$Res>(_value.primaryContact!, (value) {
+      return _then(_value.copyWith(primaryContact: value));
+    });
   }
 }
 
@@ -254,12 +291,16 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
+      @JsonKey(name: 'dateOfBirth')
+          String? dateOfBirth,
       @JsonKey(name: 'gender')
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
-      @JsonKey(name: 'contacts')
-          List<Contact>? contacts,
+      @JsonKey(name: 'primaryContact')
+          Contact? primaryContact,
+      @JsonKey(name: 'secondaryContacts')
+          List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
       @JsonKey(name: 'termsAccepted')
@@ -268,6 +309,9 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           bool? pinChangeRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended});
+
+  @override
+  $ContactCopyWith<$Res>? get primaryContact;
 }
 
 /// @nodoc
@@ -288,9 +332,11 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? firstName = freezed,
     Object? middleName = freezed,
     Object? lastName = freezed,
+    Object? dateOfBirth = freezed,
     Object? gender = freezed,
     Object? active = freezed,
-    Object? contacts = freezed,
+    Object? primaryContact = freezed,
+    Object? secondaryContacts = freezed,
     Object? languages = freezed,
     Object? termsAccepted = freezed,
     Object? pinChangeRequired = freezed,
@@ -325,6 +371,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String?,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -333,10 +383,14 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      contacts: contacts == freezed
-          ? _value.contacts
-          : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Contact>?,
+      primaryContact: primaryContact == freezed
+          ? _value.primaryContact
+          : primaryContact // ignore: cast_nullable_to_non_nullable
+              as Contact?,
+      secondaryContacts: secondaryContacts == freezed
+          ? _value.secondaryContacts
+          : secondaryContacts // ignore: cast_nullable_to_non_nullable
+              as List<Contact?>?,
       languages: languages == freezed
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
@@ -375,12 +429,16 @@ class _$_User implements _User {
           this.middleName,
       @JsonKey(name: 'lastName')
           this.lastName,
+      @JsonKey(name: 'dateOfBirth')
+          this.dateOfBirth,
       @JsonKey(name: 'gender')
           this.gender,
       @JsonKey(name: 'active', defaultValue: false)
           this.active,
-      @JsonKey(name: 'contacts')
-          this.contacts,
+      @JsonKey(name: 'primaryContact')
+          this.primaryContact,
+      @JsonKey(name: 'secondaryContacts')
+          this.secondaryContacts,
       @JsonKey(name: 'languages')
           this.languages,
       @JsonKey(name: 'termsAccepted')
@@ -415,14 +473,20 @@ class _$_User implements _User {
   @JsonKey(name: 'lastName')
   final String? lastName;
   @override
+  @JsonKey(name: 'dateOfBirth')
+  final String? dateOfBirth;
+  @override
   @JsonKey(name: 'gender')
   final Gender? gender;
   @override
   @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
-  @JsonKey(name: 'contacts')
-  final List<Contact>? contacts;
+  @JsonKey(name: 'primaryContact')
+  final Contact? primaryContact;
+  @override
+  @JsonKey(name: 'secondaryContacts')
+  final List<Contact?>? secondaryContacts;
   @override
   @JsonKey(name: 'languages')
   final List<String>? languages;
@@ -438,7 +502,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, avatar: $avatar, displayName: $displayName, firstName: $firstName, middleName: $middleName, lastName: $lastName, gender: $gender, active: $active, contacts: $contacts, languages: $languages, termsAccepted: $termsAccepted, pinChangeRequired: $pinChangeRequired, suspended: $suspended)';
+    return 'User(userId: $userId, username: $username, avatar: $avatar, displayName: $displayName, firstName: $firstName, middleName: $middleName, lastName: $lastName, dateOfBirth: $dateOfBirth, gender: $gender, active: $active, primaryContact: $primaryContact, secondaryContacts: $secondaryContacts, languages: $languages, termsAccepted: $termsAccepted, pinChangeRequired: $pinChangeRequired, suspended: $suspended)';
   }
 
   @override
@@ -464,13 +528,19 @@ class _$_User implements _User {
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateOfBirth, dateOfBirth)) &&
             (identical(other.gender, gender) ||
                 const DeepCollectionEquality().equals(other.gender, gender)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.contacts, contacts) ||
+            (identical(other.primaryContact, primaryContact) ||
                 const DeepCollectionEquality()
-                    .equals(other.contacts, contacts)) &&
+                    .equals(other.primaryContact, primaryContact)) &&
+            (identical(other.secondaryContacts, secondaryContacts) ||
+                const DeepCollectionEquality()
+                    .equals(other.secondaryContacts, secondaryContacts)) &&
             (identical(other.languages, languages) ||
                 const DeepCollectionEquality()
                     .equals(other.languages, languages)) &&
@@ -495,9 +565,11 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(middleName) ^
       const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(dateOfBirth) ^
       const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(contacts) ^
+      const DeepCollectionEquality().hash(primaryContact) ^
+      const DeepCollectionEquality().hash(secondaryContacts) ^
       const DeepCollectionEquality().hash(languages) ^
       const DeepCollectionEquality().hash(termsAccepted) ^
       const DeepCollectionEquality().hash(pinChangeRequired) ^
@@ -530,12 +602,16 @@ abstract class _User implements User {
           String? middleName,
       @JsonKey(name: 'lastName')
           String? lastName,
+      @JsonKey(name: 'dateOfBirth')
+          String? dateOfBirth,
       @JsonKey(name: 'gender')
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
-      @JsonKey(name: 'contacts')
-          List<Contact>? contacts,
+      @JsonKey(name: 'primaryContact')
+          Contact? primaryContact,
+      @JsonKey(name: 'secondaryContacts')
+          List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
       @JsonKey(name: 'termsAccepted')
@@ -569,14 +645,20 @@ abstract class _User implements User {
   @JsonKey(name: 'lastName')
   String? get lastName => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'dateOfBirth')
+  String? get dateOfBirth => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'gender')
   Gender? get gender => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'contacts')
-  List<Contact>? get contacts => throw _privateConstructorUsedError;
+  @JsonKey(name: 'primaryContact')
+  Contact? get primaryContact => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'secondaryContacts')
+  List<Contact?>? get secondaryContacts => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'languages')
   List<String>? get languages => throw _privateConstructorUsedError;
