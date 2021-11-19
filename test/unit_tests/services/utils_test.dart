@@ -81,5 +81,10 @@ void main() {
         expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
       });
     });
+    test('getEnvironmentContext should return the correct contexts', () async {
+      expect(getEnvironmentContext(<AppContext>[AppContext.AppProd]), 'prod');
+      expect(getEnvironmentContext(<AppContext>[AppContext.AppDemo]), 'demo');
+      expect(getEnvironmentContext(<AppContext>[AppContext.AppTest]), 'test');
+    });
   });
 }
