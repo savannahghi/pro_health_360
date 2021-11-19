@@ -105,6 +105,9 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             PhoneLoginResponse.fromJson(parsed);
 
         final AuthCredentials? authCredentials = loginResponse.credentials;
+        authCredentials?.copyWith(
+          signedInTime: DateTime.now().toIso8601String(),
+        );
 
         await store.dispatch(
           ManageTokenAction(

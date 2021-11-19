@@ -603,27 +603,20 @@ List<NotificationDetails> pastAppointments = <NotificationDetails>[
 ];
 
 bool shouldInputPIN(BuildContext context) {
+  final String? signedInTimeFromState =
+      StoreProvider.state<AppState>(context)?.credentials?.signedInTime;
+
   final String lastUserSignInTime =
-      StoreProvider.state<AppState>(context)!.credentials!.signedInTime ==
-              UNKNOWN
+      signedInTimeFromState == UNKNOWN || signedInTimeFromState == null
           ? DateTime.now().toString()
-          : StoreProvider.state<AppState>(context)!.credentials!.signedInTime!;
+          : signedInTimeFromState;
 
-  final DateTime signedInTime = DateTime.parse(
-    lastUserSignInTime,
-  );
+  final DateTime signedInTime = DateTime.parse(lastUserSignInTime);
 
-  // TODO: store signed in time in the app state
+  final String? pinInputTimeFromState =
+      StoreProvider.state<AppState>(context)!.miscState!.healthPagePINInputTime;
 
-
-  final String lastPINInputTime = StoreProvider.state<AppState>(context)!
-              .miscState!
-              .healthPagePINInputTime ==
-          null
-      ? UNKNOWN
-      : StoreProvider.state<AppState>(context)!
-          .miscState!
-          .healthPagePINInputTime!;
+  final String lastPINInputTime = pinInputTimeFromState ?? UNKNOWN;
 
   final int differenceFromSignIn =
       DateTime.now().difference(signedInTime).inMinutes;
