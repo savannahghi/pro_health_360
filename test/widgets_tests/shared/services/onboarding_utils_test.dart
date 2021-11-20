@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:domain_objects/entities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,6 +15,9 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:user_feed/user_feed.dart';
@@ -933,6 +937,152 @@ void main() {
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
       expect(find.byType(CongratulationsPage), findsOneWidget);
+    });
+
+    testWidgets('refreshTokenAndUpdateState should get a new token',
+        (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+
+      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+
+      // mocked response
+      final http.Response response = http.Response(
+        json.encode(
+          <String, dynamic>{
+            'id_token': 'newAuthToken',
+            'refresh_token': refreshToken,
+            'expires_in': '2'
+          },
+        ),
+        201,
+      );
+
+      callRESTAPIWhenThenAnswer(
+        endpoint: 'https://onboarding-testing.savannahghi.org/refresh_token',
+        variables: <String, dynamic>{
+          'refreshToken': refreshToken,
+          'appVersion': APPVERSION,
+        },
+        response: response,
+      );
+
+      mockLoginResponse.remove('auth');
+
+      final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
+      final UserProfile? userProfile = userResp.profile;
+
+      await tester.runAsync(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: baseGraphQlClientMock,
+          widget: Builder(
+            builder: (BuildContext context) {
+              StoreProvider.dispatch(
+                context,
+                UpdateUserProfileAction(
+                  active: true,
+                  firstName: userProfile?.userBioData?.firstName?.getValue(),
+                  lastName: userProfile?.userBioData?.lastName?.getValue(),
+                  phoneNumber: Contact(
+                    contact: userProfile?.primaryPhoneNumber?.getValue(),
+                  ),
+                ),
+              );
+
+              return SILPrimaryButton(
+                onPressed: () async {
+                  refreshTokenAndUpdateState(
+                    context: context,
+                    signedIn: true,
+                    value: true,
+                    refreshToken: refreshToken,
+                    appContexts: testAppContexts,
+                  );
+                },
+              );
+            },
+          ),
+        );
+
+        await tester.pump();
+
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
+        expect(store.state.credentials!.refreshToken, refreshToken);
+      });
+    });
+
+    testWidgets('should return false when fails to updateStateAuth',
+        (WidgetTester tester) async {
+      // setup
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+      store.dispatch(
+        UpdateUserProfileAction(
+          phoneNumber: Contact(
+            contact: testPhoneNumber,
+          ),
+        ),
+      );
+
+      bool? updateStateAuthStatus;
+
+      mockLoginResponse.remove('auth');
+
+      final http.Response response = http.Response(
+        json.encode(mockLoginResponse),
+        201,
+      );
+
+      final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
+      final UserProfile? userProfile = userResp.profile;
+
+      // implementation/call the function
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: Builder(
+          builder: (BuildContext context) {
+            StoreProvider.dispatch(
+              context,
+              UpdateUserProfileAction(
+                active: true,
+                firstName: userProfile?.userBioData?.firstName?.getValue(),
+                lastName: userProfile?.userBioData?.lastName?.getValue(),
+                phoneNumber: Contact(
+                  contact: userProfile?.primaryPhoneNumber?.getValue(),
+                ),
+              ),
+            );
+
+            return SILPrimaryButton(
+              onPressed: () async {
+                // call our check token status function
+                updateStateAuthStatus = await updateStateAuth(
+                  processedResponse:
+                      ProcessedResponse(ok: true, response: response),
+                  context: context,
+                );
+              },
+              text: 'Test',
+            );
+          },
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      final AuthCredentials state = store.state.credentials!;
+      // verify current state
+      expect(state.isSignedIn, false);
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(updateStateAuthStatus, isNotNull);
+      expect(updateStateAuthStatus, false);
     });
     testWidgets('Shows snackbar when pins do not match',
         (WidgetTester tester) async {
