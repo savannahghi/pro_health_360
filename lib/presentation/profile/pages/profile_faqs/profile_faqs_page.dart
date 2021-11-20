@@ -1,17 +1,17 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 
 // Package imports:
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/profile/widgets/faq_item.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/profile/widgets/faq_item.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 class ProfileFaqsPage extends StatelessWidget {
   const ProfileFaqsPage();

@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 
 part 'notification_actions.freezed.dart';

@@ -1,6 +1,9 @@
 // Flutter imports:
-import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/community_list_item.dart';
+
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';

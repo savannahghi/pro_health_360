@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'address.freezed.dart';

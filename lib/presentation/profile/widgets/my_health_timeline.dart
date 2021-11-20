@@ -1,6 +1,12 @@
-import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/profile/doctor.dart';
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -8,7 +14,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item.dart';
 import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
 import 'package:myafyahub/presentation/profile/widgets/timeline_indicator.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class MyHealthTimeline extends StatefulWidget {
   const MyHealthTimeline({Key? key}) : super(key: key);

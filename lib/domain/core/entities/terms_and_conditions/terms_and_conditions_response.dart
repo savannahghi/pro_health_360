@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 
 part 'terms_and_conditions_response.freezed.dart';

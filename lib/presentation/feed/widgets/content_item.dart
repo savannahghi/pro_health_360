@@ -1,21 +1,21 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/presentation/feed/widgets/content_item_footer.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
+import 'package:flutter_svg/svg.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/feed/widgets/content_item_footer.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 /// [ContentItem] Displays the feed
 /// [isNew] renders the new tag

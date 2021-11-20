@@ -14,7 +14,6 @@ import 'package:myafyahub/presentation/community/chat_screen/widgets/quoted_mess
 import 'package:myafyahub/presentation/community/chat_screen/widgets/received_message_item.dart';
 import 'package:myafyahub/presentation/community/chat_screen/widgets/time_classification_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-
 import '../widgets/sender_type_widget.dart';
 import '../widgets/sent_message_item.dart';
 

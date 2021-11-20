@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 // Package imports:
 import 'package:pin_code_text_field/pin_code_text_field.dart';
+
+// Project imports:
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 /// [PINInputField] is a shared widget to input authentication PIN
 ///

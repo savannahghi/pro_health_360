@@ -1,28 +1,26 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:async_redux/async_redux.dart';
-
 // Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-
-// Project imports:
-import 'package:myafyahub/presentation/feed/widgets/recent_feed_content.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/feed/widgets/content_item.dart';
 import 'package:myafyahub/presentation/feed/pages/content_details_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_ui_components/platform_loader.dart';
-
+import 'package:myafyahub/presentation/feed/widgets/content_item.dart';
+import 'package:myafyahub/presentation/feed/widgets/recent_feed_content.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

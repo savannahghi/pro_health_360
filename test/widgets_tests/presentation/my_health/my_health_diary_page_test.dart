@@ -1,17 +1,16 @@
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
 
 // Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
-
 import '../../../test_helpers.dart';
 
 void main() {

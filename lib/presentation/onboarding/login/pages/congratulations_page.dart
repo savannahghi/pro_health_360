@@ -1,20 +1,22 @@
 // Flutter imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/onboarding_scaffold.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/important_information_link_widget.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class CongratulationsPage extends StatefulWidget {
   const CongratulationsPage({required this.lengthOfTreatment});
