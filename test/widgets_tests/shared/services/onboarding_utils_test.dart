@@ -301,9 +301,10 @@ void main() {
 
     group('Login tests: process response', () {
       late Store<AppState> store;
-      setUpAll(() {
+      setUp(() {
         store = Store<AppState>(initialState: AppState.initial());
       });
+
       testWidgets('Onboarding utils should process response with a 200',
           (WidgetTester tester) async {
         final http.Response expectedResponse = http.Response(
@@ -444,6 +445,55 @@ void main() {
         expect(
           store.state.onboardingState!.phoneLogin!.invalidCredentials,
           true,
+        );
+      });
+
+      testWidgets(
+          'Onboarding utils should process response '
+          'with a 400 and a status code of 7', (WidgetTester tester) async {
+        final http.Response expectedErrorResponse = http.Response(
+          json.encode(<String, dynamic>{
+            'code': 7,
+            'message': 'coverage is still not 100%'
+          }),
+          400,
+        );
+        const String processBtnText = 'process response';
+        late ProcessedResponse actualResponse;
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockGraphQlClient,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Center(
+                child: SILPrimaryButton(
+                  onPressed: () {
+                    actualResponse =
+                        processHttpResponse(expectedErrorResponse, context);
+                  },
+                  text: processBtnText,
+                ),
+              );
+            },
+          ),
+        );
+        await tester.pump();
+        expect(find.text(processBtnText), findsOneWidget);
+        expect(find.byType(SILPrimaryButton), findsOneWidget);
+
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
+
+        expect(actualResponse.ok, false);
+        expect(actualResponse.response, expectedErrorResponse);
+        // expect a default error msg because context was not passed in
+        expect(actualResponse.message, userNotFound);
+
+        expect(
+          store.state.onboardingState!.phoneLogin!.invalidCredentials,
+          false,
         );
       });
 
@@ -646,7 +696,7 @@ void main() {
         expect(store.state.wait!.isWaitingFor(testFlag), true);
       });
 
-      testWidgets('should toggle loading indicator with true',
+      testWidgets('should toggle loading indicator with false',
           (WidgetTester tester) async {
         const String processBtnText = 'process response';
         const String testFlag = 'test_flag';
@@ -1002,7 +1052,7 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
+      const String refreshToken = 'some-refresh-token';
 
       // mocked response
       final http.Response response = http.Response(
@@ -1017,7 +1067,7 @@ void main() {
       );
 
       callRESTAPIWhenThenAnswer(
-        endpoint: 'https://onboarding-testing.savannahghi.org/refresh_token',
+        endpoint: 'https://mycarehub-testing.savannahghi.org/refresh_token',
         variables: <String, dynamic>{
           'refreshToken': refreshToken,
           'appVersion': APPVERSION,
@@ -1170,7 +1220,9 @@ void main() {
       expect(find.text(pinMustMatchString), findsOneWidget);
     });
 
-    testWidgets('should return home route for a user with a valid token',
+    testWidgets(
+        'should return verify code page route for a user with a valid '
+        'token if they have not accepted the terms and conditions',
         (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
@@ -1210,7 +1262,7 @@ void main() {
       // trigger the bottom sheet
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.home);
+      expect(initialRoute, BWRoutes.verifyCode);
     });
   });
 }

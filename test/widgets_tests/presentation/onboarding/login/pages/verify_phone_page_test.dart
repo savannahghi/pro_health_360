@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/verify_otp_widget.dart';
@@ -20,7 +21,19 @@ void main() {
     late Store<AppState> store;
 
     setUpAll(() {
-      store = Store<AppState>(initialState: AppState.initial());
+      store = Store<AppState>(
+        initialState: AppState.initial()
+            .copyWith
+            .onboardingState!
+            .call(otp: '1234')
+            .copyWith
+            .clientState!
+            .user!
+            .call(
+              primaryContact: Contact(contact: '+254717356476'),
+              userId: 'user-id',
+            ),
+      );
     });
 
     testWidgets('should render correctly', (WidgetTester tester) async {
@@ -39,23 +52,22 @@ void main() {
           201,
         ),
       );
+
       await buildTestWidget(
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const VerifyPhonePage(
-          otp: 1234,
-          userID: 'some-user-id',
-          phoneNumber: '0700111222',
-        ),
+        widget: VerifyPhonePage(),
       );
 
       await tester.pumpAndSettle();
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
       await tester.pumpAndSettle();
+
       await tester.showKeyboard(find.byType(PINInputField));
       await tester.enterText(find.byType(PINInputField), '1234');
       await tester.pumpAndSettle(const Duration(seconds: 5));
+
       expect(find.byType(TermsAndConditionsPage), findsWidgets);
     });
   });

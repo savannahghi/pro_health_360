@@ -13,10 +13,10 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -32,7 +32,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend
 ///
@@ -91,8 +90,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       httpClient.idToken = dGraphToken;
       httpClient.endpoint = dGraphEndpoint;
 
-      final Response httpResponse =
-          await httpClient.query(loginQuery, variables);
+      final String loginEndpoint =
+          AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
+
+      final Response httpResponse = await httpClient.callRESTAPI(
+        endpoint: loginEndpoint,
+        method: httpPOST,
+        variables: variables,
+      );
 
       final ProcessedResponse processedResponse =
           processHttpResponse(httpResponse, context);
@@ -101,9 +106,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        final PhoneLoginResponse loginResponse = PhoneLoginResponse.fromJson(
-          parsed['data']['login'] as Map<String, dynamic>,
-        );
+        final PhoneLoginResponse loginResponse =
+            PhoneLoginResponse.fromJson(parsed);
 
         final AuthCredentials? authCredentials = loginResponse.credentials;
         authCredentials?.copyWith(
@@ -135,18 +139,13 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final bool termsAccepted =
-            loginResponse.clientState?.user?.termsAccepted ?? false;
-
-        String routeToNavigate = BWRoutes.home;
-
-        if (!termsAccepted) {
-          routeToNavigate = BWRoutes.verifyCode;
-        }
+        final OnboardingPathConfig onboardingPathConfig =
+            onboardingPath(store.state);
 
         Navigator.of(context).pushNamedAndRemoveUntil(
-          routeToNavigate,
+          onboardingPathConfig.route,
           (Route<dynamic> route) => false,
+          arguments: onboardingPathConfig.arguments,
         );
         return state;
       } else {

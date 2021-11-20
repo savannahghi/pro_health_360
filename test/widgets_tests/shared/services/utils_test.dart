@@ -780,7 +780,7 @@ void main() {
       );
 
       const String refreshTokenEndpoint =
-          'https://onboarding-testing.savannahghi.org/refresh_token';
+          'https://mycarehub-testing.savannahghi.org/refresh_token';
 
       callRESTAPIWhenThenAnswer(
         endpoint: refreshTokenEndpoint,

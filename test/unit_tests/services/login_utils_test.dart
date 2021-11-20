@@ -19,7 +19,7 @@ import '../../mocks.dart';
 import '../../test_helpers.dart';
 
 void main() {
-  final MockGraphQlClient GraphQlClient = MockGraphQlClient();
+  final MockGraphQlClient graphQlClient = MockGraphQlClient();
 
   testWidgets('should show bottomsheet when phone number is invalid',
       (WidgetTester tester) async {
@@ -29,7 +29,7 @@ void main() {
     await buildTestWidget(
       tester: tester,
       store: store,
-      client: GraphQlClient,
+      client: graphQlClient,
       widget: Material(
         child: Builder(
           builder: (BuildContext context) {

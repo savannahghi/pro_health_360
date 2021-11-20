@@ -40,10 +40,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String? phoneNumber;
-  String? pin;
-
   final TextEditingController phoneNumberInputController =
       TextEditingController();
+
+  String? pin;
   TextEditingController pinController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
+                      largeVerticalSizedBox,
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text(
@@ -99,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      verySmallVerticalSizedBox,
+                      smallVerticalSizedBox,
                       MyAfyaHubPhoneInput(
                         phoneNumberFormatter: formatPhoneNumber,
                         inputController: phoneNumberInputController,
@@ -121,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                           });
                         },
                       ),
-                      largeVerticalSizedBox,
+                      mediumVerticalSizedBox,
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text(
@@ -131,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      verySmallVerticalSizedBox,
+                      smallVerticalSizedBox,
                       CustomTextField(
                         formFieldKey: pinInputKey,
                         borderColor: Colors.grey[200],

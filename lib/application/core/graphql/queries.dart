@@ -136,26 +136,7 @@ Map<String, dynamic> resendOTPQueryVariables(
   };
 }
 
-const String getFAQQuery = r'''
-query GetFaq ($flavour: Flavour!){
-    getFaqsContent (flavour: $flavour){
-        id
-        createdAt
-        excerpt
-        featureImage
-        html
-        publishedAt
-        slug
-        title
-        readingTime
-        tags {
-            id
-            name
-            slug
-        }
-    }
-}
-''';
+
 
 const String getTermsQuery = '''
 query getCurrentTerms {
@@ -163,28 +144,6 @@ query getCurrentTerms {
     termsID
     text
   }
-}
-''';
-
-// get library query
-const String getLibraryQuery = '''
-query GetLibrary{
-    getLibraryContent{
-        id
-        createdAt
-        excerpt
-        featureImage
-        html
-        publishedAt
-        slug
-        title
-        readingTime
-        tags {
-            id
-            name
-            slug
-        }
-    }
 }
 ''';
 

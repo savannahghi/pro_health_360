@@ -176,8 +176,14 @@ void main() {
         'flavour': Flavour.CONSUMER.name,
       };
 
-      final PhoneLoginResponse phoneLoginResponse = PhoneLoginResponse.fromJson(
-        mockLoginResponse['data']['login'] as Map<String, dynamic>,
+      final PhoneLoginResponse phoneLoginResponse =
+          PhoneLoginResponse.fromJson(mockLoginResponse);
+
+      final MockCustomGraphQLClient mockShortSILGraphQlClient =
+          MockCustomGraphQLClient.withResponse(
+        'idToken',
+        'endpoint',
+        contentResponse,
       );
 
       when(baseGraphQlClientMock.query(loginQuery, queryVariables))
@@ -212,7 +218,7 @@ void main() {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: baseGraphQlClientMock,
+          client: mockShortSILGraphQlClient,
           widget: Builder(
             builder: (BuildContext context) {
               return SILPrimaryButton(

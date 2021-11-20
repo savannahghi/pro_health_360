@@ -59,11 +59,7 @@ class RouteGenerator {
 
       case BWRoutes.verifySignUpOTP:
         return MaterialPageRoute<VerifyPhonePage>(
-          builder: (_) => VerifyPhonePage(
-            otp: args['OTP'] as int,
-            userID: args['userID'] as String,
-            phoneNumber: args['phoneNumber'] as String,
-          ),
+          builder: (_) => VerifyPhonePage(),
         );
 
       case BWRoutes.congratulationsPage:

@@ -25,13 +25,15 @@ class _$OnboardingStateTearOff {
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLogin? phoneLogin}) {
+      PhoneLoginState? phoneLogin,
+      String? otp}) {
     return _OnboardingState(
       createPINState: createPINState,
       termsAndConditions: termsAndConditions,
       securityQuestions: securityQuestions,
       securityQuestionResponses: securityQuestionResponses,
       phoneLogin: phoneLogin,
+      otp: otp,
     );
   }
 
@@ -52,7 +54,8 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   List<SecurityQuestionResponse>? get securityQuestionResponses =>
       throw _privateConstructorUsedError;
-  PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
+  PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
+  String? get otp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,11 +73,12 @@ abstract class $OnboardingStateCopyWith<$Res> {
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLogin? phoneLogin});
+      PhoneLoginState? phoneLogin,
+      String? otp});
 
   $CreatePINStateCopyWith<$Res>? get createPINState;
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
-  $PhoneLoginCopyWith<$Res>? get phoneLogin;
+  $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
 }
 
 /// @nodoc
@@ -93,6 +97,7 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
     Object? phoneLogin = freezed,
+    Object? otp = freezed,
   }) {
     return _then(_value.copyWith(
       createPINState: createPINState == freezed
@@ -114,7 +119,11 @@ class _$OnboardingStateCopyWithImpl<$Res>
       phoneLogin: phoneLogin == freezed
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
-              as PhoneLogin?,
+              as PhoneLoginState?,
+      otp: otp == freezed
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -142,12 +151,12 @@ class _$OnboardingStateCopyWithImpl<$Res>
   }
 
   @override
-  $PhoneLoginCopyWith<$Res>? get phoneLogin {
+  $PhoneLoginStateCopyWith<$Res>? get phoneLogin {
     if (_value.phoneLogin == null) {
       return null;
     }
 
-    return $PhoneLoginCopyWith<$Res>(_value.phoneLogin!, (value) {
+    return $PhoneLoginStateCopyWith<$Res>(_value.phoneLogin!, (value) {
       return _then(_value.copyWith(phoneLogin: value));
     });
   }
@@ -165,14 +174,15 @@ abstract class _$OnboardingStateCopyWith<$Res>
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLogin? phoneLogin});
+      PhoneLoginState? phoneLogin,
+      String? otp});
 
   @override
   $CreatePINStateCopyWith<$Res>? get createPINState;
   @override
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   @override
-  $PhoneLoginCopyWith<$Res>? get phoneLogin;
+  $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
 }
 
 /// @nodoc
@@ -193,6 +203,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
     Object? phoneLogin = freezed,
+    Object? otp = freezed,
   }) {
     return _then(_OnboardingState(
       createPINState: createPINState == freezed
@@ -214,7 +225,11 @@ class __$OnboardingStateCopyWithImpl<$Res>
       phoneLogin: phoneLogin == freezed
           ? _value.phoneLogin
           : phoneLogin // ignore: cast_nullable_to_non_nullable
-              as PhoneLogin?,
+              as PhoneLoginState?,
+      otp: otp == freezed
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -227,7 +242,8 @@ class _$_OnboardingState implements _OnboardingState {
       this.termsAndConditions,
       this.securityQuestions,
       this.securityQuestionResponses,
-      this.phoneLogin});
+      this.phoneLogin,
+      this.otp});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$_$_OnboardingStateFromJson(json);
@@ -241,11 +257,13 @@ class _$_OnboardingState implements _OnboardingState {
   @override
   final List<SecurityQuestionResponse>? securityQuestionResponses;
   @override
-  final PhoneLogin? phoneLogin;
+  final PhoneLoginState? phoneLogin;
+  @override
+  final String? otp;
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin)';
+    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, otp: $otp)';
   }
 
   @override
@@ -268,7 +286,9 @@ class _$_OnboardingState implements _OnboardingState {
                     securityQuestionResponses)) &&
             (identical(other.phoneLogin, phoneLogin) ||
                 const DeepCollectionEquality()
-                    .equals(other.phoneLogin, phoneLogin)));
+                    .equals(other.phoneLogin, phoneLogin)) &&
+            (identical(other.otp, otp) ||
+                const DeepCollectionEquality().equals(other.otp, otp)));
   }
 
   @override
@@ -278,7 +298,8 @@ class _$_OnboardingState implements _OnboardingState {
       const DeepCollectionEquality().hash(termsAndConditions) ^
       const DeepCollectionEquality().hash(securityQuestions) ^
       const DeepCollectionEquality().hash(securityQuestionResponses) ^
-      const DeepCollectionEquality().hash(phoneLogin);
+      const DeepCollectionEquality().hash(phoneLogin) ^
+      const DeepCollectionEquality().hash(otp);
 
   @JsonKey(ignore: true)
   @override
@@ -297,7 +318,8 @@ abstract class _OnboardingState implements OnboardingState {
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLogin? phoneLogin}) = _$_OnboardingState;
+      PhoneLoginState? phoneLogin,
+      String? otp}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
@@ -314,7 +336,9 @@ abstract class _OnboardingState implements OnboardingState {
   List<SecurityQuestionResponse>? get securityQuestionResponses =>
       throw _privateConstructorUsedError;
   @override
-  PhoneLogin? get phoneLogin => throw _privateConstructorUsedError;
+  PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
+  @override
+  String? get otp => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>

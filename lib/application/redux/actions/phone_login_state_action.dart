@@ -4,7 +4,7 @@ import 'package:domain_objects/value_objects.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 
 /// [PhoneLoginStateAction] is a Redux action used to handle an existing user login
 /// The action stores the phone number, PIN and the login status(success or failure) of if a users credentials match those stored in our backend.
@@ -29,7 +29,7 @@ class PhoneLoginStateAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final AppState newState = state.copyWith.onboardingState!.call(
-      phoneLogin: PhoneLogin(
+      phoneLogin: PhoneLoginState(
         phoneNumber: phoneNumber ?? UNKNOWN,
         pinCode: pinCode ?? UNKNOWN,
         invalidCredentials: invalidCredentials,

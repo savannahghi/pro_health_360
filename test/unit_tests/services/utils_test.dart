@@ -1,20 +1,16 @@
 // Dart imports:
-import 'dart:convert';
 
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import '../../mocks.dart';
 
 void main() {
   group('Utils', () {
@@ -34,17 +30,6 @@ void main() {
 
     test('should return an unprotected route', () async {
       expect(unProtectedRoutes[0], BWRoutes.phoneLogin);
-    });
-
-    test('should throw message no_user_account_found', () {
-      final Response expectedResponse =
-          Response(json.encode(<String, dynamic>{'code': 7}), 400);
-      final MockBuildContext context = MockBuildContext();
-
-      expect(
-        () => processHttpResponse(expectedResponse, context),
-        throwsException,
-      );
     });
 
     test('should parser expiredAt', () {

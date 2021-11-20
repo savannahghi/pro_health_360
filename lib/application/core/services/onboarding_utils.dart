@@ -139,11 +139,11 @@ ProcessedResponse processHttpResponse(
        *  TODO!!(abiud): confirm with the backend to remove error code 4 
        */
 
-    if ((body['code'] == 7 || body['code'] == 10) && context != null) {
-      throw SILException(
-        error: body,
-        cause: noUserFound,
-        message: getUserPhoneNumbersMessage,
+    if ((body['code'] == 7) && context != null) {
+      return ProcessedResponse(
+        ok: false,
+        response: response,
+        message: getUserFriendlyMsg(body['code'] as int),
       );
     }
 
@@ -203,6 +203,7 @@ String getUserFriendlyMsg(int code) {
       return wrongLoginCredentials;
     case 9:
       return pinNotFound;
+
     default:
       return defaultUserFriendlyMessage;
   }
@@ -367,7 +368,12 @@ OnboardingPathConfig onboardingPath(
   AppState state, {
   bool calledOnResume = false,
 }) {
-  // TODO!!(abiud): add more checks here when tying up the storyline
+  final bool termsAccepted = state.clientState!.user!.termsAccepted ?? false;
+
+  if (!termsAccepted) {
+    // TODO(abiud): check that other workflows have been completed
+    return OnboardingPathConfig(BWRoutes.verifyCode);
+  }
 
   /// take the user to the homepage if they have passed
   /// the normal user profile checks
@@ -439,6 +445,7 @@ Future<String> getInitialRoute(
 
     final OnboardingPathConfig pathConfig =
         onboardingPath(appState, calledOnResume: true);
+
     if (pathConfig.route == BWRoutes.setPin) {
       return BWRoutes.setPin;
     }

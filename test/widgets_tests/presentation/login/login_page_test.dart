@@ -10,10 +10,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/check_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -140,66 +138,33 @@ void main() {
         (WidgetTester tester) async {
       final MockRefreshTokenManger refreshTimer = MockRefreshTokenManger();
 
-      final Response loginResponse = Response(
-        json.encode(mockLoginResponse),
-        200,
-      );
-
       final Response contentResponse = Response(
         json.encode(<String, dynamic>{
           'data': <String, dynamic>{
             'fetchRecentContent': contentMock,
+            'fetchSuggestedGroups': mockSuggestions,
           }
         }),
         200,
       );
 
-      final Response suggestedGroupsResponse = Response(
-        json.encode(<String, dynamic>{
-          'data': <String, dynamic>{'fetchSuggestedGroups': mockSuggestions}
-        }),
-        200,
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        contentResponse,
       );
-
-      final Map<String, dynamic> queryVariables = <String, dynamic>{
-        'phoneNumber': '+254723456789',
-        'pin': '1234',
-        'flavour': Flavour.CONSUMER.name,
-      };
-
-      when(baseGraphQlClientMock.query(loginQuery, queryVariables))
-          .thenAnswer((_) async => Future<Response>.value(loginResponse));
-
-      when(
-        baseGraphQlClientMock
-            .query(fetchSuggestedGroupsQuery, <String, dynamic>{}),
-      ).thenAnswer(
-        (_) async => Future<Response>.value(suggestedGroupsResponse),
-      );
-
-      when(
-        baseGraphQlClientMock
-            .query(fetchRecentContentQuery, <String, dynamic>{}),
-      ).thenAnswer((_) async => Future<Response>.value(contentResponse));
 
       when(refreshTimer.updateExpireTime('2021-05-18T00:50:00.000'))
           .thenReturn(refreshTimer);
 
       when(refreshTimer.reset()).thenReturn(null);
 
-      when(baseGraphQlClientMock.toMap(contentResponse)).thenReturn(
-        json.decode(contentResponse.body) as Map<String, dynamic>,
-      );
-
-      when(baseGraphQlClientMock.toMap(suggestedGroupsResponse)).thenReturn(
-        json.decode(contentResponse.body) as Map<String, dynamic>,
-      );
-
       await mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: baseGraphQlClientMock,
+          client: mockShortSILGraphQlClient,
           widget: MaterialApp(
             onGenerateRoute: RouteGenerator.generateRoute,
             home: Scaffold(
@@ -231,19 +196,15 @@ void main() {
 
     testWidgets('should reset invalidCredentials when page loads',
         (WidgetTester tester) async {
-      final Map<String, dynamic> queryVariables = <String, dynamic>{
-        'phoneNumber': '+254723456789',
-        'pin': '1234',
-        'flavour': Flavour.CONSUMER.name,
-      };
-
-      final Response loginResponse = Response(
-        json.encode(<String, dynamic>{'code': 8}),
-        400,
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'data': mockLoginResponse, 'code': 8}),
+          400,
+        ),
       );
-
-      when(baseGraphQlClientMock.query(loginQuery, queryVariables))
-          .thenAnswer((_) async => Future<Response>.value(loginResponse));
 
       expect(
         store.state.onboardingState?.phoneLogin?.invalidCredentials,
@@ -253,7 +214,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: mockShortSILGraphQlClient,
         widget: MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           home: Scaffold(

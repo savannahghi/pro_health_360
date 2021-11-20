@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,7 @@ import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:user_feed/user_feed.dart';
@@ -21,15 +24,6 @@ import 'package:myafyahub/presentation/onboarding/login/widgets/verify_otp_widge
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class VerifyPhonePage extends StatefulWidget {
-  final int otp;
-  final String phoneNumber;
-  final String userID;
-  const VerifyPhonePage({
-    required this.otp,
-    required this.userID,
-    required this.phoneNumber,
-  });
-
   @override
   VerifyPhonePageState createState() => VerifyPhonePageState();
 }
@@ -65,14 +59,18 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
     return otp as bool;
   }
 
-  Future<void> graphSendOtp({
-    required String userID,
-    required String phoneNumber,
-  }) async {
-    await generateSendOtp(
-      phoneNumber: '+254704002748',
-      userID: 'some-user-id',
-    );
+  Future<void> graphSendOtp(BuildContext context) async {
+    final AppState? appState = StoreProvider.state<AppState>(context);
+    final String userID = appState!.clientState!.user!.userId ?? UNKNOWN;
+    final String phoneNumber =
+        appState.clientState!.user!.primaryContact!.contact ?? UNKNOWN;
+
+    if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
+      await generateSendOtp(
+        phoneNumber: '+254704002748',
+        userID: 'some-user-id',
+      );
+    }
 
     toggleLoading();
   }
@@ -81,10 +79,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await graphSendOtp(
-        userID: widget.userID,
-        phoneNumber: widget.phoneNumber,
-      );
+      await graphSendOtp(context);
     });
   }
 
@@ -96,6 +91,13 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
 
   @override
   Widget build(BuildContext context) {
+    final AppState? appState = StoreProvider.state<AppState>(context);
+    final String userID = appState!.clientState!.user!.userId ?? UNKNOWN;
+    final String phoneNumber =
+        appState.clientState!.user!.primaryContact!.contact ?? UNKNOWN;
+
+    final String otp = appState.onboardingState!.otp ?? UNKNOWN;
+
     return OnboardingScaffold(
       title: verifyPhoneNumberTitle,
       description: verifyPhoneNumberDescription,
@@ -114,9 +116,9 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                   if (isLoading) const SILPlatformLoader(),
                   if (!isLoading)
                     VerifyOtpWidget(
-                      phoneNo: widget.phoneNumber,
-                      userID: widget.userID,
-                      otp: widget.otp.toString(),
+                      phoneNo: phoneNumber,
+                      userID: userID,
+                      otp: otp,
                       loader: const SILPlatformLoader(),
                       client: AppWrapperBase.of(context)!.graphQLClient,
                       appWrapperContext:

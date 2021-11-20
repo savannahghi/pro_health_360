@@ -44,7 +44,7 @@ class UserDetailsCard extends StatelessWidget {
       builder: (BuildContext context, ClientProfileViewModel vm) {
         final User? user = vm.clientState?.user;
 
-        final String phone = user?.primaryContact!.contact ?? UNKNOWN;
+        final String phone = user?.primaryContact?.contact ?? UNKNOWN;
 
         final String name = getDisplayName(user);
 

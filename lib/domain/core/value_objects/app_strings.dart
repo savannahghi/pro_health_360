@@ -197,21 +197,22 @@ const String dobRequired = 'Date of birth is required';
 const String defaultUserFriendlyMessage =
     'Sorry, an unknown error occurred, please try again or get help from our help center.';
 const String slowInternet =
-    'Slow internet connection. Please check your connection and try again';
+    'Looks like you have a slow internet connection. Please check your connection and try again';
 const String userWithThatPhoneExists =
     'Sorry, a user with that phone number already exists, kindly log in to continue';
 const String userWithThatEmailExists =
     'Sorry, a user with that email address already exists';
-const String usernameExists = 'That username already exists.';
-const String userNotFound = 'We could not find a user with those details.';
+const String usernameExists = 'Sorry, that username already exists.';
+const String userNotFound =
+    'Sorry, we could not find a user with those details. Please confirm that the credentials you provided are correct';
 const String wrongLoginCredentials = 'Your phone number or PIN do not match.';
 const String pinNotFound = 'No PIN found for this user.';
 const String noUserFoundString =
-    'We could not find a user with those details, kindly create an account to continue';
+    'We could not find a user with those details. Kindly create an account to continue';
 
 // recover account
 const String getUserPhoneNumbersMessage =
-    'We could not find a user linked to that phone number, kindly confirm and try again';
+    'We could not find a user linked to that phone number. Kindly confirm and try again';
 
 // filter box
 const String fingerprint = 'Fingerprint';
@@ -337,14 +338,15 @@ const String whereDidYouFirstLiveString =
 const String answerHereString = 'Answer here';
 const String saveAndContinueButtonText = 'Save & Continue';
 const String doneText = 'Done';
-const String phoneNumberRequiredText = 'Phone number is required';
+const String phoneNumberRequiredText = 'A phone number is required';
 const String validPhoneNumberText = 'Please enter a valid phone number';
-const String loginPageTitleString = 'Welcome to My Care Hub';
-const String loginPageSubTitleString = 'Enter PIN sent to you to continue';
+const String loginPageTitleString = 'Welcome to myCareHub';
+const String loginPageSubTitleString =
+    'Please enter the PIN sent to you to continue';
 const String phoneNumberString = 'Phone Number';
 const String pinString = 'PIN';
-const String enterYourString = 'Enter your PIN';
-const String enterPhoneNumberString = 'Enter phone number';
+const String enterYourString = 'Kindly enter your PIN';
+const String enterPhoneNumberString = 'Kindly enter your phone number';
 const String continueString = 'Continue';
 String howAreYouFeelingTodayText(String user) {
   return 'Hi $user, how are you feeling today?';

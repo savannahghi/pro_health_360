@@ -16,6 +16,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:platform/platform.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
@@ -31,7 +32,7 @@ import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_login.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
@@ -251,6 +252,48 @@ class MockShortSILGraphQlClient extends IGraphQlClient {
   }
 }
 
+/// a short client for providing custom error responses
+///
+/// a good use case is when you want to return error responses
+class MockCustomGraphQLClient extends IGraphQlClient {
+  MockCustomGraphQLClient.withResponse(
+    String idToken,
+    String endpoint,
+    this.response,
+  ) {
+    super.idToken = idToken;
+    super.endpoint = endpoint;
+  }
+
+  final http.Response response;
+
+  @override
+  Future<http.Response> callRESTAPI({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? variables,
+  }) {
+    if (endpoint == kTestLoginByPhoneEndpoint) {
+      return Future<http.Response>.value(
+        Response(
+          json.encode(mockLoginResponse),
+          200,
+        ),
+      );
+    }
+    return Future<http.Response>.value(response);
+  }
+
+  @override
+  Future<http.Response> query(
+    String queryString,
+    Map<String, dynamic> variables, [
+    ContentType contentType = ContentType.json,
+  ]) {
+    return Future<http.Response>.value(response);
+  }
+}
+
 // ignore: subtype_of_sealed_class
 class MockGraphQlClient extends Mock implements GraphQlClient {
   String removeUserAsExperimenterVariables =
@@ -341,26 +384,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (endpoint.contains('login_anonymous')) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(
-            <String, dynamic>{
-              'can_experiment': false,
-              'customToken': 'o4S8p5ym60T5ZTVZDt9Gaw',
-              'expires_in': '3600',
-              'id_token': 'o4S8p5ym60T5ZTVZDt9GawU9IWFkdy1r_g',
-              'is_admin': false,
-              'is_anonymous': true,
-              'refresh_token': 'o4S8p5ym60T5ZTVZDt9GawlIpc0VEQ9p1',
-              'uid': 'BkOpHPj9hLRnhYcmglIpc0VEQ9p1'
-            },
-          ),
-          201,
-        ),
-      );
-    }
-
     if (endpoint.contains('refresh_token')) {
       return Future<http.Response>.value(
         http.Response(
@@ -434,13 +457,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
           ),
           200,
         ),
-      );
-    }
-
-    if (queryString == getFAQQuery) {
-      /// return fake data here
-      return Future<http.Response>.value(
-        http.Response(json.encode(helpCenterFAQMock), 201),
       );
     }
 
@@ -646,63 +662,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         http.Response(
           json.encode(<String, dynamic>{
             'error': <String, dynamic>{'error': 'some error'}
-          }),
-          201,
-        ),
-      );
-    }
-
-// getFAQQuery
-    if (queryString == getFAQQuery) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getFaqsContent': <dynamic>[
-                <String, dynamic>{
-                  'id': '5f89b9120251c700391da360',
-                  'createdAt': '2020-10-16T18:15:30+03:00',
-                  'excerpt':
-                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                  'featureImage':
-                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                  'html':
-                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                  'publishedAt': '2020-10-16T18:19:34+03:00',
-                  'slug': 'how-to-add-your-cover',
-                  'title': 'How to add your cover',
-                  'readingTime': 0,
-                  'tags': <dynamic>[
-                    <String, dynamic>{
-                      'id': '5f89b94a0251c700391da364',
-                      'name': 'faqs-consumer',
-                      'slug': 'faqs-consumer'
-                    }
-                  ]
-                },
-                <String, dynamic>{
-                  'id': '5f89b9120251c700391da360',
-                  'createdAt': '2020-10-16T18:15:30+03:00',
-                  'excerpt':
-                      '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-                  'featureImage':
-                      'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-                  'html':
-                      '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-                  'publishedAt': '2020-10-16T18:19:34+03:00',
-                  'slug': 'how-to-add-your-cover',
-                  'title': 'How to add your cover',
-                  'readingTime': 0,
-                  'tags': <dynamic>[
-                    <String, dynamic>{
-                      'id': '5f89b94a0251c700391da364',
-                      'name': 'faqs',
-                      'slug': 'faqs'
-                    }
-                  ]
-                }
-              ]
-            }
           }),
           201,
         ),
@@ -1507,18 +1466,38 @@ final Map<String, dynamic> termsMock = <String, dynamic>{
 };
 
 final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
-  'data': <String, dynamic>{
-    'login': <String, dynamic>{
-      'code': 0,
-      'message': 'success',
-      'credentials': <String, dynamic>{
-        'expiresIn': '3600',
-        'idToken': 'some id token',
-        'refreshToken':
-            'AFxQ4_oifdQ1-N_qkk4f2t5YXLNPSCzKwGnkL_-8ueao5jr02A7DlU8EFIuF4tLclD1Hpg7cyU8aT81jPn-rjBR3eqtCMtwWB62RsLIQY2acdc-A0YcWuyRM63gZaxlivkxxAYdiWPBrF2M3txlpab7vOkHBurzU5BM_UUbfmbTUmZ8OPnQyvuUrpaqp1WTcj60Zez02H2uS'
-      },
-      'clientProfile': <String, dynamic>{
+  'code': 0,
+  'message': 'success',
+  'credentials': <String, dynamic>{
+    'expiresIn': '3600',
+    'idToken': 'some id token',
+    'refreshToken': 'some-refresh-token'
+  },
+  'clientProfile': <String, dynamic>{
+    'active': true,
+    'addresses': <Map<String, dynamic>>[
+      <String, dynamic>{
         'active': true,
+        'addressType': 'POSTAL',
+        'country': 'Kenya',
+        'county': null,
+        'postalCode': '00300',
+        'text': 'One Padmore'
+      }
+    ],
+    'clientCounselled': true,
+    'clientType': 'PMTCT',
+    'facilityID': 'some-facility-id',
+    'relatedPersons': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'active': true,
+        'dateOfBirth': '21 Nov 2002',
+        'firstName': 'Juha',
+        'gender': 'male',
+        'lastName': 'Kalulu',
+        'otherName': null,
+        'relatedTo': 'some-user-id',
+        'relationshipType': 'NEXT_OF_KIN',
         'addresses': <Map<String, dynamic>>[
           <String, dynamic>{
             'active': true,
@@ -1529,82 +1508,58 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
             'text': 'One Padmore'
           }
         ],
-        'clientCounselled': true,
-        'clientType': 'PMTCT',
-        'facilityID': 'some-facility-id',
-        'relatedPersons': <Map<String, dynamic>>[
-          <String, dynamic>{
-            'active': true,
-            'dateOfBirth': '21 Nov 2002',
-            'firstName': 'Juha',
-            'gender': 'male',
-            'lastName': 'Kalulu',
-            'otherName': null,
-            'relatedTo': 'some-user-id',
-            'relationshipType': 'NEXT_OF_KIN',
-            'addresses': <Map<String, dynamic>>[
-              <String, dynamic>{
-                'active': true,
-                'addressType': 'POSTAL',
-                'country': 'Kenya',
-                'county': null,
-                'postalCode': '00300',
-                'text': 'One Padmore'
-              }
-            ],
-            'primaryContact': <String, dynamic>{
-              'active': true,
-              'contact': '+254717356476',
-              'contactType': 'PHONE',
-              'optedIn': true
-            },
-            'secondaryContacts': <Map<String, dynamic>>[
-              <String, dynamic>{
-                'active': true,
-                'contact': '+254717356476',
-                'contactType': 'PHONE',
-                'optedIn': true
-              }
-            ]
-          }
-        ],
-        'treatmentBuddy': null,
-        'treatmentEnrollmentDate': '21 Nov 2021',
-        'user': <String, dynamic>{
+        'primaryContact': <String, dynamic>{
           'active': true,
-          'displayName': 'Kowalski',
-          'firstName': 'Juha',
-          'gender': 'male',
-          'languages': <String>['en', 'sw'],
-          'suspended': false,
-          'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-          'primaryContact': <String, dynamic>{
+          'contact': '+254717356476',
+          'contactType': 'PHONE',
+          'optedIn': true
+        },
+        'secondaryContacts': <Map<String, dynamic>>[
+          <String, dynamic>{
             'active': true,
             'contact': '+254717356476',
             'contactType': 'PHONE',
             'optedIn': true
-          },
-          'secondaryContacts': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'active': true,
-              'contact': '+254717356476',
-              'contactType': 'PHONE',
-              'optedIn': true
-            }
-          ],
-          'lastName': 'Kalulu',
-          'middleName': null,
-          'pinChangeRequired': false,
-          'termsAccepted': true,
-          'userID': 'some-user-id',
-          'userName': 'Kowalski',
-          'userType': 'CLIENT',
-          'dateOfBirth': '21 Nov 2002'
-        },
+          }
+        ]
       }
+    ],
+    'treatmentBuddy': null,
+    'treatmentEnrollmentDate': '21 Nov 2021',
+    'user': <String, dynamic>{
+      'active': true,
+      'displayName': 'Kowalski',
+      'firstName': 'Juha',
+      'gender': 'male',
+      'languages': <String>['en', 'sw'],
+      'suspended': false,
+      'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+      'primaryContact': <String, dynamic>{
+        'active': true,
+        'contact': '+254717356476',
+        'contactType': 'PHONE',
+        'optedIn': true
+      },
+      'secondaryContacts': <Map<String, dynamic>>[
+        <String, dynamic>{
+          'active': true,
+          'contact': '+254717356476',
+          'contactType': 'PHONE',
+          'optedIn': true
+        }
+      ],
+      'lastName': 'Kalulu',
+      'middleName': null,
+      'pinChangeRequired': false,
+      'termsAccepted': true,
+      'userID': 'some-user-id',
+      'userName': 'Kowalski',
+      'userType': 'CLIENT',
+      'dateOfBirth': '21 Nov 2002'
     },
   }
 };
+
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
     'author': 'Abiud Orina',
@@ -1664,7 +1619,7 @@ final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'securityQuestionResponses': <Map<String, dynamic>>[
     SecurityQuestionResponse.initial().toJson(),
   ],
-  'phoneLogin': PhoneLogin.initial().toJson(),
+  'phoneLogin': PhoneLoginState.initial().toJson(),
 };
 
 final Map<String, dynamic> mockAddress = <String, dynamic>{

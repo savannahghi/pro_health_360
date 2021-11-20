@@ -133,13 +133,13 @@ void main() {
         .thenAnswer(
       (_) => Future<List<Map<String, Object?>>>.value(<Map<String, Object?>>[
         <String, Object?>{
-          'unknown': json.encode(<String, String>{'name': 'Vincent Michuki'})
+          'unknown': json.encode(<String, String>{'name': 'John Doe'})
         }
       ]),
     );
     expect(
       await db.retrieveState(Tables.unknown),
-      <String, Object?>{'unknown': '{"name":"Vincent Michuki"}'},
+      <String, Object?>{'unknown': '{"name":"John Doe"}'},
     );
   });
 

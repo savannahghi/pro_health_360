@@ -169,7 +169,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
 
   @override
   Widget build(BuildContext context) {
-    final bool isloading = verifyPhoneOtpBehaviorSubject.loading.valueOrNull!;
+    final bool isLoading = verifyPhoneOtpBehaviorSubject.loading.valueOrNull!;
 
     return Column(
       children: <Widget>[
@@ -201,11 +201,11 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
           },
         ),
         largeVerticalSizedBox,
-        if (isloading == true) ...<Widget>[
+        if (isLoading == true) ...<Widget>[
           mediumVerticalSizedBox,
           widget.loader,
         ],
-        if (isloading == false) ...<Widget>[
+        if (isLoading == false) ...<Widget>[
           if (!canResend)
             Column(
               children: <Widget>[
