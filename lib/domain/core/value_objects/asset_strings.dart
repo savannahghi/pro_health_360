@@ -137,5 +137,3 @@ const String placeholderImageUrl = 'assets/images/placeholder_image.svg';
 
 const String attachmentIconSvg = 'assets/icons/attachment.svg';
 const String emptyStateCover = 'assets/images/empty_state.png';
-
-const String userID = 'some-user-id';

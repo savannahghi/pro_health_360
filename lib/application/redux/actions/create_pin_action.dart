@@ -20,7 +20,6 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
@@ -37,15 +36,11 @@ class CreatePINAction extends ReduxAction<AppState> {
   CreatePINAction({
     required this.context,
     required this.flag,
-    required this.newPIN,
-    required this.confirmPIN,
     required this.flavour,
   });
 
   final BuildContext context;
   final String flag;
-  final String newPIN;
-  final String confirmPIN;
   final String flavour;
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
@@ -64,6 +59,16 @@ class CreatePINAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     // check if the new PIN matches the confirmed PIN entered by the user
+    final String? userID =
+        StoreProvider.state<AppState>(context)!.clientState!.user!.userId;
+    final String? newPIN = StoreProvider.state<AppState>(context)!
+        .onboardingState!
+        .createPINState!
+        .newPIN;
+    final String? confirmPIN = StoreProvider.state<AppState>(context)!
+        .onboardingState!
+        .createPINState!
+        .confirmPIN;
     if (newPIN == confirmPIN) {
       // initializing of the updateUserPin mutation
       final Map<String, String?> _variables = <String, String?>{
@@ -72,11 +77,8 @@ class CreatePINAction extends ReduxAction<AppState> {
         'confirmPIN': confirmPIN,
         'flavour': flavour,
       };
-      final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-
-      //Todo: Remove
-      _client.idToken = dGraphToken;
-      _client.endpoint = dGraphEndpoint;
+      final GraphQlClient _client =
+          AppWrapperBase.of(context)!.graphQLClient as GraphQlClient;
 
       final http.Response result = await _client.query(
         setUserPINMutation,

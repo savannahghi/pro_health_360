@@ -357,8 +357,6 @@ Future<void> setUserPIN({
     CreatePINAction(
       context: context,
       flag: createPinFlag,
-      newPIN: newPIN,
-      confirmPIN: confirmPIN,
       flavour: flavour,
     ),
   );
