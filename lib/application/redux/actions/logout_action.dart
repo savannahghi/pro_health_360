@@ -11,10 +11,15 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 
 class LogoutAction extends ReduxAction<AppState> {
-  LogoutAction({required this.navigationCallback, required this.context});
+  LogoutAction({
+    required this.navigationCallback,
+    required this.context,
+    required this.fcm,
+  });
 
   final BuildContext context;
   final Function navigationCallback;
+  final SILFCM fcm;
 
   @override
   Future<AppState> reduce() async {
@@ -32,7 +37,7 @@ class LogoutAction extends ReduxAction<AppState> {
       ),
     );
 
-    await SILFCM().resetToken();
+    await fcm.resetToken();
 
     return AppState.initial();
   }
