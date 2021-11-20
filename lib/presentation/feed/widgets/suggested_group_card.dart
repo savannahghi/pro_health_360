@@ -1,11 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/entities/communities/group.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/communities/group.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';

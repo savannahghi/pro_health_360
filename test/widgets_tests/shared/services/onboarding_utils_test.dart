@@ -3,16 +3,21 @@ import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
-import 'package:app_wrapper/app_wrapper.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 // Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:domain_objects/failures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:user_feed/user_feed.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
@@ -28,14 +33,10 @@ import 'package:myafyahub/infrastructure/endpoints.dart' as endpoints;
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:user_feed/user_feed.dart';
-
-import './onboarding_utils_2_test.mocks.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import '../../../test_utils.dart';
+import './onboarding_utils_2_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

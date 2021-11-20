@@ -1,11 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 // Package imports:
 import 'package:shared_themes/colors.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class FAQItem extends StatelessWidget {
   ///

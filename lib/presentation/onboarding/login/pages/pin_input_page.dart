@@ -2,10 +2,14 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+
 // Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
@@ -17,8 +21,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class PINInputPage extends StatefulWidget {
   /// [PINInputPage] is a widget used to input and validate user pin before accessing

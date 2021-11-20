@@ -5,8 +5,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_test/flutter_test.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
@@ -15,10 +15,9 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_back_button.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_notification.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_user.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
-
 import '../../../../../mock_image_http_client.dart';
 import '../../../../../test_helpers.dart';
 

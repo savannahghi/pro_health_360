@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:user_feed/user_feed.dart';
 
 const String loginQuery = r'''

@@ -1,14 +1,22 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/constants.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/actions/update_terms_and_conditions_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -19,8 +27,6 @@ import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
 
 class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   AcceptTermsAndConditionsAction({

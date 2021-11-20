@@ -1,23 +1,23 @@
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:shared_themes/spaces.dart';
-
-// Project imports:
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class UserDetailsCard extends StatelessWidget {
   /// [UserDetailsCard] is a shared widget used in [UserProfilePage]

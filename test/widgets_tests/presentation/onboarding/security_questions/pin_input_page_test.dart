@@ -2,13 +2,15 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:async_redux/async_redux.dart';
-// Project imports:
 // Flutter imports:
 import 'package:flutter/material.dart';
+
 // Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -17,10 +19,12 @@ import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
-
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
+
+// Project imports:
+
 
 void main() {
   group('PinInputPage renders correctly', () {

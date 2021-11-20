@@ -1,11 +1,20 @@
 // Flutter imports:
-import 'package:afya_moja_core/onboarding_scaffold.dart';
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+
+// Package imports:
+import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/onboarding_scaffold.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:user_feed/user_feed.dart';
+
 // Project imports:
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -14,13 +23,6 @@ import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:afya_moja_core/buttons.dart';
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
 ///

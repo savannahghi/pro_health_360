@@ -1,9 +1,11 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:afya_moja_core/buttons.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -12,7 +14,6 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:afya_moja_core/buttons.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import '../../../../mocks.dart';

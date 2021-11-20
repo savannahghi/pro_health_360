@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:myafyahub/domain/core/entities/profile/doctor.dart';
 
 class TimelineItem {

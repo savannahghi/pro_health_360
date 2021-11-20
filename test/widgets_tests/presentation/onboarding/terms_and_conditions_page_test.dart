@@ -1,18 +1,21 @@
-// Package imports:
+// Dart imports:
 import 'dart:convert';
 
-import 'package:async_redux/async_redux.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
 
-// Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+// Package imports:
 import 'package:afya_moja_core/buttons.dart';
-import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

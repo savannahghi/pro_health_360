@@ -1,4 +1,4 @@
-// Package imports:
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
 enum AppErrorType { UserFeedError }

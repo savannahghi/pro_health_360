@@ -2,22 +2,22 @@
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-
-// Project imports:
 import 'package:myafyahub/presentation/feed/widgets/suggested_group_card.dart';
 import 'package:myafyahub/presentation/feed/widgets/suggested_groups_section_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

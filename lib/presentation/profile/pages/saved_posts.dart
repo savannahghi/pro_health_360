@@ -1,15 +1,16 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-
 // Project imports:
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/presentation/feed/feed_list.dart';
+
+// Package imports:
+
 
 class SavedPostPage extends StatelessWidget {
   @override

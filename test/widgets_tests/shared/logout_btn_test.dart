@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/logout_button.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import '../../mock_utils.dart';
 import '../../mocks.dart';
 import '../../test_helpers.dart';

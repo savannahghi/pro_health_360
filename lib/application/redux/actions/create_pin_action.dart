@@ -12,6 +12,8 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/constants.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
@@ -23,8 +25,6 @@ import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
 
 /// [CreatePINAction] is a Redux Action whose job is to update a users PIN from an old one,
 ///  to the new provided one
