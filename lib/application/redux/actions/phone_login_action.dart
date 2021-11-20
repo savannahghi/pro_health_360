@@ -150,7 +150,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         );
         return state;
       } else {
-        // exception thrown if the backend could not match the provided credentials with those stored in the backend
+        // exception thrown if the backend could not match the provided
+        //credentials with those stored in the backend
         showFeedbackBottomSheet(
           context: context,
           modalContent: processedResponse.message ?? UNKNOWN, // safety-net
@@ -174,8 +175,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     }
   }
 
-  ///  this method sets the loading indicator to hide after end of execution of the `reduce()` method4
-  /// show is initially set to `true`. Expect exception of type [ SILException] only
   @override
   Object wrapError(dynamic error) async {
     if (error.runtimeType == SILException && error.error != null) {

@@ -15,6 +15,7 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> signInUser({
   required BuildContext context,
@@ -39,13 +40,17 @@ Future<void> signInUser({
   );
 
   // this is the Redux Action that handles Login for an existing user
-  await StoreProvider.dispatch<AppState>(
-    context,
-    PhoneLoginAction(
-      context: context,
-      flag: phoneLoginFlag,
-      tokenManger: RefreshTokenManger(),
-      dateTimeParser: DateTimeParser(),
-    ),
-  );
+  try {
+    await StoreProvider.dispatch<AppState>(
+      context,
+      PhoneLoginAction(
+        context: context,
+        flag: phoneLoginFlag,
+        tokenManger: RefreshTokenManger(),
+        dateTimeParser: DateTimeParser(),
+      ),
+    );
+  } catch (e) {
+    Sentry.captureException(e, hint: 'Login failed');
+  }
 }
