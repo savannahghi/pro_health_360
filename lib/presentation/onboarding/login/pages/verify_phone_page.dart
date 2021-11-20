@@ -97,76 +97,82 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppStateViewModel>(
-        converter: (Store<AppState> store) {
-      return AppStateViewModel.fromStore(store);
-    }, builder: (BuildContext context, AppStateViewModel vm) {
-      final String userID = vm.appState.clientState!.user!.userId ?? UNKNOWN;
-      final String phoneNumber =
-          vm.appState.clientState!.user!.primaryContact!.contact ?? UNKNOWN;
+      converter: (Store<AppState> store) {
+        return AppStateViewModel.fromStore(store);
+      },
+      builder: (BuildContext context, AppStateViewModel vm) {
+        final String userID = vm.appState.clientState!.user!.userId ?? UNKNOWN;
+        final String phoneNumber =
+            vm.appState.clientState!.user!.primaryContact!.contact ?? UNKNOWN;
 
-      final String otp = vm.appState.onboardingState!.otp ?? UNKNOWN;
+        final String otp = vm.appState.onboardingState!.otp ?? UNKNOWN;
 
-      return OnboardingScaffold(
-        title: verifyPhoneNumberTitle,
-        description: verifyPhoneNumberDescription,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              enterOTPString,
-              style: TextThemes.boldSize16Text(AppColors.secondaryColor),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 70),
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    if (isLoading) const SILPlatformLoader(),
-                    if (!isLoading)
-                      VerifyOtpWidget(
-                        phoneNo: phoneNumber,
-                        userID: userID,
-                        otp: otp,
-                        loader: const SILPlatformLoader(),
-                        client: AppWrapperBase.of(context)!.graphQLClient,
-                        appWrapperContext:
-                            EndPointsContextSubject().contexts.valueOrNull,
-                        successCallBack: ({
-                          required String otp,
-                          required Function toggleLoading,
-                        }) async {
-                          // set back route
-                          DynamicBackRouteHolder()
-                              .createPINPage
-                              .add(BWRoutes.phoneLogin);
+        return OnboardingScaffold(
+          title: verifyPhoneNumberTitle,
+          description: verifyPhoneNumberDescription,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                enterOTPString,
+                style: TextThemes.boldSize16Text(AppColors.secondaryColor),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 70),
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      if (isLoading) const SILPlatformLoader(),
+                      if (!isLoading)
+                        VerifyOtpWidget(
+                          phoneNo: phoneNumber,
+                          userID: userID,
+                          otp: otp,
+                          loader: const SILPlatformLoader(),
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          appWrapperContext:
+                              EndPointsContextSubject().contexts.valueOrNull,
+                          successCallBack: ({
+                            required String otp,
+                            required Function toggleLoading,
+                          }) async {
+                            // set back route
+                            DynamicBackRouteHolder()
+                                .createPINPage
+                                .add(BWRoutes.phoneLogin);
 
-                          final User? user = vm.appState.clientState?.user
-                              ?.copyWith(pinChangeRequired: false);
+                            final User? user = vm.appState.clientState?.user
+                                ?.copyWith(pinChangeRequired: false);
 
-                          StoreProvider.dispatch(
-                              context, UpdateUserAction(user: user));
+                            StoreProvider.dispatch(
+                              context,
+                              UpdateUserAction(user: user),
+                            );
 
-                          StoreProvider.dispatch(
-                            context,
-                            UpdateOnboardingStateAction(isPhoneVerified: true),
-                          );
+                            StoreProvider.dispatch(
+                              context,
+                              UpdateOnboardingStateAction(
+                                isPhoneVerified: true,
+                              ),
+                            );
 
-                          // navigate to create new Terms and Conditions
-                          await Navigator.pushReplacementNamed(
-                            context,
-                            onboardingPath(
-                              StoreProvider.state<AppState>(context)!,
-                            ).route,
-                          );
-                        },
-                      ),
-                  ],
+                            // navigate to create new Terms and Conditions
+                            await Navigator.pushReplacementNamed(
+                              context,
+                              onboardingPath(
+                                StoreProvider.state<AppState>(context)!,
+                              ).route,
+                            );
+                          },
+                        ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 }
