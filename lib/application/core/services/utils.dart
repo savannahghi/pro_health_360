@@ -5,6 +5,7 @@ import 'dart:convert';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
@@ -84,6 +85,7 @@ Function() logoutUser({required BuildContext context}) {
           );
         },
         context: context,
+        fcm: SILFCM(),
       ),
     );
   };
