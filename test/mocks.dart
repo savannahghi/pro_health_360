@@ -361,6 +361,17 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (endpoint.contains('refresh_token')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            mockLoginResponse,
+          ),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(
         json.encode(
