@@ -2,32 +2,28 @@
 import 'dart:convert';
 import 'dart:io';
 
-// Flutter imports:
-import 'package:domain_objects/entities.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity/connectivity.dart';
+// Flutter imports:
+import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/failures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:user_feed/user_feed.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
@@ -37,10 +33,14 @@ import 'package:myafyahub/infrastructure/endpoints.dart' as endpoints;
 import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:user_feed/user_feed.dart';
+
+import './onboarding_utils_2_test.mocks.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import '../../../test_utils.dart';
-import './onboarding_utils_2_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -82,6 +82,64 @@ void main() {
           tester: tester,
           store: store,
           client: mockGraphQlClient,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return Material(
+                child: Scaffold(
+                  body: SILPrimaryButton(
+                    buttonKey: updateUserPinButtonKey,
+                    onPressed: () async {
+                      EndPointsContextSubject().contexts.add(prodAppContexts);
+                      await updateUserPin(
+                        context: context,
+                        pin: testPin,
+                        phoneNumber: testPhoneNumber,
+                        otp: testOTP,
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+        await fireEvent(tester);
+        expect(find.byType(SILPrimaryButton), findsOneWidget);
+        expect(find.byKey(updateUserPinButtonKey), findsOneWidget);
+
+        // trigger the bottom sheet
+        await tester.tap(find.byKey(updateUserPinButtonKey));
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(feedbackBottomSheet), findsOneWidget);
+        expect(find.byKey(feedbackBottomSheetCloseIconKey), findsOneWidget);
+
+        await tester.tap(find.byKey(feedbackBottomSheetCloseIconKey));
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(feedbackBottomSheet), findsNothing);
+      });
+
+      testWidgets('should fail to update user pin',
+          (WidgetTester tester) async {
+        const Key updateUserPinButtonKey = Key('update_user_pin_button');
+        final Store<AppState> store =
+            Store<AppState>(initialState: AppState.initial());
+        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+            MockShortSILGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{'updateUserPIN': false},
+            }),
+            201,
+          ),
+        );
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
           widget: Builder(
             builder: (BuildContext context) {
               return Material(
