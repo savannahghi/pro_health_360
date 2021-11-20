@@ -17,6 +17,7 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
+import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -368,11 +369,21 @@ OnboardingPathConfig onboardingPath(
   AppState state, {
   bool calledOnResume = false,
 }) {
-  final bool termsAccepted = state.clientState!.user!.termsAccepted ?? false;
+  final bool termsAccepted = state.clientState?.user?.termsAccepted ?? false;
+
+  final OnboardingState? onboardingState = state.onboardingState;
+  final bool pinChangeRequired =
+      state.clientState?.user?.pinChangeRequired ?? false;
 
   if (!termsAccepted) {
-    // TODO(abiud): check that other workflows have been completed
-    return OnboardingPathConfig(BWRoutes.verifyCode);
+    if (onboardingState?.isPhoneVerified != null &&
+        !onboardingState!.isPhoneVerified!) {
+      return OnboardingPathConfig(BWRoutes.verifySignUpOTP);
+    } else {
+      return OnboardingPathConfig(BWRoutes.termsAndConditions);
+    }
+  } else if (termsAccepted && pinChangeRequired) {
+    return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
   }
 
   /// take the user to the homepage if they have passed

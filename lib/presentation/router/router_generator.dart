@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -26,7 +27,6 @@ import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_pag
 import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';

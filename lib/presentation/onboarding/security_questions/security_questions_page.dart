@@ -10,6 +10,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
@@ -79,31 +82,48 @@ class SecurityQuestionsPage extends StatelessWidget {
                   );
 
                   final String response = questionResponse?.response ?? UNKNOWN;
-                  return Container(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ExpandableQuestion(
-                      question: question.questionStem ?? UNKNOWN,
-                      hintText: answerHereString,
-                      initialValue: (response == UNKNOWN) ? null : response,
-                      onChanged: (String value) {
-                        securityQuestionsResponses!.add(
-                          SecurityQuestionResponse(
-                            id: userId,
-                            timeStamp: DateTime.now().toString(),
-                            userId: userId,
-                            securityQuestionId: question.securityQuestionID,
-                            response: value,
-                          ),
-                        );
-                        StoreProvider.dispatch<AppState>(
-                          context,
-                          UpdateOnboardingStateAction(
-                            securityQuestionsResponses:
-                                securityQuestionsResponses,
-                          ),
-                        );
-                      },
-                    ),
+                  return StoreConnector<AppState, AppStateViewModel>(
+                    converter: (Store<AppState> store) {
+                      return AppStateViewModel.fromStore(store);
+                    },
+                    builder: (BuildContext context, AppStateViewModel vm) {
+                      return Container(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ExpandableQuestion(
+                          question: question.questionStem ?? UNKNOWN,
+                          hintText: answerHereString,
+                          initialValue: (response == UNKNOWN) ? null : response,
+                          onChanged: (String value) {
+                            securityQuestionsResponses!.add(
+                              SecurityQuestionResponse(
+                                id: userId,
+                                timeStamp: DateTime.now().toString(),
+                                userId: userId,
+                                securityQuestionId: question.securityQuestionID,
+                                response: value,
+                              ),
+                            );
+
+                            final User? user = vm.appState.clientState?.user;
+
+                            StoreProvider.dispatch(
+                              context,
+                              UpdateUserAction(
+                                user: user?.copyWith(pinChangeRequired: false),
+                              ),
+                            );
+
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              UpdateOnboardingStateAction(
+                                securityQuestionsResponses:
+                                    securityQuestionsResponses,
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
                   );
                 },
               ),

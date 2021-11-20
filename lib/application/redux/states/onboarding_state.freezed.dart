@@ -26,7 +26,8 @@ class _$OnboardingStateTearOff {
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
-      String? otp}) {
+      String? otp,
+      bool? isPhoneVerified}) {
     return _OnboardingState(
       createPINState: createPINState,
       termsAndConditions: termsAndConditions,
@@ -34,6 +35,7 @@ class _$OnboardingStateTearOff {
       securityQuestionResponses: securityQuestionResponses,
       phoneLogin: phoneLogin,
       otp: otp,
+      isPhoneVerified: isPhoneVerified,
     );
   }
 
@@ -56,6 +58,7 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
   String? get otp => throw _privateConstructorUsedError;
+  bool? get isPhoneVerified => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +77,8 @@ abstract class $OnboardingStateCopyWith<$Res> {
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
-      String? otp});
+      String? otp,
+      bool? isPhoneVerified});
 
   $CreatePINStateCopyWith<$Res>? get createPINState;
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
@@ -98,6 +102,7 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestionResponses = freezed,
     Object? phoneLogin = freezed,
     Object? otp = freezed,
+    Object? isPhoneVerified = freezed,
   }) {
     return _then(_value.copyWith(
       createPINState: createPINState == freezed
@@ -124,6 +129,10 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String?,
+      isPhoneVerified: isPhoneVerified == freezed
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -175,7 +184,8 @@ abstract class _$OnboardingStateCopyWith<$Res>
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
-      String? otp});
+      String? otp,
+      bool? isPhoneVerified});
 
   @override
   $CreatePINStateCopyWith<$Res>? get createPINState;
@@ -204,6 +214,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestionResponses = freezed,
     Object? phoneLogin = freezed,
     Object? otp = freezed,
+    Object? isPhoneVerified = freezed,
   }) {
     return _then(_OnboardingState(
       createPINState: createPINState == freezed
@@ -230,6 +241,10 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as String?,
+      isPhoneVerified: isPhoneVerified == freezed
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -243,7 +258,8 @@ class _$_OnboardingState implements _OnboardingState {
       this.securityQuestions,
       this.securityQuestionResponses,
       this.phoneLogin,
-      this.otp});
+      this.otp,
+      this.isPhoneVerified});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$_$_OnboardingStateFromJson(json);
@@ -260,10 +276,12 @@ class _$_OnboardingState implements _OnboardingState {
   final PhoneLoginState? phoneLogin;
   @override
   final String? otp;
+  @override
+  final bool? isPhoneVerified;
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, otp: $otp)';
+    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, otp: $otp, isPhoneVerified: $isPhoneVerified)';
   }
 
   @override
@@ -288,7 +306,10 @@ class _$_OnboardingState implements _OnboardingState {
                 const DeepCollectionEquality()
                     .equals(other.phoneLogin, phoneLogin)) &&
             (identical(other.otp, otp) ||
-                const DeepCollectionEquality().equals(other.otp, otp)));
+                const DeepCollectionEquality().equals(other.otp, otp)) &&
+            (identical(other.isPhoneVerified, isPhoneVerified) ||
+                const DeepCollectionEquality()
+                    .equals(other.isPhoneVerified, isPhoneVerified)));
   }
 
   @override
@@ -299,7 +320,8 @@ class _$_OnboardingState implements _OnboardingState {
       const DeepCollectionEquality().hash(securityQuestions) ^
       const DeepCollectionEquality().hash(securityQuestionResponses) ^
       const DeepCollectionEquality().hash(phoneLogin) ^
-      const DeepCollectionEquality().hash(otp);
+      const DeepCollectionEquality().hash(otp) ^
+      const DeepCollectionEquality().hash(isPhoneVerified);
 
   @JsonKey(ignore: true)
   @override
@@ -319,7 +341,8 @@ abstract class _OnboardingState implements OnboardingState {
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
-      String? otp}) = _$_OnboardingState;
+      String? otp,
+      bool? isPhoneVerified}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
@@ -339,6 +362,8 @@ abstract class _OnboardingState implements OnboardingState {
   PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
   @override
   String? get otp => throw _privateConstructorUsedError;
+  @override
+  bool? get isPhoneVerified => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>

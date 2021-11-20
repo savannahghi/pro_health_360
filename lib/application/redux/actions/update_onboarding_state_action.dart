@@ -10,14 +10,19 @@ import 'package:myafyahub/domain/core/entities/security_questions/security_quest
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   UpdateOnboardingStateAction({
     this.securityQuestionsResponses,
+    this.isPhoneVerified,
   });
 
   List<SecurityQuestionResponse>? securityQuestionsResponses;
+  bool? isPhoneVerified;
 
   @override
   AppState reduce() {
-    final OnboardingState? newOnboardingState = state.onboardingState?.copyWith
-        .call(securityQuestionResponses: securityQuestionsResponses);
+    final bool? oldPhoneVerified = state.onboardingState?.isPhoneVerified;
+    final OnboardingState? newOnboardingState = state.onboardingState?.copyWith(
+      securityQuestionResponses: securityQuestionsResponses,
+      isPhoneVerified: isPhoneVerified ?? oldPhoneVerified,
+    );
 
     final AppState newState =
         state.copyWith(onboardingState: newOnboardingState);

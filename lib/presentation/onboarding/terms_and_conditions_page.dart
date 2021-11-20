@@ -7,6 +7,8 @@ import 'package:afya_moja_core/checkbox_component.dart';
 import 'package:afya_moja_core/information_list_card.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:unicons/unicons.dart';
@@ -157,6 +159,17 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                             onPressed: !isAgreed
                                 ? null
                                 : () {
+                                    final User? user =
+                                        vm.appState.clientState?.user;
+
+                                    StoreProvider.dispatch(
+                                      context,
+                                      UpdateUserAction(
+                                        user:
+                                            user?.copyWith(termsAccepted: true),
+                                      ),
+                                    );
+
                                     StoreProvider.dispatch<AppState>(
                                       context,
                                       // retrieve the terms and conditions

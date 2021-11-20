@@ -28,6 +28,7 @@ _$_OnboardingState _$_$_OnboardingStateFromJson(Map<String, dynamic> json) {
         ? null
         : PhoneLoginState.fromJson(json['phoneLogin'] as Map<String, dynamic>),
     otp: json['otp'] as String?,
+    isPhoneVerified: json['isPhoneVerified'] as bool?,
   );
 }
 
@@ -39,4 +40,5 @@ Map<String, dynamic> _$_$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'securityQuestionResponses': instance.securityQuestionResponses,
       'phoneLogin': instance.phoneLogin,
       'otp': instance.otp,
+      'isPhoneVerified': instance.isPhoneVerified,
     };

@@ -25,6 +25,7 @@ import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -664,6 +665,34 @@ void main() {
         expect(actualResponse.message, UserFeedBackTexts.getErrorMessage());
       });
 
+      testWidgets('description', (WidgetTester tester) async {
+        final User? user = store.state.clientState?.user
+            ?.copyWith(pinChangeRequired: true, termsAccepted: true);
+        store.dispatch(UpdateUserAction(user: user));
+
+        String path = '';
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockGraphQlClient,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return SILPrimaryButton(
+                onPressed: () {
+                  path = onboardingPath(store.state).route;
+                },
+              );
+            },
+          ),
+        );
+
+        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.pumpAndSettle();
+
+        expect(path, BWRoutes.securityQuestionsPage);
+      });
+
       testWidgets('should toggle loading indicator with true',
           (WidgetTester tester) async {
         const String processBtnText = 'process response';
@@ -1262,7 +1291,7 @@ void main() {
       // trigger the bottom sheet
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.verifyCode);
+      expect(initialRoute, BWRoutes.verifySignUpOTP);
     });
   });
 }
