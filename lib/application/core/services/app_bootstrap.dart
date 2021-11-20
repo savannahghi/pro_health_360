@@ -13,6 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/constants.dart';
@@ -27,8 +28,6 @@ import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart'
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app.dart';
-
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -108,7 +107,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
     );
   };
 
-  NavigateAction.setNavigatorKey(navigatorKey);
+  NavigateAction.setNavigatorKey(appGlobalNavigatorKey);
 
   final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
@@ -124,7 +123,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
           store: store,
           navigatorObserver: navigatorObserver,
           connectivityStatus: connectivityStatus,
-          navigatorKey: navigatorKey,
+          navigatorKey: appGlobalNavigatorKey,
           appSetupData: appSetupData,
         ),
       ),
