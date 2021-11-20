@@ -4,8 +4,9 @@ import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
-class AppStateViewModel {
-  AppStateViewModel({required this.appState});
+class AppStateViewModel extends Vm {
+  AppStateViewModel({required this.appState})
+      : super(equals: <Object?>[appState]);
 
   final AppState appState;
 

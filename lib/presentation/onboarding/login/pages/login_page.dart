@@ -105,8 +105,11 @@ class _LoginPageState extends State<LoginPage> {
                         inputController: phoneNumberInputController,
                         labelText: enterPhoneNumberString,
                         onChanged: (String? val) {
-                          if (vm.appState.onboardingState!.phoneLogin!
-                              .invalidCredentials) {
+                          final bool? invalidCredentials = vm.appState
+                              .onboardingState?.phoneLogin?.invalidCredentials;
+
+                          if (invalidCredentials != null &&
+                              invalidCredentials) {
                             StoreProvider.dispatch(
                               context,
                               PhoneLoginStateAction(),
@@ -143,13 +146,17 @@ class _LoginPageState extends State<LoginPage> {
                           FilteringTextInputFormatter.digitsOnly
                         ],
                         onChanged: (String val) {
-                          if (vm.appState.onboardingState!.phoneLogin!
-                              .invalidCredentials) {
+                          final bool? invalidCredentials = vm.appState
+                              .onboardingState?.phoneLogin?.invalidCredentials;
+
+                          if (invalidCredentials != null &&
+                              invalidCredentials) {
                             StoreProvider.dispatch(
                               context,
                               PhoneLoginStateAction(),
                             );
                           }
+
                           setState(() {
                             pin = val;
                           });
@@ -177,7 +184,6 @@ class _LoginPageState extends State<LoginPage> {
                                 final bool? isFormValid =
                                     _formKey.currentState?.validate();
 
-                                // TODO(abiud): check for connectivity before logging in
                                 if (isFormValid != null &&
                                     isFormValid &&
                                     pin != null &&

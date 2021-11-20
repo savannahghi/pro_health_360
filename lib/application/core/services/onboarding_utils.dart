@@ -160,6 +160,7 @@ ProcessedResponse processHttpResponse(
       message: getUserFriendlyMsg(body['code'] as int),
     );
   }
+
   if (response.statusCode == 500) {
     final int code = json.decode(response.body)['code'] != null
         ? json.decode(response.body)['code'] as int
