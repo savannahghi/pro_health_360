@@ -1461,7 +1461,7 @@ Map<String, dynamic> mockFAQContentResponse = <String, dynamic>{
 };
 
 final Map<String, dynamic> termsMock = <String, dynamic>{
-  'termsID': 'some-terms-id',
+  'termsID': 0,
   'text': 'Terms will be available here soon'
 };
 

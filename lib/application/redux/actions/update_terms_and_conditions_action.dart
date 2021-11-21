@@ -12,7 +12,7 @@ class UpdateTermsAndConditionsAction extends ReduxAction<AppState> {
     this.isAccepted,
   });
 
-  final String? id;
+  final int? id;
   final String? termsString;
   final bool? isAccepted;
 

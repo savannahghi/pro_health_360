@@ -9,6 +9,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:unicons/unicons.dart';
@@ -98,7 +100,8 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
                               child:
                                   vm.appState.wait!.isWaitingFor(getTermsFlag)
                                       ? Container(
@@ -108,13 +111,9 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                         )
                                       : SizedBox(
                                           width: double.infinity,
-                                          child: Text(
-                                            vm.appState.onboardingState!
+                                          child: Html(
+                                            data: vm.appState.onboardingState!
                                                 .termsAndConditions!.text,
-                                            style: TextThemes.normalSize15Text(
-                                              AppColors.secondaryColor
-                                                  .withOpacity(0.5),
-                                            ).copyWith(height: 1.8),
                                           ),
                                         ),
                             ),
@@ -125,20 +124,28 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                   ),
 
                   // Accepts terms check box
-                  CheckBoxComponent(
-                    text: acceptTermsText,
-                    value: isAgreed,
-                    color: AppColors.secondaryColor,
-                    onChanged: (bool? value) async {
-                      if (vm.appState.onboardingState!.termsAndConditions!
-                              .text !=
-                          UNKNOWN) {
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: CheckBoxComponent(
+                      text: acceptTermsText,
+                      value: isAgreed,
+                      color: AppColors.secondaryColor,
+                      onChanged: (bool? value) async {
                         setState(() {
                           isAgreed = value!;
                         });
-                      }
-                    },
+                        if (vm.appState.onboardingState!.termsAndConditions!
+                                .text !=
+                            UNKNOWN) {
+                          setState(() {
+                            isAgreed = value!;
+                          });
+                        }
+                      },
+                    ),
                   ),
+
+                  smallVerticalSizedBox,
 
                   // Continue button
                   SizedBox(
@@ -172,7 +179,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
 
                                     StoreProvider.dispatch<AppState>(
                                       context,
-                                      // retrieve the terms and conditions
+                                      // Accept terms and conditions
                                       AcceptTermsAndConditionsAction(
                                         termsId: vm.appState.onboardingState!
                                             .termsAndConditions!.termsId,

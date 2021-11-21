@@ -30,14 +30,14 @@ mutation UpdateUserPin($phone: String!, $pin: String!) {
  ''';
 
 const String acceptTermsAndConditionsMutation = r'''
-mutation acceptTerms($userID: String!, $termsID: String!){
+mutation acceptTerms($userID: String!, $termsID: Int!){
   acceptTerms(userID: $userID, termsID: $termsID)
 }
  ''';
 
 Map<String, dynamic> getTermsVariables({
   required String userId,
-  required String termsId,
+  required int termsId,
 }) {
   return <String, dynamic>{
     'userID': userId,
@@ -52,6 +52,7 @@ mutation setUserPin($input: PINInput!){
  ''';
 
 Map<String, dynamic> setUserPINMutationVariables(
-    Map<String, dynamic> setUserPINVariables,) {
+  Map<String, dynamic> setUserPINVariables,
+) {
   return <String, dynamic>{'input': setUserPINVariables};
 }

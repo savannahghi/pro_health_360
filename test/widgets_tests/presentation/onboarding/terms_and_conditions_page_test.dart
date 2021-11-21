@@ -9,6 +9,7 @@ import 'package:afya_moja_core/buttons.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -52,8 +53,7 @@ void main() {
       expect(find.text(acceptTermsText), findsOneWidget);
     });
 
-    testWidgets('Checks whether terms have been selected',
-        (WidgetTester tester) async {
+    testWidgets('Accepts terms and conditions', (WidgetTester tester) async {
       final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
         'idToken',
@@ -62,28 +62,32 @@ void main() {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'getCurrentTerms': termsMock,
-              'acceptTerms': true
+              'acceptTerms': true,
+              'fetchRecentContent': contentMock,
+              'fetchSuggestedGroups': mockSuggestions
             },
           }),
           201,
         ),
       );
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortSILGraphQlClient,
-        widget: const TermsAndConditionsPage(),
-      );
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: const TermsAndConditionsPage(),
+        );
 
-      await tester.pumpAndSettle();
-      final Finder checkBox = find.byType(Checkbox);
-      final Finder proceedButton = find.byType(MyAfyaHubPrimaryButton);
-      await tester.tap(checkBox);
-      await tester.pumpAndSettle();
-      await tester.tap(proceedButton);
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
+        final Finder checkBox = find.byType(Checkbox);
+        final Finder proceedButton = find.byType(MyAfyaHubPrimaryButton);
+        await tester.tap(checkBox);
+        await tester.pumpAndSettle();
+        await tester.tap(proceedButton);
+        await tester.pumpAndSettle();
 
-      expect(find.byType(TermsAndConditionsPage), findsNothing);
+        expect(find.byType(TermsAndConditionsPage), findsNothing);
+      });
     });
 
     testWidgets('Shows loading indicator when fetching terms',

@@ -21,7 +21,7 @@ class _$TermsAndConditionsTearOff {
   const _$TermsAndConditionsTearOff();
 
   _TermsAndConditions call(
-      {@JsonKey(name: 'termsID') required String termsId,
+      {@JsonKey(name: 'termsID') required int termsId,
       @JsonKey(name: 'text') required String text}) {
     return _TermsAndConditions(
       termsId: termsId,
@@ -40,7 +40,7 @@ const $TermsAndConditions = _$TermsAndConditionsTearOff();
 /// @nodoc
 mixin _$TermsAndConditions {
   @JsonKey(name: 'termsID')
-  String get termsId => throw _privateConstructorUsedError;
+  int get termsId => throw _privateConstructorUsedError;
   @JsonKey(name: 'text')
   String get text => throw _privateConstructorUsedError;
 
@@ -56,7 +56,7 @@ abstract class $TermsAndConditionsCopyWith<$Res> {
           TermsAndConditions value, $Res Function(TermsAndConditions) then) =
       _$TermsAndConditionsCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'termsID') String termsId,
+      {@JsonKey(name: 'termsID') int termsId,
       @JsonKey(name: 'text') String text});
 }
 
@@ -78,7 +78,7 @@ class _$TermsAndConditionsCopyWithImpl<$Res>
       termsId: termsId == freezed
           ? _value.termsId
           : termsId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$TermsAndConditionsCopyWith<$Res>
       __$TermsAndConditionsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'termsID') String termsId,
+      {@JsonKey(name: 'termsID') int termsId,
       @JsonKey(name: 'text') String text});
 }
 
@@ -119,7 +119,7 @@ class __$TermsAndConditionsCopyWithImpl<$Res>
       termsId: termsId == freezed
           ? _value.termsId
           : termsId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ class _$_TermsAndConditions implements _TermsAndConditions {
 
   @override
   @JsonKey(name: 'termsID')
-  final String termsId;
+  final int termsId;
   @override
   @JsonKey(name: 'text')
   final String text;
@@ -180,7 +180,7 @@ class _$_TermsAndConditions implements _TermsAndConditions {
 
 abstract class _TermsAndConditions implements TermsAndConditions {
   factory _TermsAndConditions(
-      {@JsonKey(name: 'termsID') required String termsId,
+      {@JsonKey(name: 'termsID') required int termsId,
       @JsonKey(name: 'text') required String text}) = _$_TermsAndConditions;
 
   factory _TermsAndConditions.fromJson(Map<String, dynamic> json) =
@@ -188,7 +188,7 @@ abstract class _TermsAndConditions implements TermsAndConditions {
 
   @override
   @JsonKey(name: 'termsID')
-  String get termsId => throw _privateConstructorUsedError;
+  int get termsId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'text')
   String get text => throw _privateConstructorUsedError;

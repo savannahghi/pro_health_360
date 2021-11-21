@@ -9,7 +9,7 @@ part of 'terms_and_conditions.dart';
 _$_TermsAndConditions _$_$_TermsAndConditionsFromJson(
     Map<String, dynamic> json) {
   return _$_TermsAndConditions(
-    termsId: json['termsID'] as String,
+    termsId: json['termsID'] as int,
     text: json['text'] as String,
   );
 }

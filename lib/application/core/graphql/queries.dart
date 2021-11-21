@@ -136,8 +136,6 @@ Map<String, dynamic> resendOTPQueryVariables(
   };
 }
 
-
-
 const String getTermsQuery = '''
 query getCurrentTerms {
   getCurrentTerms {

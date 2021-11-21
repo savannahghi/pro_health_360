@@ -23,9 +23,7 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
 
 class GetTermsAction extends ReduxAction<AppState> {
   GetTermsAction({
@@ -49,10 +47,6 @@ class GetTermsAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-
-    //Todo: Remove
-    _client.idToken = dGraphToken;
-    _client.endpoint = dGraphEndpoint;
 
     final http.Response result =
         await _client.query(getTermsQuery, <String, dynamic>{});

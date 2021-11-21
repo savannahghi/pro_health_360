@@ -9,7 +9,7 @@ part 'terms_and_conditions.freezed.dart';
 @freezed
 class TermsAndConditions with _$TermsAndConditions {
   factory TermsAndConditions({
-    @JsonKey(name: 'termsID') required String termsId,
+    @JsonKey(name: 'termsID') required int termsId,
     @JsonKey(name: 'text') required String text,
   }) = _TermsAndConditions;
 
@@ -17,7 +17,7 @@ class TermsAndConditions with _$TermsAndConditions {
       _$TermsAndConditionsFromJson(json);
 
   factory TermsAndConditions.initial() => TermsAndConditions(
-        termsId: UNKNOWN,
+        termsId: 0,
         text: UNKNOWN,
       );
 }

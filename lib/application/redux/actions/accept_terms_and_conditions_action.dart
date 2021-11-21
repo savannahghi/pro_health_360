@@ -13,6 +13,8 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -23,10 +25,7 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/accept_terms_and_conditions_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 
 class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   AcceptTermsAndConditionsAction({
@@ -36,7 +35,7 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   });
 
   final BuildContext context;
-  final String termsId;
+  final int termsId;
   final String userId;
 
   @override
@@ -54,10 +53,6 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-
-    //Todo: Remove after testing
-    _client.idToken = dGraphToken;
-    _client.endpoint = dGraphEndpoint;
 
     final http.Response result = await _client.query(
       acceptTermsAndConditionsMutation,
@@ -92,10 +87,14 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
       ),
     );
 
-    //Navigate to security questions
-    Navigator.pushReplacementNamed(
-      context,
-      BWRoutes.securityQuestionsPage,
+    //Handle Navigation
+    final OnboardingPathConfig onboardingPathConfig =
+        onboardingPath(store.state);
+
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      onboardingPathConfig.route,
+      (Route<dynamic> route) => false,
+      arguments: onboardingPathConfig.arguments,
     );
 
     return state;
