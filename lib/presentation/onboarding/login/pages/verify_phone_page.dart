@@ -7,20 +7,16 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:app_wrapper/app_wrapper.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:http/http.dart' as http;
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/core/dynamic_back_route_holder.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -34,74 +30,29 @@ class VerifyPhonePage extends StatefulWidget {
 }
 
 class VerifyPhonePageState extends State<VerifyPhonePage> {
-  final bool isValid = false;
-  bool isLoading = true;
   final TextEditingController otpEditingController = TextEditingController();
-
-  Future<bool> generateSendOtp({
-    required String userID,
-    required String phoneNumber,
-  }) async {
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-    final http.Response result = await _client.query(
-      sendOTPQuery,
-      sendOTPQueryVariables(
-        phoneNumber,
-        Flavour.CONSUMER,
-      ),
-    );
-
-    final Map<String, dynamic> data = _client.toMap(result);
-
-    final String? parseError = _client.parseError(data);
-
-    if (parseError != null) {
-      return false;
-    }
-
-    final dynamic otp = data['data']['sendOTP'];
-    return otp as bool;
-  }
-
-  Future<void> graphSendOtp(BuildContext context) async {
-    final AppState? appState = StoreProvider.state<AppState>(context);
-    final String userID = appState!.clientState!.user!.userId ?? UNKNOWN;
-    final String phoneNumber =
-        appState.clientState!.user!.primaryContact!.value ?? UNKNOWN;
-
-    if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
-      await generateSendOtp(phoneNumber: phoneNumber, userID: userID);
-    }
-
-    toggleLoading();
-  }
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await graphSendOtp(context);
-    });
-  }
-
-  void toggleLoading() {
-    setState(() {
-      isLoading = !isLoading;
+      StoreProvider.dispatch<AppState>(
+        context,
+        SendOTPAction(context: context),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, AppStateViewModel>(
+    return StoreConnector<AppState, VerifyPhoneViewModel>(
       converter: (Store<AppState> store) {
-        return AppStateViewModel.fromStore(store);
+        return VerifyPhoneViewModel.fromStore(store);
       },
-      builder: (BuildContext context, AppStateViewModel vm) {
-        final String userID = vm.appState.clientState!.user!.userId ?? UNKNOWN;
-        final String phoneNumber =
-            vm.appState.clientState!.user!.primaryContact!.value ?? UNKNOWN;
-
-        final String otp = vm.appState.onboardingState!.otp ?? UNKNOWN;
+      builder: (BuildContext context, VerifyPhoneViewModel vm) {
+        final String userID = vm.userID ?? UNKNOWN;
+        final String phoneNumber = vm.phoneNumber ?? UNKNOWN;
+        final String otp = vm.otp ?? UNKNOWN;
 
         return OnboardingScaffold(
           title: verifyPhoneNumberTitle,
@@ -118,8 +69,9 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                 child: Center(
                   child: Column(
                     children: <Widget>[
-                      if (isLoading) const SILPlatformLoader(),
-                      if (!isLoading)
+                      if (vm.wait!.isWaitingFor(sendOTPFlag))
+                        const SILPlatformLoader(),
+                      if (!vm.wait!.isWaitingFor(sendOTPFlag))
                         VerifyOtpWidget(
                           phoneNo: phoneNumber,
                           userID: userID,
@@ -136,14 +88,6 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                             DynamicBackRouteHolder()
                                 .createPINPage
                                 .add(BWRoutes.phoneLogin);
-
-                            final User? user = vm.appState.clientState?.user
-                                ?.copyWith(pinChangeRequired: false);
-
-                            StoreProvider.dispatch(
-                              context,
-                              UpdateUserAction(user: user),
-                            );
 
                             StoreProvider.dispatch(
                               context,

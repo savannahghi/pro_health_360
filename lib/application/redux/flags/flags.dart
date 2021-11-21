@@ -28,4 +28,6 @@ const String phoneLoginFlag = 'phone_login';
 
 const String paymentRequestFlag = 'payment_request_flag';
 
-const String requestResetPinText = 'request_reset_pin';
+const String requestResetPinFlag = 'request_reset_pin';
+
+const String sendOTPFlag = 'sending_otp';

@@ -13,7 +13,8 @@ _$_ClientState _$_$_ClientStateFromJson(Map<String, dynamic> json) {
         ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
         .toList(),
     clientCounselled: json['clientCounselled'] as bool? ?? false,
-    clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']),
+    clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']) ??
+        ClientType.UNKNOWN,
     facilityID: json['facilityID'] as String?,
     relatedPersons: (json['relatedPersons'] as List<dynamic>?)
         ?.map((e) => RelatedPerson.fromJson(e as Map<String, dynamic>))

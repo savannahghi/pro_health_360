@@ -16,7 +16,8 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     middleName: json['middleName'] as String?,
     lastName: json['lastName'] as String?,
     dateOfBirth: json['dateOfBirth'] as String?,
-    gender: _$enumDecodeNullable(_$GenderEnumMap, json['gender']),
+    gender:
+        _$enumDecodeNullable(_$GenderEnumMap, json['gender']) ?? Gender.unknown,
     active: json['active'] as bool? ?? false,
     primaryContact: json['primaryContact'] == null
         ? null

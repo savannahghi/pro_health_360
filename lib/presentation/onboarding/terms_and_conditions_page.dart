@@ -40,10 +40,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
     WidgetsBinding.instance!.addPostFrameCallback(
       (_) => StoreProvider.dispatch<AppState>(
         context,
-        // retrieve the terms & conditions
-        GetTermsAction(
-          context: context,
-        ),
+        GetTermsAction(context: context),
       ),
     );
   }

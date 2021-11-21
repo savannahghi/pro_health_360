@@ -37,7 +37,7 @@ class _$UserTearOff {
           String? lastName,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
-      @JsonKey(name: 'gender')
+      @JsonKey(name: 'gender', defaultValue: Gender.unknown)
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
@@ -101,7 +101,7 @@ mixin _$User {
   String? get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: 'dateOfBirth')
   String? get dateOfBirth => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gender')
+  @JsonKey(name: 'gender', defaultValue: Gender.unknown)
   Gender? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
@@ -144,7 +144,7 @@ abstract class $UserCopyWith<$Res> {
           String? lastName,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
-      @JsonKey(name: 'gender')
+      @JsonKey(name: 'gender', defaultValue: Gender.unknown)
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
@@ -293,7 +293,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           String? lastName,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
-      @JsonKey(name: 'gender')
+      @JsonKey(name: 'gender', defaultValue: Gender.unknown)
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
@@ -431,7 +431,7 @@ class _$_User implements _User {
           this.lastName,
       @JsonKey(name: 'dateOfBirth')
           this.dateOfBirth,
-      @JsonKey(name: 'gender')
+      @JsonKey(name: 'gender', defaultValue: Gender.unknown)
           this.gender,
       @JsonKey(name: 'active', defaultValue: false)
           this.active,
@@ -476,7 +476,7 @@ class _$_User implements _User {
   @JsonKey(name: 'dateOfBirth')
   final String? dateOfBirth;
   @override
-  @JsonKey(name: 'gender')
+  @JsonKey(name: 'gender', defaultValue: Gender.unknown)
   final Gender? gender;
   @override
   @JsonKey(name: 'active', defaultValue: false)
@@ -604,7 +604,7 @@ abstract class _User implements User {
           String? lastName,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
-      @JsonKey(name: 'gender')
+      @JsonKey(name: 'gender', defaultValue: Gender.unknown)
           Gender? gender,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
@@ -648,7 +648,7 @@ abstract class _User implements User {
   @JsonKey(name: 'dateOfBirth')
   String? get dateOfBirth => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'gender')
+  @JsonKey(name: 'gender', defaultValue: Gender.unknown)
   Gender? get gender => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: false)

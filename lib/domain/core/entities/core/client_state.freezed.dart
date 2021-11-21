@@ -27,7 +27,7 @@ class _$ClientStateTearOff {
           List<Address>? addresses,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
-      @JsonKey(name: 'clientType')
+      @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
           String? facilityID,
@@ -74,7 +74,7 @@ mixin _$ClientState {
   List<Address>? get addresses => throw _privateConstructorUsedError;
   @JsonKey(name: 'clientCounselled', defaultValue: false)
   bool? get clientCounselled => throw _privateConstructorUsedError;
-  @JsonKey(name: 'clientType')
+  @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
   ClientType? get clientType => throw _privateConstructorUsedError;
   @JsonKey(name: 'facilityID')
   String? get facilityID => throw _privateConstructorUsedError;
@@ -111,7 +111,7 @@ abstract class $ClientStateCopyWith<$Res> {
           List<Address>? addresses,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
-      @JsonKey(name: 'clientType')
+      @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
           String? facilityID,
@@ -227,7 +227,7 @@ abstract class _$ClientStateCopyWith<$Res>
           List<Address>? addresses,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
-      @JsonKey(name: 'clientType')
+      @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
           String? facilityID,
@@ -331,7 +331,7 @@ class _$_ClientState implements _ClientState {
           this.addresses,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           this.clientCounselled,
-      @JsonKey(name: 'clientType')
+      @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           this.clientType,
       @JsonKey(name: 'facilityID')
           this.facilityID,
@@ -361,7 +361,7 @@ class _$_ClientState implements _ClientState {
   @JsonKey(name: 'clientCounselled', defaultValue: false)
   final bool? clientCounselled;
   @override
-  @JsonKey(name: 'clientType')
+  @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
   final ClientType? clientType;
   @override
   @JsonKey(name: 'facilityID')
@@ -464,7 +464,7 @@ abstract class _ClientState implements ClientState {
           List<Address>? addresses,
       @JsonKey(name: 'clientCounselled', defaultValue: false)
           bool? clientCounselled,
-      @JsonKey(name: 'clientType')
+      @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
           String? facilityID,
@@ -494,7 +494,7 @@ abstract class _ClientState implements ClientState {
   @JsonKey(name: 'clientCounselled', defaultValue: false)
   bool? get clientCounselled => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'clientType')
+  @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
   ClientType? get clientType => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'facilityID')
