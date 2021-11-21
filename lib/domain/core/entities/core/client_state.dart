@@ -18,7 +18,8 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'addresses') List<Address>? addresses,
     @JsonKey(name: 'clientCounselled', defaultValue: false)
         bool? clientCounselled,
-    @JsonKey(name: 'clientType') ClientType? clientType,
+    @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
+        ClientType? clientType,
     @JsonKey(name: 'facilityID') String? facilityID,
     @JsonKey(name: 'relatedPersons') List<RelatedPerson>? relatedPersons,
     @JsonKey(name: 'treatmentBuddy') String? treatmentBuddy,

@@ -406,7 +406,7 @@ dynamic reportErrorToSentry(
 
       if (isSignedIn) {
         errorTrace = <String, dynamic>{
-          'phoneNumber': contact?.contact ?? UNKNOWN,
+          'phoneNumber': contact?.value ?? UNKNOWN,
           'error': errorTrace,
         };
       }
@@ -781,7 +781,7 @@ Future<bool> updateStateAuth({
         firstName: state!.clientState!.user!.firstName,
         lastName: state.clientState!.user!.lastName,
         primaryPhoneNumber:
-            state.clientState!.user!.primaryContact!.contact,
+            state.clientState!.user!.primaryContact!.value,
         uid: state.clientState!.user!.userId,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),
@@ -816,7 +816,7 @@ Future<bool> updateStateAuth({
         firstName: state!.clientState!.user!.firstName,
         lastName: state.clientState!.user!.lastName,
         primaryPhoneNumber:
-            state.clientState!.user!.primaryContact!.contact,
+            state.clientState!.user!.primaryContact!.value,
         uid: state.clientState!.user!.userId,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),

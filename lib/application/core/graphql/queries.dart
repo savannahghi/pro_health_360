@@ -107,12 +107,10 @@ query sendOTP( $userID: String!, $phoneNumber: String!, $flavour: Flavour!) {
 ''';
 
 Map<String, dynamic> sendOTPQueryVariables(
-  String userID,
   String phoneNumber,
   Flavour flavour,
 ) {
   return <String, dynamic>{
-    'userID': userID,
     'phoneNumber': phoneNumber,
     'flavour': flavour.name,
   };
