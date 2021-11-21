@@ -12,6 +12,7 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -20,9 +21,7 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 /// [CreatePINAction] is a Redux Action whose job is to update a users PIN from an old one,
@@ -77,8 +76,7 @@ class CreatePINAction extends ReduxAction<AppState> {
         'confirmPIN': confirmPIN,
         'flavour': flavour,
       };
-      final GraphQlClient _client =
-          AppWrapperBase.of(context)!.graphQLClient as GraphQlClient;
+      final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
       final http.Response result = await _client.query(
         setUserPINMutation,
@@ -105,6 +103,11 @@ class CreatePINAction extends ReduxAction<AppState> {
             content: Text(pinSuccessString),
             duration: Duration(seconds: 2),
           ),
+        );
+
+        StoreProvider.dispatch(
+          context,
+          UpdateOnboardingStateAction(isPINSet: true),
         );
         Navigator.pushReplacementNamed(
           context,

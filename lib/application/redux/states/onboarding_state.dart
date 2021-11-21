@@ -22,6 +22,7 @@ class OnboardingState with _$OnboardingState {
     PhoneLoginState? phoneLogin,
     String? otp,
     bool? isPhoneVerified,
+    bool? isPINSet,
   }) = _OnboardingState;
 
   factory OnboardingState.fromJson(Map<String, dynamic> json) =>
@@ -35,5 +36,6 @@ class OnboardingState with _$OnboardingState {
         securityQuestionResponses: <SecurityQuestionResponse>[],
         otp: UNKNOWN,
         isPhoneVerified: false,
+        isPINSet: false,
       );
 }

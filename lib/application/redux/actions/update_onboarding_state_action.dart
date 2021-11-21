@@ -11,10 +11,12 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   UpdateOnboardingStateAction({
     this.securityQuestionsResponses,
     this.isPhoneVerified,
+    this.isPINSet,
   });
 
   List<SecurityQuestionResponse>? securityQuestionsResponses;
   bool? isPhoneVerified;
+  bool? isPINSet;
 
   @override
   AppState reduce() {
@@ -22,6 +24,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     final OnboardingState? newOnboardingState = state.onboardingState?.copyWith(
       securityQuestionResponses: securityQuestionsResponses,
       isPhoneVerified: isPhoneVerified ?? oldPhoneVerified,
+      isPINSet: isPINSet ?? state.onboardingState?.isPINSet,
     );
 
     final AppState newState =

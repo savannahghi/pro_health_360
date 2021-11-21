@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -52,13 +53,17 @@ void main() {
             return SILPrimaryButton(
               onPressed: () async {
                 try {
+                  store.dispatch(
+                    CreatePINStateAction(
+                      confirmPIN: '0000',
+                      newPIN: '0000',
+                    ),
+                  );
                   await store.dispatch(
                     CreatePINAction(
                       context: context,
-                      flag: getTermsFlag,
-                      confirmPIN: '0000',
+                      flag: createPinFlag,
                       flavour: 'Test',
-                      newPIN: '0000',
                     ),
                   );
                 } catch (e) {
