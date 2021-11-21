@@ -57,7 +57,6 @@ class CreatePINAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    // check if the new PIN matches the confirmed PIN entered by the user
     final String? userID =
         StoreProvider.state<AppState>(context)!.clientState!.user!.userId;
     final String? newPIN = StoreProvider.state<AppState>(context)!
@@ -68,6 +67,7 @@ class CreatePINAction extends ReduxAction<AppState> {
         .onboardingState!
         .createPINState!
         .confirmPIN;
+        // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {
       // initializing of the updateUserPin mutation
       final Map<String, String?> _variables = <String, String?>{
@@ -130,7 +130,7 @@ class CreatePINAction extends ReduxAction<AppState> {
     return state;
   }
 
-  @override
+@override
   Object wrapError(dynamic error) async {
     if (error.runtimeType == SILException) {
       ScaffoldMessenger.of(context)

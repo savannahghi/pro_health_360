@@ -860,6 +860,18 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    //setNickname
+    if (queryString == setNickNameMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'setNickName': true}
+          }),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value();
   }
 

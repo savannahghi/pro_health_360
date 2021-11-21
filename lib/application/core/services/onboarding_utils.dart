@@ -17,6 +17,8 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
+import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -524,4 +526,24 @@ Future<AuthTokenStatus> checkTokenStatus({
   /// token is expired and 72 hours have elapsed since last refresh
   /// so require the user to log in.
   return AuthTokenStatus.requiresLogin;
+}
+
+Future<void> setUserNickname({
+  required BuildContext context,
+  required String nickName,
+}) async {
+  // this is the Redux Action that store the nickname user enters
+  StoreProvider.dispatch<AppState>(
+    context,
+    UpdateUserProfileAction(nickName: nickName),
+  );
+
+  // this is the Redux Action that handles set nickname for an existing user
+  await StoreProvider.dispatch<AppState>(
+    context,
+    SetNicknameAction(
+      context: context,
+      flag: setNickNameFlag,
+    ),
+  );
 }

@@ -31,3 +31,7 @@ const String paymentRequestFlag = 'payment_request_flag';
 const String requestResetPinFlag = 'request_reset_pin';
 
 const String sendOTPFlag = 'sending_otp';
+const String requestResetPinText = 'request_reset_pin';
+
+// Congratulations page
+const String setNickNameFlag = 'set_nickname';

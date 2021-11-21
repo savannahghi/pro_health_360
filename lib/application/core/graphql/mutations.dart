@@ -56,3 +56,9 @@ Map<String, dynamic> setUserPINMutationVariables(
 ) {
   return <String, dynamic>{'input': setUserPINVariables};
 }
+
+const String setNickNameMutation = r'''
+mutation setNickName($userID: String!, $nickname: String!) {
+  setNickName(userID: $userID, nickname: $nickname)
+}
+ ''';

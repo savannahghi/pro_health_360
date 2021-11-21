@@ -34,6 +34,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
       firstName: firstName ?? userFromState?.firstName,
       lastName: lastName ?? userFromState?.lastName,
       avatar: avatar ?? userFromState?.avatar,
+      username: nickName ?? userFromState?.username,
     );
 
     final ClientState newState =
