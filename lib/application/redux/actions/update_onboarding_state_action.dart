@@ -1,13 +1,14 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   UpdateOnboardingStateAction({
+    this.securityQuestions,
     this.securityQuestionsResponses,
     this.isPhoneVerified,
     this.isPINSet,
@@ -18,6 +19,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.hasSetSecurityQuestions,
   });
 
+  List<SecurityQuestion>? securityQuestions;
   List<SecurityQuestionResponse>? securityQuestionsResponses;
   bool? isPhoneVerified;
   bool? isPINSet;
@@ -32,7 +34,10 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     final bool? oldPhoneVerified = state.onboardingState?.isPhoneVerified;
 
     final OnboardingState? newOnboardingState = state.onboardingState?.copyWith(
-      securityQuestionResponses: securityQuestionsResponses,
+      securityQuestions:
+          securityQuestions ?? state.onboardingState?.securityQuestions,
+      securityQuestionResponses: securityQuestionsResponses ??
+          state.onboardingState?.securityQuestionResponses,
       isPhoneVerified: isPhoneVerified ?? oldPhoneVerified,
       isPINSet: isPINSet ?? state.onboardingState?.isPINSet,
       hasSetNickName: hasSetNickName ?? state.onboardingState?.hasSetNickName,

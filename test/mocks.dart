@@ -2,26 +2,19 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
-import 'package:platform/platform.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:user_feed/user_feed.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
@@ -38,7 +31,13 @@ import 'package:myafyahub/domain/core/entities/security_questions/security_quest
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
+import 'package:platform/platform.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
+
 import 'test_utils.dart';
 import 'tests_resources/shared_resources.dart';
 
@@ -1450,13 +1449,40 @@ Map<String, dynamic> mockBottomNavigationState = <String, dynamic>{
 };
 
 Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
-  'securityQuestionID': 'id',
-  'questionStem': 'question_stem',
-  'description': 'description',
-  'responseType': 'response_type',
-  'flavour': 'flavour',
-  'active': true,
-  'sequence': 1,
+  'SecurityQuestionID': 'id',
+  'QuestionStem': 'question_stem',
+  'Description': 'description',
+  'ResponseType': 'response_type',
+  'Active': true,
+};
+
+final List<dynamic> securityQuestionsMock = <dynamic>[
+  <String, dynamic>{
+    'SecurityQuestionID': 'id',
+    'QuestionStem': 'What are the last 4 digits of your CCC number?',
+    'Description': 'Please provide the last 4 digits of your clinic number',
+    'ResponseType': 'response_type',
+    'Flavour': Flavour.CONSUMER.name,
+    'Active': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id',
+    'QuestionStem': 'Which month did you start your treatment?',
+    'Description': 'Enter the month you started your treatment',
+    'ResponseType': 'response_type',
+    'Active': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id',
+    'QuestionStem': 'Which county is your clinic located?',
+    'Description': 'nter the name of the county in small letters',
+    'ResponseType': 'response_type',
+    'Active': true,
+  },
+];
+
+Map<String, dynamic> mockSecurityQuestionsData = <String, dynamic>{
+  'getSecurityQuestions': securityQuestionsMock
 };
 
 Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{

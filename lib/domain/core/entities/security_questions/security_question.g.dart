@@ -8,24 +8,20 @@ part of 'security_question.dart';
 
 _$_SecurityQuestion _$_$_SecurityQuestionFromJson(Map<String, dynamic> json) {
   return _$_SecurityQuestion(
-    securityQuestionID: json['securityQuestionID'] as String?,
-    questionStem: json['questionStem'] as String?,
-    description: json['description'] as String?,
-    responseType: json['responseType'] as String?,
-    flavour: json['flavour'] as String?,
-    active: json['active'] as bool? ?? false,
-    sequence: json['sequence'] as int?,
+    securityQuestionID: json['SecurityQuestionID'] as String?,
+    questionStem: json['QuestionStem'] as String?,
+    description: json['Description'] as String?,
+    responseType: json['ResponseType'] as String?,
+    active: json['Active'] as bool?,
   );
 }
 
 Map<String, dynamic> _$_$_SecurityQuestionToJson(
         _$_SecurityQuestion instance) =>
     <String, dynamic>{
-      'securityQuestionID': instance.securityQuestionID,
-      'questionStem': instance.questionStem,
-      'description': instance.description,
-      'responseType': instance.responseType,
-      'flavour': instance.flavour,
-      'active': instance.active,
-      'sequence': instance.sequence,
+      'SecurityQuestionID': instance.securityQuestionID,
+      'QuestionStem': instance.questionStem,
+      'Description': instance.description,
+      'ResponseType': instance.responseType,
+      'Active': instance.active,
     };

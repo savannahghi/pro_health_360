@@ -3,11 +3,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:intl/intl.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/profile/profile_utils.dart';
 
@@ -324,7 +322,7 @@ const String verifyOTPState = 'verifyOTPState';
 
 const String setSecurityQuestionsString = 'Set security questions';
 const String securityQuestionsDescriptionString =
-    'Choose one security question. Make sure to remember the answer';
+    'These questions will be used to reset your PIN. Make sure to remember the answers you provide';
 
 const String answerSecurityQuestionString = 'Answer security question';
 const String answerCorrectlyToGainAccessString =

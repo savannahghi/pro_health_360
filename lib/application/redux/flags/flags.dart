@@ -12,6 +12,9 @@ const String fetchUserFeedFlag = 'fetch_user_feed';
 const String getTermsFlag = 'get_terms';
 const String acceptTermsFlag = 'accept_terms';
 
+//Security Questions
+const String getSecurityQuestionsFlag = 'get_security_questions';
+
 // basic details
 const String updateBasicDetailsFlag = 'update_basic_details';
 

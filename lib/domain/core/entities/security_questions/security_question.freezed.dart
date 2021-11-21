@@ -21,21 +21,17 @@ class _$SecurityQuestionTearOff {
   const _$SecurityQuestionTearOff();
 
   _SecurityQuestion call(
-      {String? securityQuestionID,
-      String? questionStem,
-      String? description,
-      String? responseType,
-      String? flavour,
-      bool? active = false,
-      int? sequence}) {
+      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem') String? questionStem,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'ResponseType') String? responseType,
+      @JsonKey(name: 'Active') bool? active = false}) {
     return _SecurityQuestion(
       securityQuestionID: securityQuestionID,
       questionStem: questionStem,
       description: description,
       responseType: responseType,
-      flavour: flavour,
       active: active,
-      sequence: sequence,
     );
   }
 
@@ -49,13 +45,16 @@ const $SecurityQuestion = _$SecurityQuestionTearOff();
 
 /// @nodoc
 mixin _$SecurityQuestion {
+  @JsonKey(name: 'SecurityQuestionID')
   String? get securityQuestionID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'QuestionStem')
   String? get questionStem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ResponseType')
   String? get responseType => throw _privateConstructorUsedError;
-  String? get flavour => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Active')
   bool? get active => throw _privateConstructorUsedError;
-  int? get sequence => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,13 +68,11 @@ abstract class $SecurityQuestionCopyWith<$Res> {
           SecurityQuestion value, $Res Function(SecurityQuestion) then) =
       _$SecurityQuestionCopyWithImpl<$Res>;
   $Res call(
-      {String? securityQuestionID,
-      String? questionStem,
-      String? description,
-      String? responseType,
-      String? flavour,
-      bool? active,
-      int? sequence});
+      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem') String? questionStem,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'ResponseType') String? responseType,
+      @JsonKey(name: 'Active') bool? active});
 }
 
 /// @nodoc
@@ -93,9 +90,7 @@ class _$SecurityQuestionCopyWithImpl<$Res>
     Object? questionStem = freezed,
     Object? description = freezed,
     Object? responseType = freezed,
-    Object? flavour = freezed,
     Object? active = freezed,
-    Object? sequence = freezed,
   }) {
     return _then(_value.copyWith(
       securityQuestionID: securityQuestionID == freezed
@@ -114,18 +109,10 @@ class _$SecurityQuestionCopyWithImpl<$Res>
           ? _value.responseType
           : responseType // ignore: cast_nullable_to_non_nullable
               as String?,
-      flavour: flavour == freezed
-          ? _value.flavour
-          : flavour // ignore: cast_nullable_to_non_nullable
-              as String?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      sequence: sequence == freezed
-          ? _value.sequence
-          : sequence // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -138,13 +125,11 @@ abstract class _$SecurityQuestionCopyWith<$Res>
       __$SecurityQuestionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? securityQuestionID,
-      String? questionStem,
-      String? description,
-      String? responseType,
-      String? flavour,
-      bool? active,
-      int? sequence});
+      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem') String? questionStem,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'ResponseType') String? responseType,
+      @JsonKey(name: 'Active') bool? active});
 }
 
 /// @nodoc
@@ -164,9 +149,7 @@ class __$SecurityQuestionCopyWithImpl<$Res>
     Object? questionStem = freezed,
     Object? description = freezed,
     Object? responseType = freezed,
-    Object? flavour = freezed,
     Object? active = freezed,
-    Object? sequence = freezed,
   }) {
     return _then(_SecurityQuestion(
       securityQuestionID: securityQuestionID == freezed
@@ -185,18 +168,10 @@ class __$SecurityQuestionCopyWithImpl<$Res>
           ? _value.responseType
           : responseType // ignore: cast_nullable_to_non_nullable
               as String?,
-      flavour: flavour == freezed
-          ? _value.flavour
-          : flavour // ignore: cast_nullable_to_non_nullable
-              as String?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
-      sequence: sequence == freezed
-          ? _value.sequence
-          : sequence // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -205,36 +180,34 @@ class __$SecurityQuestionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SecurityQuestion implements _SecurityQuestion {
   _$_SecurityQuestion(
-      {this.securityQuestionID,
-      this.questionStem,
-      this.description,
-      this.responseType,
-      this.flavour,
-      this.active = false,
-      this.sequence});
+      {@JsonKey(name: 'SecurityQuestionID') this.securityQuestionID,
+      @JsonKey(name: 'QuestionStem') this.questionStem,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'ResponseType') this.responseType,
+      @JsonKey(name: 'Active') this.active = false});
 
   factory _$_SecurityQuestion.fromJson(Map<String, dynamic> json) =>
       _$_$_SecurityQuestionFromJson(json);
 
   @override
+  @JsonKey(name: 'SecurityQuestionID')
   final String? securityQuestionID;
   @override
+  @JsonKey(name: 'QuestionStem')
   final String? questionStem;
   @override
+  @JsonKey(name: 'Description')
   final String? description;
   @override
+  @JsonKey(name: 'ResponseType')
   final String? responseType;
   @override
-  final String? flavour;
-  @JsonKey(defaultValue: false)
-  @override
+  @JsonKey(name: 'Active')
   final bool? active;
-  @override
-  final int? sequence;
 
   @override
   String toString() {
-    return 'SecurityQuestion(securityQuestionID: $securityQuestionID, questionStem: $questionStem, description: $description, responseType: $responseType, flavour: $flavour, active: $active, sequence: $sequence)';
+    return 'SecurityQuestion(securityQuestionID: $securityQuestionID, questionStem: $questionStem, description: $description, responseType: $responseType, active: $active)';
   }
 
   @override
@@ -253,14 +226,8 @@ class _$_SecurityQuestion implements _SecurityQuestion {
             (identical(other.responseType, responseType) ||
                 const DeepCollectionEquality()
                     .equals(other.responseType, responseType)) &&
-            (identical(other.flavour, flavour) ||
-                const DeepCollectionEquality()
-                    .equals(other.flavour, flavour)) &&
             (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.sequence, sequence) ||
-                const DeepCollectionEquality()
-                    .equals(other.sequence, sequence)));
+                const DeepCollectionEquality().equals(other.active, active)));
   }
 
   @override
@@ -270,9 +237,7 @@ class _$_SecurityQuestion implements _SecurityQuestion {
       const DeepCollectionEquality().hash(questionStem) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(responseType) ^
-      const DeepCollectionEquality().hash(flavour) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(sequence);
+      const DeepCollectionEquality().hash(active);
 
   @JsonKey(ignore: true)
   @override
@@ -287,31 +252,30 @@ class _$_SecurityQuestion implements _SecurityQuestion {
 
 abstract class _SecurityQuestion implements SecurityQuestion {
   factory _SecurityQuestion(
-      {String? securityQuestionID,
-      String? questionStem,
-      String? description,
-      String? responseType,
-      String? flavour,
-      bool? active,
-      int? sequence}) = _$_SecurityQuestion;
+      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem') String? questionStem,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'ResponseType') String? responseType,
+      @JsonKey(name: 'Active') bool? active}) = _$_SecurityQuestion;
 
   factory _SecurityQuestion.fromJson(Map<String, dynamic> json) =
       _$_SecurityQuestion.fromJson;
 
   @override
+  @JsonKey(name: 'SecurityQuestionID')
   String? get securityQuestionID => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'QuestionStem')
   String? get questionStem => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'Description')
   String? get description => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'ResponseType')
   String? get responseType => throw _privateConstructorUsedError;
   @override
-  String? get flavour => throw _privateConstructorUsedError;
-  @override
+  @JsonKey(name: 'Active')
   bool? get active => throw _privateConstructorUsedError;
-  @override
-  int? get sequence => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SecurityQuestionCopyWith<_SecurityQuestion> get copyWith =>

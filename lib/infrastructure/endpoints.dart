@@ -26,6 +26,9 @@ const String kTestSetPrimaryPhoneNumberEndpoint =
 const String kTestUploadFileEndPoint =
     'https://engagement-testing.savannahghi.org/upload';
 
+const String myCareHubGraphEndpoint =
+    'https://mycarehub-testing.savannahghi.org/graphql';
+
 const String dGraphEndpoint =
     'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
 

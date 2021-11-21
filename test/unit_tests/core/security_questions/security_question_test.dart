@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
+
 import '../../../mocks.dart';
 
 void main() {
@@ -20,9 +20,7 @@ void main() {
           questionStem: 'question_stem',
           description: 'description',
           responseType: 'response_type',
-          flavour: 'flavour',
           active: true,
-          sequence: 1,
         ).toJson(),
         mockSecurityQuestion,
       );
