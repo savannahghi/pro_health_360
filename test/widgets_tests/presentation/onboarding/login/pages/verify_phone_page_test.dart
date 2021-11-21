@@ -30,7 +30,7 @@ void main() {
             .clientState!
             .user!
             .call(
-              primaryContact: Contact(contact: '+254717356476'),
+              primaryContact: Contact(value: '+254717356476'),
               userId: 'user-id',
             ),
       );

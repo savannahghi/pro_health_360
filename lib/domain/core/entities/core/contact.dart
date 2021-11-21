@@ -13,7 +13,7 @@ class Contact with _$Contact {
   factory Contact({
     @JsonKey(name: 'contactType') ContactType? contactType,
     // TODO(abiud): this will mostly be a number value object.
-    @JsonKey(name: 'contact') String? contact,
+    @JsonKey(name: 'contactValue') String? value,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'optedIn', defaultValue: false) bool? optedIn,
   }) = _Contact;
@@ -23,7 +23,7 @@ class Contact with _$Contact {
 
   factory Contact.initial() => Contact(
         contactType: ContactType.PHONE,
-        contact: UNKNOWN,
+        value: UNKNOWN,
         active: false,
         optedIn: false,
       );

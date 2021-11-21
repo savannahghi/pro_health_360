@@ -10,7 +10,7 @@ _$_Contact _$_$_ContactFromJson(Map<String, dynamic> json) {
   return _$_Contact(
     contactType:
         _$enumDecodeNullable(_$ContactTypeEnumMap, json['contactType']),
-    contact: json['contact'] as String?,
+    value: json['contactValue'] as String?,
     active: json['active'] as bool? ?? false,
     optedIn: json['optedIn'] as bool? ?? false,
   );
@@ -19,7 +19,7 @@ _$_Contact _$_$_ContactFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_ContactToJson(_$_Contact instance) =>
     <String, dynamic>{
       'contactType': _$ContactTypeEnumMap[instance.contactType],
-      'contact': instance.contact,
+      'contactValue': instance.value,
       'active': instance.active,
       'optedIn': instance.optedIn,
     };

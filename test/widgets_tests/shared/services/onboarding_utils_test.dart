@@ -1123,7 +1123,7 @@ void main() {
                   firstName: userProfile?.userBioData?.firstName?.getValue(),
                   lastName: userProfile?.userBioData?.lastName?.getValue(),
                   phoneNumber: Contact(
-                    contact: userProfile?.primaryPhoneNumber?.getValue(),
+                    value: userProfile?.primaryPhoneNumber?.getValue(),
                   ),
                 ),
               );
@@ -1159,7 +1159,7 @@ void main() {
       store.dispatch(
         UpdateUserProfileAction(
           phoneNumber: Contact(
-            contact: testPhoneNumber,
+            value: testPhoneNumber,
           ),
         ),
       );
@@ -1190,7 +1190,7 @@ void main() {
                 firstName: userProfile?.userBioData?.firstName?.getValue(),
                 lastName: userProfile?.userBioData?.lastName?.getValue(),
                 phoneNumber: Contact(
-                  contact: userProfile?.primaryPhoneNumber?.getValue(),
+                  value: userProfile?.primaryPhoneNumber?.getValue(),
                 ),
               ),
             );

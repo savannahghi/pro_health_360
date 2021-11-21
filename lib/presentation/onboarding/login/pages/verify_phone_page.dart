@@ -46,7 +46,6 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
     final http.Response result = await _client.query(
       sendOTPQuery,
       sendOTPQueryVariables(
-        userID,
         phoneNumber,
         Flavour.CONSUMER,
       ),
@@ -68,13 +67,10 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
     final AppState? appState = StoreProvider.state<AppState>(context);
     final String userID = appState!.clientState!.user!.userId ?? UNKNOWN;
     final String phoneNumber =
-        appState.clientState!.user!.primaryContact!.contact ?? UNKNOWN;
+        appState.clientState!.user!.primaryContact!.value ?? UNKNOWN;
 
     if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
-      await generateSendOtp(
-        phoneNumber: '+254704002748',
-        userID: 'some-user-id',
-      );
+      await generateSendOtp(phoneNumber: phoneNumber, userID: userID);
     }
 
     toggleLoading();
@@ -103,7 +99,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
       builder: (BuildContext context, AppStateViewModel vm) {
         final String userID = vm.appState.clientState!.user!.userId ?? UNKNOWN;
         final String phoneNumber =
-            vm.appState.clientState!.user!.primaryContact!.contact ?? UNKNOWN;
+            vm.appState.clientState!.user!.primaryContact!.value ?? UNKNOWN;
 
         final String otp = vm.appState.onboardingState!.otp ?? UNKNOWN;
 
