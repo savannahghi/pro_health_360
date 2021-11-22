@@ -3,7 +3,7 @@
 /// file **MUST** follow the same, and must be replicated in
 /// the router generator file
 class BWRoutes {
-  static const String deeplink = '/app';
+  static const String deepLink = '/app';
   // onboarding routes
   static const String phoneLogin = '/phoneLogin';
   static const String verifyPhoneNo = '/verifyPhoneNo';

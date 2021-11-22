@@ -20,7 +20,7 @@ class ContentItemFooter extends StatelessWidget {
   });
 
   final String datePublished;
-  final String? estimatedReadingTime;
+  final int? estimatedReadingTime;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,7 @@ class ContentItemFooter extends StatelessWidget {
       context: context,
       loadedDate: datePublished,
     );
+    final String readingTime = contentReadDuration(estimatedReadingTime!);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +41,7 @@ class ContentItemFooter extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 2.5),
                 child: Text(
-                  contentReadDuration(estimatedReadingTime!),
+                  readingTime,
                   style: TextThemes.normalSize15Text(Colors.grey),
                 ),
               ),

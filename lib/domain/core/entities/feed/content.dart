@@ -1,4 +1,6 @@
 // Package imports:
+
+import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
@@ -10,20 +12,105 @@ part 'content.g.dart';
 @freezed
 class Content with _$Content {
   factory Content({
-    @JsonKey(name: 'contentID') String? contentID,
+    @JsonKey(name: 'ID') String? contentID,
     @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'body') String? body,
-    @JsonKey(name: 'author') String? author,
+    @JsonKey(name: 'date') String? date,
+    @JsonKey(name: 'intro') String? intro,
+    // TODO(abiud): move this to the Author object
+    @JsonKey(name: 'authorName') String? authorName,
     @JsonKey(name: 'authorAvatar') String? authorAvatar,
-    @JsonKey(name: 'heroImage') String? heroImage,
-    @JsonKey(name: 'contentType') ContentType? contentType,
-    @JsonKey(name: 'publicLink') String? publicLink,
+    @JsonKey(name: 'author') Author? author,
+    @JsonKey(name: 'itemType') ContentType? contentType, // ARTICLE
+    @JsonKey(name: 'timeEstimateSeconds') int? estimate,
+    @JsonKey(name: 'body') String? body,
+    @JsonKey(name: 'heroImageRendition') String? heroImage,
+    @JsonKey(name: 'likeCount') int? likeCount,
+    @JsonKey(name: 'bookmarkCount') int? bookmarkCount,
+    @JsonKey(name: 'viewCount') int? viewCount,
+    @JsonKey(name: 'shareCount') int? shareCount,
+    @JsonKey(name: 'documents') List<Document>? documents,
+    @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
     @JsonKey(name: 'isNew') bool? isNew,
-    @JsonKey(name: 'estimate') String? estimate,
-    @JsonKey(name: 'tags') List<String?>? tags,
-    @JsonKey(name: 'createdAt') String? createdAt,
+    @JsonKey(name: 'tagNames') List<String?>? tags,
+    @JsonKey(name: 'meta') ContentMetadata? metadata,
   }) = _Content;
 
   factory Content.fromJson(Map<String, dynamic> json) =>
       _$ContentFromJson(json);
+
+  factory Content.initial() => Content(
+        contentID: UNKNOWN,
+        title: UNKNOWN,
+        date: UNKNOWN,
+        intro: UNKNOWN,
+        authorName: UNKNOWN,
+        author: Author.initial(),
+        contentType: ContentType.UNKNOWN,
+        estimate: 0,
+        body: UNKNOWN,
+        heroImage: UNKNOWN,
+        likeCount: 0,
+        bookmarkCount: 0,
+        viewCount: 0,
+        shareCount: 0,
+        documents: <Document>[],
+        categories: <ContentCategory>[],
+        metadata: ContentMetadata.initial(),
+      );
+}
+
+@freezed
+class Document with _$Document {
+  factory Document({
+    @JsonKey(name: 'ID') String? id,
+    @JsonKey(name: 'title') String? title,
+  }) = _Document;
+
+  factory Document.fromJson(Map<String, dynamic> json) =>
+      _$DocumentFromJson(json);
+
+  factory Document.initial() => Document(id: UNKNOWN, title: UNKNOWN);
+}
+
+@freezed
+class ContentCategory with _$ContentCategory {
+  factory ContentCategory({
+    @JsonKey(name: 'ID') String? id,
+    @JsonKey(name: 'categoryName') String? name,
+    @JsonKey(name: 'categoryIcon') String? icon,
+  }) = _ContentCategory;
+
+  factory ContentCategory.fromJson(Map<String, dynamic> json) =>
+      _$ContentCategoryFromJson(json);
+
+  factory ContentCategory.initial() => ContentCategory(
+        id: UNKNOWN,
+        name: UNKNOWN,
+        icon: UNKNOWN,
+      );
+}
+
+@freezed
+class ContentMetadata with _$ContentMetadata {
+  factory ContentMetadata({
+    @JsonKey(name: 'contentHTMLURL') String? publicLink,
+    @JsonKey(name: 'firstPublishedAt') String? createdAt,
+  }) = _ContentMetadata;
+
+  factory ContentMetadata.fromJson(Map<String, dynamic> json) =>
+      _$ContentMetadataFromJson(json);
+
+  factory ContentMetadata.initial() => ContentMetadata(
+        publicLink: UNKNOWN,
+        createdAt: UNKNOWN,
+      );
+}
+
+@freezed
+class Author with _$Author {
+  factory Author({@JsonKey(name: 'ID') String? id}) = _Author;
+
+  factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
+
+  factory Author.initial() => Author(id: UNKNOWN);
 }

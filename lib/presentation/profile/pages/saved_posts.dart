@@ -11,7 +11,6 @@ import 'package:myafyahub/presentation/feed/feed_list.dart';
 
 // Package imports:
 
-
 class SavedPostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -49,9 +48,9 @@ class SavedPostPage extends StatelessWidget {
                             contentID: 'some-content-id',
                             authorAvatar: feedImage1,
                             heroImage: feedImage2,
-                            createdAt: feedDate,
                             title: feedHeader,
-                            author: treatmentBuddyString,
+                            metadata: ContentMetadata(createdAt: feedDate),
+                            author: Author(id: 'some-id'),
                             body: defactoZeroStateString(),
                           ),
                         ],
@@ -62,9 +61,9 @@ class SavedPostPage extends StatelessWidget {
                             contentID: 'some-content-id',
                             authorAvatar: feedImage1,
                             heroImage: feedImage2,
-                            createdAt: feedDate,
                             title: feedHeader,
-                            author: treatmentBuddyString,
+                            metadata: ContentMetadata(createdAt: feedDate),
+                            author: Author(id: 'some-id'),
                             body: defactoZeroStateString(),
                           ),
                         ],
