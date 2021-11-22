@@ -62,3 +62,9 @@ mutation setNickName($userID: String!, $nickname: String!) {
   setNickName(userID: $userID, nickname: $nickname)
 }
  ''';
+
+const String completeOnboardingTourMutation = r'''
+mutation completeOnboardingTour($userID: String!, $flavour: Flavour!){
+  completeOnboardingTour(userID: $userID, flavour: $flavour)
+}
+ ''';

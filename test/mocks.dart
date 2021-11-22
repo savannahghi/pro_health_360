@@ -871,6 +871,17 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString == completeOnboardingTourMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'completeOnboardingTour': true}
+          }),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value();
   }
 

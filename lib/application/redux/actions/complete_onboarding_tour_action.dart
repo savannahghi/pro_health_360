@@ -12,10 +12,7 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/application/redux/actions/complete_onboarding_tour_action.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -24,19 +21,23 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:user_feed/user_feed.dart';
 
-/// [SetNicknameAction] is a Redux Action whose job is to update a users nickname,
+/// [CompleteOnboardingTourAction] is a Redux Action whose job is to update a users onboarding tour 
+/// completion status,
 ///
 /// Otherwise delightfully notify user of any Error that might occur during the process
 
-class SetNicknameAction extends ReduxAction<AppState> {
-  SetNicknameAction({
+class CompleteOnboardingTourAction extends ReduxAction<AppState> {
+  CompleteOnboardingTourAction({
     required this.context,
     required this.flag,
+    required this.userID,
   });
 
   final BuildContext context;
   final String flag;
+  final String userID;
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   @override
@@ -52,20 +53,15 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID =
-        StoreProvider.state<AppState>(context)!.clientState!.user!.userId;
-    final String? userName =
-        StoreProvider.state<AppState>(context)!.clientState!.user!.username;
-
-    // initializing of the SetNicknameAction mutation
+    // initializing of the CompleteOnboardingTourAction mutation
     final Map<String, String> _variables = <String, String>{
-      'userID': userID!,
-      'nickname': userName!,
+      'userID': userID,
+      'flavour': Flavour.CONSUMER.name,
     };
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
     final http.Response result = await _client.query(
-      setNickNameMutation,
+      completeOnboardingTourMutation,
       _variables,
     );
 
@@ -83,22 +79,12 @@ class SetNicknameAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['setNickName'] == true) {
-      StoreProvider.dispatch(
-        context,
-        UpdateOnboardingStateAction(hasSetNickName: true),
-      );
-      StoreProvider.dispatch(
-        context,
-        CompleteOnboardingTourAction(
-          context: context,
-          flag: flag,
-          userID: userID,
+    if (responseMap['data']['completeOnboardingTour'] == true) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(nicknameSuccessString),
+          duration: Duration(seconds: 2),
         ),
-      );
-      Navigator.pushReplacementNamed(
-        context,
-        BWRoutes.home,
       );
     }
 
