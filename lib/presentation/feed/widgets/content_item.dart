@@ -1,9 +1,12 @@
 // Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 // Package imports:
-import 'package:flutter_svg/svg.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -11,8 +14,6 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/feed/widgets/content_item_footer.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -20,14 +21,13 @@ import 'package:myafyahub/presentation/router/routes.dart';
 /// [ContentItem] Displays the feed
 /// [isNew] renders the new tag
 class ContentItem extends StatelessWidget {
-  const ContentItem({required this.contentDetails});
+  const ContentItem({required this.contentDetails, this.isNew = false});
 
   final Content contentDetails;
+  final bool isNew;
 
   @override
   Widget build(BuildContext context) {
-    final bool isNew = contentDetails.isNew ?? false;
-
     return GestureDetector(
       key: feedContentItemKey,
       onTap: () => Navigator.of(context)
@@ -45,21 +45,24 @@ class ContentItem extends StatelessWidget {
                 Stack(
                   alignment: Alignment.center,
                   children: <Widget>[
-                    if (contentDetails.heroImage != null)
+                    if (contentDetails.heroImage != null &&
+                        contentDetails.heroImage!.url != UNKNOWN)
                       Container(
                         height: 170.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage(contentDetails.heroImage!),
+                            //TODO:(eugene) revert after urls are updated
+                            // image: NetworkImage(contentDetails.heroImage!.url!),
+                            image: AssetImage(feedImage3),
                           ),
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             topRight: Radius.circular(7.0),
                             topLeft: Radius.circular(7.0),
                           ),
                         ),
                       ),
-                    if (contentDetails.contentType == ContentType.AUDIOVIDEO)
+                    if (contentDetails.contentType == ContentType.AUDIOVIDEO.name)
                       SizedBox(
                         key: feedVideoPlayIconKey,
                         child: SvgPicture.asset(

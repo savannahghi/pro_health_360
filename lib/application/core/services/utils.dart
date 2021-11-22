@@ -797,3 +797,34 @@ bool updateStateAuth({
     return false;
   }
 }
+
+Future<void> getContentData({
+  required StreamController<dynamic> streamController,
+  required BuildContext context,
+  required String queryString,
+  required Map<String, dynamic> variables,
+  required String logTitle,
+  String? logDescription,
+}) async {
+  streamController.add(<String, dynamic>{'loading': true});
+
+  final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+
+  /// fetch the data from the api
+  final Response response = await _client.query(
+    queryString,
+    variables,
+  );
+
+  final Map<String, dynamic> payLoad = _client.toMap(response);
+  final String? error = parseError(payLoad);
+
+  if (error != null) {
+    return streamController
+        .addError(<String, dynamic>{'error': _client.parseError(payLoad)});
+  }
+
+  return (payLoad['data'] != null)
+      ? streamController.add(payLoad['data'])
+      : streamController.add(null);
+}
