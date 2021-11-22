@@ -936,4 +936,39 @@ void main() {
       expect(store.state.credentials!.refreshToken, UNKNOWN);
     });
   });
+  testWidgets('congratulationsPageTitle should return the correct message',
+      (WidgetTester tester) async {
+    final Store<AppState> store =
+        Store<AppState>(initialState: AppState.initial());
+
+    late String testMessage = '';
+
+    await buildTestWidget(
+      tester: tester,
+      store: store,
+      client: baseGraphQlClientMock,
+      widget: Builder(
+        builder: (BuildContext context) {
+          return SILPrimaryButton(
+            onPressed: () async {
+              testMessage = congratulationsPageTitle(context: context);
+            },
+          );
+        },
+      ),
+    );
+    await tester.tap(find.byType(SILPrimaryButton));
+    await tester.pumpAndSettle();
+    expect(testMessage, 'Congratulations on your health journey');
+
+    store.dispatch(
+      UpdateClientProfileAction(
+        treatmentEnrollmentDate:
+            DateTime.now().subtract(const Duration(days: 1000)).toString(),
+      ),
+    );
+    await tester.tap(find.byType(SILPrimaryButton));
+    await tester.pumpAndSettle();
+    expect(testMessage, 'Congratulations on your 3 years health journey');
+  });
 }

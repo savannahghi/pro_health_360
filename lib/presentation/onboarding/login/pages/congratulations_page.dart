@@ -17,9 +17,6 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class CongratulationsPage extends StatefulWidget {
-  final String lengthOfTreatment;
-
-  const CongratulationsPage({required this.lengthOfTreatment});
 
   @override
   _CongratulationsPageState createState() => _CongratulationsPageState();
@@ -31,7 +28,7 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
   Widget build(BuildContext context) {
     late String nickName = '';
     return OnboardingScaffold(
-      title: congratulationsPageTitle(widget.lengthOfTreatment),
+      title: congratulationsPageTitle(context: context),
       description: congratulationsPageDescription,
       child: StoreConnector<AppState, AppStateViewModel>(
         converter: (Store<AppState> store) =>

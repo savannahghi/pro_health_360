@@ -35,9 +35,7 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: const CongratulationsPage(
-          lengthOfTreatment: '3 years',
-        ),
+        widget: CongratulationsPage(),
       );
 
       final Finder nameInputField = find.byKey(
@@ -76,9 +74,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: const CongratulationsPage(
-            lengthOfTreatment: '3 years',
-          ),
+          widget: CongratulationsPage(),
         );
         await tester.pumpAndSettle();
 
@@ -107,9 +103,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: const CongratulationsPage(
-          lengthOfTreatment: '3 years',
-        ),
+        widget: CongratulationsPage(),
       );
       await tester.pumpAndSettle();
       await tester.pumpAndSettle();
@@ -141,9 +135,7 @@ void main() {
           builder: (BuildContext context) {
             ctx = context;
             toggleLoadingIndicator(context: context, flag: 'resume_with_pin');
-            return const CongratulationsPage(
-              lengthOfTreatment: '3 years',
-            );
+            return CongratulationsPage();
           },
         ),
       );

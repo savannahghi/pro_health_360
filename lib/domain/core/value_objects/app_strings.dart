@@ -1,9 +1,12 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 // Package imports:
 import 'package:intl/intl.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/profile/profile_utils.dart';
@@ -381,8 +384,36 @@ const String createNewPINSubTitleString =
 const String pinMustMatchString = 'PIN must match';
 
 //congratulations page
-String congratulationsPageTitle(String duration) =>
-    'Congratulations on your $duration health journey';
+String congratulationsPageTitle({required BuildContext context}) {
+  /// [congratulationsPageTitle] function fetches the enrollment date from state and calculates
+  /// the difference in years to return the appropriate message to the title on [CongratulationsPage]
+  final int duration = DateTime.now()
+      .difference(DateTime.parse(
+        StoreProvider.state<AppState>(context)!
+                    .clientState!
+                    .treatmentEnrollmentDate! ==
+                UNKNOWN
+            ? DateTime.now().toString()
+            : StoreProvider.state<AppState>(context)!
+                .clientState!
+                .treatmentEnrollmentDate!,
+      ),)
+      .inDays;
+  return 'Congratulations on your ${getEnrollmentDuration(
+    enrollmentDuration: duration,
+  )}health journey';
+}
+
+String getEnrollmentDuration({
+  required int enrollmentDuration,
+}) {
+  if ((enrollmentDuration / 365) >= 2) {
+    return '${(enrollmentDuration / 365).round()} years ';
+  }
+
+  return '';
+}
+
 const String congratulationsPageDescription =
     'Please create a nickname (Visible to community members)';
 const String nameInputValidateString = 'Kindly input a nickname';

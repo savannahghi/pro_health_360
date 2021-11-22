@@ -11,12 +11,14 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.lastMoodRecordedDate,
     this.nickName,
     this.isSignedIn,
+    this.treatmentEnrollmentDate,
   });
 
   final bool? active;
   final String? lastMoodRecordedDate;
   final String? nickName;
   final bool? isSignedIn;
+  final String? treatmentEnrollmentDate;
 
   @override
   AppState reduce() {
@@ -26,6 +28,8 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         isSignedIn: this.isSignedIn ?? state.clientState?.isSignedIn,
         lastMoodRecordedDate: this.lastMoodRecordedDate ??
             state.clientState?.lastMoodRecordedDate,
+        treatmentEnrollmentDate: this.treatmentEnrollmentDate ??
+            state.clientState!.treatmentEnrollmentDate,
       ),
     );
 
