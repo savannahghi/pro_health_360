@@ -665,32 +665,36 @@ void main() {
         expect(actualResponse.message, UserFeedBackTexts.getErrorMessage());
       });
 
-      testWidgets('description', (WidgetTester tester) async {
-        final User? user = store.state.clientState?.user
-            ?.copyWith(pinChangeRequired: true, termsAccepted: true);
-        store.dispatch(UpdateUserAction(user: user));
+      group('OnboardingPath', () {
+        // TODO(abiud): test all onboarding paths here
+        testWidgets('should navigate to security questions page',
+            (WidgetTester tester) async {
+          final User? user = store.state.clientState?.user
+              ?.copyWith(pinChangeRequired: true, termsAccepted: true);
+          store.dispatch(UpdateUserAction(user: user));
 
-        String path = '';
+          String path = '';
 
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return SILPrimaryButton(
-                onPressed: () {
-                  path = onboardingPath(store.state).route;
-                },
-              );
-            },
-          ),
-        );
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(store.state).route;
+                  },
+                );
+              },
+            ),
+          );
 
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
+          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.pumpAndSettle();
 
-        expect(path, BWRoutes.securityQuestionsPage);
+          expect(path, BWRoutes.securityQuestionsPage);
+        });
       });
 
       testWidgets('should toggle loading indicator with true',
@@ -1253,8 +1257,18 @@ void main() {
         'should return verify code page route for a user with a valid '
         'token if they have not accepted the terms and conditions',
         (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
+      final Store<AppState> store = Store<AppState>(
+        initialState: AppState.initial()
+            .copyWith
+            .clientState!
+            .user!
+            .call(termsAccepted: true, pinChangeRequired: true)
+            .copyWith
+            .onboardingState!
+            .call(
+              isPhoneVerified: true,
+            ),
+      );
       late String initialRoute;
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
 

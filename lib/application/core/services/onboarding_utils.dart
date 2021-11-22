@@ -374,21 +374,32 @@ OnboardingPathConfig onboardingPath(
   final OnboardingState? onboardingState = state.onboardingState;
   final bool pinChangeRequired =
       state.clientState?.user?.pinChangeRequired ?? false;
+  final bool isPhoneVerified = onboardingState!.isPhoneVerified ?? false;
+  final bool hasSetSecurityQuestions =
+      onboardingState.hasSetSecurityQuestions ?? false;
+  final bool hasSetNickName = onboardingState.hasSetNickName ?? false;
+  final bool isPINSet = onboardingState.isPINSet ?? false;
 
-  if (!termsAccepted) {
-    if (onboardingState?.isPhoneVerified != null &&
-        !onboardingState!.isPhoneVerified!) {
+  if (pinChangeRequired) {
+    if (isPhoneVerified) {
       return OnboardingPathConfig(BWRoutes.verifySignUpOTP);
-    } else {
+    } else if (!termsAccepted) {
       return OnboardingPathConfig(BWRoutes.termsAndConditions);
+    } else if (hasSetSecurityQuestions) {
+      return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
+    } else if (isPINSet) {
+      return OnboardingPathConfig(BWRoutes.setPin);
+    } else if (hasSetNickName) {
+      return OnboardingPathConfig(BWRoutes.congratulationsPage);
     }
-  } else if (termsAccepted && pinChangeRequired) {
-    return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
+    return OnboardingPathConfig(BWRoutes.home);
+  } else {
+    if (termsAccepted) {
+      return OnboardingPathConfig(BWRoutes.termsAndConditions);
+    } else {
+      return OnboardingPathConfig(BWRoutes.home);
+    }
   }
-
-  /// take the user to the homepage if they have passed
-  /// the normal user profile checks
-  return OnboardingPathConfig(BWRoutes.home);
 }
 
 /// [getInitialRoute] routine is used to determine what should be the
