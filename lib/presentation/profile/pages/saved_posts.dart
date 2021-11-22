@@ -45,9 +45,10 @@ class SavedPostPage extends StatelessWidget {
                       FeedList(
                         feedItems: <Content>[
                           Content(
-                            contentID: 'some-content-id',
-                            authorAvatar: feedImage1,
-                            heroImage: feedImage2,
+                            contentID: 0,
+                            // TODO(eugene): revert when backend is ready
+                            // authorAvatar: feedImage1,
+                            heroImage: HeroImage(url: feedImage2),
                             title: feedHeader,
                             metadata: ContentMetadata(createdAt: feedDate),
                             author: Author(id: 'some-id'),
@@ -58,9 +59,10 @@ class SavedPostPage extends StatelessWidget {
                       FeedList(
                         feedItems: <Content>[
                           Content(
-                            contentID: 'some-content-id',
-                            authorAvatar: feedImage1,
-                            heroImage: feedImage2,
+                            contentID: 0,
+                            // TODO(eugene): revert when backend is ready
+                            // authorAvatar: feedImage1,
+                            heroImage: HeroImage(url: feedImage2),
                             title: feedHeader,
                             metadata: ContentMetadata(createdAt: feedDate),
                             author: Author(id: 'some-id'),

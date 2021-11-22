@@ -43,14 +43,14 @@ class _FeedPageState extends State<FeedPage> {
     _streamController = StreamController<Object>.broadcast();
     _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await customFetchData(
+      await getContentData(
         streamController: _streamController,
         context: context,
-        logTitle: 'Fetch recent content',
-        queryString: fetchContentQuery,
+        logTitle: 'Fetch content',
+        queryString: getContentQuery,
         variables: <String, dynamic>{
-          'limit': 10,
-          'tags': <String>['health', 'fitness']
+          'categoryID': 1,
+          'Limit': '10',
         },
       );
     });
@@ -109,12 +109,15 @@ class _FeedPageState extends State<FeedPage> {
                     type: GenericNoDataTypes.ErrorInData,
                     actionText: actionTextGenericNoData,
                     recoverCallback: () async {
-                      await customFetchData(
+                      await getContentData(
                         streamController: _streamController,
                         context: context,
-                        logTitle: 'Fetch suggested groups',
-                        queryString: fetchContentQuery,
-                        variables: <String, dynamic>{},
+                        logTitle: 'Fetch recent content',
+                        queryString: getContentQuery,
+                        variables: <String, dynamic>{
+                          'categoryID': 1,
+                          'Limit': '10',
+                        },
                       );
                     },
                     messageBody: messageBodyGenericNoData,
@@ -122,9 +125,7 @@ class _FeedPageState extends State<FeedPage> {
                 }
 
                 if (snapshot.hasData) {
-                  final List<dynamic> feedItems =
-                      snapshot.data['fetchContent'] as List<dynamic>;
-
+                  final List<dynamic> feedItems = snapshot.data['getContent']['items']! as List<dynamic>;
                   return Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -133,12 +134,12 @@ class _FeedPageState extends State<FeedPage> {
                         final Content currentFeedItem = Content.fromJson(
                           feedItems.elementAt(index) as Map<String, dynamic>,
                         );
-
                         return Padding(
                           padding: EdgeInsets.only(
                             top: index == 0 ? 15 : 7.5,
                             bottom: 10,
                           ),
+                          
                           child: ContentItem(
                             contentDetails: currentFeedItem,
                           ),
@@ -194,14 +195,14 @@ class _FeedPageState extends State<FeedPage> {
               onSelected: (bool selected) {
                 setState(() {
                   _choiceIndex = selected ? index : 0;
-                  customFetchData(
+                  getContentData(
                     streamController: _streamController,
                     context: context,
                     logTitle: 'Fetch recent content',
-                    queryString: fetchContentQuery,
+                    queryString: getContentQuery,
                     variables: <String, dynamic>{
-                      'limit': 10,
-                      'tags': <String>['health', 'fitness']
+                      'categoryID': 1,
+                      'Limit': '10',
                     },
                   );
                 });

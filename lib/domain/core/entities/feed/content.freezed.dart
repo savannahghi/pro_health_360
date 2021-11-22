@@ -21,24 +21,22 @@ class _$ContentTearOff {
   const _$ContentTearOff();
 
   _Content call(
-      {@JsonKey(name: 'ID') String? contentID,
+      {@JsonKey(name: 'ID') int? contentID,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
-      @JsonKey(name: 'authorAvatar') String? authorAvatar,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') ContentType? contentType,
+      @JsonKey(name: 'itemType') String? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'heroImageRendition') String? heroImage,
+      @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
       @JsonKey(name: 'likeCount') int? likeCount,
       @JsonKey(name: 'bookmarkCount') int? bookmarkCount,
       @JsonKey(name: 'viewCount') int? viewCount,
       @JsonKey(name: 'shareCount') int? shareCount,
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'isNew') bool? isNew,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata}) {
     return _Content(
@@ -47,7 +45,6 @@ class _$ContentTearOff {
       date: date,
       intro: intro,
       authorName: authorName,
-      authorAvatar: authorAvatar,
       author: author,
       contentType: contentType,
       estimate: estimate,
@@ -59,7 +56,6 @@ class _$ContentTearOff {
       shareCount: shareCount,
       documents: documents,
       categories: categories,
-      isNew: isNew,
       tags: tags,
       metadata: metadata,
     );
@@ -76,7 +72,7 @@ const $Content = _$ContentTearOff();
 /// @nodoc
 mixin _$Content {
   @JsonKey(name: 'ID')
-  String? get contentID => throw _privateConstructorUsedError;
+  int? get contentID => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
@@ -85,19 +81,19 @@ mixin _$Content {
   String? get intro =>
       throw _privateConstructorUsedError; // TODO(abiud): move this to the Author object
   @JsonKey(name: 'authorName')
-  String? get authorName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'authorAvatar')
-  String? get authorAvatar => throw _privateConstructorUsedError;
+  String? get authorName =>
+      throw _privateConstructorUsedError; // TODO(abiud): add when backend is ready
+// @JsonKey(name: 'authorAvatar') String? authorAvatar,
   @JsonKey(name: 'author')
   Author? get author => throw _privateConstructorUsedError;
   @JsonKey(name: 'itemType')
-  ContentType? get contentType => throw _privateConstructorUsedError; // ARTICLE
+  String? get contentType => throw _privateConstructorUsedError; // ARTICLE
   @JsonKey(name: 'timeEstimateSeconds')
   int? get estimate => throw _privateConstructorUsedError;
   @JsonKey(name: 'body')
   String? get body => throw _privateConstructorUsedError;
   @JsonKey(name: 'heroImageRendition')
-  String? get heroImage => throw _privateConstructorUsedError;
+  HeroImage? get heroImage => throw _privateConstructorUsedError;
   @JsonKey(name: 'likeCount')
   int? get likeCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'bookmarkCount')
@@ -109,9 +105,9 @@ mixin _$Content {
   @JsonKey(name: 'documents')
   List<Document>? get documents => throw _privateConstructorUsedError;
   @JsonKey(name: 'categoryDetails')
-  List<ContentCategory>? get categories => throw _privateConstructorUsedError;
-  @JsonKey(name: 'isNew')
-  bool? get isNew => throw _privateConstructorUsedError;
+  List<ContentCategory>? get categories =>
+      throw _privateConstructorUsedError; // TODO(abiud): add when backend is ready
+// @JsonKey(name: 'isNew') bool? isNew,
   @JsonKey(name: 'tagNames')
   List<String?>? get tags => throw _privateConstructorUsedError;
   @JsonKey(name: 'meta')
@@ -127,28 +123,27 @@ abstract class $ContentCopyWith<$Res> {
   factory $ContentCopyWith(Content value, $Res Function(Content) then) =
       _$ContentCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') String? contentID,
+      {@JsonKey(name: 'ID') int? contentID,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
-      @JsonKey(name: 'authorAvatar') String? authorAvatar,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') ContentType? contentType,
+      @JsonKey(name: 'itemType') String? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'heroImageRendition') String? heroImage,
+      @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
       @JsonKey(name: 'likeCount') int? likeCount,
       @JsonKey(name: 'bookmarkCount') int? bookmarkCount,
       @JsonKey(name: 'viewCount') int? viewCount,
       @JsonKey(name: 'shareCount') int? shareCount,
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'isNew') bool? isNew,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata});
 
   $AuthorCopyWith<$Res>? get author;
+  $HeroImageCopyWith<$Res>? get heroImage;
   $ContentMetadataCopyWith<$Res>? get metadata;
 }
 
@@ -167,7 +162,6 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? date = freezed,
     Object? intro = freezed,
     Object? authorName = freezed,
-    Object? authorAvatar = freezed,
     Object? author = freezed,
     Object? contentType = freezed,
     Object? estimate = freezed,
@@ -179,7 +173,6 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? shareCount = freezed,
     Object? documents = freezed,
     Object? categories = freezed,
-    Object? isNew = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
   }) {
@@ -187,7 +180,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       contentID: contentID == freezed
           ? _value.contentID
           : contentID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -204,10 +197,6 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.authorName
           : authorName // ignore: cast_nullable_to_non_nullable
               as String?,
-      authorAvatar: authorAvatar == freezed
-          ? _value.authorAvatar
-          : authorAvatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -215,7 +204,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       contentType: contentType == freezed
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
-              as ContentType?,
+              as String?,
       estimate: estimate == freezed
           ? _value.estimate
           : estimate // ignore: cast_nullable_to_non_nullable
@@ -227,7 +216,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       heroImage: heroImage == freezed
           ? _value.heroImage
           : heroImage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as HeroImage?,
       likeCount: likeCount == freezed
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
@@ -252,10 +241,6 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<ContentCategory>?,
-      isNew: isNew == freezed
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool?,
       tags: tags == freezed
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -279,6 +264,17 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
   }
 
   @override
+  $HeroImageCopyWith<$Res>? get heroImage {
+    if (_value.heroImage == null) {
+      return null;
+    }
+
+    return $HeroImageCopyWith<$Res>(_value.heroImage!, (value) {
+      return _then(_value.copyWith(heroImage: value));
+    });
+  }
+
+  @override
   $ContentMetadataCopyWith<$Res>? get metadata {
     if (_value.metadata == null) {
       return null;
@@ -296,29 +292,29 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       __$ContentCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') String? contentID,
+      {@JsonKey(name: 'ID') int? contentID,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
-      @JsonKey(name: 'authorAvatar') String? authorAvatar,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') ContentType? contentType,
+      @JsonKey(name: 'itemType') String? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'heroImageRendition') String? heroImage,
+      @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
       @JsonKey(name: 'likeCount') int? likeCount,
       @JsonKey(name: 'bookmarkCount') int? bookmarkCount,
       @JsonKey(name: 'viewCount') int? viewCount,
       @JsonKey(name: 'shareCount') int? shareCount,
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'isNew') bool? isNew,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata});
 
   @override
   $AuthorCopyWith<$Res>? get author;
+  @override
+  $HeroImageCopyWith<$Res>? get heroImage;
   @override
   $ContentMetadataCopyWith<$Res>? get metadata;
 }
@@ -339,7 +335,6 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? date = freezed,
     Object? intro = freezed,
     Object? authorName = freezed,
-    Object? authorAvatar = freezed,
     Object? author = freezed,
     Object? contentType = freezed,
     Object? estimate = freezed,
@@ -351,7 +346,6 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? shareCount = freezed,
     Object? documents = freezed,
     Object? categories = freezed,
-    Object? isNew = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
   }) {
@@ -359,7 +353,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       contentID: contentID == freezed
           ? _value.contentID
           : contentID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -376,10 +370,6 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.authorName
           : authorName // ignore: cast_nullable_to_non_nullable
               as String?,
-      authorAvatar: authorAvatar == freezed
-          ? _value.authorAvatar
-          : authorAvatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -387,7 +377,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       contentType: contentType == freezed
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
-              as ContentType?,
+              as String?,
       estimate: estimate == freezed
           ? _value.estimate
           : estimate // ignore: cast_nullable_to_non_nullable
@@ -399,7 +389,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       heroImage: heroImage == freezed
           ? _value.heroImage
           : heroImage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as HeroImage?,
       likeCount: likeCount == freezed
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
@@ -424,10 +414,6 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<ContentCategory>?,
-      isNew: isNew == freezed
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool?,
       tags: tags == freezed
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -449,7 +435,6 @@ class _$_Content implements _Content {
       @JsonKey(name: 'date') this.date,
       @JsonKey(name: 'intro') this.intro,
       @JsonKey(name: 'authorName') this.authorName,
-      @JsonKey(name: 'authorAvatar') this.authorAvatar,
       @JsonKey(name: 'author') this.author,
       @JsonKey(name: 'itemType') this.contentType,
       @JsonKey(name: 'timeEstimateSeconds') this.estimate,
@@ -461,7 +446,6 @@ class _$_Content implements _Content {
       @JsonKey(name: 'shareCount') this.shareCount,
       @JsonKey(name: 'documents') this.documents,
       @JsonKey(name: 'categoryDetails') this.categories,
-      @JsonKey(name: 'isNew') this.isNew,
       @JsonKey(name: 'tagNames') this.tags,
       @JsonKey(name: 'meta') this.metadata});
 
@@ -470,7 +454,7 @@ class _$_Content implements _Content {
 
   @override
   @JsonKey(name: 'ID')
-  final String? contentID;
+  final int? contentID;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -483,15 +467,13 @@ class _$_Content implements _Content {
   @override // TODO(abiud): move this to the Author object
   @JsonKey(name: 'authorName')
   final String? authorName;
-  @override
-  @JsonKey(name: 'authorAvatar')
-  final String? authorAvatar;
-  @override
+  @override // TODO(abiud): add when backend is ready
+// @JsonKey(name: 'authorAvatar') String? authorAvatar,
   @JsonKey(name: 'author')
   final Author? author;
   @override
   @JsonKey(name: 'itemType')
-  final ContentType? contentType;
+  final String? contentType;
   @override // ARTICLE
   @JsonKey(name: 'timeEstimateSeconds')
   final int? estimate;
@@ -500,7 +482,7 @@ class _$_Content implements _Content {
   final String? body;
   @override
   @JsonKey(name: 'heroImageRendition')
-  final String? heroImage;
+  final HeroImage? heroImage;
   @override
   @JsonKey(name: 'likeCount')
   final int? likeCount;
@@ -519,10 +501,8 @@ class _$_Content implements _Content {
   @override
   @JsonKey(name: 'categoryDetails')
   final List<ContentCategory>? categories;
-  @override
-  @JsonKey(name: 'isNew')
-  final bool? isNew;
-  @override
+  @override // TODO(abiud): add when backend is ready
+// @JsonKey(name: 'isNew') bool? isNew,
   @JsonKey(name: 'tagNames')
   final List<String?>? tags;
   @override
@@ -531,7 +511,7 @@ class _$_Content implements _Content {
 
   @override
   String toString() {
-    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, authorAvatar: $authorAvatar, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, isNew: $isNew, tags: $tags, metadata: $metadata)';
+    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata)';
   }
 
   @override
@@ -550,9 +530,6 @@ class _$_Content implements _Content {
             (identical(other.authorName, authorName) ||
                 const DeepCollectionEquality()
                     .equals(other.authorName, authorName)) &&
-            (identical(other.authorAvatar, authorAvatar) ||
-                const DeepCollectionEquality()
-                    .equals(other.authorAvatar, authorAvatar)) &&
             (identical(other.author, author) ||
                 const DeepCollectionEquality().equals(other.author, author)) &&
             (identical(other.contentType, contentType) ||
@@ -584,8 +561,6 @@ class _$_Content implements _Content {
             (identical(other.categories, categories) ||
                 const DeepCollectionEquality()
                     .equals(other.categories, categories)) &&
-            (identical(other.isNew, isNew) ||
-                const DeepCollectionEquality().equals(other.isNew, isNew)) &&
             (identical(other.tags, tags) ||
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.metadata, metadata) ||
@@ -601,7 +576,6 @@ class _$_Content implements _Content {
       const DeepCollectionEquality().hash(date) ^
       const DeepCollectionEquality().hash(intro) ^
       const DeepCollectionEquality().hash(authorName) ^
-      const DeepCollectionEquality().hash(authorAvatar) ^
       const DeepCollectionEquality().hash(author) ^
       const DeepCollectionEquality().hash(contentType) ^
       const DeepCollectionEquality().hash(estimate) ^
@@ -613,7 +587,6 @@ class _$_Content implements _Content {
       const DeepCollectionEquality().hash(shareCount) ^
       const DeepCollectionEquality().hash(documents) ^
       const DeepCollectionEquality().hash(categories) ^
-      const DeepCollectionEquality().hash(isNew) ^
       const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(metadata);
 
@@ -630,24 +603,22 @@ class _$_Content implements _Content {
 
 abstract class _Content implements Content {
   factory _Content(
-      {@JsonKey(name: 'ID') String? contentID,
+      {@JsonKey(name: 'ID') int? contentID,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'date') String? date,
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
-      @JsonKey(name: 'authorAvatar') String? authorAvatar,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') ContentType? contentType,
+      @JsonKey(name: 'itemType') String? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'heroImageRendition') String? heroImage,
+      @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
       @JsonKey(name: 'likeCount') int? likeCount,
       @JsonKey(name: 'bookmarkCount') int? bookmarkCount,
       @JsonKey(name: 'viewCount') int? viewCount,
       @JsonKey(name: 'shareCount') int? shareCount,
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'isNew') bool? isNew,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata}) = _$_Content;
 
@@ -655,7 +626,7 @@ abstract class _Content implements Content {
 
   @override
   @JsonKey(name: 'ID')
-  String? get contentID => throw _privateConstructorUsedError;
+  int? get contentID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
@@ -668,15 +639,13 @@ abstract class _Content implements Content {
   @override // TODO(abiud): move this to the Author object
   @JsonKey(name: 'authorName')
   String? get authorName => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'authorAvatar')
-  String? get authorAvatar => throw _privateConstructorUsedError;
-  @override
+  @override // TODO(abiud): add when backend is ready
+// @JsonKey(name: 'authorAvatar') String? authorAvatar,
   @JsonKey(name: 'author')
   Author? get author => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'itemType')
-  ContentType? get contentType => throw _privateConstructorUsedError;
+  String? get contentType => throw _privateConstructorUsedError;
   @override // ARTICLE
   @JsonKey(name: 'timeEstimateSeconds')
   int? get estimate => throw _privateConstructorUsedError;
@@ -685,7 +654,7 @@ abstract class _Content implements Content {
   String? get body => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'heroImageRendition')
-  String? get heroImage => throw _privateConstructorUsedError;
+  HeroImage? get heroImage => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'likeCount')
   int? get likeCount => throw _privateConstructorUsedError;
@@ -704,10 +673,8 @@ abstract class _Content implements Content {
   @override
   @JsonKey(name: 'categoryDetails')
   List<ContentCategory>? get categories => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'isNew')
-  bool? get isNew => throw _privateConstructorUsedError;
-  @override
+  @override // TODO(abiud): add when backend is ready
+// @JsonKey(name: 'isNew') bool? isNew,
   @JsonKey(name: 'tagNames')
   List<String?>? get tags => throw _privateConstructorUsedError;
   @override
@@ -728,8 +695,7 @@ class _$DocumentTearOff {
   const _$DocumentTearOff();
 
   _Document call(
-      {@JsonKey(name: 'ID') String? id,
-      @JsonKey(name: 'title') String? title}) {
+      {@JsonKey(name: 'ID') int? id, @JsonKey(name: 'title') String? title}) {
     return _Document(
       id: id,
       title: title,
@@ -747,7 +713,7 @@ const $Document = _$DocumentTearOff();
 /// @nodoc
 mixin _$Document {
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
@@ -762,7 +728,7 @@ abstract class $DocumentCopyWith<$Res> {
   factory $DocumentCopyWith(Document value, $Res Function(Document) then) =
       _$DocumentCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') String? id, @JsonKey(name: 'title') String? title});
+      {@JsonKey(name: 'ID') int? id, @JsonKey(name: 'title') String? title});
 }
 
 /// @nodoc
@@ -782,7 +748,7 @@ class _$DocumentCopyWithImpl<$Res> implements $DocumentCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -797,7 +763,7 @@ abstract class _$DocumentCopyWith<$Res> implements $DocumentCopyWith<$Res> {
       __$DocumentCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') String? id, @JsonKey(name: 'title') String? title});
+      {@JsonKey(name: 'ID') int? id, @JsonKey(name: 'title') String? title});
 }
 
 /// @nodoc
@@ -818,7 +784,7 @@ class __$DocumentCopyWithImpl<$Res> extends _$DocumentCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -838,7 +804,7 @@ class _$_Document implements _Document {
 
   @override
   @JsonKey(name: 'ID')
-  final String? id;
+  final int? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -877,14 +843,14 @@ class _$_Document implements _Document {
 
 abstract class _Document implements Document {
   factory _Document(
-      {@JsonKey(name: 'ID') String? id,
+      {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'title') String? title}) = _$_Document;
 
   factory _Document.fromJson(Map<String, dynamic> json) = _$_Document.fromJson;
 
   @override
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
@@ -903,7 +869,7 @@ class _$ContentCategoryTearOff {
   const _$ContentCategoryTearOff();
 
   _ContentCategory call(
-      {@JsonKey(name: 'ID') String? id,
+      {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'categoryName') String? name,
       @JsonKey(name: 'categoryIcon') String? icon}) {
     return _ContentCategory(
@@ -924,7 +890,7 @@ const $ContentCategory = _$ContentCategoryTearOff();
 /// @nodoc
 mixin _$ContentCategory {
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'categoryName')
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'categoryIcon')
@@ -942,7 +908,7 @@ abstract class $ContentCategoryCopyWith<$Res> {
           ContentCategory value, $Res Function(ContentCategory) then) =
       _$ContentCategoryCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') String? id,
+      {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'categoryName') String? name,
       @JsonKey(name: 'categoryIcon') String? icon});
 }
@@ -966,7 +932,7 @@ class _$ContentCategoryCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -987,7 +953,7 @@ abstract class _$ContentCategoryCopyWith<$Res>
       __$ContentCategoryCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') String? id,
+      {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'categoryName') String? name,
       @JsonKey(name: 'categoryIcon') String? icon});
 }
@@ -1013,7 +979,7 @@ class __$ContentCategoryCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1039,7 +1005,7 @@ class _$_ContentCategory implements _ContentCategory {
 
   @override
   @JsonKey(name: 'ID')
-  final String? id;
+  final int? id;
   @override
   @JsonKey(name: 'categoryName')
   final String? name;
@@ -1084,7 +1050,7 @@ class _$_ContentCategory implements _ContentCategory {
 
 abstract class _ContentCategory implements ContentCategory {
   factory _ContentCategory(
-      {@JsonKey(name: 'ID') String? id,
+      {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'categoryName') String? name,
       @JsonKey(name: 'categoryIcon') String? icon}) = _$_ContentCategory;
 
@@ -1093,7 +1059,7 @@ abstract class _ContentCategory implements ContentCategory {
 
   @override
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'categoryName')
   String? get name => throw _privateConstructorUsedError;
@@ -1435,4 +1401,151 @@ abstract class _Author implements Author {
   @override
   @JsonKey(ignore: true)
   _$AuthorCopyWith<_Author> get copyWith => throw _privateConstructorUsedError;
+}
+
+HeroImage _$HeroImageFromJson(Map<String, dynamic> json) {
+  return _HeroImage.fromJson(json);
+}
+
+/// @nodoc
+class _$HeroImageTearOff {
+  const _$HeroImageTearOff();
+
+  _HeroImage call({@JsonKey(name: 'url') String? url}) {
+    return _HeroImage(
+      url: url,
+    );
+  }
+
+  HeroImage fromJson(Map<String, Object> json) {
+    return HeroImage.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $HeroImage = _$HeroImageTearOff();
+
+/// @nodoc
+mixin _$HeroImage {
+  @JsonKey(name: 'url')
+  String? get url => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $HeroImageCopyWith<HeroImage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HeroImageCopyWith<$Res> {
+  factory $HeroImageCopyWith(HeroImage value, $Res Function(HeroImage) then) =
+      _$HeroImageCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: 'url') String? url});
+}
+
+/// @nodoc
+class _$HeroImageCopyWithImpl<$Res> implements $HeroImageCopyWith<$Res> {
+  _$HeroImageCopyWithImpl(this._value, this._then);
+
+  final HeroImage _value;
+  // ignore: unused_field
+  final $Res Function(HeroImage) _then;
+
+  @override
+  $Res call({
+    Object? url = freezed,
+  }) {
+    return _then(_value.copyWith(
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$HeroImageCopyWith<$Res> implements $HeroImageCopyWith<$Res> {
+  factory _$HeroImageCopyWith(
+          _HeroImage value, $Res Function(_HeroImage) then) =
+      __$HeroImageCopyWithImpl<$Res>;
+  @override
+  $Res call({@JsonKey(name: 'url') String? url});
+}
+
+/// @nodoc
+class __$HeroImageCopyWithImpl<$Res> extends _$HeroImageCopyWithImpl<$Res>
+    implements _$HeroImageCopyWith<$Res> {
+  __$HeroImageCopyWithImpl(_HeroImage _value, $Res Function(_HeroImage) _then)
+      : super(_value, (v) => _then(v as _HeroImage));
+
+  @override
+  _HeroImage get _value => super._value as _HeroImage;
+
+  @override
+  $Res call({
+    Object? url = freezed,
+  }) {
+    return _then(_HeroImage(
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_HeroImage implements _HeroImage {
+  _$_HeroImage({@JsonKey(name: 'url') this.url});
+
+  factory _$_HeroImage.fromJson(Map<String, dynamic> json) =>
+      _$_$_HeroImageFromJson(json);
+
+  @override
+  @JsonKey(name: 'url')
+  final String? url;
+
+  @override
+  String toString() {
+    return 'HeroImage(url: $url)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _HeroImage &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(url);
+
+  @JsonKey(ignore: true)
+  @override
+  _$HeroImageCopyWith<_HeroImage> get copyWith =>
+      __$HeroImageCopyWithImpl<_HeroImage>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_HeroImageToJson(this);
+  }
+}
+
+abstract class _HeroImage implements HeroImage {
+  factory _HeroImage({@JsonKey(name: 'url') String? url}) = _$_HeroImage;
+
+  factory _HeroImage.fromJson(Map<String, dynamic> json) =
+      _$_HeroImage.fromJson;
+
+  @override
+  @JsonKey(name: 'url')
+  String? get url => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$HeroImageCopyWith<_HeroImage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
