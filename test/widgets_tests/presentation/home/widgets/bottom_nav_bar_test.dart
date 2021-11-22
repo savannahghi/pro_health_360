@@ -130,7 +130,7 @@ void main() {
         expect(find.text('My Health'), findsWidgets);
         await tester.tap(find.text('My Health').first);
         await tester.pumpAndSettle();
-        expect(store.state.bottomNavigationState!.currentBottomNavIndex, 3);
+        expect(store.state.bottomNavigationState!.currentBottomNavIndex, 2);
         expect(find.byType(PINInputPage), findsOneWidget);
 
         await tester.tap(find.byKey(pinInputPageBackKey));
