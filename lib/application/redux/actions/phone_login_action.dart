@@ -13,6 +13,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -128,6 +129,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         );
 
         final User? user = loginResponse.clientState?.user;
+        await store.dispatch(
+          UpdateOnboardingStateAction(
+            hasSetPin: user?.hasSetPin,
+            hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
+            isPhoneVerified: user?.isPhoneVerified,
+            hasSetNickName: user?.username != null,
+          ),
+        );
 
         // dispatch an action to update the user profile
         await store.dispatch(UpdateUserAction(user: user));

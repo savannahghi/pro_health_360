@@ -107,7 +107,7 @@ class CreatePINAction extends ReduxAction<AppState> {
 
         StoreProvider.dispatch(
           context,
-          UpdateOnboardingStateAction(isPINSet: true),
+          UpdateOnboardingStateAction(hasSetPin: true),
         );
         Navigator.pushReplacementNamed(
           context,

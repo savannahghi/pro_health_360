@@ -25,6 +25,10 @@ class User with _$User {
     @JsonKey(name: 'secondaryContacts') List<Contact?>? secondaryContacts,
     @JsonKey(name: 'languages') List<String>? languages,
     @JsonKey(name: 'termsAccepted') bool? termsAccepted,
+    @JsonKey(name: 'hasSetPin') bool? hasSetPin,
+    @JsonKey(name: 'hasSetSecurityQuestions') bool? hasSetSecurityQuestions,
+    @JsonKey(name: 'hasSetNickname') bool? hasSetNickname,
+    @JsonKey(name: 'isPhoneVerified') bool? isPhoneVerified,
     @JsonKey(name: 'pinChangeRequired', defaultValue: false)
         bool? pinChangeRequired,
     @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,

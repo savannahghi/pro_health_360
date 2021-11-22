@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/get_security_questions_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
@@ -19,7 +20,6 @@ import 'package:myafyahub/domain/core/entities/security_questions/security_quest
 import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class SecurityQuestionsPage extends StatefulWidget {
@@ -160,7 +160,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                               );
                               Navigator.pushReplacementNamed(
                                 context,
-                                BWRoutes.createPin,
+                                onboardingPath(vm.appState).route,
                               );
                             } else {
                               ScaffoldMessenger.of(context)

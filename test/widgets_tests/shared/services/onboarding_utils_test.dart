@@ -735,7 +735,7 @@ void main() {
 
           store.dispatch(
             UpdateOnboardingStateAction(
-              isPINSet: false,
+              hasSetPin: false,
               hasSetSecurityQuestions: true,
             ),
           );
@@ -772,7 +772,7 @@ void main() {
 
           store.dispatch(
             UpdateOnboardingStateAction(
-              isPINSet: true,
+              hasSetPin: true,
               hasSetSecurityQuestions: true,
             ),
           );

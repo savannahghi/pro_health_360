@@ -29,6 +29,10 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     languages:
         (json['languages'] as List<dynamic>?)?.map((e) => e as String).toList(),
     termsAccepted: json['termsAccepted'] as bool?,
+    hasSetPin: json['hasSetPin'] as bool?,
+    hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
+    hasSetNickname: json['hasSetNickname'] as bool?,
+    isPhoneVerified: json['isPhoneVerified'] as bool?,
     pinChangeRequired: json['pinChangeRequired'] as bool? ?? false,
     suspended: json['suspended'] as bool? ?? false,
   );
@@ -49,6 +53,10 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'secondaryContacts': instance.secondaryContacts,
       'languages': instance.languages,
       'termsAccepted': instance.termsAccepted,
+      'hasSetPin': instance.hasSetPin,
+      'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
+      'hasSetNickname': instance.hasSetNickname,
+      'isPhoneVerified': instance.isPhoneVerified,
       'pinChangeRequired': instance.pinChangeRequired,
       'suspended': instance.suspended,
     };
