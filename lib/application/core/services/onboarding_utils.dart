@@ -364,7 +364,7 @@ Future<void> setUserPIN({
   );
 }
 
-// determines the path to route the user to based on the app state
+/// Determines the path to route the user to based on the app state
 OnboardingPathConfig onboardingPath(
   AppState state, {
   bool calledOnResume = false,
@@ -374,32 +374,31 @@ OnboardingPathConfig onboardingPath(
   final OnboardingState? onboardingState = state.onboardingState;
   final bool pinChangeRequired =
       state.clientState?.user?.pinChangeRequired ?? false;
-  final bool isPhoneVerified = onboardingState!.isPhoneVerified ?? false;
+  final bool isPhoneVerified = onboardingState?.isPhoneVerified ?? false;
   final bool hasSetSecurityQuestions =
-      onboardingState.hasSetSecurityQuestions ?? false;
-  final bool hasSetNickName = onboardingState.hasSetNickName ?? false;
-  final bool isPINSet = onboardingState.isPINSet ?? false;
+      onboardingState?.hasSetSecurityQuestions ?? false;
+  final bool hasSetNickName = onboardingState?.hasSetNickName ?? false;
+  final bool isPINSet = onboardingState?.isPINSet ?? false;
 
   if (pinChangeRequired) {
     if (isPhoneVerified) {
       return OnboardingPathConfig(BWRoutes.verifySignUpOTP);
     } else if (!termsAccepted) {
       return OnboardingPathConfig(BWRoutes.termsAndConditions);
-    } else if (hasSetSecurityQuestions) {
+    } else if (!hasSetSecurityQuestions) {
       return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
-    } else if (isPINSet) {
+    } else if (!isPINSet) {
       return OnboardingPathConfig(BWRoutes.setPin);
-    } else if (hasSetNickName) {
+    } else if (!hasSetNickName) {
       return OnboardingPathConfig(BWRoutes.congratulationsPage);
     }
-    return OnboardingPathConfig(BWRoutes.home);
   } else {
-    if (termsAccepted) {
+    if (!termsAccepted) {
       return OnboardingPathConfig(BWRoutes.termsAndConditions);
-    } else {
-      return OnboardingPathConfig(BWRoutes.home);
     }
   }
+
+  return OnboardingPathConfig(BWRoutes.home);
 }
 
 /// [getInitialRoute] routine is used to determine what should be the

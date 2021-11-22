@@ -15,6 +15,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.invalidOTP,
     this.failedToSendOTP,
     this.hasSetNickName,
+    this.hasSetSecurityQuestions,
   });
 
   List<SecurityQuestionResponse>? securityQuestionsResponses;
@@ -24,6 +25,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   final bool? invalidOTP;
   final bool? failedToSendOTP;
   bool? hasSetNickName;
+  bool? hasSetSecurityQuestions;
 
   @override
   AppState reduce() {
@@ -34,6 +36,8 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       isPhoneVerified: isPhoneVerified ?? oldPhoneVerified,
       isPINSet: isPINSet ?? state.onboardingState?.isPINSet,
       hasSetNickName: hasSetNickName ?? state.onboardingState?.hasSetNickName,
+      hasSetSecurityQuestions: hasSetSecurityQuestions ??
+          state.onboardingState?.hasSetSecurityQuestions,
       verifyPhoneState: state.onboardingState!.verifyPhoneState!.copyWith.call(
         otp: otp ?? state.onboardingState!.verifyPhoneState!.otp,
         invalidOTP:

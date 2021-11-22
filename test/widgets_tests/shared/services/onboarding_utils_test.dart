@@ -19,6 +19,7 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
@@ -666,7 +667,6 @@ void main() {
       });
 
       group('OnboardingPath', () {
-        // TODO(abiud): test all onboarding paths here
         testWidgets('should navigate to security questions page',
             (WidgetTester tester) async {
           final User? user = store.state.clientState?.user
@@ -694,6 +694,110 @@ void main() {
           await tester.pumpAndSettle();
 
           expect(path, BWRoutes.securityQuestionsPage);
+        });
+
+        testWidgets('should navigate to terms and conditions page',
+            (WidgetTester tester) async {
+          final User? user = store.state.clientState?.user
+              ?.copyWith(pinChangeRequired: true, termsAccepted: false);
+
+          store.dispatch(UpdateUserAction(user: user));
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(store.state).route;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, BWRoutes.termsAndConditions);
+        });
+
+        testWidgets('should navigate to set pin page',
+            (WidgetTester tester) async {
+          final User? user = store.state.clientState?.user
+              ?.copyWith(pinChangeRequired: true, termsAccepted: true);
+
+          store.dispatch(UpdateUserAction(user: user));
+
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              isPINSet: false,
+              hasSetSecurityQuestions: true,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(store.state).route;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, BWRoutes.setPin);
+        });
+
+        testWidgets('should navigate to congratulations page',
+            (WidgetTester tester) async {
+          final User? user = store.state.clientState?.user
+              ?.copyWith(pinChangeRequired: true, termsAccepted: true);
+
+          store.dispatch(UpdateUserAction(user: user));
+
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              isPINSet: true,
+              hasSetSecurityQuestions: true,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(store.state).route;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, BWRoutes.congratulationsPage);
         });
       });
 
