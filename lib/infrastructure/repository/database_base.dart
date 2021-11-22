@@ -31,6 +31,7 @@ enum Tables {
   miscState,
   bottomNavigationState,
   connectivityState,
+  contentState,
   unknown,
 }
 
@@ -51,6 +52,8 @@ extension TablesEx on Tables {
         return 'connectivityState';
       case Tables.miscState:
         return 'miscState';
+      case Tables.contentState:
+        return 'contentState';
       default:
         return 'unknown';
     }

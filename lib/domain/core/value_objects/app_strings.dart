@@ -180,12 +180,6 @@ const String seeDoctorTitle = 'See a doctor';
 const String seeDoctorCopy = 'Schedule an appointment with a doctor';
 const String seeDoctorComingSoonText = 'Seeing a doctor';
 
-// get tested landing page strings
-const String getTestedTitle = 'Get tested';
-const String getTestedCopy = 'Order tests for yourself or someone else.'
-    ' If you have a picture of a prescribed test, we can transcribe it for you.';
-const String getTestedComingSoonText = 'Tests';
-
 // basic details strings
 const String firstNameRequiredString = 'First name is required';
 const String genderHint = 'Select gender';
@@ -214,19 +208,6 @@ const String noUserFoundString =
 // recover account
 const String getUserPhoneNumbersMessage =
     'We could not find a user linked to that phone number. Kindly confirm and try again';
-
-// filter box
-const String fingerprint = 'Fingerprint';
-const String card = 'Card';
-const String otp = 'OTP';
-const String guardian = 'Guardian';
-const String inpatient = 'Inpatient';
-const String maternity = 'Maternity';
-const String dental = 'Dental';
-const String optical = 'Optical';
-const String prescription = 'Prescription';
-const String lab = 'Lab';
-const String radiology = 'Radiology';
 
 // inbox
 const String retryButtonText = 'Retry';
@@ -379,8 +360,7 @@ const String saveEntryString = 'Save Entry';
 
 const String confirmPinString = 'Confirm new PIN';
 const String createNewPINTitleString = 'Create new PIN';
-const String createNewPINSubTitleString =
-    'Enter your new 4 digit PIN.';
+const String createNewPINSubTitleString = 'Enter your new 4 digit PIN.';
 const String pinMustMatchString = 'PIN must match';
 
 //congratulations page
@@ -475,7 +455,8 @@ const String feedHeader =
     'Tips on how to keep yourself properly hydrated while exercising';
 const String feedDate = '2021-08-23T06:42:05.085216Z';
 const String feedReadTime = '5 minutes';
-String contentReadDuration(String duration) => '$duration read';
+String contentReadDuration(int duration) =>
+    '${(duration / 60).floor()} minute read';
 const String newString = 'New';
 
 //My Health Page

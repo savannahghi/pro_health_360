@@ -27,8 +27,8 @@ void main() {
     testWidgets('shows the play icon if a piece of content has a video',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-      final Content contentWithVideo =
-          mockContent.copyWith.call(body: null, contentType: ContentType.VIDEO);
+      final Content contentWithVideo = mockContent.copyWith
+          .call(body: null, contentType: ContentType.AUDIOVIDEO);
 
       await buildTestWidget(
         tester: tester,

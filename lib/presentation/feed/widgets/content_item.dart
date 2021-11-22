@@ -59,7 +59,7 @@ class ContentItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                    if (contentDetails.contentType == ContentType.VIDEO)
+                    if (contentDetails.contentType == ContentType.AUDIOVIDEO)
                       SizedBox(
                         key: feedVideoPlayIconKey,
                         child: SvgPicture.asset(
@@ -87,7 +87,7 @@ class ContentItem extends StatelessWidget {
                       ),
                       verySmallVerticalSizedBox,
                       ContentItemFooter(
-                        datePublished: contentDetails.createdAt!,
+                        datePublished: contentDetails.metadata!.createdAt!,
                         estimatedReadingTime: contentDetails.estimate,
                       )
                     ],

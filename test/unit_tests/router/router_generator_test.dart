@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -386,17 +387,16 @@ void main() {
     final RouteSettings settings = RouteSettings(
       name: BWRoutes.contentDetailPage,
       arguments: Content(
-        author: '',
+        author: Author(id: ''),
         contentID: '',
         title: '',
         body: '',
         authorAvatar: '',
-        createdAt: '',
         tags: <String>['', ''],
-        estimate: '',
+        estimate: 180,
         heroImage: '',
         contentType: ContentType.ARTICLE,
-        publicLink: '',
+        metadata: ContentMetadata(publicLink: '', createdAt: feedDate),
         isNew: true,
       ),
     );
@@ -417,8 +417,8 @@ void main() {
     expect(route.builder(context), isA<ForgotPINPage>());
   });
 
-  test('Test router returns deeplink page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.deeplink);
+  test('Test router returns deep link page', () {
+    const RouteSettings settings = RouteSettings(name: BWRoutes.deepLink);
 
     final MaterialPageRoute<HandleDeepLink> route =
         routeGenerator(settings) as MaterialPageRoute<HandleDeepLink>;
