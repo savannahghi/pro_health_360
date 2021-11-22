@@ -113,7 +113,6 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
         }
 
         if (snapshot.hasData) {
-          // TODO!!(abiud): the data could be missing this key
           final List<dynamic> recentContent =
               snapshot.data['fetchRecentContent'] as List<dynamic>;
 
@@ -153,7 +152,6 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                     ],
                   ),
                 ),
-                // TODO!!(abiud): handle empty recent content
                 if (recentContent.isNotEmpty)
                   SizedBox(
                     width: double.infinity,

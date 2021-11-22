@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
@@ -58,7 +59,8 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
         lastPersistedState.bottomNavigationState !=
             newState.bottomNavigationState ||
         lastPersistedState.connectivityState != newState.connectivityState ||
-        lastPersistedState.miscState != newState.miscState) {
+        lastPersistedState.miscState != newState.miscState ||
+        lastPersistedState.contentState != newState.contentState) {
       await persistState(
         newState,
         BeWellDatabaseMobile<Database>(
@@ -138,6 +140,12 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
       table: Tables.connectivityState,
     );
 
+    // save contentState state
+    await database.saveState(
+      data: newState.contentState!.toJson(),
+      table: Tables.contentState,
+    );
+
     // save miscState state
     await database.saveState(
       data: newState.miscState!.toJson(),
@@ -168,6 +176,10 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
 
       connectivityState: ConnectivityState.fromJson(
         await database.retrieveState(Tables.connectivityState),
+      ),
+
+      contentState: ContentState.fromJson(
+        await database.retrieveState(Tables.contentState),
       ),
 
       miscState: MiscState.fromJson(

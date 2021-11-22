@@ -83,7 +83,15 @@ class SetNicknameAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['setNickName'] == true) {
+    if (responseMap['data']['setNickName'] != null &&
+        responseMap['data']['setNickName'] == true) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(nicknameSuccessString),
+          duration: Duration(seconds: 2),
+        ),
+      );
+
       StoreProvider.dispatch(
         context,
         UpdateOnboardingStateAction(hasSetNickName: true),

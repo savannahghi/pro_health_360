@@ -17,7 +17,7 @@ void main() {
             home: Scaffold(
               body: ContentItemFooter(
                 datePublished: '2021-08-23T06:42:05.085216Z',
-                estimatedReadingTime: '3 minutes',
+                estimatedReadingTime: 180,
               ),
             ),
           ),

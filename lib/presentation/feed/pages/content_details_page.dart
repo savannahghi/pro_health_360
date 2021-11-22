@@ -31,7 +31,7 @@ class ContentDetailPage extends StatelessWidget {
     final Widget publishDate = sortDate(
       dateTextStyle: TextThemes.normalSize12Text(AppColors.greyTextColor),
       context: context,
-      loadedDate: articleDetails.createdAt!,
+      loadedDate: articleDetails.metadata!.createdAt!,
     );
 
     return AppScaffold(
@@ -112,7 +112,7 @@ class ContentDetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                articleDetails.author!,
+                                articleDetails.authorName!,
                                 style: TextThemes.veryBoldSize15Text(
                                   AppColors.secondaryColor,
                                 ),
