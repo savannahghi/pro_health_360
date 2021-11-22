@@ -8,8 +8,8 @@ import 'package:afya_moja_core/information_list_card.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -56,6 +56,8 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
             converter: (Store<AppState> store) =>
                 AppStateViewModel.fromStore(store),
             builder: (BuildContext context, AppStateViewModel vm) {
+              final TermsAndConditions? termsObject =
+                  vm.appState.onboardingState!.termsAndConditions;
               return Column(
                 children: <Widget>[
                   // Terms and Conditions Card
@@ -154,23 +156,20 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                           )
                         : MyAfyaHubPrimaryButton(
                             text: continueString,
-                            buttonColor: vm.appState.onboardingState!
-                                            .termsAndConditions!.text !=
-                                        UNKNOWN &&
-                                    isAgreed
+                            borderColor:
+                                termsObject!.text != UNKNOWN && isAgreed
+                                    ? AppColors.secondaryColor
+                                    : Colors.grey,
+                            buttonColor: termsObject.text != UNKNOWN && isAgreed
                                 ? AppColors.secondaryColor
                                 : Colors.grey,
                             onPressed: !isAgreed
                                 ? null
                                 : () {
-                                    final User? user =
-                                        vm.appState.clientState?.user;
-
                                     StoreProvider.dispatch(
                                       context,
-                                      UpdateUserAction(
-                                        user:
-                                            user?.copyWith(termsAccepted: true),
+                                      UpdateUserProfileAction(
+                                        termsAccepted: true,
                                       ),
                                     );
 
@@ -178,10 +177,6 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                       context,
                                       // Accept terms and conditions
                                       AcceptTermsAndConditionsAction(
-                                        termsId: vm.appState.onboardingState!
-                                            .termsAndConditions!.termsId,
-                                        userId: vm.appState.clientState!.user!
-                                            .userId!,
                                         context: context,
                                       ),
                                     );

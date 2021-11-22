@@ -52,12 +52,7 @@ void main() {
               onPressed: () async {
                 try {
                   await store.dispatch(
-                    AcceptTermsAndConditionsAction(
-                      termsId: store
-                          .state.onboardingState!.termsAndConditions!.termsId,
-                      userId: store.state.clientState!.user!.userId!,
-                      context: context,
-                    ),
+                    AcceptTermsAndConditionsAction(context: context),
                   );
                 } catch (e) {
                   err = e;

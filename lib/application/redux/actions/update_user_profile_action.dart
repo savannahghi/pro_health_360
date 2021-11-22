@@ -15,6 +15,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
     this.firstName,
     this.lastName,
     this.avatar,
+    this.termsAccepted,
   });
 
   final bool? active;
@@ -22,8 +23,8 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
   final String? firstName;
   final String? lastName;
   final String? avatar;
-
   final Contact? phoneNumber;
+  final bool? termsAccepted;
 
   @override
   AppState reduce() {
@@ -35,6 +36,7 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
       lastName: lastName ?? userFromState?.lastName,
       avatar: avatar ?? userFromState?.avatar,
       username: nickName ?? userFromState?.username,
+      termsAccepted: termsAccepted ?? userFromState?.termsAccepted,
     );
 
     final ClientState newState =

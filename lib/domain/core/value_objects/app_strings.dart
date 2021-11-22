@@ -345,7 +345,7 @@ const String phoneNumberRequiredText = 'A phone number is required';
 const String validPhoneNumberText = 'Please enter a valid phone number';
 const String loginPageTitleString = 'Welcome to myCareHub';
 const String loginPageSubTitleString =
-    'Please enter the PIN sent to you to continue';
+    'Please enter your phone number and PIN to continue.';
 const String phoneNumberString = 'Phone Number';
 const String pinString = 'PIN';
 const String enterYourString = 'Kindly enter your PIN';
@@ -388,16 +388,18 @@ String congratulationsPageTitle({required BuildContext context}) {
   /// [congratulationsPageTitle] function fetches the enrollment date from state and calculates
   /// the difference in years to return the appropriate message to the title on [CongratulationsPage]
   final int duration = DateTime.now()
-      .difference(DateTime.parse(
-        StoreProvider.state<AppState>(context)!
-                    .clientState!
-                    .treatmentEnrollmentDate! ==
-                UNKNOWN
-            ? DateTime.now().toString()
-            : StoreProvider.state<AppState>(context)!
-                .clientState!
-                .treatmentEnrollmentDate!,
-      ),)
+      .difference(
+        DateTime.parse(
+          StoreProvider.state<AppState>(context)!
+                      .clientState!
+                      .treatmentEnrollmentDate! ==
+                  UNKNOWN
+              ? DateTime.now().toString()
+              : StoreProvider.state<AppState>(context)!
+                  .clientState!
+                  .treatmentEnrollmentDate!,
+        ),
+      )
       .inDays;
   return 'Congratulations on your ${getEnrollmentDuration(
     enrollmentDuration: duration,
@@ -441,9 +443,8 @@ const String libraryPageString = 'Library';
 // Terms and conditions
 const String portalTermsText = 'Portal terms and conditions';
 const String readAndAcceptText =
-    'Read and accept the terms and conditions to proceed';
-const String acceptTermsText =
-    'I have read and accepted the terms and conditions';
+    'Please review the terms of service below and accept them';
+const String acceptTermsText = 'I agree with the terms and conditions';
 const String joinString = 'Join';
 const String suggestedGroupsString = 'Suggested groups to join';
 const String closeString = 'Close';
@@ -610,7 +611,8 @@ const String communicationChannel = 'Communication channel';
 const String nickNameFieldName = 'Enter your nickname';
 String editInfoTitle(String title) => 'Edit $title';
 
-const String somethingWentWrongText = 'Something went wrong';
+const String somethingWentWrongText =
+    'Sorry, an unknown error occurred, please try again or get help from our help center.';
 const String pinSuccessString = 'PIN created successfully';
 const String requestCorrectionString = 'Request for correction';
 const String nicknameSuccessString = 'Nickname created successfully';

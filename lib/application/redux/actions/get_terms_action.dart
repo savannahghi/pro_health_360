@@ -12,8 +12,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
 // Project imports:
@@ -89,7 +87,6 @@ class GetTermsAction extends ReduxAction<AppState> {
           SnackBar(
             content: Text(error.message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
-            action: dismissSnackBar(closeString, white, context),
           ),
         );
       return error;

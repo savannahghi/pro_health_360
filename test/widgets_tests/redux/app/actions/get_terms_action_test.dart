@@ -33,9 +33,7 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'errors': <Object>[
-              <String, dynamic>{
-                'message': '4: error',
-              }
+              <String, dynamic>{'message': '4: error'}
             ]
           }),
           401,
@@ -51,11 +49,7 @@ void main() {
             return SILPrimaryButton(
               onPressed: () async {
                 try {
-                  await store.dispatch(
-                    GetTermsAction(
-                      context: context,
-                    ),
-                  );
+                  await store.dispatch(GetTermsAction(context: context));
                 } catch (e) {
                   err = e;
                 }
@@ -68,7 +62,16 @@ void main() {
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
+
       expect(err, isA<Future<dynamic>>());
+      expect(find.byType(SnackBar), findsOneWidget);
+
+      /// Retry and expect the same thing
+      expect(find.byType(SnackBarAction), findsOneWidget);
+      await tester.pumpAndSettle();
+
+      expect(err, isA<Future<dynamic>>());
+      expect(find.byType(SnackBar), findsOneWidget);
     });
   });
 }

@@ -30,13 +30,9 @@ import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
 class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
   AcceptTermsAndConditionsAction({
     required this.context,
-    required this.userId,
-    required this.termsId,
   });
 
   final BuildContext context;
-  final int termsId;
-  final String userId;
 
   @override
   void after() {
@@ -52,14 +48,15 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
+    final int acceptedTermsID =
+        state.onboardingState!.termsAndConditions!.termsId;
+    final String? userID = state.clientState!.user!.userId;
+
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
     final http.Response result = await _client.query(
       acceptTermsAndConditionsMutation,
-      getTermsVariables(
-        termsId: termsId,
-        userId: userId,
-      ),
+      getTermsVariables(termsId: acceptedTermsID, userId: userID!),
     );
 
     final Map<String, dynamic> body = _client.toMap(result);
