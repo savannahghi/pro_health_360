@@ -9,8 +9,8 @@ import 'package:flutter_graphql_client/graph_client.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
-import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 
@@ -22,6 +22,7 @@ class AppEntryPoint extends StatefulWidget {
     required this.appNavigatorKey,
     required this.appNavigatorObservers,
     required this.appSetupData,
+    required this.connectivityStatus,
   }) : super(key: key);
 
   final String appName;
@@ -29,6 +30,7 @@ class AppEntryPoint extends StatefulWidget {
   final List<NavigatorObserver> appNavigatorObservers;
   final Store<AppState> appStore;
   final AppSetupData appSetupData;
+  final ConnectivityStatus connectivityStatus;
 
   @override
   _AppEntryPointState createState() => _AppEntryPointState();
@@ -38,23 +40,14 @@ class _AppEntryPointState extends State<AppEntryPoint>
     with WidgetsBindingObserver {
   @override
   void initState() {
-    WidgetsBinding.instance!.addObserver(this);
     super.initState();
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      MyAfyaHubFacebookEvents().logger.logActivatedApp();
-    } else {
-      MyAfyaHubFacebookEvents().logger.logDeactivatedApp();
-    }
   }
 
   @override
@@ -75,18 +68,15 @@ class _AppEntryPointState extends State<AppEntryPoint>
               widget.appSetupData.customContext!.graphqlEndpoint,
             ),
             baseContext: widget.appSetupData.customContext,
-            child: Builder(
-              builder: (BuildContext ctx) {
-                return PreLoadApp(
-                  appState: appState,
-                  thisAppContexts: widget.appSetupData.appContexts,
-                  appName: widget.appName,
-                  appNavigatorKey: widget.appNavigatorKey,
-                  appNavigatorObservers: widget.appNavigatorObservers,
-                  entryPointContext: ctx,
-                  appStore: widget.appStore,
-                );
-              },
+            child: PreLoadApp(
+              appState: appState,
+              thisAppContexts: widget.appSetupData.appContexts,
+              appName: widget.appName,
+              appNavigatorKey: widget.appNavigatorKey,
+              appNavigatorObservers: widget.appNavigatorObservers,
+              entryPointContext: context,
+              appStore: widget.appStore,
+              connectivityStatus: widget.connectivityStatus,
             ),
           );
         },

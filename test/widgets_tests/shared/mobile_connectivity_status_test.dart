@@ -8,7 +8,7 @@ import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/mobile_connectivity_status.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 
 void main() {
   late Store<AppState> store;

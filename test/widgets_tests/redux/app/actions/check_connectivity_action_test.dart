@@ -13,9 +13,9 @@ void main() {
 
     expect(storeTester.state.connectivityState?.isConnected, false);
 
-    storeTester.dispatch(CheckConnectivityAction(hasConnection: true));
+    storeTester.dispatch(UpdateConnectivityAction(hasConnection: true));
     final TestInfo<AppState> info =
-        await storeTester.wait(CheckConnectivityAction);
+        await storeTester.wait(UpdateConnectivityAction);
     expect(info.state.connectivityState?.isConnected, true);
   });
 }

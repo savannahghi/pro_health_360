@@ -5,7 +5,8 @@ import 'dart:io';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 // Flutter imports:
 import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/failures.dart';

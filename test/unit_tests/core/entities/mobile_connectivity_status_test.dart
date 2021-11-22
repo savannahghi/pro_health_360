@@ -1,42 +1,49 @@
-// Flutter imports:
-import 'package:flutter/services.dart';
-
-// Package imports:
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 
-// Project imports:
-import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
-import 'package:myafyahub/domain/core/entities/core/mobile_connectivity_status.dart';
+import '../../../mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const MethodChannel('plugins.flutter.io/connectivity')
-      .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (methodCall.method == 'checkConnectivity') {
-      return ConnectivityResult.mobile;
-    }
-
-    return null;
-  });
-
   group('MobileConnectivityStatus', () {
-    test('should return instance ', () {
-      final MobileConnectivityStatus connection = MobileConnectivityStatus();
-      expect(connection, isInstanceOf<MobileConnectivityStatus>());
-      expect(connection.onConnectivityChanged, isA<Stream<bool>>());
-      expect(getConnectivityStatus(), isInstanceOf<MobileConnectivityStatus>());
-      expect(ConnectivityStatus.initial(), isInstanceOf<ConnectivityStatus>());
+    MockConnectivityPlatform fakePlatform;
+
+    setUp(() {
+      fakePlatform = MockConnectivityPlatform();
+      ConnectivityPlatform.instance = fakePlatform;
     });
 
     test('should check for connection ', () async {
-      final MobileConnectivityStatus connection = MobileConnectivityStatus();
-      expect(connection.checkConnection(), isA<Future<bool>>());
-      final bool conn = await connection.checkConnection();
-      expect(conn, false);
+      final MobileConnectivityStatus connectivityStatus =
+          MobileConnectivityStatus();
 
-      expect(() => connection.onConnectivityChanged, returnsNormally);
+      final bool hasConnection = await connectivityStatus.checkConnection();
+      expect(hasConnection, true);
+    });
+
+    test('onConnectivityChanged emits changes correctly', () {
+      fakePlatform = MockConnectivityPlatform(
+        connectivityValues: <ConnectivityResult>[
+          ConnectivityResult.none,
+          ConnectivityResult.mobile
+        ],
+      );
+
+      ConnectivityPlatform.instance = fakePlatform;
+
+      final MobileConnectivityStatus connectivityStatus =
+          MobileConnectivityStatus();
+
+      expectLater(
+        connectivityStatus.onConnectivityChanged,
+        emitsInOrder(<StreamMatcher>[
+          emits(false),
+          emits(true),
+        ]),
+      );
     });
   });
 }

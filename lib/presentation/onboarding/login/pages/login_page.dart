@@ -23,7 +23,6 @@ import 'package:myafyahub/application/redux/actions/phone_login_state_action.dar
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -67,7 +66,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_login_page');
 
     /// clear any active flags
     clearAllFlags(context);
@@ -182,20 +180,32 @@ class _LoginPageState extends State<LoginPage> {
                             child: MyAfyaHubPrimaryButton(
                               buttonKey: phoneLoginContinueButtonKey,
                               onPressed: () async {
-                                final bool? isFormValid =
-                                    _formKey.currentState?.validate();
+                                final bool hasConnection = vm.appState
+                                        .connectivityState?.isConnected ??
+                                    false;
 
-                                if (isFormValid != null &&
-                                    isFormValid &&
-                                    pin != null &&
-                                    phoneNumber != null &&
-                                    pin != UNKNOWN &&
-                                    phoneNumber != UNKNOWN) {
-                                  await signInUser(
-                                    context: context,
-                                    pin: pin!,
-                                    phoneNumber: phoneNumber!,
+                                if (!hasConnection) {
+                                  const SnackBar snackBar = SnackBar(
+                                    content: Text(checkInternetText),
                                   );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                } else {
+                                  final bool? isFormValid =
+                                      _formKey.currentState?.validate();
+
+                                  if (isFormValid != null &&
+                                      isFormValid &&
+                                      pin != null &&
+                                      phoneNumber != null &&
+                                      pin != UNKNOWN &&
+                                      phoneNumber != UNKNOWN) {
+                                    await signInUser(
+                                      context: context,
+                                      pin: pin!,
+                                      phoneNumber: phoneNumber!,
+                                    );
+                                  }
                                 }
                               },
                               buttonColor: AppColors.secondaryColor,

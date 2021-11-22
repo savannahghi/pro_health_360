@@ -1,6 +1,6 @@
 // Flutter imports:
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
@@ -13,18 +13,19 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 import '../../../mock_utils.dart';
+import '../../../mocks.dart';
 
 void main() {
   FlutterConfig.loadValueForTesting(<String, String>{'DEV_SENTRY_DNS': ''});
 
   setupFirebaseAuthMocks();
-
-  const MethodChannel channel = MethodChannel('uni_links/messages');
 
   setUpAll(() async {
     await Firebase.initializeApp();
@@ -33,19 +34,16 @@ void main() {
   testWidgets(
     'AppEntryPoint should render correctly',
     (WidgetTester tester) async {
-      channel.setMockMethodCallHandler((MethodCall methodCall) async {
-        if (methodCall.method == 'getInitialLink') {
-          return 'https//:bewell.co.ke/phoneLogin';
-        }
-        return null;
-      });
-
       final GlobalKey<NavigatorState> navigatorKey =
           GlobalKey<NavigatorState>();
       final NavigatorObserver navigatorObserver = NavigatorObserver();
 
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
+
+      final ConnectivityStatus connectivityStatus =
+          ConnectivityStatus.initial();
+
       await tester.pumpWidget(
         MaterialApp(
           home: Center(
@@ -55,6 +53,7 @@ void main() {
               appNavigatorKey: navigatorKey,
               appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
               appStore: store,
+              connectivityStatus: connectivityStatus,
             ),
           ),
         ),
@@ -82,21 +81,15 @@ void main() {
   testWidgets(
     'AppEntryPoint should not render when paused',
     (WidgetTester tester) async {
-      channel.setMockMethodCallHandler((MethodCall methodCall) async {
-        if (methodCall.method == 'getLatestLink') {
-          return 'https//:bewell.co.ke/phoneLogin';
-        }
-
-        return null;
-      });
-      channel.invokeMethod<String?>('getLatestLink');
-
       final GlobalKey<NavigatorState> navigatorKey =
           GlobalKey<NavigatorState>();
       final NavigatorObserver navigatorObserver = NavigatorObserver();
 
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
+
+      final ConnectivityStatus connectivityStatus =
+          ConnectivityStatus.initial();
 
       await tester.pumpWidget(
         MaterialApp(
@@ -107,6 +100,7 @@ void main() {
               appNavigatorKey: navigatorKey,
               appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
               appStore: store,
+              connectivityStatus: connectivityStatus,
             ),
           ),
         ),
@@ -124,4 +118,41 @@ void main() {
       await tester.pumpAndSettle();
     },
   );
+
+  testWidgets('should trigger connecitivity changes',
+      (WidgetTester tester) async {
+    final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+    final NavigatorObserver navigatorObserver = NavigatorObserver();
+
+    final Store<AppState> store =
+        Store<AppState>(initialState: AppState.initial());
+
+    final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform(
+      connectivityValues: <ConnectivityResult>[
+        ConnectivityResult.none,
+        ConnectivityResult.mobile
+      ],
+    );
+    ConnectivityPlatform.instance = fakePlatform;
+
+    final MobileConnectivityStatus connectivityStatus =
+        MobileConnectivityStatus(
+      checkInternetCallback: () async => true,
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: AppEntryPoint(
+          appSetupData: devAppSetupData,
+          appName: testAppName,
+          appNavigatorKey: navigatorKey,
+          appNavigatorObservers: <NavigatorObserver>[navigatorObserver],
+          appStore: store,
+          connectivityStatus: connectivityStatus,
+        ),
+      ),
+    );
+
+    await tester.pump(const Duration(minutes: 5));
+  });
 }

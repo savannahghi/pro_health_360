@@ -18,6 +18,7 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
@@ -34,7 +35,7 @@ void main() {
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
-      store.dispatch(CheckConnectivityAction(hasConnection: true));
+      store.dispatch(UpdateConnectivityAction(hasConnection: true));
     });
 
     testWidgets('MyAfyaHubCountryPicker should render a list of countries',
@@ -270,6 +271,33 @@ void main() {
         store.state.onboardingState?.phoneLogin?.invalidCredentials,
         false,
       );
+    });
+
+    testWidgets(
+        'should show snackbar if continue tapped and no internet connection',
+        (WidgetTester tester) async {
+      store.dispatch(UpdateConnectivityAction(hasConnection: false));
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: MaterialApp(
+          onGenerateRoute: RouteGenerator.generateRoute,
+          home: Scaffold(
+            body: LoginPage(),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
+
+      await tester.ensureVisible(continueButton);
+      await tester.tap(continueButton);
+      await tester.pump();
+
+      expect(find.text(checkInternetText), findsOneWidget);
     });
   });
 }

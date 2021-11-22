@@ -7,7 +7,6 @@ import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/facebook_events_object.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
@@ -25,12 +24,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    MyAfyaHubFacebookEvents().logger.logEvent(name: 'view_home_page');
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

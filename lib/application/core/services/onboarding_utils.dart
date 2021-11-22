@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -10,7 +11,6 @@ import 'package:flutter/scheduler.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -281,7 +281,7 @@ Function checkWaitingForFunc(BuildContext context) {
 }
 
 void clearAllFlags(BuildContext context) {
-  SchedulerBinding.instance!.addPostFrameCallback((_) {
+  SchedulerBinding.instance?.addPostFrameCallback((_) {
     StoreProvider.dispatch(
       context,
       WaitAction<AppState>.clear(),
@@ -313,32 +313,6 @@ void listenForConnectivityChanges(ConnectivityResult result) {
     InternetConnectivitySubject().connectivitySubject.add(true);
   }
 }
-
-// void refreshTokenAndUpdateState({
-//   required bool value,
-//   required bool signedIn,
-//   required BuildContext context,
-//   required List<AppContext> appContexts,
-//   required String refreshToken,
-// }) {
-//   if (value) {
-//     // check if user is logged in
-//     if (signedIn) {
-//       // request for a new token
-//       requestForANewToken(
-//         context: context,
-//         thisAppContexts: appContexts,
-//         refreshToken: refreshToken,
-//       ).then((ProcessedResponse response) {
-//         //check if the request was successful
-//         if (response.ok) {
-//           // update state with the new token
-//           updateStateAuth(context: context, processedResponse: response);
-//         }
-//       });
-//     }
-//   }
-// }
 
 Future<void> setUserPIN({
   required BuildContext context,

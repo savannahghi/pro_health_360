@@ -197,6 +197,11 @@ const String dobRequired = 'Date of birth is required';
 // user friendly messages
 const String defaultUserFriendlyMessage =
     'Sorry, an unknown error occurred, please try again or get help from our help center.';
+
+const String checkInternetText = 'Check your internet connection and try again';
+
+const String connectionLostText = 'Internet connection lost';
+
 const String slowInternet =
     'Looks like you have a slow internet connection. Please check your connection and try again';
 const String userWithThatPhoneExists =

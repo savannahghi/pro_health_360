@@ -21,10 +21,9 @@ import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/remote_config_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app.dart';
@@ -41,12 +40,6 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
   await SystemChrome.setPreferredOrientations(
     <DeviceOrientation>[DeviceOrientation.portraitUp],
   );
-
-  // initialize firebase remote config
-  final RemoteConfigService remoteConfig =
-      await RemoteConfigService.getInstance();
-
-  remoteConfig.init();
 
   final BeWellStateDatabase stateDB =
       BeWellStateDatabase(dataBaseName: silDatabaseName);

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io' as io;
 
 // Package imports:
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -19,7 +20,7 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
-import 'package:myafyahub/domain/core/entities/core/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
@@ -62,7 +63,25 @@ class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
           as String;
 }
 
-class MockGraphQlClient5 extends Mock implements GraphQlClient {}
+class MockConnectivityPlatform extends Mock
+    with MockPlatformInterfaceMixin
+    implements ConnectivityPlatform {
+  MockConnectivityPlatform({List<ConnectivityResult>? connectivityValues})
+      : connectivityValues = connectivityValues ??
+            <ConnectivityResult>[ConnectivityResult.mobile];
+
+  final List<ConnectivityResult> connectivityValues;
+
+  @override
+  Future<ConnectivityResult> checkConnectivity() async {
+    return connectivityValues.last;
+  }
+
+  @override
+  Stream<ConnectivityResult> get onConnectivityChanged {
+    return Stream<ConnectivityResult>.fromIterable(connectivityValues);
+  }
+}
 
 class MockStateDB extends Mock implements Database {
   @override
@@ -210,7 +229,6 @@ class MockHapticFeedback extends Mock implements HapticFeedback {}
 
 class MockConnectivityStatus extends Mock implements ConnectivityStatus {}
 
-// ignore: subtype_of_sealed_class
 class MockShortGraphQlClient extends Mock implements GraphQlClient {}
 
 class MockBuildContext extends Mock implements BuildContext {}
