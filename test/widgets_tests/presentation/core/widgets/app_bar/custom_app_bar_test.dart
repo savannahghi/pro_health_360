@@ -55,7 +55,7 @@ void main() {
                 icon: const Icon(Icons.notifications),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text(getTestedComingSoonText)),
+                    const SnackBar(content: Text(comingSoonText)),
                   );
                 },
               ),
@@ -89,7 +89,7 @@ void main() {
                 icon: const Icon(Icons.notifications),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text(getTestedComingSoonText)),
+                    const SnackBar(content: Text(comingSoonText)),
                   );
                 },
               ),
@@ -122,7 +122,7 @@ void main() {
                 icon: const Icon(Icons.notifications),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text(getTestedComingSoonText)),
+                    const SnackBar(content: Text(comingSoonText)),
                   );
                 },
               ),

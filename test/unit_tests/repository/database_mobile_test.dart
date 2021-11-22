@@ -80,6 +80,7 @@ void main() {
       buildWhenMock('onboardingState', 10);
       buildWhenMock('bottomNavigationState', 10);
       buildWhenMock('connectivityState', 10);
+      buildWhenMock('contentState', 10);
       buildWhenMock('miscState', 10);
 
       expect(await db.isDatabaseEmpty(), false);
@@ -91,6 +92,7 @@ void main() {
       buildWhenMock('onboardingState', 0);
       buildWhenMock('bottomNavigationState', 0);
       buildWhenMock('connectivityState', 0);
+      buildWhenMock('contentState', 0);
       buildWhenMock('miscState', 0);
 
       expect(await db.isDatabaseEmpty(), true);

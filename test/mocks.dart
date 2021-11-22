@@ -1728,45 +1728,45 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
 
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
-    'author': 'Abiud Orina',
+    'ID': 'some-id',
+    'title': 'Tips on how to keep yourself healthy',
+    'date': '2021-08-23T06:42:05.085216Z',
+    'intro': 'Keep yourself healthy',
+    'authorName': 'Abiud Orina',
     'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'author': <String, dynamic>{'ID': 'some-id'},
+    'itemType': 'ARTICLE',
+    'timeEstimateSeconds': 180,
     'body':
         'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
-    'contentID': 'some-content-id',
-    'contentType': 'ARTICLE',
-    'createdAt': '2021-08-23T06:42:05.085216Z',
-    'heroImage': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    'heroImageRendition': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    'likeCount': 180,
+    'bookmarkCount': 180,
+    'viewCount': 180,
+    'shareCount': 180,
+    'documents': <dynamic>[],
     'isNew': true,
-    'publicLink': 'https://bewell.co.ke/',
-    'tags': <String>['Recommended', 'Health', 'Fitness'],
-    'title': 'Tips on how to keep yourself healthy',
+    'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    'meta': <String, dynamic>{
+      'contentHTMLURL': 'https://bewell.co.ke/',
+      'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    },
+    'tagNames': <String>['Recommended', 'Health', 'Fitness'],
   },
-  <String, dynamic>{
-    'author': 'Abiud Orina',
-    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-    'body':
-        "An ideal daily intake of calories varies depending on age, metabolism and levels of physical activity, among other things. Generally, the recommended daily calorie intake is 2,000 calories a day for women and 2,500 for men. The term calorie is commonly used as shorthand for kilocalorie. You will find this written as kcal on food packets. Kilojoules (kJ) are the equivalent of kilocalories within the International System of Units, and you'll see both kJ and kcal on nutrition labels. 4.2kJ is equivalent to approximately 1kcal.",
-    'contentID': 'some-content-id',
-    'contentType': 'ARTICLE',
-    'createdAt': '2021-08-23T06:42:05.085216Z',
-    'heroImage': 'https://i.postimg.cc/1t1XXvyz/lemon.jpg',
-    'isNew': true,
-    'publicLink': 'https://bewell.co.ke/',
-    'tags': <String>['Recommended', 'Health', 'Fitness'],
-    'title': 'What should my daily intake of calories be?',
-  }
 ];
 
 final Content mockContent = Content(
-  author: 'test',
+  author: Author(id: 'some-author-id'),
   contentID: 'test',
   title: 'test',
   body: 'test',
   authorAvatar: 'test',
-  createdAt: DateTime.now().toString(),
   tags: <String>['test', 'test'],
   heroImage: 'test',
-  publicLink: 'test',
+  metadata: ContentMetadata(
+    publicLink: 'test',
+    createdAt: '2021-08-23T06:42:05.085216Z',
+  ),
   isNew: true,
 );
 

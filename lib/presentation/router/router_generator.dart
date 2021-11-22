@@ -51,7 +51,7 @@ class RouteGenerator {
     final dynamic args = settings.arguments;
 
     switch (settings.name) {
-      case BWRoutes.deeplink:
+      case BWRoutes.deepLink:
         return MaterialPageRoute<HandleDeepLink>(
           builder: (BuildContext context) => const HandleDeepLink(),
         );

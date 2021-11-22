@@ -33,6 +33,7 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
     });
+
     testWidgets('should render feed items', (WidgetTester tester) async {
       final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
@@ -40,9 +41,7 @@ void main() {
         'endpoint',
         http.Response(
           json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'fetchRecentContent': contentMock,
-            }
+            'data': <String, dynamic>{'fetchRecentContent': contentMock}
           }),
           201,
         ),
