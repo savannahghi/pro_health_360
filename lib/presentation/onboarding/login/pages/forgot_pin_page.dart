@@ -108,7 +108,7 @@ class ForgotPINPage extends StatelessWidget {
                     StoreProvider.dispatch(
                       context,
                       BottomNavAction(
-                        currentBottomNavIndex: 3,
+                        currentBottomNavIndex: 2,
                       ),
                     );
                     Navigator.pushNamedAndRemoveUntil(

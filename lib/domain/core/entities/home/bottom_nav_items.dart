@@ -18,7 +18,7 @@ class BottomNavItem {
   final String text;
 }
 
-enum BottomNavIndex { home, feed, community, myHealth }
+enum BottomNavIndex { home, feed, myHealth }
 
 List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   BottomNavItem(
@@ -32,12 +32,6 @@ List<BottomNavItem> bottomNavItems = <BottomNavItem>[
     text: 'Feed',
     onTapRoute: BWRoutes.feedPage,
     index: BottomNavIndex.feed.index,
-  ),
-  BottomNavItem(
-    iconUrl: communityIconSvgPath,
-    text: 'Community',
-    onTapRoute: BWRoutes.communityListView,
-    index: BottomNavIndex.community.index,
   ),
   BottomNavItem(
     iconUrl: myHealthIconSvgPath,
