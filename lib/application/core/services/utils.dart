@@ -94,10 +94,18 @@ Function() logoutUser({required BuildContext context}) {
 
 String getDisplayName(User? user) {
   final String firstName = user?.firstName ?? UNKNOWN;
-  final String formattedFirstName = firstName.replaceAll(' ', '');
+  String formattedFirstName = firstName.replaceAll(' ', '');
+
+  if (formattedFirstName.isEmpty) {
+    formattedFirstName = UNKNOWN;
+  }
 
   final String lastName = user?.lastName ?? UNKNOWN;
-  final String formattedLastName = lastName.replaceAll(' ', '');
+  String formattedLastName = lastName.replaceAll(' ', '');
+
+  if (formattedLastName.isEmpty) {
+    formattedLastName = UNKNOWN;
+  }
 
   return '$formattedFirstName $formattedLastName';
 }
@@ -780,8 +788,7 @@ Future<bool> updateStateAuth({
       EventObject(
         firstName: state!.clientState!.user!.firstName,
         lastName: state.clientState!.user!.lastName,
-        primaryPhoneNumber:
-            state.clientState!.user!.primaryContact!.value,
+        primaryPhoneNumber: state.clientState!.user!.primaryContact!.value,
         uid: state.clientState!.user!.userId,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),
@@ -815,8 +822,7 @@ Future<bool> updateStateAuth({
       EventObject(
         firstName: state!.clientState!.user!.firstName,
         lastName: state.clientState!.user!.lastName,
-        primaryPhoneNumber:
-            state.clientState!.user!.primaryContact!.value,
+        primaryPhoneNumber: state.clientState!.user!.primaryContact!.value,
         uid: state.clientState!.user!.userId,
         flavour: Flavour.CONSUMER.name,
         timestamp: DateTime.now(),
