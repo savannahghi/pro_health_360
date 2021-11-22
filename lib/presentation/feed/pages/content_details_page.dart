@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -44,12 +45,13 @@ class ContentDetailPage extends StatelessWidget {
                 Container(
                   height: 220,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       // TODO(abiud): replace with cached network image to
                       // handle showing an image before the network one loads
-                      image: NetworkImage(articleDetails.heroImage!),
+                      // TODO(eugene): revert when backend is ready
+                      image: AssetImage(feedImage1),
                     ),
                   ),
                 ),
@@ -94,15 +96,17 @@ class ContentDetailPage extends StatelessWidget {
                           Container(
                             width: 40,
                             height: 40,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: articleDetails.authorAvatar == null
-                                    ? const AssetImage(profileImage)
-                                    : NetworkImage(
-                                        articleDetails.authorAvatar!,
-                                      ) as ImageProvider,
+                                // TODO(eugene): revert when backend is ready
+                                // image: articleDetails.authorAvatar == null
+                                //     ? const AssetImage(profileImage)
+                                //     : NetworkImage(
+                                //         articleDetails.authorAvatar!,
+                                //       ) as ImageProvider,
+                                image: AssetImage(profileImage),
                               ),
                             ),
                           ),
@@ -112,7 +116,7 @@ class ContentDetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                articleDetails.authorName!,
+                                'articleDetails.authorName!',
                                 style: TextThemes.veryBoldSize15Text(
                                   AppColors.secondaryColor,
                                 ),
@@ -163,11 +167,8 @@ class ContentDetailPage extends StatelessWidget {
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text(
-                  articleDetails.body!,
-                  style: TextThemes.normalSize16Text(
-                    AppColors.greyTextColor,
-                  ),
+                child: Html(
+                  data: articleDetails.body,
                 ),
               )
             else

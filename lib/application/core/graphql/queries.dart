@@ -201,3 +201,91 @@ const String fetchContentQuery = r'''
     title
   }
 }''';
+
+const String getContentQuery = r'''
+query getContent($categoryID: Int, $Limit: String!){
+  
+  getContent(categoryID: $categoryID, Limit: $Limit) {
+    meta{
+      totalCount
+    }
+    items {
+      ID
+      title
+      date
+      intro
+      authorName
+      tagNames
+      meta{
+        contentType
+        contentType
+        contentHTMLURL
+        slug
+        showInMenus
+        seoTitle
+        searchDescription
+        firstPublishedAt
+        locale
+      }
+      itemType
+      timeEstimateSeconds
+      body
+      heroImage{
+        ID
+        title
+      }
+      heroImageRendition{
+        url
+        width
+        height
+        alt
+      }
+      likeCount
+      bookmarkCount
+      viewCount
+      shareCount
+      author {
+        ID
+      }
+      documents {
+        ID
+        Document {
+          ID
+          title
+        }
+        meta{
+          type
+          documentDetailUrl
+          documentDownloadUrl
+        }
+      }
+      categoryDetails{
+        ID
+        categoryName
+        categoryIcon
+      }
+      featuredMedia{
+        ID
+        url
+        title
+        type
+        width
+        height
+        thumbnail
+      }
+      galleryImages{
+        ID
+        image{
+          ID
+          title
+          meta{
+            imageDetailUrl
+            imageDetailUrl
+          }
+        }
+      }
+    }
+  }
+  }
+}
+''';

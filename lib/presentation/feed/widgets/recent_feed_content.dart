@@ -41,12 +41,15 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
     _streamController = StreamController<dynamic>.broadcast();
     _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await customFetchData(
+      await getContentData(
         streamController: _streamController,
         context: context,
-        logTitle: 'Fetch recent content content',
-        queryString: fetchRecentContentQuery,
-        variables: <String, dynamic>{},
+        logTitle: 'Fetch content',
+        queryString: getContentQuery,
+        variables: <String, dynamic>{
+          'categoryID': 1,
+          'Limit': '10',
+        },
       );
     });
     super.initState();
@@ -100,12 +103,15 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
             type: GenericNoDataTypes.ErrorInData,
             actionText: actionTextGenericNoData,
             recoverCallback: () async {
-              await customFetchData(
+              await getContentData(
                 streamController: _streamController,
                 context: context,
-                logTitle: 'Fetch recent content content',
-                queryString: fetchRecentContentQuery,
-                variables: <String, dynamic>{},
+                logTitle: 'Fetch content',
+                queryString: getContentQuery,
+                variables: <String, dynamic>{
+                  'categoryID': 1,
+                  'Limit': '10',
+                },  
               );
             },
             messageBody: messageBodyGenericNoData,
@@ -168,7 +174,10 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                         );
                         return Padding(
                           padding: EdgeInsets.only(left: index == 0 ? 15 : 10),
-                          child: ContentItem(contentDetails: feedDetails),
+                          child: ContentItem(
+                            contentDetails: feedDetails,
+                            isNew: true,
+                          ),
                         );
                       },
                     ),
