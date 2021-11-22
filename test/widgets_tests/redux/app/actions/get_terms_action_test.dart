@@ -39,6 +39,7 @@ void main() {
           401,
         ),
       );
+
       late dynamic err;
       await buildTestWidget(
         tester: tester,
@@ -61,13 +62,6 @@ void main() {
 
       await tester.pump();
       await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(err, isA<Future<dynamic>>());
-      expect(find.byType(SnackBar), findsOneWidget);
-
-      /// Retry and expect the same thing
-      expect(find.byType(SnackBarAction), findsOneWidget);
       await tester.pumpAndSettle();
 
       expect(err, isA<Future<dynamic>>());

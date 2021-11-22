@@ -17,7 +17,6 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class CongratulationsPage extends StatefulWidget {
-
   @override
   _CongratulationsPageState createState() => _CongratulationsPageState();
 }
@@ -58,7 +57,6 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
                         borderColor: Colors.grey[200],
                         maxLines: 1,
                         keyboardType: TextInputType.name,
-                        obscureText: true,
                         validator: (String? value) {
                           if (value!.isEmpty) {
                             return nameInputValidateString;
