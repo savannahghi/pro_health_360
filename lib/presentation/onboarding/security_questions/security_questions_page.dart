@@ -130,6 +130,12 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                       text: saveAndContinueButtonText,
                       buttonColor: AppColors.secondaryColor,
                       onPressed: () {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          UpdateOnboardingStateAction(
+                            hasSetSecurityQuestions: true,
+                          ),
+                        );
                         Navigator.pushReplacementNamed(
                           context,
                           BWRoutes.createPin,
