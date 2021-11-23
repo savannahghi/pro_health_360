@@ -328,6 +328,8 @@ const String answerSecurityQuestionString = 'Answer security question';
 const String answerCorrectlyToGainAccessString =
     'Answer correctly to gain access';
 
+const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';
+
 // TODO(abiud): remove these strings. they should be fetched from the backend
 const String whereWereYouBornString =
     'What are the last 3 digits of your CCC number?';

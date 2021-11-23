@@ -133,6 +133,13 @@ String? userPinValidator(dynamic val) {
   return null;
 }
 
+String? securityQuestionValidator(String? value) {
+  if (value != null && (value.isEmpty || value == UNKNOWN)) {
+    return 'A Response is required';
+  }
+  return null;
+}
+
 void genericBottomSheet({
   required BuildContext context,
   required String message,

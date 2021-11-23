@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/get_security_questions_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -29,6 +30,7 @@ class SecurityQuestionsPage extends StatefulWidget {
 }
 
 class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -61,90 +63,123 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
 
         final String userId = vm.appState.clientState!.user!.userId!;
 
-        return OnboardingScaffold(
-          title: setSecurityQuestionsString,
-          description: securityQuestionsDescriptionString,
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height / 1.6,
-            child: Stack(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 50),
-                  child: vm.appState.wait!
-                          .isWaitingFor(getSecurityQuestionsFlag)
-                      ? Container(
-                          height: 300,
-                          padding: const EdgeInsets.all(20),
-                          child: const SILPlatformLoader(),
-                        )
-                      : ListView.builder(
-                          itemCount: securityQuestions.length,
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.only(top: 10, bottom: 10),
-                          itemBuilder: (BuildContext context, int index) {
-                            final SecurityQuestion question =
-                                securityQuestions.elementAt(index);
+        return Form(
+          key: _formKey,
+          child: OnboardingScaffold(
+            title: setSecurityQuestionsString,
+            description: securityQuestionsDescriptionString,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height / 1.6,
+              child: Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 50),
+                    child: vm.appState.wait!
+                            .isWaitingFor(getSecurityQuestionsFlag)
+                        ? Container(
+                            height: 300,
+                            padding: const EdgeInsets.all(20),
+                            child: const SILPlatformLoader(),
+                          )
+                        : ListView.builder(
+                            itemCount: securityQuestions.length,
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            itemBuilder: (BuildContext context, int index) {
+                              final SecurityQuestion question =
+                                  securityQuestions.elementAt(index);
 
-                            return Container(
-                              padding: const EdgeInsets.all(10.0),
-                              child: ExpandableQuestion(
-                                question: question.questionStem ?? UNKNOWN,
-                                hintText: answerHereString,
-                                initialValue: (securityQuestionsResponses
-                                            .elementAt(index)
-                                            .response ==
-                                        UNKNOWN)
-                                    ? null
-                                    : securityQuestionsResponses
-                                        .elementAt(index)
-                                        .response,
-                                onChanged: (String value) {
-                                  securityQuestionsResponses[index] =
-                                      SecurityQuestionResponse(
-                                    id: userId,
-                                    timeStamp: DateTime.now().toString(),
-                                    userId: userId,
-                                    securityQuestionId:
-                                        question.securityQuestionID,
-                                    response: value,
-                                  );
-                                  StoreProvider.dispatch<AppState>(
-                                    context,
-                                    UpdateOnboardingStateAction(
-                                      securityQuestionsResponses:
-                                          securityQuestionsResponses,
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    width: isLargeScreen ? number300 : double.infinity,
-                    height: number52,
-                    child: MyAfyaHubPrimaryButton(
-                      text: saveAndContinueButtonText,
-                      buttonColor: AppColors.secondaryColor,
-                      onPressed: () {
-                        StoreProvider.dispatch<AppState>(
-                          context,
-                          UpdateOnboardingStateAction(
-                            hasSetSecurityQuestions: true,
+                              return Container(
+                                padding: const EdgeInsets.all(10.0),
+                                child: ExpandableQuestion(
+                                  question: question.questionStem ?? UNKNOWN,
+                                  hintText: answerHereString,
+                                  validator: securityQuestionValidator,
+                                  initialValue: (securityQuestionsResponses
+                                              .elementAt(index)
+                                              .response ==
+                                          UNKNOWN)
+                                      ? null
+                                      : securityQuestionsResponses
+                                          .elementAt(index)
+                                          .response,
+                                  onChanged: (String value) {
+                                    securityQuestionsResponses[index] =
+                                        SecurityQuestionResponse(
+                                      id: userId,
+                                      timeStamp: DateTime.now().toString(),
+                                      userId: userId,
+                                      securityQuestionId:
+                                          question.securityQuestionID,
+                                      response: value,
+                                    );
+                                    StoreProvider.dispatch<AppState>(
+                                      context,
+                                      UpdateOnboardingStateAction(
+                                        securityQuestionsResponses:
+                                            securityQuestionsResponses,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
                           ),
-                        );
-                        Navigator.pushReplacementNamed(
-                          context,
-                          BWRoutes.createPin,
-                        );
-                      },
-                    ),
                   ),
-                )
-              ],
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SizedBox(
+                      width: isLargeScreen ? number300 : double.infinity,
+                      height: number52,
+                      child: MyAfyaHubPrimaryButton(
+                        text: saveAndContinueButtonText,
+                        buttonColor: AppColors.secondaryColor,
+                        onPressed: () {
+                          final bool? isFormValid =
+                              _formKey.currentState?.validate();
+
+                          if (isFormValid != null && isFormValid == true) {
+                            final List<SecurityQuestionResponse>
+                                emptyResponses = <SecurityQuestionResponse>[];
+
+                            securityQuestionsResponses.asMap().forEach(
+                              (int index, SecurityQuestionResponse value) {
+                                if (value.response == UNKNOWN ||
+                                    value.response == '') {
+                                  emptyResponses.add(value);
+                                }
+                              },
+                            );
+
+                            if (emptyResponses.isEmpty) {
+                              StoreProvider.dispatch<AppState>(
+                                context,
+                                UpdateOnboardingStateAction(
+                                  hasSetSecurityQuestions: true,
+                                ),
+                              );
+                              Navigator.pushReplacementNamed(
+                                context,
+                                BWRoutes.createPin,
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      kindlyAnswerAllQuestionsString,
+                                    ),
+                                  ),
+                                );
+                            }
+                          }
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );

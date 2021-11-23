@@ -40,6 +40,7 @@ void main() {
   );
 
   const String firstQuestion = 'What are the last 4 digits of your CCC number?';
+  const String testResponse = 'Test';
 
   group('SecurityQuestions', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
@@ -103,9 +104,9 @@ void main() {
             SecurityQuestion.initial(),
           ],
           securityQuestionsResponses: <SecurityQuestionResponse>[
-            SecurityQuestionResponse.initial(),
-            SecurityQuestionResponse.initial(),
-            SecurityQuestionResponse.initial(),
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
           ],
         ),
       );
@@ -122,6 +123,74 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(CreateNewPINPage), findsOneWidget);
+    });
+
+    testWidgets('should validate if all questions are answered',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: <SecurityQuestion>[
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+          ],
+          securityQuestionsResponses: <SecurityQuestionResponse>[
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+            SecurityQuestionResponse.initial().copyWith(response: ''),
+            SecurityQuestionResponse.initial().copyWith(response: ''),
+          ],
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: const SecurityQuestionsPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(firstQuestion));
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsNothing);
+    });
+
+    testWidgets(
+        'should not navigate to Create New Pin page if all questions not answered',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          securityQuestions: <SecurityQuestion>[
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+            SecurityQuestion.initial(),
+          ],
+          securityQuestionsResponses: <SecurityQuestionResponse>[
+            SecurityQuestionResponse.initial().copyWith(response: testResponse),
+            SecurityQuestionResponse.initial().copyWith(response: ''),
+            SecurityQuestionResponse.initial().copyWith(response: ''),
+          ],
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: const SecurityQuestionsPage(),
+      );
+
+      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsNothing);
     });
 
     testWidgets('Shows loading indicator when fetching terms',
