@@ -229,7 +229,7 @@ class RouteGenerator {
           builder: (_) => const ForgotPINPage(),
         );
       default:
-        return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());
+        return MaterialPageRoute<LoginPage>(builder: (_) => LoginPage());
     }
   }
 }

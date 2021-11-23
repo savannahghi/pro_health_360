@@ -53,11 +53,11 @@ void main() {
   test('Test router returns default page', () {
     const RouteSettings settings = RouteSettings();
 
-    final MaterialPageRoute<HomePage> route =
-        routeGenerator(settings) as MaterialPageRoute<HomePage>;
+    final MaterialPageRoute<LoginPage> route =
+        routeGenerator(settings) as MaterialPageRoute<LoginPage>;
 
-    expect(route, isA<MaterialPageRoute<HomePage>>());
-    expect(route.builder(context), isA<HomePage>());
+    expect(route, isA<MaterialPageRoute<LoginPage>>());
+    expect(route.builder(context), isA<LoginPage>());
   });
 
   test('Test router returns mood feedback page', () {
