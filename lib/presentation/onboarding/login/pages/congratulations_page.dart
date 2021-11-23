@@ -21,11 +21,14 @@ class CongratulationsPage extends StatefulWidget {
   _CongratulationsPageState createState() => _CongratulationsPageState();
 }
 
+
 class _CongratulationsPageState extends State<CongratulationsPage> {
+  String? nickName;
+  TextEditingController userNameController = TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    late String nickName = '';
     return OnboardingScaffold(
       title: congratulationsPageTitle(context: context),
       description: congratulationsPageDescription,
@@ -101,6 +104,8 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
                       onPressed: vm.appState.wait!.isWaitingFor(setNickNameFlag)
                           ? null
                           : () async {
+                              final bool? isFormValid =
+                                  _formKey.currentState?.validate();
                               if (!InternetConnectivitySubject()
                                   .connectivitySubject
                                   .valueOrNull!) {
@@ -111,9 +116,11 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
                                 );
                                 return;
                               }
-                              if (_formKey.currentState!.validate()) {
+                              if (isFormValid != null &&
+                                  isFormValid &&
+                                  nickName != null) {
                                 setUserNickname(
-                                  nickName: nickName,
+                                  nickName: nickName!,
                                   context: context,
                                 );
                               }

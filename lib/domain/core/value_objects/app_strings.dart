@@ -376,9 +376,9 @@ const String nextString = 'Next';
 const String saveEntryString = 'Save Entry';
 
 const String confirmPinString = 'Confirm new PIN';
-const String createNewPINTitleString = 'Create new pin';
+const String createNewPINTitleString = 'Create new PIN';
 const String createNewPINSubTitleString =
-    'Enter a new 4 digit pin, make sure you remember it.';
+    'Enter your new 4 digit PIN.';
 const String pinMustMatchString = 'PIN must match';
 
 //congratulations page
@@ -545,9 +545,9 @@ const String addCalendarText = 'Add to Calendar';
 const String notificationsText = 'Notifications';
 
 //Pin input page strings
-const String enterChatPINString = 'Enter your pin to view your chats';
-const String forgotPINString = 'Forgot pin?';
-const String wrongPINString = 'Wrong pin, try again';
+const String enterChatPINString = 'Enter your PIN to view your chats';
+const String forgotPINString = 'Forgot PIN?';
+const String wrongPINString = 'Wrong PIN, try again';
 
 //Health Diary page
 const String myHealthDiaryString = 'My Health Diary';

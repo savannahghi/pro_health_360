@@ -25,7 +25,6 @@ import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
 
-
 class FeedPage extends StatefulWidget {
   const FeedPage();
 
@@ -195,6 +194,16 @@ class _FeedPageState extends State<FeedPage> {
               onSelected: (bool selected) {
                 setState(() {
                   _choiceIndex = selected ? index : 0;
+                  customFetchData(
+                    streamController: _streamController,
+                    context: context,
+                    logTitle: 'Fetch recent content',
+                    queryString: fetchContentQuery,
+                    variables: <String, dynamic>{
+                      'limit': 10,
+                      'tags': <String>['health', 'fitness']
+                    },
+                  );
                 });
               },
               backgroundColor: Colors.grey.shade300,
