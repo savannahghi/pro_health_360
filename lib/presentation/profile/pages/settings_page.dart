@@ -1,5 +1,8 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/user_profile_view_model.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -17,47 +20,54 @@ import 'package:myafyahub/presentation/profile/widgets/edit_info_button_widget.d
 ///
 /// the nickname will be accessed from the state
 class SettingsPage extends StatelessWidget {
-  final String userNickName = 'John Doe';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: const CustomAppBar(title: settingsPageTitle),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: SizedBox(
-            height: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Column(
+        child: StoreConnector<AppState, ClientProfileViewModel>(
+          converter: (Store<AppState> store) =>
+              ClientProfileViewModel.fromStore(store),
+          builder: (BuildContext context, ClientProfileViewModel vm) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: SizedBox(
+                height: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    largeVerticalSizedBox,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          nickNameString,
-                          style: TextThemes.boldSize15Text(
-                              AppColors.secondaryColor,),
+                        largeVerticalSizedBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              nickNameString,
+                              style: TextThemes.boldSize15Text(
+                                AppColors.secondaryColor,
+                              ),
+                            ),
+                            EditInformationButtonWidget(
+                              editInformationItem: nickNameEditInfo,
+                            ),
+                          ],
                         ),
-                        EditInformationButtonWidget(
-                          editInformationItem: nickNameEditInfo,
+                        smallVerticalSizedBox,
+                        PersonalInformationWidget(
+                          description: vm.clientState!.user!.username!,
                         ),
                       ],
                     ),
-                    smallVerticalSizedBox,
-                    PersonalInformationWidget(description: userNickName),
                   ],
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
