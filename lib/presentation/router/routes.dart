@@ -13,8 +13,6 @@ class BWRoutes {
   static const String securityQuestionsPage = '/securityQuestionsPage';
   static const String congratulationsPage = '/congratulationsPage';
 
-  static const String setPin = '/setPin';
-
   static const String createPin = '/createPin';
   static const String confirmCreatePin = '/confirmCreatePin';
 

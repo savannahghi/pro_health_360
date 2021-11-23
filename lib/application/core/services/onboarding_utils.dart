@@ -381,14 +381,14 @@ OnboardingPathConfig onboardingPath(
   final bool isPINSet = onboardingState?.isPINSet ?? false;
 
   if (pinChangeRequired) {
-    if (isPhoneVerified) {
+    if (!isPhoneVerified) {
       return OnboardingPathConfig(BWRoutes.verifySignUpOTP);
     } else if (!termsAccepted) {
       return OnboardingPathConfig(BWRoutes.termsAndConditions);
     } else if (!hasSetSecurityQuestions) {
       return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
     } else if (!isPINSet) {
-      return OnboardingPathConfig(BWRoutes.setPin);
+      return OnboardingPathConfig(BWRoutes.createPin);
     } else if (!hasSetNickName) {
       return OnboardingPathConfig(BWRoutes.congratulationsPage);
     }
@@ -467,8 +467,8 @@ Future<String> getInitialRoute(
     final OnboardingPathConfig pathConfig =
         onboardingPath(appState, calledOnResume: true);
 
-    if (pathConfig.route == BWRoutes.setPin) {
-      return BWRoutes.setPin;
+    if (pathConfig.route == BWRoutes.createPin) {
+      return BWRoutes.createPin;
     }
 
     final String parsedExpiresAt =

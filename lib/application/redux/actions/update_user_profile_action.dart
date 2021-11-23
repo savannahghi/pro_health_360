@@ -16,6 +16,8 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
     this.lastName,
     this.avatar,
     this.termsAccepted,
+    this.pinChangeRequired,
+    this.isPhoneVerified,
   });
 
   final bool? active;
@@ -25,6 +27,8 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
   final String? avatar;
   final Contact? phoneNumber;
   final bool? termsAccepted;
+  final bool? pinChangeRequired;
+  final bool? isPhoneVerified;
 
   @override
   AppState reduce() {
@@ -37,6 +41,8 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
       avatar: avatar ?? userFromState?.avatar,
       username: nickName ?? userFromState?.username,
       termsAccepted: termsAccepted ?? userFromState?.termsAccepted,
+      pinChangeRequired: pinChangeRequired ?? userFromState?.pinChangeRequired,
+      isPhoneVerified: isPhoneVerified ?? userFromState?.isPhoneVerified,
     );
 
     final ClientState newState =

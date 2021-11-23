@@ -26,7 +26,6 @@ import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
-import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -669,9 +668,20 @@ void main() {
       group('OnboardingPath', () {
         testWidgets('should navigate to security questions page',
             (WidgetTester tester) async {
-          final User? user = store.state.clientState?.user
-              ?.copyWith(pinChangeRequired: true, termsAccepted: true);
-          store.dispatch(UpdateUserAction(user: user));
+          store.dispatch(
+            UpdateUserProfileAction(
+              pinChangeRequired: true,
+              termsAccepted: true,
+              isPhoneVerified: true,
+            ),
+          );
+
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              isPhoneVerified: true,
+              hasSetSecurityQuestions: false,
+            ),
+          );
 
           String path = '';
 
@@ -698,10 +708,20 @@ void main() {
 
         testWidgets('should navigate to terms and conditions page',
             (WidgetTester tester) async {
-          final User? user = store.state.clientState?.user
-              ?.copyWith(pinChangeRequired: true, termsAccepted: false);
+          store.dispatch(
+            UpdateUserProfileAction(
+              pinChangeRequired: true,
+              termsAccepted: false,
+              isPhoneVerified: true,
+            ),
+          );
 
-          store.dispatch(UpdateUserAction(user: user));
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              isPhoneVerified: true,
+              hasSetSecurityQuestions: false,
+            ),
+          );
 
           String path = '';
 
@@ -728,15 +748,19 @@ void main() {
 
         testWidgets('should navigate to set pin page',
             (WidgetTester tester) async {
-          final User? user = store.state.clientState?.user
-              ?.copyWith(pinChangeRequired: true, termsAccepted: true);
-
-          store.dispatch(UpdateUserAction(user: user));
+          store.dispatch(
+            UpdateUserProfileAction(
+              pinChangeRequired: true,
+              termsAccepted: true,
+              isPhoneVerified: true,
+            ),
+          );
 
           store.dispatch(
             UpdateOnboardingStateAction(
-              hasSetPin: false,
+              isPhoneVerified: true,
               hasSetSecurityQuestions: true,
+              hasSetPin: false,
             ),
           );
 
@@ -760,20 +784,24 @@ void main() {
           await tester.tap(find.byType(SILPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, BWRoutes.setPin);
+          expect(path, BWRoutes.createPin);
         });
 
         testWidgets('should navigate to congratulations page',
             (WidgetTester tester) async {
-          final User? user = store.state.clientState?.user
-              ?.copyWith(pinChangeRequired: true, termsAccepted: true);
-
-          store.dispatch(UpdateUserAction(user: user));
+          store.dispatch(
+            UpdateUserProfileAction(
+              pinChangeRequired: true,
+              termsAccepted: true,
+              isPhoneVerified: true,
+            ),
+          );
 
           store.dispatch(
             UpdateOnboardingStateAction(
-              hasSetPin: true,
+              isPhoneVerified: true,
               hasSetSecurityQuestions: true,
+              hasSetPin: true,
             ),
           );
 
@@ -1329,6 +1357,7 @@ void main() {
       expect(updateStateAuthStatus, isNotNull);
       expect(updateStateAuthStatus, false);
     });
+
     testWidgets('Shows snackbar when pins do not match',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
@@ -1370,9 +1399,17 @@ void main() {
             .copyWith
             .onboardingState!
             .call(
-              isPhoneVerified: true,
+              isPhoneVerified: false,
             ),
       );
+
+      store.dispatch(
+        UpdateUserProfileAction(
+          pinChangeRequired: true,
+          isPhoneVerified: false,
+        ),
+      );
+
       late String initialRoute;
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
 
