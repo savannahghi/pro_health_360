@@ -28,8 +28,8 @@ class ManageTokenAction extends ReduxAction<AppState> {
   RefreshTokenManger refreshTokenManger;
 
   @override
-  Future<AppState> reduce() async {
-    await dispatch(
+  AppState reduce() {
+    dispatch(
       AuthStatusAction(
         isSignedIn: true,
         idToken: idToken,

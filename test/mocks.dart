@@ -293,7 +293,6 @@ class MockCustomGraphQLClient extends IGraphQlClient {
   }
 }
 
-// ignore: subtype_of_sealed_class
 class MockGraphQlClient extends Mock implements GraphQlClient {
   String removeUserAsExperimenterVariables =
       json.encode(<String, dynamic>{'participate': false});
@@ -310,6 +309,15 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     required String method,
     Map<String, dynamic>? variables,
   }) {
+    if (endpoint.contains('login_by_phone')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(mockLoginResponse),
+          201,
+        ),
+      );
+    }
+
     if (endpoint.contains('request_pin_reset')) {
       return Future<http.Response>.value(
         http.Response(
@@ -387,7 +395,11 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       return Future<http.Response>.value(
         http.Response(
           json.encode(
-            mockLoginResponse,
+            <String, dynamic>{
+              'expiresIn': '3600',
+              'idToken': 'some-id-token',
+              'refreshToken': 'some-refresh-token'
+            },
           ),
           201,
         ),
@@ -650,6 +662,36 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
               'userProfile': true,
             },
           }),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains('fetchRecentContent')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'fetchRecentContent': contentMock,
+              },
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
+    if (queryString.contains('fetchSuggestedGroups')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'fetchSuggestedGroups': mockSuggestions,
+              },
+            },
+          ),
           201,
         ),
       );

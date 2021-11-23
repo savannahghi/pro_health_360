@@ -60,9 +60,9 @@ class UpdateUserAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final AppState newState = state.copyWith.clientState!.call(
-      user: user ?? state.clientState!.user,
-    );
+    final ClientState? newClientState = state.clientState?.copyWith(user: user);
+    final AppState newState =
+        state.copyWith(clientState: newClientState ?? state.clientState);
 
     return newState;
   }

@@ -17,6 +17,7 @@ import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'widgets_tests/shared/utils_test.mocks.dart';
 
@@ -75,6 +76,8 @@ Future<void> buildTestWidget({
     'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
   });
 
+  NavigateAction.setNavigatorKey(appGlobalNavigatorKey);
+
   return tester.pumpWidget(
     StoreProvider<AppState>(
       store: store,
@@ -86,6 +89,7 @@ Future<void> buildTestWidget({
         child: MaterialApp(
           localizationsDelegates: localizationDelegates,
           supportedLocales: locales,
+          navigatorKey: appGlobalNavigatorKey,
           onGenerateRoute: RouteGenerator.generateRoute,
           home: Scaffold(
             body: Center(

@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -21,15 +20,14 @@ import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/connectivity_helper.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:myafyahub/domain/core/entities/core/event_obj.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
@@ -42,7 +40,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/domain/core/value_objects/events.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -51,7 +48,6 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
 import 'package:unicons/unicons.dart';
-import 'package:user_feed/user_feed.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -769,71 +765,37 @@ void refreshTokenAndUpdateState({
   }
 }
 
-Future<bool> updateStateAuth({
+bool updateStateAuth({
   required ProcessedResponse processedResponse,
   required BuildContext context,
-}) async {
-  /// the response is passed to a variable of type `http.Response`
-  final http.Response okResponse = processedResponse.response;
+}) {
+  if (processedResponse.ok) {
+    final Map<String, dynamic> parsed =
+        jsonDecode(processedResponse.response.body) as Map<String, dynamic>;
 
-  final Map<String, dynamic> body =
-      json.decode(okResponse.body) as Map<String, dynamic>;
+    final AuthCredentials auth = AuthCredentials.fromJson(parsed);
 
-  final AuthCredentialResponse auth = AuthCredentialResponse.fromJson(body);
-
-  final AppState? state = StoreProvider.state<AppState>(context);
-  final String appContext =
-      getEnvironmentContext(AppWrapperBase.of(context)!.appContexts);
-
-  if (auth.idToken != null &&
-      auth.refreshToken != null &&
-      auth.expiresIn != null) {
-    publishEvent(
-      hasSuccessfulRefreshTokenEvent(appContext),
-      EventObject(
-        firstName: state!.clientState!.user!.firstName,
-        lastName: state.clientState!.user!.lastName,
-        primaryPhoneNumber: state.clientState!.user!.primaryContact!.value,
-        uid: state.clientState!.user!.userId,
-        flavour: Flavour.CONSUMER.name,
-        timestamp: DateTime.now(),
-        appVersion: APPVERSION,
-      ),
-    );
-
-    await StoreProvider.dispatch<AppState>(
-      context,
-      ManageTokenAction(
-        refreshToken: auth.refreshToken!,
-        idToken: auth.idToken!,
-        context: context,
-        refreshTokenManger: RefreshTokenManger(),
-        canExperiment: auth.canExperiment,
-        parsedExpiresAt:
-            DateTimeParser().parsedExpireAt(int.parse(auth.expiresIn!)),
-      ),
-    );
-    return true;
+    if (auth.idToken != null &&
+        auth.refreshToken != null &&
+        auth.expiresIn != null) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        ManageTokenAction(
+          refreshToken: auth.refreshToken!,
+          idToken: auth.idToken!,
+          context: context,
+          refreshTokenManger: RefreshTokenManger(),
+          parsedExpiresAt:
+              DateTimeParser().parsedExpireAt(int.parse(auth.expiresIn!)),
+        ),
+      );
+      return true;
+    } else {
+      return false;
+    }
   } else {
-    reportErrorToSentry(
-      context,
-      okResponse,
-      hint: 'Error failed to refresh token',
-    );
+    Sentry.captureException(processedResponse.response);
 
-    /// we failed to refresh the token so require the user to login
-    publishEvent(
-      hasFailedToRefreshTokenEvent(appContext),
-      EventObject(
-        firstName: state!.clientState!.user!.firstName,
-        lastName: state.clientState!.user!.lastName,
-        primaryPhoneNumber: state.clientState!.user!.primaryContact!.value,
-        uid: state.clientState!.user!.userId,
-        flavour: Flavour.CONSUMER.name,
-        timestamp: DateTime.now(),
-        appVersion: APPVERSION,
-      ),
-    );
     return false;
   }
 }

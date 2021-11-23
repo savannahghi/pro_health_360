@@ -3,6 +3,7 @@
 /// file **MUST** follow the same, and must be replicated in
 /// the router generator file
 class BWRoutes {
+  static const String deeplink = '/app';
   // onboarding routes
   static const String phoneLogin = '/phoneLogin';
   static const String verifyPhoneNo = '/verifyPhoneNo';
@@ -23,7 +24,7 @@ class BWRoutes {
   static const String emailVerification = '/emailVerification';
 
   // homepage
-  static const String home = 'home';
+  static const String home = '/home';
 
   static const String moodFeedbackPage = '/moodFeedbackPage';
 
@@ -44,8 +45,6 @@ class BWRoutes {
   static const String appointmentsPage = '/appointmentsPage';
 
   static const String webView = '/webView';
-
-  static const String introduction = 'introduction';
 
   // community
   static const String communityListView = '/communityListView';

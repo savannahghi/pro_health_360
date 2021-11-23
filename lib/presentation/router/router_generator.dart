@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
+import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -52,6 +53,11 @@ class RouteGenerator {
     final dynamic args = settings.arguments;
 
     switch (settings.name) {
+      case BWRoutes.deeplink:
+        return MaterialPageRoute<HandleDeepLink>(
+          builder: (BuildContext context) => const HandleDeepLink(),
+        );
+
       case BWRoutes.createPin:
         return MaterialPageRoute<CreateNewPINPage>(
           builder: (_) => CreateNewPINPage(),
@@ -228,6 +234,7 @@ class RouteGenerator {
         return MaterialPageRoute<ForgotPINPage>(
           builder: (_) => const ForgotPINPage(),
         );
+
       default:
         return MaterialPageRoute<LoginPage>(builder: (_) => LoginPage());
     }

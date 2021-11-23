@@ -1,13 +1,9 @@
-// Dart imports:
-import 'dart:convert';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 // Project imports:
@@ -66,26 +62,11 @@ void main() {
       ),
     );
 
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
-      'idToken',
-      'endpoint',
-      Response(
-        json.encode(<String, dynamic>{
-          'data': <String, dynamic>{
-            'login': mockLoginResponse,
-            'fetchRecentContent': contentMock,
-          }
-        }),
-        201,
-      ),
-    );
-
     await mockNetworkImages(() async {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockShortSILGraphQlClient,
+        client: MockGraphQlClient(),
         widget: Material(
           child: Builder(
             builder: (BuildContext context) {

@@ -11,7 +11,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-import 'package:uni_links/uni_links.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/connectivity_helper.dart';
@@ -64,23 +63,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
   @override
   void initState() {
     super.initState();
-    _handleIncomingLinks();
-    _handleInitialUri();
     Connectivity().onConnectivityChanged.listen(listenForConnectivityChanges);
-  }
-
-  /// Handle incoming links - the ones that the app will receive from the OS
-  /// while already started.
-  void _handleIncomingLinks() {
-    // It will handle app links while the app is already started - be it in
-    // the foreground or in the background.
-    _sub = uriLinkStream.listen(
-      linkStreamListener(
-        mounted: mounted,
-        nav: widget.appNavigatorKey,
-        signedIn: widget.appState.clientState?.isSignedIn ?? false,
-      ) as void Function(Uri?)?,
-    );
   }
 
   @override
@@ -95,30 +78,6 @@ class _PreLoadAppState extends State<PreLoadApp> {
         ),
       );
     });
-  }
-
-  /// Handle the initial Uri - the one the app was started with
-  ///
-  /// **ATTENTION**: `getInitialLink`/`getInitialUri` should be handled
-  /// ONLY ONCE in the app's lifetime, since it is not meant to change
-  /// throughout the app's life.
-  Future<void> _handleInitialUri() async {
-    if (!initialUriIsHandled) {
-      final Uri? _uri = await getInitialUri();
-
-      if (_uri == null) {
-        return;
-      }
-
-      if (!mounted) return;
-
-      handleDeepLink(
-        isInitialUri: true,
-        uri: _uri,
-        navigatorKey: widget.appNavigatorKey,
-        signedIn: widget.appState.clientState?.isSignedIn ?? false,
-      );
-    }
   }
 
   @override
@@ -157,6 +116,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
                   supportedLocales: locales,
                 );
               }
+
               return MaterialApp(
                 theme: AppTheme.getAppTheme(widget.thisAppContexts),
                 debugShowCheckedModeBanner: widget.appName == testAppName,

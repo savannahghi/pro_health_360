@@ -31,8 +31,6 @@ import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/auth.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend
 ///
@@ -88,9 +86,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       final IGraphQlClient httpClient =
           AppWrapperBase.of(context)!.graphQLClient;
 
-      httpClient.idToken = dGraphToken;
-      httpClient.endpoint = dGraphEndpoint;
-
       final String loginEndpoint =
           AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
 
@@ -113,6 +108,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final AuthCredentials? authCredentials = loginResponse.credentials;
         authCredentials?.copyWith(
           signedInTime: DateTime.now().toIso8601String(),
+          isSignedIn: true,
         );
 
         final int expiresIn = int.parse(authCredentials?.expiresIn ?? '0');
@@ -148,8 +144,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final OnboardingPathConfig onboardingPathConfig =
-            onboardingPath(store.state);
+        final OnboardingPathConfig onboardingPathConfig = onboardingPath(
+          clientState: state.clientState,
+          onboardingState: state.onboardingState,
+        );
 
         Navigator.of(context).pushNamedAndRemoveUntil(
           onboardingPathConfig.route,

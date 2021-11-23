@@ -139,6 +139,7 @@ void main() {
     testWidgets('should navigate to home if login request is successful',
         (WidgetTester tester) async {
       final MockRefreshTokenManger refreshTimer = MockRefreshTokenManger();
+      final MockGraphQlClient mockclient = MockGraphQlClient();
 
       final User? user = store.state.clientState?.user;
 
@@ -146,23 +147,6 @@ void main() {
         UpdateUserAction(
           user: user?.copyWith(termsAccepted: true, pinChangeRequired: false),
         ),
-      );
-
-      final Response contentResponse = Response(
-        json.encode(<String, dynamic>{
-          'data': <String, dynamic>{
-            'fetchRecentContent': contentMock,
-            'fetchSuggestedGroups': mockSuggestions,
-          }
-        }),
-        200,
-      );
-
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        contentResponse,
       );
 
       when(refreshTimer.updateExpireTime('2021-05-18T00:50:00.000'))
@@ -174,7 +158,7 @@ void main() {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: mockShortSILGraphQlClient,
+          client: mockclient,
           widget: MaterialApp(
             onGenerateRoute: RouteGenerator.generateRoute,
             home: Scaffold(

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -17,9 +18,11 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
+import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
+import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -365,15 +368,13 @@ Future<void> setUserPIN({
 }
 
 /// Determines the path to route the user to based on the app state
-OnboardingPathConfig onboardingPath(
-  AppState state, {
+OnboardingPathConfig onboardingPath({
+  required ClientState? clientState,
+  required OnboardingState? onboardingState,
   bool calledOnResume = false,
 }) {
-  final bool termsAccepted = state.clientState?.user?.termsAccepted ?? false;
-
-  final OnboardingState? onboardingState = state.onboardingState;
-  final bool pinChangeRequired =
-      state.clientState?.user?.pinChangeRequired ?? false;
+  final bool termsAccepted = clientState?.user?.termsAccepted ?? false;
+  final bool pinChangeRequired = clientState?.user?.pinChangeRequired ?? false;
   final bool isPhoneVerified = onboardingState?.isPhoneVerified ?? false;
   final bool hasSetSecurityQuestions =
       onboardingState?.hasSetSecurityQuestions ?? false;
@@ -382,7 +383,7 @@ OnboardingPathConfig onboardingPath(
 
   if (pinChangeRequired) {
     if (!isPhoneVerified) {
-      return OnboardingPathConfig(BWRoutes.verifySignUpOTP);
+      return OnboardingPathConfig(BWRoutes.phoneLogin);
     } else if (!termsAccepted) {
       return OnboardingPathConfig(BWRoutes.termsAndConditions);
     } else if (!hasSetSecurityQuestions) {
@@ -456,26 +457,29 @@ Future<String> getInitialRoute(
       credentials: appState.credentials,
       thisAppContexts: thisAppContexts,
     );
-    switch (checkTokenStatusResult) {
-      case AuthTokenStatus.requiresLogin:
-        return BWRoutes.phoneLogin;
-      case AuthTokenStatus.requiresPin:
-        return BWRoutes.phoneLogin;
-      default:
+
+    if (checkTokenStatusResult == AuthTokenStatus.requiresLogin ||
+        checkTokenStatusResult == AuthTokenStatus.requiresPin) {
+      return BWRoutes.phoneLogin;
     }
 
-    final OnboardingPathConfig pathConfig =
-        onboardingPath(appState, calledOnResume: true);
+    final OnboardingPathConfig pathConfig = onboardingPath(
+      clientState: appState.clientState,
+      onboardingState: appState.onboardingState,
+      calledOnResume: true,
+    );
 
-    if (pathConfig.route == BWRoutes.createPin) {
-      return BWRoutes.createPin;
-    }
+    final DateTimeParser dateTimeParser = DateTimeParser();
+    final int expiresIn = int.parse(appState.credentials?.expiresIn ?? '0');
+    final String tokenExpiryDateString =
+        dateTimeParser.parsedExpireAt(expiresIn);
 
     final String parsedExpiresAt =
-        DateTime.parse(appState.credentials!.expiresIn!).toIso8601String();
+        DateTime.parse(tokenExpiryDateString).toIso8601String();
 
     RefreshTokenManger().updateExpireTime(parsedExpiresAt).reset();
-    return Future<String>.value(pathConfig.route);
+
+    return pathConfig.route;
   }
 
   return BWRoutes.phoneLogin;
@@ -502,40 +506,52 @@ Future<AuthTokenStatus> checkTokenStatus({
 }) async {
   final DateTime now = DateTime.now();
 
-  final DateTime expiresAt = DateTime.parse(credentials!.expiresIn!);
-
-  /// first check if token has expired
-  if (expiresAt.difference(now).inMinutes < 50 &&
-      expiresAt.difference(now).inSeconds > 0) {
-    return AuthTokenStatus.okay;
+  if (credentials?.expiresIn == null ||
+      credentials?.expiresIn == UNKNOWN ||
+      credentials?.refreshToken == null ||
+      credentials?.refreshToken == UNKNOWN) {
+    return AuthTokenStatus.requiresLogin;
   }
 
-  /// since it's expired, we check if 72 hours has elapsed since the token was issued
-  if (now.difference(expiresAt).inHours < 72) {
-    final ProcessedResponse processedResponse = await requestForANewToken(
+  final DateTimeParser dateTimeParser = DateTimeParser();
+  final int expiresIn = int.parse(credentials?.expiresIn ?? '0');
+  final String stringExpiresAt = dateTimeParser.parsedExpireAt(expiresIn);
+
+  final DateTime expiresAt = DateTime.parse(stringExpiresAt);
+
+  /// first check if token has expired
+  if (hasTokenExpired(expiresAt, now)) {
+    return AuthTokenStatus.requiresLogin;
+  }
+
+  /// since it has not expired, we refresh the token
+  final ProcessedResponse processedResponse = await requestForANewToken(
+    context: context,
+    thisAppContexts: thisAppContexts,
+    refreshToken: credentials!.refreshToken!,
+  );
+
+  /// check if the response from the network call returns `ok`
+  ///  set by the backend to mean user credentials matched
+  if (processedResponse.ok) {
+    final bool isAuthStateUpdated = updateStateAuth(
       context: context,
-      thisAppContexts: thisAppContexts,
-      refreshToken: credentials.refreshToken!,
+      processedResponse: processedResponse,
     );
 
-    /// check if the response from the network call returns `ok`
-    ///  set by the backend to mean user credentials matched
-    if (processedResponse.ok) {
-      if (await updateStateAuth(
-        context: context,
-        processedResponse: processedResponse,
-      )) {
-        return AuthTokenStatus.requiresPin;
-      } else {
-        /// we failed to refresh the token so require the user to login
-        return AuthTokenStatus.requiresLogin;
-      }
+    if (!isAuthStateUpdated) {
+      return AuthTokenStatus.requiresLogin;
+    } else {
+      /// we failed to refresh the token so require the user to login
+      return AuthTokenStatus.okay;
     }
   }
 
-  /// token is expired and 72 hours have elapsed since last refresh
-  /// so require the user to log in.
   return AuthTokenStatus.requiresLogin;
+}
+
+bool hasTokenExpired(DateTime expiresAt, DateTime now) {
+  return expiresAt.difference(now).inMinutes < 10;
 }
 
 Future<void> setUserNickname({

@@ -12,7 +12,9 @@ import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -96,11 +98,19 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                               ),
                             );
 
+                            final ClientState? clientState =
+                                StoreProvider.state<AppState>(context)
+                                    ?.clientState;
+                            final OnboardingState? onboardingState =
+                                StoreProvider.state<AppState>(context)
+                                    ?.onboardingState;
+
                             // navigate to create new Terms and Conditions
                             await Navigator.pushReplacementNamed(
                               context,
                               onboardingPath(
-                                StoreProvider.state<AppState>(context)!,
+                                clientState: clientState,
+                                onboardingState: onboardingState,
                               ).route,
                             );
                           },

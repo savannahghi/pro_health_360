@@ -1,6 +1,4 @@
 // Dart imports:
-
-// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -66,6 +64,7 @@ void main() {
         expect(getAppSetupData(AppContext.BewellCONSUMER), devAppSetupData);
       });
     });
+
     test('getEnvironmentContext should return the correct contexts', () async {
       expect(getEnvironmentContext(<AppContext>[AppContext.AppProd]), 'prod');
       expect(getEnvironmentContext(<AppContext>[AppContext.AppDemo]), 'demo');

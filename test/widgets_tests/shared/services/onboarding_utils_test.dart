@@ -693,7 +693,10 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(store.state).route;
+                    path = onboardingPath(
+                      clientState: store.state.clientState,
+                      onboardingState: store.state.onboardingState,
+                    ).route;
                   },
                 );
               },
@@ -733,7 +736,10 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(store.state).route;
+                    path = onboardingPath(
+                      clientState: store.state.clientState,
+                      onboardingState: store.state.onboardingState,
+                    ).route;
                   },
                 );
               },
@@ -774,7 +780,10 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(store.state).route;
+                    path = onboardingPath(
+                      clientState: store.state.clientState,
+                      onboardingState: store.state.onboardingState,
+                    ).route;
                   },
                 );
               },
@@ -815,7 +824,10 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(store.state).route;
+                    path = onboardingPath(
+                      clientState: store.state.clientState,
+                      onboardingState: store.state.onboardingState,
+                    ).route;
                   },
                 );
               },
@@ -826,6 +838,41 @@ void main() {
           await tester.pumpAndSettle();
 
           expect(path, BWRoutes.congratulationsPage);
+        });
+
+        testWidgets('should navigate to phone login page',
+            (WidgetTester tester) async {
+          store.dispatch(
+            UpdateUserProfileAction(
+              pinChangeRequired: true,
+              isPhoneVerified: false,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(
+                      clientState: store.state.clientState,
+                      onboardingState: store.state.onboardingState,
+                    ).route;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, BWRoutes.phoneLogin);
         });
       });
 
@@ -1217,39 +1264,17 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      const String refreshToken = 'some-refresh-token';
-
-      // mocked response
-      final http.Response response = http.Response(
-        json.encode(
-          <String, dynamic>{
-            'id_token': 'newAuthToken',
-            'refresh_token': refreshToken,
-            'expires_in': '2'
-          },
-        ),
-        201,
-      );
-
-      callRESTAPIWhenThenAnswer(
-        endpoint: 'https://mycarehub-testing.savannahghi.org/refresh_token',
-        variables: <String, dynamic>{
-          'refreshToken': refreshToken,
-          'appVersion': APPVERSION,
-        },
-        response: response,
-      );
-
-      mockLoginResponse.remove('auth');
-
       final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
       final UserProfile? userProfile = userResp.profile;
+
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      const String refreshToken = 'some-refresh-token';
 
       await tester.runAsync(() async {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: baseGraphQlClientMock,
+          client: mockGraphQlClient,
           widget: Builder(
             builder: (BuildContext context) {
               StoreProvider.dispatch(
@@ -1312,7 +1337,6 @@ void main() {
       final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
       final UserProfile? userProfile = userResp.profile;
 
-      // implementation/call the function
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -1332,9 +1356,8 @@ void main() {
             );
 
             return SILPrimaryButton(
-              onPressed: () async {
-                // call our check token status function
-                updateStateAuthStatus = await updateStateAuth(
+              onPressed: () {
+                updateStateAuthStatus = updateStateAuth(
                   processedResponse:
                       ProcessedResponse(ok: true, response: response),
                   context: context,
@@ -1355,6 +1378,65 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(updateStateAuthStatus, isNotNull);
+      expect(updateStateAuthStatus, false);
+    });
+
+    testWidgets('should return false if response is false',
+        (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+
+      bool? updateStateAuthStatus;
+
+      final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
+      final UserProfile? userProfile = userResp.profile;
+
+      store.dispatch(
+        UpdateUserProfileAction(
+          active: true,
+          firstName: userProfile?.userBioData?.firstName?.getValue(),
+          lastName: userProfile?.userBioData?.lastName?.getValue(),
+          phoneNumber: Contact(
+            value: userProfile?.primaryPhoneNumber?.getValue(),
+          ),
+        ),
+      );
+
+      final Map<String, dynamic> responseData = <String, dynamic>{
+        'error': 'someError',
+      };
+
+      final Response response = Response(jsonEncode(responseData), 201);
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () {
+                updateStateAuthStatus = updateStateAuth(
+                  processedResponse:
+                      ProcessedResponse(ok: false, response: response),
+                  context: context,
+                );
+              },
+              text: 'Test',
+            );
+          },
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final AuthCredentials state = store.state.credentials!;
+      expect(state.isSignedIn, false);
+
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+
       expect(updateStateAuthStatus, false);
     });
 
@@ -1387,7 +1469,7 @@ void main() {
     });
 
     testWidgets(
-        'should return verify code page route for a user with a valid '
+        'should return terms page route for a user with a valid '
         'token if they have not accepted the terms and conditions',
         (WidgetTester tester) async {
       final Store<AppState> store = Store<AppState>(
@@ -1395,19 +1477,12 @@ void main() {
             .copyWith
             .clientState!
             .user!
-            .call(termsAccepted: true, pinChangeRequired: true)
+            .call(termsAccepted: false, pinChangeRequired: false)
             .copyWith
             .onboardingState!
             .call(
-              isPhoneVerified: false,
+              isPhoneVerified: true,
             ),
-      );
-
-      store.dispatch(
-        UpdateUserProfileAction(
-          pinChangeRequired: true,
-          isPhoneVerified: false,
-        ),
       );
 
       late String initialRoute;
@@ -1425,9 +1500,7 @@ void main() {
                 isSignedIn: true,
                 idToken: 'oldAuthToken',
                 refreshToken: 'oldRefreshToken',
-                expiresAt: DateTime.now()
-                    .add(const Duration(seconds: 2))
-                    .toIso8601String(),
+                expiresAt: '3600',
               ),
             );
             return SILPrimaryButton(
@@ -1446,7 +1519,7 @@ void main() {
       // trigger the bottom sheet
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.verifySignUpOTP);
+      expect(initialRoute, BWRoutes.termsAndConditions);
     });
   });
 }

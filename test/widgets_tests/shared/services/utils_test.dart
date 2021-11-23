@@ -759,43 +759,17 @@ void main() {
 
       AuthTokenStatus? actualTokenStatus;
 
-      mockLoginResponse.remove('auth');
-
       // TODO(abiud): remove this hardcoded login response
       final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
       final UserProfile? userProfile = userResp.profile;
 
-      final http.Response response = http.Response(
-        json.encode(<String, dynamic>{
-          'can_experiment': true,
-          'customToken': 'some-custom-token',
-          'expires_in': '3600',
-          'id_token': 'some-id-token',
-          'is_admin': false,
-          'is_anonymous': false,
-          'refresh_token': 'Some-refresh-token',
-          'uid': 'some-uid'
-        }),
-        201,
-      );
-
-      const String refreshTokenEndpoint =
-          'https://mycarehub-testing.savannahghi.org/refresh_token';
-
-      callRESTAPIWhenThenAnswer(
-        endpoint: refreshTokenEndpoint,
-        variables: <String, dynamic>{
-          'refreshToken': oldRefreshToken,
-          'appVersion': APPVERSION,
-        },
-        response: response,
-      );
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
 
       // implementation/call the function
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: mockGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
             StoreProvider.dispatch(
@@ -804,9 +778,7 @@ void main() {
                 isSignedIn: true,
                 idToken: oldAuthToken,
                 refreshToken: oldRefreshToken,
-                expiresAt: DateTime.now()
-                    .add(const Duration(days: 2))
-                    .toIso8601String(),
+                expiresAt: '3600',
               ),
             );
 
@@ -853,13 +825,13 @@ void main() {
       expect(store.state.credentials!.isSignedIn, true);
       expect(
         store.state.credentials!.refreshToken,
-        'Some-refresh-token',
+        'some-refresh-token',
       );
       expect(
         store.state.credentials!.idToken,
         'some-id-token',
       );
-      expect(actualTokenStatus, AuthTokenStatus.requiresPin);
+      expect(actualTokenStatus, AuthTokenStatus.okay);
     });
   });
 
