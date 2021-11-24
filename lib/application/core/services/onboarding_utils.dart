@@ -2,35 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/failures.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
-import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-// Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+// Project imports:
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
+import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
@@ -43,6 +39,8 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/sil_progress_dialog.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// [updateUserPin] resets a user's PIN
 ///

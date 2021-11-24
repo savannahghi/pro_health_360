@@ -2,7 +2,7 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
@@ -28,6 +28,31 @@ void main() {
 
     test('should return an unprotected route', () async {
       expect(unProtectedRoutes[0], BWRoutes.phoneLogin);
+    });
+
+    test('formatSecurityQuestionDate should return birthdate in en_GB format',
+        () {
+      initializeDateFormatting();
+      const String enFormat = '1990-02-19';
+      const String looseFormat = '19 Feb 1990';
+
+      final String r1 = formatSecurityQuestionDate(enFormat);
+      final String r2 = formatSecurityQuestionDate(looseFormat);
+
+      expect(r1, equals(r2));
+    });
+
+    test(
+        'formatSecurityQuestionDate should return birthdate from britain format',
+        () {
+      initializeDateFormatting();
+      const String enFormat = '1990-02-19';
+      const String looseFormat = '19 Feb, 1990';
+
+      final String r2 =
+          formatSecurityQuestionDate(looseFormat, format: 'yyyy-MM-dd');
+
+      expect(enFormat, equals(r2));
     });
 
     test('should parser expiredAt', () {

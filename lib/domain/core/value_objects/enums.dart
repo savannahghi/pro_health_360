@@ -1,4 +1,5 @@
 // Project imports:
+import 'package:flutter/foundation.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
 enum AppErrorType { UserFeedError }
@@ -77,3 +78,14 @@ enum RelationshipType {
 
 /// The type of contact being used
 enum ContactType { PHONE, EMAIL, UNKNOWN }
+
+/// Security Questions response type
+enum SecurityQuestionResponseType { NUMBER, TEXT, DATE, UNKNOWN }
+
+/// [SecurityQuestionResponseTypeEx] extends [SecurityQuestionResponseType] enum to get the values as
+/// strings
+extension SecurityQuestionResponseTypeEx on SecurityQuestionResponseType {
+  String get name {
+    return describeEnum(this).toUpperCase();
+  }
+}

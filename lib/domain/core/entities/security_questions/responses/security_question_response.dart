@@ -8,21 +8,17 @@ part 'security_question_response.g.dart';
 @freezed
 class SecurityQuestionResponse with _$SecurityQuestionResponse {
   factory SecurityQuestionResponse({
-    String? id,
-    String? timeStamp,
-    String? userId,
-    String? securityQuestionId,
-    String? response,
+    @JsonKey(name: 'userID') String? userID,
+    @JsonKey(name: 'securityQuestionID') String? securityQuestionID,
+    @JsonKey(name: 'response') String? response,
   }) = _SecurityQuestionResponse;
 
   factory SecurityQuestionResponse.fromJson(Map<String, dynamic> json) =>
       _$SecurityQuestionResponseFromJson(json);
 
   factory SecurityQuestionResponse.initial() => SecurityQuestionResponse(
-        id: UNKNOWN,
-        timeStamp: UNKNOWN,
-        userId: UNKNOWN,
-        securityQuestionId: UNKNOWN,
+        userID: UNKNOWN,
+        securityQuestionID: UNKNOWN,
         response: UNKNOWN,
       );
 }

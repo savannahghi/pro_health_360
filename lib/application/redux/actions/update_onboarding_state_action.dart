@@ -3,8 +3,8 @@ import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   UpdateOnboardingStateAction({

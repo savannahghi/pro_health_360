@@ -21,11 +21,16 @@ class _$SecurityQuestionTearOff {
   const _$SecurityQuestionTearOff();
 
   _SecurityQuestion call(
-      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
-      @JsonKey(name: 'QuestionStem') String? questionStem,
-      @JsonKey(name: 'Description') String? description,
-      @JsonKey(name: 'ResponseType') String? responseType,
-      @JsonKey(name: 'Active') bool? active = false}) {
+      {@JsonKey(name: 'SecurityQuestionID')
+          String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem')
+          String? questionStem,
+      @JsonKey(name: 'Description')
+          String? description,
+      @JsonKey(name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+          SecurityQuestionResponseType? responseType,
+      @JsonKey(name: 'Active')
+          bool? active = false}) {
     return _SecurityQuestion(
       securityQuestionID: securityQuestionID,
       questionStem: questionStem,
@@ -51,8 +56,10 @@ mixin _$SecurityQuestion {
   String? get questionStem => throw _privateConstructorUsedError;
   @JsonKey(name: 'Description')
   String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ResponseType')
-  String? get responseType => throw _privateConstructorUsedError;
+  @JsonKey(
+      name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+  SecurityQuestionResponseType? get responseType =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'Active')
   bool? get active => throw _privateConstructorUsedError;
 
@@ -68,11 +75,16 @@ abstract class $SecurityQuestionCopyWith<$Res> {
           SecurityQuestion value, $Res Function(SecurityQuestion) then) =
       _$SecurityQuestionCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
-      @JsonKey(name: 'QuestionStem') String? questionStem,
-      @JsonKey(name: 'Description') String? description,
-      @JsonKey(name: 'ResponseType') String? responseType,
-      @JsonKey(name: 'Active') bool? active});
+      {@JsonKey(name: 'SecurityQuestionID')
+          String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem')
+          String? questionStem,
+      @JsonKey(name: 'Description')
+          String? description,
+      @JsonKey(name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+          SecurityQuestionResponseType? responseType,
+      @JsonKey(name: 'Active')
+          bool? active});
 }
 
 /// @nodoc
@@ -108,7 +120,7 @@ class _$SecurityQuestionCopyWithImpl<$Res>
       responseType: responseType == freezed
           ? _value.responseType
           : responseType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SecurityQuestionResponseType?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -125,11 +137,16 @@ abstract class _$SecurityQuestionCopyWith<$Res>
       __$SecurityQuestionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
-      @JsonKey(name: 'QuestionStem') String? questionStem,
-      @JsonKey(name: 'Description') String? description,
-      @JsonKey(name: 'ResponseType') String? responseType,
-      @JsonKey(name: 'Active') bool? active});
+      {@JsonKey(name: 'SecurityQuestionID')
+          String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem')
+          String? questionStem,
+      @JsonKey(name: 'Description')
+          String? description,
+      @JsonKey(name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+          SecurityQuestionResponseType? responseType,
+      @JsonKey(name: 'Active')
+          bool? active});
 }
 
 /// @nodoc
@@ -167,7 +184,7 @@ class __$SecurityQuestionCopyWithImpl<$Res>
       responseType: responseType == freezed
           ? _value.responseType
           : responseType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SecurityQuestionResponseType?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -180,11 +197,16 @@ class __$SecurityQuestionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SecurityQuestion implements _SecurityQuestion {
   _$_SecurityQuestion(
-      {@JsonKey(name: 'SecurityQuestionID') this.securityQuestionID,
-      @JsonKey(name: 'QuestionStem') this.questionStem,
-      @JsonKey(name: 'Description') this.description,
-      @JsonKey(name: 'ResponseType') this.responseType,
-      @JsonKey(name: 'Active') this.active = false});
+      {@JsonKey(name: 'SecurityQuestionID')
+          this.securityQuestionID,
+      @JsonKey(name: 'QuestionStem')
+          this.questionStem,
+      @JsonKey(name: 'Description')
+          this.description,
+      @JsonKey(name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+          this.responseType,
+      @JsonKey(name: 'Active')
+          this.active = false});
 
   factory _$_SecurityQuestion.fromJson(Map<String, dynamic> json) =>
       _$_$_SecurityQuestionFromJson(json);
@@ -199,8 +221,9 @@ class _$_SecurityQuestion implements _SecurityQuestion {
   @JsonKey(name: 'Description')
   final String? description;
   @override
-  @JsonKey(name: 'ResponseType')
-  final String? responseType;
+  @JsonKey(
+      name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+  final SecurityQuestionResponseType? responseType;
   @override
   @JsonKey(name: 'Active')
   final bool? active;
@@ -252,11 +275,16 @@ class _$_SecurityQuestion implements _SecurityQuestion {
 
 abstract class _SecurityQuestion implements SecurityQuestion {
   factory _SecurityQuestion(
-      {@JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
-      @JsonKey(name: 'QuestionStem') String? questionStem,
-      @JsonKey(name: 'Description') String? description,
-      @JsonKey(name: 'ResponseType') String? responseType,
-      @JsonKey(name: 'Active') bool? active}) = _$_SecurityQuestion;
+      {@JsonKey(name: 'SecurityQuestionID')
+          String? securityQuestionID,
+      @JsonKey(name: 'QuestionStem')
+          String? questionStem,
+      @JsonKey(name: 'Description')
+          String? description,
+      @JsonKey(name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+          SecurityQuestionResponseType? responseType,
+      @JsonKey(name: 'Active')
+          bool? active}) = _$_SecurityQuestion;
 
   factory _SecurityQuestion.fromJson(Map<String, dynamic> json) =
       _$_SecurityQuestion.fromJson;
@@ -271,8 +299,10 @@ abstract class _SecurityQuestion implements SecurityQuestion {
   @JsonKey(name: 'Description')
   String? get description => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'ResponseType')
-  String? get responseType => throw _privateConstructorUsedError;
+  @JsonKey(
+      name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+  SecurityQuestionResponseType? get responseType =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Active')
   bool? get active => throw _privateConstructorUsedError;

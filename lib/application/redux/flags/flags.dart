@@ -14,6 +14,7 @@ const String acceptTermsFlag = 'accept_terms';
 
 //Security Questions
 const String getSecurityQuestionsFlag = 'get_security_questions';
+const String recordSecurityQuestionsFlag = 'record_security_questions_flag';
 
 // basic details
 const String updateBasicDetailsFlag = 'update_basic_details';

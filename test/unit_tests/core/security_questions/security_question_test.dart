@@ -1,7 +1,8 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 import '../../../mocks.dart';
 
@@ -19,7 +20,7 @@ void main() {
           securityQuestionID: 'id',
           questionStem: 'question_stem',
           description: 'description',
-          responseType: 'response_type',
+          responseType: SecurityQuestionResponseType.UNKNOWN,
           active: true,
         ).toJson(),
         mockSecurityQuestion,

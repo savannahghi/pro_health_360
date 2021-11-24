@@ -27,11 +27,12 @@ import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_ob
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:platform/platform.dart';
@@ -1563,31 +1564,30 @@ Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
   'SecurityQuestionID': 'id',
   'QuestionStem': 'question_stem',
   'Description': 'description',
-  'ResponseType': 'response_type',
+  'ResponseType': enums.SecurityQuestionResponseType.UNKNOWN.name,
   'Active': true,
 };
 
 final List<dynamic> securityQuestionsMock = <dynamic>[
   <String, dynamic>{
-    'SecurityQuestionID': 'id',
+    'SecurityQuestionID': 'id1',
     'QuestionStem': 'What are the last 4 digits of your CCC number?',
     'Description': 'Please provide the last 4 digits of your clinic number',
-    'ResponseType': 'response_type',
-    'Flavour': Flavour.CONSUMER.name,
+    'ResponseType': enums.SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
   <String, dynamic>{
-    'SecurityQuestionID': 'id',
+    'SecurityQuestionID': 'id2',
     'QuestionStem': 'Which month did you start your treatment?',
     'Description': 'Enter the month you started your treatment',
-    'ResponseType': 'response_type',
+    'ResponseType': enums.SecurityQuestionResponseType.DATE.name,
     'Active': true,
   },
   <String, dynamic>{
-    'SecurityQuestionID': 'id',
+    'SecurityQuestionID': 'id3',
     'QuestionStem': 'Which county is your clinic located?',
     'Description': 'nter the name of the county in small letters',
-    'ResponseType': 'response_type',
+    'ResponseType': enums.SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
 ];
@@ -1596,11 +1596,28 @@ Map<String, dynamic> mockSecurityQuestionsData = <String, dynamic>{
   'getSecurityQuestions': securityQuestionsMock
 };
 
+final List<dynamic> recordSecurityQuestionReponseMock = <dynamic>[
+  <String, dynamic>{
+    'securityQuestionID': 'id1',
+    'isCorrect': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id2',
+    'isCorrect': true,
+  },
+  <String, dynamic>{
+    'SecurityQuestionID': 'id3',
+    'isCorrect': true,
+  },
+];
+
+Map<String, dynamic> mockRecordSecurityQuestionResponseData = <String, dynamic>{
+  'recordSecurityQuestionResponses': recordSecurityQuestionReponseMock
+};
+
 Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
-  'id': 'id',
-  'timeStamp': '2021-05-06T05:34:24Z',
-  'userId': 'userId',
-  'securityQuestionId': 'securityQuestionId',
+  'userID': 'userId',
+  'securityQuestionID': 'securityQuestionId',
   'response': 'response',
 };
 

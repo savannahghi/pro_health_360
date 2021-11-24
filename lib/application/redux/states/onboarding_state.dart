@@ -1,12 +1,11 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_phone_state.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 
 part 'onboarding_state.freezed.dart';

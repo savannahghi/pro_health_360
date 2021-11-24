@@ -12,9 +12,10 @@ import 'package:misc_utilities/responsive_widget.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_question_response.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -31,11 +32,12 @@ class ForgotPINPage extends StatelessWidget {
       SecurityQuestion(
         securityQuestionID: 'sec_q_1',
         questionStem: whereWereYouBornString,
-        responseType: '',
+        responseType: SecurityQuestionResponseType.UNKNOWN,
       ),
     ];
 
     final bool isLargeScreen = ResponsiveWidget.isLargeScreen(context);
+    final TextEditingController dateController = TextEditingController();
     return OnboardingScaffold(
       title: answerSecurityQuestionString,
       description: answerCorrectlyToGainAccessString,
@@ -57,7 +59,7 @@ class ForgotPINPage extends StatelessWidget {
                   final SecurityQuestionResponse? questionResponse =
                       securityQuestionsResponses?.singleWhere(
                     (SecurityQuestionResponse response) =>
-                        response.securityQuestionId ==
+                        response.securityQuestionID ==
                         question.securityQuestionID,
                     orElse: () => SecurityQuestionResponse.initial(),
                   );
@@ -66,16 +68,15 @@ class ForgotPINPage extends StatelessWidget {
                   return Container(
                     padding: const EdgeInsets.all(10.0),
                     child: ExpandableQuestion(
+                      dateController: dateController,
                       question: question.questionStem ?? UNKNOWN,
                       hintText: answerHereString,
                       initialValue: (response == UNKNOWN) ? null : response,
-                      onChanged: (String value) {
+                      onChanged: (String? value) {
                         securityQuestionsResponses!.add(
                           SecurityQuestionResponse(
-                            id: userId,
-                            timeStamp: DateTime.now().toString(),
-                            userId: userId,
-                            securityQuestionId: question.securityQuestionID,
+                            userID: userId,
+                            securityQuestionID: question.securityQuestionID,
                             response: value,
                           ),
                         );

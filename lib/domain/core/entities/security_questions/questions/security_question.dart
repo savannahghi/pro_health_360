@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'security_question.freezed.dart';
 part 'security_question.g.dart';
@@ -11,7 +12,8 @@ class SecurityQuestion with _$SecurityQuestion {
     @JsonKey(name: 'SecurityQuestionID') String? securityQuestionID,
     @JsonKey(name: 'QuestionStem') String? questionStem,
     @JsonKey(name: 'Description') String? description,
-    @JsonKey(name: 'ResponseType') String? responseType,
+    @JsonKey(name: 'ResponseType', defaultValue: SecurityQuestionResponseType.UNKNOWN)
+        SecurityQuestionResponseType? responseType,
     @JsonKey(name: 'Active') @Default(false) bool? active,
   }) = _SecurityQuestion;
 
@@ -22,7 +24,7 @@ class SecurityQuestion with _$SecurityQuestion {
         securityQuestionID: UNKNOWN,
         questionStem: UNKNOWN,
         description: UNKNOWN,
-        responseType: UNKNOWN,
+        responseType: SecurityQuestionResponseType.UNKNOWN,
         active: false,
       );
 }

@@ -46,6 +46,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/inputs.dart';
 import 'package:unicons/unicons.dart';
 
 Future<bool> onWillPopCallback() {
@@ -133,6 +134,22 @@ String? securityQuestionValidator(String? value) {
     return 'A Response is required';
   }
   return null;
+}
+
+String formatSecurityQuestionDate(
+  dynamic dateValue, {
+  String? format = datePickerFormat,
+}) {
+  late String date;
+  if (dateValue.toString().contains(' ')) {
+    final String _d = dateValue.toString();
+    date = DateFormat.yMMMMd('en_GB')
+        .parseLoose(_d.replaceAll(',', ''))
+        .toString();
+  } else {
+    date = dateValue.toString();
+  }
+  return DateFormat(format).format(DateTime.parse(date));
 }
 
 void genericBottomSheet({

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/security_questions_data.dart';
+import 'package:myafyahub/domain/core/entities/security_questions/questions/security_questions_data.dart';
 
 import '../../../mocks.dart';
 

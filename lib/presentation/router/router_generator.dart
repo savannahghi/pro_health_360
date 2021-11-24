@@ -1,12 +1,7 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
-import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
-import 'package:user_profile/term_and_conditions.dart' as webview;
-
+import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
@@ -15,6 +10,7 @@ import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dar
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/community/community_list_page.dart';
+import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/engagement/home/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/feed/pages/content_details_page.dart';
@@ -28,6 +24,7 @@ import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_pag
 import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
@@ -44,6 +41,7 @@ import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
 
 /// The router generator for the app. The arrangement in this config must match that
 /// in the routes.dart file
