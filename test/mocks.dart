@@ -33,6 +33,7 @@ import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_co
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
+import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:platform/platform.dart';
@@ -1728,7 +1729,7 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
 
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
-    'ID': 'some-id',
+    'ID': 1,
     'title': 'Tips on how to keep yourself healthy',
     'date': '2021-08-23T06:42:05.085216Z',
     'intro': 'Keep yourself healthy',
@@ -1739,7 +1740,9 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'timeEstimateSeconds': 180,
     'body':
         'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
-    'heroImageRendition': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    'heroImageRendition': <String, dynamic>{
+      'url': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    },
     'likeCount': 180,
     'bookmarkCount': 180,
     'viewCount': 180,
@@ -1760,6 +1763,7 @@ final Content mockContent = Content(
   contentID: 0,
   title: 'test',
   body: 'test',
+  contentType: local_enums.ContentType.ARTICLE,
   tags: <String>['test', 'test'],
   heroImage: HeroImage(url: 'test'),
   metadata: ContentMetadata(

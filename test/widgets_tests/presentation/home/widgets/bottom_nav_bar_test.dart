@@ -76,14 +76,12 @@ void main() {
           Response(
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
-                'fetchRecentContent': <dynamic>[
-                  mockContent,
-                  mockContent,
-                ],
-                'fetchContent': <dynamic>[
-                  mockContent,
-                  mockContent,
-                ],
+                'getContent': <String, dynamic>{
+                  'items': <dynamic>[
+                    mockContent,
+                    mockContent,
+                  ]
+                },
                 'fetchSuggestedGroups': <dynamic>[mockGroup]
               }
             }),

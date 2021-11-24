@@ -26,7 +26,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.text('23 August 2021'), findsOneWidget);
-        expect(find.text('3 minutes read'), findsOneWidget);
+        expect(find.text('3 minute read'), findsOneWidget);
       },
     );
   });

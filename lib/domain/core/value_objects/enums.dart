@@ -58,12 +58,6 @@ extension MoodTypeEx on MoodType {
 /// The type of content being served to the user
 enum ContentType { AUDIOVIDEO, DOCUMENT, ARTICLE, UNKNOWN }
 
-extension ContentTypeEx on ContentType {
-  String get name {
-    return describeEnum(this).toUpperCase();
-  }
-}
-
 enum EditInformationInputType { Text, DropDown }
 
 /// The type of the client

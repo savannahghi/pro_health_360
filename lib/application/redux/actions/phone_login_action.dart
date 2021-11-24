@@ -126,7 +126,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           UpdateOnboardingStateAction(
             hasSetPin: user?.hasSetPin,
             hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
-            isPhoneVerified: user?.isPhoneVerified,
+            isPhoneVerified: true,
             hasSetNickName: user?.username != null,
           ),
         );

@@ -8,26 +8,22 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/check_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
+import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
-import '../../shared/services/onboarding_utils_2_test.mocks.dart';
 
 void main() {
   group('LoginPage', () {
@@ -138,16 +134,16 @@ void main() {
       expect(find.text('A PIN is required'), findsOneWidget);
     });
 
-    testWidgets('should navigate to home if login request is successful',
+    testWidgets('should navigate to terms page if login request is successful',
         (WidgetTester tester) async {
-      final MockRefreshTokenManger refreshTimer = MockRefreshTokenManger();
-      final MockGraphQlClient mockclient = MockGraphQlClient();
-
-      final User? user = store.state.clientState?.user;
-
-      store.dispatch(
-        UpdateUserAction(
-          user: user?.copyWith(termsAccepted: true, pinChangeRequired: false),
+      mockLoginResponse.addAll(<String, dynamic>{'getCurrentTerms': termsMock});
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'data': mockLoginResponse}),
+          200,
         ),
       );
 
@@ -160,16 +156,11 @@ void main() {
         ),
       );
 
-      when(refreshTimer.updateExpireTime('2021-05-18T00:50:00.000'))
-          .thenReturn(refreshTimer);
-
-      when(refreshTimer.reset()).thenReturn(null);
-
       await mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: mockclient,
+          client: mockShortSILGraphQlClient,
           widget: MaterialApp(
             onGenerateRoute: RouteGenerator.generateRoute,
             home: Scaffold(
@@ -195,7 +186,7 @@ void main() {
         await tester.tap(continueButton);
         await tester.pumpAndSettle();
 
-        expect(find.byType(HomePage), findsOneWidget);
+        expect(find.byType(TermsAndConditionsPage), findsOneWidget);
       });
     });
 
