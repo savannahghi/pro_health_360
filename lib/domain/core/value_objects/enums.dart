@@ -1,5 +1,4 @@
 // Project imports:
-import 'package:flutter/foundation.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
 enum AppErrorType { UserFeedError }
@@ -57,11 +56,6 @@ extension MoodTypeEx on MoodType {
 
 /// The type of content being served to the user
 enum ContentType { AUDIOVIDEO, DOCUMENT, ARTICLE, UNKNOWN }
-extension ContentTypeEx on ContentType {
-  String get name {
-    return describeEnum(this).toUpperCase();
-  }
-}
 
 enum EditInformationInputType { Text, DropDown }
 
@@ -83,4 +77,3 @@ enum RelationshipType {
 
 /// The type of contact being used
 enum ContactType { PHONE, EMAIL, UNKNOWN }
-

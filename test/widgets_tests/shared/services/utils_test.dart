@@ -123,7 +123,7 @@ void main() {
       expect(actualNameFromState, 'Test Name');
     });
 
-    testWidgets('should get the correct display name from state',
+    testWidgets('should show UNKNOWN if there is no display name from state',
         (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());

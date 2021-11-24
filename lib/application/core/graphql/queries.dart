@@ -204,7 +204,6 @@ const String fetchContentQuery = r'''
 
 const String getContentQuery = r'''
 query getContent($categoryID: Int, $Limit: String!){
-  
   getContent(categoryID: $categoryID, Limit: $Limit) {
     meta{
       totalCount

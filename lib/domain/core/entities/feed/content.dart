@@ -21,7 +21,7 @@ class Content with _$Content {
     // TODO(abiud): add when backend is ready
     // @JsonKey(name: 'authorAvatar') String? authorAvatar,
     @JsonKey(name: 'author') Author? author,
-    @JsonKey(name: 'itemType') String? contentType, // ARTICLE
+    @JsonKey(name: 'itemType') ContentType? contentType, // "ARTICLE"
     @JsonKey(name: 'timeEstimateSeconds') int? estimate,
     @JsonKey(name: 'body') String? body,
     @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
@@ -47,7 +47,7 @@ class Content with _$Content {
         intro: UNKNOWN,
         authorName: UNKNOWN,
         author: Author.initial(),
-        contentType: ContentType.UNKNOWN.name,
+        contentType: ContentType.UNKNOWN,
         estimate: 0,
         body: UNKNOWN,
         heroImage: HeroImage.initial(),
@@ -121,7 +121,8 @@ class Author with _$Author {
 class HeroImage with _$HeroImage {
   factory HeroImage({@JsonKey(name: 'url') String? url}) = _HeroImage;
 
-  factory HeroImage.fromJson(Map<String, dynamic> json) => _$HeroImageFromJson(json);
+  factory HeroImage.fromJson(Map<String, dynamic> json) =>
+      _$HeroImageFromJson(json);
 
   factory HeroImage.initial() => HeroImage(url: UNKNOWN);
 }

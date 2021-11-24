@@ -27,7 +27,7 @@ class _$ContentTearOff {
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') String? contentType,
+      @JsonKey(name: 'itemType') ContentType? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
@@ -87,7 +87,8 @@ mixin _$Content {
   @JsonKey(name: 'author')
   Author? get author => throw _privateConstructorUsedError;
   @JsonKey(name: 'itemType')
-  String? get contentType => throw _privateConstructorUsedError; // ARTICLE
+  ContentType? get contentType =>
+      throw _privateConstructorUsedError; // "ARTICLE"
   @JsonKey(name: 'timeEstimateSeconds')
   int? get estimate => throw _privateConstructorUsedError;
   @JsonKey(name: 'body')
@@ -129,7 +130,7 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') String? contentType,
+      @JsonKey(name: 'itemType') ContentType? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
@@ -204,7 +205,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       contentType: contentType == freezed
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ContentType?,
       estimate: estimate == freezed
           ? _value.estimate
           : estimate // ignore: cast_nullable_to_non_nullable
@@ -298,7 +299,7 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') String? contentType,
+      @JsonKey(name: 'itemType') ContentType? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
@@ -377,7 +378,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       contentType: contentType == freezed
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ContentType?,
       estimate: estimate == freezed
           ? _value.estimate
           : estimate // ignore: cast_nullable_to_non_nullable
@@ -473,8 +474,8 @@ class _$_Content implements _Content {
   final Author? author;
   @override
   @JsonKey(name: 'itemType')
-  final String? contentType;
-  @override // ARTICLE
+  final ContentType? contentType;
+  @override // "ARTICLE"
   @JsonKey(name: 'timeEstimateSeconds')
   final int? estimate;
   @override
@@ -609,7 +610,7 @@ abstract class _Content implements Content {
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
       @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') String? contentType,
+      @JsonKey(name: 'itemType') ContentType? contentType,
       @JsonKey(name: 'timeEstimateSeconds') int? estimate,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
@@ -645,8 +646,8 @@ abstract class _Content implements Content {
   Author? get author => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'itemType')
-  String? get contentType => throw _privateConstructorUsedError;
-  @override // ARTICLE
+  ContentType? get contentType => throw _privateConstructorUsedError;
+  @override // "ARTICLE"
   @JsonKey(name: 'timeEstimateSeconds')
   int? get estimate => throw _privateConstructorUsedError;
   @override

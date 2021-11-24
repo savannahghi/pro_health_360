@@ -150,6 +150,16 @@ void main() {
     testWidgets(
         'should navigate to home and update state if login request is '
         'successful and user is verified', (WidgetTester tester) async {
+      mockLoginResponse.addAll(<String, dynamic>{
+        'getContent': <String, dynamic>{
+          'items': <dynamic>[
+            mockContent,
+            mockContent,
+          ]
+        },
+        'fetchRecentContent': contentMock
+      });
+
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
