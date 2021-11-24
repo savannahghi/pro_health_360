@@ -160,10 +160,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                               );
                               Navigator.pushReplacementNamed(
                                 context,
-                                onboardingPath(
-                                  clientState: vm.appState.clientState,
-                                  onboardingState: vm.appState.onboardingState,
-                                ).route,
+                                onboardingPath(appState: vm.appState).route,
                               );
                             } else {
                               ScaffoldMessenger.of(context)

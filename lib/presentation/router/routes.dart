@@ -6,7 +6,6 @@ class BWRoutes {
   static const String deeplink = '/app';
   // onboarding routes
   static const String phoneLogin = '/phoneLogin';
-  static const String verifyPhoneNo = '/verifyPhoneNo';
   static const String verifyCode = '/verifyCode';
   static const String termsAndConditions = '/termsAndConditions';
   static const String verifySignUpOTP = '/verifySignUpOTP';

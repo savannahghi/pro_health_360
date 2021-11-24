@@ -20,9 +20,8 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
+import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/application/redux/states/onboarding_state.dart';
-import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -369,34 +368,32 @@ Future<void> setUserPIN({
 
 /// Determines the path to route the user to based on the app state
 OnboardingPathConfig onboardingPath({
-  required ClientState? clientState,
-  required OnboardingState? onboardingState,
+  required AppState? appState,
   bool calledOnResume = false,
 }) {
-  final bool termsAccepted = clientState?.user?.termsAccepted ?? false;
-  final bool pinChangeRequired = clientState?.user?.pinChangeRequired ?? false;
-  final bool isPhoneVerified = onboardingState?.isPhoneVerified ?? false;
+  final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
+  final bool termsAccepted =
+      appState?.clientState?.user?.termsAccepted ?? false;
+  final bool isPhoneVerified =
+      appState?.onboardingState?.isPhoneVerified ?? false;
   final bool hasSetSecurityQuestions =
-      onboardingState?.hasSetSecurityQuestions ?? false;
-  final bool hasSetNickName = onboardingState?.hasSetNickName ?? false;
-  final bool isPINSet = onboardingState?.isPINSet ?? false;
+      appState?.onboardingState?.hasSetSecurityQuestions ?? false;
+  final bool hasSetNickName =
+      appState?.onboardingState?.hasSetNickName ?? false;
+  final bool isPINSet = appState?.onboardingState?.isPINSet ?? false;
 
-  if (pinChangeRequired) {
-    if (!isPhoneVerified) {
-      return OnboardingPathConfig(BWRoutes.phoneLogin);
-    } else if (!termsAccepted) {
-      return OnboardingPathConfig(BWRoutes.termsAndConditions);
-    } else if (!hasSetSecurityQuestions) {
-      return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
-    } else if (!isPINSet) {
-      return OnboardingPathConfig(BWRoutes.createPin);
-    } else if (!hasSetNickName) {
-      return OnboardingPathConfig(BWRoutes.congratulationsPage);
-    }
-  } else {
-    if (!termsAccepted) {
-      return OnboardingPathConfig(BWRoutes.termsAndConditions);
-    }
+  if (!isSignedIn) {
+    return OnboardingPathConfig(BWRoutes.phoneLogin);
+  } else if (!isPhoneVerified) {
+    return OnboardingPathConfig(BWRoutes.verifySignUpOTP);
+  } else if (!termsAccepted) {
+    return OnboardingPathConfig(BWRoutes.termsAndConditions);
+  } else if (!hasSetSecurityQuestions) {
+    return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
+  } else if (!isPINSet) {
+    return OnboardingPathConfig(BWRoutes.createPin);
+  } else if (!hasSetNickName) {
+    return OnboardingPathConfig(BWRoutes.congratulationsPage);
   }
 
   return OnboardingPathConfig(BWRoutes.home);
@@ -460,12 +457,16 @@ Future<String> getInitialRoute(
 
     if (checkTokenStatusResult == AuthTokenStatus.requiresLogin ||
         checkTokenStatusResult == AuthTokenStatus.requiresPin) {
+      StoreProvider.dispatch(
+        context,
+        UpdateCredentialsAction(isSignedIn: false),
+      );
+
       return BWRoutes.phoneLogin;
     }
 
     final OnboardingPathConfig pathConfig = onboardingPath(
-      clientState: appState.clientState,
-      onboardingState: appState.onboardingState,
+      appState: appState,
       calledOnResume: true,
     );
 

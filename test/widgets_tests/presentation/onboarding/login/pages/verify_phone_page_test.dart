@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 
 // Project imports:
@@ -56,6 +57,8 @@ void main() {
           201,
         ),
       );
+
+      store.dispatch(UpdateCredentialsAction(isSignedIn: true));
 
       await buildTestWidget(
         tester: tester,

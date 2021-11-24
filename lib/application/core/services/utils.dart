@@ -20,7 +20,6 @@ import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
@@ -785,8 +784,7 @@ bool updateStateAuth({
           idToken: auth.idToken!,
           context: context,
           refreshTokenManger: RefreshTokenManger(),
-          parsedExpiresAt:
-              DateTimeParser().parsedExpireAt(int.parse(auth.expiresIn!)),
+          expiresIn: auth.expiresIn!,
         ),
       );
       return true;

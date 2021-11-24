@@ -31,10 +31,7 @@ class DeepLinkAction extends ReduxAction<AppState> {
       if (hasTokenExpired(expiresAt, now)) {
         path = OnboardingPathConfig(BWRoutes.phoneLogin);
       } else {
-        path = onboardingPath(
-          clientState: state.clientState,
-          onboardingState: state.onboardingState,
-        );
+        path = onboardingPath(appState: state);
       }
     }
 

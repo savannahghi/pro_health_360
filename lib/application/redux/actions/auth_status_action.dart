@@ -8,12 +8,12 @@ class AuthStatusAction extends ReduxAction<AppState> {
   AuthStatusAction({
     this.idToken,
     this.refreshToken,
-    this.expiresAt,
+    this.expiresIn,
     this.isSignedIn,
     this.signedInTime,
   });
 
-  final String? expiresAt;
+  final String? expiresIn;
   final String? idToken;
   final bool? isSignedIn;
   final String? refreshToken;
@@ -23,7 +23,7 @@ class AuthStatusAction extends ReduxAction<AppState> {
   AppState? reduce() {
     final AppState newState = state.copyWith.credentials!.call(
       idToken: idToken ?? state.credentials?.idToken,
-      expiresIn: expiresAt ?? state.credentials?.expiresIn,
+      expiresIn: expiresIn ?? state.credentials?.expiresIn,
       refreshToken: refreshToken ?? state.credentials?.refreshToken,
       isSignedIn: isSignedIn ?? state.credentials?.isSignedIn,
       signedInTime: signedInTime ?? state.credentials?.signedInTime,

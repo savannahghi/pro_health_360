@@ -8,6 +8,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/login_utils.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
@@ -59,6 +60,15 @@ void main() {
     store.dispatch(
       UpdateUserAction(
         user: user?.copyWith(termsAccepted: true, pinChangeRequired: false),
+      ),
+    );
+
+    store.dispatch(
+      UpdateOnboardingStateAction(
+        isPhoneVerified: true,
+        hasSetSecurityQuestions: true,
+        hasSetPin: true,
+        hasSetNickName: true,
       ),
     );
 

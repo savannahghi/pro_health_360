@@ -84,10 +84,8 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
       ),
     );
 
-    final OnboardingPathConfig onboardingPathConfig = onboardingPath(
-      clientState: state.clientState,
-      onboardingState: state.onboardingState,
-    );
+    final OnboardingPathConfig onboardingPathConfig =
+        onboardingPath(appState: state);
 
     Navigator.of(context).pushNamedAndRemoveUntil(
       onboardingPathConfig.route,

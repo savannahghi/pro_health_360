@@ -111,20 +111,19 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           isSignedIn: true,
         );
 
-        final int expiresIn = int.parse(authCredentials?.expiresIn ?? '0');
-        final String parsedExpireAt = dateTimeParser.parsedExpireAt(expiresIn);
-
         await store.dispatch(
           ManageTokenAction(
             context: context,
             refreshToken: authCredentials?.refreshToken ?? UNKNOWN,
             idToken: authCredentials?.idToken ?? UNKNOWN,
-            parsedExpiresAt: parsedExpireAt,
+            expiresIn: authCredentials?.expiresIn ?? '0',
             refreshTokenManger: this.tokenManger,
           ),
         );
 
-        final User? user = loginResponse.clientState?.user;
+        final User? user =
+            loginResponse.clientState?.user?.copyWith(pinChangeRequired: false);
+
         await store.dispatch(
           UpdateOnboardingStateAction(
             hasSetPin: user?.hasSetPin,
@@ -144,10 +143,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final OnboardingPathConfig onboardingPathConfig = onboardingPath(
-          clientState: state.clientState,
-          onboardingState: state.onboardingState,
-        );
+        final OnboardingPathConfig onboardingPathConfig =
+            onboardingPath(appState: state);
 
         Navigator.of(context).pushNamedAndRemoveUntil(
           onboardingPathConfig.route,

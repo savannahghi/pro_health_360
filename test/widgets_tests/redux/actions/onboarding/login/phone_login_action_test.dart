@@ -15,6 +15,8 @@ import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
@@ -147,77 +149,30 @@ void main() {
 
     testWidgets(
         'should navigate to home and update state if login request is '
-        'successful', (WidgetTester tester) async {
-      final http.Response loginResponse = http.Response(
-        json.encode(mockLoginResponse),
-        200,
-      );
-
-      final http.Response contentResponse = http.Response(
-        json.encode(<String, dynamic>{
-          'data': <String, dynamic>{
-            'fetchRecentContent': contentMock,
-          }
-        }),
-        200,
-      );
-
-      final http.Response suggestedGroupsResponse = http.Response(
-        json.encode(<String, dynamic>{
-          'data': <String, dynamic>{'fetchSuggestedGroups': mockSuggestions}
-        }),
-        200,
-      );
-
-      final Map<String, dynamic> queryVariables = <String, dynamic>{
-        'phoneNumber': '+254728101710',
-        'pin': '1234',
-        'flavour': Flavour.CONSUMER.name,
-      };
-
+        'successful and user is verified', (WidgetTester tester) async {
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
-      final MockCustomGraphQLClient mockShortSILGraphQlClient =
-          MockCustomGraphQLClient.withResponse(
-        'idToken',
-        'endpoint',
-        contentResponse,
-      );
-
-      when(baseGraphQlClientMock.query(loginQuery, queryVariables))
-          .thenAnswer((_) async => Future<http.Response>.value(loginResponse));
-
-      when(
-        baseGraphQlClientMock
-            .query(fetchSuggestedGroupsQuery, <String, dynamic>{}),
-      ).thenAnswer(
-        (_) async => Future<http.Response>.value(suggestedGroupsResponse),
-      );
-
-      when(
-        baseGraphQlClientMock
-            .query(fetchRecentContentQuery, <String, dynamic>{}),
-      ).thenAnswer((_) async => Future<http.Response>.value(contentResponse));
-
-      when(refreshTimer.updateExpireTime('2021-05-18T00:50:00.000'))
-          .thenReturn(refreshTimer);
+      when(refreshTimer.updateExpireTime(any)).thenReturn(refreshTimer);
 
       when(refreshTimer.reset()).thenReturn(null);
 
-      when(baseGraphQlClientMock.toMap(contentResponse)).thenReturn(
-        json.decode(contentResponse.body) as Map<String, dynamic>,
-      );
+      store.dispatch(UpdateUserProfileAction(isPhoneVerified: true));
 
-      when(baseGraphQlClientMock.toMap(suggestedGroupsResponse)).thenReturn(
-        json.decode(contentResponse.body) as Map<String, dynamic>,
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          hasSetPin: true,
+          hasSetNickName: true,
+        ),
       );
 
       await mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: mockShortSILGraphQlClient,
+          client: MockGraphQlClient(),
           widget: Builder(
             builder: (BuildContext context) {
               return SILPrimaryButton(
@@ -257,7 +212,7 @@ void main() {
 
         final AuthCredentials? credentials = store.state.credentials;
 
-        expect(credentials?.expiresIn, dateTimeParser.parsedExpireAt(3600));
+        expect(credentials?.expiresIn, '3600');
         expect(credentials?.isSignedIn, true);
         expect(
           credentials?.refreshToken,

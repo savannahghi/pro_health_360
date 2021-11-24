@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:myafyahub/application/core/services/datatime_parser.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
@@ -15,7 +16,7 @@ class ManageTokenAction extends ReduxAction<AppState> {
     required this.context,
     required this.refreshToken,
     required this.idToken,
-    required this.parsedExpiresAt,
+    required this.expiresIn,
     required this.refreshTokenManger,
     this.canExperiment = false,
   });
@@ -23,7 +24,7 @@ class ManageTokenAction extends ReduxAction<AppState> {
   bool? canExperiment;
   final BuildContext context;
   String idToken;
-  String parsedExpiresAt;
+  String expiresIn;
   String refreshToken;
   RefreshTokenManger refreshTokenManger;
 
@@ -34,12 +35,16 @@ class ManageTokenAction extends ReduxAction<AppState> {
         isSignedIn: true,
         idToken: idToken,
         refreshToken: refreshToken,
-        expiresAt: parsedExpiresAt,
+        expiresIn: expiresIn,
       ),
     );
 
+    final int expiresInAsInt = int.parse(this.expiresIn);
+    final String parsedExpireAt =
+        DateTimeParser().parsedExpireAt(expiresInAsInt);
+
     /// start refresh token timer
-    this.refreshTokenManger.updateExpireTime(parsedExpiresAt).reset();
+    this.refreshTokenManger.updateExpireTime(parsedExpireAt).reset();
     return state;
   }
 }

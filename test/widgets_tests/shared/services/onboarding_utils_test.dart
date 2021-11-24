@@ -19,6 +19,7 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -26,6 +27,8 @@ import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -668,9 +671,9 @@ void main() {
       group('OnboardingPath', () {
         testWidgets('should navigate to security questions page',
             (WidgetTester tester) async {
+          store.dispatch(UpdateCredentialsAction(isSignedIn: true));
           store.dispatch(
             UpdateUserProfileAction(
-              pinChangeRequired: true,
               termsAccepted: true,
               isPhoneVerified: true,
             ),
@@ -693,10 +696,7 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(
-                      clientState: store.state.clientState,
-                      onboardingState: store.state.onboardingState,
-                    ).route;
+                    path = onboardingPath(appState: store.state).route;
                   },
                 );
               },
@@ -711,6 +711,7 @@ void main() {
 
         testWidgets('should navigate to terms and conditions page',
             (WidgetTester tester) async {
+          store.dispatch(UpdateCredentialsAction(isSignedIn: true));
           store.dispatch(
             UpdateUserProfileAction(
               pinChangeRequired: true,
@@ -736,10 +737,7 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(
-                      clientState: store.state.clientState,
-                      onboardingState: store.state.onboardingState,
-                    ).route;
+                    path = onboardingPath(appState: store.state).route;
                   },
                 );
               },
@@ -754,6 +752,7 @@ void main() {
 
         testWidgets('should navigate to set pin page',
             (WidgetTester tester) async {
+          store.dispatch(UpdateCredentialsAction(isSignedIn: true));
           store.dispatch(
             UpdateUserProfileAction(
               pinChangeRequired: true,
@@ -780,10 +779,7 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(
-                      clientState: store.state.clientState,
-                      onboardingState: store.state.onboardingState,
-                    ).route;
+                    path = onboardingPath(appState: store.state).route;
                   },
                 );
               },
@@ -798,6 +794,7 @@ void main() {
 
         testWidgets('should navigate to congratulations page',
             (WidgetTester tester) async {
+          store.dispatch(UpdateCredentialsAction(isSignedIn: true));
           store.dispatch(
             UpdateUserProfileAction(
               pinChangeRequired: true,
@@ -824,10 +821,7 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(
-                      clientState: store.state.clientState,
-                      onboardingState: store.state.onboardingState,
-                    ).route;
+                    path = onboardingPath(appState: store.state).route;
                   },
                 );
               },
@@ -840,8 +834,9 @@ void main() {
           expect(path, BWRoutes.congratulationsPage);
         });
 
-        testWidgets('should navigate to phone login page',
+        testWidgets('should navigate to verify otp page',
             (WidgetTester tester) async {
+          store.dispatch(UpdateCredentialsAction(isSignedIn: true));
           store.dispatch(
             UpdateUserProfileAction(
               pinChangeRequired: true,
@@ -859,10 +854,34 @@ void main() {
               builder: (BuildContext context) {
                 return SILPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(
-                      clientState: store.state.clientState,
-                      onboardingState: store.state.onboardingState,
-                    ).route;
+                    path = onboardingPath(appState: store.state).route;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, BWRoutes.verifySignUpOTP);
+        });
+
+        testWidgets('should navigate to loginpage page',
+            (WidgetTester tester) async {
+          store.dispatch(UpdateCredentialsAction(isSignedIn: false));
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return SILPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(appState: store.state).route;
                   },
                 );
               },
@@ -1264,8 +1283,10 @@ void main() {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
 
-      final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
-      final UserProfile? userProfile = userResp.profile;
+      final PhoneLoginResponse userResp =
+          PhoneLoginResponse.fromJson(mockLoginResponse);
+
+      final User? userProfile = userResp.clientState?.user;
 
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
       const String refreshToken = 'some-refresh-token';
@@ -1281,11 +1302,9 @@ void main() {
                 context,
                 UpdateUserProfileAction(
                   active: true,
-                  firstName: userProfile?.userBioData?.firstName?.getValue(),
-                  lastName: userProfile?.userBioData?.lastName?.getValue(),
-                  phoneNumber: Contact(
-                    value: userProfile?.primaryPhoneNumber?.getValue(),
-                  ),
+                  firstName: userProfile?.firstName,
+                  lastName: userProfile?.lastName,
+                  phoneNumber: userProfile?.primaryContact,
                 ),
               );
 
@@ -1500,7 +1519,7 @@ void main() {
                 isSignedIn: true,
                 idToken: 'oldAuthToken',
                 refreshToken: 'oldRefreshToken',
-                expiresAt: '3600',
+                expiresIn: '3600',
               ),
             );
             return SILPrimaryButton(
@@ -1520,6 +1539,50 @@ void main() {
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle(const Duration(seconds: 3));
       expect(initialRoute, BWRoutes.termsAndConditions);
+    });
+
+    testWidgets('should return login page route if token expired',
+        (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+
+      await store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+
+      late String initialRoute;
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            StoreProvider.dispatch(
+              context,
+              AuthStatusAction(
+                isSignedIn: true,
+                idToken: 'oldAuthToken',
+                refreshToken: 'oldRefreshToken',
+                expiresIn: '300',
+              ),
+            );
+            return SILPrimaryButton(
+              onPressed: () async {
+                initialRoute = await getInitialRoute(
+                  context,
+                  store.state,
+                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
+                );
+              },
+            );
+          },
+        ),
+      );
+      await tester.pump();
+      // trigger the bottom sheet
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle(const Duration(seconds: 3));
+      expect(initialRoute, BWRoutes.phoneLogin);
     });
   });
 }

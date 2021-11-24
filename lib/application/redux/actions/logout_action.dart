@@ -32,7 +32,7 @@ class LogoutAction extends ReduxAction<AppState> {
         isSignedIn: false,
         idToken: UNDEFINED_AUTH_TOKEN,
         refreshToken: UNDEFINED_REFRESH_TOKEN,
-        expiresAt:
+        expiresIn:
             DateTime.now().add(const Duration(days: 1000)).toIso8601String(),
       ),
     );
