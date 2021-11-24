@@ -4,6 +4,7 @@ import 'dart:async';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:misc_utilities/misc.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -43,7 +44,7 @@ class _FeedPageState extends State<FeedPage> {
     _streamController = StreamController<Object>.broadcast();
     _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await getContentData(
+      await genericFetchFunction(
         streamController: _streamController,
         context: context,
         logTitle: 'Fetch content',
@@ -109,7 +110,7 @@ class _FeedPageState extends State<FeedPage> {
                     type: GenericNoDataTypes.ErrorInData,
                     actionText: actionTextGenericNoData,
                     recoverCallback: () async {
-                      await getContentData(
+                      await genericFetchFunction(
                         streamController: _streamController,
                         context: context,
                         logTitle: 'Fetch recent content',
@@ -125,29 +126,37 @@ class _FeedPageState extends State<FeedPage> {
                 }
 
                 if (snapshot.hasData) {
-                  final List<dynamic> feedItems = snapshot.data['getContent']['items']! as List<dynamic>;
-                  return Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: feedItems.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final Content currentFeedItem = Content.fromJson(
-                          feedItems.elementAt(index) as Map<String, dynamic>,
-                        );
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            top: index == 0 ? 15 : 7.5,
-                            bottom: 10,
-                          ),
-                          
-                          child: ContentItem(
-                            contentDetails: currentFeedItem,
-                          ),
-                        );
-                      },
-                    ),
+                  final FeedContent feedContent = FeedContent.fromJson(
+                    snapshot.data as Map<String, dynamic>,
                   );
+
+                  if (feedContent.feedContent != null) {
+                    final List<Content?>? feedItems =
+                        feedContent.feedContent?.items;
+
+                    if (feedItems != null && feedItems.isNotEmpty) {
+                      return Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: feedItems.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final Content? currentFeedItem =
+                                feedItems.elementAt(index);
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                top: index == 0 ? 15 : 7.5,
+                                bottom: 10,
+                              ),
+                              child:
+                                  ContentItem(contentDetails: currentFeedItem!),
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  }
                 }
+
                 return const SizedBox();
               },
             ),
@@ -195,7 +204,7 @@ class _FeedPageState extends State<FeedPage> {
               onSelected: (bool selected) {
                 setState(() {
                   _choiceIndex = selected ? index : 0;
-                  getContentData(
+                  genericFetchFunction(
                     streamController: _streamController,
                     context: context,
                     logTitle: 'Fetch recent content',

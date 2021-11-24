@@ -15,6 +15,7 @@ import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
@@ -147,7 +148,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             onboardingPath(appState: state);
 
         Navigator.of(context).pushNamedAndRemoveUntil(
-          onboardingPathConfig.route,
+          BWRoutes.home,
           (Route<dynamic> route) => false,
           arguments: onboardingPathConfig.arguments,
         );

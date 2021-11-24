@@ -279,12 +279,10 @@ query getContent($categoryID: Int, $Limit: String!){
           title
           meta{
             imageDetailUrl
-            imageDetailUrl
           }
         }
       }
     }
-  }
   }
 }
 ''';
