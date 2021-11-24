@@ -29,10 +29,12 @@ void main() {
       Response(
         json.encode(<String, dynamic>{
           'data': <String, dynamic>{
-            'fetchContent': <dynamic>[
-              mockContent,
-              mockContent,
-            ]
+            'getContent': <String, dynamic>{
+              'items': <dynamic>[
+                mockContent,
+                mockContent,
+              ]
+            }
           }
         }),
         201,
@@ -45,7 +47,7 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
     });
 
-    testWidgets('should fetch feed items and displays them correctly',
+    testWidgets('should fetch feed items and display them correctly',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
         await buildTestWidget(

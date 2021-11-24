@@ -6,6 +6,6 @@ import 'package:myafyahub/infrastructure/repository/migrations.dart';
 
 void main() {
   test('migrations should have 4 migrations', () {
-    expect(migrations.length, 6);
+    expect(migrations.length, 7);
   });
 }

@@ -16,7 +16,7 @@ _$_Content _$_$_ContentFromJson(Map<String, dynamic> json) {
     author: json['author'] == null
         ? null
         : Author.fromJson(json['author'] as Map<String, dynamic>),
-    contentType: json['itemType'] as String?,
+    contentType: _$enumDecodeNullable(_$ContentTypeEnumMap, json['itemType']),
     estimate: json['timeEstimateSeconds'] as int?,
     body: json['body'] as String?,
     heroImage: json['heroImageRendition'] == null
@@ -49,7 +49,7 @@ Map<String, dynamic> _$_$_ContentToJson(_$_Content instance) =>
       'intro': instance.intro,
       'authorName': instance.authorName,
       'author': instance.author,
-      'itemType': instance.contentType,
+      'itemType': _$ContentTypeEnumMap[instance.contentType],
       'timeEstimateSeconds': instance.estimate,
       'body': instance.body,
       'heroImageRendition': instance.heroImage,
@@ -62,6 +62,50 @@ Map<String, dynamic> _$_$_ContentToJson(_$_Content instance) =>
       'tagNames': instance.tags,
       'meta': instance.metadata,
     };
+
+K _$enumDecode<K, V>(
+  Map<K, V> enumValues,
+  Object? source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError(
+      'A value must be provided. Supported values: '
+      '${enumValues.values.join(', ')}',
+    );
+  }
+
+  return enumValues.entries.singleWhere(
+    (e) => e.value == source,
+    orElse: () {
+      if (unknownValue == null) {
+        throw ArgumentError(
+          '`$source` is not one of the supported values: '
+          '${enumValues.values.join(', ')}',
+        );
+      }
+      return MapEntry(unknownValue, enumValues.values.first);
+    },
+  ).key;
+}
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$ContentTypeEnumMap = {
+  ContentType.AUDIOVIDEO: 'AUDIOVIDEO',
+  ContentType.DOCUMENT: 'DOCUMENT',
+  ContentType.ARTICLE: 'ARTICLE',
+  ContentType.UNKNOWN: 'UNKNOWN',
+};
 
 _$_Document _$_$_DocumentFromJson(Map<String, dynamic> json) {
   return _$_Document(

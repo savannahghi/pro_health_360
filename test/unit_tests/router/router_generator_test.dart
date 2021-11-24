@@ -394,7 +394,7 @@ void main() {
         tags: <String>['', ''],
         estimate: 180,
         heroImage: HeroImage(url: ''),
-        contentType: ContentType.ARTICLE.name,
+        contentType: ContentType.ARTICLE,
         metadata: ContentMetadata(publicLink: '', createdAt: feedDate),
       ),
     );
