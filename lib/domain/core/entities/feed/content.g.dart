@@ -6,6 +6,33 @@ part of 'content.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_FeedContent _$_$_FeedContentFromJson(Map<String, dynamic> json) {
+  return _$_FeedContent(
+    feedContent: json['getContent'] == null
+        ? null
+        : FeedItems.fromJson(json['getContent'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$_FeedContentToJson(_$_FeedContent instance) =>
+    <String, dynamic>{
+      'getContent': instance.feedContent,
+    };
+
+_$_FeedItems _$_$_FeedItemsFromJson(Map<String, dynamic> json) {
+  return _$_FeedItems(
+    items: (json['items'] as List<dynamic>?)
+        ?.map((e) =>
+            e == null ? null : Content.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$_$_FeedItemsToJson(_$_FeedItems instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+    };
+
 _$_Content _$_$_ContentFromJson(Map<String, dynamic> json) {
   return _$_Content(
     contentID: json['ID'] as int?,

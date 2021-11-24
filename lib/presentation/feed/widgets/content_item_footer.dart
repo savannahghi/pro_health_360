@@ -25,9 +25,10 @@ class ContentItemFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget formattedDate = sortDate(
-      dateTextStyle: TextThemes.normalSize15Text(Colors.grey),
+      dateTextStyle: TextThemes.normalSize12Text(Colors.grey),
       context: context,
       loadedDate: datePublished,
+      showYear: false,
     );
     final String readingTime = contentReadDuration(estimatedReadingTime!);
 
@@ -37,12 +38,14 @@ class ContentItemFooter extends StatelessWidget {
         Row(
           children: <Widget>[
             formattedDate,
+            const Text('·'),
+            verySmallHorizontalSizedBox,
             if (estimatedReadingTime != null)
               Padding(
                 padding: const EdgeInsets.only(left: 2.5),
                 child: Text(
                   readingTime,
-                  style: TextThemes.normalSize15Text(Colors.grey),
+                  style: TextThemes.normalSize12Text(Colors.grey),
                 ),
               ),
           ],

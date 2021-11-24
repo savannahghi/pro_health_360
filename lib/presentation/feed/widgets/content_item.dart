@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/feed/widgets/content_item_footer.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -88,11 +89,10 @@ class ContentItem extends StatelessWidget {
                         ),
                       ),
                       verySmallVerticalSizedBox,
-                      // TODO(abiud): debug why tests are failing
-                      // ContentItemFooter(
-                      //   datePublished: contentDetails.metadata!.createdAt!,
-                      //   estimatedReadingTime: contentDetails.estimate,
-                      // )
+                      ContentItemFooter(
+                        datePublished: contentDetails.metadata!.createdAt!,
+                        estimatedReadingTime: contentDetails.estimate,
+                      )
                     ],
                   ),
                 ),

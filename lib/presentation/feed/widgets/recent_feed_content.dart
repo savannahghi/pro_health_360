@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -41,14 +42,14 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
     _streamController = StreamController<dynamic>.broadcast();
     _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await customFetchData(
+      await genericFetchFunction(
         streamController: _streamController,
         context: context,
         logTitle: 'Fetch content',
         queryString: getContentQuery,
         variables: <String, dynamic>{
           'categoryID': 1,
-          'Limit': '10',
+          'Limit': '5',
         },
       );
     });
@@ -103,7 +104,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
             type: GenericNoDataTypes.ErrorInData,
             actionText: actionTextGenericNoData,
             recoverCallback: () async {
-              await customFetchData(
+              await genericFetchFunction(
                 streamController: _streamController,
                 context: context,
                 logTitle: 'Fetch content',
@@ -119,72 +120,76 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
         }
 
         if (snapshot.hasData) {
-          final List<dynamic> recentContent =
-              snapshot.data['fetchRecentContent'] as List<dynamic>;
+          final FeedContent recentFeedContent = FeedContent.fromJson(
+            snapshot.data as Map<String, dynamic>,
+          );
 
-          return SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15.0,
-                    vertical: 10.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        newContentText,
-                        style: TextThemes.veryBoldSize16Text(
-                          AppColors.secondaryColor,
-                        ),
+          if (recentFeedContent.feedContent != null) {
+            final List<Content?>? feedItems =
+                recentFeedContent.feedContent?.items;
+
+            if (feedItems != null && feedItems.isNotEmpty) {
+              return SizedBox(
+                width: double.infinity,
+                height: 250,
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: feedItems.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final Content? feedDetails = feedItems.elementAt(index);
+                    return Padding(
+                      padding: EdgeInsets.only(left: index == 0 ? 15 : 10),
+                      child: ContentItem(
+                        contentDetails: feedDetails!,
+                        isNew: true,
                       ),
-                      verySmallVerticalSizedBox,
-                      GestureDetector(
-                        key: viewAllButtonKey,
-                        onTap: () => StoreProvider.dispatch<AppState>(
-                          context,
-                          BottomNavAction(currentBottomNavIndex: 1),
-                        ),
-                        child: Text(
-                          viewAllText,
-                          style: TextThemes.normalSize16Text(
+                    );
+                  },
+                ),
+              );
+            }
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 10.0,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          newContentText,
+                          style: TextThemes.veryBoldSize16Text(
                             AppColors.secondaryColor,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                if (recentContent.isNotEmpty)
-                  SizedBox(
-                    width: double.infinity,
-                    height: 250,
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: recentContent.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final Content feedDetails = Content.fromJson(
-                          recentContent.elementAt(index)
-                              as Map<String, dynamic>,
-                        );
-                        return Padding(
-                          padding: EdgeInsets.only(left: index == 0 ? 15 : 10),
-                          child: ContentItem(
-                            contentDetails: feedDetails,
-                            isNew: true,
+                        verySmallVerticalSizedBox,
+                        GestureDetector(
+                          key: viewAllButtonKey,
+                          onTap: () => StoreProvider.dispatch<AppState>(
+                            context,
+                            BottomNavAction(currentBottomNavIndex: 1),
                           ),
-                        );
-                      },
+                          child: Text(
+                            viewAllText,
+                            style: TextThemes.normalSize16Text(
+                              AppColors.secondaryColor,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
+          }
         }
         return const SizedBox();
       },
