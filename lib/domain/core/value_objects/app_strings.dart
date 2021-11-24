@@ -464,7 +464,7 @@ const String feedHeader =
 const String feedDate = '2021-08-23T06:42:05.085216Z';
 const String feedReadTime = '5 minutes';
 String contentReadDuration(int duration) =>
-    '${(duration / 60).floor()} minute read';
+    '${(duration / 60).floor()} min read';
 const String newString = 'New';
 
 //My Health Page

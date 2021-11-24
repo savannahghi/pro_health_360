@@ -116,7 +116,7 @@ class ContentDetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                'articleDetails.authorName!',
+                                articleDetails.authorName!,
                                 style: TextThemes.veryBoldSize15Text(
                                   AppColors.secondaryColor,
                                 ),

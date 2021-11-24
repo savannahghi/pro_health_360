@@ -12,23 +12,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:user_feed/user_feed.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend
 ///
@@ -145,7 +147,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             onboardingPath(appState: state);
 
         Navigator.of(context).pushNamedAndRemoveUntil(
-          onboardingPathConfig.route,
+          BWRoutes.home,
           (Route<dynamic> route) => false,
           arguments: onboardingPathConfig.arguments,
         );
