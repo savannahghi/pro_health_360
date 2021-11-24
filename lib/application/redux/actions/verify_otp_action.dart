@@ -17,38 +17,42 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:user_feed/user_feed.dart';
 
-class SendOTPAction extends ReduxAction<AppState> {
-  SendOTPAction({required this.context});
+class VerifyOTPAction extends ReduxAction<AppState> {
+  VerifyOTPAction({required this.context, required this.otp});
 
   final BuildContext context;
+  final String otp;
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: sendOTPFlag, show: false);
+    dispatch(WaitAction<AppState>.remove(verifyOTP));
     super.after();
   }
 
   @override
   void before() {
-    toggleLoadingIndicator(context: context, flag: sendOTPFlag);
+    toggleLoadingIndicator(context: context, flag: verifyOTP);
   }
 
   @override
   Future<AppState?> reduce() async {
+    final String userID = state.clientState!.user!.userId ?? UNKNOWN;
     final String phoneNumber =
         state.clientState!.user!.primaryContact!.value ?? UNKNOWN;
 
-    if (phoneNumber != UNKNOWN) {
-      final String sendOTPEndpoint = AppWrapperBase.of(context)!
-          .customContext!
-          .sendRecoverAccountOtpEndpoint;
+    if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
+      final String sendOTPEndpoint =
+          AppWrapperBase.of(context)!.customContext!.verifyPhoneEndpoint;
 
       final Map<String, dynamic> variables = <String, dynamic>{
+        'user_id': userID,
+        'otp': otp,
         'phoneNumber': phoneNumber,
         'flavour': Flavour.CONSUMER.name,
       };
@@ -66,40 +70,49 @@ class SendOTPAction extends ReduxAction<AppState> {
           processHttpResponse(httpResponse, context);
 
       if (processedResponse.ok == true) {
-        //Return OTP sent as string
-        final String parsed = jsonDecode(httpResponse.body) as String;
-        final String otp = parsed;
+        //Return bool response
+        final bool isValid = jsonDecode(httpResponse.body) as bool;
 
-        // save the OTP to state
-        dispatch(UpdateOnboardingStateAction(otp: otp));
-        return state;
+        if (isValid) {
+          dispatch(
+            UpdateOnboardingStateAction(
+              isPhoneVerified: isValid,
+            ),
+          );
+
+          final OnboardingPathConfig onboardingPathConfig =
+              onboardingPath(appState: state);
+
+          dispatch(
+            NavigateAction<AppState>.pushNamed(onboardingPathConfig.route),
+          );
+
+          return state;
+        } else {
+          throw SILException(
+            cause: 'verify_otp_error',
+            message: invalidCode,
+          );
+        }
       } else {
-        // exception thrown if the backend could not send an OTP
-        //OTP are stored on the backend with the username
-        showFeedbackBottomSheet(
-          context: context,
-          modalContent: processedResponse.message ?? UNKNOWN, // safety-net
-          imageAssetPath: errorIconUrl,
-        );
-
-        dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
         throw SILException(
           error: processedResponse.response,
-          cause: 'send_otp_error',
+          cause: 'verify_otp_error',
           message: processedResponse.message,
         );
       }
-    } else {
-      dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
     }
   }
 
   @override
   Object wrapError(dynamic error) async {
-    if (error.runtimeType == SILException && error.error != null) {
-      reportErrorToSentry(context, error.error, hint: errorLoggingIn);
+    if (error.runtimeType == SILException) {
+      showFeedbackBottomSheet(
+        context: context,
+        modalContent: error.message.toString(),
+        imageAssetPath: errorIconUrl,
+      );
     }
-
     return error;
   }
 }

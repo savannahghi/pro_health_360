@@ -4,7 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
+import 'package:myafyahub/application/redux/actions/resent_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -13,7 +13,7 @@ import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
-  group('SendOTPAction', () {
+  group('ReSendOTPAction', () {
     late Store<AppState> store;
 
     setUp(() {
@@ -29,12 +29,12 @@ void main() {
             .copyWith
             .onboardingState!
             .verifyPhoneState!
-            .call(otp: '1234', invalidOTP: false),
+            .call(otp: '123456', invalidOTP: false),
       );
     });
 
     testWidgets(
-        'should fail to send an otp if the userID and phone number are '
+        'should fail to  resend an otp if the userID and phone number are '
         'UNKNOWN', (WidgetTester tester) async {
       store = Store<AppState>(initialState: AppState.initial());
 
@@ -55,11 +55,10 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             return SILPrimaryButton(
-              buttonKey: const Key('update_contacts'),
-              onPressed: () {
-                StoreProvider.dispatch<AppState>(
-                  context,
-                  SendOTPAction(context: context),
+              buttonKey: const Key('resend_otp'),
+              onPressed: () async {
+                await store.dispatch(
+                  ResendOTPAction(context: context, callBackFunction: () {}),
                 );
               },
             );
@@ -67,7 +66,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.tap(find.byKey(const Key('resend_otp')));
       await tester.pumpAndSettle();
 
       expect(
@@ -76,7 +75,7 @@ void main() {
       );
     });
 
-    testWidgets('should fail to send an OTP if there is an API error',
+    testWidgets('should fail to resend an OTP if there is an API error',
         (WidgetTester tester) async {
       expect(
         store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
@@ -101,10 +100,12 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             return SILPrimaryButton(
-              buttonKey: const Key('update_contacts'),
+              buttonKey: const Key('resend_otp'),
               onPressed: () async {
                 try {
-                  await store.dispatch(SendOTPAction(context: context));
+                  await store.dispatch(
+                    ResendOTPAction(context: context, callBackFunction: () {}),
+                  );
                 } catch (e) {
                   err = e;
                 }
@@ -114,7 +115,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.tap(find.byKey(const Key('resend_otp')));
       await tester.pumpAndSettle();
 
       expect(

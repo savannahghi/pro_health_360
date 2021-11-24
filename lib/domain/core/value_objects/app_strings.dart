@@ -310,15 +310,18 @@ const String imageFileString = 'Image file';
 //Verify phone number page
 const String verifyPhoneNumberTitle = 'Verify phone number';
 const String verifyPhoneNumberDescription =
-    'A one time password has been sent to your phone';
-const String enterOTPString = 'Enter OTP to proceed';
+    'A six digit verification code has been sent to your phone';
+const String enterOTPString = 'Enter verification code to proceed';
 const String confirmOTPButtonString = 'Confirm OTP';
 const String invalidOTPString = 'Invalid OTP *';
 String anOtpHasBeenSentText(String phoneNumber) {
   return 'An OTP has been sent to $phoneNumber';
 }
 
+const String resendOTP = 'Resend code';
+
 const String verifyOTPState = 'verifyOTPState';
+const String didNotReceiveOTP = 'Did not receive a verification code ?';
 
 const String setSecurityQuestionsString = 'Set security questions';
 const String securityQuestionsDescriptionString =
@@ -379,8 +382,7 @@ const String saveEntryString = 'Save Entry';
 
 const String confirmPinString = 'Confirm new PIN';
 const String createNewPINTitleString = 'Create new PIN';
-const String createNewPINSubTitleString =
-    'Enter your new 4 digit PIN.';
+const String createNewPINSubTitleString = 'Enter your new 4 digit PIN.';
 const String pinMustMatchString = 'PIN must match';
 
 //congratulations page
@@ -616,3 +618,7 @@ const String somethingWentWrongText =
 const String pinSuccessString = 'PIN created successfully';
 const String requestCorrectionString = 'Request for correction';
 const String nicknameSuccessString = 'Nickname created successfully';
+
+const String invalidCode =
+    'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';
+const String verifyCode = 'Verifying Code';

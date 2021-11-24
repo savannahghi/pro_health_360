@@ -378,6 +378,33 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (endpoint.contains('verify_otp')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(true),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('send_otp')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode('123456'),
+          201,
+        ),
+      );
+    }
+
+    if (endpoint.contains('send_retry_otp')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode('123456'),
+          201,
+        ),
+      );
+    }
+
     if (endpoint.contains('create_user_by_phone')) {
       return Future<http.Response>.value(
         http.Response(
@@ -920,6 +947,19 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
             'data': <String, dynamic>{'completeOnboardingTour': true}
           }),
           201,
+        ),
+      );
+    }
+
+    if (queryString == getTermsQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getCurrentTerms': termsMock,
+            }
+          }),
+          200,
         ),
       );
     }

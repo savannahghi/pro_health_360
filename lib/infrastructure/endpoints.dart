@@ -8,7 +8,7 @@ const String kTestPinResetEndpoint =
 const String kTestUpdateUserPinEndpoint =
     'https://mycarehub-testing.savannahghi.org/reset_pin';
 const String kTestVerifyPhoneEndpoint =
-    'https://mycarehub-testing.savannahghi.org/verify_phone';
+    'https://mycarehub-testing.savannahghi.org/verify_otp';
 const String kTestCreateUserByPhoneEndpoint =
     'https://mycarehub-testing.savannahghi.org/create_user_by_phone';
 const String kTestRetryResendOtpEndpoint =
@@ -41,7 +41,7 @@ const String kProdPinResetEndpoint =
 const String kProdUpdateUserPinEndpoint =
     'https://mycarehub-prod.savannahghi.org/reset_pin';
 const String kProdVerifyPhoneEndpoint =
-    'https://mycarehub-prod.savannahghi.org/verify_phone';
+    'https://mycarehub-prod.savannahghi.org/verify_otp';
 const String kProdCreateUserByPhoneEndpoint =
     'https://mycarehub-prod.savannahghi.org/create_user_by_phone';
 const String kProdRetryResendOtpEndpoint =

@@ -22,20 +22,25 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:user_feed/user_feed.dart';
 
-class SendOTPAction extends ReduxAction<AppState> {
-  SendOTPAction({required this.context});
+class ResendOTPAction extends ReduxAction<AppState> {
+  ResendOTPAction({
+    required this.context,
+    required this.callBackFunction,
+  });
 
   final BuildContext context;
+  final Function callBackFunction;
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: sendOTPFlag, show: false);
+    toggleLoadingIndicator(context: context, flag: resendOTPFlag, show: false);
+    callBackFunction();
     super.after();
   }
 
   @override
   void before() {
-    toggleLoadingIndicator(context: context, flag: sendOTPFlag);
+    toggleLoadingIndicator(context: context, flag: resendOTPFlag);
   }
 
   @override
@@ -44,9 +49,8 @@ class SendOTPAction extends ReduxAction<AppState> {
         state.clientState!.user!.primaryContact!.value ?? UNKNOWN;
 
     if (phoneNumber != UNKNOWN) {
-      final String sendOTPEndpoint = AppWrapperBase.of(context)!
-          .customContext!
-          .sendRecoverAccountOtpEndpoint;
+      final String sendOTPEndpoint =
+          AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
 
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
@@ -85,7 +89,7 @@ class SendOTPAction extends ReduxAction<AppState> {
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
         throw SILException(
           error: processedResponse.response,
-          cause: 'send_otp_error',
+          cause: 'resend_otp_error',
           message: processedResponse.message,
         );
       }
