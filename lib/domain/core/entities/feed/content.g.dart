@@ -6,33 +6,6 @@ part of 'content.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_FeedContent _$_$_FeedContentFromJson(Map<String, dynamic> json) {
-  return _$_FeedContent(
-    feedContent: json['getContent'] == null
-        ? null
-        : FeedItems.fromJson(json['getContent'] as Map<String, dynamic>),
-  );
-}
-
-Map<String, dynamic> _$_$_FeedContentToJson(_$_FeedContent instance) =>
-    <String, dynamic>{
-      'getContent': instance.feedContent,
-    };
-
-_$_FeedItems _$_$_FeedItemsFromJson(Map<String, dynamic> json) {
-  return _$_FeedItems(
-    items: (json['items'] as List<dynamic>?)
-        ?.map((e) =>
-            e == null ? null : Content.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
-
-Map<String, dynamic> _$_$_FeedItemsToJson(_$_FeedItems instance) =>
-    <String, dynamic>{
-      'items': instance.items,
-    };
-
 _$_Content _$_$_ContentFromJson(Map<String, dynamic> json) {
   return _$_Content(
     contentID: json['ID'] as int?,
@@ -133,65 +106,3 @@ const _$ContentTypeEnumMap = {
   ContentType.ARTICLE: 'ARTICLE',
   ContentType.UNKNOWN: 'UNKNOWN',
 };
-
-_$_Document _$_$_DocumentFromJson(Map<String, dynamic> json) {
-  return _$_Document(
-    id: json['ID'] as int?,
-    title: json['title'] as String?,
-  );
-}
-
-Map<String, dynamic> _$_$_DocumentToJson(_$_Document instance) =>
-    <String, dynamic>{
-      'ID': instance.id,
-      'title': instance.title,
-    };
-
-_$_ContentCategory _$_$_ContentCategoryFromJson(Map<String, dynamic> json) {
-  return _$_ContentCategory(
-    id: json['ID'] as int?,
-    name: json['categoryName'] as String?,
-    icon: json['categoryIcon'] as String?,
-  );
-}
-
-Map<String, dynamic> _$_$_ContentCategoryToJson(_$_ContentCategory instance) =>
-    <String, dynamic>{
-      'ID': instance.id,
-      'categoryName': instance.name,
-      'categoryIcon': instance.icon,
-    };
-
-_$_ContentMetadata _$_$_ContentMetadataFromJson(Map<String, dynamic> json) {
-  return _$_ContentMetadata(
-    publicLink: json['contentHTMLURL'] as String?,
-    createdAt: json['firstPublishedAt'] as String?,
-  );
-}
-
-Map<String, dynamic> _$_$_ContentMetadataToJson(_$_ContentMetadata instance) =>
-    <String, dynamic>{
-      'contentHTMLURL': instance.publicLink,
-      'firstPublishedAt': instance.createdAt,
-    };
-
-_$_Author _$_$_AuthorFromJson(Map<String, dynamic> json) {
-  return _$_Author(
-    id: json['ID'] as String?,
-  );
-}
-
-Map<String, dynamic> _$_$_AuthorToJson(_$_Author instance) => <String, dynamic>{
-      'ID': instance.id,
-    };
-
-_$_HeroImage _$_$_HeroImageFromJson(Map<String, dynamic> json) {
-  return _$_HeroImage(
-    url: json['url'] as String?,
-  );
-}
-
-Map<String, dynamic> _$_$_HeroImageToJson(_$_HeroImage instance) =>
-    <String, dynamic>{
-      'url': instance.url,
-    };

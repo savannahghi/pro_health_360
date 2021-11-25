@@ -818,3 +818,16 @@ bool updateStateAuth({
     return false;
   }
 }
+
+Gender genderFromJson(String? genderString) {
+  if (genderString == null || genderString.isEmpty || genderString == UNKNOWN) {
+    return Gender.unknown;
+  }
+  return Gender.values.where((Gender gender) {
+    return gender.name.toLowerCase() == genderString.toLowerCase();
+  }).first;
+}
+
+String genderToJson(Gender? gender) {
+  return gender?.name ?? Gender.unknown.name;
+}

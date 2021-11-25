@@ -16,7 +16,7 @@ _$_RelatedPerson _$_$_RelatedPersonFromJson(Map<String, dynamic> json) {
     firstName: json['firstName'] as String?,
     lastName: json['lastName'] as String?,
     otherName: json['otherName'] as String?,
-    gender: _$enumDecodeNullable(_$UserGenderEnumMap, json['gender']),
+    gender: genderFromJson(json['gender'] as String?),
     dateOfBirth: json['dateOfBirth'] as String?,
     addresses: (json['addresses'] as List<dynamic>?)
         ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
@@ -35,7 +35,7 @@ Map<String, dynamic> _$_$_RelatedPersonToJson(_$_RelatedPerson instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'otherName': instance.otherName,
-      'gender': _$UserGenderEnumMap[instance.gender],
+      'gender': genderToJson(instance.gender),
       'dateOfBirth': instance.dateOfBirth,
       'addresses': instance.addresses,
       'contacts': instance.contacts,
@@ -85,10 +85,4 @@ const _$RelationshipTypeEnumMap = {
   RelationshipType.CHILD: 'CHILD',
   RelationshipType.OTHER: 'OTHER',
   RelationshipType.UNKNOWN: 'UNKNOWN',
-};
-
-const _$UserGenderEnumMap = {
-  UserGender.MALE: 'MALE',
-  UserGender.FEMALE: 'FEMALE',
-  UserGender.UNKNOWN: 'UNKNOWN',
 };

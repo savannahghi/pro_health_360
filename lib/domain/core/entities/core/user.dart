@@ -1,10 +1,10 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -47,7 +47,7 @@ class User with _$User {
         middleName: UNKNOWN,
         lastName: UNKNOWN,
         dateOfBirth: UNKNOWN,
-        gender: UserGender.UNKNOWN,
+        gender: Gender.unknown,
         active: false,
         secondaryContacts: <Contact>[],
         primaryContact: Contact.initial(),
@@ -55,17 +55,4 @@ class User with _$User {
         termsAccepted: false,
         pinChangeRequired: false,
       );
-}
-
-Gender genderFromJson(String? genderString) {
-  if (genderString == null || genderString.isEmpty || genderString == UNKNOWN) {
-    return Gender.unknown;
-  }
-  return Gender.values.where((Gender gender) {
-    return gender.name.toLowerCase() == genderString.toLowerCase();
-  }).first;
-}
-
-String genderToJson(Gender? gender) {
-  return gender?.name ?? Gender.unknown.name;
 }

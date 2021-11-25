@@ -33,8 +33,8 @@ class _$RelatedPersonTearOff {
           String? lastName,
       @JsonKey(name: 'otherName')
           String? otherName,
-      @JsonKey(name: 'gender')
-          UserGender? gender,
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+          Gender? gender,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
       @JsonKey(name: 'addresses')
@@ -77,8 +77,8 @@ mixin _$RelatedPerson {
   String? get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: 'otherName')
   String? get otherName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gender')
-  UserGender? get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+  Gender? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'dateOfBirth')
   String? get dateOfBirth => throw _privateConstructorUsedError;
   @JsonKey(name: 'addresses')
@@ -110,8 +110,8 @@ abstract class $RelatedPersonCopyWith<$Res> {
           String? lastName,
       @JsonKey(name: 'otherName')
           String? otherName,
-      @JsonKey(name: 'gender')
-          UserGender? gender,
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+          Gender? gender,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
       @JsonKey(name: 'addresses')
@@ -170,7 +170,7 @@ class _$RelatedPersonCopyWithImpl<$Res>
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as UserGender?,
+              as Gender?,
       dateOfBirth: dateOfBirth == freezed
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -207,8 +207,8 @@ abstract class _$RelatedPersonCopyWith<$Res>
           String? lastName,
       @JsonKey(name: 'otherName')
           String? otherName,
-      @JsonKey(name: 'gender')
-          UserGender? gender,
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+          Gender? gender,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
       @JsonKey(name: 'addresses')
@@ -269,7 +269,7 @@ class __$RelatedPersonCopyWithImpl<$Res>
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as UserGender?,
+              as Gender?,
       dateOfBirth: dateOfBirth == freezed
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -302,7 +302,7 @@ class _$_RelatedPerson implements _RelatedPerson {
           this.lastName,
       @JsonKey(name: 'otherName')
           this.otherName,
-      @JsonKey(name: 'gender')
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
           this.gender,
       @JsonKey(name: 'dateOfBirth')
           this.dateOfBirth,
@@ -333,8 +333,8 @@ class _$_RelatedPerson implements _RelatedPerson {
   @JsonKey(name: 'otherName')
   final String? otherName;
   @override
-  @JsonKey(name: 'gender')
-  final UserGender? gender;
+  @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+  final Gender? gender;
   @override
   @JsonKey(name: 'dateOfBirth')
   final String? dateOfBirth;
@@ -423,8 +423,8 @@ abstract class _RelatedPerson implements RelatedPerson {
           String? lastName,
       @JsonKey(name: 'otherName')
           String? otherName,
-      @JsonKey(name: 'gender')
-          UserGender? gender,
+      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+          Gender? gender,
       @JsonKey(name: 'dateOfBirth')
           String? dateOfBirth,
       @JsonKey(name: 'addresses')
@@ -454,8 +454,8 @@ abstract class _RelatedPerson implements RelatedPerson {
   @JsonKey(name: 'otherName')
   String? get otherName => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'gender')
-  UserGender? get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+  Gender? get gender => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'dateOfBirth')
   String? get dateOfBirth => throw _privateConstructorUsedError;

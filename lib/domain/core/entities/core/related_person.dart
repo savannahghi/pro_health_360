@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/address.dart';
@@ -28,8 +29,8 @@ class RelatedPerson with _$RelatedPerson {
         String? lastName,
     @JsonKey(name: 'otherName')
         String? otherName,
-    @JsonKey(name: 'gender')
-        UserGender? gender,
+    @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+        Gender? gender,
     @JsonKey(name: 'dateOfBirth')
         String? dateOfBirth,
     @JsonKey(name: 'addresses')
@@ -48,12 +49,9 @@ class RelatedPerson with _$RelatedPerson {
         firstName: UNKNOWN,
         lastName: UNKNOWN,
         otherName: UNKNOWN,
-        gender: UserGender.UNKNOWN,
+        gender: Gender.unknown,
         dateOfBirth: UNKNOWN,
         addresses: <Address>[],
         contacts: <Contact>[],
       );
-
-  // static Gender _genderFromCapitalString(String gender) =>
-  //     genderFromString(gender);
 }

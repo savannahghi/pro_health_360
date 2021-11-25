@@ -2,32 +2,17 @@
 
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/domain/core/entities/feed/author.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
+import 'package:myafyahub/domain/core/entities/feed/document.dart';
+import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'content.freezed.dart';
 part 'content.g.dart';
-
-@freezed
-class FeedContent with _$FeedContent {
-  factory FeedContent({
-    @JsonKey(name: 'getContent') FeedItems? feedContent,
-  }) = _FeedContent;
-
-  factory FeedContent.fromJson(Map<String, dynamic> json) =>
-      _$FeedContentFromJson(json);
-}
-
-@freezed
-class FeedItems with _$FeedItems {
-  factory FeedItems({
-    @JsonKey(name: 'items') List<Content?>? items,
-  }) = _FeedItems;
-
-  factory FeedItems.fromJson(Map<String, dynamic> json) =>
-      _$FeedItemsFromJson(json);
-}
 
 @freezed
 class Content with _$Content {
@@ -79,70 +64,4 @@ class Content with _$Content {
         categories: <ContentCategory>[],
         metadata: ContentMetadata.initial(),
       );
-}
-
-@freezed
-class Document with _$Document {
-  factory Document({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'title') String? title,
-  }) = _Document;
-
-  factory Document.fromJson(Map<String, dynamic> json) =>
-      _$DocumentFromJson(json);
-
-  factory Document.initial() => Document(id: 0, title: UNKNOWN);
-}
-
-@freezed
-class ContentCategory with _$ContentCategory {
-  factory ContentCategory({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'categoryName') String? name,
-    @JsonKey(name: 'categoryIcon') String? icon,
-  }) = _ContentCategory;
-
-  factory ContentCategory.fromJson(Map<String, dynamic> json) =>
-      _$ContentCategoryFromJson(json);
-
-  factory ContentCategory.initial() => ContentCategory(
-        id: 0,
-        name: UNKNOWN,
-        icon: UNKNOWN,
-      );
-}
-
-@freezed
-class ContentMetadata with _$ContentMetadata {
-  factory ContentMetadata({
-    @JsonKey(name: 'contentHTMLURL') String? publicLink,
-    @JsonKey(name: 'firstPublishedAt') String? createdAt,
-  }) = _ContentMetadata;
-
-  factory ContentMetadata.fromJson(Map<String, dynamic> json) =>
-      _$ContentMetadataFromJson(json);
-
-  factory ContentMetadata.initial() => ContentMetadata(
-        publicLink: UNKNOWN,
-        createdAt: UNKNOWN,
-      );
-}
-
-@freezed
-class Author with _$Author {
-  factory Author({@JsonKey(name: 'ID') String? id}) = _Author;
-
-  factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
-
-  factory Author.initial() => Author(id: UNKNOWN);
-}
-
-@freezed
-class HeroImage with _$HeroImage {
-  factory HeroImage({@JsonKey(name: 'url') String? url}) = _HeroImage;
-
-  factory HeroImage.fromJson(Map<String, dynamic> json) =>
-      _$HeroImageFromJson(json);
-
-  factory HeroImage.initial() => HeroImage(url: UNKNOWN);
 }
