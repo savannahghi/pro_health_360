@@ -58,17 +58,27 @@ class _PreLoadAppState extends State<PreLoadApp> {
   @override
   void initState() {
     super.initState();
-    _connectivitySub = widget.connectivityStatus.onConnectivityChanged
+    _connectivitySub = widget.connectivityStatus
+        .checkConnection()
+        .asStream()
+        .mergeWith(
+          <Stream<bool>>[widget.connectivityStatus.onConnectivityChanged],
+        )
+        .distinct()
         .listen((bool hasConnection) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        UpdateConnectivityAction(hasConnection: hasConnection),
-      );
+          connectivityChanged(hasConnection: hasConnection);
+        });
+  }
 
-      if (!hasConnection) {
-        showToast(connectionLostText);
-      }
-    });
+  void connectivityChanged({required bool hasConnection}) {
+    StoreProvider.dispatch<AppState>(
+      context,
+      UpdateConnectivityAction(hasConnection: hasConnection),
+    );
+
+    if (!hasConnection) {
+      showToast(connectionLostText);
+    }
   }
 
   @override
