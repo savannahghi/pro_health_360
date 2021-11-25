@@ -16,8 +16,7 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     middleName: json['middleName'] as String?,
     lastName: json['lastName'] as String?,
     dateOfBirth: json['dateOfBirth'] as String?,
-    gender:
-        _$enumDecodeNullable(_$GenderEnumMap, json['gender']) ?? Gender.unknown,
+    gender: genderFromJson(json['gender'] as String?),
     active: json['active'] as bool? ?? false,
     primaryContact: json['primaryContact'] == null
         ? null
@@ -47,7 +46,7 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'middleName': instance.middleName,
       'lastName': instance.lastName,
       'dateOfBirth': instance.dateOfBirth,
-      'gender': _$GenderEnumMap[instance.gender],
+      'gender': genderToJson(instance.gender),
       'active': instance.active,
       'primaryContact': instance.primaryContact,
       'secondaryContacts': instance.secondaryContacts,
@@ -60,46 +59,3 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'pinChangeRequired': instance.pinChangeRequired,
       'suspended': instance.suspended,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
-
-const _$GenderEnumMap = {
-  Gender.male: 'male',
-  Gender.female: 'female',
-  Gender.unknown: 'unknown',
-};

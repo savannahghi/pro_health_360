@@ -1827,7 +1827,7 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'active': true,
   'displayName': 'Kowalski',
   'firstName': 'Juha',
-  'gender': 'male',
+  'gender': 'MALE',
   'languages': <dynamic>['en', 'sw'],
   'suspended': false,
   'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
@@ -1851,8 +1851,11 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'termsAccepted': true,
   'userID': 'some-user-id',
   'userName': 'Kowalski',
-  'userType': 'CLIENT',
-  'dateOfBirth': '21 Nov 2002'
+  'dateOfBirth': '21 Nov 2002',
+  'hasSetPin': false,
+  'hasSetSecurityQuestions': false,
+  'hasSetNickname': false,
+  'isPhoneVerified': false,
 };
 
 final Map<String, dynamic> mockClientProfile = <String, dynamic>{

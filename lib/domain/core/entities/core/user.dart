@@ -19,7 +19,8 @@ class User with _$User {
     @JsonKey(name: 'middleName') String? middleName,
     @JsonKey(name: 'lastName') String? lastName,
     @JsonKey(name: 'dateOfBirth') String? dateOfBirth,
-    @JsonKey(name: 'gender', defaultValue: Gender.unknown) Gender? gender,
+    @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
+        Gender? gender,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'primaryContact') Contact? primaryContact,
     @JsonKey(name: 'secondaryContacts') List<Contact?>? secondaryContacts,
@@ -53,4 +54,17 @@ class User with _$User {
         termsAccepted: false,
         pinChangeRequired: false,
       );
+}
+
+Gender genderFromJson(String? genderString) {
+  if (genderString == null || genderString.isEmpty || genderString == UNKNOWN) {
+    return Gender.unknown;
+  }
+  return Gender.values.where((Gender gender) {
+    return gender.name.toLowerCase() == genderString.toLowerCase();
+  }).first;
+}
+
+String genderToJson(Gender? gender) {
+  return gender?.name ?? Gender.unknown.name;
 }
