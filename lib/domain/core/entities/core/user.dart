@@ -8,6 +8,8 @@ import 'package:myafyahub/domain/core/entities/core/contact.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
 
+enum UserGender { MALE, FEMALE, UNKNOWN }
+
 @freezed
 class User with _$User {
   factory User({
@@ -19,7 +21,8 @@ class User with _$User {
     @JsonKey(name: 'middleName') String? middleName,
     @JsonKey(name: 'lastName') String? lastName,
     @JsonKey(name: 'dateOfBirth') String? dateOfBirth,
-    @JsonKey(name: 'gender', defaultValue: Gender.unknown) Gender? gender,
+    @JsonKey(name: 'gender', defaultValue: UserGender.UNKNOWN)
+        UserGender? gender,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'primaryContact') Contact? primaryContact,
     @JsonKey(name: 'secondaryContacts') List<Contact?>? secondaryContacts,
@@ -45,7 +48,7 @@ class User with _$User {
         middleName: UNKNOWN,
         lastName: UNKNOWN,
         dateOfBirth: UNKNOWN,
-        gender: Gender.unknown,
+        gender: UserGender.UNKNOWN,
         active: false,
         secondaryContacts: <Contact>[],
         primaryContact: Contact.initial(),

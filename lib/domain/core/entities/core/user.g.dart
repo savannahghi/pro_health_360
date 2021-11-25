@@ -16,8 +16,8 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     middleName: json['middleName'] as String?,
     lastName: json['lastName'] as String?,
     dateOfBirth: json['dateOfBirth'] as String?,
-    gender:
-        _$enumDecodeNullable(_$GenderEnumMap, json['gender']) ?? Gender.unknown,
+    gender: _$enumDecodeNullable(_$UserGenderEnumMap, json['gender']) ??
+        UserGender.UNKNOWN,
     active: json['active'] as bool? ?? false,
     primaryContact: json['primaryContact'] == null
         ? null
@@ -47,7 +47,7 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'middleName': instance.middleName,
       'lastName': instance.lastName,
       'dateOfBirth': instance.dateOfBirth,
-      'gender': _$GenderEnumMap[instance.gender],
+      'gender': _$UserGenderEnumMap[instance.gender],
       'active': instance.active,
       'primaryContact': instance.primaryContact,
       'secondaryContacts': instance.secondaryContacts,
@@ -98,8 +98,8 @@ K? _$enumDecodeNullable<K, V>(
   return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$GenderEnumMap = {
-  Gender.male: 'male',
-  Gender.female: 'female',
-  Gender.unknown: 'unknown',
+const _$UserGenderEnumMap = {
+  UserGender.MALE: 'MALE',
+  UserGender.FEMALE: 'FEMALE',
+  UserGender.UNKNOWN: 'UNKNOWN',
 };
