@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';

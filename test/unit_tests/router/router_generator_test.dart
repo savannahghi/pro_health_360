@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/domain/core/entities/feed/author.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
+import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;

@@ -1712,6 +1712,12 @@ final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{
   'contactType': 'PHONE',
   'optedIn': true
 };
+
+final Map<String, dynamic> mockFeedContent = <String, dynamic>{
+  'getContent': <String, dynamic>{
+    'items': <dynamic>[contentMock.first]
+  },
+};
 final Map<String, dynamic> mockRelatedPerson = <String, dynamic>{
   'active': true,
   'dateOfBirth': '21 Nov 2002',
