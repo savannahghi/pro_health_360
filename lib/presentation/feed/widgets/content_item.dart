@@ -3,6 +3,7 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/feed/widgets/content_item_footer.dart';
@@ -47,20 +48,43 @@ class ContentItem extends StatelessWidget {
                   children: <Widget>[
                     if (contentDetails.heroImage != null &&
                         contentDetails.heroImage!.url != UNKNOWN)
-                      Container(
-                        height: 170.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            //TODO:(eugene) revert after urls are updated
-                            // image: NetworkImage(contentDetails.heroImage!.url!),
-                            image: AssetImage(feedImage3),
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            height: 170.0,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                //TODO:(eugene) revert after urls are updated
+                                // image: NetworkImage(contentDetails.heroImage!.url!),
+                                image: AssetImage(feedImage3),
+                              ),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(7.0),
+                                topLeft: Radius.circular(7.0),
+                              ),
+                            ),
                           ),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(7.0),
-                            topLeft: Radius.circular(7.0),
-                          ),
-                        ),
+                          if (contentDetails.estimate != null)
+                            Positioned(
+                              bottom: 8,
+                              left: 8,
+                              child: Container(
+                                padding: const EdgeInsets.all(6.0),
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(6.0),
+                                  ),
+                                  color: AppColors.readTimeBackgroundColor,
+                                ),
+                                child: Text(
+                                  contentReadDuration(contentDetails.estimate!),
+                                  style:
+                                      TextThemes.boldSize12Text(Colors.white),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     if (contentDetails.contentType == ContentType.AUDIOVIDEO)
                       SizedBox(
@@ -76,23 +100,113 @@ class ContentItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(13),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Align(
                         alignment: Alignment.topLeft,
-                        child: Text(
-                          contentDetails.title!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextThemes.normalSize16Text(
-                            AppColors.secondaryColor,
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Flexible(
+                              child: Text(
+                                contentDetails.title!,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextThemes.boldSize16Text(
+                                  AppColors.secondaryColor,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: sortDate(
+                                dateTextStyle: TextThemes.normalSize12Text(
+                                  AppColors.greyTextColor,
+                                ),
+                                context: context,
+                                loadedDate: contentDetails.metadata!.createdAt!,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       verySmallVerticalSizedBox,
-                      ContentItemFooter(
-                        datePublished: contentDetails.metadata!.createdAt!,
-                        estimatedReadingTime: contentDetails.estimate,
-                      )
+                      Text(
+                        contentDetails.authorName!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextThemes.boldSize12Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 18.0,
+                          bottom: 4.0,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                SvgPicture.asset(
+                                  heartIconUrl,
+                                  width: 20,
+                                  height: 20,
+                                  color: AppColors.secondaryColor,
+                                ),
+                                verySmallHorizontalSizedBox,
+                                Text(
+                                  '234',
+                                  style: TextThemes.normalSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                            smallHorizontalSizedBox,
+                            Row(
+                              children: <Widget>[
+                                SvgPicture.asset(
+                                  shareIconUrl,
+                                  width: 20,
+                                  height: 20,
+                                  color: AppColors.secondaryColor,
+                                ),
+                                verySmallHorizontalSizedBox,
+                                Text(
+                                  '234',
+                                  style: TextThemes.normalSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                            smallHorizontalSizedBox,
+                            Row(
+                              children: <Widget>[
+                                SvgPicture.asset(
+                                  saveIconUrl,
+                                  width: 20,
+                                  height: 20,
+                                  color: AppColors.secondaryColor,
+                                ),
+                                verySmallHorizontalSizedBox,
+                                Text(
+                                  '234',
+                                  style: TextThemes.normalSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // ContentItemFooter(
+                      //   datePublished: contentDetails.metadata!.createdAt!,
+                      //   estimatedReadingTime: contentDetails.estimate,
+                      // )
                     ],
                   ),
                 ),
