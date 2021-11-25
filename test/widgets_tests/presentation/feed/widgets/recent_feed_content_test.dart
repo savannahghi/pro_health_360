@@ -5,19 +5,20 @@ import 'dart:ui';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/feed/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/feed/widgets/content_item.dart';
 import 'package:myafyahub/presentation/feed/widgets/recent_feed_content.dart';
@@ -41,7 +42,14 @@ void main() {
         'endpoint',
         http.Response(
           json.encode(<String, dynamic>{
-            'data': <String, dynamic>{'fetchRecentContent': contentMock}
+            'data': <String, dynamic>{
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[
+                  mockContent,
+                  mockContent,
+                ]
+              }
+            }
           }),
           201,
         ),
@@ -75,7 +83,12 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'fetchRecentContent': contentMock,
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[
+                  mockContent,
+                  mockContent,
+                ]
+              },
               'fetchSuggestedGroups': mockSuggestions
             }
           }),
@@ -98,36 +111,6 @@ void main() {
       await tester.tap(viewAllButton);
       await tester.pumpAndSettle();
       expect(viewAllButton, findsWidgets);
-    });
-
-    testWidgets('navigates to feed page when view all is clicked',
-        (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'fetchRecentContent': contentMock,
-            }
-          }),
-          201,
-        ),
-      );
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortSILGraphQlClient,
-        widget: const RecentFeedContent(),
-      );
-
-      await tester.pumpAndSettle();
-
-      // click view all
-      await tester.tap(find.text(viewAllText));
-      await tester.pumpAndSettle();
-      expect(store.state.bottomNavigationState!.currentBottomNavIndex, 1);
     });
 
     testWidgets('shows a loading indicator when fetching data',

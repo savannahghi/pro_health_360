@@ -17,7 +17,7 @@ void main() {
             home: Scaffold(
               body: ContentItemFooter(
                 datePublished: '2021-08-23T06:42:05.085216Z',
-                estimatedReadingTime: 180,
+                estimatedReadingTime: 20,
               ),
             ),
           ),
@@ -26,7 +26,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.text('23 August 2021'), findsOneWidget);
-        expect(find.text('3 minute read'), findsOneWidget);
+        expect(find.text('3 min read'), findsOneWidget);
       },
     );
   });
