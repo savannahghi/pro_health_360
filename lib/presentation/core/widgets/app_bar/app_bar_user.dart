@@ -40,10 +40,11 @@ class AppbarUser extends StatelessWidget {
             final String? avatar = user?.avatar;
 
             // a sanity check for the photo url
-            final bool isAvatarInvalid = avatar!.isEmpty || avatar == UNKNOWN;
+            final bool isAvatarPresent =
+                avatar != null && avatar.isNotEmpty && avatar != UNKNOWN;
 
             return Container(
-              padding: EdgeInsets.all(isAvatarInvalid ? 2 : 0),
+              padding: EdgeInsets.all(isAvatarPresent ? 2 : 0),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.whiteColor,
@@ -56,16 +57,16 @@ class AppbarUser extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
                 child: Center(
-                  child: isAvatarInvalid
-                      ? Text(
+                  child: isAvatarPresent
+                      ? CircleAvatar(backgroundImage: NetworkImage(avatar))
+                      : Text(
                           extractNamesInitials(
                             name: getDisplayName(user),
                           ),
                           style: TextThemes.boldSize14Text(
                             AppColors.secondaryColor,
                           ),
-                        )
-                      : CircleAvatar(backgroundImage: NetworkImage(avatar)),
+                        ),
                 ),
               ),
             );

@@ -77,3 +77,5 @@ enum RelationshipType {
 
 /// The type of contact being used
 enum ContactType { PHONE, EMAIL, UNKNOWN }
+
+enum UserGender { MALE, FEMALE, UNKNOWN }

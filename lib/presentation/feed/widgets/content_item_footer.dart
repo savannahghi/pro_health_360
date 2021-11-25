@@ -29,7 +29,6 @@ class ContentItemFooter extends StatelessWidget {
             dateTextStyle: TextThemes.normalSize12Text(Colors.grey),
             context: context,
             loadedDate: datePublished,
-            showYear: false,
           )
         : const SizedBox();
     final String readingTime = contentReadDuration(estimatedReadingTime!);

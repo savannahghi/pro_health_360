@@ -36,6 +36,11 @@ void main() {
     });
 
     testWidgets('should render feed items', (WidgetTester tester) async {
+      const Size size = Size(640, 960);
+      await tester.binding.setSurfaceSize(size);
+      tester.binding.window.physicalSizeTestValue = size;
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
       final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
         'idToken',
@@ -72,10 +77,20 @@ void main() {
       await tester.tap(feedItem.first);
       await tester.pumpAndSettle();
       expect(find.byType(ContentDetailPage), findsOneWidget);
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
+      });
     });
 
     testWidgets('View All should navigate to FeedPage',
         (WidgetTester tester) async {
+      const Size size = Size(640, 960);
+      await tester.binding.setSurfaceSize(size);
+      tester.binding.window.physicalSizeTestValue = size;
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
       final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
         'idToken',
@@ -111,6 +126,11 @@ void main() {
       await tester.tap(viewAllButton);
       await tester.pumpAndSettle();
       expect(viewAllButton, findsWidgets);
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
+      });
     });
 
     testWidgets('shows a loading indicator when fetching data',

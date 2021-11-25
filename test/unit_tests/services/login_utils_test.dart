@@ -38,7 +38,7 @@ void main() {
             return RawMaterialButton(
               onPressed: () => signInUser(
                 context: context,
-                phoneNumber: '1w24osdfsohaoasdsad',
+                phoneNumber: 'some-wrong-number',
                 pin: '1111',
               ),
             );

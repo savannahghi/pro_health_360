@@ -39,7 +39,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:user_feed/user_feed.dart';
 
 import 'test_utils.dart';
-import 'tests_resources/shared_resources.dart';
 
 const String testFirstName = 'John';
 const String testLastName = 'Doe';
@@ -522,58 +521,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains('panelLocations')) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'panelLocations': <dynamic>[
-                <String, dynamic>{
-                  'freeBusy': <String, dynamic>{
-                    'timeMin': '2020-06-15T10:43:04Z',
-                    'timeMax': '2020-06-16T10:43:04Z',
-                    'busySlots': <dynamic>[]
-                  },
-                  'branchProfile': <String, dynamic>{
-                    'id': 'b827f240-b423-4ee8-87b6-49f78533e032',
-                    'branchSladeCode': 'BRA-PRO-3739-1',
-                    'branchName': 'Dr. Musima and Associates - Main Office',
-                    'organizationSladeCode': 'PRO-3739',
-                    'coordinates': '-1.295541, 36.806474',
-                    'geoHash': 'kzf0ts1svj8h',
-                    'hasTelehealth': false,
-                    'averageRating': 20,
-                    'providerCategory': 'DENTAL_PRACTICE',
-                    'practiceTypes': <dynamic>[
-                      'DENTAL_GENERAL_DENTAL_PRACTICE'
-                    ],
-                    'sortPriority': 0,
-                    'profile':
-                        'Dr. Musima & Associates is an experienced group of dentist, dental surgeons, and orthodontists.',
-                    'license': '-',
-                    'averageConsultationPrice': 1000,
-                    'averageTeleconsultationPrice': 500,
-                    'phones': <dynamic>['+254790360360'],
-                    'emails': <dynamic>['info@savannahinformatics.com'],
-                    'profilePages': <dynamic>[
-                      'http://www.savannahinformatics.com'
-                    ],
-                    'calendarID':
-                        'healthcloud.co.ke_6jm2ffq7ninov3o1evgs8n0r3o@group.calendar.google.com',
-                    'photoContentType': 'JPG',
-                    'photoBase64data': SharedResources.base64ImageString,
-                    'active': true,
-                    'fhirReference': null
-                  }
-                }
-              ]
-            }
-          }),
-          201,
-        ),
-      );
-    }
-
     if (queryString.contains('generateOTP')) {
       /// return fake data here
       return Future<http.Response>.value(
@@ -694,13 +641,15 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains('fetchRecentContent')) {
+    if (queryString == getContentQuery) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(
             <String, dynamic>{
               'data': <String, dynamic>{
-                'fetchRecentContent': contentMock,
+                'getContent': <String, dynamic>{
+                  'items': <dynamic>[contentMock.first]
+                },
               },
             },
           ),
@@ -1624,7 +1573,7 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
         'active': true,
         'dateOfBirth': '21 Nov 2002',
         'firstName': 'Juha',
-        'gender': 'male',
+        'gender': 'MALE',
         'lastName': 'Kalulu',
         'otherName': null,
         'relatedTo': 'some-user-id',
@@ -1661,7 +1610,7 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
       'active': true,
       'displayName': 'Kowalski',
       'firstName': 'Juha',
-      'gender': 'male',
+      'gender': 'MALE',
       'languages': <String>['en', 'sw'],
       'suspended': false,
       'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
@@ -1767,7 +1716,7 @@ final Map<String, dynamic> mockRelatedPerson = <String, dynamic>{
   'active': true,
   'dateOfBirth': '21 Nov 2002',
   'firstName': 'Juha',
-  'gender': 'male',
+  'gender': 'MALE',
   'lastName': 'Kalulu',
   'otherName': null,
   'relatedTo': 'some-user-id',
@@ -1781,7 +1730,7 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
   'active': true,
   'displayName': 'Kowalski',
   'firstName': 'Juha',
-  'gender': 'male',
+  'gender': 'MALE',
   'languages': <dynamic>['en', 'sw'],
   'suspended': false,
   'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',

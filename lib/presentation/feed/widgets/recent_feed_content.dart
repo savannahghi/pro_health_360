@@ -167,7 +167,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: 250,
+                      height: MediaQuery.of(context).size.height / 3,
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
