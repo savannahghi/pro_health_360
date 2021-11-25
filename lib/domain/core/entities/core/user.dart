@@ -8,6 +8,8 @@ import 'package:myafyahub/domain/core/entities/core/contact.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
 
+enum UserGender { MALE, FEMALE, UNKNOWN }
+
 @freezed
 class User with _$User {
   factory User({
@@ -46,7 +48,7 @@ class User with _$User {
         middleName: UNKNOWN,
         lastName: UNKNOWN,
         dateOfBirth: UNKNOWN,
-        gender: Gender.unknown,
+        gender: UserGender.UNKNOWN,
         active: false,
         secondaryContacts: <Contact>[],
         primaryContact: Contact.initial(),
