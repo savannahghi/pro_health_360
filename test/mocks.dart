@@ -1758,19 +1758,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   },
 ];
 
-final Content mockContent = Content(
-  author: Author(id: 'some-author-id'),
-  contentID: 0,
-  title: 'test',
-  body: 'test',
-  contentType: local_enums.ContentType.ARTICLE,
-  tags: <String>['test', 'test'],
-  heroImage: HeroImage(url: 'test'),
-  metadata: ContentMetadata(
-    publicLink: 'test',
-    createdAt: '2021-08-23T06:42:05.085216Z',
-  ),
-);
+final Content mockContent = Content.fromJson(contentMock.first);
 
 final Group mockGroup = Group(
   name: 'test',

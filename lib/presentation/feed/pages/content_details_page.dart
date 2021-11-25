@@ -29,11 +29,13 @@ class ContentDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget publishDate = sortDate(
-      dateTextStyle: TextThemes.normalSize12Text(AppColors.greyTextColor),
-      context: context,
-      loadedDate: articleDetails.metadata!.createdAt!,
-    );
+    final Widget publishDate = articleDetails.metadata!.createdAt!.isNotEmpty
+        ? sortDate(
+            dateTextStyle: TextThemes.normalSize12Text(AppColors.greyTextColor),
+            context: context,
+            loadedDate: articleDetails.metadata!.createdAt!,
+          )
+        : const SizedBox();
 
     return AppScaffold(
       appBar: const CustomAppBar(title: libraryPageString),
