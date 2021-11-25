@@ -29,7 +29,7 @@ class RelatedPerson with _$RelatedPerson {
     @JsonKey(name: 'otherName')
         String? otherName,
     @JsonKey(name: 'gender')
-        Gender? gender,
+        UserGender? gender,
     @JsonKey(name: 'dateOfBirth')
         String? dateOfBirth,
     @JsonKey(name: 'addresses')
@@ -48,7 +48,7 @@ class RelatedPerson with _$RelatedPerson {
         firstName: UNKNOWN,
         lastName: UNKNOWN,
         otherName: UNKNOWN,
-        gender: Gender.unknown,
+        gender: UserGender.UNKNOWN,
         dateOfBirth: UNKNOWN,
         addresses: <Address>[],
         contacts: <Contact>[],

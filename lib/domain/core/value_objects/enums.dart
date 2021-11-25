@@ -89,3 +89,5 @@ extension SecurityQuestionResponseTypeEx on SecurityQuestionResponseType {
     return describeEnum(this).toUpperCase();
   }
 }
+
+enum UserGender { MALE, FEMALE, UNKNOWN }

@@ -4,11 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
-
-enum UserGender { MALE, FEMALE, UNKNOWN }
 
 @freezed
 class User with _$User {

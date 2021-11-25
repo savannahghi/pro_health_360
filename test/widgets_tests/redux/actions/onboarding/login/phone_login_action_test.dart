@@ -150,15 +150,10 @@ void main() {
     testWidgets(
         'should navigate to home and update state if login request is '
         'successful and user is verified', (WidgetTester tester) async {
-      mockLoginResponse.addAll(<String, dynamic>{
-        'getContent': <String, dynamic>{
-          'items': <dynamic>[
-            mockContent,
-            mockContent,
-          ]
-        },
-        'fetchRecentContent': contentMock
-      });
+      const Size size = Size(640, 960);
+      await tester.binding.setSurfaceSize(size);
+      tester.binding.window.physicalSizeTestValue = size;
+      tester.binding.window.devicePixelRatioTestValue = 1;
 
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
@@ -228,6 +223,11 @@ void main() {
           credentials?.refreshToken,
           phoneLoginResponse.credentials?.refreshToken,
         );
+
+        addTearDown(() {
+          tester.binding.window.clearPhysicalSizeTestValue();
+          tester.binding.window.clearDevicePixelRatioTestValue();
+        });
       });
     });
   });

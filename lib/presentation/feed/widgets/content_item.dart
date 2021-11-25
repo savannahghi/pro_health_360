@@ -130,14 +130,15 @@ class ContentItem extends StatelessWidget {
                         ),
                       ),
                       verySmallVerticalSizedBox,
-                      Text(
-                        contentDetails.authorName!,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextThemes.boldSize12Text(
-                          AppColors.greyTextColor,
+                      if (contentDetails.authorName != null)
+                        Text(
+                          contentDetails.authorName!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextThemes.boldSize12Text(
+                            AppColors.greyTextColor,
+                          ),
                         ),
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(
                           top: 18.0,
