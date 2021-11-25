@@ -31,7 +31,6 @@ import 'package:myafyahub/domain/core/entities/security_questions/security_quest
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:platform/platform.dart';
@@ -1723,19 +1722,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   },
 ];
 
-final Content mockContent = Content(
-  author: Author(id: 'some-author-id'),
-  contentID: 0,
-  title: 'test',
-  body: 'test',
-  contentType: local_enums.ContentType.ARTICLE,
-  tags: <String>['test', 'test'],
-  heroImage: HeroImage(url: 'test'),
-  metadata: ContentMetadata(
-    publicLink: 'test',
-    createdAt: '2021-08-23T06:42:05.085216Z',
-  ),
-);
+final Content mockContent = Content.fromJson(contentMock.first);
 
 final Group mockGroup = Group(
   name: 'test',

@@ -31,8 +31,8 @@ void main() {
           'data': <String, dynamic>{
             'getContent': <String, dynamic>{
               'items': <dynamic>[
-                mockContent,
-                mockContent,
+                contentMock[0],
+                contentMock[0],
               ]
             }
           }

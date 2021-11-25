@@ -73,7 +73,7 @@ void main() {
           method: httpPOST,
           variables: <String, dynamic>{
             'user_id': 'user-id',
-            'otp': otp,
+            'otp': '123456',
             'phoneNumber': phoneNumber,
             'flavour': Flavour.CONSUMER.name,
           },

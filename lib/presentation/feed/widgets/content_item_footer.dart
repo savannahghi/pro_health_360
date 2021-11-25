@@ -24,12 +24,14 @@ class ContentItemFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget formattedDate = sortDate(
-      dateTextStyle: TextThemes.normalSize12Text(Colors.grey),
-      context: context,
-      loadedDate: datePublished,
-      showYear: false,
-    );
+    final Widget formattedDate = datePublished.isNotEmpty
+        ? sortDate(
+            dateTextStyle: TextThemes.normalSize12Text(Colors.grey),
+            context: context,
+            loadedDate: datePublished,
+            showYear: false,
+          )
+        : const SizedBox();
     final String readingTime = contentReadDuration(estimatedReadingTime!);
 
     return Row(
