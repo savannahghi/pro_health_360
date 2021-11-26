@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/presentation/feed/widgets/read_time_badge_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -68,19 +69,8 @@ class ContentItem extends StatelessWidget {
                             Positioned(
                               bottom: 8,
                               left: 8,
-                              child: Container(
-                                padding: const EdgeInsets.all(6.0),
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(6.0),
-                                  ),
-                                  color: AppColors.readTimeBackgroundColor,
-                                ),
-                                child: Text(
-                                  contentReadDuration(contentDetails.estimate!),
-                                  style:
-                                      TextThemes.boldSize12Text(Colors.white),
-                                ),
+                              child: ReadTimeBadge(
+                                estimateReadTime: contentDetails.estimate!,
                               ),
                             ),
                         ],
@@ -239,3 +229,4 @@ class ContentItem extends StatelessWidget {
     );
   }
 }
+

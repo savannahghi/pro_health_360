@@ -384,7 +384,7 @@ Widget sortDate({
   final DateTime parsedDate = DateTime.parse(loadedDate);
   final String postDayTime = DateFormat.jm().format(parsedDate);
   final String postDay = DateFormat.d().format(parsedDate);
-  final String postMonth = DateFormat.MMMM().format(parsedDate);
+  final String postMonth = DateFormat.MMM().format(parsedDate);
   final String postYear = DateFormat.y().format(parsedDate);
 
   return Row(

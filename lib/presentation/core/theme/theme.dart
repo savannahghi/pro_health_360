@@ -87,6 +87,9 @@ class AppColors {
   static const Color timelineDotColor = Color(0xFF06103B);
   static const Color selectedBottomNavColor = Color(0xffb9b81d);
   static const Color readTimeBackgroundColor = Color(0xff4c4c4c);
+  static const Color unSelectedReactionBackgroundColor = Color(0xffeaebf4);
+  static const Color selectedReactionBackgroundColor = Color(0xfffeeced);
+  static const Color reactionIconRedColor = Color(0xfff75b60);
 }
 
 class ThemeColors {

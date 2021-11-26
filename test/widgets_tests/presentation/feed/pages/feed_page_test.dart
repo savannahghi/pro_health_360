@@ -4,6 +4,7 @@ import 'dart:ui';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
@@ -92,6 +93,14 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(ContentDetailPage), findsOneWidget);
+
+        final Finder cancelButton = find.byKey(cancelButtonKey);
+        expect(cancelButton, findsOneWidget);
+        await tester.ensureVisible(cancelButton);
+        await tester.pumpAndSettle();
+        await tester.tap(cancelButton);
+        await tester.pumpAndSettle();
+        expect(find.byType(ContentItem), findsNWidgets(2));
       });
     });
 

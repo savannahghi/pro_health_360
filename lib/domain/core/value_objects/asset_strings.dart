@@ -137,3 +137,6 @@ const String placeholderImageUrl = 'assets/images/placeholder_image.svg';
 
 const String attachmentIconSvg = 'assets/icons/attachment.svg';
 const String emptyStateCover = 'assets/images/empty_state.png';
+
+const String selectedLikeIconSvgPath = 'assets/icons/selected_like_icon.svg';
+const String whiteCloseIconSvgPath = 'assets/icons/white_close_icon.svg';

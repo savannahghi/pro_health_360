@@ -193,7 +193,8 @@ class EditInformationPage extends StatelessWidget {
                   },
                   buttonColor: AppColors.secondaryColor,
                   borderColor: Colors.transparent,
-                  text: saveString,
+                  text:
+                      '${saveString[0].toUpperCase()}${saveString.substring(1)}',
                 ),
               ),
             ),

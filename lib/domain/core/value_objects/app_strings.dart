@@ -549,7 +549,7 @@ const String myHealthDiaryString = 'My Health Diary';
 const String nickNameString = 'Nickname';
 const String editString = 'Edit';
 const String settingsPageTitle = 'Settings';
-const String saveString = 'Save';
+const String saveString = 'save';
 
 //Feedback Page
 const String feedbackString = 'Feedback';
@@ -611,3 +611,5 @@ const String nicknameSuccessString = 'Nickname created successfully';
 const String invalidCode =
     'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';
 const String verifyCode = 'Verifying Code';
+const String likeString = 'like';
+const String shareString = 'share';
