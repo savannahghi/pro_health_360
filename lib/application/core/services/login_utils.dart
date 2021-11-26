@@ -9,7 +9,6 @@ import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -22,12 +21,8 @@ Future<void> signInUser({
   required BuildContext context,
   required String pin,
   required String phoneNumber,
+  required bool hasConnection,
 }) async {
-  StoreProvider.dispatch(
-    context,
-    CheckAndUpdateConnectivityAction(),
-  );
-
   if (!validatePhoneNumber(phoneNumber)) {
     showFeedbackBottomSheet(
       context: context,
@@ -45,10 +40,6 @@ Future<void> signInUser({
       pinCode: pin,
     ),
   );
-
-  final bool hasConnection =
-      StoreProvider.state<AppState>(context)?.connectivityState?.isConnected ??
-          false;
 
   if (hasConnection) {
     try {

@@ -38,6 +38,7 @@ void main() {
           builder: (BuildContext context) {
             return RawMaterialButton(
               onPressed: () => signInUser(
+                hasConnection: false,
                 context: context,
                 phoneNumber: 'some-wrong-number',
                 pin: '1111',
@@ -108,6 +109,7 @@ void main() {
             builder: (BuildContext context) {
               return RawMaterialButton(
                 onPressed: () => signInUser(
+                  hasConnection: true,
                   context: context,
                   phoneNumber: '0712345678',
                   pin: '1111',

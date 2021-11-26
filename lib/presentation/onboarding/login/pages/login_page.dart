@@ -11,6 +11,9 @@ import 'package:afya_moja_core/phone_input.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -33,6 +36,10 @@ import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.
 /// It consists of [MyAfyaHubPhoneInput] used to user input PhoneNumber,
 ///  [CustomTextField] to input PIN and [MyAfyaHubPrimaryButton] as submit button
 class LoginPage extends StatefulWidget {
+  LoginPage({ConnectivityStatus? connectivityStatus})
+      : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+
+  final ConnectivityStatus connectivityStatus;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -180,6 +187,17 @@ class _LoginPageState extends State<LoginPage> {
                             child: MyAfyaHubPrimaryButton(
                               buttonKey: phoneLoginContinueButtonKey,
                               onPressed: () async {
+                                final bool hasConnection = await widget
+                                    .connectivityStatus
+                                    .checkConnection();
+
+                                StoreProvider.dispatch(
+                                  context,
+                                  UpdateConnectivityAction(
+                                    hasConnection: hasConnection,
+                                  ),
+                                );
+
                                 final bool? isFormValid =
                                     _formKey.currentState?.validate();
 
@@ -193,6 +211,7 @@ class _LoginPageState extends State<LoginPage> {
                                     context: context,
                                     pin: pin!,
                                     phoneNumber: phoneNumber!,
+                                    hasConnection: hasConnection,
                                   );
                                 }
                               },

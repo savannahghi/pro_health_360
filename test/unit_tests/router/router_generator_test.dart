@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -56,6 +57,9 @@ void main() {
   final BuildContext context = MockBuildContext();
 
   test('Test router returns default page', () {
+    final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
+    ConnectivityPlatform.instance = fakePlatform;
+
     const RouteSettings settings = RouteSettings();
 
     final MaterialPageRoute<LoginPage> route =

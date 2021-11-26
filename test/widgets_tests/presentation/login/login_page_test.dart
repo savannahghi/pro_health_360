@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -17,6 +18,7 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
@@ -28,10 +30,18 @@ import '../../../test_helpers.dart';
 void main() {
   group('LoginPage', () {
     late Store<AppState> store;
+    late MobileConnectivityStatus connectivityStatus;
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
+      final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
+      ConnectivityPlatform.instance = fakePlatform;
+
+      connectivityStatus = MobileConnectivityStatus(
+        checkInternetCallback: () async => true,
+      );
     });
 
     testWidgets('MyAfyaHubCountryPicker should render a list of countries',
@@ -81,11 +91,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: MaterialApp(
           home: Scaffold(
-            body: Builder(
-              builder: (BuildContext context) {
-                return LoginPage();
-              },
-            ),
+            body: LoginPage(connectivityStatus: connectivityStatus),
           ),
         ),
       );
@@ -96,12 +102,12 @@ void main() {
       expect(phoneInputField, findsOneWidget);
       expect(continueButton, findsOneWidget);
 
-      expect(find.text('A PIN is required'), findsNothing);
+      expect(find.text('Phone number is required'), findsNothing);
 
       await tester.ensureVisible(continueButton);
       await tester.tap(continueButton);
       await tester.pumpAndSettle();
-      expect(find.text('A PIN is required'), findsOneWidget);
+      expect(find.text('Phone number is required'), findsOneWidget);
     });
 
     testWidgets('should validate PIN', (WidgetTester tester) async {
@@ -113,7 +119,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return LoginPage();
+                return LoginPage(connectivityStatus: connectivityStatus);
               },
             ),
           ),
@@ -164,7 +170,7 @@ void main() {
           widget: MaterialApp(
             onGenerateRoute: RouteGenerator.generateRoute,
             home: Scaffold(
-              body: LoginPage(),
+              body: LoginPage(connectivityStatus: connectivityStatus),
             ),
           ),
         );
@@ -214,7 +220,7 @@ void main() {
         widget: MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           home: Scaffold(
-            body: LoginPage(),
+            body: LoginPage(connectivityStatus: connectivityStatus),
           ),
         ),
       );
@@ -276,7 +282,11 @@ void main() {
         widget: MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           home: Scaffold(
-            body: LoginPage(),
+            body: LoginPage(
+              connectivityStatus: MobileConnectivityStatus(
+                checkInternetCallback: () async => false,
+              ),
+            ),
           ),
         ),
       );
