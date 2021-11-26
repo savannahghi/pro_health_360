@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
+import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -125,8 +126,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(viewAllButton);
       await tester.pumpAndSettle();
-      expect(viewAllButton, findsWidgets);
-
+      expect(find.byType(FeedPage), findsOneWidget);
       addTearDown(() {
         tester.binding.window.clearPhysicalSizeTestValue();
         tester.binding.window.clearDevicePixelRatioTestValue();

@@ -115,13 +115,7 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MaterialApp(
-              home: PINInputPage(),
-            );
-          },
-        ),
+        widget: PINInputPage(),
       );
 
       expect(find.byType(KeyPadWidget), findsOneWidget);

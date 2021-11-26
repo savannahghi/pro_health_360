@@ -20,7 +20,7 @@ import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -595,25 +595,8 @@ bool shouldInputPIN(BuildContext context) {
       ? DateTime.now().difference(DateTime.parse(lastPINInputTime)).inMinutes
       : 0;
 
-  if (differenceFromSignIn > 20 && lastPINInputTime == UNKNOWN) {
-    StoreProvider.dispatch(
-      context,
-      HealthPagePINInputAction(
-        lastPINInputTime: DateTime.now().toString(),
-      ),
-    );
-    return true;
-  } else {
-    if (differenceFromLastInput > 20) {
-      StoreProvider.dispatch(
-        context,
-        HealthPagePINInputAction(lastPINInputTime: ''),
-      );
-      return true;
-    } else {
-      return false;
-    }
-  }
+  return (differenceFromSignIn > 20 && lastPINInputTime == UNKNOWN) ||
+      differenceFromLastInput > 20;
 }
 
 final EditInformationInputItem nameInputItem = EditInformationInputItem(
@@ -829,4 +812,21 @@ Gender genderFromJson(String? genderString) {
 
 String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
+}
+
+void navigateToNewPage({
+  required BuildContext context,
+  required String route,
+  int? bottomNavIndex,
+}) {
+  if (bottomNavIndex != null) {
+    StoreProvider.dispatch<AppState>(
+      context,
+      BottomNavAction(currentBottomNavIndex: bottomNavIndex),
+    );
+  }
+  Navigator.pushReplacementNamed(
+    context,
+    route,
+  );
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -93,13 +94,10 @@ class _PINInputPageState extends State<PINInputPage> {
           leadingWidget: GestureDetector(
             key: pinInputPageBackKey,
             onTap: () {
-              StoreProvider.dispatch<AppState>(
-                context,
-                BottomNavAction(currentBottomNavIndex: 0),
-              );
-              Navigator.popAndPushNamed(
-                context,
-                BWRoutes.home,
+              navigateToNewPage(
+                context: context,
+                route: BWRoutes.home,
+                bottomNavIndex: 0,
               );
             },
             child: Padding(
@@ -194,11 +192,17 @@ class _PINInputPageState extends State<PINInputPage> {
                             }
                           } else {
                             errorMessage = '';
-                            StoreProvider.dispatch<AppState>(
-                              context,
-                              BottomNavAction(currentBottomNavIndex: 3),
+                            navigateToNewPage(
+                              context: context,
+                              route: BWRoutes.myHealthPage,
+                              bottomNavIndex: 2,
                             );
-                            Navigator.pop(context);
+                            StoreProvider.dispatch(
+                              context,
+                              HealthPagePINInputAction(
+                                lastPINInputTime: DateTime.now().toString(),
+                              ),
+                            );
                           }
                         }
                       });
