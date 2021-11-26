@@ -70,7 +70,7 @@ class OnboardingPageWrapper extends StatelessWidget {
                     buttonKey: onboardingNoBorderButtonKey,
                     onPressed: () =>
                         Navigator.pushReplacementNamed(context, previousRoute!),
-                    text: OnboardingStrings.of(context)!.previousText(),
+                    text: previousText,
                   ),
               ],
             ),

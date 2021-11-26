@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -25,15 +26,13 @@ class LogoutAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     this.navigationCallback();
 
-    /// set [expiresAt] to a extreme time. This will ensure the refresh
-    /// logic does not kick in which may affect app performance
-    await store.dispatch(
+    dispatch(
       AuthStatusAction(
         isSignedIn: false,
         idToken: UNDEFINED_AUTH_TOKEN,
         refreshToken: UNDEFINED_REFRESH_TOKEN,
-        expiresIn:
-            DateTime.now().add(const Duration(days: 1000)).toIso8601String(),
+        expiresIn: UNKNOWN,
+        tokenExpiryTimestamp: UNKNOWN,
       ),
     );
 

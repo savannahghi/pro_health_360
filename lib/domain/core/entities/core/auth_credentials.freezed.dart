@@ -24,12 +24,14 @@ class _$AuthCredentialsTearOff {
       {@JsonKey(name: 'idToken') String? idToken,
       @JsonKey(name: 'expiresIn') String? expiresIn,
       @JsonKey(name: 'refreshToken') String? refreshToken,
+      @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
       String? signedInTime}) {
     return _AuthCredentials(
       idToken: idToken,
       expiresIn: expiresIn,
       refreshToken: refreshToken,
+      tokenExpiryTimestamp: tokenExpiryTimestamp,
       isSignedIn: isSignedIn,
       signedInTime: signedInTime,
     );
@@ -50,7 +52,9 @@ mixin _$AuthCredentials {
   @JsonKey(name: 'expiresIn')
   String? get expiresIn => throw _privateConstructorUsedError;
   @JsonKey(name: 'refreshToken')
-  String? get refreshToken =>
+  String? get refreshToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tokenExpiryTimestamp')
+  String? get tokenExpiryTimestamp =>
       throw _privateConstructorUsedError; // Other supporting fields that are not returned by the backend
   bool? get isSignedIn => throw _privateConstructorUsedError;
   String? get signedInTime => throw _privateConstructorUsedError;
@@ -70,6 +74,7 @@ abstract class $AuthCredentialsCopyWith<$Res> {
       {@JsonKey(name: 'idToken') String? idToken,
       @JsonKey(name: 'expiresIn') String? expiresIn,
       @JsonKey(name: 'refreshToken') String? refreshToken,
+      @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
       String? signedInTime});
 }
@@ -88,6 +93,7 @@ class _$AuthCredentialsCopyWithImpl<$Res>
     Object? idToken = freezed,
     Object? expiresIn = freezed,
     Object? refreshToken = freezed,
+    Object? tokenExpiryTimestamp = freezed,
     Object? isSignedIn = freezed,
     Object? signedInTime = freezed,
   }) {
@@ -103,6 +109,10 @@ class _$AuthCredentialsCopyWithImpl<$Res>
       refreshToken: refreshToken == freezed
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tokenExpiryTimestamp: tokenExpiryTimestamp == freezed
+          ? _value.tokenExpiryTimestamp
+          : tokenExpiryTimestamp // ignore: cast_nullable_to_non_nullable
               as String?,
       isSignedIn: isSignedIn == freezed
           ? _value.isSignedIn
@@ -127,6 +137,7 @@ abstract class _$AuthCredentialsCopyWith<$Res>
       {@JsonKey(name: 'idToken') String? idToken,
       @JsonKey(name: 'expiresIn') String? expiresIn,
       @JsonKey(name: 'refreshToken') String? refreshToken,
+      @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
       String? signedInTime});
 }
@@ -147,6 +158,7 @@ class __$AuthCredentialsCopyWithImpl<$Res>
     Object? idToken = freezed,
     Object? expiresIn = freezed,
     Object? refreshToken = freezed,
+    Object? tokenExpiryTimestamp = freezed,
     Object? isSignedIn = freezed,
     Object? signedInTime = freezed,
   }) {
@@ -162,6 +174,10 @@ class __$AuthCredentialsCopyWithImpl<$Res>
       refreshToken: refreshToken == freezed
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tokenExpiryTimestamp: tokenExpiryTimestamp == freezed
+          ? _value.tokenExpiryTimestamp
+          : tokenExpiryTimestamp // ignore: cast_nullable_to_non_nullable
               as String?,
       isSignedIn: isSignedIn == freezed
           ? _value.isSignedIn
@@ -182,6 +198,7 @@ class _$_AuthCredentials implements _AuthCredentials {
       {@JsonKey(name: 'idToken') this.idToken,
       @JsonKey(name: 'expiresIn') this.expiresIn,
       @JsonKey(name: 'refreshToken') this.refreshToken,
+      @JsonKey(name: 'tokenExpiryTimestamp') this.tokenExpiryTimestamp,
       this.isSignedIn,
       this.signedInTime});
 
@@ -197,6 +214,9 @@ class _$_AuthCredentials implements _AuthCredentials {
   @override
   @JsonKey(name: 'refreshToken')
   final String? refreshToken;
+  @override
+  @JsonKey(name: 'tokenExpiryTimestamp')
+  final String? tokenExpiryTimestamp;
   @override // Other supporting fields that are not returned by the backend
   final bool? isSignedIn;
   @override
@@ -204,7 +224,7 @@ class _$_AuthCredentials implements _AuthCredentials {
 
   @override
   String toString() {
-    return 'AuthCredentials(idToken: $idToken, expiresIn: $expiresIn, refreshToken: $refreshToken, isSignedIn: $isSignedIn, signedInTime: $signedInTime)';
+    return 'AuthCredentials(idToken: $idToken, expiresIn: $expiresIn, refreshToken: $refreshToken, tokenExpiryTimestamp: $tokenExpiryTimestamp, isSignedIn: $isSignedIn, signedInTime: $signedInTime)';
   }
 
   @override
@@ -220,6 +240,9 @@ class _$_AuthCredentials implements _AuthCredentials {
             (identical(other.refreshToken, refreshToken) ||
                 const DeepCollectionEquality()
                     .equals(other.refreshToken, refreshToken)) &&
+            (identical(other.tokenExpiryTimestamp, tokenExpiryTimestamp) ||
+                const DeepCollectionEquality().equals(
+                    other.tokenExpiryTimestamp, tokenExpiryTimestamp)) &&
             (identical(other.isSignedIn, isSignedIn) ||
                 const DeepCollectionEquality()
                     .equals(other.isSignedIn, isSignedIn)) &&
@@ -234,6 +257,7 @@ class _$_AuthCredentials implements _AuthCredentials {
       const DeepCollectionEquality().hash(idToken) ^
       const DeepCollectionEquality().hash(expiresIn) ^
       const DeepCollectionEquality().hash(refreshToken) ^
+      const DeepCollectionEquality().hash(tokenExpiryTimestamp) ^
       const DeepCollectionEquality().hash(isSignedIn) ^
       const DeepCollectionEquality().hash(signedInTime);
 
@@ -253,6 +277,7 @@ abstract class _AuthCredentials implements AuthCredentials {
       {@JsonKey(name: 'idToken') String? idToken,
       @JsonKey(name: 'expiresIn') String? expiresIn,
       @JsonKey(name: 'refreshToken') String? refreshToken,
+      @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
       bool? isSignedIn,
       String? signedInTime}) = _$_AuthCredentials;
 
@@ -268,6 +293,9 @@ abstract class _AuthCredentials implements AuthCredentials {
   @override
   @JsonKey(name: 'refreshToken')
   String? get refreshToken => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'tokenExpiryTimestamp')
+  String? get tokenExpiryTimestamp => throw _privateConstructorUsedError;
   @override // Other supporting fields that are not returned by the backend
   bool? get isSignedIn => throw _privateConstructorUsedError;
   @override

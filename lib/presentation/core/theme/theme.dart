@@ -1,11 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
-
 class AppTheme {
-  static ThemeData getAppTheme(List<AppContext> contexts) {
+  static ThemeData getAppTheme() {
     return ThemeData(
       fontFamily: 'Raleway',
       primaryColor: AppColors.themeColors.primaryColor,

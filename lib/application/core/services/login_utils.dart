@@ -10,7 +10,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_action.dart';
+import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -26,7 +26,7 @@ Future<void> signInUser({
   if (!validatePhoneNumber(phoneNumber)) {
     showFeedbackBottomSheet(
       context: context,
-      modalContent: OnboardingStrings.of(context)!.phoneRequiredText(),
+      modalContent: phoneRequiredText,
       imageAssetPath: errorIconUrl,
     );
     return;

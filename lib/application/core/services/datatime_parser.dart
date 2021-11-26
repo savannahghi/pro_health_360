@@ -1,6 +1,3 @@
-// Project imports:
-import 'package:myafyahub/domain/core/value_objects/date_time_constants.dart';
-
 class DateTimeParser {
   final bool useCustomDateTime;
   final DateTime? customDateTime;
@@ -17,7 +14,7 @@ class DateTimeParser {
     final String parsedExpiresAt = dateTimeToUse
         .add(
           Duration(
-            seconds: expiresIn - kTokenCustomBeforeExpiryTimeInSeconds,
+            seconds: expiresIn,
           ),
         )
         .toIso8601String();
