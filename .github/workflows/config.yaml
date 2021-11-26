@@ -35,10 +35,14 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
+          DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
+          PROD_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
 
         run: |
+          echo $DEV_SENTRY_DNS > .env
+          echo $PROD_SENTRY_DNS >> .env
           cd ios
           echo $GC_KEYS > ./gc_keys.json
           echo $INFO_PLIST_FILE > ./Runner/info.plist
@@ -87,10 +91,14 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
+          DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
+          PROD_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
 
         run: |
+          echo $DEV_SENTRY_DNS > .env
+          echo $PROD_SENTRY_DNS >> .env
           cd ios
           echo $GC_KEYS > ./gc_keys.json
           echo $INFO_PLIST_FILE > ./Runner/info.plist
@@ -139,10 +147,14 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
+          DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
+          PROD_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
 
         run: |
+          echo $DEV_SENTRY_DNS > .env
+          echo $PROD_SENTRY_DNS >> .env
           cd ios
           echo $GC_KEYS > ./gc_keys.json
           echo $INFO_PLIST_FILE > ./Runner/info.plist
