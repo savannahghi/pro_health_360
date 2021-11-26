@@ -10,7 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:domain_objects/entities.dart';
+
+// Flutter imports:
 import 'package:domain_objects/failures.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -22,18 +23,12 @@ import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
-import 'package:myafyahub/domain/core/entities/core/user.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -1279,187 +1274,6 @@ void main() {
       expect(find.byType(CongratulationsPage), findsOneWidget);
     });
 
-    testWidgets('refreshTokenAndUpdateState should get a new token',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      final PhoneLoginResponse userResp =
-          PhoneLoginResponse.fromJson(mockLoginResponse);
-
-      final User? userProfile = userResp.clientState?.user;
-
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-      const String refreshToken = 'some-refresh-token';
-
-      await tester.runAsync(() async {
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              StoreProvider.dispatch(
-                context,
-                UpdateUserProfileAction(
-                  active: true,
-                  firstName: userProfile?.firstName,
-                  lastName: userProfile?.lastName,
-                  phoneNumber: userProfile?.primaryContact,
-                ),
-              );
-
-              return SILPrimaryButton(
-                onPressed: () async {
-                  refreshTokenAndUpdateState(
-                    context: context,
-                    signedIn: true,
-                    value: true,
-                    refreshToken: refreshToken,
-                    appContexts: testAppContexts,
-                  );
-                },
-              );
-            },
-          ),
-        );
-
-        await tester.pump();
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-        expect(store.state.credentials!.refreshToken, refreshToken);
-      });
-    });
-
-    testWidgets('should return false when fails to updateStateAuth',
-        (WidgetTester tester) async {
-      // setup
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-      store.dispatch(
-        UpdateUserProfileAction(
-          phoneNumber: Contact(
-            value: testPhoneNumber,
-          ),
-        ),
-      );
-
-      bool? updateStateAuthStatus;
-
-      mockLoginResponse.remove('auth');
-
-      final http.Response response = http.Response(
-        json.encode(mockLoginResponse),
-        201,
-      );
-
-      final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
-      final UserProfile? userProfile = userResp.profile;
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              UpdateUserProfileAction(
-                active: true,
-                firstName: userProfile?.userBioData?.firstName?.getValue(),
-                lastName: userProfile?.userBioData?.lastName?.getValue(),
-                phoneNumber: Contact(
-                  value: userProfile?.primaryPhoneNumber?.getValue(),
-                ),
-              ),
-            );
-
-            return SILPrimaryButton(
-              onPressed: () {
-                updateStateAuthStatus = updateStateAuth(
-                  processedResponse:
-                      ProcessedResponse(ok: true, response: response),
-                  context: context,
-                );
-              },
-              text: 'Test',
-            );
-          },
-        ),
-      );
-
-      await tester.pumpAndSettle();
-      final AuthCredentials state = store.state.credentials!;
-      // verify current state
-      expect(state.isSignedIn, false);
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(updateStateAuthStatus, isNotNull);
-      expect(updateStateAuthStatus, false);
-    });
-
-    testWidgets('should return false if response is false',
-        (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      bool? updateStateAuthStatus;
-
-      final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
-      final UserProfile? userProfile = userResp.profile;
-
-      store.dispatch(
-        UpdateUserProfileAction(
-          active: true,
-          firstName: userProfile?.userBioData?.firstName?.getValue(),
-          lastName: userProfile?.userBioData?.lastName?.getValue(),
-          phoneNumber: Contact(
-            value: userProfile?.primaryPhoneNumber?.getValue(),
-          ),
-        ),
-      );
-
-      final Map<String, dynamic> responseData = <String, dynamic>{
-        'error': 'someError',
-      };
-
-      final Response response = Response(jsonEncode(responseData), 201);
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () {
-                updateStateAuthStatus = updateStateAuth(
-                  processedResponse:
-                      ProcessedResponse(ok: false, response: response),
-                  context: context,
-                );
-              },
-              text: 'Test',
-            );
-          },
-        ),
-      );
-      await tester.pumpAndSettle();
-
-      final AuthCredentials state = store.state.credentials!;
-      expect(state.isSignedIn, false);
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(updateStateAuthStatus, false);
-    });
-
     testWidgets('Shows snackbar when pins do not match',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
@@ -1486,104 +1300,6 @@ void main() {
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pump(const Duration(seconds: 1));
       expect(find.text(pinMustMatchString), findsOneWidget);
-    });
-
-    testWidgets(
-        'should return terms page route for a user with a valid '
-        'token if they have not accepted the terms and conditions',
-        (WidgetTester tester) async {
-      final Store<AppState> store = Store<AppState>(
-        initialState: AppState.initial()
-            .copyWith
-            .clientState!
-            .user!
-            .call(termsAccepted: false, pinChangeRequired: false)
-            .copyWith
-            .onboardingState!
-            .call(
-              isPhoneVerified: true,
-            ),
-      );
-
-      late String initialRoute;
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(
-                isSignedIn: true,
-                idToken: 'oldAuthToken',
-                refreshToken: 'oldRefreshToken',
-                expiresIn: '3600',
-              ),
-            );
-            return SILPrimaryButton(
-              onPressed: () async {
-                initialRoute = await getInitialRoute(
-                  context,
-                  store.state,
-                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      // trigger the bottom sheet
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.termsAndConditions);
-    });
-
-    testWidgets('should return login page route if token expired',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      await store.dispatch(UpdateCredentialsAction(isSignedIn: true));
-
-      late String initialRoute;
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(
-                isSignedIn: true,
-                idToken: 'oldAuthToken',
-                refreshToken: 'oldRefreshToken',
-                expiresIn: '300',
-              ),
-            );
-            return SILPrimaryButton(
-              onPressed: () async {
-                initialRoute = await getInitialRoute(
-                  context,
-                  store.state,
-                  <AppContext>[AppContext.BewellCONSUMER, AppContext.AppTest],
-                );
-              },
-            );
-          },
-        ),
-      );
-      await tester.pump();
-      // trigger the bottom sheet
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-      expect(initialRoute, BWRoutes.phoneLogin);
     });
   });
 }

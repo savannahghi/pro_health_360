@@ -29,7 +29,6 @@ import 'package:myafyahub/presentation/router/routes.dart';
 class ForgotPinOtpWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final OnboardingStrings onboardingStrings = OnboardingStrings.of(context)!;
     const String flag = 'forgot_pin_otp_widget';
 
     return Scaffold(
@@ -57,7 +56,7 @@ class ForgotPinOtpWidget extends StatelessWidget {
                   mediumVerticalSizedBox,
                   Align(
                     child: Text(
-                      onboardingStrings.verifyPhoneNumberText(),
+                      verifyPhoneNumberText,
                       style: TextThemes.boldSize20Text(
                         Theme.of(context).colorScheme.secondary,
                       ),
@@ -66,7 +65,7 @@ class ForgotPinOtpWidget extends StatelessWidget {
                   mediumVerticalSizedBox,
                   Align(
                     child: Text(
-                      '${onboardingStrings.codeSentText()}${' $phoneNumber'}',
+                      '$codeSentText${' $phoneNumber'}',
                       style: TextThemes.boldSize15Text(),
                       textAlign: TextAlign.center,
                     ),
@@ -106,7 +105,7 @@ class ForgotPinOtpWidget extends StatelessWidget {
                   SILNoBorderButton(
                     buttonKey: searchBackButtonKey,
                     onPressed: () => Navigator.of(context).pop(),
-                    text: onboardingStrings.backText(),
+                    text: backText,
                     textColor: AppColors.greyColor,
                   ),
                   if (vm.appState.miscState!.userPin!.invalidPin) ...<Widget>[

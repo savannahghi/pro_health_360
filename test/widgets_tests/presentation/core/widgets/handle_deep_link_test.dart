@@ -1,9 +1,6 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,11 +21,6 @@ import '../../../../test_helpers.dart';
 void main() {
   group('HandleDeepLink', () {
     testWidgets('should dispatch DeepLinkAction', (WidgetTester tester) async {
-      const Size size = Size(640, 960);
-      await tester.binding.setSurfaceSize(size);
-      tester.binding.window.physicalSizeTestValue = size;
-      tester.binding.window.devicePixelRatioTestValue = 1;
-
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
@@ -58,9 +50,16 @@ void main() {
         UpdateUserAction(user: phoneLoginResponse.clientState?.user),
       );
 
+      final DateTime now = DateTime.now();
+      final int expiryTime =
+          int.tryParse(phoneLoginResponse.credentials?.expiresIn ?? '3600') ??
+              3600;
+      final DateTime mockExpiry = now.add(Duration(seconds: expiryTime));
+
       store.dispatch(
         UpdateCredentialsAction(
           expiresIn: phoneLoginResponse.credentials?.expiresIn,
+          tokenExpiryTimestamp: mockExpiry.toIso8601String(),
           isSignedIn: true,
         ),
       );
@@ -84,11 +83,6 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(HomePage), findsOneWidget);
-
-        addTearDown(() {
-          tester.binding.window.clearPhysicalSizeTestValue();
-          tester.binding.window.clearDevicePixelRatioTestValue();
-        });
       });
     });
   });
