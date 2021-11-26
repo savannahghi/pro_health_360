@@ -112,7 +112,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         await store.dispatch(
           ManageTokenAction(
-            context: context,
             refreshToken: authCredentials?.refreshToken ?? UNKNOWN,
             idToken: authCredentials?.idToken ?? UNKNOWN,
             expiresIn: authCredentials?.expiresIn ?? '0',

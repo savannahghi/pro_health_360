@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 void main() {
@@ -19,7 +18,7 @@ void main() {
             builder: (BuildContext context) {
               return SILPrimaryButton(
                 onPressed: () {
-                  AppTheme.getAppTheme(testAppContexts);
+                  AppTheme.getAppTheme();
                 },
               );
             },
@@ -29,7 +28,7 @@ void main() {
       final Finder silPrimaryButton = find.byType(SILPrimaryButton);
       expect(silPrimaryButton, findsOneWidget);
       expect(
-        AppTheme.getAppTheme(testAppContexts).colorScheme.secondary,
+        AppTheme.getAppTheme().colorScheme.secondary,
         AppColors.themeColors.accentColor,
       );
       await tester.tap(silPrimaryButton);

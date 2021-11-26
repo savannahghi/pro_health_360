@@ -3,8 +3,6 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:domain_objects/entities.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +20,7 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
-
-import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -747,167 +740,6 @@ void main() {
     });
   });
 
-  testWidgets('for a token whose expiry is more than 12 hrs',
-      (WidgetTester tester) async {
-    await tester.runAsync(() async {
-      // setup
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      const String oldAuthToken = 'an-old-auth-token';
-      const String oldRefreshToken = 'a-old-refresh-token';
-
-      AuthTokenStatus? actualTokenStatus;
-
-      // TODO(abiud): remove this hardcoded login response
-      final UserResponse userResp = UserResponse.fromJson(mockLoginResponse);
-      final UserProfile? userProfile = userResp.profile;
-
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-
-      // implementation/call the function
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            StoreProvider.dispatch(
-              context,
-              AuthStatusAction(
-                isSignedIn: true,
-                idToken: oldAuthToken,
-                refreshToken: oldRefreshToken,
-                expiresIn: '3600',
-              ),
-            );
-
-            StoreProvider.dispatch(
-              context,
-              UpdateUserProfileAction(
-                active: true,
-                firstName: userProfile?.userBioData?.firstName?.getValue(),
-                lastName: userProfile?.userBioData?.lastName?.getValue(),
-                phoneNumber: Contact(
-                  value: userProfile?.primaryPhoneNumber?.getValue(),
-                ),
-              ),
-            );
-
-            return SILPrimaryButton(
-              onPressed: () async {
-                // call our check token status function
-                actualTokenStatus = await checkTokenStatus(
-                  context: context,
-                  credentials: store.state.credentials,
-                  thisAppContexts: <AppContext>[
-                    AppContext.BewellCONSUMER,
-                    AppContext.AppTest
-                  ],
-                );
-              },
-              text: 'Test',
-            );
-          },
-        ),
-      );
-
-      await tester.pumpAndSettle();
-      final AuthCredentials state = store.state.credentials!;
-      // verify current state
-      expect(state.isSignedIn, true);
-      expect(state.refreshToken, oldRefreshToken);
-      expect(state.idToken, oldAuthToken);
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(store.state.credentials!.isSignedIn, true);
-      expect(
-        store.state.credentials!.refreshToken,
-        'some-refresh-token',
-      );
-      expect(
-        store.state.credentials!.idToken,
-        'some-id-token',
-      );
-      expect(actualTokenStatus, AuthTokenStatus.okay);
-    });
-  });
-
-  testWidgets('refreshTokenAndUpdateState should not get a new token',
-      (WidgetTester tester) async {
-    final Store<AppState> store =
-        Store<AppState>(initialState: AppState.initial());
-
-    const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
-
-    await tester.runAsync(() async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                refreshTokenAndUpdateState(
-                  context: context,
-                  signedIn: true,
-                  value: false,
-                  refreshToken: refreshToken,
-                  appContexts: testAppContexts,
-                );
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.pump();
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(store.state.credentials!.refreshToken, UNKNOWN);
-    });
-  });
-
-  testWidgets('refreshTokenAndUpdateState should fail to get a new token',
-      (WidgetTester tester) async {
-    final Store<AppState> store =
-        Store<AppState>(initialState: AppState.initial());
-
-    const String refreshToken = 'hjshdkjf8knmskdj-sujhjhs89j';
-
-    await tester.runAsync(() async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              onPressed: () async {
-                refreshTokenAndUpdateState(
-                  context: context,
-                  signedIn: false,
-                  value: true,
-                  refreshToken: refreshToken,
-                  appContexts: testAppContexts,
-                );
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.pump();
-
-      await tester.tap(find.byType(SILPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(store.state.credentials!.refreshToken, UNKNOWN);
-    });
-  });
   testWidgets('congratulationsPageTitle should return the correct message',
       (WidgetTester tester) async {
     final Store<AppState> store =

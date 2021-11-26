@@ -5,37 +5,29 @@ import 'dart:convert';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-// Flutter imports:
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:misc_utilities/string_constant.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-// Project imports:
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/sil_progress_dialog.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -89,27 +81,20 @@ Future<void> updateUserPin({
   }
 }
 
-Future<ProcessedResponse> requestForANewToken({
-  required List<AppContext> thisAppContexts,
+Future<http.Response> requestForANewToken({
+  required IGraphQlClient httpClient,
+  required String refreshTokenEndpoint,
   required String refreshToken,
-  required BuildContext context,
 }) async {
-  final IGraphQlClient _httpClient = AppWrapperBase.of(context)!.graphQLClient;
-  final String refreshTokenEndpoint =
-      AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint;
-
   final Map<String, dynamic> refreshTokenVariables = <String, dynamic>{
     'refreshToken': refreshToken,
     'appVersion': APPVERSION,
   };
 
-  return processHttpResponse(
-    await _httpClient.callRESTAPI(
-      endpoint: refreshTokenEndpoint,
-      method: 'POST',
-      variables: refreshTokenVariables,
-    ),
-    context,
+  return httpClient.callRESTAPI(
+    endpoint: refreshTokenEndpoint,
+    method: 'POST',
+    variables: refreshTokenVariables,
   );
 }
 
@@ -371,93 +356,6 @@ OnboardingPathConfig onboardingPath({
   return OnboardingPathConfig(BWRoutes.home);
 }
 
-/// [getInitialRoute] routine is used to determine what should be the
-/// first Page(route) a user should see on launching the application.
-/// The selection of the Page(route) to show is determined by if the user
-/// is already signed in/logged in or not.
-///
-/// 1. Signed in/ logged in user
-///     - If a user is signed in/ logged in the
-/// [OnboardingUtils.checkTokenStatus] routine goes on to check if a user has
-/// a valid AuthToken.
-///     - When the [OnboardingUtils.checkTokenStatus] routine returns
-/// a `true` value then the user is redirected to the [Home Page].
-///     - When the [OnboardingUtils.checkTokenStatus] routine returns
-/// a `false` value then the user is redirected to the
-/// [Resume with PIN Page ]to allow for renew of their AuthToken.
-///
-/// 2. User is NOT Signed in/ logged in
-///     - If a user is not signed in/logged in they are routed to the phone
-/// login page.
-///     - If successful the user is routed to the Home page.
-///     - If the user had completed the Onboarding tour they are
-/// directed to the [Login Page] where there are options to
-/// Login.
-///     - If the user had `NOT` completed the Onboarding tour
-///  they are directed to the Login page where they can browse through the
-///  tour
-
-/// 3. First time user to MyAfyaHub
-///     - If a user is a first time user they are routed to the phone login page.
-/// They enter the one time pin sent with the invite.
-///     - They are routed to the Verify OTP page where an OTP is sent to their
-/// invite device
-///     -They are then routed to the Terms and Conditions page
-///     -They are then routed to the Set Security Questions page
-///     -They are then routed to the Set change PIN page
-///     -They are then routed to the Congratulations page
-///     - If successful the user is routed to the Home page.
-///
-/// #### Routes and corresponding pages
-/// - [Routes.home] ---> home_page.dart
-/// - [Routes.phoneLogin] ---> phone_number_login_page.dart
-/// - [Routes.verifySignUpOTP] ---> verify_phone_page.dart
-/// - [Routes.termsAndConditions] ---> terms_and_conditions.dart
-/// - [Routes.setPIN] ---> create_new_pin.dart
-/// - [Routes.securityQuestions] ---> security_questions_page.dart
-Future<String> getInitialRoute(
-  BuildContext context,
-  AppState appState,
-  List<AppContext> thisAppContexts,
-) async {
-  if (appState.credentials!.isSignedIn!) {
-    final AuthTokenStatus checkTokenStatusResult = await checkTokenStatus(
-      context: context,
-      credentials: appState.credentials,
-      thisAppContexts: thisAppContexts,
-    );
-
-    if (checkTokenStatusResult == AuthTokenStatus.requiresLogin ||
-        checkTokenStatusResult == AuthTokenStatus.requiresPin) {
-      StoreProvider.dispatch(
-        context,
-        UpdateCredentialsAction(isSignedIn: false),
-      );
-
-      return BWRoutes.phoneLogin;
-    }
-
-    final OnboardingPathConfig pathConfig = onboardingPath(
-      appState: appState,
-      calledOnResume: true,
-    );
-
-    final DateTimeParser dateTimeParser = DateTimeParser();
-    final int expiresIn = int.parse(appState.credentials?.expiresIn ?? '0');
-    final String tokenExpiryDateString =
-        dateTimeParser.parsedExpireAt(expiresIn);
-
-    final String parsedExpiresAt =
-        DateTime.parse(tokenExpiryDateString).toIso8601String();
-
-    RefreshTokenManger().updateExpireTime(parsedExpiresAt).reset();
-
-    return pathConfig.route;
-  }
-
-  return BWRoutes.phoneLogin;
-}
-
 /// [checkTokenStatus] is used to check if the Auth Token has expired and if it need refreshing
 ///
 /// #### [checkTokenStatus] Variables
@@ -471,57 +369,6 @@ Future<String> getInitialRoute(
 /// [thisAppContexts] app requires to know which appContext is in use to determine what endpoint to use.
 ///
 /// [customHttpClient] our custom http client that we use to make network requests to our backend services mainly.
-
-Future<AuthTokenStatus> checkTokenStatus({
-  required BuildContext context,
-  required AuthCredentials? credentials,
-  required List<AppContext> thisAppContexts,
-}) async {
-  final DateTime now = DateTime.now();
-
-  if (credentials?.expiresIn == null ||
-      credentials?.expiresIn == UNKNOWN ||
-      credentials?.refreshToken == null ||
-      credentials?.refreshToken == UNKNOWN) {
-    return AuthTokenStatus.requiresLogin;
-  }
-
-  final DateTimeParser dateTimeParser = DateTimeParser();
-  final int expiresIn = int.parse(credentials?.expiresIn ?? '0');
-  final String stringExpiresAt = dateTimeParser.parsedExpireAt(expiresIn);
-
-  final DateTime expiresAt = DateTime.parse(stringExpiresAt);
-
-  /// first check if token has expired
-  if (hasTokenExpired(expiresAt, now)) {
-    return AuthTokenStatus.requiresLogin;
-  }
-
-  /// since it has not expired, we refresh the token
-  final ProcessedResponse processedResponse = await requestForANewToken(
-    context: context,
-    thisAppContexts: thisAppContexts,
-    refreshToken: credentials!.refreshToken!,
-  );
-
-  /// check if the response from the network call returns `ok`
-  ///  set by the backend to mean user credentials matched
-  if (processedResponse.ok) {
-    final bool isAuthStateUpdated = updateStateAuth(
-      context: context,
-      processedResponse: processedResponse,
-    );
-
-    if (!isAuthStateUpdated) {
-      return AuthTokenStatus.requiresLogin;
-    } else {
-      /// we failed to refresh the token so require the user to login
-      return AuthTokenStatus.okay;
-    }
-  }
-
-  return AuthTokenStatus.requiresLogin;
-}
 
 bool hasTokenExpired(DateTime expiresAt, DateTime now) {
   return expiresAt.difference(now).inMinutes < 10;
