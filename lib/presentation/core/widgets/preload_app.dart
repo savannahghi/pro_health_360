@@ -8,9 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
-import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -18,9 +15,12 @@ import 'package:shared_ui_components/platform_loader.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 

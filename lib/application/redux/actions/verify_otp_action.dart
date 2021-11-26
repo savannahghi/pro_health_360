@@ -1,27 +1,28 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:convert';
 
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/failures.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
+import 'package:user_feed/user_feed.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-
-// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:user_feed/user_feed.dart';
 
 class VerifyOTPAction extends ReduxAction<AppState> {
   VerifyOTPAction({required this.context, required this.otp});

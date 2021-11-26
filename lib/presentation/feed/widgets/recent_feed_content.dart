@@ -6,9 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -16,9 +14,8 @@ import 'package:shared_ui_components/platform_loader.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -49,7 +46,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
         logTitle: 'Fetch content',
         queryString: getContentQuery,
         variables: <String, dynamic>{
-          'categoryID': 1,
+          'categoryID': 2,
           'Limit': '5',
         },
       );
@@ -111,7 +108,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                 logTitle: 'Fetch content',
                 queryString: getContentQuery,
                 variables: <String, dynamic>{
-                  'categoryID': 1,
+                  'categoryID': 2,
                   'Limit': '10',
                 },
               );
@@ -152,10 +149,13 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                           verySmallVerticalSizedBox,
                           GestureDetector(
                             key: viewAllButtonKey,
-                            onTap: () => StoreProvider.dispatch<AppState>(
-                              context,
-                              BottomNavAction(currentBottomNavIndex: 1),
-                            ),
+                            onTap: () {
+                              navigateToNewPage(
+                                context: context,
+                                route: BWRoutes.feedPage,
+                                bottomNavIndex: 1,
+                              );
+                            },
                             child: Text(
                               viewAllText,
                               style: TextThemes.normalSize16Text(
@@ -168,7 +168,7 @@ class _RecentFeedContentState extends State<RecentFeedContent> {
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.height / 3,
+                      height: 280,
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,

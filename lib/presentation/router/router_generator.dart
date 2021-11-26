@@ -1,7 +1,12 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
-import 'package:flutter/material.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
+
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
@@ -41,7 +46,6 @@ import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/pages/settings_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:user_profile/term_and_conditions.dart' as webview;
 
 /// The router generator for the app. The arrangement in this config must match that
 /// in the routes.dart file

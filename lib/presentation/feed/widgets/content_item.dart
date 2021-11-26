@@ -1,20 +1,20 @@
 // Flutter imports:
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 // Package imports:
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -51,14 +51,14 @@ class ContentItem extends StatelessWidget {
                         children: <Widget>[
                           Container(
                             height: 170.0,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                //TODO:(eugene) revert after urls are updated
-                                // image: NetworkImage(contentDetails.heroImage!.url!),
-                                image: AssetImage(feedImage3),
+                                image: NetworkImage(
+                                  contentDetails.heroImage!.url!,
+                                ),
                               ),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(7.0),
                                 topLeft: Radius.circular(7.0),
                               ),

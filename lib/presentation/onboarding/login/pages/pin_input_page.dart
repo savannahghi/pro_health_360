@@ -13,6 +13,7 @@ import 'package:shared_themes/text_themes.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
+import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -93,13 +94,10 @@ class _PINInputPageState extends State<PINInputPage> {
           leadingWidget: GestureDetector(
             key: pinInputPageBackKey,
             onTap: () {
-              StoreProvider.dispatch<AppState>(
-                context,
-                BottomNavAction(currentBottomNavIndex: 0),
-              );
-              Navigator.popAndPushNamed(
-                context,
-                BWRoutes.home,
+              navigateToNewPage(
+                context: context,
+                route: BWRoutes.home,
+                bottomNavIndex: 0,
               );
             },
             child: Padding(
@@ -194,11 +192,17 @@ class _PINInputPageState extends State<PINInputPage> {
                             }
                           } else {
                             errorMessage = '';
-                            StoreProvider.dispatch<AppState>(
-                              context,
-                              BottomNavAction(currentBottomNavIndex: 3),
+                            navigateToNewPage(
+                              context: context,
+                              route: BWRoutes.myHealthPage,
+                              bottomNavIndex: 2,
                             );
-                            Navigator.pop(context);
+                            StoreProvider.dispatch(
+                              context,
+                              HealthPagePINInputAction(
+                                lastPINInputTime: DateTime.now().toString(),
+                              ),
+                            );
                           }
                         }
                       });

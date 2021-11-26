@@ -2,13 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/value_objects.dart';
-// Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,10 +19,17 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/inputs.dart';
+import 'package:unicons/unicons.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -42,12 +50,6 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:unicons/unicons.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -596,25 +598,8 @@ bool shouldInputPIN(BuildContext context) {
       ? DateTime.now().difference(DateTime.parse(lastPINInputTime)).inMinutes
       : 0;
 
-  if (differenceFromSignIn > 20 && lastPINInputTime == UNKNOWN) {
-    StoreProvider.dispatch(
-      context,
-      HealthPagePINInputAction(
-        lastPINInputTime: DateTime.now().toString(),
-      ),
-    );
-    return true;
-  } else {
-    if (differenceFromLastInput > 20) {
-      StoreProvider.dispatch(
-        context,
-        HealthPagePINInputAction(lastPINInputTime: ''),
-      );
-      return true;
-    } else {
-      return false;
-    }
-  }
+  return (differenceFromSignIn > 20 && lastPINInputTime == UNKNOWN) ||
+      differenceFromLastInput > 20;
 }
 
 final EditInformationInputItem nameInputItem = EditInformationInputItem(
@@ -830,4 +815,22 @@ Gender genderFromJson(String? genderString) {
 
 String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
+}
+
+
+void navigateToNewPage({
+  required BuildContext context,
+  required String route,
+  int? bottomNavIndex,
+}) {
+  if (bottomNavIndex != null) {
+    StoreProvider.dispatch<AppState>(
+      context,
+      BottomNavAction(currentBottomNavIndex: bottomNavIndex),
+    );
+  }
+  Navigator.pushReplacementNamed(
+    context,
+    route,
+  );
 }

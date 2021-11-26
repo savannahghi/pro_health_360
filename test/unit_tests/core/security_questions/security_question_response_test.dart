@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import '../../../mocks.dart';
 
 void main() {

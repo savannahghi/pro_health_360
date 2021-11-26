@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 // Package imports:
+import 'package:flutter_html/flutter_html.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -15,7 +15,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
-import 'package:myafyahub/presentation/feed/widgets/content_item_reaction_icon.dart';
 
 class ContentDetailPage extends StatelessWidget {
   /// [ContentDetailPage] is used to display the article details
@@ -47,13 +46,14 @@ class ContentDetailPage extends StatelessWidget {
                 Container(
                   height: 220,
                   width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       // TODO(abiud): replace with cached network image to
                       // handle showing an image before the network one loads
-                      // TODO(eugene): revert when backend is ready
-                      image: AssetImage(feedImage1),
+                      image: NetworkImage(
+                        articleDetails.heroImage!.url!,
+                      ),
                     ),
                   ),
                 ),
@@ -139,24 +139,25 @@ class ContentDetailPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      Row(
-                        children: <Widget>[
-                          ContentItemReactionIcon(
-                            backgroundColor: Theme.of(context).backgroundColor,
-                            svgPath: heartIconUrl,
-                          ),
-                          verySmallHorizontalSizedBox,
-                          ContentItemReactionIcon(
-                            backgroundColor: Theme.of(context).backgroundColor,
-                            svgPath: shareIconUrl,
-                          ),
-                          verySmallHorizontalSizedBox,
-                          ContentItemReactionIcon(
-                            backgroundColor: Theme.of(context).backgroundColor,
-                            svgPath: saveIconUrl,
-                          )
-                        ],
-                      )
+                      // Todo: fix overflow
+                      // Row(
+                      //   children: <Widget>[
+                      //     ContentItemReactionIcon(
+                      //       backgroundColor: Theme.of(context).backgroundColor,
+                      //       svgPath: heartIconUrl,
+                      //     ),
+                      //     verySmallHorizontalSizedBox,
+                      //     ContentItemReactionIcon(
+                      //       backgroundColor: Theme.of(context).backgroundColor,
+                      //       svgPath: shareIconUrl,
+                      //     ),
+                      //     verySmallHorizontalSizedBox,
+                      //     ContentItemReactionIcon(
+                      //       backgroundColor: Theme.of(context).backgroundColor,
+                      //       svgPath: saveIconUrl,
+                      //     )
+                      //   ],
+                      // )
                     ],
                   ),
                 ],

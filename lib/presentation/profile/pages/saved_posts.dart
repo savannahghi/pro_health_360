@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/entities/feed/author.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/feed/author.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
 import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';

@@ -12,16 +12,16 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
+import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// [CompleteOnboardingTourAction] is a Redux Action whose job is to update a users onboarding tour 
 /// completion status,

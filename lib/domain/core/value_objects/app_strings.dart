@@ -1,12 +1,14 @@
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
 // Package imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:intl/intl.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+
 // Project imports:
+import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/profile/profile_utils.dart';
 
 const String requestTimeoutError =

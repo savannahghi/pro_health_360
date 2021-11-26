@@ -9,9 +9,9 @@ import 'package:flutter_graphql_client/graph_client.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 
 class AppEntryPoint extends StatefulWidget {

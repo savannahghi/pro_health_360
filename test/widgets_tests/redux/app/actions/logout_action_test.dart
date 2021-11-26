@@ -1,17 +1,21 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_ui_components/buttons.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
-import 'package:shared_ui_components/buttons.dart';
-
 import '../../../../mock_utils.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

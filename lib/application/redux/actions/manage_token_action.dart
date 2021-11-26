@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
 
 // Project imports:
+import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 

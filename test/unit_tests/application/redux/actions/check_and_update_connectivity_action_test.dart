@@ -1,9 +1,11 @@
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-
 import '../../../../mocks.dart';
 
 void main() {

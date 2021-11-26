@@ -3,14 +3,14 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:app_wrapper/app_wrapper.dart';
-import 'package:domain_objects/entities.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/entities.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,17 +18,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart' as misc;
 import 'package:mockito/annotations.dart';
-import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
-import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
-import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
-
-import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/buttons.dart';
@@ -37,8 +26,17 @@ import 'package:unicons/unicons.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
+import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
+import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import '../../../mocks.dart';

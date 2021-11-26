@@ -10,8 +10,8 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 
 class MyApp extends StatefulWidget {

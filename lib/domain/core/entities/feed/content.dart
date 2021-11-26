@@ -1,14 +1,15 @@
 // Package imports:
 
+// Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/feed/author.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
 import 'package:myafyahub/domain/core/entities/feed/document.dart';
 import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
-
-// Project imports:
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'content.freezed.dart';

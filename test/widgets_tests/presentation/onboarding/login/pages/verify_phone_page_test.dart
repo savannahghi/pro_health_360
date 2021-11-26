@@ -7,11 +7,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:user_feed/user_feed.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-
-// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -19,8 +21,6 @@ import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart'
 import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/verify_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-import 'package:user_feed/user_feed.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 

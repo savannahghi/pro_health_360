@@ -1,6 +1,10 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
 import 'package:connectivity_plus/connectivity_plus.dart';
+
+// Project imports:
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_helper.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 

@@ -26,11 +26,10 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-
-import '../../../mocks.dart';
-import './onboarding_utils_2_test.mocks.dart';
 import '../../../mock_utils.dart';
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
+import './onboarding_utils_2_test.mocks.dart';
 
 @GenerateMocks(<Type>[RefreshTokenManger, DateTimeParser, SILFCM])
 void main() {

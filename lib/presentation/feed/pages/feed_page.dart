@@ -4,10 +4,9 @@ import 'dart:async';
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 
 // Package imports:
+import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -15,6 +14,7 @@ import 'package:shared_ui_components/platform_loader.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -51,7 +51,6 @@ class _FeedPageState extends State<FeedPage> {
         logTitle: 'Fetch content',
         queryString: getContentQuery,
         variables: <String, dynamic>{
-          'categoryID': 1,
           'Limit': '10',
         },
       );
@@ -117,7 +116,6 @@ class _FeedPageState extends State<FeedPage> {
                         logTitle: 'Fetch recent content',
                         queryString: getContentQuery,
                         variables: <String, dynamic>{
-                          'categoryID': 1,
                           'Limit': '10',
                         },
                       );
@@ -210,10 +208,7 @@ class _FeedPageState extends State<FeedPage> {
                     context: context,
                     logTitle: 'Fetch recent content',
                     queryString: getContentQuery,
-                    variables: <String, dynamic>{
-                      'categoryID': 1,
-                      'Limit': '10',
-                    },
+                    variables: <String, dynamic>{'Limit': '10'},
                   );
                 });
               },

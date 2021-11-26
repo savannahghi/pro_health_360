@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
@@ -16,6 +15,7 @@ import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/client_state.dart';
+import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
 import 'package:myafyahub/infrastructure/repository/database_base.dart';
 import 'package:myafyahub/infrastructure/repository/database_mobile.dart';
