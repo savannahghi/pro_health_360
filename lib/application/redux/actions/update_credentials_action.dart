@@ -11,6 +11,7 @@ class UpdateCredentialsAction extends ReduxAction<AppState> {
   final String? refreshToken;
   final bool? isSignedIn;
   final String? signedInTime;
+  final String? tokenExpiryTimestamp;
 
   UpdateCredentialsAction({
     this.idToken,
@@ -18,6 +19,7 @@ class UpdateCredentialsAction extends ReduxAction<AppState> {
     this.refreshToken,
     this.isSignedIn,
     this.signedInTime,
+    this.tokenExpiryTimestamp,
   });
 
   @override
@@ -28,6 +30,8 @@ class UpdateCredentialsAction extends ReduxAction<AppState> {
       refreshToken: refreshToken ?? state.credentials?.refreshToken,
       isSignedIn: isSignedIn ?? state.credentials?.isSignedIn,
       signedInTime: signedInTime ?? state.credentials?.signedInTime,
+      tokenExpiryTimestamp:
+          tokenExpiryTimestamp ?? state.credentials?.tokenExpiryTimestamp,
     );
 
     return state.copyWith(credentials: newCredentials ?? state.credentials);

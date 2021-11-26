@@ -1,26 +1,22 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/localization.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
+import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
+import 'package:myafyahub/application/core/services/localization.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 
@@ -70,29 +66,18 @@ class _PreLoadAppState extends State<PreLoadApp> {
         });
   }
 
-  void connectivityChanged({required bool hasConnection}) {
-    StoreProvider.dispatch<AppState>(
-      context,
-      UpdateConnectivityAction(hasConnection: hasConnection),
-    );
-
-    if (!hasConnection) {
-      showToast(connectionLostText);
-    }
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    Future<dynamic>.delayed(Duration.zero, () async {
-      appInitialRoute.add(
-        await getInitialRoute(
-          widget.entryPointContext,
-          widget.appState,
-          widget.thisAppContexts,
-        ),
-      );
-    });
+
+    StoreProvider.dispatch(
+      context,
+      CheckTokenAction(
+        httpClient: AppWrapperBase.of(context)!.graphQLClient,
+        refreshTokenEndpoint:
+            AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+      ),
+    );
   }
 
   @override
@@ -103,53 +88,43 @@ class _PreLoadAppState extends State<PreLoadApp> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
-      key: globalStoreKey,
-      store: widget.appStore,
-      child: StoreConnector<AppState, AppState>(
-        converter: (Store<AppState> store) {
-          return store.state;
-        },
-        builder: (BuildContext context, AppState appState) {
-          return StreamBuilder<String>(
-            stream: appInitialRoute.stream,
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              // listen for token expiry here
-              RefreshTokenManger().listen.listen((dynamic value) {
-                refreshTokenAndUpdateState(
-                  value: value as bool,
-                  context: context,
-                  appContexts: widget.thisAppContexts,
-                  signedIn: widget.appState.credentials!.isSignedIn!,
-                  refreshToken: widget.appState.credentials!.refreshToken!,
-                );
-              });
-
-              if (snapshot.data == null) {
-                return MaterialApp(
-                  theme: AppTheme.getAppTheme(widget.thisAppContexts),
-                  home: const Scaffold(
-                    body: Center(child: SILPlatformLoader()),
-                  ),
-                  localizationsDelegates: localizationDelegates,
-                  supportedLocales: locales,
-                );
-              }
-
-              return MaterialApp(
-                theme: AppTheme.getAppTheme(widget.thisAppContexts),
-                debugShowCheckedModeBanner: widget.appName == testAppName,
-                onGenerateRoute: RouteGenerator.generateRoute,
-                initialRoute: appInitialRoute.value,
-                navigatorKey: widget.appNavigatorKey,
-                navigatorObservers: widget.appNavigatorObservers,
-                localizationsDelegates: localizationDelegates,
-                supportedLocales: locales,
-              );
-            },
+    return StoreConnector<AppState, InitialRouteViewModel>(
+      converter: (Store<AppState> store) =>
+          InitialRouteViewModel.fromStore(store.state),
+      builder: (BuildContext context, InitialRouteViewModel vm) {
+        if (vm.initialRoute == null || vm.initialRoute == UNKNOWN) {
+          return MaterialApp(
+            theme: AppTheme.getAppTheme(),
+            home: const Scaffold(
+              body: Center(child: SILPlatformLoader()),
+            ),
+            localizationsDelegates: localizationDelegates,
+            supportedLocales: locales,
           );
-        },
-      ),
+        }
+
+        return MaterialApp(
+          theme: AppTheme.getAppTheme(),
+          debugShowCheckedModeBanner: widget.appName == testAppName,
+          onGenerateRoute: RouteGenerator.generateRoute,
+          initialRoute: vm.initialRoute,
+          navigatorKey: widget.appNavigatorKey,
+          navigatorObservers: widget.appNavigatorObservers,
+          localizationsDelegates: localizationDelegates,
+          supportedLocales: locales,
+        );
+      },
     );
+  }
+
+  void connectivityChanged({required bool hasConnection}) {
+    StoreProvider.dispatch<AppState>(
+      context,
+      UpdateConnectivityAction(hasConnection: hasConnection),
+    );
+
+    if (!hasConnection) {
+      showToast(connectionLostText);
+    }
   }
 }

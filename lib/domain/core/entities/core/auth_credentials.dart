@@ -11,6 +11,7 @@ class AuthCredentials with _$AuthCredentials {
     @JsonKey(name: 'idToken') String? idToken,
     @JsonKey(name: 'expiresIn') String? expiresIn,
     @JsonKey(name: 'refreshToken') String? refreshToken,
+    @JsonKey(name: 'tokenExpiryTimestamp') String? tokenExpiryTimestamp,
 
     // Other supporting fields that are not returned by the backend
     bool? isSignedIn,
@@ -26,5 +27,6 @@ class AuthCredentials with _$AuthCredentials {
         refreshToken: UNKNOWN,
         isSignedIn: false,
         signedInTime: UNKNOWN,
+        tokenExpiryTimestamp: UNKNOWN,
       );
 }

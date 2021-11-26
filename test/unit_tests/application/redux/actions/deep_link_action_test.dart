@@ -25,9 +25,16 @@ void main() {
         UpdateUserAction(user: phoneLoginResponse.clientState?.user),
       );
 
+      final DateTime now = DateTime.now();
+      final int expiryTime =
+          int.tryParse(phoneLoginResponse.credentials?.expiresIn ?? '3600') ??
+              3600;
+      final DateTime mockExpiry = now.add(Duration(seconds: expiryTime));
+
       store.dispatch(
         UpdateCredentialsAction(
           expiresIn: phoneLoginResponse.credentials?.expiresIn,
+          tokenExpiryTimestamp: mockExpiry.toIso8601String(),
           isSignedIn: true,
         ),
       );
@@ -114,11 +121,12 @@ void main() {
       );
 
       final String tokenExpiryDate =
-          DateTime.now().add(const Duration(minutes: 1)).second.toString();
+          DateTime.now().add(const Duration(minutes: 1)).toString();
 
       store.dispatch(
         UpdateCredentialsAction(
-          expiresIn: tokenExpiryDate,
+          expiresIn: '3600',
+          tokenExpiryTimestamp: tokenExpiryDate,
         ),
       );
 

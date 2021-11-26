@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -18,7 +17,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -28,17 +26,13 @@ import 'package:unicons/unicons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
-import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
@@ -744,66 +738,6 @@ Future<void> customFetchData({
       : streamController.add(null);
 }
 
-void refreshTokenAndUpdateState({
-  required bool value,
-  required bool signedIn,
-  required BuildContext context,
-  required List<AppContext> appContexts,
-  required String refreshToken,
-}) {
-  if (value) {
-    // check if user is logged in
-    if (signedIn) {
-      // request for a new token
-      requestForANewToken(
-        context: context,
-        thisAppContexts: appContexts,
-        refreshToken: refreshToken,
-      ).then((ProcessedResponse response) {
-        //check if the request was successful
-        if (response.ok) {
-          // update state with the new token
-          updateStateAuth(context: context, processedResponse: response);
-        }
-      });
-    }
-  }
-}
-
-bool updateStateAuth({
-  required ProcessedResponse processedResponse,
-  required BuildContext context,
-}) {
-  if (processedResponse.ok) {
-    final Map<String, dynamic> parsed =
-        jsonDecode(processedResponse.response.body) as Map<String, dynamic>;
-
-    final AuthCredentials auth = AuthCredentials.fromJson(parsed);
-
-    if (auth.idToken != null &&
-        auth.refreshToken != null &&
-        auth.expiresIn != null) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        ManageTokenAction(
-          refreshToken: auth.refreshToken!,
-          idToken: auth.idToken!,
-          context: context,
-          refreshTokenManger: RefreshTokenManger(),
-          expiresIn: auth.expiresIn!,
-        ),
-      );
-      return true;
-    } else {
-      return false;
-    }
-  } else {
-    Sentry.captureException(processedResponse.response);
-
-    return false;
-  }
-}
-
 Gender genderFromJson(String? genderString) {
   if (genderString == null || genderString.isEmpty || genderString == UNKNOWN) {
     return Gender.unknown;
@@ -816,7 +750,6 @@ Gender genderFromJson(String? genderString) {
 String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
 }
-
 
 void navigateToNewPage({
   required BuildContext context,
@@ -833,4 +766,11 @@ void navigateToNewPage({
     context,
     route,
   );
+}
+
+bool isNumeric(String? s) {
+  if (s == null) {
+    return false;
+  }
+  return int.tryParse(s) != null;
 }

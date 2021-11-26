@@ -3,7 +3,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
@@ -19,17 +18,15 @@ class DeepLinkAction extends ReduxAction<AppState> {
     }
 
     final DateTime now = DateTime.now();
-    final String? expiresIn = state.credentials?.expiresIn;
+    final String? tokenExpiryTimestamp =
+        state.credentials?.tokenExpiryTimestamp;
 
-    if (expiresIn == null || expiresIn.isEmpty || expiresIn == UNKNOWN) {
+    if (tokenExpiryTimestamp == null ||
+        tokenExpiryTimestamp.isEmpty ||
+        tokenExpiryTimestamp == UNKNOWN) {
       path = OnboardingPathConfig(BWRoutes.phoneLogin);
     } else {
-      final DateTimeParser dateTimeParser = DateTimeParser();
-      final int expiresInAsInt = int.parse(expiresIn);
-      final String tokenExpiryDateString =
-          dateTimeParser.parsedExpireAt(expiresInAsInt);
-
-      final DateTime expiresAt = DateTime.parse(tokenExpiryDateString);
+      final DateTime expiresAt = DateTime.parse(tokenExpiryTimestamp);
 
       if (hasTokenExpired(expiresAt, now)) {
         path = OnboardingPathConfig(BWRoutes.phoneLogin);

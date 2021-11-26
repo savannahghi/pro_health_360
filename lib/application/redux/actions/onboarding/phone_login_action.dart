@@ -20,7 +20,6 @@ import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
-import 'package:myafyahub/application/redux/actions/manage_token_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -73,16 +72,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     /// Check to verify the PIN is `not null` and contains four digits
     if (pin != null &&
         pin != UNKNOWN &&
-        pin.length == 4 &&
+        pin.isNotEmpty &&
         phoneNumber != null) {
-      // make the variables
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'pin': pin,
         'flavour': Flavour.CONSUMER.name,
       };
 
-      /// initialize the http client from [AppWrapperBase]
       final IGraphQlClient httpClient =
           AppWrapperBase.of(context)!.graphQLClient;
 
@@ -105,43 +102,46 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);
 
-        final AuthCredentials? authCredentials = loginResponse.credentials;
-        authCredentials?.copyWith(
-          signedInTime: DateTime.now().toIso8601String(),
+        final DateTime now = DateTime.now();
+        AuthCredentials? authCredentials = loginResponse.credentials?.copyWith(
+          signedInTime: now.toIso8601String(),
           isSignedIn: true,
         );
 
-        await store.dispatch(
-          ManageTokenAction(
-            context: context,
-            refreshToken: authCredentials?.refreshToken ?? UNKNOWN,
-            idToken: authCredentials?.idToken ?? UNKNOWN,
-            expiresIn: authCredentials?.expiresIn ?? '0',
-            refreshTokenManger: this.tokenManger,
+        final String? expiresIn = loginResponse.credentials?.expiresIn;
+        if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
+          final DateTime tokenExpiryTimestamp =
+              now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
+
+          authCredentials = authCredentials?.copyWith(
+            tokenExpiryTimestamp: tokenExpiryTimestamp.toIso8601String(),
+          );
+        }
+
+        dispatch(
+          AuthStatusAction(
+            idToken: authCredentials?.idToken,
+            refreshToken: authCredentials?.refreshToken,
+            expiresIn: authCredentials?.expiresIn,
+            isSignedIn: true,
+            signedInTime: authCredentials?.signedInTime,
+            tokenExpiryTimestamp: authCredentials?.tokenExpiryTimestamp,
           ),
         );
 
         final User? user =
             loginResponse.clientState?.user?.copyWith(pinChangeRequired: false);
 
-        await store.dispatch(
+        dispatch(
           UpdateOnboardingStateAction(
-            hasSetPin: user?.hasSetPin,
-            hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
             isPhoneVerified: true,
             hasSetNickName: user?.username != null,
+            hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
+            hasSetPin: user?.hasSetPin,
           ),
         );
 
-        // dispatch an action to update the user profile
-        await store.dispatch(UpdateUserAction(user: user));
-
-        await store.dispatch(
-          AuthStatusAction(
-            isSignedIn: true,
-            signedInTime: DateTime.now().toIso8601String(),
-          ),
-        );
+        dispatch(UpdateUserAction(user: user));
 
         final OnboardingPathConfig onboardingPathConfig =
             onboardingPath(appState: state);

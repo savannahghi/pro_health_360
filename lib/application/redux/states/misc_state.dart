@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';
@@ -11,6 +12,7 @@ part 'misc_state.g.dart';
 @freezed
 class MiscState with _$MiscState {
   factory MiscState({
+    String? initalRoute,
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     String? healthPagePINInputTime,
@@ -20,6 +22,7 @@ class MiscState with _$MiscState {
       _$MiscStateFromJson(json);
 
   factory MiscState.initial() => MiscState(
+        initalRoute: BWRoutes.phoneLogin,
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         healthPagePINInputTime: UNKNOWN,

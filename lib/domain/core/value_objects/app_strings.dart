@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:intl/intl.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -14,50 +13,18 @@ import 'package:myafyahub/presentation/profile/profile_utils.dart';
 const String requestTimeoutError =
     'We could not perform this process in time. Please try again';
 
-class OnboardingStrings {
-  OnboardingStrings(this.locale);
+const String phoneRequiredText = 'A valid phone number is required';
 
-  final Locale locale;
+const String previousText = 'Previous';
 
-  static OnboardingStrings? of(BuildContext context) {
-    return Localizations.of<OnboardingStrings>(context, OnboardingStrings);
-  }
+const String backText = 'Back';
 
-  String phoneRequiredText() => Intl.message(
-        'A valid phone number is required',
-        name: 'phoneNo',
-        desc: 'PhoneNumber text, used in errors',
-      );
+const String verifyPhoneNumberText = 'Verify Phone Number';
 
-  String previousText() => Intl.message(
-        'Previous',
-        name: 'previousText',
-        desc:
-            'Text used in buttons to show an action takes user to a previous screen',
-      );
+const String codeSentText = 'A 6 digit code has been sent to';
 
-  String backText() => Intl.message(
-        'Back',
-        name: 'backText',
-        desc:
-            'used in buttons for an action that takes user to previous screen',
-      );
-
-  String verifyPhoneNumberText() => Intl.message(
-        'Verify Phone Number',
-        name: 'verifyPhoneNumberText',
-        desc: 'user to verify their phone number',
-      );
-
-  String codeSentText() => Intl.message(
-        'A 6 digit code has been sent to',
-        name: 'codeSentText',
-        desc: 'an OTP code sent to a phone number',
-      );
-
-  static const String changePINMsg =
-      'Your PIN was successfully updated. You will now be required to login with your new PIN';
-}
+const String changePINMsg =
+    'Your PIN was successfully updated. You will now be required to login with your new PIN';
 
 const String unMatchingPinErrorText =
     'The PIN entered does not match. Please try again';
