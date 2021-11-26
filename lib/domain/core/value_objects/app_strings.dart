@@ -276,7 +276,7 @@ String anOtpHasBeenSentText(String phoneNumber) {
 const String resendOTP = 'Resend code';
 
 const String verifyOTPState = 'verifyOTPState';
-const String didNotReceiveOTP = 'Did not receive a verification code ?';
+const String didNotReceiveOTP = 'Did not receive a verification code?';
 
 const String setSecurityQuestionsString = 'Set security questions';
 const String securityQuestionsDescriptionString =
@@ -580,3 +580,5 @@ const String invalidCode =
 const String verifyCode = 'Verifying Code';
 const String likeString = 'like';
 const String shareString = 'share';
+const String sendOTPError =
+    'Sorry, an error occurred while sending a verification code to you. You can however resend the code by tapping the button below';

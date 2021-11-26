@@ -68,8 +68,9 @@ class AppColors {
   static const Color superLightGreyColor = Color(0xFFF2F2F2);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color darkGreyTextColor = Color(0xFF797979);
+  static const Color circularErrorBackgroundColor = Color(0xFF323059);
   static const Color lightPurpleBackgroundColor = Color(0xffE2E0F6);
-
+  static const Color altCardBackgroundColor = Color(0xFFD0E8E6);
   static const Color introductionBackgroundColor = Color(0xFFF7F8FF);
   static const Color listCardColor = Color(0xffeeeeee);
   static const Color diaryListCardColor = Color(0xff17d1d4);

@@ -24,19 +24,34 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
 class SendOTPAction extends ReduxAction<AppState> {
-  SendOTPAction({required this.context});
+  SendOTPAction({
+    required this.context,
+    bool? isResend,
+    this.callBackFunction,
+  }) : isResend = isResend ?? false;
 
   final BuildContext context;
+  final Function? callBackFunction;
+  bool isResend;
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: sendOTPFlag, show: false);
+    final String flag = isResend ? resendOTPFlag : sendOTPFlag;
+    toggleLoadingIndicator(context: context, flag: flag, show: false);
+
+    ///Ensure the callBackFunction is not null
+    if (callBackFunction != null) {
+      ///[callBackFunction] Is run when resending otp to reset the timer
+      callBackFunction!();
+    }
     super.after();
   }
 
   @override
   void before() {
-    toggleLoadingIndicator(context: context, flag: sendOTPFlag);
+    final String flag = isResend ? resendOTPFlag : sendOTPFlag;
+    toggleLoadingIndicator(context: context, flag: flag);
+    super.before();
   }
 
   @override
@@ -49,6 +64,9 @@ class SendOTPAction extends ReduxAction<AppState> {
           .customContext!
           .sendRecoverAccountOtpEndpoint;
 
+      final String reSendOTPEndpoint =
+          AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
+
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'flavour': Flavour.CONSUMER.name,
@@ -57,8 +75,11 @@ class SendOTPAction extends ReduxAction<AppState> {
       final IGraphQlClient httpClient =
           AppWrapperBase.of(context)!.graphQLClient;
 
+      //Incase of send/resend otp error it is cleared
+      dispatch(UpdateOnboardingStateAction(failedToSendOTP: false));
+
       final Response httpResponse = await httpClient.callRESTAPI(
-        endpoint: sendOTPEndpoint,
+        endpoint: isResend ? reSendOTPEndpoint : sendOTPEndpoint,
         method: httpPOST,
         variables: variables,
       );
@@ -68,18 +89,20 @@ class SendOTPAction extends ReduxAction<AppState> {
 
       if (processedResponse.ok == true) {
         //Return OTP sent as string
+        //OTP are stored on the backend with the username
         final String parsed = jsonDecode(httpResponse.body) as String;
         final String otp = parsed;
 
         // save the OTP to state
         dispatch(UpdateOnboardingStateAction(otp: otp));
+
         return state;
       } else {
         // exception thrown if the backend could not send an OTP
-        //OTP are stored on the backend with the username
         showFeedbackBottomSheet(
           context: context,
-          modalContent: processedResponse.message ?? UNKNOWN, // safety-net
+          modalContent: processedResponse.message ??
+              defaultUserFriendlyMessage, // safety-net
           imageAssetPath: errorIconUrl,
         );
 
@@ -91,6 +114,7 @@ class SendOTPAction extends ReduxAction<AppState> {
         );
       }
     } else {
+      //Incase user's phone number is not found
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
     }
   }

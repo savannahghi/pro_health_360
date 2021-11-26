@@ -10,6 +10,7 @@ class VerifyPhoneViewModel extends Vm {
     required this.userID,
     required this.phoneNumber,
     required this.otp,
+    this.failedToSendOTP,
     this.invalidOTP,
   }) : super(
           equals: <Object?>[wait, userID, phoneNumber, otp],
@@ -20,6 +21,7 @@ class VerifyPhoneViewModel extends Vm {
   final String? phoneNumber;
   final String? otp;
   final bool? invalidOTP;
+  final bool? failedToSendOTP;
 
   static VerifyPhoneViewModel fromStore(Store<AppState> store) {
     final AppState state = store.state;
@@ -29,6 +31,7 @@ class VerifyPhoneViewModel extends Vm {
       phoneNumber: state.clientState!.user!.primaryContact!.value,
       otp: state.onboardingState!.verifyPhoneState!.otp,
       invalidOTP: state.onboardingState!.verifyPhoneState!.invalidOTP,
+      failedToSendOTP: state.onboardingState!.verifyPhoneState!.failedToSendOTP,
     );
   }
 }

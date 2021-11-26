@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
+import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -11,15 +18,8 @@ import 'package:shared_ui_components/src/animated_count.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/resent_otp_action.dart';
-import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 
@@ -132,7 +132,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
           },
         ),
         largeVerticalSizedBox,
-        if (!canResend)
+        if (!canResend && !widget.verifyPhoneViewModel.failedToSendOTP!)
           Column(
             children: <Widget>[
               Text(
@@ -146,7 +146,9 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
               ),
             ],
           ),
-        if (canResend)
+
+        ///Column should not be rendered in case of an error while sending the OTP
+        if (canResend && !widget.verifyPhoneViewModel.failedToSendOTP!)
           Column(
             children: <Widget>[
               Text(
@@ -166,15 +168,15 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                   onPressed: () async {
                     StoreProvider.dispatch<AppState>(
                       context,
-                      ResendOTPAction(
+                      SendOTPAction(
                         context: context,
+                        isResend: true,
                         callBackFunction: restartTimer,
                       ),
                     );
                   },
-                ),
-              if (widget.verifyPhoneViewModel.wait!
-                  .isWaitingFor(resendOTPFlag)) ...<Widget>[
+                )
+              else ...<Widget>[
                 smallVerticalSizedBox,
                 widget.loader,
               ]

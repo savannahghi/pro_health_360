@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -144,7 +145,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      toggleLoadingIndicator(context: ctx!, flag: 'create_pin');
+      toggleLoadingIndicator(context: ctx!, flag: createPinFlag);
       await tester.pump(const Duration(seconds: 2));
       expect(find.byType(SILPlatformLoader), findsOneWidget);
     });

@@ -11,7 +11,7 @@ import 'package:http/http.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/resent_otp_action.dart';
+import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import '../../../../../mocks.dart';
@@ -63,7 +63,11 @@ void main() {
               buttonKey: const Key('resend_otp'),
               onPressed: () async {
                 await store.dispatch(
-                  ResendOTPAction(context: context, callBackFunction: () {}),
+                  SendOTPAction(
+                    context: context,
+                    isResend: true,
+                    callBackFunction: () {},
+                  ),
                 );
               },
             );
@@ -109,7 +113,11 @@ void main() {
               onPressed: () async {
                 try {
                   await store.dispatch(
-                    ResendOTPAction(context: context, callBackFunction: () {}),
+                    SendOTPAction(
+                      context: context,
+                      isResend: true,
+                      callBackFunction: () {},
+                    ),
                   );
                 } catch (e) {
                   err = e;

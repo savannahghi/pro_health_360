@@ -6,6 +6,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:user_feed/user_feed.dart';
@@ -21,6 +22,7 @@ import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart'
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/error_card.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -225,6 +227,67 @@ void main() {
 
       expect(find.byType(SILPlatformLoader), findsOneWidget);
       expect(find.text(verifyCode), findsOneWidget);
+    });
+
+    testWidgets(
+        'should show default error card when there is an error when fetching an OTP',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'some error'}),
+          201,
+        ),
+      );
+
+      store = Store<AppState>(initialState: AppState.initial());
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: VerifyPhonePage(),
+      );
+
+      expect(find.byType(VerifyOtpWidget), findsOneWidget);
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ErrorCard), findsOneWidget);
+    });
+
+    testWidgets('default error card is clickable', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'some error'}),
+          201,
+        ),
+      );
+
+      store = Store<AppState>(initialState: AppState.initial());
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: VerifyPhonePage(),
+      );
+
+      expect(find.byType(VerifyOtpWidget), findsOneWidget);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ErrorCard), findsOneWidget);
+
+      await tester.ensureVisible(find.text(resendOTP));
+      await tester.tap(find.text(resendOTP));
+      await tester.pumpAndSettle();
+
+      expect(find.text(didNotReceiveOTP), findsNothing);
     });
   });
 }

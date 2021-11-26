@@ -5,39 +5,39 @@
 /// the [AppState] class
 
 // feed flags
-const String feedRefreshFlag = 'refresh_user_feed';
-const String fetchUserFeedFlag = 'fetch_user_feed';
+const String feedRefreshFlag = 'refresh_user_feed_flag';
+const String fetchUserFeedFlag = 'fetch_user_feed_flag';
 
 //Terms and Conditions
-const String getTermsFlag = 'get_terms';
-const String acceptTermsFlag = 'accept_terms';
+const String getTermsFlag = 'get_terms_flag';
+const String acceptTermsFlag = 'accept_terms_flag';
 
 //Security Questions
 const String getSecurityQuestionsFlag = 'get_security_questions';
 const String recordSecurityQuestionsFlag = 'record_security_questions_flag';
 
 // basic details
-const String updateBasicDetailsFlag = 'update_basic_details';
+const String updateBasicDetailsFlag = 'update_basic_details_flag';
 
 // landing page
-const String anonymousLoginFlag = 'anonymous_login';
+const String anonymousLoginFlag = 'anonymous_login_flag';
 
 // phone number entry
-const String phoneNumberEntryFlag = 'phone_number_entry';
+const String phoneNumberEntryFlag = 'phone_number_entry_flag';
 
 // create pin page
-const String createPinFlag = 'create_pin';
+const String createPinFlag = 'create_pin_flag';
 
-const String phoneLoginFlag = 'phone_login';
+const String phoneLoginFlag = 'phone_login_flag';
 
 const String paymentRequestFlag = 'payment_request_flag';
 
-const String requestResetPinFlag = 'request_reset_pin';
+const String requestResetPinFlag = 'request_reset_pin_flag';
 
-const String sendOTPFlag = 'sending_otp';
-const String resendOTPFlag = 'resending_otp';
+const String sendOTPFlag = 'sending_otp_flag';
+const String resendOTPFlag = 'resending_otp_flag';
 const String verifyOTP = 'verify_otp_flag';
-const String requestResetPinText = 'request_reset_pin';
+const String requestResetPinText = 'request_reset_pin_flag';
 
 // Congratulations page
-const String setNickNameFlag = 'set_nickname';
+const String setNickNameFlag = 'set_nickname_flag';
