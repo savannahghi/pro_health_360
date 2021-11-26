@@ -11,6 +11,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/login_utils.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -73,6 +74,8 @@ void main() {
         Store<AppState>(initialState: AppState.initial());
 
     final User? user = store.state.clientState?.user;
+
+    store.dispatch(UpdateConnectivityAction(hasConnection: true));
 
     store.dispatch(
       UpdateUserAction(

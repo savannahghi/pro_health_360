@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
-import 'package:myafyahub/application/redux/actions/check_connectivity_action.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:rxdart/rxdart.dart';

@@ -180,32 +180,20 @@ class _LoginPageState extends State<LoginPage> {
                             child: MyAfyaHubPrimaryButton(
                               buttonKey: phoneLoginContinueButtonKey,
                               onPressed: () async {
-                                final bool hasConnection = vm.appState
-                                        .connectivityState?.isConnected ??
-                                    false;
+                                final bool? isFormValid =
+                                    _formKey.currentState?.validate();
 
-                                if (!hasConnection) {
-                                  const SnackBar snackBar = SnackBar(
-                                    content: Text(checkInternetText),
+                                if (isFormValid != null &&
+                                    isFormValid &&
+                                    pin != null &&
+                                    phoneNumber != null &&
+                                    pin != UNKNOWN &&
+                                    phoneNumber != UNKNOWN) {
+                                  await signInUser(
+                                    context: context,
+                                    pin: pin!,
+                                    phoneNumber: phoneNumber!,
                                   );
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackBar);
-                                } else {
-                                  final bool? isFormValid =
-                                      _formKey.currentState?.validate();
-
-                                  if (isFormValid != null &&
-                                      isFormValid &&
-                                      pin != null &&
-                                      phoneNumber != null &&
-                                      pin != UNKNOWN &&
-                                      phoneNumber != UNKNOWN) {
-                                    await signInUser(
-                                      context: context,
-                                      pin: pin!,
-                                      phoneNumber: phoneNumber!,
-                                    );
-                                  }
                                 }
                               },
                               buttonColor: AppColors.secondaryColor,

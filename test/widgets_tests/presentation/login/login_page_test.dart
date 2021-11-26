@@ -11,7 +11,7 @@ import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/check_connectivity_action.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -282,6 +282,15 @@ void main() {
       );
       await tester.pump();
 
+      final Finder phoneInputField = find.byKey(textFormFieldKey);
+      final Finder pinInputField = find.byKey(pinInputKey);
+      await tester.showKeyboard(phoneInputField);
+      await tester.enterText(phoneInputField, '723456789');
+      await tester.pumpAndSettle();
+
+      await tester.showKeyboard(pinInputField);
+      await tester.enterText(pinInputField, '1234');
+      await tester.pumpAndSettle();
       final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
 
       await tester.ensureVisible(continueButton);
