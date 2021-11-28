@@ -26,16 +26,15 @@ import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/verify_phone_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/forgot_pin_otp_widget.dart';
-import 'package:myafyahub/presentation/onboarding/security_questions/answer_security_question_page.dart';
-import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
-import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
+import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/pages/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/consent_page.dart';
 import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
@@ -130,11 +129,11 @@ void main() {
       arguments: <String, dynamic>{'duration': '1 year'},
     );
 
-    final MaterialPageRoute<CongratulationsPage> route =
-        routeGenerator(settings) as MaterialPageRoute<CongratulationsPage>;
+    final MaterialPageRoute<SetNickNamePage> route =
+        routeGenerator(settings) as MaterialPageRoute<SetNickNamePage>;
 
-    expect(route, isA<MaterialPageRoute<CongratulationsPage>>());
-    expect(route.builder(context), isA<CongratulationsPage>());
+    expect(route, isA<MaterialPageRoute<SetNickNamePage>>());
+    expect(route.builder(context), isA<SetNickNamePage>());
   });
 
   test('Test router returns Home', () {
@@ -265,16 +264,6 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<MedicalDataPage>;
     expect(route, isA<MaterialPageRoute<MedicalDataPage>>());
     expect(route.builder(context), isA<MedicalDataPage>());
-  });
-
-  test('Test router returns ForgotOTPPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: BWRoutes.forgotPinOtpWidget);
-
-    final MaterialPageRoute<ForgotPinOtpWidget> route =
-        routeGenerator(settings) as MaterialPageRoute<ForgotPinOtpWidget>;
-    expect(route, isA<MaterialPageRoute<ForgotPinOtpWidget>>());
-    expect(route.builder(context), isA<ForgotPinOtpWidget>());
   });
 
   test('Test router returns SavedPostsPage', () {

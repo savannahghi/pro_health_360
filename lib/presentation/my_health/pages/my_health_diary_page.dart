@@ -101,6 +101,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
     ),
   ];
 
+  late int itemIndex = monthlyDiaries.length - 1;
   late List<HealthDiaryMonthObj> monthlyDiaries = <HealthDiaryMonthObj>[
     HealthDiaryMonthObj(
       diaryItems: diaryItemsList1,
@@ -113,7 +114,6 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
       month: 'September',
     ),
   ];
-  late int itemIndex = monthlyDiaries.length - 1;
 
   @override
   Widget build(BuildContext context) {

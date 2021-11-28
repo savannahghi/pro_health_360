@@ -26,7 +26,7 @@ import 'package:myafyahub/domain/core/entities/security_questions/responses/secu
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/onboarding/security_questions/security_question_widget.dart';
+import 'package:myafyahub/presentation/onboarding/set_security_questions/security_question_widget.dart';
 
 class SecurityQuestionsPage extends StatefulWidget {
   const SecurityQuestionsPage();

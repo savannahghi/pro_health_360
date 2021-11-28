@@ -18,7 +18,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import '../../mocks.dart';
 import '../../test_helpers.dart';
 

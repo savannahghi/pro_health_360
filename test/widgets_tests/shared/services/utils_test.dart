@@ -726,7 +726,7 @@ void main() {
         builder: (BuildContext context) {
           return SILPrimaryButton(
             onPressed: () async {
-              testMessage = congratulationsPageTitle(context: context);
+              testMessage = setNickNamePageTitle(context: context);
             },
           );
         },

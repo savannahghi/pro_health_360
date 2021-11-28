@@ -9,7 +9,6 @@ class BWRoutes {
   static const String verifyCode = '/verifyCode';
   static const String termsAndConditions = '/termsAndConditions';
   static const String verifySignUpOTP = '/verifySignUpOTP';
-  static const String forgotPinOtpWidget = '/forgotPinOtpWidget';
   static const String securityQuestionsPage = '/securityQuestionsPage';
   static const String congratulationsPage = '/congratulationsPage';
 

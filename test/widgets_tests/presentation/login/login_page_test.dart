@@ -21,7 +21,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
-import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

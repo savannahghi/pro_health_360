@@ -16,7 +16,7 @@ import 'package:shared_ui_components/platform_loader.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/onboarding/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

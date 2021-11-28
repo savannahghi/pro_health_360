@@ -341,7 +341,7 @@ const String createNewPINSubTitleString = 'Enter your new 4 digit PIN.';
 const String pinMustMatchString = 'PIN must match';
 
 //congratulations page
-String congratulationsPageTitle({required BuildContext context}) {
+String setNickNamePageTitle({required BuildContext context}) {
   /// [congratulationsPageTitle] function fetches the enrollment date from state and calculates
   /// the difference in years to return the appropriate message to the title on [CongratulationsPage]
   final int duration = DateTime.now()

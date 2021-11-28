@@ -34,7 +34,7 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart' as endpoints;
-import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../mocks.dart';
@@ -1271,7 +1271,7 @@ void main() {
 
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
-      expect(find.byType(CongratulationsPage), findsOneWidget);
+      expect(find.byType(SetNickNamePage), findsOneWidget);
     });
 
     testWidgets('Shows snackbar when pins do not match',

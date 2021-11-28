@@ -21,20 +21,21 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
-class CongratulationsPage extends StatefulWidget {
+class SetNickNamePage extends StatefulWidget {
   @override
-  _CongratulationsPageState createState() => _CongratulationsPageState();
+  _SetNickNamePageState createState() => _SetNickNamePageState();
 }
 
-class _CongratulationsPageState extends State<CongratulationsPage> {
+class _SetNickNamePageState extends State<SetNickNamePage> {
   String? nickName;
   TextEditingController userNameController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return OnboardingScaffold(
-      title: congratulationsPageTitle(context: context),
+      title: setNickNamePageTitle(context: context),
       description: congratulationsPageDescription,
       child: StoreConnector<AppState, AppStateViewModel>(
         converter: (Store<AppState> store) =>

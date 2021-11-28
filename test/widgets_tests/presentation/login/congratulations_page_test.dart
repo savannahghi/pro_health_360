@@ -20,7 +20,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -37,7 +37,7 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: CongratulationsPage(),
+        widget: SetNickNamePage(),
       );
 
       final Finder nameInputField = find.byKey(
@@ -76,7 +76,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: CongratulationsPage(),
+          widget: SetNickNamePage(),
         );
         await tester.pumpAndSettle();
 
@@ -105,7 +105,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: CongratulationsPage(),
+        widget: SetNickNamePage(),
       );
       await tester.pumpAndSettle();
       await tester.pumpAndSettle();
@@ -137,7 +137,7 @@ void main() {
           builder: (BuildContext context) {
             ctx = context;
             toggleLoadingIndicator(context: context, flag: 'resume_with_pin');
-            return CongratulationsPage();
+            return SetNickNamePage();
           },
         ),
       );
