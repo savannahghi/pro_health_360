@@ -6,9 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_view_page.dart';
-import 'package:myafyahub/presentation/profile/pages/profile_faqs/profile_faqs_page.dart';
-import 'package:myafyahub/presentation/profile/widgets/faq_item.dart';
+import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
+import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
+import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 

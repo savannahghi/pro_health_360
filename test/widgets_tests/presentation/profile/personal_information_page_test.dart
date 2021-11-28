@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
+import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
 import '../../../test_helpers.dart';
 
 void main() {

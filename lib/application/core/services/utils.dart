@@ -774,3 +774,8 @@ bool isNumeric(String? s) {
   }
   return int.tryParse(s) != null;
 }
+
+String returnCurrentYear() {
+  final DateTime now = DateTime.now();
+  return DateFormat('y').format(now);
+}

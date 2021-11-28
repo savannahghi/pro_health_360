@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/profile/pages/feedback_page.dart';
+import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
 
 void main() {
   testWidgets('FeedbackPage should render correctly',

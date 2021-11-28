@@ -27,7 +27,7 @@ import 'package:myafyahub/domain/core/entities/security_questions/questions/secu
 import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/create_new_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

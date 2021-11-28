@@ -4,7 +4,7 @@ import 'dart:async';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:myafyahub/presentation/communities/chat_screen/widgets/suggested_group_card.dart';
+import 'package:myafyahub/presentation/communities/suggested_groups/suggested_group_card.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';

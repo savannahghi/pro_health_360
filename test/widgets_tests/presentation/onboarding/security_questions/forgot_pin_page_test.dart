@@ -16,7 +16,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/forgot_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

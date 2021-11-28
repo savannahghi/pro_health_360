@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/profile/pages/profile_faqs/faq_detail_view_page.dart';
+import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -29,10 +29,7 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: FAQDetailViewPage(
-          payload: FAQContent(
-            title: 'title',
-            body: loremIpsumText,
-          ),
+          payload: FAQContent(title: 'title', body: loremIpsumText),
         ),
       );
 

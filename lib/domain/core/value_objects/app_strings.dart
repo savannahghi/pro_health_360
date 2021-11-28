@@ -5,10 +5,10 @@ import 'package:flutter/widgets.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/profile/profile_utils.dart';
 
 const String requestTimeoutError =
     'We could not perform this process in time. Please try again';

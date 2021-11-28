@@ -9,7 +9,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/profile/pages/personal_information_page.dart';
+import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
 import '../../../../test_helpers.dart';

@@ -16,7 +16,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/verify_otp_widget.dart';
+import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 
 class VerifyPhonePage extends StatefulWidget {
   @override

@@ -7,7 +7,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_list.dart';
-import 'package:myafyahub/presentation/profile/pages/saved_posts.dart';
+import 'package:myafyahub/presentation/profile/saved_posts/saved_posts.dart';
 import '../../../test_helpers.dart';
 
 void main() {

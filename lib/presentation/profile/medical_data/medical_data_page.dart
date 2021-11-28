@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/profile/widgets/medical_data_item.dart';
-import 'package:myafyahub/presentation/profile/widgets/medical_data_item_title.dart';
+import 'package:myafyahub/presentation/profile/medical_data/medical_data_item.dart';
+import 'package:myafyahub/presentation/profile/medical_data/medical_data_item_title.dart';
 
 class MedicalDataPage extends StatelessWidget {
   const MedicalDataPage({Key? key}) : super(key: key);
