@@ -15,7 +15,7 @@ import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/engagement/home/widgets/bottom_nav_bar.dart';
+import 'package:myafyahub/presentation/home/widgets/bottom_nav_bar.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

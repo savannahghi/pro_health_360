@@ -26,7 +26,6 @@ class CongratulationsPage extends StatefulWidget {
   _CongratulationsPageState createState() => _CongratulationsPageState();
 }
 
-
 class _CongratulationsPageState extends State<CongratulationsPage> {
   String? nickName;
   TextEditingController userNameController = TextEditingController();
@@ -93,11 +92,11 @@ class _CongratulationsPageState extends State<CongratulationsPage> {
                 //   style: TextThemes.boldSize16Text(AppColors.secondaryColor),
                 // ),
                 // smallVerticalSizedBox,
-                // ImportantInformationWidget(),
+                // MiniContentWidget(),
                 // verySmallVerticalSizedBox,
-                // ImportantInformationWidget(),
+                // MiniContentWidget(),
                 // verySmallVerticalSizedBox,
-                // ImportantInformationWidget(),
+                // MiniContentWidget(),
                 // smallVerticalSizedBox,
                 Align(
                   alignment: Alignment.bottomCenter,

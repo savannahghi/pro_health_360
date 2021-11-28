@@ -7,7 +7,7 @@ import 'package:myafyahub/domain/core/entities/notification/notification_details
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
+import 'package:myafyahub/presentation/notifications/notification_list_item.dart';
 
 // Package imports:
 

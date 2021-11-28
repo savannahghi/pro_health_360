@@ -5,9 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/community/chat_screen/widgets/quoted_message_widget.dart';
-import 'package:myafyahub/presentation/community/chat_screen/widgets/received_message_item.dart';
-import 'package:myafyahub/presentation/community/chat_screen/widgets/sender_type_widget.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/quoted_message_widget.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/received_message_item.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/sender_type_widget.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {

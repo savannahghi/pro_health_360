@@ -9,7 +9,7 @@ import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
+import 'package:myafyahub/presentation/notifications/notification_list_item.dart';
 
 void main() {
   group('NotificationListItem', () {

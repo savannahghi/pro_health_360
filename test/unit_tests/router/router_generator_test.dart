@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
+import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -15,13 +17,11 @@ import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
 import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
-import 'package:myafyahub/presentation/community/community_list_page.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
+import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
-import 'package:myafyahub/presentation/engagement/home/mood_selection/mood_feedback_page.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/feed/pages/content_details_page.dart';
-import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
+import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
+import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';

@@ -11,7 +11,7 @@ import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/community/chat_screen/widgets/message_input.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/message_input.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {

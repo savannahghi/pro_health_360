@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/community/chat_screen/widgets/time_classification_widget.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/time_classification_widget.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {

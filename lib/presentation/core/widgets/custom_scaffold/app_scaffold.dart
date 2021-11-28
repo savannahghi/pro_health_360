@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/engagement/home/widgets/bottom_nav_bar.dart';
+import 'package:myafyahub/presentation/home/widgets/bottom_nav_bar.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({

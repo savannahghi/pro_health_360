@@ -24,7 +24,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
+import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';

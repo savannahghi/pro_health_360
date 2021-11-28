@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/core/widgets/notification_list_item.dart';
+import 'package:myafyahub/presentation/notifications/notification_list_item.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import '../../../test_helpers.dart';
 

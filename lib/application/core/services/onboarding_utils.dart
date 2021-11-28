@@ -35,7 +35,6 @@ import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/sil_progress_dialog.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 /// [updateUserPin] resets a user's PIN
@@ -200,10 +199,6 @@ void toggleLoadingIndicator({
             WaitAction<AppState>.remove(flag, ref: '${flag}_ref'),
           );
   }
-}
-
-Widget showSaveProfileDetailsSILProgressDialog(BuildContext context) {
-  return const SILProgressDialog(message: Text(updatingProfileDetails));
 }
 
 Object actionWrapError({

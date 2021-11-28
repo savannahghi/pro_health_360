@@ -28,7 +28,6 @@ import 'package:shared_ui_components/buttons.dart';
 import 'package:unicons/unicons.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -174,34 +173,6 @@ void main() {
       // tap the button to show the toast
       await tester.tap(find.byKey(showToastKey));
       await fireEvent(tester);
-    });
-
-    testWidgets('should show save Profile Details SILProgressDialog',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return SILPrimaryButton(
-              buttonKey: const Key('btn'),
-              onPressed: () async {
-                showSaveProfileDetailsSILProgressDialog(
-                  context,
-                );
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      await tester.tap(find.byKey(const Key('btn')));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(Text), findsOneWidget);
     });
 
     group('showAlertSnackBar test', () {

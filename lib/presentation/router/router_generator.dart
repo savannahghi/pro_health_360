@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
+import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/security_questions/security_questions_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
@@ -14,13 +16,11 @@ import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/community/chat_screen/pages/community_chat_screen_page.dart';
-import 'package:myafyahub/presentation/community/community_list_page.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
+import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
-import 'package:myafyahub/presentation/engagement/home/mood_selection/mood_feedback_page.dart';
-import 'package:myafyahub/presentation/engagement/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/feed/pages/content_details_page.dart';
-import 'package:myafyahub/presentation/feed/pages/feed_page.dart';
+import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
+import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
@@ -87,13 +87,11 @@ class RouteGenerator {
 
       // the homepage route config
       case BWRoutes.home:
-        return MaterialPageRoute<HomePage>(builder: (_) => const HomePage());
+        return MaterialPageRoute<HomePage>(builder: (_) => HomePage());
 
       case BWRoutes.moodFeedbackPage:
         return MaterialPageRoute<MoodFeedbackPage>(
-          builder: (_) => MoodFeedbackPage(
-            moodType: args as MoodType,
-          ),
+          builder: (_) => MoodFeedbackPage(moodType: args as MoodType),
         );
 
       case BWRoutes.editInformationPage:
@@ -126,7 +124,7 @@ class RouteGenerator {
         );
 
       case BWRoutes.securityQuestionsPage:
-         return MaterialPageRoute<SecurityQuestionsPage>(
+        return MaterialPageRoute<SecurityQuestionsPage>(
           builder: (_) => const SecurityQuestionsPage(),
         );
 

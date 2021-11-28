@@ -26,7 +26,7 @@ import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/my_app.dart';
+import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -112,7 +112,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
           ..diagnosticLevel = SentryLevel.error;
       },
       appRunner: () => runApp(
-        MyApp(
+        MyAppWidget(
           store: store,
           navigatorObserver: navigatorObserver,
           connectivityStatus: connectivityStatus,

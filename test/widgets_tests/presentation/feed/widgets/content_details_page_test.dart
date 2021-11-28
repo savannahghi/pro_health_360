@@ -10,7 +10,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
-import 'package:myafyahub/presentation/feed/pages/content_details_page.dart';
+import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
