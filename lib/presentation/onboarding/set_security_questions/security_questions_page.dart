@@ -1,18 +1,15 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/get_security_questions_action.dart';
@@ -27,6 +24,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_question_widget.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class SecurityQuestionsPage extends StatefulWidget {
   const SecurityQuestionsPage();
@@ -148,54 +146,58 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                             },
                           ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: isLargeScreen ? number300 : double.infinity,
-                      height: number52,
-                      child: MyAfyaHubPrimaryButton(
-                        text: saveAndContinueButtonText,
-                        buttonColor: AppColors.secondaryColor,
-                        onPressed: () {
-                          final bool? isFormValid =
-                              _formKey.currentState?.validate();
+                  if (!vm.appState.wait!
+                          .isWaitingFor(getSecurityQuestionsFlag) &&
+                      !vm.appState.wait!
+                          .isWaitingFor(recordSecurityQuestionsFlag))
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        width: isLargeScreen ? number300 : double.infinity,
+                        height: number52,
+                        child: MyAfyaHubPrimaryButton(
+                          text: saveAndContinueButtonText,
+                          buttonColor: AppColors.secondaryColor,
+                          onPressed: () {
+                            final bool? isFormValid =
+                                _formKey.currentState?.validate();
 
-                          if (isFormValid != null && isFormValid == true) {
-                            final List<SecurityQuestionResponse>
-                                emptyResponses = <SecurityQuestionResponse>[];
+                            if (isFormValid != null && isFormValid == true) {
+                              final List<SecurityQuestionResponse>
+                                  emptyResponses = <SecurityQuestionResponse>[];
 
-                            securityQuestionsResponses.asMap().forEach(
-                              (int index, SecurityQuestionResponse value) {
-                                if (value.response == UNKNOWN ||
-                                    value.response == '') {
-                                  emptyResponses.add(value);
-                                }
-                              },
-                            );
-
-                            if (emptyResponses.isEmpty) {
-                              StoreProvider.dispatch<AppState>(
-                                context,
-                                RecordSecurityQuestionResponsesAction(
-                                  context: context,
-                                ),
+                              securityQuestionsResponses.asMap().forEach(
+                                (int index, SecurityQuestionResponse value) {
+                                  if (value.response == UNKNOWN ||
+                                      value.response == '') {
+                                    emptyResponses.add(value);
+                                  }
+                                },
                               );
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                      kindlyAnswerAllQuestionsString,
-                                    ),
+
+                              if (emptyResponses.isEmpty) {
+                                StoreProvider.dispatch<AppState>(
+                                  context,
+                                  RecordSecurityQuestionResponsesAction(
+                                    context: context,
                                   ),
                                 );
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        kindlyAnswerAllQuestionsString,
+                                      ),
+                                    ),
+                                  );
+                              }
                             }
-                          }
-                        },
+                          },
+                        ),
                       ),
-                    ),
-                  )
+                    )
                 ],
               ),
             ),
