@@ -321,3 +321,7 @@ const Key forgotPINButtonKey = Key('forgot_PIN_button_key');
 
 const Key feedContentItemKey = Key('feed_content_item_key');
 const Key feedVideoPlayIconKey = Key('feed_video_play_icon_key');
+
+const Key likeButtonKey = Key('like_button_key');
+const Key shareButtonKey = Key('share_button_key');
+const Key saveButtonKey = Key('save_button_key');

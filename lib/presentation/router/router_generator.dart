@@ -214,7 +214,7 @@ class RouteGenerator {
 
       case BWRoutes.contentDetailPage:
         return MaterialPageRoute<ContentDetailPage>(
-          builder: (_) => ContentDetailPage(articleDetails: args as Content),
+          builder: (_) => ContentDetailPage(contentDetails: args as Content),
         );
 
       case BWRoutes.faqDetailViewPage:
