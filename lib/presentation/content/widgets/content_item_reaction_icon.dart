@@ -19,7 +19,7 @@ class ContentItemReactionIcon extends StatelessWidget {
     required this.count,
     required this.description,
     required this.altSvgPath,
-    required this.onTap,
+    this.onTap,
   }) : super(key: key);
   final String svgPath;
 
@@ -27,17 +27,18 @@ class ContentItemReactionIcon extends StatelessWidget {
   final String count;
   final String description;
   final String altSvgPath;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap ?? () {},
       child: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 18.0,
           vertical: 10.0,
         ),
+        margin: const EdgeInsets.only(right: 15),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(50),
@@ -47,6 +48,7 @@ class ContentItemReactionIcon extends StatelessWidget {
               : AppColors.unSelectedReactionBackgroundColor,
         ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             SvgPicture.asset(
               selected ? altSvgPath : svgPath,

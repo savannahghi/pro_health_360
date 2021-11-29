@@ -77,3 +77,15 @@ mutation recordSecurityQuestionResponses($input: [SecurityQuestionResponseInput!
   }
 }
  ''';
+
+const String unlikeContentMutation = r'''
+ mutation unlikeContent($userID: String!, $contentID: Int!){
+  unlikeContent(userID: $userID, contentID: $contentID)
+}
+''';
+
+const String likeContentMutation = r'''
+ mutation likeContent($userID: String!, $contentID: Int!){
+  likeContent(userID: $userID, contentID: $contentID)
+}
+''';

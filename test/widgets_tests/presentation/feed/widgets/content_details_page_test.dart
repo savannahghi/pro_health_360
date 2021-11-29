@@ -1,9 +1,11 @@
 // Dart imports:
+import 'dart:convert';
 import 'dart:io';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -50,14 +52,27 @@ void main() {
       expect(find.byType(GenericEmptyData), findsOneWidget);
     });
     testWidgets('Reaction buttons are tappable', (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'likeContent': true,
+            }
+          }),
+          201,
+        ),
+      );
       final Content contentWithoutBody = mockContent.copyWith.call(body: null);
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockGraphQlClient,
+        client: mockShortSILGraphQlClient,
         widget: ContentDetailPage(contentDetails: contentWithoutBody),
       );
+      await tester.pumpAndSettle();
 
       final Finder likeButton = find.byKey(likeButtonKey);
       final Finder shareButton = find.byKey(shareButtonKey);
@@ -71,13 +86,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Like'), findsNothing);
 
-      await tester.tap(shareButton);
+      await tester.tap(likeButton);
       await tester.pumpAndSettle();
-      expect(find.text('Share'), findsNothing);
-
-      await tester.tap(saveButton);
-      await tester.pumpAndSettle();
-      expect(find.text('Save'), findsNothing);
+      expect(find.text('Like'), findsNothing);
     });
   });
 }

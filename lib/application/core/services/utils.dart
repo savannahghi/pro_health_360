@@ -17,6 +17,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/redux/actions/like_content_action.dart';
+import 'package:myafyahub/application/redux/actions/unlike_content_action.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -778,4 +780,22 @@ bool isNumeric(String? s) {
 String returnCurrentYear() {
   final DateTime now = DateTime.now();
   return DateFormat('y').format(now);
+}
+
+Future<void> updateLikeStatus({
+  required BuildContext context,
+  required int contentID,
+  required bool isLiked,
+}) async {
+  if (isLiked) {
+    await StoreProvider.dispatch(
+      context,
+      UnlikeContentAction(contentID: contentID, context: context),
+    );
+  } else {
+    await StoreProvider.dispatch(
+      context,
+      LikeContentAction(contentID: contentID, context: context),
+    );
+  }
 }

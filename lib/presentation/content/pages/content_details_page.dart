@@ -34,8 +34,8 @@ class ContentDetailPage extends StatefulWidget {
 
 class _ContentDetailPageState extends State<ContentDetailPage> {
   late bool likeSelected = false;
-  late bool shareSelected = false;
-  late bool saveSelected = false;
+  late int likeCount = widget.contentDetails.likeCount!;
+
   @override
   Widget build(BuildContext context) {
     final Widget publishDate = widget
@@ -48,191 +48,186 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
         : const SizedBox();
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  height: 220,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      // TODO(abiud): replace with cached network image to
-                      // handle showing an image before the network one loads
-                      image: NetworkImage(
-                        widget.contentDetails.heroImage!.url!,
-                      ),
+      body: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          Stack(
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height / 3.5,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    // TODO(abiud): replace with cached network image to
+                    // handle showing an image before the network one loads
+                    image: NetworkImage(
+                      widget.contentDetails.heroImage!.url!,
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 32,
-                  left: -6,
-                  child: Opacity(
-                    opacity: 0.7,
-                    child: RawMaterialButton(
-                      key: cancelButtonKey,
-                      onPressed: () => Navigator.pop(context),
-                      fillColor: AppColors.readTimeBackgroundColor,
-                      padding: const EdgeInsets.all(15.0),
-                      shape: const CircleBorder(),
-                      child: SvgPicture.asset(
-                        whiteCloseIconSvgPath,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              padding: const EdgeInsets.only(
-                top: 20.0,
-                left: 30.0,
-                right: 30.0,
               ),
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    widget.contentDetails.title!,
-                    style: TextThemes.veryBoldSize18Text(
-                      Colors.black,
+              Positioned(
+                top: 0,
+                left: -6,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: RawMaterialButton(
+                    key: cancelButtonKey,
+                    onPressed: () => Navigator.pop(context),
+                    fillColor:
+                        AppColors.readTimeBackgroundColor.withOpacity(0.5),
+                    padding: const EdgeInsets.all(15.0),
+                    shape: const CircleBorder(),
+                    child: SvgPicture.asset(
+                      whiteCloseIconSvgPath,
+                      color: Colors.white,
                     ),
                   ),
-                  mediumVerticalSizedBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                // TODO(eugene): revert when backend is ready
-                                // image: articleDetails.authorAvatar == null
-                                //     ? const AssetImage(profileImage)
-                                //     : NetworkImage(
-                                //         articleDetails.authorAvatar!,
-                                //       ) as ImageProvider,
-                                image: AssetImage(profileImage),
-                              ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  widget.contentDetails.title!,
+                  style: TextThemes.veryBoldSize18Text(
+                    Colors.black,
+                  ),
+                ),
+                mediumVerticalSizedBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              // TODO(eugene): revert when backend is ready
+                              // image: articleDetails.authorAvatar == null
+                              //     ? const AssetImage(profileImage)
+                              //     : NetworkImage(
+                              //         articleDetails.authorAvatar!,
+                              //       ) as ImageProvider,
+                              image: AssetImage(profileImage),
                             ),
                           ),
-                          smallHorizontalSizedBox,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                widget.contentDetails.authorName!,
-                                style: TextThemes.veryBoldSize15Text(
-                                  AppColors.greyTextColor,
-                                ),
+                        ),
+                        smallHorizontalSizedBox,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              widget.contentDetails.authorName!,
+                              style: TextThemes.veryBoldSize15Text(
+                                AppColors.greyTextColor,
                               ),
-                              verySmallVerticalSizedBox,
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    datePublishedString,
-                                    style: TextThemes.boldSize12Text(
-                                      AppColors.greyTextColor,
-                                    ),
+                            ),
+                            verySmallVerticalSizedBox,
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  datePublishedString,
+                                  style: TextThemes.boldSize12Text(
+                                    AppColors.greyTextColor,
                                   ),
-                                  publishDate,
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      EstimatedReadTimeBadge(
-                        estimateReadTime: widget.contentDetails.estimate!,
-                      ),
-                    ],
-                  ),
-                  largeVerticalSizedBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                ),
+                                publishDate,
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    EstimatedReadTimeBadge(
+                      estimateReadTime: widget.contentDetails.estimate!,
+                    ),
+                  ],
+                ),
+                largeVerticalSizedBox,
+                Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    runSpacing: 15,
                     children: <Widget>[
                       ContentItemReactionIcon(
                         key: likeButtonKey,
                         svgPath: heartIconUrl,
-                        count: '200',
+                        count: likeCount.toString(),
                         description: likeString,
                         selected: likeSelected,
                         altSvgPath: selectedLikeIconSvgPath,
                         onTap: () {
                           setState(() {
+                            likeSelected
+                                ? likeCount = likeCount-1
+                                : likeCount = likeCount+1;
+                          });
+
+                          updateLikeStatus(
+                            context: context,
+                            contentID: widget.contentDetails.contentID!,
+                            isLiked: likeSelected,
+                          );
+                          setState(() {
                             likeSelected = !likeSelected;
                           });
                         },
                       ),
-                      verySmallHorizontalSizedBox,
                       ContentItemReactionIcon(
                         key: shareButtonKey,
-                        count: '',
+                        count: widget.contentDetails.shareCount.toString(),
                         description: shareString,
                         svgPath: shareIconUrl,
-                        altSvgPath: selectedLikeIconSvgPath,
-                        onTap: () {
-                          setState(() {
-                            shareSelected = true;
-                          });
-                        },
+                        altSvgPath: shareIconUrl,
                       ),
-                      verySmallHorizontalSizedBox,
-                      ContentItemReactionIcon(
+                      const ContentItemReactionIcon(
                         key: saveButtonKey,
                         count: '',
                         description: saveString,
                         svgPath: saveIconUrl,
-                        altSvgPath: selectedLikeIconSvgPath,
-                        onTap: () {
-                          setState(() {
-                            saveSelected = true;
-                          });
-                        },
+                        altSvgPath: selectedSaveIconSvgPath,
                       ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
-            if (widget.contentDetails.body != null)
-              Container(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                  right: 25,
-                  bottom: 20,
-                  top: 15,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Html(
-                  data: widget.contentDetails.body,
-                ),
-              )
-            else
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: const Padding(
-                  padding: EdgeInsets.all(15),
-                  child: GenericEmptyData(),
-                ),
-              )
-          ],
-        ),
+          ),
+          if (widget.contentDetails.body != null)
+            Container(
+              padding: const EdgeInsets.only(
+                left: 25,
+                right: 25,
+                bottom: 20,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Html(
+                data: widget.contentDetails.body,
+              ),
+            )
+          else
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: const Padding(
+                padding: EdgeInsets.all(15),
+                child: GenericEmptyData(),
+              ),
+            )
+        ],
       ),
     );
   }
