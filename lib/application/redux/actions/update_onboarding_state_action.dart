@@ -1,6 +1,5 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
@@ -15,6 +14,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.otp,
     this.invalidOTP,
     this.failedToSendOTP,
+    this.canResendOTP,
     this.hasSetNickName,
     this.hasSetSecurityQuestions,
     this.hasSetPin,
@@ -26,6 +26,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   final String? otp;
   final bool? invalidOTP;
   final bool? failedToSendOTP;
+  final bool? canResendOTP;
   bool? hasSetNickName;
   bool? hasSetSecurityQuestions;
   bool? hasSetPin;
@@ -50,6 +51,8 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
             invalidOTP ?? state.onboardingState!.verifyPhoneState!.invalidOTP,
         failedToSendOTP: failedToSendOTP ??
             state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        canResendOTP: canResendOTP ??
+            state.onboardingState!.verifyPhoneState!.canResendOTP,
       ),
     );
 

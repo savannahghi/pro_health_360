@@ -21,11 +21,15 @@ class _$VerifyPhoneStateTearOff {
   const _$VerifyPhoneStateTearOff();
 
   _VerifyPhoneState call(
-      {bool invalidOTP = false, String? otp, bool failedToSendOTP = false}) {
+      {bool invalidOTP = false,
+      String? otp,
+      bool failedToSendOTP = false,
+      bool canResendOTP = false}) {
     return _VerifyPhoneState(
       invalidOTP: invalidOTP,
       otp: otp,
       failedToSendOTP: failedToSendOTP,
+      canResendOTP: canResendOTP,
     );
   }
 
@@ -42,6 +46,7 @@ mixin _$VerifyPhoneState {
   bool get invalidOTP => throw _privateConstructorUsedError;
   String? get otp => throw _privateConstructorUsedError;
   bool get failedToSendOTP => throw _privateConstructorUsedError;
+  bool get canResendOTP => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +59,8 @@ abstract class $VerifyPhoneStateCopyWith<$Res> {
   factory $VerifyPhoneStateCopyWith(
           VerifyPhoneState value, $Res Function(VerifyPhoneState) then) =
       _$VerifyPhoneStateCopyWithImpl<$Res>;
-  $Res call({bool invalidOTP, String? otp, bool failedToSendOTP});
+  $Res call(
+      {bool invalidOTP, String? otp, bool failedToSendOTP, bool canResendOTP});
 }
 
 /// @nodoc
@@ -71,6 +77,7 @@ class _$VerifyPhoneStateCopyWithImpl<$Res>
     Object? invalidOTP = freezed,
     Object? otp = freezed,
     Object? failedToSendOTP = freezed,
+    Object? canResendOTP = freezed,
   }) {
     return _then(_value.copyWith(
       invalidOTP: invalidOTP == freezed
@@ -85,6 +92,10 @@ class _$VerifyPhoneStateCopyWithImpl<$Res>
           ? _value.failedToSendOTP
           : failedToSendOTP // ignore: cast_nullable_to_non_nullable
               as bool,
+      canResendOTP: canResendOTP == freezed
+          ? _value.canResendOTP
+          : canResendOTP // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -96,7 +107,8 @@ abstract class _$VerifyPhoneStateCopyWith<$Res>
           _VerifyPhoneState value, $Res Function(_VerifyPhoneState) then) =
       __$VerifyPhoneStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool invalidOTP, String? otp, bool failedToSendOTP});
+  $Res call(
+      {bool invalidOTP, String? otp, bool failedToSendOTP, bool canResendOTP});
 }
 
 /// @nodoc
@@ -115,6 +127,7 @@ class __$VerifyPhoneStateCopyWithImpl<$Res>
     Object? invalidOTP = freezed,
     Object? otp = freezed,
     Object? failedToSendOTP = freezed,
+    Object? canResendOTP = freezed,
   }) {
     return _then(_VerifyPhoneState(
       invalidOTP: invalidOTP == freezed
@@ -129,6 +142,10 @@ class __$VerifyPhoneStateCopyWithImpl<$Res>
           ? _value.failedToSendOTP
           : failedToSendOTP // ignore: cast_nullable_to_non_nullable
               as bool,
+      canResendOTP: canResendOTP == freezed
+          ? _value.canResendOTP
+          : canResendOTP // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -137,7 +154,10 @@ class __$VerifyPhoneStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_VerifyPhoneState implements _VerifyPhoneState {
   _$_VerifyPhoneState(
-      {this.invalidOTP = false, this.otp, this.failedToSendOTP = false});
+      {this.invalidOTP = false,
+      this.otp,
+      this.failedToSendOTP = false,
+      this.canResendOTP = false});
 
   factory _$_VerifyPhoneState.fromJson(Map<String, dynamic> json) =>
       _$_$_VerifyPhoneStateFromJson(json);
@@ -150,10 +170,13 @@ class _$_VerifyPhoneState implements _VerifyPhoneState {
   @JsonKey(defaultValue: false)
   @override
   final bool failedToSendOTP;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool canResendOTP;
 
   @override
   String toString() {
-    return 'VerifyPhoneState(invalidOTP: $invalidOTP, otp: $otp, failedToSendOTP: $failedToSendOTP)';
+    return 'VerifyPhoneState(invalidOTP: $invalidOTP, otp: $otp, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
   }
 
   @override
@@ -167,7 +190,10 @@ class _$_VerifyPhoneState implements _VerifyPhoneState {
                 const DeepCollectionEquality().equals(other.otp, otp)) &&
             (identical(other.failedToSendOTP, failedToSendOTP) ||
                 const DeepCollectionEquality()
-                    .equals(other.failedToSendOTP, failedToSendOTP)));
+                    .equals(other.failedToSendOTP, failedToSendOTP)) &&
+            (identical(other.canResendOTP, canResendOTP) ||
+                const DeepCollectionEquality()
+                    .equals(other.canResendOTP, canResendOTP)));
   }
 
   @override
@@ -175,7 +201,8 @@ class _$_VerifyPhoneState implements _VerifyPhoneState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(invalidOTP) ^
       const DeepCollectionEquality().hash(otp) ^
-      const DeepCollectionEquality().hash(failedToSendOTP);
+      const DeepCollectionEquality().hash(failedToSendOTP) ^
+      const DeepCollectionEquality().hash(canResendOTP);
 
   @JsonKey(ignore: true)
   @override
@@ -192,7 +219,8 @@ abstract class _VerifyPhoneState implements VerifyPhoneState {
   factory _VerifyPhoneState(
       {bool invalidOTP,
       String? otp,
-      bool failedToSendOTP}) = _$_VerifyPhoneState;
+      bool failedToSendOTP,
+      bool canResendOTP}) = _$_VerifyPhoneState;
 
   factory _VerifyPhoneState.fromJson(Map<String, dynamic> json) =
       _$_VerifyPhoneState.fromJson;
@@ -203,6 +231,8 @@ abstract class _VerifyPhoneState implements VerifyPhoneState {
   String? get otp => throw _privateConstructorUsedError;
   @override
   bool get failedToSendOTP => throw _privateConstructorUsedError;
+  @override
+  bool get canResendOTP => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$VerifyPhoneStateCopyWith<_VerifyPhoneState> get copyWith =>

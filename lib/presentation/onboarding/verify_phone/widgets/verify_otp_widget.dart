@@ -1,27 +1,26 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
+import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
+// Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/src/animated_count.dart';
 import 'package:sms_autofill/sms_autofill.dart';
-
-// Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 
 class VerifyOtpWidget extends StatefulWidget {
   const VerifyOtpWidget({
@@ -41,7 +40,8 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
     with SingleTickerProviderStateMixin, CodeAutoFill {
   Animation<double>? animation;
   bool canResend = false;
-  BehaviorSubject<bool> canResendOtp = BehaviorSubject<bool>.seeded(false);
+  // BehaviorSubject<bool> canResendOtp = BehaviorSubject<bool>.seeded(false);
+  bool canResendOtp = false;
   String testCode = '1234';
   int resendTimeout = 60;
   TextEditingController textEditingController = TextEditingController();
@@ -63,11 +63,17 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
 
   @override
   void didChangeDependencies() {
-    canResendOtp.listen((bool value) {
-      setState(() {
-        canResend = value;
-      });
+    canResendOtp = widget.verifyPhoneViewModel.canResendOTP!;
+
+    setState(() {
+      canResend = canResendOtp;
     });
+
+    // canResendOtp.listen((bool value) {
+    //   setState(() {
+    //     canResend = value;
+    //   });
+    // });
     super.didChangeDependencies();
   }
 
@@ -87,7 +93,13 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
         .animate(_controller)
       ..addListener(() {
         if (resendTimeout == 0) {
-          canResendOtp.add(true);
+          StoreProvider.dispatch<AppState>(
+            context,
+            UpdateOnboardingStateAction(
+              canResendOTP: true,
+            ),
+          );
+          // canResendOtp.add(true);
         }
         setState(() {
           resendTimeout = int.parse(animation!.value.toStringAsFixed(0));
@@ -101,7 +113,13 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
     resendTimeout = 90;
     _controller.value = 0;
     _controller.forward();
-    canResendOtp.add(false);
+    // canResendOtp.add(false);
+    StoreProvider.dispatch<AppState>(
+      context,
+      UpdateOnboardingStateAction(
+        canResendOTP: false,
+      ),
+    );
   }
 
   @override
@@ -174,6 +192,9 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                         callBackFunction: restartTimer,
                       ),
                     );
+
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackbar(content: const Text('hub')));
                   },
                 )
               else ...<Widget>[

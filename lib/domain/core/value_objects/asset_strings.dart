@@ -145,3 +145,8 @@ const String selectedLikeIconSvgPath = 'assets/icons/selected_like_icon.svg';
 const String whiteCloseIconSvgPath = 'assets/icons/white_close_icon.svg';
 //Error icons
 const String errorOutlineIconSvg = 'assets/icons/error_outline.svg';
+
+const String leftQuoteSVGUrl = 'assets/icons/quote_left.svg';
+const String rightQuoteSVGUrl = 'assets/icons/quote_right.svg';
+
+ 
