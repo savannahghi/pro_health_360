@@ -22,7 +22,7 @@ import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart'
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/error_card.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -255,7 +255,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(ErrorCard), findsOneWidget);
+      expect(find.byType(ErrorCardWidget), findsOneWidget);
     });
 
     testWidgets('default error card is clickable', (WidgetTester tester) async {
@@ -281,7 +281,7 @@ void main() {
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
       await tester.pumpAndSettle();
 
-      expect(find.byType(ErrorCard), findsOneWidget);
+      expect(find.byType(ErrorCardWidget), findsOneWidget);
 
       await tester.ensureVisible(find.text(resendOTP));
       await tester.tap(find.text(resendOTP));

@@ -92,7 +92,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                         : ListView.builder(
                             itemCount: securityQuestions.length,
                             shrinkWrap: true,
-                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            padding: const EdgeInsets.only(top: 5, bottom: 5),
                             itemBuilder: (BuildContext context, int index) {
                               final SecurityQuestion question =
                                   securityQuestions.elementAt(index);

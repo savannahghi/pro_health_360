@@ -1,16 +1,15 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:afya_moja_core/inputs.dart';
 import 'package:domain_objects/value_objects.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class SecurityQuestionWidget extends StatefulWidget {
   const SecurityQuestionWidget({
@@ -36,7 +35,10 @@ class _SecurityQuestionWidgetState extends State<SecurityQuestionWidget> {
     final SecurityQuestion question = widget.securityQuestion;
     final String? initialResponse = widget.response;
     return Container(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(
+        top: 5,
+        bottom: 5,
+      ),
       child: ExpandableQuestion(
         isDateType: question.responseType == SecurityQuestionResponseType.DATE,
         dateController: dateController,
@@ -44,6 +46,11 @@ class _SecurityQuestionWidgetState extends State<SecurityQuestionWidget> {
         hintText: answerHereString,
         validator: securityQuestionValidator,
         initialValue: initialResponse,
+        questionTextStyle: const TextStyle(
+          color: AppColors.greyTextColor,
+          fontSize: 14.0,
+          fontWeight: FontWeight.normal,
+        ),
         keyboardType:
             question.responseType == SecurityQuestionResponseType.NUMBER
                 ? TextInputType.number

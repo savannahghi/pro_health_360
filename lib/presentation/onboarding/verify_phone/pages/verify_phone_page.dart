@@ -9,7 +9,7 @@ import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/error_card.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -51,13 +51,13 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              largeVerticalSizedBox,
+              smallVerticalSizedBox,
               Text(
                 enterOTPString,
                 style: TextThemes.boldSize16Text(AppColors.secondaryColor),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 10),
                 child: Center(
                   child: Column(
                     children: <Widget>[
@@ -86,15 +86,12 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
 
               //Incase there was an error sending the otp
               if (vm.failedToSendOTP!) ...<Widget>[
-                const SizedBox(
-                  height: 40,
-                ),
                 //Handle error incase otp is not sent
-                ErrorCard(
+                ErrorCardWidget(
                   ///Button is disable while sendOTP action is loading
                   buttonColor: vm.wait!.isWaitingFor(sendOTPFlag)
                       ? Colors.grey
-                      : AppColors.secondaryColor,
+                      : Theme.of(context).primaryColor,
                   callBackFunction: vm.wait!.isWaitingFor(sendOTPFlag)
                       ? null
                       : () async {

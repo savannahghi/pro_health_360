@@ -93,7 +93,7 @@ class GenericNoData extends StatelessWidget {
                             TextSpan(
                               text: this.messageBody ?? genericTryAgain,
                               style: TextThemes.normalSize16Text(
-                                AppColors.greyColor,
+                                AppColors.greyTextColor,
                               ),
                             )
                           ],
@@ -101,7 +101,6 @@ class GenericNoData extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       largeVerticalSizedBox,
-                      mediumVerticalSizedBox,
                       SizedBox(
                         width: double.infinity,
                         height: 48,

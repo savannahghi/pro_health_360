@@ -30,10 +30,7 @@ class HomePage extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               BeWellUpgrader(),
-              const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: MoodSelectionWidget(),
-              ),
+              const MoodSelectionWidget(),
               const RecentContentWidget(),
               smallVerticalSizedBox,
               const SuggestedGroupsSection()

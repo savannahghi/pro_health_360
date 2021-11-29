@@ -113,7 +113,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                 },
               );
             },
-            messageBody: messageBodyGenericNoData,
+            messageBody: feedErrorDetail,
           );
         }
 
@@ -131,6 +131,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                 width: double.infinity,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -167,7 +168,6 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                       ),
                     ),
                     SizedBox(
-                      width: double.infinity,
                       height: 280,
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),

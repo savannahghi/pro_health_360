@@ -86,6 +86,9 @@ const String logTitle = 'Get FAQs';
 const String actionTextGenericNoData = 'Retry';
 const String messageBodyGenericNoData =
     'Something went wrong while loading FAQs, retry or contact support for immediate help';
+const String feedErrorDetail =
+    'Something went wrong while fetching recent content, kindly try again or contact our support center for immediate help';
+
 const String itemGenericEmptyData = 'FAQs';
 
 const String clear = 'Clear';
@@ -204,7 +207,6 @@ const String misMatchedPins =
     'Sorry, the PINs entered do not match, please try again';
 const String providePhoneToProceed =
     'Kindly provide your phone number to proceed';
-const String sendOtpError = 'Error encountered while sending OTP';
 
 const String pressToExitText = 'Press back again to leave';
 
@@ -581,4 +583,8 @@ const String verifyCode = 'Verifying Code';
 const String likeString = 'like';
 const String shareString = 'share';
 const String sendOTPError =
-    'Sorry, an error occurred while sending a verification code to you. You can however resend the code by tapping the button below';
+    'There was an error while sending your verification code. Let’s get you a fresh verification code';
+
+const String randomQuoteText =
+    'The greatest glory in living lies not in never falling, but in rising every time we fall';
+const String randomQuoteAuthor = '- Nelson Mandela';

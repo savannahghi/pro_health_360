@@ -8,6 +8,9 @@ const String infoIconUrl = 'assets/icons/info.svg';
 // the infamous spaceman used in the main files
 const String errorDisplayImgUrl = 'assets/images/error-display.png';
 
+//Verify OTP
+const String errorImageSvg = 'assets/images/error_image.svg';
+
 //  search page icons
 const String libraryImgUrl = 'assets/images/book.svg';
 const String medicationsSearchImgUrl = 'assets/icons/meds_search.svg';
@@ -143,3 +146,8 @@ const String whiteCloseIconSvgPath = 'assets/icons/white_close_icon.svg';
 const String selectedSaveIconSvgPath = 'assets/icons/selected_save_icon.svg';
 //Error icons
 const String errorOutlineIconSvg = 'assets/icons/error_outline.svg';
+
+const String leftQuoteSVGUrl = 'assets/icons/quote_left.svg';
+const String rightQuoteSVGUrl = 'assets/icons/quote_right.svg';
+
+ 
