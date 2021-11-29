@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -34,7 +35,7 @@ class ContentItem extends StatelessWidget {
       onTap: () => Navigator.of(context)
           .pushNamed(BWRoutes.contentDetailPage, arguments: contentDetails),
       child: Container(
-        width: 380,
+        width: MediaQuery.of(context).size.width - 50,
         decoration: BoxDecoration(
           color: Colors.grey.shade300,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -50,6 +51,7 @@ class ContentItem extends StatelessWidget {
                         contentDetails.heroImage!.url != UNKNOWN)
                       Stack(
                         children: <Widget>[
+                          // Hero image
                           Container(
                             height: 170.0,
                             decoration: BoxDecoration(
@@ -65,6 +67,7 @@ class ContentItem extends StatelessWidget {
                               ),
                             ),
                           ),
+                          // Reading estimate
                           if (contentDetails.estimate != null)
                             Positioned(
                               bottom: 8,
@@ -75,6 +78,7 @@ class ContentItem extends StatelessWidget {
                             ),
                         ],
                       ),
+                    // A video playback icon if there is a video
                     if (contentDetails.contentType == ContentType.AUDIOVIDEO)
                       SizedBox(
                         key: feedVideoPlayIconKey,
@@ -129,97 +133,46 @@ class ContentItem extends StatelessWidget {
                             AppColors.greyTextColor,
                           ),
                         ),
+                      // Reactions
                       Padding(
-                        padding: const EdgeInsets.only(
-                          top: 18.0,
-                          bottom: 4.0,
-                        ),
+                        padding: const EdgeInsets.only(top: 18, bottom: 4),
                         child: Row(
                           children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                SvgPicture.asset(
-                                  heartIconUrl,
-                                  width: 20,
-                                  height: 20,
-                                  color: AppColors.secondaryColor,
-                                ),
-                                verySmallHorizontalSizedBox,
-                                Text(
-                                  '234',
-                                  style: TextThemes.normalSize12Text(
-                                    AppColors.greyTextColor,
-                                  ),
-                                )
-                              ],
+                            ReactionItem(
+                              iconUrl: heartIconUrl,
+                              count: contentDetails.likeCount,
                             ),
-                            smallHorizontalSizedBox,
-                            Row(
-                              children: <Widget>[
-                                SvgPicture.asset(
-                                  shareIconUrl,
-                                  width: 20,
-                                  height: 20,
-                                  color: AppColors.secondaryColor,
-                                ),
-                                verySmallHorizontalSizedBox,
-                                Text(
-                                  '234',
-                                  style: TextThemes.normalSize12Text(
-                                    AppColors.greyTextColor,
-                                  ),
-                                )
-                              ],
+                            ReactionItem(
+                              iconUrl: shareIconUrl,
+                              count: contentDetails.likeCount,
                             ),
-                            smallHorizontalSizedBox,
-                            Row(
-                              children: <Widget>[
-                                SvgPicture.asset(
-                                  saveIconUrl,
-                                  width: 20,
-                                  height: 20,
-                                  color: AppColors.secondaryColor,
-                                ),
-                                verySmallHorizontalSizedBox,
-                                Text(
-                                  '234',
-                                  style: TextThemes.normalSize12Text(
-                                    AppColors.greyTextColor,
-                                  ),
-                                )
-                              ],
+                            ReactionItem(
+                              iconUrl: saveIconUrl,
+                              count: contentDetails.likeCount,
                             ),
                           ],
                         ),
                       ),
-
-                      // ContentItemFooter(
-                      //   datePublished: contentDetails.metadata!.createdAt!,
-                      //   estimatedReadingTime: contentDetails.estimate,
-                      // )
                     ],
                   ),
                 ),
               ],
             ),
             if (isNew)
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8, right: 8),
-                  child: Container(
-                    height: 30.0,
-                    width: 60,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(6)),
-                      color: Colors.redAccent[700],
-                    ),
-                    child: Center(
-                      child: Text(
-                        newString,
-                        style: TextThemes.boldSize16Text(Colors.white),
-                      ),
-                    ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    color: Colors.redAccent[700],
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  margin: const EdgeInsets.all(8),
+                  child: Text(
+                    newString,
+                    style: TextThemes.boldSize16Text(Colors.white),
                   ),
                 ),
               ),

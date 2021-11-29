@@ -86,6 +86,9 @@ const String logTitle = 'Get FAQs';
 const String actionTextGenericNoData = 'Retry';
 const String messageBodyGenericNoData =
     'Something went wrong while loading FAQs, retry or contact support for immediate help';
+const String feedErrorDetail =
+    'Something went wrong while fetching recent content, kindly try again or contact our support center for immediate help';
+
 const String itemGenericEmptyData = 'FAQs';
 
 const String clear = 'Clear';
@@ -581,3 +584,7 @@ const String likeString = 'like';
 const String shareString = 'share';
 const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
+
+const String randomQuoteText =
+    'The greatest glory in living lies not in never falling, but in rising every time we fall';
+const String randomQuoteAuthor = '- Nelson Mandela';
