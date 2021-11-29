@@ -89,3 +89,15 @@ const String likeContentMutation = r'''
   likeContent(userID: $userID, contentID: $contentID)
 }
 ''';
+
+const String shareContentMutation = r'''
+mutation shareContent($input: ShareContentInput!) {
+  shareContent(input: $input)
+}
+''';
+
+Map<String, dynamic> shareContentMutationVariables(
+  Map<String, dynamic> shareContentVariables,
+) {
+  return <String, dynamic>{'input': shareContentVariables};
+}

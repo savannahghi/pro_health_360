@@ -1,12 +1,16 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/redux/actions/share_content_action.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item_reaction_icon.dart';
 import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
+import 'package:share/share.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -170,8 +174,8 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                         onTap: () {
                           setState(() {
                             likeSelected
-                                ? likeCount = likeCount-1
-                                : likeCount = likeCount+1;
+                                ? likeCount = likeCount - 1
+                                : likeCount = likeCount + 1;
                           });
 
                           updateLikeStatus(
@@ -187,6 +191,26 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                       ContentItemReactionIcon(
                         key: shareButtonKey,
                         count: widget.contentDetails.shareCount.toString(),
+                        onTap: () async {
+                          if (widget.contentDetails.metadata!.publicLink !=
+                                  null &&
+                              widget.contentDetails.metadata!.publicLink !=
+                                  UNKNOWN &&
+                              widget.contentDetails.metadata!.publicLink!
+                                  .isNotEmpty) {
+                            Share.share(
+                              widget.contentDetails.metadata!.publicLink!,
+                              subject: widget.contentDetails.title,
+                            );
+                            await StoreProvider.dispatch(
+                              context,
+                              ShareContentAction(
+                                contentID: widget.contentDetails.contentID!,
+                                context: context,
+                              ),
+                            );
+                          }
+                        },
                         description: shareString,
                         svgPath: shareIconUrl,
                         altSvgPath: shareIconUrl,

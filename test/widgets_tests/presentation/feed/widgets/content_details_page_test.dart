@@ -51,7 +51,7 @@ void main() {
       );
       expect(find.byType(GenericEmptyData), findsOneWidget);
     });
-    testWidgets('Reaction buttons are tappable', (WidgetTester tester) async {
+    testWidgets('Like button is tappable', (WidgetTester tester) async {
       final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
         'idToken',
@@ -75,20 +75,48 @@ void main() {
       await tester.pumpAndSettle();
 
       final Finder likeButton = find.byKey(likeButtonKey);
-      final Finder shareButton = find.byKey(shareButtonKey);
-      final Finder saveButton = find.byKey(saveButtonKey);
 
       expect(likeButton, findsOneWidget);
+  
+
+      await tester.tap(likeButton);
+      await tester.pumpAndSettle();
+      expect(find.text('Like'), findsNothing);
+
+      await tester.tap(likeButton);
+      await tester.pumpAndSettle();
+      expect(find.text('Like'), findsNothing);
+    });
+
+    testWidgets('Share button is tappable', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'shareContent': true,
+            }
+          }),
+          201,
+        ),
+      );
+      final Content contentWithoutBody = mockContent.copyWith.call(body: null);
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: ContentDetailPage(contentDetails: contentWithoutBody),
+      );
+      await tester.pumpAndSettle();
+      final Finder shareButton = find.byKey(shareButtonKey);
+
       expect(shareButton, findsOneWidget);
-      expect(saveButton, findsOneWidget);
 
-      await tester.tap(likeButton);
+      await tester.tap(shareButton);
       await tester.pumpAndSettle();
-      expect(find.text('Like'), findsNothing);
-
-      await tester.tap(likeButton);
-      await tester.pumpAndSettle();
-      expect(find.text('Like'), findsNothing);
+      expect(find.text('Share'), findsNothing);
     });
   });
 }

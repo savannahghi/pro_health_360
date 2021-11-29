@@ -53,6 +53,7 @@ dependencies:
   quiver: ^3.0.1+1
   rxdart: ^0.27.1
   sentry_flutter: ^5.1.0
+  share: ^2.0.4
   shared_preferences: ^2.0.6
   shared_themes: ^0.1.1
   shared_ui_components: ^0.1.43-nullsafety
