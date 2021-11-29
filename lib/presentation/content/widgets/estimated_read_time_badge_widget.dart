@@ -21,7 +21,7 @@ class EstimatedReadTimeBadge extends StatelessWidget {
       ),
       child: Text(
         contentReadDuration(estimateReadTime),
-        style: TextThemes.boldSize12Text(Colors.white),
+        style: TextThemes.mediumSize14Text(Colors.white).copyWith(fontSize: 12),
       ),
     );
   }

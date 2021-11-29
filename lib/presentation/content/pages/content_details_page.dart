@@ -18,29 +18,39 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 
-class ContentDetailPage extends StatelessWidget {
+class ContentDetailPage extends StatefulWidget {
   /// [ContentDetailPage] is used to display the article details
   ///
   /// It takes in a required [articleDetails] parameter which is a map of the
   /// the information to be displayed on this screen
   ///
-  const ContentDetailPage({required this.articleDetails});
+  const ContentDetailPage({required this.contentDetails});
 
-  final Content articleDetails;
+  final Content contentDetails;
 
   @override
+  State<ContentDetailPage> createState() => _ContentDetailPageState();
+}
+
+class _ContentDetailPageState extends State<ContentDetailPage> {
+  late bool likeSelected = false;
+  late bool shareSelected = false;
+  late bool saveSelected = false;
+  @override
   Widget build(BuildContext context) {
-    final Widget publishDate = articleDetails.metadata!.createdAt!.isNotEmpty
+    final Widget publishDate = widget
+            .contentDetails.metadata!.createdAt!.isNotEmpty
         ? sortDate(
             dateTextStyle: TextThemes.boldSize12Text(AppColors.greyTextColor),
             context: context,
-            loadedDate: articleDetails.metadata!.createdAt!,
+            loadedDate: widget.contentDetails.metadata!.createdAt!,
           )
         : const SizedBox();
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Stack(
               children: <Widget>[
@@ -53,7 +63,7 @@ class ContentDetailPage extends StatelessWidget {
                       // TODO(abiud): replace with cached network image to
                       // handle showing an image before the network one loads
                       image: NetworkImage(
-                        articleDetails.heroImage!.url!,
+                        widget.contentDetails.heroImage!.url!,
                       ),
                     ),
                   ),
@@ -86,9 +96,10 @@ class ContentDetailPage extends StatelessWidget {
               ),
               color: Colors.white,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    articleDetails.title!,
+                    widget.contentDetails.title!,
                     style: TextThemes.veryBoldSize18Text(
                       Colors.black,
                     ),
@@ -122,7 +133,7 @@ class ContentDetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                articleDetails.authorName!,
+                                widget.contentDetails.authorName!,
                                 style: TextThemes.veryBoldSize15Text(
                                   AppColors.greyTextColor,
                                 ),
@@ -131,7 +142,7 @@ class ContentDetailPage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Text(
-                                    'Published on ',
+                                    datePublishedString,
                                     style: TextThemes.boldSize12Text(
                                       AppColors.greyTextColor,
                                     ),
@@ -144,54 +155,72 @@ class ContentDetailPage extends StatelessWidget {
                         ],
                       ),
                       EstimatedReadTimeBadge(
-                        estimateReadTime: articleDetails.estimate!,
+                        estimateReadTime: widget.contentDetails.estimate!,
                       ),
                     ],
                   ),
-                  mediumVerticalSizedBox,
+                  largeVerticalSizedBox,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      const ContentItemReactionIcon(
+                      ContentItemReactionIcon(
+                        key: likeButtonKey,
                         svgPath: heartIconUrl,
                         count: '200',
                         description: likeString,
-                        selected: true,
+                        selected: likeSelected,
                         altSvgPath: selectedLikeIconSvgPath,
+                        onTap: () {
+                          setState(() {
+                            likeSelected = !likeSelected;
+                          });
+                        },
                       ),
                       verySmallHorizontalSizedBox,
-                      const ContentItemReactionIcon(
+                      ContentItemReactionIcon(
+                        key: shareButtonKey,
                         count: '',
                         description: shareString,
                         svgPath: shareIconUrl,
                         altSvgPath: selectedLikeIconSvgPath,
+                        onTap: () {
+                          setState(() {
+                            shareSelected = true;
+                          });
+                        },
                       ),
                       verySmallHorizontalSizedBox,
-                      const ContentItemReactionIcon(
+                      ContentItemReactionIcon(
+                        key: saveButtonKey,
                         count: '',
                         description: saveString,
                         svgPath: saveIconUrl,
                         altSvgPath: selectedLikeIconSvgPath,
-                      )
+                        onTap: () {
+                          setState(() {
+                            saveSelected = true;
+                          });
+                        },
+                      ),
                     ],
                   )
                 ],
               ),
             ),
-            if (articleDetails.body != null)
+            if (widget.contentDetails.body != null)
               Container(
                 padding: const EdgeInsets.only(
                   left: 25,
                   right: 25,
                   bottom: 20,
-                  top: 6,
+                  top: 15,
                 ),
                 decoration: BoxDecoration(
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Html(
-                  data: articleDetails.body,
+                  data: widget.contentDetails.body,
                 ),
               )
             else

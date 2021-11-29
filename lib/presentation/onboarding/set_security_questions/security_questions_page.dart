@@ -146,54 +146,58 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                             },
                           ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      width: isLargeScreen ? number300 : double.infinity,
-                      height: number52,
-                      child: MyAfyaHubPrimaryButton(
-                        text: saveAndContinueButtonText,
-                        buttonColor: AppColors.secondaryColor,
-                        onPressed: () {
-                          final bool? isFormValid =
-                              _formKey.currentState?.validate();
+                  if (!vm.appState.wait!
+                          .isWaitingFor(getSecurityQuestionsFlag) &&
+                      !vm.appState.wait!
+                          .isWaitingFor(recordSecurityQuestionsFlag))
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        width: isLargeScreen ? number300 : double.infinity,
+                        height: number52,
+                        child: MyAfyaHubPrimaryButton(
+                          text: saveAndContinueButtonText,
+                          buttonColor: AppColors.secondaryColor,
+                          onPressed: () {
+                            final bool? isFormValid =
+                                _formKey.currentState?.validate();
 
-                          if (isFormValid != null && isFormValid == true) {
-                            final List<SecurityQuestionResponse>
-                                emptyResponses = <SecurityQuestionResponse>[];
+                            if (isFormValid != null && isFormValid == true) {
+                              final List<SecurityQuestionResponse>
+                                  emptyResponses = <SecurityQuestionResponse>[];
 
-                            securityQuestionsResponses.asMap().forEach(
-                              (int index, SecurityQuestionResponse value) {
-                                if (value.response == UNKNOWN ||
-                                    value.response == '') {
-                                  emptyResponses.add(value);
-                                }
-                              },
-                            );
-
-                            if (emptyResponses.isEmpty) {
-                              StoreProvider.dispatch<AppState>(
-                                context,
-                                RecordSecurityQuestionResponsesAction(
-                                  context: context,
-                                ),
+                              securityQuestionsResponses.asMap().forEach(
+                                (int index, SecurityQuestionResponse value) {
+                                  if (value.response == UNKNOWN ||
+                                      value.response == '') {
+                                    emptyResponses.add(value);
+                                  }
+                                },
                               );
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                      kindlyAnswerAllQuestionsString,
-                                    ),
+
+                              if (emptyResponses.isEmpty) {
+                                StoreProvider.dispatch<AppState>(
+                                  context,
+                                  RecordSecurityQuestionResponsesAction(
+                                    context: context,
                                   ),
                                 );
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        kindlyAnswerAllQuestionsString,
+                                      ),
+                                    ),
+                                  );
+                              }
                             }
-                          }
-                        },
+                          },
+                        ),
                       ),
-                    ),
-                  )
+                    )
                 ],
               ),
             ),

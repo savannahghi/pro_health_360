@@ -30,7 +30,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: ContentDetailPage(articleDetails: mockContent),
+        widget: ContentDetailPage(contentDetails: mockContent),
       );
 
       expect(find.byKey(cancelButtonKey), findsOneWidget);
@@ -45,9 +45,39 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: ContentDetailPage(articleDetails: contentWithoutBody),
+        widget: ContentDetailPage(contentDetails: contentWithoutBody),
       );
       expect(find.byType(GenericEmptyData), findsOneWidget);
+    });
+    testWidgets('Reaction buttons are tappable', (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      final Content contentWithoutBody = mockContent.copyWith.call(body: null);
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: ContentDetailPage(contentDetails: contentWithoutBody),
+      );
+
+      final Finder likeButton = find.byKey(likeButtonKey);
+      final Finder shareButton = find.byKey(shareButtonKey);
+      final Finder saveButton = find.byKey(saveButtonKey);
+
+      expect(likeButton, findsOneWidget);
+      expect(shareButton, findsOneWidget);
+      expect(saveButton, findsOneWidget);
+
+      await tester.tap(likeButton);
+      await tester.pumpAndSettle();
+      expect(find.text('Like'), findsNothing);
+
+      await tester.tap(shareButton);
+      await tester.pumpAndSettle();
+      expect(find.text('Share'), findsNothing);
+
+      await tester.tap(saveButton);
+      await tester.pumpAndSettle();
+      expect(find.text('Save'), findsNothing);
     });
   });
 }
