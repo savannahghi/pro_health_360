@@ -1,13 +1,12 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
+import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -60,12 +59,22 @@ class _AppEntryPointState extends State<AppEntryPoint>
       child: StoreConnector<AppState, AppState>(
         converter: (Store<AppState> store) => store.state,
         builder: (BuildContext context, AppState appState) {
+          final String idToken = appState.credentials?.idToken ?? '';
+          final String graphqlEndpoint =
+              widget.appSetupData.customContext!.graphqlEndpoint;
+          final String refreshTokenEndpoint =
+              widget.appSetupData.customContext?.refreshTokenEndpoint ?? '';
+          final String userID = appState.clientState?.user?.userId ?? '';
+
           return AppWrapper(
             appName: widget.appName,
             appContexts: widget.appSetupData.appContexts,
-            graphQLClient: GraphQlClient(
-              appState.credentials!.idToken!,
-              widget.appSetupData.customContext!.graphqlEndpoint,
+            graphQLClient: CustomClient(
+              idToken,
+              graphqlEndpoint,
+              context: context,
+              refreshTokenEndpoint: refreshTokenEndpoint,
+              userID: userID,
             ),
             baseContext: widget.appSetupData.customContext,
             child: PreLoadApp(
