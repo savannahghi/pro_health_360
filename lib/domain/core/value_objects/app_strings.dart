@@ -204,7 +204,6 @@ const String misMatchedPins =
     'Sorry, the PINs entered do not match, please try again';
 const String providePhoneToProceed =
     'Kindly provide your phone number to proceed';
-const String sendOtpError = 'Error encountered while sending OTP';
 
 const String pressToExitText = 'Press back again to leave';
 
@@ -581,4 +580,4 @@ const String verifyCode = 'Verifying Code';
 const String likeString = 'like';
 const String shareString = 'share';
 const String sendOTPError =
-    'Sorry, an error occurred while sending a verification code to you. You can however resend the code by tapping the button below';
+    'There was an error while sending your verification code. Let’s get you a fresh verification code';
