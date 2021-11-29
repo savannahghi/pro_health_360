@@ -11,6 +11,7 @@ _$_VerifyPhoneState _$_$_VerifyPhoneStateFromJson(Map<String, dynamic> json) {
     invalidOTP: json['invalidOTP'] as bool? ?? false,
     otp: json['otp'] as String?,
     failedToSendOTP: json['failedToSendOTP'] as bool? ?? false,
+    canResendOTP: json['canResendOTP'] as bool? ?? false,
   );
 }
 
@@ -20,4 +21,5 @@ Map<String, dynamic> _$_$_VerifyPhoneStateToJson(
       'invalidOTP': instance.invalidOTP,
       'otp': instance.otp,
       'failedToSendOTP': instance.failedToSendOTP,
+      'canResendOTP': instance.canResendOTP,
     };

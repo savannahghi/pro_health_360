@@ -1,15 +1,13 @@
 // Flutter imports:
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-// Package imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:user_feed/user_feed.dart';
-
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -20,6 +18,8 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
+import 'package:user_feed/user_feed.dart';
+
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -64,6 +64,12 @@ void main() {
             },
           ),
         ).thenAnswer((_) async => Future<Response>.value(resendOtpResponse));
+
+        store.dispatch(
+          UpdateOnboardingStateAction(
+            canResendOTP: true,
+          ),
+        );
 
         await buildTestWidget(
           tester: tester,
@@ -113,6 +119,11 @@ void main() {
     testWidgets('should show a loading indicator when verifying an OTP',
         (WidgetTester tester) async {
       final MockGraphQlClient mockClient = MockGraphQlClient();
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          canResendOTP: true,
+        ),
+      );
 
       await buildTestWidget(
         tester: tester,
