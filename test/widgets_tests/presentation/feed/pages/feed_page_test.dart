@@ -75,6 +75,29 @@ void main() {
         expect(find.byType(ContentItem), findsNWidgets(2));
       });
     });
+    testWidgets('should refresh feed display items correctly',
+        (WidgetTester tester) async {
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: const FeedPage(),
+        );
+
+        await tester.tap(find.text('All'));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentItem), findsNWidgets(2));
+
+        await tester.fling(
+          find.byType(ContentItem).first,
+          const Offset(0.0, 300.0),
+          1000.0,
+        );
+        await tester.pumpAndSettle();
+      });
+    });
 
     testWidgets('navigates to the detail view of a feed item',
         (WidgetTester tester) async {

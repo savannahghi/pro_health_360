@@ -80,6 +80,6 @@ class FetchContentAction extends ReduxAction<AppState> {
       }
     }
 
-    return AppState.initial();
+    return state;
   }
 }
