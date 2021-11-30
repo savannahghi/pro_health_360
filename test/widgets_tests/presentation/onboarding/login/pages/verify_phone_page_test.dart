@@ -19,10 +19,10 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
+import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
-import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 

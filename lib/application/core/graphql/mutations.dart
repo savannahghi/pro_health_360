@@ -108,7 +108,6 @@ Map<String, dynamic> shareContentMutationVariables(
   return <String, dynamic>{'input': shareContentVariables};
 }
 
-
 const String bookmarkContentMutation = r'''
 mutation bookmarkContent($userID: String!, $contentItemID: Int!){
   bookmarkContent(userID: $userID, contentItemID: $contentItemID)

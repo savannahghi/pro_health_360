@@ -199,3 +199,20 @@ query getHealthDiaryEntries($clientID: String!){
   }
 }
 ''';
+const String checkIfUserHasLikedContentQuery = r'''
+query checkIfUserHasLikedContent($userID: String!, $contentID: Int!){
+  checkIfUserHasLikedContent(userID: $userID, contentID: $contentID)
+}
+''';
+
+const String checkIfUserBookmarkedContentQuery = r'''
+query checkIfUserBookmarkedContent($userID: String!, $contentID: Int!) {
+  checkIfUserBookmarkedContent(userID: $userID, contentID: $contentID)
+}
+''';
+
+const String checkIfUserBookmarkedContentMutation = r'''
+query checkIfUserBookmarkedContent($userID: String!, $contentID: Int!) {
+  checkIfUserBookmarkedContent(userID: $userID, contentID: $contentID)
+}
+''';

@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/quote.dart';
 
 // Project imports:
+import 'package:myafyahub/domain/core/entities/health_diary/quote.dart';
 import '../../../mocks.dart';
 
 void main() {

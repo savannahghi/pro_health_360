@@ -1,15 +1,18 @@
 // Flutter imports:
 
+// Flutter imports:
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';
 import 'package:misc_utilities/responsive_widget.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/get_security_questions_action.dart';
@@ -24,7 +27,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_question_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class SecurityQuestionsPage extends StatefulWidget {
   const SecurityQuestionsPage();

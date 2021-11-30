@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
 
 part 'health_diary_state.freezed.dart';

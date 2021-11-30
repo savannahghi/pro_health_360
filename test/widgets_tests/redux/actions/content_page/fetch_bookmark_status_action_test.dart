@@ -11,13 +11,15 @@ import 'package:http/http.dart' as http;
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/can_record_mood_action.dart';
+import 'package:myafyahub/application/redux/actions/content/fetch_bookmark_status_action.dart';
+import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
-  group('CanRecordMoodAction', () {
+  group('FetchBookmarkStatusAction', () {
     late Store<AppState> store;
 
     setUpAll(() {
@@ -36,7 +38,10 @@ void main() {
               <String, dynamic>{
                 'message': '4: error',
               }
-            ]
+            ],
+            'data': <String, dynamic>{
+              'checkIfUserBookmarkedContent': true,
+            },
           }),
           401,
         ),
@@ -51,9 +56,15 @@ void main() {
             return SILPrimaryButton(
               onPressed: () async {
                 try {
+                  store.dispatch(
+                    UpdateContentStateAction(
+                      contentItems: <Content>[mockContent],
+                    ),
+                  );
                   await store.dispatch(
-                    CanRecordMoodAction(
+                    FetchBookmarkStatusAction(
                       context: context,
+                      contentID: 1,
                     ),
                   );
                 } catch (e) {

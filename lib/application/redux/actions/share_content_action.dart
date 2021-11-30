@@ -63,7 +63,7 @@ class ShareContentAction extends ReduxAction<AppState> {
 
     if (_client.parseError(body) != null || responseMap['errors'] != null) {
       throw SILException(
-        cause: likeContentFlag,
+        cause: shareContentFlag,
         message: somethingWentWrongText,
       );
     }

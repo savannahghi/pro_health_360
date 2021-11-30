@@ -2,20 +2,26 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 // Package imports:
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:platform/platform.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
@@ -33,11 +39,6 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
-import 'package:platform/platform.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:user_feed/user_feed.dart';
-
 import 'test_utils.dart';
 
 const String testFirstName = 'John';
@@ -977,6 +978,32 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString == checkIfUserHasLikedContentQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'checkIfUserHasLikedContent': true,
+            }
+          }),
+          200,
+        ),
+      );
+    }
+
+    if (queryString == checkIfUserBookmarkedContentQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'checkIfUserBookmarkedContent': false,
+            }
+          }),
+          200,
+        ),
+      );
+    }
+
     return Future<http.Response>.value();
   }
 
@@ -1660,6 +1687,8 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'bookmarkCount': 180,
     'viewCount': 180,
     'shareCount': 180,
+    'hasSaved': false,
+    'hasLiked': false,
     'documents': <dynamic>[],
     'isNew': true,
     'firstPublishedAt': '2021-08-23T06:42:05.085216Z',

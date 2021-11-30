@@ -10,8 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-
-// Flutter imports:
 import 'package:domain_objects/failures.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -34,8 +32,8 @@ import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart' as endpoints;
-import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

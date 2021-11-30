@@ -1,15 +1,19 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
 import 'package:myafyahub/application/redux/actions/can_record_mood_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection_component.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/random_quote_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class MoodChecker extends StatefulWidget {
   const MoodChecker();

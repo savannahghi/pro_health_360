@@ -1,16 +1,19 @@
-// Flutter imports:
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
@@ -19,7 +22,6 @@ import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dar
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/my_health_diary_item_widget.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -141,7 +143,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'getClientHealthDiaryEntries': <dynamic>[]
+              'getClientHealthDiaryEntries': <dynamic>[],
             }
           }),
           201,
@@ -157,13 +159,20 @@ void main() {
 
       await tester.pumpAndSettle();
 
+      final Finder healthDiaryRetryButton =
+          find.byKey(healthDiaryRetryButtonKey);
+
+      expect(healthDiaryRetryButton, findsOneWidget);
       expect(find.byType(EmptyHealthDiary), findsOneWidget);
 
       // try fetching again and expect the same thing
-      await tester.tap(find.byKey(healthDiaryRetryButtonKey));
+      await tester.tap(healthDiaryRetryButton);
       await tester.pumpAndSettle();
-
       expect(find.byType(HomePage), findsOneWidget);
+      expect(
+        store.state.bottomNavigationState!.currentBottomNavIndex,
+        BottomNavIndex.home.index,
+      );
     });
 
     testWidgets(

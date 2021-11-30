@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
-import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -17,6 +15,8 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 

@@ -1,7 +1,8 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+
 // Project imports:
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
 enum AppErrorType { UserFeedError }

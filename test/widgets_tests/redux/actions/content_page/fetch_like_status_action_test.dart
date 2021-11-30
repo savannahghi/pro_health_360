@@ -8,16 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:myafyahub/application/redux/actions/unlike_content_action.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
+import 'package:myafyahub/application/redux/actions/content/fetch_like_status_action.dart';
+import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import '../../../../../mocks.dart';
-import '../../../../../test_helpers.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import '../../../../mocks.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
-  group('UnlikeContentAction', () {
+  group('FetchLikeStatusAction', () {
     late Store<AppState> store;
 
     setUpAll(() {
@@ -36,7 +38,10 @@ void main() {
               <String, dynamic>{
                 'message': '4: error',
               }
-            ]
+            ],
+            'data': <String, dynamic>{
+              'checkIfUserHasLikedContent': true,
+            },
           }),
           401,
         ),
@@ -51,10 +56,15 @@ void main() {
             return SILPrimaryButton(
               onPressed: () async {
                 try {
+                  store.dispatch(
+                    UpdateContentStateAction(
+                      contentItems: <Content>[mockContent],
+                    ),
+                  );
                   await store.dispatch(
-                    UnlikeContentAction(
+                    FetchLikeStatusAction(
                       context: context,
-                      contentID: 20,
+                      contentID: 1,
                     ),
                   );
                 } catch (e) {

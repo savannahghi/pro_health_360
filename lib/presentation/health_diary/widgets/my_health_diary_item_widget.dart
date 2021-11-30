@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class HealthDiaryEntryWidget extends StatelessWidget {

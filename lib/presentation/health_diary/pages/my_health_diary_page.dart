@@ -1,30 +1,30 @@
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
+// Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/fetch_health_diary_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/health_diary_view_model.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/my_health_diary_item_widget.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
-
-// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:shared_ui_components/platform_loader.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/my_health_diary_item_widget.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 class MyHealthDiaryPage extends StatefulWidget {
   @override
@@ -111,18 +111,14 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                     ),
                   );
                 } else {
-                  return EmptyHealthDiary(
-                    refreshCallback: () async {
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        BottomNavAction(
-                          currentBottomNavIndex: BottomNavIndex.home.index,
-                        ),
-                      );
-                      Navigator.of(context).pushReplacementNamed(BWRoutes.home);
-                    },
-                  );
-                }
+                return EmptyHealthDiary(
+                  refreshCallback: () => navigateToNewPage(
+                    route: BWRoutes.home,
+                    context: context,
+                    bottomNavIndex: BottomNavIndex.home.index,
+                  ),
+                );
+              }
               }
             },
           ),

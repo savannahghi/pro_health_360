@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 // Project imports:
 import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/application/redux/states/home_state.dart';

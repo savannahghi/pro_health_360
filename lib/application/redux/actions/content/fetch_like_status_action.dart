@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:async';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
@@ -9,49 +6,54 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/content/update_reactions_state_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
 
-/// [BookmarkContentAction] is a Redux Action whose job is to update saved content per user
-///
-/// Otherwise delightfully notify user of any Error that might occur during the process
-
-class BookmarkContentAction extends ReduxAction<AppState> {
-  BookmarkContentAction({
-    required this.contentID,
+class FetchLikeStatusAction extends ReduxAction<AppState> {
+  FetchLikeStatusAction({
     required this.context,
+    required this.contentID,
   });
 
   final BuildContext context;
   final int contentID;
 
-  /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(fetchLikeStatusFlag));
+    super.after();
+  }
 
   @override
-  Future<AppState> reduce() async {
-    final String? userID = state.clientState!.user!.userId;
+  void before() {
+    dispatch(WaitAction<AppState>.add(fetchLikeStatusFlag));
+    super.before();
+  }
 
-    // initializing of the LikeContent mutation
-    final Map<String, dynamic> _variables = <String, dynamic>{
-      'userID': userID!,
-      'contentItemID': contentID,
+  @override
+  Future<AppState?> reduce() async {
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'userID': state.clientState!.user!.userId,
+      'contentID': contentID
     };
+
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response response = await _client.query(
-      bookmarkContentMutation,
-      _variables,
+    /// fetch the data from the api
+    final Response response = await _client.query(
+      checkIfUserHasLikedContentQuery,
+      variables,
     );
+
     final Map<String, dynamic> responseMap = _client.toMap(response);
     final String? error = parseError(responseMap);
 
@@ -59,29 +61,25 @@ class BookmarkContentAction extends ReduxAction<AppState> {
       reportErrorToSentry(
         context,
         error,
-        hint: 'Error while saving content',
+        hint: 'Error while fetching your like status',
       );
       throw SILException(
-        cause: bookmarkContentTag,
+        cause: fetchLikeStatusFlag,
         message: somethingWentWrongText,
       );
     }
 
-    if (responseMap['data']['bookmarkContent'] == true) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        snackbar(
-          content: const Text(contentSavedSuccessfully),
-          durationSeconds: 2,
-        ),
-      );
+    if (responseMap['data']['checkIfUserHasLikedContent'] != null) {
       dispatch(
-        UpdateReactionStatusAction(contentID: contentID, hasSaved: true),
+        UpdateReactionStatusAction(
+          contentID: contentID,
+          hasLiked: responseMap['data']['checkIfUserHasLikedContent'] as bool,
+        ),
       );
     }
 
     return state;
   }
-
   @override
   Object wrapError(dynamic error) async {
     if (error.runtimeType == SILException) {
@@ -91,7 +89,6 @@ class BookmarkContentAction extends ReduxAction<AppState> {
           SnackBar(
             content: Text(error.message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
-            action: dismissSnackBar(closeString, white, context),
           ),
         );
       return error;

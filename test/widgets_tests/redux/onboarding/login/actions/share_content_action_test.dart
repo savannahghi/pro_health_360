@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:myafyahub/application/redux/actions/share_content_action.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
+import 'package:myafyahub/application/redux/actions/share_content_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';

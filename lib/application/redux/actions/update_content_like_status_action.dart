@@ -21,18 +21,20 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
-/// [LikeContentAction] is a Redux Action whose job is to remove like from content per user
+/// [UnlikeContentAction] is a Redux Action whose job is to add like to content per user
 ///
 /// Otherwise delightfully notify user of any Error that might occur during the process
 
-class LikeContentAction extends ReduxAction<AppState> {
-  LikeContentAction({
+class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
+  UpdateContentLikeStatusAction({
     required this.contentID,
     required this.context,
+    required this.isLiked,
   });
 
   final BuildContext context;
   final int contentID;
+  final bool isLiked;
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
 
@@ -41,7 +43,7 @@ class LikeContentAction extends ReduxAction<AppState> {
     final String? userID =
         StoreProvider.state<AppState>(context)!.clientState!.user!.userId;
 
-    // initializing of the LikeContent mutation
+    // initializing of the UnlikeContent mutation
     final Map<String, dynamic> _variables = <String, dynamic>{
       'userID': userID!,
       'contentID': contentID,
@@ -49,7 +51,7 @@ class LikeContentAction extends ReduxAction<AppState> {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
     final http.Response result = await _client.query(
-      likeContentMutation,
+      isLiked ? unlikeContentMutation : likeContentMutation,
       _variables,
     );
 
@@ -62,7 +64,7 @@ class LikeContentAction extends ReduxAction<AppState> {
 
     if (_client.parseError(body) != null || responseMap['errors'] != null) {
       throw SILException(
-        cause: likeContentFlag,
+        cause: updateLikeContentFlag,
         message: somethingWentWrongText,
       );
     }

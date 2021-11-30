@@ -1,11 +1,15 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
+
 // Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
 const String requestTimeoutError =
@@ -585,7 +589,7 @@ const String invalidCode =
     'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';
 const String verifyCode = 'Verifying Code';
 const String likeString = 'like';
-const String shareString = 'share';
+const String shareString = 'Share';
 const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
 
@@ -620,3 +624,4 @@ const String contentZeroStateTitle = 'You have no content';
 const String contentZeroStateDescription =
     'Sit back, relax and enjoy a cup of coffee as we prepare fresh content for you';
 const String contentZeroStateButtonText = 'Retry';
+const String fetchLikeStatusErrorString = 'Error while fetching your like status';

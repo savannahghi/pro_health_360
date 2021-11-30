@@ -11,9 +11,9 @@ import 'package:myafyahub/domain/core/entities/profile/doctor.dart';
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/profile/health_timeline/timeline_indicator.dart';
 import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item.dart';
 import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
-import 'package:myafyahub/presentation/profile/health_timeline/timeline_indicator.dart';
 
 class MyHealthTimeline extends StatefulWidget {
   const MyHealthTimeline({Key? key}) : super(key: key);

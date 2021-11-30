@@ -46,8 +46,11 @@ const String requestResetPinText = 'request_reset_pin_flag';
 // Congratulations page
 const String setNickNameFlag = 'set_nickname_flag';
 
-//Content Details PAge
-const String likeContentFlag = 'like_content_flag';
+//Content Details Page
+const String updateLikeContentFlag = 'update_like_content_flag';
 const String fetchContentFlag = 'fetch_content_flag';
 const String bookMarkContentFlag = 'bookmark_content_flag';
 const String fetchHealthDiaryFlag = 'fetch_health_diary_flag';
+const String fetchLikeStatusFlag = 'fetch_like_status_flag';
+const String fetchBookmarkStatusFlag = 'fetch_bookmark_status_flag';
+const String shareContentFlag = 'share_content_flag';

@@ -1,10 +1,10 @@
 // Flutter imports:
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:dart_fcm/dart_fcm.dart';
+import 'package:domain_objects/value_objects.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';

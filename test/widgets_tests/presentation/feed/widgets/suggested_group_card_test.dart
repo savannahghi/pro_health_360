@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:myafyahub/presentation/communities/suggested_groups/suggested_group_card.dart';
 
 // Project imports:
+import 'package:myafyahub/presentation/communities/suggested_groups/suggested_group_card.dart';
 import '../../../../mocks.dart';
 
 void main() {

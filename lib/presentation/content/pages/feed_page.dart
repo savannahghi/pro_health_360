@@ -1,28 +1,29 @@
 // Dart imports:
 
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:myafyahub/application/redux/actions/fetch_content_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
-import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
-import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
+import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/content/widgets/content_item.dart';
+import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
@@ -38,10 +39,15 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch<AppState>(
-        context,
-        FetchContentAction(context: context),
-      );
+        final ContentState? state =
+          StoreProvider.state<AppState>(context)?.contentState;
+
+      if (state?.contentItems?.isEmpty ?? false) {
+        StoreProvider.dispatch<AppState>(
+          context,
+          FetchContentAction(context: context),
+        );
+      }
     });
 
     super.initState();

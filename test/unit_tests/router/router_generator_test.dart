@@ -1,10 +1,15 @@
 // Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
+
 // Project imports:
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/author.dart';
@@ -18,11 +23,11 @@ import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
+import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
-import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
@@ -47,8 +52,6 @@ import 'package:myafyahub/presentation/profile/saved_posts/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:user_profile/term_and_conditions.dart' as webview;
-
 import '../../mocks.dart';
 
 void main() {

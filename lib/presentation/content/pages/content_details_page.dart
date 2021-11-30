@@ -1,17 +1,9 @@
 // Flutter imports:
-import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:myafyahub/application/redux/actions/share_content_action.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item_reaction_icon.dart';
-import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
-import 'package:share/share.dart';
-import 'package:myafyahub/presentation/content/widgets/save_feed_item_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -19,14 +11,19 @@ import 'package:shared_themes/text_themes.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/save_feed_item_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/share_content_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 
-class ContentDetailPage extends StatefulWidget {
+class ContentDetailPage extends StatelessWidget {
   /// [ContentDetailPage] is used to display the article details
   ///
-  /// It takes in a required [articleDetails] parameter which is a map of the
+  /// It takes in a required [contentDetails] parameter which is a map of the
   /// the information to be displayed on this screen
   ///
   const ContentDetailPage({required this.contentDetails});
@@ -34,24 +31,14 @@ class ContentDetailPage extends StatefulWidget {
   final Content contentDetails;
 
   @override
-  State<ContentDetailPage> createState() => _ContentDetailPageState();
-}
-
-class _ContentDetailPageState extends State<ContentDetailPage> {
-  late bool likeSelected = false;
-  late int likeCount = widget.contentDetails.likeCount!;
-
-  @override
   Widget build(BuildContext context) {
-    final Widget publishDate = widget
-            .contentDetails.metadata!.createdAt!.isNotEmpty
+    final Widget publishDate = contentDetails.metadata!.createdAt!.isNotEmpty
         ? humanizeDate(
             dateTextStyle: TextThemes.boldSize12Text(AppColors.greyTextColor),
             context: context,
-            loadedDate: widget.contentDetails.metadata!.createdAt!,
+            loadedDate: contentDetails.metadata!.createdAt!,
           )
         : const SizedBox();
-
     return Scaffold(
       backgroundColor: AppColors.lightGreyBackgroundColor,
       body: ListView(
@@ -68,7 +55,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                     // TODO(abiud): replace with cached network image to
                     // handle showing an image before the network one loads
                     image: NetworkImage(
-                      widget.contentDetails.heroImage!.url!,
+                      contentDetails.heroImage!.url!,
                     ),
                   ),
                 ),
@@ -100,7 +87,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  widget.contentDetails.title!,
+                  contentDetails.title!,
                   style: TextThemes.veryBoldSize18Text(Colors.black),
                 ),
                 mediumVerticalSizedBox,
@@ -132,7 +119,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              widget.contentDetails.authorName!,
+                              contentDetails.authorName!,
                               style: TextThemes.veryBoldSize15Text(
                                 AppColors.greyTextColor,
                               ),
@@ -154,7 +141,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                       ],
                     ),
                     EstimatedReadTimeBadge(
-                      estimateReadTime: widget.contentDetails.estimate!,
+                      estimateReadTime: contentDetails.estimate!,
                     ),
                   ],
                 ),
@@ -164,61 +151,20 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                     alignment: WrapAlignment.center,
                     runSpacing: 15,
                     children: <Widget>[
-                      ContentItemReactionIcon(
+                      LikeContentWidget(
+                        contentID: contentDetails.contentID!,
+                        likeCount: contentDetails.likeCount!,
                         key: likeButtonKey,
-                        svgPath: heartIconUrl,
-                        count: likeCount.toString(),
-                        description: likeString,
-                        selected: likeSelected,
-                        altSvgPath: selectedLikeIconSvgPath,
-                        onTap: () {
-                          setState(() {
-                            likeSelected
-                                ? likeCount = likeCount - 1
-                                : likeCount = likeCount + 1;
-                          });
-
-                          updateLikeStatus(
-                            context: context,
-                            contentID: widget.contentDetails.contentID!,
-                            isLiked: likeSelected,
-                          );
-                          setState(() {
-                            likeSelected = !likeSelected;
-                          });
-                        },
                       ),
-                      ContentItemReactionIcon(
-                        key: shareButtonKey,
-                        count: widget.contentDetails.shareCount.toString(),
-                        onTap: () async {
-                          if (widget.contentDetails.metadata!.publicLink !=
-                                  null &&
-                              widget.contentDetails.metadata!.publicLink !=
-                                  UNKNOWN &&
-                              widget.contentDetails.metadata!.publicLink!
-                                  .isNotEmpty) {
-                            Share.share(
-                              widget.contentDetails.metadata!.publicLink!,
-                              subject: widget.contentDetails.title,
-                            );
-                            await StoreProvider.dispatch(
-                              context,
-                              ShareContentAction(
-                                contentID: widget.contentDetails.contentID!,
-                                context: context,
-                              ),
-                            );
-                          }
-                        },
-                        description: shareString,
-                        svgPath: shareIconUrl,
-                        altSvgPath: shareIconUrl,
+                      ShareContentWidget(
+                        link: contentDetails.metadata?.publicLink,
+                        title: contentDetails.title!,
+                        contentID: contentDetails.contentID!,
                       ),
                       verySmallHorizontalSizedBox,
                       SaveFeedItemWidget(
-                        contentID: widget.contentDetails.contentID,
-                        saved: widget.contentDetails.hasSaved ?? false,
+                        key: saveButtonKey,
+                        contentID: contentDetails.contentID,
                       ),
                     ],
                   ),
@@ -226,7 +172,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
               ],
             ),
           ),
-          if (widget.contentDetails.body != null)
+          if (contentDetails.body != null)
             Container(
               padding: const EdgeInsets.only(
                 left: 25,
@@ -237,7 +183,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Html(
-                data: widget.contentDetails.body,
+                data: contentDetails.body,
               ),
             )
           else

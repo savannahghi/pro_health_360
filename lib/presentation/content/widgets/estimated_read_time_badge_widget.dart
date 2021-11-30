@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class EstimatedReadTimeBadge extends StatelessWidget {
   const EstimatedReadTimeBadge({Key? key, required this.estimateReadTime})
