@@ -236,6 +236,27 @@ class MockBuildContext extends Mock implements BuildContext {}
 
 class MockTextEditingController extends Mock implements TextEditingController {}
 
+typedef OnObservation = void Function(
+  Route<dynamic>? route,
+  Route<dynamic>? previousRoute,
+);
+
+class TestNavigatorObserver extends NavigatorObserver {
+  TestNavigatorObserver({this.onPop, this.onPush});
+
+  final OnObservation? onPop;
+  final OnObservation? onPush;
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) =>
+      onPop?.call(route, previousRoute);
+
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    onPush?.call(route, previousRoute);
+  }
+}
+
 /// a short client for providing custom responses
 ///
 /// a good use case is when you want to return error responses

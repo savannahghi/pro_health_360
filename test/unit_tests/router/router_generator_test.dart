@@ -6,6 +6,7 @@ import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
@@ -419,5 +420,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<HandleDeepLink>>());
     expect(route.builder(context), isA<HandleDeepLink>());
+  });
+
+  test('Test router returns Successful entry page', () {
+    const RouteSettings settings =
+        RouteSettings(name: BWRoutes.successfulEntryPage);
+
+    final MaterialPageRoute<SuccessfulDiaryEntryPage> route =
+        routeGenerator(settings) as MaterialPageRoute<SuccessfulDiaryEntryPage>;
+
+    expect(route, isA<MaterialPageRoute<SuccessfulDiaryEntryPage>>());
+    expect(route.builder(context), isA<SuccessfulDiaryEntryPage>());
   });
 }

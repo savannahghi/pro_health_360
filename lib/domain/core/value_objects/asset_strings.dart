@@ -150,4 +150,4 @@ const String errorOutlineIconSvg = 'assets/icons/error_outline.svg';
 const String leftQuoteSVGUrl = 'assets/icons/quote_left.svg';
 const String rightQuoteSVGUrl = 'assets/icons/quote_right.svg';
 
- 
+const String successfulEntryImage = 'assets/images/successful_entry_image.svg';

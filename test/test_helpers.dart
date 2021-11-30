@@ -70,6 +70,7 @@ Future<void> buildTestWidget({
   required Store<AppState> store,
   required IGraphQlClient client,
   required Widget widget,
+  List<NavigatorObserver>? navigatorObservers,
 }) async {
   FlutterConfig.loadValueForTesting(<String, String>{
     'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
@@ -91,6 +92,7 @@ Future<void> buildTestWidget({
           supportedLocales: locales,
           navigatorKey: appGlobalNavigatorKey,
           onGenerateRoute: RouteGenerator.generateRoute,
+          navigatorObservers: navigatorObservers ?? <NavigatorObserver>[],
           home: Scaffold(
             body: Center(
               child: widget,

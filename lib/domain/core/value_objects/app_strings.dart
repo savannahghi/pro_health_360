@@ -594,3 +594,16 @@ const String randomQuoteAuthor = '- Nelson Mandela';
 const String contentCategoriesErrorMessage = 'Something went wrong. Retry';
 
 const String contentSavedSuccessfully = 'Content saved successfully';
+const String diaryEntrySuccessfulText = 'Diary entry added successfully';
+const String mightTakeSomeTimeText =
+    'They might take some time to reach out to you. '
+    'If it is an emergency, please contact your '
+    'clinic on ';
+const String okThanksText = 'Ok, thanks';
+const String clinicNumber = '+254 7123456';
+
+String getSuccessfulBodyText(String userName) {
+  return 'Thanks $userName for sharing how you are feeling. '
+      'We have notified your clinician. Your entry might be discussed '
+      'on your next visit.';
+}

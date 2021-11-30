@@ -59,6 +59,7 @@ class BWRoutes {
 
   // Health Diary Page
   static const String myHealthDiaryPage = '/healthDiaryPage';
+  static const String successfulEntryPage = '/successfulEntryPage';
 
   // User Profile Page
   static const String userProfilePage = '/userProfilePage';

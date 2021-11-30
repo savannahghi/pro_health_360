@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
@@ -91,6 +92,11 @@ class RouteGenerator {
       case BWRoutes.moodFeedbackPage:
         return MaterialPageRoute<MoodFeedbackPage>(
           builder: (_) => MoodFeedbackPage(moodType: args as MoodType),
+        );
+
+      case BWRoutes.successfulEntryPage:
+        return MaterialPageRoute<SuccessfulDiaryEntryPage>(
+          builder: (_) => const SuccessfulDiaryEntryPage(),
         );
 
       case BWRoutes.editInformationPage:
