@@ -16,19 +16,19 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
-### ios myafyahubdev
+### ios dev
 ```
-fastlane ios myafyahubdev
+fastlane ios dev
 ```
 Code Signing Dev Build for TestFlight
-### ios myafyahubdemo
+### ios demo
 ```
-fastlane ios myafyahubdemo
+fastlane ios demo
 ```
 Code Signing Demo Build for TestFlight
-### ios deploy
+### ios prod
 ```
-fastlane ios deploy
+fastlane ios prod
 ```
 Code Sign and Build SIL for App Store
 
