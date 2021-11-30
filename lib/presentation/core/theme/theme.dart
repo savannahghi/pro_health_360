@@ -89,6 +89,7 @@ class AppColors {
   static const Color unSelectedReactionIconColor = Color(0xff697489);
   static const Color selectedReactionBackgroundColor = Color(0xfffeeced);
   static const Color reactionIconRedColor = Color(0xfff75b60);
+  static const Color inputGreyColor = Color(0xfff4f4f4);
 }
 
 class ThemeColors {

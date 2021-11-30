@@ -321,21 +321,22 @@ const String happyString = 'Happy';
 const String mehString = 'Meh';
 const String sadString = 'Sad';
 const String verySadString = 'Very Sad';
-const String pleaseAddaNoteOnHowYouAreFeelingString =
-    'Neat, please add a note on how you are feeling';
+const String pleaseAddANoteOnHowYouAreFeelingString =
+    'Great, please describe your feeling';
+const String iAmFeelingText = 'I am ';
 const String areYouFeelingAnyOfTheFollowingString =
     'Are you feeling any of the following?';
 const String selectWhatBestDescribesHowYourCurrentConditionString =
     'Select what best describes how your current condition';
+const String elaborateString = 'Please elaborate';
 const String soSorryPleaseDescribeHowAreFeelingString =
     'So sorry, please describe how you are feeling.';
-const String addNotesString = 'Add notes';
+const String addNotesString = 'Describe how you are feeling';
 const String iHaveNightSweatsString = 'I have night sweats';
 const String iHaveAFeverString = 'I have a fever';
 const String imCoughingString = 'I\'m coughing';
 const String iVeLostWeightString = 'I\'ve lost weight';
 const String nextString = 'Next';
-const String saveEntryString = 'Save Entry';
 
 const String confirmPinString = 'Confirm new PIN';
 const String createNewPINTitleString = 'Create new PIN';
@@ -591,3 +592,5 @@ const String randomQuoteText =
     'The greatest glory in living lies not in never falling, but in rising every time we fall';
 const String randomQuoteAuthor = '- Nelson Mandela';
 const String contentCategoriesErrorMessage = 'Something went wrong. Retry';
+
+const String contentSavedSuccessfully = 'Content saved successfully';

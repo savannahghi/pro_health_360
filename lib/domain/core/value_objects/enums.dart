@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -53,6 +54,25 @@ extension MoodTypeEx on MoodType {
 
       case MoodType.VerySad:
         return verySadIconSvgPath;
+    }
+  }
+
+  String get name {
+    switch (this) {
+      case MoodType.Excited:
+        return excitedString;
+
+      case MoodType.Happy:
+        return happyString;
+
+      case MoodType.Meh:
+        return mehString;
+
+      case MoodType.Sad:
+        return sadString;
+
+      case MoodType.VerySad:
+        return verySadString;
     }
   }
 }

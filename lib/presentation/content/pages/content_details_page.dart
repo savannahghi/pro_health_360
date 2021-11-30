@@ -53,6 +53,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
         : const SizedBox();
 
     return Scaffold(
+      backgroundColor: AppColors.lightGreyBackgroundColor,
       body: ListView(
         shrinkWrap: true,
         children: <Widget>[
@@ -100,9 +101,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
               children: <Widget>[
                 Text(
                   widget.contentDetails.title!,
-                  style: TextThemes.veryBoldSize18Text(
-                    Colors.black,
-                  ),
+                  style: TextThemes.veryBoldSize18Text(Colors.black),
                 ),
                 mediumVerticalSizedBox,
                 Row(
@@ -235,7 +234,6 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                 bottom: 20,
               ),
               decoration: BoxDecoration(
-                color: AppColors.whiteColor,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Html(

@@ -33,7 +33,7 @@ void main() {
       );
       await tester.tap(find.byType(SaveFeedItemWidget));
       await tester.pump(const Duration(seconds: 2));
-      expect(find.text(comingSoonText), findsOneWidget);
+      expect(find.text(contentSavedSuccessfully), findsOneWidget);
     });
   });
 }

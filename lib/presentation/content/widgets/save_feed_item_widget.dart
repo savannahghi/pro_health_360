@@ -36,7 +36,7 @@ class _SaveFeedItemWidgetState extends State<SaveFeedItemWidget> {
         //TODO: Save feed item
         ScaffoldMessenger.of(context).showSnackBar(
           snackbar(
-            content: const Text(comingSoonText),
+            content: const Text(contentSavedSuccessfully),
             durationSeconds: 2,
           ),
         );

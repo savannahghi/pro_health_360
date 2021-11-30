@@ -24,7 +24,7 @@ class ReactionItem extends StatelessWidget {
           ),
           verySmallHorizontalSizedBox,
           Text(
-            count != 0 ? count.toString() : '0',
+            (count != 0 && count != null) ? count.toString() : '0',
             style: TextThemes.normalSize12Text(AppColors.greyTextColor),
           )
         ],
