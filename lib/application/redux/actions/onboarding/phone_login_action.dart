@@ -134,10 +134,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         dispatch(
           UpdateOnboardingStateAction(
-            isPhoneVerified: true,
             hasSetNickName: user?.username != null,
             hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
             hasSetPin: user?.hasSetPin,
+            isPhoneVerified: user?.isPhoneVerified,
           ),
         );
 

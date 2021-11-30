@@ -41,6 +41,7 @@ class SetNicknameAction extends ReduxAction<AppState> {
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   @override
   void before() {
+    super.before();
     toggleLoadingIndicator(context: context, flag: flag);
   }
 
@@ -52,15 +53,13 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID =
-        StoreProvider.state<AppState>(context)!.clientState!.user!.userId;
-    final String? userName =
-        StoreProvider.state<AppState>(context)!.clientState!.user!.username;
+    final String userID = state.clientState!.user!.userId!;
+    final String userName = state.clientState!.user!.username!;
 
     // initializing of the SetNicknameAction mutation
     final Map<String, String> _variables = <String, String>{
-      'userID': userID!,
-      'nickname': userName!,
+      'userID': userID,
+      'nickname': userName,
     };
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
@@ -92,18 +91,18 @@ class SetNicknameAction extends ReduxAction<AppState> {
         ),
       );
 
-      StoreProvider.dispatch(
-        context,
+      dispatch(
         UpdateOnboardingStateAction(hasSetNickName: true),
       );
-      StoreProvider.dispatch(
-        context,
+
+      await dispatch(
         CompleteOnboardingTourAction(
           context: context,
           flag: flag,
           userID: userID,
         ),
       );
+
       Navigator.pushReplacementNamed(
         context,
         BWRoutes.home,

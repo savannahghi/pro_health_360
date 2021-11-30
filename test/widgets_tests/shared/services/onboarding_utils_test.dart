@@ -619,7 +619,7 @@ void main() {
         await tester.tap(find.byType(SILPrimaryButton));
         await tester.pumpAndSettle();
 
-        expect(actualResponse.ok, true);
+        expect(actualResponse.ok, false);
         expect(actualResponse.response, expectedErrorResponse);
         expect(actualResponse.message, slowInternet);
       });

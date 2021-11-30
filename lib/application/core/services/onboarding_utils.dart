@@ -148,7 +148,7 @@ ProcessedResponse processHttpResponse(
   }
   if (response.statusCode == 408) {
     return ProcessedResponse(
-      ok: true,
+      ok: false,
       response: response,
       message: getUserFriendlyMsg(0),
     );

@@ -38,6 +38,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
   @override
   void before() {
+    super.before();
     toggleLoadingIndicator(context: context, flag: verifyOTP);
   }
 
@@ -70,8 +71,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
       final ProcessedResponse processedResponse =
           processHttpResponse(httpResponse, context);
 
-      if (processedResponse.ok == true) {
-        //Return bool response
+      if (processedResponse.ok) {
         final bool isValid = jsonDecode(httpResponse.body) as bool;
 
         if (isValid) {
