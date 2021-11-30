@@ -21,7 +21,11 @@ void main() {
 
     expect(
       initialAddress,
-      ContentState(contentItems: <Content>[]),
+      ContentState(
+        contentItems: <Content>[],
+        errorFetchingContent: false,
+        timeoutFetchingContent: false,
+      ),
     );
   });
 }
