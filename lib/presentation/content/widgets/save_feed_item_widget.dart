@@ -35,6 +35,7 @@ class SaveFeedItemWidget extends StatelessWidget {
           color: AppColors.unSelectedReactionBackgroundColor,
         ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (saved)
               const Icon(UniconsLine.check, size: 20)

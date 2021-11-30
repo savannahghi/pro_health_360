@@ -22,8 +22,10 @@ class UpdateContentStateAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final AppState newState = state.copyWith.contentState!.call(
       contentItems: contentItems ?? state.contentState!.contentItems,
-      errorFetchingContent: state.contentState!.errorFetchingContent,
-      timeoutFetchingContent: state.contentState!.timeoutFetchingContent,
+      errorFetchingContent:
+          errorFetchingContent ?? state.contentState!.errorFetchingContent,
+      timeoutFetchingContent:
+          timeoutFetchingContent ?? state.contentState!.timeoutFetchingContent,
     );
 
     return newState;
