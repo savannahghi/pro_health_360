@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/address.dart';
 import 'package:myafyahub/domain/core/entities/core/health_diary_state.dart';
@@ -15,6 +14,7 @@ part 'client_state.g.dart';
 @freezed
 class ClientState with _$ClientState {
   factory ClientState({
+    @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'addresses') List<Address>? addresses,
     @JsonKey(name: 'clientCounselled', defaultValue: false)
@@ -39,6 +39,7 @@ class ClientState with _$ClientState {
       _$ClientStateFromJson(json);
 
   factory ClientState.initial() => ClientState(
+        id: UNKNOWN,
         user: User.initial(),
         treatmentEnrollmentDate: UNKNOWN,
         clientType: ClientType.UNKNOWN,

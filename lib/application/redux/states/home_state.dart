@@ -8,6 +8,7 @@ part 'home_state.g.dart';
 class HomeState with _$HomeState {
   factory HomeState({
     bool? canRecordMood,
+    bool? createHealthDiaryEntry,
   }) = _HomeState;
 
   factory HomeState.fromJson(Map<String, dynamic> json) =>
@@ -15,6 +16,7 @@ class HomeState with _$HomeState {
 
   factory HomeState.initial() => HomeState(
         canRecordMood: false,
+        createHealthDiaryEntry: false,
 
         ///   - RecentContentState
         ///   - SuggestedGroupsState

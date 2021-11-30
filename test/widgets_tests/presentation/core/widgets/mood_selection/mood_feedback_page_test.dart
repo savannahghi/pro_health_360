@@ -1,16 +1,19 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
-import 'package:async_redux/async_redux.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'dart:convert';
 
+import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
+
+import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
@@ -20,6 +23,19 @@ void main() {
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+        MockShortSILGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      http.Response(
+        json.encode(<String, dynamic>{
+          'data': <String, dynamic>{
+            'createHealthDiaryEntry': true,
+          },
+        }),
+        201,
+      ),
+    );
     testWidgets('should render correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -27,7 +43,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            return const MoodFeedbackPage(moodType: MoodType.Excited);
+            return const MoodFeedbackPage(moodType: MoodType.VERY_HAPPY);
           },
         ),
       );
@@ -45,7 +61,7 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             return const MoodFeedbackPage(
-              moodType: MoodType.Happy,
+              moodType: MoodType.HAPPY,
             );
           },
         ),
@@ -64,13 +80,19 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return const MoodFeedbackPage(moodType: MoodType.Excited);
+            return const MoodFeedbackPage(moodType: MoodType.SAD);
           },
         ),
       );
+
+      final Finder textFormField = find.byKey(moodFeedbackTextFieldKey);
+      expect(textFormField, findsOneWidget);
+      await tester.showKeyboard(textFormField);
+      await tester.enterText(textFormField, 'text');
+      await tester.pumpAndSettle();
 
       final Finder moodFeedbackButton = find.byKey(moodFeedbackButtonKey);
 

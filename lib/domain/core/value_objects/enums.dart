@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
@@ -20,11 +19,11 @@ enum TimelineItemType {
 enum FollowUpChoice { Yes, No, Unknown }
 
 enum MoodType {
-  Excited,
-  Happy,
-  Meh,
-  Sad,
-  VerySad,
+  VERY_HAPPY,
+  HAPPY,
+  NEUTRAL,
+  SAD,
+  VERY_SAD,
 }
 
 /// [MoodTypeEx] extends [MoodType] enum to get the icon values as
@@ -32,40 +31,44 @@ enum MoodType {
 extension MoodTypeEx on MoodType {
   String get iconString {
     switch (this) {
-      case MoodType.Excited:
+      case MoodType.VERY_HAPPY:
         return excitedIconSvgPath;
 
-      case MoodType.Happy:
+      case MoodType.HAPPY:
         return happyIconSvgPath;
 
-      case MoodType.Meh:
+      case MoodType.NEUTRAL:
         return mehIconSvgPath;
 
-      case MoodType.Sad:
+      case MoodType.SAD:
         return sadIconSvgPath;
 
-      case MoodType.VerySad:
+      case MoodType.VERY_SAD:
         return verySadIconSvgPath;
     }
   }
 
   String get name {
     switch (this) {
-      case MoodType.Excited:
-        return excitedString;
+      case MoodType.VERY_HAPPY:
+        return veryHappyString;
 
-      case MoodType.Happy:
+      case MoodType.HAPPY:
         return happyString;
 
-      case MoodType.Meh:
-        return mehString;
+      case MoodType.NEUTRAL:
+        return neutralString;
 
-      case MoodType.Sad:
+      case MoodType.SAD:
         return sadString;
 
-      case MoodType.VerySad:
+      case MoodType.VERY_SAD:
         return verySadString;
     }
+  }
+
+  String get value {
+    return describeEnum(this).toUpperCase();
   }
 }
 

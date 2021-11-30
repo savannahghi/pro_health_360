@@ -8,6 +8,7 @@ part of 'client_state.dart';
 
 _$_ClientState _$_$_ClientStateFromJson(Map<String, dynamic> json) {
   return _$_ClientState(
+    id: json['id'] as String?,
     active: json['active'] as bool? ?? false,
     addresses: (json['addresses'] as List<dynamic>?)
         ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
@@ -35,6 +36,7 @@ _$_ClientState _$_$_ClientStateFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_ClientStateToJson(_$_ClientState instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'active': instance.active,
       'addresses': instance.addresses,
       'clientCounselled': instance.clientCounselled,

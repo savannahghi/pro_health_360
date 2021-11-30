@@ -21,7 +21,9 @@ class _$ClientStateTearOff {
   const _$ClientStateTearOff();
 
   _ClientState call(
-      {@JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
@@ -45,6 +47,7 @@ class _$ClientStateTearOff {
           bool? isSignedIn,
       HealthDiaryState? healthDiaryState}) {
     return _ClientState(
+      id: id,
       active: active,
       addresses: addresses,
       clientCounselled: clientCounselled,
@@ -70,6 +73,8 @@ const $ClientState = _$ClientStateTearOff();
 
 /// @nodoc
 mixin _$ClientState {
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'addresses')
@@ -110,7 +115,9 @@ abstract class $ClientStateCopyWith<$Res> {
           ClientState value, $Res Function(ClientState) then) =
       _$ClientStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
@@ -148,6 +155,7 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? active = freezed,
     Object? addresses = freezed,
     Object? clientCounselled = freezed,
@@ -162,6 +170,10 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? healthDiaryState = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -244,7 +256,9 @@ abstract class _$ClientStateCopyWith<$Res>
       __$ClientStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
@@ -286,6 +300,7 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? active = freezed,
     Object? addresses = freezed,
     Object? clientCounselled = freezed,
@@ -300,6 +315,10 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? healthDiaryState = freezed,
   }) {
     return _then(_ClientState(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -356,7 +375,9 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ClientState implements _ClientState {
   _$_ClientState(
-      {@JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'id')
+          this.id,
+      @JsonKey(name: 'active', defaultValue: false)
           this.active,
       @JsonKey(name: 'addresses')
           this.addresses,
@@ -383,6 +404,9 @@ class _$_ClientState implements _ClientState {
   factory _$_ClientState.fromJson(Map<String, dynamic> json) =>
       _$_$_ClientStateFromJson(json);
 
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
   @override
   @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
@@ -425,13 +449,15 @@ class _$_ClientState implements _ClientState {
 
   @override
   String toString() {
-    return 'ClientState(active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, healthDiaryState: $healthDiaryState)';
+    return 'ClientState(id: $id, active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, healthDiaryState: $healthDiaryState)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ClientState &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)) &&
             (identical(other.addresses, addresses) ||
@@ -472,6 +498,7 @@ class _$_ClientState implements _ClientState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(addresses) ^
       const DeepCollectionEquality().hash(clientCounselled) ^
@@ -498,7 +525,9 @@ class _$_ClientState implements _ClientState {
 
 abstract class _ClientState implements ClientState {
   factory _ClientState(
-      {@JsonKey(name: 'active', defaultValue: false)
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
@@ -525,6 +554,9 @@ abstract class _ClientState implements ClientState {
   factory _ClientState.fromJson(Map<String, dynamic> json) =
       _$_ClientState.fromJson;
 
+  @override
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;

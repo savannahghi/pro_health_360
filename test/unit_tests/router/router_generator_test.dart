@@ -1,17 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
-import 'package:myafyahub/presentation/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
-import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
-import 'package:user_profile/term_and_conditions.dart' as webview;
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/author.dart';
@@ -22,32 +14,39 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
-import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
+import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
+import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
-import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
-import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
-import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/profile/clinic_information/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/consent/consent_page.dart';
+import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
+import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/medical_data/medical_data_page.dart';
+import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
-import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
+
 import '../../mocks.dart';
 
 void main() {
@@ -72,7 +71,7 @@ void main() {
   test('Test router returns mood feedback page', () {
     const RouteSettings settings = RouteSettings(
       name: BWRoutes.moodFeedbackPage,
-      arguments: MoodType.Excited,
+      arguments: MoodType.VERY_HAPPY,
     );
 
     final MaterialPageRoute<MoodFeedbackPage> route =

@@ -10,6 +10,7 @@ void main() {
 
       final HomeState actual = HomeState(
         canRecordMood: false,
+        createHealthDiaryEntry: false,
       );
 
       expect(fromJson, actual);
