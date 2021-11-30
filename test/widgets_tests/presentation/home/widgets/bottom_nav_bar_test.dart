@@ -82,7 +82,8 @@ void main() {
                     mockContent,
                   ]
                 },
-                'fetchSuggestedGroups': <dynamic>[mockGroup]
+                'fetchSuggestedGroups': <dynamic>[mockGroup],
+                'listContentCategories': categoriesMock,
               }
             }),
             201,

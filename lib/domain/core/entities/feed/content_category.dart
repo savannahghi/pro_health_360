@@ -8,9 +8,9 @@ part 'content_category.g.dart';
 @freezed
 class ContentCategory with _$ContentCategory {
   factory ContentCategory({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'categoryName') String? name,
-    @JsonKey(name: 'categoryIcon') String? icon,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'iconUrl') String? icon,
   }) = _ContentCategory;
 
   factory ContentCategory.fromJson(Map<String, dynamic> json) =>

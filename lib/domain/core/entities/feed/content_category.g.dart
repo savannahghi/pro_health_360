@@ -8,15 +8,15 @@ part of 'content_category.dart';
 
 _$_ContentCategory _$_$_ContentCategoryFromJson(Map<String, dynamic> json) {
   return _$_ContentCategory(
-    id: json['ID'] as int?,
-    name: json['categoryName'] as String?,
-    icon: json['categoryIcon'] as String?,
+    id: json['id'] as int?,
+    name: json['name'] as String?,
+    icon: json['iconUrl'] as String?,
   );
 }
 
 Map<String, dynamic> _$_$_ContentCategoryToJson(_$_ContentCategory instance) =>
     <String, dynamic>{
-      'ID': instance.id,
-      'categoryName': instance.name,
-      'categoryIcon': instance.icon,
+      'id': instance.id,
+      'name': instance.name,
+      'iconUrl': instance.icon,
     };

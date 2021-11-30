@@ -1,5 +1,4 @@
 // Dart imports:
-import 'dart:convert';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -8,14 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/buttons.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
@@ -90,19 +86,6 @@ void main() {
     testWidgets('should dispatch action and catch error',
         (WidgetTester tester) async {
       const String errMsg = 'No user account found';
-      final http.Response response = http.Response(
-        json.encode(<String, dynamic>{'error': errMsg}),
-        500,
-      );
-
-      final Map<String, dynamic> queryVariables = <String, dynamic>{
-        'phoneNumber': '+254728101710',
-        'pin': '1234',
-        'flavour': Flavour.CONSUMER.name,
-      };
-
-      when(baseGraphQlClientMock.query(loginQuery, queryVariables))
-          .thenAnswer((_) async => Future<http.Response>.value(response));
 
       when(baseGraphQlClientMock.parseError(<String, dynamic>{'error': errMsg}))
           .thenReturn(errMsg);

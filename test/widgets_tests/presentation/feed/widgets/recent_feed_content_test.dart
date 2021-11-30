@@ -51,6 +51,7 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
               'getContent': <String, dynamic>{
                 'items': <dynamic>[
                   mockContent,
@@ -101,6 +102,7 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
               'getContent': <String, dynamic>{
                 'items': <dynamic>[
                   mockContent,

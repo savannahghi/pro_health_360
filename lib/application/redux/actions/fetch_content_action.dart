@@ -18,10 +18,15 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 
 class FetchContentAction extends ReduxAction<AppState> {
-  FetchContentAction({required this.context, this.limit = 10});
+  FetchContentAction({
+    required this.context,
+    this.limit = 10,
+    this.id = 0,
+  });
 
   final BuildContext context;
   final int limit;
+  final int id;
 
   @override
   void after() {
@@ -38,6 +43,7 @@ class FetchContentAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
+      'categoryID': id == 0 ? null : id,
       'Limit': limit.toString()
     };
 

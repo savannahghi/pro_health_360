@@ -1708,6 +1708,29 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   },
 ];
 
+final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'id': 1,
+    'name': 'welcome',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 2,
+    'name': 'recommended',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 3,
+    'name': 'exercise',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 4,
+    'name': 'diet',
+    'iconUrl': 'test-image.png',
+  }
+];
+
 final Content mockContent = Content.fromJson(contentMock.first);
 
 final Group mockGroup = Group(
@@ -1755,6 +1778,11 @@ final Map<String, dynamic> mockFeedContent = <String, dynamic>{
     'items': <dynamic>[contentMock.first]
   },
 };
+
+final Map<String, dynamic> mockListContentCategories = <String, dynamic>{
+  'listContentCategories': categoriesMock
+};
+
 final Map<String, dynamic> mockRelatedPerson = <String, dynamic>{
   'active': true,
   'dateOfBirth': '21 Nov 2002',

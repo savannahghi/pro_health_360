@@ -10,14 +10,13 @@ import 'package:myafyahub/application/redux/actions/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
-import 'package:shared_themes/text_themes.dart';
+import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
@@ -35,8 +34,6 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-  final int _choiceIndex = 0;
-
   @override
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
@@ -56,8 +53,13 @@ class _FeedPageState extends State<FeedPage> {
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: _buildFeedFilters(context),
+            padding: const EdgeInsets.only(
+              right: 12.0,
+              left: 12.0,
+              bottom: 8.0,
+              top: 4.0,
+            ),
+            child: FeedCategoriesWidget(),
           ),
           StoreConnector<AppState, ContentViewModel>(
             converter: (Store<AppState> store) =>
@@ -126,55 +128,6 @@ class _FeedPageState extends State<FeedPage> {
             },
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildFeedFilters(BuildContext context) {
-    final List<String> _choices = <String>[
-      allString,
-      recommendedString,
-      exerciseString,
-      dietString,
-    ];
-    return SizedBox(
-      width: double.infinity,
-      height: 42,
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: _choices.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
-            child: ChoiceChip(
-              label: Text(
-                _choices[index],
-                style: TextThemes.normalSize16Text().copyWith(
-                  color: _choiceIndex == index
-                      ? AppColors.whiteColor
-                      : AppColors.secondaryColor,
-                ),
-              ),
-              labelStyle: const TextStyle(color: AppColors.whiteColor),
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  color: AppColors.whiteColor,
-                ),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              selected: _choiceIndex == index,
-              selectedColor: AppColors.secondaryColor,
-              onSelected: (bool selected) {
-                StoreProvider.dispatch<AppState>(
-                  context,
-                  FetchContentAction(context: context),
-                );
-              },
-              backgroundColor: Colors.grey.shade300,
-            ),
-          );
-        },
       ),
     );
   }

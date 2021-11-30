@@ -21,9 +21,9 @@ class _$ContentCategoryTearOff {
   const _$ContentCategoryTearOff();
 
   _ContentCategory call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'categoryName') String? name,
-      @JsonKey(name: 'categoryIcon') String? icon}) {
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'iconUrl') String? icon}) {
     return _ContentCategory(
       id: id,
       name: name,
@@ -41,11 +41,11 @@ const $ContentCategory = _$ContentCategoryTearOff();
 
 /// @nodoc
 mixin _$ContentCategory {
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'categoryName')
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'categoryIcon')
+  @JsonKey(name: 'iconUrl')
   String? get icon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,9 +60,9 @@ abstract class $ContentCategoryCopyWith<$Res> {
           ContentCategory value, $Res Function(ContentCategory) then) =
       _$ContentCategoryCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'categoryName') String? name,
-      @JsonKey(name: 'categoryIcon') String? icon});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'iconUrl') String? icon});
 }
 
 /// @nodoc
@@ -105,9 +105,9 @@ abstract class _$ContentCategoryCopyWith<$Res>
       __$ContentCategoryCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'categoryName') String? name,
-      @JsonKey(name: 'categoryIcon') String? icon});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'iconUrl') String? icon});
 }
 
 /// @nodoc
@@ -148,21 +148,21 @@ class __$ContentCategoryCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ContentCategory implements _ContentCategory {
   _$_ContentCategory(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'categoryName') this.name,
-      @JsonKey(name: 'categoryIcon') this.icon});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'iconUrl') this.icon});
 
   factory _$_ContentCategory.fromJson(Map<String, dynamic> json) =>
       _$_$_ContentCategoryFromJson(json);
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey(name: 'categoryName')
+  @JsonKey(name: 'name')
   final String? name;
   @override
-  @JsonKey(name: 'categoryIcon')
+  @JsonKey(name: 'iconUrl')
   final String? icon;
 
   @override
@@ -202,21 +202,21 @@ class _$_ContentCategory implements _ContentCategory {
 
 abstract class _ContentCategory implements ContentCategory {
   factory _ContentCategory(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'categoryName') String? name,
-      @JsonKey(name: 'categoryIcon') String? icon}) = _$_ContentCategory;
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'iconUrl') String? icon}) = _$_ContentCategory;
 
   factory _ContentCategory.fromJson(Map<String, dynamic> json) =
       _$_ContentCategory.fromJson;
 
   @override
-  @JsonKey(name: 'ID')
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'categoryName')
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'categoryIcon')
+  @JsonKey(name: 'iconUrl')
   String? get icon => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

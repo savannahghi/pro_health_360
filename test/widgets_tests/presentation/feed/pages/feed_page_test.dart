@@ -32,6 +32,7 @@ void main() {
       Response(
         json.encode(<String, dynamic>{
           'data': <String, dynamic>{
+            'listContentCategories': categoriesMock,
             'getContent': <String, dynamic>{
               'items': <dynamic>[
                 contentMock[0],
@@ -60,6 +61,8 @@ void main() {
           widget: const FeedPage(),
         );
 
+        await tester.pumpAndSettle();
+
         await tester.tap(find.text('All'));
         await tester.pumpAndSettle();
 
@@ -85,6 +88,7 @@ void main() {
           widget: const FeedPage(),
         );
 
+        await tester.pumpAndSettle();
         await tester.tap(find.text('All'));
         await tester.pumpAndSettle();
 
@@ -152,7 +156,7 @@ void main() {
         store.dispatch(WaitAction<AppState>.add(fetchContentFlag));
         await tester.pump();
 
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
+        expect(find.byType(SILPlatformLoader), findsNWidgets(2));
       });
     });
 
@@ -178,7 +182,7 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+        expect(find.byType(GenericTimeoutWidget), findsNWidgets(2));
       });
     });
 
@@ -212,6 +216,7 @@ void main() {
 
         expect(find.byType(GenericNoData), findsOneWidget);
 
+        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
         await tester.tap(find.byKey(genericNoDataButtonKey));
         await tester.pumpAndSettle();
 

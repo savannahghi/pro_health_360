@@ -587,3 +587,7 @@ const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
 
 const String defaultQuoteAuthor = 'myAfyaHub';
+const String randomQuoteText =
+    'The greatest glory in living lies not in never falling, but in rising every time we fall';
+const String randomQuoteAuthor = '- Nelson Mandela';
+const String contentCategoriesErrorMessage = 'Something went wrong. Retry';
