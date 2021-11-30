@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -118,14 +120,13 @@ void main() {
             201,
           ),
         );
-
         await buildTestWidget(
           tester: tester,
           store: store,
           client: client,
           widget: const FeedPage(),
         );
-
+        store.dispatch(WaitAction<AppState>.add(fetchContentFlag));
         await tester.pump();
 
         expect(find.byType(SILPlatformLoader), findsOneWidget);
@@ -144,7 +145,7 @@ void main() {
             201,
           ),
         );
-
+        store.dispatch(UpdateContentStateAction(timeoutFetchingContent: true));
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -152,7 +153,7 @@ void main() {
           widget: const FeedPage(),
         );
 
-        await tester.pump();
+        await tester.pumpAndSettle();
 
         expect(find.byType(GenericTimeoutWidget), findsOneWidget);
       });
@@ -174,6 +175,8 @@ void main() {
             201,
           ),
         );
+
+        store.dispatch(UpdateContentStateAction(errorFetchingContent: true));
 
         await buildTestWidget(
           tester: tester,
