@@ -58,7 +58,7 @@ jobs:
           APP_STORE_CONNECT_API_KEY_FUNGUO: ${{secrets.APP_STORE_CONNECT_API_KEY_FUNGUO}}
         run: |
           cd ios && bundle install
-          bundle exec fastlane ios myafyahubdev
+          bundle exec fastlane ios dev
 
   # AppStore ready
   publish-demo-binary-to-app-store:
@@ -114,7 +114,7 @@ jobs:
           APP_STORE_CONNECT_API_KEY_FUNGUO: ${{secrets.APP_STORE_CONNECT_API_KEY_FUNGUO}}
         run: |
           cd ios && bundle install
-          bundle exec fastlane ios myafyahubdemo
+          bundle exec fastlane ios demo
 
   # AppStore ready
   publish-prod-binary-to-app-store:
@@ -170,4 +170,4 @@ jobs:
           APP_STORE_CONNECT_API_KEY_FUNGUO: ${{secrets.APP_STORE_CONNECT_API_KEY_FUNGUO}}
         run: |
           cd ios && bundle install
-          bundle exec fastlane deploy
+          bundle exec fastlane prod
