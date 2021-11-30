@@ -11,6 +11,7 @@ class VerifyPhoneState with _$VerifyPhoneState {
     @Default(false) bool invalidOTP,
     String? otp,
     @Default(false) bool failedToSendOTP,
+    @Default(false) bool canResendOTP,
   }) = _VerifyPhoneState;
 
   factory VerifyPhoneState.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +21,6 @@ class VerifyPhoneState with _$VerifyPhoneState {
         otp: UNKNOWN,
         invalidOTP: false,
         failedToSendOTP: false,
+        canResendOTP: false,
       );
 }
