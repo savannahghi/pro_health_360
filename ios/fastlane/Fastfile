@@ -22,7 +22,7 @@ platform :ios do
   end
 
   desc :"Code Signing Dev Build for TestFlight"
-  lane :myafyahubdev do 
+  lane :dev do 
     match(
       type: "appstore",
       app_identifier: "com.savannah.myafyahub",
@@ -73,7 +73,7 @@ platform :ios do
   end
 
   desc :"Code Signing Demo Build for TestFlight"
-  lane :myafyahubdemo do 
+  lane :demo do 
     match(
       type: "appstore",
       app_identifier: "com.savannah.myafyahub",
@@ -125,7 +125,7 @@ platform :ios do
 
 
   desc :"Code Sign and Build SIL for App Store"
-  lane :deploy do
+  lane :prod do
     match(
       type: "appstore",
       app_identifier: "com.savannah.myafyahub",
