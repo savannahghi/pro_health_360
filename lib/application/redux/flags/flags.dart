@@ -44,3 +44,4 @@ const String setNickNameFlag = 'set_nickname_flag';
 
 //Content Details PAge
 const String likeContentFlag = 'like_content_flag';
+const String fetchContentFlag = 'fetch_content_flag';

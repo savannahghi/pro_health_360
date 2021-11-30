@@ -1,20 +1,20 @@
 // Dart imports:
-import 'dart:async';
 
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/redux/actions/fetch_content_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -35,26 +35,17 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-  int _choiceIndex = 0;
-
-  late Stream<Object> _stream;
-  late StreamController<Object> _streamController;
+  final int _choiceIndex = 0;
 
   @override
   void initState() {
-    _streamController = StreamController<Object>.broadcast();
-    _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await genericFetchFunction(
-        streamController: _streamController,
-        context: context,
-        logTitle: 'Fetch content',
-        queryString: getContentQuery,
-        variables: <String, dynamic>{
-          'Limit': '10',
-        },
+      StoreProvider.dispatch<AppState>(
+        context,
+        FetchContentAction(context: context),
       );
     });
+
     super.initState();
   }
 
@@ -62,105 +53,79 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     return AppScaffold(
       appBar: const CustomAppBar(title: libraryTitle, showBackButton: false),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: _buildFeedFilters(context),
-            ),
-            StreamBuilder<dynamic>(
-              stream: _stream,
-              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                //show the loader before the data is displayed
-                if (snapshot.data is Map<String, dynamic> &&
-                    snapshot.data != null &&
-                    snapshot.data['loading'] != null &&
-                    snapshot.data['loading'] == true) {
-                  return Container(
-                    height: 300,
-                    padding: const EdgeInsets.all(20),
-                    child: const SILPlatformLoader(),
-                  );
-                }
-
-                //error checking
-                if (snapshot.hasError) {
-                  reportErrorToSentry(
-                    context,
-                    snapshot.error,
-                    hint: 'Error while fetching your content',
-                  );
-                  final dynamic valueHolder = snapshot.error;
-                  final Map<String, dynamic>? error = snapshot.error == null
-                      ? null
-                      : valueHolder as Map<String, dynamic>;
-
-                  /// check if the error is a timeout error and return an appropriate widget
-                  if (error == null || error['error'] == 'timeout') {
-                    return const GenericTimeoutWidget(
-                      route: BWRoutes.home,
-                      action: 'fetching your feed',
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: _buildFeedFilters(context),
+          ),
+          StoreConnector<AppState, ContentViewModel>(
+            converter: (Store<AppState> store) =>
+                ContentViewModel.fromStore(store.state),
+            builder: (BuildContext context, ContentViewModel vm) {
+              if (vm.wait!.isWaitingFor(fetchContentFlag)) {
+                return Container(
+                  height: 300,
+                  padding: const EdgeInsets.all(20),
+                  child: const SILPlatformLoader(),
+                );
+              } else if (vm.timeoutFetchingContent ?? false) {
+                return const GenericTimeoutWidget(
+                  route: BWRoutes.home,
+                  action: 'fetching your feed',
+                );
+              } else if (vm.errorFetchingContent ?? false) {
+                return GenericNoData(
+                  key: helpNoDataWidgetKey,
+                  type: GenericNoDataTypes.ErrorInData,
+                  actionText: actionTextGenericNoData,
+                  recoverCallback: () async {
+                    StoreProvider.dispatch<AppState>(
+                      context,
+                      FetchContentAction(context: context),
                     );
-                  }
+                  },
+                  messageBody: messageBodyGenericNoData,
+                );
+              } else {
+                final List<Content?>? feedItems = vm.feedItems;
 
-                  return GenericNoData(
-                    key: helpNoDataWidgetKey,
-                    type: GenericNoDataTypes.ErrorInData,
-                    actionText: actionTextGenericNoData,
-                    recoverCallback: () async {
-                      await genericFetchFunction(
-                        streamController: _streamController,
-                        context: context,
-                        logTitle: 'Fetch recent content',
-                        queryString: getContentQuery,
-                        variables: <String, dynamic>{
-                          'Limit': '10',
+                if (feedItems != null && feedItems.isNotEmpty) {
+                  return Flexible(
+                    child: RefreshIndicator(
+                      onRefresh: () async {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          FetchContentAction(context: context),
+                        );
+                      },
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: feedItems.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final Content? currentFeedItem =
+                              feedItems.elementAt(index);
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              top: index == 0 ? 15 : 7.5,
+                              bottom: 10,
+                              right: 12,
+                              left: 12,
+                            ),
+                            child:
+                                ContentItem(contentDetails: currentFeedItem!),
+                          );
                         },
-                      );
-                    },
-                    messageBody: messageBodyGenericNoData,
+                      ),
+                    ),
                   );
+                } else {
+                  return const SizedBox();
                 }
-
-                if (snapshot.hasData) {
-                  final FeedContent feedContent = FeedContent.fromJson(
-                    snapshot.data as Map<String, dynamic>,
-                  );
-
-                  if (feedContent.feedContent != null) {
-                    final List<Content?>? feedItems =
-                        feedContent.feedContent?.items;
-
-                    if (feedItems != null && feedItems.isNotEmpty) {
-                      return Expanded(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: feedItems.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final Content? currentFeedItem =
-                                feedItems.elementAt(index);
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                top: index == 0 ? 15 : 7.5,
-                                bottom: 10,
-                              ),
-                              child:
-                                  ContentItem(contentDetails: currentFeedItem!),
-                            );
-                          },
-                        ),
-                      );
-                    }
-                  }
-                }
-
-                return const SizedBox();
-              },
-            ),
-          ],
-        ),
+              }
+            },
+          ),
+        ],
       ),
     );
   }
@@ -201,16 +166,10 @@ class _FeedPageState extends State<FeedPage> {
               selected: _choiceIndex == index,
               selectedColor: AppColors.secondaryColor,
               onSelected: (bool selected) {
-                setState(() {
-                  _choiceIndex = selected ? index : 0;
-                  genericFetchFunction(
-                    streamController: _streamController,
-                    context: context,
-                    logTitle: 'Fetch recent content',
-                    queryString: getContentQuery,
-                    variables: <String, dynamic>{'Limit': '10'},
-                  );
-                });
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  FetchContentAction(context: context),
+                );
               },
               backgroundColor: Colors.grey.shade300,
             ),

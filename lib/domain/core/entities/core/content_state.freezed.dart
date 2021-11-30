@@ -20,9 +20,14 @@ ContentState _$ContentStateFromJson(Map<String, dynamic> json) {
 class _$ContentStateTearOff {
   const _$ContentStateTearOff();
 
-  _ContentState call({@JsonKey(name: 'items') List<Content>? contentItems}) {
+  _ContentState call(
+      {@JsonKey(name: 'items') List<Content?>? contentItems,
+      bool? errorFetchingContent,
+      bool? timeoutFetchingContent}) {
     return _ContentState(
       contentItems: contentItems,
+      errorFetchingContent: errorFetchingContent,
+      timeoutFetchingContent: timeoutFetchingContent,
     );
   }
 
@@ -37,7 +42,9 @@ const $ContentState = _$ContentStateTearOff();
 /// @nodoc
 mixin _$ContentState {
   @JsonKey(name: 'items')
-  List<Content>? get contentItems => throw _privateConstructorUsedError;
+  List<Content?>? get contentItems => throw _privateConstructorUsedError;
+  bool? get errorFetchingContent => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +57,10 @@ abstract class $ContentStateCopyWith<$Res> {
   factory $ContentStateCopyWith(
           ContentState value, $Res Function(ContentState) then) =
       _$ContentStateCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'items') List<Content>? contentItems});
+  $Res call(
+      {@JsonKey(name: 'items') List<Content?>? contentItems,
+      bool? errorFetchingContent,
+      bool? timeoutFetchingContent});
 }
 
 /// @nodoc
@@ -64,12 +74,22 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
   @override
   $Res call({
     Object? contentItems = freezed,
+    Object? errorFetchingContent = freezed,
+    Object? timeoutFetchingContent = freezed,
   }) {
     return _then(_value.copyWith(
       contentItems: contentItems == freezed
           ? _value.contentItems
           : contentItems // ignore: cast_nullable_to_non_nullable
-              as List<Content>?,
+              as List<Content?>?,
+      errorFetchingContent: errorFetchingContent == freezed
+          ? _value.errorFetchingContent
+          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeoutFetchingContent: timeoutFetchingContent == freezed
+          ? _value.timeoutFetchingContent
+          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -81,7 +101,10 @@ abstract class _$ContentStateCopyWith<$Res>
           _ContentState value, $Res Function(_ContentState) then) =
       __$ContentStateCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'items') List<Content>? contentItems});
+  $Res call(
+      {@JsonKey(name: 'items') List<Content?>? contentItems,
+      bool? errorFetchingContent,
+      bool? timeoutFetchingContent});
 }
 
 /// @nodoc
@@ -97,12 +120,22 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? contentItems = freezed,
+    Object? errorFetchingContent = freezed,
+    Object? timeoutFetchingContent = freezed,
   }) {
     return _then(_ContentState(
       contentItems: contentItems == freezed
           ? _value.contentItems
           : contentItems // ignore: cast_nullable_to_non_nullable
-              as List<Content>?,
+              as List<Content?>?,
+      errorFetchingContent: errorFetchingContent == freezed
+          ? _value.errorFetchingContent
+          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeoutFetchingContent: timeoutFetchingContent == freezed
+          ? _value.timeoutFetchingContent
+          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -110,18 +143,25 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ContentState implements _ContentState {
-  _$_ContentState({@JsonKey(name: 'items') this.contentItems});
+  _$_ContentState(
+      {@JsonKey(name: 'items') this.contentItems,
+      this.errorFetchingContent,
+      this.timeoutFetchingContent});
 
   factory _$_ContentState.fromJson(Map<String, dynamic> json) =>
       _$_$_ContentStateFromJson(json);
 
   @override
   @JsonKey(name: 'items')
-  final List<Content>? contentItems;
+  final List<Content?>? contentItems;
+  @override
+  final bool? errorFetchingContent;
+  @override
+  final bool? timeoutFetchingContent;
 
   @override
   String toString() {
-    return 'ContentState(contentItems: $contentItems)';
+    return 'ContentState(contentItems: $contentItems, errorFetchingContent: $errorFetchingContent, timeoutFetchingContent: $timeoutFetchingContent)';
   }
 
   @override
@@ -130,12 +170,21 @@ class _$_ContentState implements _ContentState {
         (other is _ContentState &&
             (identical(other.contentItems, contentItems) ||
                 const DeepCollectionEquality()
-                    .equals(other.contentItems, contentItems)));
+                    .equals(other.contentItems, contentItems)) &&
+            (identical(other.errorFetchingContent, errorFetchingContent) ||
+                const DeepCollectionEquality().equals(
+                    other.errorFetchingContent, errorFetchingContent)) &&
+            (identical(other.timeoutFetchingContent, timeoutFetchingContent) ||
+                const DeepCollectionEquality().equals(
+                    other.timeoutFetchingContent, timeoutFetchingContent)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(contentItems);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(contentItems) ^
+      const DeepCollectionEquality().hash(errorFetchingContent) ^
+      const DeepCollectionEquality().hash(timeoutFetchingContent);
 
   @JsonKey(ignore: true)
   @override
@@ -149,15 +198,21 @@ class _$_ContentState implements _ContentState {
 }
 
 abstract class _ContentState implements ContentState {
-  factory _ContentState({@JsonKey(name: 'items') List<Content>? contentItems}) =
-      _$_ContentState;
+  factory _ContentState(
+      {@JsonKey(name: 'items') List<Content?>? contentItems,
+      bool? errorFetchingContent,
+      bool? timeoutFetchingContent}) = _$_ContentState;
 
   factory _ContentState.fromJson(Map<String, dynamic> json) =
       _$_ContentState.fromJson;
 
   @override
   @JsonKey(name: 'items')
-  List<Content>? get contentItems => throw _privateConstructorUsedError;
+  List<Content?>? get contentItems => throw _privateConstructorUsedError;
+  @override
+  bool? get errorFetchingContent => throw _privateConstructorUsedError;
+  @override
+  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ContentStateCopyWith<_ContentState> get copyWith =>

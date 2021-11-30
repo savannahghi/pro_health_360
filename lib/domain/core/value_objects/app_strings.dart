@@ -518,7 +518,8 @@ const String myHealthDiaryString = 'My Health Diary';
 const String nickNameString = 'Nickname';
 const String editString = 'Edit';
 const String settingsPageTitle = 'Settings';
-const String saveString = 'save';
+const String saveString = 'Save';
+const String savedString = 'Saved';
 
 //Feedback Page
 const String feedbackString = 'Feedback';
@@ -585,6 +586,4 @@ const String shareString = 'share';
 const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
 
-const String randomQuoteText =
-    'The greatest glory in living lies not in never falling, but in rising every time we fall';
-const String randomQuoteAuthor = '- Nelson Mandela';
+const String defaultQuoteAuthor = 'myAfyaHub';

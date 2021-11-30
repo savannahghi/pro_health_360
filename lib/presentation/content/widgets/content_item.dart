@@ -144,11 +144,11 @@ class ContentItem extends StatelessWidget {
                             ),
                             ReactionItem(
                               iconUrl: shareIconUrl,
-                              count: contentDetails.likeCount,
+                              count: contentDetails.shareCount,
                             ),
                             ReactionItem(
                               iconUrl: saveIconUrl,
-                              count: contentDetails.likeCount,
+                              count: contentDetails.bookmarkCount,
                             ),
                           ],
                         ),

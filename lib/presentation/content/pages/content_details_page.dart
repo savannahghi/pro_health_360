@@ -11,6 +11,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item_reaction_icon.dart';
 import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
 import 'package:share/share.dart';
+import 'package:myafyahub/presentation/content/widgets/save_feed_item_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -215,12 +216,10 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
                         svgPath: shareIconUrl,
                         altSvgPath: shareIconUrl,
                       ),
-                      const ContentItemReactionIcon(
-                        key: saveButtonKey,
-                        count: '',
-                        description: saveString,
-                        svgPath: saveIconUrl,
-                        altSvgPath: selectedSaveIconSvgPath,
+                      verySmallHorizontalSizedBox,
+                      SaveFeedItemWidget(
+                        contentID: widget.contentDetails.contentID,
+                        saved: widget.contentDetails.hasSaved ?? false,
                       ),
                     ],
                   ),

@@ -38,6 +38,8 @@ _$_Content _$_$_ContentFromJson(Map<String, dynamic> json) {
     metadata: json['meta'] == null
         ? null
         : ContentMetadata.fromJson(json['meta'] as Map<String, dynamic>),
+    hasLiked: json['hasLiked'] as bool? ?? false,
+    hasSaved: json['hasSaved'] as bool? ?? false,
   );
 }
 
@@ -61,6 +63,8 @@ Map<String, dynamic> _$_$_ContentToJson(_$_Content instance) =>
       'categoryDetails': instance.categories,
       'tagNames': instance.tags,
       'meta': instance.metadata,
+      'hasLiked': instance.hasLiked,
+      'hasSaved': instance.hasSaved,
     };
 
 K _$enumDecode<K, V>(

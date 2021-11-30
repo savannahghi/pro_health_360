@@ -1827,3 +1827,10 @@ final Map<String, dynamic> mockEventObject = <String, dynamic>{
   'timestamp': DateTime.now().toString(),
   'appVersion': APPVERSION,
 };
+
+final Map<String, dynamic> mockQuote = <String, dynamic>{
+  'getHealthDiaryQuote': <String, dynamic>{
+    'quote': 'Health at your fingerprints',
+    'author': 'myAfyaHub'
+  },
+};

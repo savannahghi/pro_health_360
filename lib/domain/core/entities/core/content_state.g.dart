@@ -9,12 +9,17 @@ part of 'content_state.dart';
 _$_ContentState _$_$_ContentStateFromJson(Map<String, dynamic> json) {
   return _$_ContentState(
     contentItems: (json['items'] as List<dynamic>?)
-        ?.map((e) => Content.fromJson(e as Map<String, dynamic>))
+        ?.map((e) =>
+            e == null ? null : Content.fromJson(e as Map<String, dynamic>))
         .toList(),
+    errorFetchingContent: json['errorFetchingContent'] as bool?,
+    timeoutFetchingContent: json['timeoutFetchingContent'] as bool?,
   );
 }
 
 Map<String, dynamic> _$_$_ContentStateToJson(_$_ContentState instance) =>
     <String, dynamic>{
       'items': instance.contentItems,
+      'errorFetchingContent': instance.errorFetchingContent,
+      'timeoutFetchingContent': instance.timeoutFetchingContent,
     };

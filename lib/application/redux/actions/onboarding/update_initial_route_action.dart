@@ -10,7 +10,7 @@ class UpdateInitialRouteAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final MiscState? newMiscState =
-        state.miscState?.copyWith(initalRoute: initialRoute);
+        state.miscState?.copyWith(initialRoute: initialRoute);
 
     return state.copyWith(miscState: newMiscState ?? state.miscState);
   }

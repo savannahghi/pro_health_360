@@ -11,7 +11,7 @@ part 'feed_items.g.dart';
 @freezed
 class FeedItems with _$FeedItems {
   factory FeedItems({
-    @JsonKey(name: 'items') List<Content?>? items,
+    @JsonKey(name: 'items') List<Content>? items,
   }) = _FeedItems;
 
   factory FeedItems.fromJson(Map<String, dynamic> json) =>

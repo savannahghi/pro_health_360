@@ -41,6 +41,11 @@ class Content with _$Content {
     // @JsonKey(name: 'isNew') bool? isNew,
     @JsonKey(name: 'tagNames') List<String?>? tags,
     @JsonKey(name: 'meta') ContentMetadata? metadata,
+
+    // Internal trackers to know whether this user has performed any action on
+    // this content item
+    @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
+    @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved,
   }) = _Content;
 
   factory Content.fromJson(Map<String, dynamic> json) =>

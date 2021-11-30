@@ -38,7 +38,9 @@ class _$ContentTearOff {
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
       @JsonKey(name: 'tagNames') List<String?>? tags,
-      @JsonKey(name: 'meta') ContentMetadata? metadata}) {
+      @JsonKey(name: 'meta') ContentMetadata? metadata,
+      @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
+      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved}) {
     return _Content(
       contentID: contentID,
       title: title,
@@ -58,6 +60,8 @@ class _$ContentTearOff {
       categories: categories,
       tags: tags,
       metadata: metadata,
+      hasLiked: hasLiked,
+      hasSaved: hasSaved,
     );
   }
 
@@ -112,7 +116,13 @@ mixin _$Content {
   @JsonKey(name: 'tagNames')
   List<String?>? get tags => throw _privateConstructorUsedError;
   @JsonKey(name: 'meta')
-  ContentMetadata? get metadata => throw _privateConstructorUsedError;
+  ContentMetadata? get metadata =>
+      throw _privateConstructorUsedError; // Internal trackers to know whether this user has performed any action on
+// this content item
+  @JsonKey(name: 'hasLiked', defaultValue: false)
+  bool? get hasLiked => throw _privateConstructorUsedError;
+  @JsonKey(name: 'hasSaved', defaultValue: false)
+  bool? get hasSaved => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -141,7 +151,9 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
       @JsonKey(name: 'tagNames') List<String?>? tags,
-      @JsonKey(name: 'meta') ContentMetadata? metadata});
+      @JsonKey(name: 'meta') ContentMetadata? metadata,
+      @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
+      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved});
 
   $AuthorCopyWith<$Res>? get author;
   $HeroImageCopyWith<$Res>? get heroImage;
@@ -176,6 +188,8 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? categories = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
+    Object? hasLiked = freezed,
+    Object? hasSaved = freezed,
   }) {
     return _then(_value.copyWith(
       contentID: contentID == freezed
@@ -250,6 +264,14 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
               as ContentMetadata?,
+      hasLiked: hasLiked == freezed
+          ? _value.hasLiked
+          : hasLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasSaved: hasSaved == freezed
+          ? _value.hasSaved
+          : hasSaved // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -310,7 +332,9 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
       @JsonKey(name: 'tagNames') List<String?>? tags,
-      @JsonKey(name: 'meta') ContentMetadata? metadata});
+      @JsonKey(name: 'meta') ContentMetadata? metadata,
+      @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
+      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved});
 
   @override
   $AuthorCopyWith<$Res>? get author;
@@ -349,6 +373,8 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? categories = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
+    Object? hasLiked = freezed,
+    Object? hasSaved = freezed,
   }) {
     return _then(_Content(
       contentID: contentID == freezed
@@ -423,6 +449,14 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
               as ContentMetadata?,
+      hasLiked: hasLiked == freezed
+          ? _value.hasLiked
+          : hasLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasSaved: hasSaved == freezed
+          ? _value.hasSaved
+          : hasSaved // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -448,7 +482,9 @@ class _$_Content implements _Content {
       @JsonKey(name: 'documents') this.documents,
       @JsonKey(name: 'categoryDetails') this.categories,
       @JsonKey(name: 'tagNames') this.tags,
-      @JsonKey(name: 'meta') this.metadata});
+      @JsonKey(name: 'meta') this.metadata,
+      @JsonKey(name: 'hasLiked', defaultValue: false) this.hasLiked,
+      @JsonKey(name: 'hasSaved', defaultValue: false) this.hasSaved});
 
   factory _$_Content.fromJson(Map<String, dynamic> json) =>
       _$_$_ContentFromJson(json);
@@ -509,10 +545,17 @@ class _$_Content implements _Content {
   @override
   @JsonKey(name: 'meta')
   final ContentMetadata? metadata;
+  @override // Internal trackers to know whether this user has performed any action on
+// this content item
+  @JsonKey(name: 'hasLiked', defaultValue: false)
+  final bool? hasLiked;
+  @override
+  @JsonKey(name: 'hasSaved', defaultValue: false)
+  final bool? hasSaved;
 
   @override
   String toString() {
-    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata)';
+    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata, hasLiked: $hasLiked, hasSaved: $hasSaved)';
   }
 
   @override
@@ -566,7 +609,13 @@ class _$_Content implements _Content {
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.metadata, metadata) ||
                 const DeepCollectionEquality()
-                    .equals(other.metadata, metadata)));
+                    .equals(other.metadata, metadata)) &&
+            (identical(other.hasLiked, hasLiked) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasLiked, hasLiked)) &&
+            (identical(other.hasSaved, hasSaved) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasSaved, hasSaved)));
   }
 
   @override
@@ -589,7 +638,9 @@ class _$_Content implements _Content {
       const DeepCollectionEquality().hash(documents) ^
       const DeepCollectionEquality().hash(categories) ^
       const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(metadata);
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(hasLiked) ^
+      const DeepCollectionEquality().hash(hasSaved);
 
   @JsonKey(ignore: true)
   @override
@@ -604,24 +655,27 @@ class _$_Content implements _Content {
 
 abstract class _Content implements Content {
   factory _Content(
-      {@JsonKey(name: 'ID') int? contentID,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'date') String? date,
-      @JsonKey(name: 'intro') String? intro,
-      @JsonKey(name: 'authorName') String? authorName,
-      @JsonKey(name: 'author') Author? author,
-      @JsonKey(name: 'itemType') ContentType? contentType,
-      @JsonKey(name: 'timeEstimateSeconds') int? estimate,
-      @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
-      @JsonKey(name: 'likeCount') int? likeCount,
-      @JsonKey(name: 'bookmarkCount') int? bookmarkCount,
-      @JsonKey(name: 'viewCount') int? viewCount,
-      @JsonKey(name: 'shareCount') int? shareCount,
-      @JsonKey(name: 'documents') List<Document>? documents,
-      @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'tagNames') List<String?>? tags,
-      @JsonKey(name: 'meta') ContentMetadata? metadata}) = _$_Content;
+          {@JsonKey(name: 'ID') int? contentID,
+          @JsonKey(name: 'title') String? title,
+          @JsonKey(name: 'date') String? date,
+          @JsonKey(name: 'intro') String? intro,
+          @JsonKey(name: 'authorName') String? authorName,
+          @JsonKey(name: 'author') Author? author,
+          @JsonKey(name: 'itemType') ContentType? contentType,
+          @JsonKey(name: 'timeEstimateSeconds') int? estimate,
+          @JsonKey(name: 'body') String? body,
+          @JsonKey(name: 'heroImageRendition') HeroImage? heroImage,
+          @JsonKey(name: 'likeCount') int? likeCount,
+          @JsonKey(name: 'bookmarkCount') int? bookmarkCount,
+          @JsonKey(name: 'viewCount') int? viewCount,
+          @JsonKey(name: 'shareCount') int? shareCount,
+          @JsonKey(name: 'documents') List<Document>? documents,
+          @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
+          @JsonKey(name: 'tagNames') List<String?>? tags,
+          @JsonKey(name: 'meta') ContentMetadata? metadata,
+          @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
+          @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved}) =
+      _$_Content;
 
   factory _Content.fromJson(Map<String, dynamic> json) = _$_Content.fromJson;
 
@@ -681,6 +735,13 @@ abstract class _Content implements Content {
   @override
   @JsonKey(name: 'meta')
   ContentMetadata? get metadata => throw _privateConstructorUsedError;
+  @override // Internal trackers to know whether this user has performed any action on
+// this content item
+  @JsonKey(name: 'hasLiked', defaultValue: false)
+  bool? get hasLiked => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'hasSaved', defaultValue: false)
+  bool? get hasSaved => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ContentCopyWith<_Content> get copyWith =>

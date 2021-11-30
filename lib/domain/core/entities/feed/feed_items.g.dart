@@ -9,8 +9,7 @@ part of 'feed_items.dart';
 _$_FeedItems _$_$_FeedItemsFromJson(Map<String, dynamic> json) {
   return _$_FeedItems(
     items: (json['items'] as List<dynamic>?)
-        ?.map((e) =>
-            e == null ? null : Content.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => Content.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

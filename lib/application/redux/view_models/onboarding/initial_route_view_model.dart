@@ -8,6 +8,6 @@ class InitialRouteViewModel extends Vm {
   final String? initialRoute;
 
   factory InitialRouteViewModel.fromStore(AppState state) {
-    return InitialRouteViewModel(initialRoute: state.miscState?.initalRoute);
+    return InitialRouteViewModel(initialRoute: state.miscState?.initialRoute);
   }
 }

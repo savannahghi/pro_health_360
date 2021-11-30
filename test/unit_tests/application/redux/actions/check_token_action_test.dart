@@ -33,7 +33,7 @@ void main() {
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CheckTokenAction);
-      expect(info.state.miscState?.initalRoute, BWRoutes.home);
+      expect(info.state.miscState?.initialRoute, BWRoutes.home);
     });
 
     test('should set initial route to login page if token has expired',
@@ -61,7 +61,7 @@ void main() {
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CheckTokenAction);
-      expect(info.state.miscState?.initalRoute, BWRoutes.phoneLogin);
+      expect(info.state.miscState?.initialRoute, BWRoutes.phoneLogin);
     });
   });
 }

@@ -12,7 +12,7 @@ part 'misc_state.g.dart';
 @freezed
 class MiscState with _$MiscState {
   factory MiscState({
-    String? initalRoute,
+    String? initialRoute,
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     String? healthPagePINInputTime,
@@ -22,7 +22,7 @@ class MiscState with _$MiscState {
       _$MiscStateFromJson(json);
 
   factory MiscState.initial() => MiscState(
-        initalRoute: BWRoutes.phoneLogin,
+        initialRoute: BWRoutes.phoneLogin,
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         healthPagePINInputTime: UNKNOWN,

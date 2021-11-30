@@ -9,11 +9,18 @@ part 'content_state.g.dart';
 
 @freezed
 class ContentState with _$ContentState {
-  factory ContentState({@JsonKey(name: 'items') List<Content>? contentItems}) =
-      _ContentState;
+  factory ContentState({
+    @JsonKey(name: 'items') List<Content?>? contentItems,
+    bool? errorFetchingContent,
+    bool? timeoutFetchingContent,
+  }) = _ContentState;
 
   factory ContentState.fromJson(Map<String, dynamic> json) =>
       _$ContentStateFromJson(json);
 
-  factory ContentState.initial() => ContentState(contentItems: <Content>[]);
+  factory ContentState.initial() => ContentState(
+        contentItems: <Content>[],
+        errorFetchingContent: false,
+        timeoutFetchingContent: false,
+      );
 }

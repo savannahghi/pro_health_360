@@ -21,12 +21,12 @@ class _$MiscStateTearOff {
   const _$MiscStateTearOff();
 
   _MiscState call(
-      {String? initalRoute,
+      {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime}) {
     return _MiscState(
-      initalRoute: initalRoute,
+      initialRoute: initialRoute,
       userPin: userPin,
       libraryListItems: libraryListItems,
       healthPagePINInputTime: healthPagePINInputTime,
@@ -43,7 +43,7 @@ const $MiscState = _$MiscStateTearOff();
 
 /// @nodoc
 mixin _$MiscState {
-  String? get initalRoute => throw _privateConstructorUsedError;
+  String? get initialRoute => throw _privateConstructorUsedError;
   UserPin? get userPin => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
@@ -59,7 +59,7 @@ abstract class $MiscStateCopyWith<$Res> {
   factory $MiscStateCopyWith(MiscState value, $Res Function(MiscState) then) =
       _$MiscStateCopyWithImpl<$Res>;
   $Res call(
-      {String? initalRoute,
+      {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime});
@@ -75,15 +75,15 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? initalRoute = freezed,
+    Object? initialRoute = freezed,
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
   }) {
     return _then(_value.copyWith(
-      initalRoute: initalRoute == freezed
-          ? _value.initalRoute
-          : initalRoute // ignore: cast_nullable_to_non_nullable
+      initialRoute: initialRoute == freezed
+          ? _value.initialRoute
+          : initialRoute // ignore: cast_nullable_to_non_nullable
               as String?,
       userPin: userPin == freezed
           ? _value.userPin
@@ -108,7 +108,7 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       __$MiscStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? initalRoute,
+      {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime});
@@ -125,15 +125,15 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? initalRoute = freezed,
+    Object? initialRoute = freezed,
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
   }) {
     return _then(_MiscState(
-      initalRoute: initalRoute == freezed
-          ? _value.initalRoute
-          : initalRoute // ignore: cast_nullable_to_non_nullable
+      initialRoute: initialRoute == freezed
+          ? _value.initialRoute
+          : initialRoute // ignore: cast_nullable_to_non_nullable
               as String?,
       userPin: userPin == freezed
           ? _value.userPin
@@ -155,7 +155,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MiscState implements _MiscState {
   _$_MiscState(
-      {this.initalRoute,
+      {this.initialRoute,
       this.userPin,
       this.libraryListItems,
       this.healthPagePINInputTime});
@@ -164,7 +164,7 @@ class _$_MiscState implements _MiscState {
       _$_$_MiscStateFromJson(json);
 
   @override
-  final String? initalRoute;
+  final String? initialRoute;
   @override
   final UserPin? userPin;
   @override
@@ -174,16 +174,16 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(initalRoute: $initalRoute, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _MiscState &&
-            (identical(other.initalRoute, initalRoute) ||
+            (identical(other.initialRoute, initialRoute) ||
                 const DeepCollectionEquality()
-                    .equals(other.initalRoute, initalRoute)) &&
+                    .equals(other.initialRoute, initialRoute)) &&
             (identical(other.userPin, userPin) ||
                 const DeepCollectionEquality()
                     .equals(other.userPin, userPin)) &&
@@ -198,7 +198,7 @@ class _$_MiscState implements _MiscState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(initalRoute) ^
+      const DeepCollectionEquality().hash(initialRoute) ^
       const DeepCollectionEquality().hash(userPin) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
       const DeepCollectionEquality().hash(healthPagePINInputTime);
@@ -216,7 +216,7 @@ class _$_MiscState implements _MiscState {
 
 abstract class _MiscState implements MiscState {
   factory _MiscState(
-      {String? initalRoute,
+      {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       String? healthPagePINInputTime}) = _$_MiscState;
@@ -225,7 +225,7 @@ abstract class _MiscState implements MiscState {
       _$_MiscState.fromJson;
 
   @override
-  String? get initalRoute => throw _privateConstructorUsedError;
+  String? get initialRoute => throw _privateConstructorUsedError;
   @override
   UserPin? get userPin => throw _privateConstructorUsedError;
   @override

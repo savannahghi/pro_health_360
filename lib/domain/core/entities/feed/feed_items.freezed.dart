@@ -20,7 +20,7 @@ FeedItems _$FeedItemsFromJson(Map<String, dynamic> json) {
 class _$FeedItemsTearOff {
   const _$FeedItemsTearOff();
 
-  _FeedItems call({@JsonKey(name: 'items') List<Content?>? items}) {
+  _FeedItems call({@JsonKey(name: 'items') List<Content>? items}) {
     return _FeedItems(
       items: items,
     );
@@ -37,7 +37,7 @@ const $FeedItems = _$FeedItemsTearOff();
 /// @nodoc
 mixin _$FeedItems {
   @JsonKey(name: 'items')
-  List<Content?>? get items => throw _privateConstructorUsedError;
+  List<Content>? get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ mixin _$FeedItems {
 abstract class $FeedItemsCopyWith<$Res> {
   factory $FeedItemsCopyWith(FeedItems value, $Res Function(FeedItems) then) =
       _$FeedItemsCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'items') List<Content?>? items});
+  $Res call({@JsonKey(name: 'items') List<Content>? items});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$FeedItemsCopyWithImpl<$Res> implements $FeedItemsCopyWith<$Res> {
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Content?>?,
+              as List<Content>?,
     ));
   }
 }
@@ -79,7 +79,7 @@ abstract class _$FeedItemsCopyWith<$Res> implements $FeedItemsCopyWith<$Res> {
           _FeedItems value, $Res Function(_FeedItems) then) =
       __$FeedItemsCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'items') List<Content?>? items});
+  $Res call({@JsonKey(name: 'items') List<Content>? items});
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class __$FeedItemsCopyWithImpl<$Res> extends _$FeedItemsCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Content?>?,
+              as List<Content>?,
     ));
   }
 }
@@ -114,7 +114,7 @@ class _$_FeedItems implements _FeedItems {
 
   @override
   @JsonKey(name: 'items')
-  final List<Content?>? items;
+  final List<Content>? items;
 
   @override
   String toString() {
@@ -145,7 +145,7 @@ class _$_FeedItems implements _FeedItems {
 }
 
 abstract class _FeedItems implements FeedItems {
-  factory _FeedItems({@JsonKey(name: 'items') List<Content?>? items}) =
+  factory _FeedItems({@JsonKey(name: 'items') List<Content>? items}) =
       _$_FeedItems;
 
   factory _FeedItems.fromJson(Map<String, dynamic> json) =
@@ -153,7 +153,7 @@ abstract class _FeedItems implements FeedItems {
 
   @override
   @JsonKey(name: 'items')
-  List<Content?>? get items => throw _privateConstructorUsedError;
+  List<Content>? get items => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FeedItemsCopyWith<_FeedItems> get copyWith =>

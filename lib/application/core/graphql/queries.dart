@@ -251,3 +251,12 @@ query getContent($categoryID: Int, $Limit: String!){
   }
 }
 ''';
+
+const String getHealthDiaryQuoteQuery = '''
+query getHealthDiaryQuote {
+  getHealthDiaryQuote {
+    quote
+    author
+  }
+}
+''';
