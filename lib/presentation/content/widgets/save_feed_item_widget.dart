@@ -1,10 +1,11 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/redux/actions/bookmark_content_action.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -34,15 +35,18 @@ class _SaveFeedItemWidgetState extends State<SaveFeedItemWidget> {
       key: saveButtonKey,
       onTap: () {
         //TODO: Save feed item
-        ScaffoldMessenger.of(context).showSnackBar(
-          snackbar(
-            content: const Text(contentSavedSuccessfully),
-            durationSeconds: 2,
-          ),
-        );
-        setState(() {
-          _saved = true;
-        });
+        if (!_saved) {
+          setState(() {
+            _saved = true;
+          });
+          StoreProvider.dispatch(
+            context,
+            BookmarkContentAction(
+              contentID: widget.contentID!,
+              context: context,
+            ),
+          );
+        }
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
