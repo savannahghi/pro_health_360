@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               BeWellUpgrader(),
-              const MoodSelectionWidget(),
+              const MoodChecker(),
               const RecentContentWidget(),
               smallVerticalSizedBox,
               const SuggestedGroupsSection()

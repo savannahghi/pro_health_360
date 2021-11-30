@@ -44,7 +44,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const MoodSelectionWidget(),
+        widget: const MoodChecker(),
       );
 
       await tester.pumpAndSettle();
@@ -62,7 +62,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const MoodSelectionWidget(),
+        widget: const MoodChecker(),
       );
       await tester.pumpAndSettle();
       expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
@@ -79,7 +79,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const MoodSelectionWidget(),
+        widget: const MoodChecker(),
       );
 
       expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
@@ -96,7 +96,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const MoodSelectionWidget(),
+        widget: const MoodChecker(),
       );
 
       expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
@@ -113,7 +113,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const MoodSelectionWidget(),
+        widget: const MoodChecker(),
       );
 
       expect(find.text(howAreYouFeelingTodayText(UNKNOWN)), findsOneWidget);
@@ -131,7 +131,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const MoodSelectionWidget(),
+        widget: const MoodChecker(),
       );
 
       expect(find.byType(SILPlatformLoader), findsOneWidget);
