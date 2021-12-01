@@ -20,9 +20,10 @@ HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
 class _$HomeStateTearOff {
   const _$HomeStateTearOff();
 
-  _HomeState call({bool? canRecordMood}) {
+  _HomeState call({bool? canRecordMood, bool? createHealthDiaryEntry}) {
     return _HomeState(
       canRecordMood: canRecordMood,
+      createHealthDiaryEntry: createHealthDiaryEntry,
     );
   }
 
@@ -37,6 +38,7 @@ const $HomeState = _$HomeStateTearOff();
 /// @nodoc
 mixin _$HomeState {
   bool? get canRecordMood => throw _privateConstructorUsedError;
+  bool? get createHealthDiaryEntry => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +50,7 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call({bool? canRecordMood});
+  $Res call({bool? canRecordMood, bool? createHealthDiaryEntry});
 }
 
 /// @nodoc
@@ -62,11 +64,16 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   @override
   $Res call({
     Object? canRecordMood = freezed,
+    Object? createHealthDiaryEntry = freezed,
   }) {
     return _then(_value.copyWith(
       canRecordMood: canRecordMood == freezed
           ? _value.canRecordMood
           : canRecordMood // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createHealthDiaryEntry: createHealthDiaryEntry == freezed
+          ? _value.createHealthDiaryEntry
+          : createHealthDiaryEntry // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -78,7 +85,7 @@ abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _HomeState value, $Res Function(_HomeState) then) =
       __$HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool? canRecordMood});
+  $Res call({bool? canRecordMood, bool? createHealthDiaryEntry});
 }
 
 /// @nodoc
@@ -93,11 +100,16 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? canRecordMood = freezed,
+    Object? createHealthDiaryEntry = freezed,
   }) {
     return _then(_HomeState(
       canRecordMood: canRecordMood == freezed
           ? _value.canRecordMood
           : canRecordMood // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createHealthDiaryEntry: createHealthDiaryEntry == freezed
+          ? _value.createHealthDiaryEntry
+          : createHealthDiaryEntry // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -106,17 +118,19 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_HomeState implements _HomeState {
-  _$_HomeState({this.canRecordMood});
+  _$_HomeState({this.canRecordMood, this.createHealthDiaryEntry});
 
   factory _$_HomeState.fromJson(Map<String, dynamic> json) =>
       _$_$_HomeStateFromJson(json);
 
   @override
   final bool? canRecordMood;
+  @override
+  final bool? createHealthDiaryEntry;
 
   @override
   String toString() {
-    return 'HomeState(canRecordMood: $canRecordMood)';
+    return 'HomeState(canRecordMood: $canRecordMood, createHealthDiaryEntry: $createHealthDiaryEntry)';
   }
 
   @override
@@ -125,12 +139,17 @@ class _$_HomeState implements _HomeState {
         (other is _HomeState &&
             (identical(other.canRecordMood, canRecordMood) ||
                 const DeepCollectionEquality()
-                    .equals(other.canRecordMood, canRecordMood)));
+                    .equals(other.canRecordMood, canRecordMood)) &&
+            (identical(other.createHealthDiaryEntry, createHealthDiaryEntry) ||
+                const DeepCollectionEquality().equals(
+                    other.createHealthDiaryEntry, createHealthDiaryEntry)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(canRecordMood);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(canRecordMood) ^
+      const DeepCollectionEquality().hash(createHealthDiaryEntry);
 
   @JsonKey(ignore: true)
   @override
@@ -144,13 +163,16 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  factory _HomeState({bool? canRecordMood}) = _$_HomeState;
+  factory _HomeState({bool? canRecordMood, bool? createHealthDiaryEntry}) =
+      _$_HomeState;
 
   factory _HomeState.fromJson(Map<String, dynamic> json) =
       _$_HomeState.fromJson;
 
   @override
   bool? get canRecordMood => throw _privateConstructorUsedError;
+  @override
+  bool? get createHealthDiaryEntry => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$HomeStateCopyWith<_HomeState> get copyWith =>

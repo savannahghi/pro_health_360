@@ -35,6 +35,12 @@ mutation acceptTerms($userID: String!, $termsID: Int!){
 }
  ''';
 
+const String createHealthDiaryEntryMutation = r'''
+mutation createHealthDiaryEntry($clientID: String!, $note: String,$mood:String!, $reportToStaff: Boolean!){
+  createHealthDiaryEntry(clientID: $clientID, note: $note,mood: $mood,reportToStaff: $reportToStaff)  
+}
+ ''';
+
 Map<String, dynamic> getTermsVariables({
   required String userId,
   required int termsId,

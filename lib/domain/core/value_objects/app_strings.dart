@@ -1,12 +1,10 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
@@ -319,9 +317,9 @@ String howAreYouFeelingTodayText(String user) {
 }
 
 // Mood Selection
-const String excitedString = 'Excited';
+const String veryHappyString = 'Very Happy';
 const String happyString = 'Happy';
-const String mehString = 'Meh';
+const String neutralString = 'Meh';
 const String sadString = 'Sad';
 const String verySadString = 'Very Sad';
 const String pleaseAddANoteOnHowYouAreFeelingString =
@@ -340,6 +338,8 @@ const String iHaveAFeverString = 'I have a fever';
 const String imCoughingString = 'I\'m coughing';
 const String iVeLostWeightString = 'I\'ve lost weight';
 const String nextString = 'Next';
+const String errorCreatingHealthDiaryEntryString =
+    'Error creating health diary entry';
 
 const String confirmPinString = 'Confirm new PIN';
 const String createNewPINTitleString = 'Create new PIN';

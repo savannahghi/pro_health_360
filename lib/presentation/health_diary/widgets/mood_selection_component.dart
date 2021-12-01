@@ -60,11 +60,11 @@ class MoodSelectionComponent extends StatelessWidget {
               MoodItem(
                 key: excitedMoodKey,
                 moodIcon: excitedIconSvgPath,
-                moodText: excitedString,
+                moodText: veryHappyString,
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     BWRoutes.moodFeedbackPage,
-                    arguments: MoodType.Excited,
+                    arguments: MoodType.VERY_HAPPY,
                   );
                 },
               ),
@@ -75,18 +75,18 @@ class MoodSelectionComponent extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     BWRoutes.moodFeedbackPage,
-                    arguments: MoodType.Happy,
+                    arguments: MoodType.HAPPY,
                   );
                 },
               ),
               MoodItem(
                 key: mehMoodKey,
                 moodIcon: mehIconSvgPath,
-                moodText: mehString,
+                moodText: neutralString,
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     BWRoutes.moodFeedbackPage,
-                    arguments: MoodType.Meh,
+                    arguments: MoodType.NEUTRAL,
                   );
                 },
               ),
@@ -97,7 +97,7 @@ class MoodSelectionComponent extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     BWRoutes.moodFeedbackPage,
-                    arguments: MoodType.Sad,
+                    arguments: MoodType.SAD,
                   );
                 },
               ),
@@ -108,7 +108,7 @@ class MoodSelectionComponent extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     BWRoutes.moodFeedbackPage,
-                    arguments: MoodType.VerySad,
+                    arguments: MoodType.VERY_SAD,
                   );
                 },
               ),

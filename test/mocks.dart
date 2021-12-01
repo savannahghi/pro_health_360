@@ -21,9 +21,6 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_obj.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/health_diary_month_obj.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
@@ -1451,86 +1448,6 @@ List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
     'members': '50',
     'name': 'Mental health'
   },
-];
-
-final List<HealthDiaryItemObj> mockDiaryItems = <HealthDiaryItemObj>[
-  HealthDiaryItemObj(
-    date: 'Tuesday 13th',
-    detailsList: <HealthDiaryDetailsItemObj>[
-      HealthDiaryDetailsItemObj(
-        svgIconPath: sadMoodIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Sad',
-      ),
-      HealthDiaryDetailsItemObj(
-        svgIconPath: textIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Text',
-      ),
-    ],
-  ),
-  HealthDiaryItemObj(
-    date: 'Wednesday 19th',
-    detailsList: <HealthDiaryDetailsItemObj>[
-      HealthDiaryDetailsItemObj(
-        svgIconPath: happyMoodIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Happy',
-      ),
-      HealthDiaryDetailsItemObj(
-        svgIconPath: mehMoodIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Meh!',
-      ),
-    ],
-  ),
-  HealthDiaryItemObj(
-    date: 'Monday 21st',
-    detailsList: <HealthDiaryDetailsItemObj>[
-      HealthDiaryDetailsItemObj(
-        svgIconPath: sadMoodIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Sad',
-      ),
-      HealthDiaryDetailsItemObj(
-        svgIconPath: imageIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Image',
-      ),
-    ],
-  ),
-  HealthDiaryItemObj(
-    date: 'Wednesday 25th',
-    detailsList: <HealthDiaryDetailsItemObj>[
-      HealthDiaryDetailsItemObj(
-        svgIconPath: sadMoodIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Sad',
-      ),
-      HealthDiaryDetailsItemObj(
-        svgIconPath: imageIconSvgPath,
-        time: '8:00 am',
-        description: 'Description of how you are feeling today',
-        title: 'Text',
-      ),
-    ],
-  ),
-];
-
-final List<HealthDiaryMonthObj> mockDiaryMonthItems = <HealthDiaryMonthObj>[
-  HealthDiaryMonthObj(
-    diaryItems: mockDiaryItems,
-    month: 'August',
-    year: '2021',
-  ),
-  HealthDiaryMonthObj(diaryItems: mockDiaryItems, month: 'July', year: '2021'),
 ];
 
 // ignore_for_file: avoid_redundant_argument_values, null_argument_to_non_null_type
