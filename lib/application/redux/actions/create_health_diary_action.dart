@@ -19,6 +19,7 @@ import 'package:myafyahub/application/redux/actions/update_home_state_action.dar
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -89,7 +90,10 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
           createHealthDiaryEntry: true,
         ),
       );
-      Navigator.of(context).pop();
+      Navigator.popAndPushNamed(
+        context,
+        BWRoutes.successfulEntryPage,
+      );
     }
 
     return state;
