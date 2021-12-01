@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'health_diary_details_item_obj.g.dart';
 
+// TODO(abiud): remove this after full diary implementation
 @JsonSerializable()
 class HealthDiaryDetailsItemObj {
   HealthDiaryDetailsItemObj({

@@ -45,7 +45,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
   Widget build(BuildContext context) {
     final Widget publishDate = widget
             .contentDetails.metadata!.createdAt!.isNotEmpty
-        ? sortDate(
+        ? humanizeDate(
             dateTextStyle: TextThemes.boldSize12Text(AppColors.greyTextColor),
             context: context,
             loadedDate: widget.contentDetails.metadata!.createdAt!,

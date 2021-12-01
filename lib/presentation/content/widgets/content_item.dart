@@ -112,7 +112,7 @@ class ContentItem extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
-                              child: sortDate(
+                              child: humanizeDate(
                                 dateTextStyle: TextThemes.normalSize12Text(
                                   AppColors.greyTextColor,
                                 ),

@@ -668,6 +668,19 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString == getHealthDiaryEntriesQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getClientHealthDiaryEntries': mockDiaryEntries,
+            },
+          }),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains('canrecordmood')) {
       return Future<http.Response>.value(
         http.Response(
@@ -1762,6 +1775,23 @@ final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
     'name': 'diet',
     'iconUrl': 'test-image.png',
   }
+];
+
+final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'active': true,
+    'mood': 'HAPPY',
+    'note': 'I am healthy',
+    'entryType': 'HOME_PAGE_HEALTH_DIARY_ENTRY',
+    'createdAt': '2021-11-30T16:17:57Z'
+  },
+  <String, dynamic>{
+    'active': true,
+    'mood': 'HAPPY',
+    'note': 'I am very healthy',
+    'entryType': 'HOME_PAGE_HEALTH_DIARY_ENTRY',
+    'createdAt': '2021-11-30T16:17:53Z'
+  },
 ];
 
 final Content mockContent = Content.fromJson(contentMock.first);

@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/address.dart';
+import 'package:myafyahub/domain/core/entities/core/health_diary_state.dart';
 import 'package:myafyahub/domain/core/entities/core/related_person.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -29,6 +30,9 @@ class ClientState with _$ClientState {
     ///others
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
     @JsonKey(name: 'isSignedIn') bool? isSignedIn,
+
+    /// The client's health diary state
+    HealthDiaryState? healthDiaryState,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>
@@ -46,5 +50,6 @@ class ClientState with _$ClientState {
         clientCounselled: false,
         lastMoodRecordedDate: UNKNOWN,
         isSignedIn: false,
+        healthDiaryState: HealthDiaryState.initial(),
       );
 }

@@ -9,6 +9,7 @@ import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 void main() {
@@ -95,6 +96,16 @@ void main() {
       expect(getEnvironmentContext(<AppContext>[AppContext.AppProd]), 'prod');
       expect(getEnvironmentContext(<AppContext>[AppContext.AppDemo]), 'demo');
       expect(getEnvironmentContext(<AppContext>[AppContext.AppTest]), 'test');
+    });
+
+    test('getMoodColor should return the various mood colors', () {
+      expect(getMoodColor('Happy').color, AppColors.greenHappyColor);
+      expect(getMoodColor('Excited').color, AppColors.greenHappyColor);
+      expect(getMoodColor('Meh').color, AppColors.mehMoodColor);
+      expect(getMoodColor('Sad').color, AppColors.warningColor);
+      expect(getMoodColor('Very Sad').color, AppColors.verySadColor);
+      expect(getMoodColor('Other').color, AppColors.secondaryColor);
+      expect(getMoodColor(null).color, AppColors.secondaryColor);
     });
   });
 }

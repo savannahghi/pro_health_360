@@ -42,7 +42,8 @@ class _$ClientStateTearOff {
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
-          bool? isSignedIn}) {
+          bool? isSignedIn,
+      HealthDiaryState? healthDiaryState}) {
     return _ClientState(
       active: active,
       addresses: addresses,
@@ -55,6 +56,7 @@ class _$ClientStateTearOff {
       user: user,
       lastMoodRecordedDate: lastMoodRecordedDate,
       isSignedIn: isSignedIn,
+      healthDiaryState: healthDiaryState,
     );
   }
 
@@ -93,6 +95,9 @@ mixin _$ClientState {
   @JsonKey(name: 'isSignedIn')
   bool? get isSignedIn => throw _privateConstructorUsedError;
 
+  /// The client's health diary entries
+  HealthDiaryState? get healthDiaryState => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ClientStateCopyWith<ClientState> get copyWith =>
@@ -126,9 +131,11 @@ abstract class $ClientStateCopyWith<$Res> {
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
-          bool? isSignedIn});
+          bool? isSignedIn,
+      HealthDiaryState? healthDiaryState});
 
   $UserCopyWith<$Res>? get user;
+  $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
 }
 
 /// @nodoc
@@ -152,6 +159,7 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
+    Object? healthDiaryState = freezed,
   }) {
     return _then(_value.copyWith(
       active: active == freezed
@@ -198,6 +206,10 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
           ? _value.isSignedIn
           : isSignedIn // ignore: cast_nullable_to_non_nullable
               as bool?,
+      healthDiaryState: healthDiaryState == freezed
+          ? _value.healthDiaryState
+          : healthDiaryState // ignore: cast_nullable_to_non_nullable
+              as HealthDiaryState?,
     ));
   }
 
@@ -209,6 +221,17 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
 
     return $UserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  $HealthDiaryStateCopyWith<$Res>? get healthDiaryState {
+    if (_value.healthDiaryState == null) {
+      return null;
+    }
+
+    return $HealthDiaryStateCopyWith<$Res>(_value.healthDiaryState!, (value) {
+      return _then(_value.copyWith(healthDiaryState: value));
     });
   }
 }
@@ -242,10 +265,13 @@ abstract class _$ClientStateCopyWith<$Res>
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
-          bool? isSignedIn});
+          bool? isSignedIn,
+      HealthDiaryState? healthDiaryState});
 
   @override
   $UserCopyWith<$Res>? get user;
+  @override
+  $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
 }
 
 /// @nodoc
@@ -271,6 +297,7 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
+    Object? healthDiaryState = freezed,
   }) {
     return _then(_ClientState(
       active: active == freezed
@@ -317,6 +344,10 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
           ? _value.isSignedIn
           : isSignedIn // ignore: cast_nullable_to_non_nullable
               as bool?,
+      healthDiaryState: healthDiaryState == freezed
+          ? _value.healthDiaryState
+          : healthDiaryState // ignore: cast_nullable_to_non_nullable
+              as HealthDiaryState?,
     ));
   }
 }
@@ -346,7 +377,8 @@ class _$_ClientState implements _ClientState {
       @JsonKey(name: 'lastMoodRecordedDate')
           this.lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
-          this.isSignedIn});
+          this.isSignedIn,
+      this.healthDiaryState});
 
   factory _$_ClientState.fromJson(Map<String, dynamic> json) =>
       _$_$_ClientStateFromJson(json);
@@ -386,10 +418,14 @@ class _$_ClientState implements _ClientState {
   @override
   @JsonKey(name: 'isSignedIn')
   final bool? isSignedIn;
+  @override
+
+  /// The client's health diary entries
+  final HealthDiaryState? healthDiaryState;
 
   @override
   String toString() {
-    return 'ClientState(active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn)';
+    return 'ClientState(active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, healthDiaryState: $healthDiaryState)';
   }
 
   @override
@@ -427,7 +463,10 @@ class _$_ClientState implements _ClientState {
                     other.lastMoodRecordedDate, lastMoodRecordedDate)) &&
             (identical(other.isSignedIn, isSignedIn) ||
                 const DeepCollectionEquality()
-                    .equals(other.isSignedIn, isSignedIn)));
+                    .equals(other.isSignedIn, isSignedIn)) &&
+            (identical(other.healthDiaryState, healthDiaryState) ||
+                const DeepCollectionEquality()
+                    .equals(other.healthDiaryState, healthDiaryState)));
   }
 
   @override
@@ -443,7 +482,8 @@ class _$_ClientState implements _ClientState {
       const DeepCollectionEquality().hash(treatmentEnrollmentDate) ^
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(lastMoodRecordedDate) ^
-      const DeepCollectionEquality().hash(isSignedIn);
+      const DeepCollectionEquality().hash(isSignedIn) ^
+      const DeepCollectionEquality().hash(healthDiaryState);
 
   @JsonKey(ignore: true)
   @override
@@ -479,7 +519,8 @@ abstract class _ClientState implements ClientState {
       @JsonKey(name: 'lastMoodRecordedDate')
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
-          bool? isSignedIn}) = _$_ClientState;
+          bool? isSignedIn,
+      HealthDiaryState? healthDiaryState}) = _$_ClientState;
 
   factory _ClientState.fromJson(Map<String, dynamic> json) =
       _$_ClientState.fromJson;
@@ -519,6 +560,10 @@ abstract class _ClientState implements ClientState {
   @override
   @JsonKey(name: 'isSignedIn')
   bool? get isSignedIn => throw _privateConstructorUsedError;
+  @override
+
+  /// The client's health diary entries
+  HealthDiaryState? get healthDiaryState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ClientStateCopyWith<_ClientState> get copyWith =>

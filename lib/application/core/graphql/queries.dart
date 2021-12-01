@@ -187,3 +187,15 @@ query getHealthDiaryQuote {
   }
 }
 ''';
+
+const String getHealthDiaryEntriesQuery = r'''
+query getHealthDiaryEntries($clientID: String!){
+  getClientHealthDiaryEntries(clientID: $clientID){
+    active
+    mood
+    note
+    entryType
+    createdAt
+  }
+}
+''';

@@ -1,16 +1,26 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
+import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/my_health_diary_item_widget.dart';
+import 'package:myafyahub/presentation/home/pages/home_page.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -20,39 +30,157 @@ void main() {
     store = Store<AppState>(initialState: AppState.initial());
   });
 
-  testWidgets('MyHealthDiaryPage renders correctly',
-      (WidgetTester tester) async {
-    await buildTestWidget(
-      tester: tester,
-      store: store,
-      client: baseGraphQlClientMock,
-      widget: Builder(
-        builder: (BuildContext context) {
-          return MaterialApp(
-            home: MyHealthDiaryPage(),
-          );
-        },
-      ),
-    );
+  group('MyHealthDiaryPage', () {
+    testWidgets('should display 2 diary entries correctly',
+        (WidgetTester tester) async {
+      final MockGraphQlClient client = MockGraphQlClient();
 
-    expect(find.byType(CustomAppBar), findsOneWidget);
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: MyHealthDiaryPage(),
+      );
 
-    final Finder previousButton = find.byKey(previousButtonKey);
-    final Finder nextButton = find.byKey(nextButtonKey);
+      await tester.pumpAndSettle();
 
-    expect(previousButton, findsOneWidget);
-    expect(nextButton, findsOneWidget);
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.text('I am healthy'), findsOneWidget);
+    });
 
-    await tester.ensureVisible(previousButton);
-    await tester.pumpAndSettle();
-    await tester.tap(previousButton);
-    await tester.pumpAndSettle();
-    expect(find.text(sadString), findsNWidgets(2));
+    testWidgets('should display 2 diary entries and refresh to get new entries',
+        (WidgetTester tester) async {
+      final MockGraphQlClient client = MockGraphQlClient();
 
-    await tester.ensureVisible(nextButton);
-    await tester.pumpAndSettle();
-    await tester.tap(nextButton);
-    await tester.pumpAndSettle();
-    expect(find.text(sadString), findsNothing);
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: MyHealthDiaryPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.text('I am healthy'), findsOneWidget);
+
+      await tester.fling(
+        find.byType(HealthDiaryEntryWidget).first,
+        const Offset(0.0, 300.0),
+        1000.0,
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.text('I am healthy'), findsOneWidget);
+    });
+
+    testWidgets('should show a timeout widget when fetching diary entries',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'timeout'}),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: MyHealthDiaryPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+    });
+
+    testWidgets('should show a no data widget when fetching diary entries',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'some other unknown error'}),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: MyHealthDiaryPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GenericNoData), findsOneWidget);
+
+      // try fetching again and expect the same thing
+      await tester.tap(find.byKey(genericNoDataButtonKey));
+      await tester.pumpAndSettle();
+      expect(find.byType(GenericNoData), findsOneWidget);
+    });
+
+    testWidgets(
+        'should show an empty health diary widget if there are no diary entries',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getClientHealthDiaryEntries': <dynamic>[]
+            }
+          }),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: MyHealthDiaryPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(EmptyHealthDiary), findsOneWidget);
+
+      // try fetching again and expect the same thing
+      await tester.tap(find.byKey(healthDiaryRetryButtonKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HomePage), findsOneWidget);
+    });
+
+    testWidgets(
+        'should show loading indicator when fetching health diary entries',
+        (WidgetTester tester) async {
+      final MockGraphQlClient mockShortSILGraphQlClient = MockGraphQlClient();
+
+      store.dispatch(WaitAction<AppState>.add(fetchHealthDiaryFlag));
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: MyHealthDiaryPage(),
+      );
+
+      expect(find.byType(SILPlatformLoader), findsOneWidget);
+    });
   });
 }

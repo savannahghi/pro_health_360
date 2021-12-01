@@ -11,14 +11,6 @@ enum UserType { normal, anonymous }
 
 enum AuthTokenStatus { okay, requiresLogin, requiresPin }
 
-/// [BorderRadiusSides] helps determine the exact side the border radius
-/// for widgets should be set
-enum BorderRadiusSides {
-  TopOnly,
-  BottomOnly,
-  None,
-  All,
-}
 enum TimelineItemType {
   DiaryText,
   DiaryImage,

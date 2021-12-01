@@ -7,9 +7,10 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
-import 'package:myafyahub/presentation/my_health/pages/my_health_diary_page.dart';
+import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
+import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -20,10 +21,12 @@ void main() {
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {
+      final MockGraphQlClient client = MockGraphQlClient();
+
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: client,
         widget: MyHealthPage(),
       );
       expect(find.byType(MyHealthPage), findsOneWidget);
@@ -32,6 +35,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(MyHealthDiaryPage), findsOneWidget);
     });
+
     testWidgets('navigates to UserProfilePage ', (WidgetTester tester) async {
       store.dispatch(
         UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
@@ -47,6 +51,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(UserProfilePage), findsOneWidget);
     });
+
     testWidgets('navigates to Appointments Page ', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,

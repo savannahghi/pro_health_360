@@ -85,9 +85,11 @@ const String logTitle = 'Get FAQs';
 
 const String actionTextGenericNoData = 'Retry';
 const String messageBodyGenericNoData =
-    'Something went wrong while loading FAQs, retry or contact support for immediate help';
+    'Something went wrong while fetching contents of this section, retry or contact support for immediate help';
 const String feedErrorDetail =
     'Something went wrong while fetching recent content, kindly try again or contact our support center for immediate help';
+const String healthDiaryErrorDetail =
+    'Something went wrong while fetching your diary, kindly try again or contact our support center for immediate help';
 
 const String itemGenericEmptyData = 'FAQs';
 
@@ -191,7 +193,8 @@ const String retryButtonText = 'Retry';
 
 // generic widget
 const String genericErrorOccurred = 'Sorry, an error occurred';
-const String genericTryAgain = 'Please try again later';
+const String genericTryAgain =
+    'Something went wrong while fetching content for you. Please retry or check in later for more. You can also contact our support center in case the issue persists';
 const String genericVerifyPhoneNumber = 'Verify Phone number';
 const String continueToLoginButtonText = 'Continue to Log in';
 const String updatingProfileDetails = 'Updating profile details...';
@@ -595,6 +598,10 @@ const String contentCategoriesErrorMessage = 'Something went wrong. Retry';
 
 const String contentSavedSuccessfully = 'Content saved successfully';
 const String diaryEntrySuccessfulText = 'Diary entry added successfully';
+const String diaryEmptyTitle = 'Your diary is empty';
+const String diaryEmptyDescription =
+    'No worries, let’s get you started. Tap the button below to make your first diary entry. You will be redirected to the home page';
+
 const String mightTakeSomeTimeText =
     'They might take some time to reach out to you. '
     'If it is an emergency, please contact your '

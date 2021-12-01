@@ -13,6 +13,8 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:misc_utilities/refresh_token_manager.dart';
+import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
+import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:user_feed/user_feed.dart';
 
 // Project imports:
@@ -145,6 +147,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         final OnboardingPathConfig onboardingPathConfig =
             onboardingPath(appState: state);
+
+        dispatch(
+          BottomNavAction(currentBottomNavIndex: BottomNavIndex.home.index),
+        );
 
         Navigator.of(context).pushNamedAndRemoveUntil(
           onboardingPathConfig.route,

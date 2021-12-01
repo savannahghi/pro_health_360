@@ -19,6 +19,7 @@ import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/redux/actions/like_content_action.dart';
 import 'package:myafyahub/application/redux/actions/unlike_content_action.dart';
+import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -370,7 +371,7 @@ Future<dynamic> showFeedbackBottomSheet({
 }
 
 // Parses date then converts it to the format 18 May 2021 at 12:00 AM
-Widget sortDate({
+Widget humanizeDate({
   required TextStyle dateTextStyle,
   required BuildContext context,
   required String loadedDate,
@@ -386,15 +387,9 @@ Widget sortDate({
   return Row(
     children: <Widget>[
       Text(
-        '$postDay $postMonth ${showYear ? postYear : ''}',
+        '$postDay $postMonth ${showYear ? postYear : ''}${showTime ? ' at $postDayTime' : ''}',
         style: dateTextStyle,
       ),
-      if (showTime) Text('at ', style: dateTextStyle) else const SizedBox(),
-      smallHorizontalSizedBox,
-      if (showTime)
-        Text(postDayTime, style: dateTextStyle)
-      else
-        const SizedBox(),
     ],
   );
 }
@@ -797,5 +792,41 @@ Future<void> updateLikeStatus({
       context,
       LikeContentAction(contentID: contentID, context: context),
     );
+  }
+}
+
+MoodItemData getMoodColor(String? mood) {
+  if (mood == null) {
+    return MoodItemData.initial();
+  }
+
+  switch (mood) {
+    case excitedString:
+      return MoodItemData(
+        color: AppColors.greenHappyColor,
+        svgIconUrl: excitedIconSvgPath,
+      );
+    case happyString:
+      return MoodItemData(
+        color: AppColors.greenHappyColor,
+        svgIconUrl: happyIconSvgPath,
+      );
+    case mehString:
+      return MoodItemData(
+        color: AppColors.mehMoodColor,
+        svgIconUrl: mehIconSvgPath,
+      );
+    case sadString:
+      return MoodItemData(
+        color: AppColors.warningColor,
+        svgIconUrl: sadIconSvgPath,
+      );
+    case verySadString:
+      return MoodItemData(
+        color: AppColors.verySadColor,
+        svgIconUrl: verySadIconSvgPath,
+      );
+    default:
+      return MoodItemData.initial();
   }
 }

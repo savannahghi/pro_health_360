@@ -478,7 +478,7 @@ void main() {
     });
   });
 
-  group('sortDate', () {
+  group('humanizeDate', () {
     testWidgets('displays correct date', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -486,7 +486,7 @@ void main() {
         client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
-            return sortDate(
+            return humanizeDate(
               dateTextStyle:
                   TextThemes.normalSize12Text(AppColors.darkGreyColor),
               context: context,
@@ -499,9 +499,7 @@ void main() {
 
       await tester.pump();
       expect(find.byType(Row), findsOneWidget);
-      expect(find.text('27 Feb 2012'), findsOneWidget);
-      expect(find.text('at '), findsOneWidget);
-      expect(find.text('1:27 PM'), findsOneWidget);
+      expect(find.text('27 Feb 2012 at 1:27 PM'), findsOneWidget);
     });
 
     testWidgets('fails to display time', (WidgetTester tester) async {
@@ -511,7 +509,7 @@ void main() {
         client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
-            return sortDate(
+            return humanizeDate(
               dateTextStyle:
                   TextThemes.normalSize12Text(AppColors.darkGreyColor),
               context: context,
@@ -524,10 +522,9 @@ void main() {
       await tester.pump();
       expect(find.byType(Row), findsOneWidget);
       expect(find.text('27 Feb 2012'), findsOneWidget);
-      expect(find.text('at '), findsNothing);
-      expect(find.byType(SizedBox), findsWidgets);
     });
   });
+
   group('shouldInputPIN', () {
     late bool testBool;
     store.dispatch(

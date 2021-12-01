@@ -26,6 +26,10 @@ _$_ClientState _$_$_ClientStateFromJson(Map<String, dynamic> json) {
         : User.fromJson(json['user'] as Map<String, dynamic>),
     lastMoodRecordedDate: json['lastMoodRecordedDate'] as String?,
     isSignedIn: json['isSignedIn'] as bool?,
+    healthDiaryState: json['healthDiaryState'] == null
+        ? null
+        : HealthDiaryState.fromJson(
+            json['healthDiaryState'] as Map<String, dynamic>),
   );
 }
 
@@ -42,6 +46,7 @@ Map<String, dynamic> _$_$_ClientStateToJson(_$_ClientState instance) =>
       'user': instance.user,
       'lastMoodRecordedDate': instance.lastMoodRecordedDate,
       'isSignedIn': instance.isSignedIn,
+      'healthDiaryState': instance.healthDiaryState,
     };
 
 K _$enumDecode<K, V>(

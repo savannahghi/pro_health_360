@@ -74,11 +74,9 @@ class GenericNoData extends StatelessWidget {
               children: <Widget>[
                 largeVerticalSizedBox,
                 SvgPicture.asset(
-                  genericNoDataIconUrl,
-                  height: 120.0,
-                  width: 120.0,
+                  errorPageImage,
+                  height: MediaQuery.of(context).size.height / 3,
                 ),
-                largeVerticalSizedBox,
                 Center(
                   child: Column(
                     children: <Widget>[
@@ -100,7 +98,7 @@ class GenericNoData extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      largeVerticalSizedBox,
+                      mediumVerticalSizedBox,
                       SizedBox(
                         width: double.infinity,
                         height: 48,

@@ -6,6 +6,7 @@ import 'package:myafyahub/domain/core/entities/health_diary/health_diary_item_ob
 
 part 'health_diary_month_obj.g.dart';
 
+// TODO(abiud): remove this after full health diary implementation
 @JsonSerializable()
 class HealthDiaryMonthObj {
   HealthDiaryMonthObj({

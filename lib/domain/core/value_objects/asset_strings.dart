@@ -151,3 +151,7 @@ const String leftQuoteSVGUrl = 'assets/icons/quote_left.svg';
 const String rightQuoteSVGUrl = 'assets/icons/quote_right.svg';
 
 const String successfulEntryImage = 'assets/images/successful_entry_image.svg';
+
+const String emptyDiaryEntryImage = 'assets/images/empty_diary.svg';
+const String errorPageImage = 'assets/images/error_page_image.svg';
+
