@@ -22,10 +22,12 @@ class _$ContentStateTearOff {
 
   _ContentState call(
       {@JsonKey(name: 'items') List<Content?>? contentItems,
+      ContentCategory? selectedCategory,
       bool? errorFetchingContent,
       bool? timeoutFetchingContent}) {
     return _ContentState(
       contentItems: contentItems,
+      selectedCategory: selectedCategory,
       errorFetchingContent: errorFetchingContent,
       timeoutFetchingContent: timeoutFetchingContent,
     );
@@ -43,6 +45,7 @@ const $ContentState = _$ContentStateTearOff();
 mixin _$ContentState {
   @JsonKey(name: 'items')
   List<Content?>? get contentItems => throw _privateConstructorUsedError;
+  ContentCategory? get selectedCategory => throw _privateConstructorUsedError;
   bool? get errorFetchingContent => throw _privateConstructorUsedError;
   bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
 
@@ -59,8 +62,11 @@ abstract class $ContentStateCopyWith<$Res> {
       _$ContentStateCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'items') List<Content?>? contentItems,
+      ContentCategory? selectedCategory,
       bool? errorFetchingContent,
       bool? timeoutFetchingContent});
+
+  $ContentCategoryCopyWith<$Res>? get selectedCategory;
 }
 
 /// @nodoc
@@ -74,6 +80,7 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
   @override
   $Res call({
     Object? contentItems = freezed,
+    Object? selectedCategory = freezed,
     Object? errorFetchingContent = freezed,
     Object? timeoutFetchingContent = freezed,
   }) {
@@ -82,6 +89,10 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
           ? _value.contentItems
           : contentItems // ignore: cast_nullable_to_non_nullable
               as List<Content?>?,
+      selectedCategory: selectedCategory == freezed
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as ContentCategory?,
       errorFetchingContent: errorFetchingContent == freezed
           ? _value.errorFetchingContent
           : errorFetchingContent // ignore: cast_nullable_to_non_nullable
@@ -91,6 +102,17 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
           : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
+  }
+
+  @override
+  $ContentCategoryCopyWith<$Res>? get selectedCategory {
+    if (_value.selectedCategory == null) {
+      return null;
+    }
+
+    return $ContentCategoryCopyWith<$Res>(_value.selectedCategory!, (value) {
+      return _then(_value.copyWith(selectedCategory: value));
+    });
   }
 }
 
@@ -103,8 +125,12 @@ abstract class _$ContentStateCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'items') List<Content?>? contentItems,
+      ContentCategory? selectedCategory,
       bool? errorFetchingContent,
       bool? timeoutFetchingContent});
+
+  @override
+  $ContentCategoryCopyWith<$Res>? get selectedCategory;
 }
 
 /// @nodoc
@@ -120,6 +146,7 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? contentItems = freezed,
+    Object? selectedCategory = freezed,
     Object? errorFetchingContent = freezed,
     Object? timeoutFetchingContent = freezed,
   }) {
@@ -128,6 +155,10 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
           ? _value.contentItems
           : contentItems // ignore: cast_nullable_to_non_nullable
               as List<Content?>?,
+      selectedCategory: selectedCategory == freezed
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as ContentCategory?,
       errorFetchingContent: errorFetchingContent == freezed
           ? _value.errorFetchingContent
           : errorFetchingContent // ignore: cast_nullable_to_non_nullable
@@ -145,6 +176,7 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
 class _$_ContentState implements _ContentState {
   _$_ContentState(
       {@JsonKey(name: 'items') this.contentItems,
+      this.selectedCategory,
       this.errorFetchingContent,
       this.timeoutFetchingContent});
 
@@ -155,13 +187,15 @@ class _$_ContentState implements _ContentState {
   @JsonKey(name: 'items')
   final List<Content?>? contentItems;
   @override
+  final ContentCategory? selectedCategory;
+  @override
   final bool? errorFetchingContent;
   @override
   final bool? timeoutFetchingContent;
 
   @override
   String toString() {
-    return 'ContentState(contentItems: $contentItems, errorFetchingContent: $errorFetchingContent, timeoutFetchingContent: $timeoutFetchingContent)';
+    return 'ContentState(contentItems: $contentItems, selectedCategory: $selectedCategory, errorFetchingContent: $errorFetchingContent, timeoutFetchingContent: $timeoutFetchingContent)';
   }
 
   @override
@@ -171,6 +205,9 @@ class _$_ContentState implements _ContentState {
             (identical(other.contentItems, contentItems) ||
                 const DeepCollectionEquality()
                     .equals(other.contentItems, contentItems)) &&
+            (identical(other.selectedCategory, selectedCategory) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectedCategory, selectedCategory)) &&
             (identical(other.errorFetchingContent, errorFetchingContent) ||
                 const DeepCollectionEquality().equals(
                     other.errorFetchingContent, errorFetchingContent)) &&
@@ -183,6 +220,7 @@ class _$_ContentState implements _ContentState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(contentItems) ^
+      const DeepCollectionEquality().hash(selectedCategory) ^
       const DeepCollectionEquality().hash(errorFetchingContent) ^
       const DeepCollectionEquality().hash(timeoutFetchingContent);
 
@@ -200,6 +238,7 @@ class _$_ContentState implements _ContentState {
 abstract class _ContentState implements ContentState {
   factory _ContentState(
       {@JsonKey(name: 'items') List<Content?>? contentItems,
+      ContentCategory? selectedCategory,
       bool? errorFetchingContent,
       bool? timeoutFetchingContent}) = _$_ContentState;
 
@@ -209,6 +248,8 @@ abstract class _ContentState implements ContentState {
   @override
   @JsonKey(name: 'items')
   List<Content?>? get contentItems => throw _privateConstructorUsedError;
+  @override
+  ContentCategory? get selectedCategory => throw _privateConstructorUsedError;
   @override
   bool? get errorFetchingContent => throw _privateConstructorUsedError;
   @override

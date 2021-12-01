@@ -58,6 +58,9 @@ const String shareIconUrl = 'assets/icons/share.svg';
 const String heartIconUrl = 'assets/icons/heart.svg';
 const String clockIconUrl = 'assets/icons/clock.svg';
 
+const String contentZeroStateImageUrl =
+    'assets/images/content_zero_state_image.svg';
+
 const String profileImage = 'assets/images/profile_image.png';
 
 const String paperClipIcon = 'assets/icons/paper_clip_icon.svg';

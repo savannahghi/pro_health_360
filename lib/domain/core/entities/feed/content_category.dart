@@ -18,7 +18,7 @@ class ContentCategory with _$ContentCategory {
 
   factory ContentCategory.initial() => ContentCategory(
         id: 0,
-        name: UNKNOWN,
+        name: 'all',
         icon: UNKNOWN,
       );
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 // Package imports:
+import 'package:afya_moja_core/buttons.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,6 +11,7 @@ import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -78,8 +80,47 @@ void main() {
         expect(find.byType(ContentItem), findsNWidgets(2));
       });
     });
+
+    testWidgets('should display zero state widget',
+        (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
+              'getContent': <String, dynamic>{'items': <dynamic>[]}
+            }
+          }),
+          201,
+        ),
+      );
+
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: const FeedPage(),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentZeroStateWidget), findsOneWidget);
+
+        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+        expect(find.byType(ContentZeroStateWidget), findsOneWidget);
+      });
+    });
+
     testWidgets('should refresh feed display items correctly',
         (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
@@ -105,6 +146,8 @@ void main() {
 
     testWidgets('navigates to the detail view of a feed item',
         (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,
@@ -135,6 +178,8 @@ void main() {
 
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
         final MockShortSILGraphQlClient client =
             MockShortSILGraphQlClient.withResponse(

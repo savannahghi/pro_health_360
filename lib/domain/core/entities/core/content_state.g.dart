@@ -12,6 +12,10 @@ _$_ContentState _$_$_ContentStateFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : Content.fromJson(e as Map<String, dynamic>))
         .toList(),
+    selectedCategory: json['selectedCategory'] == null
+        ? null
+        : ContentCategory.fromJson(
+            json['selectedCategory'] as Map<String, dynamic>),
     errorFetchingContent: json['errorFetchingContent'] as bool?,
     timeoutFetchingContent: json['timeoutFetchingContent'] as bool?,
   );
@@ -20,6 +24,7 @@ _$_ContentState _$_$_ContentStateFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_ContentStateToJson(_$_ContentState instance) =>
     <String, dynamic>{
       'items': instance.contentItems,
+      'selectedCategory': instance.selectedCategory,
       'errorFetchingContent': instance.errorFetchingContent,
       'timeoutFetchingContent': instance.timeoutFetchingContent,
     };

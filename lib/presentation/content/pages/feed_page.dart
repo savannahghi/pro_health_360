@@ -10,6 +10,7 @@ import 'package:myafyahub/application/redux/actions/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -121,10 +122,21 @@ class _FeedPageState extends State<FeedPage> {
                       ),
                     ),
                   );
-                } else {
-                  return const SizedBox();
+                } else if (feedItems != null) {
+                  return ContentZeroStateWidget(
+                    callBackFunction: () {
+                      StoreProvider.dispatch<AppState>(
+                        context,
+                        FetchContentAction(
+                          context: context,
+                          category: vm.selectedCategory,
+                        ),
+                      );
+                    },
+                  );
                 }
               }
+              return const SizedBox();
             },
           ),
         ],

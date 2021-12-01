@@ -10,6 +10,7 @@ import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -27,7 +28,6 @@ class FeedCategoriesWidget extends StatefulWidget {
 class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
   late Stream<Object> _stream;
   late StreamController<Object> _streamController;
-  int _choiceIndex = 0;
 
   @override
   void initState() {
@@ -128,54 +128,59 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
             ];
 
             if (contentCategories.isNotEmpty) {
-              return ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: contentCategories.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final ContentCategory contentCategory =
-                      contentCategories[index]!;
-                  return Padding(
-                    padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
-                    child: ChoiceChip(
-                      label: Text(
-                        toBeginningOfSentenceCase(contentCategory.name) ??
-                            UNKNOWN,
-                        style: TextThemes.normalSize16Text().copyWith(
-                          color: _choiceIndex == index
-                              ? AppColors.whiteColor
-                              : AppColors.secondaryColor,
-                        ),
-                      ),
-                      labelStyle: const TextStyle(color: AppColors.whiteColor),
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                          color: AppColors.whiteColor,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      selected: _choiceIndex == index,
-                      selectedColor: AppColors.secondaryColor,
-                      onSelected: (bool selected) {
-                        setState(() {
-                          _choiceIndex = selected ? index : 0;
-                          StoreProvider.dispatch<AppState>(
-                            context,
-                            FetchContentAction(
-                              context: context,
-                              id: contentCategory.id!,
+              return StoreConnector<AppState, ContentViewModel>(
+                converter: (Store<AppState> store) =>
+                    ContentViewModel.fromStore(store.state),
+                builder: (BuildContext context, ContentViewModel vm) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: contentCategories.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final ContentCategory contentCategory =
+                          contentCategories[index]!;
+                      return Padding(
+                        padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
+                        child: ChoiceChip(
+                          label: Text(
+                            toBeginningOfSentenceCase(contentCategory.name) ??
+                                UNKNOWN,
+                            style: TextThemes.normalSize16Text().copyWith(
+                              color: vm.selectedCategory!.name ==
+                                      contentCategory.name
+                                  ? AppColors.whiteColor
+                                  : AppColors.secondaryColor,
                             ),
-                          );
-                        });
-                      },
-                      backgroundColor: Colors.grey.shade300,
-                    ),
+                          ),
+                          labelStyle:
+                              const TextStyle(color: AppColors.whiteColor),
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                              color: AppColors.whiteColor,
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          selected:
+                              vm.selectedCategory!.name == contentCategory.name,
+                          selectedColor: AppColors.secondaryColor,
+                          onSelected: (bool selected) {
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              FetchContentAction(
+                                context: context,
+                                category: contentCategory,
+                              ),
+                            );
+                          },
+                          backgroundColor: Colors.grey.shade300,
+                        ),
+                      );
+                    },
                   );
                 },
               );
             }
           }
-
           return const SizedBox();
         },
       ),

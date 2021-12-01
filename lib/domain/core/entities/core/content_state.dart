@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 
 part 'content_state.freezed.dart';
 part 'content_state.g.dart';
@@ -11,6 +12,7 @@ part 'content_state.g.dart';
 class ContentState with _$ContentState {
   factory ContentState({
     @JsonKey(name: 'items') List<Content?>? contentItems,
+    ContentCategory? selectedCategory,
     bool? errorFetchingContent,
     bool? timeoutFetchingContent,
   }) = _ContentState;
@@ -22,5 +24,6 @@ class ContentState with _$ContentState {
         contentItems: <Content>[],
         errorFetchingContent: false,
         timeoutFetchingContent: false,
+        selectedCategory: ContentCategory.initial(),
       );
 }

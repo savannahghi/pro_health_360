@@ -15,18 +15,19 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 
 class FetchContentAction extends ReduxAction<AppState> {
   FetchContentAction({
     required this.context,
     this.limit = 10,
-    this.id = 0,
+    this.category,
   });
 
   final BuildContext context;
   final int limit;
-  final int id;
+  final ContentCategory? category;
 
   @override
   void after() {
@@ -36,14 +37,21 @@ class FetchContentAction extends ReduxAction<AppState> {
 
   @override
   void before() {
+    dispatch(
+      UpdateContentStateAction(
+        selectedCategory: category ?? ContentCategory.initial(),
+      ),
+    );
     dispatch(WaitAction<AppState>.add(fetchContentFlag));
     super.before();
   }
 
   @override
   Future<AppState?> reduce() async {
+    final ContentCategory selectedCategory =
+        category ?? ContentCategory.initial();
     final Map<String, dynamic> variables = <String, dynamic>{
-      'categoryID': id == 0 ? null : id,
+      'categoryID': selectedCategory.id == 0 ? null : selectedCategory.id,
       'Limit': limit.toString()
     };
 
@@ -83,6 +91,12 @@ class FetchContentAction extends ReduxAction<AppState> {
 
       if (feedItems != null && feedItems.isNotEmpty) {
         dispatch(UpdateContentStateAction(contentItems: feedItems));
+      } else {
+        dispatch(
+          UpdateContentStateAction(
+            contentItems: <Content>[],
+          ),
+        );
       }
     }
 

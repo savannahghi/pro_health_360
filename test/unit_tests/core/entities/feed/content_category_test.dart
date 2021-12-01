@@ -1,5 +1,4 @@
 // Package imports:
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
@@ -26,7 +25,7 @@ void main() {
     );
     expect(
       initialAddress.name,
-      UNKNOWN,
+      'all',
     );
   });
 }

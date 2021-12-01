@@ -544,10 +544,6 @@ const String yesString = 'Yes';
 const String noString = 'No';
 const String sendFeedbackString = 'Send feedback';
 const String cancelString = 'Cancel';
-const String allString = 'All';
-const String recommendedString = 'Recommended';
-const String exerciseString = 'Exercise';
-const String dietString = 'Diet';
 
 //Article Details Page
 const String datePublishedString = 'Published on ';
@@ -597,6 +593,8 @@ const String defaultQuoteAuthor = 'myAfyaHub';
 const String randomQuoteText =
     'The greatest glory in living lies not in never falling, but in rising every time we fall';
 const String randomQuoteAuthor = '- Nelson Mandela';
+
+//Feed Page
 const String contentCategoriesErrorMessage = 'Something went wrong. Retry';
 
 const String contentSavedSuccessfully = 'Content saved successfully';
@@ -617,3 +615,8 @@ String getSuccessfulBodyText(String userName) {
       'We have notified your clinician. Your entry might be discussed '
       'on your next visit.';
 }
+
+const String contentZeroStateTitle = 'You have no content';
+const String contentZeroStateDescription =
+    'Sit back, relax and enjoy a cup of coffee as we prepare fresh content for you';
+const String contentZeroStateButtonText = 'Retry';

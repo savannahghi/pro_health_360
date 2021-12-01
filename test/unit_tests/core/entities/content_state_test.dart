@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import '../../../mocks.dart';
 
 void main() {
@@ -25,6 +26,7 @@ void main() {
         contentItems: <Content>[],
         errorFetchingContent: false,
         timeoutFetchingContent: false,
+        selectedCategory: ContentCategory.initial(),
       ),
     );
   });
