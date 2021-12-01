@@ -14,7 +14,6 @@ import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/add_diary_entry_bottom_sheet.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/my_health_diary_item_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -127,7 +126,6 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
               }
             },
           ),
-          const DiaryAddSheet()
         ],
       ),
     );

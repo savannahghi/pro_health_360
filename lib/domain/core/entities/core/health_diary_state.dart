@@ -11,6 +11,8 @@ class HealthDiaryState with _$HealthDiaryState {
         List<HealthDiaryEntry?>? entries,
     bool? errorFetchingDiaryEntries,
     bool? timeoutFetchingDiaryEntries,
+    bool? shouldShareHealthRecord,
+    bool? shouldNotShareHealthRecord,
   }) = _HealthDiaryState;
 
   factory HealthDiaryState.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +22,7 @@ class HealthDiaryState with _$HealthDiaryState {
         entries: <HealthDiaryEntry>[],
         errorFetchingDiaryEntries: false,
         timeoutFetchingDiaryEntries: false,
+        shouldShareHealthRecord: false,
+        shouldNotShareHealthRecord: true,
       );
 }

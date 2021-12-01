@@ -101,5 +101,61 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(HomePage), findsNothing);
     });
+
+    testWidgets('should toggle sharing of diary entry',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: const MoodFeedbackPage(moodType: MoodType.SAD),
+      );
+
+      final Finder textFormField = find.byKey(moodFeedbackTextFieldKey);
+      expect(textFormField, findsOneWidget);
+      await tester.showKeyboard(textFormField);
+      await tester.enterText(textFormField, 'text');
+      await tester.pumpAndSettle();
+
+      expect(find.text('Yes'), findsOneWidget);
+      expect(find.text('No'), findsOneWidget);
+
+      expect(
+        store.state.clientState!.healthDiaryState!.shouldShareHealthRecord,
+        false,
+      );
+      expect(
+        store.state.clientState!.healthDiaryState!.shouldNotShareHealthRecord,
+        true,
+      );
+
+      final Finder yesButton = find.byKey(shareHealthDiaryKey);
+      await tester.ensureVisible(yesButton);
+      await tester.tap(yesButton);
+      await tester.pumpAndSettle();
+
+      expect(
+        store.state.clientState!.healthDiaryState!.shouldShareHealthRecord,
+        true,
+      );
+      expect(
+        store.state.clientState!.healthDiaryState!.shouldNotShareHealthRecord,
+        false,
+      );
+
+      final Finder noButton = find.byKey(dontShareHealthDiaryKey);
+      await tester.ensureVisible(noButton);
+      await tester.tap(noButton);
+      await tester.pumpAndSettle();
+
+      expect(
+        store.state.clientState!.healthDiaryState!.shouldShareHealthRecord,
+        false,
+      );
+      expect(
+        store.state.clientState!.healthDiaryState!.shouldNotShareHealthRecord,
+        true,
+      );
+    });
   });
 }

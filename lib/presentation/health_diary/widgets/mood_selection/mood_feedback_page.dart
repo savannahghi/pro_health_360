@@ -6,6 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/redux/actions/create_health_diary_action.dart';
+import 'package:myafyahub/application/redux/actions/update_health_diary_state.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
@@ -13,6 +14,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -33,10 +35,9 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: (paul) hook the returned moods from backend
-    // final bool shouldSelectSymptoms = widget.moodType == MoodType.NEUTRAL ||
-    //     widget.moodType == MoodType.SAD ||
-    //     widget.moodType == MoodType.VERY_SAD;
+    final bool shouldSelectSymptoms = widget.moodType == MoodType.NEUTRAL ||
+        widget.moodType == MoodType.SAD ||
+        widget.moodType == MoodType.VERY_SAD;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -47,13 +48,29 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
             converter: (Store<AppState> store) =>
                 AppStateViewModel.fromStore(store),
             builder: (BuildContext context, AppStateViewModel vm) {
+              final bool shouldShare = vm.appState.clientState!
+                      .healthDiaryState!.shouldShareHealthRecord ??
+                  false;
+
+              final bool shouldNotShare = vm.appState.clientState!
+                      .healthDiaryState!.shouldNotShareHealthRecord ??
+                  true;
+
               return Column(
                 children: <Widget>[
                   Align(
                     alignment: Alignment.topLeft,
                     child: GestureDetector(
                       key: moodFeedbackGestureDetectorKey,
-                      onTap: () => Navigator.pop(context),
+                      onTap: () {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          UpdateHealthDiaryStateActon(
+                            shouldShareHealthRecord: false,
+                          ),
+                        );
+                        Navigator.pop(context);
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
@@ -168,6 +185,49 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                                   ),
                                 ),
                                 largeVerticalSizedBox,
+                                if (shouldSelectSymptoms) ...<Widget>[
+                                  Text(
+                                    shareDiaryEntryPrompt,
+                                    style: TextThemes.normalSize16Text(
+                                      AppColors.greyTextColor,
+                                    ),
+                                  ),
+                                  mediumVerticalSizedBox,
+                                  Wrap(
+                                    spacing: 12.0,
+                                    runSpacing: 12.0,
+                                    children: <Widget>[
+                                      MoodSymptomWidget(
+                                        title: yesString,
+                                        isSelected: shouldShare,
+                                        gestureKey: shareHealthDiaryKey,
+                                        onTap: () {
+                                          StoreProvider.dispatch(
+                                            context,
+                                            UpdateHealthDiaryStateActon(
+                                              shouldShareHealthRecord: true,
+                                              shouldNotShareHealthRecord: false,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      MoodSymptomWidget(
+                                        title: noString,
+                                        isSelected: shouldNotShare,
+                                        gestureKey: dontShareHealthDiaryKey,
+                                        onTap: () {
+                                          StoreProvider.dispatch(
+                                            context,
+                                            UpdateHealthDiaryStateActon(
+                                              shouldShareHealthRecord: false,
+                                              shouldNotShareHealthRecord: true,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ],
                             ),
                           ),

@@ -11,14 +11,27 @@ import 'package:unicons/unicons.dart';
 
 /// [MoodSymptomWidget] Displays reaction icons on the health diary page
 class MoodSymptomWidget extends StatelessWidget {
-  const MoodSymptomWidget({this.isSelected = false, required this.title});
+  const MoodSymptomWidget({
+    this.isSelected = false,
+    required this.title,
+    this.onTap,
+    this.gestureKey,
+  });
 
   final bool isSelected;
   final String title;
+  final Function? onTap;
+  final Key? gestureKey;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: gestureKey,
+      onTap: () {
+        if (onTap != null) {
+          onTap!();
+        }
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
         decoration: BoxDecoration(

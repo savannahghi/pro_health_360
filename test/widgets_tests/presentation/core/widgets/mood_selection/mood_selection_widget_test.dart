@@ -11,7 +11,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/mood_selection_widget.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_checker.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../../mocks.dart';

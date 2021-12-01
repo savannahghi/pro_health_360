@@ -49,12 +49,14 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     final String? userID = state.clientState!.id;
+    final bool shouldShareHealthRecord =
+        state.clientState!.healthDiaryState!.shouldShareHealthRecord ?? false;
 
     final Map<String, dynamic> _variables = <String, dynamic>{
       'clientID': userID!,
       'note': note,
       'mood': mood,
-      'reportToStaff': false
+      'reportToStaff': shouldShareHealthRecord
     };
 
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
@@ -90,10 +92,7 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
           createHealthDiaryEntry: true,
         ),
       );
-      Navigator.popAndPushNamed(
-        context,
-        BWRoutes.successfulEntryPage,
-      );
+      Navigator.popAndPushNamed(context, BWRoutes.successfulEntryPage);
     }
 
     return state;

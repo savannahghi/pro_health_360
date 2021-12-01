@@ -24,11 +24,15 @@ class _$HealthDiaryStateTearOff {
       {@JsonKey(name: 'getClientHealthDiaryEntries')
           List<HealthDiaryEntry?>? entries,
       bool? errorFetchingDiaryEntries,
-      bool? timeoutFetchingDiaryEntries}) {
+      bool? timeoutFetchingDiaryEntries,
+      bool? shouldShareHealthRecord,
+      bool? shouldNotShareHealthRecord}) {
     return _HealthDiaryState(
       entries: entries,
       errorFetchingDiaryEntries: errorFetchingDiaryEntries,
       timeoutFetchingDiaryEntries: timeoutFetchingDiaryEntries,
+      shouldShareHealthRecord: shouldShareHealthRecord,
+      shouldNotShareHealthRecord: shouldNotShareHealthRecord,
     );
   }
 
@@ -46,6 +50,8 @@ mixin _$HealthDiaryState {
   List<HealthDiaryEntry?>? get entries => throw _privateConstructorUsedError;
   bool? get errorFetchingDiaryEntries => throw _privateConstructorUsedError;
   bool? get timeoutFetchingDiaryEntries => throw _privateConstructorUsedError;
+  bool? get shouldShareHealthRecord => throw _privateConstructorUsedError;
+  bool? get shouldNotShareHealthRecord => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +68,9 @@ abstract class $HealthDiaryStateCopyWith<$Res> {
       {@JsonKey(name: 'getClientHealthDiaryEntries')
           List<HealthDiaryEntry?>? entries,
       bool? errorFetchingDiaryEntries,
-      bool? timeoutFetchingDiaryEntries});
+      bool? timeoutFetchingDiaryEntries,
+      bool? shouldShareHealthRecord,
+      bool? shouldNotShareHealthRecord});
 }
 
 /// @nodoc
@@ -79,6 +87,8 @@ class _$HealthDiaryStateCopyWithImpl<$Res>
     Object? entries = freezed,
     Object? errorFetchingDiaryEntries = freezed,
     Object? timeoutFetchingDiaryEntries = freezed,
+    Object? shouldShareHealthRecord = freezed,
+    Object? shouldNotShareHealthRecord = freezed,
   }) {
     return _then(_value.copyWith(
       entries: entries == freezed
@@ -92,6 +102,14 @@ class _$HealthDiaryStateCopyWithImpl<$Res>
       timeoutFetchingDiaryEntries: timeoutFetchingDiaryEntries == freezed
           ? _value.timeoutFetchingDiaryEntries
           : timeoutFetchingDiaryEntries // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      shouldShareHealthRecord: shouldShareHealthRecord == freezed
+          ? _value.shouldShareHealthRecord
+          : shouldShareHealthRecord // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      shouldNotShareHealthRecord: shouldNotShareHealthRecord == freezed
+          ? _value.shouldNotShareHealthRecord
+          : shouldNotShareHealthRecord // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -108,7 +126,9 @@ abstract class _$HealthDiaryStateCopyWith<$Res>
       {@JsonKey(name: 'getClientHealthDiaryEntries')
           List<HealthDiaryEntry?>? entries,
       bool? errorFetchingDiaryEntries,
-      bool? timeoutFetchingDiaryEntries});
+      bool? timeoutFetchingDiaryEntries,
+      bool? shouldShareHealthRecord,
+      bool? shouldNotShareHealthRecord});
 }
 
 /// @nodoc
@@ -127,6 +147,8 @@ class __$HealthDiaryStateCopyWithImpl<$Res>
     Object? entries = freezed,
     Object? errorFetchingDiaryEntries = freezed,
     Object? timeoutFetchingDiaryEntries = freezed,
+    Object? shouldShareHealthRecord = freezed,
+    Object? shouldNotShareHealthRecord = freezed,
   }) {
     return _then(_HealthDiaryState(
       entries: entries == freezed
@@ -141,6 +163,14 @@ class __$HealthDiaryStateCopyWithImpl<$Res>
           ? _value.timeoutFetchingDiaryEntries
           : timeoutFetchingDiaryEntries // ignore: cast_nullable_to_non_nullable
               as bool?,
+      shouldShareHealthRecord: shouldShareHealthRecord == freezed
+          ? _value.shouldShareHealthRecord
+          : shouldShareHealthRecord // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      shouldNotShareHealthRecord: shouldNotShareHealthRecord == freezed
+          ? _value.shouldNotShareHealthRecord
+          : shouldNotShareHealthRecord // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -151,7 +181,9 @@ class _$_HealthDiaryState implements _HealthDiaryState {
   _$_HealthDiaryState(
       {@JsonKey(name: 'getClientHealthDiaryEntries') this.entries,
       this.errorFetchingDiaryEntries,
-      this.timeoutFetchingDiaryEntries});
+      this.timeoutFetchingDiaryEntries,
+      this.shouldShareHealthRecord,
+      this.shouldNotShareHealthRecord});
 
   factory _$_HealthDiaryState.fromJson(Map<String, dynamic> json) =>
       _$_$_HealthDiaryStateFromJson(json);
@@ -163,10 +195,14 @@ class _$_HealthDiaryState implements _HealthDiaryState {
   final bool? errorFetchingDiaryEntries;
   @override
   final bool? timeoutFetchingDiaryEntries;
+  @override
+  final bool? shouldShareHealthRecord;
+  @override
+  final bool? shouldNotShareHealthRecord;
 
   @override
   String toString() {
-    return 'HealthDiaryState(entries: $entries, errorFetchingDiaryEntries: $errorFetchingDiaryEntries, timeoutFetchingDiaryEntries: $timeoutFetchingDiaryEntries)';
+    return 'HealthDiaryState(entries: $entries, errorFetchingDiaryEntries: $errorFetchingDiaryEntries, timeoutFetchingDiaryEntries: $timeoutFetchingDiaryEntries, shouldShareHealthRecord: $shouldShareHealthRecord, shouldNotShareHealthRecord: $shouldNotShareHealthRecord)';
   }
 
   @override
@@ -185,7 +221,16 @@ class _$_HealthDiaryState implements _HealthDiaryState {
                     timeoutFetchingDiaryEntries) ||
                 const DeepCollectionEquality().equals(
                     other.timeoutFetchingDiaryEntries,
-                    timeoutFetchingDiaryEntries)));
+                    timeoutFetchingDiaryEntries)) &&
+            (identical(
+                    other.shouldShareHealthRecord, shouldShareHealthRecord) ||
+                const DeepCollectionEquality().equals(
+                    other.shouldShareHealthRecord, shouldShareHealthRecord)) &&
+            (identical(other.shouldNotShareHealthRecord,
+                    shouldNotShareHealthRecord) ||
+                const DeepCollectionEquality().equals(
+                    other.shouldNotShareHealthRecord,
+                    shouldNotShareHealthRecord)));
   }
 
   @override
@@ -193,7 +238,9 @@ class _$_HealthDiaryState implements _HealthDiaryState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(entries) ^
       const DeepCollectionEquality().hash(errorFetchingDiaryEntries) ^
-      const DeepCollectionEquality().hash(timeoutFetchingDiaryEntries);
+      const DeepCollectionEquality().hash(timeoutFetchingDiaryEntries) ^
+      const DeepCollectionEquality().hash(shouldShareHealthRecord) ^
+      const DeepCollectionEquality().hash(shouldNotShareHealthRecord);
 
   @JsonKey(ignore: true)
   @override
@@ -211,7 +258,9 @@ abstract class _HealthDiaryState implements HealthDiaryState {
       {@JsonKey(name: 'getClientHealthDiaryEntries')
           List<HealthDiaryEntry?>? entries,
       bool? errorFetchingDiaryEntries,
-      bool? timeoutFetchingDiaryEntries}) = _$_HealthDiaryState;
+      bool? timeoutFetchingDiaryEntries,
+      bool? shouldShareHealthRecord,
+      bool? shouldNotShareHealthRecord}) = _$_HealthDiaryState;
 
   factory _HealthDiaryState.fromJson(Map<String, dynamic> json) =
       _$_HealthDiaryState.fromJson;
@@ -223,6 +272,10 @@ abstract class _HealthDiaryState implements HealthDiaryState {
   bool? get errorFetchingDiaryEntries => throw _privateConstructorUsedError;
   @override
   bool? get timeoutFetchingDiaryEntries => throw _privateConstructorUsedError;
+  @override
+  bool? get shouldShareHealthRecord => throw _privateConstructorUsedError;
+  @override
+  bool? get shouldNotShareHealthRecord => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$HealthDiaryStateCopyWith<_HealthDiaryState> get copyWith =>

@@ -12,11 +12,15 @@ class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
     this.diaryEntries,
     this.errorFetchingDiaryEntries,
     this.timeoutFetchingEntries,
+    this.shouldNotShareHealthRecord,
+    this.shouldShareHealthRecord,
   });
 
   final List<HealthDiaryEntry?>? diaryEntries;
   final bool? errorFetchingDiaryEntries;
   final bool? timeoutFetchingEntries;
+  final bool? shouldShareHealthRecord;
+  final bool? shouldNotShareHealthRecord;
 
   @override
   Future<AppState> reduce() async {
@@ -27,6 +31,10 @@ class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
           state.clientState!.healthDiaryState!.errorFetchingDiaryEntries,
       timeoutFetchingDiaryEntries: timeoutFetchingEntries ??
           state.clientState!.healthDiaryState!.timeoutFetchingDiaryEntries,
+      shouldShareHealthRecord: shouldShareHealthRecord ??
+          state.clientState!.healthDiaryState!.shouldShareHealthRecord,
+      shouldNotShareHealthRecord: shouldNotShareHealthRecord ??
+          state.clientState!.healthDiaryState!.shouldNotShareHealthRecord,
     );
 
     return newState;

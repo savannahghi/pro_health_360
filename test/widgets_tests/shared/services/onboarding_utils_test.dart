@@ -863,7 +863,7 @@ void main() {
           expect(path, BWRoutes.verifySignUpOTP);
         });
 
-        testWidgets('should navigate to loginpage page',
+        testWidgets('should navigate to login page page',
             (WidgetTester tester) async {
           store.dispatch(UpdateCredentialsAction(isSignedIn: false));
 

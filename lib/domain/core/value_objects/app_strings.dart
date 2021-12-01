@@ -329,6 +329,8 @@ const String areYouFeelingAnyOfTheFollowingString =
     'Are you feeling any of the following?';
 const String selectWhatBestDescribesHowYourCurrentConditionString =
     'Select what best describes how your current condition';
+const String shareDiaryEntryPrompt =
+    'Would you like to share your diary entry with your doctor? It might be discussed in your next visit';
 const String elaborateString = 'Please elaborate';
 const String soSorryPleaseDescribeHowAreFeelingString =
     'So sorry, please describe how you are feeling.';

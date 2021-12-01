@@ -328,3 +328,6 @@ const Key shareButtonKey = Key('share_button_key');
 const Key saveButtonKey = Key('save_button_key');
 
 const Key healthDiaryRetryButtonKey = Key('retry_health_diary');
+
+const Key shareHealthDiaryKey = Key('share_health_diary');
+const Key dontShareHealthDiaryKey = Key('dont_share_health_diary');

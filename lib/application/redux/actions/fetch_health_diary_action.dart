@@ -35,10 +35,10 @@ class FetchHealthDiaryAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? userID = state.clientState!.user!.userId;
+    final String? clientID = state.clientState!.id;
 
     final Map<String, dynamic> variables = <String, dynamic>{
-      'clientID': userID
+      'clientID': clientID
     };
 
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;

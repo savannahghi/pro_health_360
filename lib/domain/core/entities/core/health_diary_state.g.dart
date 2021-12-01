@@ -15,6 +15,8 @@ _$_HealthDiaryState _$_$_HealthDiaryStateFromJson(Map<String, dynamic> json) {
         .toList(),
     errorFetchingDiaryEntries: json['errorFetchingDiaryEntries'] as bool?,
     timeoutFetchingDiaryEntries: json['timeoutFetchingDiaryEntries'] as bool?,
+    shouldShareHealthRecord: json['shouldShareHealthRecord'] as bool?,
+    shouldNotShareHealthRecord: json['shouldNotShareHealthRecord'] as bool?,
   );
 }
 
@@ -24,4 +26,6 @@ Map<String, dynamic> _$_$_HealthDiaryStateToJson(
       'getClientHealthDiaryEntries': instance.entries,
       'errorFetchingDiaryEntries': instance.errorFetchingDiaryEntries,
       'timeoutFetchingDiaryEntries': instance.timeoutFetchingDiaryEntries,
+      'shouldShareHealthRecord': instance.shouldShareHealthRecord,
+      'shouldNotShareHealthRecord': instance.shouldNotShareHealthRecord,
     };
