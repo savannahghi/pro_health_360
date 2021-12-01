@@ -16,7 +16,7 @@ import 'package:myafyahub/application/redux/actions/health_page_pin_input_action
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/home/widgets/bottom_nav_bar.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
+import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -130,10 +130,7 @@ void main() {
         await tester.tap(find.text('My Health').first);
         await tester.pumpAndSettle();
         expect(store.state.bottomNavigationState!.currentBottomNavIndex, 2);
-        expect(find.byType(PINInputPage), findsOneWidget);
-
-        await tester.tap(find.byKey(pinInputPageBackKey));
-        expect(store.state.bottomNavigationState!.currentBottomNavIndex, 0);
+        expect(find.byType(MyHealthPage), findsOneWidget);
       });
     });
   });

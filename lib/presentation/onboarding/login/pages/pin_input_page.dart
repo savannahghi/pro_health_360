@@ -93,13 +93,14 @@ class _PINInputPageState extends State<PINInputPage> {
         appBar: CustomAppBar(
           leadingWidget: GestureDetector(
             key: pinInputPageBackKey,
-            onTap: () {
-              navigateToNewPage(
-                context: context,
-                route: BWRoutes.home,
-                bottomNavIndex: 0,
-              );
-            },
+            //TODO:(eugene) restore later
+            // onTap: () {
+            //   navigateToNewPage(
+            //     context: context,
+            //     route: BWRoutes.home,
+            //     bottomNavIndex: 0,
+            //   );
+            // },
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: SvgPicture.asset(
