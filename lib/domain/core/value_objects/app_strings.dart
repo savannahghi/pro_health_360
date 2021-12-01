@@ -197,6 +197,10 @@ const String genericVerifyPhoneNumber = 'Verify Phone number';
 const String continueToLoginButtonText = 'Continue to Log in';
 const String updatingProfileDetails = 'Updating profile details...';
 
+const String youHaveNoSaveItemsText = 'You have no saved items';
+const String pleaseBePatientWhileWePrepareYourSaveItemsText =
+    'Please be patient while we prepare your saved items.';
+
 // HTTP Request constants
 const String httpPOST = 'POST';
 
@@ -547,9 +551,6 @@ const String dietString = 'Diet';
 
 //Article Details Page
 const String datePublishedString = 'Published on ';
-
-String defactoZeroStateString({String topic = 'Content'}) =>
-    '$topic will be available soon';
 
 const String termsAndConditionsString = 'Terms and conditions';
 

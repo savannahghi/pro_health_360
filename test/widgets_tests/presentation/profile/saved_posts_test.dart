@@ -2,12 +2,12 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/content/widgets/feed_list.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts.dart';
+import 'package:myafyahub/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
+
 import '../../../test_helpers.dart';
 
 void main() {
@@ -29,7 +29,7 @@ void main() {
 
         expect(find.text(savedVideoText), findsOneWidget);
         expect(find.text(savedArticleText), findsOneWidget);
-        expect(find.byType(FeedList), findsWidgets);
+        expect(find.byType(NoSavedContentWidget), findsWidgets);
       });
     });
   });
