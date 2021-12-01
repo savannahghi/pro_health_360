@@ -95,7 +95,7 @@ mixin _$ClientState {
   @JsonKey(name: 'isSignedIn')
   bool? get isSignedIn => throw _privateConstructorUsedError;
 
-  /// The client's health diary entries
+  /// The client's health diary state
   HealthDiaryState? get healthDiaryState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -420,7 +420,7 @@ class _$_ClientState implements _ClientState {
   final bool? isSignedIn;
   @override
 
-  /// The client's health diary entries
+  /// The client's health diary state
   final HealthDiaryState? healthDiaryState;
 
   @override
@@ -562,7 +562,7 @@ abstract class _ClientState implements ClientState {
   bool? get isSignedIn => throw _privateConstructorUsedError;
   @override
 
-  /// The client's health diary entries
+  /// The client's health diary state
   HealthDiaryState? get healthDiaryState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
