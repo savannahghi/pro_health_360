@@ -38,16 +38,11 @@ class VerifyOtpWidget extends StatefulWidget {
 class VerifyOtpWidgetState extends State<VerifyOtpWidget>
     with SingleTickerProviderStateMixin, CodeAutoFill {
   Animation<double>? animation;
-  String testCode = '1234';
   int resendTimeout = 60;
+  String testCode = '1234';
   TextEditingController textEditingController = TextEditingController();
 
   late AnimationController _controller;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return verifyOTPState;
-  }
 
   @override
   void codeUpdated() {
@@ -88,6 +83,11 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
     super.initState();
   }
 
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return verifyOTPState;
+  }
+
   void restartTimer() {
     resendTimeout = 90;
     _controller.value = 0;
@@ -114,10 +114,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
             if (enteredCode == widget.verifyPhoneViewModel.otp) {
               StoreProvider.dispatch<AppState>(
                 context,
-                VerifyOTPAction(
-                  otp: enteredCode,
-                  context: context,
-                ),
+                VerifyOTPAction(otp: enteredCode, context: context),
               );
               return;
             } else {
@@ -138,10 +135,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                 style: TextThemes.normalSize14Text(AppColors.secondaryColor),
               ),
               smallVerticalSizedBox,
-              AnimatedCount(
-                count: resendTimeout,
-                duration: Duration.zero,
-              ),
+              AnimatedCount(count: resendTimeout, duration: Duration.zero),
             ],
           ),
 

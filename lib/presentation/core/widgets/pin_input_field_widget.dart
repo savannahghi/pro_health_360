@@ -19,8 +19,8 @@ class PINInputField extends StatelessWidget {
     this.onTextChanged,
     this.autoFocus = false,
     this.wrapAlignment = WrapAlignment.spaceBetween,
-    this.pinBoxHeight = 50.0,
-    this.pinBoxWidth = 50.0,
+    this.pinBoxHeight = 48.0,
+    this.pinBoxWidth = 48.0,
     this.controller,
     this.keyboardType = TextInputType.number,
     this.focusNode,
@@ -42,13 +42,13 @@ class PINInputField extends StatelessWidget {
       controller: controller,
       autofocus: autoFocus!,
       hideCharacter: true,
-      pinBoxBorderWidth: 1.5,
+      pinBoxBorderWidth: 1,
       highlight: true,
       focusNode: focusNode,
-      highlightColor: Colors.yellow,
-      defaultBorderColor: Colors.grey,
-      hasTextBorderColor: AppColors.primaryColor,
-      maxLength: maxLength ?? 4,
+      highlightColor: AppColors.greenHappyColor,
+      defaultBorderColor: AppColors.greyTextColor.withOpacity(0.3),
+      hasTextBorderColor: AppColors.secondaryColor,
+      maxLength: maxLength ?? 6,
       maskCharacter: '⚫',
       pinBoxWidth: pinBoxWidth!,
       pinBoxHeight: pinBoxHeight!,
@@ -78,11 +78,8 @@ BoxDecoration customRoundedPinBoxDecoration(
   double? radius,
 }) {
   return BoxDecoration(
-    border: Border.all(
-      color: borderColor,
-      width: borderWidth,
-    ),
+    border: Border.all(color: borderColor, width: borderWidth),
     color: pinBoxColor,
-    borderRadius: const BorderRadius.all(Radius.circular(4)),
+    borderRadius: const BorderRadius.all(Radius.circular(6)),
   );
 }

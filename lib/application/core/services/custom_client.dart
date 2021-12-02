@@ -32,17 +32,17 @@ class CustomClient extends IGraphQlClient {
   Future<StreamedResponse> send(BaseRequest request) async {
     request.headers.addAll(this.requestHeaders);
 
-    final StreamedResponse initalResponse = await request.send();
+    final StreamedResponse initialResponse = await request.send();
 
     final bool isSignedIn =
         StoreProvider.state<AppState>(context)?.credentials?.isSignedIn ??
             false;
 
-    if (initalResponse.statusCode == 401 && isSignedIn) {
+    if (initialResponse.statusCode == 401 && isSignedIn) {
       await refreshToken(request);
       return request.send();
     } else {
-      return initalResponse;
+      return initialResponse;
     }
   }
 

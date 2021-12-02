@@ -10,54 +10,54 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class ContentZeroStateWidget extends StatelessWidget {
-  const ContentZeroStateWidget({
-    this.callBackFunction,
-  });
+  const ContentZeroStateWidget({this.callBackFunction});
 
   final VoidCallback? callBackFunction;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: SvgPicture.asset(
-            contentZeroStateImageUrl,
-            height: MediaQuery.of(context).size.height / 3,
-            width: 250,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SvgPicture.asset(
+              contentZeroStateImageUrl,
+              height: MediaQuery.of(context).size.height / 3,
+              width: 250,
+            ),
           ),
-        ),
-        smallVerticalSizedBox,
-        Text(
-          contentZeroStateTitle,
-          style: TextThemes.boldSize16Text(
-            AppColors.readTimeBackgroundColor,
+          smallVerticalSizedBox,
+          Text(
+            contentZeroStateTitle,
+            style: TextThemes.boldSize16Text(
+              AppColors.readTimeBackgroundColor,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),
-        smallVerticalSizedBox,
-        Text(
-          contentZeroStateDescription,
-          style: TextThemes.normalSize15Text(
-            darkGreyTextColor,
+          smallVerticalSizedBox,
+          Text(
+            contentZeroStateDescription,
+            style: TextThemes.normalSize15Text(
+              darkGreyTextColor,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),
-        size15VerticalSizedBox,
-        SizedBox(
-          height: 48,
-          width: 180,
-          child: MyAfyaHubPrimaryButton(
-            customRadius: 4,
-            text: contentZeroStateButtonText,
-            textColor: AppColors.whiteColor,
-            buttonColor: Theme.of(context).primaryColor,
-            borderColor: Theme.of(context).primaryColor,
-            onPressed: callBackFunction,
+          size15VerticalSizedBox,
+          SizedBox(
+            height: 48,
+            width: double.infinity,
+            child: MyAfyaHubPrimaryButton(
+              text: contentZeroStateButtonText,
+              textColor: AppColors.whiteColor,
+              buttonColor: Theme.of(context).primaryColor,
+              borderColor: Theme.of(context).primaryColor,
+              onPressed: callBackFunction,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

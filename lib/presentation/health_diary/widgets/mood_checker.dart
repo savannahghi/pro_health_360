@@ -33,12 +33,9 @@ class _MoodCheckerState extends State<MoodChecker> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppStateViewModel>(
-      converter: (Store<AppState> store) {
-        return AppStateViewModel.fromStore(store);
-      },
+      converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
-        final bool canRecordMood =
-            vm.appState.homeState?.canRecordMood ?? false;
+        final bool canRecordMood = vm.appState.homeState?.canRecordMood ?? true;
 
         if (vm.appState.wait!.isWaitingFor(canRecordMoodFlag)) {
           return Container(
