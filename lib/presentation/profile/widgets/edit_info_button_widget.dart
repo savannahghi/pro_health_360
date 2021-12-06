@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
@@ -14,9 +15,11 @@ class EditInformationButtonWidget extends StatelessWidget {
   ///[EditInformationButtonWidget] used to edit information in user profile
   const EditInformationButtonWidget({
     required this.editInformationItem,
+    this.submitFunction,
   });
 
   final EditInformationItem editInformationItem;
+  final Function? submitFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,10 @@ class EditInformationButtonWidget extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(
           BWRoutes.editInformationPage,
-          arguments: editInformationItem,
+          arguments: <String, dynamic>{
+            'editInformationItem': editInformationItem,
+            'onSubmit': submitFunction
+          },
         );
       },
       child: Container(

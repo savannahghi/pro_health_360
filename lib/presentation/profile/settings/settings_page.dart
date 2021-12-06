@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -53,7 +57,48 @@ class SettingsPage extends StatelessWidget {
                               ),
                             ),
                             EditInformationButtonWidget(
-                              editInformationItem: nickNameEditInfo,
+                              editInformationItem: nickNameEditInfo(
+                                vm.clientState!.user!.username!,
+                              ),
+                              submitFunction: (
+                                EditInformationItem editInformationItem,
+                              ) async {
+                                final String initialNickName =
+                                    vm.clientState!.user!.username!;
+
+                                ///Set username/NickName to the new nickname
+                                StoreProvider.dispatch<AppState>(
+                                  context,
+                                  UpdateUserProfileAction(
+                                    nickName: editInformationItem
+                                        .editInformationInputItem[0]
+                                        .inputController
+                                        .text,
+                                  ),
+                                );
+
+                                try {
+                                  await StoreProvider.dispatch<AppState>(
+                                    context,
+                                    SetNicknameAction(
+                                      context: context,
+                                      flag: setNickNameFlag,
+                                      shouldNavigate: false,
+                                    ),
+                                  );
+                                } catch (error) {
+                                  /// Incase an error occurs it resets back the username/nickname
+                                  StoreProvider.dispatch<AppState>(
+                                    context,
+                                    UpdateUserProfileAction(
+                                      nickName: initialNickName,
+                                    ),
+                                  );
+                                }
+
+                                ///Will return to the previous page after submitting
+                                Navigator.pop(context);
+                              },
                             ),
                           ],
                         ),

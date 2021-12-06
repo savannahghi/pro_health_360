@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:afya_moja_core/buttons.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -95,7 +94,8 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
-          editInformationItem: nickNameEditInfo,
+          submitFunction: () {},
+          editInformationItem: nickNameEditInfo('Test'),
         ),
       );
 
@@ -108,26 +108,6 @@ void main() {
         (tester.firstWidget(find.byType(SizedBox).last) as SizedBox).height,
         26.0,
       );
-    });
-
-    testWidgets('Save button navigates on click', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: EditInformationButtonWidget(
-          editInformationItem: nickNameEditInfo,
-        ),
-      );
-
-      await tester.tap(find.byType(EditInformationButtonWidget));
-      await tester.pumpAndSettle();
-
-      await tester.ensureVisible(find.byType(MyAfyaHubPrimaryButton));
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(EditInformationPage), findsNothing);
     });
   });
 }

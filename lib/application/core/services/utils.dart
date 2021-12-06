@@ -686,17 +686,21 @@ final EditInformationItem preferredCommunicationEditInfo = EditInformationItem(
   ],
 );
 
-final EditInformationInputItem nickNameInputItem = EditInformationInputItem(
-  fieldName: nickNameFieldName,
-  hintText: janeDoe,
-  inputType: EditInformationInputType.Text,
-  inputController: TextEditingController(),
-);
+EditInformationInputItem nickNameInputItem(String userNickName) =>
+    EditInformationInputItem(
+      fieldName: nickNameFieldName,
+      hintText: userNickName,
+      inputType: EditInformationInputType.Text,
+      inputController: TextEditingController(),
+    );
 
-final EditInformationItem nickNameEditInfo = EditInformationItem(
-  title: nickNameString,
-  editInformationInputItem: <EditInformationInputItem>[nickNameInputItem],
-);
+EditInformationItem nickNameEditInfo(String userNickName) =>
+    EditInformationItem(
+      title: nickNameString,
+      editInformationInputItem: <EditInformationInputItem>[
+        nickNameInputItem(userNickName)
+      ],
+    );
 
 Future<void> customFetchData({
   required StreamController<dynamic> streamController,

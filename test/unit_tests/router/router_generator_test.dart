@@ -4,6 +4,7 @@ import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/author.dart';
@@ -39,6 +40,7 @@ import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/medical_data/medical_data_page.dart';
+import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts.dart';
@@ -409,6 +411,19 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ForgotPINPage>;
     expect(route, isA<MaterialPageRoute<ForgotPINPage>>());
     expect(route.builder(context), isA<ForgotPINPage>());
+  });
+
+  test('Test router returns EditInformationPage', () {
+    final RouteSettings settings = RouteSettings(
+      name: BWRoutes.editInformationPage,
+      arguments: <String, dynamic>{
+        'editInformationItem': nickNameEditInfo('Test')
+      },
+    );
+    final MaterialPageRoute<EditInformationPage> route =
+        routeGenerator(settings) as MaterialPageRoute<EditInformationPage>;
+    expect(route, isA<MaterialPageRoute<EditInformationPage>>());
+    expect(route.builder(context), isA<EditInformationPage>());
   });
 
   test('Test router returns deep link page', () {

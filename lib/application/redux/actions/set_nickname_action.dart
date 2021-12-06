@@ -28,15 +28,19 @@ import 'package:myafyahub/presentation/router/routes.dart';
 /// [SetNicknameAction] is a Redux Action whose job is to update a users nickname,
 ///
 /// Otherwise delightfully notify user of any Error that might occur during the process
+///
+/// Should navigate is by default set to true unless when the action does not navigate to home page
 
 class SetNicknameAction extends ReduxAction<AppState> {
   SetNicknameAction({
     required this.context,
     required this.flag,
+    this.shouldNavigate = true,
   });
 
   final BuildContext context;
   final String flag;
+  final bool shouldNavigate;
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   @override
@@ -84,12 +88,14 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
     if (responseMap['data']['setNickName'] != null &&
         responseMap['data']['setNickName'] == true) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(nicknameSuccessString),
-          duration: Duration(seconds: 2),
-        ),
-      );
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          const SnackBar(
+            content: Text(nicknameSuccessString),
+            duration: Duration(seconds: 2),
+          ),
+        );
 
       dispatch(
         UpdateOnboardingStateAction(hasSetNickName: true),
@@ -103,10 +109,12 @@ class SetNicknameAction extends ReduxAction<AppState> {
         ),
       );
 
-      Navigator.pushReplacementNamed(
-        context,
-        BWRoutes.home,
-      );
+      if (shouldNavigate) {
+        Navigator.pushReplacementNamed(
+          context,
+          BWRoutes.home,
+        );
+      }
     }
 
     return state;

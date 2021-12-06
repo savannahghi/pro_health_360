@@ -101,10 +101,21 @@ class RouteGenerator {
 
       case BWRoutes.editInformationPage:
         final EditInformationItem editInformationItem =
-            args as EditInformationItem;
+            args['editInformationItem'] as EditInformationItem;
+
+        Function submitFunction;
+
+        ///Sanity checks
+        if (args['onSubmit'] != null) {
+          submitFunction = args['onSubmit'] as Function;
+        } else {
+          submitFunction = (EditInformationItem editInformationItem) {};
+        }
+
         return MaterialPageRoute<EditInformationPage>(
           builder: (_) => EditInformationPage(
             editInformationItem: editInformationItem,
+            onSubmit: submitFunction,
           ),
         );
 

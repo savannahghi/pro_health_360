@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/inputs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/colors.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -19,18 +19,29 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 
-class EditInformationPage extends StatelessWidget {
-  ///[EditInformationPage] renders a form with inputs
+class EditInformationPage extends StatefulWidget {
+  ///[EditInformationPage] renders a form with inputs and a submit button
+  ///Form can only be submitted when at least one input is altered
   const EditInformationPage({
     required this.editInformationItem,
+    required this.onSubmit,
   });
   final EditInformationItem editInformationItem;
+  final Function onSubmit;
+
+  @override
+  State<EditInformationPage> createState() => _EditInformationPageState();
+}
+
+class _EditInformationPageState extends State<EditInformationPage> {
+  bool formIsEdited = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: editInfoTitle(editInformationItem.title),
+        title: editInfoTitle(widget.editInformationItem.title),
         leadingWidget: SvgPicture.asset(
           closeIconSvg,
           color: AppColors.blueChillColor,
@@ -42,32 +53,73 @@ class EditInformationPage extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    editInformationItem.title,
-                    style: TextThemes.boldSize16Text(
-                      AppColors.secondaryColor,
-                    ),
-                  ),
-                  verySmallVerticalSizedBox,
-                  if (editInformationItem.description != null)
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
                     Text(
-                      editInformationItem.description!,
-                      style: TextThemes.normalSize14Text(
-                        AppColors.greyTextColor,
+                      widget.editInformationItem.title,
+                      style: TextThemes.boldSize16Text(
+                        AppColors.secondaryColor,
                       ),
                     ),
-                  smallVerticalSizedBox,
-                  ...List<Widget>.generate(
-                      editInformationItem.editInformationInputItem.length,
-                      (int index) {
-                    final EditInformationInputItem editInformationInputItem =
-                        editInformationItem.editInformationInputItem
-                            .elementAt(index);
-                    if (editInformationInputItem.inputType ==
-                        EditInformationInputType.Text) {
+                    verySmallVerticalSizedBox,
+                    if (widget.editInformationItem.description != null)
+                      Text(
+                        widget.editInformationItem.description!,
+                        style: TextThemes.normalSize14Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    smallVerticalSizedBox,
+
+                    ///Generates a list with all the input widgets
+                    ...List<Widget>.generate(
+                        widget.editInformationItem.editInformationInputItem
+                            .length, (int index) {
+                      final EditInformationInputItem editInformationInputItem =
+                          widget.editInformationItem.editInformationInputItem
+                              .elementAt(index);
+                      if (editInformationInputItem.inputType ==
+                          EditInformationInputType.Text) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            if (index > 0) smallVerticalSizedBox,
+                            Text(
+                              editInformationInputItem.fieldName,
+                              style: TextThemes.boldSize14Text(
+                                AppColors.greyTextColor,
+                              ),
+                            ),
+                            smallVerticalSizedBox,
+                            CustomTextField(
+                              borderColor: Colors.grey[200],
+                              keyboardType: TextInputType.text,
+                              controller:
+                                  editInformationInputItem.inputController,
+                              hintText: editInformationInputItem.hintText,
+                              autovalidateMode: AutovalidateMode.disabled,
+                              onChanged: (String? value) {
+                                ///So that it only runs once when an input is modified
+                                if (!formIsEdited) {
+                                  setState(() {
+                                    formIsEdited = true;
+                                  });
+                                }
+                              },
+                            ),
+
+                            //Add spacing below last item to ensure it is visible with the bottom button
+                            if (index ==
+                                widget.editInformationItem
+                                        .editInformationInputItem.length -
+                                    1)
+                              const SizedBox(height: 65),
+                          ],
+                        );
+                      }
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -78,108 +130,31 @@ class EditInformationPage extends StatelessWidget {
                               AppColors.greyTextColor,
                             ),
                           ),
-                          verySmallVerticalSizedBox,
-                          CustomTextField(
-                            borderColor: Colors.grey[200],
-                            keyboardType: TextInputType.text,
-                            controller:
-                                editInformationInputItem.inputController,
-                            hintText: editInformationInputItem.hintText,
-                            autovalidateMode: AutovalidateMode.disabled,
+                          smallVerticalSizedBox,
+                          EditInformationDropDown(
+                            value: editInformationInputItem
+                                .dropDownOptionList!.first,
+                            items: editInformationInputItem.dropDownOptionList!,
+                            onChange: (String? value) {
+                              ///So that it only runs once when an input is modified
+                              if (!formIsEdited) {
+                                setState(() {
+                                  formIsEdited = true;
+                                });
+                              }
+                            },
                           ),
-
                           //Add spacing below last item to ensure it is visible with the bottom button
                           if (index ==
-                              editInformationItem
+                              widget.editInformationItem
                                       .editInformationInputItem.length -
                                   1)
                             const SizedBox(height: 65),
                         ],
                       );
-                    }
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        if (index > 0) smallVerticalSizedBox,
-                        Text(
-                          editInformationInputItem.fieldName,
-                          style: TextThemes.boldSize14Text(
-                            AppColors.greyTextColor,
-                          ),
-                        ),
-                        verySmallVerticalSizedBox,
-                        //Todo : Extract to afyaMoja core
-                        InputDecorator(
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: white,
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 15,
-                              horizontal: 15,
-                            ),
-                            labelStyle: const TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.grey,
-                              fontSize: 15,
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.white24,
-                              ),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                            ),
-                            disabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: grey),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(5)),
-                            ),
-                            focusColor: Theme.of(context).colorScheme.secondary,
-                          ),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(color: grey, fontSize: 16),
-                              dropdownColor: white,
-                              value: editInformationInputItem
-                                  .dropDownOptionList!.first,
-                              items: editInformationInputItem
-                                  .dropDownOptionList!
-                                  .map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                return DropdownMenuItem<String>(
-                                  key: ValueKey<String>(value),
-                                  value: value,
-                                  child: Text(
-                                    titleCase(value),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (String? value) {},
-                              isDense: true,
-                            ),
-                          ),
-                        ),
-
-                        //Add spacing below last item to ensure it is visible with the bottom button
-                        if (index ==
-                            editInformationItem
-                                    .editInformationInputItem.length -
-                                1)
-                          const SizedBox(height: 65),
-                      ],
-                    );
-                  }),
-                ],
+                    }),
+                  ],
+                ),
               ),
             ),
             Align(
@@ -188,13 +163,17 @@ class EditInformationPage extends StatelessWidget {
                 width: double.infinity,
                 height: 52,
                 child: MyAfyaHubPrimaryButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  buttonColor: AppColors.secondaryColor,
-                  borderColor: Colors.transparent,
-                  text:
-                      '${saveString[0].toUpperCase()}${saveString.substring(1)}',
+                  onPressed: formIsEdited
+                      ? () {
+                          widget.onSubmit(widget.editInformationItem);
+                        }
+                      : null,
+                  buttonColor:
+                      formIsEdited ? AppColors.secondaryColor : Colors.grey,
+                  borderColor: formIsEdited
+                      ? AppColors.secondaryColor
+                      : Colors.transparent,
+                  text: toBeginningOfSentenceCase(saveString),
                 ),
               ),
             ),
