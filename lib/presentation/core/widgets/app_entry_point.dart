@@ -9,12 +9,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/endpoint_context_subject.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 
-class AppEntryPoint extends StatefulWidget {
+class AppEntryPoint extends StatelessWidget {
   const AppEntryPoint({
     Key? key,
     required this.appStore,
@@ -33,43 +32,23 @@ class AppEntryPoint extends StatefulWidget {
   final ConnectivityStatus connectivityStatus;
 
   @override
-  _AppEntryPointState createState() => _AppEntryPointState();
-}
-
-class _AppEntryPointState extends State<AppEntryPoint>
-    with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    EndPointsContextSubject().contexts.add(widget.appSetupData.appContexts);
-
     return StoreProvider<AppState>(
       key: globalStoreKey,
-      store: widget.appStore,
-      child: StoreConnector<AppState, AppState>(
-        converter: (Store<AppState> store) => store.state,
-        builder: (BuildContext context, AppState appState) {
-          final String idToken = appState.credentials?.idToken ?? '';
+      store: appStore,
+      child: StoreConnector<AppState, AppEntryPointViewModel>(
+        vm: () => AppEntryPointViewModelFactory(),
+        builder: (BuildContext context, AppEntryPointViewModel vm) {
+          final String idToken = vm.idToken ?? '';
           final String graphqlEndpoint =
-              widget.appSetupData.customContext!.graphqlEndpoint;
+              appSetupData.customContext!.graphqlEndpoint;
           final String refreshTokenEndpoint =
-              widget.appSetupData.customContext?.refreshTokenEndpoint ?? '';
-          final String userID = appState.clientState?.user?.userId ?? '';
+              appSetupData.customContext?.refreshTokenEndpoint ?? '';
+          final String userID = vm.userId ?? '';
 
           return AppWrapper(
-            appName: widget.appName,
-            appContexts: widget.appSetupData.appContexts,
+            appName: appName,
+            appContexts: appSetupData.appContexts,
             graphQLClient: CustomClient(
               idToken,
               graphqlEndpoint,
@@ -77,20 +56,39 @@ class _AppEntryPointState extends State<AppEntryPoint>
               refreshTokenEndpoint: refreshTokenEndpoint,
               userID: userID,
             ),
-            baseContext: widget.appSetupData.customContext,
+            baseContext: appSetupData.customContext,
             child: PreLoadApp(
-              appState: appState,
-              thisAppContexts: widget.appSetupData.appContexts,
-              appName: widget.appName,
-              appNavigatorKey: widget.appNavigatorKey,
-              appNavigatorObservers: widget.appNavigatorObservers,
+              thisAppContexts: appSetupData.appContexts,
+              appName: appName,
+              appNavigatorKey: appNavigatorKey,
+              appNavigatorObservers: appNavigatorObservers,
               entryPointContext: context,
-              appStore: widget.appStore,
-              connectivityStatus: widget.connectivityStatus,
+              appStore: appStore,
+              connectivityStatus: connectivityStatus,
             ),
           );
         },
       ),
     );
   }
+}
+
+class AppEntryPointViewModelFactory extends VmFactory<AppState, AppEntryPoint> {
+  @override
+  AppEntryPointViewModel fromStore() {
+    return AppEntryPointViewModel(
+      idToken: state.credentials?.idToken,
+      userId: state.clientState?.user?.userId,
+    );
+  }
+}
+
+class AppEntryPointViewModel extends Vm {
+  AppEntryPointViewModel({
+    required this.idToken,
+    required this.userId,
+  }) : super(equals: <Object?>[idToken, userId]);
+
+  final String? idToken;
+  final String? userId;
 }

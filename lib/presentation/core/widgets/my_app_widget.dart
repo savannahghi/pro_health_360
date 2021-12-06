@@ -14,7 +14,7 @@ import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 
-class MyAppWidget extends StatefulWidget {
+class MyAppWidget extends StatelessWidget {
   const MyAppWidget({
     Key? key,
     required this.navigatorObserver,
@@ -31,27 +31,17 @@ class MyAppWidget extends StatefulWidget {
   final AppSetupData appSetupData;
 
   @override
-  _MyAppWidgetState createState() => _MyAppWidgetState();
-
-  @override
-  String toStringShort() => 'myafyahub.app.main';
-}
-
-class _MyAppWidgetState extends State<MyAppWidget> {
-  FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics();
-
-  @override
   Widget build(BuildContext context) {
     return AppEntryPoint(
-      appSetupData: widget.appSetupData,
-      appStore: widget.store,
+      appSetupData: appSetupData,
+      appStore: store,
       appName: testAppName,
-      appNavigatorKey: widget.navigatorKey,
-      connectivityStatus: widget.connectivityStatus,
+      appNavigatorKey: navigatorKey,
+      connectivityStatus: connectivityStatus,
       appNavigatorObservers: <NavigatorObserver>[
-        widget.navigatorObserver,
+        navigatorObserver,
         SentryNavigatorObserver(),
-        FirebaseAnalyticsObserver(analytics: firebaseAnalytics),
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
       ],
     );
   }

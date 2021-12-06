@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -24,7 +25,7 @@ import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.da
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 
-class PreLoadApp extends StatefulWidget with WidgetsBindingObserver {
+class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
     Key? key,
     required this.thisAppContexts,
@@ -32,7 +33,6 @@ class PreLoadApp extends StatefulWidget with WidgetsBindingObserver {
     required this.appNavigatorKey,
     required this.appNavigatorObservers,
     required this.entryPointContext,
-    required this.appState,
     required this.appStore,
     required this.connectivityStatus,
   }) : super(key: key);
@@ -40,7 +40,6 @@ class PreLoadApp extends StatefulWidget with WidgetsBindingObserver {
   final String appName;
   final GlobalKey<NavigatorState> appNavigatorKey;
   final List<NavigatorObserver> appNavigatorObservers;
-  final AppState appState;
   final Store<AppState> appStore;
   final BuildContext entryPointContext;
   final List<AppContext> thisAppContexts;
@@ -77,7 +76,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
     StoreProvider.dispatch(
       context,
       CheckTokenAction(
-        httpClient: AppWrapperBase.of(context)!.graphQLClient,
+        httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
         refreshTokenEndpoint:
             AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
       ),

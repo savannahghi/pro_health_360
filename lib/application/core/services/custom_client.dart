@@ -15,6 +15,7 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/generic_response.dart';
 
 class CustomClient extends IGraphQlClient {
   CustomClient(
@@ -38,21 +39,86 @@ class CustomClient extends IGraphQlClient {
   Future<StreamedResponse> send(BaseRequest request) async {
     request.headers.addAll(this.requestHeaders);
 
-    final StreamedResponse initialResponse = await request.send();
+    final Request requestObj = request as Request;
+
+    final StreamedResponse initalResponse = await request.send();
+
+    final String jsonBody = await initalResponse.stream.bytesToString();
+    final Map<String, dynamic> body =
+        jsonDecode(jsonBody) as Map<String, dynamic>;
+
+    final Request newRequest = Request(
+      request.method,
+      request.url,
+    );
+    newRequest.headers.addAll(request.headers);
+    newRequest.encoding = requestObj.encoding;
+    newRequest.body = requestObj.body;
+    newRequest.bodyBytes = requestObj.bodyBytes;
+
+    Map<String, dynamic>? errorMessage;
+
+    if (body.containsKey('data')) {
+      final GenericResponse genericResponce = GenericResponse.fromJson(body);
+      errorMessage = genericResponce.errors?.firstWhere(
+        (Map<String, dynamic> error) {
+          if (error.containsKey('message')) {
+            final String message = error['message'] as String;
+            return message.contains('401');
+          }
+
+          return false;
+        },
+        orElse: () => <String, dynamic>{},
+      );
+    } else if (body.containsKey('message')) {
+      final String message = body['message'] as String;
+      if (message.contains('401')) {
+        errorMessage = <String, dynamic>{'message': body[message]};
+      }
+    }
 
     final bool isSignedIn =
         StoreProvider.state<AppState>(context)?.credentials?.isSignedIn ??
             false;
 
-    if (initialResponse.statusCode == 401 && isSignedIn) {
-      await refreshToken(request);
-      return request.send();
-    } else {
-      return initialResponse;
+    if (initalResponse.statusCode == 401 && isSignedIn ||
+        errorMessage != null && errorMessage.isNotEmpty) {
+      AuthCredentials? authCredentials = await refreshToken();
+
+      if (authCredentials.idToken != null &&
+          authCredentials.expiresIn != null &&
+          authCredentials.refreshToken != null) {
+        newRequest.headers.addAll(<String, String>{
+          'Authorization': 'Bearer ${authCredentials.idToken}'
+        });
+
+        final DateTime expiryTimestamp =
+            getTokenExpiryTimestamp(authCredentials.expiresIn);
+
+        authCredentials = authCredentials.copyWith(
+          tokenExpiryTimestamp: expiryTimestamp.toIso8601String(),
+        );
+
+        StoreProvider.dispatch(
+          context,
+          UpdateCredentialsAction(
+            idToken: authCredentials.idToken,
+            refreshToken: authCredentials.refreshToken,
+            expiresIn: authCredentials.expiresIn,
+            tokenExpiryTimestamp: authCredentials.tokenExpiryTimestamp,
+          ),
+        );
+
+        return newRequest.send();
+      }
+      return newRequest.send();
     }
+
+    return newRequest.send();
   }
 
-  Future<void> refreshToken(BaseRequest request) async {
+  Future<AuthCredentials> refreshToken() async {
     final Response refreshTokenResponse = await _client.post(
       Uri.parse(refreshTokenEndpoint),
       headers: <String, String>{'content-type': 'application/json'},
@@ -63,33 +129,9 @@ class CustomClient extends IGraphQlClient {
       final Map<String, dynamic> body =
           jsonDecode(refreshTokenResponse.body) as Map<String, dynamic>;
 
-      AuthCredentials authCredentials = AuthCredentials.fromJson(body);
-
-      request.headers.update(
-        'Authorization',
-        (String value) => 'Bearer ${authCredentials.idToken}',
-      );
-
-      final DateTime now = DateTime.now();
-      final String? expiresIn = authCredentials.expiresIn;
-      if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
-        final DateTime tokenExpiryTimestamp =
-            now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
-
-        authCredentials = authCredentials.copyWith(
-          tokenExpiryTimestamp: tokenExpiryTimestamp.toIso8601String(),
-        );
-      }
-
-      StoreProvider.dispatch(
-        context,
-        UpdateCredentialsAction(
-          idToken: authCredentials.idToken,
-          refreshToken: authCredentials.refreshToken,
-          expiresIn: authCredentials.expiresIn,
-          tokenExpiryTimestamp: authCredentials.tokenExpiryTimestamp,
-        ),
-      );
+      return AuthCredentials.fromJson(body);
     }
+
+    return AuthCredentials();
   }
 }

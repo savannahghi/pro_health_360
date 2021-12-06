@@ -1782,6 +1782,28 @@ final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{
   'optedIn': true
 };
 
+final Map<String, dynamic> mock401Response = <String, dynamic>{
+  'errors': <Map<String, dynamic>>[
+    <String, dynamic>{
+      'message': '401: Unauthorized',
+      'extensions': <String, dynamic>{
+        'code': 'UNAUTHENTICATED',
+        'response': <String, dynamic>{
+          'url': 'https://mycarehub-testing.savannahghi.org/graphql',
+          'status': 401,
+          'statusText': 'Unauthorized',
+          'body': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'error': 'invalid auth token: ID token has expired at: 1638297478'
+            }
+          ]
+        }
+      }
+    }
+  ],
+  'data': null
+};
+
 final Map<String, dynamic> mockFeedContent = <String, dynamic>{
   'getContent': <String, dynamic>{
     'items': <dynamic>[contentMock.first]

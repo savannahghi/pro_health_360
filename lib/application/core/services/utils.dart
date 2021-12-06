@@ -835,3 +835,11 @@ MoodItemData getMoodColor(String? mood) {
       return MoodItemData.initial();
   }
 }
+
+DateTime getTokenExpiryTimestamp(String? expiresIn) {
+  final DateTime now = DateTime.now();
+  if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
+    return now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
+  }
+  return now;
+}
