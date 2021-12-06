@@ -11,4 +11,5 @@ final List<String> migrations = <String>[
   '''CREATE TABLE IF NOT EXISTS ${Tables.connectivityState.name}(id INTEGER PRIMARY KEY, ${Tables.connectivityState.name} TEXT)''',
   '''CREATE TABLE IF NOT EXISTS ${Tables.miscState.name}(id INTEGER PRIMARY KEY, ${Tables.miscState.name} TEXT)''',
   '''CREATE TABLE IF NOT EXISTS ${Tables.contentState.name}(id INTEGER PRIMARY KEY, ${Tables.contentState.name} TEXT)''',
+  '''CREATE TABLE IF NOT EXISTS ${Tables.savedContentState.name}(id INTEGER PRIMARY KEY, ${Tables.savedContentState.name} TEXT)''',
 ];

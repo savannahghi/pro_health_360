@@ -43,7 +43,7 @@ import 'package:myafyahub/presentation/profile/medical_data/medical_data_page.da
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
-import 'package:myafyahub/presentation/profile/saved_posts/saved_posts.dart';
+import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 

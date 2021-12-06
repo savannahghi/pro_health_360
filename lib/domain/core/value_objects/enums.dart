@@ -74,7 +74,7 @@ extension MoodTypeEx on MoodType {
 }
 
 /// The type of content being served to the user
-enum ContentType { AUDIOVIDEO, DOCUMENT, ARTICLE, UNKNOWN }
+enum ContentType { AUDIO_VIDEO, DOCUMENT, ARTICLE, UNKNOWN }
 
 enum EditInformationInputType { Text, DropDown }
 

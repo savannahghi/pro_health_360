@@ -50,8 +50,9 @@ class BeWellDatabaseMobile<T extends DatabaseExecutor>
     final int t5 = await countTableRecords(Tables.connectivityState.name);
     final int t6 = await countTableRecords(Tables.miscState.name);
     final int t7 = await countTableRecords(Tables.contentState.name);
+    final int t8 = await countTableRecords(Tables.savedContentState.name);
 
-    final int counts = t1 + t2 + t3 + t4 + t5 + t6 + t7;
+    final int counts = t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8;
     if (counts > 0) {
       return false;
     }

@@ -28,7 +28,7 @@ void main() {
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
       final Content contentWithVideo = mockContent.copyWith
-          .call(body: null, contentType: ContentType.AUDIOVIDEO);
+          .call(body: null, contentType: ContentType.AUDIO_VIDEO);
 
       await buildTestWidget(
         tester: tester,

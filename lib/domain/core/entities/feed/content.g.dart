@@ -105,7 +105,7 @@ K? _$enumDecodeNullable<K, V>(
 }
 
 const _$ContentTypeEnumMap = {
-  ContentType.AUDIOVIDEO: 'AUDIOVIDEO',
+  ContentType.AUDIO_VIDEO: 'AUDIO_VIDEO',
   ContentType.DOCUMENT: 'DOCUMENT',
   ContentType.ARTICLE: 'ARTICLE',
   ContentType.UNKNOWN: 'UNKNOWN',

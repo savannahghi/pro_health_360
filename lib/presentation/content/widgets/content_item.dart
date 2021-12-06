@@ -79,7 +79,7 @@ class ContentItem extends StatelessWidget {
                         ],
                       ),
                     // A video playback icon if there is a video
-                    if (contentDetails.contentType == ContentType.AUDIOVIDEO)
+                    if (contentDetails.contentType == ContentType.AUDIO_VIDEO)
                       SizedBox(
                         key: feedVideoPlayIconKey,
                         child: SvgPicture.asset(

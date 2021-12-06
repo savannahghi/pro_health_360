@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
@@ -146,6 +147,12 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
       table: Tables.contentState,
     );
 
+    // save savedContentState state
+    await database.saveState(
+      data: newState.savedContentState!.toJson(),
+      table: Tables.savedContentState,
+    );
+
     // save miscState state
     await database.saveState(
       data: newState.miscState!.toJson(),
@@ -180,6 +187,9 @@ class BeWellStateDatabase implements PersistorPrinterDecorator<AppState> {
 
       contentState: ContentState.fromJson(
         await database.retrieveState(Tables.contentState),
+      ),
+      savedContentState: SavedContentState.fromJson(
+        await database.retrieveState(Tables.savedContentState),
       ),
 
       miscState: MiscState.fromJson(
