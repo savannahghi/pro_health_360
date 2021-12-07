@@ -6,8 +6,8 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 
-class ContentViewModel extends Vm {
-  ContentViewModel({
+class FeedContentViewModel extends Vm {
+  FeedContentViewModel({
     this.wait,
     this.errorFetchingContent,
     this.timeoutFetchingContent,
@@ -23,14 +23,14 @@ class ContentViewModel extends Vm {
           ],
         );
 
-  factory ContentViewModel.fromStore(AppState state) {
-    return ContentViewModel(
+  factory FeedContentViewModel.fromStore(AppState state) {
+    return FeedContentViewModel(
       wait: state.wait,
-      errorFetchingContent: state.contentState!.errorFetchingContent,
-      timeoutFetchingContent: state.contentState!.timeoutFetchingContent,
-      feedItems: state.contentState!.contentItems,
+      errorFetchingContent: state.contentState!.feedContentState!.errorFetchingContent,
+      timeoutFetchingContent: state.contentState!.feedContentState!.timeoutFetchingContent,
+      feedItems: state.contentState!.feedContentState!.contentItems,
       selectedCategory:
-          state.contentState!.selectedCategory ?? ContentCategory.initial(),
+          state.contentState!.feedContentState!.selectedCategory ?? ContentCategory.initial(),
     );
   }
 

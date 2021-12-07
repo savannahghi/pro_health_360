@@ -45,7 +45,7 @@ void main() {
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
       expect(
-        store.state.contentState!.contentItems!.length,
+        store.state.contentState!.feedContentState!.contentItems!.length,
         0,
       );
     });

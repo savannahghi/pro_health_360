@@ -51,10 +51,10 @@ class _SaveFeedItemWidgetState extends State<SaveFeedItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, ContentViewModel>(
+    return StoreConnector<AppState, FeedContentViewModel>(
       converter: (Store<AppState> store) =>
-          ContentViewModel.fromStore(store.state),
-      builder: (BuildContext context, ContentViewModel vm) {
+          FeedContentViewModel.fromStore(store.state),
+      builder: (BuildContext context, FeedContentViewModel vm) {
         final bool hasSaved = vm.feedItems!
                 .firstWhere(
                   (Content? element) => element?.contentID == widget.contentID,

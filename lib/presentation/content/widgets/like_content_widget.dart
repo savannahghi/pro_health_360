@@ -54,10 +54,10 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, ContentViewModel>(
+    return StoreConnector<AppState, FeedContentViewModel>(
       converter: (Store<AppState> store) =>
-          ContentViewModel.fromStore(store.state),
-      builder: (BuildContext context, ContentViewModel vm) {
+          FeedContentViewModel.fromStore(store.state),
+      builder: (BuildContext context, FeedContentViewModel vm) {
         final bool hasLiked = vm.feedItems!
                 .firstWhere(
                   (Content? element) => element?.contentID == widget.contentID,

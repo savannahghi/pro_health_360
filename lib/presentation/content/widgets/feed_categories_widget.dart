@@ -134,10 +134,10 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
             ];
 
             if (contentCategories.isNotEmpty) {
-              return StoreConnector<AppState, ContentViewModel>(
+              return StoreConnector<AppState, FeedContentViewModel>(
                 converter: (Store<AppState> store) =>
-                    ContentViewModel.fromStore(store.state),
-                builder: (BuildContext context, ContentViewModel vm) {
+                    FeedContentViewModel.fromStore(store.state),
+                builder: (BuildContext context, FeedContentViewModel vm) {
                   return ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,

@@ -10,7 +10,6 @@ import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:myafyahub/domain/core/entities/core/content_state.dart';
-import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
 
 part 'app_state.freezed.dart';
@@ -29,7 +28,6 @@ class AppState with _$AppState {
     ClientState? clientState,
     ConnectivityState? connectivityState,
     ContentState? contentState,
-    SavedContentState? savedContentState,
     @JsonKey(ignore: true) Wait? wait,
   }) = _AppState;
 
@@ -45,7 +43,6 @@ class AppState with _$AppState {
         bottomNavigationState: BottomNavigationState.initial(),
         connectivityState: ConnectivityState.initial(),
         contentState: ContentState.initial(),
-        savedContentState: SavedContentState.initial(),
         wait: Wait(),
       );
 }

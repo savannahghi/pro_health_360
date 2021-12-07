@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -13,7 +14,6 @@ import 'package:myafyahub/application/redux/actions/content/fetch_content_action
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -39,8 +39,9 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-        final ContentState? state =
-          StoreProvider.state<AppState>(context)?.contentState;
+      final FeedContentState? state = StoreProvider.state<AppState>(context)
+          ?.contentState
+          ?.feedContentState;
 
       if (state?.contentItems?.isEmpty ?? false) {
         StoreProvider.dispatch<AppState>(
@@ -68,10 +69,10 @@ class _FeedPageState extends State<FeedPage> {
             ),
             child: FeedCategoriesWidget(),
           ),
-          StoreConnector<AppState, ContentViewModel>(
+          StoreConnector<AppState, FeedContentViewModel>(
             converter: (Store<AppState> store) =>
-                ContentViewModel.fromStore(store.state),
-            builder: (BuildContext context, ContentViewModel vm) {
+                FeedContentViewModel.fromStore(store.state),
+            builder: (BuildContext context, FeedContentViewModel vm) {
               if (vm.wait!.isWaitingFor(fetchContentFlag)) {
                 return Container(
                   height: 300,

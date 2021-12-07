@@ -29,7 +29,6 @@ class _$AppStateTearOff {
       ClientState? clientState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
-      SavedContentState? savedContentState,
       @JsonKey(ignore: true) Wait? wait}) {
     return _AppState(
       credentials: credentials,
@@ -40,7 +39,6 @@ class _$AppStateTearOff {
       clientState: clientState,
       connectivityState: connectivityState,
       contentState: contentState,
-      savedContentState: savedContentState,
       wait: wait,
     );
   }
@@ -65,8 +63,6 @@ mixin _$AppState {
   ConnectivityState? get connectivityState =>
       throw _privateConstructorUsedError;
   ContentState? get contentState => throw _privateConstructorUsedError;
-  SavedContentState? get savedContentState =>
-      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   Wait? get wait => throw _privateConstructorUsedError;
 
@@ -89,7 +85,6 @@ abstract class $AppStateCopyWith<$Res> {
       ClientState? clientState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
-      SavedContentState? savedContentState,
       @JsonKey(ignore: true) Wait? wait});
 
   $AuthCredentialsCopyWith<$Res>? get credentials;
@@ -100,7 +95,6 @@ abstract class $AppStateCopyWith<$Res> {
   $ClientStateCopyWith<$Res>? get clientState;
   $ConnectivityStateCopyWith<$Res>? get connectivityState;
   $ContentStateCopyWith<$Res>? get contentState;
-  $SavedContentStateCopyWith<$Res>? get savedContentState;
 }
 
 /// @nodoc
@@ -121,7 +115,6 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
     Object? clientState = freezed,
     Object? connectivityState = freezed,
     Object? contentState = freezed,
-    Object? savedContentState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_value.copyWith(
@@ -157,10 +150,6 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.contentState
           : contentState // ignore: cast_nullable_to_non_nullable
               as ContentState?,
-      savedContentState: savedContentState == freezed
-          ? _value.savedContentState
-          : savedContentState // ignore: cast_nullable_to_non_nullable
-              as SavedContentState?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -256,17 +245,6 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
       return _then(_value.copyWith(contentState: value));
     });
   }
-
-  @override
-  $SavedContentStateCopyWith<$Res>? get savedContentState {
-    if (_value.savedContentState == null) {
-      return null;
-    }
-
-    return $SavedContentStateCopyWith<$Res>(_value.savedContentState!, (value) {
-      return _then(_value.copyWith(savedContentState: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -283,7 +261,6 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       ClientState? clientState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
-      SavedContentState? savedContentState,
       @JsonKey(ignore: true) Wait? wait});
 
   @override
@@ -302,8 +279,6 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   $ConnectivityStateCopyWith<$Res>? get connectivityState;
   @override
   $ContentStateCopyWith<$Res>? get contentState;
-  @override
-  $SavedContentStateCopyWith<$Res>? get savedContentState;
 }
 
 /// @nodoc
@@ -325,7 +300,6 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object? clientState = freezed,
     Object? connectivityState = freezed,
     Object? contentState = freezed,
-    Object? savedContentState = freezed,
     Object? wait = freezed,
   }) {
     return _then(_AppState(
@@ -361,10 +335,6 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.contentState
           : contentState // ignore: cast_nullable_to_non_nullable
               as ContentState?,
-      savedContentState: savedContentState == freezed
-          ? _value.savedContentState
-          : savedContentState // ignore: cast_nullable_to_non_nullable
-              as SavedContentState?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -385,7 +355,6 @@ class _$_AppState implements _AppState {
       this.clientState,
       this.connectivityState,
       this.contentState,
-      this.savedContentState,
       @JsonKey(ignore: true) this.wait});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
@@ -408,14 +377,12 @@ class _$_AppState implements _AppState {
   @override
   final ContentState? contentState;
   @override
-  final SavedContentState? savedContentState;
-  @override
   @JsonKey(ignore: true)
   final Wait? wait;
 
   @override
   String toString() {
-    return 'AppState(credentials: $credentials, onboardingState: $onboardingState, homeState: $homeState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, connectivityState: $connectivityState, contentState: $contentState, savedContentState: $savedContentState, wait: $wait)';
+    return 'AppState(credentials: $credentials, onboardingState: $onboardingState, homeState: $homeState, bottomNavigationState: $bottomNavigationState, miscState: $miscState, clientState: $clientState, connectivityState: $connectivityState, contentState: $contentState, wait: $wait)';
   }
 
   @override
@@ -446,9 +413,6 @@ class _$_AppState implements _AppState {
             (identical(other.contentState, contentState) ||
                 const DeepCollectionEquality()
                     .equals(other.contentState, contentState)) &&
-            (identical(other.savedContentState, savedContentState) ||
-                const DeepCollectionEquality()
-                    .equals(other.savedContentState, savedContentState)) &&
             (identical(other.wait, wait) ||
                 const DeepCollectionEquality().equals(other.wait, wait)));
   }
@@ -464,7 +428,6 @@ class _$_AppState implements _AppState {
       const DeepCollectionEquality().hash(clientState) ^
       const DeepCollectionEquality().hash(connectivityState) ^
       const DeepCollectionEquality().hash(contentState) ^
-      const DeepCollectionEquality().hash(savedContentState) ^
       const DeepCollectionEquality().hash(wait);
 
   @JsonKey(ignore: true)
@@ -488,7 +451,6 @@ abstract class _AppState implements AppState {
       ClientState? clientState,
       ConnectivityState? connectivityState,
       ContentState? contentState,
-      SavedContentState? savedContentState,
       @JsonKey(ignore: true) Wait? wait}) = _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
@@ -511,9 +473,6 @@ abstract class _AppState implements AppState {
       throw _privateConstructorUsedError;
   @override
   ContentState? get contentState => throw _privateConstructorUsedError;
-  @override
-  SavedContentState? get savedContentState =>
-      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   Wait? get wait => throw _privateConstructorUsedError;

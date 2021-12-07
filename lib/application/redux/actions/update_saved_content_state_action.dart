@@ -16,12 +16,12 @@ class UpdateSavedContentStateAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final AppState newState = state.copyWith.savedContentState!.call(
-      savedContentItems: savedContentItems ?? state.savedContentState!.savedContentItems,
+    final AppState newState = state.copyWith.contentState!.savedContentState!.call(
+      savedContentItems: savedContentItems ?? state.contentState!.savedContentState!.savedContentItems,
       errorFetchingContent:
-          errorFetchingContent ?? state.savedContentState!.errorFetchingContent,
+          errorFetchingContent ?? state.contentState!.savedContentState!.errorFetchingContent,
       timeoutFetchingContent:
-          timeoutFetchingContent ?? state.savedContentState!.timeoutFetchingContent,
+          timeoutFetchingContent ?? state.contentState!.savedContentState!.timeoutFetchingContent,
     );
 
     return newState;

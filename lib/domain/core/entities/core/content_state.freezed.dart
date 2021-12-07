@@ -21,15 +21,11 @@ class _$ContentStateTearOff {
   const _$ContentStateTearOff();
 
   _ContentState call(
-      {@JsonKey(name: 'items') List<Content?>? contentItems,
-      ContentCategory? selectedCategory,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) {
+      {FeedContentState? feedContentState,
+      SavedContentState? savedContentState}) {
     return _ContentState(
-      contentItems: contentItems,
-      selectedCategory: selectedCategory,
-      errorFetchingContent: errorFetchingContent,
-      timeoutFetchingContent: timeoutFetchingContent,
+      feedContentState: feedContentState,
+      savedContentState: savedContentState,
     );
   }
 
@@ -43,11 +39,9 @@ const $ContentState = _$ContentStateTearOff();
 
 /// @nodoc
 mixin _$ContentState {
-  @JsonKey(name: 'items')
-  List<Content?>? get contentItems => throw _privateConstructorUsedError;
-  ContentCategory? get selectedCategory => throw _privateConstructorUsedError;
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  FeedContentState? get feedContentState => throw _privateConstructorUsedError;
+  SavedContentState? get savedContentState =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,12 +55,11 @@ abstract class $ContentStateCopyWith<$Res> {
           ContentState value, $Res Function(ContentState) then) =
       _$ContentStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'items') List<Content?>? contentItems,
-      ContentCategory? selectedCategory,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {FeedContentState? feedContentState,
+      SavedContentState? savedContentState});
 
-  $ContentCategoryCopyWith<$Res>? get selectedCategory;
+  $FeedContentStateCopyWith<$Res>? get feedContentState;
+  $SavedContentStateCopyWith<$Res>? get savedContentState;
 }
 
 /// @nodoc
@@ -79,39 +72,40 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? contentItems = freezed,
-    Object? selectedCategory = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? feedContentState = freezed,
+    Object? savedContentState = freezed,
   }) {
     return _then(_value.copyWith(
-      contentItems: contentItems == freezed
-          ? _value.contentItems
-          : contentItems // ignore: cast_nullable_to_non_nullable
-              as List<Content?>?,
-      selectedCategory: selectedCategory == freezed
-          ? _value.selectedCategory
-          : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as ContentCategory?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      feedContentState: feedContentState == freezed
+          ? _value.feedContentState
+          : feedContentState // ignore: cast_nullable_to_non_nullable
+              as FeedContentState?,
+      savedContentState: savedContentState == freezed
+          ? _value.savedContentState
+          : savedContentState // ignore: cast_nullable_to_non_nullable
+              as SavedContentState?,
     ));
   }
 
   @override
-  $ContentCategoryCopyWith<$Res>? get selectedCategory {
-    if (_value.selectedCategory == null) {
+  $FeedContentStateCopyWith<$Res>? get feedContentState {
+    if (_value.feedContentState == null) {
       return null;
     }
 
-    return $ContentCategoryCopyWith<$Res>(_value.selectedCategory!, (value) {
-      return _then(_value.copyWith(selectedCategory: value));
+    return $FeedContentStateCopyWith<$Res>(_value.feedContentState!, (value) {
+      return _then(_value.copyWith(feedContentState: value));
+    });
+  }
+
+  @override
+  $SavedContentStateCopyWith<$Res>? get savedContentState {
+    if (_value.savedContentState == null) {
+      return null;
+    }
+
+    return $SavedContentStateCopyWith<$Res>(_value.savedContentState!, (value) {
+      return _then(_value.copyWith(savedContentState: value));
     });
   }
 }
@@ -124,13 +118,13 @@ abstract class _$ContentStateCopyWith<$Res>
       __$ContentStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'items') List<Content?>? contentItems,
-      ContentCategory? selectedCategory,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {FeedContentState? feedContentState,
+      SavedContentState? savedContentState});
 
   @override
-  $ContentCategoryCopyWith<$Res>? get selectedCategory;
+  $FeedContentStateCopyWith<$Res>? get feedContentState;
+  @override
+  $SavedContentStateCopyWith<$Res>? get savedContentState;
 }
 
 /// @nodoc
@@ -145,28 +139,18 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? contentItems = freezed,
-    Object? selectedCategory = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? feedContentState = freezed,
+    Object? savedContentState = freezed,
   }) {
     return _then(_ContentState(
-      contentItems: contentItems == freezed
-          ? _value.contentItems
-          : contentItems // ignore: cast_nullable_to_non_nullable
-              as List<Content?>?,
-      selectedCategory: selectedCategory == freezed
-          ? _value.selectedCategory
-          : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as ContentCategory?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      feedContentState: feedContentState == freezed
+          ? _value.feedContentState
+          : feedContentState // ignore: cast_nullable_to_non_nullable
+              as FeedContentState?,
+      savedContentState: savedContentState == freezed
+          ? _value.savedContentState
+          : savedContentState // ignore: cast_nullable_to_non_nullable
+              as SavedContentState?,
     ));
   }
 }
@@ -174,55 +158,38 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ContentState implements _ContentState {
-  _$_ContentState(
-      {@JsonKey(name: 'items') this.contentItems,
-      this.selectedCategory,
-      this.errorFetchingContent,
-      this.timeoutFetchingContent});
+  _$_ContentState({this.feedContentState, this.savedContentState});
 
   factory _$_ContentState.fromJson(Map<String, dynamic> json) =>
       _$_$_ContentStateFromJson(json);
 
   @override
-  @JsonKey(name: 'items')
-  final List<Content?>? contentItems;
+  final FeedContentState? feedContentState;
   @override
-  final ContentCategory? selectedCategory;
-  @override
-  final bool? errorFetchingContent;
-  @override
-  final bool? timeoutFetchingContent;
+  final SavedContentState? savedContentState;
 
   @override
   String toString() {
-    return 'ContentState(contentItems: $contentItems, selectedCategory: $selectedCategory, errorFetchingContent: $errorFetchingContent, timeoutFetchingContent: $timeoutFetchingContent)';
+    return 'ContentState(feedContentState: $feedContentState, savedContentState: $savedContentState)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ContentState &&
-            (identical(other.contentItems, contentItems) ||
+            (identical(other.feedContentState, feedContentState) ||
                 const DeepCollectionEquality()
-                    .equals(other.contentItems, contentItems)) &&
-            (identical(other.selectedCategory, selectedCategory) ||
+                    .equals(other.feedContentState, feedContentState)) &&
+            (identical(other.savedContentState, savedContentState) ||
                 const DeepCollectionEquality()
-                    .equals(other.selectedCategory, selectedCategory)) &&
-            (identical(other.errorFetchingContent, errorFetchingContent) ||
-                const DeepCollectionEquality().equals(
-                    other.errorFetchingContent, errorFetchingContent)) &&
-            (identical(other.timeoutFetchingContent, timeoutFetchingContent) ||
-                const DeepCollectionEquality().equals(
-                    other.timeoutFetchingContent, timeoutFetchingContent)));
+                    .equals(other.savedContentState, savedContentState)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(contentItems) ^
-      const DeepCollectionEquality().hash(selectedCategory) ^
-      const DeepCollectionEquality().hash(errorFetchingContent) ^
-      const DeepCollectionEquality().hash(timeoutFetchingContent);
+      const DeepCollectionEquality().hash(feedContentState) ^
+      const DeepCollectionEquality().hash(savedContentState);
 
   @JsonKey(ignore: true)
   @override
@@ -237,23 +204,17 @@ class _$_ContentState implements _ContentState {
 
 abstract class _ContentState implements ContentState {
   factory _ContentState(
-      {@JsonKey(name: 'items') List<Content?>? contentItems,
-      ContentCategory? selectedCategory,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) = _$_ContentState;
+      {FeedContentState? feedContentState,
+      SavedContentState? savedContentState}) = _$_ContentState;
 
   factory _ContentState.fromJson(Map<String, dynamic> json) =
       _$_ContentState.fromJson;
 
   @override
-  @JsonKey(name: 'items')
-  List<Content?>? get contentItems => throw _privateConstructorUsedError;
+  FeedContentState? get feedContentState => throw _privateConstructorUsedError;
   @override
-  ContentCategory? get selectedCategory => throw _privateConstructorUsedError;
-  @override
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
-  @override
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  SavedContentState? get savedContentState =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ContentStateCopyWith<_ContentState> get copyWith =>

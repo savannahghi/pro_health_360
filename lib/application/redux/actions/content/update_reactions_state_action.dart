@@ -21,9 +21,9 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
     // fetch the content item to update
     // modify it with the new values
     // remove the old content item and replace with the new one
-    final List<Content?> contentItems = state.contentState!.contentItems!;
+    final List<Content?> contentItems = state.contentState!.feedContentState!.contentItems!;
     final Content? contentToUpdate =
-        state.contentState?.contentItems?.firstWhere(
+        state.contentState?.feedContentState?.contentItems?.firstWhere(
       (Content? element) => element?.contentID == contentID,
       orElse: () => Content.initial(),
     );
@@ -46,7 +46,8 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
       );
 
       final AppState newState =
-          state.copyWith.contentState!.call(contentItems: contentItems);
+          state.copyWith.contentState!.feedContentState
+          !.call(contentItems: contentItems);
 
       return newState;
     }

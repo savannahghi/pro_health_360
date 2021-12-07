@@ -1,0 +1,26 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
+
+part 'feed_content_state.freezed.dart';
+part 'feed_content_state.g.dart';
+
+@freezed
+class FeedContentState with _$FeedContentState {
+  factory FeedContentState({
+    @JsonKey(name: 'items') List<Content?>? contentItems,
+    ContentCategory? selectedCategory,
+    bool? errorFetchingContent,
+    bool? timeoutFetchingContent,
+  }) = _FeedContentState;
+
+  factory FeedContentState.fromJson(Map<String, dynamic> json) =>
+      _$FeedContentStateFromJson(json);
+
+  factory FeedContentState.initial() => FeedContentState(
+        contentItems: <Content>[],
+        errorFetchingContent: false,
+        timeoutFetchingContent: false,
+        selectedCategory: ContentCategory.initial(),
+      );
+}

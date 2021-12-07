@@ -23,9 +23,9 @@ class SavedContentViewModel extends Vm {
   factory SavedContentViewModel.fromStore(AppState state) {
     return SavedContentViewModel(
       wait: state.wait,
-      errorFetchingContent: state.savedContentState!.errorFetchingContent,
-      timeoutFetchingContent: state.savedContentState!.timeoutFetchingContent,
-      savedItems: state.savedContentState!.savedContentItems,
+      errorFetchingContent: state.contentState!.savedContentState!.errorFetchingContent,
+      timeoutFetchingContent: state.contentState!.savedContentState!.timeoutFetchingContent,
+      savedItems: state.contentState!.savedContentState!.savedContentItems,
     );
   }
 

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -53,12 +54,12 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
           'Limit': '5',
         },
       );
-      if (StoreProvider.state<AppState>(context)?.contentState?.contentItems ==
-              null ||
-          StoreProvider.state<AppState>(context)!
-              .contentState!
-              .contentItems!
-              .isEmpty) {
+      final FeedContentState? state = StoreProvider.state<AppState>(context)
+          ?.contentState
+          ?.feedContentState;
+
+      if (state?.contentItems?.isEmpty ?? false) {}
+      if (state?.contentItems == null || state!.contentItems!.isEmpty) {
         StoreProvider.dispatch<AppState>(
           context,
           FetchContentAction(context: context),
