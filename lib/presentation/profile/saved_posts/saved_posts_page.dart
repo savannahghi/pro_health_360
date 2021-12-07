@@ -34,7 +34,7 @@ class _SavedPostPageState extends State<SavedPostPage> {
       final SavedContentState? state =
           StoreProvider.state<AppState>(context)?.contentState?.savedContentState;
 
-      if (state?.savedContentItems?.isEmpty ?? false) {
+      if (state?.savedContentItems?.isEmpty ?? true) {
         StoreProvider.dispatch<AppState>(
           context,
           FetchSavedContentAction(

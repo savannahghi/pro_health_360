@@ -16,6 +16,10 @@ _$_ContentState _$_$_ContentStateFromJson(Map<String, dynamic> json) {
         ? null
         : SavedContentState.fromJson(
             json['savedContentState'] as Map<String, dynamic>),
+    recentContentState: json['recentContentState'] == null
+        ? null
+        : RecentContentState.fromJson(
+            json['recentContentState'] as Map<String, dynamic>),
   );
 }
 
@@ -23,4 +27,5 @@ Map<String, dynamic> _$_$_ContentStateToJson(_$_ContentState instance) =>
     <String, dynamic>{
       'feedContentState': instance.feedContentState,
       'savedContentState': instance.savedContentState,
+      'recentContentState': instance.recentContentState,
     };

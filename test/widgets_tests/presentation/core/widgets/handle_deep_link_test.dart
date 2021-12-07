@@ -6,12 +6,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
@@ -72,7 +74,9 @@ void main() {
           hasSetNickName: true,
         ),
       );
-
+      store.dispatch(
+        UpdateContentStateAction(contentItems: <Content>[mockContent]),
+      );
       await mockNetworkImages(() async {
         await buildTestWidget(
           tester: tester,

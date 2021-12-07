@@ -9,6 +9,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -162,6 +164,9 @@ void main() {
         UpdateHomeStateAction(
           canRecordMood: true,
         ),
+      );
+      store.dispatch(
+        UpdateContentStateAction(contentItems: <Content>[mockContent]),
       );
 
       await mockNetworkImages(() async {

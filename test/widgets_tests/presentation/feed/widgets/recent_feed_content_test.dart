@@ -13,6 +13,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -24,52 +26,50 @@ import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/content/widgets/recent_content_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
-  group('NewContent', () {
+  group('RecentFeedContentWidget', () {
+    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+        MockShortSILGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      http.Response(
+        json.encode(<String, dynamic>{
+          'data': <String, dynamic>{
+            'checkIfUserLikedContent': true,
+            'checkIfUserBookmarkedContent': false,
+            'listContentCategories': categoriesMock,
+            'getContent': <String, dynamic>{
+              'items': <dynamic>[
+                contentMock.first,
+                contentMock.first,
+              ]
+            }
+          }
+        }),
+        201,
+      ),
+    );
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
+      store.dispatch(
+        UpdateContentStateAction(contentItems: <Content>[mockContent]),
+      );
     });
 
-    testWidgets('should render feed items', (WidgetTester tester) async {
+    testWidgets('should render recent content and display them correctly',
+        (WidgetTester tester) async {
       const Size size = Size(640, 960);
       await tester.binding.setSurfaceSize(size);
       tester.binding.window.physicalSizeTestValue = size;
       tester.binding.window.devicePixelRatioTestValue = 1;
-
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'checkIfUserLikedContent': true,
-              'checkIfUserBookmarkedContent': false,
-              'listContentCategories': categoriesMock,
-              'getContent': <String, dynamic>{
-                'items': <dynamic>[
-                  mockContent,
-                  mockContent,
-                ]
-              }
-            }
-          }),
-          201,
-        ),
-      );
-      store.dispatch(
-        UpdateContentStateAction(contentItems: <Content>[mockContent]),
-      );
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -82,7 +82,7 @@ void main() {
       // feed items renders correctly
       final Finder feedItem = find.byType(ContentItem);
 
-      expect(feedItem, findsWidgets);
+      expect(feedItem, findsNWidgets(2));
       await tester.ensureVisible(feedItem.first);
       await tester.tap(feedItem.first);
       await tester.pumpAndSettle();
@@ -101,36 +101,17 @@ void main() {
       tester.binding.window.physicalSizeTestValue = size;
       tester.binding.window.devicePixelRatioTestValue = 1;
 
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'listContentCategories': categoriesMock,
-              'getContent': <String, dynamic>{
-                'items': <dynamic>[
-                  mockContent,
-                  mockContent,
-                ]
-              },
-              'fetchSuggestedGroups': mockSuggestions
-            }
-          }),
-          201,
-        ),
-      );
-
       await buildTestWidget(
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: HomePage(),
+        widget: const RecentContentWidget(),
       );
 
       await tester.pumpAndSettle();
       final Finder viewAllButton = find.byKey(viewAllButtonKey);
+
+      expect(viewAllButton, findsOneWidget);
 
       await tester.ensureVisible(viewAllButton);
       await tester.pumpAndSettle();
@@ -142,62 +123,6 @@ void main() {
         tester.binding.window.clearDevicePixelRatioTestValue();
       });
     });
-
-    testWidgets('shows a loading indicator when fetching data',
-        (WidgetTester tester) async {
-      mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
-          'idToken',
-          'endpoint',
-          Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'loading': true}
-            }),
-            201,
-          ),
-        );
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: client,
-          widget: const RecentContentWidget(),
-        );
-
-        await tester.pump();
-
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
-      });
-    });
-
-    testWidgets(
-        'shows a generic timeout widget while fetching suggested groups',
-        (WidgetTester tester) async {
-      mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
-          'idToken',
-          'endpoint',
-          Response(
-            json.encode(<String, dynamic>{'error': 'timeout'}),
-            201,
-          ),
-        );
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: client,
-          widget: const RecentContentWidget(),
-        );
-
-        await tester.pump();
-
-        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
-      });
-    });
-
     testWidgets(
         'shows a generic no data widget while fetching the feed '
         'and refresh the feed when prompted', (WidgetTester tester) async {
@@ -222,14 +147,105 @@ void main() {
           widget: const RecentContentWidget(),
         );
 
-        await tester.pump();
+        await tester.pumpAndSettle();
 
         expect(find.byType(GenericNoData), findsOneWidget);
 
+        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
         await tester.tap(find.byKey(genericNoDataButtonKey));
         await tester.pumpAndSettle();
 
         expect(find.byType(GenericNoData), findsOneWidget);
+      });
+    });
+    testWidgets('should display sized box when content list is empty',
+        (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
+              'getContent': <String, dynamic>{'items': <dynamic>[]}
+            }
+          }),
+          201,
+        ),
+      );
+
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: const RecentContentWidget(),
+        );
+
+        await tester.pump();
+
+        expect(find.byType(SizedBox), findsWidgets);
+      });
+    });
+    testWidgets(
+        'shows a generic timeout widget while fetching suggested groups',
+        (WidgetTester tester) async {
+      mockNetworkImages(() async {
+        final MockShortSILGraphQlClient client =
+            MockShortSILGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{'error': 'timeout'}),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: client,
+          widget: const RecentContentWidget(),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+        addTearDown(() {
+          tester.binding.window.clearPhysicalSizeTestValue();
+          tester.binding.window.clearDevicePixelRatioTestValue();
+        });
+      });
+    });
+    
+    testWidgets('shows a loading indicator when fetching data',
+        (WidgetTester tester) async {
+      mockNetworkImages(() async {
+        final MockShortSILGraphQlClient client =
+            MockShortSILGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{'loading': true}
+            }),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: client,
+          widget: const RecentContentWidget(),
+        );
+        store.dispatch(WaitAction<AppState>.add(fetchRecentContentFlag));
+        await tester.pump();
+
+        expect(find.byType(SILPlatformLoader), findsOneWidget);
       });
     });
   });

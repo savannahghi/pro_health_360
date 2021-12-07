@@ -1,5 +1,4 @@
 // Dart imports:
-import 'dart:async';
 
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
@@ -7,19 +6,19 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
+import 'package:myafyahub/application/redux/actions/content/fetch_recent_content_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/view_models/content/recent_content_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
@@ -36,30 +35,20 @@ class RecentContentWidget extends StatefulWidget {
 }
 
 class _RecentContentWidgetState extends State<RecentContentWidget> {
-  late Stream<dynamic> _stream;
-  late StreamController<dynamic> _streamController;
-
   @override
   void initState() {
-    _streamController = StreamController<dynamic>.broadcast();
-    _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await genericFetchFunction(
-        streamController: _streamController,
-        context: context,
-        logTitle: 'Fetch content',
-        queryString: getContentQuery,
-        variables: <String, dynamic>{
-          'categoryID': 2,
-          'Limit': '5',
-        },
-      );
-      final FeedContentState? state = StoreProvider.state<AppState>(context)
-          ?.contentState
-          ?.feedContentState;
+      final ContentState? state =
+          StoreProvider.state<AppState>(context)?.contentState;
 
-      if (state?.contentItems?.isEmpty ?? false) {}
-      if (state?.contentItems == null || state!.contentItems!.isEmpty) {
+      if (state?.recentContentState?.contentItems?.isEmpty ?? true) {
+        StoreProvider.dispatch<AppState>(
+          context,
+          FetchRecentContentAction(context: context),
+        );
+      }
+
+      if (state?.feedContentState?.contentItems?.isEmpty ?? true) {
         StoreProvider.dispatch<AppState>(
           context,
           FetchContentAction(context: context),
@@ -70,143 +59,102 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
   }
 
   @override
-  void dispose() {
-    _streamController.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return StreamBuilder<dynamic>(
-      stream: _stream,
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        //show the loader before the data is displayed
-        if (snapshot.data is Map<String, dynamic> &&
-            snapshot.data != null &&
-            snapshot.data['loading'] != null &&
-            snapshot.data['loading'] == true) {
+    return StoreConnector<AppState, RecentContentViewModel>(
+      converter: (Store<AppState> store) =>
+          RecentContentViewModel.fromStore(store.state),
+      builder: (BuildContext context, RecentContentViewModel vm) {
+        if (vm.wait?.isWaitingFor(fetchRecentContentFlag) ?? false) {
           return Container(
-            height: 200,
+            height: 300,
             padding: const EdgeInsets.all(20),
             child: const SILPlatformLoader(),
           );
-        }
-
-        //error checking
-        if (snapshot.hasError) {
-          reportErrorToSentry(
-            context,
-            snapshot.error,
-            hint: 'Timeout fetching recent content',
+        } else if (vm.timeoutFetchingContent ?? false) {
+          return const GenericTimeoutWidget(
+            route: BWRoutes.home,
+            action: 'fetching your recent content',
           );
-          final dynamic valueHolder = snapshot.error;
-          final Map<String, dynamic>? error = snapshot.error == null
-              ? null
-              : valueHolder as Map<String, dynamic>;
-
-          /// check if the error is a timeout error and return an appropriate widget
-          if (error == null || error['error'] == 'timeout') {
-            return const GenericTimeoutWidget(
-              route: BWRoutes.home,
-              action: 'fetching recent content',
-            );
-          }
-
+        } else if (vm.errorFetchingContent ?? false) {
           return GenericNoData(
             key: helpNoDataWidgetKey,
             type: GenericNoDataTypes.ErrorInData,
             actionText: actionTextGenericNoData,
             recoverCallback: () async {
-              await genericFetchFunction(
-                streamController: _streamController,
-                context: context,
-                logTitle: 'Fetch content',
-                queryString: getContentQuery,
-                variables: <String, dynamic>{
-                  'categoryID': 2,
-                  'Limit': '10',
-                },
+              StoreProvider.dispatch<AppState>(
+                context,
+                FetchRecentContentAction(context: context),
               );
             },
-            messageBody: feedErrorDetail,
+            messageBody: messageBodyGenericNoData,
           );
-        }
+        } else {
+          final List<Content?>? recentContent = vm.contentItems;
 
-        if (snapshot.hasData) {
-          final FeedContent recentFeedContent = FeedContent.fromJson(
-            snapshot.data as Map<String, dynamic>,
-          );
-
-          if (recentFeedContent.feedContent != null) {
-            final List<Content?>? feedItems =
-                recentFeedContent.feedContent?.items;
-
-            if (feedItems != null && feedItems.isNotEmpty) {
-              return SizedBox(
-                width: double.infinity,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                        vertical: 10.0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            newContentText,
-                            style: TextThemes.veryBoldSize16Text(
+          if (recentContent?.isNotEmpty ?? false) {
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 10.0,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          newContentText,
+                          style: TextThemes.veryBoldSize16Text(
+                            AppColors.secondaryColor,
+                          ),
+                        ),
+                        verySmallVerticalSizedBox,
+                        GestureDetector(
+                          key: viewAllButtonKey,
+                          onTap: () {
+                            navigateToNewPage(
+                              context: context,
+                              route: BWRoutes.feedPage,
+                              bottomNavIndex: 1,
+                            );
+                          },
+                          child: Text(
+                            viewAllText,
+                            style: TextThemes.normalSize16Text(
                               AppColors.secondaryColor,
                             ),
                           ),
-                          verySmallVerticalSizedBox,
-                          GestureDetector(
-                            key: viewAllButtonKey,
-                            onTap: () {
-                              navigateToNewPage(
-                                context: context,
-                                route: BWRoutes.feedPage,
-                                bottomNavIndex: 1,
-                              );
-                            },
-                            child: Text(
-                              viewAllText,
-                              style: TextThemes.normalSize16Text(
-                                AppColors.secondaryColor,
-                              ),
-                            ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 280,
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: recentContent!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final Content? contentDetails =
+                            recentContent.elementAt(index);
+                        return Padding(
+                          padding: EdgeInsets.only(left: index == 0 ? 15 : 10),
+                          child: ContentItem(
+                            contentDetails: contentDetails!,
+                            isNew: true,
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                    SizedBox(
-                      height: 280,
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: feedItems.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final Content? feedDetails =
-                              feedItems.elementAt(index);
-                          return Padding(
-                            padding:
-                                EdgeInsets.only(left: index == 0 ? 15 : 10),
-                            child: ContentItem(
-                              contentDetails: feedDetails!,
-                              isNew: true,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }
+                  ),
+                ],
+              ),
+            );
           }
         }
         return const SizedBox();

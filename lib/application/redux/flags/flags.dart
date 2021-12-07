@@ -15,6 +15,7 @@ const String acceptTermsFlag = 'accept_terms_flag';
 // Home page
 const String canRecordMoodFlag = 'can_record_mood_flag';
 const String createHealthDiaryFlag = 'create_health_diary_flag';
+const String fetchRecentContentFlag = 'fetch_recent_content_flag';
 
 //Security Questions
 const String getSecurityQuestionsFlag = 'get_security_questions';
@@ -57,3 +58,5 @@ const String shareContentFlag = 'share_content_flag';
 
 //Saved Content Page
 const String fetchSavedContentFlag = 'fetch_saved_content_flag';
+
+

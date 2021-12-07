@@ -4,6 +4,7 @@ echo "=== INSTALLING FLUTTER ==="
 git clone --single-branch --branch 2.5.3 -q https://github.com/flutter/flutter.git /home/circleci/flutter/
 export PATH=PATH="$PATH:/home/circleci/flutter/bin"
 flutter upgrade && flutter config --no-analytics
+flutter doctor
 flutter --version  
 flutter pub get
 echo "=== INSTALLING FIREBASE TOOLS ==="

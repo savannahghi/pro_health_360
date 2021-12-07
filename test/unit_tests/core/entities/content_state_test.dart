@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
+import 'package:myafyahub/domain/core/entities/core/recent_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
 
 void main() {
@@ -28,6 +29,7 @@ void main() {
       ContentState(
         feedContentState: FeedContentState.initial(),
         savedContentState: SavedContentState.initial(),
+        recentContentState: RecentContentState.initial(),
       ),
     );
   });
