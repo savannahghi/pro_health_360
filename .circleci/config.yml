@@ -82,7 +82,7 @@ jobs:
             - flutter_root_and_dependencies_cache
       - run:
          name: Analyze, test and report coverage
-         no_output_timeout: 10m
+         no_output_timeout: 15m
          command: |
             flutter clean
             flutter pub get
