@@ -69,5 +69,6 @@ K? _$enumDecodeNullable<K, V>(
 
 const _$FeaturedMediaTypeEnumMap = {
   FeaturedMediaType.audio: 'audio',
+  FeaturedMediaType.video: 'video',
   FeaturedMediaType.UNKNOWN: 'UNKNOWN',
 };
