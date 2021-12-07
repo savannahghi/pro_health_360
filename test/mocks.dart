@@ -1756,6 +1756,14 @@ final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
   },
 ];
 
+final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
+  'id': 2,
+  'image': <String, dynamic>{
+    'title': 'mockImage',
+    'meta': <String, String>{'imageDownloadUrl': 'testImage'}
+  }
+};
+
 final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
   <String, dynamic>{
     'id': 1,

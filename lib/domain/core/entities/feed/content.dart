@@ -10,6 +10,7 @@ import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
 import 'package:myafyahub/domain/core/entities/feed/document.dart';
 import 'package:myafyahub/domain/core/entities/feed/featured_media.dart';
+import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
@@ -47,6 +48,7 @@ class Content with _$Content {
     // this content item
     @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
     @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved,
+    @JsonKey(name: 'galleryImages') List<GalleryImage>? galleryImages,
   }) = _Content;
 
   factory Content.fromJson(Map<String, dynamic> json) =>

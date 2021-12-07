@@ -26,7 +26,7 @@ import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
 class ContentDetailPage extends StatelessWidget {
   /// [ContentDetailPage] is used to display the article details
   ///
-  /// It takes in a required [contentDetails] parameter which is a map of the
+  /// It takes in a required [payload] parameter which is a map of the
   /// the information to be displayed on this screen
   ///
   const ContentDetailPage({
@@ -42,7 +42,6 @@ class ContentDetailPage extends StatelessWidget {
     final Widget publishDate = createdAt.isNotEmpty
         ? humanizeDate(
             dateTextStyle: TextThemes.boldSize12Text(AppColors.greyTextColor),
-            context: context,
             loadedDate: createdAt,
           )
         : const SizedBox();
@@ -108,7 +107,7 @@ class ContentDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  payload.content.title!,
+                  payload.content.title ?? UNKNOWN,
                   style: TextThemes.veryBoldSize18Text(Colors.black),
                 ),
                 mediumVerticalSizedBox,
@@ -140,7 +139,7 @@ class ContentDetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              payload.content.authorName!,
+                              payload.content.authorName ?? UNKNOWN,
                               style: TextThemes.veryBoldSize15Text(
                                 AppColors.greyTextColor,
                               ),

@@ -104,6 +104,7 @@ void main() {
       );
       expect(find.byType(GenericEmptyData), findsOneWidget);
     });
+
     testWidgets('Like button is tappable', (WidgetTester tester) async {
       store.dispatch(
         UpdateContentStateAction(contentItems: <Content>[mockContent]),

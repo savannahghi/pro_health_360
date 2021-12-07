@@ -1,25 +1,22 @@
-// Flutter imports:
-
-// Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+
+import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
+import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
+import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/leading_graphic_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
-// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
-import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -34,82 +31,155 @@ class ContentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double galleryImageHeight = MediaQuery.of(context).size.height * 0.41;
+    final BorderRadius imageBorderRadius = BorderRadius.circular(12);
+
+    final List<GalleryImage>? galleryImages = contentDetails.galleryImages;
+
+    final bool hasGalleryImages =
+        galleryImages != null && galleryImages.isNotEmpty;
+
+    final List<Widget> galleryItems = <Widget>[];
+
+    final bool hasHeroImage = contentDetails.heroImage != null &&
+        contentDetails.heroImage!.url != UNKNOWN &&
+        contentDetails.heroImage!.url!.isNotEmpty;
+
+    if (hasGalleryImages) {
+      if (galleryImages.length == 1) {
+        galleryItems.addAll(<Widget>[
+          GalleryImageWidget(
+            borderRadius: imageBorderRadius,
+            imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
+            height: galleryImageHeight,
+          ),
+        ]);
+      } else if (galleryImages.length == 2) {
+        galleryItems.addAll(<Widget>[
+          Flexible(
+            child: GalleryImageWidget(
+              borderRadius: imageBorderRadius,
+              imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
+              height: galleryImageHeight,
+            ),
+          ),
+          const SizedBox(width: 4),
+          Flexible(
+            child: GalleryImageWidget(
+              borderRadius: imageBorderRadius,
+              imageUrl: galleryImages[1].image?.meta?.imageDownloadUrl ?? '',
+              height: galleryImageHeight,
+            ),
+          ),
+        ]);
+      } else {
+        galleryItems.addAll(<Widget>[
+          Flexible(
+            child: GalleryImageWidget(
+              borderRadius: imageBorderRadius,
+              imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
+              height: MediaQuery.of(context).size.height * 0.81,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  child: GalleryImageWidget(
+                    borderRadius: imageBorderRadius,
+                    imageUrl:
+                        galleryImages[1].image?.meta?.imageDownloadUrl ?? '',
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Flexible(
+                  child: GalleryImageWidget(
+                    borderRadius: imageBorderRadius,
+                    imageUrl:
+                        galleryImages[2].image?.meta?.imageDownloadUrl ?? '',
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]);
+      }
+    } else if (hasHeroImage) {
+      galleryItems.add(
+        Expanded(
+          child: GalleryImageWidget(
+            imageUrl: contentDetails.heroImage!.url!,
+            height: galleryImageHeight,
+          ),
+        ),
+      );
+    }
+
+    final bool isArticle = contentDetails.contentType == ContentType.ARTICLE;
+    final bool isVideo =
+        contentDetails.contentType == ContentType.AUDIO_VIDEO &&
+            contentDetails.featuredMedia?[0]?.featuredMediaType ==
+                FeaturedMediaType.video;
+    final bool isAudio =
+        contentDetails.contentType == ContentType.AUDIO_VIDEO &&
+            contentDetails.featuredMedia?[0]?.featuredMediaType ==
+                FeaturedMediaType.audio;
+
     return GestureDetector(
       key: feedContentItemKey,
       onTap: () {
-        if (contentDetails.contentType == ContentType.ARTICLE ||
+        if (isArticle ||
             contentDetails.featuredMedia?[0]?.featuredMediaType ==
                 FeaturedMediaType.video) {
-          Navigator.of(context)
-              .pushNamed(BWRoutes.contentDetailPage, arguments: ContentDetails(content: contentDetails));
+          Navigator.of(context).pushNamed(
+            BWRoutes.contentDetailPage,
+            arguments: ContentDetails(content: contentDetails),
+          );
         }
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 50,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade300,
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+        decoration: const BoxDecoration(
+          color: AppColors.darkGreyBackgroundColor,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         child: Stack(
           children: <Widget>[
             Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    if (contentDetails.heroImage != null &&
-                        contentDetails.heroImage!.url != UNKNOWN)
-                      Stack(
-                        children: <Widget>[
-                          // Hero image
-                          Container(
-                            height: 170.0,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  contentDetails.heroImage!.url!,
-                                ),
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(7.0),
-                                topLeft: Radius.circular(7.0),
-                              ),
+                Flexible(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      if (galleryItems.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: LeadingGraphicWidget(
+                            contentDetails: contentDetails,
+                            heroImage: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[...galleryItems],
                             ),
                           ),
-                          // Reading estimate
-                          if (contentDetails.estimate != null &&
-                                  contentDetails.contentType ==
-                                      ContentType.ARTICLE ||
-                              contentDetails
-                                      .featuredMedia?[0]?.featuredMediaType ==
-                                  FeaturedMediaType.video)
-                            Positioned(
-                              bottom: 8,
-                              left: 8,
-                              child: EstimatedReadTimeBadge(
-                                contentDetails: contentDetails,
-                              ),
-                            ),
-                        ],
-                      ),
-                    // A video playback icon if there is a video
-                    if (contentDetails.contentType == ContentType.AUDIO_VIDEO &&
-                        contentDetails.featuredMedia?[0]?.featuredMediaType ==
-                            FeaturedMediaType.video)
-                      SizedBox(
-                        key: feedVideoPlayIconKey,
-                        child: SvgPicture.asset(
-                          playIcon,
-                          width: 50,
-                          height: 50,
                         ),
-                      ),
-                  ],
+                      // A video playback icon if there is a video
+                      if (isVideo)
+                        SizedBox(
+                          key: feedVideoPlayIconKey,
+                          child: SvgPicture.asset(
+                            playIcon,
+                            width: 50,
+                            height: 50,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-                if (contentDetails.contentType == ContentType.AUDIO_VIDEO &&
-                    contentDetails.featuredMedia![0]!.featuredMediaType ==
-                        FeaturedMediaType.audio)
+                if (isAudio)
                   AudioContent(contentDetails: contentDetails)
                 else if (contentDetails.contentType == ContentType.ARTICLE ||
                     contentDetails.featuredMedia?[0]?.featuredMediaType ==
@@ -140,7 +210,6 @@ class ContentItem extends StatelessWidget {
                                   dateTextStyle: TextThemes.normalSize12Text(
                                     AppColors.greyTextColor,
                                   ),
-                                  context: context,
                                   loadedDate:
                                       contentDetails.metadata!.createdAt!,
                                 ),
@@ -196,7 +265,7 @@ class ContentItem extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                   margin: const EdgeInsets.all(8),
                   child: Text(
-                    newString,
+                    newText,
                     style: TextThemes.boldSize16Text(Colors.white),
                   ),
                 ),

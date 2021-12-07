@@ -33,18 +33,17 @@ class SaveContentWidget extends StatefulWidget {
 class _SaveContentWidgetState extends State<SaveContentWidget> {
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(
-      (Duration timeStamp) async {
-        await StoreProvider.dispatch<AppState>(
-          context,
-          FetchBookmarkStatusAction(
-            context: context,
-            contentID: widget.contentID,
-          ),
-        );
-      },
-    );
     super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+      await StoreProvider.dispatch<AppState>(
+        context,
+        FetchBookmarkStatusAction(
+          context: context,
+          contentID: widget.contentID,
+        ),
+      );
+    });
   }
 
   @override

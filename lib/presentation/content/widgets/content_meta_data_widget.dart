@@ -1,0 +1,86 @@
+import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+
+class ContentMetaDataWidget extends StatelessWidget {
+  const ContentMetaDataWidget({
+    Key? key,
+    required this.contentDetails,
+  }) : super(key: key);
+
+  final Content contentDetails;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Align(
+          alignment: Alignment.topLeft,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              if (contentDetails.date != null)
+                Flexible(
+                  child: Text(
+                    contentDetails.title!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextThemes.boldSize16Text(
+                      AppColors.secondaryColor,
+                    ),
+                  ),
+                ),
+              if (contentDetails.metadata != null &&
+                  contentDetails.metadata?.createdAt != null)
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: humanizeDate(
+                    dateTextStyle: TextThemes.normalSize12Text(
+                      AppColors.greyTextColor,
+                    ),
+                    loadedDate: contentDetails.metadata!.createdAt!,
+                  ),
+                ),
+            ],
+          ),
+        ),
+        verySmallVerticalSizedBox,
+        if (contentDetails.authorName != null)
+          Text(
+            contentDetails.authorName!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextThemes.boldSize12Text(
+              AppColors.greyTextColor,
+            ),
+          ),
+        // Reactions
+        Padding(
+          padding: const EdgeInsets.only(top: 18, bottom: 4),
+          child: Row(
+            children: <Widget>[
+              ReactionItem(
+                iconUrl: heartIconUrl,
+                count: contentDetails.likeCount,
+              ),
+              ReactionItem(
+                iconUrl: shareIconUrl,
+                count: contentDetails.shareCount,
+              ),
+              ReactionItem(
+                iconUrl: saveIconUrl,
+                count: contentDetails.bookmarkCount,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

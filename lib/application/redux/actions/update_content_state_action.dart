@@ -35,6 +35,7 @@ class UpdateContentStateAction extends ReduxAction<AppState> {
       selectedCategory: selectedCategory ??
           state.contentState?.feedContentState?.selectedCategory,
     );
+
     final AppState newState = state.copyWith(
       contentState:
           state.contentState?.copyWith(feedContentState: feedContentState),

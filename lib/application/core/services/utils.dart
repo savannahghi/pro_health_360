@@ -378,7 +378,6 @@ Future<dynamic> showFeedbackBottomSheet({
 // Parses date then converts it to the format 18 May 2021 at 12:00 AM
 Widget humanizeDate({
   required TextStyle dateTextStyle,
-  required BuildContext context,
   required String loadedDate,
   bool showTime = false,
   bool showYear = true,

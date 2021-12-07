@@ -63,7 +63,8 @@ void main() {
           widget: SavedPostPage(),
         );
         await tester.pumpAndSettle();
-        expect(find.byType(ContentItem), findsNWidgets(2));
+
+        expect(find.byType(ContentItem), findsNWidgets(1));
       });
     });
 
@@ -115,7 +116,7 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(ContentItem), findsNWidgets(2));
+        expect(find.byType(ContentItem), findsNWidgets(1));
 
         await tester.fling(
           find.byType(ContentItem).first,
@@ -123,9 +124,10 @@ void main() {
           1000.0,
         );
         await tester.pumpAndSettle();
-        expect(find.byType(ContentItem), findsNWidgets(2));
+        expect(find.byType(ContentItem), findsNWidgets(1));
       });
     });
+
     testWidgets('navigates to the detail view of a feed item',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -150,7 +152,7 @@ void main() {
         await tester.pumpAndSettle();
 
         final Finder contentItem = find.byType(ContentItem);
-        expect(contentItem, findsNWidgets(2));
+        expect(contentItem, findsNWidgets(1));
 
         await tester.tap(contentItem.first);
         await tester.pumpAndSettle();
@@ -158,6 +160,7 @@ void main() {
         expect(find.byType(ContentDetailPage), findsOneWidget);
       });
     });
+
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -230,7 +233,9 @@ void main() {
           ),
         );
 
-        store.dispatch(UpdateSavedContentStateAction(errorFetchingContent: true));
+        store.dispatch(
+          UpdateSavedContentStateAction(errorFetchingContent: true),
+        );
 
         await buildTestWidget(
           tester: tester,

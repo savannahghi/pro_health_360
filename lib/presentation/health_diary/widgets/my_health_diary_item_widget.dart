@@ -23,7 +23,6 @@ class HealthDiaryEntryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget date = humanizeDate(
       dateTextStyle: TextThemes.normalSize12Text(),
-      context: context,
       loadedDate: diaryEntry.createdAt!,
       showTime: true,
     );

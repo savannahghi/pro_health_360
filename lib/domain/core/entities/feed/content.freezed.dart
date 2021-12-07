@@ -41,7 +41,8 @@ class _$ContentTearOff {
       @JsonKey(name: 'meta') ContentMetadata? metadata,
       @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
-      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved}) {
+      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved,
+      @JsonKey(name: 'galleryImages') List<GalleryImage>? galleryImages}) {
     return _Content(
       contentID: contentID,
       title: title,
@@ -64,6 +65,7 @@ class _$ContentTearOff {
       featuredMedia: featuredMedia,
       hasLiked: hasLiked,
       hasSaved: hasSaved,
+      galleryImages: galleryImages,
     );
   }
 
@@ -127,6 +129,8 @@ mixin _$Content {
   bool? get hasLiked => throw _privateConstructorUsedError;
   @JsonKey(name: 'hasSaved', defaultValue: false)
   bool? get hasSaved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'galleryImages')
+  List<GalleryImage>? get galleryImages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -158,7 +162,8 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'meta') ContentMetadata? metadata,
       @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
-      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved});
+      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved,
+      @JsonKey(name: 'galleryImages') List<GalleryImage>? galleryImages});
 
   $AuthorCopyWith<$Res>? get author;
   $HeroImageCopyWith<$Res>? get heroImage;
@@ -196,6 +201,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? featuredMedia = freezed,
     Object? hasLiked = freezed,
     Object? hasSaved = freezed,
+    Object? galleryImages = freezed,
   }) {
     return _then(_value.copyWith(
       contentID: contentID == freezed
@@ -282,6 +288,10 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.hasSaved
           : hasSaved // ignore: cast_nullable_to_non_nullable
               as bool?,
+      galleryImages: galleryImages == freezed
+          ? _value.galleryImages
+          : galleryImages // ignore: cast_nullable_to_non_nullable
+              as List<GalleryImage>?,
     ));
   }
 
@@ -345,7 +355,8 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       @JsonKey(name: 'meta') ContentMetadata? metadata,
       @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
-      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved});
+      @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved,
+      @JsonKey(name: 'galleryImages') List<GalleryImage>? galleryImages});
 
   @override
   $AuthorCopyWith<$Res>? get author;
@@ -387,6 +398,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? featuredMedia = freezed,
     Object? hasLiked = freezed,
     Object? hasSaved = freezed,
+    Object? galleryImages = freezed,
   }) {
     return _then(_Content(
       contentID: contentID == freezed
@@ -473,6 +485,10 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.hasSaved
           : hasSaved // ignore: cast_nullable_to_non_nullable
               as bool?,
+      galleryImages: galleryImages == freezed
+          ? _value.galleryImages
+          : galleryImages // ignore: cast_nullable_to_non_nullable
+              as List<GalleryImage>?,
     ));
   }
 }
@@ -501,7 +517,8 @@ class _$_Content implements _Content {
       @JsonKey(name: 'meta') this.metadata,
       @JsonKey(name: 'featuredMedia') this.featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) this.hasLiked,
-      @JsonKey(name: 'hasSaved', defaultValue: false) this.hasSaved});
+      @JsonKey(name: 'hasSaved', defaultValue: false) this.hasSaved,
+      @JsonKey(name: 'galleryImages') this.galleryImages});
 
   factory _$_Content.fromJson(Map<String, dynamic> json) =>
       _$_$_ContentFromJson(json);
@@ -572,10 +589,13 @@ class _$_Content implements _Content {
   @override
   @JsonKey(name: 'hasSaved', defaultValue: false)
   final bool? hasSaved;
+  @override
+  @JsonKey(name: 'galleryImages')
+  final List<GalleryImage>? galleryImages;
 
   @override
   String toString() {
-    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata, featuredMedia: $featuredMedia, hasLiked: $hasLiked, hasSaved: $hasSaved)';
+    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata, featuredMedia: $featuredMedia, hasLiked: $hasLiked, hasSaved: $hasSaved, galleryImages: $galleryImages)';
   }
 
   @override
@@ -638,7 +658,10 @@ class _$_Content implements _Content {
                     .equals(other.hasLiked, hasLiked)) &&
             (identical(other.hasSaved, hasSaved) ||
                 const DeepCollectionEquality()
-                    .equals(other.hasSaved, hasSaved)));
+                    .equals(other.hasSaved, hasSaved)) &&
+            (identical(other.galleryImages, galleryImages) ||
+                const DeepCollectionEquality()
+                    .equals(other.galleryImages, galleryImages)));
   }
 
   @override
@@ -664,7 +687,8 @@ class _$_Content implements _Content {
       const DeepCollectionEquality().hash(metadata) ^
       const DeepCollectionEquality().hash(featuredMedia) ^
       const DeepCollectionEquality().hash(hasLiked) ^
-      const DeepCollectionEquality().hash(hasSaved);
+      const DeepCollectionEquality().hash(hasSaved) ^
+      const DeepCollectionEquality().hash(galleryImages);
 
   @JsonKey(ignore: true)
   @override
@@ -699,7 +723,8 @@ abstract class _Content implements Content {
           @JsonKey(name: 'meta') ContentMetadata? metadata,
           @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
           @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
-          @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved}) =
+          @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved,
+          @JsonKey(name: 'galleryImages') List<GalleryImage>? galleryImages}) =
       _$_Content;
 
   factory _Content.fromJson(Map<String, dynamic> json) = _$_Content.fromJson;
@@ -770,6 +795,9 @@ abstract class _Content implements Content {
   @override
   @JsonKey(name: 'hasSaved', defaultValue: false)
   bool? get hasSaved => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'galleryImages')
+  List<GalleryImage>? get galleryImages => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ContentCopyWith<_Content> get copyWith =>

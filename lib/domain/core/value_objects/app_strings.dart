@@ -450,7 +450,7 @@ String contentReadDuration(int duration) =>
 String contentAudioVideoDuration(int duration) =>
     duration == 0 ? '...' : '${(duration / 60).floor()} min';
 
-const String newString = 'New';
+const String newText = 'New';
 
 //My Health Page
 const String myHealthPageTitle = 'My Health';
