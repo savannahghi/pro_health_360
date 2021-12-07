@@ -2,26 +2,20 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:platform/platform.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:user_feed/user_feed.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
@@ -34,11 +28,16 @@ import 'package:myafyahub/domain/core/entities/security_questions/responses/secu
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
+import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
+import 'package:platform/platform.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
+
 import 'test_utils.dart';
 
 const String testFirstName = 'John';
@@ -1712,6 +1711,53 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   },
 ];
 
+final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
+  <String, dynamic>{
+    'ID': 1,
+    'title': 'Tips on how to keep yourself healthy',
+    'date': '2021-08-23T06:42:05.085216Z',
+    'intro': 'Keep yourself healthy',
+    'authorName': 'Abiud Orina',
+    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'author': <String, dynamic>{'ID': 'some-id'},
+    'itemType': 'AUDIO_VIDEO',
+    'timeEstimateSeconds': 180,
+    'body':
+        'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
+    'heroImageRendition': <String, dynamic>{
+      'url': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    },
+    'likeCount': 180,
+    'bookmarkCount': 180,
+    'viewCount': 180,
+    'shareCount': 180,
+    'hasSaved': false,
+    'hasLiked': false,
+    'documents': <dynamic>[],
+    'isNew': true,
+    'featuredMedia': <dynamic>[
+      <String, dynamic>{
+        'ID': 1,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/production_ID_4473012.mp4',
+        'title': 'Awesome diet video',
+        'type': 'video',
+        'duration': 6.0,
+        'width': 100,
+        'height': 0,
+        'thumbnail':
+            'https://storage.googleapis.com/mycarehub-test/media/media_thumbnails/vitalii-pavlyshynets-kcRFW-Hje8Y-unsplash_1.jpg',
+      }
+    ],
+    'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    'meta': <String, dynamic>{
+      'contentHTMLURL': 'https://bewell.co.ke/',
+      'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    },
+    'tagNames': <String>['Recommended', 'Health', 'Fitness'],
+  },
+];
+
 final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
   <String, dynamic>{
     'id': 1,
@@ -1753,6 +1799,7 @@ final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
 ];
 
 final Content mockContent = Content.fromJson(contentMock.first);
+final Content mockVideoContent = Content.fromJson(videoContentMock.first);
 
 final Group mockGroup = Group(
   name: 'test',

@@ -1,4 +1,5 @@
 import 'package:domain_objects/value_objects.dart';
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
@@ -11,7 +12,9 @@ class FeaturedMedia with _$FeaturedMedia {
     @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'url') String? mediaUrl,
     @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'type') FeaturedMediaType? featuredMediaType,
+    @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
+        FeaturedMediaType? featuredMediaType,
+    @JsonKey(name: 'duration') double? duration,
     @JsonKey(name: 'width') int? width,
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'thumbnail') String? thumbnail,

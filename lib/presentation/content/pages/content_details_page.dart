@@ -1,24 +1,26 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/core/services/video_player_initializer.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/save_feed_item_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/share_content_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
+import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:video_player/video_player.dart';
 
 class ContentDetailPage extends StatelessWidget {
   /// [ContentDetailPage] is used to display the article details
@@ -60,6 +62,20 @@ class ContentDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
+              if (contentDetails.contentType == ContentType.AUDIO_VIDEO)
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 3.5,
+                  width: MediaQuery.of(context).size.width,
+                  child: ChewieVideoPlayer(
+                    autoPlay: true,
+                    chewieController: VideoPlayerInitializer().initializePlayer(
+                      videoPlayerController: VideoPlayerController.network(
+                        contentDetails.featuredMedia?.first.url ?? '',
+                      ),
+                      autoPlay: true,
+                    ),
+                  ),
+                ),
               Positioned(
                 top: 0,
                 left: -6,

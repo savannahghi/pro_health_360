@@ -21,18 +21,28 @@ class _$FeaturedMediaTearOff {
   const _$FeaturedMediaTearOff();
 
   _FeaturedMedia call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'url') String? mediaUrl,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'type') FeaturedMediaType? featuredMediaType,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'thumbnail') String? thumbnail}) {
+      {@JsonKey(name: 'ID')
+          int? id,
+      @JsonKey(name: 'url')
+          String? mediaUrl,
+      @JsonKey(name: 'title')
+          String? title,
+      @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
+          FeaturedMediaType? featuredMediaType,
+      @JsonKey(name: 'duration')
+          double? duration,
+      @JsonKey(name: 'width')
+          int? width,
+      @JsonKey(name: 'height')
+          int? height,
+      @JsonKey(name: 'thumbnail')
+          String? thumbnail}) {
     return _FeaturedMedia(
       id: id,
       mediaUrl: mediaUrl,
       title: title,
       featuredMediaType: featuredMediaType,
+      duration: duration,
       width: width,
       height: height,
       thumbnail: thumbnail,
@@ -55,9 +65,11 @@ mixin _$FeaturedMedia {
   String? get mediaUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
   FeaturedMediaType? get featuredMediaType =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'duration')
+  double? get duration => throw _privateConstructorUsedError;
   @JsonKey(name: 'width')
   int? get width => throw _privateConstructorUsedError;
   @JsonKey(name: 'height')
@@ -77,13 +89,22 @@ abstract class $FeaturedMediaCopyWith<$Res> {
           FeaturedMedia value, $Res Function(FeaturedMedia) then) =
       _$FeaturedMediaCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'url') String? mediaUrl,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'type') FeaturedMediaType? featuredMediaType,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'thumbnail') String? thumbnail});
+      {@JsonKey(name: 'ID')
+          int? id,
+      @JsonKey(name: 'url')
+          String? mediaUrl,
+      @JsonKey(name: 'title')
+          String? title,
+      @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
+          FeaturedMediaType? featuredMediaType,
+      @JsonKey(name: 'duration')
+          double? duration,
+      @JsonKey(name: 'width')
+          int? width,
+      @JsonKey(name: 'height')
+          int? height,
+      @JsonKey(name: 'thumbnail')
+          String? thumbnail});
 }
 
 /// @nodoc
@@ -101,6 +122,7 @@ class _$FeaturedMediaCopyWithImpl<$Res>
     Object? mediaUrl = freezed,
     Object? title = freezed,
     Object? featuredMediaType = freezed,
+    Object? duration = freezed,
     Object? width = freezed,
     Object? height = freezed,
     Object? thumbnail = freezed,
@@ -122,6 +144,10 @@ class _$FeaturedMediaCopyWithImpl<$Res>
           ? _value.featuredMediaType
           : featuredMediaType // ignore: cast_nullable_to_non_nullable
               as FeaturedMediaType?,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as double?,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -146,13 +172,22 @@ abstract class _$FeaturedMediaCopyWith<$Res>
       __$FeaturedMediaCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'url') String? mediaUrl,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'type') FeaturedMediaType? featuredMediaType,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'thumbnail') String? thumbnail});
+      {@JsonKey(name: 'ID')
+          int? id,
+      @JsonKey(name: 'url')
+          String? mediaUrl,
+      @JsonKey(name: 'title')
+          String? title,
+      @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
+          FeaturedMediaType? featuredMediaType,
+      @JsonKey(name: 'duration')
+          double? duration,
+      @JsonKey(name: 'width')
+          int? width,
+      @JsonKey(name: 'height')
+          int? height,
+      @JsonKey(name: 'thumbnail')
+          String? thumbnail});
 }
 
 /// @nodoc
@@ -172,6 +207,7 @@ class __$FeaturedMediaCopyWithImpl<$Res>
     Object? mediaUrl = freezed,
     Object? title = freezed,
     Object? featuredMediaType = freezed,
+    Object? duration = freezed,
     Object? width = freezed,
     Object? height = freezed,
     Object? thumbnail = freezed,
@@ -193,6 +229,10 @@ class __$FeaturedMediaCopyWithImpl<$Res>
           ? _value.featuredMediaType
           : featuredMediaType // ignore: cast_nullable_to_non_nullable
               as FeaturedMediaType?,
+      duration: duration == freezed
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as double?,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -213,13 +253,22 @@ class __$FeaturedMediaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_FeaturedMedia implements _FeaturedMedia {
   _$_FeaturedMedia(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'url') this.mediaUrl,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'type') this.featuredMediaType,
-      @JsonKey(name: 'width') this.width,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'thumbnail') this.thumbnail});
+      {@JsonKey(name: 'ID')
+          this.id,
+      @JsonKey(name: 'url')
+          this.mediaUrl,
+      @JsonKey(name: 'title')
+          this.title,
+      @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
+          this.featuredMediaType,
+      @JsonKey(name: 'duration')
+          this.duration,
+      @JsonKey(name: 'width')
+          this.width,
+      @JsonKey(name: 'height')
+          this.height,
+      @JsonKey(name: 'thumbnail')
+          this.thumbnail});
 
   factory _$_FeaturedMedia.fromJson(Map<String, dynamic> json) =>
       _$_$_FeaturedMediaFromJson(json);
@@ -234,8 +283,11 @@ class _$_FeaturedMedia implements _FeaturedMedia {
   @JsonKey(name: 'title')
   final String? title;
   @override
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
   final FeaturedMediaType? featuredMediaType;
+  @override
+  @JsonKey(name: 'duration')
+  final double? duration;
   @override
   @JsonKey(name: 'width')
   final int? width;
@@ -248,7 +300,7 @@ class _$_FeaturedMedia implements _FeaturedMedia {
 
   @override
   String toString() {
-    return 'FeaturedMedia(id: $id, mediaUrl: $mediaUrl, title: $title, featuredMediaType: $featuredMediaType, width: $width, height: $height, thumbnail: $thumbnail)';
+    return 'FeaturedMedia(id: $id, mediaUrl: $mediaUrl, title: $title, featuredMediaType: $featuredMediaType, duration: $duration, width: $width, height: $height, thumbnail: $thumbnail)';
   }
 
   @override
@@ -265,6 +317,9 @@ class _$_FeaturedMedia implements _FeaturedMedia {
             (identical(other.featuredMediaType, featuredMediaType) ||
                 const DeepCollectionEquality()
                     .equals(other.featuredMediaType, featuredMediaType)) &&
+            (identical(other.duration, duration) ||
+                const DeepCollectionEquality()
+                    .equals(other.duration, duration)) &&
             (identical(other.width, width) ||
                 const DeepCollectionEquality().equals(other.width, width)) &&
             (identical(other.height, height) ||
@@ -281,6 +336,7 @@ class _$_FeaturedMedia implements _FeaturedMedia {
       const DeepCollectionEquality().hash(mediaUrl) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(featuredMediaType) ^
+      const DeepCollectionEquality().hash(duration) ^
       const DeepCollectionEquality().hash(width) ^
       const DeepCollectionEquality().hash(height) ^
       const DeepCollectionEquality().hash(thumbnail);
@@ -298,13 +354,22 @@ class _$_FeaturedMedia implements _FeaturedMedia {
 
 abstract class _FeaturedMedia implements FeaturedMedia {
   factory _FeaturedMedia(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'url') String? mediaUrl,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'type') FeaturedMediaType? featuredMediaType,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'thumbnail') String? thumbnail}) = _$_FeaturedMedia;
+      {@JsonKey(name: 'ID')
+          int? id,
+      @JsonKey(name: 'url')
+          String? mediaUrl,
+      @JsonKey(name: 'title')
+          String? title,
+      @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
+          FeaturedMediaType? featuredMediaType,
+      @JsonKey(name: 'duration')
+          double? duration,
+      @JsonKey(name: 'width')
+          int? width,
+      @JsonKey(name: 'height')
+          int? height,
+      @JsonKey(name: 'thumbnail')
+          String? thumbnail}) = _$_FeaturedMedia;
 
   factory _FeaturedMedia.fromJson(Map<String, dynamic> json) =
       _$_FeaturedMedia.fromJson;
@@ -319,9 +384,12 @@ abstract class _FeaturedMedia implements FeaturedMedia {
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'type')
+  @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
   FeaturedMediaType? get featuredMediaType =>
       throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'duration')
+  double? get duration => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'width')
   int? get width => throw _privateConstructorUsedError;

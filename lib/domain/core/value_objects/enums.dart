@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -76,7 +75,7 @@ extension MoodTypeEx on MoodType {
 /// The type of content being served to the user
 enum ContentType { AUDIO_VIDEO, DOCUMENT, ARTICLE, UNKNOWN }
 
-enum FeaturedMediaType { audio, video, UNKNOWN }
+enum FeaturedMediaType { AUDIO, MEDIA, VIDEO, UNKNOWN }
 
 enum EditInformationInputType { Text, DropDown }
 

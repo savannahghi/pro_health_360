@@ -11,8 +11,10 @@ _$_FeaturedMedia _$_$_FeaturedMediaFromJson(Map<String, dynamic> json) {
     id: json['ID'] as int?,
     mediaUrl: json['url'] as String?,
     title: json['title'] as String?,
-    featuredMediaType:
-        _$enumDecodeNullable(_$FeaturedMediaTypeEnumMap, json['type']),
+    featuredMediaType: _$enumDecodeNullable(
+        _$FeaturedMediaTypeEnumMap, json['type'],
+        unknownValue: FeaturedMediaType.UNKNOWN),
+    duration: (json['duration'] as num?)?.toDouble(),
     width: json['width'] as int?,
     height: json['height'] as int?,
     thumbnail: json['thumbnail'] as String?,
@@ -25,6 +27,7 @@ Map<String, dynamic> _$_$_FeaturedMediaToJson(_$_FeaturedMedia instance) =>
       'url': instance.mediaUrl,
       'title': instance.title,
       'type': _$FeaturedMediaTypeEnumMap[instance.featuredMediaType],
+      'duration': instance.duration,
       'width': instance.width,
       'height': instance.height,
       'thumbnail': instance.thumbnail,
@@ -68,7 +71,8 @@ K? _$enumDecodeNullable<K, V>(
 }
 
 const _$FeaturedMediaTypeEnumMap = {
-  FeaturedMediaType.audio: 'audio',
-  FeaturedMediaType.video: 'video',
+  FeaturedMediaType.AUDIO: 'AUDIO',
+  FeaturedMediaType.MEDIA: 'MEDIA',
+  FeaturedMediaType.VIDEO: 'VIDEO',
   FeaturedMediaType.UNKNOWN: 'UNKNOWN',
 };

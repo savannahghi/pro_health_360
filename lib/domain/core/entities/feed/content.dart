@@ -3,7 +3,6 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/feed/author.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
@@ -38,6 +37,7 @@ class Content with _$Content {
     @JsonKey(name: 'shareCount') int? shareCount,
     @JsonKey(name: 'documents') List<Document>? documents,
     @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
+    @JsonKey(name: 'featuredMedia') List<FeaturedMedia>? featuredMedia,
     // TODO(abiud): add when backend is ready
     // @JsonKey(name: 'isNew') bool? isNew,
     @JsonKey(name: 'tagNames') List<String?>? tags,
