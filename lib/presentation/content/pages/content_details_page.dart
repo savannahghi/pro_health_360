@@ -142,6 +142,7 @@ class ContentDetailPage extends StatelessWidget {
                     ),
                     EstimatedReadTimeBadge(
                       estimateReadTime: contentDetails.estimate!,
+                      contentType: contentDetails.contentType!,
                     ),
                   ],
                 ),

@@ -1697,6 +1697,18 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
       'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
     },
     'tagNames': <String>['Recommended', 'Health', 'Fitness'],
+    'featuredMedia': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 7,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music.aac',
+        'title': 'Background',
+        'type': 'audio',
+        'width': 0,
+        'height': 0,
+        'thumbnail': ''
+      }
+    ]
   },
 ];
 

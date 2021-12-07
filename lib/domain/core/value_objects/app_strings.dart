@@ -450,6 +450,12 @@ const String feedDate = '2021-08-23T06:42:05.085216Z';
 const String feedReadTime = '5 minutes';
 String contentReadDuration(int duration) =>
     '${(duration / 60).floor()} min read';
+String contentAudioVideoDuration(int duration) {
+  final int minutes = (duration / 60).floor();
+  final String seconds = (duration % 60).toString().padLeft(2, '0');
+  return '$minutes:$seconds';
+}
+
 const String newString = 'New';
 
 //My Health Page
@@ -624,4 +630,5 @@ const String contentZeroStateTitle = 'You have no content';
 const String contentZeroStateDescription =
     'Sit back, relax and enjoy a cup of coffee as we prepare fresh content for you';
 const String contentZeroStateButtonText = 'Retry';
-const String fetchLikeStatusErrorString = 'Error while fetching your like status';
+const String fetchLikeStatusErrorString =
+    'Error while fetching your like status';

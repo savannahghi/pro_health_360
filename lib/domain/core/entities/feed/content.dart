@@ -9,6 +9,7 @@ import 'package:myafyahub/domain/core/entities/feed/author.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
 import 'package:myafyahub/domain/core/entities/feed/document.dart';
+import 'package:myafyahub/domain/core/entities/feed/featured_media.dart';
 import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
@@ -41,7 +42,7 @@ class Content with _$Content {
     // @JsonKey(name: 'isNew') bool? isNew,
     @JsonKey(name: 'tagNames') List<String?>? tags,
     @JsonKey(name: 'meta') ContentMetadata? metadata,
-
+    @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
     // Internal trackers to know whether this user has performed any action on
     // this content item
     @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,

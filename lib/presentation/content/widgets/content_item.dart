@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -32,8 +32,12 @@ class ContentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       key: feedContentItemKey,
-      onTap: () => Navigator.of(context)
-          .pushNamed(BWRoutes.contentDetailPage, arguments: contentDetails),
+      onTap: () {
+        if (contentDetails.contentType == ContentType.ARTICLE) {
+          Navigator.of(context)
+              .pushNamed(BWRoutes.contentDetailPage, arguments: contentDetails);
+        }
+      },
       child: Container(
         width: MediaQuery.of(context).size.width - 50,
         decoration: BoxDecoration(
@@ -68,94 +72,92 @@ class ContentItem extends StatelessWidget {
                             ),
                           ),
                           // Reading estimate
-                          if (contentDetails.estimate != null)
+                          if (contentDetails.estimate != null &&
+                              contentDetails.contentType == ContentType.ARTICLE)
                             Positioned(
                               bottom: 8,
                               left: 8,
                               child: EstimatedReadTimeBadge(
                                 estimateReadTime: contentDetails.estimate!,
+                                contentType: contentDetails.contentType!,
                               ),
                             ),
                         ],
                       ),
-                    // A video playback icon if there is a video
-                    if (contentDetails.contentType == ContentType.AUDIO_VIDEO)
-                      SizedBox(
-                        key: feedVideoPlayIconKey,
-                        child: SvgPicture.asset(
-                          playIcon,
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(13),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Flexible(
-                              child: Text(
-                                contentDetails.title!,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextThemes.boldSize16Text(
-                                  AppColors.secondaryColor,
+                if (contentDetails.contentType == ContentType.AUDIO_VIDEO &&
+                    contentDetails.featuredMedia![0]!.featuredMediaType ==
+                        FeaturedMediaType.audio)
+                  AudioContent(contentDetails: contentDetails)
+                else if (contentDetails.contentType == ContentType.ARTICLE)
+                  Padding(
+                    padding: const EdgeInsets.all(13),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Flexible(
+                                child: Text(
+                                  contentDetails.title!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextThemes.boldSize16Text(
+                                    AppColors.secondaryColor,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: humanizeDate(
-                                dateTextStyle: TextThemes.normalSize12Text(
-                                  AppColors.greyTextColor,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: humanizeDate(
+                                  dateTextStyle: TextThemes.normalSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                  context: context,
+                                  loadedDate:
+                                      contentDetails.metadata!.createdAt!,
                                 ),
-                                context: context,
-                                loadedDate: contentDetails.metadata!.createdAt!,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      verySmallVerticalSizedBox,
-                      if (contentDetails.authorName != null)
-                        Text(
-                          contentDetails.authorName!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextThemes.boldSize12Text(
-                            AppColors.greyTextColor,
+                            ],
                           ),
                         ),
-                      // Reactions
-                      Padding(
-                        padding: const EdgeInsets.only(top: 18, bottom: 4),
-                        child: Row(
-                          children: <Widget>[
-                            ReactionItem(
-                              iconUrl: heartIconUrl,
-                              count: contentDetails.likeCount,
+                        verySmallVerticalSizedBox,
+                        if (contentDetails.authorName != null)
+                          Text(
+                            contentDetails.authorName!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextThemes.boldSize12Text(
+                              AppColors.greyTextColor,
                             ),
-                            ReactionItem(
-                              iconUrl: shareIconUrl,
-                              count: contentDetails.shareCount,
-                            ),
-                            ReactionItem(
-                              iconUrl: saveIconUrl,
-                              count: contentDetails.bookmarkCount,
-                            ),
-                          ],
+                          ),
+                        // Reactions
+                        Padding(
+                          padding: const EdgeInsets.only(top: 18, bottom: 4),
+                          child: Row(
+                            children: <Widget>[
+                              ReactionItem(
+                                iconUrl: heartIconUrl,
+                                count: contentDetails.likeCount,
+                              ),
+                              ReactionItem(
+                                iconUrl: shareIconUrl,
+                                count: contentDetails.shareCount,
+                              ),
+                              ReactionItem(
+                                iconUrl: saveIconUrl,
+                                count: contentDetails.bookmarkCount,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
             if (isNew)

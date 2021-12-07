@@ -39,6 +39,7 @@ class _$ContentTearOff {
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata,
+      @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
       @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved}) {
     return _Content(
@@ -60,6 +61,7 @@ class _$ContentTearOff {
       categories: categories,
       tags: tags,
       metadata: metadata,
+      featuredMedia: featuredMedia,
       hasLiked: hasLiked,
       hasSaved: hasSaved,
     );
@@ -116,7 +118,9 @@ mixin _$Content {
   @JsonKey(name: 'tagNames')
   List<String?>? get tags => throw _privateConstructorUsedError;
   @JsonKey(name: 'meta')
-  ContentMetadata? get metadata =>
+  ContentMetadata? get metadata => throw _privateConstructorUsedError;
+  @JsonKey(name: 'featuredMedia')
+  List<FeaturedMedia?>? get featuredMedia =>
       throw _privateConstructorUsedError; // Internal trackers to know whether this user has performed any action on
 // this content item
   @JsonKey(name: 'hasLiked', defaultValue: false)
@@ -152,6 +156,7 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata,
+      @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
       @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved});
 
@@ -188,6 +193,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? categories = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
+    Object? featuredMedia = freezed,
     Object? hasLiked = freezed,
     Object? hasSaved = freezed,
   }) {
@@ -264,6 +270,10 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
               as ContentMetadata?,
+      featuredMedia: featuredMedia == freezed
+          ? _value.featuredMedia
+          : featuredMedia // ignore: cast_nullable_to_non_nullable
+              as List<FeaturedMedia?>?,
       hasLiked: hasLiked == freezed
           ? _value.hasLiked
           : hasLiked // ignore: cast_nullable_to_non_nullable
@@ -333,6 +343,7 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata,
+      @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
       @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved});
 
@@ -373,6 +384,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? categories = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
+    Object? featuredMedia = freezed,
     Object? hasLiked = freezed,
     Object? hasSaved = freezed,
   }) {
@@ -449,6 +461,10 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
               as ContentMetadata?,
+      featuredMedia: featuredMedia == freezed
+          ? _value.featuredMedia
+          : featuredMedia // ignore: cast_nullable_to_non_nullable
+              as List<FeaturedMedia?>?,
       hasLiked: hasLiked == freezed
           ? _value.hasLiked
           : hasLiked // ignore: cast_nullable_to_non_nullable
@@ -483,6 +499,7 @@ class _$_Content implements _Content {
       @JsonKey(name: 'categoryDetails') this.categories,
       @JsonKey(name: 'tagNames') this.tags,
       @JsonKey(name: 'meta') this.metadata,
+      @JsonKey(name: 'featuredMedia') this.featuredMedia,
       @JsonKey(name: 'hasLiked', defaultValue: false) this.hasLiked,
       @JsonKey(name: 'hasSaved', defaultValue: false) this.hasSaved});
 
@@ -545,6 +562,9 @@ class _$_Content implements _Content {
   @override
   @JsonKey(name: 'meta')
   final ContentMetadata? metadata;
+  @override
+  @JsonKey(name: 'featuredMedia')
+  final List<FeaturedMedia?>? featuredMedia;
   @override // Internal trackers to know whether this user has performed any action on
 // this content item
   @JsonKey(name: 'hasLiked', defaultValue: false)
@@ -555,7 +575,7 @@ class _$_Content implements _Content {
 
   @override
   String toString() {
-    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata, hasLiked: $hasLiked, hasSaved: $hasSaved)';
+    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata, featuredMedia: $featuredMedia, hasLiked: $hasLiked, hasSaved: $hasSaved)';
   }
 
   @override
@@ -610,6 +630,9 @@ class _$_Content implements _Content {
             (identical(other.metadata, metadata) ||
                 const DeepCollectionEquality()
                     .equals(other.metadata, metadata)) &&
+            (identical(other.featuredMedia, featuredMedia) ||
+                const DeepCollectionEquality()
+                    .equals(other.featuredMedia, featuredMedia)) &&
             (identical(other.hasLiked, hasLiked) ||
                 const DeepCollectionEquality()
                     .equals(other.hasLiked, hasLiked)) &&
@@ -639,6 +662,7 @@ class _$_Content implements _Content {
       const DeepCollectionEquality().hash(categories) ^
       const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(featuredMedia) ^
       const DeepCollectionEquality().hash(hasLiked) ^
       const DeepCollectionEquality().hash(hasSaved);
 
@@ -673,6 +697,7 @@ abstract class _Content implements Content {
           @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
           @JsonKey(name: 'tagNames') List<String?>? tags,
           @JsonKey(name: 'meta') ContentMetadata? metadata,
+          @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
           @JsonKey(name: 'hasLiked', defaultValue: false) bool? hasLiked,
           @JsonKey(name: 'hasSaved', defaultValue: false) bool? hasSaved}) =
       _$_Content;
@@ -735,6 +760,9 @@ abstract class _Content implements Content {
   @override
   @JsonKey(name: 'meta')
   ContentMetadata? get metadata => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'featuredMedia')
+  List<FeaturedMedia?>? get featuredMedia => throw _privateConstructorUsedError;
   @override // Internal trackers to know whether this user has performed any action on
 // this content item
   @JsonKey(name: 'hasLiked', defaultValue: false)
