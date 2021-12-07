@@ -1,11 +1,14 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 
 // Project imports:
+import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/update_initial_route_action.dart';
+import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class CheckTokenAction extends ReduxAction<AppState> {
@@ -14,15 +17,16 @@ class CheckTokenAction extends ReduxAction<AppState> {
     required this.refreshTokenEndpoint,
   });
 
-  final IGraphQlClient httpClient;
+  final CustomClient httpClient;
   final String refreshTokenEndpoint;
 
   @override
   Future<AppState?> reduce() async {
-    final bool? isSignedIn = state.credentials?.isSignedIn;
+    final bool isSignedIn = state.credentials?.isSignedIn ?? false;
 
-    if (isSignedIn != null && isSignedIn) {
-      // check if token has expired
+    String initialRoute = BWRoutes.phoneLogin;
+
+    if (isSignedIn) {
       final DateTime now = DateTime.now();
 
       final DateTime expiresAt = DateTime.parse(
@@ -30,15 +34,36 @@ class CheckTokenAction extends ReduxAction<AppState> {
       );
 
       if (hasTokenExpired(expiresAt, now)) {
-        dispatch(UpdateInitialRouteAction(initialRoute: BWRoutes.phoneLogin));
-        return null;
+        AuthCredentials authCredentials = await httpClient.refreshToken();
+
+        if (authCredentials.idToken != null &&
+            authCredentials.expiresIn != null &&
+            authCredentials.refreshToken != null) {
+          final DateTime expiryTimestamp =
+              getTokenExpiryTimestamp(authCredentials.expiresIn);
+
+          authCredentials = authCredentials.copyWith(
+            tokenExpiryTimestamp: expiryTimestamp.toIso8601String(),
+          );
+
+          dispatch(
+            UpdateCredentialsAction(
+              idToken: authCredentials.idToken,
+              refreshToken: authCredentials.refreshToken,
+              expiresIn: authCredentials.expiresIn,
+              tokenExpiryTimestamp: authCredentials.tokenExpiryTimestamp,
+            ),
+          );
+
+          initialRoute = BWRoutes.home;
+        } else {
+          initialRoute = BWRoutes.phoneLogin;
+        }
       } else {
-        // TODO: Implement refresh token functionality once endpoint is available
-        dispatch(UpdateInitialRouteAction(initialRoute: BWRoutes.home));
-        return null;
+        initialRoute = BWRoutes.home;
       }
     }
 
-    dispatch(UpdateInitialRouteAction(initialRoute: BWRoutes.phoneLogin));
+    dispatch(UpdateInitialRouteAction(initialRoute: initialRoute));
   }
 }

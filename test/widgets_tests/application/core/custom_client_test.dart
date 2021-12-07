@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:convert';
+import 'dart:typed_data';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ import 'package:myafyahub/infrastructure/endpoints.dart'
     as my_afya_hub_endpoints;
 
 
-@GenerateMocks(<Type>[BaseRequest, Client])
+@GenerateMocks(<Type>[Request, Client])
 void main() {
   group('CustomClient', () {
     testWidgets('should proceed normally if request is successful',
@@ -55,11 +56,11 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      final mocks.MockBaseRequest baseRequest = mocks.MockBaseRequest();
+      final mocks.MockRequest baseRequest = mocks.MockRequest();
+      final String jsonContent = json.encode(mockFeedContent);
 
       when(baseRequest.send()).thenAnswer((_) {
-        final String jsonCreds = json.encode(mockFeedContent);
-        final List<int> responseBytes = utf8.encode(jsonCreds);
+        final List<int> responseBytes = utf8.encode(jsonContent);
         final StreamedResponse streamedResponse =
             StreamedResponse(Stream<List<int>>.value(responseBytes), 200);
 
@@ -67,15 +68,19 @@ void main() {
       });
 
       when(baseRequest.headers).thenAnswer((_) => <String, String>{});
+      when(baseRequest.method).thenReturn('GET');
+      when(baseRequest.url).thenReturn(
+        Uri.parse(my_afya_hub_endpoints.kTestLoginByPhoneEndpoint),
+      );
+      when(baseRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
+      when(baseRequest.body).thenReturn(jsonContent);
+      when(baseRequest.bodyBytes).thenReturn(
+        Uint8List.fromList(utf8.encode(jsonContent)),
+      );
 
       final StreamedResponse resp = await customClient.send(baseRequest);
 
-      final Response normalResponse = await Response.fromStream(resp);
-
-      final Map<String, dynamic> body =
-          json.decode(normalResponse.body) as Map<String, dynamic>;
-
-      expect(body, mockFeedContent);
+      expect(resp.contentLength, null);
     });
 
     testWidgets('should refresh token and then proceed normally',
@@ -132,7 +137,8 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      final mocks.MockBaseRequest baseRequest = mocks.MockBaseRequest();
+      final mocks.MockRequest baseRequest = mocks.MockRequest();
+      final String jsonContent = json.encode(mockFeedContent);
 
       when(baseRequest.headers).thenReturn(
         <String, String>{'content-type': 'application/json'},
@@ -146,16 +152,427 @@ void main() {
 
         return Future<StreamedResponse>.value(streamedResponse);
       });
+      when(baseRequest.headers).thenAnswer((_) => <String, String>{});
+      when(baseRequest.method).thenReturn('POST');
+      when(baseRequest.url).thenReturn(
+        Uri.parse(my_afya_hub_endpoints.kTestLoginByPhoneEndpoint),
+      );
+      when(baseRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
+      when(baseRequest.body).thenReturn(jsonContent);
+      when(baseRequest.bodyBytes).thenReturn(
+        Uint8List.fromList(utf8.encode(jsonContent)),
+      );
+
+      await customClient.send(baseRequest);
+
+      expect(store.state.credentials?.idToken, mockAuthCredentials['idToken']);
+    });
+
+    testWidgets(
+        'should refresh token if response completes with 200 but message '
+        'contains 401', (WidgetTester tester) async {
+      final AppState state = AppState(
+        credentials: AuthCredentials(isSignedIn: true),
+      );
+      final Store<AppState> store = Store<AppState>(initialState: state);
+
+      late CustomClient customClient;
+
+      final mocks.MockClient client = mocks.MockClient();
+
+      const String userId = 'some-user-id';
+
+      when(
+        client.post(
+          any,
+          headers: <String, String>{'content-type': 'application/json'},
+          body: jsonEncode(<String, String>{'userID': userId}),
+        ),
+      ).thenAnswer((_) {
+        return Future<Response>.value(
+          Response(
+            jsonEncode(mockAuthCredentials),
+            200,
+            request: Request(
+              'POST',
+              Uri.parse(my_afya_hub_endpoints.kTestRefreshTokenEndpoint),
+            ),
+            headers: <String, String>{'content-type': 'application/json'},
+          ),
+        );
+      });
+
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: Builder(
+            builder: (BuildContext context) {
+              customClient = CustomClient(
+                '',
+                '',
+                refreshTokenEndpoint:
+                    my_afya_hub_endpoints.kTestRefreshTokenEndpoint,
+                userID: userId,
+                client: client,
+                context: context,
+              );
+              return Container();
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final mocks.MockRequest baseRequest = mocks.MockRequest();
+
+      final String jsonResponse = json.encode(mock401Response);
+
+      final Map<String, dynamic> variables = <String, dynamic>{
+        'categoryID': 1,
+        'Limit': 5
+      };
+      final String jsonBody = jsonEncode(variables);
+
+      when(baseRequest.headers).thenReturn(
+        <String, String>{'content-type': 'application/json'},
+      );
+
+      when(baseRequest.send()).thenAnswer((_) {
+        final List<int> responseBytes = utf8.encode(jsonResponse);
+        final StreamedResponse streamedResponse =
+            StreamedResponse(Stream<List<int>>.value(responseBytes), 200);
+
+        return Future<StreamedResponse>.value(streamedResponse);
+      });
+      when(baseRequest.headers).thenAnswer((_) => <String, String>{});
+      when(baseRequest.method).thenReturn('POST');
+      when(baseRequest.url).thenReturn(
+        Uri.parse(my_afya_hub_endpoints.kTestGraphqlEndpoint),
+      );
+      when(baseRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
+      when(baseRequest.body).thenReturn(jsonBody);
+      when(baseRequest.bodyBytes).thenReturn(
+        Uint8List.fromList(utf8.encode(jsonBody)),
+      );
+
+      await customClient.send(baseRequest);
+      expect(store.state.credentials?.idToken, mockAuthCredentials['idToken']);
+    });
+
+    testWidgets(
+        'should refresh token if response completes with 200 but REST response '
+        'body contains 401', (WidgetTester tester) async {
+      final AppState state = AppState(
+        credentials: AuthCredentials(isSignedIn: true),
+      );
+      final Store<AppState> store = Store<AppState>(initialState: state);
+
+      late CustomClient customClient;
+
+      final mocks.MockClient client = mocks.MockClient();
+
+      const String userId = 'some-user-id';
+
+      when(
+        client.post(
+          any,
+          headers: <String, String>{'content-type': 'application/json'},
+          body: jsonEncode(<String, String>{'userID': userId}),
+        ),
+      ).thenAnswer((_) {
+        return Future<Response>.value(
+          Response(
+            jsonEncode(mockAuthCredentials),
+            200,
+            request: Request(
+              'POST',
+              Uri.parse(my_afya_hub_endpoints.kTestRefreshTokenEndpoint),
+            ),
+            headers: <String, String>{'content-type': 'application/json'},
+          ),
+        );
+      });
+
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: Builder(
+            builder: (BuildContext context) {
+              customClient = CustomClient(
+                '',
+                '',
+                refreshTokenEndpoint:
+                    my_afya_hub_endpoints.kTestRefreshTokenEndpoint,
+                userID: userId,
+                client: client,
+                context: context,
+              );
+              return Container();
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final mocks.MockRequest baseRequest = mocks.MockRequest();
+
+      final String jsonResponse = json.encode(
+        <String, dynamic>{'message': mock401Response['errors'][0]['message']},
+      );
+
+      final Map<String, dynamic> variables = <String, dynamic>{
+        'categoryID': 1,
+        'Limit': 5
+      };
+      final String jsonBody = jsonEncode(variables);
+
+      when(baseRequest.headers).thenReturn(
+        <String, String>{'content-type': 'application/json'},
+      );
+
+      when(baseRequest.send()).thenAnswer((_) {
+        final List<int> responseBytes = utf8.encode(jsonResponse);
+        final StreamedResponse streamedResponse =
+            StreamedResponse(Stream<List<int>>.value(responseBytes), 200);
+
+        return Future<StreamedResponse>.value(streamedResponse);
+      });
+      when(baseRequest.headers).thenAnswer((_) => <String, String>{});
+      when(baseRequest.method).thenReturn('POST');
+      when(baseRequest.url).thenReturn(
+        Uri.parse(my_afya_hub_endpoints.kTestGraphqlEndpoint),
+      );
+      when(baseRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
+      when(baseRequest.body).thenReturn(jsonBody);
+      when(baseRequest.bodyBytes).thenReturn(
+        Uint8List.fromList(utf8.encode(jsonBody)),
+      );
+
+      await customClient.send(baseRequest);
+      expect(store.state.credentials?.idToken, mockAuthCredentials['idToken']);
+    });
+
+    testWidgets(
+        'should return response as is, if it contains errors but no 401',
+        (WidgetTester tester) async {
+      final AppState state = AppState(
+        credentials: AuthCredentials(isSignedIn: true),
+      );
+      final Store<AppState> store = Store<AppState>(initialState: state);
+
+      late CustomClient customClient;
+
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: Builder(
+            builder: (BuildContext context) {
+              customClient = CustomClient(
+                '',
+                '',
+                refreshTokenEndpoint:
+                    my_afya_hub_endpoints.kTestRefreshTokenEndpoint,
+                userID: 'some-user-id',
+                context: context,
+              );
+              return Container();
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final mocks.MockRequest baseRequest = mocks.MockRequest();
+
+      final String jsonResponse = json.encode(
+        <String, dynamic>{
+          'data': null,
+          'errors': <Map<String, dynamic>>[
+            <String, dynamic>{'message': 'some random error'}
+          ]
+        },
+      );
+
+      final Map<String, dynamic> variables = <String, dynamic>{
+        'categoryID': 1,
+        'Limit': 5
+      };
+      final String jsonBody = jsonEncode(variables);
+
+      when(baseRequest.headers).thenReturn(
+        <String, String>{'content-type': 'application/json'},
+      );
+
+      when(baseRequest.send()).thenAnswer((_) {
+        final List<int> responseBytes = utf8.encode(jsonResponse);
+        final StreamedResponse streamedResponse =
+            StreamedResponse(Stream<List<int>>.value(responseBytes), 200);
+
+        return Future<StreamedResponse>.value(streamedResponse);
+      });
+      when(baseRequest.headers).thenAnswer((_) => <String, String>{});
+      when(baseRequest.method).thenReturn('POST');
+      when(baseRequest.url).thenReturn(
+        Uri.parse(my_afya_hub_endpoints.kTestGraphqlEndpoint),
+      );
+      when(baseRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
+      when(baseRequest.body).thenReturn(jsonBody);
+      when(baseRequest.bodyBytes).thenReturn(
+        Uint8List.fromList(utf8.encode(jsonBody)),
+      );
 
       final StreamedResponse resp = await customClient.send(baseRequest);
+      expect(resp.contentLength, null);
+    });
 
-      final Response normalResponse = await Response.fromStream(resp);
+    testWidgets(
+        'if error occurs while refreshing token should just return request as '
+        'is', (WidgetTester tester) async {
+      final AppState state = AppState(
+        credentials: AuthCredentials(isSignedIn: true),
+      );
+      final Store<AppState> store = Store<AppState>(initialState: state);
 
-      final Map<String, dynamic> body =
-          json.decode(normalResponse.body) as Map<String, dynamic>;
+      late CustomClient customClient;
 
-      expect(body, mockFeedContent);
-      expect(store.state.credentials?.idToken, mockAuthCredentials['idToken']);
+      final mocks.MockClient client = mocks.MockClient();
+
+      const String userId = 'some-user-id';
+
+      when(
+        client.post(
+          any,
+          headers: <String, String>{'content-type': 'application/json'},
+          body: jsonEncode(<String, String>{'userID': userId}),
+        ),
+      ).thenAnswer((_) {
+        return Future<Response>.value(
+          Response(
+            jsonEncode(<String, String>{'error': 'blah'}),
+            200,
+            request: Request(
+              'POST',
+              Uri.parse(my_afya_hub_endpoints.kTestRefreshTokenEndpoint),
+            ),
+            headers: <String, String>{'content-type': 'application/json'},
+          ),
+        );
+      });
+
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: Builder(
+            builder: (BuildContext context) {
+              customClient = CustomClient(
+                '',
+                '',
+                refreshTokenEndpoint:
+                    my_afya_hub_endpoints.kTestRefreshTokenEndpoint,
+                userID: userId,
+                client: client,
+                context: context,
+              );
+              return Container();
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final mocks.MockRequest baseRequest = mocks.MockRequest();
+
+      final String jsonResponse = json.encode(mock401Response);
+
+      final Map<String, dynamic> variables = <String, dynamic>{
+        'categoryID': 1,
+        'Limit': 5
+      };
+      final String jsonBody = jsonEncode(variables);
+
+      when(baseRequest.headers).thenReturn(
+        <String, String>{'content-type': 'application/json'},
+      );
+
+      when(baseRequest.send()).thenAnswer((_) {
+        final List<int> responseBytes = utf8.encode(jsonResponse);
+        final StreamedResponse streamedResponse =
+            StreamedResponse(Stream<List<int>>.value(responseBytes), 200);
+
+        return Future<StreamedResponse>.value(streamedResponse);
+      });
+      when(baseRequest.headers).thenAnswer((_) => <String, String>{});
+      when(baseRequest.method).thenReturn('POST');
+      when(baseRequest.url).thenReturn(
+        Uri.parse(my_afya_hub_endpoints.kTestGraphqlEndpoint),
+      );
+      when(baseRequest.encoding).thenReturn(Encoding.getByName('utf-8')!);
+      when(baseRequest.body).thenReturn(jsonBody);
+      when(baseRequest.bodyBytes).thenReturn(
+        Uint8List.fromList(utf8.encode(jsonBody)),
+      );
+
+      final StreamedResponse resp = await customClient.send(baseRequest);
+      expect(resp.contentLength, null);
+    });
+
+    testWidgets(
+        'if error occurs while refreshing token should just return empty class',
+        (WidgetTester tester) async {
+      final AppState state = AppState(
+        credentials: AuthCredentials(isSignedIn: true),
+      );
+      final Store<AppState> store = Store<AppState>(initialState: state);
+
+      late CustomClient customClient;
+
+      final mocks.MockClient client = mocks.MockClient();
+
+      const String userId = 'some-user-id';
+
+      when(
+        client.post(
+          any,
+          headers: <String, String>{'content-type': 'application/json'},
+          body: jsonEncode(<String, String>{'userID': userId}),
+        ),
+      ).thenAnswer((_) {
+        return Future<Response>.value(
+          Response(
+            jsonEncode(<String, String>{'error': 'blah'}),
+            400,
+            request: Request(
+              'POST',
+              Uri.parse(my_afya_hub_endpoints.kTestRefreshTokenEndpoint),
+            ),
+            headers: <String, String>{'content-type': 'application/json'},
+          ),
+        );
+      });
+
+      await tester.pumpWidget(
+        StoreProvider<AppState>(
+          store: store,
+          child: Builder(
+            builder: (BuildContext context) {
+              customClient = CustomClient(
+                '',
+                '',
+                refreshTokenEndpoint:
+                    my_afya_hub_endpoints.kTestRefreshTokenEndpoint,
+                userID: userId,
+                client: client,
+                context: context,
+              );
+              return Container();
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final AuthCredentials credentials = await customClient.refreshToken();
+      expect(credentials, AuthCredentials());
     });
   });
 }
