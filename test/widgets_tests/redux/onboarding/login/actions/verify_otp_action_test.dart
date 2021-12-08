@@ -90,12 +90,16 @@ void main() {
 
     testWidgets('should be invalid if otp is wrong',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient client =
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
-          'false',
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'verifyOTP': false,
+            }
+          }),
           201,
         ),
       );
@@ -104,7 +108,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: client,
+        client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
             return SILPrimaryButton(

@@ -2,17 +2,13 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:mockito/mockito.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -49,54 +45,20 @@ void main() {
 
     testWidgets('should verify an OTP correctly and navigate to terms page',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockClient = MockGraphQlClient();
-      final http.Response otpResponse = http.Response(
-        '123456',
-        200,
-      );
-
-      final http.Response verifyResponse = http.Response(
-        'true',
-        200,
-      );
-
-      final http.Response getTermsResponse = http.Response(
-        json.encode(<String, dynamic>{
-          'data': <String, dynamic>{
-            'getCurrentTerms': termsMock,
-          }
-        }),
-        200,
-      );
-
-      when(
-        baseGraphQlClientMock.callRESTAPI(
-          endpoint: kTestVerifyPhoneEndpoint,
-          method: httpPOST,
-          variables: <String, dynamic>{
-            'user_id': 'user-id',
-            'otp': '123456',
-            'phoneNumber': phoneNumber,
-            'flavour': Flavour.CONSUMER.name,
-          },
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getCurrentTerms': termsMock,
+              'sendOTP': '123456',
+              'verifyOTP': true
+            }
+          }),
+          201,
         ),
-      ).thenAnswer((_) async => Future<http.Response>.value(verifyResponse));
-
-      when(
-        baseGraphQlClientMock.callRESTAPI(
-          endpoint: kTestSendRecoverAccountOtpEndpoint,
-          method: httpPOST,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254712345678',
-            'flavour': Flavour.CONSUMER.name,
-          },
-        ),
-      ).thenAnswer((_) async => Future<http.Response>.value(otpResponse));
-
-      when(
-        baseGraphQlClientMock.query(getTermsQuery, <String, dynamic>{}),
-      ).thenAnswer(
-        (_) async => Future<http.Response>.value(getTermsResponse),
       );
 
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
@@ -104,7 +66,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockClient,
+        client: mockShortSILGraphQlClient,
         widget: VerifyPhonePage(),
       );
 
@@ -121,27 +83,23 @@ void main() {
 
     testWidgets('should show error if code is invalid',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockClient = MockGraphQlClient();
-      final http.Response otpResponse = http.Response(
-        '123456',
-        200,
-      );
-
-      when(
-        baseGraphQlClientMock.callRESTAPI(
-          endpoint: kTestSendRecoverAccountOtpEndpoint,
-          method: httpPOST,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254712345678',
-            'flavour': Flavour.CONSUMER.name,
-          },
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'sendOTP': '123456',
+            }
+          }),
+          201,
         ),
-      ).thenAnswer((_) async => Future<http.Response>.value(otpResponse));
-
+      );
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockClient,
+        client: mockShortSILGraphQlClient,
         widget: VerifyPhonePage(),
       );
 
@@ -159,28 +117,24 @@ void main() {
 
     testWidgets('should show a loading indicator when sending an OTP',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockClient = MockGraphQlClient();
-
-      final http.Response otpResponse = http.Response(
-        '123456',
-        200,
-      );
-
-      when(
-        baseGraphQlClientMock.callRESTAPI(
-          endpoint: kTestSendRecoverAccountOtpEndpoint,
-          method: httpPOST,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254712345678',
-            'flavour': Flavour.CONSUMER.name,
-          },
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'sendOTP': '123456',
+            }
+          }),
+          201,
         ),
-      ).thenAnswer((_) async => Future<http.Response>.value(otpResponse));
+      );
 
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockClient,
+        client: mockShortSILGraphQlClient,
         widget: VerifyPhonePage(),
       );
 
@@ -195,28 +149,25 @@ void main() {
 
     testWidgets('should show a loading indicator when verifying an OTP',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockClient = MockGraphQlClient();
-
-      final http.Response otpResponse = http.Response(
-        '123456',
-        200,
-      );
-
-      when(
-        baseGraphQlClientMock.callRESTAPI(
-          endpoint: kTestSendRecoverAccountOtpEndpoint,
-          method: httpPOST,
-          variables: <String, dynamic>{
-            'phoneNumber': '+254712345678',
-            'flavour': Flavour.CONSUMER.name,
-          },
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'verifyOTP': true,
+              'sendOTP': '123456',
+            }
+          }),
+          201,
         ),
-      ).thenAnswer((_) async => Future<http.Response>.value(otpResponse));
+      );
 
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockClient,
+        client: mockShortSILGraphQlClient,
         widget: VerifyPhonePage(),
       );
 

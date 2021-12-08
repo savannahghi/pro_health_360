@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
@@ -42,20 +42,23 @@ class AppEntryPoint extends StatelessWidget {
           final String idToken = vm.idToken ?? '';
           final String graphqlEndpoint =
               appSetupData.customContext!.graphqlEndpoint;
-          final String refreshTokenEndpoint =
-              appSetupData.customContext?.refreshTokenEndpoint ?? '';
-          final String userID = vm.userId ?? '';
+          // Todo: Restore later
+          // final String refreshTokenEndpoint =
+          //     appSetupData.customContext?.refreshTokenEndpoint ?? '';
+          // final String userID = vm.userId ?? '';
 
           return AppWrapper(
             appName: appName,
             appContexts: appSetupData.appContexts,
-            graphQLClient: CustomClient(
-              idToken,
-              graphqlEndpoint,
-              context: context,
-              refreshTokenEndpoint: refreshTokenEndpoint,
-              userID: userID,
-            ),
+            graphQLClient: GraphQlClient(idToken, graphqlEndpoint),
+            // Todo: Restore later
+            //  CustomClient(
+            //   idToken,
+            //   graphqlEndpoint,
+            //   context: context,
+            //   refreshTokenEndpoint: refreshTokenEndpoint,
+            //   userID: userID,
+            // ),
             baseContext: appSetupData.customContext,
             child: PreLoadApp(
               thisAppContexts: appSetupData.appContexts,

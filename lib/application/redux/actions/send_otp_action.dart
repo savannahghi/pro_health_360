@@ -90,8 +90,12 @@ class SendOTPAction extends ReduxAction<AppState> {
       if (processedResponse.ok == true) {
         //Return OTP sent as string
         //OTP are stored on the backend with the username
-        final String parsed = jsonDecode(httpResponse.body) as String;
-        final String otp = parsed;
+        final Map<String, dynamic> parsed =
+            jsonDecode(httpResponse.body) as Map<String, dynamic>;
+
+        final String otp = isResend
+            ? parsed['data']['sendRetryOTP'] as String
+            : parsed['data']['sendOTP'] as String;
 
         // save the OTP to state
         dispatch(UpdateOnboardingStateAction(otp: otp));

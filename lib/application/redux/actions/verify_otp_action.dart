@@ -72,7 +72,8 @@ class VerifyOTPAction extends ReduxAction<AppState> {
           processHttpResponse(httpResponse, context);
 
       if (processedResponse.ok) {
-        final bool isValid = jsonDecode(httpResponse.body) as bool;
+        final bool isValid =
+            jsonDecode(httpResponse.body)['data']['verifyOTP'] as bool;
 
         if (isValid) {
           dispatch(
