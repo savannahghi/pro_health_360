@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -17,6 +18,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/core/services/video_player_initializer.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -47,6 +49,7 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:video_player/video_player.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -842,4 +845,13 @@ DateTime getTokenExpiryTimestamp(String? expiresIn) {
     return now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
   }
   return now;
+}
+
+Future<ChewieController> initializeChewiController({
+  required String dataSource,
+}) {
+  return VideoPlayerInitializer().initializePlayer(
+    videoPlayerController: VideoPlayerController.network(dataSource),
+    autoPlay: true,
+  );
 }

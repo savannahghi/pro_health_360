@@ -22,7 +22,7 @@ covTest:
 	lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info \
     lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info && \
     genhtml -q -o coverage coverage/lcov.info
-
+ 
 .PHONY: run
 run:
 	flutter clean && flutter pub get && flutter analyze && flutter run

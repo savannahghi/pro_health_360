@@ -1,15 +1,18 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 class ChewieVideoPlayer extends StatefulWidget {
   const ChewieVideoPlayer({
     Key? key,
     this.autoPlay = false,
     this.chewieController,
+    required this.thumbnail,
   }) : super(key: key);
 
   final bool autoPlay;
   final Future<ChewieController?>? chewieController;
+  final String thumbnail;
 
   @override
   _ChewieVideoPlayerState createState() => _ChewieVideoPlayerState();
@@ -17,17 +20,43 @@ class ChewieVideoPlayer extends StatefulWidget {
 
 class _ChewieVideoPlayerState extends State<ChewieVideoPlayer> {
   @override
+  void dispose() {
+    widget.chewieController?.then((ChewieController? value) {
+      value?.dispose();
+      value?.videoPlayerController.dispose();
+    });
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<ChewieController?>(
       future: widget.chewieController,
       builder:
           (BuildContext context, AsyncSnapshot<ChewieController?> snapshot) {
+        final VideoPlayerController? videoPlayerController =
+            snapshot.data?.videoPlayerController;
         if (!snapshot.hasData ||
-            !snapshot.data!.videoPlayerController.value.isInitialized) {
+            (videoPlayerController != null &&
+                !videoPlayerController.value.isInitialized)) {
           return Stack(
             alignment: Alignment.center,
-            children: const <Widget>[
-              CircularProgressIndicator(color: Colors.white),
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height / 3.5,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    // TODO(abiud): replace with cached network image to
+                    // handle showing an image before the network one loads
+                    image: NetworkImage(
+                      widget.thumbnail,
+                    ),
+                  ),
+                ),
+              ),
+              const CircularProgressIndicator(color: Colors.white),
             ],
           );
         }

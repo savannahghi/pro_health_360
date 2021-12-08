@@ -71,8 +71,7 @@ K? _$enumDecodeNullable<K, V>(
 }
 
 const _$FeaturedMediaTypeEnumMap = {
-  FeaturedMediaType.AUDIO: 'AUDIO',
-  FeaturedMediaType.MEDIA: 'MEDIA',
-  FeaturedMediaType.VIDEO: 'VIDEO',
+  FeaturedMediaType.audio: 'audio',
+  FeaturedMediaType.video: 'video',
   FeaturedMediaType.UNKNOWN: 'UNKNOWN',
 };

@@ -33,16 +33,15 @@ _$_Content _$_$_ContentFromJson(Map<String, dynamic> json) {
     categories: (json['categoryDetails'] as List<dynamic>?)
         ?.map((e) => ContentCategory.fromJson(e as Map<String, dynamic>))
         .toList(),
-    featuredMedia: (json['featuredMedia'] as List<dynamic>?)
-        ?.map((e) => FeaturedMedia.fromJson(e as Map<String, dynamic>))
-        .toList(),
     tags:
         (json['tagNames'] as List<dynamic>?)?.map((e) => e as String?).toList(),
     metadata: json['meta'] == null
         ? null
         : ContentMetadata.fromJson(json['meta'] as Map<String, dynamic>),
     featuredMedia: (json['featuredMedia'] as List<dynamic>?)
-        ?.map((e) => FeaturedMedia.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null
+            ? null
+            : FeaturedMedia.fromJson(e as Map<String, dynamic>))
         .toList(),
     hasLiked: json['hasLiked'] as bool? ?? false,
     hasSaved: json['hasSaved'] as bool? ?? false,

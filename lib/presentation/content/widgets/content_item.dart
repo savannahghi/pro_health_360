@@ -3,6 +3,7 @@
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
@@ -31,7 +32,9 @@ class ContentItem extends StatelessWidget {
     return GestureDetector(
       key: feedContentItemKey,
       onTap: () {
-        if (contentDetails.contentType == ContentType.ARTICLE) {
+        if (contentDetails.contentType == ContentType.ARTICLE ||
+            contentDetails.featuredMedia?[0]?.featuredMediaType ==
+                FeaturedMediaType.video) {
           Navigator.of(context)
               .pushNamed(BWRoutes.contentDetailPage, arguments: contentDetails);
         }
@@ -82,11 +85,23 @@ class ContentItem extends StatelessWidget {
                             ),
                         ],
                       ),
+                    // A video playback icon if there is a video
+                    if (contentDetails.contentType == ContentType.AUDIO_VIDEO &&
+                        contentDetails.featuredMedia?[0]?.featuredMediaType ==
+                            FeaturedMediaType.video)
+                      SizedBox(
+                        key: feedVideoPlayIconKey,
+                        child: SvgPicture.asset(
+                          playIcon,
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
                   ],
                 ),
                 if (contentDetails.contentType == ContentType.AUDIO_VIDEO &&
                     contentDetails.featuredMedia![0]!.featuredMediaType ==
-                        FeaturedMediaType.AUDIO)
+                        FeaturedMediaType.audio)
                   AudioContent(contentDetails: contentDetails)
                 else if (contentDetails.contentType == ContentType.ARTICLE)
                   Padding(

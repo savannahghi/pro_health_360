@@ -37,7 +37,6 @@ class _$ContentTearOff {
       @JsonKey(name: 'shareCount') int? shareCount,
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'featuredMedia') List<FeaturedMedia>? featuredMedia,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata,
       @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
@@ -60,7 +59,6 @@ class _$ContentTearOff {
       shareCount: shareCount,
       documents: documents,
       categories: categories,
-      featuredMedia: featuredMedia,
       tags: tags,
       metadata: metadata,
       featuredMedia: featuredMedia,
@@ -114,9 +112,7 @@ mixin _$Content {
   @JsonKey(name: 'documents')
   List<Document>? get documents => throw _privateConstructorUsedError;
   @JsonKey(name: 'categoryDetails')
-  List<ContentCategory>? get categories => throw _privateConstructorUsedError;
-  @JsonKey(name: 'featuredMedia')
-  List<FeaturedMedia>? get featuredMedia =>
+  List<ContentCategory>? get categories =>
       throw _privateConstructorUsedError; // TODO(abiud): add when backend is ready
 // @JsonKey(name: 'isNew') bool? isNew,
   @JsonKey(name: 'tagNames')
@@ -158,7 +154,6 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'shareCount') int? shareCount,
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'featuredMedia') List<FeaturedMedia>? featuredMedia,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata,
       @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
@@ -196,7 +191,6 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? shareCount = freezed,
     Object? documents = freezed,
     Object? categories = freezed,
-    Object? featuredMedia = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
     Object? featuredMedia = freezed,
@@ -268,10 +262,6 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<ContentCategory>?,
-      featuredMedia: featuredMedia == freezed
-          ? _value.featuredMedia
-          : featuredMedia // ignore: cast_nullable_to_non_nullable
-              as List<FeaturedMedia>?,
       tags: tags == freezed
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -351,7 +341,6 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       @JsonKey(name: 'shareCount') int? shareCount,
       @JsonKey(name: 'documents') List<Document>? documents,
       @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-      @JsonKey(name: 'featuredMedia') List<FeaturedMedia>? featuredMedia,
       @JsonKey(name: 'tagNames') List<String?>? tags,
       @JsonKey(name: 'meta') ContentMetadata? metadata,
       @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
@@ -393,7 +382,6 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? shareCount = freezed,
     Object? documents = freezed,
     Object? categories = freezed,
-    Object? featuredMedia = freezed,
     Object? tags = freezed,
     Object? metadata = freezed,
     Object? featuredMedia = freezed,
@@ -465,10 +453,6 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<ContentCategory>?,
-      featuredMedia: featuredMedia == freezed
-          ? _value.featuredMedia
-          : featuredMedia // ignore: cast_nullable_to_non_nullable
-              as List<FeaturedMedia>?,
       tags: tags == freezed
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -513,7 +497,6 @@ class _$_Content implements _Content {
       @JsonKey(name: 'shareCount') this.shareCount,
       @JsonKey(name: 'documents') this.documents,
       @JsonKey(name: 'categoryDetails') this.categories,
-      @JsonKey(name: 'featuredMedia') this.featuredMedia,
       @JsonKey(name: 'tagNames') this.tags,
       @JsonKey(name: 'meta') this.metadata,
       @JsonKey(name: 'featuredMedia') this.featuredMedia,
@@ -572,9 +555,6 @@ class _$_Content implements _Content {
   @override
   @JsonKey(name: 'categoryDetails')
   final List<ContentCategory>? categories;
-  @override
-  @JsonKey(name: 'featuredMedia')
-  final List<FeaturedMedia>? featuredMedia;
   @override // TODO(abiud): add when backend is ready
 // @JsonKey(name: 'isNew') bool? isNew,
   @JsonKey(name: 'tagNames')
@@ -595,7 +575,7 @@ class _$_Content implements _Content {
 
   @override
   String toString() {
-    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, featuredMedia: $featuredMedia, tags: $tags, metadata: $metadata, featuredMedia: $featuredMedia, hasLiked: $hasLiked, hasSaved: $hasSaved)';
+    return 'Content(contentID: $contentID, title: $title, date: $date, intro: $intro, authorName: $authorName, author: $author, contentType: $contentType, estimate: $estimate, body: $body, heroImage: $heroImage, likeCount: $likeCount, bookmarkCount: $bookmarkCount, viewCount: $viewCount, shareCount: $shareCount, documents: $documents, categories: $categories, tags: $tags, metadata: $metadata, featuredMedia: $featuredMedia, hasLiked: $hasLiked, hasSaved: $hasSaved)';
   }
 
   @override
@@ -645,9 +625,6 @@ class _$_Content implements _Content {
             (identical(other.categories, categories) ||
                 const DeepCollectionEquality()
                     .equals(other.categories, categories)) &&
-            (identical(other.featuredMedia, featuredMedia) ||
-                const DeepCollectionEquality()
-                    .equals(other.featuredMedia, featuredMedia)) &&
             (identical(other.tags, tags) ||
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.metadata, metadata) ||
@@ -683,7 +660,6 @@ class _$_Content implements _Content {
       const DeepCollectionEquality().hash(shareCount) ^
       const DeepCollectionEquality().hash(documents) ^
       const DeepCollectionEquality().hash(categories) ^
-      const DeepCollectionEquality().hash(featuredMedia) ^
       const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(metadata) ^
       const DeepCollectionEquality().hash(featuredMedia) ^
@@ -719,7 +695,6 @@ abstract class _Content implements Content {
           @JsonKey(name: 'shareCount') int? shareCount,
           @JsonKey(name: 'documents') List<Document>? documents,
           @JsonKey(name: 'categoryDetails') List<ContentCategory>? categories,
-          @JsonKey(name: 'featuredMedia') List<FeaturedMedia>? featuredMedia,
           @JsonKey(name: 'tagNames') List<String?>? tags,
           @JsonKey(name: 'meta') ContentMetadata? metadata,
           @JsonKey(name: 'featuredMedia') List<FeaturedMedia?>? featuredMedia,
@@ -778,9 +753,6 @@ abstract class _Content implements Content {
   @override
   @JsonKey(name: 'categoryDetails')
   List<ContentCategory>? get categories => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'featuredMedia')
-  List<FeaturedMedia>? get featuredMedia => throw _privateConstructorUsedError;
   @override // TODO(abiud): add when backend is ready
 // @JsonKey(name: 'isNew') bool? isNew,
   @JsonKey(name: 'tagNames')

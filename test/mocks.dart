@@ -37,6 +37,7 @@ import 'package:platform/platform.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:user_feed/user_feed.dart';
+import 'package:video_player/video_player.dart';
 
 import 'test_utils.dart';
 
@@ -1952,3 +1953,87 @@ final Map<String, dynamic> mockQuote = <String, dynamic>{
     'author': 'myAfyaHub'
   },
 };
+
+// chewi mocks
+
+class MockVideoPlayerController extends ValueNotifier<VideoPlayerValue>
+    implements VideoPlayerController {
+  MockVideoPlayerController()
+      : super(VideoPlayerValue(duration: Duration.zero));
+
+  @override
+  Future<void> dispose() async {
+    super.dispose();
+  }
+
+  @override
+  int textureId = VideoPlayerController.kUninitializedTextureId;
+
+  @override
+  String get dataSource => '';
+
+  @override
+  Map<String, String> get httpHeaders => <String, String>{};
+
+  @override
+  DataSourceType get dataSourceType => DataSourceType.file;
+
+  @override
+  String get package => '';
+
+  @override
+  Future<Duration> get position async => value.position;
+
+  @override
+  Future<void> seekTo(Duration moment) async {}
+
+  @override
+  Future<void> setVolume(double volume) async {}
+
+  @override
+  Future<void> setPlaybackSpeed(double speed) async {}
+
+  @override
+  Future<void> initialize() async {}
+
+  @override
+  Future<void> pause() async {}
+
+  @override
+  Future<void> play() async {}
+
+  @override
+  Future<void> setLooping(bool looping) async {}
+
+  @override
+  VideoFormat? get formatHint => null;
+
+  @override
+  Future<ClosedCaptionFile> get closedCaptionFile => _loadClosedCaption();
+
+  @override
+  VideoPlayerOptions? get videoPlayerOptions => null;
+}
+
+Future<ClosedCaptionFile> _loadClosedCaption() async =>
+    _FakeClosedCaptionFile();
+
+class _FakeClosedCaptionFile extends ClosedCaptionFile {
+  @override
+  List<Caption> get captions {
+    return <Caption>[
+      const Caption(
+        text: 'one',
+        number: 0,
+        start: Duration(milliseconds: 100),
+        end: Duration(milliseconds: 200),
+      ),
+      const Caption(
+        text: 'two',
+        number: 1,
+        start: Duration(milliseconds: 300),
+        end: Duration(milliseconds: 400),
+      ),
+    ];
+  }
+}

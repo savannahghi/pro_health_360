@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 
 import '../../../../mock_image_http_client.dart';
@@ -27,8 +27,8 @@ void main() {
     testWidgets('shows the play icon if a piece of content has a video',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-      final Content contentWithVideo = mockContent.copyWith
-          .call(body: null, contentType: ContentType.AUDIO_VIDEO);
+      final Content contentWithVideo =
+          mockVideoContent.copyWith.call(body: null);
 
       await buildTestWidget(
         tester: tester,
@@ -38,6 +38,8 @@ void main() {
       );
 
       expect(find.byKey(feedVideoPlayIconKey), findsOneWidget);
+      await tester.tap(find.byKey(feedVideoPlayIconKey));
+      expect(find.byType(ContentDetailPage), findsNothing);
     });
   });
 }

@@ -5,7 +5,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/core/services/video_player_initializer.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -20,7 +19,6 @@ import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.da
 import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
-import 'package:video_player/video_player.dart';
 
 class ContentDetailPage extends StatelessWidget {
   /// [ContentDetailPage] is used to display the article details
@@ -48,31 +46,31 @@ class ContentDetailPage extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height / 3.5,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    // TODO(abiud): replace with cached network image to
-                    // handle showing an image before the network one loads
-                    image: NetworkImage(
-                      contentDetails.heroImage!.url!,
-                    ),
-                  ),
-                ),
-              ),
               if (contentDetails.contentType == ContentType.AUDIO_VIDEO)
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 3.5,
                   width: MediaQuery.of(context).size.width,
                   child: ChewieVideoPlayer(
                     autoPlay: true,
-                    chewieController: VideoPlayerInitializer().initializePlayer(
-                      videoPlayerController: VideoPlayerController.network(
-                        contentDetails.featuredMedia?.first.url ?? '',
+                    chewieController: initializeChewiController(
+                      dataSource:
+                          contentDetails.featuredMedia?.first?.mediaUrl ?? '',
+                    ),
+                    thumbnail: contentDetails.heroImage!.url!,
+                  ),
+                )
+              else
+                Container(
+                  height: MediaQuery.of(context).size.height / 3.5,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      // TODO(abiud): replace with cached network image to
+                      // handle showing an image before the network one loads
+                      image: NetworkImage(
+                        contentDetails.heroImage!.url!,
                       ),
-                      autoPlay: true,
                     ),
                   ),
                 ),
