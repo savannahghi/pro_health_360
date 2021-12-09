@@ -16,13 +16,13 @@ class UpdateHomeStateAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final HomeState? newHomeState = state.homeState?.copyWith(
-      canRecordMood: canRecordMood ?? state.homeState?.canRecordMood,
-      createHealthDiaryEntry:
-          createHealthDiaryEntry ?? state.homeState?.createHealthDiaryEntry,
+    final AppState newState = state.copyWith(
+      homeState: HomeState(
+        canRecordMood: canRecordMood ?? state.homeState?.canRecordMood,
+        createHealthDiaryEntry:
+            createHealthDiaryEntry ?? state.homeState?.createHealthDiaryEntry,
+      ),
     );
-
-    final AppState newState = state.copyWith(homeState: newHomeState);
 
     return newState;
   }

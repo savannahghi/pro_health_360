@@ -11,7 +11,7 @@ query listContentCategories{
 ''';
 
 const String canRecordMoodQuery = r'''
-query canrecordmood($clientID: String!){
+query canRecordMood($clientID: String!){
   canRecordMood(clientID:$clientID )
 }
 ''';
