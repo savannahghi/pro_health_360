@@ -864,23 +864,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    if (queryString.contains('addCover')) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'addCover': <String, dynamic>{
-                'message': 'cover is LIVE',
-                'status': 'VALID_COVER',
-                'eligibilityTime': '2021-01-26T10:43:46Z'
-              }
-            }
-          }),
-          201,
-        ),
-      );
-    }
-
     if (queryString.contains('setUserCommunicationsSettings')) {
       return Future<http.Response>.value(
         http.Response(
@@ -997,6 +980,19 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'checkIfUserBookmarkedContent': false,
+            }
+          }),
+          200,
+        ),
+      );
+    }
+
+    if (queryString == canRecordMoodQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'canRecordMood': true,
             }
           }),
           200,

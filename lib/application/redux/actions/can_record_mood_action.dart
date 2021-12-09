@@ -45,11 +45,11 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final String? userID = state.clientState!.user!.userId;
+    final String? clientId = state.clientState!.id;
 
     // initializing of CanRecordMoodAction mutation
     final Map<String, String> _variables = <String, String>{
-      'clientID': userID!,
+      'clientID': clientId!,
     };
 
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
