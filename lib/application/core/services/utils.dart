@@ -19,6 +19,7 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/services/video_player_initializer.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -854,4 +855,28 @@ Future<ChewieController> initializeChewiController({
     videoPlayerController: VideoPlayerController.network(dataSource),
     autoPlay: true,
   );
+}
+
+bool getHasLiked({required List<Content?> feedItems, required int contentID}) {
+  if (feedItems.isNotEmpty) {
+    return feedItems
+        .firstWhere(
+          (Content? element) => element?.contentID == contentID,
+          orElse: () => Content.initial(),
+        )!
+        .hasLiked!;
+  }
+  return false;
+}
+
+bool getHasSaved({required List<Content?> feedItems, required int contentID}) {
+  if (feedItems.isNotEmpty) {
+    return feedItems
+        .firstWhere(
+          (Content? element) => element?.contentID == contentID,
+          orElse: () => Content.initial(),
+        )!
+        .hasSaved!;
+  }
+  return false;
 }

@@ -56,15 +56,10 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
       converter: (Store<AppState> store) =>
           FeedContentViewModel.fromStore(store.state),
       builder: (BuildContext context, FeedContentViewModel vm) {
-        final List<Content?> feedItems = vm.feedItems ?? <Content>[];
-        final bool hasLiked = feedItems.isNotEmpty
-            ? feedItems
-                .firstWhere(
-                  (Content? element) => element?.contentID == widget.contentID,
-                  orElse: () => Content.initial(),
-                )!
-                .hasLiked!
-            : false;
+        final bool hasLiked = getHasLiked(
+          feedItems: vm.feedItems ?? <Content>[],
+          contentID: widget.contentID,
+        );
         return GestureDetector(
           onTap: () async {
             setState(() {

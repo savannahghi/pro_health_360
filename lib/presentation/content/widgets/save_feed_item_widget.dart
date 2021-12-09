@@ -4,6 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/bookmark_content_action.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_bookmark_status_action.dart';
@@ -53,15 +54,11 @@ class _SaveFeedItemWidgetState extends State<SaveFeedItemWidget> {
       converter: (Store<AppState> store) =>
           FeedContentViewModel.fromStore(store.state),
       builder: (BuildContext context, FeedContentViewModel vm) {
-        final List<Content?> feedItems = vm.feedItems ?? <Content>[];
-        final bool hasSaved = feedItems.isNotEmpty
-            ? feedItems
-                .firstWhere(
-                  (Content? element) => element?.contentID == widget.contentID,
-                  orElse: () => Content.initial(),
-                )!
-                .hasSaved!
-            : false;
+        final bool hasSaved = getHasSaved(
+          feedItems: vm.feedItems ?? <Content>[],
+          contentID: widget.contentID!,
+        );
+
         return GestureDetector(
           onTap: () {
             if (!hasSaved) {
