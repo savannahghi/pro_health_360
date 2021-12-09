@@ -1,14 +1,9 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_like_status_action.dart';
@@ -19,6 +14,9 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 /// [LikeContentWidget] Displays like status on the content details page
 class LikeContentWidget extends StatefulWidget {
@@ -58,12 +56,15 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
       converter: (Store<AppState> store) =>
           FeedContentViewModel.fromStore(store.state),
       builder: (BuildContext context, FeedContentViewModel vm) {
-        final bool hasLiked = vm.feedItems!
+        final List<Content?> feedItems = vm.feedItems ?? <Content>[];
+        final bool hasLiked = feedItems.isNotEmpty
+            ? feedItems
                 .firstWhere(
                   (Content? element) => element?.contentID == widget.contentID,
+                  orElse: () => Content.initial(),
                 )!
-                .hasLiked ??
-            false;
+                .hasLiked!
+            : false;
         return GestureDetector(
           onTap: () async {
             setState(() {
