@@ -400,9 +400,6 @@ const String groupInfoText = 'Group Info';
 const String exitGroupText = 'Exit Group';
 const String messageText = 'message';
 
-//Important Information Link Widget
-const String importantLinkString = 'Important Link';
-
 // Consent page
 const String viewTermsText = 'View terms and conditions';
 const String groupsText = 'Groups';

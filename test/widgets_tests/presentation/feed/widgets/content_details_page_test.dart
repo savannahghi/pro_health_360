@@ -11,6 +11,8 @@ import 'package:myafyahub/application/redux/actions/update_content_state_action.
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
@@ -26,7 +28,7 @@ void main() {
   group('ContentDetailPage', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
     });
@@ -51,13 +53,19 @@ void main() {
     testWidgets('renders correctly with the correct content data',
         (WidgetTester tester) async {
       store.dispatch(
-        UpdateContentStateAction(contentItems: <Content>[mockContent]),
+        UpdateContentStateAction(
+          contentItems: <Content>[mockContent],
+        ),
       );
       await buildTestWidget(
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(contentDetails: mockContent),
+        widget: ContentDetailPage(
+          payload: ContentDetails(
+            content: mockContent.copyWith(metadata: ContentMetadata.initial()),
+          ),
+        ),
       );
 
       expect(find.byKey(cancelButtonKey), findsOneWidget);
@@ -72,7 +80,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(contentDetails: mockVideoContent),
+        widget: ContentDetailPage(
+          payload: ContentDetails(content: mockVideoContent),
+        ),
       );
       expect(find.byType(ChewieVideoPlayer), findsOneWidget);
     });
@@ -88,7 +98,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(contentDetails: contentWithoutBody),
+        widget: ContentDetailPage(
+          payload: ContentDetails(content: contentWithoutBody),
+        ),
       );
       expect(find.byType(GenericEmptyData), findsOneWidget);
     });
@@ -101,7 +113,8 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(contentDetails: mockContent),
+        widget:
+            ContentDetailPage(payload: ContentDetails(content: mockContent)),
       );
       await tester.pumpAndSettle();
 
@@ -146,7 +159,8 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(contentDetails: mockContent),
+        widget:
+            ContentDetailPage(payload: ContentDetails(content: mockContent)),
       );
       await tester.pumpAndSettle();
       final Finder shareButton = find.byKey(shareButtonKey);
@@ -165,7 +179,12 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(contentDetails: mockContent),
+        widget: ContentDetailPage(
+          payload: ContentDetails(
+            content:
+                mockContent.copyWith(metadata: ContentMetadata(createdAt: '')),
+          ),
+        ),
       );
       await tester.pumpAndSettle();
       final Finder saveButton = find.byKey(saveButtonKey);
@@ -186,7 +205,8 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(contentDetails: mockContent),
+        widget:
+            ContentDetailPage(payload: ContentDetails(content: mockContent)),
       );
       store.dispatch(WaitAction<AppState>.add(fetchLikeStatusFlag));
       store.dispatch(WaitAction<AppState>.add(fetchBookmarkStatusFlag));

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,8 +12,13 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
+import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
+import 'package:myafyahub/presentation/content/widgets/mini_content_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -29,50 +35,67 @@ import '../../../test_helpers.dart';
 void main() {
   group('CongratulationsPage', () {
     late Store<AppState> store;
+    late MobileConnectivityStatus connectivityStatus;
+    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+        MockShortSILGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      Response(
+        json.encode(<String, dynamic>{
+          'data': <String, dynamic>{
+            'setNickName': true,
+            'fetchRecentContent': contentMock,
+            'getContent': <String, dynamic>{
+              'items': <dynamic>[
+                contentMock.first,
+                contentMock.first,
+              ]
+            }
+          }
+        }),
+        201,
+      ),
+    );
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
+      store.dispatch(UpdateConnectivityAction(hasConnection: true));
+      final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
+      ConnectivityPlatform.instance = fakePlatform;
+
+      connectivityStatus = MobileConnectivityStatus(
+        checkInternetCallback: () async => true,
+        );
     });
+
     testWidgets('should validate the input', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: SetNickNamePage(),
-      );
+      await tester.runAsync(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: SetNickNamePage(connectivityStatus: connectivityStatus),
+        );
+        await tester.pumpAndSettle();
+        final Finder nameInputField = find.byKey(
+          nameInputKey,
+        );
+        final Finder continueButton = find.byKey(continueKey);
 
-      final Finder nameInputField = find.byKey(
-        nameInputKey,
-      );
-      final Finder continueButton = find.byKey(continueKey);
+        expect(continueButton, findsOneWidget);
+        expect(nameInputField, findsOneWidget);
 
-      expect(continueButton, findsOneWidget);
-      expect(nameInputField, findsOneWidget);
-
-      await tester.ensureVisible(continueButton);
-      await tester.tap(continueButton);
-      await tester.pumpAndSettle();
-      expect(find.text(nameInputValidateString), findsOneWidget);
+        await tester.ensureVisible(continueButton);
+        await tester.pumpAndSettle();
+        await tester.tap(continueButton);
+        await tester.pumpAndSettle();
+        expect(find.text(nameInputValidateString), findsOneWidget);
+      });
     });
 
     testWidgets('Navigates to Home page if input is valid  ',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
-        'idToken',
-        'endpoint',
-        Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'setNickName': true,
-              'fetchRecentContent': contentMock,
-            }
-          }),
-          201,
-        ),
-      );
-
       mockNetworkImages(() async {
         store.dispatch(
           UpdateContentStateAction(contentItems: <Content>[mockContent]),
@@ -81,7 +104,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: SetNickNamePage(),
+          widget: SetNickNamePage(connectivityStatus: connectivityStatus),
         );
         await tester.pumpAndSettle();
 
@@ -97,6 +120,7 @@ void main() {
         await tester.enterText(nameInputField, 'test');
 
         await tester.ensureVisible(continueButton);
+        await tester.pumpAndSettle();
         await tester.tap(continueButton);
         await tester.pumpAndSettle();
         expect(find.byType(HomePage), findsOneWidget);
@@ -105,14 +129,16 @@ void main() {
 
     testWidgets('should show No Internet text when there is no connectivity',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockGraphQlClient,
-        widget: SetNickNamePage(),
+        client: mockShortSILGraphQlClient,
+        widget: SetNickNamePage(
+          connectivityStatus: MobileConnectivityStatus(
+            checkInternetCallback: () async => false,
+          ),
+        ),
       );
-      await tester.pumpAndSettle();
       await tester.pumpAndSettle();
 
       final Finder nameInputField = find.byKey(
@@ -137,12 +163,12 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
             ctx = context;
             toggleLoadingIndicator(context: context, flag: 'resume_with_pin');
-            return SetNickNamePage();
+            return SetNickNamePage(connectivityStatus: connectivityStatus);
           },
         ),
       );
@@ -150,7 +176,85 @@ void main() {
       await tester.pumpAndSettle();
       toggleLoadingIndicator(context: ctx!, flag: setNickNameFlag);
       await tester.pump(const Duration(seconds: 2));
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(SILPlatformLoader), findsNWidgets(2));
+    });
+    testWidgets('Navigates to ContentDetailPage when a link is tapped  ',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateContentStateAction(contentItems: <Content>[mockContent]),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: SetNickNamePage(),
+      );
+      await tester.pumpAndSettle();
+      final Finder linkItem = find.byType(MiniContentWidget);
+      expect(linkItem, findsNWidgets(2));
+      await tester.tap(linkItem.first);
+      await tester.pumpAndSettle();
+      expect(find.byType(ContentDetailPage), findsOneWidget);
+    });
+    testWidgets(
+        'shows a generic no data widget while fetching welcome content '
+        'and refresh the welcome content when prompted',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient client =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'no data'}),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: SetNickNamePage(),
+      );
+
+      await tester.pump();
+
+      expect(find.byType(GenericNoData), findsOneWidget);
+      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
+      expect(genericNoDataButton, findsOneWidget);
+      await tester.ensureVisible(genericNoDataButton);
+      await tester.pumpAndSettle();
+      await tester.tap(genericNoDataButton);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GenericNoData), findsOneWidget);
+    });
+    testWidgets('shows a loading indicator when fetching data',
+        (WidgetTester tester) async {
+      mockNetworkImages(() async {
+        final MockShortSILGraphQlClient client =
+            MockShortSILGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{'loading': true}
+            }),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: client,
+          widget: SetNickNamePage(),
+        );
+
+        await tester.pump();
+
+        expect(find.byType(SILPlatformLoader), findsOneWidget);
+      });
     });
   });
 }

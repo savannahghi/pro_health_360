@@ -8,15 +8,11 @@ import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
-import 'package:myafyahub/domain/core/entities/feed/author.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
-import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
@@ -387,17 +383,7 @@ void main() {
   test('Test router returns ContentDetailPage', () {
     final RouteSettings settings = RouteSettings(
       name: BWRoutes.contentDetailPage,
-      arguments: Content(
-        author: Author(id: ''),
-        contentID: 0,
-        title: '',
-        body: '',
-        tags: <String>['', ''],
-        estimate: 180,
-        heroImage: HeroImage(url: ''),
-        contentType: ContentType.ARTICLE,
-        metadata: ContentMetadata(publicLink: '', createdAt: feedDate),
-      ),
+      arguments: ContentDetails(content: mockContent),
     );
     final MaterialPageRoute<ContentDetailPage> route =
         routeGenerator(settings) as MaterialPageRoute<ContentDetailPage>;

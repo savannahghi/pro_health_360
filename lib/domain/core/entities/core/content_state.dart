@@ -19,8 +19,8 @@ class ContentState with _$ContentState {
       _$ContentStateFromJson(json);
 
   factory ContentState.initial() => ContentState(
-    feedContentState: FeedContentState.initial(),
-    savedContentState: SavedContentState.initial(),
-    recentContentState: RecentContentState.initial(),
+        feedContentState: FeedContentState.initial(),
+        savedContentState: SavedContentState.initial(),
+        recentContentState: RecentContentState.initial(),
       );
 }

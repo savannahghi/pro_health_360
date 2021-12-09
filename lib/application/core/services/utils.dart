@@ -382,20 +382,24 @@ Widget humanizeDate({
   bool showTime = false,
   bool showYear = true,
 }) {
-  final DateTime parsedDate = DateTime.parse(loadedDate);
-  final String postDayTime = DateFormat.jm().format(parsedDate);
-  final String postDay = DateFormat.d().format(parsedDate);
-  final String postMonth = DateFormat.MMM().format(parsedDate);
-  final String postYear = DateFormat.y().format(parsedDate);
+  if (loadedDate != UNKNOWN) {
+    final DateTime parsedDate = DateTime.parse(loadedDate);
+    final String postDayTime = DateFormat.jm().format(parsedDate);
+    final String postDay = DateFormat.d().format(parsedDate);
+    final String postMonth = DateFormat.MMM().format(parsedDate);
+    final String postYear = DateFormat.y().format(parsedDate);
 
-  return Row(
-    children: <Widget>[
-      Text(
-        '$postDay $postMonth ${showYear ? postYear : ''}${showTime ? ' at $postDayTime' : ''}',
-        style: dateTextStyle,
-      ),
-    ],
-  );
+    return Row(
+      children: <Widget>[
+        Text(
+          '$postDay $postMonth ${showYear ? postYear : ''}${showTime ? ' at $postDayTime' : ''}',
+          style: dateTextStyle,
+        ),
+      ],
+    );
+  }
+
+  return const SizedBox();
 }
 
 String getEnvironmentContext(List<AppContext> contexts) {

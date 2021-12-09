@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -36,7 +37,7 @@ class ContentItem extends StatelessWidget {
             contentDetails.featuredMedia?[0]?.featuredMediaType ==
                 FeaturedMediaType.video) {
           Navigator.of(context)
-              .pushNamed(BWRoutes.contentDetailPage, arguments: contentDetails);
+              .pushNamed(BWRoutes.contentDetailPage, arguments: ContentDetails(content: contentDetails));
         }
       },
       child: Container(
