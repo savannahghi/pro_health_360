@@ -74,7 +74,11 @@ class ContentItem extends StatelessWidget {
                           ),
                           // Reading estimate
                           if (contentDetails.estimate != null &&
-                              contentDetails.contentType == ContentType.ARTICLE)
+                                  contentDetails.contentType ==
+                                      ContentType.ARTICLE ||
+                              contentDetails
+                                      .featuredMedia?[0]?.featuredMediaType ==
+                                  FeaturedMediaType.video)
                             Positioned(
                               bottom: 8,
                               left: 8,
@@ -103,7 +107,9 @@ class ContentItem extends StatelessWidget {
                     contentDetails.featuredMedia![0]!.featuredMediaType ==
                         FeaturedMediaType.audio)
                   AudioContent(contentDetails: contentDetails)
-                else if (contentDetails.contentType == ContentType.ARTICLE)
+                else if (contentDetails.contentType == ContentType.ARTICLE ||
+                    contentDetails.featuredMedia?[0]?.featuredMediaType ==
+                        FeaturedMediaType.video)
                   Padding(
                     padding: const EdgeInsets.all(13),
                     child: Column(
