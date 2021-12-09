@@ -164,6 +164,7 @@ query getContent($categoryID: Int, $Limit: String!){
         width
         height
         thumbnail
+        duration
       }
       galleryImages{
         ID

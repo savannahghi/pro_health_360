@@ -161,7 +161,9 @@ class ContentDetailPage extends StatelessWidget {
                       ],
                     ),
                     EstimatedReadTimeBadge(
-                      contentDetails: payload.content,
+                      contentType:
+                          payload.content.contentType ?? ContentType.UNKNOWN,
+                      estimateReadTime: payload.content.estimate ?? 0,
                     ),
                   ],
                 ),

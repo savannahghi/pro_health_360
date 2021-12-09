@@ -32,7 +32,10 @@ class LeadingGraphicWidget extends StatelessWidget {
           Positioned(
             bottom: 8,
             left: 8,
-            child: EstimatedReadTimeBadge(contentDetails: contentDetails),
+            child: EstimatedReadTimeBadge(
+              contentType: contentDetails.contentType ?? ContentType.UNKNOWN,
+              estimateReadTime: contentDetails.estimate ?? 0,
+            ),
           ),
       ],
     );

@@ -1,5 +1,4 @@
 // Flutter imports:
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -449,6 +448,20 @@ String contentReadDuration(int duration) =>
     duration == 0 ? '...' : '${(duration / 60).floor()} min read';
 String contentAudioVideoDuration(int duration) =>
     duration == 0 ? '...' : '${(duration / 60).floor()} min';
+
+String audioTime(int duration) {
+  Duration(seconds: duration);
+  final int min = (duration / 60).floor();
+  final int sec = (duration % 60).floor();
+  String formattedSec;
+  if (sec <= 9) {
+    formattedSec = '0$sec';
+  } else {
+    formattedSec = '$sec';
+  }
+
+  return '$min:$formattedSec';
+}
 
 const String newText = 'New';
 

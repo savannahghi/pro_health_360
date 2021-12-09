@@ -1702,6 +1702,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
         'title': 'Background',
         'type': 'audio',
         'width': 0,
+        'duration': 6,
         'height': 0,
         'thumbnail': ''
       }
