@@ -54,6 +54,29 @@ final AppSetupData devAppSetupData = AppSetupData(
   ),
 );
 
+final AppSetupData demoAppSetupData = AppSetupData(
+  appContexts: demoAppContexts,
+  sentryDsn: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+  customContext: const BaseContext(
+    anonymousLoginEndpoint: kDemoAnonymousLoginEndpoint,
+    graphqlEndpoint: kDemoGraphqlEndpoint,
+    setPrimaryPhoneNumberEndpoint: kDemoSetPrimaryPhoneNumberEndpoint,
+    refreshTokenEndpoint: kDemoRefreshTokenEndpoint,
+    retryResendOtpEndpoint: kDemoRetryResendOtpEndpoint,
+    pinResetEndpoint: kDemoPinResetEndpoint,
+    userRecoveryPhoneNumbersEndpoint: kDemoUserRecoveryPhoneNumbersEndpoint,
+    verifyContactOTPEndpoint: '',
+    verifyPhoneEndpoint: kDemoVerifyPhoneEndpoint,
+    sendContactVerificationOTPEndpoint: '',
+    sendRecoverAccountOtpEndpoint: kDemoSendRecoverAccountOtpEndpoint,
+    loginByPhoneEndpoint: kDemoLoginByPhoneEndpoint,
+    updateUserPinEndpoint: kDemoUpdateUserPinEndpoint,
+    uploadFileEndPoint: kDemoUploadFileEndPoint,
+    createUserByPhoneEndpoint: kDemoCreateUserByPhoneEndpoint,
+    switchFlaggedFeaturesEndpoint: '',
+  ),
+);
+
 final AppSetupData prodAppSetupData = AppSetupData(
   appContexts: prodAppContexts,
   sentryDsn: FlutterConfig.get('PROD_SENTRY_DNS') as String,

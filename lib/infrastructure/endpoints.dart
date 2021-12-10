@@ -32,6 +32,37 @@ const String myCareHubGraphEndpoint =
 const String dGraphEndpoint =
     'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
 
+/* DEMO ENDPOINTS */
+const String kDemoGraphqlEndpoint =
+    'https://gateway.test.savannahghi.org/graphql';
+const String kDemoLoginByPhoneEndpoint =
+    'https://mycarehub-staging.savannahghi.org/login_by_phone';
+const String kDemoPinResetEndpoint =
+    'https://mycarehub-staging.savannahghi.org/request_pin_reset';
+const String kDemoUpdateUserPinEndpoint =
+    'https://mycarehub-staging.savannahghi.org/reset_pin';
+const String kDemoVerifyPhoneEndpoint =
+    'https://mycarehub-staging.savannahghi.org/verify_otp';
+const String kDemoCreateUserByPhoneEndpoint =
+    'https://mycarehub-staging.savannahghi.org/create_user_by_phone';
+const String kDemoRetryResendOtpEndpoint =
+    'https://mycarehub-staging.savannahghi.org/send_retry_otp';
+const String kDemoRefreshTokenEndpoint =
+    'https://mycarehub-staging.savannahghi.org/refresh_token';
+const String kDemoAnonymousLoginEndpoint =
+    'https://mycarehub-staging.savannahghi.org/login_anonymous';
+const String kDemoUserRecoveryPhoneNumbersEndpoint =
+    'https://mycarehub-staging.savannahghi.org/user_recovery_phonenumbers';
+const String kDemoSendRecoverAccountOtpEndpoint =
+    'https://mycarehub-staging.savannahghi.org/send_otp';
+const String kDemoSetPrimaryPhoneNumberEndpoint =
+    'https://mycarehub-staging.savannahghi.org/set_primary_phonenumber';
+const String kDemoUploadFileEndPoint =
+    'https://engagement-staging.savannahghi.org/upload';
+
+// const String demoGraphEndpoint =
+//     'https://mycarehub-testing.savannahghi.org/graphql';
+
 /* PROD ENDPOINTS */
 const String kProdGraphqlEndpoint = 'https://gateway.savannahghi.org/graphql';
 const String kProdLoginByPhoneEndpoint =

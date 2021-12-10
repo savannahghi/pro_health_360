@@ -120,7 +120,7 @@ jobs:
           name: "Build and publish to firebase app distribution"
           command: |
             flutter build apk --release --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-internal
-            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
+            --target=$HOME/project/lib/bin/main_demo.dart BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
             firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/release-notes.txt
 
 
@@ -219,7 +219,7 @@ workflows:
          filters:
            branches:
              only:
-               - develop
+               - alpha
      - deploy_to_play_store_alpha:
          requires:
            - run_tests_and_generate_coverage
