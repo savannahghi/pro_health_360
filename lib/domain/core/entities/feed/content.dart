@@ -69,5 +69,7 @@ class Content with _$Content {
         documents: <Document>[],
         categories: <ContentCategory>[],
         metadata: ContentMetadata.initial(),
+        hasLiked: false,
+        hasSaved: false,
       );
 }

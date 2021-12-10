@@ -1,15 +1,10 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-import 'package:unicons/unicons.dart';
-
+import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/bookmark_content_action.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_bookmark_status_action.dart';
@@ -20,6 +15,10 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:unicons/unicons.dart';
 
 /// [SaveFeedItemWidget] Displays reaction Icons on the feed
 class SaveFeedItemWidget extends StatefulWidget {
@@ -55,12 +54,11 @@ class _SaveFeedItemWidgetState extends State<SaveFeedItemWidget> {
       converter: (Store<AppState> store) =>
           FeedContentViewModel.fromStore(store.state),
       builder: (BuildContext context, FeedContentViewModel vm) {
-        final bool hasSaved = vm.feedItems!
-                .firstWhere(
-                  (Content? element) => element?.contentID == widget.contentID,
-                )!
-                .hasSaved ??
-            false;
+        final bool hasSaved = getHasSaved(
+          feedItems: vm.feedItems ?? <Content>[],
+          contentID: widget.contentID!,
+        );
+
         return GestureDetector(
           onTap: () {
             if (!hasSaved) {
@@ -102,9 +100,7 @@ class _SaveFeedItemWidgetState extends State<SaveFeedItemWidget> {
                     ),
                   smallHorizontalSizedBox,
                   Text(
-                    hasSaved
-                        ? savedString
-                        : saveString,
+                    hasSaved ? savedString : saveString,
                     style: TextThemes.boldSize13Text(AppColors.greyTextColor),
                   ),
                 },
