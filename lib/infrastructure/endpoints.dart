@@ -1,4 +1,14 @@
-/* TEST ENDPOINTS */
+/* GENERAL */
+const String dGraphEndpoint =
+    'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
+
+/* 
+TEST ENDPOINTS 
+
+We are using staging endpoints here so as to match what the backend does.
+
+The environment that these endpoints call is STRICTLY for internal DEVs only
+*/
 const String kTestGraphqlEndpoint =
     'https://mycarehub-staging.savannahghi.org/graphql';
 const String kTestLoginByPhoneEndpoint =
@@ -26,15 +36,14 @@ const String kTestSetPrimaryPhoneNumberEndpoint =
 const String kTestUploadFileEndPoint =
     'https://engagement-staging.savannahghi.org/upload';
 
-const String myCareHubTestGraphEndpoint =
-    'https://mycarehub-testing.savannahghi.org/graphql';
+/* 
+DEMO ENDPOINTS 
 
-const String dGraphEndpoint =
-    'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
-
-/* DEMO ENDPOINTS */
+The endpoints here have the -test suffix because this is what will be used by the 
+clients (for now)
+*/
 const String kDemoGraphqlEndpoint =
-    'https://gateway.test.savannahghi.org/graphql';
+    'https://mycarehub-testing.savannahghi.org/graphql';
 const String kDemoLoginByPhoneEndpoint =
     'https://mycarehub-testing.savannahghi.org/login_by_phone';
 const String kDemoPinResetEndpoint =

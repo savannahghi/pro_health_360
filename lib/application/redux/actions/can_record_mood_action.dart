@@ -21,7 +21,6 @@ import 'package:myafyahub/application/redux/actions/update_home_state_action.dar
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart' as endpoints;
 
 class CanRecordMoodAction extends ReduxAction<AppState> {
   CanRecordMoodAction({
@@ -53,8 +52,6 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
     };
 
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-    _client.idToken = state.credentials!.idToken!;
-    _client.endpoint = endpoints.kTestGraphqlEndpoint;
     final http.Response result = await _client.query(
       canRecordMoodQuery,
       _variables,

@@ -723,6 +723,13 @@ Future<void> customFetchData({
   streamController.add(<String, dynamic>{'loading': true});
 
   final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+  final AppState? state = StoreProvider.state<AppState>(context);
+
+  // store the current values temporarily so as to reset state later
+
+  final String currentEndpoint =
+      AppWrapperBase.of(context)!.customContext!.graphqlEndpoint;
+  final String? currentIdToken = state!.credentials!.idToken;
 
   _client
     ..endpoint = dGraphEndpoint
@@ -741,6 +748,12 @@ Future<void> customFetchData({
     return streamController
         .addError(<String, dynamic>{'error': _client.parseError(payLoad)});
   }
+
+  // reset the graphql client
+
+  _client
+    ..endpoint = currentEndpoint
+    ..idToken = currentIdToken!;
 
   return (payLoad['data'] != null)
       ? streamController.add(payLoad['data'])
