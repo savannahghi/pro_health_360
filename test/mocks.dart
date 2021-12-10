@@ -1739,7 +1739,7 @@ final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
             'https://storage.googleapis.com/mycarehub-test/media/media/production_ID_4473012.mp4',
         'title': 'Awesome diet video',
         'type': 'video',
-        'duration': 6.0,
+        'duration': 165,
         'width': 100,
         'height': 0,
         'thumbnail':

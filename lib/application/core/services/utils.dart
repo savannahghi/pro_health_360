@@ -1,15 +1,14 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:chewie/chewie.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:chewie/chewie.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,17 +17,9 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/application/core/services/video_player_initializer.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:unicons/unicons.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
+import 'package:myafyahub/application/core/services/video_player_initializer.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/content/update_reactions_state_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
@@ -38,6 +29,7 @@ import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
@@ -50,6 +42,12 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/inputs.dart';
+import 'package:unicons/unicons.dart';
 import 'package:video_player/video_player.dart';
 
 Future<bool> onWillPopCallback() {
@@ -857,7 +855,7 @@ Future<ChewieController> initializeChewiController({
 }) {
   return VideoPlayerInitializer().initializePlayer(
     videoPlayerController: VideoPlayerController.network(dataSource),
-    autoPlay: true,
+    autoPlay: false,
   );
 }
 

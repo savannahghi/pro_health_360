@@ -5,12 +5,10 @@ import 'package:video_player/video_player.dart';
 class ChewieVideoPlayer extends StatefulWidget {
   const ChewieVideoPlayer({
     Key? key,
-    this.autoPlay = false,
     this.chewieController,
     required this.thumbnail,
   }) : super(key: key);
 
-  final bool autoPlay;
   final Future<ChewieController?>? chewieController;
   final String thumbnail;
 

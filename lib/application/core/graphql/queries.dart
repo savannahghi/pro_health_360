@@ -160,6 +160,7 @@ query getContent($categoryID: Int, $Limit: String!){
         url
         title
         type
+        duration
         width
         height
         thumbnail

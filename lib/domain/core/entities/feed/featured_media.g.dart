@@ -14,7 +14,7 @@ _$_FeaturedMedia _$_$_FeaturedMediaFromJson(Map<String, dynamic> json) {
     featuredMediaType: _$enumDecodeNullable(
         _$FeaturedMediaTypeEnumMap, json['type'],
         unknownValue: FeaturedMediaType.UNKNOWN),
-    duration: (json['duration'] as num?)?.toDouble(),
+    duration: json['duration'] as int?,
     width: json['width'] as int?,
     height: json['height'] as int?,
     thumbnail: json['thumbnail'] as String?,

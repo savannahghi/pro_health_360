@@ -1,13 +1,11 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -446,12 +444,9 @@ const String feedHeader =
 const String feedDate = '2021-08-23T06:42:05.085216Z';
 const String feedReadTime = '5 minutes';
 String contentReadDuration(int duration) =>
-    '${(duration / 60).floor()} min read';
-String contentAudioVideoDuration(int duration) {
-  final int minutes = (duration / 60).floor();
-  final String seconds = (duration % 60).toString().padLeft(2, '0');
-  return '$minutes:$seconds';
-}
+    duration == 0 ? '...' : '${(duration / 60).floor()} min read';
+String contentAudioVideoDuration(int duration) =>
+    duration == 0 ? '...' : '${(duration / 60).floor()} min';
 
 const String newString = 'New';
 

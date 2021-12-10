@@ -84,8 +84,7 @@ class ContentItem extends StatelessWidget {
                               bottom: 8,
                               left: 8,
                               child: EstimatedReadTimeBadge(
-                                estimateReadTime: contentDetails.estimate!,
-                                contentType: contentDetails.contentType!,
+                                contentDetails: contentDetails,
                               ),
                             ),
                         ],

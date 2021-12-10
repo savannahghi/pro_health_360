@@ -56,7 +56,6 @@ class ContentDetailPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 3.5,
                   width: MediaQuery.of(context).size.width,
                   child: ChewieVideoPlayer(
-                    autoPlay: true,
                     chewieController: initializeChewiController(
                       dataSource:
                           payload.content.featuredMedia?.first?.mediaUrl ??
@@ -161,9 +160,7 @@ class ContentDetailPage extends StatelessWidget {
                       ],
                     ),
                     EstimatedReadTimeBadge(
-                      estimateReadTime: payload.content.estimate ?? 10,
-                      contentType:
-                          payload.content.contentType ?? ContentType.UNKNOWN,
+                      contentDetails: payload.content,
                     ),
                   ],
                 ),

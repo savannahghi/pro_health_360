@@ -14,7 +14,7 @@ class FeaturedMedia with _$FeaturedMedia {
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
         FeaturedMediaType? featuredMediaType,
-    @JsonKey(name: 'duration') double? duration,
+    @JsonKey(name: 'duration') int? duration,
     @JsonKey(name: 'width') int? width,
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'thumbnail') String? thumbnail,

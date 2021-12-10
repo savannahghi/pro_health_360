@@ -34,7 +34,6 @@ void main() {
             store: storeTester.store,
             client: baseGraphQlClientMock,
             widget: ChewieVideoPlayer(
-              autoPlay: true,
               chewieController: VideoPlayerInitializer().initializePlayer(
                 videoPlayerController: controller,
                 autoPlay: true,
@@ -69,7 +68,6 @@ void main() {
             store: storeTester.store,
             client: baseGraphQlClientMock,
             widget: ChewieVideoPlayer(
-              autoPlay: true,
               chewieController: VideoPlayerInitializer().initializePlayer(
                 videoPlayerController: controller,
                 autoPlay: true,

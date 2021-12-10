@@ -1,24 +1,21 @@
 // Flutter imports:
 
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Package imports:
+import 'package:shared_themes/text_themes.dart';
 
 class EstimatedReadTimeBadge extends StatelessWidget {
   const EstimatedReadTimeBadge({
     Key? key,
-    required this.estimateReadTime,
-    required this.contentType,
+    required this.contentDetails,
   }) : super(key: key);
 
-  final int estimateReadTime;
-  final ContentType contentType;
+  final Content contentDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +28,11 @@ class EstimatedReadTimeBadge extends StatelessWidget {
         color: AppColors.readTimeBackgroundColor,
       ),
       child: Text(
-        contentType == ContentType.AUDIO_VIDEO
-            ? contentAudioVideoDuration(estimateReadTime)
-            : contentReadDuration(estimateReadTime),
+        contentDetails.contentType! == ContentType.AUDIO_VIDEO
+            ? contentAudioVideoDuration(
+                contentDetails.featuredMedia?.first?.duration ?? 0,
+              )
+            : contentReadDuration(contentDetails.estimate ?? 0),
         style: TextThemes.mediumSize14Text(Colors.white).copyWith(fontSize: 12),
       ),
     );

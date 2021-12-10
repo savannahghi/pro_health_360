@@ -30,7 +30,7 @@ class _$FeaturedMediaTearOff {
       @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
           FeaturedMediaType? featuredMediaType,
       @JsonKey(name: 'duration')
-          double? duration,
+          int? duration,
       @JsonKey(name: 'width')
           int? width,
       @JsonKey(name: 'height')
@@ -69,7 +69,7 @@ mixin _$FeaturedMedia {
   FeaturedMediaType? get featuredMediaType =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'duration')
-  double? get duration => throw _privateConstructorUsedError;
+  int? get duration => throw _privateConstructorUsedError;
   @JsonKey(name: 'width')
   int? get width => throw _privateConstructorUsedError;
   @JsonKey(name: 'height')
@@ -98,7 +98,7 @@ abstract class $FeaturedMediaCopyWith<$Res> {
       @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
           FeaturedMediaType? featuredMediaType,
       @JsonKey(name: 'duration')
-          double? duration,
+          int? duration,
       @JsonKey(name: 'width')
           int? width,
       @JsonKey(name: 'height')
@@ -147,7 +147,7 @@ class _$FeaturedMediaCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -181,7 +181,7 @@ abstract class _$FeaturedMediaCopyWith<$Res>
       @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
           FeaturedMediaType? featuredMediaType,
       @JsonKey(name: 'duration')
-          double? duration,
+          int? duration,
       @JsonKey(name: 'width')
           int? width,
       @JsonKey(name: 'height')
@@ -232,7 +232,7 @@ class __$FeaturedMediaCopyWithImpl<$Res>
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -287,7 +287,7 @@ class _$_FeaturedMedia implements _FeaturedMedia {
   final FeaturedMediaType? featuredMediaType;
   @override
   @JsonKey(name: 'duration')
-  final double? duration;
+  final int? duration;
   @override
   @JsonKey(name: 'width')
   final int? width;
@@ -363,7 +363,7 @@ abstract class _FeaturedMedia implements FeaturedMedia {
       @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
           FeaturedMediaType? featuredMediaType,
       @JsonKey(name: 'duration')
-          double? duration,
+          int? duration,
       @JsonKey(name: 'width')
           int? width,
       @JsonKey(name: 'height')
@@ -389,7 +389,7 @@ abstract class _FeaturedMedia implements FeaturedMedia {
       throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'duration')
-  double? get duration => throw _privateConstructorUsedError;
+  int? get duration => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'width')
   int? get width => throw _privateConstructorUsedError;
