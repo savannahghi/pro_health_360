@@ -2,10 +2,8 @@
 // in myafyahub/test/widgets_tests/presentation/feed/widgets/audio_content_test.dart.
 // Do not manually edit this file.
 
-// Dart imports:
 import 'dart:async' as _i3;
 
-// Package imports:
 import 'package:audio_session/audio_session.dart' as _i4;
 import 'package:just_audio/just_audio.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;

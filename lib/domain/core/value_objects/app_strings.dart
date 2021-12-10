@@ -522,6 +522,7 @@ const String comingSoonText = 'Coming soon';
 const String loremIpsumText =
     'A detailed description for this question will be available soon';
 const String tapToLearnMoreText = 'Tap to learn more';
+const String errorFetchingFAQsString = 'Error fetching FAQs';
 
 //savedPosts
 const String savedText = 'Saved';

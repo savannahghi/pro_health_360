@@ -1560,8 +1560,18 @@ Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{
 };
 
 Map<String, dynamic> mockFAQContentResponse = <String, dynamic>{
-  'title': 'title',
-  'body': 'body',
+  'getFAQContent': <dynamic>[
+    mockFAQContent,
+  ]
+};
+
+Map<String, dynamic> mockFAQContent = <String, dynamic>{
+  'ID': 'id',
+  'Active': true,
+  'Title': 'title',
+  'Body': 'body',
+  'Description': 'description',
+  'Flavour': Flavour.CONSUMER.name,
 };
 
 final Map<String, dynamic> termsMock = <String, dynamic>{

@@ -14,6 +14,10 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
         : UserPin.fromJson(json['userPin'] as Map<String, dynamic>),
     libraryListItems: json['libraryListItems'] as List<dynamic>?,
     healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
+    profileFAQsContentState: json['profileFAQsContentState'] == null
+        ? null
+        : FAQsContentState.fromJson(
+            json['profileFAQsContentState'] as Map<String, dynamic>),
   );
 }
 
@@ -23,4 +27,5 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'userPin': instance.userPin,
       'libraryListItems': instance.libraryListItems,
       'healthPagePINInputTime': instance.healthPagePINInputTime,
+      'profileFAQsContentState': instance.profileFAQsContentState,
     };

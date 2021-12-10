@@ -6,15 +6,23 @@ part of 'faq_content.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FAQContent _$FAQContentFromJson(Map<String, dynamic> json) {
-  return FAQContent(
-    title: json['title'] as String,
-    body: json['body'] as String,
+_$_FAQContent _$_$_FAQContentFromJson(Map<String, dynamic> json) {
+  return _$_FAQContent(
+    id: json['ID'] as String?,
+    active: json['Active'] as bool?,
+    title: json['Title'] as String?,
+    description: json['Description'] as String?,
+    body: json['Body'] as String?,
+    flavour: json['Flavour'] as String?,
   );
 }
 
-Map<String, dynamic> _$FAQContentToJson(FAQContent instance) =>
+Map<String, dynamic> _$_$_FAQContentToJson(_$_FAQContent instance) =>
     <String, dynamic>{
-      'title': instance.title,
-      'body': instance.body,
+      'ID': instance.id,
+      'Active': instance.active,
+      'Title': instance.title,
+      'Description': instance.description,
+      'Body': instance.body,
+      'Flavour': instance.flavour,
     };

@@ -2,12 +2,10 @@
 // in myafyahub/test/widgets_tests/application/core/custom_client_test.dart.
 // Do not manually edit this file.
 
-// Dart imports:
 import 'dart:async' as _i7;
 import 'dart:convert' as _i2;
 import 'dart:typed_data' as _i6;
 
-// Package imports:
 import 'package:http/http.dart' as _i5;
 import 'package:http/src/base_request.dart' as _i8;
 import 'package:http/src/byte_stream.dart' as _i3;

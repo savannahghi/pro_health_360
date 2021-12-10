@@ -2,22 +2,17 @@
 // in myafyahub/test/widgets_tests/redux/app/actions/logout_action_test.dart.
 // Do not manually edit this file.
 
-// Dart imports:
 import 'dart:async' as _i8;
 
-// Flutter imports:
-import 'package:flutter/material.dart' as _i9;
-
-// Package imports:
 import 'package:dart_fcm/src/fcm.dart' as _i3;
 import 'package:dart_fcm/src/reminder_notification.dart' as _i7;
 import 'package:dart_fcm/src/setup_on_message.dart' as _i6;
 import 'package:firebase_messaging/firebase_messaging.dart' as _i5;
-import 'package:mockito/mockito.dart' as _i1;
-import 'package:rxdart/rxdart.dart' as _i2;
-
+import 'package:flutter/material.dart' as _i9;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as _i4;
+import 'package:mockito/mockito.dart' as _i1;
+import 'package:rxdart/rxdart.dart' as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters

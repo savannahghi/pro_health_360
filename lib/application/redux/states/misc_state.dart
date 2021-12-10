@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
+import 'package:myafyahub/domain/core/entities/core/faqs_content_state.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -16,6 +16,7 @@ class MiscState with _$MiscState {
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     String? healthPagePINInputTime,
+    FAQsContentState? profileFAQsContentState,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -26,5 +27,6 @@ class MiscState with _$MiscState {
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         healthPagePINInputTime: UNKNOWN,
+        profileFAQsContentState: FAQsContentState.initial(),
       );
 }

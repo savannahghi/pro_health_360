@@ -21,6 +21,9 @@ const String fetchRecentContentFlag = 'fetch_recent_content_flag';
 const String getSecurityQuestionsFlag = 'get_security_questions';
 const String recordSecurityQuestionsFlag = 'record_security_questions_flag';
 
+// profile faqs
+const String getFAQsFlag = 'get_faqs_flag';
+
 // basic details
 const String updateBasicDetailsFlag = 'update_basic_details_flag';
 
@@ -58,5 +61,3 @@ const String shareContentFlag = 'share_content_flag';
 
 //Saved Content Page
 const String fetchSavedContentFlag = 'fetch_saved_content_flag';
-
-

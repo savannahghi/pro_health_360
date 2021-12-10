@@ -24,12 +24,14 @@ class _$MiscStateTearOff {
       {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
-      String? healthPagePINInputTime}) {
+      String? healthPagePINInputTime,
+      FAQsContentState? profileFAQsContentState}) {
     return _MiscState(
       initialRoute: initialRoute,
       userPin: userPin,
       libraryListItems: libraryListItems,
       healthPagePINInputTime: healthPagePINInputTime,
+      profileFAQsContentState: profileFAQsContentState,
     );
   }
 
@@ -47,6 +49,8 @@ mixin _$MiscState {
   UserPin? get userPin => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
+  FAQsContentState? get profileFAQsContentState =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +66,10 @@ abstract class $MiscStateCopyWith<$Res> {
       {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
-      String? healthPagePINInputTime});
+      String? healthPagePINInputTime,
+      FAQsContentState? profileFAQsContentState});
+
+  $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
 }
 
 /// @nodoc
@@ -79,6 +86,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
+    Object? profileFAQsContentState = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -97,7 +105,23 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      profileFAQsContentState: profileFAQsContentState == freezed
+          ? _value.profileFAQsContentState
+          : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
+              as FAQsContentState?,
     ));
+  }
+
+  @override
+  $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState {
+    if (_value.profileFAQsContentState == null) {
+      return null;
+    }
+
+    return $FAQsContentStateCopyWith<$Res>(_value.profileFAQsContentState!,
+        (value) {
+      return _then(_value.copyWith(profileFAQsContentState: value));
+    });
   }
 }
 
@@ -111,7 +135,11 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
-      String? healthPagePINInputTime});
+      String? healthPagePINInputTime,
+      FAQsContentState? profileFAQsContentState});
+
+  @override
+  $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
 }
 
 /// @nodoc
@@ -129,6 +157,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? healthPagePINInputTime = freezed,
+    Object? profileFAQsContentState = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -147,6 +176,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      profileFAQsContentState: profileFAQsContentState == freezed
+          ? _value.profileFAQsContentState
+          : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
+              as FAQsContentState?,
     ));
   }
 }
@@ -158,7 +191,8 @@ class _$_MiscState implements _MiscState {
       {this.initialRoute,
       this.userPin,
       this.libraryListItems,
-      this.healthPagePINInputTime});
+      this.healthPagePINInputTime,
+      this.profileFAQsContentState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$_$_MiscStateFromJson(json);
@@ -171,10 +205,12 @@ class _$_MiscState implements _MiscState {
   final List<dynamic>? libraryListItems;
   @override
   final String? healthPagePINInputTime;
+  @override
+  final FAQsContentState? profileFAQsContentState;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, healthPagePINInputTime: $healthPagePINInputTime, profileFAQsContentState: $profileFAQsContentState)';
   }
 
   @override
@@ -192,7 +228,11 @@ class _$_MiscState implements _MiscState {
                     .equals(other.libraryListItems, libraryListItems)) &&
             (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
                 const DeepCollectionEquality().equals(
-                    other.healthPagePINInputTime, healthPagePINInputTime)));
+                    other.healthPagePINInputTime, healthPagePINInputTime)) &&
+            (identical(
+                    other.profileFAQsContentState, profileFAQsContentState) ||
+                const DeepCollectionEquality().equals(
+                    other.profileFAQsContentState, profileFAQsContentState)));
   }
 
   @override
@@ -201,7 +241,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(initialRoute) ^
       const DeepCollectionEquality().hash(userPin) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
-      const DeepCollectionEquality().hash(healthPagePINInputTime);
+      const DeepCollectionEquality().hash(healthPagePINInputTime) ^
+      const DeepCollectionEquality().hash(profileFAQsContentState);
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +260,8 @@ abstract class _MiscState implements MiscState {
       {String? initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
-      String? healthPagePINInputTime}) = _$_MiscState;
+      String? healthPagePINInputTime,
+      FAQsContentState? profileFAQsContentState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -232,6 +274,9 @@ abstract class _MiscState implements MiscState {
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
+  @override
+  FAQsContentState? get profileFAQsContentState =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>
