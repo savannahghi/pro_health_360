@@ -23,7 +23,6 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
 
 /// [SecurityQuestionResponsesAction] is a Redux Action whose job is to update security questions responses.
 ///
@@ -62,8 +61,6 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
       'input': securityQuestionsResponses
     };
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-    // //Todo: Remove
-    _client.endpoint = myCareHubGraphEndpoint;
 
     final http.Response result = await _client.query(
       recordSecurityQuestionResponsesMutation,

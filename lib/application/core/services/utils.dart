@@ -62,7 +62,7 @@ AppSetupData getAppSetupData(AppContext context) {
     case AppContext.AppTest:
       return devAppSetupData;
     case AppContext.AppDemo:
-      return devAppSetupData;
+      return demoAppSetupData;
     case AppContext.AppProd:
       return prodAppSetupData;
     case AppContext.AppE2E:

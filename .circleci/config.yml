@@ -120,7 +120,7 @@ jobs:
           name: "Build and publish to firebase app distribution"
           command: |
             flutter build apk --release --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-internal
-            --target=$HOME/project/lib/bin/main_demo.dart BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
             firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/release-notes.txt
 
 
@@ -139,6 +139,13 @@ jobs:
       - run:
           name: "Build and publish to play store alpha track"
           command: |
+            # First deploy to firebase app tester with the -alpha suffix for QA
+            flutter build apk --release --target=$HOME/project/lib/bin/main_demo.dart  --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha 
+            BUNDLE_FILE_PATH=$HOME/project/build/app/outputs/flutter-apk/app-release.apk
+            firebase appdistribution:distribute $BUNDLE_FILE_PATH --app $FIREBASE_APP_ID --groups "internal-testers" --token $FIREBASE_TOKEN --release-notes-file $HOME/project/demo-release-notes.txt
+            echo "Build with number $BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha has been deployed successfully to Firebase app tester"
+
+            # Build and deploy to play store
             flutter build appbundle --build-number $CIRCLE_BUILD_NUM --build-name=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha \
             --obfuscate --split-debug-info=$HOME/project/dump --release --target=$HOME/project/lib/bin/main_demo.dart \
             --dart-define=APPVERSION=$BUILD_VERSION_ROOT.$CIRCLE_BUILD_NUM-alpha
@@ -214,19 +221,21 @@ workflows:
    jobs:
      - run_tests_and_generate_coverage
      - deploy_to_internal_firebase_app_tester:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
-               - alpha
+               - develop
+               - setup_staging
      - deploy_to_play_store_alpha:
-         requires:
-           - run_tests_and_generate_coverage
+        #  requires:
+        #    - run_tests_and_generate_coverage
          filters:
            branches:
              only:
                - alpha
+               - setup_staging
      - deploy_to_play_store_beta:
          requires:
            - run_tests_and_generate_coverage
