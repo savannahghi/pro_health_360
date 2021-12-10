@@ -34,24 +34,24 @@ class CheckTokenAction extends ReduxAction<AppState> {
       );
 
       if (hasTokenExpired(expiresAt, now)) {
-        AuthCredentials authCredentials = await httpClient.refreshToken();
+        AuthCredentials? authCredentials = await httpClient.refreshToken();
 
-        if (authCredentials.idToken != null &&
-            authCredentials.expiresIn != null &&
-            authCredentials.refreshToken != null) {
+        if (authCredentials?.idToken != null &&
+            authCredentials?.expiresIn != null &&
+            authCredentials?.refreshToken != null) {
           final DateTime expiryTimestamp =
-              getTokenExpiryTimestamp(authCredentials.expiresIn);
+              getTokenExpiryTimestamp(authCredentials?.expiresIn);
 
-          authCredentials = authCredentials.copyWith(
+          authCredentials = authCredentials?.copyWith(
             tokenExpiryTimestamp: expiryTimestamp.toIso8601String(),
           );
 
           dispatch(
             UpdateCredentialsAction(
-              idToken: authCredentials.idToken,
-              refreshToken: authCredentials.refreshToken,
-              expiresIn: authCredentials.expiresIn,
-              tokenExpiryTimestamp: authCredentials.tokenExpiryTimestamp,
+              idToken: authCredentials?.idToken,
+              refreshToken: authCredentials?.refreshToken,
+              expiresIn: authCredentials?.expiresIn,
+              tokenExpiryTimestamp: authCredentials?.tokenExpiryTimestamp,
             ),
           );
 

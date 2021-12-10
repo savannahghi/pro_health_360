@@ -336,20 +336,9 @@ OnboardingPathConfig onboardingPath({
   return OnboardingPathConfig(BWRoutes.home);
 }
 
-/// [checkTokenStatus] is used to check if the Auth Token has expired and if it need refreshing
-///
-/// #### [checkTokenStatus] Variables
-/// [context] requires context of widget where it is used.
-///
-/// [authState] abstract class that hold the values of user signedIn Status.
-///
-/// - authToken (value of the current active Auth token)
-/// - refreshToken (value of the refresh token) and
-/// - expiresAt (time the token expires).
-/// [thisAppContexts] app requires to know which appContext is in use to determine what endpoint to use.
-///
-/// [customHttpClient] our custom http client that we use to make network requests to our backend services mainly.
-
+/// Checks if token has expired based on expiry datetime
+/// returns true if token expires in 10 minutes or less
+/// otherwise returns false
 bool hasTokenExpired(DateTime expiresAt, DateTime now) {
   return expiresAt.difference(now).inMinutes < 10;
 }
