@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/feed/feed_items.dart';
 
 part 'saved_content.freezed.dart';

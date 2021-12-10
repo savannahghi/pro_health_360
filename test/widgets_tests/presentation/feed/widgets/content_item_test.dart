@@ -4,13 +4,13 @@ import 'dart:io';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
-
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

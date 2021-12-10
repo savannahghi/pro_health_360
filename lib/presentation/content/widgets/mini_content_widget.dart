@@ -1,11 +1,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
 import 'package:shared_themes/text_themes.dart';
+
+// Project imports:
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 /// Mini content widget is used to display content at a glance
 class MiniContentWidget extends StatelessWidget {

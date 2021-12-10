@@ -1,14 +1,15 @@
 // Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-// Flutter imports:
 import 'package:chewie/chewie.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,9 +18,18 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/inputs.dart';
+import 'package:unicons/unicons.dart';
+import 'package:video_player/video_player.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/video_player_initializer.dart';
+import 'package:myafyahub/application/redux/actions/bookmark_content_action.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/content/update_reactions_state_action.dart';
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
@@ -42,13 +52,6 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:unicons/unicons.dart';
-import 'package:video_player/video_player.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -802,6 +805,25 @@ Future<void> updateLikeStatus({
       contentID: contentID,
       context: context,
       isLiked: isLiked,
+    ),
+  );
+}
+
+Future<void> updateBookmarkStatus({
+  required BuildContext context,
+  required int contentID,
+}) async {
+  //update save status locally
+  StoreProvider.dispatch(
+    context,
+    UpdateReactionStatusAction(contentID: contentID, hasSaved: true),
+  );
+
+  await StoreProvider.dispatch(
+    context,
+    BookmarkContentAction(
+      contentID: contentID,
+      context: context,
     ),
   );
 }

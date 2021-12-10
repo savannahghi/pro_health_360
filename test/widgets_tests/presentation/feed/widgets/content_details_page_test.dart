@@ -6,6 +6,8 @@ import 'dart:io';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -18,8 +20,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

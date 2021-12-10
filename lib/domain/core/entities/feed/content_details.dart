@@ -1,5 +1,7 @@
 // Package imports:
 import 'package:json_annotation/json_annotation.dart';
+
+// Project imports:
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 
 part 'content_details.g.dart';

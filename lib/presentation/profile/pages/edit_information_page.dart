@@ -1,11 +1,11 @@
 // Flutter imports:
-import 'package:afya_moja_core/inputs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/inputs.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_themes/spaces.dart';

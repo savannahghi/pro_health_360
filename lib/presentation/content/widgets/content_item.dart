@@ -1,9 +1,15 @@
 // Flutter imports:
-// Package imports:
-import 'package:domain_objects/value_objects.dart';
+
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
@@ -17,8 +23,6 @@ import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge
 import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 /// [ContentItem] Displays the feed
 /// [isNew] renders the new tag

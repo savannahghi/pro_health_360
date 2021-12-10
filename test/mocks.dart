@@ -2,20 +2,27 @@
 import 'dart:convert';
 import 'dart:io' as io;
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 // Package imports:
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:platform/platform.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
+import 'package:video_player/video_player.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
@@ -28,17 +35,11 @@ import 'package:myafyahub/domain/core/entities/security_questions/responses/secu
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
+import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
-import 'package:platform/platform.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:user_feed/user_feed.dart';
-import 'package:video_player/video_player.dart';
-
 import 'test_utils.dart';
 
 const String testFirstName = 'John';

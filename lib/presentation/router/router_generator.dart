@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';

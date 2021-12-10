@@ -26,9 +26,9 @@ class FeedContentViewModel extends Vm {
   factory FeedContentViewModel.fromStore(AppState state) {
     return FeedContentViewModel(
       wait: state.wait,
-      errorFetchingContent: state.contentState!.feedContentState!.errorFetchingContent,
-      timeoutFetchingContent: state.contentState!.feedContentState!.timeoutFetchingContent,
-      feedItems: state.contentState!.feedContentState!.contentItems,
+      errorFetchingContent: state.contentState?.feedContentState?.errorFetchingContent,
+      timeoutFetchingContent: state.contentState?.feedContentState?.timeoutFetchingContent,
+      feedItems: state.contentState?.feedContentState?.contentItems,
       selectedCategory:
           state.contentState!.feedContentState!.selectedCategory ?? ContentCategory.initial(),
     );

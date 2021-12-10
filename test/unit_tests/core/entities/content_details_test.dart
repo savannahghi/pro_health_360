@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 
+// Project imports:
+import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import '../../../mocks.dart';
 
 void main() {

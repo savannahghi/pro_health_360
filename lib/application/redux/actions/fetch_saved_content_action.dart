@@ -1,9 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_saved_content_state_action.dart';
@@ -73,11 +78,19 @@ class FetchSavedContentAction extends ReduxAction<AppState> {
       final List<Content?>? savedItems = savedContent.savedContent?.items;
 
       if (savedItems != null && savedItems.isNotEmpty) {
-          dispatch(UpdateSavedContentStateAction(savedContentItems: savedItems));
-        } else {
+        dispatch(
+          UpdateSavedContentStateAction(
+            savedContentItems: savedItems,
+            errorFetchingContent: false,
+            timeoutFetchingContent: false,
+          ),
+        );
+      } else {
         dispatch(
           UpdateSavedContentStateAction(
             savedContentItems: <Content>[],
+            errorFetchingContent: false,
+            timeoutFetchingContent: false,
           ),
         );
       }

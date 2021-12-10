@@ -90,11 +90,14 @@ class FetchContentAction extends ReduxAction<AppState> {
       final List<Content?>? feedItems = feedContent.feedContent?.items;
 
       if (feedItems != null && feedItems.isNotEmpty) {
-        dispatch(UpdateContentStateAction(contentItems: feedItems));
+        dispatch(UpdateContentStateAction(contentItems: feedItems, timeoutFetchingContent: false,
+            errorFetchingContent: false,),);
       } else {
         dispatch(
           UpdateContentStateAction(
             contentItems: <Content>[],
+            timeoutFetchingContent: false,
+            errorFetchingContent: false,
           ),
         );
       }

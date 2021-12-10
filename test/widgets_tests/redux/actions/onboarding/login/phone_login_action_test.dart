@@ -9,19 +9,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_home_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import '../../../../../mock_utils.dart';

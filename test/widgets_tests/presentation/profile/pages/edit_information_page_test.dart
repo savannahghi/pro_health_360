@@ -1,14 +1,18 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-
 import '../../../../test_helpers.dart';
 
 void main() {

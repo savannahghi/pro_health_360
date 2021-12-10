@@ -2,19 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/failures.dart';
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:misc_utilities/string_constant.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -32,8 +36,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// [updateUserPin] resets a user's PIN
 ///

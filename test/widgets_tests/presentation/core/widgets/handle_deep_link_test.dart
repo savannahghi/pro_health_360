@@ -6,9 +6,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 
 // Project imports:
+import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
