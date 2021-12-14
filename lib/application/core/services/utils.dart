@@ -18,6 +18,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -903,4 +904,21 @@ bool getHasSaved({required List<Content?> feedItems, required int contentID}) {
         .hasSaved!;
   }
   return false;
+}
+
+String getInitialRoute({
+  required BottomNavigationState? bottomNavigationState,
+}) {
+  final int currentBottomNavIndex =
+      bottomNavigationState?.currentBottomNavIndex ?? 0;
+  switch (currentBottomNavIndex) {
+    case 1:
+      return BWRoutes.feedPage;
+
+    case 2:
+      return BWRoutes.myHealthPage;
+
+    default:
+      return BWRoutes.home;
+  }
 }

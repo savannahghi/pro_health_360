@@ -119,7 +119,7 @@ void main() {
     },
   );
 
-  testWidgets('should trigger connecitivity changes',
+  testWidgets('should trigger connectivity changes',
       (WidgetTester tester) async {
     final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
     final NavigatorObserver navigatorObserver = NavigatorObserver();

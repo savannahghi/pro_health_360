@@ -56,7 +56,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
 
   @override
   void initState() {
-    super.initState();
+    super.initState();    
     _connectivitySub = widget.connectivityStatus
         .checkConnection()
         .asStream()
@@ -67,19 +67,16 @@ class _PreLoadAppState extends State<PreLoadApp> {
         .listen((bool hasConnection) {
           connectivityChanged(hasConnection: hasConnection);
         });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    StoreProvider.dispatch(
-      context,
-      CheckTokenAction(
-        httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-        refreshTokenEndpoint:
-            AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
-      ),
-    );
+        WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+      StoreProvider.dispatch(
+        context,
+        CheckTokenAction(
+          httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+          refreshTokenEndpoint:
+              AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+        ),
+      );
+    });
   }
 
   @override

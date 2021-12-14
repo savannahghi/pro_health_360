@@ -55,12 +55,14 @@ class CheckTokenAction extends ReduxAction<AppState> {
             ),
           );
 
-          initialRoute = BWRoutes.home;
+          initialRoute =
+              getInitialRoute(bottomNavigationState: state.bottomNavigationState);
         } else {
           initialRoute = BWRoutes.phoneLogin;
         }
       } else {
-        initialRoute = BWRoutes.home;
+        initialRoute =
+            getInitialRoute(bottomNavigationState: state.bottomNavigationState);
       }
     }
 
