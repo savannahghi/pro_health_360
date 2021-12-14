@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
+import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -13,11 +15,9 @@ import 'package:myafyahub/application/redux/actions/content/fetch_content_action
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/feed_content_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
@@ -113,8 +113,9 @@ class _FeedPageState extends State<FeedPage> {
                         shrinkWrap: true,
                         itemCount: feedItems.length,
                         itemBuilder: (BuildContext context, int index) {
-                          final Content? currentFeedItem =
-                              feedItems.elementAt(index);
+                          final Content currentFeedItem =
+                              feedItems.elementAt(index)!;
+
                           return Padding(
                             padding: EdgeInsets.only(
                               top: index == 0 ? 15 : 7.5,
@@ -122,8 +123,11 @@ class _FeedPageState extends State<FeedPage> {
                               right: 12,
                               left: 12,
                             ),
-                            child:
-                                ContentItem(contentDetails: currentFeedItem!),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.55,
+                              child:
+                                  ContentItem(contentDetails: currentFeedItem),
+                            ),
                           );
                         },
                       ),

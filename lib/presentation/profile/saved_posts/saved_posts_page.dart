@@ -21,8 +21,6 @@ import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart'
 import 'package:myafyahub/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
-// Package imports:
-
 class SavedPostPage extends StatefulWidget {
   @override
   State<SavedPostPage> createState() => _SavedPostPageState();
@@ -31,7 +29,7 @@ class SavedPostPage extends StatefulWidget {
 class _SavedPostPageState extends State<SavedPostPage> {
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       final SavedContentState? state = StoreProvider.state<AppState>(context)
           ?.contentState
           ?.savedContentState;
@@ -54,72 +52,80 @@ class _SavedPostPageState extends State<SavedPostPage> {
     return Scaffold(
       appBar: const CustomAppBar(title: savedText),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: StoreConnector<AppState, SavedContentViewModel>(
-          converter: (Store<AppState> store) =>
-              SavedContentViewModel.fromStore(store.state),
-          builder: (BuildContext context, SavedContentViewModel vm) {
-            if (vm.wait!.isWaitingFor(fetchSavedContentFlag)) {
-              return Container(
-                height: 300,
-                padding: const EdgeInsets.all(20),
-                child: const SILPlatformLoader(),
-              );
-            } else if (vm.timeoutFetchingContent ?? false) {
-              return const GenericTimeoutWidget(
-                route: BWRoutes.userProfilePage,
-                action: 'fetching your saved content',
-              );
-            } else if (vm.errorFetchingContent ?? false) {
-              return GenericNoData(
-                key: helpNoDataWidgetKey,
-                type: GenericNoDataTypes.ErrorInData,
-                actionText: actionTextGenericNoData,
-                recoverCallback: () async {
-                  StoreProvider.dispatch<AppState>(
-                    context,
-                    FetchSavedContentAction(context: context),
-                  );
-                },
-                messageBody: messageBodyGenericNoData,
-              );
-            } else {
-              final List<Content?>? savedItems = vm.savedItems;
-
-              if (savedItems != null && savedItems.isNotEmpty) {
-                return RefreshIndicator(
-                  onRefresh: () async {
+      body: Column(
+        children: <Widget>[
+          StoreConnector<AppState, SavedContentViewModel>(
+            converter: (Store<AppState> store) =>
+                SavedContentViewModel.fromStore(store.state),
+            builder: (BuildContext context, SavedContentViewModel vm) {
+              if (vm.wait!.isWaitingFor(fetchSavedContentFlag)) {
+                return Container(
+                  height: 300,
+                  padding: const EdgeInsets.all(20),
+                  child: const SILPlatformLoader(),
+                );
+              } else if (vm.timeoutFetchingContent ?? false) {
+                return const GenericTimeoutWidget(
+                  route: BWRoutes.userProfilePage,
+                  action: 'fetching your saved content',
+                );
+              } else if (vm.errorFetchingContent ?? false) {
+                return GenericNoData(
+                  key: helpNoDataWidgetKey,
+                  type: GenericNoDataTypes.ErrorInData,
+                  actionText: actionTextGenericNoData,
+                  recoverCallback: () async {
                     StoreProvider.dispatch<AppState>(
                       context,
                       FetchSavedContentAction(context: context),
                     );
                   },
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: savedItems.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final Content? currentSavedItem =
-                          savedItems.elementAt(index);
-                      return Padding(
-                        padding: EdgeInsets.only(
-                          top: index == 0 ? 15 : 7.5,
-                          bottom: 10,
-                          right: 12,
-                          left: 12,
-                        ),
-                        child: ContentItem(contentDetails: currentSavedItem!),
-                      );
-                    },
-                  ),
+                  messageBody: messageBodyGenericNoData,
                 );
-              } else if (savedItems != null) {
-                return const NoSavedContentWidget();
+              } else {
+                final List<Content?>? savedItems = vm.savedItems;
+
+                if (savedItems != null && savedItems.isNotEmpty) {
+                  return Flexible(
+                    child: RefreshIndicator(
+                      onRefresh: () async {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          FetchSavedContentAction(context: context),
+                        );
+                      },
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: savedItems.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final Content currentSavedItem =
+                              savedItems.elementAt(index)!;
+
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              top: index == 0 ? 15 : 7.5,
+                              bottom: 10,
+                              right: 12,
+                              left: 12,
+                            ),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height,
+                              child:
+                                  ContentItem(contentDetails: currentSavedItem),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                } else if (savedItems != null) {
+                  return const Flexible(child: NoSavedContentWidget());
+                }
               }
-            }
-            return const SizedBox();
-          },
-        ),
+              return const SizedBox();
+            },
+          ),
+        ],
       ),
     );
   }

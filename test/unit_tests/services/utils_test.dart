@@ -34,7 +34,7 @@ void main() {
       expect(unProtectedRoutes[0], BWRoutes.phoneLogin);
     });
 
-    test('formatSecurityQuestionDate should return birthdate in en_GB format',
+    test('formatSecurityQuestionDate should return birth date in en_GB format',
         () {
       initializeDateFormatting();
       const String enFormat = '1990-02-19';
@@ -47,7 +47,7 @@ void main() {
     });
 
     test(
-        'formatSecurityQuestionDate should return birthdate from britain format',
+        'formatSecurityQuestionDate should return birth date from britain format',
         () {
       initializeDateFormatting();
       const String enFormat = '1990-02-19';
@@ -84,7 +84,7 @@ void main() {
       test('should return the correct instance of AppSetupData', () async {
         expect(getAppSetupData(testAppContexts.last), devAppSetupData);
 
-        expect(getAppSetupData(demoAppContexts.last), devAppSetupData);
+        expect(getAppSetupData(demoAppContexts.last), demoAppSetupData);
 
         expect(getAppSetupData(prodAppContexts.last), prodAppSetupData);
 
@@ -110,7 +110,9 @@ void main() {
       expect(getMoodColor(null).color, AppColors.secondaryColor);
     });
   });
-  test('getHasSaved and getHasLiked should return false if id is not found', () {
+
+  test('getHasSaved and getHasLiked should return false if id is not found',
+      () {
     expect(getHasLiked(feedItems: <Content>[mockContent], contentID: 0), false);
     expect(getHasSaved(feedItems: <Content>[mockContent], contentID: 0), false);
   });

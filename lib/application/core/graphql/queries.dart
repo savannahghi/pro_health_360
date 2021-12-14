@@ -171,7 +171,7 @@ query getContent($categoryID: Int, $Limit: String!){
           ID
           title
           meta{
-            imageDetailUrl
+            imageDownloadUrl
           }
         }
       }
@@ -217,6 +217,7 @@ query checkIfUserBookmarkedContent($userID: String!, $contentID: Int!) {
   checkIfUserBookmarkedContent(userID: $userID, contentID: $contentID)
 }
 ''';
+
 const String getUserBookmarkedContentQuery = r'''
 query getUserBookmarkedContent($userID: String!){
   getUserBookmarkedContent(userID: $userID){
@@ -290,7 +291,9 @@ query getUserBookmarkedContent($userID: String!){
           ID
           title
           meta{
+            type
             imageDetailUrl
+            imageDownloadUrl
           }
         }
       }

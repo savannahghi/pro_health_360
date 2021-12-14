@@ -31,14 +31,20 @@ class FetchSavedContentAction extends ReduxAction<AppState> {
 
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(fetchSavedContentFlag));
     super.before();
+    dispatch(WaitAction<AppState>.add(fetchSavedContentFlag));
+    dispatch(
+      UpdateSavedContentStateAction(
+        errorFetchingContent: false,
+        timeoutFetchingContent: false,
+      ),
+    );
   }
 
   @override
   Future<AppState?> reduce() async {
-    final String userID =
-        StoreProvider.state<AppState>(context)!.clientState!.user!.userId!;
+    final String? userID = state.clientState?.user?.userId;
+
     final Map<String, dynamic> variables = <String, dynamic>{
       'userID': userID,
     };
@@ -78,19 +84,11 @@ class FetchSavedContentAction extends ReduxAction<AppState> {
       final List<Content?>? savedItems = savedContent.savedContent?.items;
 
       if (savedItems != null && savedItems.isNotEmpty) {
-        dispatch(
-          UpdateSavedContentStateAction(
-            savedContentItems: savedItems,
-            errorFetchingContent: false,
-            timeoutFetchingContent: false,
-          ),
-        );
+        dispatch(UpdateSavedContentStateAction(savedContentItems: savedItems));
       } else {
         dispatch(
           UpdateSavedContentStateAction(
             savedContentItems: <Content>[],
-            errorFetchingContent: false,
-            timeoutFetchingContent: false,
           ),
         );
       }

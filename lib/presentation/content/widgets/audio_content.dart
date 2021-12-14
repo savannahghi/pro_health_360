@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -92,7 +93,7 @@ class _AudioContentState extends State<AudioContent>
                   children: <Widget>[
                     Flexible(
                       child: Text(
-                        widget.contentDetails.title!,
+                        widget.contentDetails.title ?? UNKNOWN,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextThemes.boldSize16Text(
@@ -122,8 +123,8 @@ class _AudioContentState extends State<AudioContent>
                       dateTextStyle: TextThemes.normalSize12Text(
                         AppColors.greyTextColor,
                       ),
-                      context: context,
-                      loadedDate: widget.contentDetails.metadata!.createdAt!,
+                      loadedDate: widget.contentDetails.metadata?.createdAt ??
+                          DateTime.now().toIso8601String(),
                     ),
                   ],
                 ),

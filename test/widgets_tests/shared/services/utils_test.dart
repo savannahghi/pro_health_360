@@ -488,7 +488,6 @@ void main() {
             return humanizeDate(
               dateTextStyle:
                   TextThemes.normalSize12Text(AppColors.darkGreyColor),
-              context: context,
               loadedDate: '2012-02-27 13:27:00',
               showTime: true,
             );
@@ -511,7 +510,6 @@ void main() {
             return humanizeDate(
               dateTextStyle:
                   TextThemes.normalSize12Text(AppColors.darkGreyColor),
-              context: context,
               loadedDate: '2012-02-27 13:27:00',
             );
           },

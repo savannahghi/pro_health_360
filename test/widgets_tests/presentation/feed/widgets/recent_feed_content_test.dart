@@ -13,19 +13,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/content/widgets/recent_content_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
@@ -80,7 +80,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // feed items renders correctly
-      final Finder feedItem = find.byType(ContentItem);
+      final Finder feedItem = find.byType(FeedPageContentItem);
 
       expect(feedItem, findsNWidgets(2));
       await tester.ensureVisible(feedItem.first);
@@ -123,6 +123,7 @@ void main() {
         tester.binding.window.clearDevicePixelRatioTestValue();
       });
     });
+
     testWidgets(
         'shows a generic no data widget while fetching the feed '
         'and refresh the feed when prompted', (WidgetTester tester) async {
@@ -158,6 +159,7 @@ void main() {
         expect(find.byType(GenericNoData), findsOneWidget);
       });
     });
+
     testWidgets('should display sized box when content list is empty',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
@@ -190,6 +192,7 @@ void main() {
         expect(find.byType(SizedBox), findsWidgets);
       });
     });
+
     testWidgets(
         'shows a generic timeout widget while fetching suggested groups',
         (WidgetTester tester) async {
@@ -220,7 +223,7 @@ void main() {
         });
       });
     });
-    
+
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       mockNetworkImages(() async {

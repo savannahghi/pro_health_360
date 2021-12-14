@@ -30,20 +30,22 @@ class FetchContentAction extends ReduxAction<AppState> {
   final ContentCategory? category;
 
   @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(fetchContentFlag));
-    super.after();
-  }
-
-  @override
   void before() {
+    super.before();
     dispatch(
       UpdateContentStateAction(
         selectedCategory: category ?? ContentCategory.initial(),
+        timeoutFetchingContent: false,
+        errorFetchingContent: false,
       ),
     );
     dispatch(WaitAction<AppState>.add(fetchContentFlag));
-    super.before();
+  }
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(fetchContentFlag));
+    super.after();
   }
 
   @override
@@ -90,8 +92,9 @@ class FetchContentAction extends ReduxAction<AppState> {
       final List<Content?>? feedItems = feedContent.feedContent?.items;
 
       if (feedItems != null && feedItems.isNotEmpty) {
-        dispatch(UpdateContentStateAction(contentItems: feedItems, timeoutFetchingContent: false,
-            errorFetchingContent: false,),);
+        dispatch(
+          UpdateContentStateAction(contentItems: feedItems),
+        );
       } else {
         dispatch(
           UpdateContentStateAction(

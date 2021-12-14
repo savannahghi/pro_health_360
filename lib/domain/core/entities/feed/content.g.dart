@@ -45,6 +45,9 @@ _$_Content _$_$_ContentFromJson(Map<String, dynamic> json) {
         .toList(),
     hasLiked: json['hasLiked'] as bool? ?? false,
     hasSaved: json['hasSaved'] as bool? ?? false,
+    galleryImages: (json['galleryImages'] as List<dynamic>?)
+        ?.map((e) => GalleryImage.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -71,6 +74,7 @@ Map<String, dynamic> _$_$_ContentToJson(_$_Content instance) =>
       'featuredMedia': instance.featuredMedia,
       'hasLiked': instance.hasLiked,
       'hasSaved': instance.hasSaved,
+      'galleryImages': instance.galleryImages,
     };
 
 K _$enumDecode<K, V>(
