@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -22,7 +23,6 @@ import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/my_health_diary_item_widget.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

@@ -37,25 +37,25 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
   final String mood;
 
   @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(createHealthDiaryFlag));
+  }
+
+  @override
   void after() {
     dispatch(WaitAction<AppState>.remove(createHealthDiaryFlag));
     super.after();
   }
 
   @override
-  void before() {
-    dispatch(WaitAction<AppState>.add(createHealthDiaryFlag));
-    super.before();
-  }
-
-  @override
   Future<AppState> reduce() async {
-    final String? userID = state.clientState!.id;
+    final String? userID = state.clientState?.id;
     final bool shouldShareHealthRecord =
-        state.clientState!.healthDiaryState!.shouldShareHealthRecord ?? false;
+        state.clientState?.healthDiaryState?.shouldShareHealthRecord ?? false;
 
     final Map<String, dynamic> _variables = <String, dynamic>{
-      'clientID': userID!,
+      'clientID': userID,
       'note': note,
       'mood': mood,
       'reportToStaff': shouldShareHealthRecord

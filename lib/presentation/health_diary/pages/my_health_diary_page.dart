@@ -23,7 +23,7 @@ import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/my_health_diary_item_widget.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class MyHealthDiaryPage extends StatefulWidget {
@@ -111,14 +111,14 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                     ),
                   );
                 } else {
-                return EmptyHealthDiary(
-                  refreshCallback: () => navigateToNewPage(
-                    route: BWRoutes.home,
-                    context: context,
-                    bottomNavIndex: BottomNavIndex.home.index,
-                  ),
-                );
-              }
+                  return EmptyHealthDiary(
+                    refreshCallback: () => navigateToNewPage(
+                      route: BWRoutes.home,
+                      context: context,
+                      bottomNavIndex: BottomNavIndex.home.index,
+                    ),
+                  );
+                }
               }
             },
           ),

@@ -640,3 +640,6 @@ const String contentZeroStateDescription =
 const String contentZeroStateButtonText = 'Retry';
 const String fetchLikeStatusErrorString =
     'Error while fetching your like status';
+
+const String networkConnectionUnreliable =
+    'Network connection unreliable. Please try again later.';

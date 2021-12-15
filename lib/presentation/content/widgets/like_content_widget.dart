@@ -38,9 +38,12 @@ class LikeContentWidget extends StatefulWidget {
 
 class _LikeContentWidgetState extends State<LikeContentWidget> {
   late int count = widget.likeCount;
+
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback(
       (Duration timeStamp) async {
         await StoreProvider.dispatch<AppState>(
           context,
@@ -51,7 +54,6 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
         );
       },
     );
-    super.initState();
   }
 
   @override
@@ -64,6 +66,7 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
           feedItems: vm.feedItems ?? <Content>[],
           contentID: widget.contentID,
         );
+
         return GestureDetector(
           onTap: () async {
             setState(() {

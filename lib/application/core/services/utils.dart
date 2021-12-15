@@ -812,6 +812,7 @@ Future<void> updateLikeStatus({
     context,
     UpdateReactionStatusAction(contentID: contentID, hasLiked: !isLiked),
   );
+
   await StoreProvider.dispatch(
     context,
     UpdateContentLikeStatusAction(
