@@ -46,10 +46,7 @@ class MoodSelectionComponent extends StatelessWidget {
           StoreConnector<AppState, ClientProfileViewModel>(
             converter: (Store<AppState> store) =>
                 ClientProfileViewModel.fromStore(store),
-            builder: (
-              BuildContext context,
-              ClientProfileViewModel vm,
-            ) {
+            builder: (BuildContext context, ClientProfileViewModel vm) {
               final String? lastName = vm.clientState?.user?.lastName;
               return Text(
                 howAreYouFeelingTodayText(lastName ?? UNKNOWN),
