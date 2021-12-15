@@ -2,12 +2,14 @@
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:domain_objects/failures.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
@@ -54,7 +56,8 @@ void main() {
                   await store.dispatch(
                     UpdateContentLikeStatusAction(
                       context: context,
-                      contentID: 20, isLiked: true,
+                      contentID: 20,
+                      isLiked: true,
                     ),
                   );
                 } catch (e) {
@@ -70,6 +73,56 @@ void main() {
       await tester.tap(find.byType(SILPrimaryButton));
       await tester.pumpAndSettle();
       expect(err, isA<Future<dynamic>>());
+    });
+
+    testWidgets('should show error if network is unreliable',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'errors': <Object>[
+              <String, dynamic>{
+                'message': networkConnectionUnreliable,
+              }
+            ]
+          }),
+          200,
+        ),
+      );
+      late dynamic err;
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return SILPrimaryButton(
+              onPressed: () async {
+                try {
+                  await store.dispatch(
+                    UpdateContentLikeStatusAction(
+                      context: context,
+                      contentID: 20,
+                      isLiked: true,
+                    ),
+                  );
+                } catch (e) {
+                  err = e;
+                }
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.pump();
+      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect((await err as SILException).message, networkConnectionUnreliable);
     });
   });
 }

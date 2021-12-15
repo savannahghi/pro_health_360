@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -39,13 +39,12 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
 
   @override
-  Future<AppState> reduce() async {
-    final String? userID =
-        StoreProvider.state<AppState>(context)!.clientState!.user!.userId;
+  Future<AppState?> reduce() async {
+    final String? userID = state.clientState?.user?.userId;
 
     // initializing of the UnlikeContent mutation
     final Map<String, dynamic> _variables = <String, dynamic>{
-      'userID': userID!,
+      'userID': userID,
       'contentID': contentID,
     };
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
@@ -59,17 +58,22 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
 
     _client.close();
 
-    final Map<String, dynamic> responseMap =
-        json.decode(result.body) as Map<String, dynamic>;
+    final String? errors = _client.parseError(body);
+    if (errors != null) {
+      if (errors.contains('Network connection unreliable')) {
+        throw SILException(
+          cause: updateLikeContentFlag,
+          message: networkConnectionUnreliable,
+        );
+      }
 
-    if (_client.parseError(body) != null || responseMap['errors'] != null) {
       throw SILException(
         cause: updateLikeContentFlag,
         message: somethingWentWrongText,
       );
     }
 
-    return state;
+    return null;
   }
 
   @override
@@ -84,8 +88,9 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
             action: dismissSnackBar(closeString, white, context),
           ),
         );
-      return error;
     }
+
+    reportErrorToSentry(context, error);
     return error;
   }
 }
