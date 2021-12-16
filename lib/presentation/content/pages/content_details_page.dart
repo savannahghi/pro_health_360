@@ -1,13 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
@@ -22,6 +18,8 @@ import 'package:myafyahub/presentation/content/widgets/share_content_widget.dart
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
 
 class ContentDetailPage extends StatelessWidget {
   /// [ContentDetailPage] is used to display the article details
@@ -45,6 +43,10 @@ class ContentDetailPage extends StatelessWidget {
             loadedDate: createdAt,
           )
         : const SizedBox();
+    final bool hasVideo = payload.content.featuredMedia != null &&
+        payload.content.featuredMedia!.isNotEmpty &&
+        payload.content.featuredMedia?[0]?.featuredMediaType ==
+            FeaturedMediaType.video;
     return Scaffold(
       backgroundColor: AppColors.lightGreyBackgroundColor,
       body: ListView(
@@ -164,6 +166,9 @@ class ContentDetailPage extends StatelessWidget {
                       contentType:
                           payload.content.contentType ?? ContentType.UNKNOWN,
                       estimateReadTime: payload.content.estimate ?? 0,
+                      videoDuration: hasVideo
+                          ? payload.content.featuredMedia?.first?.duration
+                          : null,
                     ),
                   ],
                 ),
