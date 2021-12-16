@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,9 @@ import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/inputs.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -18,6 +22,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class EditInformationPage extends StatefulWidget {
   ///[EditInformationPage] renders a form with inputs and a submit button
@@ -157,26 +162,35 @@ class _EditInformationPageState extends State<EditInformationPage> {
                 ),
               ),
             ),
-            Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: MyAfyaHubPrimaryButton(
-                  onPressed: formIsEdited
-                      ? () {
-                          widget.onSubmit(widget.editInformationItem);
-                        }
-                      : null,
-                  buttonColor:
-                      formIsEdited ? AppColors.secondaryColor : Colors.grey,
-                  borderColor: formIsEdited
-                      ? AppColors.secondaryColor
-                      : Colors.transparent,
-                  text: toBeginningOfSentenceCase(saveString),
-                ),
-              ),
-            ),
+            StoreConnector<AppState, AppStateViewModel>(
+              converter: (Store<AppState> store) =>
+                  AppStateViewModel.fromStore(store),
+              builder: (BuildContext context, AppStateViewModel vm) {
+                return Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 52,
+                    child: (vm.appState.wait!.isWaitingFor(editInformationFlag))
+                        ? const SILPlatformLoader()
+                        : MyAfyaHubPrimaryButton(
+                            onPressed: formIsEdited
+                                ? () {
+                                    widget.onSubmit(widget.editInformationItem);
+                                  }
+                                : null,
+                            buttonColor: formIsEdited
+                                ? AppColors.secondaryColor
+                                : Colors.grey,
+                            borderColor: formIsEdited
+                                ? AppColors.secondaryColor
+                                : Colors.transparent,
+                            text: toBeginningOfSentenceCase(saveString),
+                          ),
+                  ),
+                );
+              },
+            )
           ],
         ),
       ),

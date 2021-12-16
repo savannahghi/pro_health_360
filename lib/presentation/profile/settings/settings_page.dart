@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -58,13 +59,13 @@ class SettingsPage extends StatelessWidget {
                             ),
                             EditInformationButtonWidget(
                               editInformationItem: nickNameEditInfo(
-                                vm.clientState!.user!.username!,
+                                vm.clientState?.user?.username ?? UNKNOWN,
                               ),
                               submitFunction: (
                                 EditInformationItem editInformationItem,
                               ) async {
                                 final String initialNickName =
-                                    vm.clientState!.user!.username!;
+                                    vm.clientState?.user?.username ?? UNKNOWN;
 
                                 ///Set username/NickName to the new nickname
                                 StoreProvider.dispatch<AppState>(
@@ -82,7 +83,7 @@ class SettingsPage extends StatelessWidget {
                                     context,
                                     SetNicknameAction(
                                       context: context,
-                                      flag: setNickNameFlag,
+                                      flag: editInformationFlag,
                                       shouldNavigate: false,
                                     ),
                                   );
@@ -104,7 +105,8 @@ class SettingsPage extends StatelessWidget {
                         ),
                         smallVerticalSizedBox,
                         PersonalInformationWidget(
-                          description: vm.clientState!.user!.username!,
+                          description:
+                              vm.clientState?.user?.username ?? UNKNOWN,
                         ),
                       ],
                     ),

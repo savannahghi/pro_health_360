@@ -7,6 +7,7 @@ import 'package:afya_moja_core/community_list_item.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -19,7 +20,7 @@ class CommunityListViewPage extends StatelessWidget {
     // Placeholder
     const String appointmentReminderText =
         'Don\'t miss your appointment tomorrow';
-    const AssetImage avatarImage = AssetImage('assets/images/wellness2.jpeg');
+    const AssetImage avatarImage = AssetImage(profileImage);
     const String date = 'July 12 2021';
 
     const List<Widget> items = <Widget>[
