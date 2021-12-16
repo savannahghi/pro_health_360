@@ -110,9 +110,10 @@ class SetNicknameAction extends ReduxAction<AppState> {
       );
 
       if (shouldNavigate) {
-        Navigator.pushReplacementNamed(
+        Navigator.pushNamedAndRemoveUntil(
           context,
           BWRoutes.home,
+          (Route<dynamic> route) => false,
         );
       }
     }
