@@ -38,6 +38,8 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
+    super.initState();
+
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
       final FeedContentState? state = StoreProvider.state<AppState>(context)
           ?.contentState
@@ -50,8 +52,6 @@ class _FeedPageState extends State<FeedPage> {
         );
       }
     });
-
-    super.initState();
   }
 
   @override

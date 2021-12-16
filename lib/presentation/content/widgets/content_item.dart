@@ -31,7 +31,7 @@ class ContentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double galleryImageHeight = MediaQuery.of(context).size.height * 0.41;
+    const double galleryImageHeight = 500;
     final BorderRadius imageBorderRadius = BorderRadius.circular(12);
 
     final List<GalleryImage>? galleryImages = contentDetails.galleryImages;
@@ -78,7 +78,7 @@ class ContentItem extends StatelessWidget {
             child: GalleryImageWidget(
               borderRadius: imageBorderRadius,
               imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
-              height: MediaQuery.of(context).size.height * 0.81,
+              height: 800,
             ),
           ),
           const SizedBox(width: 8),
@@ -111,6 +111,7 @@ class ContentItem extends StatelessWidget {
       galleryItems.add(
         Expanded(
           child: GalleryImageWidget(
+            borderRadius: imageBorderRadius,
             imageUrl: contentDetails.heroImage!.url!,
             height: galleryImageHeight,
           ),
