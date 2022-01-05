@@ -71,11 +71,12 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['canRecordMood'] != null &&
-        responseMap['data']['canRecordMood'] == true) {
+    if (responseMap['data']['canRecordMood'] != null) {
       StoreProvider.dispatch(
         context,
-        UpdateHomeStateAction(canRecordMood: true),
+        UpdateHomeStateAction(
+          canRecordMood: responseMap['data']['canRecordMood'] as bool,
+        ),
       );
     }
 

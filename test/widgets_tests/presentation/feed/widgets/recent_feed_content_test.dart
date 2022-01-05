@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:ui';
 
 // Flutter imports:
+import 'package:afya_moja_core/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/basic.dart';
 
@@ -14,6 +15,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -160,7 +162,8 @@ void main() {
       });
     });
 
-    testWidgets('should display sized box when content list is empty',
+    testWidgets(
+        'should display ContentZeroStateWidget when content list is empty',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
@@ -189,7 +192,12 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(SizedBox), findsWidgets);
+        expect(find.byType(ContentZeroStateWidget), findsWidgets);
+
+        //Click ContentZeroStateWidget callback button
+        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+
+        expect(find.byType(ContentZeroStateWidget), findsWidgets);
       });
     });
 

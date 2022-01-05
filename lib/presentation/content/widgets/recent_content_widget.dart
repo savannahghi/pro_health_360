@@ -28,6 +28,8 @@ import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
+import 'content_zero_state_widget.dart';
+
 class RecentContentWidget extends StatefulWidget {
   const RecentContentWidget();
 
@@ -175,9 +177,20 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                 ],
               ),
             );
+          } else {
+            return SizedBox(
+              width: double.infinity,
+              child: ContentZeroStateWidget(
+                callBackFunction: () {
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    FetchRecentContentAction(context: context),
+                  );
+                },
+              ),
+            );
           }
         }
-        return const SizedBox();
       },
     );
   }
