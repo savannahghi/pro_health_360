@@ -1,18 +1,14 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -25,6 +21,8 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class FeedCategoriesWidget extends StatefulWidget {
   @override
@@ -161,9 +159,6 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                           labelStyle:
                               const TextStyle(color: AppColors.whiteColor),
                           shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                              color: AppColors.whiteColor,
-                            ),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           selected:
