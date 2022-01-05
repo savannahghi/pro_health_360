@@ -38,7 +38,9 @@ class RecentContentWidget extends StatefulWidget {
 class _RecentContentWidgetState extends State<RecentContentWidget> {
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       final ContentState? state =
           StoreProvider.state<AppState>(context)?.contentState;
 
@@ -56,7 +58,6 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
         );
       }
     });
-    super.initState();
   }
 
   @override
@@ -151,6 +152,10 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                               child: GalleryImageWidget(
                                 imageUrl: contentDetails?.heroImage?.url ?? '',
                                 height: 170,
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16),
+                                ),
                               ),
                             ),
                           ],
