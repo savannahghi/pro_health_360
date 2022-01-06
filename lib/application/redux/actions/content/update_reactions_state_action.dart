@@ -32,21 +32,17 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
     );
 
     if (contentToUpdate != Content.initial()) {
-      contentToUpdate!.copyWith.call(
-        hasLiked: hasLiked ?? contentToUpdate.hasLiked,
-        hasSaved: hasSaved ?? contentToUpdate.hasSaved,
-      );
-
-      contentItems?.removeWhere(
-        (Content? element) => element!.contentID == contentID,
-      );
-
-      contentItems?.add(
-        contentToUpdate.copyWith(
-          hasLiked: hasLiked ?? contentToUpdate.hasLiked,
-          hasSaved: hasSaved ?? contentToUpdate.hasSaved,
-        ),
-      );
+      final int arrLength = contentItems?.length ?? 0;
+      for (int i = 0; i < arrLength; i++) {
+        final int contentToCheck = contentItems?[i]?.contentID ?? 0;
+        if (contentToCheck == contentID) {
+          contentItems![i] = contentItems[i]?.copyWith.call(
+                hasLiked: hasLiked ?? contentItems[i]?.hasLiked,
+                hasSaved: hasSaved ?? contentItems[i]?.hasSaved,
+              );
+          break;
+        }
+      }
 
       final FeedContentState? newFeedState = state
           .contentState?.feedContentState
