@@ -3,7 +3,6 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
@@ -12,6 +11,7 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+
 import '../../mocks.dart';
 
 void main() {
@@ -32,6 +32,12 @@ void main() {
 
     test('should return an unprotected route', () async {
       expect(unProtectedRoutes[0], BWRoutes.phoneLogin);
+    });
+
+    test('should return initial route', () async {
+      expect(getInitialRoute(0, BWRoutes.phoneLogin), BWRoutes.phoneLogin);
+      expect(getInitialRoute(1, BWRoutes.feedPage), BWRoutes.feedPage);
+      expect(getInitialRoute(2, BWRoutes.myHealthPage), BWRoutes.myHealthPage);
     });
 
     test('formatSecurityQuestionDate should return birth date in en_GB format',
@@ -116,8 +122,7 @@ void main() {
     expect(getHasLiked(feedItems: <Content>[mockContent], contentID: 0), false);
     expect(getHasSaved(feedItems: <Content>[mockContent], contentID: 0), false);
   });
-  test('getLikeCount should return zero if id is not found',
-      () {
+  test('getLikeCount should return zero if id is not found', () {
     expect(getLikeCount(feedItems: <Content>[mockContent], contentID: 0), 0);
   });
 }

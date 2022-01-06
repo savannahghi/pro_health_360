@@ -1,16 +1,12 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
+// Flutter imports:
+import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
@@ -24,6 +20,8 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
@@ -106,7 +104,9 @@ class _PreLoadAppState extends State<PreLoadApp> {
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
       builder: (BuildContext context, InitialRouteViewModel vm) {
-        if (vm.initialRoute == null || vm.initialRoute == UNKNOWN) {
+        final String initialRoute =
+            getInitialRoute(vm.currentIndex ?? 0, vm.initialRoute);
+        if (initialRoute == UNKNOWN) {
           return MaterialApp(
             theme: AppTheme.getAppTheme(),
             home: const Scaffold(
@@ -121,7 +121,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
           theme: AppTheme.getAppTheme(),
           debugShowCheckedModeBanner: widget.appName == testAppName,
           onGenerateRoute: RouteGenerator.generateRoute,
-          initialRoute: vm.initialRoute,
+          initialRoute: initialRoute,
           navigatorKey: widget.appNavigatorKey,
           navigatorObservers: widget.appNavigatorObservers,
           localizationsDelegates: localizationDelegates,

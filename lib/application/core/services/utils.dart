@@ -1,15 +1,14 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:chewie/chewie.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,15 +17,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:unicons/unicons.dart';
-import 'package:video_player/video_player.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/video_player_initializer.dart';
@@ -53,6 +43,13 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/inputs.dart';
+import 'package:unicons/unicons.dart';
+import 'package:video_player/video_player.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -811,7 +808,11 @@ Future<void> updateLikeStatus({
 }) async {
   StoreProvider.dispatch(
     context,
-    UpdateReactionStatusAction(contentID: contentID, hasLiked: !isLiked, updateLikeCount: updateLikeCount),
+    UpdateReactionStatusAction(
+      contentID: contentID,
+      hasLiked: !isLiked,
+      updateLikeCount: updateLikeCount,
+    ),
   );
 
   await StoreProvider.dispatch(
@@ -911,11 +912,12 @@ bool getHasLiked({required List<Content?> feedItems, required int contentID}) {
 int getLikeCount({required List<Content?> feedItems, required int contentID}) {
   if (feedItems.isNotEmpty) {
     return feedItems
-        .firstWhere(
-          (Content? element) => element?.contentID == contentID,
-          orElse: () => Content.initial(),
-        )!
-        .likeCount ?? 0;
+            .firstWhere(
+              (Content? element) => element?.contentID == contentID,
+              orElse: () => Content.initial(),
+            )!
+            .likeCount ??
+        0;
   }
   return 0;
 }
@@ -932,12 +934,12 @@ bool getHasSaved({required List<Content?> feedItems, required int contentID}) {
   return false;
 }
 
-String getInitialRoute({
-  required BottomNavigationState? bottomNavigationState,
-}) {
-  final int currentBottomNavIndex =
-      bottomNavigationState?.currentBottomNavIndex ?? 0;
-  switch (currentBottomNavIndex) {
+String getInitialRoute(int currentIndex, String? initialRoute) {
+  if (initialRoute != null && initialRoute == BWRoutes.phoneLogin) {
+    return initialRoute;
+  }
+
+  switch (currentIndex) {
     case 1:
       return BWRoutes.feedPage;
 

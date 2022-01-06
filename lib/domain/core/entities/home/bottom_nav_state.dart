@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'bottom_nav_state.g.dart';
 part 'bottom_nav_state.freezed.dart';
+part 'bottom_nav_state.g.dart';
 
 @freezed
 class BottomNavigationState with _$BottomNavigationState {
