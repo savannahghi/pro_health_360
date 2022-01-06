@@ -154,14 +154,6 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                       });
                                     },
                                   ),
-                                  veryLargeVerticalSizedBox,
-                                  smallVerticalSizedBox,
-                                  Text(
-                                    importantInformationString,
-                                    style: TextThemes.boldSize16Text(
-                                      AppColors.secondaryColor,
-                                    ),
-                                  ),
                                   StreamBuilder<dynamic>(
                                     stream: _stream,
                                     builder: (
@@ -221,35 +213,53 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                               MainAxisAlignment.center,
                                           children: <Widget>[
                                             if (links?.isNotEmpty ?? false)
-                                              SizedBox(
-                                                width: double.infinity,
-                                                height: 250,
-                                                child: ListView.builder(
-                                                  physics:
-                                                      const BouncingScrollPhysics(),
-                                                  shrinkWrap: true,
-                                                  itemCount: links?.length,
-                                                  itemBuilder: (
-                                                    BuildContext context,
-                                                    int index,
-                                                  ) {
-                                                    final Content? currentLink =
-                                                        links!.elementAt(
-                                                      index,
-                                                    );
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  veryLargeVerticalSizedBox,
+                                                  smallVerticalSizedBox,
+                                                  Text(
+                                                    importantInformationString,
+                                                    style: TextThemes
+                                                        .boldSize16Text(
+                                                      AppColors.secondaryColor,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: double.infinity,
+                                                    height: 250,
+                                                    child: ListView.builder(
+                                                      physics:
+                                                          const BouncingScrollPhysics(),
+                                                      shrinkWrap: true,
+                                                      itemCount: links?.length,
+                                                      itemBuilder: (
+                                                        BuildContext context,
+                                                        int index,
+                                                      ) {
+                                                        final Content?
+                                                            currentLink =
+                                                            links!.elementAt(
+                                                          index,
+                                                        );
 
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                        top: 5,
-                                                      ),
-                                                      child: MiniContentWidget(
-                                                        contentDetails:
-                                                            currentLink,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                            top: 5,
+                                                          ),
+                                                          child:
+                                                              MiniContentWidget(
+                                                            contentDetails:
+                                                                currentLink,
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                           ],
                                         );
