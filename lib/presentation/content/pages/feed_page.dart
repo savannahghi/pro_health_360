@@ -40,7 +40,7 @@ class _FeedPageState extends State<FeedPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       final FeedContentState? state = StoreProvider.state<AppState>(context)
           ?.contentState
           ?.feedContentState;
@@ -123,11 +123,7 @@ class _FeedPageState extends State<FeedPage> {
                               right: 12,
                               left: 12,
                             ),
-                            child: SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.55,
-                              child:
-                                  ContentItem(contentDetails: currentFeedItem),
-                            ),
+                            child: ContentItem(contentDetails: currentFeedItem),
                           );
                         },
                       ),

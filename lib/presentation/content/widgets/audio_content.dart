@@ -105,18 +105,23 @@ class _AudioContentState extends State<AudioContent>
   Widget build(BuildContext context) {
     double? _dragValue;
     return Padding(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(12),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade500,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: AudioContentControls(
-                player: _player,
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade400,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: AudioContentControls(
+                  player: _player,
+                ),
               ),
             ),
           ),
@@ -204,69 +209,66 @@ class _AudioContentState extends State<AudioContent>
                       trackShape: AudioCustomTrackShape(),
                     );
                     // Slider
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Stack(
-                        children: <Widget>[
-                          SliderTheme(
-                            data: _sliderThemeData.copyWith(
-                              thumbShape: AudioHiddenThumbWidgetShape(),
-                              activeTrackColor: Colors.grey.shade400,
-                              inactiveTrackColor: Colors.white,
-                            ),
-                            child: Slider(
-                              max: positionData.duration.inMilliseconds
-                                  .toDouble(),
-                              value: min(
-                                positionData.bufferedPosition.inMilliseconds
-                                    .toDouble(),
-                                positionData.duration.inMilliseconds.toDouble(),
-                              ),
-                              onChanged: (double value) {},
-                            ),
+                    return Stack(
+                      children: <Widget>[
+                        SliderTheme(
+                          data: _sliderThemeData.copyWith(
+                            thumbShape: AudioHiddenThumbWidgetShape(),
+                            activeTrackColor: Colors.grey.shade400,
+                            inactiveTrackColor: Colors.white,
                           ),
-                          SliderTheme(
-                            data: _sliderThemeData.copyWith(
-                              thumbShape: const RoundSliderThumbShape(
-                                enabledThumbRadius: 7.0,
-                              ),
-                              thumbColor: AppColors.secondaryColor,
-                              activeTrackColor: AppColors.secondaryColor,
-                              inactiveTrackColor: Colors.transparent,
-                            ),
-                            child: Slider(
-                              max: positionData.duration.inMilliseconds
-                                  .toDouble(),
-                              value: min(
-                                _dragValue ??
-                                    positionData.position.inMilliseconds
-                                        .toDouble(),
+                          child: Slider(
+                            max:
                                 positionData.duration.inMilliseconds.toDouble(),
-                              ),
-                              onChanged: (double value) {
-                                setState(() {
-                                  _dragValue = value;
-                                });
-                              },
-                              onChangeEnd: (double value) {
-                                _player.seek(
-                                  Duration(
-                                    milliseconds: value.round(),
-                                  ),
-                                );
-                                _dragValue = null;
-                              },
+                            value: min(
+                              positionData.bufferedPosition.inMilliseconds
+                                  .toDouble(),
+                              positionData.duration.inMilliseconds.toDouble(),
                             ),
+                            onChanged: (double value) {},
                           ),
-                        ],
-                      ),
+                        ),
+                        SliderTheme(
+                          data: _sliderThemeData.copyWith(
+                            thumbShape: const RoundSliderThumbShape(
+                              enabledThumbRadius: 7.0,
+                            ),
+                            thumbColor: AppColors.secondaryColor,
+                            activeTrackColor: AppColors.secondaryColor,
+                            inactiveTrackColor: Colors.transparent,
+                          ),
+                          child: Slider(
+                            max:
+                                positionData.duration.inMilliseconds.toDouble(),
+                            value: min(
+                              _dragValue ??
+                                  positionData.position.inMilliseconds
+                                      .toDouble(),
+                              positionData.duration.inMilliseconds.toDouble(),
+                            ),
+                            onChanged: (double value) {
+                              setState(() {
+                                _dragValue = value;
+                              });
+                            },
+                            onChangeEnd: (double value) {
+                              _player.seek(
+                                Duration(
+                                  milliseconds: value.round(),
+                                ),
+                              );
+                              _dragValue = null;
+                            },
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),
 
                 // Reactions
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
+                  padding: const EdgeInsets.only(top: 16),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

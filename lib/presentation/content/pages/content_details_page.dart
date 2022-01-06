@@ -7,16 +7,19 @@ import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
+import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/save_content_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/share_content_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
@@ -37,16 +40,21 @@ class ContentDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final String createdAt =
         payload.content.metadata?.createdAt ?? DateTime.now().toString();
+
     final Widget publishDate = createdAt.isNotEmpty
         ? humanizeDate(
             dateTextStyle: TextThemes.boldSize12Text(AppColors.greyTextColor),
             loadedDate: createdAt,
           )
         : const SizedBox();
+
     final bool hasVideo = payload.content.featuredMedia != null &&
         payload.content.featuredMedia!.isNotEmpty &&
         payload.content.featuredMedia?[0]?.featuredMediaType ==
             FeaturedMediaType.video;
+
+    final List<Widget> galleryItems = getGalleryItems(context: context);
+
     return Scaffold(
       backgroundColor: AppColors.lightGreyBackgroundColor,
       body: ListView(
@@ -103,6 +111,30 @@ class ContentDetailPage extends StatelessWidget {
               ),
             ],
           ),
+          if (galleryItems.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 300,
+                child: GestureDetector(
+                  key: galleryImagePageKey,
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    if (payload.content.galleryImages != null &&
+                        payload.content.galleryImages!.length > 3) {
+                      Navigator.of(context).pushNamed(
+                        BWRoutes.galleryImagesPage,
+                        arguments: payload.content.galleryImages,
+                      );
+                    }
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[...galleryItems],
+                  ),
+                ),
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
@@ -224,5 +256,105 @@ class ContentDetailPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<Widget> getGalleryItems({required BuildContext context}) {
+    final List<GalleryImage>? galleryImages = payload.content.galleryImages;
+    final BorderRadius imageBorderRadius = BorderRadius.circular(12);
+    const double galleryImageHeight = 500;
+
+    final bool hasGalleryImages =
+        galleryImages != null && galleryImages.isNotEmpty;
+
+    final List<Widget> galleryItems = <Widget>[];
+
+    if (hasGalleryImages) {
+      if (galleryImages.length == 1) {
+        galleryItems.addAll(<Widget>[
+          GalleryImageWidget(
+            borderRadius: imageBorderRadius,
+            imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
+            height: galleryImageHeight,
+          ),
+        ]);
+      } else if (galleryImages.length == 2) {
+        galleryItems.addAll(<Widget>[
+          Expanded(
+            child: GalleryImageWidget(
+              borderRadius: imageBorderRadius,
+              imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
+              height: galleryImageHeight,
+            ),
+          ),
+          const SizedBox(width: 4),
+          Expanded(
+            child: GalleryImageWidget(
+              borderRadius: imageBorderRadius,
+              imageUrl: galleryImages[1].image?.meta?.imageDownloadUrl ?? '',
+              height: galleryImageHeight,
+            ),
+          ),
+        ]);
+      } else {
+        galleryItems.addAll(<Widget>[
+          Expanded(
+            child: GalleryImageWidget(
+              borderRadius: imageBorderRadius,
+              imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
+              height: MediaQuery.of(context).size.height,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: GalleryImageWidget(
+                    borderRadius: imageBorderRadius,
+                    imageUrl:
+                        galleryImages[1].image?.meta?.imageDownloadUrl ?? '',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Expanded(
+                  child: Stack(
+                    children: <Widget>[
+                      GalleryImageWidget(
+                        borderRadius: imageBorderRadius,
+                        imageUrl:
+                            galleryImages[2].image?.meta?.imageDownloadUrl ??
+                                '',
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                      ),
+                      if (galleryImages.length > 3)
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: imageBorderRadius,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '+ ${galleryImages.length - 3} more',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]);
+      }
+    }
+
+    return galleryItems;
   }
 }

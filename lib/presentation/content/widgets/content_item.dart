@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
-import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/leading_graphic_widget.dart';
 import 'package:shared_themes/spaces.dart';
@@ -32,113 +31,10 @@ class ContentItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double galleryImageHeight = 500;
-    final BorderRadius imageBorderRadius = BorderRadius.circular(12);
-
-    final List<GalleryImage>? galleryImages = contentDetails.galleryImages;
-
-    final bool hasGalleryImages =
-        galleryImages != null && galleryImages.isNotEmpty;
-
-    final List<Widget> galleryItems = <Widget>[];
-
-    final bool hasHeroImage = contentDetails.heroImage != null &&
-        contentDetails.heroImage!.url != UNKNOWN &&
-        contentDetails.heroImage!.url!.isNotEmpty;
-
-    if (hasGalleryImages) {
-      if (galleryImages.length == 1) {
-        galleryItems.addAll(<Widget>[
-          GalleryImageWidget(
-            borderRadius: imageBorderRadius,
-            imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
-            height: galleryImageHeight,
-          ),
-        ]);
-      } else if (galleryImages.length == 2) {
-        galleryItems.addAll(<Widget>[
-          Flexible(
-            child: GalleryImageWidget(
-              borderRadius: imageBorderRadius,
-              imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
-              height: galleryImageHeight,
-            ),
-          ),
-          const SizedBox(width: 4),
-          Flexible(
-            child: GalleryImageWidget(
-              borderRadius: imageBorderRadius,
-              imageUrl: galleryImages[1].image?.meta?.imageDownloadUrl ?? '',
-              height: galleryImageHeight,
-            ),
-          ),
-        ]);
-      } else {
-        galleryItems.addAll(<Widget>[
-          Flexible(
-            child: GalleryImageWidget(
-              borderRadius: imageBorderRadius,
-              imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
-              height: 800,
-            ),
-          ),
-          const SizedBox(width: 8),
-          Flexible(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: GalleryImageWidget(
-                    borderRadius: imageBorderRadius,
-                    imageUrl:
-                        galleryImages[1].image?.meta?.imageDownloadUrl ?? '',
-                    width: MediaQuery.of(context).size.width,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Expanded(
-                  child: Stack(
-                    children: <Widget>[
-                      GalleryImageWidget(
-                        borderRadius: imageBorderRadius,
-                        imageUrl:
-                            galleryImages[2].image?.meta?.imageDownloadUrl ??
-                                '',
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                      if (galleryImages.length > 3)
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: imageBorderRadius,
-                            color: Colors.black.withOpacity(0.5),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '+ ${galleryImages.length - 3} more',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ]);
-      }
-    } else if (hasHeroImage) {
-      galleryItems.add(
-        Expanded(
-          child: GalleryImageWidget(
-            borderRadius: imageBorderRadius,
-            imageUrl: contentDetails.heroImage!.url!,
-            height: galleryImageHeight,
-          ),
-        ),
-      );
-    }
+    const BorderRadius imageBorderRadius = BorderRadius.only(
+      topLeft: Radius.circular(12),
+      topRight: Radius.circular(12),
+    );
 
     final bool isArticle = contentDetails.contentType == ContentType.ARTICLE;
     final bool isVideo =
@@ -150,6 +46,10 @@ class ContentItem extends StatelessWidget {
         contentDetails.contentType == ContentType.AUDIO_VIDEO &&
             contentDetails.featuredMedia?[0]?.featuredMediaType ==
                 FeaturedMediaType.audio;
+
+    final bool hasHeroImage = contentDetails.heroImage != null &&
+        contentDetails.heroImage?.url != UNKNOWN &&
+        contentDetails.heroImage!.url!.isNotEmpty;
 
     return GestureDetector(
       key: feedContentItemKey,
@@ -164,6 +64,7 @@ class ContentItem extends StatelessWidget {
         }
       },
       child: Container(
+        height: MediaQuery.of(context).size.height * 0.55,
         width: MediaQuery.of(context).size.width - 50,
         decoration: const BoxDecoration(
           color: AppColors.darkGreyBackgroundColor,
@@ -172,21 +73,25 @@ class ContentItem extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Column(
-              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Flexible(
+                Expanded(
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
-                      if (galleryItems.isNotEmpty)
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: LeadingGraphicWidget(
-                            contentDetails: contentDetails,
-                            heroImage: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[...galleryItems],
-                            ),
+                      if (hasHeroImage)
+                        LeadingGraphicWidget(
+                          contentDetails: contentDetails,
+                          heroImage: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Expanded(
+                                child: GalleryImageWidget(
+                                  borderRadius: imageBorderRadius,
+                                  imageUrl: contentDetails.heroImage!.url!,
+                                  height: galleryImageHeight,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       // A video playback icon if there is a video

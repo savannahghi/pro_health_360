@@ -6,6 +6,10 @@ import 'dart:io';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
+import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
+import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
+import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -214,6 +218,131 @@ void main() {
       await tester.pump();
 
       expect(find.byType(SILPlatformLoader), findsNWidgets(2));
+    });
+
+    testWidgets('should show gallery image if present',
+        (WidgetTester tester) async {
+      final Content content = Content(
+        heroImage: HeroImage(url: 'url'),
+        galleryImages: <GalleryImage>[
+          GalleryImage.fromJson(mockGalleryImage),
+        ],
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ContentDetailPage(payload: ContentDetails(content: content)),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GalleryImageWidget), findsOneWidget);
+    });
+
+    testWidgets('should show two gallery images if present',
+        (WidgetTester tester) async {
+      final Content content = Content(
+        heroImage: HeroImage(url: 'url'),
+        galleryImages: <GalleryImage>[
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+        ],
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ContentDetailPage(payload: ContentDetails(content: content)),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GalleryImageWidget), findsNWidgets(2));
+    });
+
+    testWidgets('should show three gallery images if present',
+        (WidgetTester tester) async {
+      final Content content = Content(
+        heroImage: HeroImage(url: 'url'),
+        galleryImages: <GalleryImage>[
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+        ],
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ContentDetailPage(payload: ContentDetails(content: content)),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
+    });
+
+    testWidgets(
+        'if gallery images are more than 3 should navigate to gallery '
+        'images page', (WidgetTester tester) async {
+      final Content content = Content(
+        heroImage: HeroImage(url: 'url'),
+        galleryImages: <GalleryImage>[
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+        ],
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ContentDetailPage(payload: ContentDetails(content: content)),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
+
+      final Finder galleryImagesKey = find.byKey(galleryImagePageKey);
+      expect(galleryImagesKey, findsOneWidget);
+
+      await tester.tap(galleryImagesKey);
+      await tester.pumpAndSettle();
+      expect(find.byType(GalleryImagesPage), findsOneWidget);
+    });
+
+    testWidgets(
+        'if gallery images are more than 3 should navigate to gallery '
+        'images page', (WidgetTester tester) async {
+      final Content content = Content(
+        heroImage: HeroImage(url: 'url'),
+        galleryImages: <GalleryImage>[
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+        ],
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ContentDetailPage(payload: ContentDetails(content: content)),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
+
+      final Finder galleryImagesKey = find.byKey(galleryImagePageKey);
+      expect(galleryImagesKey, findsOneWidget);
+
+      await tester.tap(galleryImagesKey);
+      await tester.pumpAndSettle();
+      expect(find.byType(GalleryImagesPage), findsOneWidget);
     });
   });
 }

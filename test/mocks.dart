@@ -1718,6 +1718,107 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
       }
     ]
   },
+  <String, dynamic>{
+    'ID': 12,
+    'title': 'Test article',
+    'date': '2022-01-06',
+    'intro': 'This is a test article',
+    'authorName': 'John Ngugi',
+    'tagNames': <String>['test'],
+    'meta': <String, dynamic>{
+      'contentType': 'content.ContentItem',
+      'contentHTMLURL':
+          'http://mycarehub-stage.savannahghi.org/health-education/test-article/',
+      'slug': 'test-article',
+      'showInMenus': false,
+      'seoTitle': '',
+      'searchDescription': '',
+      'firstPublishedAt': '2022-01-06T09:18:42.024393+03:00',
+      'locale': 'en'
+    },
+    'itemType': 'AUDIO_VIDEO',
+    'timeEstimateSeconds': 6,
+    'body': '<p data-block-key="9gd2w">Test article</p>',
+    'heroImage': <String, dynamic>{'ID': 10, 'title': 'sunbeds3'},
+    'heroImageRendition': <String, dynamic>{
+      'url':
+          'https://storage.googleapis.com/mycarehub-test/media/images/sunbeds3_VNXQPgI.2e16d0ba.fill-800x1200.jpegquality-60.jpg',
+      'width': 800,
+      'height': 1200,
+      'alt': 'sunbeds3'
+    },
+    'likeCount': 6,
+    'bookmarkCount': 2,
+    'viewCount': 0,
+    'shareCount': 1,
+    'author': <String, dynamic>{'ID': 'cd92a709-c397-4b04-a963-709eb7e08486'},
+    'categoryDetails': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 6,
+        'categoryName': 'recommended',
+        'categoryIcon': ''
+      }
+    ],
+    'featuredMedia': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 2,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music_ppKS2s4.aac',
+        'title': 'soft_piano_music',
+        'type': 'audio',
+        'duration': 141,
+        'width': 0,
+        'height': 0,
+        'thumbnail': ''
+      }
+    ],
+    'galleryImages': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 1,
+        'image': <String, dynamic>{
+          'ID': 8,
+          'title': 'Contrail',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/jake-nackos-zAeD6Gug2PY-unsplash_IXYJr4K.jpg'
+          }
+        }
+      },
+      <String, dynamic>{
+        'ID': 2,
+        'image': <String, dynamic>{
+          'ID': 7,
+          'title': 'Plane_with_background',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/vino-li-kpcJgsvpY3Q-unsplash_9w4CILs.jpg'
+          }
+        }
+      },
+      <String, dynamic>{
+        'ID': 3,
+        'image': <String, dynamic>{
+          'ID': 9,
+          'title': 'sunbeds3',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/valentin-b-kremer-icXbm3QDw2w-unsplash_YNcTzbk.jpg'
+          }
+        }
+      },
+      <String, dynamic>{
+        'ID': 4,
+        'image': <String, dynamic>{
+          'ID': 11,
+          'title': 'syringe',
+          'meta': <String, dynamic>{
+            'imageDownloadUrl':
+                'https://storage.googleapis.com/mycarehub-test/media/original_images/mika-baumeister-fPE_qTJu3Ws-unsplash_4NqBMVN.jpg'
+          }
+        }
+      }
+    ],
+  },
 ];
 
 final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[

@@ -52,6 +52,7 @@ class FetchContentAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final ContentCategory selectedCategory =
         category ?? ContentCategory.initial();
+
     final Map<String, dynamic> variables = <String, dynamic>{
       'categoryID': selectedCategory.id == 0 ? null : selectedCategory.id,
       'Limit': limit.toString()
@@ -66,6 +67,7 @@ class FetchContentAction extends ReduxAction<AppState> {
     );
 
     final Map<String, dynamic> payLoad = _client.toMap(response);
+
     final String? error = parseError(payLoad);
 
     if (error != null) {

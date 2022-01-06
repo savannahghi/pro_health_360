@@ -90,6 +90,8 @@ class BWRoutes {
 
   //Edit Information Page
   static const String editInformationPage = '/editInformationPage';
+
+  static const String galleryImagesPage = '/galleryImagesPage';
 }
 
 List<String> unProtectedRoutes = <String>[BWRoutes.phoneLogin];

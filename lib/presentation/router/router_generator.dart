@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
+import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
+import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -235,6 +237,13 @@ class RouteGenerator {
         return MaterialPageRoute<ContentDetailPage>(
           builder: (_) => ContentDetailPage(
             payload: args as ContentDetails,
+          ),
+        );
+
+      case BWRoutes.galleryImagesPage:
+        return MaterialPageRoute<ContentDetailPage>(
+          builder: (_) => GalleryImagesPage(
+            images: args as List<GalleryImage>,
           ),
         );
 

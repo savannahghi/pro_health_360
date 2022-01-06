@@ -643,3 +643,5 @@ const String fetchLikeStatusErrorString =
 
 const String networkConnectionUnreliable =
     'Network connection unreliable. Please try again later.';
+
+const String galleryImagesTitle = 'Gallery Images';

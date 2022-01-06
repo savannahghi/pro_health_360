@@ -331,3 +331,5 @@ const Key healthDiaryRetryButtonKey = Key('retry_health_diary');
 
 const Key shareHealthDiaryKey = Key('share_health_diary');
 const Key dontShareHealthDiaryKey = Key('dont_share_health_diary');
+
+const Key galleryImagePageKey = Key('gallery_image_page_key');

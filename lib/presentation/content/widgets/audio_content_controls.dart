@@ -41,12 +41,12 @@ class AudioContentControls extends StatelessWidget {
           return Container(
             decoration: BoxDecoration(
               color: Colors.grey.shade800,
-              borderRadius: const BorderRadius.all(Radius.circular(400)),
+              borderRadius: const BorderRadius.all(Radius.circular(50)),
             ),
             child: IconButton(
               color: Colors.white,
               icon: const Icon(Icons.play_arrow),
-              iconSize: 35.0,
+              iconSize: 32.0,
               onPressed: player.play,
             ),
           );
@@ -60,7 +60,7 @@ class AudioContentControls extends StatelessWidget {
             child: IconButton(
               color: Colors.white,
               icon: const Icon(Icons.pause),
-              iconSize: 35.0,
+              iconSize: 32.0,
               onPressed: player.pause,
             ),
           );
@@ -73,7 +73,7 @@ class AudioContentControls extends StatelessWidget {
             child: IconButton(
               color: Colors.white,
               icon: const Icon(Icons.replay),
-              iconSize: 32.5,
+              iconSize: 32.0,
               onPressed: () => player.seek(Duration.zero),
             ),
           );

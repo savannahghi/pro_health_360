@@ -32,6 +32,21 @@ void main() {
       HttpOverrides.global = TestHttpOverrides();
     });
 
+    testWidgets('shows audio content', (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
+      final Content mockContent = Content.fromJson(contentMock[1]);
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: ContentItem(contentDetails: mockContent),
+      );
+
+      expect(find.byType(AudioContent), findsOneWidget);
+    });
+
     testWidgets('shows the play icon if a piece of content has a video',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
@@ -67,70 +82,10 @@ void main() {
       expect(find.byType(GalleryImageWidget), findsOneWidget);
     });
 
-    testWidgets('should show gallery images if they are 2',
-        (WidgetTester tester) async {
-      final Content content = Content(
-        galleryImages: <GalleryImage>[
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage)
-        ],
-      );
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: MockGraphQlClient(),
-        widget: ContentItem(contentDetails: content),
-      );
-
-      expect(find.byType(GalleryImageWidget), findsNWidgets(2));
-    });
-
-    testWidgets('should show gallery images if they are 3',
-        (WidgetTester tester) async {
-      final Content content = Content(
-        galleryImages: <GalleryImage>[
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-        ],
-      );
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: MockGraphQlClient(),
-        widget: ContentItem(contentDetails: content),
-      );
-
-      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
-    });
-
-    testWidgets('should show gallery images if they are more than 3',
-        (WidgetTester tester) async {
-      final Content content = Content(
-        galleryImages: <GalleryImage>[
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-        ],
-      );
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: MockGraphQlClient(),
-        widget: ContentItem(contentDetails: content),
-      );
-
-      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
-      expect(find.text('+ 1 more'), findsOneWidget);
-    });
-
     testWidgets('should show AudioContent if present',
         (WidgetTester tester) async {
       final Content content = Content(
+        heroImage: HeroImage(url: 'url'),
         contentType: ContentType.AUDIO_VIDEO,
         featuredMedia: <FeaturedMedia>[
           FeaturedMedia(
@@ -138,35 +93,21 @@ void main() {
             mediaUrl: '',
           )
         ],
-        galleryImages: <GalleryImage>[
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-        ],
       );
 
       await buildTestWidget(
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: ContentItem(
-          contentDetails: content,
-          isNew: true,
-        ),
+        widget: ContentItem(contentDetails: content),
       );
 
-      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
+      expect(find.byType(GalleryImageWidget), findsOneWidget);
       expect(find.byType(AudioContent), findsOneWidget);
     });
 
     testWidgets('should show true badge', (WidgetTester tester) async {
-      final Content content = Content(
-        galleryImages: <GalleryImage>[
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-          GalleryImage.fromJson(mockGalleryImage),
-        ],
-      );
+      final Content content = Content(heroImage: HeroImage(url: 'url'));
 
       await buildTestWidget(
         tester: tester,
@@ -178,7 +119,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
+      expect(find.byType(GalleryImageWidget), findsOneWidget);
       expect(find.text(newText), findsOneWidget);
     });
   });
