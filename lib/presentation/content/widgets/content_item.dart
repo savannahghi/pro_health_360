@@ -85,7 +85,7 @@ class ContentItem extends StatelessWidget {
           Flexible(
             child: Column(
               children: <Widget>[
-                Flexible(
+                Expanded(
                   child: GalleryImageWidget(
                     borderRadius: imageBorderRadius,
                     imageUrl:
@@ -94,12 +94,33 @@ class ContentItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Flexible(
-                  child: GalleryImageWidget(
-                    borderRadius: imageBorderRadius,
-                    imageUrl:
-                        galleryImages[2].image?.meta?.imageDownloadUrl ?? '',
-                    width: MediaQuery.of(context).size.width,
+                Expanded(
+                  child: Stack(
+                    children: <Widget>[
+                      GalleryImageWidget(
+                        borderRadius: imageBorderRadius,
+                        imageUrl:
+                            galleryImages[2].image?.meta?.imageDownloadUrl ??
+                                '',
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                      if (galleryImages.length > 3)
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: imageBorderRadius,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '+ ${galleryImages.length - 3} more',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ],
@@ -124,6 +145,7 @@ class ContentItem extends StatelessWidget {
         contentDetails.contentType == ContentType.AUDIO_VIDEO &&
             contentDetails.featuredMedia?[0]?.featuredMediaType ==
                 FeaturedMediaType.video;
+
     final bool isAudio =
         contentDetails.contentType == ContentType.AUDIO_VIDEO &&
             contentDetails.featuredMedia?[0]?.featuredMediaType ==

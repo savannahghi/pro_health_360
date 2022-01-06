@@ -86,7 +86,7 @@ void main() {
       expect(find.byType(GalleryImageWidget), findsNWidgets(2));
     });
 
-    testWidgets('should show gallery images if they are more than 3',
+    testWidgets('should show gallery images if they are 3',
         (WidgetTester tester) async {
       final Content content = Content(
         galleryImages: <GalleryImage>[
@@ -104,6 +104,28 @@ void main() {
       );
 
       expect(find.byType(GalleryImageWidget), findsNWidgets(3));
+    });
+
+    testWidgets('should show gallery images if they are more than 3',
+        (WidgetTester tester) async {
+      final Content content = Content(
+        galleryImages: <GalleryImage>[
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+          GalleryImage.fromJson(mockGalleryImage),
+        ],
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ContentItem(contentDetails: content),
+      );
+
+      expect(find.byType(GalleryImageWidget), findsNWidgets(3));
+      expect(find.text('+ 1 more'), findsOneWidget);
     });
 
     testWidgets('should show AudioContent if present',
