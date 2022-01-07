@@ -17,6 +17,15 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/buttons.dart';
+import 'package:shared_ui_components/inputs.dart';
+import 'package:unicons/unicons.dart';
+import 'package:video_player/video_player.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/video_player_initializer.dart';
@@ -43,13 +52,6 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:unicons/unicons.dart';
-import 'package:video_player/video_player.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -380,8 +382,8 @@ Widget humanizeDate({
   bool showTime = false,
   bool showYear = true,
 }) {
-  if (loadedDate != UNKNOWN) {
-    final DateTime parsedDate = DateTime.parse(loadedDate);
+  if (loadedDate != UNKNOWN && loadedDate.isNotEmpty) {
+    final DateTime parsedDate = DateTime.tryParse(loadedDate) ?? DateTime.now();
     final String postDayTime = DateFormat.jm().format(parsedDate);
     final String postDay = DateFormat.d().format(parsedDate);
     final String postMonth = DateFormat.MMM().format(parsedDate);
@@ -805,6 +807,7 @@ Future<void> updateLikeStatus({
   required int contentID,
   required bool isLiked,
   bool updateLikeCount = false,
+  required ContentDisplayedType contentDisplayedType,
 }) async {
   StoreProvider.dispatch(
     context,
@@ -812,6 +815,7 @@ Future<void> updateLikeStatus({
       contentID: contentID,
       hasLiked: !isLiked,
       updateLikeCount: updateLikeCount,
+      contentDisplayedType: contentDisplayedType,
     ),
   );
 
@@ -828,11 +832,15 @@ Future<void> updateLikeStatus({
 Future<void> updateBookmarkStatus({
   required BuildContext context,
   required int contentID,
+  required ContentDisplayedType contentDisplayedType,
 }) async {
   //update save status locally
   StoreProvider.dispatch(
     context,
-    UpdateReactionStatusAction(contentID: contentID, hasSaved: true),
+    UpdateReactionStatusAction(
+        contentID: contentID,
+        hasSaved: true,
+        contentDisplayedType: contentDisplayedType,),
   );
 
   await StoreProvider.dispatch(
@@ -897,9 +905,15 @@ Future<ChewieController> initializeChewiController({
   );
 }
 
-bool getHasLiked({required List<Content?> feedItems, required int contentID}) {
-  if (feedItems.isNotEmpty) {
-    return feedItems
+bool getHasLiked({
+  required int contentID,
+  required ContentDisplayedType contentDisplayedType,
+  required ContentViewModel vm,
+}) {
+  final List<Content?> contentItems =
+      getContentList(contentDisplayedType: contentDisplayedType, vm: vm);
+  if (contentItems.isNotEmpty) {
+    return contentItems
         .firstWhere(
           (Content? element) => element?.contentID == contentID,
           orElse: () => Content.initial(),
@@ -909,9 +923,16 @@ bool getHasLiked({required List<Content?> feedItems, required int contentID}) {
   return false;
 }
 
-int getLikeCount({required List<Content?> feedItems, required int contentID}) {
-  if (feedItems.isNotEmpty) {
-    return feedItems
+int getLikeCount({
+  required int contentID,
+  required ContentDisplayedType contentDisplayedType,
+  required ContentViewModel vm,
+}) {
+  final List<Content?> contentItems =
+      getContentList(contentDisplayedType: contentDisplayedType, vm: vm);
+
+  if (contentItems.isNotEmpty) {
+    return contentItems
             .firstWhere(
               (Content? element) => element?.contentID == contentID,
               orElse: () => Content.initial(),
@@ -922,9 +943,15 @@ int getLikeCount({required List<Content?> feedItems, required int contentID}) {
   return 0;
 }
 
-bool getHasSaved({required List<Content?> feedItems, required int contentID}) {
-  if (feedItems.isNotEmpty) {
-    return feedItems
+bool getHasSaved({
+  required int contentID,
+  required ContentDisplayedType contentDisplayedType,
+  required ContentViewModel vm,
+}) {
+  final List<Content?> contentItems =
+      getContentList(contentDisplayedType: contentDisplayedType, vm: vm);
+  if (contentItems.isNotEmpty) {
+    return contentItems
         .firstWhere(
           (Content? element) => element?.contentID == contentID,
           orElse: () => Content.initial(),
@@ -932,6 +959,22 @@ bool getHasSaved({required List<Content?> feedItems, required int contentID}) {
         .hasSaved!;
   }
   return false;
+}
+List<Content?> getContentList({
+  required ContentDisplayedType contentDisplayedType,
+  required ContentViewModel vm,
+}) {
+  switch (contentDisplayedType) {
+    case ContentDisplayedType.FEED:
+      return vm.feedContentState?.contentItems ?? <Content?>[];
+    case ContentDisplayedType.BOOKMARK:
+      return vm.savedContentState?.savedContentItems ?? <Content?>[];
+
+    case ContentDisplayedType.RECENT:
+      return vm.recentContentState?.contentItems ?? <Content?>[];
+    default:
+      return <Content?>[];
+  }
 }
 
 String getInitialRoute(int currentIndex, String? initialRoute) {

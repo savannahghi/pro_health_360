@@ -46,6 +46,7 @@ class FeedPageContentItem extends StatelessWidget {
             BWRoutes.contentDetailPage,
             arguments: ContentDetails(
               content: content,
+              contentDisplayedType: ContentDisplayedType.RECENT,
             ),
           );
         }

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_recent_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/view_models/content/recent_content_view_model.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
 import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
@@ -64,22 +64,22 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, RecentContentViewModel>(
+    return StoreConnector<AppState, ContentViewModel>(
       converter: (Store<AppState> store) =>
-          RecentContentViewModel.fromStore(store.state),
-      builder: (BuildContext context, RecentContentViewModel vm) {
+          ContentViewModel.fromStore(store.state),
+      builder: (BuildContext context, ContentViewModel vm) {
         if (vm.wait?.isWaitingFor(fetchRecentContentFlag) ?? false) {
           return Container(
             height: 300,
             padding: const EdgeInsets.all(20),
             child: const SILPlatformLoader(),
           );
-        } else if (vm.timeoutFetchingContent ?? false) {
+        } else if (vm.recentContentState?.timeoutFetchingContent ?? false) {
           return const GenericTimeoutWidget(
             route: BWRoutes.home,
             action: 'fetching your recent content',
           );
-        } else if (vm.errorFetchingContent ?? false) {
+        } else if (vm.recentContentState?.errorFetchingContent ?? false) {
           return GenericNoData(
             key: helpNoDataWidgetKey,
             type: GenericNoDataTypes.ErrorInData,
@@ -93,7 +93,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
             messageBody: messageBodyGenericNoData,
           );
         } else {
-          final List<Content?>? recentContent = vm.contentItems;
+          final List<Content?>? recentContent = vm.recentContentState?.contentItems;
 
           if (recentContent?.isNotEmpty ?? false) {
             return SizedBox(

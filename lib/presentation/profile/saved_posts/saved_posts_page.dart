@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/fetch_saved_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/saved_content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -54,22 +55,23 @@ class _SavedPostPageState extends State<SavedPostPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         children: <Widget>[
-          StoreConnector<AppState, SavedContentViewModel>(
+          StoreConnector<AppState, ContentViewModel>(
             converter: (Store<AppState> store) =>
-                SavedContentViewModel.fromStore(store.state),
-            builder: (BuildContext context, SavedContentViewModel vm) {
+                ContentViewModel.fromStore(store.state),
+            builder: (BuildContext context, ContentViewModel vm) {
               if (vm.wait!.isWaitingFor(fetchSavedContentFlag)) {
                 return Container(
                   height: 300,
                   padding: const EdgeInsets.all(20),
                   child: const SILPlatformLoader(),
                 );
-              } else if (vm.timeoutFetchingContent ?? false) {
+              } else if (vm.savedContentState?.timeoutFetchingContent ??
+                  false) {
                 return const GenericTimeoutWidget(
                   route: BWRoutes.userProfilePage,
                   action: 'fetching your saved content',
                 );
-              } else if (vm.errorFetchingContent ?? false) {
+              } else if (vm.savedContentState?.errorFetchingContent ?? false) {
                 return GenericNoData(
                   key: helpNoDataWidgetKey,
                   type: GenericNoDataTypes.ErrorInData,
@@ -83,7 +85,8 @@ class _SavedPostPageState extends State<SavedPostPage> {
                   messageBody: messageBodyGenericNoData,
                 );
               } else {
-                final List<Content?>? savedItems = vm.savedItems;
+                final List<Content?>? savedItems =
+                    vm.savedContentState?.savedContentItems;
 
                 if (savedItems != null && savedItems.isNotEmpty) {
                   return Flexible(
@@ -110,8 +113,11 @@ class _SavedPostPageState extends State<SavedPostPage> {
                             ),
                             child: SizedBox(
                               height: MediaQuery.of(context).size.height,
-                              child:
-                                  ContentItem(contentDetails: currentSavedItem),
+                              child: ContentItem(
+                                contentDetails: currentSavedItem,
+                                contentDisplayedType:
+                                    ContentDisplayedType.BOOKMARK,
+                              ),
                             ),
                           );
                         },

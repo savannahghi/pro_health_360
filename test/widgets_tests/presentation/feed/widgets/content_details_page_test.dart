@@ -10,6 +10,9 @@ import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
 import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
 import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
+import 'package:myafyahub/application/redux/actions/update_saved_content_state_action.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -67,28 +70,45 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: ContentDetailPage(
           payload: ContentDetails(
-            content: mockContent.copyWith(metadata: ContentMetadata.initial()),
+            content: mockContent.copyWith(
+              metadata: ContentMetadata.initial(),
+            ),
           ),
         ),
       );
 
+      await tester.tap(find.byKey(likeButtonKey));
+      await tester.pumpAndSettle();
+
       expect(find.byKey(cancelButtonKey), findsOneWidget);
+      expect(find.text('Like'), findsNothing);
     });
 
     testWidgets('renders correctly with the correct video content data',
         (WidgetTester tester) async {
       store.dispatch(
-        UpdateContentStateAction(contentItems: <Content>[mockContent]),
+        UpdateSavedContentStateAction(
+          savedContentItems: <Content>[mockContent],
+        ),
       );
       await buildTestWidget(
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
         widget: ContentDetailPage(
-          payload: ContentDetails(content: mockVideoContent),
+          payload: ContentDetails(
+            content: mockVideoContent,
+            contentDisplayedType: ContentDisplayedType.BOOKMARK,
+          ),
         ),
       );
+
+      final Finder likeButton = find.byKey(likeButtonKey);
       expect(find.byType(ChewieVideoPlayer), findsOneWidget);
+      expect(likeButton, findsOneWidget);
+
+      await tester.tap(likeButton);
+      expect(find.text('Like'), findsNothing);
     });
 
     testWidgets(
@@ -123,15 +143,16 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      final Finder likeButton = find.byKey(likeButtonKey);
+      final Finder likeButton = find.byType(LikeContentWidget);
 
       expect(likeButton, findsOneWidget);
 
-      await tester.tap(likeButton);
-      await tester.pumpAndSettle();
       await tester.ensureVisible(likeButton);
       await tester.pumpAndSettle();
-      expect(find.text('likes'), findsNothing);
+      await tester.tap(likeButton);
+      await tester.pumpAndSettle();
+
+      expect(find.text('Like'), findsNothing);
 
       await tester.tap(likeButton);
       await tester.pumpAndSettle();
@@ -164,8 +185,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget:
-            ContentDetailPage(payload: ContentDetails(content: mockContent)),
+        widget: ContentDetailPage(
+          payload: ContentDetails(content: mockContent.copyWith(contentID: 9)),
+        ),
       );
       await tester.pumpAndSettle();
       final Finder shareButton = find.byKey(shareButtonKey);
@@ -178,27 +200,47 @@ void main() {
     });
     testWidgets('Save button is tappable', (WidgetTester tester) async {
       store.dispatch(
-        UpdateContentStateAction(contentItems: <Content>[mockContent]),
-      );
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortSILGraphQlClient,
-        widget: ContentDetailPage(
-          payload: ContentDetails(
-            content:
-                mockContent.copyWith(metadata: ContentMetadata(createdAt: '')),
-          ),
+        UpdateContentStateAction(
+          contentItems: <Content>[mockContent.copyWith(contentID: 9)],
         ),
       );
-      await tester.pumpAndSettle();
-      final Finder saveButton = find.byKey(saveButtonKey);
+      await tester.runAsync(() async {
+        TestWidgetsFlutterBinding.ensureInitialized();
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: ContentDetailPage(
+            payload: ContentDetails(
+              content: mockContent.copyWith(
+                metadata: ContentMetadata(createdAt: ''),
+              ),
+              contentDisplayedType: ContentDisplayedType.FEED,
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        final Finder saveButton = find.byKey(saveButtonKey);
 
-      expect(saveButton, findsOneWidget);
+        expect(saveButton, findsOneWidget);
 
-      await tester.tap(saveButton);
-      await tester.pumpAndSettle();
-      expect(find.text(saveString), findsOneWidget);
+        await tester.ensureVisible(saveButton);
+        await tester.pumpAndSettle();
+        await tester.tap(saveButton);
+        await tester.pumpAndSettle();
+        expect(find.text(savedString), findsNothing);
+
+        store.dispatch(
+          UpdateContentStateAction(
+              contentItems: <Content>[mockContent.copyWith(contentID: 1)],),
+        );
+
+        await tester.ensureVisible(saveButton);
+        await tester.pumpAndSettle();
+        await tester.tap(saveButton);
+        await tester.pumpAndSettle();
+        expect(find.text(saveString), findsNothing);
+      });
     });
 
     testWidgets('show loading indicators while fetching like and save status',

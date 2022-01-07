@@ -8,6 +8,7 @@ import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/constants.dart';
 
 // Project imports:
@@ -20,12 +21,14 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 class FetchBookmarkStatusAction extends ReduxAction<AppState> {
   FetchBookmarkStatusAction({
+    required this.contentDisplayedType,
     required this.context,
     required this.contentID,
   });
 
   final BuildContext context;
   final int contentID;
+  final ContentDisplayedType contentDisplayedType;
 
   @override
   void after() {
@@ -74,12 +77,14 @@ class FetchBookmarkStatusAction extends ReduxAction<AppState> {
         UpdateReactionStatusAction(
           contentID: contentID,
           hasSaved: responseMap['data']['checkIfUserBookmarkedContent'] as bool,
+          contentDisplayedType: contentDisplayedType,
         ),
       );
     }
 
     return state;
   }
+
   @override
   Object wrapError(dynamic error) async {
     if (error.runtimeType == SILException) {

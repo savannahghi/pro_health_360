@@ -1,33 +1,38 @@
-// Flutter imports:
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/redux/actions/content/fetch_bookmark_status_action.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-import 'package:unicons/unicons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/content/fetch_bookmark_status_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/feed_content_view_model.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:unicons/unicons.dart';
 
-/// [SaveContentWidget] Displays reaction Icons on the feed
+/// [SaveContentWidget] Displays like status on the content details page
 class SaveContentWidget extends StatefulWidget {
-  const SaveContentWidget({Key? key, required this.contentID})
-      : super(key: key);
+  const SaveContentWidget({
+    Key? key,
+    required this.contentID,
+    required this.contentDisplayedType,
+  }) : super(key: key);
   final int contentID;
+  final ContentDisplayedType contentDisplayedType;
 
   @override
-  _SaveContentWidgetState createState() => _SaveContentWidgetState();
+  State<SaveContentWidget> createState() => _SaveContentWidgetState();
 }
 
 class _SaveContentWidgetState extends State<SaveContentWidget> {
@@ -35,48 +40,60 @@ class _SaveContentWidgetState extends State<SaveContentWidget> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      await StoreProvider.dispatch<AppState>(
-        context,
-        FetchBookmarkStatusAction(
-          context: context,
-          contentID: widget.contentID,
-        ),
-      );
-    });
+    WidgetsBinding.instance?.addPostFrameCallback(
+      (Duration timeStamp) async {
+        await StoreProvider.dispatch<AppState>(
+          context,
+          FetchBookmarkStatusAction(
+            context: context,
+            contentID: widget.contentID,
+            contentDisplayedType: widget.contentDisplayedType,
+          ),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, FeedContentViewModel>(
+    return StoreConnector<AppState, ContentViewModel>(
       converter: (Store<AppState> store) =>
-          FeedContentViewModel.fromStore(store.state),
-      builder: (BuildContext context, FeedContentViewModel vm) {
+          ContentViewModel.fromStore(store.state),
+      builder: (BuildContext context, ContentViewModel vm) {
         final bool hasSaved = getHasSaved(
-          feedItems: vm.feedItems ?? <Content>[],
+          vm: vm,
           contentID: widget.contentID,
+          contentDisplayedType: widget.contentDisplayedType,
         );
+
         return GestureDetector(
+          key: saveButtonKey,
           onTap: () async {
             if (!hasSaved) {
               await updateBookmarkStatus(
                 contentID: widget.contentID,
                 context: context,
+                contentDisplayedType: widget.contentDisplayedType,
               );
             }
           },
           child: Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 18.0,
+              vertical: 10.0,
+            ),
+            margin: const EdgeInsets.only(right: 15),
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(50)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
+              ),
               color: AppColors.unSelectedReactionBackgroundColor,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 //show the loader before the data is displayed
-                if (vm.wait!.isWaitingFor(fetchBookmarkStatusFlag)) ...<Widget>{
+                if (vm.wait!.isWaitingFor(fetchLikeStatusFlag)) ...<Widget>{
                   const SizedBox(
                     width: 20,
                     height: 20,
@@ -93,9 +110,13 @@ class _SaveContentWidgetState extends State<SaveContentWidget> {
                       color: AppColors.unSelectedReactionIconColor,
                     ),
                   smallHorizontalSizedBox,
-                  Text(
-                    hasSaved ? savedString : saveString,
-                    style: TextThemes.boldSize13Text(AppColors.greyTextColor),
+                  RichText(
+                    text: TextSpan(
+                      text: hasSaved ? savedString : saveString,
+                      style: TextThemes.boldSize13Text(
+                        AppColors.unSelectedReactionIconColor,
+                      ),
+                    ),
                   ),
                 },
               ],

@@ -23,10 +23,15 @@ import 'package:myafyahub/presentation/router/routes.dart';
 /// [ContentItem] Displays the feed
 /// [isNew] renders the new tag
 class ContentItem extends StatelessWidget {
-  const ContentItem({required this.contentDetails, this.isNew = false});
+  const ContentItem({
+    required this.contentDetails,
+    this.isNew = false,
+    this.contentDisplayedType = ContentDisplayedType.UNKNOWN,
+  });
 
   final Content contentDetails;
   final bool isNew;
+  final ContentDisplayedType contentDisplayedType;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,10 @@ class ContentItem extends StatelessWidget {
                 FeaturedMediaType.video) {
           Navigator.of(context).pushNamed(
             BWRoutes.contentDetailPage,
-            arguments: ContentDetails(content: contentDetails),
+            arguments: ContentDetails(
+              content: contentDetails,
+              contentDisplayedType: contentDisplayedType,
+            ),
           );
         }
       },

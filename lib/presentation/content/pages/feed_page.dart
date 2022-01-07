@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -14,7 +16,6 @@ import 'package:shared_ui_components/platform_loader.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/feed_content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -69,22 +70,22 @@ class _FeedPageState extends State<FeedPage> {
             ),
             child: FeedCategoriesWidget(),
           ),
-          StoreConnector<AppState, FeedContentViewModel>(
+          StoreConnector<AppState, ContentViewModel>(
             converter: (Store<AppState> store) =>
-                FeedContentViewModel.fromStore(store.state),
-            builder: (BuildContext context, FeedContentViewModel vm) {
+                ContentViewModel.fromStore(store.state),
+            builder: (BuildContext context, ContentViewModel vm) {
               if (vm.wait!.isWaitingFor(fetchContentFlag)) {
                 return Container(
                   height: 300,
                   padding: const EdgeInsets.all(20),
                   child: const SILPlatformLoader(),
                 );
-              } else if (vm.timeoutFetchingContent ?? false) {
+              } else if (vm.feedContentState?.timeoutFetchingContent ?? false) {
                 return const GenericTimeoutWidget(
                   route: BWRoutes.home,
                   action: 'fetching your feed',
                 );
-              } else if (vm.errorFetchingContent ?? false) {
+              } else if (vm.feedContentState?.errorFetchingContent ?? false) {
                 return GenericNoData(
                   key: helpNoDataWidgetKey,
                   type: GenericNoDataTypes.ErrorInData,
@@ -98,7 +99,8 @@ class _FeedPageState extends State<FeedPage> {
                   messageBody: messageBodyGenericNoData,
                 );
               } else {
-                final List<Content?>? feedItems = vm.feedItems;
+                final List<Content?>? feedItems =
+                    vm.feedContentState?.contentItems;
 
                 if (feedItems != null && feedItems.isNotEmpty) {
                   return Flexible(
@@ -123,7 +125,13 @@ class _FeedPageState extends State<FeedPage> {
                               right: 12,
                               left: 12,
                             ),
-                            child: ContentItem(contentDetails: currentFeedItem),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.55,
+                              child: ContentItem(
+                                contentDetails: currentFeedItem,
+                                contentDisplayedType: ContentDisplayedType.FEED,
+                              ),
+                            ),
                           );
                         },
                       ),

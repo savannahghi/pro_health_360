@@ -29,7 +29,7 @@ class ContentDetailPage extends StatelessWidget {
   ///
   /// It takes in a required [payload] parameter which is a map of the
   /// the information to be displayed on this screen
-  ///
+  
   const ContentDetailPage({
     required this.payload,
   });
@@ -213,7 +213,7 @@ class ContentDetailPage extends StatelessWidget {
                       children: <Widget>[
                         LikeContentWidget(
                           contentID: payload.content.contentID ?? 0,
-                          key: likeButtonKey,
+                          contentDisplayedType: payload.contentDisplayedType,
                         ),
                         ShareContentWidget(
                           link: payload.content.metadata?.publicLink,
@@ -222,8 +222,8 @@ class ContentDetailPage extends StatelessWidget {
                         ),
                         verySmallHorizontalSizedBox,
                         SaveContentWidget(
-                          key: saveButtonKey,
                           contentID: payload.content.contentID ?? 0,
+                          contentDisplayedType: payload.contentDisplayedType,
                         ),
                       ],
                     ),

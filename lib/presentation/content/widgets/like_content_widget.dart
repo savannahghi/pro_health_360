@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
@@ -16,8 +19,6 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_like_status_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/feed_content_view_model.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -27,8 +28,10 @@ class LikeContentWidget extends StatefulWidget {
   const LikeContentWidget({
     Key? key,
     required this.contentID,
+    required this.contentDisplayedType,
   }) : super(key: key);
   final int contentID;
+  final ContentDisplayedType contentDisplayedType;
 
   @override
   State<LikeContentWidget> createState() => _LikeContentWidgetState();
@@ -46,6 +49,7 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
           FetchLikeStatusAction(
             context: context,
             contentID: widget.contentID,
+            contentDisplayedType: widget.contentDisplayedType,
           ),
         );
       },
@@ -54,20 +58,23 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, FeedContentViewModel>(
+    return StoreConnector<AppState, ContentViewModel>(
       converter: (Store<AppState> store) =>
-          FeedContentViewModel.fromStore(store.state),
-      builder: (BuildContext context, FeedContentViewModel vm) {
-        final bool hasLiked = getHasLiked(
-          feedItems: vm.feedItems ?? <Content>[],
+          ContentViewModel.fromStore(store.state),
+      builder: (BuildContext context, ContentViewModel vm) {
+         int count = getLikeCount(
+          vm: vm,
           contentID: widget.contentID,
+          contentDisplayedType: widget.contentDisplayedType,
         );
-        late int count = getLikeCount(
-          feedItems: vm.feedItems ?? <Content>[],
+        final bool hasLiked = getHasLiked(
           contentID: widget.contentID,
+          vm: vm,
+          contentDisplayedType: widget.contentDisplayedType,
         );
 
         return GestureDetector(
+          key: likeButtonKey,
           onTap: () async {
             setState(() {
               hasLiked ? count = count - 1 : count = count + 1;
@@ -77,6 +84,7 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
               context: context,
               isLiked: hasLiked,
               updateLikeCount: true,
+              contentDisplayedType: widget.contentDisplayedType,
             );
           },
           child: Container(

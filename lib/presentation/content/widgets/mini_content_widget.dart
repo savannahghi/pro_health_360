@@ -19,7 +19,7 @@ class MiniContentWidget extends StatelessWidget {
     if (contentDetails?.title?.isNotEmpty ?? false) {
       return GestureDetector(
         onTap: () => Navigator.of(context)
-            .pushNamed(BWRoutes.contentDetailPage, arguments: ContentDetails(content: contentDetails!, showReactions: false)),
+            .pushNamed(BWRoutes.contentDetailPage, arguments: ContentDetails(content: contentDetails!, showReactions: false,)),
         child: Container(
           constraints: const BoxConstraints(
             minHeight: 50,

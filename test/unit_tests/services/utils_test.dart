@@ -7,12 +7,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-
-import '../../mocks.dart';
 
 void main() {
   group('Utils', () {
@@ -115,14 +112,5 @@ void main() {
       expect(getMoodColor('Other').color, AppColors.secondaryColor);
       expect(getMoodColor(null).color, AppColors.secondaryColor);
     });
-  });
-
-  test('getHasSaved and getHasLiked should return false if id is not found',
-      () {
-    expect(getHasLiked(feedItems: <Content>[mockContent], contentID: 0), false);
-    expect(getHasSaved(feedItems: <Content>[mockContent], contentID: 0), false);
-  });
-  test('getLikeCount should return zero if id is not found', () {
-    expect(getLikeCount(feedItems: <Content>[mockContent], contentID: 0), 0);
   });
 }

@@ -14,7 +14,7 @@ import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/feed_content_view_model.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -132,10 +132,10 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
             ];
 
             if (contentCategories.isNotEmpty) {
-              return StoreConnector<AppState, FeedContentViewModel>(
+              return StoreConnector<AppState, ContentViewModel>(
                 converter: (Store<AppState> store) =>
-                    FeedContentViewModel.fromStore(store.state),
-                builder: (BuildContext context, FeedContentViewModel vm) {
+                    ContentViewModel.fromStore(store.state),
+                builder: (BuildContext context, ContentViewModel vm) {
                   return ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
@@ -191,7 +191,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
 
   Widget? getCategoryIcon(
     int index,
-    FeedContentViewModel vm,
+    ContentViewModel vm,
     ContentCategory contentCategory,
   ) {
     if (index == 0) {
