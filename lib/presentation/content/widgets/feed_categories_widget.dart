@@ -146,6 +146,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                       return Padding(
                         padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
                         child: ChoiceChip(
+                          avatar: getCategoryIcon(index, vm, contentCategory),
                           label: Text(
                             toBeginningOfSentenceCase(contentCategory.name) ??
                                 UNKNOWN,
@@ -186,5 +187,32 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
         },
       ),
     );
+  }
+
+  Widget? getCategoryIcon(
+    int index,
+    FeedContentViewModel vm,
+    ContentCategory contentCategory,
+  ) {
+    if (index == 0) {
+      return Icon(
+        Icons.grid_view_rounded,
+        color: vm.selectedCategory!.name == contentCategory.name
+            ? AppColors.whiteColor
+            : AppColors.secondaryColor,
+        size: 20.0,
+      );
+    } else {
+      return (contentCategory.icon != null)
+          ? Image.network(
+              contentCategory.icon!,
+              color: vm.selectedCategory!.name == contentCategory.name
+                  ? AppColors.whiteColor
+                  : AppColors.secondaryColor,
+              width: 20,
+              height: 20,
+            )
+          : null;
+    }
   }
 }
