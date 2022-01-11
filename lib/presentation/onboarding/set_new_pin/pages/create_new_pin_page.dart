@@ -1,41 +1,41 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
-import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-import 'package:user_feed/user_feed.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:user_feed/user_feed.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
 ///
 /// The [CustomTextField] for confirm PIN validates if it matches the
 /// PIN entered in the above [CustomTextField]
 class CreateNewPINPage extends StatefulWidget {
-  CreateNewPINPage({ConnectivityStatus? connectivityStatus})
-      : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+  CreateNewPINPage({
+    ConnectivityStatus? connectivityStatus,
+    required this.phoneNumber,
+  }) : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
 
+  final String phoneNumber;
   final ConnectivityStatus connectivityStatus;
-
   @override
   _CreateNewPINPageState createState() => _CreateNewPINPageState();
 }
@@ -49,8 +49,11 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isResetPin =
+        StoreProvider.state<AppState>(context)?.onboardingState?.isResetPin ??
+            false;
     return OnboardingScaffold(
-      title: createNewPINTitleString,
+      title: isResetPin ? resetPINTitleString : createNewPINTitleString,
       description: createNewPINSubTitleString,
       child: StoreConnector<AppState, AppStateViewModel>(
         converter: (Store<AppState> store) =>
@@ -171,6 +174,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                               }
                               if (_formKey.currentState!.validate()) {
                                 setUserPIN(
+                                  phoneNumber: widget.phoneNumber,
                                   context: context,
                                   newPIN: pin,
                                   confirmPIN: confirmPin,

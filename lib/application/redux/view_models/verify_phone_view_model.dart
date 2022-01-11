@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-
+import 'package:domain_objects/value_objects.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
@@ -10,6 +10,7 @@ class VerifyPhoneViewModel extends Vm {
     required this.userID,
     required this.phoneNumber,
     required this.otp,
+    required this.isResetPin,
     this.failedToSendOTP,
     this.canResendOTP,
     this.invalidOTP,
@@ -21,7 +22,8 @@ class VerifyPhoneViewModel extends Vm {
             otp,
             failedToSendOTP,
             canResendOTP,
-            invalidOTP
+            invalidOTP,
+            isResetPin,
           ],
         );
 
@@ -32,17 +34,21 @@ class VerifyPhoneViewModel extends Vm {
   final bool? invalidOTP;
   final bool? failedToSendOTP;
   final bool? canResendOTP;
+  final bool isResetPin;
 
   static VerifyPhoneViewModel fromStore(Store<AppState> store) {
     final AppState state = store.state;
     return VerifyPhoneViewModel(
       wait: state.wait,
-      userID: state.clientState!.user!.userId,
-      phoneNumber: state.clientState!.user!.primaryContact!.value,
-      otp: state.onboardingState!.verifyPhoneState!.otp,
-      invalidOTP: state.onboardingState!.verifyPhoneState!.invalidOTP,
-      failedToSendOTP: state.onboardingState!.verifyPhoneState!.failedToSendOTP,
-      canResendOTP: state.onboardingState!.verifyPhoneState!.canResendOTP,
+      userID: state.clientState?.user?.userId ?? UNKNOWN,
+      phoneNumber: state.clientState?.user?.primaryContact?.value ?? UNKNOWN,
+      otp: state.onboardingState?.verifyPhoneState?.otp ?? UNKNOWN,
+      invalidOTP: state.onboardingState?.verifyPhoneState?.invalidOTP ?? false,
+      failedToSendOTP:
+          state.onboardingState?.verifyPhoneState?.failedToSendOTP ?? false,
+      canResendOTP:
+          state.onboardingState?.verifyPhoneState?.canResendOTP ?? false,
+      isResetPin: state.onboardingState?.isResetPin ?? false,
     );
   }
 }

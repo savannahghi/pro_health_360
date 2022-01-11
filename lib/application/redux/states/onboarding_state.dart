@@ -1,6 +1,5 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
@@ -25,6 +24,8 @@ class OnboardingState with _$OnboardingState {
     bool? isPhoneVerified,
     //If the user has set their PIN
     bool? isPINSet,
+    //If the user wants to reset their PIN
+    bool? isResetPin,
     // If the user has set their security questions
     bool? hasSetSecurityQuestions,
     // If the user has set their nickname
@@ -43,6 +44,7 @@ class OnboardingState with _$OnboardingState {
         verifyPhoneState: VerifyPhoneState.initial(),
         isPhoneVerified: false,
         isPINSet: false,
+        isResetPin: false,
         hasSetSecurityQuestions: false,
         hasSetNickName: false,
       );

@@ -1,6 +1,5 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
@@ -19,6 +18,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.hasSetNickName,
     this.hasSetSecurityQuestions,
     this.hasSetPin,
+    this.isResetPin,
   });
 
   List<SecurityQuestion>? securityQuestions;
@@ -31,6 +31,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   bool? hasSetNickName;
   bool? hasSetSecurityQuestions;
   bool? hasSetPin;
+  bool? isResetPin;
 
   @override
   AppState reduce() {
@@ -38,6 +39,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
 
     final OnboardingState? newOnboardingState = state.onboardingState?.copyWith(
       isPINSet: hasSetPin ?? state.onboardingState?.isPINSet,
+      isResetPin: isResetPin ?? state.onboardingState?.isResetPin,
       securityQuestions:
           securityQuestions ?? state.onboardingState?.securityQuestions,
       securityQuestionResponses: securityQuestionsResponses ??

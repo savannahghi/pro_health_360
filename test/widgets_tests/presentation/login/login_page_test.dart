@@ -1,16 +1,14 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
@@ -22,7 +20,9 @@ import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_statu
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
+
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -192,6 +192,54 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(TermsAndConditionsPage), findsOneWidget);
+      });
+    });
+
+    testWidgets('should navigate to verify phone if pin is expired',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(
+            <String, dynamic>{'message': '48: pin expired', 'code': 48},
+          ),
+          400,
+        ),
+      );
+
+      await mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: MaterialApp(
+            onGenerateRoute: RouteGenerator.generateRoute,
+            home: Scaffold(
+              body: LoginPage(connectivityStatus: connectivityStatus),
+            ),
+          ),
+        );
+        await tester.pump();
+
+        final Finder phoneInputField = find.byKey(textFormFieldKey);
+        final Finder pinInputField = find.byKey(pinInputKey);
+        final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
+
+        await tester.showKeyboard(phoneInputField);
+        await tester.enterText(phoneInputField, '723456789');
+        await tester.pumpAndSettle();
+
+        await tester.showKeyboard(pinInputField);
+        await tester.enterText(pinInputField, '1234');
+        await tester.pumpAndSettle();
+
+        await tester.ensureVisible(continueButton);
+        await tester.tap(continueButton);
+        await tester.pumpAndSettle();
+
+        expect(find.byType(VerifyPhonePage), findsWidgets);
       });
     });
 

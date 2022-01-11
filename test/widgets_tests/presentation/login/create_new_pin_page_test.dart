@@ -1,23 +1,26 @@
 // Dart imports:
+import 'dart:convert';
 import 'dart:io';
-
-// Flutter imports:
-import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
+import 'package:http/http.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -39,6 +42,7 @@ void main() {
           connectivityStatus: MobileConnectivityStatus(
             checkInternetCallback: () async => true,
           ),
+          phoneNumber: '+254712345678',
         ),
       );
 
@@ -64,6 +68,7 @@ void main() {
           connectivityStatus: MobileConnectivityStatus(
             checkInternetCallback: () async => true,
           ),
+          phoneNumber: '+254712345678',
         ),
       );
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -95,6 +100,7 @@ void main() {
           connectivityStatus: MobileConnectivityStatus(
             checkInternetCallback: () async => true,
           ),
+          phoneNumber: '+254712345678',
         ),
       );
       await tester.pumpAndSettle();
@@ -115,6 +121,51 @@ void main() {
       expect(find.byType(SetNickNamePage), findsOneWidget);
     });
 
+    testWidgets('Navigates to Login page if PINs are valid for reset pin  ',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'resetPIN': true}
+          }),
+          200,
+        ),
+      );
+
+      final Store<AppState> customStore =
+          Store<AppState>(initialState: AppState.initial());
+      customStore.dispatch(UpdateOnboardingStateAction(isResetPin: true));
+      await buildTestWidget(
+        tester: tester,
+        store: customStore,
+        client: mockShortSILGraphQlClient,
+        widget: CreateNewPINPage(
+          connectivityStatus: MobileConnectivityStatus(
+            checkInternetCallback: () async => true,
+          ),
+          phoneNumber: '+254712345678',
+        ),
+      );
+      await tester.pumpAndSettle();
+      final Finder pinInputField = find.byKey(pinInputKey);
+      final Finder confirmPinInputField = find.byKey(confirmPinInputKey);
+      final Finder saveAndContinueButton =
+          find.byKey(createPINContinueButtonKey);
+
+      expect(confirmPinInputField, findsOneWidget);
+
+      await tester.showKeyboard(pinInputField);
+      await tester.enterText(pinInputField, '0000');
+      await tester.showKeyboard(confirmPinInputField);
+      await tester.enterText(confirmPinInputField, '0000');
+      await tester.ensureVisible(saveAndContinueButton);
+      await tester.tap(saveAndContinueButton);
+      await tester.pumpAndSettle();
+      expect(find.byType(LoginPage), findsWidgets);
+    });
     testWidgets('should show No Internet text when there is no connectivity',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
@@ -127,6 +178,7 @@ void main() {
           connectivityStatus: MobileConnectivityStatus(
             checkInternetCallback: () async => false,
           ),
+          phoneNumber: '+254712345678',
         ),
       );
       await tester.pumpAndSettle();
@@ -157,7 +209,9 @@ void main() {
           builder: (BuildContext context) {
             ctx = context;
             toggleLoadingIndicator(context: context, flag: 'resume_with_pin');
-            return CreateNewPINPage();
+            return CreateNewPINPage(
+              phoneNumber: '+254712345678',
+            );
           },
         ),
       );

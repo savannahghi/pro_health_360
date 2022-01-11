@@ -1,18 +1,15 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:user_feed/user_feed.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -23,9 +20,13 @@ import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart'
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:user_feed/user_feed.dart';
 
 class VerifyOTPAction extends ReduxAction<AppState> {
-  VerifyOTPAction({required this.context, required this.otp});
+  VerifyOTPAction({
+    required this.context,
+    required this.otp,
+  });
 
   final BuildContext context;
   final String otp;
@@ -50,7 +51,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
     if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
       final String sendOTPEndpoint =
-          AppWrapperBase.of(context)!.customContext!.verifyPhoneEndpoint;
+          AppWrapperBase.of(context)!.customContext!.verifyContactOTPEndpoint;
 
       final Map<String, dynamic> variables = <String, dynamic>{
         'user_id': userID,

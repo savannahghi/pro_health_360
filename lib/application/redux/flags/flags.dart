@@ -35,6 +35,7 @@ const String phoneNumberEntryFlag = 'phone_number_entry_flag';
 
 // create pin page
 const String createPinFlag = 'create_pin_flag';
+const String resetPinFlag = 'reset_pin_flag';
 
 const String phoneLoginFlag = 'phone_login_flag';
 

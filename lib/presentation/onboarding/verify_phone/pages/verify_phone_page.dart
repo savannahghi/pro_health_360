@@ -1,14 +1,10 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/onboarding_scaffold.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -18,8 +14,14 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class VerifyPhonePage extends StatefulWidget {
+  const VerifyPhonePage({Key? key, required this.phoneNumber})
+      : super(key: key);
+  final String phoneNumber;
   @override
   VerifyPhonePageState createState() => VerifyPhonePageState();
 }
@@ -33,7 +35,10 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch<AppState>(
         context,
-        SendOTPAction(context: context),
+        SendOTPAction(
+          context: context,
+          resetPinPhoneNumber: widget.phoneNumber,
+        ),
       );
     });
   }
@@ -45,6 +50,8 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
         return VerifyPhoneViewModel.fromStore(store);
       },
       builder: (BuildContext context, VerifyPhoneViewModel vm) {
+        final String phone =
+            vm.isResetPin ? widget.phoneNumber : vm.phoneNumber ?? UNKNOWN;
         return OnboardingScaffold(
           title: verifyPhoneNumberTitle,
           description: verifyPhoneNumberDescription,
@@ -78,6 +85,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                         VerifyOtpWidget(
                           verifyPhoneViewModel: vm,
                           loader: const SILPlatformLoader(),
+                          phoneNumber: phone,
                         ),
                     ],
                   ),
@@ -99,6 +107,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                             context,
                             SendOTPAction(
                               context: context,
+                              resetPinPhoneNumber: widget.phoneNumber,
                             ),
                           );
                         },

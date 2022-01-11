@@ -3,19 +3,15 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/inputs.dart';
 import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
@@ -29,6 +25,9 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
+import 'package:shared_ui_components/inputs.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

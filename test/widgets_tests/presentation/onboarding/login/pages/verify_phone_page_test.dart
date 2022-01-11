@@ -6,19 +6,21 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
+import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -67,7 +69,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: VerifyPhonePage(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -100,7 +104,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: VerifyPhonePage(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -135,7 +141,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: VerifyPhonePage(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
       );
 
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
@@ -168,7 +176,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: VerifyPhonePage(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
       );
 
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
@@ -199,7 +209,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: VerifyPhonePage(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
       );
 
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
@@ -226,7 +238,9 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: VerifyPhonePage(),
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
       );
 
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
@@ -239,6 +253,48 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(didNotReceiveOTP), findsNothing);
+    });
+
+    testWidgets(
+        'should verify an OTP correctly and navigate to create new pin page' +
+            'if reset pin is true', (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'otp': '123456',
+            'data': <String, dynamic>{'sendOTP': '123456', 'verifyOTP': true}
+          }),
+          201,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isResetPin: true,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: const VerifyPhonePage(
+          phoneNumber: '+254712345678',
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(VerifyOtpWidget), findsOneWidget);
+      await tester.pumpAndSettle();
+
+      await tester.showKeyboard(find.byType(PINInputField));
+      await tester.enterText(find.byType(PINInputField), '123456');
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CreateNewPINPage), findsWidgets);
     });
   });
 }

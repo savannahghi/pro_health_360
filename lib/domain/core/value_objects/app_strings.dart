@@ -1,12 +1,10 @@
 // Flutter imports:
 // Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -353,6 +351,7 @@ const String errorCreatingHealthDiaryEntryString =
 
 const String confirmPinString = 'Confirm new PIN';
 const String createNewPINTitleString = 'Create new PIN';
+const String resetPINTitleString = 'Reset PIN';
 const String createNewPINSubTitleString = 'Enter your new 4 digit PIN.';
 const String pinMustMatchString = 'PIN must match';
 
@@ -598,6 +597,7 @@ String editInfoTitle(String title) => 'Edit $title';
 const String somethingWentWrongText =
     'Sorry, an unknown error occurred, please try again or get help from our help center.';
 const String pinSuccessString = 'PIN created successfully';
+const String pinResetSuccessString = 'PIN reset successful';
 const String requestCorrectionString = 'Request for correction';
 const String nicknameSuccessString = 'Nickname created successfully';
 

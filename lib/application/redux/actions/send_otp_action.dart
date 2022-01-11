@@ -1,18 +1,14 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:user_feed/user_feed.dart';
-
+import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -22,15 +18,18 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:user_feed/user_feed.dart';
 
 class SendOTPAction extends ReduxAction<AppState> {
   SendOTPAction({
     required this.context,
+    required this.resetPinPhoneNumber,
     bool? isResend,
     this.callBackFunction,
   }) : isResend = isResend ?? false;
 
   final BuildContext context;
+  final String resetPinPhoneNumber;
   final Function? callBackFunction;
   bool isResend;
 
@@ -56,36 +55,48 @@ class SendOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String phoneNumber =
-        state.clientState!.user!.primaryContact!.value ?? UNKNOWN;
+    final bool isResetPin = state.onboardingState?.isResetPin ?? false;
+
+    final String phoneNumber = isResetPin
+        ? resetPinPhoneNumber
+        : state.clientState!.user!.primaryContact!.value ?? UNKNOWN;
 
     if (phoneNumber != UNKNOWN) {
-      final String sendOTPEndpoint = AppWrapperBase.of(context)!
-          .customContext!
-          .sendRecoverAccountOtpEndpoint;
-
-      final String reSendOTPEndpoint =
-          AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
-
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'flavour': Flavour.CONSUMER.name,
       };
 
-      final IGraphQlClient httpClient =
-          AppWrapperBase.of(context)!.graphQLClient;
-
       //Incase of send/resend otp error it is cleared
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: false));
+      final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
-      final Response httpResponse = await httpClient.callRESTAPI(
-        endpoint: isResend ? reSendOTPEndpoint : sendOTPEndpoint,
-        method: httpPOST,
+      final Response httpResponse = await retrieveOTP(
+        httpClient: _client,
+        context: context,
+        isResetPin: isResetPin,
+        isResend: isResend,
         variables: variables,
       );
 
       final ProcessedResponse processedResponse =
           processHttpResponse(httpResponse, context);
+
+      final Map<String, dynamic> payLoad = _client.toMap(httpResponse);
+
+      final String? error = parseError(payLoad);
+
+      if (error != null) {
+        reportErrorToSentry(
+          context,
+          error,
+          hint: 'Error sending OTP',
+        );
+
+        dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
+
+        return null;
+      }
 
       if (processedResponse.ok == true) {
         //Return OTP sent as string
@@ -93,9 +104,11 @@ class SendOTPAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        final String otp = isResend
-            ? parsed['data']['sendRetryOTP'] as String
-            : parsed['data']['sendOTP'] as String;
+        final String otp = isResetPin
+            ? parsed['otp'] as String
+            : isResend
+                ? parsed['data']['sendRetryOTP'] as String
+                : parsed['data']['sendOTP'] as String;
 
         // save the OTP to state
         dispatch(UpdateOnboardingStateAction(otp: otp));
@@ -111,24 +124,16 @@ class SendOTPAction extends ReduxAction<AppState> {
         );
 
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
-        throw SILException(
-          error: processedResponse.response,
-          cause: 'send_otp_error',
-          message: processedResponse.message,
+
+        reportErrorToSentry(
+          context,
+          processedResponse.response,
+          hint: errorLoggingIn,
         );
       }
     } else {
       //Incase user's phone number is not found
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
     }
-  }
-
-  @override
-  Object wrapError(dynamic error) async {
-    if (error.runtimeType == SILException && error.error != null) {
-      reportErrorToSentry(context, error.error, hint: errorLoggingIn);
-    }
-
-    return error;
   }
 }

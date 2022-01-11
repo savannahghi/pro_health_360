@@ -2,15 +2,12 @@
 import 'dart:async';
 import 'dart:convert';
 
+// Package imports:
+import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
-// Package imports:
-import 'package:async_redux/async_redux.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_themes/constants.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
@@ -24,6 +21,7 @@ import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart'
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/constants.dart';
 
 /// [processHttpResponse] routine is used to process a network call response, for errors, bad requests, timeouts and correct responses.
 ///
@@ -150,6 +148,7 @@ void clearAllFlags(BuildContext context) {
 }
 
 Future<void> setUserPIN({
+  String? phoneNumber,
   required BuildContext context,
   required String newPIN,
   required String confirmPIN,
@@ -168,6 +167,7 @@ Future<void> setUserPIN({
   await StoreProvider.dispatch<AppState>(
     context,
     CreatePINAction(
+      phone: phoneNumber,
       context: context,
       flag: createPinFlag,
       flavour: flavour,

@@ -1,15 +1,11 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
-import 'package:user_profile/term_and_conditions.dart' as webview;
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
@@ -19,6 +15,7 @@ import 'package:myafyahub/presentation/communities/chat_screen/pages/community_c
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
+import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
@@ -49,6 +46,8 @@ import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
+
 import '../../mocks.dart';
 
 void main() {
@@ -99,6 +98,7 @@ void main() {
   test('Test router returns create new pin page', () {
     const RouteSettings settings = RouteSettings(
       name: BWRoutes.createPin,
+      arguments: '0700111222',
     );
 
     final MaterialPageRoute<CreateNewPINPage> route =
@@ -111,11 +111,7 @@ void main() {
   test('Test router returns  verify otp page', () {
     const RouteSettings settings = RouteSettings(
       name: BWRoutes.verifySignUpOTP,
-      arguments: <String, dynamic>{
-        'OTP': 1234,
-        'userID': 'some-user-id',
-        'phoneNumber': '0700111222',
-      },
+      arguments: '0700111222',
     );
 
     final MaterialPageRoute<VerifyPhonePage> route =

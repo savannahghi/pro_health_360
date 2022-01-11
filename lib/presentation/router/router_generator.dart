@@ -1,25 +1,22 @@
 // Flutter imports:
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/community_list_item.dart';
-import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
-import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
-import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
-import 'package:user_profile/term_and_conditions.dart' as webview;
-
+// Flutter imports:
+import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
+import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
+import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
+import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
@@ -49,6 +46,7 @@ import 'package:myafyahub/presentation/profile/personal_information/personal_inf
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:user_profile/term_and_conditions.dart' as webview;
 
 /// The router generator for the app. The arrangement in this config must match that
 /// in the routes.dart file
@@ -65,12 +63,12 @@ class RouteGenerator {
 
       case BWRoutes.createPin:
         return MaterialPageRoute<CreateNewPINPage>(
-          builder: (_) => CreateNewPINPage(),
+          builder: (_) => CreateNewPINPage(phoneNumber: args as String),
         );
 
       case BWRoutes.verifySignUpOTP:
         return MaterialPageRoute<VerifyPhonePage>(
-          builder: (_) => VerifyPhonePage(),
+          builder: (_) => VerifyPhonePage(phoneNumber: args as String),
         );
 
       case BWRoutes.congratulationsPage:

@@ -13,11 +13,13 @@ const String kTestGraphqlEndpoint =
     'https://mycarehub-staging.savannahghi.org/graphql';
 const String kTestLoginByPhoneEndpoint =
     'https://mycarehub-staging.savannahghi.org/login_by_phone';
-const String kTestPinResetEndpoint =
+const String kTestVerifyPhoneEndpoint =
+    'https://mycarehub-staging.savannahghi.org/verify_phone';
+const String kTestRequestPinResetEndpoint =
     'https://mycarehub-staging.savannahghi.org/request_pin_reset';
 const String kTestUpdateUserPinEndpoint =
     'https://mycarehub-staging.savannahghi.org/reset_pin';
-const String kTestVerifyPhoneEndpoint =
+const String kTestVerifyContactOTPEndpoint =
     'https://mycarehub-staging.savannahghi.org/verify_otp';
 const String kTestCreateUserByPhoneEndpoint =
     'https://mycarehub-staging.savannahghi.org/create_user_by_phone';
@@ -46,11 +48,13 @@ const String kDemoGraphqlEndpoint =
     'https://mycarehub-testing.savannahghi.org/graphql';
 const String kDemoLoginByPhoneEndpoint =
     'https://mycarehub-testing.savannahghi.org/login_by_phone';
-const String kDemoPinResetEndpoint =
+const String kDemoVerifyPhoneEndpoint =
+    'https://mycarehub-testing.savannahghi.org/verify_phone';
+const String kDemoRequestPinResetEndpoint =
     'https://mycarehub-testing.savannahghi.org/request_pin_reset';
 const String kDemoUpdateUserPinEndpoint =
     'https://mycarehub-testing.savannahghi.org/reset_pin';
-const String kDemoVerifyPhoneEndpoint =
+const String kDemoVerifyContactOTPEndpoint =
     'https://mycarehub-testing.savannahghi.org/verify_otp';
 const String kDemoCreateUserByPhoneEndpoint =
     'https://mycarehub-testing.savannahghi.org/create_user_by_phone';
@@ -73,11 +77,13 @@ const String kDemoUploadFileEndPoint =
 const String kProdGraphqlEndpoint = 'https://gateway.savannahghi.org/graphql';
 const String kProdLoginByPhoneEndpoint =
     'https://mycarehub-prod.savannahghi.org/login_by_phone';
-const String kProdPinResetEndpoint =
+const String kProdRequestPinResetEndpoint =
     'https://mycarehub-prod.savannahghi.org/request_pin_reset';
 const String kProdUpdateUserPinEndpoint =
     'https://mycarehub-prod.savannahghi.org/reset_pin';
 const String kProdVerifyPhoneEndpoint =
+    'https://mycarehub-testing.savannahghi.org/verify_phone';
+const String kProdVerifyContactOTPEndpoint =
     'https://mycarehub-prod.savannahghi.org/verify_otp';
 const String kProdCreateUserByPhoneEndpoint =
     'https://mycarehub-prod.savannahghi.org/create_user_by_phone';

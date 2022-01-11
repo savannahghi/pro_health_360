@@ -1,14 +1,12 @@
 // Flutter imports:
-import 'package:flutter/foundation.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:quiver/core.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:quiver/core.dart';
 
 class AppSetupData {
   final List<AppContext> appContexts;
@@ -40,9 +38,10 @@ final AppSetupData devAppSetupData = AppSetupData(
     setPrimaryPhoneNumberEndpoint: kTestSetPrimaryPhoneNumberEndpoint,
     refreshTokenEndpoint: kTestRefreshTokenEndpoint,
     retryResendOtpEndpoint: kTestRetryResendOtpEndpoint,
-    pinResetEndpoint: kTestPinResetEndpoint,
+    requestPinResetEndpoint: kTestRequestPinResetEndpoint,
+    pinResetEndpoint: '',
     userRecoveryPhoneNumbersEndpoint: kTestUserRecoveryPhoneNumbersEndpoint,
-    verifyContactOTPEndpoint: '',
+    verifyContactOTPEndpoint: kTestVerifyContactOTPEndpoint,
     verifyPhoneEndpoint: kTestVerifyPhoneEndpoint,
     sendContactVerificationOTPEndpoint: '',
     sendRecoverAccountOtpEndpoint: kTestSendRecoverAccountOtpEndpoint,
@@ -63,9 +62,10 @@ final AppSetupData demoAppSetupData = AppSetupData(
     setPrimaryPhoneNumberEndpoint: kDemoSetPrimaryPhoneNumberEndpoint,
     refreshTokenEndpoint: kDemoRefreshTokenEndpoint,
     retryResendOtpEndpoint: kDemoRetryResendOtpEndpoint,
-    pinResetEndpoint: kDemoPinResetEndpoint,
+    requestPinResetEndpoint: kDemoRequestPinResetEndpoint,
+    pinResetEndpoint: '',
     userRecoveryPhoneNumbersEndpoint: kDemoUserRecoveryPhoneNumbersEndpoint,
-    verifyContactOTPEndpoint: '',
+    verifyContactOTPEndpoint: kDemoVerifyContactOTPEndpoint,
     verifyPhoneEndpoint: kDemoVerifyPhoneEndpoint,
     sendContactVerificationOTPEndpoint: '',
     sendRecoverAccountOtpEndpoint: kDemoSendRecoverAccountOtpEndpoint,
@@ -86,9 +86,10 @@ final AppSetupData prodAppSetupData = AppSetupData(
     setPrimaryPhoneNumberEndpoint: kProdSetPrimaryPhoneNumberEndpoint,
     refreshTokenEndpoint: kProdRefreshTokenEndpoint,
     retryResendOtpEndpoint: kProdRetryResendOtpEndpoint,
-    pinResetEndpoint: kProdPinResetEndpoint,
+    requestPinResetEndpoint: kProdRequestPinResetEndpoint,
+    pinResetEndpoint: '',
     userRecoveryPhoneNumbersEndpoint: kProdUserRecoveryPhoneNumbersEndpoint,
-    verifyContactOTPEndpoint: '',
+    verifyContactOTPEndpoint: kProdVerifyContactOTPEndpoint,
     verifyPhoneEndpoint: kProdVerifyPhoneEndpoint,
     sendContactVerificationOTPEndpoint: '',
     sendRecoverAccountOtpEndpoint: kProdSendRecoverAccountOtpEndpoint,

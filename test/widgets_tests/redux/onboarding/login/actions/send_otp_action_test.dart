@@ -1,19 +1,19 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:domain_objects/value_objects.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:shared_ui_components/buttons.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:shared_ui_components/buttons.dart';
+
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
@@ -64,7 +64,10 @@ void main() {
               onPressed: () {
                 StoreProvider.dispatch<AppState>(
                   context,
-                  SendOTPAction(context: context),
+                  SendOTPAction(
+                    context: context,
+                    resetPinPhoneNumber: UNKNOWN,
+                  ),
                 );
               },
             );
@@ -98,7 +101,6 @@ void main() {
         ),
       );
 
-      late dynamic err;
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -108,11 +110,12 @@ void main() {
             return SILPrimaryButton(
               buttonKey: const Key('update_contacts'),
               onPressed: () async {
-                try {
-                  await store.dispatch(SendOTPAction(context: context));
-                } catch (e) {
-                  err = e;
-                }
+                await store.dispatch(
+                  SendOTPAction(
+                    context: context,
+                    resetPinPhoneNumber: '+254712345678',
+                  ),
+                );
               },
             );
           },
@@ -126,8 +129,6 @@ void main() {
         store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
         true,
       );
-
-      expect(err, isA<Future<dynamic>>());
     });
   });
 }

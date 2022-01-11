@@ -33,6 +33,7 @@ _$_OnboardingState _$_$_OnboardingStateFromJson(Map<String, dynamic> json) {
             json['verifyPhoneState'] as Map<String, dynamic>),
     isPhoneVerified: json['isPhoneVerified'] as bool?,
     isPINSet: json['isPINSet'] as bool?,
+    isResetPin: json['isResetPin'] as bool?,
     hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
     hasSetNickName: json['hasSetNickName'] as bool?,
   );
@@ -48,6 +49,7 @@ Map<String, dynamic> _$_$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'verifyPhoneState': instance.verifyPhoneState,
       'isPhoneVerified': instance.isPhoneVerified,
       'isPINSet': instance.isPINSet,
+      'isResetPin': instance.isResetPin,
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
       'hasSetNickName': instance.hasSetNickName,
     };
