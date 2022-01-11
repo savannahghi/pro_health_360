@@ -19,7 +19,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:unicons/unicons.dart';
 
 /// [SaveContentWidget] Displays like status on the content details page
 class SaveContentWidget extends StatefulWidget {
@@ -70,6 +69,7 @@ class _SaveContentWidgetState extends State<SaveContentWidget> {
           key: saveButtonKey,
           onTap: () async {
             if (!hasSaved) {
+              setState(() {});
               await updateBookmarkStatus(
                 contentID: widget.contentID,
                 context: context,
@@ -93,18 +93,16 @@ class _SaveContentWidgetState extends State<SaveContentWidget> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 //show the loader before the data is displayed
-                if (vm.wait!.isWaitingFor(fetchLikeStatusFlag)) ...<Widget>{
+                if (vm.wait!.isWaitingFor(fetchBookmarkStatusFlag)) ...<Widget>{
                   const SizedBox(
                     width: 20,
                     height: 20,
                     child: SILPlatformLoader(),
                   ),
                 } else ...<Widget>{
-                  if (hasSaved)
-                    const Icon(UniconsLine.check, size: 20)
-                  else
+                  
                     SvgPicture.asset(
-                      saveIconUrl,
+                      hasSaved ? doneIconUrl : saveIconUrl,
                       width: 20,
                       height: 20,
                       color: AppColors.unSelectedReactionIconColor,

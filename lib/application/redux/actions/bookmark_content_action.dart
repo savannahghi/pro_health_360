@@ -73,7 +73,6 @@ class BookmarkContentAction extends ReduxAction<AppState> {
           durationSeconds: 2,
         ),
       );
-      
     }
 
     return state;
