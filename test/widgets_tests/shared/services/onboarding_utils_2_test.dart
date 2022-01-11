@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Flutter imports:
 import 'package:flutter/services.dart';
@@ -9,17 +8,13 @@ import 'package:flutter/services.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import '../../../mock_utils.dart';
-import '../../../test_helpers.dart';
 import './onboarding_utils_2_test.mocks.dart';
 
 @GenerateMocks(<Type>[RefreshTokenManger, DateTimeParser, SILFCM])
@@ -64,26 +59,6 @@ void main() {
 
       when(fcm!.getDeviceToken()).thenAnswer(
         (Invocation realInvocation) => Future<String>.value('test-token'),
-      );
-    });
-
-    test('should register device token', () async {
-      final http.Response response = http.Response(
-        json.encode(<String, dynamic>{'registerPushToken': true}),
-        201,
-      );
-
-      queryWhenThenAnswer(
-        queryString: registerDeviceTokenQuery,
-        variables: <String, dynamic>{'token': 'sampleToken'},
-        response: response,
-      );
-
-      await registerDeviceToken(client: baseGraphQlClientMock);
-
-      expect(
-        () async => registerDeviceToken(client: baseGraphQlClientMock),
-        returnsNormally,
       );
     });
   });

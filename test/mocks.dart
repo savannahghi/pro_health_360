@@ -1,23 +1,17 @@
 // Dart imports:
 import 'dart:convert';
-import 'dart:io' as io;
 
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:platform/platform.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:user_feed/user_feed.dart';
@@ -33,21 +27,11 @@ import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
 import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'test_utils.dart';
-
-const String testFirstName = 'John';
-const String testLastName = 'Doe';
-const String testDOB = '02/02/2012';
-const String testDate = '2020-03-13T17:18:21+03:00';
-const String testFormattedDate = '2020-03-13';
-const String inaccurateGenderValue = 'knb jk ';
 
 class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
   @override
@@ -211,25 +195,7 @@ class MockStateDB extends Mock implements Database {
   }
 }
 
-class MockHttpClientIO extends Mock implements io.HttpClient {}
-
-class MockHttpClientRequest extends Mock implements io.HttpClientRequest {}
-
-class MockHttpClientResponse extends Mock implements io.HttpClientResponse {}
-
-class MockHttpHeaders extends Mock implements io.HttpHeaders {}
-
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
-
-class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
-
-class MockPlatform extends Mock implements LocalPlatform {}
-
-class MockHapticFeedback extends Mock implements HapticFeedback {}
-
-class MockConnectivityStatus extends Mock implements ConnectivityStatus {}
-
-class MockShortGraphQlClient extends Mock implements GraphQlClient {}
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -277,48 +243,6 @@ class MockShortSILGraphQlClient extends IGraphQlClient {
     required String method,
     Map<String, dynamic>? variables,
   }) {
-    return Future<http.Response>.value(response);
-  }
-
-  @override
-  Future<http.Response> query(
-    String queryString,
-    Map<String, dynamic> variables, [
-    ContentType contentType = ContentType.json,
-  ]) {
-    return Future<http.Response>.value(response);
-  }
-}
-
-/// a short client for providing custom error responses
-///
-/// a good use case is when you want to return error responses
-class MockCustomGraphQLClient extends IGraphQlClient {
-  MockCustomGraphQLClient.withResponse(
-    String idToken,
-    String endpoint,
-    this.response,
-  ) {
-    super.idToken = idToken;
-    super.endpoint = endpoint;
-  }
-
-  final http.Response response;
-
-  @override
-  Future<http.Response> callRESTAPI({
-    required String endpoint,
-    required String method,
-    Map<String, dynamic>? variables,
-  }) {
-    if (endpoint == kTestLoginByPhoneEndpoint) {
-      return Future<http.Response>.value(
-        Response(
-          json.encode(mockLoginResponse),
-          200,
-        ),
-      );
-    }
     return Future<http.Response>.value(response);
   }
 
@@ -1001,7 +925,12 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    return Future<http.Response>.value();
+    return Future<http.Response>.value(
+      http.Response(
+        json.encode(<String, dynamic>{'data': <String, dynamic>{}}),
+        200,
+      ),
+    );
   }
 
   @override
@@ -1011,27 +940,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (_res is Map) return _res as Map<String, dynamic>;
     return _res[0] as Map<String, dynamic>;
   }
-}
-
-class MockGraphQlClient2 extends IGraphQlClient {
-  MockGraphQlClient2.withResponse(
-    String idToken,
-    String endpoint,
-    this.response,
-  ) {
-    super.idToken = idToken;
-    super.endpoint = endpoint;
-  }
-
-  late final Response response;
-
-  @override
-  Future<Response> query(
-    String queryString,
-    Map<String, dynamic> variables, [
-    ContentType contentType = ContentType.json,
-  ]) async =>
-      this.response;
 }
 
 /// Please refer to:
@@ -1046,302 +954,6 @@ const Size mediumSizedTabletLandscape = Size(1024, 600);
 const Size tabletPortrait = Size(720, 1280);
 const Size tabletLandscape = Size(1280, 720);
 const Size typicalLargePhoneScreenSizePortrait = Size(300, 800);
-
-Map<String, dynamic> changePINMock() {
-  return <String, dynamic>{
-    'data': <String, dynamic>{'updateUserPIN': true}
-  };
-}
-
-Map<String, dynamic> resetPINMock() {
-  return <String, dynamic>{'otp': '856839'};
-}
-
-Map<String, dynamic> getEmptyLibraryMock() {
-  return <String, dynamic>{
-    'data': <String, dynamic>{'getLibraryContent': <dynamic>[]}
-  };
-}
-
-Map<String, dynamic> getEmptyFAQs() {
-  return <String, dynamic>{
-    'data': <String, dynamic>{'getFaqsContent': <dynamic>[]}
-  };
-}
-
-Map<String, dynamic> getErrorLibraryMock() {
-  return <String, dynamic>{'error': 'timeout'};
-}
-
-Map<String, dynamic> getNoFAQLibraryMock() {
-  return <String, dynamic>{'error': 'no FAQ'};
-}
-
-Map<String, dynamic> coverVerificationRequestsMockEmpty() {
-  return <String, dynamic>{
-    'data': <String, dynamic>{'getMemberRequestByPhoneNumber': <dynamic>[]},
-  };
-}
-
-Map<String, dynamic> coverVerificationRequestsErrorMock() {
-  return <String, dynamic>{
-    'errors': 'An error occurred',
-  };
-}
-
-final http.Response coverRequestsErrorResponse = http.Response(
-  json.encode(coverVerificationRequestsErrorMock()),
-  201,
-);
-
-final http.Response coverRequestsResponseEmpty = http.Response(
-  json.encode(coverVerificationRequestsMockEmpty()),
-  201,
-);
-
-Map<String, dynamic> helpCenterFAQMock = <String, dynamic>{
-  'data': <String, dynamic>{
-    'getFaqsContent': <dynamic>[
-      <String, dynamic>{
-        'id': '5f89b9120251c700391da360',
-        'createdAt': '2020-10-16T18:15:30+03:00',
-        'excerpt':
-            '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-        'featureImage':
-            'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-        'html':
-            '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-        'publishedAt': '2020-10-16T18:19:34+03:00',
-        'slug': 'how-to-add-your-cover',
-        'title': 'How to add your cover',
-        'readingTime': 0,
-        'tags': <dynamic>[
-          <String, dynamic>{
-            'id': '5f89b94a0251c700391da364',
-            'name': 'faqs-consumer',
-            'slug': 'faqs-consumer'
-          }
-        ]
-      },
-      <String, dynamic>{
-        'id': '5f89b9120251c700391da360',
-        'createdAt': '2020-10-16T18:15:30+03:00',
-        'excerpt':
-            '* Login to your My Afya Hub account\n * Navigate to the cover page\n * Choose the insurance provider you want attached to your cover\n * Add your member insurance as indicated in your insurance card\n * Then press the submit button',
-        'featureImage':
-            'https://images.unsplash.com/photo-1525466760727-1d8be8721154?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ',
-        'html':
-            '<ul><li>Login to your My Afya Hub account</li><li>Navigate to the cover page</li><li>Choose the insurance provider you want attached to your cover</li><li>Add your member insurance as indicated in your insurance card</li><li>Then press the submit button</li></ul>',
-        'publishedAt': '2020-10-16T18:19:34+03:00',
-        'slug': 'how-to-add-your-cover',
-        'title': 'How to add your cover',
-        'readingTime': 0,
-        'tags': <dynamic>[
-          <String, dynamic>{
-            'id': '5f89b94a0251c700391da364',
-            'name': 'faqs',
-            'slug': 'faqs'
-          }
-        ]
-      },
-    ]
-  }
-};
-
-String sampleEndPoint = 'http://www.example.com/';
-Uri sampleUri = Uri.parse(sampleEndPoint);
-String sampleQuery = '';
-Route<dynamic> sampleRoute = MaterialPageRoute<dynamic>(
-  builder: (BuildContext context) => const Placeholder(),
-);
-
-// Remote config service
-
-class MockFirebaseRemoteConfig extends Mock
-    with
-        // ignore: prefer_mixin
-        MockPlatformInterfaceMixin
-    implements
-        TestFirebaseRemoteConfigPlatform {
-  MockFirebaseRemoteConfig() {
-    TestFirebaseRemoteConfigPlatform();
-  }
-
-  @override
-  Future<bool> activate() {
-    return super.noSuchMethod(
-      Invocation.method(#activate, <dynamic>[]),
-      returnValue: Future<bool>.value(true),
-      returnValueForMissingStub: Future<bool>.value(true),
-    ) as Future<bool>;
-  }
-
-  @override
-  FirebaseRemoteConfigPlatform delegateFor({FirebaseApp? app}) {
-    return super.noSuchMethod(
-      Invocation.method(
-        #delegateFor,
-        <dynamic>[],
-        <Symbol, Object?>{#app: app},
-      ),
-      returnValue: TestFirebaseRemoteConfigPlatform(),
-      returnValueForMissingStub: TestFirebaseRemoteConfigPlatform(),
-    ) as FirebaseRemoteConfigPlatform;
-  }
-
-  @override
-  Future<void> ensureInitialized() {
-    return super.noSuchMethod(
-      Invocation.method(#ensureInitialized, <dynamic>[]),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value(),
-    ) as Future<void>;
-  }
-
-  @override
-  Future<void> fetch() {
-    return super.noSuchMethod(
-      Invocation.method(#fetch, <dynamic>[]),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value(),
-    ) as Future<void>;
-  }
-
-  @override
-  Future<bool> fetchAndActivate() {
-    return super.noSuchMethod(
-      Invocation.method(#fetchAndActivate, <dynamic>[]),
-      returnValue: Future<bool>.value(true),
-      returnValueForMissingStub: Future<bool>.value(true),
-    ) as Future<bool>;
-  }
-
-  @override
-  Map<String, RemoteConfigValue> getAll() {
-    return super.noSuchMethod(
-      Invocation.method(#getAll, <dynamic>[]),
-      returnValue: <String, RemoteConfigValue>{},
-      returnValueForMissingStub: <String, RemoteConfigValue>{},
-    ) as Map<String, RemoteConfigValue>;
-  }
-
-  @override
-  bool getBool(String key) {
-    return super.noSuchMethod(
-      Invocation.method(#getBool, <dynamic>[key]),
-      returnValue: true,
-      returnValueForMissingStub: true,
-    ) as bool;
-  }
-
-  @override
-  double getDouble(String key) {
-    return super.noSuchMethod(
-      Invocation.method(#getDouble, <dynamic>[key]),
-      returnValue: 8.8,
-      returnValueForMissingStub: 8.8,
-    ) as double;
-  }
-
-  @override
-  int getInt(String key) {
-    return super.noSuchMethod(
-      Invocation.method(#getInt, <dynamic>[key]),
-      returnValue: 8,
-      returnValueForMissingStub: 8,
-    ) as int;
-  }
-
-  @override
-  String getString(String key) {
-    return super.noSuchMethod(
-      Invocation.method(#getString, <dynamic>[key]),
-      returnValue: 'foo',
-      returnValueForMissingStub: 'foo',
-    ) as String;
-  }
-
-  @override
-  RemoteConfigValue getValue(String key) {
-    return super.noSuchMethod(
-      Invocation.method(#getValue, <dynamic>[key]),
-      returnValue: RemoteConfigValue(
-        <int>[],
-        ValueSource.valueStatic,
-      ),
-      returnValueForMissingStub: RemoteConfigValue(
-        <int>[],
-        ValueSource.valueStatic,
-      ),
-    ) as RemoteConfigValue;
-  }
-
-  @override
-  RemoteConfigFetchStatus get lastFetchStatus {
-    return super.noSuchMethod(
-      Invocation.getter(#lastFetchStatus),
-      returnValue: RemoteConfigFetchStatus.success,
-      returnValueForMissingStub: RemoteConfigFetchStatus.success,
-    ) as RemoteConfigFetchStatus;
-  }
-
-  @override
-  DateTime get lastFetchTime {
-    return super.noSuchMethod(
-      Invocation.getter(#lastFetchTime),
-      returnValue: DateTime(2020),
-      returnValueForMissingStub: DateTime(2020),
-    ) as DateTime;
-  }
-
-  @override
-  Future<void> setConfigSettings(RemoteConfigSettings? remoteConfigSettings) {
-    return super.noSuchMethod(
-      Invocation.method(#setConfigSettings, <dynamic>[remoteConfigSettings]),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value(),
-    ) as Future<void>;
-  }
-
-  @override
-  Future<void> setDefaults(Map<String, dynamic>? defaultParameters) {
-    return super.noSuchMethod(
-      Invocation.method(#setDefaults, <dynamic>[defaultParameters]),
-      returnValue: Future<void>.value(),
-      returnValueForMissingStub: Future<void>.value(),
-    ) as Future<void>;
-  }
-
-  @override
-  FirebaseRemoteConfigPlatform setInitialValues({
-    Map<dynamic, dynamic>? remoteConfigValues,
-  }) {
-    return super.noSuchMethod(
-      Invocation.method(
-        #setInitialValues,
-        <dynamic>[],
-        <Symbol, Object?>{#remoteConfigValues: remoteConfigValues},
-      ),
-      returnValue: TestFirebaseRemoteConfigPlatform(),
-      returnValueForMissingStub: TestFirebaseRemoteConfigPlatform(),
-    ) as FirebaseRemoteConfigPlatform;
-  }
-
-  @override
-  RemoteConfigSettings get settings {
-    return super.noSuchMethod(
-      Invocation.getter(#settings),
-      returnValue: RemoteConfigSettings(
-        fetchTimeout: const Duration(seconds: 10),
-        minimumFetchInterval: const Duration(hours: 1),
-      ),
-      returnValueForMissingStub: RemoteConfigSettings(
-        fetchTimeout: const Duration(seconds: 10),
-        minimumFetchInterval: const Duration(hours: 1),
-      ),
-    ) as RemoteConfigSettings;
-  }
-}
 
 List<Map<String, dynamic>> mockFilterItems = <Map<String, dynamic>>[
   <String, dynamic>{
@@ -1383,84 +995,6 @@ class TestFirebaseRemoteConfigPlatform extends FirebaseRemoteConfigPlatform {
   }) {}
 }
 
-class MockRemoteConfig extends Mock implements RemoteConfig {}
-
-MockRemoteConfig mockRemoteConfig = MockRemoteConfig();
-MockFirebaseRemoteConfig mockRemoteConfigPlatform = MockFirebaseRemoteConfig();
-void setUpRemoteConfigStubs() {
-  final DateTime mockLastFetchTime = DateTime(2020);
-  const RemoteConfigFetchStatus mockLastFetchStatus =
-      RemoteConfigFetchStatus.noFetchYet;
-  final RemoteConfigSettings mockRemoteConfigSettings = RemoteConfigSettings(
-    fetchTimeout: const Duration(seconds: 10),
-    minimumFetchInterval: const Duration(hours: 1),
-  );
-  final Map<String, RemoteConfigValue> mockParameters =
-      <String, RemoteConfigValue>{};
-  // Map<String, dynamic> mockDefaultParameters = <String, dynamic>{};
-  final RemoteConfigValue mockRemoteConfigValue = RemoteConfigValue(
-    <int>[],
-    ValueSource.valueStatic,
-  );
-
-  when(
-    mockRemoteConfigPlatform.instanceFor(
-      app: anyNamed('app'),
-      pluginConstants: anyNamed('pluginConstants'),
-    ),
-  ).thenAnswer((_) => mockRemoteConfigPlatform);
-
-  when(
-    mockRemoteConfigPlatform.delegateFor(
-      app: anyNamed('app'),
-    ),
-  ).thenAnswer((_) => mockRemoteConfigPlatform);
-
-  when(
-    mockRemoteConfigPlatform.setInitialValues(
-      remoteConfigValues: anyNamed('remoteConfigValues'),
-    ),
-  ).thenAnswer((_) => mockRemoteConfigPlatform);
-
-  when(mockRemoteConfigPlatform.lastFetchTime).thenReturn(mockLastFetchTime);
-
-  when(mockRemoteConfigPlatform.lastFetchStatus)
-      .thenReturn(mockLastFetchStatus);
-
-  when(mockRemoteConfigPlatform.settings).thenReturn(mockRemoteConfigSettings);
-
-  when(mockRemoteConfigPlatform.setConfigSettings(any))
-      .thenAnswer((_) => Future<void>.value());
-
-  when(mockRemoteConfigPlatform.activate())
-      .thenAnswer((_) => Future<bool>.value(true));
-
-  when(mockRemoteConfigPlatform.ensureInitialized())
-      .thenAnswer((_) => Future<void>.value());
-
-  when(mockRemoteConfigPlatform.fetch())
-      .thenAnswer((_) => Future<void>.value());
-
-  when(mockRemoteConfigPlatform.fetchAndActivate())
-      .thenAnswer((_) => Future<bool>.value(true));
-
-  when(mockRemoteConfigPlatform.getAll()).thenReturn(mockParameters);
-
-  when(mockRemoteConfigPlatform.getBool('foo')).thenReturn(true);
-
-  when(mockRemoteConfigPlatform.getInt('foo')).thenReturn(8);
-
-  when(mockRemoteConfigPlatform.getDouble('foo')).thenReturn(8.8);
-
-  when(mockRemoteConfigPlatform.getString('foo')).thenReturn('bar');
-
-  when(mockRemoteConfigPlatform.getValue('foo'))
-      .thenReturn(mockRemoteConfigValue);
-
-  when(mockRemoteConfigPlatform.setDefaults(any))
-      .thenAnswer((_) => Future<void>.value());
-}
-
 List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
   <String, dynamic>{
     'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
@@ -1474,7 +1008,6 @@ List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
   },
 ];
 
-// ignore_for_file: avoid_redundant_argument_values, null_argument_to_non_null_type
 Map<String, dynamic> mockIconDetails = <String, dynamic>{
   'url': shieldIconImgUrl
 };
@@ -1959,28 +1492,6 @@ final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{
   'optedIn': true
 };
 
-final Map<String, dynamic> mock401Response = <String, dynamic>{
-  'errors': <Map<String, dynamic>>[
-    <String, dynamic>{
-      'message': '401: Unauthorized',
-      'extensions': <String, dynamic>{
-        'code': 'UNAUTHENTICATED',
-        'response': <String, dynamic>{
-          'url': 'https://mycarehub-testing.savannahghi.org/graphql',
-          'status': 401,
-          'statusText': 'Unauthorized',
-          'body': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'error': 'invalid auth token: ID token has expired at: 1638297478'
-            }
-          ]
-        }
-      }
-    }
-  ],
-  'data': null
-};
-
 final Map<String, dynamic> mockFeedContent = <String, dynamic>{
   'getContent': <String, dynamic>{
     'items': <dynamic>[contentMock.first]
@@ -2054,16 +1565,6 @@ final Map<String, dynamic> mockClientProfile = <String, dynamic>{
   }
 };
 
-final Map<String, dynamic> mockEventObject = <String, dynamic>{
-  'firstName': 'Kowalski',
-  'lastName': 'Juha',
-  'primaryPhoneNumber': '0712345678',
-  'uid': 'some-id',
-  'flavour': Flavour.CONSUMER.name,
-  'timestamp': DateTime.now().toString(),
-  'appVersion': APPVERSION,
-};
-
 final Map<String, dynamic> mockQuote = <String, dynamic>{
   'getHealthDiaryQuote': <String, dynamic>{
     'quote': 'Health at your fingerprints',
@@ -2072,7 +1573,6 @@ final Map<String, dynamic> mockQuote = <String, dynamic>{
 };
 
 // chewi mocks
-
 class MockVideoPlayerController extends ValueNotifier<VideoPlayerValue>
     implements VideoPlayerController {
   MockVideoPlayerController()

@@ -7,20 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dart_fcm/dart_fcm.dart';
-import 'package:domain_objects/failures.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/string_constant.dart';
 import 'package:shared_themes/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
@@ -33,64 +25,7 @@ import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-
-/// [updateUserPin] resets a user's PIN
-///
-/// - it makes an api call to the reset PIN endpoint to reset a user's PIN
-/// - it basically changes a user's PIN to the entered one after OTP confirmation
-Future<void> updateUserPin({
-  required BuildContext context,
-  required String pin,
-  required String phoneNumber,
-  required String otp,
-}) async {
-  final Map<String, String> _variables = <String, String>{
-    'phoneNumber': phoneNumber,
-    'OTP': otp,
-    'PIN': pin,
-  };
-
-  final IGraphQlClient _httpClient = AppWrapperBase.of(context)!.graphQLClient;
-
-  final String endPoint =
-      AppWrapperBase.of(context)!.customContext!.updateUserPinEndpoint;
-
-  final http.Response response = await _httpClient.callRESTAPI(
-    endpoint: endPoint,
-    variables: _variables,
-    method: httpPOST,
-  );
-
-  final dynamic body = json.decode(response.body);
-
-  if (body != null && body == true) {
-    Navigator.pushReplacementNamed(context, BWRoutes.phoneLogin);
-
-    showFeedbackBottomSheet(
-      context: context,
-      modalContent: pinUpdateSuccess,
-      imageAssetPath: infoIconUrl,
-    );
-  } else {
-    reportErrorToSentry(context, response, hint: 'Error updating pin');
-    await showFeedbackBottomSheet(
-      context: context,
-      modalContent: UserFeedBackTexts.getErrorMessage(),
-      imageAssetPath: infoIconUrl,
-    );
-  }
-}
-
-Future<void> registerDeviceToken({required IGraphQlClient client}) async {
-  final Map<String, dynamic> _variables = <String, dynamic>{
-    'token': await SILFCM().getDeviceToken()
-  };
-
-  await client.query(registerDeviceTokenQuery, _variables);
-}
 
 /// [processHttpResponse] routine is used to process a network call response, for errors, bad requests, timeouts and correct responses.
 ///
@@ -201,44 +136,6 @@ void toggleLoadingIndicator({
   }
 }
 
-Object actionWrapError({
-  required dynamic error,
-  required BuildContext context,
-}) async {
-  if (error.runtimeType == SILException) {
-    if (error.cause.contains('no_user_account_found') == true) {
-      genericBottomSheet(
-        context: context,
-        message: noUserFoundString,
-        isError: true,
-        primaryActionCallback: () =>
-            Navigator.pushReplacementNamed(context, BWRoutes.phoneLogin),
-        primaryActionText: createAccountButtonText,
-        buttonColor: AppColors.primaryColor,
-      );
-      return error;
-    }
-    genericBottomSheet(
-      context: context,
-      message: error.message as String,
-      isError: true,
-      primaryActionCallback: () =>
-          Navigator.pushReplacementNamed(context, BWRoutes.phoneLogin),
-      primaryActionText: continueToLoginButtonText,
-      secondaryActionCallback: () => Navigator.of(context).pop(),
-      secondaryActionText: retryButtonText,
-      buttonColor: AppColors.primaryColor,
-    );
-    return error;
-  }
-  showFeedbackBottomSheet(
-    context: context,
-    modalContent: UserFeedBackTexts.getErrorMessage(),
-    imageAssetPath: errorIconUrl,
-  );
-  return error;
-}
-
 Function checkWaitingForFunc(BuildContext context) {
   return ({required String flag}) {
     return StoreProvider.state<AppState>(context)!.wait!.isWaitingFor(flag);
@@ -252,23 +149,6 @@ void clearAllFlags(BuildContext context) {
       WaitAction<AppState>.clear(),
     );
   });
-}
-
-void callSupport() {
-  launch(silPhoneNumber);
-}
-
-void chatOnWhatsApp() {
-  launchWhatsApp(
-    message: '',
-    phone: kWhatsAppNumber,
-    launch: launch(
-      whatsAppUrl(
-        phone: kWhatsAppNumber,
-        message: '',
-      ),
-    ),
-  );
 }
 
 void listenForConnectivityChanges(ConnectivityResult result) {

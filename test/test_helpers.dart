@@ -40,31 +40,6 @@ void queryWhenThenAnswer({
   );
 }
 
-void callRESTAPIWhenThenAnswer({
-  required String endpoint,
-  required Map<String, dynamic> variables,
-  required http.Response response,
-}) {
-  when(
-    baseGraphQlClientMock.callRESTAPI(
-      endpoint: endpoint,
-      variables: variables,
-      method: 'POST',
-    ),
-  ).thenAnswer(
-    (_) => Future<http.Response>.value(
-      response,
-    ),
-  );
-}
-
-void toMapWhenThenReturn({
-  required http.Response argument,
-  required Map<String, dynamic> returnVal,
-}) {
-  when(baseGraphQlClientMock.toMap(argument)).thenReturn(returnVal);
-}
-
 Future<void> buildTestWidget({
   required WidgetTester tester,
   required Store<AppState> store,

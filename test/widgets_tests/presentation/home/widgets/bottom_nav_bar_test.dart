@@ -35,7 +35,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.byKey(silBottomNavKey), findsOneWidget);
+      expect(find.byKey(bottomNavKey), findsOneWidget);
     });
 
     testWidgets(
@@ -59,7 +59,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // verify the bottom navigation bar exists
-      expect(find.byKey(silBottomNavKey), findsOneWidget);
+      expect(find.byKey(bottomNavKey), findsOneWidget);
       expect(find.text('Home'), findsWidgets);
       await tester.tap(find.text('Home').first);
       await tester.pumpAndSettle();
@@ -113,7 +113,7 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-        expect(find.byKey(silBottomNavKey), findsOneWidget);
+        expect(find.byKey(bottomNavKey), findsOneWidget);
         expect(find.text('Home'), findsWidgets);
         await tester.tap(find.text('Home').first);
         await tester.pumpAndSettle();

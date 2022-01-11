@@ -21,9 +21,7 @@ import 'package:myafyahub/application/redux/view_models/content/content_view_mod
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
 import 'package:shared_ui_components/inputs.dart';
-import 'package:unicons/unicons.dart';
 import 'package:video_player/video_player.dart';
 
 // Project imports:
@@ -156,131 +154,6 @@ String formatSecurityQuestionDate(
   return DateFormat(format).format(DateTime.parse(date));
 }
 
-void genericBottomSheet({
-  required BuildContext context,
-  required String message,
-  required bool isError,
-  bool showSecondaryButton = false,
-  Color? buttonColor,
-  Color? borderColor,
-  EdgeInsets? customPadding,
-
-  // used in the primary action button
-  String? primaryActionText,
-  Function? primaryActionCallback,
-
-  // used in the primary action button
-  String? secondaryActionText,
-  Function? secondaryActionCallback,
-
-  // used in the third action button
-  String? tertiaryActionText,
-  Function? tertiaryActionCallback,
-}) {
-  showModalBottomSheet(
-    context: context,
-    enableDrag: true,
-    isDismissible: true,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20.0),
-        topRight: Radius.circular(20.0),
-      ),
-    ),
-    builder: (BuildContext bc) {
-      return Container(
-        key: bottomSheetKey,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40.0),
-            topRight: Radius.circular(40.0),
-          ),
-        ),
-        child: ListView(
-          key: genericBottomSheetWidgetKey,
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          shrinkWrap: true,
-          children: <Widget>[
-            mediumVerticalSizedBox,
-            Column(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 24.0,
-                  backgroundColor:
-                      isError ? AppColors.redColor : AppColors.greenColor,
-                  child: Icon(
-                    isError ? UniconsLine.times : UniconsLine.check,
-                    size: 36.0,
-                    color: Theme.of(context).backgroundColor,
-                  ),
-                ),
-                mediumVerticalSizedBox,
-                Padding(
-                  padding: veryLargeHorizontalPadding,
-                  child: Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: TextThemes.normalSize18Text(
-                      AppColors.blackColor,
-                    ),
-                  ),
-                ),
-                largeVerticalSizedBox,
-                if (primaryActionCallback != null)
-                  Container(
-                    padding: veryLargeHorizontalPadding,
-                    height: 52,
-                    width: double.infinity,
-                    child: SILPrimaryButton(
-                      buttonColor: buttonColor,
-                      borderColor: borderColor,
-                      customPadding: customPadding,
-                      buttonKey: primaryBottomSheetButtonKey,
-                      text: primaryActionText,
-                      textColor: AppColors.whiteColor,
-                      onPressed: () {
-                        primaryActionCallback();
-                      },
-                    ),
-                  ),
-                smallVerticalSizedBox,
-                if (showSecondaryButton || secondaryActionCallback != null)
-                  Container(
-                    padding: veryLargeHorizontalPadding,
-                    width: double.infinity,
-                    child: SILNoBorderButton(
-                      buttonKey: secondaryBottomSheetButtonKey,
-                      text: secondaryActionText ?? 'Close',
-                      textColor: buttonColor ??
-                          Theme.of(context).colorScheme.secondary,
-                      onPressed: secondaryActionCallback ??
-                          () {
-                            Navigator.pop(context);
-                          },
-                    ),
-                  ),
-                smallVerticalSizedBox,
-                if (tertiaryActionCallback != null)
-                  Container(
-                    padding: veryLargeHorizontalPadding,
-                    width: double.infinity,
-                    child: SILNoBorderButton(
-                      buttonKey: tertiaryBottomSheetButtonKey,
-                      text: tertiaryActionText ?? 'Complete',
-                      textColor: AppColors.whiteColor,
-                      onPressed: tertiaryActionCallback,
-                    ),
-                  ),
-              ],
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
-
 String sentenceCaseUserName({
   required String firstName,
   required String lastName,
@@ -335,12 +208,10 @@ Future<dynamic> showFeedbackBottomSheet({
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      GestureDetector(
-                        child: SvgPicture.asset(
-                          imageAssetPath,
-                          height: 34.0,
-                          width: 34.0,
-                        ),
+                      SvgPicture.asset(
+                        imageAssetPath,
+                        height: 34.0,
+                        width: 34.0,
                       ),
                       mediumHorizontalSizedBox,
                       Flexible(
@@ -838,9 +709,10 @@ Future<void> updateBookmarkStatus({
   StoreProvider.dispatch(
     context,
     UpdateReactionStatusAction(
-        contentID: contentID,
-        hasSaved: true,
-        contentDisplayedType: contentDisplayedType,),
+      contentID: contentID,
+      hasSaved: true,
+      contentDisplayedType: contentDisplayedType,
+    ),
   );
 
   await StoreProvider.dispatch(
@@ -960,6 +832,7 @@ bool getHasSaved({
   }
   return false;
 }
+
 List<Content?> getContentList({
   required ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,

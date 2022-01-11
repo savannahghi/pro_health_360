@@ -25,7 +25,7 @@ class BottomNavBar extends StatelessWidget {
       converter: (Store<AppState> store) => BottomNavViewModel.fromStore(store),
       builder: (BuildContext context, BottomNavViewModel vm) {
         return BottomNavigationBar(
-          key: silBottomNavKey,
+          key: bottomNavKey,
           currentIndex: vm.currentIndex,
           backgroundColor: AppColors.whiteColor,
           type: BottomNavigationBarType.fixed,
