@@ -206,6 +206,7 @@ const String pleaseBePatientWhileWePrepareYourSaveItemsText =
 
 // HTTP Request constants
 const String httpPOST = 'POST';
+const String httpGET = 'GET';
 
 const String noUserFound = 'no_user_account_found';
 

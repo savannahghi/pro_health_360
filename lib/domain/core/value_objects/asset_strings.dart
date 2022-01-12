@@ -8,6 +8,9 @@ const String infoIconUrl = 'assets/icons/info.svg';
 // the infamous spaceman used in the main files
 const String errorDisplayImgUrl = 'assets/images/error-display.png';
 
+//pdf icon
+const String pdfIconSvg = 'assets/icons/pdf_icon.svg';
+
 //Verify OTP
 const String errorImageSvg = 'assets/images/error_image.svg';
 

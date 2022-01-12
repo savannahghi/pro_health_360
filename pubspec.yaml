@@ -34,6 +34,7 @@ dependencies:
   flutter_image_compress: ^1.0.0
   flutter_localizations:
     sdk: flutter
+  flutter_pdfview: ^1.2.1
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.1-nullsafety.0
   freezed: ^0.14.2
@@ -49,6 +50,7 @@ dependencies:
   launch_review: ^3.0.1
   misc_utilities: ^0.1.28-nullsafety
   path: ^1.8.0
+  path_provider: ^2.0.8
   pin_code_text_field: ^1.8.0
   platform: ^3.0.2
   plugin_platform_interface: ^2.0.2

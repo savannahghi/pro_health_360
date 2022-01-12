@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
+import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -164,6 +165,17 @@ class RouteGenerator {
       case BWRoutes.consent:
         return MaterialPageRoute<ConsentPage>(
           builder: (_) => const ConsentPage(),
+        );
+
+      case BWRoutes.viewDocumentPage:
+        final String pdfTitle = args['pdfTitle'] as String;
+        final String pdfUrl = args['pdfUrl'] as String;
+
+        return MaterialPageRoute<DocumentContentPage>(
+          builder: (_) => DocumentContentPage(
+            pdfTitle: pdfTitle,
+            pdfUrl: pdfUrl,
+          ),
         );
 
       case BWRoutes.personalInfo:

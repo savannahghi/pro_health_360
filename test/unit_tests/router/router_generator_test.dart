@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/community_list_item.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 // Project imports:
@@ -122,6 +123,22 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<VerifyPhonePage>>());
     expect(route.builder(context), isA<VerifyPhonePage>());
+  });
+
+  test('Test router returns  Document page', () {
+    const RouteSettings settings = RouteSettings(
+      name: BWRoutes.viewDocumentPage,
+      arguments: <String, dynamic>{
+        'pdfUrl': 'http://www.africau.edu/images/default/sample.pdf',
+        'pdfTitle': 'Sample PDF',
+      },
+    );
+
+    final MaterialPageRoute<DocumentContentPage> route =
+        routeGenerator(settings) as MaterialPageRoute<DocumentContentPage>;
+
+    expect(route, isA<MaterialPageRoute<DocumentContentPage>>());
+    expect(route.builder(context), isA<DocumentContentPage>());
   });
 
   test('Test router returns congratulations page', () {
