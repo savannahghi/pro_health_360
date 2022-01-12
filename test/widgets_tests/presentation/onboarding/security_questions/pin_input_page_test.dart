@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
@@ -24,7 +25,6 @@ import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 // Project imports:
-
 void main() {
   group('PinInputPage renders correctly', () {
     late Store<AppState> store;
@@ -50,11 +50,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            return MaterialApp(
-              home: MaterialApp(
-                home: PINInputPage(),
-              ),
-            );
+            return PINInputPage();
           },
         ),
       );
@@ -88,24 +84,23 @@ void main() {
       await tester.tap(numberEightButton);
       await tester.tap(numberNineButton);
       await tester.tap(numberZeroButton);
-      await tester.tap(numberSevenButton);
-      await tester.tap(numberEightButton);
-      await tester.tap(numberNineButton);
-      await tester.tap(numberZeroButton);
-      await tester.tap(numberSevenButton);
-      await tester.tap(numberEightButton);
-      await tester.tap(numberNineButton);
-      await tester.tap(numberZeroButton);
-      await tester.tap(numberSevenButton);
-      await tester.tap(numberEightButton);
-      await tester.tap(numberEightButton);
-      await tester.tap(numberNineButton);
-      await tester.tap(numberZeroButton);
-      await tester.tap(numberSevenButton);
+      
+      store.dispatch(
+        UpdatePINInputStateAction(tries: 4),
+      );
 
-      await tester.pumpAndSettle(const Duration(minutes: 6));
+      await tester.pumpAndSettle();
+      await tester.tap(numberSevenButton);
+      await tester.tap(numberEightButton);
+      await tester.tap(numberNineButton);
+      await tester.tap(numberZeroButton);
+      await tester.pump(const Duration(minutes: 2));
 
       expect(find.text(wrongPINString), findsNothing);
+
+      await tester.pumpAndSettle(const Duration(minutes: 6));
+      expect(find.text('7890'), findsNothing);
+      
     });
 
     testWidgets('1, 2, 3 and 4 buttons are tappable',
@@ -166,7 +161,6 @@ void main() {
       await tester.tap(numberSixButton);
       await tester.tap(numberFourButton);
       await tester.tap(numberSixButton);
-
       expect(find.text('646'), findsOneWidget);
     });
     testWidgets('navigates to Forgot PIN Page', (WidgetTester tester) async {

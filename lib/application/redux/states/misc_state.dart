@@ -15,8 +15,10 @@ class MiscState with _$MiscState {
     String? initialRoute,
     UserPin? userPin,
     List<dynamic>? libraryListItems,
-    String? healthPagePINInputTime,
     FAQsContentState? profileFAQsContentState,
+    String? healthPagePINInputTime,
+    int? pinInputTries,
+    String? maxTryTime,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -26,7 +28,9 @@ class MiscState with _$MiscState {
         initialRoute: BWRoutes.phoneLogin,
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
-        healthPagePINInputTime: UNKNOWN,
         profileFAQsContentState: FAQsContentState.initial(),
+        healthPagePINInputTime: UNKNOWN,
+        pinInputTries: 0,
+        maxTryTime: UNKNOWN,
       );
 }

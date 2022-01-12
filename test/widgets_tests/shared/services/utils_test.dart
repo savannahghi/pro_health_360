@@ -16,6 +16,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart' as misc;
 import 'package:mockito/annotations.dart';
+import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:shared_themes/constants.dart';
@@ -25,7 +26,6 @@ import 'package:shared_ui_components/buttons.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
-import 'package:myafyahub/application/redux/actions/health_page_pin_input_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -360,8 +360,8 @@ void main() {
       expect(testBool, true);
 
       store.dispatch(
-        HealthPagePINInputAction(
-          lastPINInputTime:
+        UpdatePINInputStateAction(
+          healthPagePINInputTime:
               DateTime.now().subtract(const Duration(minutes: 30)).toString(),
         ),
       );
@@ -370,8 +370,8 @@ void main() {
       expect(testBool, true);
 
       store.dispatch(
-        HealthPagePINInputAction(
-          lastPINInputTime:
+        UpdatePINInputStateAction(
+          healthPagePINInputTime:
               DateTime.now().subtract(const Duration(minutes: 10)).toString(),
         ),
       );

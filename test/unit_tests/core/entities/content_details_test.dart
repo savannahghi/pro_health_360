@@ -11,6 +11,7 @@ void main() {
       ContentDetails.fromJson(<String, dynamic>{
         'content': contentMock.first,
         'showReactions': true,
+        'contentDisplayedType': 'FEED'
       }),
       isA<ContentDetails>(),
     );
