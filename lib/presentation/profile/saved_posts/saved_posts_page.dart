@@ -30,6 +30,8 @@ class SavedPostPage extends StatefulWidget {
 class _SavedPostPageState extends State<SavedPostPage> {
   @override
   void initState() {
+    super.initState();
+
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       final SavedContentState? state = StoreProvider.state<AppState>(context)
           ?.contentState
@@ -44,8 +46,6 @@ class _SavedPostPageState extends State<SavedPostPage> {
         );
       }
     });
-
-    super.initState();
   }
 
   @override

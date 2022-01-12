@@ -108,11 +108,13 @@ class RouteGenerator {
         final EditInformationItem editInformationItem =
             args['editInformationItem'] as EditInformationItem;
 
-        Function submitFunction;
+        void Function(EditInformationItem editInformationItem) submitFunction;
 
         ///Sanity checks
         if (args['onSubmit'] != null) {
-          submitFunction = args['onSubmit'] as Function;
+          submitFunction = args['onSubmit'] as void Function(
+            EditInformationItem editInformationItem,
+          );
         } else {
           submitFunction = (EditInformationItem editInformationItem) {};
         }

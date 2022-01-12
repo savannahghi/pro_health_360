@@ -1654,3 +1654,11 @@ class _FakeClosedCaptionFile extends ClosedCaptionFile {
     ];
   }
 }
+
+Map<String, dynamic> mockUpdateClientCareGiver = <String, dynamic>{
+  'clientID': 'clientID',
+  'firstName': 'John',
+  'lastName': 'Doe',
+  'phoneNumber': '+254798000000',
+  'caregiverType': 'Sibling',
+};

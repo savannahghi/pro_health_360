@@ -7,8 +7,8 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 class EditInformationItem {
   EditInformationItem({
     required this.title,
-    this.description,
     required this.editInformationInputItem,
+    this.description,
   });
 
   final String title;
@@ -23,16 +23,19 @@ class EditInformationInputItem {
     required this.inputType,
     required this.inputController,
     this.dropDownOptionList,
-  }) // Asserts that the dropDown cannot be null if it is a dropdown
+    String? apiFieldValue,
+  })   // Asserts that the dropDown cannot be null if it is a dropdown
   : assert(
           inputType == EditInformationInputType.DropDown
               ? dropDownOptionList != null && dropDownOptionList.isNotEmpty
               : dropDownOptionList == null,
-        );
+        ),
+        apiFieldValue = apiFieldValue ?? fieldName;
 
   final String fieldName;
   final String hintText;
   final EditInformationInputType inputType;
   final TextEditingController inputController;
   final List<String>? dropDownOptionList;
+  final String apiFieldValue;
 }

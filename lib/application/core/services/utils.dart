@@ -160,11 +160,15 @@ String sentenceCaseUserName({
 }) {
   if (firstName.isNotEmpty && lastName.isNotEmpty) {
     if (firstName.length > 1 && lastName.length > 1) {
-      return '${firstName[0].toUpperCase()}${firstName.substring(1)} ${lastName[0].toUpperCase()}${lastName.substring(1)}';
+      return '${upperCaseFirstLetter(firstName)} ${upperCaseFirstLetter(lastName)}';
     }
     return '$firstName $lastName';
   }
   return '$firstName $lastName';
+}
+
+String upperCaseFirstLetter(String word) {
+  return '${word.substring(0, 1).toUpperCase()}${word.substring(1).toLowerCase()}';
 }
 
 Future<dynamic> showFeedbackBottomSheet({
@@ -472,18 +476,12 @@ bool shouldInputPIN(BuildContext context) {
       differenceFromLastInput > 20;
 }
 
-final EditInformationInputItem nameInputItem = EditInformationInputItem(
-  fieldName: name,
-  hintText: janeDoe,
-  inputType: EditInformationInputType.Text,
-  inputController: TextEditingController(),
-);
-
 final EditInformationInputItem phoneInputItem = EditInformationInputItem(
   fieldName: phoneNumber,
   hintText: hotlineNumberString,
   inputType: EditInformationInputType.Text,
   inputController: TextEditingController(),
+  apiFieldValue: 'phoneNumber',
 );
 
 final EditInformationInputItem relationInputItem = EditInformationInputItem(
@@ -491,18 +489,30 @@ final EditInformationInputItem relationInputItem = EditInformationInputItem(
   hintText: relationText,
   inputType: EditInformationInputType.DropDown,
   inputController: TextEditingController(),
-  dropDownOptionList: <String>[
-    father,
-    mother,
-    sibling,
-  ],
+  dropDownOptionList: CaregiverType.values
+      .map<String>((CaregiverType type) => type.name)
+      .toList(),
+  apiFieldValue: 'caregiverType',
 );
 
 final EditInformationItem careGiverEditInfo = EditInformationItem(
   title: myProfileCaregiverText,
   description: myProfileCaregiverDescriptionText,
   editInformationInputItem: <EditInformationInputItem>[
-    nameInputItem,
+    EditInformationInputItem(
+      fieldName: firstName,
+      hintText: janeDoe,
+      inputType: EditInformationInputType.Text,
+      inputController: TextEditingController(),
+      apiFieldValue: 'firstName',
+    ),
+    EditInformationInputItem(
+      fieldName: lastName,
+      hintText: janeDoe,
+      inputType: EditInformationInputType.Text,
+      inputController: TextEditingController(),
+      apiFieldValue: 'lastName',
+    ),
     phoneInputItem,
     relationInputItem,
   ],
@@ -642,6 +652,21 @@ Gender genderFromJson(String? genderString) {
 
 String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
+}
+
+CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
+  if (caregiverTypeString == null || caregiverTypeString.isEmpty) {
+    return CaregiverType.Sibling;
+  }
+
+  return CaregiverType.values.where((CaregiverType caregiverType) {
+    return caregiverType.name.toLowerCase() ==
+        caregiverTypeString.toLowerCase();
+  }).first;
+}
+
+String caregiverTypeToJson(CaregiverType? caregiverType) {
+  return caregiverType?.name ?? CaregiverType.Sibling.name;
 }
 
 void navigateToNewPage({

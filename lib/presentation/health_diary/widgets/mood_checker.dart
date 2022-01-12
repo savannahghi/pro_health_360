@@ -26,12 +26,12 @@ class _MoodCheckerState extends State<MoodChecker> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback(
-      (_) => StoreProvider.dispatch<AppState>(
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      StoreProvider.dispatch<AppState>(
         context,
         CanRecordMoodAction(context: context),
-      ),
-    );
+      );
+    });
   }
 
   @override

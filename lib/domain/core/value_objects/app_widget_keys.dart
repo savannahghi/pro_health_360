@@ -135,3 +135,5 @@ const Key shareHealthDiaryKey = Key('share_health_diary');
 const Key dontShareHealthDiaryKey = Key('dont_share_health_diary');
 
 const Key galleryImagePageKey = Key('gallery_image_page_key');
+
+const Key editPersonalInfoKey = Key('edit_personal_info_key');

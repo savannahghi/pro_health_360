@@ -16,14 +16,17 @@ class EditInformationButtonWidget extends StatelessWidget {
   const EditInformationButtonWidget({
     required this.editInformationItem,
     this.submitFunction,
+    this.editBtnKey,
   });
 
   final EditInformationItem editInformationItem;
-  final Function? submitFunction;
+  final void Function(EditInformationItem editInformationItem)? submitFunction;
+  final Key? editBtnKey;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: editBtnKey,
       onTap: () {
         Navigator.of(context).pushNamed(
           BWRoutes.editInformationPage,

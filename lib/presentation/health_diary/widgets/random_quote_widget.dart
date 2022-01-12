@@ -36,6 +36,8 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
 
   @override
   void initState() {
+    super.initState();
+
     _streamController = StreamController<Object>.broadcast();
     _stream = _streamController.stream;
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
@@ -47,8 +49,6 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
         variables: <String, dynamic>{},
       );
     });
-
-    super.initState();
   }
 
   @override

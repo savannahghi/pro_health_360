@@ -1,5 +1,10 @@
-// Flutter imports:
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/actions/profile/update_caregiver_information_action.dart';
+import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
+import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -48,14 +53,37 @@ class PersonalInformationPage extends StatelessWidget {
                     ],
                   ),
                   EditInformationButtonWidget(
+                    editBtnKey: editPersonalInfoKey,
                     editInformationItem: careGiverEditInfo,
+                    submitFunction: (EditInformationItem editInformationItem) {
+                      final Map<String, dynamic> variables =
+                          <String, dynamic>{};
+
+                      for (final EditInformationInputItem element
+                          in editInformationItem.editInformationInputItem) {
+                        variables[element.apiFieldValue] =
+                            element.inputController.text;
+                      }
+
+                      final CaregiverInformation info =
+                          CaregiverInformation.fromJson(variables);
+
+                      StoreProvider.dispatch(
+                        context,
+                        UpdateCaregiverInfoAction(
+                          caregiverInformation: info,
+                          graphQlClient:
+                              AppWrapperBase.of(context)!.graphQLClient,
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
 
               mediumVerticalSizedBox,
               const PersonalInformationSecondaryWidget(
-                fieldName: name,
+                fieldName: firstName,
                 fieldValue: janeDoe,
               ),
               verySmallVerticalSizedBox,

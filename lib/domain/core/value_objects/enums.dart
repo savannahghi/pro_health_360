@@ -99,3 +99,11 @@ extension SecurityQuestionResponseTypeEx on SecurityQuestionResponseType {
     return describeEnum(this).toUpperCase();
   }
 }
+
+enum CaregiverType { Father, Mother, Sibling }
+
+extension CaregiverTypeEx on CaregiverType {
+  String get name {
+    return describeEnum(this);
+  }
+}

@@ -15,6 +15,7 @@ class PersonalInformationSecondaryWidget extends StatelessWidget {
     required this.fieldName,
     required this.fieldValue,
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
