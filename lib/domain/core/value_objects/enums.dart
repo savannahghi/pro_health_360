@@ -5,18 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
-enum AppErrorType { UserFeedError }
-
-enum UserType { normal, anonymous }
-
-enum AuthTokenStatus { okay, requiresLogin, requiresPin }
-
-enum TimelineItemType {
-  DiaryText,
-  DiaryImage,
-  Appointment,
-}
-
 enum FollowUpChoice { Yes, No, Unknown }
 
 enum MoodType {

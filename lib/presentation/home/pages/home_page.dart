@@ -13,7 +13,6 @@ import 'package:myafyahub/presentation/content/widgets/recent_content_widget.dar
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_checker.dart';
-import 'package:myafyahub/presentation/home/widgets/app_upgrader.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -28,7 +27,6 @@ class HomePage extends StatelessWidget {
           body: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              BeWellUpgrader(),
               const MoodChecker(),
               const RecentContentWidget(),
               smallVerticalSizedBox,

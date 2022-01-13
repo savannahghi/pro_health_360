@@ -59,14 +59,10 @@ class CreatePINAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final String? userID =
         StoreProvider.state<AppState>(context)!.clientState!.user!.userId;
-    final String? newPIN = StoreProvider.state<AppState>(context)!
-        .onboardingState!
-        .createPINState!
-        .newPIN;
-    final String? confirmPIN = StoreProvider.state<AppState>(context)!
-        .onboardingState!
-        .createPINState!
-        .confirmPIN;
+    final String? newPIN = state.onboardingState?.createPINState?.newPIN;
+    final String? confirmPIN =
+        state.onboardingState?.createPINState?.confirmPIN;
+
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {
       // initializing of the updateUserPin mutation
@@ -76,6 +72,7 @@ class CreatePINAction extends ReduxAction<AppState> {
         'confirmPIN': confirmPIN,
         'flavour': flavour,
       };
+
       final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
       final http.Response result = await _client.query(
@@ -109,6 +106,7 @@ class CreatePINAction extends ReduxAction<AppState> {
           context,
           UpdateOnboardingStateAction(hasSetPin: true),
         );
+
         Navigator.pushReplacementNamed(
           context,
           BWRoutes.congratulationsPage,

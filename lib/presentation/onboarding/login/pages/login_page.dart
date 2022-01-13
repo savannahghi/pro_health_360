@@ -40,6 +40,7 @@ class LoginPage extends StatefulWidget {
       : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
 
   final ConnectivityStatus connectivityStatus;
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }

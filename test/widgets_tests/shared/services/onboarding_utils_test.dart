@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -22,7 +21,6 @@ import 'package:myafyahub/application/redux/actions/update_credentials_action.da
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
@@ -800,25 +798,6 @@ void main() {
 
         expect(store.state.wait!.isWaitingFor(flag), false);
       });
-    });
-
-    test(
-        'should test listenForConnectivityChanges and show no internet connection',
-        () async {
-      listenForConnectivityChanges(ConnectivityResult.none);
-      expect(
-        InternetConnectivitySubject().connectivitySubject.valueOrNull,
-        false,
-      );
-    });
-
-    test('should test listenForConnectivityChanges show internet connection',
-        () async {
-      listenForConnectivityChanges(ConnectivityResult.wifi);
-      expect(
-        InternetConnectivitySubject().connectivitySubject.valueOrNull,
-        true,
-      );
     });
   });
   group('setUserPIN', () {

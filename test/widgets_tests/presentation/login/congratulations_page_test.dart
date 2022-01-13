@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -66,7 +65,7 @@ void main() {
 
       connectivityStatus = MobileConnectivityStatus(
         checkInternetCallback: () async => true,
-        );
+      );
     });
 
     testWidgets('should validate the input', (WidgetTester tester) async {
@@ -151,7 +150,6 @@ void main() {
 
       await tester.showKeyboard(nameInputField);
       await tester.enterText(nameInputField, 'test');
-      listenForConnectivityChanges(ConnectivityResult.none);
       await tester.ensureVisible(continueButton);
       await tester.tap(continueButton);
       await tester.pump(const Duration(seconds: 2));

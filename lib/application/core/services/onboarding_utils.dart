@@ -8,7 +8,6 @@ import 'package:flutter/scheduler.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_themes/constants.dart';
 
@@ -21,7 +20,6 @@ import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/behavior_objects.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -149,14 +147,6 @@ void clearAllFlags(BuildContext context) {
       WaitAction<AppState>.clear(),
     );
   });
-}
-
-void listenForConnectivityChanges(ConnectivityResult result) {
-  if (result == ConnectivityResult.none) {
-    InternetConnectivitySubject().connectivitySubject.add(false);
-  } else {
-    InternetConnectivitySubject().connectivitySubject.add(true);
-  }
 }
 
 Future<void> setUserPIN({

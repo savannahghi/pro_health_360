@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -29,12 +29,17 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
     });
+
     testWidgets('PIN field validates correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: CreateNewPINPage(),
+        widget: CreateNewPINPage(
+          connectivityStatus: MobileConnectivityStatus(
+            checkInternetCallback: () async => true,
+          ),
+        ),
       );
 
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -49,12 +54,17 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('A PIN is required'), findsNWidgets(2));
     });
+
     testWidgets('confirm PIN validates correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: CreateNewPINPage(),
+        widget: CreateNewPINPage(
+          connectivityStatus: MobileConnectivityStatus(
+            checkInternetCallback: () async => true,
+          ),
+        ),
       );
       final Finder pinInputField = find.byKey(pinInputKey);
       final Finder confirmPinInputField = find.byKey(confirmPinInputKey);
@@ -81,7 +91,11 @@ void main() {
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: CreateNewPINPage(),
+        widget: CreateNewPINPage(
+          connectivityStatus: MobileConnectivityStatus(
+            checkInternetCallback: () async => true,
+          ),
+        ),
       );
       await tester.pumpAndSettle();
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -104,11 +118,16 @@ void main() {
     testWidgets('should show No Internet text when there is no connectivity',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
       await buildTestWidget(
         tester: tester,
         store: store,
         client: mockGraphQlClient,
-        widget: CreateNewPINPage(),
+        widget: CreateNewPINPage(
+          connectivityStatus: MobileConnectivityStatus(
+            checkInternetCallback: () async => false,
+          ),
+        ),
       );
       await tester.pumpAndSettle();
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -122,7 +141,6 @@ void main() {
       await tester.enterText(pinInputField, '0000');
       await tester.showKeyboard(confirmPinInputField);
       await tester.enterText(confirmPinInputField, '0000');
-      listenForConnectivityChanges(ConnectivityResult.none);
       await tester.ensureVisible(saveAndContinueButton);
       await tester.tap(saveAndContinueButton);
       await tester.pump(const Duration(seconds: 2));
