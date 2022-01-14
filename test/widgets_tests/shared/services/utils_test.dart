@@ -360,7 +360,7 @@ void main() {
       expect(testBool, true);
 
       store.dispatch(
-        UpdatePINInputStateAction(
+        UpdatePINInputDetailsAction(
           healthPagePINInputTime:
               DateTime.now().subtract(const Duration(minutes: 30)).toString(),
         ),
@@ -370,7 +370,7 @@ void main() {
       expect(testBool, true);
 
       store.dispatch(
-        UpdatePINInputStateAction(
+        UpdatePINInputDetailsAction(
           healthPagePINInputTime:
               DateTime.now().subtract(const Duration(minutes: 10)).toString(),
         ),

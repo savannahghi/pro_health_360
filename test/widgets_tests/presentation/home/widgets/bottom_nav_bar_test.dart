@@ -97,7 +97,7 @@ void main() {
           ),
         );
         store.dispatch(
-          UpdatePINInputStateAction(
+          UpdatePINInputDetailsAction(
             healthPagePINInputTime:
                 DateTime.now().subtract(const Duration(minutes: 30)).toString(),
           ),

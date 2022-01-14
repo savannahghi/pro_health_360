@@ -27,7 +27,9 @@ class _$MiscStateTearOff {
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
       int? pinInputTries,
-      String? maxTryTime}) {
+      String? maxTryTime,
+      bool? pinVerified,
+      bool? resumeTimer}) {
     return _MiscState(
       initialRoute: initialRoute,
       userPin: userPin,
@@ -36,6 +38,8 @@ class _$MiscStateTearOff {
       healthPagePINInputTime: healthPagePINInputTime,
       pinInputTries: pinInputTries,
       maxTryTime: maxTryTime,
+      pinVerified: pinVerified,
+      resumeTimer: resumeTimer,
     );
   }
 
@@ -57,6 +61,8 @@ mixin _$MiscState {
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   int? get pinInputTries => throw _privateConstructorUsedError;
   String? get maxTryTime => throw _privateConstructorUsedError;
+  bool? get pinVerified => throw _privateConstructorUsedError;
+  bool? get resumeTimer => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +81,9 @@ abstract class $MiscStateCopyWith<$Res> {
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
       int? pinInputTries,
-      String? maxTryTime});
+      String? maxTryTime,
+      bool? pinVerified,
+      bool? resumeTimer});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
 }
@@ -97,6 +105,8 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? healthPagePINInputTime = freezed,
     Object? pinInputTries = freezed,
     Object? maxTryTime = freezed,
+    Object? pinVerified = freezed,
+    Object? resumeTimer = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -127,6 +137,14 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      pinVerified: pinVerified == freezed
+          ? _value.pinVerified
+          : pinVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      resumeTimer: resumeTimer == freezed
+          ? _value.resumeTimer
+          : resumeTimer // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -156,7 +174,9 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
       int? pinInputTries,
-      String? maxTryTime});
+      String? maxTryTime,
+      bool? pinVerified,
+      bool? resumeTimer});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
@@ -180,6 +200,8 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? healthPagePINInputTime = freezed,
     Object? pinInputTries = freezed,
     Object? maxTryTime = freezed,
+    Object? pinVerified = freezed,
+    Object? resumeTimer = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -210,6 +232,14 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      pinVerified: pinVerified == freezed
+          ? _value.pinVerified
+          : pinVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      resumeTimer: resumeTimer == freezed
+          ? _value.resumeTimer
+          : resumeTimer // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -224,7 +254,9 @@ class _$_MiscState implements _MiscState {
       this.profileFAQsContentState,
       this.healthPagePINInputTime,
       this.pinInputTries,
-      this.maxTryTime});
+      this.maxTryTime,
+      this.pinVerified,
+      this.resumeTimer});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$_$_MiscStateFromJson(json);
@@ -243,10 +275,14 @@ class _$_MiscState implements _MiscState {
   final int? pinInputTries;
   @override
   final String? maxTryTime;
+  @override
+  final bool? pinVerified;
+  @override
+  final bool? resumeTimer;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer)';
   }
 
   @override
@@ -274,7 +310,13 @@ class _$_MiscState implements _MiscState {
                     .equals(other.pinInputTries, pinInputTries)) &&
             (identical(other.maxTryTime, maxTryTime) ||
                 const DeepCollectionEquality()
-                    .equals(other.maxTryTime, maxTryTime)));
+                    .equals(other.maxTryTime, maxTryTime)) &&
+            (identical(other.pinVerified, pinVerified) ||
+                const DeepCollectionEquality()
+                    .equals(other.pinVerified, pinVerified)) &&
+            (identical(other.resumeTimer, resumeTimer) ||
+                const DeepCollectionEquality()
+                    .equals(other.resumeTimer, resumeTimer)));
   }
 
   @override
@@ -286,7 +328,9 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(profileFAQsContentState) ^
       const DeepCollectionEquality().hash(healthPagePINInputTime) ^
       const DeepCollectionEquality().hash(pinInputTries) ^
-      const DeepCollectionEquality().hash(maxTryTime);
+      const DeepCollectionEquality().hash(maxTryTime) ^
+      const DeepCollectionEquality().hash(pinVerified) ^
+      const DeepCollectionEquality().hash(resumeTimer);
 
   @JsonKey(ignore: true)
   @override
@@ -307,7 +351,9 @@ abstract class _MiscState implements MiscState {
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
       int? pinInputTries,
-      String? maxTryTime}) = _$_MiscState;
+      String? maxTryTime,
+      bool? pinVerified,
+      bool? resumeTimer}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -327,6 +373,10 @@ abstract class _MiscState implements MiscState {
   int? get pinInputTries => throw _privateConstructorUsedError;
   @override
   String? get maxTryTime => throw _privateConstructorUsedError;
+  @override
+  bool? get pinVerified => throw _privateConstructorUsedError;
+  @override
+  bool? get resumeTimer => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

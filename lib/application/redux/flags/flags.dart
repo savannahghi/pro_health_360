@@ -64,3 +64,5 @@ const String shareContentFlag = 'share_content_flag';
 
 //Saved Content Page
 const String fetchSavedContentFlag = 'fetch_saved_content_flag';
+
+const String verifyPINFlag = 'verify_pin_flag';

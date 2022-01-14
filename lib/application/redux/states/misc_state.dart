@@ -19,6 +19,8 @@ class MiscState with _$MiscState {
     String? healthPagePINInputTime,
     int? pinInputTries,
     String? maxTryTime,
+    bool? pinVerified,
+    bool? resumeTimer,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -32,5 +34,7 @@ class MiscState with _$MiscState {
         healthPagePINInputTime: UNKNOWN,
         pinInputTries: 0,
         maxTryTime: UNKNOWN,
+        pinVerified: false,
+        resumeTimer: false,
       );
 }

@@ -315,3 +315,9 @@ query getFAQContent($flavour: Flavour!, $limit: Int!){
   }
 }
 ''';
+
+const String verifyPinQuery = r'''
+query verifyPin($userID: String!, $flavour:Flavour!, $pin: String!){
+  verifyPIN(userID: $userID, flavour: $flavour, pin: $pin)
+}
+''';

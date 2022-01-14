@@ -9,14 +9,16 @@ part of 'pin_input_state.dart';
 _$_PINInputState _$_$_PINInputStateFromJson(Map<String, dynamic> json) {
   return _$_PINInputState(
     healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
-    tries: json['tries'] as int?,
+    pinInputTries: json['pinInputTries'] as int?,
     maxTryTime: json['maxTryTime'] as String?,
+    pinVerified: json['pinVerified'] as bool?,
   );
 }
 
 Map<String, dynamic> _$_$_PINInputStateToJson(_$_PINInputState instance) =>
     <String, dynamic>{
       'healthPagePINInputTime': instance.healthPagePINInputTime,
-      'tries': instance.tries,
+      'pinInputTries': instance.pinInputTries,
       'maxTryTime': instance.maxTryTime,
+      'pinVerified': instance.pinVerified,
     };

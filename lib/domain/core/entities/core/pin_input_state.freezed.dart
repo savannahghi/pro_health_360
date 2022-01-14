@@ -21,11 +21,15 @@ class _$PINInputStateTearOff {
   const _$PINInputStateTearOff();
 
   _PINInputState call(
-      {String? healthPagePINInputTime, int? tries, String? maxTryTime}) {
+      {String? healthPagePINInputTime,
+      int? pinInputTries,
+      String? maxTryTime,
+      bool? pinVerified}) {
     return _PINInputState(
       healthPagePINInputTime: healthPagePINInputTime,
-      tries: tries,
+      pinInputTries: pinInputTries,
       maxTryTime: maxTryTime,
+      pinVerified: pinVerified,
     );
   }
 
@@ -40,8 +44,9 @@ const $PINInputState = _$PINInputStateTearOff();
 /// @nodoc
 mixin _$PINInputState {
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
-  int? get tries => throw _privateConstructorUsedError;
+  int? get pinInputTries => throw _privateConstructorUsedError;
   String? get maxTryTime => throw _privateConstructorUsedError;
+  bool? get pinVerified => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +59,11 @@ abstract class $PINInputStateCopyWith<$Res> {
   factory $PINInputStateCopyWith(
           PINInputState value, $Res Function(PINInputState) then) =
       _$PINInputStateCopyWithImpl<$Res>;
-  $Res call({String? healthPagePINInputTime, int? tries, String? maxTryTime});
+  $Res call(
+      {String? healthPagePINInputTime,
+      int? pinInputTries,
+      String? maxTryTime,
+      bool? pinVerified});
 }
 
 /// @nodoc
@@ -69,22 +78,27 @@ class _$PINInputStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? healthPagePINInputTime = freezed,
-    Object? tries = freezed,
+    Object? pinInputTries = freezed,
     Object? maxTryTime = freezed,
+    Object? pinVerified = freezed,
   }) {
     return _then(_value.copyWith(
       healthPagePINInputTime: healthPagePINInputTime == freezed
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      tries: tries == freezed
-          ? _value.tries
-          : tries // ignore: cast_nullable_to_non_nullable
+      pinInputTries: pinInputTries == freezed
+          ? _value.pinInputTries
+          : pinInputTries // ignore: cast_nullable_to_non_nullable
               as int?,
       maxTryTime: maxTryTime == freezed
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      pinVerified: pinVerified == freezed
+          ? _value.pinVerified
+          : pinVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -96,7 +110,11 @@ abstract class _$PINInputStateCopyWith<$Res>
           _PINInputState value, $Res Function(_PINInputState) then) =
       __$PINInputStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? healthPagePINInputTime, int? tries, String? maxTryTime});
+  $Res call(
+      {String? healthPagePINInputTime,
+      int? pinInputTries,
+      String? maxTryTime,
+      bool? pinVerified});
 }
 
 /// @nodoc
@@ -113,22 +131,27 @@ class __$PINInputStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? healthPagePINInputTime = freezed,
-    Object? tries = freezed,
+    Object? pinInputTries = freezed,
     Object? maxTryTime = freezed,
+    Object? pinVerified = freezed,
   }) {
     return _then(_PINInputState(
       healthPagePINInputTime: healthPagePINInputTime == freezed
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      tries: tries == freezed
-          ? _value.tries
-          : tries // ignore: cast_nullable_to_non_nullable
+      pinInputTries: pinInputTries == freezed
+          ? _value.pinInputTries
+          : pinInputTries // ignore: cast_nullable_to_non_nullable
               as int?,
       maxTryTime: maxTryTime == freezed
           ? _value.maxTryTime
           : maxTryTime // ignore: cast_nullable_to_non_nullable
               as String?,
+      pinVerified: pinVerified == freezed
+          ? _value.pinVerified
+          : pinVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -136,7 +159,11 @@ class __$PINInputStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PINInputState implements _PINInputState {
-  _$_PINInputState({this.healthPagePINInputTime, this.tries, this.maxTryTime});
+  _$_PINInputState(
+      {this.healthPagePINInputTime,
+      this.pinInputTries,
+      this.maxTryTime,
+      this.pinVerified});
 
   factory _$_PINInputState.fromJson(Map<String, dynamic> json) =>
       _$_$_PINInputStateFromJson(json);
@@ -144,13 +171,15 @@ class _$_PINInputState implements _PINInputState {
   @override
   final String? healthPagePINInputTime;
   @override
-  final int? tries;
+  final int? pinInputTries;
   @override
   final String? maxTryTime;
+  @override
+  final bool? pinVerified;
 
   @override
   String toString() {
-    return 'PINInputState(healthPagePINInputTime: $healthPagePINInputTime, tries: $tries, maxTryTime: $maxTryTime)';
+    return 'PINInputState(healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified)';
   }
 
   @override
@@ -160,19 +189,24 @@ class _$_PINInputState implements _PINInputState {
             (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
                 const DeepCollectionEquality().equals(
                     other.healthPagePINInputTime, healthPagePINInputTime)) &&
-            (identical(other.tries, tries) ||
-                const DeepCollectionEquality().equals(other.tries, tries)) &&
+            (identical(other.pinInputTries, pinInputTries) ||
+                const DeepCollectionEquality()
+                    .equals(other.pinInputTries, pinInputTries)) &&
             (identical(other.maxTryTime, maxTryTime) ||
                 const DeepCollectionEquality()
-                    .equals(other.maxTryTime, maxTryTime)));
+                    .equals(other.maxTryTime, maxTryTime)) &&
+            (identical(other.pinVerified, pinVerified) ||
+                const DeepCollectionEquality()
+                    .equals(other.pinVerified, pinVerified)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(healthPagePINInputTime) ^
-      const DeepCollectionEquality().hash(tries) ^
-      const DeepCollectionEquality().hash(maxTryTime);
+      const DeepCollectionEquality().hash(pinInputTries) ^
+      const DeepCollectionEquality().hash(maxTryTime) ^
+      const DeepCollectionEquality().hash(pinVerified);
 
   @JsonKey(ignore: true)
   @override
@@ -188,8 +222,9 @@ class _$_PINInputState implements _PINInputState {
 abstract class _PINInputState implements PINInputState {
   factory _PINInputState(
       {String? healthPagePINInputTime,
-      int? tries,
-      String? maxTryTime}) = _$_PINInputState;
+      int? pinInputTries,
+      String? maxTryTime,
+      bool? pinVerified}) = _$_PINInputState;
 
   factory _PINInputState.fromJson(Map<String, dynamic> json) =
       _$_PINInputState.fromJson;
@@ -197,9 +232,11 @@ abstract class _PINInputState implements PINInputState {
   @override
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   @override
-  int? get tries => throw _privateConstructorUsedError;
+  int? get pinInputTries => throw _privateConstructorUsedError;
   @override
   String? get maxTryTime => throw _privateConstructorUsedError;
+  @override
+  bool? get pinVerified => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PINInputStateCopyWith<_PINInputState> get copyWith =>

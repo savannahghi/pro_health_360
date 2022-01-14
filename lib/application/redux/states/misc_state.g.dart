@@ -20,6 +20,8 @@ _$_MiscState _$_$_MiscStateFromJson(Map<String, dynamic> json) {
     healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
     pinInputTries: json['pinInputTries'] as int?,
     maxTryTime: json['maxTryTime'] as String?,
+    pinVerified: json['pinVerified'] as bool?,
+    resumeTimer: json['resumeTimer'] as bool?,
   );
 }
 
@@ -32,4 +34,6 @@ Map<String, dynamic> _$_$_MiscStateToJson(_$_MiscState instance) =>
       'healthPagePINInputTime': instance.healthPagePINInputTime,
       'pinInputTries': instance.pinInputTries,
       'maxTryTime': instance.maxTryTime,
+      'pinVerified': instance.pinVerified,
+      'resumeTimer': instance.resumeTimer,
     };

@@ -9,8 +9,9 @@ part 'pin_input_state.g.dart';
 class PINInputState with _$PINInputState {
   factory PINInputState({
     String? healthPagePINInputTime,
-    int? tries,
+    int? pinInputTries,
     String? maxTryTime,
+    bool? pinVerified,
   }) = _PINInputState;
 
   factory PINInputState.fromJson(Map<String, dynamic> json) =>
@@ -18,7 +19,8 @@ class PINInputState with _$PINInputState {
 
   factory PINInputState.initial() => PINInputState(
         healthPagePINInputTime: UNKNOWN,
-        tries: 0,
+        pinInputTries: 0,
         maxTryTime: UNKNOWN,
+        pinVerified: false,
       );
 }

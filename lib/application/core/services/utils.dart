@@ -17,6 +17,14 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
+import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/inputs.dart';
+import 'package:video_player/video_player.dart';
+
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/video_player_initializer.dart';
@@ -26,7 +34,6 @@ import 'package:myafyahub/application/redux/actions/content/update_reactions_sta
 import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_content_like_status_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
@@ -44,11 +51,6 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:video_player/video_player.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -931,3 +933,35 @@ Future<http.Response> retrieveOTP({
     );
   }
 }
+
+void pinInputTimerStatus({required BuildContext context}) {
+  bool resumeTimer;
+  final String maxTryTime =
+      StoreProvider.state<AppState>(context)?.miscState?.maxTryTime ?? '';
+
+  if (maxTryTime.isNotEmpty && maxTryTime != UNKNOWN) {
+    final DateTime? parsedMaxTryTime = DateTime.tryParse(maxTryTime);
+    if (parsedMaxTryTime != null &&
+        DateTime.now().difference(parsedMaxTryTime).inSeconds < startTimer - 2) {
+      resumeTimer = true;
+    } else {
+      StoreProvider.dispatch(
+        context,
+        UpdatePINInputDetailsAction(
+          maxTryTime: '',
+          pinInputTries: 0,
+        ),
+      );
+      resumeTimer = false;
+    }
+  } else {
+    resumeTimer = false;
+  }
+
+  StoreProvider.dispatch(
+    context,
+    UpdatePINInputDetailsAction(resumeTimer: resumeTimer),
+  );
+}
+
+const int startTimer = 300;
