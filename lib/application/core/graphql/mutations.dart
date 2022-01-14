@@ -122,11 +122,11 @@ mutation unbookmarkContent($userID: String!, $contentItemID: Int!){
 
 const String updateClientCaregiver = r'''
 mutation createOrUpdateClientCaregiver(
-  $clientID: String,
-  $firstName: String,
-  $lastName:String,
-  $phoneNumber: String,
-  $caregiverType: CaregiverType
+  $clientID: String!,
+  $firstName: String!,
+  $lastName:String!,
+  $phoneNumber: String!,
+  $caregiverType: CaregiverType!
 ){
   createOrUpdateClientCaregiver(
     caregiverInput:{

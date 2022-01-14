@@ -45,10 +45,10 @@ class UpdateUserProfileAction extends ReduxAction<AppState> {
       isPhoneVerified: isPhoneVerified ?? userFromState?.isPhoneVerified,
     );
 
-    final ClientState newState =
-        state.clientState!.copyWith(user: newUserProfile);
+    final ClientState? newState =
+        state.clientState?.copyWith(user: newUserProfile);
 
-    return state.copyWith.call(clientState: newState);
+    return state.copyWith(clientState: newState ?? state.clientState);
   }
 }
 

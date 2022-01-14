@@ -1,6 +1,7 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/redux/states/caregiver_information.dart';
 import 'package:myafyahub/domain/core/entities/core/faqs_content_state.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
@@ -16,6 +17,7 @@ class MiscState with _$MiscState {
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     FAQsContentState? profileFAQsContentState,
+    CaregiverInformation? caregiverInformation,
     String? healthPagePINInputTime,
     int? pinInputTries,
     String? maxTryTime,
@@ -31,6 +33,7 @@ class MiscState with _$MiscState {
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         profileFAQsContentState: FAQsContentState.initial(),
+        caregiverInformation: CaregiverInformation.initial(),
         healthPagePINInputTime: UNKNOWN,
         pinInputTries: 0,
         maxTryTime: UNKNOWN,

@@ -13,7 +13,7 @@ _$_CaregiverInformation _$_$_CaregiverInformationFromJson(
     firstName: json['firstName'] as String?,
     lastName: json['lastName'] as String?,
     phoneNumber: json['phoneNumber'] as String?,
-    caregiverType: caregiverTypeFromJson(json['caregiverType'] as String?),
+    caregiverType: caregiverTypeFromString(json['caregiverType'] as String?),
   );
 }
 

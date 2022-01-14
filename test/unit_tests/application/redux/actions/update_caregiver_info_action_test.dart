@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/actions/profile/update_caregiver_information_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
+import 'package:myafyahub/application/redux/states/caregiver_information.dart';
 
 import '../../../../mocks.dart';
 

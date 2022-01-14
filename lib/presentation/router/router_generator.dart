@@ -40,6 +40,7 @@ import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/medical_data/medical_data_page.dart';
+import 'package:myafyahub/presentation/profile/pages/edit_caregiver_info_page.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
@@ -100,6 +101,11 @@ class RouteGenerator {
       case BWRoutes.successfulEntryPage:
         return MaterialPageRoute<SuccessfulDiaryEntryPage>(
           builder: (_) => const SuccessfulDiaryEntryPage(),
+        );
+
+      case BWRoutes.editCaregiverInformationPage:
+        return MaterialPageRoute<EditCaregiverInfoPage>(
+          builder: (_) => const EditCaregiverInfoPage(),
         );
 
       case BWRoutes.editInformationPage:

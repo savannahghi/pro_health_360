@@ -31,9 +31,8 @@ class EditInformationPage extends StatefulWidget {
     required this.editInformationItem,
     required this.onSubmit,
   });
-
   final EditInformationItem editInformationItem;
-  final void Function(EditInformationItem editInformationItem) onSubmit;
+  final Function onSubmit;
 
   @override
   State<EditInformationPage> createState() => _EditInformationPageState();
@@ -42,7 +41,6 @@ class EditInformationPage extends StatefulWidget {
 class _EditInformationPageState extends State<EditInformationPage> {
   bool formIsEdited = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String dropdownValue = father;
 
   @override
   Widget build(BuildContext context) {
@@ -83,55 +81,13 @@ class _EditInformationPageState extends State<EditInformationPage> {
 
                     ///Generates a list with all the input widgets
                     ...List<Widget>.generate(
-                      widget
-                          .editInformationItem.editInformationInputItem.length,
-                      (int index) {
-                        final EditInformationInputItem
-                            editInformationInputItem = widget
-                                .editInformationItem.editInformationInputItem
-                                .elementAt(index);
-
-                        if (editInformationInputItem.inputType ==
-                            EditInformationInputType.Text) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              if (index > 0) smallVerticalSizedBox,
-                              Text(
-                                editInformationInputItem.fieldName,
-                                style: TextThemes.boldSize14Text(
-                                  AppColors.greyTextColor,
-                                ),
-                              ),
-                              smallVerticalSizedBox,
-                              CustomTextField(
-                                formFieldKey: ValueKey<String>('$index'),
-                                borderColor: Colors.grey[200],
-                                keyboardType: TextInputType.text,
-                                controller:
-                                    editInformationInputItem.inputController,
-                                hintText: editInformationInputItem.hintText,
-                                autovalidateMode: AutovalidateMode.disabled,
-                                onChanged: (String? value) {
-                                  ///So that it only runs once when an input is modified
-                                  if (!formIsEdited) {
-                                    setState(() {
-                                      formIsEdited = true;
-                                    });
-                                  }
-                                },
-                              ),
-
-                              //Add spacing below last item to ensure it is visible with the bottom button
-                              if (index ==
-                                  widget.editInformationItem
-                                          .editInformationInputItem.length -
-                                      1)
-                                const SizedBox(height: 65),
-                            ],
-                          );
-                        }
-
+                        widget.editInformationItem.editInformationInputItem
+                            .length, (int index) {
+                      final EditInformationInputItem editInformationInputItem =
+                          widget.editInformationItem.editInformationInputItem
+                              .elementAt(index);
+                      if (editInformationInputItem.inputType ==
+                          EditInformationInputType.Text) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -143,19 +99,14 @@ class _EditInformationPageState extends State<EditInformationPage> {
                               ),
                             ),
                             smallVerticalSizedBox,
-                            EditInformationDropDown(
-                              value: dropdownValue,
-                              items:
-                                  editInformationInputItem.dropDownOptionList!,
-                              onChange: (String? value) {
-                                if (value != null) {
-                                  editInformationInputItem
-                                      .inputController.text = value;
-                                  setState(() {
-                                    dropdownValue = value;
-                                  });
-                                }
-
+                            CustomTextField(
+                              borderColor: Colors.grey[200],
+                              keyboardType: TextInputType.text,
+                              controller:
+                                  editInformationInputItem.inputController,
+                              hintText: editInformationInputItem.hintText,
+                              autovalidateMode: AutovalidateMode.disabled,
+                              onChanged: (String? value) {
                                 ///So that it only runs once when an input is modified
                                 if (!formIsEdited) {
                                   setState(() {
@@ -164,6 +115,7 @@ class _EditInformationPageState extends State<EditInformationPage> {
                                 }
                               },
                             ),
+
                             //Add spacing below last item to ensure it is visible with the bottom button
                             if (index ==
                                 widget.editInformationItem
@@ -172,8 +124,40 @@ class _EditInformationPageState extends State<EditInformationPage> {
                               const SizedBox(height: 65),
                           ],
                         );
-                      },
-                    ),
+                      }
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          if (index > 0) smallVerticalSizedBox,
+                          Text(
+                            editInformationInputItem.fieldName,
+                            style: TextThemes.boldSize14Text(
+                              AppColors.greyTextColor,
+                            ),
+                          ),
+                          smallVerticalSizedBox,
+                          EditInformationDropDown(
+                            value: editInformationInputItem
+                                .dropDownOptionList!.first,
+                            items: editInformationInputItem.dropDownOptionList!,
+                            onChange: (String? value) {
+                              ///So that it only runs once when an input is modified
+                              if (!formIsEdited) {
+                                setState(() {
+                                  formIsEdited = true;
+                                });
+                              }
+                            },
+                          ),
+                          //Add spacing below last item to ensure it is visible with the bottom button
+                          if (index ==
+                              widget.editInformationItem
+                                      .editInformationInputItem.length -
+                                  1)
+                            const SizedBox(height: 65),
+                        ],
+                      );
+                    }),
                   ],
                 ),
               ),
@@ -190,7 +174,6 @@ class _EditInformationPageState extends State<EditInformationPage> {
                     child: (vm.appState.wait!.isWaitingFor(editInformationFlag))
                         ? const SILPlatformLoader()
                         : MyAfyaHubPrimaryButton(
-                            buttonKey: editInfoSaveBtn,
                             onPressed: formIsEdited
                                 ? () {
                                     widget.onSubmit(widget.editInformationItem);

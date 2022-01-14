@@ -25,6 +25,7 @@ class _$MiscStateTearOff {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
+      CaregiverInformation? caregiverInformation,
       String? healthPagePINInputTime,
       int? pinInputTries,
       String? maxTryTime,
@@ -35,6 +36,7 @@ class _$MiscStateTearOff {
       userPin: userPin,
       libraryListItems: libraryListItems,
       profileFAQsContentState: profileFAQsContentState,
+      caregiverInformation: caregiverInformation,
       healthPagePINInputTime: healthPagePINInputTime,
       pinInputTries: pinInputTries,
       maxTryTime: maxTryTime,
@@ -58,6 +60,8 @@ mixin _$MiscState {
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   FAQsContentState? get profileFAQsContentState =>
       throw _privateConstructorUsedError;
+  CaregiverInformation? get caregiverInformation =>
+      throw _privateConstructorUsedError;
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   int? get pinInputTries => throw _privateConstructorUsedError;
   String? get maxTryTime => throw _privateConstructorUsedError;
@@ -79,6 +83,7 @@ abstract class $MiscStateCopyWith<$Res> {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
+      CaregiverInformation? caregiverInformation,
       String? healthPagePINInputTime,
       int? pinInputTries,
       String? maxTryTime,
@@ -86,6 +91,7 @@ abstract class $MiscStateCopyWith<$Res> {
       bool? resumeTimer});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  $CaregiverInformationCopyWith<$Res>? get caregiverInformation;
 }
 
 /// @nodoc
@@ -102,6 +108,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? profileFAQsContentState = freezed,
+    Object? caregiverInformation = freezed,
     Object? healthPagePINInputTime = freezed,
     Object? pinInputTries = freezed,
     Object? maxTryTime = freezed,
@@ -125,6 +132,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.profileFAQsContentState
           : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
               as FAQsContentState?,
+      caregiverInformation: caregiverInformation == freezed
+          ? _value.caregiverInformation
+          : caregiverInformation // ignore: cast_nullable_to_non_nullable
+              as CaregiverInformation?,
       healthPagePINInputTime: healthPagePINInputTime == freezed
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
@@ -159,6 +170,18 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
       return _then(_value.copyWith(profileFAQsContentState: value));
     });
   }
+
+  @override
+  $CaregiverInformationCopyWith<$Res>? get caregiverInformation {
+    if (_value.caregiverInformation == null) {
+      return null;
+    }
+
+    return $CaregiverInformationCopyWith<$Res>(_value.caregiverInformation!,
+        (value) {
+      return _then(_value.copyWith(caregiverInformation: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -172,6 +195,7 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
+      CaregiverInformation? caregiverInformation,
       String? healthPagePINInputTime,
       int? pinInputTries,
       String? maxTryTime,
@@ -180,6 +204,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  @override
+  $CaregiverInformationCopyWith<$Res>? get caregiverInformation;
 }
 
 /// @nodoc
@@ -197,6 +223,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? profileFAQsContentState = freezed,
+    Object? caregiverInformation = freezed,
     Object? healthPagePINInputTime = freezed,
     Object? pinInputTries = freezed,
     Object? maxTryTime = freezed,
@@ -220,6 +247,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.profileFAQsContentState
           : profileFAQsContentState // ignore: cast_nullable_to_non_nullable
               as FAQsContentState?,
+      caregiverInformation: caregiverInformation == freezed
+          ? _value.caregiverInformation
+          : caregiverInformation // ignore: cast_nullable_to_non_nullable
+              as CaregiverInformation?,
       healthPagePINInputTime: healthPagePINInputTime == freezed
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
@@ -252,6 +283,7 @@ class _$_MiscState implements _MiscState {
       this.userPin,
       this.libraryListItems,
       this.profileFAQsContentState,
+      this.caregiverInformation,
       this.healthPagePINInputTime,
       this.pinInputTries,
       this.maxTryTime,
@@ -270,6 +302,8 @@ class _$_MiscState implements _MiscState {
   @override
   final FAQsContentState? profileFAQsContentState;
   @override
+  final CaregiverInformation? caregiverInformation;
+  @override
   final String? healthPagePINInputTime;
   @override
   final int? pinInputTries;
@@ -282,7 +316,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, caregiverInformation: $caregiverInformation, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer)';
   }
 
   @override
@@ -302,6 +336,9 @@ class _$_MiscState implements _MiscState {
                     other.profileFAQsContentState, profileFAQsContentState) ||
                 const DeepCollectionEquality().equals(
                     other.profileFAQsContentState, profileFAQsContentState)) &&
+            (identical(other.caregiverInformation, caregiverInformation) ||
+                const DeepCollectionEquality().equals(
+                    other.caregiverInformation, caregiverInformation)) &&
             (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
                 const DeepCollectionEquality().equals(
                     other.healthPagePINInputTime, healthPagePINInputTime)) &&
@@ -326,6 +363,7 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(userPin) ^
       const DeepCollectionEquality().hash(libraryListItems) ^
       const DeepCollectionEquality().hash(profileFAQsContentState) ^
+      const DeepCollectionEquality().hash(caregiverInformation) ^
       const DeepCollectionEquality().hash(healthPagePINInputTime) ^
       const DeepCollectionEquality().hash(pinInputTries) ^
       const DeepCollectionEquality().hash(maxTryTime) ^
@@ -349,6 +387,7 @@ abstract class _MiscState implements MiscState {
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
+      CaregiverInformation? caregiverInformation,
       String? healthPagePINInputTime,
       int? pinInputTries,
       String? maxTryTime,
@@ -366,6 +405,9 @@ abstract class _MiscState implements MiscState {
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override
   FAQsContentState? get profileFAQsContentState =>
+      throw _privateConstructorUsedError;
+  @override
+  CaregiverInformation? get caregiverInformation =>
       throw _privateConstructorUsedError;
   @override
   String? get healthPagePINInputTime => throw _privateConstructorUsedError;

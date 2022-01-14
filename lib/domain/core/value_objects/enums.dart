@@ -100,10 +100,10 @@ extension SecurityQuestionResponseTypeEx on SecurityQuestionResponseType {
   }
 }
 
-enum CaregiverType { Father, Mother, Sibling }
+enum CaregiverType { Father, Mother, Sibling, Healthcare_Worker }
 
 extension CaregiverTypeEx on CaregiverType {
   String get name {
-    return describeEnum(this);
+    return describeEnum(this).replaceAll('_', ' ');
   }
 }

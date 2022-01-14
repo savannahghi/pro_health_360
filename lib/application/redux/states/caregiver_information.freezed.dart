@@ -25,7 +25,7 @@ class _$CaregiverInformationTearOff {
       String? firstName,
       String? lastName,
       String? phoneNumber,
-      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
+      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromString, toJson: caregiverTypeToJson)
           CaregiverType? caregiverType}) {
     return _CaregiverInformation(
       clientID: clientID,
@@ -52,7 +52,7 @@ mixin _$CaregiverInformation {
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(
       name: 'caregiverType',
-      fromJson: caregiverTypeFromJson,
+      fromJson: caregiverTypeFromString,
       toJson: caregiverTypeToJson)
   CaregiverType? get caregiverType => throw _privateConstructorUsedError;
 
@@ -72,7 +72,7 @@ abstract class $CaregiverInformationCopyWith<$Res> {
       String? firstName,
       String? lastName,
       String? phoneNumber,
-      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
+      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromString, toJson: caregiverTypeToJson)
           CaregiverType? caregiverType});
 }
 
@@ -130,7 +130,7 @@ abstract class _$CaregiverInformationCopyWith<$Res>
       String? firstName,
       String? lastName,
       String? phoneNumber,
-      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
+      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromString, toJson: caregiverTypeToJson)
           CaregiverType? caregiverType});
 }
 
@@ -186,7 +186,7 @@ class _$_CaregiverInformation implements _CaregiverInformation {
       this.firstName,
       this.lastName,
       this.phoneNumber,
-      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
+      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromString, toJson: caregiverTypeToJson)
           this.caregiverType});
 
   factory _$_CaregiverInformation.fromJson(Map<String, dynamic> json) =>
@@ -203,7 +203,7 @@ class _$_CaregiverInformation implements _CaregiverInformation {
   @override
   @JsonKey(
       name: 'caregiverType',
-      fromJson: caregiverTypeFromJson,
+      fromJson: caregiverTypeFromString,
       toJson: caregiverTypeToJson)
   final CaregiverType? caregiverType;
 
@@ -260,7 +260,7 @@ abstract class _CaregiverInformation implements CaregiverInformation {
       String? firstName,
       String? lastName,
       String? phoneNumber,
-      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
+      @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromString, toJson: caregiverTypeToJson)
           CaregiverType? caregiverType}) = _$_CaregiverInformation;
 
   factory _CaregiverInformation.fromJson(Map<String, dynamic> json) =
@@ -277,7 +277,7 @@ abstract class _CaregiverInformation implements CaregiverInformation {
   @override
   @JsonKey(
       name: 'caregiverType',
-      fromJson: caregiverTypeFromJson,
+      fromJson: caregiverTypeFromString,
       toJson: caregiverTypeToJson)
   CaregiverType? get caregiverType => throw _privateConstructorUsedError;
   @override

@@ -497,6 +497,8 @@ const String viewAllText = 'View All';
 const String myProfileCaregiverText = 'Caregiver information';
 const String myProfileCaregiverDescriptionText =
     'Could be a parent, guardian or nurse';
+const String jane = 'Jane';
+const String doe = 'Doe';
 const String janeDoe = 'Jane Doe';
 const String father = 'Father';
 const String firstName = 'First Name';
@@ -648,5 +650,3 @@ const String networkConnectionUnreliable =
     'Network connection unreliable. Please try again later.';
 
 const String galleryImagesTitle = 'Gallery Images';
-
-const Key editInfoSaveBtn = Key('edit_information_save_btn');

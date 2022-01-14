@@ -1,10 +1,10 @@
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/actions/profile/update_caregiver_information_action.dart';
-import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
-import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/profile/edit_caregiver_info_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 // Package imports:
 import 'package:shared_themes/spaces.dart';
@@ -54,48 +54,30 @@ class PersonalInformationPage extends StatelessWidget {
                   ),
                   EditInformationButtonWidget(
                     editBtnKey: editPersonalInfoKey,
-                    editInformationItem: careGiverEditInfo,
-                    submitFunction: (EditInformationItem editInformationItem) {
-                      final Map<String, dynamic> variables =
-                          <String, dynamic>{};
-
-                      for (final EditInformationInputItem element
-                          in editInformationItem.editInformationInputItem) {
-                        variables[element.apiFieldValue] =
-                            element.inputController.text;
-                      }
-
-                      final CaregiverInformation info =
-                          CaregiverInformation.fromJson(variables);
-
-                      StoreProvider.dispatch(
-                        context,
-                        UpdateCaregiverInfoAction(
-                          caregiverInformation: info,
-                          graphQlClient:
-                              AppWrapperBase.of(context)!.graphQLClient,
-                        ),
-                      );
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed(BWRoutes.editCaregiverInformationPage);
                     },
                   ),
                 ],
               ),
 
               mediumVerticalSizedBox,
-              const PersonalInformationSecondaryWidget(
-                fieldName: firstName,
-                fieldValue: janeDoe,
+
+              StoreConnector<AppState, CaregiverInfoViewModel>(
+                converter: (Store<AppState> store) {
+                  return CaregiverInfoViewModel.fromState(store.state);
+                },
+                builder: (BuildContext context, CaregiverInfoViewModel vm) {
+                  return CaregiverInfoList(
+                    firstNameValue: vm.firstName ?? '',
+                    lastNameValue: vm.lastName ?? '',
+                    phoneNumberValue: vm.phoneNumber ?? '',
+                    caregiverType: vm.caregiverType ?? CaregiverType.Sibling,
+                  );
+                },
               ),
-              verySmallVerticalSizedBox,
-              const PersonalInformationSecondaryWidget(
-                fieldName: phoneNumber,
-                fieldValue: hotlineNumberString,
-              ),
-              verySmallVerticalSizedBox,
-              const PersonalInformationSecondaryWidget(
-                fieldName: relationText,
-                fieldValue: father,
-              ),
+
               largeVerticalSizedBox,
 
               //preferred language
@@ -109,7 +91,15 @@ class PersonalInformationPage extends StatelessWidget {
                         TextThemes.normalSize16Text(AppColors.secondaryColor),
                   ),
                   EditInformationButtonWidget(
-                    editInformationItem: preferredLanguageEditInfo,
+                    editBtnKey: editPreferredLanguageKey,
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        BWRoutes.editInformationPage,
+                        arguments: <String, dynamic>{
+                          'editInformationItem': preferredLanguageEditInfo,
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
@@ -128,7 +118,15 @@ class PersonalInformationPage extends StatelessWidget {
                         TextThemes.normalSize16Text(AppColors.secondaryColor),
                   ),
                   EditInformationButtonWidget(
-                    editInformationItem: preferredClinicEditInfo,
+                    editBtnKey: editPreferredClinicKey,
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        BWRoutes.editInformationPage,
+                        arguments: <String, dynamic>{
+                          'editInformationItem': preferredClinicEditInfo,
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
@@ -148,7 +146,15 @@ class PersonalInformationPage extends StatelessWidget {
                         TextThemes.normalSize16Text(AppColors.secondaryColor),
                   ),
                   EditInformationButtonWidget(
-                    editInformationItem: preferredCommunicationEditInfo,
+                    editBtnKey: editPreferredCommunicationKey,
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        BWRoutes.editInformationPage,
+                        arguments: <String, dynamic>{
+                          'editInformationItem': preferredCommunicationEditInfo,
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
@@ -158,6 +164,48 @@ class PersonalInformationPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CaregiverInfoList extends StatelessWidget {
+  const CaregiverInfoList({
+    Key? key,
+    required this.firstNameValue,
+    required this.lastNameValue,
+    required this.phoneNumberValue,
+    required this.caregiverType,
+  }) : super(key: key);
+
+  final String firstNameValue;
+  final String lastNameValue;
+  final String phoneNumberValue;
+  final CaregiverType caregiverType;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        PersonalInformationSecondaryWidget(
+          fieldName: firstName,
+          fieldValue: firstNameValue,
+        ),
+        verySmallVerticalSizedBox,
+        PersonalInformationSecondaryWidget(
+          fieldName: lastName,
+          fieldValue: lastNameValue,
+        ),
+        verySmallVerticalSizedBox,
+        PersonalInformationSecondaryWidget(
+          fieldName: phoneNumber,
+          fieldValue: phoneNumberValue,
+        ),
+        verySmallVerticalSizedBox,
+        PersonalInformationSecondaryWidget(
+          fieldName: relationText,
+          fieldValue: caregiverType.name,
+        ),
+      ],
     );
   }
 }

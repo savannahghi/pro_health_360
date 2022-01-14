@@ -14,7 +14,6 @@ import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
@@ -219,18 +218,13 @@ Future<void> setUserNickname({
   required BuildContext context,
   required String nickName,
 }) async {
-  // this is the Redux Action that store the nickname user enters
-  StoreProvider.dispatch<AppState>(
-    context,
-    UpdateUserProfileAction(nickName: nickName),
-  );
-
   // this is the Redux Action that handles set nickname for an existing user
   await StoreProvider.dispatch<AppState>(
     context,
     SetNicknameAction(
       context: context,
       flag: setNickNameFlag,
+      nickName: nickName,
     ),
   );
 }

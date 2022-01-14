@@ -1,4 +1,4 @@
-import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
+import 'package:myafyahub/application/redux/states/caregiver_information.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:test/test.dart';
 

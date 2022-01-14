@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
@@ -58,47 +58,37 @@ class SettingsPage extends StatelessWidget {
                               ),
                             ),
                             EditInformationButtonWidget(
-                              editInformationItem: nickNameEditInfo(
-                                vm.clientState?.user?.username ?? UNKNOWN,
-                              ),
-                              submitFunction: (
-                                EditInformationItem editInformationItem,
-                              ) async {
-                                final String initialNickName =
-                                    vm.clientState?.user?.username ?? UNKNOWN;
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  BWRoutes.editInformationPage,
+                                  arguments: <String, dynamic>{
+                                    'editInformationItem': nickNameEditInfo(
+                                      vm.clientState?.user?.username ?? UNKNOWN,
+                                    ),
+                                    'onSubmit': (
+                                      EditInformationItem editInformationItem,
+                                    ) {
+                                      final String nickname =
+                                          editInformationItem
+                                              .editInformationInputItem[0]
+                                              .inputController
+                                              .text;
 
-                                ///Set username/NickName to the new nickname
-                                StoreProvider.dispatch<AppState>(
-                                  context,
-                                  UpdateUserProfileAction(
-                                    nickName: editInformationItem
-                                        .editInformationInputItem[0]
-                                        .inputController
-                                        .text,
-                                  ),
+                                      StoreProvider.dispatch<AppState>(
+                                        context,
+                                        SetNicknameAction(
+                                          context: context,
+                                          flag: editInformationFlag,
+                                          shouldNavigate: false,
+                                          nickName: nickname,
+                                        ),
+                                      );
+
+                                      ///Will return to the previous page after submitting
+                                      Navigator.pop(context);
+                                    }
+                                  },
                                 );
-
-                                try {
-                                  await StoreProvider.dispatch<AppState>(
-                                    context,
-                                    SetNicknameAction(
-                                      context: context,
-                                      flag: editInformationFlag,
-                                      shouldNavigate: false,
-                                    ),
-                                  );
-                                } catch (error) {
-                                  /// Incase an error occurs it resets back the username/nickname
-                                  StoreProvider.dispatch<AppState>(
-                                    context,
-                                    UpdateUserProfileAction(
-                                      nickName: initialNickName,
-                                    ),
-                                  );
-                                }
-
-                                ///Will return to the previous page after submitting
-                                Navigator.pop(context);
                               },
                             ),
                           ],

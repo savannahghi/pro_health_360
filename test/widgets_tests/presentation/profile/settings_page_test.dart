@@ -26,6 +26,7 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -133,6 +134,7 @@ void main() {
 
       await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
+
       expect(find.byType(EditInformationPage), findsNothing);
       expect(store.state.clientState!.user!.username, UNKNOWN);
     });

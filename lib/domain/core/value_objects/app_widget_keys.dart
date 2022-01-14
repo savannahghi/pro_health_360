@@ -137,3 +137,12 @@ const Key dontShareHealthDiaryKey = Key('dont_share_health_diary');
 const Key galleryImagePageKey = Key('gallery_image_page_key');
 
 const Key editPersonalInfoKey = Key('edit_personal_info_key');
+
+const Key editPreferredLanguageKey = Key('edit_preferred_language_key');
+
+const Key editPreferredClinicKey = Key('edit_preferred_clinic_key');
+
+const Key editPreferredCommunicationKey =
+    Key('edit_preferred_communication_key');
+
+const Key editInfoSaveBtn = Key('edit_information_save_btn');

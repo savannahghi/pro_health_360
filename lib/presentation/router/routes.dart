@@ -91,6 +91,9 @@ class BWRoutes {
   //Edit Information Page
   static const String editInformationPage = '/editInformationPage';
 
+  static const String editCaregiverInformationPage =
+      '/editCaregiverInformationPage';
+
   static const String galleryImagesPage = '/galleryImagesPage';
 
   //Documents Page

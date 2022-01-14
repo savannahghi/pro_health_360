@@ -477,48 +477,6 @@ bool shouldInputPIN(BuildContext context) {
       differenceFromLastInput > 20;
 }
 
-final EditInformationInputItem phoneInputItem = EditInformationInputItem(
-  fieldName: phoneNumber,
-  hintText: hotlineNumberString,
-  inputType: EditInformationInputType.Text,
-  inputController: TextEditingController(),
-  apiFieldValue: 'phoneNumber',
-);
-
-final EditInformationInputItem relationInputItem = EditInformationInputItem(
-  fieldName: relationText,
-  hintText: relationText,
-  inputType: EditInformationInputType.DropDown,
-  inputController: TextEditingController(),
-  dropDownOptionList: CaregiverType.values
-      .map<String>((CaregiverType type) => type.name)
-      .toList(),
-  apiFieldValue: 'caregiverType',
-);
-
-final EditInformationItem careGiverEditInfo = EditInformationItem(
-  title: myProfileCaregiverText,
-  description: myProfileCaregiverDescriptionText,
-  editInformationInputItem: <EditInformationInputItem>[
-    EditInformationInputItem(
-      fieldName: firstName,
-      hintText: janeDoe,
-      inputType: EditInformationInputType.Text,
-      inputController: TextEditingController(),
-      apiFieldValue: 'firstName',
-    ),
-    EditInformationInputItem(
-      fieldName: lastName,
-      hintText: janeDoe,
-      inputType: EditInformationInputType.Text,
-      inputController: TextEditingController(),
-      apiFieldValue: 'lastName',
-    ),
-    phoneInputItem,
-    relationInputItem,
-  ],
-);
-
 final EditInformationInputItem preferredLanguageInputItem =
     EditInformationInputItem(
   fieldName: selectYourPreferredLanguage,
@@ -655,19 +613,20 @@ String genderToJson(Gender? gender) {
   return gender?.name ?? Gender.unknown.name;
 }
 
-CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
+CaregiverType caregiverTypeFromString(String? caregiverTypeString) {
   if (caregiverTypeString == null || caregiverTypeString.isEmpty) {
     return CaregiverType.Sibling;
   }
 
   return CaregiverType.values.where((CaregiverType caregiverType) {
     return caregiverType.name.toLowerCase() ==
-        caregiverTypeString.toLowerCase();
+        caregiverTypeString.trim().replaceAll(' ', '_').toLowerCase();
   }).first;
 }
 
 String caregiverTypeToJson(CaregiverType? caregiverType) {
-  return caregiverType?.name ?? CaregiverType.Sibling.name;
+  return caregiverType?.name.toUpperCase() ??
+      CaregiverType.Sibling.name.toUpperCase();
 }
 
 void navigateToNewPage({
@@ -942,7 +901,8 @@ void pinInputTimerStatus({required BuildContext context}) {
   if (maxTryTime.isNotEmpty && maxTryTime != UNKNOWN) {
     final DateTime? parsedMaxTryTime = DateTime.tryParse(maxTryTime);
     if (parsedMaxTryTime != null &&
-        DateTime.now().difference(parsedMaxTryTime).inSeconds < startTimer - 2) {
+        DateTime.now().difference(parsedMaxTryTime).inSeconds <
+            startTimer - 2) {
       resumeTimer = true;
     } else {
       StoreProvider.dispatch(
