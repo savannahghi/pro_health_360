@@ -47,6 +47,21 @@ void main() {
       expect(find.byType(AudioContent), findsOneWidget);
     });
 
+    testWidgets('shows pdf content', (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+
+      final Content mockContent = Content.fromJson(documentContentMock);
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: ContentItem(contentDetails: mockContent),
+      );
+
+      expect(find.text(pdfText), findsOneWidget);
+    });
+
     testWidgets('shows the play icon if a piece of content has a video',
         (WidgetTester tester) async {
       final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();

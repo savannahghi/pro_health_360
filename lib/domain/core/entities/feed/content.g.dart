@@ -118,5 +118,6 @@ const _$ContentTypeEnumMap = {
   ContentType.AUDIO_VIDEO: 'AUDIO_VIDEO',
   ContentType.DOCUMENT: 'DOCUMENT',
   ContentType.ARTICLE: 'ARTICLE',
+  ContentType.PDF_DOCUMENT: 'PDF_DOCUMENT',
   ContentType.UNKNOWN: 'UNKNOWN',
 };

@@ -62,7 +62,7 @@ extension MoodTypeEx on MoodType {
 }
 
 /// The type of content being served to the user
-enum ContentType { AUDIO_VIDEO, DOCUMENT, ARTICLE, UNKNOWN }
+enum ContentType { AUDIO_VIDEO, DOCUMENT, ARTICLE, PDF_DOCUMENT, UNKNOWN }
 
 enum ContentDisplayedType { RECENT, FEED, BOOKMARK, UNKNOWN }
 

@@ -464,6 +464,7 @@ String audioTime(int duration) {
 }
 
 const String newText = 'New';
+const String pdfText = 'PDF';
 
 //My Health Page
 const String myHealthPageTitle = 'My Health';

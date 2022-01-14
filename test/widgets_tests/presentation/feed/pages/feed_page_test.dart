@@ -41,6 +41,7 @@ void main() {
               'items': <dynamic>[
                 contentMock.first,
                 contentMock.first,
+                documentContentMock
               ]
             }
           }

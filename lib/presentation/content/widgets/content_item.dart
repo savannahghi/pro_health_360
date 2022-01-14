@@ -118,8 +118,10 @@ class ContentItem extends StatelessWidget {
                 if (isAudio)
                   AudioContent(contentDetails: contentDetails)
                 else if (contentDetails.contentType == ContentType.ARTICLE ||
-                    contentDetails.featuredMedia?[0]?.featuredMediaType ==
-                        FeaturedMediaType.video)
+                    contentDetails.featuredMedia != null &&
+                        contentDetails.featuredMedia!.isNotEmpty &&
+                        contentDetails.featuredMedia?[0]?.featuredMediaType ==
+                            FeaturedMediaType.video)
                   Padding(
                     padding: const EdgeInsets.all(13),
                     child: Column(
@@ -185,7 +187,129 @@ class ContentItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
+                  )
+                else if (contentDetails.contentType == ContentType.PDF_DOCUMENT)
+                  Padding(
+                    padding: const EdgeInsets.all(13),
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade400,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                            ),
+                            child: Stack(
+                              children: <Widget>[
+                                Center(
+                                  child: SvgPicture.asset(
+                                    pdfIconSvg,
+                                    width: 70,
+                                    height: 70,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(8),
+                                      ),
+                                      color: Colors.grey.shade800,
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 4,
+                                      vertical: 3,
+                                    ),
+                                    margin: const EdgeInsets.all(8),
+                                    child: Text(
+                                      pdfText,
+                                      style: TextThemes.normalSize12Text(
+                                        Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        size15HorizontalSizedBox,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Flexible(
+                                      child: Text(
+                                        contentDetails.title!,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextThemes.boldSize16Text(
+                                          AppColors.secondaryColor,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: humanizeDate(
+                                        dateTextStyle:
+                                            TextThemes.normalSize12Text(
+                                          AppColors.greyTextColor,
+                                        ),
+                                        loadedDate:
+                                            contentDetails.metadata!.createdAt!,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              verySmallVerticalSizedBox,
+                              if (contentDetails.authorName != null)
+                                Text(
+                                  contentDetails.authorName!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextThemes.boldSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                              // Reactions
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 18, bottom: 4),
+                                child: Row(
+                                  children: <Widget>[
+                                    ReactionItem(
+                                      iconUrl: heartIconUrl,
+                                      count: contentDetails.likeCount,
+                                    ),
+                                    ReactionItem(
+                                      iconUrl: shareIconUrl,
+                                      count: contentDetails.shareCount,
+                                    ),
+                                    ReactionItem(
+                                      iconUrl: saveIconUrl,
+                                      count: contentDetails.bookmarkCount,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
               ],
             ),
             if (isNew)

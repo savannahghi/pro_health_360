@@ -1207,6 +1207,59 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
   }
 };
 
+final Map<String, dynamic> documentContentMock = <String, dynamic>{
+  'ID': 16,
+  'title': 'Test Document',
+  'date': '2022-01-13',
+  'intro': 'This is a test document',
+  'authorName': 'Test',
+  'tagNames': <String>['test'],
+  'meta': <String, dynamic>{
+    'contentType': 'content.ContentItem',
+    'contentHTMLURL': 'http://test-document/',
+    'slug': 'test-document',
+    'showInMenus': false,
+    'seoTitle': '',
+    'searchDescription': '',
+    'firstPublishedAt': '2022-01-13T11:36:56.749531+03:00',
+    'locale': 'en'
+  },
+  'itemType': 'PDF_DOCUMENT',
+  'timeEstimateSeconds': 10,
+  'body': '''
+<p data-block-key="sg8u8">Test document</p>''',
+  'heroImage': <String, dynamic>{'ID': 14, 'title': 'document'},
+  'heroImageRendition': <String, dynamic>{
+    'url': 'https://test.jpg',
+    'width': 720,
+    'height': 1080,
+    'alt': 'document'
+  },
+  'likeCount': 0,
+  'bookmarkCount': 0,
+  'viewCount': 0,
+  'shareCount': 0,
+  'author': <String, dynamic>{'ID': 'test-id-001'},
+  'documents': <Map<String, dynamic>>[
+    <String, dynamic>{
+      'ID': 1,
+      'Document': <String, dynamic>{'ID': 1, 'title': 'pdf sample'},
+      'meta': <String, dynamic>{
+        'type': 'content.ContentItemDocumentLink',
+        'documentDetailUrl': '',
+        'documentDownloadUrl': ''
+      }
+    }
+  ],
+  'categoryDetails': <Map<String, dynamic>>[
+    <String, dynamic>{
+      'ID': 6,
+      'categoryName': 'recommended',
+      'categoryIcon': 'https://test.png'
+    }
+  ],
+};
+
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
     'ID': 1,
