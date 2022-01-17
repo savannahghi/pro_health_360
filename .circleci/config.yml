@@ -125,7 +125,7 @@ jobs:
 
 
   deploy_to_play_store_alpha:
-    resource_class: large
+    resource_class: xlarge
     docker:
       - image: circleci/android:api-30
     steps:
@@ -160,7 +160,7 @@ jobs:
 
 
   deploy_to_play_store_beta:
-    resource_class: large
+    resource_class: xlarge
     docker:
       - image: circleci/android:api-30
     steps:
@@ -188,7 +188,7 @@ jobs:
 
 
   deploy_to_play_store_prod:
-    resource_class: large
+    resource_class: xlarge
     docker:
       - image: circleci/android:api-30
     steps:
