@@ -5,52 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000341">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000305">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.00061">
+      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000476">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="8.317484">
+      <testcase classname="fastlane.lanes" name="2: match" time="4.551048">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.020952">
+      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.007374">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="5.903291">
+      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="4.645474">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="4.883456">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="1.362184">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.00029">
+      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.001147">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000314">
+      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000731">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: build_app" time="421.619173">
+      <testcase classname="fastlane.lanes" name="8: build_app" time="214.647864">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="571.807149">
+      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="489.684054">
         
       </testcase>
     
