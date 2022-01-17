@@ -154,7 +154,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                               color: vm.selectedCategory!.name ==
                                       contentCategory.name
                                   ? AppColors.whiteColor
-                                  : AppColors.secondaryColor,
+                                  : AppColors.primaryColor,
                             ),
                           ),
                           labelStyle:
@@ -164,7 +164,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                           ),
                           selected:
                               vm.selectedCategory!.name == contentCategory.name,
-                          selectedColor: AppColors.secondaryColor,
+                          selectedColor: AppColors.primaryColor,
                           onSelected: (bool selected) {
                             StoreProvider.dispatch<AppState>(
                               context,
@@ -199,7 +199,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
         Icons.grid_view_rounded,
         color: vm.selectedCategory!.name == contentCategory.name
             ? AppColors.whiteColor
-            : AppColors.secondaryColor,
+            : AppColors.primaryColor,
         size: 20.0,
       );
     } else {
@@ -208,7 +208,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
               contentCategory.icon!,
               color: vm.selectedCategory!.name == contentCategory.name
                   ? AppColors.whiteColor
-                  : AppColors.secondaryColor,
+                  : AppColors.primaryColor,
               width: 20,
               height: 20,
             )

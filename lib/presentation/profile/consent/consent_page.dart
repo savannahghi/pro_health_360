@@ -84,7 +84,7 @@ class _ConsentPageState extends State<ConsentPage> {
                     Flexible(
                       flex: 2,
                       child: Switch(
-                        activeColor: AppColors.accentColor,
+                        activeColor: AppColors.primaryColor,
                         value: groupsSwitchValue,
                         onChanged: (bool value) {
                           setState(() {

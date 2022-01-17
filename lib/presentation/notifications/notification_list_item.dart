@@ -35,7 +35,7 @@ class NotificationListItem extends StatelessWidget {
             iconString,
             height: 18,
             width: 18,
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ),
         smallHorizontalSizedBox,
@@ -81,7 +81,7 @@ class NotificationListItem extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(
-                              color: AppColors.secondaryColor,
+                              color: AppColors.primaryColor,
                             ),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(7),
@@ -95,13 +95,13 @@ class NotificationListItem extends StatelessWidget {
                                   notificationActions.icon.iconUrlSvgPath,
                                   width: 15,
                                   height: 15,
-                                  color: AppColors.secondaryColor,
+                                  color: AppColors.primaryColor,
                                 ),
                                 smallHorizontalSizedBox,
                                 Text(
                                   notificationActions.name,
                                   style: normalSize11Text(
-                                    AppColors.secondaryColor,
+                                    AppColors.primaryColor,
                                   ),
                                 ),
                               ],
