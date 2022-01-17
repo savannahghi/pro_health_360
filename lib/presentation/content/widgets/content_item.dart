@@ -60,7 +60,7 @@ class ContentItem extends StatelessWidget {
       key: feedContentItemKey,
       onTap: () {
         if (isArticle ||
-            contentDetails.featuredMedia?[0]?.featuredMediaType ==
+            contentDetails.featuredMedia?.first?.featuredMediaType ==
                 FeaturedMediaType.video) {
           Navigator.of(context).pushNamed(
             BWRoutes.contentDetailPage,
