@@ -68,9 +68,9 @@ commands:
 
 jobs:
   run_tests_and_generate_coverage:
-    resource_class: large
+    resource_class: xlarge
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: circleci/android:api-30
     steps:
       - install_packages
       - run:
@@ -104,9 +104,9 @@ jobs:
 
 
   deploy_to_internal_firebase_app_tester:
-    resource_class: large
+    resource_class: xlarge
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: circleci/android:api-30
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -127,7 +127,7 @@ jobs:
   deploy_to_play_store_alpha:
     resource_class: large
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: circleci/android:api-30
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -162,7 +162,7 @@ jobs:
   deploy_to_play_store_beta:
     resource_class: large
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: circleci/android:api-30
     steps:
       - install_packages
       - download_and_setup_keystore
@@ -190,7 +190,7 @@ jobs:
   deploy_to_play_store_prod:
     resource_class: large
     docker:
-      - image: circleci/android:api-30-ndk
+      - image: circleci/android:api-30
     steps:
       - install_packages
       - download_and_setup_keystore
