@@ -452,7 +452,7 @@ String contentAudioVideoDuration(int duration) =>
 String audioTime(int duration) {
   Duration(seconds: duration);
   final int min = (duration / 60).floor();
-  final int sec = (duration % 60).floor();
+  final int sec = duration % 60;
   String formattedSec;
   if (sec <= 9) {
     formattedSec = '0$sec';

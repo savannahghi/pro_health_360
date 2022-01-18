@@ -39,10 +39,7 @@ class SendOTPAction extends ReduxAction<AppState> {
     toggleLoadingIndicator(context: context, flag: flag, show: false);
 
     ///Ensure the callBackFunction is not null
-    if (callBackFunction != null) {
-      ///[callBackFunction] Is run when resending otp to reset the timer
-      callBackFunction!();
-    }
+    callBackFunction?.call();
     super.after();
   }
 

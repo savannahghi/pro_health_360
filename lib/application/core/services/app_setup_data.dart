@@ -49,7 +49,7 @@ final AppSetupData devAppSetupData = AppSetupData(
     updateUserPinEndpoint: kTestUpdateUserPinEndpoint,
     uploadFileEndPoint: kTestUploadFileEndPoint,
     createUserByPhoneEndpoint: kTestCreateUserByPhoneEndpoint,
-    switchFlaggedFeaturesEndpoint: '',
+    switchFlaggedFeaturesEndpoint: '', respondedSecurityQuestionsEndpoint: '', verifySecurityQuestionsEndpoint: '',
   ),
 );
 
@@ -73,7 +73,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
     updateUserPinEndpoint: kDemoUpdateUserPinEndpoint,
     uploadFileEndPoint: kDemoUploadFileEndPoint,
     createUserByPhoneEndpoint: kDemoCreateUserByPhoneEndpoint,
-    switchFlaggedFeaturesEndpoint: '',
+    switchFlaggedFeaturesEndpoint: '', respondedSecurityQuestionsEndpoint: '', verifySecurityQuestionsEndpoint: '',
   ),
 );
 
@@ -97,6 +97,6 @@ final AppSetupData prodAppSetupData = AppSetupData(
     updateUserPinEndpoint: kProdUpdateUserPinEndpoint,
     uploadFileEndPoint: kProdUploadFileEndPoint,
     createUserByPhoneEndpoint: kProdCreateUserByPhoneEndpoint,
-    switchFlaggedFeaturesEndpoint: '',
+    switchFlaggedFeaturesEndpoint: '', respondedSecurityQuestionsEndpoint: '', verifySecurityQuestionsEndpoint: '',
   ),
 );

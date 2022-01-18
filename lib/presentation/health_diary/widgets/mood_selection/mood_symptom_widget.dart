@@ -27,11 +27,7 @@ class MoodSymptomWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       key: gestureKey,
-      onTap: () {
-        if (onTap != null) {
-          onTap!();
-        }
-      },
+      onTap: () => onTap?.call(),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
         decoration: BoxDecoration(

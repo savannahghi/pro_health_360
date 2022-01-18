@@ -82,4 +82,5 @@ linter:
     no_adjacent_strings_in_list: false
     use_setters_to_change_properties: false
     directives_ordering: false
+
   
