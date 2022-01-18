@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +10,6 @@ import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.d
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class HealthDiaryEntryWidget extends StatelessWidget {
   const HealthDiaryEntryWidget({Key? key, required this.diaryEntry})
@@ -20,7 +20,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget date = humanizeDate(
-      dateTextStyle: TextThemes.normalSize12Text(),
+      dateTextStyle: normalSize12Text(),
       loadedDate: diaryEntry.createdAt!,
       showTime: true,
     );
@@ -60,13 +60,13 @@ class HealthDiaryEntryWidget extends StatelessWidget {
                   verySmallVerticalSizedBox,
                   Text(
                     mood,
-                    style: TextThemes.veryBoldSize14Text(moodItemData.color),
+                    style: veryBoldSize14Text(moodItemData.color),
                     overflow: TextOverflow.ellipsis,
                   ),
                   verySmallVerticalSizedBox,
                   Text(
                     diaryEntry.note ?? '',
-                    style: TextThemes.normalSize12Text(
+                    style: normalSize12Text(
                       AppColors.secondaryColor.withOpacity(0.6),
                     ),
                   ),

@@ -1,9 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -50,13 +47,13 @@ class MoreMenuDropDown extends StatelessWidget {
           value: 2,
           child: Text(
             groupInfoText,
-            style: TextThemes.normalSize14Text(),
+            style: normalSize14Text(),
           ),
         ),
         PopupMenuItem<int>(
           key: exitGroupMenuItemKeyKey,
           value: 1,
-          child: Text(exitGroupText, style: TextThemes.normalSize14Text()),
+          child: Text(exitGroupText, style: normalSize14Text()),
         ),
       ],
       child: const Icon(Icons.more_vert),

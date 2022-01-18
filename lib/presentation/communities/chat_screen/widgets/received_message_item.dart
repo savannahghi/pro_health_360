@@ -1,14 +1,13 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:misc_utilities/number_constants.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/communities/chat_screen/widgets/sender_type_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+
 import 'quoted_message_widget.dart';
 
 /// [ReceivedMessageItem] used within the community chat screen to show received messages.
@@ -58,7 +57,7 @@ class ReceivedMessageItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       senderName,
-                      style: TextThemes.normalSize10Text()
+                      style: normalSize10Text()
                           .copyWith(color: AppColors.userInitialsColor),
                     ),
                     smallHorizontalSizedBox,
@@ -71,15 +70,15 @@ class ReceivedMessageItem extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   message,
-                  style: TextThemes.normalSize12Text()
-                      .copyWith(color: AppColors.whiteColor),
+                  style:
+                      normalSize12Text().copyWith(color: AppColors.whiteColor),
                 ),
               ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
                   time,
-                  style: TextThemes.normalSize10Text()
+                  style: normalSize10Text()
                       .copyWith(color: AppColors.userInitialsColor),
                 ),
               ),

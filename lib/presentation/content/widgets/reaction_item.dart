@@ -1,13 +1,11 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 class ReactionItem extends StatelessWidget {
   const ReactionItem({required this.iconUrl, required this.count});
@@ -30,7 +28,7 @@ class ReactionItem extends StatelessWidget {
           verySmallHorizontalSizedBox,
           Text(
             (count != 0 && count != null) ? count.toString() : '0',
-            style: TextThemes.normalSize12Text(AppColors.greyTextColor),
+            style: normalSize12Text(AppColors.greyTextColor),
           )
         ],
       ),

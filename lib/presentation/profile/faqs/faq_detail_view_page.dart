@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -6,8 +7,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
 
 class FAQDetailViewPage extends StatelessWidget {
   final FAQContent payload;
@@ -34,14 +33,14 @@ class FAQDetailViewPage extends StatelessWidget {
               ),
               child: Text(
                 payload.title ?? UNKNOWN,
-                style: TextThemes.veryBoldSize18Text(Colors.black),
+                style: veryBoldSize18Text(Colors.black),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 payload.description ?? UNKNOWN,
-                style: TextThemes.normalSize14Text(AppColors.greyTextColor),
+                style: normalSize14Text(AppColors.greyTextColor),
               ),
             ),
             Html(

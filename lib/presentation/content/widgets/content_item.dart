@@ -1,24 +1,22 @@
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-
-import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
-import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
-import 'package:myafyahub/presentation/content/widgets/leading_graphic_widget.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
+import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/leading_graphic_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/spaces.dart';
 
 /// [ContentItem] Displays the feed
 /// [isNew] renders the new tag
@@ -137,7 +135,7 @@ class ContentItem extends StatelessWidget {
                                   contentDetails.title!,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextThemes.boldSize16Text(
+                                  style: boldSize16Text(
                                     AppColors.secondaryColor,
                                   ),
                                 ),
@@ -145,7 +143,7 @@ class ContentItem extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: humanizeDate(
-                                  dateTextStyle: TextThemes.normalSize12Text(
+                                  dateTextStyle: normalSize12Text(
                                     AppColors.greyTextColor,
                                   ),
                                   loadedDate:
@@ -161,7 +159,7 @@ class ContentItem extends StatelessWidget {
                             contentDetails.authorName!,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextThemes.boldSize12Text(
+                            style: boldSize12Text(
                               AppColors.greyTextColor,
                             ),
                           ),
@@ -228,7 +226,7 @@ class ContentItem extends StatelessWidget {
                                     margin: const EdgeInsets.all(8),
                                     child: Text(
                                       pdfText,
-                                      style: TextThemes.normalSize12Text(
+                                      style: normalSize12Text(
                                         Colors.white,
                                       ),
                                     ),
@@ -254,7 +252,7 @@ class ContentItem extends StatelessWidget {
                                         contentDetails.title!,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
-                                        style: TextThemes.boldSize16Text(
+                                        style: boldSize16Text(
                                           AppColors.secondaryColor,
                                         ),
                                       ),
@@ -262,8 +260,7 @@ class ContentItem extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: humanizeDate(
-                                        dateTextStyle:
-                                            TextThemes.normalSize12Text(
+                                        dateTextStyle: normalSize12Text(
                                           AppColors.greyTextColor,
                                         ),
                                         loadedDate:
@@ -279,7 +276,7 @@ class ContentItem extends StatelessWidget {
                                   contentDetails.authorName!,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextThemes.boldSize12Text(
+                                  style: boldSize12Text(
                                     AppColors.greyTextColor,
                                   ),
                                 ),
@@ -326,7 +323,7 @@ class ContentItem extends StatelessWidget {
                   margin: const EdgeInsets.all(8),
                   child: Text(
                     newText,
-                    style: TextThemes.boldSize16Text(Colors.white),
+                    style: boldSize16Text(Colors.white),
                   ),
                 ),
               ),

@@ -2,14 +2,9 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -21,6 +16,9 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 /// [SuggestedGroupsSection] is a widget used in the Feed Page
 ///
@@ -124,7 +122,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
                     child: Text(
                       suggestedGroupsString,
                       overflow: TextOverflow.ellipsis,
-                      style: TextThemes.veryBoldSize16Text(
+                      style: veryBoldSize16Text(
                         AppColors.secondaryColor,
                       ),
                     ),

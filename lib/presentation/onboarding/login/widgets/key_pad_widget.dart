@@ -1,10 +1,8 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -34,8 +32,7 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:
-          const EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
+      margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -145,7 +142,7 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
           child: Text(
             buttonText,
             textAlign: TextAlign.center,
-            style: TextThemes.lightSize16Text(
+            style: lightSize16Text(
               widget.canEnterPin ? AppColors.secondaryColor : Colors.grey,
             ).copyWith(
               fontSize: 47.0,

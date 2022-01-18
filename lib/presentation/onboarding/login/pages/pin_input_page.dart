@@ -1,6 +1,7 @@
 // Project imports:
 import 'dart:async';
 
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,7 +24,6 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -47,8 +47,7 @@ class _PINInputPageState extends State<PINInputPage> {
   late Timer timer;
   bool canEnterPin = true;
   int _start = 300;
-  TextStyle errorMessageStyle =
-      TextThemes.boldSize12Text(AppColors.wrongPinTextColor);
+  TextStyle errorMessageStyle = boldSize12Text(AppColors.wrongPinTextColor);
   bool timerRunning = false;
 
   void _startTimer() {
@@ -58,8 +57,7 @@ class _PINInputPageState extends State<PINInputPage> {
         if (_start == 0) {
           timer.cancel();
           setState(() {
-            errorMessageStyle =
-                TextThemes.boldSize12Text(AppColors.wrongPinTextColor);
+            errorMessageStyle = boldSize12Text(AppColors.wrongPinTextColor);
             errorMessage = '';
             canEnterPin = true;
             WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
@@ -79,7 +77,7 @@ class _PINInputPageState extends State<PINInputPage> {
         } else {
           setState(() {
             _start--;
-            errorMessageStyle = TextThemes.heavySize12Text(AppColors.redColor);
+            errorMessageStyle = heavySize12Text(AppColors.redColor);
             errorMessage = tooManyTriesString(_start);
             canEnterPin = false;
             timerRunning = true;
@@ -170,7 +168,7 @@ class _PINInputPageState extends State<PINInputPage> {
                         margin: const EdgeInsets.only(bottom: 10.0),
                         child: Text(
                           enterChatPINString,
-                          style: TextThemes.boldSize15Text(
+                          style: boldSize15Text(
                             AppColors.secondaryColor,
                           ).copyWith(fontSize: 14),
                         ),
@@ -209,7 +207,7 @@ class _PINInputPageState extends State<PINInputPage> {
                                     readOnly: true,
                                     obscuringCharacter: '*',
                                     textAlign: TextAlign.center,
-                                    style: TextThemes.normalSize24Text(
+                                    style: normalSize24Text(
                                       AppColors.secondaryColor,
                                     ),
                                     decoration: const InputDecoration(
@@ -275,8 +273,7 @@ class _PINInputPageState extends State<PINInputPage> {
                               } else {
                                 if (tries < maxTries) {
                                   setState(() {
-                                    errorMessageStyle =
-                                        TextThemes.boldSize12Text(
+                                    errorMessageStyle = boldSize12Text(
                                       AppColors.wrongPinTextColor,
                                     );
                                     errorMessage = wrongPINString;
@@ -321,7 +318,7 @@ class _PINInputPageState extends State<PINInputPage> {
                           margin: const EdgeInsets.only(bottom: 10.0),
                           child: Text(
                             forgotPINString,
-                            style: TextThemes.normalSize15Text(
+                            style: normalSize15Text(
                               AppColors.secondaryColor,
                             ),
                           ),

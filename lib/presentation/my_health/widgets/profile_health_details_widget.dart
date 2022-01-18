@@ -1,13 +1,11 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/cupertino.dart';
-
 // Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 class ProfileHealthDetailsWidget extends StatelessWidget {
   ///[ProfileHealthDetailsWidget] displays profile health details widget
@@ -40,7 +38,7 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                 verySmallHorizontalSizedBox,
                 Text(
                   title,
-                  style: TextThemes.normalSize14Text(AppColors.secondaryColor),
+                  style: normalSize14Text(AppColors.secondaryColor),
                 ),
               ],
             ),
@@ -49,13 +47,13 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                 child: RichText(
                   text: TextSpan(
                     text: description,
-                    style: TextThemes.boldSize30Text(
+                    style: boldSize30Text(
                       AppColors.secondaryColor,
                     ),
                     children: <TextSpan>[
                       TextSpan(
                         text: descriptionSubScript,
-                        style: TextThemes.normalSize14Text(
+                        style: normalSize14Text(
                           AppColors.secondaryColor,
                         ),
                       )

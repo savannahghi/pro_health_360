@@ -1,5 +1,6 @@
 // Flutter imports:
 // Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class UserDetailsCard extends StatelessWidget {
   /// [UserDetailsCard] is a shared widget used in [UserProfilePage]
@@ -167,7 +167,7 @@ class UserDetailsCard extends StatelessWidget {
                       ),
                       child: Text(
                         requestCorrectionString,
-                        style: TextThemes.boldSize13Text(
+                        style: boldSize13Text(
                           AppColors.secondaryColor,
                         ),
                       ),

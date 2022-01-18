@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
@@ -5,7 +6,6 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class ContentMetaDataWidget extends StatelessWidget {
   const ContentMetaDataWidget({
@@ -31,7 +31,7 @@ class ContentMetaDataWidget extends StatelessWidget {
                     contentDetails.title!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextThemes.boldSize16Text(
+                    style: boldSize16Text(
                       AppColors.secondaryColor,
                     ),
                   ),
@@ -41,7 +41,7 @@ class ContentMetaDataWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: humanizeDate(
-                    dateTextStyle: TextThemes.normalSize12Text(
+                    dateTextStyle: normalSize12Text(
                       AppColors.greyTextColor,
                     ),
                     loadedDate: contentDetails.metadata!.createdAt!,
@@ -56,7 +56,7 @@ class ContentMetaDataWidget extends StatelessWidget {
             contentDetails.authorName!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextThemes.boldSize12Text(
+            style: boldSize12Text(
               AppColors.greyTextColor,
             ),
           ),

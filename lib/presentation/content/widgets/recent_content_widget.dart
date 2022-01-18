@@ -1,32 +1,30 @@
 // Dart imports:
 
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/actions/content/fetch_recent_content_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/content_state.dart';
-import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
-import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
+import 'package:myafyahub/application/redux/actions/content/fetch_recent_content_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
+import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 import 'content_zero_state_widget.dart';
 
@@ -93,7 +91,8 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
             messageBody: messageBodyGenericNoData,
           );
         } else {
-          final List<Content?>? recentContent = vm.recentContentState?.contentItems;
+          final List<Content?>? recentContent =
+              vm.recentContentState?.contentItems;
 
           if (recentContent?.isNotEmpty ?? false) {
             return SizedBox(
@@ -112,7 +111,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                       children: <Widget>[
                         Text(
                           newContentText,
-                          style: TextThemes.veryBoldSize16Text(
+                          style: veryBoldSize16Text(
                             AppColors.secondaryColor,
                           ),
                         ),
@@ -128,7 +127,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                           },
                           child: Text(
                             viewAllText,
-                            style: TextThemes.normalSize16Text(
+                            style: normalSize16Text(
                               AppColors.secondaryColor,
                             ),
                           ),

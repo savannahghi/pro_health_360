@@ -1,15 +1,13 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 class DiaryAddSheet extends StatelessWidget {
   const DiaryAddSheet({Key? key}) : super(key: key);
@@ -62,7 +60,7 @@ class DiaryAddSheet extends StatelessWidget {
                     Text(
                       addDiaryString,
                       textAlign: TextAlign.center,
-                      style: TextThemes.normalSize11Text(
+                      style: normalSize11Text(
                         AppColors.secondaryColor,
                       ).copyWith(fontWeight: FontWeight.w500),
                     ),
@@ -94,7 +92,7 @@ class DiaryAddSheet extends StatelessWidget {
                         Text(
                           textString,
                           textAlign: TextAlign.center,
-                          style: TextThemes.normalSize11Text(
+                          style: normalSize11Text(
                             AppColors.secondaryColor,
                           ),
                         ),
@@ -124,7 +122,7 @@ class DiaryAddSheet extends StatelessWidget {
                         Text(
                           feelingString,
                           textAlign: TextAlign.center,
-                          style: TextThemes.normalSize11Text(
+                          style: normalSize11Text(
                             AppColors.secondaryColor,
                           ),
                         ),

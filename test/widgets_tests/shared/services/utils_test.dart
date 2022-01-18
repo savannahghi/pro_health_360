@@ -3,12 +3,12 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,21 +16,20 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart' as misc;
 import 'package:mockito/annotations.dart';
-import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
+import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/constants.dart';
+import 'package:shared_ui_components/buttons.dart';
+
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 import '../../../test_utils.dart';
@@ -279,8 +278,7 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             return humanizeDate(
-              dateTextStyle:
-                  TextThemes.normalSize12Text(AppColors.darkGreyColor),
+              dateTextStyle: normalSize12Text(AppColors.darkGreyColor),
               loadedDate: '2012-02-27 13:27:00',
               showTime: true,
             );
@@ -301,8 +299,7 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             return humanizeDate(
-              dateTextStyle:
-                  TextThemes.normalSize12Text(AppColors.darkGreyColor),
+              dateTextStyle: normalSize12Text(AppColors.darkGreyColor),
               loadedDate: '2012-02-27 13:27:00',
             );
           },

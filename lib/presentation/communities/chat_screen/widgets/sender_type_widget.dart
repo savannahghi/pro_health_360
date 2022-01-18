@@ -1,13 +1,11 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 class SenderTypeWidget extends StatelessWidget {
   /// [SenderTypeWidget] used within [ReceivedMessageItem] to the type of sender
@@ -37,8 +35,7 @@ class SenderTypeWidget extends StatelessWidget {
         verySmallHorizontalSizedBox,
         Text(
           senderTitle,
-          style: TextThemes.normalSize10Text()
-              .copyWith(color: AppColors.whiteColor),
+          style: normalSize10Text().copyWith(color: AppColors.whiteColor),
         ),
       ],
     );

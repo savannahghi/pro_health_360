@@ -2,15 +2,11 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -22,6 +18,8 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class RandomQuoteWidget extends StatefulWidget {
   const RandomQuoteWidget({Key? key}) : super(key: key);
@@ -133,7 +131,7 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
                   smallVerticalSizedBox,
                   Text(
                     quote?.quote ?? '',
-                    style: TextThemes.boldSize18Text(Colors.white),
+                    style: boldSize18Text(Colors.white),
                   ),
                   smallVerticalSizedBox,
                   Row(
@@ -141,9 +139,8 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
                     children: <Widget>[
                       Text(
                         quote?.author ?? defaultQuoteAuthor,
-                        style:
-                            TextThemes.normalSize14Text(AppColors.greyTextColor)
-                                .copyWith(fontStyle: FontStyle.italic),
+                        style: normalSize14Text(AppColors.greyTextColor)
+                            .copyWith(fontStyle: FontStyle.italic),
                       ),
                       SvgPicture.asset(rightQuoteSVGUrl, height: 32),
                     ],

@@ -1,16 +1,14 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 /// [NotificationListItem] Displays the notifications with Icons and a short description
 class NotificationListItem extends StatelessWidget {
@@ -59,17 +57,17 @@ class NotificationListItem extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 5),
                   child: Text(
                     notificationDetails.status!,
-                    style: TextThemes.boldSize12Text(AppColors.redColor),
+                    style: boldSize12Text(AppColors.redColor),
                   ),
                 ),
               Text(
                 notificationDetails.description,
-                style: TextThemes.normalSize12Text(AppColors.secondaryColor),
+                style: normalSize12Text(AppColors.secondaryColor),
               ),
               const SizedBox(height: 5),
               Text(
                 notificationDetails.date,
-                style: TextThemes.normalSize12Text(Colors.grey),
+                style: normalSize12Text(Colors.grey),
               ),
               const SizedBox(height: 10),
               if (notificationDetails.actions != null &&
@@ -102,7 +100,7 @@ class NotificationListItem extends StatelessWidget {
                                 smallHorizontalSizedBox,
                                 Text(
                                   notificationActions.name,
-                                  style: TextThemes.normalSize11Text(
+                                  style: normalSize11Text(
                                     AppColors.secondaryColor,
                                   ),
                                 ),

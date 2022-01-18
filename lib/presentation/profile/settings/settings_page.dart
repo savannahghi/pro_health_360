@@ -1,12 +1,9 @@
 // Flutter imports:
-import 'package:domain_objects/value_objects.dart';
-import 'package:flutter/material.dart';
-
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
+import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
@@ -20,6 +17,7 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/personal_information_widget.dart';
 import 'package:myafyahub/presentation/profile/widgets/edit_info_button_widget.dart';
+import 'package:shared_themes/spaces.dart';
 
 /// [SettingsPage] is used to display the client's settings
 ///
@@ -53,7 +51,7 @@ class SettingsPage extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               nickNameString,
-                              style: TextThemes.boldSize15Text(
+                              style: boldSize15Text(
                                 AppColors.secondaryColor,
                               ),
                             ),

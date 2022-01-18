@@ -1,23 +1,21 @@
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+// Project imports:
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/profile/update_caregiver_information_action.dart';
 import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
-// Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/personal_information_secondary_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/personal_information_widget.dart';
 import 'package:myafyahub/presentation/profile/widgets/edit_info_button_widget.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
 
 class PersonalInformationPage extends StatelessWidget {
   @override
@@ -40,13 +38,13 @@ class PersonalInformationPage extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         myProfileCaregiverText,
-                        style: TextThemes.boldSize16Text(
+                        style: boldSize16Text(
                           AppColors.secondaryColor,
                         ),
                       ),
                       Text(
                         myProfileCaregiverDescriptionText,
-                        style: TextThemes.normalSize14Text(
+                        style: normalSize14Text(
                           AppColors.greyTextColor,
                         ),
                       ),
@@ -105,8 +103,7 @@ class PersonalInformationPage extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     preferredLanguage,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor),
+                    style: normalSize16Text(AppColors.secondaryColor),
                   ),
                   EditInformationButtonWidget(
                     editInformationItem: preferredLanguageEditInfo,
@@ -124,8 +121,7 @@ class PersonalInformationPage extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     preferredClinic,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor),
+                    style: normalSize16Text(AppColors.secondaryColor),
                   ),
                   EditInformationButtonWidget(
                     editInformationItem: preferredClinicEditInfo,
@@ -144,8 +140,7 @@ class PersonalInformationPage extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     preferredCommunication,
-                    style:
-                        TextThemes.normalSize16Text(AppColors.secondaryColor),
+                    style: normalSize16Text(AppColors.secondaryColor),
                   ),
                   EditInformationButtonWidget(
                     editInformationItem: preferredCommunicationEditInfo,

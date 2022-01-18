@@ -1,17 +1,15 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/buttons.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/buttons.dart';
 
 enum GenericNoDataTypes { AbsentData, ErrorInData }
 
@@ -85,12 +83,12 @@ class GenericNoData extends StatelessWidget {
                           children: <TextSpan>[
                             TextSpan(
                               text: messageTitle ?? genericErrorOccurred,
-                              style: TextThemes.veryBoldSize20Text(),
+                              style: veryBoldSize20Text(),
                             ),
                             const TextSpan(text: '\n\n'),
                             TextSpan(
                               text: this.messageBody ?? genericTryAgain,
-                              style: TextThemes.normalSize16Text(
+                              style: normalSize16Text(
                                 AppColors.greyTextColor,
                               ),
                             )

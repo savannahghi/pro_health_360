@@ -1,17 +1,15 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/text_themes.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 class EmptyHealthDiary extends StatelessWidget {
   const EmptyHealthDiary({required this.refreshCallback});
@@ -33,13 +31,13 @@ class EmptyHealthDiary extends StatelessWidget {
           Text(
             diaryEmptyTitle,
             textAlign: TextAlign.center,
-            style: TextThemes.boldSize20Text(),
+            style: boldSize20Text(),
           ),
           smallVerticalSizedBox,
           Text(
             diaryEmptyDescription,
             textAlign: TextAlign.center,
-            style: TextThemes.normalSize15Text(AppColors.greyTextColor),
+            style: normalSize15Text(AppColors.greyTextColor),
           ),
           verySmallVerticalSizedBox,
           Padding(

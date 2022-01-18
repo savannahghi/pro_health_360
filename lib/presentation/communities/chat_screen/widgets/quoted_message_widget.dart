@@ -1,12 +1,10 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
 
 class QuotedMessageWidget extends StatelessWidget {
   /// [QuotedMessageWidget] used within the [ReceivedMessageItem] and [SentMessageItem] to
@@ -43,7 +41,7 @@ class QuotedMessageWidget extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   senderName,
-                  style: TextThemes.normalSize10Text().copyWith(
+                  style: normalSize10Text().copyWith(
                     color: AppColors.userDetailsCardBackgroundColor,
                   ),
                 ),
@@ -55,8 +53,8 @@ class QuotedMessageWidget extends StatelessWidget {
                   message,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextThemes.normalSize12Text()
-                      .copyWith(color: AppColors.whiteColor),
+                  style:
+                      normalSize12Text().copyWith(color: AppColors.whiteColor),
                 ),
               ),
             ],

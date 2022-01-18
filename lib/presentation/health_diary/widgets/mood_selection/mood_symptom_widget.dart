@@ -1,15 +1,13 @@
 // Flutter imports
 
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:unicons/unicons.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
+import 'package:unicons/unicons.dart';
 
 /// [MoodSymptomWidget] Displays reaction icons on the health diary page
 class MoodSymptomWidget extends StatelessWidget {
@@ -54,7 +52,7 @@ class MoodSymptomWidget extends StatelessWidget {
             verySmallHorizontalSizedBox,
             Text(
               title,
-              style: TextThemes.boldSize13Text(
+              style: boldSize13Text(
                 isSelected
                     ? AppColors.primaryColor
                     : AppColors.unSelectedReactionIconColor,

@@ -1,16 +1,14 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/profile/clinic_information/clinic_information_item_widget.dart';
 import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widget.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
 
 /// [ClinicInformationPage] is to display information of the clinic a client is registered to
 ///
@@ -37,7 +35,7 @@ class ClinicInformationPage extends StatelessWidget {
               mediumVerticalSizedBox,
               Text(
                 clinicContactString,
-                style: TextThemes.boldSize14Text(AppColors.secondaryColor),
+                style: boldSize14Text(AppColors.secondaryColor),
               ),
               smallVerticalSizedBox,
               CallContactActionWidget(phoneNumber: contactNumber),

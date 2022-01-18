@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  afya_moja_core: ^0.0.33
+  afya_moja_core: ^0.0.34
   app_wrapper: ^0.1.32
   async_redux: ^12.0.0
   cached_network_image: ^3.0.0
@@ -87,6 +87,17 @@ dev_dependencies:
   test: ^1.16.5
 
 flutter:
+  fonts:
+    - family: Sora
+      fonts:
+        - asset: fonts/Sora/Sora-Bold.ttf
+        - asset: fonts/Sora/Sora-ExtraBold.ttf
+        - asset: fonts/Sora/Sora-ExtraLight.ttf
+        - asset: fonts/Sora/Sora-Light.ttf
+        - asset: fonts/Sora/Sora-Medium.ttf
+        - asset: fonts/Sora/Sora-Regular.ttf
+        - asset: fonts/Sora/Sora-SemiBold.ttf
+        - asset: fonts/Sora/Sora-Thin.ttf
   uses-material-design: true
   assets:
     - assets/images/

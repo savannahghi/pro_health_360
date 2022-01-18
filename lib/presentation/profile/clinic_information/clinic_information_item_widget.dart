@@ -1,12 +1,10 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+// Package imports:
+import 'package:shared_themes/spaces.dart';
 
 /// [CallContactActionWidget] is a shared widget used in [ClinicInformationPage]
 ///
@@ -28,7 +26,7 @@ class ClinicInformationItemWidget extends StatelessWidget {
       children: <Widget>[
         Text(
           bodyText,
-          style: TextThemes.boldSize14Text(
+          style: boldSize14Text(
             AppColors.secondaryColor,
           ),
         ),
@@ -47,8 +45,7 @@ class ClinicInformationItemWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                 child: Text(
                   titleText,
-                  style:
-                      TextThemes.normalSize14Text(AppColors.darkGreyTextColor),
+                  style: normalSize14Text(AppColors.darkGreyTextColor),
                 ),
               ),
             ],

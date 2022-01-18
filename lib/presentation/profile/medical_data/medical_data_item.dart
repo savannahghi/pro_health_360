@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 // Package imports:
-import 'package:shared_themes/text_themes.dart';
 
 class MedicalDataItem extends StatelessWidget {
   const MedicalDataItem({
@@ -32,12 +32,12 @@ class MedicalDataItem extends StatelessWidget {
         children: <Widget>[
           Text(
             data,
-            style: TextThemes.normalSize14Text(AppColors.greyTextColor),
+            style: normalSize14Text(AppColors.greyTextColor),
           ),
           if (description != null)
             Text(
               description!,
-              style: TextThemes.normalSize10Text(AppColors.primaryColor),
+              style: normalSize10Text(AppColors.primaryColor),
             )
         ],
       ),

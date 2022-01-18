@@ -1,18 +1,13 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/checkbox_component.dart';
 import 'package:afya_moja_core/information_list_card.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-import 'package:unicons/unicons.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/accept_terms_and_conditions_action.dart';
 import 'package:myafyahub/application/redux/actions/get_terms_action.dart';
@@ -23,6 +18,9 @@ import 'package:myafyahub/application/redux/view_models/app_state_view_model.dar
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
+import 'package:unicons/unicons.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
   const TermsAndConditionsPage({Key? key}) : super(key: key);
@@ -71,13 +69,13 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     ),
                     title: Text(
                       portalTermsText,
-                      style: TextThemes.normalSize16Text(
+                      style: normalSize16Text(
                         Theme.of(context).primaryColor,
                       ),
                     ),
                     body: Text(
                       readAndAcceptText,
-                      style: TextThemes.normalSize14Text(Colors.grey),
+                      style: normalSize14Text(Colors.grey),
                     ),
                   ),
 

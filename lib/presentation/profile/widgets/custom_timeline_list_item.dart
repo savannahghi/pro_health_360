@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class CustomTimelineListItem extends StatelessWidget {
   const CustomTimelineListItem({
@@ -72,7 +72,7 @@ class CustomTimelineListItem extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 4.0),
                       child: Text(
                         item.title,
-                        style: TextThemes.normalSize12Text(
+                        style: normalSize12Text(
                           AppColors.timelineDotColor,
                         ),
                       ),
@@ -89,7 +89,7 @@ class CustomTimelineListItem extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           item.time,
-                          style: TextThemes.normalSize10Text(
+                          style: normalSize10Text(
                             AppColors.greyTextColor,
                           ),
                         ),
@@ -125,7 +125,7 @@ class CustomTimelineListItem extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             fileTypeText,
-            style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+            style: normalSize10Text(AppColors.greyTextColor),
           ),
         ],
       );
@@ -138,12 +138,12 @@ class CustomTimelineListItem extends StatelessWidget {
         <Widget>[
           Text(
             getDoctorName(firstName, lastName),
-            style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+            style: normalSize10Text(AppColors.greyTextColor),
           ),
           const SizedBox(width: 8),
           Text(
             venue,
-            style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+            style: normalSize10Text(AppColors.greyTextColor),
           ),
         ],
       );

@@ -1,9 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
@@ -26,11 +23,11 @@ class TimelineIndicator extends StatelessWidget {
             children: <Widget>[
               Text(
                 date.day.toString(),
-                style: TextThemes.boldSize22Text(AppColors.greyTextColor),
+                style: boldSize22Text(AppColors.greyTextColor),
               ),
               Text(
                 '${date.month}/${date.year}',
-                style: TextThemes.normalSize10Text(AppColors.greyTextColor),
+                style: normalSize10Text(AppColors.greyTextColor),
               ),
             ],
           ),

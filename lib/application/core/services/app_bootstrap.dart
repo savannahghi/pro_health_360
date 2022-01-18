@@ -2,20 +2,16 @@
 import 'dart:async';
 
 // Flutter imports:
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/constants.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -27,6 +23,8 @@ import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.da
 import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_themes/constants.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -93,7 +91,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
         alignment: Alignment.bottomCenter,
         child: Text(
           UserFeedBackTexts.getErrorMessage(),
-          style: TextThemes.boldSize16Text(AppColors.whiteColor),
+          style: boldSize16Text(AppColors.whiteColor),
           textDirection: TextDirection.ltr,
         ),
       ),

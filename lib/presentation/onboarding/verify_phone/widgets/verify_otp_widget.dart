@@ -2,6 +2,7 @@
 
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/src/animated_count.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
@@ -148,7 +148,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
             children: <Widget>[
               Text(
                 anOtpHasBeenSentText(widget.phoneNumber),
-                style: TextThemes.normalSize14Text(AppColors.secondaryColor),
+                style: normalSize14Text(AppColors.secondaryColor),
               ),
               smallVerticalSizedBox,
               AnimatedCount(count: resendTimeout, duration: Duration.zero),
@@ -161,7 +161,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
             children: <Widget>[
               Text(
                 didNotReceiveOTP,
-                style: TextThemes.normalSize14Text(AppColors.secondaryColor),
+                style: normalSize14Text(AppColors.secondaryColor),
               ),
               verySmallVerticalSizedBox,
               if (!widget.verifyPhoneViewModel.wait!

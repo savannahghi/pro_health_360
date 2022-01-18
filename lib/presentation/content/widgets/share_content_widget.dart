@@ -1,21 +1,19 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:share/share.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/share_content_action.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:share/share.dart';
+import 'package:shared_themes/spaces.dart';
 
 class ShareContentWidget extends StatelessWidget {
   const ShareContentWidget({
@@ -70,7 +68,7 @@ class ShareContentWidget extends StatelessWidget {
             smallHorizontalSizedBox,
             Text(
               shareString,
-              style: TextThemes.boldSize13Text(
+              style: boldSize13Text(
                 AppColors.unSelectedReactionIconColor,
               ),
             ),

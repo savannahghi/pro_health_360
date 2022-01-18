@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +21,6 @@ import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
@@ -66,7 +66,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                 children: <Widget>[
                   Text(
                     frequentlyAskedQuestions,
-                    style: TextThemes.normalSize32Text(
+                    style: normalSize32Text(
                       Theme.of(context).primaryColor,
                     ),
                   ),

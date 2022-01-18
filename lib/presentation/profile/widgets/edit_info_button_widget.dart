@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Project imports:
@@ -6,8 +7,6 @@ import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dar
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
 
 class EditInformationButtonWidget extends StatelessWidget {
   ///[EditInformationButtonWidget] used to edit information in user profile
@@ -43,7 +42,7 @@ class EditInformationButtonWidget extends StatelessWidget {
         child: Text(
           editString,
           textAlign: TextAlign.center,
-          style: TextThemes.normalSize14Text(AppColors.whiteColor),
+          style: normalSize14Text(AppColors.whiteColor),
         ),
       ),
     );

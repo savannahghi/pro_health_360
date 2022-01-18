@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
@@ -11,7 +12,6 @@ import 'package:myafyahub/presentation/content/widgets/content_meta_data_widget.
 import 'package:myafyahub/presentation/content/widgets/leading_graphic_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class FeedPageContentItem extends StatelessWidget {
   const FeedPageContentItem({
@@ -107,7 +107,7 @@ class FeedPageContentItem extends StatelessWidget {
                   margin: const EdgeInsets.all(8),
                   child: Text(
                     newText,
-                    style: TextThemes.boldSize16Text(Colors.white),
+                    style: boldSize16Text(Colors.white),
                   ),
                 ),
               ),

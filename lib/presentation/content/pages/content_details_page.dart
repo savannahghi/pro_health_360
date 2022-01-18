@@ -1,5 +1,6 @@
 // Flutter imports:
 // Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -22,14 +23,13 @@ import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.da
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class ContentDetailPage extends StatelessWidget {
   /// [ContentDetailPage] is used to display the article details
   ///
   /// It takes in a required [payload] parameter which is a map of the
   /// the information to be displayed on this screen
-  
+
   const ContentDetailPage({
     required this.payload,
   });
@@ -43,7 +43,7 @@ class ContentDetailPage extends StatelessWidget {
 
     final Widget publishDate = createdAt.isNotEmpty
         ? humanizeDate(
-            dateTextStyle: TextThemes.boldSize12Text(AppColors.greyTextColor),
+            dateTextStyle: boldSize12Text(AppColors.greyTextColor),
             loadedDate: createdAt,
           )
         : const SizedBox();
@@ -142,7 +142,7 @@ class ContentDetailPage extends StatelessWidget {
               children: <Widget>[
                 Text(
                   payload.content.title ?? UNKNOWN,
-                  style: TextThemes.veryBoldSize18Text(Colors.black),
+                  style: veryBoldSize18Text(Colors.black),
                 ),
                 mediumVerticalSizedBox,
                 Row(
@@ -174,7 +174,7 @@ class ContentDetailPage extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               payload.content.authorName ?? UNKNOWN,
-                              style: TextThemes.veryBoldSize15Text(
+                              style: veryBoldSize15Text(
                                 AppColors.greyTextColor,
                               ),
                             ),
@@ -183,7 +183,7 @@ class ContentDetailPage extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   datePublishedString,
-                                  style: TextThemes.boldSize12Text(
+                                  style: boldSize12Text(
                                     AppColors.greyTextColor,
                                   ),
                                 ),

@@ -1,9 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
@@ -18,8 +15,13 @@ class MiniContentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (contentDetails?.title?.isNotEmpty ?? false) {
       return GestureDetector(
-        onTap: () => Navigator.of(context)
-            .pushNamed(BWRoutes.contentDetailPage, arguments: ContentDetails(content: contentDetails!, showReactions: false,)),
+        onTap: () => Navigator.of(context).pushNamed(
+          BWRoutes.contentDetailPage,
+          arguments: ContentDetails(
+            content: contentDetails!,
+            showReactions: false,
+          ),
+        ),
         child: Container(
           constraints: const BoxConstraints(
             minHeight: 50,
@@ -36,8 +38,7 @@ class MiniContentWidget extends StatelessWidget {
               child: Text(
                 contentDetails!.title!,
                 overflow: TextOverflow.ellipsis,
-                style:
-                    TextThemes.boldSize16Text(Theme.of(context).primaryColor),
+                style: boldSize16Text(Theme.of(context).primaryColor),
               ),
             ),
           ),

@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
@@ -21,7 +22,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class FeedCategoriesWidget extends StatefulWidget {
@@ -102,7 +102,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
               child: Chip(
                 label: Text(
                   contentCategoriesErrorMessage,
-                  style: TextThemes.normalSize16Text(Colors.white),
+                  style: normalSize16Text(Colors.white),
                 ),
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(
@@ -150,7 +150,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                           label: Text(
                             toBeginningOfSentenceCase(contentCategory.name) ??
                                 UNKNOWN,
-                            style: TextThemes.normalSize16Text().copyWith(
+                            style: normalSize16Text().copyWith(
                               color: vm.selectedCategory!.name ==
                                       contentCategory.name
                                   ? AppColors.whiteColor

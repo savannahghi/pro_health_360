@@ -1,19 +1,15 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
+// Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -30,6 +26,9 @@ import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_statu
 import 'package:myafyahub/presentation/content/widgets/mini_content_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class SetNickNamePage extends StatefulWidget {
   SetNickNamePage({ConnectivityStatus? connectivityStatus})
@@ -105,14 +104,14 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                           mediumVerticalSizedBox,
                           Text(
                             setNickNamePageTitle(context: context),
-                            style: TextThemes.boldSize30Text(
+                            style: boldSize30Text(
                               Theme.of(context).primaryColor,
                             ),
                           ),
                           smallVerticalSizedBox,
                           Text(
                             congratulationsPageDescription,
-                            style: TextThemes.lightSize16Text(Colors.grey),
+                            style: lightSize16Text(Colors.grey),
                           ),
                           smallVerticalSizedBox,
                         ],
@@ -130,7 +129,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       nickNameString,
-                                      style: TextThemes.boldSize14Text(
+                                      style: boldSize14Text(
                                         AppColors.greyTextColor,
                                       ),
                                     ),

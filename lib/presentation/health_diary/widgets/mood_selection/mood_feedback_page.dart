@@ -1,14 +1,10 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/buttons.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/create_health_diary_action.dart';
 import 'package:myafyahub/application/redux/actions/update_health_diary_state.dart';
@@ -20,6 +16,8 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
+import 'package:shared_themes/spaces.dart';
+import 'package:shared_ui_components/platform_loader.dart';
 
 class MoodFeedbackPage extends StatefulWidget {
   /// [MoodFeedbackPage] is used to get user feedback based on their current mood.
@@ -109,14 +107,14 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                                 Center(
                                   child: Text(
                                     '$iAmFeelingText${widget.moodType.name}',
-                                    style: TextThemes.boldSize22Text(),
+                                    style: boldSize22Text(),
                                   ),
                                 ),
                                 largeVerticalSizedBox,
                                 // TODO: (paul) hook the returned moods from backend
                                 // Text(
                                 //   selectWhatBestDescribesHowYourCurrentConditionString,
-                                //   style: TextThemes.normalSize16Text(
+                                //   style:  normalSize16Text(
                                 //     AppColors.greyTextColor,
                                 //   ),
                                 // ),
@@ -145,7 +143,7 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                                 mediumVerticalSizedBox,
                                 Text(
                                   elaborateString,
-                                  style: TextThemes.normalSize16Text(
+                                  style: normalSize16Text(
                                     AppColors.greyTextColor,
                                   ),
                                 ),
@@ -154,14 +152,14 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                                   key: moodFeedbackTextFieldKey,
                                   controller: feedBackInputController,
                                   keyboardType: TextInputType.multiline,
-                                  style: TextThemes.normalSize14Text(
+                                  style: normalSize14Text(
                                     AppColors.greyTextColor,
                                   ),
                                   maxLines: 9,
                                   minLines: 8,
                                   decoration: InputDecoration(
                                     hintText: addNotesString,
-                                    hintStyle: TextThemes.normalSize14Text(
+                                    hintStyle: normalSize14Text(
                                       AppColors.greyTextColor.withOpacity(0.4),
                                     ),
                                     filled: true,
@@ -190,7 +188,7 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                                 if (shouldSelectSymptoms) ...<Widget>[
                                   Text(
                                     shareDiaryEntryPrompt,
-                                    style: TextThemes.normalSize16Text(
+                                    style: normalSize16Text(
                                       AppColors.greyTextColor,
                                     ),
                                   ),
@@ -270,7 +268,7 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                                 buttonColor: AppColors.primaryColor,
                                 borderColor: Colors.transparent,
                                 text: saveString,
-                                textStyle: TextThemes.heavySize18Text(
+                                textStyle: heavySize18Text(
                                   AppColors.whiteColor,
                                 ),
                               ),

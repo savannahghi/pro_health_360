@@ -3,6 +3,7 @@
 import 'package:afya_moja_core/buttons.dart';
 import 'package:afya_moja_core/custom_text_field.dart';
 import 'package:afya_moja_core/onboarding_scaffold.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.da
 import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -71,7 +71,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                         alignment: Alignment.topLeft,
                         child: Text(
                           pinString,
-                          style: TextThemes.boldSize14Text(
+                          style: boldSize14Text(
                             AppColors.greyTextColor,
                           ),
                         ),
@@ -100,7 +100,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                         alignment: Alignment.topLeft,
                         child: Text(
                           confirmPinString,
-                          style: TextThemes.boldSize14Text(
+                          style: boldSize14Text(
                             AppColors.greyTextColor,
                           ),
                         ),

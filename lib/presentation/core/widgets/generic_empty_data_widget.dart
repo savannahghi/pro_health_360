@@ -1,9 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -35,13 +32,13 @@ class GenericEmptyData extends StatelessWidget {
             Image.asset(emptyStateCover),
             Text(
               'No ${item.toLowerCase()} available',
-              style: TextThemes.boldSize22Text(),
+              style: boldSize22Text(),
             ),
             const SizedBox(height: 8),
             Text(
               customMessage ?? noDataText,
               textAlign: TextAlign.center,
-              style: TextThemes.normalSize15Text(AppColors.greyTextColor),
+              style: normalSize15Text(AppColors.greyTextColor),
             ),
           ],
         ),

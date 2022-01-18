@@ -1,9 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
@@ -39,14 +36,14 @@ class AppointmentsPage extends StatelessWidget {
                         child: Text(
                           upcomingAppointmentsText,
                           textAlign: TextAlign.center,
-                          style: TextThemes.normalSize12Text(),
+                          style: normalSize12Text(),
                         ),
                       ),
                       Tab(
                         child: Text(
                           pastAppointmentsText,
                           textAlign: TextAlign.center,
-                          style: TextThemes.normalSize12Text(),
+                          style: normalSize12Text(),
                         ),
                       ),
                     ],

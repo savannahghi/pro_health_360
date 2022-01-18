@@ -1,9 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -27,7 +24,7 @@ class ErrorAlertBox extends StatelessWidget {
       child: RichText(
         key: errorAlertBoxTextKey,
         text: TextSpan(
-          style: TextThemes.normalSize14Text(
+          style: normalSize14Text(
             AppColors.blackColor.withOpacity(0.6),
           ),
           children: <TextSpan>[

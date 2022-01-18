@@ -1,6 +1,7 @@
 // Flutter imports:
 // Package imports:
 import 'package:afya_moja_core/information_list_card.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ import 'package:myafyahub/presentation/my_health/widgets/profile_health_details_
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class MyHealthPage extends StatelessWidget {
   @override
@@ -41,7 +41,7 @@ class MyHealthPage extends StatelessWidget {
                 child: InformationListCard(
                   title: Text(
                     myHealthPageProfile,
-                    style: TextThemes.boldSize16Text(AppColors.secondaryColor),
+                    style: boldSize16Text(AppColors.secondaryColor),
                   ),
                   alternateLeadingIcon: Container(
                     padding: const EdgeInsets.all(13.5),
@@ -61,7 +61,7 @@ class MyHealthPage extends StatelessWidget {
                             extractNamesInitials(
                               name: getDisplayName(userProfileState),
                             ),
-                            style: TextThemes.boldSize20Text(
+                            style: boldSize20Text(
                               AppColors.whiteColor,
                             ),
                           );
@@ -71,7 +71,7 @@ class MyHealthPage extends StatelessWidget {
                   ),
                   body: Text(
                     myHealthPagePatient,
-                    style: TextThemes.normalSize14Text(
+                    style: normalSize14Text(
                       AppColors.greyTextColor,
                     ),
                   ),
@@ -113,7 +113,7 @@ class MyHealthPage extends StatelessWidget {
                       child: InformationListCard(
                         title: Text(
                           myHealthPageHealthDiary,
-                          style: TextThemes.normalSize12Text(
+                          style: normalSize12Text(
                             AppColors.secondaryColor,
                           ),
                         ),
@@ -143,7 +143,7 @@ class MyHealthPage extends StatelessWidget {
                       child: InformationListCard(
                         title: Text(
                           myHealthPageAppointments,
-                          style: TextThemes.normalSize12Text(
+                          style: normalSize12Text(
                             AppColors.secondaryColor,
                           ),
                         ),

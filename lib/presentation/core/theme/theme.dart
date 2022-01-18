@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData getAppTheme() {
     return ThemeData(
-      fontFamily: 'Raleway',
+      fontFamily: 'Sora',
       primaryColor: AppColors.themeColors.primaryColor,
       primaryColorDark: AppColors.themeColors.primaryDark,
       colorScheme: ColorScheme.light(

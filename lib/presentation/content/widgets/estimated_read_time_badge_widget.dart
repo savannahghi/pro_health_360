@@ -2,13 +2,12 @@
 
 // Flutter imports:
 
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
 
 class EstimatedReadTimeBadge extends StatelessWidget {
   const EstimatedReadTimeBadge({
@@ -42,7 +41,7 @@ class EstimatedReadTimeBadge extends StatelessWidget {
                     videoDuration ?? 0,
                   )
                 : contentReadDuration(estimateReadTime),
-        style: TextThemes.mediumSize14Text(Colors.white).copyWith(fontSize: 12),
+        style: mediumSize14Text(Colors.white).copyWith(fontSize: 12),
       ),
     );
   }

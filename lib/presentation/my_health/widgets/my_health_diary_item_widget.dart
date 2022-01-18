@@ -1,16 +1,14 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_details_item_obj.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/spaces.dart';
 
 class MyHealthDiaryItemWidget extends StatelessWidget {
   /// [MyHealthDiaryItemWidget] is a shred widget used in [MyHealthDiaryPage]
@@ -41,7 +39,7 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
                 verySmallHorizontalSizedBox,
                 Text(
                   date,
-                  style: TextThemes.boldSize14Text(AppColors.secondaryColor),
+                  style: boldSize14Text(AppColors.secondaryColor),
                 ),
               ],
             ),
@@ -94,7 +92,7 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 time,
-                                style: TextThemes.normalSize10Text(
+                                style: normalSize10Text(
                                   AppColors.greyTextColor,
                                 ).copyWith(
                                   fontWeight: FontWeight.w100,
@@ -105,7 +103,7 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
                                     const EdgeInsets.symmetric(vertical: 3),
                                 child: Text(
                                   title,
-                                  style: TextThemes.normalSize10Text(
+                                  style: normalSize10Text(
                                     title.contains(happyString)
                                         ? AppColors.greenHappyColor
                                         : title.contains(neutralString)
@@ -117,7 +115,7 @@ class MyHealthDiaryItemWidget extends StatelessWidget {
                               ),
                               Text(
                                 description,
-                                style: TextThemes.normalSize9Text(
+                                style: normalSize9Text(
                                   AppColors.secondaryColor,
                                 ).copyWith(),
                                 overflow: TextOverflow.ellipsis,

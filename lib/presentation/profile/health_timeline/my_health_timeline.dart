@@ -1,11 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/profile/doctor.dart';
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
@@ -75,7 +73,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
       children: <Widget>[
         Text(
           myHealthTimelineText,
-          style: TextThemes.boldSize14Text(AppColors.greyTextColor),
+          style: boldSize14Text(AppColors.greyTextColor),
         ),
         const SizedBox(height: 20),
         ListView.builder(

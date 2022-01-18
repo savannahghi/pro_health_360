@@ -1,6 +1,7 @@
 // Flutter imports:
 // Package imports:
 import 'package:afya_moja_core/onboarding_scaffold.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +16,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 class VerifyPhonePage extends StatefulWidget {
@@ -61,7 +61,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
               smallVerticalSizedBox,
               Text(
                 enterOTPString,
-                style: TextThemes.boldSize16Text(AppColors.secondaryColor),
+                style: boldSize16Text(AppColors.secondaryColor),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -75,7 +75,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                         smallVerticalSizedBox,
                         Text(
                           verifyCode,
-                          style: TextThemes.normalSize16Text(
+                          style: normalSize16Text(
                             AppColors.secondaryColor,
                           ),
                         ),

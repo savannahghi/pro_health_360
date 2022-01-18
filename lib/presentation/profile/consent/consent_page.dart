@@ -1,6 +1,7 @@
 // Flutter imports:
 // Package imports:
 import 'package:afya_moja_core/information_list_card.dart';
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -8,7 +9,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/text_themes.dart';
 import 'package:unicons/unicons.dart';
 
 class ConsentPage extends StatefulWidget {
@@ -47,13 +47,13 @@ class _ConsentPageState extends State<ConsentPage> {
                   ),
                   title: Text(
                     portalTermsText,
-                    style: TextThemes.normalSize16Text(
+                    style: normalSize16Text(
                       Theme.of(context).primaryColor,
                     ),
                   ),
                   body: Text(
                     viewTermsText,
-                    style: TextThemes.normalSize14Text(
+                    style: normalSize14Text(
                       Colors.grey,
                     ),
                   ),
@@ -68,7 +68,7 @@ class _ConsentPageState extends State<ConsentPage> {
                 ),
                 title: Text(
                   groupsText,
-                  style: TextThemes.normalSize16Text(
+                  style: normalSize16Text(
                     Theme.of(context).primaryColor,
                   ),
                 ),
@@ -78,7 +78,7 @@ class _ConsentPageState extends State<ConsentPage> {
                       flex: 8,
                       child: Text(
                         consentConfirmationText,
-                        style: TextThemes.normalSize14Text(Colors.grey),
+                        style: normalSize14Text(Colors.grey),
                       ),
                     ),
                     Flexible(

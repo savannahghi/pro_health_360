@@ -1,10 +1,7 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
@@ -31,7 +28,7 @@ class PersonalInformationWidget extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Text(
             description,
-            style: TextThemes.normalSize14Text(
+            style: normalSize14Text(
               AppColors.greyTextColor,
             ),
           ),

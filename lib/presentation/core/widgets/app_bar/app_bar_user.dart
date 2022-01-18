@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
@@ -12,7 +13,6 @@ import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/text_themes.dart';
 
 class AppbarUser extends StatelessWidget {
   const AppbarUser({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class AppbarUser extends StatelessWidget {
                           extractNamesInitials(
                             name: getDisplayName(user),
                           ),
-                          style: TextThemes.boldSize14Text(
+                          style: boldSize14Text(
                             AppColors.whiteColor,
                           ),
                         ),

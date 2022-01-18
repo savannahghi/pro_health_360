@@ -1,25 +1,23 @@
 // Flutter imports:
-import 'package:domain_objects/value_objects.dart';
 import 'dart:math';
 
+import 'package:afya_moja_core/text_themes.dart';
+import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 // Package imports:
 import 'package:just_audio/just_audio.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:shared_themes/spaces.dart';
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/feed/audio_position_data.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/estimated_read_time_badge_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/reaction_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared_themes/spaces.dart';
 
 import 'audio_content_controls.dart';
 import 'audio_custom_track_shape.dart';
@@ -138,7 +136,7 @@ class _AudioContentState extends State<AudioContent>
                         widget.contentDetails.title ?? UNKNOWN,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextThemes.boldSize16Text(
+                        style: boldSize16Text(
                           AppColors.secondaryColor,
                         ),
                       ),
@@ -175,13 +173,13 @@ class _AudioContentState extends State<AudioContent>
                         widget.contentDetails.authorName!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextThemes.boldSize14Text(
+                        style: boldSize14Text(
                           AppColors.greyTextColor,
                         ),
                       ),
                     smallHorizontalSizedBox,
                     humanizeDate(
-                      dateTextStyle: TextThemes.normalSize12Text(
+                      dateTextStyle: normalSize12Text(
                         AppColors.greyTextColor,
                       ),
                       loadedDate: widget.contentDetails.metadata?.createdAt ??
