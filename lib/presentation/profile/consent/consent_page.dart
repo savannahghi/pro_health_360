@@ -1,17 +1,15 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:afya_moja_core/information_list_card.dart';
-import 'package:shared_themes/text_themes.dart';
-import 'package:unicons/unicons.dart';
-
+import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/text_themes.dart';
+import 'package:unicons/unicons.dart';
 
 class ConsentPage extends StatefulWidget {
   const ConsentPage({Key? key, this.onChanged}) : super(key: key);
@@ -86,7 +84,7 @@ class _ConsentPageState extends State<ConsentPage> {
                     Flexible(
                       flex: 2,
                       child: Switch(
-                        activeColor: Colors.green,
+                        activeColor: AppColors.accentColor,
                         value: groupsSwitchValue,
                         onChanged: (bool value) {
                           setState(() {

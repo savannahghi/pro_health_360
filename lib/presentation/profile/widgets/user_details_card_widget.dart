@@ -162,7 +162,7 @@ class UserDetailsCard extends StatelessWidget {
                         horizontal: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withOpacity(0.6),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(

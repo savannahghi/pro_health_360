@@ -1,15 +1,13 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:shared_themes/text_themes.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+// Package imports:
+import 'package:shared_themes/text_themes.dart';
 
 class EditInformationButtonWidget extends StatelessWidget {
   ///[EditInformationButtonWidget] used to edit information in user profile
@@ -39,7 +37,7 @@ class EditInformationButtonWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          color: AppColors.userInitialsColor,
+          color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(7),
         ),
         child: Text(
