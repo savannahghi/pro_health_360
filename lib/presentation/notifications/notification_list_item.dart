@@ -100,9 +100,8 @@ class NotificationListItem extends StatelessWidget {
                                 smallHorizontalSizedBox,
                                 Text(
                                   notificationActions.name,
-                                  style: normalSize11Text(
-                                    AppColors.primaryColor,
-                                  ),
+                                  style:
+                                      normalSize11Text(AppColors.primaryColor),
                                 ),
                               ],
                             ),

@@ -6,6 +6,7 @@ import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
@@ -130,7 +131,7 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
                   SvgPicture.asset(leftQuoteSVGUrl, height: 32),
                   smallVerticalSizedBox,
                   Text(
-                    quote?.quote ?? '',
+                    '${toBeginningOfSentenceCase(quote?.quote?.toLowerCase())}',
                     style: boldSize18Text(Colors.white),
                   ),
                   smallVerticalSizedBox,

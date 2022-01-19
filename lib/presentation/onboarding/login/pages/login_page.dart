@@ -214,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                                   );
                                 }
                               },
-                              buttonColor: AppColors.secondaryColor,
+                              buttonColor: AppColors.primaryColor,
                               borderColor: Colors.transparent,
                               text: continueString,
                             ),
