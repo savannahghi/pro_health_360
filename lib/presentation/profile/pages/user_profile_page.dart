@@ -84,7 +84,7 @@ class UserProfilePage extends StatelessWidget {
                               iconPath,
                               width: 20,
                               height: 20,
-                              color: AppColors.secondaryColor,
+                              color: AppColors.primaryColor,
                             ),
                           ),
                         ),

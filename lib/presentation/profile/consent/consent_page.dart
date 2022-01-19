@@ -43,12 +43,12 @@ class _ConsentPageState extends State<ConsentPage> {
                   leadingIcon: const Icon(
                     UniconsLine.file_lock_alt,
                     size: 32,
-                    color: AppColors.secondaryColor,
+                    color: AppColors.primaryColor,
                   ),
                   title: Text(
                     portalTermsText,
                     style: normalSize16Text(
-                      Theme.of(context).primaryColor,
+                      AppColors.secondaryColor,
                     ),
                   ),
                   body: Text(
@@ -64,12 +64,12 @@ class _ConsentPageState extends State<ConsentPage> {
                 leadingIcon: const Icon(
                   UniconsLine.file_lock_alt,
                   size: 32,
-                  color: AppColors.secondaryColor,
+                  color: AppColors.primaryColor,
                 ),
                 title: Text(
                   groupsText,
                   style: normalSize16Text(
-                    Theme.of(context).primaryColor,
+                    AppColors.secondaryColor,
                   ),
                 ),
                 body: Row(
