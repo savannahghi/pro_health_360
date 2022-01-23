@@ -13,6 +13,7 @@ import 'package:myafyahub/application/redux/actions/update_pin_input_details_act
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:user_feed/user_feed.dart';
 
@@ -82,12 +83,21 @@ class VerifyPINAction extends ReduxAction<AppState> {
     }
     if (responseMap['data']['verifyPIN'] != null) {
       final bool pinVerified = responseMap['data']['verifyPIN'] as bool;
-      dispatch(
-        UpdatePINInputDetailsAction(
-          pinInputTries: tries + 1,
-          pinVerified: pinVerified,
-        ),
-      );
+      if (pinVerified) {
+        dispatch(
+          UpdatePINInputDetailsAction(
+            pinInputTries: 0,
+            pinVerified: pinVerified,
+            healthPagePINInputTime: DateTime.now().toString(),
+            maxTryTime: '',
+          ),
+        );
+        navigateToNewPage(
+          context: context,
+          route: BWRoutes.myHealthPage,
+          bottomNavIndex: 2,
+        );
+      }
     }
     return state;
   }

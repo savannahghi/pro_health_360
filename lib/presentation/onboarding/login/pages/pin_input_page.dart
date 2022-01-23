@@ -254,22 +254,6 @@ class _PINInputPageState extends State<PINInputPage> {
                                 setState(() {
                                   errorMessage = '';
                                 });
-
-                                StoreProvider.dispatch(
-                                  context,
-                                  UpdatePINInputDetailsAction(
-                                    pinInputTries: 0,
-                                    maxTryTime: '',
-                                    pinVerified: false,
-                                    healthPagePINInputTime:
-                                        DateTime.now().toString(),
-                                  ),
-                                );
-                                navigateToNewPage(
-                                  context: context,
-                                  route: BWRoutes.myHealthPage,
-                                  bottomNavIndex: 2,
-                                );
                               } else {
                                 if (tries < maxTries) {
                                   setState(() {
