@@ -389,19 +389,19 @@ List<NotificationDetails> notifications = <NotificationDetails>[
     icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
     description:
         'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join goog/meet.consult',
-    date: feedDate,
+    date: formatSecurityQuestionDate(feedDate),
     actions: <NotificationActions>[calendarAction],
   ),
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
     description:
         'You have a teleconsult with doctor Wellman. Click  Here to schedule the call ',
-    date: feedDate,
+    date: formatSecurityQuestionDate(feedDate),
   ),
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: wellnessSurveyNotificationIcon),
     description: 'Wellness Survey',
-    date: feedDate,
+    date: formatSecurityQuestionDate(feedDate),
   ),
 ];
 
@@ -418,7 +418,7 @@ List<NotificationDetails> upcomingAppointments = <NotificationDetails>[
     icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
     description:
         'Your Teleconsult with Dr Tibu for 11am on 12/12/2021 has been set. Click this link to join goog/meet.consult',
-    date: feedDate,
+    date: formatSecurityQuestionDate(feedDate),
     actions: <NotificationActions>[calendarAction],
   ),
   NotificationDetails(
@@ -443,7 +443,7 @@ List<NotificationDetails> pastAppointments = <NotificationDetails>[
     status: 'MISSED',
     description:
         'Teleconsult with Dr Tibu for 11am on 12/12/2021 has been set. Click this link to join goog/meet.consult',
-    date: feedDate,
+    date: formatSecurityQuestionDate(feedDate),
     actions: <NotificationActions>[calendarAction, rescheduleAction],
   ),
   ...upcomingAppointments
