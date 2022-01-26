@@ -22,7 +22,26 @@ import 'package:myafyahub/presentation/profile/health_timeline/my_health_timelin
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
-class MyHealthPage extends StatelessWidget {
+class MyHealthPage extends StatefulWidget {
+  @override
+  State<MyHealthPage> createState() => _MyHealthPageState();
+}
+
+class _MyHealthPageState extends State<MyHealthPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+      if (shouldInputPIN(context)) {
+        Navigator.pushReplacementNamed(
+          context,
+          BWRoutes.pinInputPage,
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
