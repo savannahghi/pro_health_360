@@ -17,6 +17,7 @@ import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
@@ -24,7 +25,6 @@ import 'package:myafyahub/infrastructure/repository/database_state_persistor.dar
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/constants.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -90,7 +90,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Text(
-          UserFeedBackTexts.getErrorMessage(),
+          getErrorMessage(),
           style: boldSize16Text(AppColors.whiteColor),
           textDirection: TextDirection.ltr,
         ),

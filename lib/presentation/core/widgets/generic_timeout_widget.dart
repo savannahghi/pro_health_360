@@ -3,11 +3,11 @@ import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/buttons.dart';
 
@@ -48,7 +48,7 @@ class GenericTimeoutWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Text(
-              UserFeedBackTexts.getErrorMessage(action),
+              getErrorMessage(action),
               textAlign: TextAlign.center,
               style: normalSize14Text(AppColors.blackColor),
             ),

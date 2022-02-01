@@ -12,7 +12,6 @@ import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 import '../../../../../mocks.dart';
@@ -85,7 +84,7 @@ void main() {
       await tester.tap(find.byKey(const Key('verify_otp')));
       await tester.pumpAndSettle();
 
-      expect(find.text(UserFeedBackTexts.getErrorMessage()), findsOneWidget);
+      expect(find.text(getErrorMessage()), findsOneWidget);
 
       expect(err, isA<Future<dynamic>>());
     });

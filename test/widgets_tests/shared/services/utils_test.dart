@@ -27,7 +27,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/constants.dart';
 import 'package:shared_ui_components/buttons.dart';
 
 import '../../../mocks.dart';
@@ -249,7 +248,7 @@ void main() {
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           misc.snackbar(
-                            content: UserFeedBackTexts.getErrorMessage(),
+                            content: getErrorMessage(),
                           ),
                         );
                       },
@@ -264,7 +263,7 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(find.byKey(const Key('snackbar_button')));
         await tester.pumpAndSettle();
-        expect(find.text(UserFeedBackTexts.getErrorMessage()), findsOneWidget);
+        expect(find.text(getErrorMessage()), findsOneWidget);
       });
     });
   });

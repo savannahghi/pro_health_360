@@ -55,6 +55,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   /// returns a bottom sheet that gives the user a friendly message and an option to create an account
   @override
   void before() {
+    super.before();
     toggleLoadingIndicator(context: context, flag: flag);
   }
 

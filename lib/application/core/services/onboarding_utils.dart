@@ -21,7 +21,6 @@ import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart'
 import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/constants.dart';
 
 /// [processHttpResponse] routine is used to process a network call response, for errors, bad requests, timeouts and correct responses.
 ///
@@ -87,7 +86,7 @@ ProcessedResponse processHttpResponse(
   return ProcessedResponse(
     ok: false,
     response: response,
-    message: UserFeedBackTexts.getErrorMessage(),
+    message: getErrorMessage(),
   );
 }
 
