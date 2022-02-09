@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -71,7 +70,18 @@ enum FeaturedMediaType { audio, video, UNKNOWN }
 enum EditInformationInputType { Text, DropDown }
 
 /// The type of the client
-enum ClientType { PMTCT, OVC, UNKNOWN }
+enum ClientType {
+  PMTCT,
+  OVC,
+  OTZ,
+  OTZ_PLUS,
+  HVL,
+  DREAMS,
+  HIGH_RISK,
+  SPOUSES,
+  YOUTH,
+  UNKNOWN
+}
 
 /// The type of the address being used
 enum AddressType { POSTAL, PHYSICAL, BOTH, UNKNOWN }

@@ -91,5 +91,12 @@ K? _$enumDecodeNullable<K, V>(
 const _$ClientTypeEnumMap = {
   ClientType.PMTCT: 'PMTCT',
   ClientType.OVC: 'OVC',
+  ClientType.OTZ: 'OTZ',
+  ClientType.OTZ_PLUS: 'OTZ_PLUS',
+  ClientType.HVL: 'HVL',
+  ClientType.DREAMS: 'DREAMS',
+  ClientType.HIGH_RISK: 'HIGH_RISK',
+  ClientType.SPOUSES: 'SPOUSES',
+  ClientType.YOUTH: 'YOUTH',
   ClientType.UNKNOWN: 'UNKNOWN',
 };
