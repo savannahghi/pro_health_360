@@ -1,22 +1,16 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:user_feed/user_feed.dart';
-import 'package:video_player/video_player.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
@@ -31,6 +25,11 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:user_feed/user_feed.dart';
+import 'package:video_player/video_player.dart';
+
 import 'test_utils.dart';
 
 class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
@@ -1175,7 +1174,7 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
     'treatmentEnrollmentDate': '21 Nov 2021',
     'user': <String, dynamic>{
       'active': true,
-      'displayName': 'Kowalski',
+      'name': 'Juha Kalulu',
       'firstName': 'Juha',
       'gender': 'MALE',
       'languages': <String>['en', 'sw'],
@@ -1196,7 +1195,6 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
         }
       ],
       'lastName': 'Kalulu',
-      'middleName': null,
       'pinChangeRequired': false,
       'termsAccepted': true,
       'userID': 'some-user-id',
@@ -1571,7 +1569,7 @@ final Map<String, dynamic> mockRelatedPerson = <String, dynamic>{
 
 final Map<String, dynamic> mockUser = <String, dynamic>{
   'active': true,
-  'displayName': 'Kowalski',
+  'name': 'Kowalski',
   'firstName': 'Juha',
   'gender': 'MALE',
   'languages': <dynamic>['en', 'sw'],
@@ -1592,7 +1590,6 @@ final Map<String, dynamic> mockUser = <String, dynamic>{
     }
   ],
   'lastName': 'Kalulu',
-  'middleName': null,
   'pinChangeRequired': false,
   'termsAccepted': true,
   'userID': 'some-user-id',

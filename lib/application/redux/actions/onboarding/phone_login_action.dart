@@ -132,8 +132,18 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final User? user =
+        User? user =
             loginResponse.clientState?.user?.copyWith(pinChangeRequired: false);
+
+        final String fullname =
+            loginResponse.clientState?.user?.name ?? UNKNOWN;
+        if (fullname != UNKNOWN && fullname.isNotEmpty) {
+          final List<String> names = fullname.split(' ');
+          user = user?.copyWith(
+            firstName: names.first,
+            lastName: names.last,
+          );
+        }
 
         dispatch(
           UpdateOnboardingStateAction(

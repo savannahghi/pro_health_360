@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:domain_objects/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
@@ -15,9 +14,8 @@ class User with _$User {
     @JsonKey(name: 'userID') String? userId,
     @JsonKey(name: 'userName') String? username, // This is the nickname
     @JsonKey(name: 'avatar') String? avatar,
-    @JsonKey(name: 'displayName') String? displayName, // This is the @handle
+    @JsonKey(name: 'name') String? name, // This is the @handle
     @JsonKey(name: 'firstName') String? firstName,
-    @JsonKey(name: 'middleName') String? middleName,
     @JsonKey(name: 'lastName') String? lastName,
     @JsonKey(name: 'dateOfBirth') String? dateOfBirth,
     @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
@@ -42,9 +40,8 @@ class User with _$User {
         avatar: UNKNOWN,
         userId: UNKNOWN,
         username: UNKNOWN,
-        displayName: UNKNOWN,
+        name: UNKNOWN,
         firstName: UNKNOWN,
-        middleName: UNKNOWN,
         lastName: UNKNOWN,
         dateOfBirth: UNKNOWN,
         gender: Gender.unknown,
