@@ -46,6 +46,7 @@ import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 import '../../mocks.dart';
@@ -447,5 +448,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SuccessfulDiaryEntryPage>>());
     expect(route.builder(context), isA<SuccessfulDiaryEntryPage>());
+  });
+
+  test('Test router returns violence assessment page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.violenceAssessmentPage);
+
+    final MaterialPageRoute<ViolenceAssessmentPage> route =
+        routeGenerator(settings) as MaterialPageRoute<ViolenceAssessmentPage>;
+
+    expect(route, isA<MaterialPageRoute<ViolenceAssessmentPage>>());
+    expect(route.builder(context), isA<ViolenceAssessmentPage>());
   });
 }

@@ -679,3 +679,21 @@ const String tuberculosisDescription =
 const String healthTitle = 'Your health';
 const String healthDescription =
     'Tap to answer a few questions about your health';
+
+// violence assessment
+const String violenceAssessmentTitle = 'Violence Assessment';
+const String violenceAssessmentSubtitle =
+    'Thank you for choosing to share your experience about violence. the information you provide will  be confidential';
+const String emotionalViolence = 'Emotional violence';
+const String emotionalViolenceQuestion =
+    'In the past, has anyone made you feel threatened, fearful or in danger?';
+const String physicalViolence = 'Physical violence';
+const String physicalViolenceQuestion =
+    'In the past, have you been slapped, punched, hit or physically hurt by someone in any way?';
+const String sexualViolence = 'Sexual violence';
+const String sexualViolenceQuestion =
+    'In the past, has anyone forced or coerced you to have sexual relations against your will?';
+const String intimatePartnerViolence = 'Intimate partner violence';
+const String intimatePartnerViolenceQuestion =
+    'Are you in a relationship with a person who threatens, frightens, insults you, treats you badly or physically hurts you?';
+const String submitAssessment = 'Submit Assessment';

@@ -96,7 +96,11 @@ class AppRoutes {
   //Documents Page
   static const String viewDocumentPage = '/viewDocumentPage';
 
+  // screening tools page
   static const String screeningToolsListPage = '/screeningToolsListPage';
+
+  // violence assessment
+  static const String violenceAssessmentPage = '/violenceAssessmentPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

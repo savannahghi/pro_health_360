@@ -139,3 +139,17 @@ const Key galleryImagePageKey = Key('gallery_image_page_key');
 const Key editPersonalInfoKey = Key('edit_personal_info_key');
 
 const Key editInfoSaveBtnKey = Key('edit_information_save_btn');
+// violence assessment page
+const Key yesEmotionalAssessmentKey = Key('yes_emotional_assessment_key');
+const Key noEmotionalAssessmentKey = Key('no_emotional_assessment_key');
+
+const Key yesPhysicalAssessmentKey = Key('yes_physical_assessment_key');
+const Key noPhysicalAssessmentKey = Key('no_physical_assessment_key');
+
+const Key yesSexualAssessmentKey = Key('yes_sexual_assessment_key');
+const Key noSexualAssessmentKey = Key('no_sexual_assessment_key');
+
+const Key yesIntimateAssessmentKey = Key('yes_intimate_assessment_key');
+const Key noIntimateAssessmentKey = Key('no_intimate_assessment_key');
+
+const Key submitViolenceAssessmentKey = Key('submit_violence_assessment_key');

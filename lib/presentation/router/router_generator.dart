@@ -47,6 +47,7 @@ import 'package:myafyahub/presentation/profile/personal_information/personal_inf
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
 import 'package:user_profile/term_and_conditions.dart' as webview;
 
 /// The router generator for the app. The arrangement in this config must match that
@@ -273,6 +274,11 @@ class RouteGenerator {
       case AppRoutes.screeningToolsListPage:
         return MaterialPageRoute<ScreeningToolsListPage>(
           builder: (_) => const ScreeningToolsListPage(),
+        );
+
+      case AppRoutes.violenceAssessmentPage:
+        return MaterialPageRoute<ViolenceAssessmentPage>(
+          builder: (_) => const ViolenceAssessmentPage(),
         );
 
       default:
