@@ -153,3 +153,19 @@ const Key yesIntimateAssessmentKey = Key('yes_intimate_assessment_key');
 const Key noIntimateAssessmentKey = Key('no_intimate_assessment_key');
 
 const Key submitViolenceAssessmentKey = Key('submit_violence_assessment_key');
+const Key editInfoSaveBtn = Key('edit_information_save_btn');
+
+//contraceptive assessment page
+const Key thisMonthKey = Key('this_month_key');
+const Key lastMonthKey = Key('last_month_key');
+const Key notStartedYetKey = Key('not_started_key');
+const Key yesPregnantKey = Key('yes_pregnant_key');
+const Key noPregnantKey = Key('no_pregnant_key');
+const Key yesOnFamilyPlanningKey = Key('yes_on_family_planning_key');
+const Key noOnFamilyPlanningKey = Key('no_on_family_planning_key');
+
+const Key yesToUseFamilyPlanningKey = Key('yes_to_use_family_planning_key');
+const Key noToUseFamilyPlanningKey = Key('no_to_use_family_planning_key');
+
+const Key contraceptiveAssessmentFeedbackButtonKey =
+    Key('contraceptive_assessment_feedback_button_key');

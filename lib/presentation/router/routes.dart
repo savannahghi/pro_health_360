@@ -101,6 +101,10 @@ class AppRoutes {
 
   // violence assessment
   static const String violenceAssessmentPage = '/violenceAssessmentPage';
+
+  //Contraceptive assessment Page
+  static const String contraceptiveAssessmentPage =
+      '/contraceptiveAssessmentPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

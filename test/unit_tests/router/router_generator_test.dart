@@ -11,6 +11,7 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/assesstment/contraceptive_assessment_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
@@ -459,5 +460,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ViolenceAssessmentPage>>());
     expect(route.builder(context), isA<ViolenceAssessmentPage>());
+  });
+
+  test('Test router returns contraceptive assessment page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.contraceptiveAssessmentPage);
+
+    final MaterialPageRoute<ContraceptiveAssessmentPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<ContraceptiveAssessmentPage>;
+
+    expect(route, isA<MaterialPageRoute<ContraceptiveAssessmentPage>>());
+    expect(route.builder(context), isA<ContraceptiveAssessmentPage>());
   });
 }

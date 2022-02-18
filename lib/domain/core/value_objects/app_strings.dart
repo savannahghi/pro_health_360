@@ -697,3 +697,19 @@ const String intimatePartnerViolence = 'Intimate partner violence';
 const String intimatePartnerViolenceQuestion =
     'Are you in a relationship with a person who threatens, frightens, insults you, treats you badly or physically hurts you?';
 const String submitAssessment = 'Submit Assessment';
+//contraceptive assessment page
+const String contraceptiveAssessmentTitle = 'Contraceptive Assessment';
+const String contraceptiveAssessmentDescription =
+    'Thank you for your interest in contraceptives. The information you provide will be confidential';
+const String lastMentrualPeriodString =
+    '1. When was your last menstrual period?';
+const String thisMonthString = 'This Month';
+const String lastMonthString = 'Last Month';
+const String notStartedYetString = 'Not Started Yet';
+
+const String areYouPregnantString = '2. Are you pregnant?';
+const String areYouOnFamilyPlanningString =
+    '3. If no, are you on family planning?';
+const String wouldYouLikeToUseFamilyPlanningString =
+    '4. If no to Question 3, would you like to use a family planning method?';
+const String submitYourAssessmentString = 'Submit Your Assessment';
