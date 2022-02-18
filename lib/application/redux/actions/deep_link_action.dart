@@ -14,7 +14,7 @@ class DeepLinkAction extends ReduxAction<AppState> {
     OnboardingPathConfig path;
 
     if (state.clientState?.user == null) {
-      path = OnboardingPathConfig(BWRoutes.phoneLogin);
+      path = OnboardingPathConfig(AppRoutes.phoneLogin);
     }
 
     final DateTime now = DateTime.now();
@@ -24,12 +24,12 @@ class DeepLinkAction extends ReduxAction<AppState> {
     if (tokenExpiryTimestamp == null ||
         tokenExpiryTimestamp.isEmpty ||
         tokenExpiryTimestamp == UNKNOWN) {
-      path = OnboardingPathConfig(BWRoutes.phoneLogin);
+      path = OnboardingPathConfig(AppRoutes.phoneLogin);
     } else {
       final DateTime expiresAt = DateTime.parse(tokenExpiryTimestamp);
 
       if (hasTokenExpired(expiresAt, now)) {
-        path = OnboardingPathConfig(BWRoutes.phoneLogin);
+        path = OnboardingPathConfig(AppRoutes.phoneLogin);
       } else {
         path = onboardingPath(appState: state);
       }

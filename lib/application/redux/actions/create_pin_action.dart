@@ -127,7 +127,7 @@ class CreatePINAction extends ReduxAction<AppState> {
 
         Navigator.pushReplacementNamed(
           context,
-          BWRoutes.congratulationsPage,
+          AppRoutes.congratulationsPage,
           arguments: <String, String>{
             'duration': twoYearText,
           },
@@ -146,7 +146,7 @@ class CreatePINAction extends ReduxAction<AppState> {
         );
         Navigator.pushReplacementNamed(
           context,
-          BWRoutes.phoneLogin,
+          AppRoutes.phoneLogin,
         );
       }
     } else {

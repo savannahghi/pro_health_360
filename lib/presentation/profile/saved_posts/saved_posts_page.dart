@@ -68,7 +68,7 @@ class _SavedPostPageState extends State<SavedPostPage> {
               } else if (vm.savedContentState?.timeoutFetchingContent ??
                   false) {
                 return const GenericTimeoutWidget(
-                  route: BWRoutes.userProfilePage,
+                  route: AppRoutes.userProfilePage,
                   action: 'fetching your saved content',
                 );
               } else if (vm.savedContentState?.errorFetchingContent ?? false) {

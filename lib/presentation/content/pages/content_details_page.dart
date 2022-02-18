@@ -123,7 +123,7 @@ class ContentDetailPage extends StatelessWidget {
                     if (payload.content.galleryImages != null &&
                         payload.content.galleryImages!.length > 3) {
                       Navigator.of(context).pushNamed(
-                        BWRoutes.galleryImagesPage,
+                        AppRoutes.galleryImagesPage,
                         arguments: payload.content.galleryImages,
                       );
                     }

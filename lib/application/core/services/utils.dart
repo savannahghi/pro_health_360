@@ -77,7 +77,7 @@ Function() logoutUser({required BuildContext context}) {
       LogoutAction(
         navigationCallback: () async {
           await Navigator.of(context).pushNamedAndRemoveUntil(
-            BWRoutes.phoneLogin,
+            AppRoutes.phoneLogin,
             (Route<dynamic> route) => false,
           );
         },
@@ -332,42 +332,42 @@ bool confirmPinValidator(String pin, String confirmPin) {
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: profileIcon,
-    route: BWRoutes.personalInfo,
+    route: AppRoutes.personalInfo,
     title: 'Personal information',
   ),
   UserProfileItemObj(
     iconAssetPath: medicalDataIcon,
-    route: BWRoutes.medicalData,
+    route: AppRoutes.medicalData,
     title: 'Medical data',
   ),
   UserProfileItemObj(
     iconAssetPath: clinicIcon,
-    route: BWRoutes.clinicInformationPage,
+    route: AppRoutes.clinicInformationPage,
     title: 'Clinic information',
   ),
   UserProfileItemObj(
     iconAssetPath: mySavedIcon,
-    route: BWRoutes.savedPosts,
+    route: AppRoutes.savedPosts,
     title: 'My Saved',
   ),
   UserProfileItemObj(
     iconAssetPath: faqsIcon,
-    route: BWRoutes.profileFaqsPage,
+    route: AppRoutes.profileFaqsPage,
     title: 'FAQs',
   ),
   UserProfileItemObj(
     iconAssetPath: helpCircleIcon,
-    route: BWRoutes.consent,
+    route: AppRoutes.consent,
     title: 'Consent',
   ),
   UserProfileItemObj(
     iconAssetPath: feedbackIcon,
-    route: BWRoutes.feedbackPage,
+    route: AppRoutes.feedbackPage,
     title: 'Feedback',
   ),
   UserProfileItemObj(
     iconAssetPath: settingsIcon,
-    route: BWRoutes.settingsPage,
+    route: AppRoutes.settingsPage,
     title: 'Settings',
   ),
 ];
@@ -876,19 +876,19 @@ List<Content?> getContentList({
 }
 
 String getInitialRoute(int currentIndex, String? initialRoute) {
-  if (initialRoute != null && initialRoute == BWRoutes.phoneLogin) {
+  if (initialRoute != null && initialRoute == AppRoutes.phoneLogin) {
     return initialRoute;
   }
 
   switch (currentIndex) {
     case 1:
-      return BWRoutes.feedPage;
+      return AppRoutes.feedPage;
 
     case 2:
-      return BWRoutes.myHealthPage;
+      return AppRoutes.myHealthPage;
 
     default:
-      return BWRoutes.home;
+      return AppRoutes.home;
   }
 }
 

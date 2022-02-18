@@ -19,7 +19,7 @@ class AppbarUser extends StatelessWidget {
 
   void editProfileNavigation(BuildContext context) {
     // navigate to the user profile here
-    Navigator.pushNamed(context, BWRoutes.userProfile);
+    Navigator.pushNamed(context, AppRoutes.userProfile);
   }
 
   @override

@@ -118,6 +118,11 @@ void main() {
         await tester.tap(find.byType(MyAfyaHubPrimaryButton));
         expect(find.byType(ContentZeroStateWidget), findsOneWidget);
       });
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
+      });
     });
 
     testWidgets('should refresh feed display items correctly',

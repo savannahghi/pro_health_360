@@ -19,6 +19,7 @@ import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
 import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
+import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
@@ -56,53 +57,53 @@ class RouteGenerator {
     final dynamic args = settings.arguments;
 
     switch (settings.name) {
-      case BWRoutes.deepLink:
+      case AppRoutes.deepLink:
         return MaterialPageRoute<HandleDeepLink>(
           builder: (BuildContext context) => const HandleDeepLink(),
         );
 
-      case BWRoutes.createPin:
+      case AppRoutes.createPin:
         return MaterialPageRoute<CreateNewPINPage>(
           builder: (_) => CreateNewPINPage(phoneNumber: args as String),
         );
 
-      case BWRoutes.verifySignUpOTP:
+      case AppRoutes.verifySignUpOTP:
         return MaterialPageRoute<VerifyPhonePage>(
           builder: (_) => VerifyPhonePage(phoneNumber: args as String),
         );
 
-      case BWRoutes.congratulationsPage:
+      case AppRoutes.congratulationsPage:
         return MaterialPageRoute<SetNickNamePage>(
           builder: (_) => SetNickNamePage(),
         );
 
-      case BWRoutes.termsAndConditions:
+      case AppRoutes.termsAndConditions:
         return MaterialPageRoute<TermsAndConditionsPage>(
           builder: (_) => const TermsAndConditionsPage(),
         );
 
-      case BWRoutes.phoneLogin:
+      case AppRoutes.phoneLogin:
         return MaterialPageRoute<LoginPage>(
           builder: (_) => LoginPage(),
         );
 
       // the homepage route config
-      case BWRoutes.home:
+      case AppRoutes.home:
         return MaterialPageRoute<HomePage>(
           builder: (_) => HomePage(),
         );
 
-      case BWRoutes.moodFeedbackPage:
+      case AppRoutes.moodFeedbackPage:
         return MaterialPageRoute<MoodFeedbackPage>(
           builder: (_) => MoodFeedbackPage(moodType: args as MoodType),
         );
 
-      case BWRoutes.successfulEntryPage:
+      case AppRoutes.successfulEntryPage:
         return MaterialPageRoute<SuccessfulDiaryEntryPage>(
           builder: (_) => const SuccessfulDiaryEntryPage(),
         );
 
-      case BWRoutes.editInformationPage:
+      case AppRoutes.editInformationPage:
         final EditInformationItem editInformationItem =
             args['editInformationItem'] as EditInformationItem;
 
@@ -124,37 +125,37 @@ class RouteGenerator {
           ),
         );
 
-      case BWRoutes.userProfile:
+      case AppRoutes.userProfile:
         return MaterialPageRoute<UserProfilePage>(
           builder: (_) => UserProfilePage(),
         );
 
-      case BWRoutes.profileFaqsPage:
+      case AppRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
           builder: (_) => const ProfileFaqsPage(),
         );
 
-      case BWRoutes.webView:
+      case AppRoutes.webView:
         return MaterialPageRoute<webview.TermsAndConditionsPage>(
           builder: (_) => const webview.TermsAndConditionsPage(),
         );
 
-      case BWRoutes.securityQuestionsPage:
+      case AppRoutes.securityQuestionsPage:
         return MaterialPageRoute<SecurityQuestionsPage>(
           builder: (_) => const SecurityQuestionsPage(),
         );
 
-      case BWRoutes.answerSecurityQuestionPage:
+      case AppRoutes.answerSecurityQuestionPage:
         return MaterialPageRoute<AnswerSecurityQuestionPage>(
           builder: (_) => const AnswerSecurityQuestionPage(),
         );
 
-      case BWRoutes.communityListView:
+      case AppRoutes.communityListView:
         return MaterialPageRoute<CommunityListViewPage>(
           builder: (_) => const CommunityListViewPage(),
         );
 
-      case BWRoutes.communityChatScreenPage:
+      case AppRoutes.communityChatScreenPage:
         final CommunityListItem chatDetailArguments = args as CommunityListItem;
         return MaterialPageRoute<CommunityChatScreenPage>(
           builder: (_) => CommunityChatScreenPage(
@@ -162,12 +163,12 @@ class RouteGenerator {
           ),
         );
 
-      case BWRoutes.consent:
+      case AppRoutes.consent:
         return MaterialPageRoute<ConsentPage>(
           builder: (_) => const ConsentPage(),
         );
 
-      case BWRoutes.viewDocumentPage:
+      case AppRoutes.viewDocumentPage:
         final String pdfTitle = args['pdfTitle'] as String;
         final String pdfUrl = args['pdfUrl'] as String;
 
@@ -178,95 +179,100 @@ class RouteGenerator {
           ),
         );
 
-      case BWRoutes.personalInfo:
+      case AppRoutes.personalInfo:
         return MaterialPageRoute<PersonalInformationPage>(
           builder: (_) => PersonalInformationPage(),
         );
 
-      case BWRoutes.medicalData:
+      case AppRoutes.medicalData:
         return MaterialPageRoute<MedicalDataPage>(
           builder: (_) => const MedicalDataPage(),
         );
 
-      case BWRoutes.savedPosts:
+      case AppRoutes.savedPosts:
         return MaterialPageRoute<SavedPostPage>(
           builder: (_) => SavedPostPage(),
         );
 
-      case BWRoutes.feedPage:
+      case AppRoutes.feedPage:
         return MaterialPageRoute<FeedPage>(
           builder: (_) => const FeedPage(),
         );
 
-      case BWRoutes.notificationsPage:
+      case AppRoutes.notificationsPage:
         return MaterialPageRoute<NotificationsPage>(
           builder: (_) => NotificationsPage(
             notifications: notifications,
           ),
         );
 
-      case BWRoutes.appointmentsPage:
+      case AppRoutes.appointmentsPage:
         return MaterialPageRoute<AppointmentsPage>(
           builder: (_) => AppointmentsPage(),
         );
 
-      case BWRoutes.myHealthPage:
+      case AppRoutes.myHealthPage:
         return MaterialPageRoute<MyHealthPage>(
           builder: (_) => MyHealthPage(),
         );
 
-      case BWRoutes.myHealthDiaryPage:
+      case AppRoutes.myHealthDiaryPage:
         return MaterialPageRoute<MyHealthDiaryPage>(
           builder: (_) => MyHealthDiaryPage(),
         );
 
-      case BWRoutes.userProfilePage:
+      case AppRoutes.userProfilePage:
         return MaterialPageRoute<UserProfilePage>(
           builder: (_) => UserProfilePage(),
         );
 
-      case BWRoutes.clinicInformationPage:
+      case AppRoutes.clinicInformationPage:
         return MaterialPageRoute<ClinicInformationPage>(
           builder: (_) => ClinicInformationPage(),
         );
 
-      case BWRoutes.settingsPage:
+      case AppRoutes.settingsPage:
         return MaterialPageRoute<SettingsPage>(
           builder: (_) => SettingsPage(),
         );
 
-      case BWRoutes.feedbackPage:
+      case AppRoutes.feedbackPage:
         return MaterialPageRoute<FeedbackPage>(
           builder: (_) => const FeedbackPage(),
         );
 
-      case BWRoutes.pinInputPage:
+      case AppRoutes.pinInputPage:
         return MaterialPageRoute<PINInputPage>(
           builder: (_) => PINInputPage(),
         );
 
-      case BWRoutes.contentDetailPage:
+      case AppRoutes.contentDetailPage:
         return MaterialPageRoute<ContentDetailPage>(
           builder: (_) => ContentDetailPage(
             payload: args as ContentDetails,
           ),
         );
 
-      case BWRoutes.galleryImagesPage:
+      case AppRoutes.galleryImagesPage:
         return MaterialPageRoute<ContentDetailPage>(
           builder: (_) => GalleryImagesPage(
             images: args as List<GalleryImage>,
           ),
         );
 
-      case BWRoutes.faqDetailViewPage:
+      case AppRoutes.faqDetailViewPage:
         return MaterialPageRoute<FAQDetailViewPage>(
           builder: (_) => FAQDetailViewPage(payload: args as FAQContent),
         );
 
-      case BWRoutes.forgotPINPage:
+      case AppRoutes.forgotPINPage:
         return MaterialPageRoute<ForgotPINPage>(
           builder: (_) => const ForgotPINPage(),
+        );
+
+      case AppRoutes.screeningToolsListPage:
+        return MaterialPageRoute<ScreeningToolsListPage>(
+          builder: (_) => const ScreeningToolsListPage(),
         );
 
       default:

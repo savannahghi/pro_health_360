@@ -120,7 +120,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
               if (isResetPin) {
                 Navigator.pushNamed(
                   context,
-                  BWRoutes.createPin,
+                  AppRoutes.createPin,
                   arguments: widget.phoneNumber,
                 );
               } else {

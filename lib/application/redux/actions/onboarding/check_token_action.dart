@@ -24,7 +24,7 @@ class CheckTokenAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final bool isSignedIn = state.credentials?.isSignedIn ?? false;
 
-    String initialRoute = BWRoutes.phoneLogin;
+    String initialRoute = AppRoutes.phoneLogin;
     final int currentIndex =
         state.bottomNavigationState?.currentBottomNavIndex ?? 0;
 
@@ -59,7 +59,7 @@ class CheckTokenAction extends ReduxAction<AppState> {
 
           initialRoute = bottomNavItems[currentIndex].onTapRoute;
         } else {
-          initialRoute = BWRoutes.phoneLogin;
+          initialRoute = AppRoutes.phoneLogin;
         }
       } else {
         initialRoute = bottomNavItems[currentIndex].onTapRoute;

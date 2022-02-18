@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
@@ -21,6 +22,9 @@ void main() {
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 900);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
       final MockGraphQlClient client = MockGraphQlClient();
 
       await buildTestWidget(
@@ -34,6 +38,11 @@ void main() {
       await tester.tap(find.text(myHealthPageHealthDiary));
       await tester.pumpAndSettle();
       expect(find.byType(MyHealthDiaryPage), findsOneWidget);
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
+      });
     });
 
     testWidgets('navigates to UserProfilePage ', (WidgetTester tester) async {

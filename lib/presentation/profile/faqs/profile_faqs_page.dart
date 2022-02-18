@@ -83,7 +83,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                         );
                       } else if (vm.timeoutFetchingFAQs ?? false) {
                         return const GenericTimeoutWidget(
-                          route: BWRoutes.home,
+                          route: AppRoutes.home,
                           action: 'fetching Frequently Asked Questions',
                         );
                       } else if (vm.errorFetchingFAQs ?? false) {
@@ -113,7 +113,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                                 onTap: () {
                                   Navigator.pushNamed(
                                     context,
-                                    BWRoutes.faqDetailViewPage,
+                                    AppRoutes.faqDetailViewPage,
                                     arguments: faqsContent[index],
                                   );
                                 },

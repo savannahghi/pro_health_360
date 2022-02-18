@@ -82,7 +82,7 @@ class _FeedPageState extends State<FeedPage> {
                 );
               } else if (vm.feedContentState?.timeoutFetchingContent ?? false) {
                 return const GenericTimeoutWidget(
-                  route: BWRoutes.home,
+                  route: AppRoutes.home,
                   action: 'fetching your feed',
                 );
               } else if (vm.feedContentState?.errorFetchingContent ?? false) {

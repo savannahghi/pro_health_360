@@ -193,26 +193,26 @@ OnboardingPathConfig onboardingPath({
       appState?.onboardingState?.phoneLogin?.phoneNumber;
 
   if (!isSignedIn) {
-    return OnboardingPathConfig(BWRoutes.phoneLogin);
+    return OnboardingPathConfig(AppRoutes.phoneLogin);
   } else if (!isPhoneVerified) {
     return OnboardingPathConfig(
-      BWRoutes.verifySignUpOTP,
+      AppRoutes.verifySignUpOTP,
       arguments: phoneNumber,
     );
   } else if (!termsAccepted) {
-    return OnboardingPathConfig(BWRoutes.termsAndConditions);
+    return OnboardingPathConfig(AppRoutes.termsAndConditions);
   } else if (!hasSetSecurityQuestions) {
-    return OnboardingPathConfig(BWRoutes.securityQuestionsPage);
+    return OnboardingPathConfig(AppRoutes.securityQuestionsPage);
   } else if (!isPINSet) {
-    return OnboardingPathConfig(BWRoutes.createPin);
+    return OnboardingPathConfig(AppRoutes.createPin);
   } else if (!hasSetNickName) {
-    return OnboardingPathConfig(BWRoutes.congratulationsPage);
+    return OnboardingPathConfig(AppRoutes.congratulationsPage);
   }
 
-  return OnboardingPathConfig(BWRoutes.home);
+  return OnboardingPathConfig(AppRoutes.home);
 }
 
-/// Checks if token has expired based on expiry datetime
+/// Checks if token has expired based on expiry date
 /// returns true if token expires in 10 minutes or less
 /// otherwise returns false
 bool hasTokenExpired(DateTime expiresAt, DateTime now) {

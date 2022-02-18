@@ -62,7 +62,7 @@ class MoodSelectionComponent extends StatelessWidget {
                 moodText: veryHappyString,
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    BWRoutes.moodFeedbackPage,
+                    AppRoutes.moodFeedbackPage,
                     arguments: MoodType.VERY_HAPPY,
                   );
                 },
@@ -73,7 +73,7 @@ class MoodSelectionComponent extends StatelessWidget {
                 moodText: happyString,
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    BWRoutes.moodFeedbackPage,
+                    AppRoutes.moodFeedbackPage,
                     arguments: MoodType.HAPPY,
                   );
                 },
@@ -84,7 +84,7 @@ class MoodSelectionComponent extends StatelessWidget {
                 moodText: neutralString,
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    BWRoutes.moodFeedbackPage,
+                    AppRoutes.moodFeedbackPage,
                     arguments: MoodType.NEUTRAL,
                   );
                 },
@@ -95,7 +95,7 @@ class MoodSelectionComponent extends StatelessWidget {
                 moodText: sadString,
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    BWRoutes.moodFeedbackPage,
+                    AppRoutes.moodFeedbackPage,
                     arguments: MoodType.SAD,
                   );
                 },
@@ -106,7 +106,7 @@ class MoodSelectionComponent extends StatelessWidget {
                 moodText: verySadString,
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    BWRoutes.moodFeedbackPage,
+                    AppRoutes.moodFeedbackPage,
                     arguments: MoodType.VERY_SAD,
                   );
                 },

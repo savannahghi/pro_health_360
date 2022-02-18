@@ -71,7 +71,7 @@ void main() {
 
   test('Test router returns mood feedback page', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.moodFeedbackPage,
+      name: AppRoutes.moodFeedbackPage,
       arguments: MoodType.VERY_HAPPY,
     );
 
@@ -84,7 +84,7 @@ void main() {
 
   test('Test router returns phoneLogin', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.phoneLogin,
+      name: AppRoutes.phoneLogin,
       arguments: <String, dynamic>{'test': 'value'},
     );
 
@@ -97,7 +97,7 @@ void main() {
 
   test('Test router returns create new pin page', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.createPin,
+      name: AppRoutes.createPin,
       arguments: '0700111222',
     );
 
@@ -110,7 +110,7 @@ void main() {
 
   test('Test router returns  verify otp page', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.verifySignUpOTP,
+      name: AppRoutes.verifySignUpOTP,
       arguments: '0700111222',
     );
 
@@ -123,7 +123,7 @@ void main() {
 
   test('Test router returns  Document page', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.viewDocumentPage,
+      name: AppRoutes.viewDocumentPage,
       arguments: <String, dynamic>{
         'pdfUrl': 'http://www.africau.edu/images/default/sample.pdf',
         'pdfTitle': 'Sample PDF',
@@ -139,7 +139,7 @@ void main() {
 
   test('Test router returns congratulations page', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.congratulationsPage,
+      name: AppRoutes.congratulationsPage,
       arguments: <String, dynamic>{'duration': '1 year'},
     );
 
@@ -152,7 +152,7 @@ void main() {
 
   test('Test router returns Home', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.home,
+      name: AppRoutes.home,
       arguments: <String, dynamic>{'test': 'value'},
     );
 
@@ -164,7 +164,7 @@ void main() {
   });
 
   test('Test router returns phoneLogin Page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.phoneLogin);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.phoneLogin);
 
     final MaterialPageRoute<LoginPage> route =
         routeGenerator(settings) as MaterialPageRoute<LoginPage>;
@@ -174,7 +174,7 @@ void main() {
   });
 
   test('Test router returns incoming  userProfile page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.userProfile);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.userProfile);
     final MaterialPageRoute<UserProfilePage> route =
         routeGenerator(settings) as MaterialPageRoute<UserProfilePage>;
     expect(route, isA<MaterialPageRoute<UserProfilePage>>());
@@ -182,7 +182,7 @@ void main() {
   });
 
   test('Test router returns incoming  webView page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.webView);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.webView);
     final MaterialPageRoute<webview.TermsAndConditionsPage> route =
         routeGenerator(settings)
             as MaterialPageRoute<webview.TermsAndConditionsPage>;
@@ -192,7 +192,7 @@ void main() {
 
   test('Test router returns security questions page', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.securityQuestionsPage);
+        RouteSettings(name: AppRoutes.securityQuestionsPage);
     final MaterialPageRoute<SecurityQuestionsPage> route =
         routeGenerator(settings) as MaterialPageRoute<SecurityQuestionsPage>;
     expect(route, isA<MaterialPageRoute<SecurityQuestionsPage>>());
@@ -201,7 +201,7 @@ void main() {
 
   test('Test router returns answer security question page', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.answerSecurityQuestionPage);
+        RouteSettings(name: AppRoutes.answerSecurityQuestionPage);
     final MaterialPageRoute<AnswerSecurityQuestionPage> route =
         routeGenerator(settings)
             as MaterialPageRoute<AnswerSecurityQuestionPage>;
@@ -211,7 +211,7 @@ void main() {
 
   test('Test router returns TermsAndConditionsPage', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.termsAndConditions);
+        RouteSettings(name: AppRoutes.termsAndConditions);
     final MaterialPageRoute<TermsAndConditionsPage> route =
         routeGenerator(settings) as MaterialPageRoute<TermsAndConditionsPage>;
     expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());
@@ -220,7 +220,7 @@ void main() {
 
   test('Test router returns CommunityListView', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.communityListView);
+        RouteSettings(name: AppRoutes.communityListView);
 
     final MaterialPageRoute<CommunityListViewPage> route =
         routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>;
@@ -230,7 +230,7 @@ void main() {
 
   test('Test router returns CommunityChatScreenPage', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.communityChatScreenPage,
+      name: AppRoutes.communityChatScreenPage,
       arguments: CommunityListItem(
         title: 'title',
         message: 'message',
@@ -245,7 +245,7 @@ void main() {
   });
 
   test('Test router returns  FeedPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.feedPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.feedPage);
 
     final MaterialPageRoute<FeedPage> route =
         routeGenerator(settings) as MaterialPageRoute<FeedPage>;
@@ -254,7 +254,7 @@ void main() {
   });
 
   test('Test router returns ConsentPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.consent);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.consent);
 
     final MaterialPageRoute<ConsentPage> route =
         routeGenerator(settings) as MaterialPageRoute<ConsentPage>;
@@ -263,7 +263,7 @@ void main() {
   });
 
   test('Test router returns PersonalInformation Page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.personalInfo);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.personalInfo);
 
     final MaterialPageRoute<PersonalInformationPage> route =
         routeGenerator(settings) as MaterialPageRoute<PersonalInformationPage>;
@@ -272,7 +272,7 @@ void main() {
   });
 
   test('Test router returns MedicalDataPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.medicalData);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.medicalData);
 
     final MaterialPageRoute<MedicalDataPage> route =
         routeGenerator(settings) as MaterialPageRoute<MedicalDataPage>;
@@ -281,7 +281,7 @@ void main() {
   });
 
   test('Test router returns SavedPostsPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.savedPosts);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.savedPosts);
 
     final MaterialPageRoute<SavedPostPage> route =
         routeGenerator(settings) as MaterialPageRoute<SavedPostPage>;
@@ -291,7 +291,7 @@ void main() {
 
   test('Test router returns AppointmentsPage', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.appointmentsPage);
+        RouteSettings(name: AppRoutes.appointmentsPage);
 
     final MaterialPageRoute<AppointmentsPage> route =
         routeGenerator(settings) as MaterialPageRoute<AppointmentsPage>;
@@ -301,7 +301,7 @@ void main() {
 
   test('Test router returns NotificationsPage', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.notificationsPage);
+        RouteSettings(name: AppRoutes.notificationsPage);
 
     final MaterialPageRoute<NotificationsPage> route =
         routeGenerator(settings) as MaterialPageRoute<NotificationsPage>;
@@ -310,7 +310,7 @@ void main() {
   });
 
   test('Test router returns MyHealthPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.myHealthPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.myHealthPage);
 
     final MaterialPageRoute<MyHealthPage> route =
         routeGenerator(settings) as MaterialPageRoute<MyHealthPage>;
@@ -319,7 +319,7 @@ void main() {
   });
   test('Test router returns MyHealthDiaryPage', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.myHealthDiaryPage);
+        RouteSettings(name: AppRoutes.myHealthDiaryPage);
 
     final MaterialPageRoute<MyHealthDiaryPage> route =
         routeGenerator(settings) as MaterialPageRoute<MyHealthDiaryPage>;
@@ -328,7 +328,7 @@ void main() {
   });
   test('Test router returns UserProfilePage', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.userProfilePage);
+        RouteSettings(name: AppRoutes.userProfilePage);
     final MaterialPageRoute<UserProfilePage> route =
         routeGenerator(settings) as MaterialPageRoute<UserProfilePage>;
     expect(route, isA<MaterialPageRoute<UserProfilePage>>());
@@ -337,7 +337,7 @@ void main() {
 
   test('Test router returns ProfileFaqsPage', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.profileFaqsPage);
+        RouteSettings(name: AppRoutes.profileFaqsPage);
     final MaterialPageRoute<ProfileFaqsPage> route =
         routeGenerator(settings) as MaterialPageRoute<ProfileFaqsPage>;
     expect(route, isA<MaterialPageRoute<ProfileFaqsPage>>());
@@ -351,7 +351,7 @@ void main() {
     });
 
     final RouteSettings settings =
-        RouteSettings(name: BWRoutes.faqDetailViewPage, arguments: payload);
+        RouteSettings(name: AppRoutes.faqDetailViewPage, arguments: payload);
 
     final MaterialPageRoute<FAQDetailViewPage> route =
         routeGenerator(settings) as MaterialPageRoute<FAQDetailViewPage>;
@@ -362,7 +362,7 @@ void main() {
 
   test('Test router returns ClinicInformationPage', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.clinicInformationPage);
+        RouteSettings(name: AppRoutes.clinicInformationPage);
     final MaterialPageRoute<ClinicInformationPage> route =
         routeGenerator(settings) as MaterialPageRoute<ClinicInformationPage>;
     expect(route, isA<MaterialPageRoute<ClinicInformationPage>>());
@@ -370,7 +370,7 @@ void main() {
   });
 
   test('Test router returns SettingsPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.settingsPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.settingsPage);
     final MaterialPageRoute<SettingsPage> route =
         routeGenerator(settings) as MaterialPageRoute<SettingsPage>;
     expect(route, isA<MaterialPageRoute<SettingsPage>>());
@@ -378,7 +378,7 @@ void main() {
   });
 
   test('Test router returns FeedbackPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.feedbackPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.feedbackPage);
     final MaterialPageRoute<FeedbackPage> route =
         routeGenerator(settings) as MaterialPageRoute<FeedbackPage>;
     expect(route, isA<MaterialPageRoute<FeedbackPage>>());
@@ -386,7 +386,7 @@ void main() {
   });
 
   test('Test router returns PINInputPage', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.pinInputPage);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.pinInputPage);
     final MaterialPageRoute<PINInputPage> route =
         routeGenerator(settings) as MaterialPageRoute<PINInputPage>;
     expect(route, isA<MaterialPageRoute<PINInputPage>>());
@@ -395,7 +395,7 @@ void main() {
 
   test('Test router returns ContentDetailPage', () {
     final RouteSettings settings = RouteSettings(
-      name: BWRoutes.contentDetailPage,
+      name: AppRoutes.contentDetailPage,
       arguments: ContentDetails(content: mockContent),
     );
     final MaterialPageRoute<ContentDetailPage> route =
@@ -406,7 +406,7 @@ void main() {
 
   test('Test router returns ForgotPINPage', () {
     const RouteSettings settings = RouteSettings(
-      name: BWRoutes.forgotPINPage,
+      name: AppRoutes.forgotPINPage,
       arguments: <String, dynamic>{'test': 'value'},
     );
     final MaterialPageRoute<ForgotPINPage> route =
@@ -417,7 +417,7 @@ void main() {
 
   test('Test router returns EditInformationPage', () {
     final RouteSettings settings = RouteSettings(
-      name: BWRoutes.editInformationPage,
+      name: AppRoutes.editInformationPage,
       arguments: <String, dynamic>{
         'editInformationItem': nickNameEditInfo('Test')
       },
@@ -429,7 +429,7 @@ void main() {
   });
 
   test('Test router returns deep link page', () {
-    const RouteSettings settings = RouteSettings(name: BWRoutes.deepLink);
+    const RouteSettings settings = RouteSettings(name: AppRoutes.deepLink);
 
     final MaterialPageRoute<HandleDeepLink> route =
         routeGenerator(settings) as MaterialPageRoute<HandleDeepLink>;
@@ -440,7 +440,7 @@ void main() {
 
   test('Test router returns Successful entry page', () {
     const RouteSettings settings =
-        RouteSettings(name: BWRoutes.successfulEntryPage);
+        RouteSettings(name: AppRoutes.successfulEntryPage);
 
     final MaterialPageRoute<SuccessfulDiaryEntryPage> route =
         routeGenerator(settings) as MaterialPageRoute<SuccessfulDiaryEntryPage>;

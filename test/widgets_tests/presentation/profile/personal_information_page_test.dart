@@ -52,7 +52,7 @@ void main() {
       await tester.enterText(firstNameKey, 'test');
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byKey(editInfoSaveBtn));
+      await tester.tap(find.byKey(editInfoSaveBtnKey));
       await tester.pumpAndSettle();
 
       // TODO: Verify state has changed once it's been hooked up

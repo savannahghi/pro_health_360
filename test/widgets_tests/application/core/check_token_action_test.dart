@@ -60,7 +60,7 @@ void main() {
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CheckTokenAction);
-      expect(info.state.miscState?.initialRoute, BWRoutes.home);
+      expect(info.state.miscState?.initialRoute, AppRoutes.home);
     });
 
     testWidgets(
@@ -110,7 +110,7 @@ void main() {
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CheckTokenAction);
-      expect(info.state.miscState?.initialRoute, BWRoutes.home);
+      expect(info.state.miscState?.initialRoute, AppRoutes.home);
     });
 
     testWidgets(
@@ -161,7 +161,7 @@ void main() {
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CheckTokenAction);
-      expect(info.state.miscState?.initialRoute, BWRoutes.phoneLogin);
+      expect(info.state.miscState?.initialRoute, AppRoutes.phoneLogin);
     });
   });
 }

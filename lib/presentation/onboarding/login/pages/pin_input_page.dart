@@ -107,7 +107,7 @@ class _PINInputPageState extends State<PINInputPage> {
         );
         Navigator.popAndPushNamed(
           context,
-          BWRoutes.home,
+          AppRoutes.home,
         );
         return false;
       },
@@ -137,7 +137,7 @@ class _PINInputPageState extends State<PINInputPage> {
                 onTap: () {
                   navigateToNewPage(
                     context: context,
-                    route: BWRoutes.home,
+                    route: AppRoutes.home,
                     bottomNavIndex: 0,
                   );
                 },
@@ -296,7 +296,7 @@ class _PINInputPageState extends State<PINInputPage> {
                         key: forgotPINButtonKey,
                         onTap: () => Navigator.pushNamed(
                           context,
-                          BWRoutes.forgotPINPage,
+                          AppRoutes.forgotPINPage,
                         ),
                         child: Container(
                           margin: const EdgeInsets.only(bottom: 10.0),

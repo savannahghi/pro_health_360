@@ -94,7 +94,7 @@ class VerifyPINAction extends ReduxAction<AppState> {
         );
         navigateToNewPage(
           context: context,
-          route: BWRoutes.myHealthPage,
+          route: AppRoutes.myHealthPage,
           bottomNavIndex: 2,
         );
       }

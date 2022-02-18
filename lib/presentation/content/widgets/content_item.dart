@@ -61,7 +61,7 @@ class ContentItem extends StatelessWidget {
             contentDetails.featuredMedia?.first?.featuredMediaType ==
                 FeaturedMediaType.video) {
           Navigator.of(context).pushNamed(
-            BWRoutes.contentDetailPage,
+            AppRoutes.contentDetailPage,
             arguments: ContentDetails(
               content: contentDetails,
               contentDisplayedType: contentDisplayedType,

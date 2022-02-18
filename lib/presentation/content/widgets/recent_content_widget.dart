@@ -74,7 +74,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
           );
         } else if (vm.recentContentState?.timeoutFetchingContent ?? false) {
           return const GenericTimeoutWidget(
-            route: BWRoutes.home,
+            route: AppRoutes.home,
             action: 'fetching your recent content',
           );
         } else if (vm.recentContentState?.errorFetchingContent ?? false) {
@@ -121,7 +121,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                           onTap: () {
                             navigateToNewPage(
                               context: context,
-                              route: BWRoutes.feedPage,
+                              route: AppRoutes.feedPage,
                               bottomNavIndex: 1,
                             );
                           },

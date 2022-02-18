@@ -27,7 +27,7 @@ class MiscState with _$MiscState {
       _$MiscStateFromJson(json);
 
   factory MiscState.initial() => MiscState(
-        initialRoute: BWRoutes.phoneLogin,
+        initialRoute: AppRoutes.phoneLogin,
         userPin: UserPin(),
         libraryListItems: <dynamic>[],
         profileFAQsContentState: FAQsContentState.initial(),

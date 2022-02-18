@@ -95,7 +95,7 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
           canRecordMood: false,
         ),
       );
-      Navigator.popAndPushNamed(context, BWRoutes.successfulEntryPage);
+      Navigator.popAndPushNamed(context, AppRoutes.successfulEntryPage);
     }
 
     return state;

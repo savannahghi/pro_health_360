@@ -82,7 +82,7 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
           /// check if the error is a timeout error and return an appropriate widget
           if (error == null || error['error'] == 'timeout') {
             return const GenericTimeoutWidget(
-              route: BWRoutes.home,
+              route: AppRoutes.home,
               action: 'fetching recent content',
             );
           }

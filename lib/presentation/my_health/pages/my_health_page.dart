@@ -36,7 +36,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       if (shouldInputPIN(context)) {
         Navigator.pushReplacementNamed(
           context,
-          BWRoutes.pinInputPage,
+          AppRoutes.pinInputPage,
         );
       }
     });
@@ -56,7 +56,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
             children: <Widget>[
               GestureDetector(
                 onTap: () =>
-                    Navigator.pushNamed(context, BWRoutes.userProfilePage),
+                    Navigator.pushNamed(context, AppRoutes.userProfilePage),
                 child: InformationListCard(
                   title: Text(
                     myHealthPageProfile,
@@ -127,7 +127,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     child: GestureDetector(
                       onTap: () => Navigator.pushNamed(
                         context,
-                        BWRoutes.myHealthDiaryPage,
+                        AppRoutes.myHealthDiaryPage,
                       ),
                       child: InformationListCard(
                         title: Text(
@@ -157,7 +157,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     child: GestureDetector(
                       onTap: () => Navigator.pushNamed(
                         context,
-                        BWRoutes.appointmentsPage,
+                        AppRoutes.appointmentsPage,
                       ),
                       child: InformationListCard(
                         title: Text(

@@ -464,7 +464,7 @@ void main() {
           await tester.tap(find.byType(SILPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, BWRoutes.securityQuestionsPage);
+          expect(path, AppRoutes.securityQuestionsPage);
         });
 
         testWidgets('should navigate to terms and conditions page',
@@ -505,7 +505,7 @@ void main() {
           await tester.tap(find.byType(SILPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, BWRoutes.termsAndConditions);
+          expect(path, AppRoutes.termsAndConditions);
         });
 
         testWidgets('should navigate to set pin page',
@@ -547,7 +547,7 @@ void main() {
           await tester.tap(find.byType(SILPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, BWRoutes.createPin);
+          expect(path, AppRoutes.createPin);
         });
 
         testWidgets('should navigate to congratulations page',
@@ -589,7 +589,7 @@ void main() {
           await tester.tap(find.byType(SILPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, BWRoutes.congratulationsPage);
+          expect(path, AppRoutes.congratulationsPage);
         });
 
         testWidgets('should navigate to verify otp page',
@@ -622,7 +622,7 @@ void main() {
           await tester.tap(find.byType(SILPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, BWRoutes.verifySignUpOTP);
+          expect(path, AppRoutes.verifySignUpOTP);
         });
 
         testWidgets('should navigate to login page page',
@@ -649,7 +649,7 @@ void main() {
           await tester.tap(find.byType(SILPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, BWRoutes.phoneLogin);
+          expect(path, AppRoutes.phoneLogin);
         });
       });
 

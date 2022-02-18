@@ -34,7 +34,7 @@ void main() {
             return RawMaterialButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(
-                  BWRoutes.editInformationPage,
+                  AppRoutes.editInformationPage,
                   arguments: <String, dynamic>{
                     'editInformationItem': nickNameEditInfo('Test'),
                   },

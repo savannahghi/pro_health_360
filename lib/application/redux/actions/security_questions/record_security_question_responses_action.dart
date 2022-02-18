@@ -88,7 +88,7 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
     );
 
     final String route = onboardingPath(appState: state).route;
-    if (route == BWRoutes.createPin) {
+    if (route == AppRoutes.createPin) {
       final String phoneNumber =
           state.clientState?.user?.primaryContact?.value ?? UNKNOWN;
       Navigator.pushReplacementNamed(

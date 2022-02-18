@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
+import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_banner.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
@@ -106,8 +108,43 @@ void main() {
       expect(find.byType(GenericTimeoutWidget), findsOneWidget);
     });
 
+    testWidgets('should navigate to screening tools list page',
+        (WidgetTester tester) async {
+      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
+          MockShortSILGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'error': 'timeout'}),
+          201,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: MyHealthDiaryPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+
+      expect(find.byType(ScreeningToolsBanner), findsOneWidget);
+
+      expect(find.byType(ScreeningToolsBanner), findsOneWidget);
+      await tester.tap(find.byType(ScreeningToolsBanner));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ScreeningToolsListPage), findsOneWidget);
+    });
+
     testWidgets('should show a no data widget when fetching diary entries',
         (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
       final MockShortSILGraphQlClient mockShortSILGraphQlClient =
           MockShortSILGraphQlClient.withResponse(
         'idToken',
@@ -133,6 +170,11 @@ void main() {
       await tester.tap(find.byKey(genericNoDataButtonKey));
       await tester.pumpAndSettle();
       expect(find.byType(GenericNoData), findsOneWidget);
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
+      });
     });
 
     testWidgets(

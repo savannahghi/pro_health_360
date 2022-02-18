@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_banner.dart';
+import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -53,8 +55,17 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
           color: AppColors.secondaryColor,
         ),
       ),
-      body: Stack(
+      body: ListView(
         children: <Widget>[
+          smallVerticalSizedBox,
+          ScreeningToolsBanner(
+            title: screeningToolsPageTitle,
+            description: screeningToolsPageDescription,
+            onTap: () => Navigator.pushNamed(
+              context,
+              AppRoutes.screeningToolsListPage,
+            ),
+          ),
           StoreConnector<AppState, HealthDiaryViewModel>(
             converter: (Store<AppState> store) =>
                 HealthDiaryViewModel.fromStore(store.state),
@@ -67,7 +78,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                 );
               } else if (vm.timeoutFetchingContent ?? false) {
                 return const GenericTimeoutWidget(
-                  route: BWRoutes.home,
+                  route: AppRoutes.home,
                   action: 'fetching your diary',
                 );
               } else if (vm.errorFetchingContent ?? false) {
@@ -97,6 +108,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                     },
                     child: ListView.builder(
                       itemCount: entries.length,
+                      shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) {
                         final HealthDiaryEntry? currentEntry =
                             entries.elementAt(index);
@@ -113,7 +125,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                 } else {
                   return EmptyHealthDiary(
                     refreshCallback: () => navigateToNewPage(
-                      route: BWRoutes.home,
+                      route: AppRoutes.home,
                       context: context,
                       bottomNavIndex: BottomNavIndex.home.index,
                     ),

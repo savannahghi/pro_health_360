@@ -2,7 +2,7 @@
 /// For better code and readability, the arrangement in this
 /// file **MUST** follow the same, and must be replicated in
 /// the router generator file
-class BWRoutes {
+class AppRoutes {
   static const String deepLink = '/app';
   // onboarding routes
   static const String phoneLogin = '/phoneLogin';
@@ -95,6 +95,8 @@ class BWRoutes {
 
   //Documents Page
   static const String viewDocumentPage = '/viewDocumentPage';
+
+  static const String screeningToolsListPage = '/screeningToolsListPage';
 }
 
-List<String> unProtectedRoutes = <String>[BWRoutes.phoneLogin];
+List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

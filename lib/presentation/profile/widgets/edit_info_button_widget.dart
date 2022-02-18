@@ -26,7 +26,7 @@ class EditInformationButtonWidget extends StatelessWidget {
       key: editBtnKey,
       onTap: () {
         Navigator.of(context).pushNamed(
-          BWRoutes.editInformationPage,
+          AppRoutes.editInformationPage,
           arguments: <String, dynamic>{
             'editInformationItem': editInformationItem,
             'onSubmit': submitFunction

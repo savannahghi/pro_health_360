@@ -28,13 +28,13 @@ void main() {
     });
 
     test('should return an unprotected route', () async {
-      expect(unProtectedRoutes[0], BWRoutes.phoneLogin);
+      expect(unProtectedRoutes[0], AppRoutes.phoneLogin);
     });
 
     test('should return initial route', () async {
-      expect(getInitialRoute(0, BWRoutes.phoneLogin), BWRoutes.phoneLogin);
-      expect(getInitialRoute(1, BWRoutes.feedPage), BWRoutes.feedPage);
-      expect(getInitialRoute(2, BWRoutes.myHealthPage), BWRoutes.myHealthPage);
+      expect(getInitialRoute(0, AppRoutes.phoneLogin), AppRoutes.phoneLogin);
+      expect(getInitialRoute(1, AppRoutes.feedPage), AppRoutes.feedPage);
+      expect(getInitialRoute(2, AppRoutes.myHealthPage), AppRoutes.myHealthPage);
     });
 
     test('formatSecurityQuestionDate should return birth date in en_GB format',

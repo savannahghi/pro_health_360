@@ -114,7 +114,7 @@ class ForgotPINPage extends StatelessWidget {
                     );
                     Navigator.pushNamedAndRemoveUntil(
                       context,
-                      BWRoutes.home,
+                      AppRoutes.home,
                       (Route<dynamic> route) => false,
                     );
                   },

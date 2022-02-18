@@ -81,7 +81,7 @@ void main() {
           builder: (BuildContext context) {
             return const GenericTimeoutWidget(
               action: 'fetching library',
-              route: BWRoutes.phoneLogin,
+              route: AppRoutes.phoneLogin,
             );
           },
         ),

@@ -24,19 +24,19 @@ List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   BottomNavItem(
     iconUrl: homeIconSvgPath,
     text: 'Home',
-    onTapRoute: BWRoutes.home,
+    onTapRoute: AppRoutes.home,
     index: BottomNavIndex.home.index,
   ),
   BottomNavItem(
     iconUrl: feedIconSvgPath,
     text: 'Feed',
-    onTapRoute: BWRoutes.feedPage,
+    onTapRoute: AppRoutes.feedPage,
     index: BottomNavIndex.feed.index,
   ),
   BottomNavItem(
     iconUrl: myHealthIconSvgPath,
     text: 'My Health',
-    onTapRoute: BWRoutes.myHealthPage,
+    onTapRoute: AppRoutes.myHealthPage,
     index: BottomNavIndex.myHealth.index,
   ),
 ];

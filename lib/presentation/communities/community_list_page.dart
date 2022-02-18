@@ -74,7 +74,7 @@ class CommunityListViewPage extends StatelessWidget {
                 key: communityListGestureDetectorKey,
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    BWRoutes.communityChatScreenPage,
+                    AppRoutes.communityChatScreenPage,
                     arguments: items.elementAt(index),
                   );
                 },

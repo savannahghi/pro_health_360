@@ -183,7 +183,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
           Navigator.pushNamed(
             context,
-            BWRoutes.verifySignUpOTP,
+            AppRoutes.verifySignUpOTP,
             arguments: phoneNumber,
           );
           return state;

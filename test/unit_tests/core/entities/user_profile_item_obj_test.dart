@@ -10,14 +10,14 @@ void main() {
   final Map<String, dynamic> data = <String, dynamic>{
     'iconAssetPath': feedbackIcon,
     'title': 'Feedback',
-    'route': BWRoutes.feedbackPage,
+    'route': AppRoutes.feedbackPage,
   };
   test('UserProfileItemObj toJson', () {
     expect(
       UserProfileItemObj(
         iconAssetPath: feedbackIcon,
         title: 'Feedback',
-        route: BWRoutes.feedbackPage,
+        route: AppRoutes.feedbackPage,
       ).toJson(),
       data,
     );

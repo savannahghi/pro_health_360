@@ -15,6 +15,7 @@ import 'package:myafyahub/application/redux/view_models/app_state_view_model.dar
 // Project imports:
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -49,7 +50,7 @@ class _EditInformationPageState extends State<EditInformationPage> {
         title: editInfoTitle(widget.editInformationItem.title),
         leadingWidget: SvgPicture.asset(
           closeIconSvg,
-          color: AppColors.blueChillColor,
+          color: AppColors.purpleChillColor,
         ),
       ),
       backgroundColor: Theme.of(context).backgroundColor,
@@ -188,7 +189,7 @@ class _EditInformationPageState extends State<EditInformationPage> {
                     child: (vm.appState.wait!.isWaitingFor(editInformationFlag))
                         ? const SILPlatformLoader()
                         : MyAfyaHubPrimaryButton(
-                            buttonKey: editInfoSaveBtn,
+                            buttonKey: editInfoSaveBtnKey,
                             onPressed: formIsEdited
                                 ? () {
                                     widget.onSubmit(widget.editInformationItem);

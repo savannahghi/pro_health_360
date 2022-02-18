@@ -43,7 +43,7 @@ class FeedPageContentItem extends StatelessWidget {
             content.featuredMedia?[0]?.featuredMediaType ==
                 FeaturedMediaType.video) {
           Navigator.of(context).pushNamed(
-            BWRoutes.contentDetailPage,
+            AppRoutes.contentDetailPage,
             arguments: ContentDetails(
               content: content,
               contentDisplayedType: ContentDisplayedType.RECENT,

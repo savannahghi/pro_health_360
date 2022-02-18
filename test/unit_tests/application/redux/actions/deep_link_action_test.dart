@@ -62,7 +62,7 @@ void main() {
       final NavigatorDetails_PushNamed? navDetails =
           actionDispatched?.details as NavigatorDetails_PushNamed?;
 
-      expect(navDetails?.routeName, BWRoutes.home);
+      expect(navDetails?.routeName, AppRoutes.home);
     });
 
     test('should navigate to phone login if user is null', () async {
@@ -84,7 +84,7 @@ void main() {
       final NavigatorDetails_PushNamed? navDetails =
           actionDispatched?.details as NavigatorDetails_PushNamed?;
 
-      expect(navDetails?.routeName, BWRoutes.phoneLogin);
+      expect(navDetails?.routeName, AppRoutes.phoneLogin);
     });
 
     test('should navigate to phone login if expiresAt is unknown', () async {
@@ -106,7 +106,7 @@ void main() {
       final NavigatorDetails_PushNamed? navDetails =
           actionDispatched?.details as NavigatorDetails_PushNamed?;
 
-      expect(navDetails?.routeName, BWRoutes.phoneLogin);
+      expect(navDetails?.routeName, AppRoutes.phoneLogin);
     });
 
     test('should navigate to phone login if token has expired', () async {
@@ -144,7 +144,7 @@ void main() {
       final NavigatorDetails_PushNamed? navDetails =
           actionDispatched?.details as NavigatorDetails_PushNamed?;
 
-      expect(navDetails?.routeName, BWRoutes.phoneLogin);
+      expect(navDetails?.routeName, AppRoutes.phoneLogin);
     });
   });
 }

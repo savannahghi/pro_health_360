@@ -22,7 +22,7 @@ class AppBarNotification extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
         splashColor: Theme.of(context).colorScheme.secondary,
         onTap: () =>
-            Navigator.of(context).pushNamed(BWRoutes.notificationsPage),
+            Navigator.of(context).pushNamed(AppRoutes.notificationsPage),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: SvgPicture.asset(

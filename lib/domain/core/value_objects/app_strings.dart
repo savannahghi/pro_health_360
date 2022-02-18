@@ -659,4 +659,23 @@ const String networkConnectionUnreliable =
 
 const String galleryImagesTitle = 'Gallery Images';
 
-const Key editInfoSaveBtn = Key('edit_information_save_btn');
+/// Screening tools strings
+const String screeningToolsPageTitle = 'Screening tools';
+const String screeningToolsPageDescription =
+    'Tap to take a look at some of our screening tools';
+
+const String screeningToolsPageLongDescription =
+    'Take charge of your health by assessing yourself using our screening tools';
+
+const String violenceTitle = 'Violence';
+const String violenceDescription =
+    'Tap to share your experience about violence';
+const String contraceptiveTitle = 'Contraceptives';
+const String contraceptiveDescription =
+    'Tap to learn more about contraceptives';
+const String tuberculosisTitle = 'Tuberculosis';
+const String tuberculosisDescription =
+    'Tap to assess yourself for tuberculosis';
+const String healthTitle = 'Your health';
+const String healthDescription =
+    'Tap to answer a few questions about your health';
