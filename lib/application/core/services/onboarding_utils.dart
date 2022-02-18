@@ -189,11 +189,16 @@ OnboardingPathConfig onboardingPath({
   final bool hasSetNickName =
       appState?.onboardingState?.hasSetNickName ?? false;
   final bool isPINSet = appState?.onboardingState?.isPINSet ?? false;
+  final String? phoneNumber =
+      appState?.onboardingState?.phoneLogin?.phoneNumber;
 
   if (!isSignedIn) {
     return OnboardingPathConfig(BWRoutes.phoneLogin);
   } else if (!isPhoneVerified) {
-    return OnboardingPathConfig(BWRoutes.verifySignUpOTP);
+    return OnboardingPathConfig(
+      BWRoutes.verifySignUpOTP,
+      arguments: phoneNumber,
+    );
   } else if (!termsAccepted) {
     return OnboardingPathConfig(BWRoutes.termsAndConditions);
   } else if (!hasSetSecurityQuestions) {

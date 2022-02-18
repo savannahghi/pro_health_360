@@ -38,9 +38,9 @@ query getSecurityQuestions($flavour: Flavour!) {
 }
 ''';
 
-const String getTermsQuery = '''
-query getCurrentTerms {
-  getCurrentTerms {
+const String getTermsQuery = r'''
+query getCurrentTerms($flavour: Flavour!) {
+  getCurrentTerms(flavour: $flavour) {
     termsID
     text
   }

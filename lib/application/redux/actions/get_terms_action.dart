@@ -22,6 +22,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
+import 'package:user_feed/user_feed.dart';
 
 class GetTermsAction extends ReduxAction<AppState> {
   GetTermsAction({
@@ -47,7 +48,7 @@ class GetTermsAction extends ReduxAction<AppState> {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
     final http.Response result =
-        await _client.query(getTermsQuery, <String, dynamic>{});
+        await _client.query(getTermsQuery, <String, dynamic>{'flavour': Flavour.CONSUMER.name});
 
     final Map<String, dynamic> body = _client.toMap(result);
 
