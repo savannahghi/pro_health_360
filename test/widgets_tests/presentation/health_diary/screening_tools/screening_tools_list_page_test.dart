@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/assesstment/contraceptive_assessment_page.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_banner.dart';
 
@@ -39,11 +40,6 @@ void main() {
 
       expect(find.byType(SnackBar), findsOneWidget);
 
-      await tester.tap(find.text(contraceptiveTitle));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(SnackBar), findsOneWidget);
-
       await tester.tap(find.text(tuberculosisTitle));
       await tester.pumpAndSettle();
 
@@ -56,6 +52,30 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(SnackBar), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'navigates to contaceptive assessment page',
+    (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: graphQlClient,
+        widget: const ScreeningToolsListPage(),
+      );
+
+      await tester.scrollUntilVisible(find.text(healthTitle), 300);
+      expect(find.byType(ScreeningToolsBanner), findsNWidgets(4));
+
+      expect(find.text(contraceptiveTitle), findsOneWidget);
+
+      await tester.tap(find.text(contraceptiveTitle));
+      await tester.pumpAndSettle();
+      expect(find.byType(ContraceptiveAssessmentPage), findsOneWidget);
     },
   );
 }
