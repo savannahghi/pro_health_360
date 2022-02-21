@@ -11,7 +11,8 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/assessment/contraceptive_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
@@ -472,5 +473,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ContraceptiveAssessmentPage>>());
     expect(route.builder(context), isA<ContraceptiveAssessmentPage>());
+  });
+
+  test('Test router returns Successful assessment submission page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.successfulAssessmentSubmissionPage);
+
+    final MaterialPageRoute<SuccessfulAssessmentSubmissionPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<SuccessfulAssessmentSubmissionPage>;
+
+    expect(route, isA<MaterialPageRoute<SuccessfulAssessmentSubmissionPage>>());
+    expect(route.builder(context), isA<SuccessfulAssessmentSubmissionPage>());
   });
 }

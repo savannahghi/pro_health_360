@@ -6,10 +6,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/assessment/contraceptive_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 
-import '../../../test_helpers.dart';
+import '../../../../test_helpers.dart';
 
 void main() {
   group('ContraceptiveAssessmentPage', () {
@@ -75,7 +76,9 @@ void main() {
         findsOneWidget,
       );
       await tester.tap(find.byKey(contraceptiveAssessmentFeedbackButtonKey));
-      // todo: (paul) add assertion when onTap is implemented
+
+      await tester.pumpAndSettle();
+      expect(find.byType(SuccessfulAssessmentSubmissionPage), findsWidgets);
     });
   });
 }

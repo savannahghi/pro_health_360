@@ -11,8 +11,9 @@ import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/assessment/contraceptive_assessment_page.dart';
-import 'package:myafyahub/presentation/assessment/tuberculosis_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/pages/tuberculosis_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
@@ -297,6 +298,11 @@ class RouteGenerator {
       case AppRoutes.healthAssessmentPage:
         return MaterialPageRoute<HealthAssessmentPage>(
           builder: (_) => const HealthAssessmentPage(),
+        );
+
+      case AppRoutes.successfulAssessmentSubmissionPage:
+        return MaterialPageRoute<SuccessfulAssessmentSubmissionPage>(
+          builder: (_) => const SuccessfulAssessmentSubmissionPage(),
         );
 
       default:

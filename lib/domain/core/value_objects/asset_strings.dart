@@ -155,3 +155,5 @@ const String emptyDiaryEntryImage = 'assets/images/empty_diary.svg';
 const String errorPageImage = 'assets/images/error_page_image.svg';
 
 const String screeningToolsImage = 'assets/images/screening_tools.svg';
+const String successfulAssessmentSubmissionImage =
+    'assets/images/successful_assessment_submission.svg';

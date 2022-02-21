@@ -763,3 +763,9 @@ const String healthAssessmentQuestionNine =
 
 const String healthAssessmentQuestionTen =
     'If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?';
+
+// successful assessment submission
+const String assessmentSubmissionSuccessfulText =
+    'Thanks for sharing your assessment';
+const String assessmentSubmissionSuccessfulDescription =
+    'Your doctor may review your assessment in your next visit, or reach out if necessary';

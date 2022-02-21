@@ -109,8 +109,13 @@ class AppRoutes {
   //Tuberculosis assessment Page
   static const String tuberculosisAssessmentPage =
       '/tuberculosisAssessmentPage';
+
   // health assessment
   static const String healthAssessmentPage = '/healthAssessmentPage';
+
+  // successful assessment submission
+  static const String successfulAssessmentSubmissionPage =
+      '/successfulAssessmentSubmissionPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

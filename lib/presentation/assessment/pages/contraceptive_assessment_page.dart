@@ -8,6 +8,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class ContraceptiveAssessmentPage extends StatelessWidget {
@@ -163,7 +164,10 @@ class ContraceptiveAssessmentPage extends StatelessWidget {
                 height: 48,
                 child: MyAfyaHubPrimaryButton(
                   buttonKey: contraceptiveAssessmentFeedbackButtonKey,
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    AppRoutes.successfulAssessmentSubmissionPage,
+                  ),
                   buttonColor: AppColors.primaryColor,
                   borderColor: Colors.transparent,
                   text: submitYourAssessmentString,
