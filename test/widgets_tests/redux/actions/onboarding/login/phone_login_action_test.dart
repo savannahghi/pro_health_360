@@ -25,7 +25,6 @@ import 'package:shared_ui_components/buttons.dart';
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
-import '../../../../shared/services/onboarding_utils_2_test.mocks.dart';
 
 void main() {
   // initial set up
@@ -37,8 +36,6 @@ void main() {
 
   group('PhoneLoginAction', () {
     late Store<AppState> store;
-
-    final MockRefreshTokenManger refreshTimer = MockRefreshTokenManger();
 
     final DateTimeParser dateTimeParser = DateTimeParser(
       useCustomDateTime: true,
@@ -65,7 +62,6 @@ void main() {
                     PhoneLoginAction(
                       context: context,
                       flag: 'phone_login',
-                      tokenManger: refreshTimer,
                       dateTimeParser: dateTimeParser,
                     ),
                   );
@@ -113,7 +109,6 @@ void main() {
                     PhoneLoginAction(
                       context: context,
                       flag: 'phone_login',
-                      tokenManger: refreshTimer,
                       dateTimeParser: dateTimeParser,
                     ),
                   );
@@ -142,10 +137,6 @@ void main() {
 
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
-
-      when(refreshTimer.updateExpireTime(any)).thenReturn(refreshTimer);
-
-      when(refreshTimer.reset()).thenReturn(null);
 
       store.dispatch(UpdateUserProfileAction(isPhoneVerified: true));
 
@@ -188,7 +179,6 @@ void main() {
                     PhoneLoginAction(
                       context: context,
                       flag: 'phone_login',
-                      tokenManger: refreshTimer,
                       dateTimeParser: dateTimeParser,
                     ),
                   );

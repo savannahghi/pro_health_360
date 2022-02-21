@@ -7,7 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -59,7 +58,6 @@ void main() {
       );
 
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-      RefreshTokenManger().listen.add(true);
 
       await tester.pumpAndSettle();
 
@@ -68,8 +66,6 @@ void main() {
 
       final Finder preLoadAppWidget = find.byType(PreLoadApp);
       expect(preLoadAppWidget, findsOneWidget);
-
-      RefreshTokenManger().listen.add(true);
 
       await tester.pumpAndSettle();
       final Finder storeProviderWidget = find.byKey(globalStoreKey);
@@ -105,7 +101,6 @@ void main() {
         ),
       );
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
-      RefreshTokenManger().listen.add(true);
 
       await tester.pumpAndSettle();
 

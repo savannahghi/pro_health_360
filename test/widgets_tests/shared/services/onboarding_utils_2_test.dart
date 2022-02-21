@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:dart_fcm/dart_fcm.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -17,7 +16,7 @@ import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import '../../../mock_utils.dart';
 import './onboarding_utils_2_test.mocks.dart';
 
-@GenerateMocks(<Type>[RefreshTokenManger, DateTimeParser, SILFCM])
+@GenerateMocks(<Type>[DateTimeParser, SILFCM])
 void main() {
   // initial set up
   setupFirebaseAuthMocks();
@@ -37,22 +36,16 @@ void main() {
   });
 
   group('OnboardingUtils 2', () {
-    MockRefreshTokenManger? refreshTimer;
-
     MockDateTimeParser? dateTimeParser;
 
     MockSILFCM? fcm;
 
     setUp(() async {
-      refreshTimer = MockRefreshTokenManger();
       dateTimeParser = MockDateTimeParser();
       fcm = MockSILFCM();
 
       when(dateTimeParser!.parsedExpireAt(int.parse('3600')))
           .thenReturn('2021-05-11T21:34:25.150');
-      when(refreshTimer!.updateExpireTime('2021-05-11T21:34:25.150'))
-          .thenReturn(refreshTimer!);
-      when(refreshTimer!.reset()).thenReturn(null);
 
       when(fcm!.resetToken())
           .thenAnswer((Invocation realInvocation) => Future<void>.value());

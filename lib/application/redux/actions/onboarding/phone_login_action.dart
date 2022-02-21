@@ -11,7 +11,6 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -42,13 +41,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   PhoneLoginAction({
     required this.context,
     required this.flag,
-    required this.tokenManger,
     required this.dateTimeParser,
   });
 
   final BuildContext context;
   final String flag;
-  final RefreshTokenManger tokenManger;
   final DateTimeParser dateTimeParser;
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method

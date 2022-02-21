@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:misc_utilities/misc.dart';
-import 'package:misc_utilities/refresh_token_manager.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
@@ -48,7 +47,6 @@ Future<void> signInUser({
         PhoneLoginAction(
           context: context,
           flag: phoneLoginFlag,
-          tokenManger: RefreshTokenManger(),
           dateTimeParser: DateTimeParser(),
         ),
       );
