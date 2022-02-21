@@ -58,11 +58,10 @@ class ScreeningToolsListPage extends StatelessWidget {
             ScreeningToolsBanner(
               title: tuberculosisTitle,
               description: tuberculosisDescription,
-              onTap: () {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(snackbar(content: comingSoonText));
-              },
+              onTap: () => Navigator.pushNamed(
+                context,
+                AppRoutes.tuberculosisAssessmentPage,
+              ),
             ),
             ScreeningToolsBanner(
               title: healthTitle,

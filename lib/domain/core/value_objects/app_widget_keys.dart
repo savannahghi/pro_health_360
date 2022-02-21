@@ -169,3 +169,19 @@ const Key noToUseFamilyPlanningKey = Key('no_to_use_family_planning_key');
 
 const Key contraceptiveAssessmentFeedbackButtonKey =
     Key('contraceptive_assessment_feedback_button_key');
+
+//tuberculosis assessment page
+const Key yesExperienceCoughKey = Key('yes_experienced_cough_key');
+const Key noExperienceCoughKey = Key('no_experienced_cough_key');
+
+const Key yesHaveAFeverCoughKey = Key('yes_have_a_fever_key');
+const Key noHaveAFeverCoughKey = Key('no_have_a_fever_key');
+
+const Key yesWeightLossKey = Key('yes_weight_loss_key');
+const Key noWeightLossKey = Key('no_weight_loss_key');
+
+const Key yesNightSweatsKey = Key('yes_night_sweats_key');
+const Key noNightSweatsKey = Key('no_night_sweats_key');
+
+const Key tuberculosisAssessmentFeedbackButtonKey =
+    Key('tuberculosis_assessment_feedback_button_key');

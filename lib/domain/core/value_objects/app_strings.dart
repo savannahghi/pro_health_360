@@ -697,6 +697,7 @@ const String intimatePartnerViolence = 'Intimate partner violence';
 const String intimatePartnerViolenceQuestion =
     'Are you in a relationship with a person who threatens, frightens, insults you, treats you badly or physically hurts you?';
 const String submitAssessment = 'Submit Assessment';
+
 //contraceptive assessment page
 const String contraceptiveAssessmentTitle = 'Contraceptive Assessment';
 const String contraceptiveAssessmentDescription =
@@ -713,3 +714,13 @@ const String areYouOnFamilyPlanningString =
 const String wouldYouLikeToUseFamilyPlanningString =
     '4. If no to Question 3, would you like to use a family planning method?';
 const String submitYourAssessmentString = 'Submit Your Assessment';
+
+//Tuberculosis assessment page
+const String tuberculosisAssessmentTitle = 'Tuberculosis Assessment';
+const String tuberculosisAssessmentDescription =
+    'Thank you for your interest in assessing yourself for Tuberculosis(TB). The information you provide will be confidential';
+const String experiencedACoughString =
+    '1. Have you experienced a cough for any duration';
+const String doYouHaveFeverString = '2. Do you have a fever?';
+const String noticedAnyWeighLossString = '3. Have you noticed any weight loss?';
+const String experienceNightSweatsString = '4. Do you experience night sweats?';
