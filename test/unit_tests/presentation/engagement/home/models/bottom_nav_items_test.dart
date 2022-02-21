@@ -11,7 +11,7 @@ void main() {
   });
 
   test('bottomNavItems returns the right Nav items', () {
-    expect(bottomNavItems.length, 3);
+    expect(bottomNavItems.length, 4);
 
     expect(
       bottomNavItems[0].text,
