@@ -6,6 +6,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class HealthAssessmentPage extends StatelessWidget {
@@ -415,7 +416,10 @@ class HealthAssessmentPage extends StatelessWidget {
                   text: submitAssessment,
                   borderColor: Colors.transparent,
                   buttonKey: submitHealthAssessmentKey,
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    AppRoutes.successfulAssessmentSubmissionPage,
+                  ),
                 ),
               )
             ],

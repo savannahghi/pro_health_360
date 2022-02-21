@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/health_assessment/pages/health_assessment_page.dart';
 
 import '../../../mocks.dart';
@@ -313,7 +314,9 @@ void main() {
       );
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(submitHealthAssessmentKey));
-      // todo(byron): add assertions when implementation is done
+
+      await tester.pumpAndSettle();
+      expect(find.byType(SuccessfulAssessmentSubmissionPage), findsOneWidget);
     });
   });
 }

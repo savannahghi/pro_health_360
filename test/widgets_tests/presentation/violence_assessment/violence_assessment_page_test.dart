@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
 
 import '../../../test_helpers.dart';
@@ -156,8 +157,7 @@ void main() {
       expect(find.byKey(submitViolenceAssessmentKey), findsOneWidget);
       await tester.tap(find.byKey(submitViolenceAssessmentKey));
       await tester.pumpAndSettle();
-
-      // todo: (byron) add assertion when onTap is implemented
+      expect(find.byType(SuccessfulAssessmentSubmissionPage), findsWidgets);
     });
   });
 }
