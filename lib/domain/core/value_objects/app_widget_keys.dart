@@ -185,3 +185,85 @@ const Key noNightSweatsKey = Key('no_night_sweats_key');
 
 const Key tuberculosisAssessmentFeedbackButtonKey =
     Key('tuberculosis_assessment_feedback_button_key');
+
+// health assessment page keys
+// question one
+const Key questionOneNotAtAllDaysKey = Key('question_one_not_at_all_days_key');
+const Key questionOneSeveralDaysKey = Key('question_one_several_days_key');
+const Key questionOneMoreThanHalfKey = Key('question_one_more_than_half_key');
+const Key questionOneNearlyEverydayKey =
+    Key('question_one_nearly_everyday_key');
+
+// question Two
+const Key questionTwoNotAtAllDaysKey = Key('question_two_not_at_all_days_key');
+const Key questionTwoSeveralDaysKey = Key('question_two_several_days_key');
+const Key questionTwoMoreThanHalfKey = Key('question_two_more_than_half_key');
+const Key questionTwoNearlyEverydayKey =
+    Key('question_two_nearly_everyday_key');
+
+// question Three
+const Key questionThreeNotAtAllDaysKey =
+    Key('question_three_not_at_all_days_key');
+const Key questionThreeSeveralDaysKey = Key('question_three_several_days_key');
+const Key questionThreeMoreThanHalfKey =
+    Key('question_three_more_than_half_key');
+const Key questionThreeNearlyEverydayKey =
+    Key('question_three_nearly_everyday_key');
+
+// question Four
+const Key questionFourNotAtAllDaysKey =
+    Key('question_four_not_at_all_days_key');
+const Key questionFourSeveralDaysKey = Key('question_four_several_days_key');
+const Key questionFourMoreThanHalfKey = Key('question_four_more_than_half_key');
+const Key questionFourNearlyEverydayKey =
+    Key('question_four_nearly_everyday_key');
+
+// question Five
+const Key questionFiveNotAtAllDaysKey =
+    Key('question_five_not_at_all_days_key');
+const Key questionFiveSeveralDaysKey = Key('question_five_several_days_key');
+const Key questionFiveMoreThanHalfKey = Key('question_five_more_than_half_key');
+const Key questionFiveNearlyEverydayKey =
+    Key('question_five_nearly_everyday_key');
+
+// question Six
+const Key questionSixNotAtAllDaysKey = Key('question_six_not_at_all_days_key');
+const Key questionSixSeveralDaysKey = Key('question_six_several_days_key');
+const Key questionSixMoreThanHalfKey = Key('question_six_more_than_half_key');
+const Key questionSixNearlyEverydayKey =
+    Key('question_six_nearly_everyday_key');
+
+// question Seven
+const Key questionSevenNotAtAllDaysKey =
+    Key('question_seven_not_at_all_days_key');
+const Key questionSevenSeveralDaysKey = Key('question_seven_several_days_key');
+const Key questionSevenMoreThanHalfKey =
+    Key('question_seven_more_than_half_key');
+const Key questionSevenNearlyEverydayKey =
+    Key('question_seven_nearly_everyday_key');
+
+// question Eight
+const Key questionEightNotAtAllDaysKey =
+    Key('question_eight_not_at_all_days_key');
+const Key questionEightSeveralDaysKey = Key('question_eight_several_days_key');
+const Key questionEightMoreThanHalfKey =
+    Key('question_eight_more_than_half_key');
+const Key questionEightNearlyEverydayKey =
+    Key('question_eight_nearly_everyday_key');
+
+// question Nine
+const Key questionNineNotAtAllDaysKey =
+    Key('question_nine_not_at_all_days_key');
+const Key questionNineSeveralDaysKey = Key('question_nine_several_days_key');
+const Key questionNineMoreThanHalfKey = Key('question_nine_more_than_half_key');
+const Key questionNineNearlyEverydayKey =
+    Key('question_nine_nearly_everyday_key');
+
+// question Ten
+const Key questionTenNotAtAllDaysKey = Key('question_ten_not_at_all_days_key');
+const Key questionTenSeveralDaysKey = Key('question_ten_several_days_key');
+const Key questionTenMoreThanHalfKey = Key('question_ten_more_than_half_key');
+const Key questionTenNearlyEverydayKey =
+    Key('question_ten_nearly_everyday_key');
+// submit health assessment
+const Key submitHealthAssessmentKey = Key('submit_health_assessment_key');

@@ -1,7 +1,6 @@
 import 'package:afya_moja_core/text_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -42,9 +41,8 @@ class ScreeningToolsListPage extends StatelessWidget {
               title: violenceTitle,
               description: violenceDescription,
               onTap: () {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(snackbar(content: comingSoonText));
+                Navigator.of(context)
+                    .pushNamed(AppRoutes.violenceAssessmentPage);
               },
             ),
             ScreeningToolsBanner(
@@ -67,9 +65,7 @@ class ScreeningToolsListPage extends StatelessWidget {
               title: healthTitle,
               description: healthDescription,
               onTap: () {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(snackbar(content: comingSoonText));
+                Navigator.of(context).pushNamed(AppRoutes.healthAssessmentPage);
               },
             ),
           ],

@@ -11,8 +11,8 @@ import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/assesstment/contraceptive_assessment_page.dart';
-import 'package:myafyahub/presentation/assesstment/tuberculosis_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/contraceptive_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/tuberculosis_assessment_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
@@ -20,6 +20,7 @@ import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
 import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
+import 'package:myafyahub/presentation/health_assessment/pages/health_assessment_page.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
@@ -291,6 +292,11 @@ class RouteGenerator {
       case AppRoutes.tuberculosisAssessmentPage:
         return MaterialPageRoute<TuberculosisAssessmentPage>(
           builder: (_) => const TuberculosisAssessmentPage(),
+        );
+
+      case AppRoutes.healthAssessmentPage:
+        return MaterialPageRoute<HealthAssessmentPage>(
+          builder: (_) => const HealthAssessmentPage(),
         );
 
       default:

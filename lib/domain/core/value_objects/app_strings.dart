@@ -724,3 +724,42 @@ const String experiencedACoughString =
 const String doYouHaveFeverString = '2. Do you have a fever?';
 const String noticedAnyWeighLossString = '3. Have you noticed any weight loss?';
 const String experienceNightSweatsString = '4. Do you experience night sweats?';
+// health assessment
+const String healthAssessmentTitle = 'Health Assessment';
+const String healthAssessmentSubtitle =
+    'Thank you for your interest in assessing health. The information you provide will be confidential';
+const String healthAssessmentDescription =
+    'Over the last 2 weeks, how often have you been bothered by any of the following problems?';
+const String notAtAllString = 'Not at all';
+const String severalDays = 'Several days';
+const String moreThanHalfTheDaysString = 'More than half the days';
+const String nearlyEveryDay = 'Nearly every day';
+
+const String healthAssessmentQuestionOne =
+    '1. Little interest or pleasure in doing things';
+
+const String healthAssessmentQuestionTwo =
+    '2. Feeling down, depressed or hopeless';
+
+const String healthAssessmentQuestionThree =
+    '3. Trouble falling or staying asleep, or sleeping too much';
+
+const String healthAssessmentQuestionFour =
+    '4. Feeling tired or having little energy';
+
+const String healthAssessmentQuestionFive = '5. Poor appetite or overeating';
+
+const String healthAssessmentQuestionSix =
+    '6. Feeling bad about yourself - or that you are a failure or have let yourself or your family down';
+
+const String healthAssessmentQuestionSeven =
+    '7. Trouble concentrating on things, such as reading the newspaper or watching television';
+
+const String healthAssessmentQuestionEight =
+    '8. Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual';
+
+const String healthAssessmentQuestionNine =
+    '9. Thoughts that you would be better off dead or of hurting yourself in some way';
+
+const String healthAssessmentQuestionTen =
+    'If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?';

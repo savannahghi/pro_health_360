@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/assesstment/tuberculosis_assessment_page.dart';
+import 'package:myafyahub/presentation/assessment/tuberculosis_assessment_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 
 import '../../../test_helpers.dart';
