@@ -1,11 +1,11 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class DeepLinkAction extends ReduxAction<AppState> {
@@ -14,7 +14,7 @@ class DeepLinkAction extends ReduxAction<AppState> {
     OnboardingPathConfig path;
 
     if (state.clientState?.user == null) {
-      path = OnboardingPathConfig(AppRoutes.phoneLogin);
+      path = OnboardingPathConfig(route: AppRoutes.phoneLogin);
     }
 
     final DateTime now = DateTime.now();
@@ -24,12 +24,12 @@ class DeepLinkAction extends ReduxAction<AppState> {
     if (tokenExpiryTimestamp == null ||
         tokenExpiryTimestamp.isEmpty ||
         tokenExpiryTimestamp == UNKNOWN) {
-      path = OnboardingPathConfig(AppRoutes.phoneLogin);
+      path = OnboardingPathConfig(route: AppRoutes.phoneLogin);
     } else {
       final DateTime expiresAt = DateTime.parse(tokenExpiryTimestamp);
 
       if (hasTokenExpired(expiresAt, now)) {
-        path = OnboardingPathConfig(AppRoutes.phoneLogin);
+        path = OnboardingPathConfig(route: AppRoutes.phoneLogin);
       } else {
         path = onboardingPath(appState: state);
       }

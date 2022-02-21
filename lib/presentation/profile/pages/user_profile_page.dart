@@ -1,7 +1,5 @@
 // Flutter imports:
-// Package imports:
-import 'package:afya_moja_core/information_list_card.dart';
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:

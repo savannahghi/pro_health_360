@@ -1,14 +1,13 @@
 // Flutter imports:
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:misc_utilities/number_constants.dart';
 // Project imports:
-import 'package:myafyahub/presentation/communities/chat_screen/widgets/sender_type_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-
-import 'quoted_message_widget.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/sender_type_widget.dart'
+    as local;
 
 /// [ReceivedMessageItem] used within the community chat screen to show received messages.
 class ReceivedMessageItem extends StatelessWidget {
@@ -31,7 +30,7 @@ class ReceivedMessageItem extends StatelessWidget {
   final String senderName;
   final String message;
   final String time;
-  final SenderTypeWidget? senderType;
+  final local.SenderTypeWidget? senderType;
   final QuotedMessageWidget? quotedMessageWidget;
 
   @override

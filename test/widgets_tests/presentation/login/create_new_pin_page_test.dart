@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 // Project imports:
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -200,15 +199,13 @@ void main() {
     });
 
     testWidgets('should render SILPlatformLoader', (WidgetTester tester) async {
-      BuildContext? ctx;
       await buildTestWidget(
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            ctx = context;
-            toggleLoadingIndicator(context: context, flag: 'resume_with_pin');
+            store.dispatch(WaitAction<AppState>.add('resume_with_pin'));
             return CreateNewPINPage(
               phoneNumber: '+254712345678',
             );
@@ -217,7 +214,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      toggleLoadingIndicator(context: ctx!, flag: createPinFlag);
+      store.dispatch(WaitAction<AppState>.add(createPinFlag));
       await tester.pump(const Duration(seconds: 2));
       expect(find.byType(SILPlatformLoader), findsOneWidget);
     });

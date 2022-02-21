@@ -1,6 +1,7 @@
 // Dart imports:
 import 'dart:convert';
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
@@ -10,15 +11,12 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:misc_utilities/misc.dart';
 // Project imports:
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:user_feed/user_feed.dart';
 
 class SendOTPAction extends ReduxAction<AppState> {
   SendOTPAction({
@@ -36,7 +34,7 @@ class SendOTPAction extends ReduxAction<AppState> {
   @override
   void after() {
     final String flag = isResend ? resendOTPFlag : sendOTPFlag;
-    toggleLoadingIndicator(context: context, flag: flag, show: false);
+    dispatch(WaitAction<AppState>.remove(flag));
 
     ///Ensure the callBackFunction is not null
     callBackFunction?.call();
@@ -46,7 +44,7 @@ class SendOTPAction extends ReduxAction<AppState> {
   @override
   void before() {
     final String flag = isResend ? resendOTPFlag : sendOTPFlag;
-    toggleLoadingIndicator(context: context, flag: flag);
+    dispatch(WaitAction<AppState>.add(flag));
     super.before();
   }
 
@@ -61,7 +59,7 @@ class SendOTPAction extends ReduxAction<AppState> {
     if (phoneNumber != UNKNOWN) {
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
-        'flavour': Flavour.CONSUMER.name,
+        'flavour': Flavour.consumer.name,
       };
 
       //Incase of send/resend otp error it is cleared
@@ -77,7 +75,7 @@ class SendOTPAction extends ReduxAction<AppState> {
       );
 
       final ProcessedResponse processedResponse =
-          processHttpResponse(httpResponse, context);
+          processHttpResponse(httpResponse);
 
       final Map<String, dynamic> payLoad = _client.toMap(httpResponse);
 

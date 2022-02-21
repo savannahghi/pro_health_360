@@ -1,13 +1,13 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/communities/chat_screen/widgets/quoted_message_widget.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/widgets/received_message_item.dart';
-import 'package:myafyahub/presentation/communities/chat_screen/widgets/sender_type_widget.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/sender_type_widget.dart' as local;
 import '../../../../../test_helpers.dart';
 
 void main() {
@@ -27,7 +27,7 @@ void main() {
           senderName: 'Wanjiku',
           message: 'Don\'t miss your appointment tomorrow',
           time: '12:00pm',
-          senderType: SenderTypeWidget(
+          senderType: local.SenderTypeWidget(
             senderTitle: 'Moderator',
             senderIcon: moderatorIcon,
           ),
@@ -45,7 +45,7 @@ void main() {
         findsOneWidget,
       );
       expect(find.text('12:00pm'), findsOneWidget);
-      expect(find.byType(SenderTypeWidget), findsOneWidget);
+      expect(find.byType(local.SenderTypeWidget), findsOneWidget);
       expect(find.byType(QuotedMessageWidget), findsOneWidget);
     });
   });

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,15 +16,12 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/questions/security_questions_data.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 class GetSecurityQuestionsAction extends ReduxAction<AppState> {
@@ -51,7 +49,7 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
 
     final http.Response result =
         await _client.query(getSecurityQuestionsQuery, <String, dynamic>{
-      'flavour': Flavour.CONSUMER.name,
+      'flavour': Flavour.consumer.name,
     });
 
     final Map<String, dynamic> body = _client.toMap(result);

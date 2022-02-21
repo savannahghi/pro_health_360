@@ -17,7 +17,6 @@ import 'package:shared_themes/constants.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/complete_onboarding_tour_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -46,12 +45,12 @@ class SetNicknameAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
-    toggleLoadingIndicator(context: context, flag: flag);
+    dispatch(WaitAction<AppState>.add(flag));
   }
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: flag, show: false);
+    dispatch(WaitAction<AppState>.remove(flag));
     super.after();
   }
 

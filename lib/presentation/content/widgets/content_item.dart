@@ -1,4 +1,4 @@
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

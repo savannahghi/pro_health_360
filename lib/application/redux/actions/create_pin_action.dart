@@ -13,7 +13,6 @@ import 'package:http/http.dart' as http;
 import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -46,12 +45,12 @@ class CreatePINAction extends ReduxAction<AppState> {
   /// returns a bottom sheet that gives the user a friendly message and an option to create an account
   @override
   void before() {
-    toggleLoadingIndicator(context: context, flag: flag);
+    dispatch(WaitAction<AppState>.add(flag));
   }
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: flag, show: false);
+    dispatch(WaitAction<AppState>.remove(flag));
     super.after();
   }
 

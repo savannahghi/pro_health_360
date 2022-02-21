@@ -2,7 +2,7 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:chewie/chewie.dart';
@@ -30,12 +30,10 @@ import 'package:myafyahub/application/redux/actions/update_pin_input_details_act
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
-import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -686,13 +684,6 @@ void navigateToNewPage({
   );
 }
 
-bool isNumeric(String? s) {
-  if (s == null) {
-    return false;
-  }
-  return int.tryParse(s) != null;
-}
-
 String returnCurrentYear() {
   final DateTime now = DateTime.now();
   return DateFormat('y').format(now);
@@ -783,14 +774,6 @@ MoodItemData getMoodColor(String? mood) {
     default:
       return MoodItemData.initial();
   }
-}
-
-DateTime getTokenExpiryTimestamp(String? expiresIn) {
-  final DateTime now = DateTime.now();
-  if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
-    return now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
-  }
-  return now;
 }
 
 Future<ChewieController> initializeChewiController({

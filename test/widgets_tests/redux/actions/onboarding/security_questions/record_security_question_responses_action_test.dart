@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -14,7 +15,6 @@ import 'package:shared_ui_components/buttons.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/record_security_question_responses_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 

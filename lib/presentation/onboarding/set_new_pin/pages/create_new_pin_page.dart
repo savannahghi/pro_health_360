@@ -1,9 +1,5 @@
 // Flutter imports:
-// Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:afya_moja_core/onboarding_scaffold.dart';
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +18,6 @@ import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_statu
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_ui_components/platform_loader.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
 ///
@@ -178,7 +173,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                                   context: context,
                                   newPIN: pin,
                                   confirmPIN: confirmPin,
-                                  flavour: Flavour.CONSUMER.name,
+                                  flavour: Flavour.consumer.name,
                                 );
                               }
                             },

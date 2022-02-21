@@ -1,6 +1,5 @@
-// Flutter imports:
-import 'package:afya_moja_core/text_themes.dart';
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

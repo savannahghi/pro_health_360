@@ -14,7 +14,6 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -157,22 +156,21 @@ void main() {
     });
 
     testWidgets('should render SILPlatformLoader', (WidgetTester tester) async {
-      BuildContext? ctx;
       await buildTestWidget(
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            ctx = context;
-            toggleLoadingIndicator(context: context, flag: 'resume_with_pin');
+            store.dispatch(WaitAction<AppState>.add('resume_with_pin'));
+
             return SetNickNamePage(connectivityStatus: connectivityStatus);
           },
         ),
       );
 
       await tester.pumpAndSettle();
-      toggleLoadingIndicator(context: ctx!, flag: setNickNameFlag);
+      store.dispatch(WaitAction<AppState>.add(setNickNameFlag));
       await tester.pump(const Duration(seconds: 2));
       expect(find.byType(SILPlatformLoader), findsNWidgets(2));
     });

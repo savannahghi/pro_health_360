@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,15 +12,12 @@ import 'package:domain_objects/failures.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
@@ -34,14 +32,14 @@ class ResendOTPAction extends ReduxAction<AppState> {
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: resendOTPFlag, show: false);
+    dispatch(WaitAction<AppState>.add(resendOTPFlag));
     callBackFunction();
     super.after();
   }
 
   @override
   void before() {
-    toggleLoadingIndicator(context: context, flag: resendOTPFlag);
+    dispatch(WaitAction<AppState>.remove(resendOTPFlag));
   }
 
   @override
@@ -55,7 +53,7 @@ class ResendOTPAction extends ReduxAction<AppState> {
 
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
-        'flavour': Flavour.CONSUMER.name,
+        'flavour': Flavour.consumer.name,
       };
 
       final IGraphQlClient httpClient =
@@ -68,7 +66,7 @@ class ResendOTPAction extends ReduxAction<AppState> {
       );
 
       final ProcessedResponse processedResponse =
-          processHttpResponse(httpResponse, context);
+          processHttpResponse(httpResponse);
 
       if (processedResponse.ok == true) {
         //Return OTP sent as string

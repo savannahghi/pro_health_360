@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:domain_objects/value_objects.dart';
@@ -20,7 +21,6 @@ import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/pin_input_field_widget.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
 
 import '../../../../../mocks.dart';

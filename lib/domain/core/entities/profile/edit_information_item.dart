@@ -1,8 +1,6 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-
-// Project imports:
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 class EditInformationItem {
   EditInformationItem({

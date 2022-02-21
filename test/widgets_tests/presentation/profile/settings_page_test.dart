@@ -2,8 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';

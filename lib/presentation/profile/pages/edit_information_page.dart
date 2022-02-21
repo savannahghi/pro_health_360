@@ -1,9 +1,5 @@
 // Flutter imports:
-// Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/custom_text_field.dart';
-import 'package:afya_moja_core/inputs.dart';
-import 'package:afya_moja_core/text_themes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +13,6 @@ import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dar
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:shared_themes/spaces.dart';

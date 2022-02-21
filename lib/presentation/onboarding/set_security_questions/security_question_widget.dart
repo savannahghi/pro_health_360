@@ -1,18 +1,16 @@
 // Flutter imports:
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:afya_moja_core/inputs.dart';
 import 'package:domain_objects/value_objects.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class SecurityQuestionWidget extends StatefulWidget {

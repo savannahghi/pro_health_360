@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
@@ -17,20 +18,18 @@ import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
+import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/onboarding_path_config.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:user_feed/user_feed.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend
 ///
@@ -53,12 +52,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
-    toggleLoadingIndicator(context: context, flag: flag);
+    dispatch(WaitAction<AppState>.add(flag));
   }
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: flag, show: false);
+    dispatch(WaitAction<AppState>.remove(flag));
     super.after();
   }
 
@@ -77,7 +76,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'pin': pin,
-        'flavour': Flavour.CONSUMER.name,
+        'flavour': Flavour.consumer.name,
       };
 
       final IGraphQlClient httpClient =
@@ -93,7 +92,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       );
 
       final ProcessedResponse processedResponse =
-          processHttpResponse(httpResponse, context);
+          processHttpResponse(httpResponse);
 
       if (processedResponse.ok == true) {
         final Map<String, dynamic> parsed =
@@ -169,6 +168,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         );
         return state;
       } else {
+        if (processedResponse.message == wrongLoginCredentials) {
+          dispatch(PhoneLoginStateAction(invalidCredentials: true));
+        }
+
         final Map<String, dynamic> body =
             json.decode(httpResponse.body) as Map<String, dynamic>;
 

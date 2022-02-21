@@ -84,15 +84,6 @@ const String logTitle = 'Get FAQs';
 
 const String actionTextGenericNoData = 'Retry';
 
-String getErrorMessage([String message = '']) {
-  if (message.isEmpty) {
-    return genericErrorOccurred;
-  } else {
-    return 'Sorry, an error occurred while $message.'
-        ' Please try again later, or contact support center';
-  }
-}
-
 const String messageBodyGenericNoData =
     'Something went wrong while fetching contents of this section, retry or contact support for immediate help';
 const String feedErrorDetail =

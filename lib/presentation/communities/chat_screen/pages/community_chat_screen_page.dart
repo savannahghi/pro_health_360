@@ -1,21 +1,16 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:afya_moja_core/community_list_item.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/communities/chat_screen/widgets/message_input.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/widgets/more_menu_drop_down.dart';
-import 'package:myafyahub/presentation/communities/chat_screen/widgets/quoted_message_widget.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/widgets/received_message_item.dart';
-import 'package:myafyahub/presentation/communities/chat_screen/widgets/time_classification_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import '../widgets/sender_type_widget.dart';
-import '../widgets/sent_message_item.dart';
+import 'package:myafyahub/presentation/communities/chat_screen/widgets/sender_type_widget.dart'
+    as local;
 
 class CommunityChatScreenPage extends StatefulWidget {
   const CommunityChatScreenPage({required this.communityChatData});
@@ -50,7 +45,7 @@ class _CommunityChatScreenPageState extends State<CommunityChatScreenPage> {
         senderName: 'Wanjiku',
         message: 'Don\'t miss your appointment tomorrow',
         time: '12:00pm',
-        senderType: SenderTypeWidget(
+        senderType: local.SenderTypeWidget(
           senderTitle: 'Moderator',
           senderIcon: moderatorIcon,
         ),
@@ -74,7 +69,7 @@ class _CommunityChatScreenPageState extends State<CommunityChatScreenPage> {
         senderName: 'Wanjiku',
         message: 'Don\'t miss your appointment tomorrow',
         time: '12:00pm',
-        senderType: SenderTypeWidget(
+        senderType: local.SenderTypeWidget(
           senderTitle: 'Doctor',
           senderIcon: moderatorIcon,
         ),

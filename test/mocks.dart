@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
@@ -18,16 +19,11 @@ import 'package:myafyahub/domain/core/entities/communities/group.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/questions/security_question.dart';
-import 'package:myafyahub/domain/core/entities/security_questions/responses/security_question_response.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
-import 'package:myafyahub/domain/core/value_objects/enums.dart' as local_enums;
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:user_feed/user_feed.dart';
 import 'package:video_player/video_player.dart';
 
 import 'test_utils.dart';
@@ -1034,7 +1030,7 @@ Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
   'SecurityQuestionID': 'id',
   'QuestionStem': 'question_stem',
   'Description': 'description',
-  'ResponseType': enums.SecurityQuestionResponseType.UNKNOWN.name,
+  'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
   'Active': true,
 };
 
@@ -1043,21 +1039,21 @@ final List<dynamic> securityQuestionsMock = <dynamic>[
     'SecurityQuestionID': 'id1',
     'QuestionStem': 'What are the last 4 digits of your CCC number?',
     'Description': 'Please provide the last 4 digits of your clinic number',
-    'ResponseType': enums.SecurityQuestionResponseType.UNKNOWN.name,
+    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
   <String, dynamic>{
     'SecurityQuestionID': 'id2',
     'QuestionStem': 'Which month did you start your treatment?',
     'Description': 'Enter the month you started your treatment',
-    'ResponseType': enums.SecurityQuestionResponseType.DATE.name,
+    'ResponseType': SecurityQuestionResponseType.DATE.name,
     'Active': true,
   },
   <String, dynamic>{
     'SecurityQuestionID': 'id3',
     'QuestionStem': 'Which county is your clinic located?',
-    'Description': 'nter the name of the county in small letters',
-    'ResponseType': enums.SecurityQuestionResponseType.UNKNOWN.name,
+    'Description': 'enter the name of the county in small letters',
+    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
 ];
@@ -1103,7 +1099,7 @@ Map<String, dynamic> mockFAQContent = <String, dynamic>{
   'Title': 'title',
   'Body': 'body',
   'Description': 'description',
-  'Flavour': Flavour.CONSUMER.name,
+  'Flavour': Flavour.consumer.name,
 };
 
 final Map<String, dynamic> termsMock = <String, dynamic>{

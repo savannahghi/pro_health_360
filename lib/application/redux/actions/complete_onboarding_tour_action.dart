@@ -18,12 +18,11 @@ import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
-/// [CompleteOnboardingTourAction] is a Redux Action whose job is to update a users onboarding tour 
+/// [CompleteOnboardingTourAction] is a Redux Action whose job is to update a users onboarding tour
 /// completion status,
 ///
 /// Otherwise delightfully notify user of any Error that might occur during the process
@@ -42,12 +41,12 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   @override
   void before() {
-    toggleLoadingIndicator(context: context, flag: flag);
+    dispatch(WaitAction<AppState>.add(flag));
   }
 
   @override
   void after() {
-    toggleLoadingIndicator(context: context, flag: flag, show: false);
+    dispatch(WaitAction<AppState>.remove(flag));
     super.after();
   }
 

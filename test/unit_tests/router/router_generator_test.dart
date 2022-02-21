@@ -1,14 +1,13 @@
 // Flutter imports:
 
 // Package imports:
-import 'package:afya_moja_core/community_list_item.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';

@@ -14,7 +14,7 @@ packages:
       name: afya_moja_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.34"
+    version: "0.0.48"
   analyzer:
     dependency: transitive
     description:
@@ -1336,7 +1336,7 @@ packages:
       name: shared_ui_components
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.44-nullsafety"
+    version: "0.1.46-nullsafety"
   shelf:
     dependency: transitive
     description:

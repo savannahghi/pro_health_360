@@ -67,8 +67,6 @@ enum ContentDisplayedType { RECENT, FEED, BOOKMARK, UNKNOWN }
 
 enum FeaturedMediaType { audio, video, UNKNOWN }
 
-enum EditInformationInputType { Text, DropDown }
-
 /// The type of the client
 enum ClientType {
   PMTCT,
@@ -98,22 +96,3 @@ enum RelationshipType {
 
 /// The type of contact being used
 enum ContactType { PHONE, EMAIL, UNKNOWN }
-
-/// Security Questions response type
-enum SecurityQuestionResponseType { NUMBER, TEXT, DATE, UNKNOWN }
-
-/// [SecurityQuestionResponseTypeEx] extends [SecurityQuestionResponseType] enum to get the values as
-/// strings
-extension SecurityQuestionResponseTypeEx on SecurityQuestionResponseType {
-  String get name {
-    return describeEnum(this).toUpperCase();
-  }
-}
-
-enum CaregiverType { Father, Mother, Sibling }
-
-extension CaregiverTypeEx on CaregiverType {
-  String get name {
-    return describeEnum(this);
-  }
-}

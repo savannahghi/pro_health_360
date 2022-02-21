@@ -1,10 +1,5 @@
 // Flutter imports:
-
-// Package imports:
-import 'package:afya_moja_core/buttons.dart';
-import 'package:afya_moja_core/inputs.dart';
-import 'package:afya_moja_core/text_themes.dart';
-// Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:misc_utilities/number_constants.dart';

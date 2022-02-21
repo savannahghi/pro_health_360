@@ -1,5 +1,5 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:test/test.dart';
 
 import '../../../../mocks.dart';

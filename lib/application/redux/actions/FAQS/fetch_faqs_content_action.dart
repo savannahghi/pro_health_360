@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
@@ -19,10 +20,7 @@ import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/FAQS/update_faqs_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/faqs/faq_content.dart';
-import 'package:myafyahub/domain/core/entities/faqs/faq_content_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:user_feed/user_feed.dart';
 
 class FetchFAQSContentAction extends ReduxAction<AppState> {
   FetchFAQSContentAction({
@@ -51,7 +49,7 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
 
     final http.Response result =
         await _client.query(getFAQContentQuery, <String, dynamic>{
-      'flavour': Flavour.CONSUMER.name,
+      'flavour': Flavour.consumer.name,
       'limit': limit,
     });
 

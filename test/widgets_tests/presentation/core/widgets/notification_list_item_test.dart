@@ -1,15 +1,14 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/icon_details.dart';
-import 'package:myafyahub/domain/core/entities/notification/notification_actions.dart';
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/notifications/notification_list_item.dart';
+import 'package:myafyahub/presentation/notifications/notification_list_item.dart' as local;
 
 void main() {
   group('NotificationListItem', () {
@@ -19,7 +18,7 @@ void main() {
         home: Builder(
           builder: (BuildContext context) {
             return Scaffold(
-              body: NotificationListItem(
+              body: local.NotificationListItem(
                 notificationDetails: NotificationDetails(
                   icon: IconDetails(
                     iconUrlSvgPath: teleConsultVideoNotificationIcon,
@@ -39,7 +38,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // verify Notification List Item renders correctly
-      expect(find.byType(NotificationListItem), findsOneWidget);
+      expect(find.byType(local.NotificationListItem), findsOneWidget);
 
       expect(find.text('Add to Calendar'), findsNothing);
     });
@@ -50,7 +49,7 @@ void main() {
         home: Builder(
           builder: (BuildContext context) {
             return Scaffold(
-              body: NotificationListItem(
+              body: local.NotificationListItem(
                 notificationDetails: NotificationDetails(
                   icon: IconDetails(
                     iconUrlSvgPath: teleConsultVideoNotificationIcon,
@@ -77,7 +76,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // verify Notification List Item renders correctly
-      expect(find.byType(NotificationListItem), findsOneWidget);
+      expect(find.byType(local.NotificationListItem), findsOneWidget);
 
       expect(find.text('Add to Calendar'), findsOneWidget);
     });

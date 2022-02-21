@@ -1,18 +1,16 @@
 // Dart imports:
-import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:shared_ui_components/buttons.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -20,7 +18,6 @@ import 'package:myafyahub/application/redux/actions/update_credentials_action.da
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/login/processed_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -65,365 +62,6 @@ void main() {
       late Store<AppState> store;
       setUp(() {
         store = Store<AppState>(initialState: AppState.initial());
-      });
-
-      testWidgets('Onboarding utils should process response with a 200',
-          (WidgetTester tester) async {
-        final http.Response expectedResponse = http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{'addTester': true}
-          }),
-          201,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse = processHttpResponse(expectedResponse);
-                  },
-                  text: processBtnText,
-                ),
-              ),
-            ),
-          ),
-        );
-
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, true);
-        expect(actualResponse.response, expectedResponse);
-      });
-
-      testWidgets(
-          'Onboarding utils should process response with a 400 and a status code of 4',
-          (WidgetTester tester) async {
-        store.dispatch(
-          UpdateUserProfileAction(
-            firstName: 'Test',
-            lastName: 'Name',
-          ),
-        );
-
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{
-            'error': <String, dynamic>{
-              'code': 4,
-              'message': 'coverage is still not 100%'
-            },
-            'code': 4,
-          }),
-          400,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return MaterialApp(
-                home: Scaffold(
-                  body: Center(
-                    child: SILPrimaryButton(
-                      onPressed: () {
-                        actualResponse =
-                            processHttpResponse(expectedErrorResponse, context);
-                      },
-                      text: processBtnText,
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        );
-
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        // expect a default error msg because context was not passed in
-        expect(actualResponse.message, userWithThatPhoneExists);
-      });
-
-      testWidgets(
-          'Onboarding utils should process response '
-          'with a 400 and a status code of 8', (WidgetTester tester) async {
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{
-            'code': 8,
-            'message': 'coverage is still not 100%'
-          }),
-          400,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse =
-                        processHttpResponse(expectedErrorResponse, context);
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        // expect a default error msg because context was not passed in
-        expect(actualResponse.message, wrongLoginCredentials);
-
-        expect(
-          store.state.onboardingState!.phoneLogin!.invalidCredentials,
-          true,
-        );
-      });
-
-      testWidgets(
-          'Onboarding utils should process response '
-          'with a 400 and a status code of 7', (WidgetTester tester) async {
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{
-            'code': 7,
-            'message': 'coverage is still not 100%'
-          }),
-          400,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse =
-                        processHttpResponse(expectedErrorResponse, context);
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        // expect a default error msg because context was not passed in
-        expect(actualResponse.message, userNotFound);
-
-        expect(
-          store.state.onboardingState!.phoneLogin!.invalidCredentials,
-          false,
-        );
-      });
-
-      testWidgets(
-          'Onboarding utils should process response '
-          'with a 500 and a status code of 8', (WidgetTester tester) async {
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{
-            'code': 11,
-            'message': 'coverage is still not 100%'
-          }),
-          400,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse =
-                        processHttpResponse(expectedErrorResponse, context);
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        // expect a default error msg because context was not passed in
-        expect(actualResponse.message, defaultUserFriendlyMessage);
-      });
-
-      testWidgets('Onboarding utils should process response with a 500',
-          (WidgetTester tester) async {
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{
-            'code': 11,
-            'message': 'coverage is still not 100%'
-          }),
-          500,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse =
-                        processHttpResponse(expectedErrorResponse, context);
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        // expect a default error msg because context was not passed in
-        expect(actualResponse.response, isA<http.Response>());
-      });
-
-      testWidgets('Onboarding utils should process response with a 408',
-          (WidgetTester tester) async {
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{'error': 'timeout'}),
-          408,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse =
-                        processHttpResponse(expectedErrorResponse, context);
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        expect(actualResponse.message, slowInternet);
-      });
-
-      testWidgets('Onboarding utils should process response with a 522',
-          (WidgetTester tester) async {
-        final http.Response expectedErrorResponse = http.Response(
-          json.encode(<String, dynamic>{'error': 'timeout'}),
-          522,
-        );
-        const String processBtnText = 'process response';
-        late ProcessedResponse actualResponse;
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    actualResponse =
-                        processHttpResponse(expectedErrorResponse, context);
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(actualResponse.ok, false);
-        expect(actualResponse.response, expectedErrorResponse);
-        expect(actualResponse.message, getErrorMessage());
       });
 
       group('OnboardingPath', () {
@@ -652,74 +290,6 @@ void main() {
           expect(path, AppRoutes.phoneLogin);
         });
       });
-
-      testWidgets('should toggle loading indicator with true',
-          (WidgetTester tester) async {
-        const String processBtnText = 'process response';
-        const String testFlag = 'test_flag';
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    toggleLoadingIndicator(context: context, flag: testFlag);
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(store.state.wait!.isWaitingFor(testFlag), true);
-      });
-
-      testWidgets('should toggle loading indicator with false',
-          (WidgetTester tester) async {
-        const String processBtnText = 'process response';
-        const String testFlag = 'test_flag';
-
-        await buildTestWidget(
-          tester: tester,
-          store: store,
-          client: mockGraphQlClient,
-          widget: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: SILPrimaryButton(
-                  onPressed: () {
-                    toggleLoadingIndicator(
-                      context: context,
-                      flag: testFlag,
-                      show: false,
-                    );
-                  },
-                  text: processBtnText,
-                ),
-              );
-            },
-          ),
-        );
-        await tester.pump();
-        expect(find.text(processBtnText), findsOneWidget);
-        expect(find.byType(SILPrimaryButton), findsOneWidget);
-
-        await tester.tap(find.byType(SILPrimaryButton));
-        await tester.pumpAndSettle();
-
-        expect(store.state.wait!.isWaitingFor(testFlag), false);
-      });
     });
 
     testWidgets('checkWaitingForFunc should show loading indicator',
@@ -821,7 +391,7 @@ void main() {
                   confirmPIN: '0000',
                   context: context,
                   newPIN: '0000',
-                  flavour: Flavour.CONSUMER.name,
+                  flavour: Flavour.consumer.name,
                 );
               },
             );
@@ -849,7 +419,7 @@ void main() {
                   confirmPIN: '0001',
                   context: context,
                   newPIN: '0000',
-                  flavour: Flavour.CONSUMER.name,
+                  flavour: Flavour.consumer.name,
                 );
               },
             );

@@ -2,19 +2,18 @@
 // in myafyahub/test/widgets_tests/shared/services/onboarding_utils_2_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i3;
+import 'dart:async' as _i9;
 
-import 'package:dart_fcm/src/fcm.dart' as _i5;
-import 'package:dart_fcm/src/reminder_notification.dart' as _i10;
-import 'package:dart_fcm/src/setup_on_message.dart' as _i9;
-import 'package:firebase_messaging/firebase_messaging.dart' as _i7;
-import 'package:flutter/material.dart' as _i11;
+import 'package:dart_fcm/src/fcm.dart' as _i3;
+import 'package:dart_fcm/src/reminder_notification.dart' as _i8;
+import 'package:dart_fcm/src/setup_on_message.dart' as _i7;
+import 'package:firebase_messaging/firebase_messaging.dart' as _i5;
+import 'package:flutter/material.dart' as _i10;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
-    as _i6;
-import 'package:misc_utilities/src/refresh_token_manager.dart' as _i4;
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:myafyahub/application/core/services/datatime_parser.dart'
-    as _i8;
+    as _i6;
 import 'package:rxdart/rxdart.dart' as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,74 +27,21 @@ import 'package:rxdart/rxdart.dart' as _i2;
 class _FakeBehaviorSubject_0<T> extends _i1.Fake
     implements _i2.BehaviorSubject<T> {}
 
-class _FakeTimer_1 extends _i1.Fake implements _i3.Timer {}
+class _FakeSILFCM_1 extends _i1.Fake implements _i3.SILFCM {}
 
-class _FakeRefreshTokenManger_2 extends _i1.Fake
-    implements _i4.RefreshTokenManger {}
+class _FakeIOSInitializationSettings_2 extends _i1.Fake
+    implements _i4.IOSInitializationSettings {}
 
-class _FakeSILFCM_3 extends _i1.Fake implements _i5.SILFCM {}
+class _FakeMacOSInitializationSettings_3 extends _i1.Fake
+    implements _i4.MacOSInitializationSettings {}
 
-class _FakeIOSInitializationSettings_4 extends _i1.Fake
-    implements _i6.IOSInitializationSettings {}
-
-class _FakeMacOSInitializationSettings_5 extends _i1.Fake
-    implements _i6.MacOSInitializationSettings {}
-
-class _FakeNotificationSettings_6 extends _i1.Fake
-    implements _i7.NotificationSettings {}
-
-/// A class which mocks [RefreshTokenManger].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockRefreshTokenManger extends _i1.Mock
-    implements _i4.RefreshTokenManger {
-  MockRefreshTokenManger() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i2.BehaviorSubject<bool> get listen =>
-      (super.noSuchMethod(Invocation.getter(#listen),
-              returnValue: _FakeBehaviorSubject_0<bool>())
-          as _i2.BehaviorSubject<bool>);
-  @override
-  set listen(_i2.BehaviorSubject<bool>? _listen) =>
-      super.noSuchMethod(Invocation.setter(#listen, _listen),
-          returnValueForMissingStub: null);
-  @override
-  _i3.Timer get timer => (super.noSuchMethod(Invocation.getter(#timer),
-      returnValue: _FakeTimer_1()) as _i3.Timer);
-  @override
-  set timer(_i3.Timer? _timer) =>
-      super.noSuchMethod(Invocation.setter(#timer, _timer),
-          returnValueForMissingStub: null);
-  @override
-  _i4.RefreshTokenManger updateExpireTime(String? expire) =>
-      (super.noSuchMethod(Invocation.method(#updateExpireTime, [expire]),
-          returnValue: _FakeRefreshTokenManger_2()) as _i4.RefreshTokenManger);
-  @override
-  bool ifTokenIsAfterExpiry(DateTime? parsed) =>
-      (super.noSuchMethod(Invocation.method(#ifTokenIsAfterExpiry, [parsed]),
-          returnValue: false) as bool);
-  @override
-  bool ifTokenIsApproachingExpiry(DateTime? parsed) => (super.noSuchMethod(
-      Invocation.method(#ifTokenIsApproachingExpiry, [parsed]),
-      returnValue: false) as bool);
-  @override
-  bool checkExpireValidity(String? expireAt) =>
-      (super.noSuchMethod(Invocation.method(#checkExpireValidity, [expireAt]),
-          returnValue: false) as bool);
-  @override
-  void reset() => super.noSuchMethod(Invocation.method(#reset, []),
-      returnValueForMissingStub: null);
-  @override
-  String toString() => super.toString();
-}
+class _FakeNotificationSettings_4 extends _i1.Fake
+    implements _i5.NotificationSettings {}
 
 /// A class which mocks [DateTimeParser].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDateTimeParser extends _i1.Mock implements _i8.DateTimeParser {
+class MockDateTimeParser extends _i1.Mock implements _i6.DateTimeParser {
   MockDateTimeParser() {
     _i1.throwOnMissingStub(this);
   }
@@ -115,100 +61,100 @@ class MockDateTimeParser extends _i1.Mock implements _i8.DateTimeParser {
 /// A class which mocks [SILFCM].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSILFCM extends _i1.Mock implements _i5.SILFCM {
+class MockSILFCM extends _i1.Mock implements _i3.SILFCM {
   MockSILFCM() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  set navigationCallback(_i9.OnMessageCallback? _navigationCallback) => super
+  set navigationCallback(_i7.OnMessageCallback? _navigationCallback) => super
       .noSuchMethod(Invocation.setter(#navigationCallback, _navigationCallback),
           returnValueForMissingStub: null);
   @override
-  set androidChannel(_i6.AndroidNotificationChannel? _androidChannel) =>
+  set androidChannel(_i4.AndroidNotificationChannel? _androidChannel) =>
       super.noSuchMethod(Invocation.setter(#androidChannel, _androidChannel),
           returnValueForMissingStub: null);
   @override
-  _i2.BehaviorSubject<_i10.ReminderNotification>
+  _i2.BehaviorSubject<_i8.ReminderNotification>
       get didReceiveLocalNotificationSubject => (super.noSuchMethod(
               Invocation.getter(#didReceiveLocalNotificationSubject),
-              returnValue: _FakeBehaviorSubject_0<_i10.ReminderNotification>())
-          as _i2.BehaviorSubject<_i10.ReminderNotification>);
+              returnValue: _FakeBehaviorSubject_0<_i8.ReminderNotification>())
+          as _i2.BehaviorSubject<_i8.ReminderNotification>);
   @override
   _i2.BehaviorSubject<String> get selectNotificationSubject =>
       (super.noSuchMethod(Invocation.getter(#selectNotificationSubject),
               returnValue: _FakeBehaviorSubject_0<String>())
           as _i2.BehaviorSubject<String>);
   @override
-  _i3.Future<_i5.SILFCM> configure(
-          {_i11.BuildContext? context, _i9.OnMessageCallback? callback}) =>
+  _i9.Future<_i3.SILFCM> configure(
+          {_i10.BuildContext? context, _i7.OnMessageCallback? callback}) =>
       (super.noSuchMethod(
               Invocation.method(
                   #configure, [], {#context: context, #callback: callback}),
-              returnValue: Future<_i5.SILFCM>.value(_FakeSILFCM_3()))
-          as _i3.Future<_i5.SILFCM>);
+              returnValue: Future<_i3.SILFCM>.value(_FakeSILFCM_1()))
+          as _i9.Future<_i3.SILFCM>);
   @override
-  _i3.Future<void> listenOnDeviceTokenChanges(dynamic graphQLClient) =>
+  _i9.Future<void> listenOnDeviceTokenChanges(dynamic graphQLClient) =>
       (super.noSuchMethod(
           Invocation.method(#listenOnDeviceTokenChanges, [graphQLClient]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i3.Future<void> onMessageSetup<T extends _i7.FirebaseMessaging>(
-          {_i11.BuildContext? context, _i9.OnMessageCallback? callback}) =>
+  _i9.Future<void> onMessageSetup<T extends _i5.FirebaseMessaging>(
+          {_i10.BuildContext? context, _i7.OnMessageCallback? callback}) =>
       (super.noSuchMethod(
           Invocation.method(
               #onMessageSetup, [], {#context: context, #callback: callback}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i3.Future<void> initializeLocalNotifications() =>
+  _i9.Future<void> initializeLocalNotifications() =>
       (super.noSuchMethod(Invocation.method(#initializeLocalNotifications, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i3.Future<bool> onNotificationSelected(String? payload) =>
+  _i9.Future<bool> onNotificationSelected(String? payload) =>
       (super.noSuchMethod(Invocation.method(#onNotificationSelected, [payload]),
-          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
   @override
-  _i6.IOSInitializationSettings initializeIOSInitializationSettings() =>
+  _i4.IOSInitializationSettings initializeIOSInitializationSettings() =>
       (super.noSuchMethod(
               Invocation.method(#initializeIOSInitializationSettings, []),
-              returnValue: _FakeIOSInitializationSettings_4())
-          as _i6.IOSInitializationSettings);
+              returnValue: _FakeIOSInitializationSettings_2())
+          as _i4.IOSInitializationSettings);
   @override
-  _i6.MacOSInitializationSettings initializeMacOSInitializationSettings() =>
+  _i4.MacOSInitializationSettings initializeMacOSInitializationSettings() =>
       (super.noSuchMethod(
               Invocation.method(#initializeMacOSInitializationSettings, []),
-              returnValue: _FakeMacOSInitializationSettings_5())
-          as _i6.MacOSInitializationSettings);
+              returnValue: _FakeMacOSInitializationSettings_3())
+          as _i4.MacOSInitializationSettings);
   @override
-  _i3.Future<_i7.NotificationSettings> requestIOSFCMMessagingPermission() =>
+  _i9.Future<_i5.NotificationSettings> requestIOSFCMMessagingPermission() =>
       (super.noSuchMethod(
               Invocation.method(#requestIOSFCMMessagingPermission, []),
-              returnValue: Future<_i7.NotificationSettings>.value(
-                  _FakeNotificationSettings_6()))
-          as _i3.Future<_i7.NotificationSettings>);
+              returnValue: Future<_i5.NotificationSettings>.value(
+                  _FakeNotificationSettings_4()))
+          as _i9.Future<_i5.NotificationSettings>);
   @override
-  _i3.Future<_i7.NotificationSettings> requestMacOSFCMMessagingPermission() =>
+  _i9.Future<_i5.NotificationSettings> requestMacOSFCMMessagingPermission() =>
       (super.noSuchMethod(
               Invocation.method(#requestMacOSFCMMessagingPermission, []),
-              returnValue: Future<_i7.NotificationSettings>.value(
-                  _FakeNotificationSettings_6()))
-          as _i3.Future<_i7.NotificationSettings>);
+              returnValue: Future<_i5.NotificationSettings>.value(
+                  _FakeNotificationSettings_4()))
+          as _i9.Future<_i5.NotificationSettings>);
   @override
-  _i3.Future<String?> getDeviceToken() =>
+  _i9.Future<String?> getDeviceToken() =>
       (super.noSuchMethod(Invocation.method(#getDeviceToken, []),
-          returnValue: Future<String?>.value()) as _i3.Future<String?>);
+          returnValue: Future<String?>.value()) as _i9.Future<String?>);
   @override
-  _i3.Future<void> resetToken() =>
+  _i9.Future<void> resetToken() =>
       (super.noSuchMethod(Invocation.method(#resetToken, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i3.Stream<String> onDeviceTokenRefresh() =>
+  _i9.Stream<String> onDeviceTokenRefresh() =>
       (super.noSuchMethod(Invocation.method(#onDeviceTokenRefresh, []),
-          returnValue: Stream<String>.empty()) as _i3.Stream<String>);
+          returnValue: Stream<String>.empty()) as _i9.Stream<String>);
   @override
   String toString() => super.toString();
 }
