@@ -42,6 +42,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/auth.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:myafyahub/presentation/communities/group_info/widgets/group_member_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -948,3 +949,9 @@ void pinInputTimerStatus({required BuildContext context}) {
 }
 
 const int startTimer = 300;
+
+const List<GroupMemberItem> groupMembers = <GroupMemberItem>[
+  GroupMemberItem(title: 'Abiud Orina'),
+  GroupMemberItem(title: 'Jane Doe'),
+  GroupMemberItem(title: 'Juha Kalulu'),
+];

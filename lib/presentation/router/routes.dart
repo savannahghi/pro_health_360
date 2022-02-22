@@ -116,6 +116,9 @@ class AppRoutes {
   // successful assessment submission
   static const String successfulAssessmentSubmissionPage =
       '/successfulAssessmentSubmissionPage';
+
+  // group info
+  static const String groupInfoPage = '/groupInfoPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

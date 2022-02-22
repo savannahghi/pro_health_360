@@ -57,6 +57,8 @@ class AppColors {
   static const Color redColor = Color(0xFFE41518);
   static const Color purpleChillColor = Color(0xFF9269AD);
   static const Color javaColor = Color(0xFF17D1D4);
+  static const Color heavyDarkGreyColor = Color(0xFF555555);
+
   static ThemeColors themeColors = ThemeColors(
     primaryColor,
     primaryColor,

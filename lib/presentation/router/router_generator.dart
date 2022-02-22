@@ -12,6 +12,7 @@ import 'package:myafyahub/presentation/assessment/pages/tuberculosis_assessment_
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
+import 'package:myafyahub/presentation/communities/group_info/pages/group_info_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
@@ -299,6 +300,11 @@ class RouteGenerator {
       case AppRoutes.successfulAssessmentSubmissionPage:
         return MaterialPageRoute<SuccessfulAssessmentSubmissionPage>(
           builder: (_) => const SuccessfulAssessmentSubmissionPage(),
+        );
+
+      case AppRoutes.groupInfoPage:
+        return MaterialPageRoute<GroupInfoPage>(
+          builder: (_) => const GroupInfoPage(),
         );
 
       default:

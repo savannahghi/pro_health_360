@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 class MoreMenuDropDown extends StatelessWidget {
   ///
@@ -32,11 +33,7 @@ class MoreMenuDropDown extends StatelessWidget {
             );
             break;
           case 2:
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('$groupInfoText  $comingSoonText'),
-              ),
-            );
+            Navigator.of(context).pushNamed(AppRoutes.groupInfoPage);
             break;
           default:
         }

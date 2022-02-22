@@ -14,6 +14,7 @@ import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
+import 'package:myafyahub/presentation/communities/group_info/pages/group_info_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
@@ -484,5 +485,15 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SuccessfulAssessmentSubmissionPage>>());
     expect(route.builder(context), isA<SuccessfulAssessmentSubmissionPage>());
+  });
+
+  test('Test router returns successful group info page', () {
+    const RouteSettings settings = RouteSettings(name: AppRoutes.groupInfoPage);
+
+    final MaterialPageRoute<GroupInfoPage> route =
+        routeGenerator(settings) as MaterialPageRoute<GroupInfoPage>;
+
+    expect(route, isA<MaterialPageRoute<GroupInfoPage>>());
+    expect(route.builder(context), isA<GroupInfoPage>());
   });
 }
