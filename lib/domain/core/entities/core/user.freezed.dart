@@ -58,7 +58,8 @@ class _$UserTearOff {
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
-          bool? suspended}) {
+          bool? suspended,
+      String? chatRoomToken}) {
     return _User(
       userId: userId,
       username: username,
@@ -79,6 +80,7 @@ class _$UserTearOff {
       isPhoneVerified: isPhoneVerified,
       pinChangeRequired: pinChangeRequired,
       suspended: suspended,
+      chatRoomToken: chatRoomToken,
     );
   }
 
@@ -131,6 +133,7 @@ mixin _$User {
   bool? get pinChangeRequired => throw _privateConstructorUsedError;
   @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended => throw _privateConstructorUsedError;
+  String? get chatRoomToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -179,7 +182,8 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
-          bool? suspended});
+          bool? suspended,
+      String? chatRoomToken});
 
   $ContactCopyWith<$Res>? get primaryContact;
 }
@@ -213,6 +217,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? isPhoneVerified = freezed,
     Object? pinChangeRequired = freezed,
     Object? suspended = freezed,
+    Object? chatRoomToken = freezed,
   }) {
     return _then(_value.copyWith(
       userId: userId == freezed
@@ -291,6 +296,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.suspended
           : suspended // ignore: cast_nullable_to_non_nullable
               as bool?,
+      chatRoomToken: chatRoomToken == freezed
+          ? _value.chatRoomToken
+          : chatRoomToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -349,7 +358,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
-          bool? suspended});
+          bool? suspended,
+      String? chatRoomToken});
 
   @override
   $ContactCopyWith<$Res>? get primaryContact;
@@ -385,6 +395,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? isPhoneVerified = freezed,
     Object? pinChangeRequired = freezed,
     Object? suspended = freezed,
+    Object? chatRoomToken = freezed,
   }) {
     return _then(_User(
       userId: userId == freezed
@@ -463,6 +474,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.suspended
           : suspended // ignore: cast_nullable_to_non_nullable
               as bool?,
+      chatRoomToken: chatRoomToken == freezed
+          ? _value.chatRoomToken
+          : chatRoomToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -508,7 +523,8 @@ class _$_User implements _User {
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           this.pinChangeRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
-          this.suspended});
+          this.suspended,
+      this.chatRoomToken});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -570,10 +586,12 @@ class _$_User implements _User {
   @override
   @JsonKey(name: 'suspended', defaultValue: false)
   final bool? suspended;
+  @override
+  final String? chatRoomToken;
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, avatar: $avatar, name: $name, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, gender: $gender, active: $active, primaryContact: $primaryContact, secondaryContacts: $secondaryContacts, languages: $languages, termsAccepted: $termsAccepted, hasSetPin: $hasSetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickname: $hasSetNickname, isPhoneVerified: $isPhoneVerified, pinChangeRequired: $pinChangeRequired, suspended: $suspended)';
+    return 'User(userId: $userId, username: $username, avatar: $avatar, name: $name, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, gender: $gender, active: $active, primaryContact: $primaryContact, secondaryContacts: $secondaryContacts, languages: $languages, termsAccepted: $termsAccepted, hasSetPin: $hasSetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickname: $hasSetNickname, isPhoneVerified: $isPhoneVerified, pinChangeRequired: $pinChangeRequired, suspended: $suspended, chatRoomToken: $chatRoomToken)';
   }
 
   @override
@@ -632,7 +650,10 @@ class _$_User implements _User {
                     .equals(other.pinChangeRequired, pinChangeRequired)) &&
             (identical(other.suspended, suspended) ||
                 const DeepCollectionEquality()
-                    .equals(other.suspended, suspended)));
+                    .equals(other.suspended, suspended)) &&
+            (identical(other.chatRoomToken, chatRoomToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.chatRoomToken, chatRoomToken)));
   }
 
   @override
@@ -656,7 +677,8 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(hasSetNickname) ^
       const DeepCollectionEquality().hash(isPhoneVerified) ^
       const DeepCollectionEquality().hash(pinChangeRequired) ^
-      const DeepCollectionEquality().hash(suspended);
+      const DeepCollectionEquality().hash(suspended) ^
+      const DeepCollectionEquality().hash(chatRoomToken);
 
   @JsonKey(ignore: true)
   @override
@@ -708,7 +730,8 @@ abstract class _User implements User {
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
-          bool? suspended}) = _$_User;
+          bool? suspended,
+      String? chatRoomToken}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -769,6 +792,8 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended => throw _privateConstructorUsedError;
+  @override
+  String? get chatRoomToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

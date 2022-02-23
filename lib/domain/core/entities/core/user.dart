@@ -32,6 +32,7 @@ class User with _$User {
     @JsonKey(name: 'pinChangeRequired', defaultValue: false)
         bool? pinChangeRequired,
     @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,
+    String? chatRoomToken,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -51,5 +52,6 @@ class User with _$User {
         languages: <String>[],
         termsAccepted: false,
         pinChangeRequired: false,
+        chatRoomToken: UNKNOWN,
       );
 }

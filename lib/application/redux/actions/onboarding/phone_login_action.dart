@@ -17,7 +17,6 @@ import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
-import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
@@ -25,7 +24,6 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -128,8 +126,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        User? user =
-            loginResponse.clientState?.user?.copyWith(pinChangeRequired: false);
+        User? user = loginResponse.clientState?.user?.copyWith(
+          pinChangeRequired: false,
+          chatRoomToken: loginResponse.streamToken,
+        );
 
         final String fullname =
             loginResponse.clientState?.user?.name ?? UNKNOWN;
@@ -156,10 +156,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         final OnboardingPathConfig onboardingPathConfig =
             onboardingPath(appState: state);
-
-        dispatch(
-          BottomNavAction(currentBottomNavIndex: BottomNavIndex.home.index),
-        );
 
         Navigator.of(context).pushNamedAndRemoveUntil(
           onboardingPathConfig.route,
