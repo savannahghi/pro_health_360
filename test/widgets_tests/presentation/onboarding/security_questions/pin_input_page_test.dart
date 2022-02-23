@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,6 @@ import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

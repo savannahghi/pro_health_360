@@ -25,7 +25,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -56,7 +55,7 @@ void main() {
         client: mockGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () {
                 logoutUser(context: context);
               },
@@ -65,7 +64,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       await fireEvent(tester);
     });
@@ -87,7 +86,7 @@ void main() {
         client: mockGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               buttonKey: const Key('get_first_name_Key'),
               onPressed: () {
                 actualNameFromState = getDisplayName(
@@ -121,7 +120,7 @@ void main() {
             home: Scaffold(
               body: Builder(
                 builder: (BuildContext context) {
-                  return SILPrimaryButton(
+                  return MyAfyaHubPrimaryButton(
                     buttonKey: const Key('get_first_name_Key'),
                     onPressed: () {
                       actualNameFromState =
@@ -148,7 +147,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: SILPrimaryButton(
+              child: MyAfyaHubPrimaryButton(
                 buttonKey: showToastKey,
                 onPressed: () {
                   showToast('Some random toast message');
@@ -159,7 +158,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(SILPrimaryButton), findsOneWidget);
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
       expect(find.byKey(showToastKey), findsOneWidget);
 
       // tap the button to show the toast
@@ -176,7 +175,7 @@ void main() {
         client: mockGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () {
                 showFeedbackBottomSheet(
                   context: context,
@@ -190,7 +189,7 @@ void main() {
       );
       await tester.pump();
 
-      final Finder primaryBtn = find.byType(SILPrimaryButton);
+      final Finder primaryBtn = find.byType(MyAfyaHubPrimaryButton);
       expect(primaryBtn, findsOneWidget);
       await tester.tap(primaryBtn);
       await tester.pumpAndSettle();
@@ -213,7 +212,7 @@ void main() {
               body: Center(
                 child: Builder(
                   builder: (BuildContext context) {
-                    return SILPrimaryButton(
+                    return MyAfyaHubPrimaryButton(
                       buttonKey: const Key('snackbar_button'),
                       onPressed: () {
                         ScaffoldMessenger.of(context)
@@ -241,7 +240,7 @@ void main() {
               body: Center(
                 child: Builder(
                   builder: (BuildContext context) {
-                    return SILPrimaryButton(
+                    return MyAfyaHubPrimaryButton(
                       buttonKey: const Key('snackbar_button'),
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -333,7 +332,7 @@ void main() {
                   body: Builder(
                     builder: (BuildContext context) {
                       return Center(
-                        child: SILPrimaryButton(
+                        child: MyAfyaHubPrimaryButton(
                           buttonKey: const Key('update_contacts'),
                           onPressed: () {
                             testBool = shouldInputPIN(context);
@@ -424,7 +423,7 @@ void main() {
         client: client,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 await customFetchData(
                   streamController: _streamController,
@@ -439,7 +438,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       // There are no required expectations here because they have been already
       // verified in the setup above
@@ -465,7 +464,7 @@ void main() {
         client: client,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () {
                 reportErrorToSentry(
                   context,
@@ -487,7 +486,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(errorReported, true);
     });
@@ -506,7 +505,7 @@ void main() {
       client: baseGraphQlClientMock,
       widget: Builder(
         builder: (BuildContext context) {
-          return SILPrimaryButton(
+          return MyAfyaHubPrimaryButton(
             onPressed: () async {
               testMessage = setNickNamePageTitle(context: context);
             },
@@ -514,7 +513,7 @@ void main() {
         },
       ),
     );
-    await tester.tap(find.byType(SILPrimaryButton));
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
     await tester.pumpAndSettle();
     expect(testMessage, 'Congratulations on your health journey');
 
@@ -524,7 +523,7 @@ void main() {
             DateTime.now().subtract(const Duration(days: 1000)).toString(),
       ),
     );
-    await tester.tap(find.byType(SILPrimaryButton));
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
     await tester.pumpAndSettle();
     expect(testMessage, 'Congratulations on your 3 years health journey');
   });

@@ -45,7 +45,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/inputs.dart';
 import 'package:video_player/video_player.dart';
 
 Future<bool> onWillPopCallback() {

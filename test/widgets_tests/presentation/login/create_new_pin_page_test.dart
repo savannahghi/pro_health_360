@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -18,8 +19,6 @@ import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_statu
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
-import 'package:shared_ui_components/platform_loader.dart';
-
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

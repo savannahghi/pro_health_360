@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/security_questions/record_security_question_responses_action.dart';
@@ -50,7 +49,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 try {
                   store.dispatch(
@@ -73,7 +72,7 @@ void main() {
       );
 
       await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(err, isA<Future<dynamic>>());
     });

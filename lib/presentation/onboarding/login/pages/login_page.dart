@@ -22,7 +22,6 @@ import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_statu
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 /// [LoginPage] is parsed in [PhoneNumberLoginPage]
 ///

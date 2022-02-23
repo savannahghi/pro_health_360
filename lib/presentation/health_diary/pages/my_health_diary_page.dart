@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -6,7 +7,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_banner.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';

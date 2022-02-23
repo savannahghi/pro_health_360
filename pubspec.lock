@@ -14,7 +14,7 @@ packages:
       name: afya_moja_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.50"
+    version: "0.0.53"
   analyzer:
     dependency: transitive
     description:
@@ -428,13 +428,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.32-nullsafety"
-  dotted_border:
-    dependency: transitive
-    description:
-      name: dotted_border
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0+1"
   double_back_to_close_app:
     dependency: "direct main"
     description:
@@ -470,13 +463,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
-  file_picker:
-    dependency: transitive
-    description:
-      name: file_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.4"
   firebase:
     dependency: transitive
     description:
@@ -690,13 +676,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-  flutter_spinkit:
-    dependency: transitive
-    description:
-      name: flutter_spinkit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.1.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -924,13 +903,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.10"
-  material_design_icons_flutter:
-    dependency: transitive
-    description:
-      name: material_design_icons_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.6595"
   meta:
     dependency: transitive
     description:
@@ -945,13 +917,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
-  misc_utilities:
-    dependency: transitive
-    description:
-      name: misc_utilities
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.32-nullsafety"
   mockito:
     dependency: "direct dev"
     description:
@@ -1302,13 +1267,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
-  shared_ui_components:
-    dependency: "direct main"
-    description:
-      name: shared_ui_components
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.46-nullsafety"
   shelf:
     dependency: transitive
     description:

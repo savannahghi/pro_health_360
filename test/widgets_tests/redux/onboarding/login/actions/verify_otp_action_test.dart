@@ -13,7 +13,6 @@ import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -63,7 +62,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               buttonKey: const Key('verify_otp'),
               onPressed: () async {
                 try {
@@ -113,7 +112,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               buttonKey: const Key('verify_otp'),
               onPressed: () async {
                 try {

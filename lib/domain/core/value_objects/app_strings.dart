@@ -778,3 +778,6 @@ const String assessmentSubmissionSuccessfulText =
     'Thanks for sharing your assessment';
 const String assessmentSubmissionSuccessfulDescription =
     'Your doctor may review your assessment in your next visit, or reach out if necessary';
+
+/// Date picker format
+const String datePickerFormat = 'dd MMM, yyyy';

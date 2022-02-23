@@ -1,11 +1,11 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -44,9 +44,9 @@ void main() {
 
     await tester.pump();
 
-    expect(find.byType(SILNoBorderButton), findsOneWidget);
+    expect(find.byType(MyAfyaHubNoBorderButton), findsOneWidget);
 
-    await tester.tap(find.byType(SILNoBorderButton));
+    await tester.tap(find.byType(MyAfyaHubNoBorderButton));
     await fireEvent(tester);
     await tester.pumpAndSettle();
 

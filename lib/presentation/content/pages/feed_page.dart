@@ -10,7 +10,6 @@ import 'package:myafyahub/application/redux/view_models/content/content_view_mod
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
@@ -26,6 +25,7 @@ import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
 
 // Package imports:
 

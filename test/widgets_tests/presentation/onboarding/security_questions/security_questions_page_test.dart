@@ -19,8 +19,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
-import 'package:shared_ui_components/inputs.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -145,7 +143,7 @@ void main() {
       await tester.tap(find.text(secondQuestion));
       await tester.pumpAndSettle();
 
-      final Finder datePickerField = find.byType(SILDatePickerField);
+      final Finder datePickerField = find.byType(DatePickerField);
       expect(datePickerField, findsOneWidget);
       await tester.tap(datePickerField);
       await tester.pumpAndSettle();

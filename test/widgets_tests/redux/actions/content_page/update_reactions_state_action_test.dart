@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,7 +8,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/content/update_reactions_state_action.dart';
@@ -31,7 +31,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 await store.dispatch(
                   UpdateReactionStatusAction(
@@ -47,7 +47,7 @@ void main() {
       );
 
       await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(
         store.state.contentState!.feedContentState!.contentItems!.length,
@@ -68,7 +68,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 await store.dispatch(
                   UpdateReactionStatusAction(
@@ -84,7 +84,7 @@ void main() {
       );
 
       await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(
         store.state.contentState!.feedContentState!.contentItems!.length,

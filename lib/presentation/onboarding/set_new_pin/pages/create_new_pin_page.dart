@@ -17,7 +17,6 @@ import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.da
 import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 /// [CreateNewPINPage] has two [CustomTextField] to create new user PIN
 ///

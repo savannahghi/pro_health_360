@@ -21,7 +21,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class FeedCategoriesWidget extends StatefulWidget {
   @override

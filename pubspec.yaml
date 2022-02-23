@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  afya_moja_core: ^0.0.50
+  afya_moja_core: ^0.0.53
   app_wrapper: ^0.1.32
   async_redux: ^12.0.0
   cached_network_image: ^3.0.0
@@ -58,7 +58,6 @@ dependencies:
   share: ^2.0.4
   shared_preferences: ^2.0.6
   shared_themes: ^0.1.1
-  shared_ui_components: ^0.1.43-nullsafety
   shimmer: ^2.0.0
   sms_autofill: ^2.2.0
   sqflite: ^2.0.0+3
@@ -99,4 +98,10 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/
-    - packages/shared_ui_components/assets/test-development.png
+    - packages/afya_moja_core/assets/ken.png
+    - packages/afya_moja_core/assets/tza.png
+    - packages/afya_moja_core/assets/uga.png
+    - packages/afya_moja_core/assets/usa.png
+    - packages/afya_moja_core/assets/gbr.png
+    - packages/afya_moja_core/assets/bel.png
+    - packages/afya_moja_core/assets/nga.png

@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
@@ -21,7 +22,6 @@ import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.da
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({

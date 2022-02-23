@@ -1,9 +1,9 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -16,7 +16,7 @@ void main() {
         MaterialApp(
           home: Builder(
             builder: (BuildContext context) {
-              return SILPrimaryButton(
+              return MyAfyaHubPrimaryButton(
                 onPressed: () {
                   AppTheme.getAppTheme();
                 },
@@ -25,7 +25,7 @@ void main() {
           ),
         ),
       );
-      final Finder silPrimaryButton = find.byType(SILPrimaryButton);
+      final Finder silPrimaryButton = find.byType(MyAfyaHubPrimaryButton);
       expect(silPrimaryButton, findsOneWidget);
       expect(
         AppTheme.getAppTheme().colorScheme.secondary,

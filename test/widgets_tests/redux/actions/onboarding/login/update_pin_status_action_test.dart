@@ -1,12 +1,12 @@
 // Flutter imports:
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_pin_status_action.dart';
@@ -30,7 +30,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () async {
                     StoreProvider.dispatch(
                       context,
@@ -44,7 +44,7 @@ void main() {
         ),
       ),
     );
-    await tester.tap(find.byType(SILPrimaryButton));
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
     await tester.pumpAndSettle();
     expect(store.state.miscState!.userPin!.pin, testPin);
   });
@@ -58,7 +58,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () async {
                     StoreProvider.dispatch(
                       context,
@@ -76,7 +76,7 @@ void main() {
         ),
       ),
     );
-    await tester.tap(find.byType(SILPrimaryButton));
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
     await tester.pumpAndSettle();
     expect(store.state.miscState!.userPin!.pin, testPin);
   });

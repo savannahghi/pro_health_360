@@ -18,7 +18,6 @@ import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart'
 import 'package:myafyahub/presentation/router/routes.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 /// [SuggestedGroupsSection] is a widget used in the Feed Page
 ///

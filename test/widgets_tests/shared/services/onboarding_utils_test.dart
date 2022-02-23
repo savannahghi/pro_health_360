@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -90,7 +89,7 @@ void main() {
             client: mockGraphQlClient,
             widget: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () {
                     path = onboardingPath(appState: store.state).route;
                   },
@@ -99,7 +98,7 @@ void main() {
             ),
           );
 
-          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.securityQuestionsPage);
@@ -131,7 +130,7 @@ void main() {
             client: mockGraphQlClient,
             widget: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () {
                     path = onboardingPath(appState: store.state).route;
                   },
@@ -140,7 +139,7 @@ void main() {
             ),
           );
 
-          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.termsAndConditions);
@@ -173,7 +172,7 @@ void main() {
             client: mockGraphQlClient,
             widget: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () {
                     path = onboardingPath(appState: store.state).route;
                   },
@@ -182,7 +181,7 @@ void main() {
             ),
           );
 
-          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.createPin);
@@ -215,7 +214,7 @@ void main() {
             client: mockGraphQlClient,
             widget: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () {
                     path = onboardingPath(appState: store.state).route;
                   },
@@ -224,7 +223,7 @@ void main() {
             ),
           );
 
-          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.congratulationsPage);
@@ -248,7 +247,7 @@ void main() {
             client: mockGraphQlClient,
             widget: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () {
                     path = onboardingPath(appState: store.state).route;
                   },
@@ -257,7 +256,7 @@ void main() {
             ),
           );
 
-          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.verifySignUpOTP);
@@ -275,7 +274,7 @@ void main() {
             client: mockGraphQlClient,
             widget: Builder(
               builder: (BuildContext context) {
-                return SILPrimaryButton(
+                return MyAfyaHubPrimaryButton(
                   onPressed: () {
                     path = onboardingPath(appState: store.state).route;
                   },
@@ -284,7 +283,7 @@ void main() {
             ),
           );
 
-          await tester.tap(find.byType(SILPrimaryButton));
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.phoneLogin);
@@ -306,7 +305,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 await store.dispatch(
                   WaitAction<AppState>.add(
@@ -324,7 +323,7 @@ void main() {
       await tester.pump();
       expect(isWaitingFor, false);
 
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
 
       expect(isWaitingFor, true);
@@ -350,7 +349,7 @@ void main() {
           client: baseGraphQlClientMock,
           widget: Builder(
             builder: (BuildContext context) {
-              return SILPrimaryButton(
+              return MyAfyaHubPrimaryButton(
                 onPressed: () async {
                   clearAllFlags(context);
                   await Future<void>.delayed(const Duration(seconds: 5));
@@ -362,7 +361,7 @@ void main() {
 
         await tester.pump();
 
-        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
         await tester.pumpAndSettle();
 
         expect(store.state.wait!.isWaitingFor(flag), false);
@@ -385,7 +384,7 @@ void main() {
         client: mockGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 await setUserPIN(
                   confirmPIN: '0000',
@@ -399,7 +398,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(find.byType(SetNickNamePage), findsOneWidget);
     });
@@ -413,7 +412,7 @@ void main() {
         client: mockGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 await setUserPIN(
                   confirmPIN: '0001',
@@ -427,7 +426,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pump(const Duration(seconds: 1));
       expect(find.text(pinMustMatchString), findsOneWidget);
     });

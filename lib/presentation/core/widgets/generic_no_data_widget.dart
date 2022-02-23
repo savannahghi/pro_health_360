@@ -9,7 +9,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 enum GenericNoDataTypes { AbsentData, ErrorInData }
 
@@ -100,7 +99,7 @@ class GenericNoData extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 48,
-                        child: SILPrimaryButton(
+                        child: MyAfyaHubPrimaryButton(
                           buttonKey: genericNoDataButtonKey,
                           buttonColor: Theme.of(context).primaryColor,
                           textColor: AppColors.whiteColor,

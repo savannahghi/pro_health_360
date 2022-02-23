@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -13,7 +14,6 @@ import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart
 import 'package:myafyahub/application/redux/actions/update_saved_content_state_action.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';

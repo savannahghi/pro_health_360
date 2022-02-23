@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 // Flutter imports:
@@ -12,7 +13,6 @@ import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -59,7 +59,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               buttonKey: const Key('update_contacts'),
               onPressed: () {
                 StoreProvider.dispatch<AppState>(
@@ -107,7 +107,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               buttonKey: const Key('update_contacts'),
               onPressed: () async {
                 await store.dispatch(

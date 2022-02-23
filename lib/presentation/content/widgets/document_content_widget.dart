@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:myafyahub/application/redux/actions/fetch_pdf_action.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class DocumentContentPage extends StatefulWidget {
   const DocumentContentPage({

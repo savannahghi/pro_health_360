@@ -19,7 +19,6 @@ import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_p
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';

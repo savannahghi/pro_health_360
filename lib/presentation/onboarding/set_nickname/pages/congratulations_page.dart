@@ -22,7 +22,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class SetNickNamePage extends StatefulWidget {
   SetNickNamePage({ConnectivityStatus? connectivityStatus})

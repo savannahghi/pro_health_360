@@ -18,7 +18,6 @@ import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();

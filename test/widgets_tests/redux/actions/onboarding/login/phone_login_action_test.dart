@@ -1,5 +1,6 @@
 // Dart imports:
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
@@ -20,7 +21,6 @@ import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
-import 'package:shared_ui_components/buttons.dart';
 
 import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
@@ -55,7 +55,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 try {
                   await store.dispatch(
@@ -75,7 +75,7 @@ void main() {
       );
 
       await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(err, isA<Future<dynamic>>());
     });
@@ -94,7 +94,7 @@ void main() {
         client: baseGraphQlClientMock,
         widget: Builder(
           builder: (BuildContext context) {
-            return SILPrimaryButton(
+            return MyAfyaHubPrimaryButton(
               onPressed: () async {
                 await StoreProvider.dispatch(
                   context,
@@ -122,7 +122,7 @@ void main() {
       );
 
       await tester.pump();
-      await tester.tap(find.byType(SILPrimaryButton));
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
       expect(err, isA<Future<dynamic>>());
     });
@@ -165,7 +165,7 @@ void main() {
           client: MockGraphQlClient(),
           widget: Builder(
             builder: (BuildContext context) {
-              return SILPrimaryButton(
+              return MyAfyaHubPrimaryButton(
                 onPressed: () async {
                   await StoreProvider.dispatch(
                     context,
@@ -189,7 +189,7 @@ void main() {
         );
 
         await tester.pump();
-        await tester.tap(find.byType(SILPrimaryButton));
+        await tester.tap(find.byType(MyAfyaHubPrimaryButton));
         await tester.pumpAndSettle();
 
         expect(find.byType(HomePage), findsOneWidget);

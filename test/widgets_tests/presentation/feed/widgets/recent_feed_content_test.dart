@@ -18,7 +18,6 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';

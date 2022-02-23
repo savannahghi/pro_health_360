@@ -20,7 +20,6 @@ import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart'
 import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
-import 'package:shared_ui_components/platform_loader.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
