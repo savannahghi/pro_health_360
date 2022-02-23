@@ -667,7 +667,7 @@ const String contraceptiveDescription =
 const String tuberculosisTitle = 'Tuberculosis';
 const String tuberculosisDescription =
     'Tap to assess yourself for tuberculosis';
-const String healthTitle = 'Your health';
+const String healthTitle = 'Mental health';
 const String healthDescription =
     'Tap to answer a few questions about your health';
 
@@ -715,8 +715,26 @@ const String experiencedACoughString =
 const String doYouHaveFeverString = '2. Do you have a fever?';
 const String noticedAnyWeighLossString = '3. Have you noticed any weight loss?';
 const String experienceNightSweatsString = '4. Do you experience night sweats?';
+
+//Alcohol and substance use page
+const String alcoholSubstanceUseTitle = 'Alcohol and substance use';
+const String alcoholSubstanceUseDescription =
+    'Thank you for your interest in assessing yourself for Alcohol and substance use. The information you provide will be confidential';
+const String alcoholSubstanceUseQuestionOne =
+    '1. Have you ridden in a car driven by someone (including yourself) who was "high" or had been using alcohol or drugs?';
+const String alcoholSubstanceUseQuestionTwo =
+    '2. Do you ever alcohol or drugs to relax, feel better about yourself, or fit in?';
+const String alcoholSubstanceUseQuestionThree =
+    '3. Do you ever use alcohol or drugs while you are by yourself or alone?';
+const String alcoholSubstanceUseQuestionFour =
+    '4. Do you ever forget things you did while using alcohol or drugs?';
+const String alcoholSubstanceUseQuestionFive =
+    '5. Do your families or friends ever tell you that you should cut down on your drinking or drug use?';
+const String alcoholSubstanceDescription =
+    'Tap to assess yourself for alcohol and substance use';
+
 // health assessment
-const String healthAssessmentTitle = 'Health Assessment';
+const String healthAssessmentTitle = 'Mental Health Assessment';
 const String healthAssessmentSubtitle =
     'Thank you for your interest in assessing health. The information you provide will be confidential';
 const String healthAssessmentDescription =

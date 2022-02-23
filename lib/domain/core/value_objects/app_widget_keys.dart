@@ -186,6 +186,25 @@ const Key noNightSweatsKey = Key('no_night_sweats_key');
 const Key tuberculosisAssessmentFeedbackButtonKey =
     Key('tuberculosis_assessment_feedback_button_key');
 
+//tuberculosis assessment page
+const Key yesQuestionOneKey = Key('yes_question_one_key');
+const Key noQuestionOneKey = Key('no_question_one_key');
+
+const Key yesQuestionTwoKey = Key('yes_question_two_key');
+const Key noQuestionTwoKey = Key('no_question_two_key');
+
+const Key yesQuestionThreeKey = Key('yes_question_three_key');
+const Key noQuestionThreeKey = Key('no_question_three_key');
+
+const Key yesQuestionFourKey = Key('yes_question_four_key');
+const Key noQuestionFourKey = Key('no_question_four_key');
+
+const Key yesQuestionFiveKey = Key('yes_question_five_key');
+const Key noQuestionFiveKey = Key('no_question_five_key');
+
+const Key alcoholSubstanceFeedbackButtonKey =
+    Key('alcohol_substance_feedback_button_key');
+
 // health assessment page keys
 // question one
 const Key questionOneNotAtAllDaysKey = Key('question_one_not_at_all_days_key');

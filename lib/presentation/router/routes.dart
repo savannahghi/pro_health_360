@@ -108,6 +108,9 @@ class AppRoutes {
   static const String tuberculosisAssessmentPage =
       '/tuberculosisAssessmentPage';
 
+  //Alcohol and substance use page
+  static const String alcoholSubstanceUsePage = '/alcoholSubstanceUsePage';
+
   // health assessment
   static const String healthAssessmentPage = '/healthAssessmentPage';
 

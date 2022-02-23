@@ -7,6 +7,7 @@ import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/assessment/pages/alcohol_substance_use_page.dart';
 import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:myafyahub/presentation/assessment/pages/tuberculosis_assessment_page.dart';
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
@@ -283,6 +284,11 @@ class RouteGenerator {
       case AppRoutes.tuberculosisAssessmentPage:
         return MaterialPageRoute<TuberculosisAssessmentPage>(
           builder: (_) => const TuberculosisAssessmentPage(),
+        );
+
+      case AppRoutes.alcoholSubstanceUsePage:
+        return MaterialPageRoute<AlcoholSubstanceUsePage>(
+          builder: (_) => const AlcoholSubstanceUsePage(),
         );
 
       case AppRoutes.healthAssessmentPage:
