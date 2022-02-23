@@ -3,7 +3,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';

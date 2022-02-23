@@ -2,7 +2,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:misc_utilities/number_constants.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -48,7 +47,7 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
                   alignment: FractionalOffset.bottomCenter,
                   child: SizedBox(
                     width: double.infinity,
-                    height: number52,
+                    height: 52,
                     child: MyAfyaHubPrimaryButton(
                       text: continueString,
                       buttonColor: AppColors.secondaryColor,

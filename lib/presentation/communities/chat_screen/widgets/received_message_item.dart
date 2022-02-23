@@ -1,8 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-// Package imports:
-import 'package:misc_utilities/number_constants.dart';
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
@@ -36,7 +34,7 @@ class ReceivedMessageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: number50),
+      padding: const EdgeInsets.only(right: 50),
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(

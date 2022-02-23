@@ -13,7 +13,6 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:misc_utilities/misc.dart' as misc;
 import 'package:mockito/annotations.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -218,7 +217,7 @@ void main() {
                       buttonKey: const Key('snackbar_button'),
                       onPressed: () {
                         ScaffoldMessenger.of(context)
-                            .showSnackBar(misc.snackbar(content: 'hey'));
+                            .showSnackBar(snackbar(content: 'hey'));
                       },
                     );
                   },
@@ -246,7 +245,7 @@ void main() {
                       buttonKey: const Key('snackbar_button'),
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          misc.snackbar(
+                          snackbar(
                             content: getErrorMessage(),
                           ),
                         );

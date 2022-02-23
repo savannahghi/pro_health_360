@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  afya_moja_core: ^0.0.48
+  afya_moja_core: ^0.0.50
   app_wrapper: ^0.1.32
   async_redux: ^12.0.0
   cached_network_image: ^3.0.0
@@ -47,7 +47,6 @@ dependencies:
   json_serializable: ^4.1.3
   just_audio: ^0.9.18
   launch_review: ^3.0.1
-  misc_utilities: ^0.1.28-nullsafety
   path: ^1.8.0
   path_provider: ^2.0.8
   pin_code_text_field: ^1.8.0
@@ -68,8 +67,6 @@ dependencies:
   unicons: ^2.0.1
   upgrader: ^3.4.1
   url_launcher: ^6.0.6
-  user_feed: ^0.1.45-nullsafety
-  user_profile: ^0.1.24-nullsafety
   video_player: ^2.2.7
 
 dev_dependencies:
@@ -102,13 +99,4 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/
-    - packages/user_feed/assets/hide.svg
-    - packages/user_feed/assets/pin.svg
-    - packages/user_feed/assets/resolve.svg
-    - packages/user_feed/assets/white_logo.png
-    - packages/user_feed/assets/white_logo.svg
-    - packages/user_feed/assets/transparent_logo.svg
-    - packages/user_feed/assets/zero-state.png
-    - packages/user_feed/assets/swipe.png
     - packages/shared_ui_components/assets/test-development.png
-    - packages/user_feed/assets/cover_action.svg

@@ -42,8 +42,6 @@ class AppRoutes {
   // Appointments page
   static const String appointmentsPage = '/appointmentsPage';
 
-  static const String webView = '/webView';
-
   // community
   static const String communityListView = '/communityListView';
 

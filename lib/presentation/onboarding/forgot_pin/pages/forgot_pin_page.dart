@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:misc_utilities/number_constants.dart';
-import 'package:misc_utilities/responsive_widget.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
@@ -93,8 +91,8 @@ class ForgotPINPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
-                width: isLargeScreen ? number300 : double.infinity,
-                height: number52,
+                width: isLargeScreen ? 300 : double.infinity,
+                height: 52,
                 child: MyAfyaHubPrimaryButton(
                   text: continueString,
                   buttonColor: AppColors.secondaryColor,

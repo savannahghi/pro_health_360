@@ -13,7 +13,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';

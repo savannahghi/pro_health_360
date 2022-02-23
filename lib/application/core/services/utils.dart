@@ -17,7 +17,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
-import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/video_player_initializer.dart';

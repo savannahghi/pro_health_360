@@ -1,7 +1,7 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:misc_utilities/misc.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';

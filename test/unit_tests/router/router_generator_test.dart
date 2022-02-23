@@ -48,7 +48,6 @@ import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
-import 'package:user_profile/term_and_conditions.dart' as webview;
 
 import '../../mocks.dart';
 
@@ -181,15 +180,6 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<UserProfilePage>;
     expect(route, isA<MaterialPageRoute<UserProfilePage>>());
     expect(route.builder(context), isA<UserProfilePage>());
-  });
-
-  test('Test router returns incoming  webView page', () {
-    const RouteSettings settings = RouteSettings(name: AppRoutes.webView);
-    final MaterialPageRoute<webview.TermsAndConditionsPage> route =
-        routeGenerator(settings)
-            as MaterialPageRoute<webview.TermsAndConditionsPage>;
-    expect(route, isA<MaterialPageRoute<webview.TermsAndConditionsPage>>());
-    expect(route.builder(context), isA<webview.TermsAndConditionsPage>());
   });
 
   test('Test router returns security questions page', () {

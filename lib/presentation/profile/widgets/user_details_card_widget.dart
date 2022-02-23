@@ -4,7 +4,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';

@@ -9,7 +9,6 @@ import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:misc_utilities/misc.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';

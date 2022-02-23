@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/value_objects.dart';
-import 'package:misc_utilities/number_constants.dart';
-import 'package:misc_utilities/responsive_widget.dart';
 import 'package:shared_ui_components/platform_loader.dart';
 
 // Project imports:
@@ -151,8 +149,8 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
-                        width: isLargeScreen ? number300 : double.infinity,
-                        height: number52,
+                        width: isLargeScreen ? 300 : double.infinity,
+                        height: 52,
                         child: MyAfyaHubPrimaryButton(
                           text: saveAndContinueButtonText,
                           buttonColor: AppColors.secondaryColor,

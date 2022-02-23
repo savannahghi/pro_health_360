@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,10 +12,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:domain_objects/failures.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:misc_utilities/misc.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
-import 'package:user_feed/user_feed.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
@@ -55,7 +54,7 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
     // initializing of the CompleteOnboardingTourAction mutation
     final Map<String, String> _variables = <String, String>{
       'userID': userID,
-      'flavour': Flavour.CONSUMER.name,
+      'flavour': Flavour.consumer.name,
     };
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
