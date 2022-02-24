@@ -24,6 +24,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 import 'package:video_player/video_player.dart';
 
 import 'test_utils.dart';
@@ -40,6 +41,15 @@ class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
   String get dbName =>
       super.noSuchMethod(Invocation.getter(#dbName), returnValue: 'testDb')
           as String;
+}
+
+class MockClientState extends Mock implements stream.ClientState {}
+
+class MockLogger extends Mock implements stream.Logger {}
+
+class MockChannel extends Mock implements stream.Channel {
+  @override
+  Future<bool> get initialized async => true;
 }
 
 class MockConnectivityPlatform extends Mock

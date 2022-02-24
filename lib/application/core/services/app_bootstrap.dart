@@ -23,6 +23,7 @@ import 'package:myafyahub/infrastructure/repository/database_state_persistor.dar
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,6 +101,13 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
 
   final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
+  final String apiKey = FlutterConfig.get('STREAM_API_KEY') as String;
+
+  final StreamChatClient streamClient = StreamChatClient(
+    apiKey,
+    logLevel: Level.ALL,
+  );
+
   runZonedGuarded(() async {
     await SentryFlutter.init(
       (SentryFlutterOptions options) {
@@ -109,6 +117,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
       },
       appRunner: () => runApp(
         MyAppWidget(
+          streamClient: streamClient,
           store: store,
           navigatorObserver: navigatorObserver,
           connectivityStatus: connectivityStatus,

@@ -7,6 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -16,17 +18,33 @@ import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.da
 import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../../mock_utils.dart';
 import '../../../mocks.dart';
 
+import 'app_entry_point_test.mocks.dart';
+
+@GenerateMocks(<Type>[StreamChatClient])
 void main() {
-  FlutterConfig.loadValueForTesting(<String, String>{'DEV_SENTRY_DNS': ''});
+  FlutterConfig.loadValueForTesting(<String, String>{
+    'DEV_SENTRY_DNS': '',
+    'STREAM_API_KEY': '',
+  });
 
   setupFirebaseAuthMocks();
 
+  late MockStreamChatClient client;
+
   setUpAll(() async {
     await Firebase.initializeApp();
+
+    client = MockStreamChatClient();
+    when(client.connectUser(any, any))
+        .thenAnswer((_) => Future<OwnUser>.value(OwnUser(id: '')));
+    final MockClientState clientState = MockClientState();
+
+    when(client.state).thenReturn(clientState);
   });
 
   testWidgets(
@@ -46,6 +64,7 @@ void main() {
         MaterialApp(
           home: Center(
             child: AppEntryPoint(
+              streamClient: client,
               appSetupData: devAppSetupData,
               appName: testAppName,
               appNavigatorKey: navigatorKey,
@@ -90,6 +109,7 @@ void main() {
         MaterialApp(
           home: Center(
             child: AppEntryPoint(
+              streamClient: client,
               appSetupData: devAppSetupData,
               appName: testAppName,
               appNavigatorKey: navigatorKey,
@@ -137,6 +157,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: AppEntryPoint(
+          streamClient: client,
           appSetupData: devAppSetupData,
           appName: testAppName,
           appNavigatorKey: navigatorKey,
