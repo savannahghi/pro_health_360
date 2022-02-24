@@ -274,6 +274,7 @@ class ContentDetailPage extends StatelessWidget {
             borderRadius: imageBorderRadius,
             imageUrl: galleryImages[0].image?.meta?.imageDownloadUrl ?? '',
             height: galleryImageHeight,
+            width: MediaQuery.of(context).size.width - 16,
           ),
         ]);
       } else if (galleryImages.length == 2) {
