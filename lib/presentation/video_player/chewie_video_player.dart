@@ -1,8 +1,7 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:chewie/chewie.dart';
+import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class ChewieVideoPlayer extends StatefulWidget {
@@ -20,15 +19,6 @@ class ChewieVideoPlayer extends StatefulWidget {
 }
 
 class _ChewieVideoPlayerState extends State<ChewieVideoPlayer> {
-  @override
-  void dispose() {
-    widget.chewieController?.then((ChewieController? value) {
-      value?.dispose();
-      value?.videoPlayerController.dispose();
-    });
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ChewieController?>(

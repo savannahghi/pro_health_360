@@ -5,28 +5,32 @@ import 'dart:io';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:chewie/chewie.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
-import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
-import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
-import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
-import 'package:myafyahub/application/redux/actions/update_saved_content_state_action.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
-
+import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/core/services/video_player_initializer.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_saved_content_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
+import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
+import 'package:myafyahub/domain/core/entities/feed/hero_image.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
+import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
+import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
+
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -109,6 +113,50 @@ void main() {
 
       await tester.tap(likeButton);
       expect(find.text('Like'), findsNothing);
+    });
+
+    testWidgets('chewie video player disposes correctly',
+        (WidgetTester tester) async {
+      await mockNetworkImages(() async {
+        store.dispatch(
+          UpdateSavedContentStateAction(
+            savedContentItems: <Content>[mockContent],
+          ),
+        );
+
+        final MockVideoPlayerController controller =
+            MockVideoPlayerController();
+
+        controller.value = controller.value.copyWith(
+          duration: const Duration(milliseconds: 100),
+          isInitialized: true,
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: ContentDetailPage(
+            payload: ContentDetails(
+              content: mockVideoContent,
+              contentDisplayedType: ContentDisplayedType.BOOKMARK,
+            ),
+            chewieVideoPlayer: ChewieVideoPlayer(
+              chewieController: VideoPlayerInitializer().initializePlayer(
+                videoPlayerController: controller,
+                autoPlay: true,
+              ),
+              thumbnail: 'https://127.0.0.1',
+            ),
+          ),
+        );
+
+        await tester.pump(const Duration(seconds: 1));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(Chewie), findsOneWidget);
+        expect(find.byType(CircularProgressIndicator), findsNothing);
+      });
     });
 
     testWidgets(
@@ -232,7 +280,8 @@ void main() {
 
         store.dispatch(
           UpdateContentStateAction(
-              contentItems: <Content>[mockContent.copyWith(contentID: 1)],),
+            contentItems: <Content>[mockContent.copyWith(contentID: 1)],
+          ),
         );
 
         await tester.ensureVisible(saveButton);

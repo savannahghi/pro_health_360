@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:chewie/chewie.dart';
 import 'package:domain_objects/value_objects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -23,7 +24,7 @@ import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/video_player/chewie_video_player.dart';
 import 'package:shared_themes/spaces.dart';
 
-class ContentDetailPage extends StatelessWidget {
+class ContentDetailPage extends StatefulWidget {
   /// [ContentDetailPage] is used to display the article details
   ///
   /// It takes in a required [payload] parameter which is a map of the
@@ -31,14 +32,49 @@ class ContentDetailPage extends StatelessWidget {
 
   const ContentDetailPage({
     required this.payload,
+    this.chewieVideoPlayer,
   });
 
   final ContentDetails payload;
+  final ChewieVideoPlayer? chewieVideoPlayer;
+
+  @override
+  State<ContentDetailPage> createState() => _ContentDetailPageState();
+}
+
+class _ContentDetailPageState extends State<ContentDetailPage> {
+  ChewieVideoPlayer? _chewieVideoPlayer;
+
+  @override
+  void initState() {
+    _chewieVideoPlayer = widget.chewieVideoPlayer;
+    if (widget.payload.content.contentType == ContentType.AUDIO_VIDEO) {
+      _chewieVideoPlayer = _chewieVideoPlayer ??
+          ChewieVideoPlayer(
+            chewieController: initializeChewiController(
+              dataSource:
+                  widget.payload.content.featuredMedia?.first?.mediaUrl ??
+                      UNKNOWN,
+            ),
+            thumbnail: widget.payload.content.heroImage?.url ?? UNKNOWN,
+          );
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _chewieVideoPlayer?.chewieController?.then((ChewieController? value) {
+      value?.dispose();
+      value?.videoPlayerController.dispose();
+    });
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final String createdAt =
-        payload.content.metadata?.createdAt ?? DateTime.now().toString();
+        widget.payload.content.metadata?.createdAt ?? DateTime.now().toString();
 
     final Widget publishDate = createdAt.isNotEmpty
         ? humanizeDate(
@@ -47,9 +83,9 @@ class ContentDetailPage extends StatelessWidget {
           )
         : const SizedBox();
 
-    final bool hasVideo = payload.content.featuredMedia != null &&
-        payload.content.featuredMedia!.isNotEmpty &&
-        payload.content.featuredMedia?[0]?.featuredMediaType ==
+    final bool hasVideo = widget.payload.content.featuredMedia != null &&
+        widget.payload.content.featuredMedia!.isNotEmpty &&
+        widget.payload.content.featuredMedia?[0]?.featuredMediaType ==
             FeaturedMediaType.video;
 
     final List<Widget> galleryItems = getGalleryItems(context: context);
@@ -61,18 +97,11 @@ class ContentDetailPage extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              if (payload.content.contentType == ContentType.AUDIO_VIDEO)
+              if (widget.payload.content.contentType == ContentType.AUDIO_VIDEO)
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 3.5,
                   width: MediaQuery.of(context).size.width,
-                  child: ChewieVideoPlayer(
-                    chewieController: initializeChewiController(
-                      dataSource:
-                          payload.content.featuredMedia?.first?.mediaUrl ??
-                              UNKNOWN,
-                    ),
-                    thumbnail: payload.content.heroImage?.url ?? UNKNOWN,
-                  ),
+                  child: _chewieVideoPlayer,
                 )
               else
                 Container(
@@ -84,7 +113,7 @@ class ContentDetailPage extends StatelessWidget {
                       // TODO(abiud): replace with cached network image to
                       // handle showing an image before the network one loads
                       image: NetworkImage(
-                        payload.content.heroImage!.url!,
+                        widget.payload.content.heroImage!.url!,
                       ),
                     ),
                   ),
@@ -119,11 +148,11 @@ class ContentDetailPage extends StatelessWidget {
                   key: galleryImagePageKey,
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
-                    if (payload.content.galleryImages != null &&
-                        payload.content.galleryImages!.length > 3) {
+                    if (widget.payload.content.galleryImages != null &&
+                        widget.payload.content.galleryImages!.length > 3) {
                       Navigator.of(context).pushNamed(
                         AppRoutes.galleryImagesPage,
-                        arguments: payload.content.galleryImages,
+                        arguments: widget.payload.content.galleryImages,
                       );
                     }
                   },
@@ -140,7 +169,7 @@ class ContentDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  payload.content.title ?? UNKNOWN,
+                  widget.payload.content.title ?? UNKNOWN,
                   style: veryBoldSize18Text(Colors.black),
                 ),
                 mediumVerticalSizedBox,
@@ -172,7 +201,7 @@ class ContentDetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              payload.content.authorName ?? UNKNOWN,
+                              widget.payload.content.authorName ?? UNKNOWN,
                               style: veryBoldSize15Text(
                                 AppColors.greyTextColor,
                               ),
@@ -194,35 +223,38 @@ class ContentDetailPage extends StatelessWidget {
                       ],
                     ),
                     EstimatedReadTimeBadge(
-                      contentType:
-                          payload.content.contentType ?? ContentType.UNKNOWN,
-                      estimateReadTime: payload.content.estimate ?? 0,
+                      contentType: widget.payload.content.contentType ??
+                          ContentType.UNKNOWN,
+                      estimateReadTime: widget.payload.content.estimate ?? 0,
                       videoDuration: hasVideo
-                          ? payload.content.featuredMedia?.first?.duration
+                          ? widget
+                              .payload.content.featuredMedia?.first?.duration
                           : null,
                     ),
                   ],
                 ),
                 largeVerticalSizedBox,
-                if (payload.showReactions)
+                if (widget.payload.showReactions)
                   Center(
                     child: Wrap(
                       alignment: WrapAlignment.center,
                       runSpacing: 15,
                       children: <Widget>[
                         LikeContentWidget(
-                          contentID: payload.content.contentID ?? 0,
-                          contentDisplayedType: payload.contentDisplayedType,
+                          contentID: widget.payload.content.contentID ?? 0,
+                          contentDisplayedType:
+                              widget.payload.contentDisplayedType,
                         ),
                         ShareContentWidget(
-                          link: payload.content.metadata?.publicLink,
-                          title: payload.content.title ?? UNKNOWN,
-                          contentID: payload.content.contentID ?? 0,
+                          link: widget.payload.content.metadata?.publicLink,
+                          title: widget.payload.content.title ?? UNKNOWN,
+                          contentID: widget.payload.content.contentID ?? 0,
                         ),
                         verySmallHorizontalSizedBox,
                         SaveContentWidget(
-                          contentID: payload.content.contentID ?? 0,
-                          contentDisplayedType: payload.contentDisplayedType,
+                          contentID: widget.payload.content.contentID ?? 0,
+                          contentDisplayedType:
+                              widget.payload.contentDisplayedType,
                         ),
                       ],
                     ),
@@ -230,7 +262,7 @@ class ContentDetailPage extends StatelessWidget {
               ],
             ),
           ),
-          if (payload.content.body != null)
+          if (widget.payload.content.body != null)
             Container(
               padding: const EdgeInsets.only(
                 left: 25,
@@ -241,7 +273,7 @@ class ContentDetailPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Html(
-                data: payload.content.body,
+                data: widget.payload.content.body,
               ),
             )
           else
@@ -258,7 +290,8 @@ class ContentDetailPage extends StatelessWidget {
   }
 
   List<Widget> getGalleryItems({required BuildContext context}) {
-    final List<GalleryImage>? galleryImages = payload.content.galleryImages;
+    final List<GalleryImage>? galleryImages =
+        widget.payload.content.galleryImages;
     final BorderRadius imageBorderRadius = BorderRadius.circular(12);
     const double galleryImageHeight = 500;
 
