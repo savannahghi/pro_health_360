@@ -143,11 +143,10 @@ query getContent($categoryID: Int, $Limit: String!){
         Document {
           ID
           title
-        }
-        meta{
-          type
-          documentDetailUrl
-          documentDownloadUrl
+          meta {
+            documentDetailUrl
+            documentDownloadUrl
+          }
         }
       }
       categoryDetails{

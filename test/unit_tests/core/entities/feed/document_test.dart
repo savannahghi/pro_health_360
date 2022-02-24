@@ -24,8 +24,17 @@ void main() {
       0,
     );
     expect(
-      initialAddress.title,
-      UNKNOWN,
+      initialAddress.documentData,
+      DocumentData.initial(),
+    );
+  });
+
+  test('DocumentMetaData fromJson', () {
+    expect(
+      DocumentMetaData.fromJson(<String, dynamic>{
+        'documentDownloadUrl': UNKNOWN,
+      }),
+      isA<DocumentMetaData>(),
     );
   });
 }

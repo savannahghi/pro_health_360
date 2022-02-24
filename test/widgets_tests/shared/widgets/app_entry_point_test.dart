@@ -12,8 +12,8 @@ import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
-import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
+import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/widgets/app_entry_point.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 

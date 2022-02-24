@@ -54,9 +54,22 @@ class ContentItem extends StatelessWidget {
         contentDetails.heroImage?.url != UNKNOWN &&
         contentDetails.heroImage!.url!.isNotEmpty;
 
+    final bool isPdf = contentDetails.contentType == ContentType.PDF_DOCUMENT;
+
     return GestureDetector(
       key: feedContentItemKey,
       onTap: () {
+        if (isPdf) {
+          Navigator.of(context).pushNamed(
+            AppRoutes.viewDocumentPage,
+            arguments: <String, dynamic>{
+              'pdfTitle': contentDetails.documents!.first.documentData!.title,
+              'pdfUrl': contentDetails.documents!.first.documentData!
+                  .documentMetaData!.documentDownloadUrl,
+            },
+          );
+        }
+
         if (isArticle ||
             contentDetails.featuredMedia?.first?.featuredMediaType ==
                 FeaturedMediaType.video) {

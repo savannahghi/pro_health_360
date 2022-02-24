@@ -4,7 +4,7 @@ import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
+import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import '../../../mocks.dart';
 
 void main() {

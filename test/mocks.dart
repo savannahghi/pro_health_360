@@ -1236,12 +1236,16 @@ final Map<String, dynamic> documentContentMock = <String, dynamic>{
   'author': <String, dynamic>{'ID': 'test-id-001'},
   'documents': <Map<String, dynamic>>[
     <String, dynamic>{
-      'ID': 1,
-      'Document': <String, dynamic>{'ID': 1, 'title': 'pdf sample'},
-      'meta': <String, dynamic>{
-        'type': 'content.ContentItemDocumentLink',
-        'documentDetailUrl': '',
-        'documentDownloadUrl': ''
+      'ID': 10001,
+      'Document': <String, dynamic>{
+        'ID': 10001,
+        'title': 'myCareHub Requirements',
+        'meta': <String, dynamic>{
+          'documentDetailUrl':
+              'http://www.africau.edu/images/default/sample.pdf',
+          'documentDownloadUrl':
+              'http://www.africau.edu/images/default/sample.pdf'
+        }
       }
     }
   ],

@@ -5,8 +5,8 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 // Project imports:
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_helper.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connectivity/connectivity_helper.dart';
+import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 
 class MobileConnectivityStatus extends ConnectivityStatus {
   MobileConnectivityStatus({Future<bool> Function()? checkInternetCallback})

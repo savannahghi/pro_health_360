@@ -60,6 +60,8 @@ void main() {
       );
 
       expect(find.text(pdfText), findsOneWidget);
+      await tester.tap(find.text(pdfText));
+      // todo(byron) add assertions when able to replicate network calls to mocked pdf link
     });
 
     testWidgets('shows the play icon if a piece of content has a video',

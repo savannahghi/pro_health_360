@@ -15,8 +15,8 @@ import 'package:myafyahub/application/redux/view_models/pin_input_view_model.dar
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/infrastructure/connecitivity/connectivity_interface.dart';
-import 'package:myafyahub/infrastructure/connecitivity/mobile_connectivity_status.dart';
+import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/key_pad_widget.dart';
