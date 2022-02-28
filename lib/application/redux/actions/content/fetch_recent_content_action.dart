@@ -1,13 +1,11 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -41,7 +39,7 @@ class FetchRecentContentAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'categoryID': 2,
+      'categoryID': 6,
       'Limit': limit.toString()
     };
 
