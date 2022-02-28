@@ -35,6 +35,7 @@ jobs:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
           PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
+          STREAM_API_KEY: ${{ secrets.STREAM_API_KEY }}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
 
@@ -42,6 +43,7 @@ jobs:
           touch .env
           echo $DEV_SENTRY_DNS > .env
           echo $PROD_SENTRY_DNS >> .env
+          echo $STREAM_API_KEY >> .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
@@ -89,6 +91,7 @@ jobs:
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
           DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
+          STREAM_API_KEY: ${{ secrets.STREAM_API_KEY }}
           PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
@@ -97,6 +100,7 @@ jobs:
           touch .env
           echo $DEV_SENTRY_DNS > .env
           echo $PROD_SENTRY_DNS >> .env
+          echo $STREAM_API_KEY >> .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json

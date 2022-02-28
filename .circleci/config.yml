@@ -59,12 +59,12 @@ commands:
             mkdir -p dump/
             echo $DEV_SENTRY_DNS > .env
             echo $PROD_SENTRY_DNS >> .env
+            echo $STREAM_API_KEY >> .env
             echo $GOOGLE_SERVICES_FILE > android/app/google-services.json
       - run:
           name: "Setup flutter environment variable"
           command: |
             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
-         
 
 jobs:
   run_tests_and_generate_coverage:
