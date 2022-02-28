@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
@@ -38,16 +37,17 @@ void main() {
       expect(find.byType(UserDetailsCard), findsWidgets);
       final Finder userProfileListItem = find.byType(InformationListCard);
       final Finder hotlineCallButton = find.byKey(hotlineCallButtonKey);
-      final Finder requestCorrectionButton =
-          find.byKey(requestCorrectionButtonKey);
+      // final Finder requestCorrectionButton =
+      //     find.byKey(requestCorrectionButtonKey);
 
       expect(userProfileListItem, findsNWidgets(userProfileItems.length));
       expect(hotlineCallButton, findsOneWidget);
-      expect(requestCorrectionButton, findsOneWidget);
+      // todo(byron) return this when backend and workflow is ready
+      // expect(requestCorrectionButton, findsOneWidget);
 
-      await tester.tap(requestCorrectionButton);
-      await tester.pumpAndSettle();
-      expect(find.text(comingSoonText), findsOneWidget);
+      // await tester.tap(requestCorrectionButton);
+      // await tester.pumpAndSettle();
+      // expect(find.text(comingSoonText), findsOneWidget);
     });
 
     testWidgets('navigates to PersonalInformationPage correctly',

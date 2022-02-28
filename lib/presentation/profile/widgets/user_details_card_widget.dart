@@ -10,7 +10,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
@@ -146,31 +145,32 @@ class UserDetailsCard extends StatelessWidget {
                     ],
                   ),
                   mediumVerticalSizedBox,
-                  GestureDetector(
-                    key: requestCorrectionButtonKey,
-                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(comingSoonText),
-                        duration: Duration(seconds: 2),
-                      ),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Text(
-                        requestCorrectionString,
-                        style: boldSize13Text(
-                          AppColors.secondaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
+                  //todo (byron) return this later when backend and workflow is ready
+                  // GestureDetector(
+                  //   key: requestCorrectionButtonKey,
+                  //   onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(
+                  //       content: Text(comingSoonText),
+                  //       duration: Duration(seconds: 2),
+                  //     ),
+                  //   ),
+                  //   child: Container(
+                  //     padding: const EdgeInsets.symmetric(
+                  //       vertical: 8,
+                  //       horizontal: 8,
+                  //     ),
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.white.withOpacity(0.6),
+                  //       borderRadius: BorderRadius.circular(5),
+                  //     ),
+                  //     child: Text(
+                  //       requestCorrectionString,
+                  //       style: boldSize13Text(
+                  //         AppColors.secondaryColor,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ],
