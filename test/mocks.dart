@@ -4,8 +4,6 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -979,27 +977,6 @@ List<Map<String, dynamic>> mockFilterItems = <Map<String, dynamic>>[
   },
 ];
 
-class TestFirebaseRemoteConfigPlatform extends FirebaseRemoteConfigPlatform {
-  TestFirebaseRemoteConfigPlatform() : super();
-
-  @override
-  FirebaseRemoteConfigPlatform delegateFor({FirebaseApp? app}) {
-    return this;
-  }
-
-  @override
-  FirebaseRemoteConfigPlatform setInitialValues({
-    Map<dynamic, dynamic>? remoteConfigValues,
-  }) {
-    return this;
-  }
-
-  void instanceFor({
-    FirebaseApp? app,
-    Map<dynamic, dynamic>? pluginConstants,
-  }) {}
-}
-
 List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
   <String, dynamic>{
     'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
@@ -1690,6 +1667,9 @@ class MockVideoPlayerController extends ValueNotifier<VideoPlayerValue>
 
   @override
   VideoPlayerOptions? get videoPlayerOptions => null;
+
+  @override
+  void setCaptionOffset(Duration offset) {}
 }
 
 Future<ClosedCaptionFile> _loadClosedCaption() async =>

@@ -8,7 +8,6 @@ import 'package:dio/dio.dart' as _i20;
 import 'package:logging/logging.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stream_chat/src/client/channel.dart' as _i8;
-import 'package:stream_chat/src/client/client.dart' as _i2;
 import 'package:stream_chat/src/client/retry_policy.dart' as _i4;
 import 'package:stream_chat/src/core/api/requests.dart' as _i17;
 import 'package:stream_chat/src/core/api/responses.dart' as _i6;
@@ -26,6 +25,7 @@ import 'package:stream_chat/src/core/models/own_user.dart' as _i5;
 import 'package:stream_chat/src/core/models/user.dart' as _i14;
 import 'package:stream_chat/src/db/chat_persistence_client.dart' as _i10;
 import 'package:stream_chat/src/ws/connection_status.dart' as _i13;
+import 'package:stream_chat/stream_chat.dart' as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -121,6 +121,9 @@ class _FakeGetMessagesByIdResponse_30 extends _i1.Fake
 
 class _FakeTranslateMessageResponse_31 extends _i1.Fake
     implements _i6.TranslateMessageResponse {}
+
+class _FakeStreamChatClient_32 extends _i1.Fake
+    implements _i2.StreamChatClient {}
 
 /// A class which mocks [StreamChatClient].
 ///
@@ -850,6 +853,877 @@ class MockStreamChatClient extends _i1.Mock implements _i2.StreamChatClient {
       Invocation.method(#dispose, []),
       returnValue: Future<void>.value(),
       returnValueForMissingStub: Future<void>.value()) as _i11.Future<void>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [ClientState].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockClientState extends _i1.Mock implements _i2.ClientState {
+  MockClientState() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  set totalUnreadCount(int? unreadCount) =>
+      super.noSuchMethod(Invocation.setter(#totalUnreadCount, unreadCount),
+          returnValueForMissingStub: null);
+  @override
+  set currentUser(_i5.OwnUser? user) =>
+      super.noSuchMethod(Invocation.setter(#currentUser, user),
+          returnValueForMissingStub: null);
+  @override
+  _i11.Stream<_i5.OwnUser?> get currentUserStream => (super.noSuchMethod(
+      Invocation.getter(#currentUserStream),
+      returnValue: Stream<_i5.OwnUser?>.empty()) as _i11.Stream<_i5.OwnUser?>);
+  @override
+  _i11.Stream<_i5.OwnUser?> get userStream => (super.noSuchMethod(
+      Invocation.getter(#userStream),
+      returnValue: Stream<_i5.OwnUser?>.empty()) as _i11.Stream<_i5.OwnUser?>);
+  @override
+  Map<String, _i14.User> get users =>
+      (super.noSuchMethod(Invocation.getter(#users),
+          returnValue: <String, _i14.User>{}) as Map<String, _i14.User>);
+  @override
+  _i11.Stream<Map<String, _i14.User>> get usersStream =>
+      (super.noSuchMethod(Invocation.getter(#usersStream),
+              returnValue: Stream<Map<String, _i14.User>>.empty())
+          as _i11.Stream<Map<String, _i14.User>>);
+  @override
+  int get unreadChannels =>
+      (super.noSuchMethod(Invocation.getter(#unreadChannels), returnValue: 0)
+          as int);
+  @override
+  _i11.Stream<int> get unreadChannelsStream =>
+      (super.noSuchMethod(Invocation.getter(#unreadChannelsStream),
+          returnValue: Stream<int>.empty()) as _i11.Stream<int>);
+  @override
+  int get totalUnreadCount =>
+      (super.noSuchMethod(Invocation.getter(#totalUnreadCount), returnValue: 0)
+          as int);
+  @override
+  _i11.Stream<int> get totalUnreadCountStream =>
+      (super.noSuchMethod(Invocation.getter(#totalUnreadCountStream),
+          returnValue: Stream<int>.empty()) as _i11.Stream<int>);
+  @override
+  _i11.Stream<Map<String, _i8.Channel>> get channelsStream =>
+      (super.noSuchMethod(Invocation.getter(#channelsStream),
+              returnValue: Stream<Map<String, _i8.Channel>>.empty())
+          as _i11.Stream<Map<String, _i8.Channel>>);
+  @override
+  Map<String, _i8.Channel> get channels =>
+      (super.noSuchMethod(Invocation.getter(#channels),
+          returnValue: <String, _i8.Channel>{}) as Map<String, _i8.Channel>);
+  @override
+  set channels(Map<String, _i8.Channel>? channelMap) =>
+      super.noSuchMethod(Invocation.setter(#channels, channelMap),
+          returnValueForMissingStub: null);
+  @override
+  void updateUsers(List<_i14.User?>? userList) =>
+      super.noSuchMethod(Invocation.method(#updateUsers, [userList]),
+          returnValueForMissingStub: null);
+  @override
+  void updateUser(_i14.User? user) =>
+      super.noSuchMethod(Invocation.method(#updateUser, [user]),
+          returnValueForMissingStub: null);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [Logger].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLogger extends _i1.Mock implements _i3.Logger {
+  MockLogger() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String get name =>
+      (super.noSuchMethod(Invocation.getter(#name), returnValue: '') as String);
+  @override
+  Map<String, _i3.Logger> get children =>
+      (super.noSuchMethod(Invocation.getter(#children),
+          returnValue: <String, _i3.Logger>{}) as Map<String, _i3.Logger>);
+  @override
+  String get fullName =>
+      (super.noSuchMethod(Invocation.getter(#fullName), returnValue: '')
+          as String);
+  @override
+  _i3.Level get level => (super.noSuchMethod(Invocation.getter(#level),
+      returnValue: _FakeLevel_1()) as _i3.Level);
+  @override
+  set level(_i3.Level? value) =>
+      super.noSuchMethod(Invocation.setter(#level, value),
+          returnValueForMissingStub: null);
+  @override
+  _i11.Stream<_i3.LogRecord> get onRecord =>
+      (super.noSuchMethod(Invocation.getter(#onRecord),
+              returnValue: Stream<_i3.LogRecord>.empty())
+          as _i11.Stream<_i3.LogRecord>);
+  @override
+  void clearListeners() =>
+      super.noSuchMethod(Invocation.method(#clearListeners, []),
+          returnValueForMissingStub: null);
+  @override
+  bool isLoggable(_i3.Level? value) =>
+      (super.noSuchMethod(Invocation.method(#isLoggable, [value]),
+          returnValue: false) as bool);
+  @override
+  void log(_i3.Level? logLevel, Object? message,
+          [Object? error, StackTrace? stackTrace, _i11.Zone? zone]) =>
+      super.noSuchMethod(
+          Invocation.method(#log, [logLevel, message, error, stackTrace, zone]),
+          returnValueForMissingStub: null);
+  @override
+  void finest(Object? message, [Object? error, StackTrace? stackTrace]) => super
+      .noSuchMethod(Invocation.method(#finest, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  void finer(Object? message, [Object? error, StackTrace? stackTrace]) => super
+      .noSuchMethod(Invocation.method(#finer, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  void fine(Object? message, [Object? error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(Invocation.method(#fine, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  void config(Object? message, [Object? error, StackTrace? stackTrace]) => super
+      .noSuchMethod(Invocation.method(#config, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  void info(Object? message, [Object? error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(Invocation.method(#info, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  void warning(Object? message, [Object? error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+          Invocation.method(#warning, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  void severe(Object? message, [Object? error, StackTrace? stackTrace]) => super
+      .noSuchMethod(Invocation.method(#severe, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  void shout(Object? message, [Object? error, StackTrace? stackTrace]) => super
+      .noSuchMethod(Invocation.method(#shout, [message, error, stackTrace]),
+          returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [Channel].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChannel extends _i1.Mock implements _i8.Channel {
+  MockChannel() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  set state(_i8.ChannelClientState? _state) =>
+      super.noSuchMethod(Invocation.setter(#state, _state),
+          returnValueForMissingStub: null);
+  @override
+  set cooldownStartedAt(DateTime? _cooldownStartedAt) => super.noSuchMethod(
+      Invocation.setter(#cooldownStartedAt, _cooldownStartedAt),
+      returnValueForMissingStub: null);
+  @override
+  set name(String? name) => super.noSuchMethod(Invocation.setter(#name, name),
+      returnValueForMissingStub: null);
+  @override
+  set image(String? image) =>
+      super.noSuchMethod(Invocation.setter(#image, image),
+          returnValueForMissingStub: null);
+  @override
+  set extraData(Map<String, Object?>? extraData) =>
+      super.noSuchMethod(Invocation.setter(#extraData, extraData),
+          returnValueForMissingStub: null);
+  @override
+  bool get isMuted =>
+      (super.noSuchMethod(Invocation.getter(#isMuted), returnValue: false)
+          as bool);
+  @override
+  _i11.Stream<bool> get isMutedStream =>
+      (super.noSuchMethod(Invocation.getter(#isMutedStream),
+          returnValue: Stream<bool>.empty()) as _i11.Stream<bool>);
+  @override
+  bool get isGroup =>
+      (super.noSuchMethod(Invocation.getter(#isGroup), returnValue: false)
+          as bool);
+  @override
+  bool get isDistinct =>
+      (super.noSuchMethod(Invocation.getter(#isDistinct), returnValue: false)
+          as bool);
+  @override
+  _i11.Stream<_i2.ChannelConfig?> get configStream =>
+      (super.noSuchMethod(Invocation.getter(#configStream),
+              returnValue: Stream<_i2.ChannelConfig?>.empty())
+          as _i11.Stream<_i2.ChannelConfig?>);
+  @override
+  _i11.Stream<_i14.User?> get createdByStream =>
+      (super.noSuchMethod(Invocation.getter(#createdByStream),
+          returnValue: Stream<_i14.User?>.empty()) as _i11.Stream<_i14.User?>);
+  @override
+  bool get frozen =>
+      (super.noSuchMethod(Invocation.getter(#frozen), returnValue: false)
+          as bool);
+  @override
+  _i11.Stream<bool> get frozenStream =>
+      (super.noSuchMethod(Invocation.getter(#frozenStream),
+          returnValue: Stream<bool>.empty()) as _i11.Stream<bool>);
+  @override
+  int get cooldown =>
+      (super.noSuchMethod(Invocation.getter(#cooldown), returnValue: 0) as int);
+  @override
+  _i11.Stream<int> get cooldownStream =>
+      (super.noSuchMethod(Invocation.getter(#cooldownStream),
+          returnValue: Stream<int>.empty()) as _i11.Stream<int>);
+  @override
+  _i11.Stream<DateTime?> get createdAtStream =>
+      (super.noSuchMethod(Invocation.getter(#createdAtStream),
+          returnValue: Stream<DateTime?>.empty()) as _i11.Stream<DateTime?>);
+  @override
+  _i11.Stream<DateTime?> get lastMessageAtStream =>
+      (super.noSuchMethod(Invocation.getter(#lastMessageAtStream),
+          returnValue: Stream<DateTime?>.empty()) as _i11.Stream<DateTime?>);
+  @override
+  _i11.Stream<DateTime?> get updatedAtStream =>
+      (super.noSuchMethod(Invocation.getter(#updatedAtStream),
+          returnValue: Stream<DateTime?>.empty()) as _i11.Stream<DateTime?>);
+  @override
+  _i11.Stream<DateTime?> get deletedAtStream =>
+      (super.noSuchMethod(Invocation.getter(#deletedAtStream),
+          returnValue: Stream<DateTime?>.empty()) as _i11.Stream<DateTime?>);
+  @override
+  _i11.Stream<int?> get memberCountStream =>
+      (super.noSuchMethod(Invocation.getter(#memberCountStream),
+          returnValue: Stream<int?>.empty()) as _i11.Stream<int?>);
+  @override
+  String get type =>
+      (super.noSuchMethod(Invocation.getter(#type), returnValue: '') as String);
+  @override
+  Map<String, Object?> get extraData =>
+      (super.noSuchMethod(Invocation.getter(#extraData),
+          returnValue: <String, Object?>{}) as Map<String, Object?>);
+  @override
+  _i11.Stream<Map<String, Object?>> get extraDataStream =>
+      (super.noSuchMethod(Invocation.getter(#extraDataStream),
+              returnValue: Stream<Map<String, Object?>>.empty())
+          as _i11.Stream<Map<String, Object?>>);
+  @override
+  _i11.Stream<String?> get nameStream =>
+      (super.noSuchMethod(Invocation.getter(#nameStream),
+          returnValue: Stream<String?>.empty()) as _i11.Stream<String?>);
+  @override
+  _i11.Stream<String?> get imageStream =>
+      (super.noSuchMethod(Invocation.getter(#imageStream),
+          returnValue: Stream<String?>.empty()) as _i11.Stream<String?>);
+  @override
+  _i2.StreamChatClient get client =>
+      (super.noSuchMethod(Invocation.getter(#client),
+          returnValue: _FakeStreamChatClient_32()) as _i2.StreamChatClient);
+  @override
+  _i11.Future<bool> get initialized =>
+      (super.noSuchMethod(Invocation.getter(#initialized),
+          returnValue: Future<bool>.value(false)) as _i11.Future<bool>);
+  @override
+  void cancelAttachmentUpload(String? attachmentId, {String? reason}) =>
+      super.noSuchMethod(
+          Invocation.method(
+              #cancelAttachmentUpload, [attachmentId], {#reason: reason}),
+          returnValueForMissingStub: null);
+  @override
+  _i11.Future<void> retryAttachmentUpload(
+          String? messageId, String? attachmentId) =>
+      (super.noSuchMethod(
+          Invocation.method(#retryAttachmentUpload, [messageId, attachmentId]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub:
+              Future<void>.value()) as _i11.Future<void>);
+  @override
+  _i11.Future<_i6.SendMessageResponse> sendMessage(_i21.Message? message,
+          {bool? skipPush = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendMessage, [message], {#skipPush: skipPush}),
+              returnValue: Future<_i6.SendMessageResponse>.value(
+                  _FakeSendMessageResponse_25()))
+          as _i11.Future<_i6.SendMessageResponse>);
+  @override
+  _i11.Future<_i6.UpdateMessageResponse> updateMessage(_i21.Message? message) =>
+      (super.noSuchMethod(Invocation.method(#updateMessage, [message]),
+              returnValue: Future<_i6.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_28()))
+          as _i11.Future<_i6.UpdateMessageResponse>);
+  @override
+  _i11.Future<_i6.UpdateMessageResponse> partialUpdateMessage(
+          _i21.Message? message,
+          {Map<String, Object?>? set,
+          List<String>? unset}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #partialUpdateMessage, [message], {#set: set, #unset: unset}),
+              returnValue: Future<_i6.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_28()))
+          as _i11.Future<_i6.UpdateMessageResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> deleteMessage(_i21.Message? message) =>
+      (super.noSuchMethod(Invocation.method(#deleteMessage, [message]),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+          as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.UpdateMessageResponse> pinMessage(_i21.Message? message,
+          {Object? timeoutOrExpirationDate}) =>
+      (super.noSuchMethod(
+              Invocation.method(#pinMessage, [message],
+                  {#timeoutOrExpirationDate: timeoutOrExpirationDate}),
+              returnValue: Future<_i6.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_28()))
+          as _i11.Future<_i6.UpdateMessageResponse>);
+  @override
+  _i11.Future<_i6.UpdateMessageResponse> unpinMessage(_i21.Message? message) =>
+      (super.noSuchMethod(Invocation.method(#unpinMessage, [message]),
+              returnValue: Future<_i6.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_28()))
+          as _i11.Future<_i6.UpdateMessageResponse>);
+  @override
+  _i11.Future<_i6.SendFileResponse> sendFile(_i19.AttachmentFile? file,
+          {_i20.ProgressCallback? onSendProgress,
+          _i20.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendFile, [file],
+                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              returnValue:
+                  Future<_i6.SendFileResponse>.value(_FakeSendFileResponse_7()))
+          as _i11.Future<_i6.SendFileResponse>);
+  @override
+  _i11.Future<_i6.SendImageResponse> sendImage(_i19.AttachmentFile? file,
+          {_i20.ProgressCallback? onSendProgress,
+          _i20.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendImage, [file],
+                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              returnValue: Future<_i6.SendImageResponse>.value(
+                  _FakeSendImageResponse_8()))
+          as _i11.Future<_i6.SendImageResponse>);
+  @override
+  _i11.Future<_i6.SearchMessagesResponse> search(
+          {String? query,
+          _i16.Filter? messageFilters,
+          List<_i17.SortOption<dynamic>>? sort,
+          _i17.PaginationParams? paginationParams}) =>
+      (super.noSuchMethod(
+              Invocation.method(#search, [], {
+                #query: query,
+                #messageFilters: messageFilters,
+                #sort: sort,
+                #paginationParams: paginationParams
+              }),
+              returnValue: Future<_i6.SearchMessagesResponse>.value(
+                  _FakeSearchMessagesResponse_6()))
+          as _i11.Future<_i6.SearchMessagesResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> deleteFile(String? url,
+          {_i20.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+          Invocation.method(#deleteFile, [url], {#cancelToken: cancelToken}),
+          returnValue:
+              Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9())) as _i11
+          .Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> deleteImage(String? url,
+          {_i20.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+          Invocation.method(#deleteImage, [url], {#cancelToken: cancelToken}),
+          returnValue:
+              Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9())) as _i11
+          .Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> sendEvent(_i12.Event? event) =>
+      (super.noSuchMethod(Invocation.method(#sendEvent, [event]),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+          as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.SendReactionResponse> sendReaction(
+          _i21.Message? message, String? type,
+          {Map<String, Object?>? extraData = const {},
+          bool? enforceUnique = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendReaction, [message, type],
+                  {#extraData: extraData, #enforceUnique: enforceUnique}),
+              returnValue: Future<_i6.SendReactionResponse>.value(
+                  _FakeSendReactionResponse_24()))
+          as _i11.Future<_i6.SendReactionResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> deleteReaction(
+          _i21.Message? message, _i2.Reaction? reaction) =>
+      (super.noSuchMethod(
+              Invocation.method(#deleteReaction, [message, reaction]),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+          as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.PartialUpdateChannelResponse> updateName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#updateName, [name]),
+              returnValue: Future<_i6.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_11()))
+          as _i11.Future<_i6.PartialUpdateChannelResponse>);
+  @override
+  _i11.Future<_i6.PartialUpdateChannelResponse> updateImage(String? image) =>
+      (super.noSuchMethod(Invocation.method(#updateImage, [image]),
+              returnValue: Future<_i6.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_11()))
+          as _i11.Future<_i6.PartialUpdateChannelResponse>);
+  @override
+  _i11.Future<_i6.UpdateChannelResponse> update(
+          Map<String, Object?>? channelData,
+          [_i21.Message? updateMessage]) =>
+      (super.noSuchMethod(
+              Invocation.method(#update, [channelData, updateMessage]),
+              returnValue: Future<_i6.UpdateChannelResponse>.value(
+                  _FakeUpdateChannelResponse_10()))
+          as _i11.Future<_i6.UpdateChannelResponse>);
+  @override
+  _i11.Future<_i6.PartialUpdateChannelResponse> updatePartial(
+          {Map<String, Object?>? set, List<String>? unset}) =>
+      (super.noSuchMethod(
+              Invocation.method(#updatePartial, [], {#set: set, #unset: unset}),
+              returnValue: Future<_i6.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_11()))
+          as _i11.Future<_i6.PartialUpdateChannelResponse>);
+  @override
+  _i11.Future<_i6.PartialUpdateChannelResponse> enableSlowMode(
+          {int? cooldownInterval}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #enableSlowMode, [], {#cooldownInterval: cooldownInterval}),
+              returnValue: Future<_i6.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_11()))
+          as _i11.Future<_i6.PartialUpdateChannelResponse>);
+  @override
+  _i11.Future<_i6.PartialUpdateChannelResponse> disableSlowMode() =>
+      (super.noSuchMethod(Invocation.method(#disableSlowMode, []),
+              returnValue: Future<_i6.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_11()))
+          as _i11.Future<_i6.PartialUpdateChannelResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> delete() => (super.noSuchMethod(
+          Invocation.method(#delete, []),
+          returnValue: Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+      as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> truncate() => (super.noSuchMethod(
+          Invocation.method(#truncate, []),
+          returnValue: Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+      as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.AcceptInviteResponse> acceptInvite([_i21.Message? message]) =>
+      (super.noSuchMethod(Invocation.method(#acceptInvite, [message]),
+              returnValue: Future<_i6.AcceptInviteResponse>.value(
+                  _FakeAcceptInviteResponse_17()))
+          as _i11.Future<_i6.AcceptInviteResponse>);
+  @override
+  _i11.Future<_i6.RejectInviteResponse> rejectInvite([_i21.Message? message]) =>
+      (super.noSuchMethod(Invocation.method(#rejectInvite, [message]),
+              returnValue: Future<_i6.RejectInviteResponse>.value(
+                  _FakeRejectInviteResponse_18()))
+          as _i11.Future<_i6.RejectInviteResponse>);
+  @override
+  _i11.Future<_i6.AddMembersResponse> addMembers(List<String>? memberIds,
+          [_i21.Message? message]) =>
+      (super.noSuchMethod(Invocation.method(#addMembers, [memberIds, message]),
+              returnValue: Future<_i6.AddMembersResponse>.value(
+                  _FakeAddMembersResponse_19()))
+          as _i11.Future<_i6.AddMembersResponse>);
+  @override
+  _i11.Future<_i6.InviteMembersResponse> inviteMembers(List<String>? memberIds,
+          [_i21.Message? message]) =>
+      (super.noSuchMethod(
+              Invocation.method(#inviteMembers, [memberIds, message]),
+              returnValue: Future<_i6.InviteMembersResponse>.value(
+                  _FakeInviteMembersResponse_21()))
+          as _i11.Future<_i6.InviteMembersResponse>);
+  @override
+  _i11.Future<_i6.RemoveMembersResponse> removeMembers(List<String>? memberIds,
+          [_i21.Message? message]) =>
+      (super.noSuchMethod(
+              Invocation.method(#removeMembers, [memberIds, message]),
+              returnValue: Future<_i6.RemoveMembersResponse>.value(
+                  _FakeRemoveMembersResponse_20()))
+          as _i11.Future<_i6.RemoveMembersResponse>);
+  @override
+  _i11.Future<_i6.SendActionResponse> sendAction(
+          _i21.Message? message, Map<String, dynamic>? formData) =>
+      (super.noSuchMethod(Invocation.method(#sendAction, [message, formData]),
+              returnValue: Future<_i6.SendActionResponse>.value(
+                  _FakeSendActionResponse_22()))
+          as _i11.Future<_i6.SendActionResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> markRead({String? messageId}) => (super
+      .noSuchMethod(Invocation.method(#markRead, [], {#messageId: messageId}),
+          returnValue:
+              Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9())) as _i11
+      .Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i9.ChannelState> watch() => (super.noSuchMethod(
+          Invocation.method(#watch, []),
+          returnValue: Future<_i9.ChannelState>.value(_FakeChannelState_15()))
+      as _i11.Future<_i9.ChannelState>);
+  @override
+  _i11.Future<_i6.EmptyResponse> stopWatching() => (super.noSuchMethod(
+          Invocation.method(#stopWatching, []),
+          returnValue: Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+      as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.QueryRepliesResponse> getReplies(String? parentId,
+          {_i17.PaginationParams? options, bool? preferOffline = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#getReplies, [parentId],
+                  {#options: options, #preferOffline: preferOffline}),
+              returnValue: Future<_i6.QueryRepliesResponse>.value(
+                  _FakeQueryRepliesResponse_26()))
+          as _i11.Future<_i6.QueryRepliesResponse>);
+  @override
+  _i11.Future<_i6.QueryReactionsResponse> getReactions(String? messageId,
+          {_i17.PaginationParams? pagination}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #getReactions, [messageId], {#pagination: pagination}),
+              returnValue: Future<_i6.QueryReactionsResponse>.value(
+                  _FakeQueryReactionsResponse_27()))
+          as _i11.Future<_i6.QueryReactionsResponse>);
+  @override
+  _i11.Future<_i6.GetMessagesByIdResponse> getMessagesById(
+          List<String>? messageIDs) =>
+      (super.noSuchMethod(Invocation.method(#getMessagesById, [messageIDs]),
+              returnValue: Future<_i6.GetMessagesByIdResponse>.value(
+                  _FakeGetMessagesByIdResponse_30()))
+          as _i11.Future<_i6.GetMessagesByIdResponse>);
+  @override
+  _i11.Future<_i6.TranslateMessageResponse> translateMessage(
+          String? messageId, String? language) =>
+      (super.noSuchMethod(
+              Invocation.method(#translateMessage, [messageId, language]),
+              returnValue: Future<_i6.TranslateMessageResponse>.value(
+                  _FakeTranslateMessageResponse_31()))
+          as _i11.Future<_i6.TranslateMessageResponse>);
+  @override
+  _i11.Future<_i9.ChannelState> create() => (super.noSuchMethod(
+          Invocation.method(#create, []),
+          returnValue: Future<_i9.ChannelState>.value(_FakeChannelState_15()))
+      as _i11.Future<_i9.ChannelState>);
+  @override
+  _i11.Future<_i9.ChannelState> query(
+          {bool? state = true,
+          bool? watch = false,
+          bool? presence = false,
+          _i17.PaginationParams? messagesPagination,
+          _i17.PaginationParams? membersPagination,
+          _i17.PaginationParams? watchersPagination,
+          bool? preferOffline = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#query, [], {
+                #state: state,
+                #watch: watch,
+                #presence: presence,
+                #messagesPagination: messagesPagination,
+                #membersPagination: membersPagination,
+                #watchersPagination: watchersPagination,
+                #preferOffline: preferOffline
+              }),
+              returnValue:
+                  Future<_i9.ChannelState>.value(_FakeChannelState_15()))
+          as _i11.Future<_i9.ChannelState>);
+  @override
+  _i11.Future<_i6.QueryMembersResponse> queryMembers(
+          {_i16.Filter? filter,
+          List<_i17.SortOption<dynamic>>? sort,
+          _i17.PaginationParams? pagination}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryMembers, [],
+                  {#filter: filter, #sort: sort, #pagination: pagination}),
+              returnValue: Future<_i6.QueryMembersResponse>.value(
+                  _FakeQueryMembersResponse_16()))
+          as _i11.Future<_i6.QueryMembersResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> mute({Duration? expiration}) => (super
+          .noSuchMethod(Invocation.method(#mute, [], {#expiration: expiration}),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+      as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> unmute() => (super.noSuchMethod(
+          Invocation.method(#unmute, []),
+          returnValue: Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+      as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> banUser(
+          String? userID, Map<String, dynamic>? options) =>
+      (super.noSuchMethod(Invocation.method(#banUser, [userID, options]),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+          as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> unbanUser(String? userID) =>
+      (super.noSuchMethod(Invocation.method(#unbanUser, [userID]),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+          as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> shadowBan(
+          String? userID, Map<String, dynamic>? options) =>
+      (super.noSuchMethod(Invocation.method(#shadowBan, [userID, options]),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+          as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> removeShadowBan(String? userID) =>
+      (super.noSuchMethod(Invocation.method(#removeShadowBan, [userID]),
+              returnValue:
+                  Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+          as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> hide({bool? clearHistory = false}) => (super
+      .noSuchMethod(Invocation.method(#hide, [], {#clearHistory: clearHistory}),
+          returnValue:
+              Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9())) as _i11
+      .Future<_i6.EmptyResponse>);
+  @override
+  _i11.Future<_i6.EmptyResponse> show() => (super.noSuchMethod(
+          Invocation.method(#show, []),
+          returnValue: Future<_i6.EmptyResponse>.value(_FakeEmptyResponse_9()))
+      as _i11.Future<_i6.EmptyResponse>);
+  @override
+  _i11.Stream<_i12.Event> on(
+          [String? eventType,
+          String? eventType2,
+          String? eventType3,
+          String? eventType4]) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #on, [eventType, eventType2, eventType3, eventType4]),
+          returnValue: Stream<_i12.Event>.empty()) as _i11.Stream<_i12.Event>);
+  @override
+  _i11.Future<void> keyStroke([String? parentId]) => (super.noSuchMethod(
+      Invocation.method(#keyStroke, [parentId]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i11.Future<void>);
+  @override
+  _i11.Future<void> stopTyping([String? parentId]) => (super.noSuchMethod(
+      Invocation.method(#stopTyping, [parentId]),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i11.Future<void>);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [ChannelState].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChannelState extends _i1.Mock implements _i9.ChannelState {
+  MockChannelState() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  List<_i21.Message> get messages =>
+      (super.noSuchMethod(Invocation.getter(#messages),
+          returnValue: <_i21.Message>[]) as List<_i21.Message>);
+  @override
+  List<_i23.Member> get members =>
+      (super.noSuchMethod(Invocation.getter(#members),
+          returnValue: <_i23.Member>[]) as List<_i23.Member>);
+  @override
+  List<_i21.Message> get pinnedMessages =>
+      (super.noSuchMethod(Invocation.getter(#pinnedMessages),
+          returnValue: <_i21.Message>[]) as List<_i21.Message>);
+  @override
+  List<_i14.User> get watchers =>
+      (super.noSuchMethod(Invocation.getter(#watchers),
+          returnValue: <_i14.User>[]) as List<_i14.User>);
+  @override
+  List<_i2.Read> get read =>
+      (super.noSuchMethod(Invocation.getter(#read), returnValue: <_i2.Read>[])
+          as List<_i2.Read>);
+  @override
+  Map<String, dynamic> toJson() =>
+      (super.noSuchMethod(Invocation.method(#toJson, []),
+          returnValue: <String, dynamic>{}) as Map<String, dynamic>);
+  @override
+  _i9.ChannelState copyWith(
+          {_i18.ChannelModel? channel,
+          List<_i21.Message>? messages,
+          List<_i23.Member>? members,
+          List<_i21.Message>? pinnedMessages,
+          int? watcherCount,
+          List<_i14.User>? watchers,
+          List<_i2.Read>? read}) =>
+      (super.noSuchMethod(
+          Invocation.method(#copyWith, [], {
+            #channel: channel,
+            #messages: messages,
+            #members: members,
+            #pinnedMessages: pinnedMessages,
+            #watcherCount: watcherCount,
+            #watchers: watchers,
+            #read: read
+          }),
+          returnValue: _FakeChannelState_15()) as _i9.ChannelState);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [ChannelClientState].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockChannelClientState extends _i1.Mock
+    implements _i8.ChannelClientState {
+  MockChannelClientState() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get isUpToDate =>
+      (super.noSuchMethod(Invocation.getter(#isUpToDate), returnValue: false)
+          as bool);
+  @override
+  set isUpToDate(bool? isUpToDate) =>
+      super.noSuchMethod(Invocation.setter(#isUpToDate, isUpToDate),
+          returnValueForMissingStub: null);
+  @override
+  _i11.Stream<bool> get isUpToDateStream =>
+      (super.noSuchMethod(Invocation.getter(#isUpToDateStream),
+          returnValue: Stream<bool>.empty()) as _i11.Stream<bool>);
+  @override
+  List<_i21.Message> get messages =>
+      (super.noSuchMethod(Invocation.getter(#messages),
+          returnValue: <_i21.Message>[]) as List<_i21.Message>);
+  @override
+  _i11.Stream<List<_i21.Message>> get messagesStream =>
+      (super.noSuchMethod(Invocation.getter(#messagesStream),
+              returnValue: Stream<List<_i21.Message>>.empty())
+          as _i11.Stream<List<_i21.Message>>);
+  @override
+  List<_i21.Message> get pinnedMessages =>
+      (super.noSuchMethod(Invocation.getter(#pinnedMessages),
+          returnValue: <_i21.Message>[]) as List<_i21.Message>);
+  @override
+  _i11.Stream<List<_i21.Message>> get pinnedMessagesStream =>
+      (super.noSuchMethod(Invocation.getter(#pinnedMessagesStream),
+              returnValue: Stream<List<_i21.Message>>.empty())
+          as _i11.Stream<List<_i21.Message>>);
+  @override
+  _i11.Stream<_i21.Message?> get lastMessageStream =>
+      (super.noSuchMethod(Invocation.getter(#lastMessageStream),
+              returnValue: Stream<_i21.Message?>.empty())
+          as _i11.Stream<_i21.Message?>);
+  @override
+  List<_i23.Member> get members =>
+      (super.noSuchMethod(Invocation.getter(#members),
+          returnValue: <_i23.Member>[]) as List<_i23.Member>);
+  @override
+  _i11.Stream<List<_i23.Member>> get membersStream =>
+      (super.noSuchMethod(Invocation.getter(#membersStream),
+              returnValue: Stream<List<_i23.Member>>.empty())
+          as _i11.Stream<List<_i23.Member>>);
+  @override
+  _i11.Stream<int?> get watcherCountStream =>
+      (super.noSuchMethod(Invocation.getter(#watcherCountStream),
+          returnValue: Stream<int?>.empty()) as _i11.Stream<int?>);
+  @override
+  List<_i14.User> get watchers =>
+      (super.noSuchMethod(Invocation.getter(#watchers),
+          returnValue: <_i14.User>[]) as List<_i14.User>);
+  @override
+  _i11.Stream<List<_i14.User>> get watchersStream =>
+      (super.noSuchMethod(Invocation.getter(#watchersStream),
+              returnValue: Stream<List<_i14.User>>.empty())
+          as _i11.Stream<List<_i14.User>>);
+  @override
+  List<_i2.Read> get read =>
+      (super.noSuchMethod(Invocation.getter(#read), returnValue: <_i2.Read>[])
+          as List<_i2.Read>);
+  @override
+  _i11.Stream<List<_i2.Read>> get readStream =>
+      (super.noSuchMethod(Invocation.getter(#readStream),
+              returnValue: Stream<List<_i2.Read>>.empty())
+          as _i11.Stream<List<_i2.Read>>);
+  @override
+  set unreadCount(int? value) =>
+      super.noSuchMethod(Invocation.setter(#unreadCount, value),
+          returnValueForMissingStub: null);
+  @override
+  _i11.Stream<int> get unreadCountStream =>
+      (super.noSuchMethod(Invocation.getter(#unreadCountStream),
+          returnValue: Stream<int>.empty()) as _i11.Stream<int>);
+  @override
+  int get unreadCount =>
+      (super.noSuchMethod(Invocation.getter(#unreadCount), returnValue: 0)
+          as int);
+  @override
+  _i11.Stream<_i9.ChannelState> get channelStateStream =>
+      (super.noSuchMethod(Invocation.getter(#channelStateStream),
+              returnValue: Stream<_i9.ChannelState>.empty())
+          as _i11.Stream<_i9.ChannelState>);
+  @override
+  _i9.ChannelState get channelState =>
+      (super.noSuchMethod(Invocation.getter(#channelState),
+          returnValue: _FakeChannelState_15()) as _i9.ChannelState);
+  @override
+  Map<String, List<_i21.Message>> get threads =>
+      (super.noSuchMethod(Invocation.getter(#threads),
+              returnValue: <String, List<_i21.Message>>{})
+          as Map<String, List<_i21.Message>>);
+  @override
+  _i11.Stream<Map<String, List<_i21.Message>>> get threadsStream =>
+      (super.noSuchMethod(Invocation.getter(#threadsStream),
+              returnValue: Stream<Map<String, List<_i21.Message>>>.empty())
+          as _i11.Stream<Map<String, List<_i21.Message>>>);
+  @override
+  Map<_i14.User, _i12.Event> get typingEvents => (super.noSuchMethod(
+      Invocation.getter(#typingEvents),
+      returnValue: <_i14.User, _i12.Event>{}) as Map<_i14.User, _i12.Event>);
+  @override
+  _i11.Stream<Map<_i14.User, _i12.Event>> get typingEventsStream =>
+      (super.noSuchMethod(Invocation.getter(#typingEventsStream),
+              returnValue: Stream<Map<_i14.User, _i12.Event>>.empty())
+          as _i11.Stream<Map<_i14.User, _i12.Event>>);
+  @override
+  _i11.Future<void> retryFailedMessages() => (super.noSuchMethod(
+      Invocation.method(#retryFailedMessages, []),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i11.Future<void>);
+  @override
+  void addMessage(_i21.Message? message) =>
+      super.noSuchMethod(Invocation.method(#addMessage, [message]),
+          returnValueForMissingStub: null);
+  @override
+  void removeMessage(_i21.Message? message) =>
+      super.noSuchMethod(Invocation.method(#removeMessage, [message]),
+          returnValueForMissingStub: null);
+  @override
+  void updateThreadInfo(String? parentId, List<_i21.Message>? messages) => super
+      .noSuchMethod(Invocation.method(#updateThreadInfo, [parentId, messages]),
+          returnValueForMissingStub: null);
+  @override
+  void truncate() => super.noSuchMethod(Invocation.method(#truncate, []),
+      returnValueForMissingStub: null);
+  @override
+  void updateChannelState(_i9.ChannelState? updatedState) =>
+      super.noSuchMethod(Invocation.method(#updateChannelState, [updatedState]),
+          returnValueForMissingStub: null);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
   @override
   String toString() => super.toString();
 }

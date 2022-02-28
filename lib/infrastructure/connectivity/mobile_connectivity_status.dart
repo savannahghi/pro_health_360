@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:io';
 
 // Package imports:
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -12,14 +13,16 @@ class MobileConnectivityStatus extends ConnectivityStatus {
   MobileConnectivityStatus({Future<bool> Function()? checkInternetCallback})
       : _hasConnection = false,
         checkInternetCallback = checkInternetCallback ?? checkInternet {
-    _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result != ConnectivityResult.none) {
-        checkConnection();
-      } else {
-        _hasConnection = false;
-        _connectionChangeController.add(false);
-      }
-    });
+    if (!Platform.environment.containsKey('FLUTTER_TEST')) {
+      _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+        if (result != ConnectivityResult.none) {
+          checkConnection();
+        } else {
+          _hasConnection = false;
+          _connectionChangeController.add(false);
+        }
+      });
+    }
   }
 
   late bool _hasConnection;
