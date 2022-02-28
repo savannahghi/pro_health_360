@@ -106,6 +106,7 @@ const Key noRadioButtonKey = Key('no_radio_button_key');
 const Key yesRadioButtonKey = Key('yes_radio_button_key');
 const Key yesButtonKey = Key('yes_button_key');
 const Key noButtonKey = Key('no_button_key');
+const Key feedbackTextFieldKey = Key('feedback_textfield_key');
 
 const Key pinInputPageBackKey = Key('pin_input_page_back_key');
 

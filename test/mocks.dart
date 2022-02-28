@@ -229,6 +229,7 @@ class TestNavigatorObserver extends NavigatorObserver {
 ///
 /// a good use case is when you want to return error responses
 class MockShortSILGraphQlClient extends IGraphQlClient {
+  MockShortSILGraphQlClient();
   MockShortSILGraphQlClient.withResponse(
     String idToken,
     String endpoint,
@@ -238,7 +239,7 @@ class MockShortSILGraphQlClient extends IGraphQlClient {
     super.endpoint = endpoint;
   }
 
-  final http.Response response;
+  late final http.Response response;
 
   @override
   Future<http.Response> callRESTAPI({

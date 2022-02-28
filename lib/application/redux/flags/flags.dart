@@ -66,3 +66,6 @@ const String shareContentFlag = 'share_content_flag';
 const String fetchSavedContentFlag = 'fetch_saved_content_flag';
 
 const String verifyPINFlag = 'verify_pin_flag';
+
+// Send Feedback page
+const String sendFeedbackFlag = 'set_feedback_flag';

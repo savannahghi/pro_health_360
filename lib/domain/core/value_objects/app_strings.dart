@@ -781,3 +781,10 @@ const String assessmentSubmissionSuccessfulDescription =
 
 /// Date picker format
 const String datePickerFormat = 'dd MMM, yyyy';
+
+// successful feedback submission
+const String feedbackSubmissionSuccessfulText =
+    'Thanks for sharing your feedback';
+
+const String feedbackSubmissionErrorText =
+    'An error occured sending your feedback, please try again later';

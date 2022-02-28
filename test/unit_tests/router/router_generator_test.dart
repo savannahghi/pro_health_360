@@ -17,6 +17,7 @@ import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
+import 'package:myafyahub/presentation/content/widgets/successful_feedback_submission.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
@@ -474,5 +475,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SuccessfulAssessmentSubmissionPage>>());
     expect(route.builder(context), isA<SuccessfulAssessmentSubmissionPage>());
+  });
+
+  test('Test router returns Successful feedback submission page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.successfulFeedbackSubmissionPage);
+
+    final MaterialPageRoute<SuccessfulFeedbackSubmissionPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<SuccessfulFeedbackSubmissionPage>;
+
+    expect(route, isA<MaterialPageRoute<SuccessfulFeedbackSubmissionPage>>());
+    expect(route.builder(context), isA<SuccessfulFeedbackSubmissionPage>());
   });
 }

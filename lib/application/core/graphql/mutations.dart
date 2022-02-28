@@ -139,3 +139,9 @@ mutation createOrUpdateClientCaregiver(
   )
 }
 ''';
+
+const String sendFeedbackMutation = r'''
+mutation sendFeedback($input: FeedbackResponseInput!) {
+  sendFeedback(input: $input)
+}
+''';
