@@ -4,8 +4,6 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_remote_config_platform_interface/firebase_remote_config_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -24,6 +22,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 import 'package:video_player/video_player.dart';
 
 import 'test_utils.dart';
@@ -40,6 +39,15 @@ class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
   String get dbName =>
       super.noSuchMethod(Invocation.getter(#dbName), returnValue: 'testDb')
           as String;
+}
+
+class MockClientState extends Mock implements stream.ClientState {}
+
+class MockLogger extends Mock implements stream.Logger {}
+
+class MockChannel extends Mock implements stream.Channel {
+  @override
+  Future<bool> get initialized async => true;
 }
 
 class MockConnectivityPlatform extends Mock
@@ -969,27 +977,6 @@ List<Map<String, dynamic>> mockFilterItems = <Map<String, dynamic>>[
   },
 ];
 
-class TestFirebaseRemoteConfigPlatform extends FirebaseRemoteConfigPlatform {
-  TestFirebaseRemoteConfigPlatform() : super();
-
-  @override
-  FirebaseRemoteConfigPlatform delegateFor({FirebaseApp? app}) {
-    return this;
-  }
-
-  @override
-  FirebaseRemoteConfigPlatform setInitialValues({
-    Map<dynamic, dynamic>? remoteConfigValues,
-  }) {
-    return this;
-  }
-
-  void instanceFor({
-    FirebaseApp? app,
-    Map<dynamic, dynamic>? pluginConstants,
-  }) {}
-}
-
 List<Map<String, dynamic>> mockSuggestions = <Map<String, dynamic>>[
   <String, dynamic>{
     'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
@@ -1680,6 +1667,9 @@ class MockVideoPlayerController extends ValueNotifier<VideoPlayerValue>
 
   @override
   VideoPlayerOptions? get videoPlayerOptions => null;
+
+  @override
+  void setCaptionOffset(Duration offset) {}
 }
 
 Future<ClosedCaptionFile> _loadClosedCaption() async =>

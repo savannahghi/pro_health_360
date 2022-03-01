@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:dart_fcm/dart_fcm.dart';
 import 'package:domain_objects/value_objects.dart';
 
 // Project imports:
@@ -15,12 +14,10 @@ class LogoutAction extends ReduxAction<AppState> {
   LogoutAction({
     required this.navigationCallback,
     required this.context,
-    required this.fcm,
   });
 
   final BuildContext context;
   final Function navigationCallback;
-  final SILFCM fcm;
 
   @override
   Future<AppState> reduce() async {
@@ -35,8 +32,6 @@ class LogoutAction extends ReduxAction<AppState> {
         tokenExpiryTimestamp: UNKNOWN,
       ),
     );
-
-    await fcm.resetToken();
 
     return AppState.initial();
   }

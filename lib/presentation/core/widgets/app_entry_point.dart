@@ -12,6 +12,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class AppEntryPoint extends StatelessWidget {
   const AppEntryPoint({
@@ -22,6 +23,7 @@ class AppEntryPoint extends StatelessWidget {
     required this.appNavigatorObservers,
     required this.appSetupData,
     required this.connectivityStatus,
+    required this.streamClient,
   }) : super(key: key);
 
   final String appName;
@@ -30,6 +32,7 @@ class AppEntryPoint extends StatelessWidget {
   final Store<AppState> appStore;
   final AppSetupData appSetupData;
   final ConnectivityStatus connectivityStatus;
+  final stream.StreamChatClient streamClient;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +68,7 @@ class AppEntryPoint extends StatelessWidget {
               entryPointContext: context,
               appStore: appStore,
               connectivityStatus: connectivityStatus,
+              client: streamClient,
             ),
           );
         },

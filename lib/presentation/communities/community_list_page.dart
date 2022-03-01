@@ -1,86 +1,39 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/communities/channel_page.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
+
+import 'community_utils.dart';
 
 class CommunityListViewPage extends StatelessWidget {
   const CommunityListViewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Placeholder
-    const String appointmentReminderText =
-        'Don\'t miss your appointment tomorrow';
-    const AssetImage avatarImage = AssetImage(profileImage);
-    const String date = 'July 12 2021';
-
-    const List<Widget> items = <Widget>[
-      CommunityListItem(
-        title: 'Ruaka Questions group',
-        message: appointmentReminderText,
-        lastMessageDate: date,
-        unreadNotificationCount: 4,
-        avatarImage: avatarImage,
-        isGroupMessage: true,
-      ),
-      CommunityListItem(
-        title: 'Ruaka Questions group',
-        message: appointmentReminderText,
-        lastMessageDate: date,
-        unreadNotificationCount: 4,
-        avatarImage: avatarImage,
-        isGroupMessage: true,
-      ),
-      CommunityListItem(
-        title: 'My Afya Guide',
-        message: appointmentReminderText,
-        lastMessageDate: date,
-        unreadNotificationCount: 4,
-        avatarImage: avatarImage,
-        isGroupMessage: true,
-      ),
-      CommunityListItem(
-        title: 'My Afya Guide',
-        message: appointmentReminderText,
-        lastMessageDate: date,
-        unreadNotificationCount: 4,
-        avatarImage: avatarImage,
-        isGroupMessage: true,
-      ),
-    ];
-
     return AppScaffold(
       appBar:
           const CustomAppBar(title: communityPageString, showBackButton: false),
-      body: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-          ListView.builder(
-            key: communityListViewKey,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            itemCount: items.length,
-            itemBuilder: (_, int index) {
-              return GestureDetector(
-                key: communityListGestureDetectorKey,
-                onTap: () {
-                  Navigator.of(context).pushNamed(
-                    AppRoutes.communityChatScreenPage,
-                    arguments: items.elementAt(index),
-                  );
-                },
-                child: items[index],
-              );
-            },
+      body: stream.StreamChat(
+        client: stream.StreamChat.of(context).client,
+        child: stream.ChannelsBloc(
+          child: stream.ChannelListView(
+            filter: stream.Filter.in_(
+              'members',
+              <String>[stream.StreamChat.of(context).currentUser?.id ?? ''],
+            ),
+            channelPreviewBuilder: channelPreviewBuilder,
+            sort: const <stream.SortOption<stream.ChannelModel>>[
+              stream.SortOption<stream.ChannelModel>('last_message_at')
+            ],
+            limit: 20,
+            channelWidget: const ChannelPage(),
           ),
-        ],
+        ),
       ),
     );
   }

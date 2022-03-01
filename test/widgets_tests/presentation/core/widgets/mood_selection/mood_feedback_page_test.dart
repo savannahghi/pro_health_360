@@ -27,6 +27,7 @@ void main() {
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+
     final MockShortSILGraphQlClient mockShortSILGraphQlClient =
         MockShortSILGraphQlClient.withResponse(
       'idToken',

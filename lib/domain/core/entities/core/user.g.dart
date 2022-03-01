@@ -33,6 +33,7 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     isPhoneVerified: json['isPhoneVerified'] as bool?,
     pinChangeRequired: json['pinChangeRequired'] as bool? ?? false,
     suspended: json['suspended'] as bool? ?? false,
+    chatRoomToken: json['chatRoomToken'] as String?,
   );
 }
 
@@ -56,4 +57,5 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'isPhoneVerified': instance.isPhoneVerified,
       'pinChangeRequired': instance.pinChangeRequired,
       'suspended': instance.suspended,
+      'chatRoomToken': instance.chatRoomToken,
     };

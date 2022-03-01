@@ -2,7 +2,6 @@
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,18 +21,10 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
 
-import '../../../../../mock_utils.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
-  // initial set up
-  setupFirebaseAuthMocks();
-
-  setUpAll(() async {
-    await Firebase.initializeApp();
-  });
-
   group('PhoneLoginAction', () {
     late Store<AppState> store;
 

@@ -9,7 +9,7 @@ commands:
           name: Install flutter
           command: bash install_flutter_ci.sh
       - save_cache:
-          key: flutter_root_and_dependencies_cache
+          key: flutter_root_and_dependencies_cache_v1
           paths:
             - $CIRCLE_WORKING_DIRECTORY/.dart_tool/
             - $CIRCLE_WORKING_DIRECTORY/.flutter-plugins
@@ -59,12 +59,12 @@ commands:
             mkdir -p dump/
             echo $DEV_SENTRY_DNS > .env
             echo $PROD_SENTRY_DNS >> .env
+            echo $STREAM_API_KEY >> .env
             echo $GOOGLE_SERVICES_FILE > android/app/google-services.json
       - run:
           name: "Setup flutter environment variable"
           command: |
             echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
-         
 
 jobs:
   run_tests_and_generate_coverage:
@@ -79,7 +79,7 @@ jobs:
              echo 'export PATH=/home/circleci/flutter/bin:$PATH' >> $BASH_ENV
       - restore_cache:
           keys:
-            - flutter_root_and_dependencies_cache
+            - flutter_root_and_dependencies_cache_v1
       - run:
          name: Analyze, test and report coverage
          no_output_timeout: 15m
@@ -96,7 +96,9 @@ jobs:
             lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/presentation/core/widgets/preload_app.dart' -o coverage/lcov.info
-            lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/connectivity_helper.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/presentation/communities/*.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/presentation/core/widgets/app_entry_point.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/infrastructure/connectivity/*.dart' -o coverage/lcov.info
             genhtml -q -o coverage coverage/lcov.info
             python3 check_coverage.py
       - store_artifacts:
@@ -113,7 +115,7 @@ jobs:
       - setup_env_vars
       - restore_cache:
           keys:
-            - flutter_root_and_dependencies_cache
+            - flutter_root_and_dependencies_cache_v1
             - keystore_and_properties_cache
 
       - run:
@@ -134,7 +136,7 @@ jobs:
       - setup_env_vars
       - restore_cache:
           keys:
-            - flutter_root_and_dependencies_cache
+            - flutter_root_and_dependencies_cache_v1
             - keystore_and_properties_cache
       - run:
           name: "Build and publish to play store alpha track"
@@ -169,7 +171,7 @@ jobs:
       - setup_env_vars
       - restore_cache:
           keys:
-            - flutter_root_and_dependencies_cache
+            - flutter_root_and_dependencies_cache_v1
             - keystore_and_properties_cache
       - run:
           name: "Build and publish to play store beta track"
@@ -197,7 +199,7 @@ jobs:
       - setup_env_vars
       - restore_cache:
           keys:
-            - flutter_root_and_dependencies_cache
+            - flutter_root_and_dependencies_cache_v1
             - keystore_and_properties_cache
       - run:
           name: "Build and publish to play store prod track"

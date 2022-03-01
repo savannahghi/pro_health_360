@@ -8,8 +8,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:mockito/mockito.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
@@ -22,23 +20,6 @@ import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'widgets_tests/shared/utils_test.mocks.dart';
 
 final BaseGraphQlClient baseGraphQlClientMock = BaseGraphQlClient();
-
-void queryWhenThenAnswer({
-  required String queryString,
-  required Map<String, dynamic> variables,
-  required http.Response response,
-}) {
-  when(
-    baseGraphQlClientMock.query(
-      queryString,
-      variables,
-    ),
-  ).thenAnswer(
-    (_) => Future<http.Response>.value(
-      response,
-    ),
-  );
-}
 
 Future<void> buildTestWidget({
   required WidgetTester tester,

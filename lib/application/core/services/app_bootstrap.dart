@@ -5,8 +5,6 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,15 +21,12 @@ import 'package:myafyahub/infrastructure/repository/database_state_persistor.dar
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await FlutterConfig.loadEnvVariables();
-
-  await Firebase.initializeApp();
-
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
   await SystemChrome.setPreferredOrientations(
     <DeviceOrientation>[DeviceOrientation.portraitUp],
@@ -100,6 +95,13 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
 
   final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
+  final String apiKey = FlutterConfig.get('STREAM_API_KEY') as String;
+
+  final StreamChatClient streamClient = StreamChatClient(
+    apiKey,
+    logLevel: Level.ALL,
+  );
+
   runZonedGuarded(() async {
     await SentryFlutter.init(
       (SentryFlutterOptions options) {
@@ -109,6 +111,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
       },
       appRunner: () => runApp(
         MyAppWidget(
+          streamClient: streamClient,
           store: store,
           navigatorObserver: navigatorObserver,
           connectivityStatus: connectivityStatus,

@@ -22,6 +22,9 @@ import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dar
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
@@ -33,6 +36,7 @@ class PreLoadApp extends StatefulWidget {
     required this.entryPointContext,
     required this.appStore,
     required this.connectivityStatus,
+    required this.client,
   }) : super(key: key);
 
   final String appName;
@@ -42,6 +46,7 @@ class PreLoadApp extends StatefulWidget {
   final BuildContext entryPointContext;
   final List<AppContext> thisAppContexts;
   final ConnectivityStatus connectivityStatus;
+  final StreamChatClient client;
 
   @override
   _PreLoadAppState createState() => _PreLoadAppState();
@@ -51,6 +56,9 @@ class _PreLoadAppState extends State<PreLoadApp> {
   BehaviorSubject<String> appInitialRoute = BehaviorSubject<String>();
 
   StreamSubscription<bool>? _connectivitySub;
+
+  /// The channel we'd like to observe and participate.
+  late Channel channel;
 
   @override
   void initState() {
@@ -67,6 +75,31 @@ class _PreLoadAppState extends State<PreLoadApp> {
         });
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+      final String clientID =
+          StoreProvider.state<AppState>(context)?.clientState?.id ?? '';
+
+      final String chatRoomToken = StoreProvider.state<AppState>(context)
+              ?.clientState
+              ?.user
+              ?.chatRoomToken ??
+          '';
+
+      /// Set the current user. In a production scenario, this should be done using
+      /// a backend to generate a user token using our server SDK.
+      /// Please see the following for more information:
+      /// https://getstream.io/chat/docs/flutter-dart/tokens_and_authentication/?language=dart
+      try {
+        await widget.client.connectUser(
+          stream.User(id: clientID),
+          chatRoomToken,
+        );
+      } on stream.StreamWebSocketError catch (e) {
+        Sentry.captureException(
+          e,
+          hint: e.message,
+        );
+      }
+
       StoreProvider.dispatch(
         context,
         CheckTokenAction(
@@ -126,6 +159,12 @@ class _PreLoadAppState extends State<PreLoadApp> {
           navigatorObservers: widget.appNavigatorObservers,
           localizationsDelegates: localizationDelegates,
           supportedLocales: locales,
+          builder: (BuildContext context, Widget? childWidget) {
+            return StreamChat(
+              client: widget.client,
+              child: childWidget,
+            );
+          },
         );
       },
     );
