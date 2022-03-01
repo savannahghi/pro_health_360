@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'misc_state.dart';
 
@@ -43,7 +45,7 @@ class _$MiscStateTearOff {
     );
   }
 
-  MiscState fromJson(Map<String, Object> json) {
+  MiscState fromJson(Map<String, Object?> json) {
     return MiscState.fromJson(json);
   }
 }
@@ -259,7 +261,7 @@ class _$_MiscState implements _MiscState {
       this.resumeTimer});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
-      _$_$_MiscStateFromJson(json);
+      _$$_MiscStateFromJson(json);
 
   @override
   final String? initialRoute;
@@ -288,49 +290,39 @@ class _$_MiscState implements _MiscState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MiscState &&
-            (identical(other.initialRoute, initialRoute) ||
-                const DeepCollectionEquality()
-                    .equals(other.initialRoute, initialRoute)) &&
-            (identical(other.userPin, userPin) ||
-                const DeepCollectionEquality()
-                    .equals(other.userPin, userPin)) &&
-            (identical(other.libraryListItems, libraryListItems) ||
-                const DeepCollectionEquality()
-                    .equals(other.libraryListItems, libraryListItems)) &&
-            (identical(
-                    other.profileFAQsContentState, profileFAQsContentState) ||
-                const DeepCollectionEquality().equals(
-                    other.profileFAQsContentState, profileFAQsContentState)) &&
-            (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
-                const DeepCollectionEquality().equals(
-                    other.healthPagePINInputTime, healthPagePINInputTime)) &&
-            (identical(other.pinInputTries, pinInputTries) ||
-                const DeepCollectionEquality()
-                    .equals(other.pinInputTries, pinInputTries)) &&
-            (identical(other.maxTryTime, maxTryTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxTryTime, maxTryTime)) &&
-            (identical(other.pinVerified, pinVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.pinVerified, pinVerified)) &&
-            (identical(other.resumeTimer, resumeTimer) ||
-                const DeepCollectionEquality()
-                    .equals(other.resumeTimer, resumeTimer)));
+        (other.runtimeType == runtimeType &&
+            other is _MiscState &&
+            const DeepCollectionEquality()
+                .equals(other.initialRoute, initialRoute) &&
+            const DeepCollectionEquality().equals(other.userPin, userPin) &&
+            const DeepCollectionEquality()
+                .equals(other.libraryListItems, libraryListItems) &&
+            const DeepCollectionEquality().equals(
+                other.profileFAQsContentState, profileFAQsContentState) &&
+            const DeepCollectionEquality()
+                .equals(other.healthPagePINInputTime, healthPagePINInputTime) &&
+            const DeepCollectionEquality()
+                .equals(other.pinInputTries, pinInputTries) &&
+            const DeepCollectionEquality()
+                .equals(other.maxTryTime, maxTryTime) &&
+            const DeepCollectionEquality()
+                .equals(other.pinVerified, pinVerified) &&
+            const DeepCollectionEquality()
+                .equals(other.resumeTimer, resumeTimer));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(initialRoute) ^
-      const DeepCollectionEquality().hash(userPin) ^
-      const DeepCollectionEquality().hash(libraryListItems) ^
-      const DeepCollectionEquality().hash(profileFAQsContentState) ^
-      const DeepCollectionEquality().hash(healthPagePINInputTime) ^
-      const DeepCollectionEquality().hash(pinInputTries) ^
-      const DeepCollectionEquality().hash(maxTryTime) ^
-      const DeepCollectionEquality().hash(pinVerified) ^
-      const DeepCollectionEquality().hash(resumeTimer);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(initialRoute),
+      const DeepCollectionEquality().hash(userPin),
+      const DeepCollectionEquality().hash(libraryListItems),
+      const DeepCollectionEquality().hash(profileFAQsContentState),
+      const DeepCollectionEquality().hash(healthPagePINInputTime),
+      const DeepCollectionEquality().hash(pinInputTries),
+      const DeepCollectionEquality().hash(maxTryTime),
+      const DeepCollectionEquality().hash(pinVerified),
+      const DeepCollectionEquality().hash(resumeTimer));
 
   @JsonKey(ignore: true)
   @override
@@ -339,7 +331,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MiscStateToJson(this);
+    return _$$_MiscStateToJson(this);
   }
 }
 
@@ -359,24 +351,23 @@ abstract class _MiscState implements MiscState {
       _$_MiscState.fromJson;
 
   @override
-  String? get initialRoute => throw _privateConstructorUsedError;
+  String? get initialRoute;
   @override
-  UserPin? get userPin => throw _privateConstructorUsedError;
+  UserPin? get userPin;
   @override
-  List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
+  List<dynamic>? get libraryListItems;
   @override
-  FAQsContentState? get profileFAQsContentState =>
-      throw _privateConstructorUsedError;
+  FAQsContentState? get profileFAQsContentState;
   @override
-  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
+  String? get healthPagePINInputTime;
   @override
-  int? get pinInputTries => throw _privateConstructorUsedError;
+  int? get pinInputTries;
   @override
-  String? get maxTryTime => throw _privateConstructorUsedError;
+  String? get maxTryTime;
   @override
-  bool? get pinVerified => throw _privateConstructorUsedError;
+  bool? get pinVerified;
   @override
-  bool? get resumeTimer => throw _privateConstructorUsedError;
+  bool? get resumeTimer;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

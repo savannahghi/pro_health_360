@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'health_diary_entry.dart';
 
@@ -28,7 +30,7 @@ class _$HealthDiaryEdgeTearOff {
     );
   }
 
-  HealthDiaryEdge fromJson(Map<String, Object> json) {
+  HealthDiaryEdge fromJson(Map<String, Object?> json) {
     return HealthDiaryEdge.fromJson(json);
   }
 }
@@ -122,7 +124,7 @@ class _$_HealthDiaryEdge implements _HealthDiaryEdge {
       {@JsonKey(name: 'getClientHealthDiaryEntries') this.entries});
 
   factory _$_HealthDiaryEdge.fromJson(Map<String, dynamic> json) =>
-      _$_$_HealthDiaryEdgeFromJson(json);
+      _$$_HealthDiaryEdgeFromJson(json);
 
   @override
   @JsonKey(name: 'getClientHealthDiaryEntries')
@@ -136,14 +138,14 @@ class _$_HealthDiaryEdge implements _HealthDiaryEdge {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _HealthDiaryEdge &&
-            (identical(other.entries, entries) ||
-                const DeepCollectionEquality().equals(other.entries, entries)));
+        (other.runtimeType == runtimeType &&
+            other is _HealthDiaryEdge &&
+            const DeepCollectionEquality().equals(other.entries, entries));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(entries);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(entries));
 
   @JsonKey(ignore: true)
   @override
@@ -152,7 +154,7 @@ class _$_HealthDiaryEdge implements _HealthDiaryEdge {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_HealthDiaryEdgeToJson(this);
+    return _$$_HealthDiaryEdgeToJson(this);
   }
 }
 
@@ -166,7 +168,7 @@ abstract class _HealthDiaryEdge implements HealthDiaryEdge {
 
   @override
   @JsonKey(name: 'getClientHealthDiaryEntries')
-  List<HealthDiaryEntry>? get entries => throw _privateConstructorUsedError;
+  List<HealthDiaryEntry>? get entries;
   @override
   @JsonKey(ignore: true)
   _$HealthDiaryEdgeCopyWith<_HealthDiaryEdge> get copyWith =>
@@ -196,7 +198,7 @@ class _$HealthDiaryEntryTearOff {
     );
   }
 
-  HealthDiaryEntry fromJson(Map<String, Object> json) {
+  HealthDiaryEntry fromJson(Map<String, Object?> json) {
     return HealthDiaryEntry.fromJson(json);
   }
 }
@@ -348,7 +350,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
       @JsonKey(name: 'active', defaultValue: false) this.active});
 
   factory _$_HealthDiaryEntry.fromJson(Map<String, dynamic> json) =>
-      _$_$_HealthDiaryEntryFromJson(json);
+      _$$_HealthDiaryEntryFromJson(json);
 
   @override
   @JsonKey(name: 'mood')
@@ -374,29 +376,23 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _HealthDiaryEntry &&
-            (identical(other.mood, mood) ||
-                const DeepCollectionEquality().equals(other.mood, mood)) &&
-            (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)) &&
-            (identical(other.entryType, entryType) ||
-                const DeepCollectionEquality()
-                    .equals(other.entryType, entryType)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)));
+        (other.runtimeType == runtimeType &&
+            other is _HealthDiaryEntry &&
+            const DeepCollectionEquality().equals(other.mood, mood) &&
+            const DeepCollectionEquality().equals(other.note, note) &&
+            const DeepCollectionEquality().equals(other.entryType, entryType) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.active, active));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(mood) ^
-      const DeepCollectionEquality().hash(note) ^
-      const DeepCollectionEquality().hash(entryType) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(active);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mood),
+      const DeepCollectionEquality().hash(note),
+      const DeepCollectionEquality().hash(entryType),
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(active));
 
   @JsonKey(ignore: true)
   @override
@@ -405,7 +401,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_HealthDiaryEntryToJson(this);
+    return _$$_HealthDiaryEntryToJson(this);
   }
 }
 
@@ -423,19 +419,19 @@ abstract class _HealthDiaryEntry implements HealthDiaryEntry {
 
   @override
   @JsonKey(name: 'mood')
-  String? get mood => throw _privateConstructorUsedError;
+  String? get mood;
   @override
   @JsonKey(name: 'note')
-  String? get note => throw _privateConstructorUsedError;
+  String? get note;
   @override
   @JsonKey(name: 'entryType')
-  String? get entryType => throw _privateConstructorUsedError;
+  String? get entryType;
   @override
   @JsonKey(name: 'createdAt')
-  String? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(ignore: true)
   _$HealthDiaryEntryCopyWith<_HealthDiaryEntry> get copyWith =>

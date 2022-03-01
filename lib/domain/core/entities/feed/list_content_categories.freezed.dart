@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'list_content_categories.dart';
 
@@ -28,7 +30,7 @@ class _$ListContentCategoryTearOff {
     );
   }
 
-  ListContentCategory fromJson(Map<String, Object> json) {
+  ListContentCategory fromJson(Map<String, Object?> json) {
     return ListContentCategory.fromJson(json);
   }
 }
@@ -123,7 +125,7 @@ class _$_ListContentCategory implements _ListContentCategory {
       {@JsonKey(name: 'listContentCategories') this.contentCategories});
 
   factory _$_ListContentCategory.fromJson(Map<String, dynamic> json) =>
-      _$_$_ListContentCategoryFromJson(json);
+      _$$_ListContentCategoryFromJson(json);
 
   @override
   @JsonKey(name: 'listContentCategories')
@@ -137,16 +139,15 @@ class _$_ListContentCategory implements _ListContentCategory {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ListContentCategory &&
-            (identical(other.contentCategories, contentCategories) ||
-                const DeepCollectionEquality()
-                    .equals(other.contentCategories, contentCategories)));
+        (other.runtimeType == runtimeType &&
+            other is _ListContentCategory &&
+            const DeepCollectionEquality()
+                .equals(other.contentCategories, contentCategories));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(contentCategories);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(contentCategories));
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +157,7 @@ class _$_ListContentCategory implements _ListContentCategory {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ListContentCategoryToJson(this);
+    return _$$_ListContentCategoryToJson(this);
   }
 }
 
@@ -170,8 +171,7 @@ abstract class _ListContentCategory implements ListContentCategory {
 
   @override
   @JsonKey(name: 'listContentCategories')
-  List<ContentCategory?>? get contentCategories =>
-      throw _privateConstructorUsedError;
+  List<ContentCategory?>? get contentCategories;
   @override
   @JsonKey(ignore: true)
   _$ListContentCategoryCopyWith<_ListContentCategory> get copyWith =>

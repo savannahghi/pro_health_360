@@ -6,10 +6,9 @@ part of 'confidential_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ConfidentialState _$_$_ConfidentialStateFromJson(Map<String, dynamic> json) {
-  return _$_ConfidentialState();
-}
+_$_ConfidentialState _$$_ConfidentialStateFromJson(Map<String, dynamic> json) =>
+    _$_ConfidentialState();
 
-Map<String, dynamic> _$_$_ConfidentialStateToJson(
+Map<String, dynamic> _$$_ConfidentialStateToJson(
         _$_ConfidentialState instance) =>
     <String, dynamic>{};

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'related_person.dart';
 
@@ -55,7 +57,7 @@ class _$RelatedPersonTearOff {
     );
   }
 
-  RelatedPerson fromJson(Map<String, Object> json) {
+  RelatedPerson fromJson(Map<String, Object?> json) {
     return RelatedPerson.fromJson(json);
   }
 }
@@ -312,7 +314,7 @@ class _$_RelatedPerson implements _RelatedPerson {
           this.contacts});
 
   factory _$_RelatedPerson.fromJson(Map<String, dynamic> json) =>
-      _$_$_RelatedPersonFromJson(json);
+      _$$_RelatedPersonFromJson(json);
 
   @override
   @JsonKey(name: 'active')
@@ -353,50 +355,35 @@ class _$_RelatedPerson implements _RelatedPerson {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RelatedPerson &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.relatedTo, relatedTo) ||
-                const DeepCollectionEquality()
-                    .equals(other.relatedTo, relatedTo)) &&
-            (identical(other.relationshipType, relationshipType) ||
-                const DeepCollectionEquality()
-                    .equals(other.relationshipType, relationshipType)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.otherName, otherName) ||
-                const DeepCollectionEquality()
-                    .equals(other.otherName, otherName)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.dateOfBirth, dateOfBirth) ||
-                const DeepCollectionEquality()
-                    .equals(other.dateOfBirth, dateOfBirth)) &&
-            (identical(other.addresses, addresses) ||
-                const DeepCollectionEquality()
-                    .equals(other.addresses, addresses)) &&
-            (identical(other.contacts, contacts) ||
-                const DeepCollectionEquality()
-                    .equals(other.contacts, contacts)));
+        (other.runtimeType == runtimeType &&
+            other is _RelatedPerson &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality().equals(other.relatedTo, relatedTo) &&
+            const DeepCollectionEquality()
+                .equals(other.relationshipType, relationshipType) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
+            const DeepCollectionEquality().equals(other.otherName, otherName) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality()
+                .equals(other.dateOfBirth, dateOfBirth) &&
+            const DeepCollectionEquality().equals(other.addresses, addresses) &&
+            const DeepCollectionEquality().equals(other.contacts, contacts));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(relatedTo) ^
-      const DeepCollectionEquality().hash(relationshipType) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(otherName) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(dateOfBirth) ^
-      const DeepCollectionEquality().hash(addresses) ^
-      const DeepCollectionEquality().hash(contacts);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(relatedTo),
+      const DeepCollectionEquality().hash(relationshipType),
+      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(lastName),
+      const DeepCollectionEquality().hash(otherName),
+      const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(dateOfBirth),
+      const DeepCollectionEquality().hash(addresses),
+      const DeepCollectionEquality().hash(contacts));
 
   @JsonKey(ignore: true)
   @override
@@ -405,7 +392,7 @@ class _$_RelatedPerson implements _RelatedPerson {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RelatedPersonToJson(this);
+    return _$$_RelatedPersonToJson(this);
   }
 }
 
@@ -437,34 +424,34 @@ abstract class _RelatedPerson implements RelatedPerson {
 
   @override
   @JsonKey(name: 'active')
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'relatedTo')
-  String? get relatedTo => throw _privateConstructorUsedError;
+  String? get relatedTo;
   @override
   @JsonKey(name: 'relationshipType', defaultValue: RelationshipType.UNKNOWN)
-  RelationshipType? get relationshipType => throw _privateConstructorUsedError;
+  RelationshipType? get relationshipType;
   @override
   @JsonKey(name: 'firstName')
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
   @JsonKey(name: 'lastName')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
   @JsonKey(name: 'otherName')
-  String? get otherName => throw _privateConstructorUsedError;
+  String? get otherName;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-  Gender? get gender => throw _privateConstructorUsedError;
+  Gender? get gender;
   @override
   @JsonKey(name: 'dateOfBirth')
-  String? get dateOfBirth => throw _privateConstructorUsedError;
+  String? get dateOfBirth;
   @override
   @JsonKey(name: 'addresses')
-  List<Address>? get addresses => throw _privateConstructorUsedError;
+  List<Address>? get addresses;
   @override
   @JsonKey(name: 'contacts')
-  List<Contact>? get contacts => throw _privateConstructorUsedError;
+  List<Contact>? get contacts;
   @override
   @JsonKey(ignore: true)
   _$RelatedPersonCopyWith<_RelatedPerson> get copyWith =>

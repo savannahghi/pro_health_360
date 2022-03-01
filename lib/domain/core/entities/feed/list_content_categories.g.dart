@@ -6,18 +6,17 @@ part of 'list_content_categories.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ListContentCategory _$_$_ListContentCategoryFromJson(
-    Map<String, dynamic> json) {
-  return _$_ListContentCategory(
-    contentCategories: (json['listContentCategories'] as List<dynamic>?)
-        ?.map((e) => e == null
-            ? null
-            : ContentCategory.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+_$_ListContentCategory _$$_ListContentCategoryFromJson(
+        Map<String, dynamic> json) =>
+    _$_ListContentCategory(
+      contentCategories: (json['listContentCategories'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : ContentCategory.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
-Map<String, dynamic> _$_$_ListContentCategoryToJson(
+Map<String, dynamic> _$$_ListContentCategoryToJson(
         _$_ListContentCategory instance) =>
     <String, dynamic>{
       'listContentCategories': instance.contentCategories,

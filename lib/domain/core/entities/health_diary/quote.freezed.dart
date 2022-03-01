@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'quote.dart';
 
@@ -26,7 +28,7 @@ class _$QuoteRelayTearOff {
     );
   }
 
-  QuoteRelay fromJson(Map<String, Object> json) {
+  QuoteRelay fromJson(Map<String, Object?> json) {
     return QuoteRelay.fromJson(json);
   }
 }
@@ -128,7 +130,7 @@ class _$_QuoteRelay implements _QuoteRelay {
   _$_QuoteRelay({@JsonKey(name: 'getHealthDiaryQuote') this.quote});
 
   factory _$_QuoteRelay.fromJson(Map<String, dynamic> json) =>
-      _$_$_QuoteRelayFromJson(json);
+      _$$_QuoteRelayFromJson(json);
 
   @override
   @JsonKey(name: 'getHealthDiaryQuote')
@@ -142,14 +144,14 @@ class _$_QuoteRelay implements _QuoteRelay {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _QuoteRelay &&
-            (identical(other.quote, quote) ||
-                const DeepCollectionEquality().equals(other.quote, quote)));
+        (other.runtimeType == runtimeType &&
+            other is _QuoteRelay &&
+            const DeepCollectionEquality().equals(other.quote, quote));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(quote);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(quote));
 
   @JsonKey(ignore: true)
   @override
@@ -158,7 +160,7 @@ class _$_QuoteRelay implements _QuoteRelay {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_QuoteRelayToJson(this);
+    return _$$_QuoteRelayToJson(this);
   }
 }
 
@@ -171,7 +173,7 @@ abstract class _QuoteRelay implements QuoteRelay {
 
   @override
   @JsonKey(name: 'getHealthDiaryQuote')
-  Quote? get quote => throw _privateConstructorUsedError;
+  Quote? get quote;
   @override
   @JsonKey(ignore: true)
   _$QuoteRelayCopyWith<_QuoteRelay> get copyWith =>
@@ -195,7 +197,7 @@ class _$QuoteTearOff {
     );
   }
 
-  Quote fromJson(Map<String, Object> json) {
+  Quote fromJson(Map<String, Object?> json) {
     return Quote.fromJson(json);
   }
 }
@@ -295,7 +297,7 @@ class _$_Quote implements _Quote {
       @JsonKey(name: 'quote') this.quote});
 
   factory _$_Quote.fromJson(Map<String, dynamic> json) =>
-      _$_$_QuoteFromJson(json);
+      _$$_QuoteFromJson(json);
 
   @override
   @JsonKey(name: 'author')
@@ -312,18 +314,17 @@ class _$_Quote implements _Quote {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Quote &&
-            (identical(other.author, author) ||
-                const DeepCollectionEquality().equals(other.author, author)) &&
-            (identical(other.quote, quote) ||
-                const DeepCollectionEquality().equals(other.quote, quote)));
+        (other.runtimeType == runtimeType &&
+            other is _Quote &&
+            const DeepCollectionEquality().equals(other.author, author) &&
+            const DeepCollectionEquality().equals(other.quote, quote));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(author) ^
-      const DeepCollectionEquality().hash(quote);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(author),
+      const DeepCollectionEquality().hash(quote));
 
   @JsonKey(ignore: true)
   @override
@@ -332,7 +333,7 @@ class _$_Quote implements _Quote {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_QuoteToJson(this);
+    return _$$_QuoteToJson(this);
   }
 }
 
@@ -345,10 +346,10 @@ abstract class _Quote implements Quote {
 
   @override
   @JsonKey(name: 'author')
-  String? get author => throw _privateConstructorUsedError;
+  String? get author;
   @override
   @JsonKey(name: 'quote')
-  String? get quote => throw _privateConstructorUsedError;
+  String? get quote;
   @override
   @JsonKey(ignore: true)
   _$QuoteCopyWith<_Quote> get copyWith => throw _privateConstructorUsedError;

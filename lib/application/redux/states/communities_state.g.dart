@@ -6,10 +6,8 @@ part of 'communities_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CommunitiesState _$_$_CommunitiesStateFromJson(Map<String, dynamic> json) {
-  return _$_CommunitiesState();
-}
+_$_CommunitiesState _$$_CommunitiesStateFromJson(Map<String, dynamic> json) =>
+    _$_CommunitiesState();
 
-Map<String, dynamic> _$_$_CommunitiesStateToJson(
-        _$_CommunitiesState instance) =>
+Map<String, dynamic> _$$_CommunitiesStateToJson(_$_CommunitiesState instance) =>
     <String, dynamic>{};

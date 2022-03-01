@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'client_state.dart';
 
@@ -75,7 +77,7 @@ class _$ClientStateTearOff {
     );
   }
 
-  ClientState fromJson(Map<String, Object> json) {
+  ClientState fromJson(Map<String, Object?> json) {
     return ClientState.fromJson(json);
   }
 }
@@ -486,7 +488,7 @@ class _$_ClientState implements _ClientState {
       this.healthDiaryState});
 
   factory _$_ClientState.fromJson(Map<String, dynamic> json) =>
-      _$_$_ClientStateFromJson(json);
+      _$$_ClientStateFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -551,78 +553,59 @@ class _$_ClientState implements _ClientState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ClientState &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.addresses, addresses) ||
-                const DeepCollectionEquality()
-                    .equals(other.addresses, addresses)) &&
-            (identical(other.counselled, counselled) ||
-                const DeepCollectionEquality()
-                    .equals(other.counselled, counselled)) &&
-            (identical(other.clientType, clientType) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientType, clientType)) &&
-            (identical(other.facilityID, facilityID) ||
-                const DeepCollectionEquality()
-                    .equals(other.facilityID, facilityID)) &&
-            (identical(other.relatedPersons, relatedPersons) ||
-                const DeepCollectionEquality()
-                    .equals(other.relatedPersons, relatedPersons)) &&
-            (identical(other.treatmentBuddy, treatmentBuddy) ||
-                const DeepCollectionEquality()
-                    .equals(other.treatmentBuddy, treatmentBuddy)) &&
-            (identical(
-                    other.treatmentEnrollmentDate, treatmentEnrollmentDate) ||
-                const DeepCollectionEquality().equals(
-                    other.treatmentEnrollmentDate, treatmentEnrollmentDate)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.lastMoodRecordedDate, lastMoodRecordedDate) ||
-                const DeepCollectionEquality().equals(
-                    other.lastMoodRecordedDate, lastMoodRecordedDate)) &&
-            (identical(other.isSignedIn, isSignedIn) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSignedIn, isSignedIn)) &&
-            (identical(other.facilityName, facilityName) ||
-                const DeepCollectionEquality()
-                    .equals(other.facilityName, facilityName)) &&
-            (identical(other.facilityPhoneNumber, facilityPhoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.facilityPhoneNumber, facilityPhoneNumber)) &&
-            (identical(other.chvUserID, chvUserID) ||
-                const DeepCollectionEquality()
-                    .equals(other.chvUserID, chvUserID)) &&
-            (identical(other.chvUserName, chvUserName) ||
-                const DeepCollectionEquality()
-                    .equals(other.chvUserName, chvUserName)) &&
-            (identical(other.healthDiaryState, healthDiaryState) ||
-                const DeepCollectionEquality()
-                    .equals(other.healthDiaryState, healthDiaryState)));
+        (other.runtimeType == runtimeType &&
+            other is _ClientState &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality().equals(other.addresses, addresses) &&
+            const DeepCollectionEquality()
+                .equals(other.counselled, counselled) &&
+            const DeepCollectionEquality()
+                .equals(other.clientType, clientType) &&
+            const DeepCollectionEquality()
+                .equals(other.facilityID, facilityID) &&
+            const DeepCollectionEquality()
+                .equals(other.relatedPersons, relatedPersons) &&
+            const DeepCollectionEquality()
+                .equals(other.treatmentBuddy, treatmentBuddy) &&
+            const DeepCollectionEquality().equals(
+                other.treatmentEnrollmentDate, treatmentEnrollmentDate) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.lastMoodRecordedDate, lastMoodRecordedDate) &&
+            const DeepCollectionEquality()
+                .equals(other.isSignedIn, isSignedIn) &&
+            const DeepCollectionEquality()
+                .equals(other.facilityName, facilityName) &&
+            const DeepCollectionEquality()
+                .equals(other.facilityPhoneNumber, facilityPhoneNumber) &&
+            const DeepCollectionEquality().equals(other.chvUserID, chvUserID) &&
+            const DeepCollectionEquality()
+                .equals(other.chvUserName, chvUserName) &&
+            const DeepCollectionEquality()
+                .equals(other.healthDiaryState, healthDiaryState));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(addresses) ^
-      const DeepCollectionEquality().hash(counselled) ^
-      const DeepCollectionEquality().hash(clientType) ^
-      const DeepCollectionEquality().hash(facilityID) ^
-      const DeepCollectionEquality().hash(relatedPersons) ^
-      const DeepCollectionEquality().hash(treatmentBuddy) ^
-      const DeepCollectionEquality().hash(treatmentEnrollmentDate) ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(lastMoodRecordedDate) ^
-      const DeepCollectionEquality().hash(isSignedIn) ^
-      const DeepCollectionEquality().hash(facilityName) ^
-      const DeepCollectionEquality().hash(facilityPhoneNumber) ^
-      const DeepCollectionEquality().hash(chvUserID) ^
-      const DeepCollectionEquality().hash(chvUserName) ^
-      const DeepCollectionEquality().hash(healthDiaryState);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(addresses),
+      const DeepCollectionEquality().hash(counselled),
+      const DeepCollectionEquality().hash(clientType),
+      const DeepCollectionEquality().hash(facilityID),
+      const DeepCollectionEquality().hash(relatedPersons),
+      const DeepCollectionEquality().hash(treatmentBuddy),
+      const DeepCollectionEquality().hash(treatmentEnrollmentDate),
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(lastMoodRecordedDate),
+      const DeepCollectionEquality().hash(isSignedIn),
+      const DeepCollectionEquality().hash(facilityName),
+      const DeepCollectionEquality().hash(facilityPhoneNumber),
+      const DeepCollectionEquality().hash(chvUserID),
+      const DeepCollectionEquality().hash(chvUserName),
+      const DeepCollectionEquality().hash(healthDiaryState));
 
   @JsonKey(ignore: true)
   @override
@@ -631,7 +614,7 @@ class _$_ClientState implements _ClientState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ClientStateToJson(this);
+    return _$$_ClientStateToJson(this);
   }
 }
 
@@ -676,58 +659,58 @@ abstract class _ClientState implements ClientState {
 
   @override
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'addresses')
-  List<Address>? get addresses => throw _privateConstructorUsedError;
+  List<Address>? get addresses;
   @override
   @JsonKey(name: 'counselled', defaultValue: false)
-  bool? get counselled => throw _privateConstructorUsedError;
+  bool? get counselled;
   @override
   @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
-  ClientType? get clientType => throw _privateConstructorUsedError;
+  ClientType? get clientType;
   @override
   @JsonKey(name: 'facilityID')
-  String? get facilityID => throw _privateConstructorUsedError;
+  String? get facilityID;
   @override
   @JsonKey(name: 'relatedPersons')
-  List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
+  List<RelatedPerson>? get relatedPersons;
   @override
   @JsonKey(name: 'treatmentBuddy')
-  String? get treatmentBuddy => throw _privateConstructorUsedError;
+  String? get treatmentBuddy;
   @override
   @JsonKey(name: 'treatmentEnrollmentDate')
-  String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
+  String? get treatmentEnrollmentDate;
   @override
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
+  User? get user;
   @override
 
   ///others
   @JsonKey(name: 'lastMoodRecordedDate')
-  String? get lastMoodRecordedDate => throw _privateConstructorUsedError;
+  String? get lastMoodRecordedDate;
   @override
   @JsonKey(name: 'isSignedIn')
-  bool? get isSignedIn => throw _privateConstructorUsedError;
+  bool? get isSignedIn;
   @override
   @JsonKey(name: 'facilityName')
-  String? get facilityName => throw _privateConstructorUsedError;
+  String? get facilityName;
   @override
   @JsonKey(name: 'facilityPhoneNumber')
-  String? get facilityPhoneNumber => throw _privateConstructorUsedError;
+  String? get facilityPhoneNumber;
   @override
   @JsonKey(name: 'chvUserID')
-  String? get chvUserID => throw _privateConstructorUsedError;
+  String? get chvUserID;
   @override
   @JsonKey(name: 'chvUserName')
-  String? get chvUserName => throw _privateConstructorUsedError;
+  String? get chvUserName;
   @override
 
   /// The client's health diary state
-  HealthDiaryState? get healthDiaryState => throw _privateConstructorUsedError;
+  HealthDiaryState? get healthDiaryState;
   @override
   @JsonKey(ignore: true)
   _$ClientStateCopyWith<_ClientState> get copyWith =>

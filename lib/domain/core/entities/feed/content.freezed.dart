@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'content.dart';
 
@@ -69,7 +71,7 @@ class _$ContentTearOff {
     );
   }
 
-  Content fromJson(Map<String, Object> json) {
+  Content fromJson(Map<String, Object?> json) {
     return Content.fromJson(json);
   }
 }
@@ -521,7 +523,7 @@ class _$_Content implements _Content {
       @JsonKey(name: 'galleryImages') this.galleryImages});
 
   factory _$_Content.fromJson(Map<String, dynamic> json) =>
-      _$_$_ContentFromJson(json);
+      _$$_ContentFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -601,94 +603,65 @@ class _$_Content implements _Content {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Content &&
-            (identical(other.contentID, contentID) ||
-                const DeepCollectionEquality()
-                    .equals(other.contentID, contentID)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.date, date) ||
-                const DeepCollectionEquality().equals(other.date, date)) &&
-            (identical(other.intro, intro) ||
-                const DeepCollectionEquality().equals(other.intro, intro)) &&
-            (identical(other.authorName, authorName) ||
-                const DeepCollectionEquality()
-                    .equals(other.authorName, authorName)) &&
-            (identical(other.author, author) ||
-                const DeepCollectionEquality().equals(other.author, author)) &&
-            (identical(other.contentType, contentType) ||
-                const DeepCollectionEquality()
-                    .equals(other.contentType, contentType)) &&
-            (identical(other.estimate, estimate) ||
-                const DeepCollectionEquality()
-                    .equals(other.estimate, estimate)) &&
-            (identical(other.body, body) ||
-                const DeepCollectionEquality().equals(other.body, body)) &&
-            (identical(other.heroImage, heroImage) ||
-                const DeepCollectionEquality()
-                    .equals(other.heroImage, heroImage)) &&
-            (identical(other.likeCount, likeCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.likeCount, likeCount)) &&
-            (identical(other.bookmarkCount, bookmarkCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.bookmarkCount, bookmarkCount)) &&
-            (identical(other.viewCount, viewCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.viewCount, viewCount)) &&
-            (identical(other.shareCount, shareCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.shareCount, shareCount)) &&
-            (identical(other.documents, documents) ||
-                const DeepCollectionEquality()
-                    .equals(other.documents, documents)) &&
-            (identical(other.categories, categories) ||
-                const DeepCollectionEquality()
-                    .equals(other.categories, categories)) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality()
-                    .equals(other.metadata, metadata)) &&
-            (identical(other.featuredMedia, featuredMedia) ||
-                const DeepCollectionEquality()
-                    .equals(other.featuredMedia, featuredMedia)) &&
-            (identical(other.hasLiked, hasLiked) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasLiked, hasLiked)) &&
-            (identical(other.hasSaved, hasSaved) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasSaved, hasSaved)) &&
-            (identical(other.galleryImages, galleryImages) ||
-                const DeepCollectionEquality()
-                    .equals(other.galleryImages, galleryImages)));
+        (other.runtimeType == runtimeType &&
+            other is _Content &&
+            const DeepCollectionEquality().equals(other.contentID, contentID) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.date, date) &&
+            const DeepCollectionEquality().equals(other.intro, intro) &&
+            const DeepCollectionEquality()
+                .equals(other.authorName, authorName) &&
+            const DeepCollectionEquality().equals(other.author, author) &&
+            const DeepCollectionEquality()
+                .equals(other.contentType, contentType) &&
+            const DeepCollectionEquality().equals(other.estimate, estimate) &&
+            const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality().equals(other.heroImage, heroImage) &&
+            const DeepCollectionEquality().equals(other.likeCount, likeCount) &&
+            const DeepCollectionEquality()
+                .equals(other.bookmarkCount, bookmarkCount) &&
+            const DeepCollectionEquality().equals(other.viewCount, viewCount) &&
+            const DeepCollectionEquality()
+                .equals(other.shareCount, shareCount) &&
+            const DeepCollectionEquality().equals(other.documents, documents) &&
+            const DeepCollectionEquality()
+                .equals(other.categories, categories) &&
+            const DeepCollectionEquality().equals(other.tags, tags) &&
+            const DeepCollectionEquality().equals(other.metadata, metadata) &&
+            const DeepCollectionEquality()
+                .equals(other.featuredMedia, featuredMedia) &&
+            const DeepCollectionEquality().equals(other.hasLiked, hasLiked) &&
+            const DeepCollectionEquality().equals(other.hasSaved, hasSaved) &&
+            const DeepCollectionEquality()
+                .equals(other.galleryImages, galleryImages));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(contentID) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(date) ^
-      const DeepCollectionEquality().hash(intro) ^
-      const DeepCollectionEquality().hash(authorName) ^
-      const DeepCollectionEquality().hash(author) ^
-      const DeepCollectionEquality().hash(contentType) ^
-      const DeepCollectionEquality().hash(estimate) ^
-      const DeepCollectionEquality().hash(body) ^
-      const DeepCollectionEquality().hash(heroImage) ^
-      const DeepCollectionEquality().hash(likeCount) ^
-      const DeepCollectionEquality().hash(bookmarkCount) ^
-      const DeepCollectionEquality().hash(viewCount) ^
-      const DeepCollectionEquality().hash(shareCount) ^
-      const DeepCollectionEquality().hash(documents) ^
-      const DeepCollectionEquality().hash(categories) ^
-      const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(featuredMedia) ^
-      const DeepCollectionEquality().hash(hasLiked) ^
-      const DeepCollectionEquality().hash(hasSaved) ^
-      const DeepCollectionEquality().hash(galleryImages);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(contentID),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(date),
+        const DeepCollectionEquality().hash(intro),
+        const DeepCollectionEquality().hash(authorName),
+        const DeepCollectionEquality().hash(author),
+        const DeepCollectionEquality().hash(contentType),
+        const DeepCollectionEquality().hash(estimate),
+        const DeepCollectionEquality().hash(body),
+        const DeepCollectionEquality().hash(heroImage),
+        const DeepCollectionEquality().hash(likeCount),
+        const DeepCollectionEquality().hash(bookmarkCount),
+        const DeepCollectionEquality().hash(viewCount),
+        const DeepCollectionEquality().hash(shareCount),
+        const DeepCollectionEquality().hash(documents),
+        const DeepCollectionEquality().hash(categories),
+        const DeepCollectionEquality().hash(tags),
+        const DeepCollectionEquality().hash(metadata),
+        const DeepCollectionEquality().hash(featuredMedia),
+        const DeepCollectionEquality().hash(hasLiked),
+        const DeepCollectionEquality().hash(hasSaved),
+        const DeepCollectionEquality().hash(galleryImages)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -697,7 +670,7 @@ class _$_Content implements _Content {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ContentToJson(this);
+    return _$$_ContentToJson(this);
   }
 }
 
@@ -731,73 +704,73 @@ abstract class _Content implements Content {
 
   @override
   @JsonKey(name: 'ID')
-  int? get contentID => throw _privateConstructorUsedError;
+  int? get contentID;
   @override
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
   @JsonKey(name: 'date')
-  String? get date => throw _privateConstructorUsedError;
+  String? get date;
   @override
   @JsonKey(name: 'intro')
-  String? get intro => throw _privateConstructorUsedError;
+  String? get intro;
   @override // TODO(abiud): move this to the Author object
   @JsonKey(name: 'authorName')
-  String? get authorName => throw _privateConstructorUsedError;
+  String? get authorName;
   @override // TODO(abiud): add when backend is ready
 // @JsonKey(name: 'authorAvatar') String? authorAvatar,
   @JsonKey(name: 'author')
-  Author? get author => throw _privateConstructorUsedError;
+  Author? get author;
   @override
   @JsonKey(name: 'itemType')
-  ContentType? get contentType => throw _privateConstructorUsedError;
+  ContentType? get contentType;
   @override // "ARTICLE"
   @JsonKey(name: 'timeEstimateSeconds')
-  int? get estimate => throw _privateConstructorUsedError;
+  int? get estimate;
   @override
   @JsonKey(name: 'body')
-  String? get body => throw _privateConstructorUsedError;
+  String? get body;
   @override
   @JsonKey(name: 'heroImageRendition')
-  HeroImage? get heroImage => throw _privateConstructorUsedError;
+  HeroImage? get heroImage;
   @override
   @JsonKey(name: 'likeCount')
-  int? get likeCount => throw _privateConstructorUsedError;
+  int? get likeCount;
   @override
   @JsonKey(name: 'bookmarkCount')
-  int? get bookmarkCount => throw _privateConstructorUsedError;
+  int? get bookmarkCount;
   @override
   @JsonKey(name: 'viewCount')
-  int? get viewCount => throw _privateConstructorUsedError;
+  int? get viewCount;
   @override
   @JsonKey(name: 'shareCount')
-  int? get shareCount => throw _privateConstructorUsedError;
+  int? get shareCount;
   @override
   @JsonKey(name: 'documents')
-  List<Document>? get documents => throw _privateConstructorUsedError;
+  List<Document>? get documents;
   @override
   @JsonKey(name: 'categoryDetails')
-  List<ContentCategory>? get categories => throw _privateConstructorUsedError;
+  List<ContentCategory>? get categories;
   @override // TODO(abiud): add when backend is ready
 // @JsonKey(name: 'isNew') bool? isNew,
   @JsonKey(name: 'tagNames')
-  List<String?>? get tags => throw _privateConstructorUsedError;
+  List<String?>? get tags;
   @override
   @JsonKey(name: 'meta')
-  ContentMetadata? get metadata => throw _privateConstructorUsedError;
+  ContentMetadata? get metadata;
   @override
   @JsonKey(name: 'featuredMedia')
-  List<FeaturedMedia?>? get featuredMedia => throw _privateConstructorUsedError;
+  List<FeaturedMedia?>? get featuredMedia;
   @override // Internal trackers to know whether this user has performed any action on
 // this content item
   @JsonKey(name: 'hasLiked', defaultValue: false)
-  bool? get hasLiked => throw _privateConstructorUsedError;
+  bool? get hasLiked;
   @override
   @JsonKey(name: 'hasSaved', defaultValue: false)
-  bool? get hasSaved => throw _privateConstructorUsedError;
+  bool? get hasSaved;
   @override
   @JsonKey(name: 'galleryImages')
-  List<GalleryImage>? get galleryImages => throw _privateConstructorUsedError;
+  List<GalleryImage>? get galleryImages;
   @override
   @JsonKey(ignore: true)
   _$ContentCopyWith<_Content> get copyWith =>

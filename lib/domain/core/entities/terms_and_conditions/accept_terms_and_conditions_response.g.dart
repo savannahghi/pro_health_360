@@ -7,13 +7,12 @@ part of 'accept_terms_and_conditions_response.dart';
 // **************************************************************************
 
 _$_AcceptTermsAndConditionsResponse
-    _$_$_AcceptTermsAndConditionsResponseFromJson(Map<String, dynamic> json) {
-  return _$_AcceptTermsAndConditionsResponse(
-    acceptTerms: json['acceptTerms'] as bool,
-  );
-}
+    _$$_AcceptTermsAndConditionsResponseFromJson(Map<String, dynamic> json) =>
+        _$_AcceptTermsAndConditionsResponse(
+          acceptTerms: json['acceptTerms'] as bool,
+        );
 
-Map<String, dynamic> _$_$_AcceptTermsAndConditionsResponseToJson(
+Map<String, dynamic> _$$_AcceptTermsAndConditionsResponseToJson(
         _$_AcceptTermsAndConditionsResponse instance) =>
     <String, dynamic>{
       'acceptTerms': instance.acceptTerms,

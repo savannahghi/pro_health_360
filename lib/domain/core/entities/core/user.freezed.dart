@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user.dart';
 
@@ -84,7 +86,7 @@ class _$UserTearOff {
     );
   }
 
-  User fromJson(Map<String, Object> json) {
+  User fromJson(Map<String, Object?> json) {
     return User.fromJson(json);
   }
 }
@@ -526,8 +528,7 @@ class _$_User implements _User {
           this.suspended,
       this.chatRoomToken});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
   @JsonKey(name: 'userID')
@@ -597,88 +598,63 @@ class _$_User implements _User {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.avatar, avatar) ||
-                const DeepCollectionEquality().equals(other.avatar, avatar)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.dateOfBirth, dateOfBirth) ||
-                const DeepCollectionEquality()
-                    .equals(other.dateOfBirth, dateOfBirth)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)) &&
-            (identical(other.primaryContact, primaryContact) ||
-                const DeepCollectionEquality()
-                    .equals(other.primaryContact, primaryContact)) &&
-            (identical(other.secondaryContacts, secondaryContacts) ||
-                const DeepCollectionEquality()
-                    .equals(other.secondaryContacts, secondaryContacts)) &&
-            (identical(other.languages, languages) ||
-                const DeepCollectionEquality()
-                    .equals(other.languages, languages)) &&
-            (identical(other.termsAccepted, termsAccepted) ||
-                const DeepCollectionEquality()
-                    .equals(other.termsAccepted, termsAccepted)) &&
-            (identical(other.hasSetPin, hasSetPin) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasSetPin, hasSetPin)) &&
-            (identical(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions) ||
-                const DeepCollectionEquality().equals(
-                    other.hasSetSecurityQuestions, hasSetSecurityQuestions)) &&
-            (identical(other.hasSetNickname, hasSetNickname) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasSetNickname, hasSetNickname)) &&
-            (identical(other.isPhoneVerified, isPhoneVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.isPhoneVerified, isPhoneVerified)) &&
-            (identical(other.pinChangeRequired, pinChangeRequired) ||
-                const DeepCollectionEquality()
-                    .equals(other.pinChangeRequired, pinChangeRequired)) &&
-            (identical(other.suspended, suspended) ||
-                const DeepCollectionEquality()
-                    .equals(other.suspended, suspended)) &&
-            (identical(other.chatRoomToken, chatRoomToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.chatRoomToken, chatRoomToken)));
+        (other.runtimeType == runtimeType &&
+            other is _User &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.avatar, avatar) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
+            const DeepCollectionEquality()
+                .equals(other.dateOfBirth, dateOfBirth) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality()
+                .equals(other.primaryContact, primaryContact) &&
+            const DeepCollectionEquality()
+                .equals(other.secondaryContacts, secondaryContacts) &&
+            const DeepCollectionEquality().equals(other.languages, languages) &&
+            const DeepCollectionEquality()
+                .equals(other.termsAccepted, termsAccepted) &&
+            const DeepCollectionEquality().equals(other.hasSetPin, hasSetPin) &&
+            const DeepCollectionEquality().equals(
+                other.hasSetSecurityQuestions, hasSetSecurityQuestions) &&
+            const DeepCollectionEquality()
+                .equals(other.hasSetNickname, hasSetNickname) &&
+            const DeepCollectionEquality()
+                .equals(other.isPhoneVerified, isPhoneVerified) &&
+            const DeepCollectionEquality()
+                .equals(other.pinChangeRequired, pinChangeRequired) &&
+            const DeepCollectionEquality().equals(other.suspended, suspended) &&
+            const DeepCollectionEquality()
+                .equals(other.chatRoomToken, chatRoomToken));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(avatar) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(dateOfBirth) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(active) ^
-      const DeepCollectionEquality().hash(primaryContact) ^
-      const DeepCollectionEquality().hash(secondaryContacts) ^
-      const DeepCollectionEquality().hash(languages) ^
-      const DeepCollectionEquality().hash(termsAccepted) ^
-      const DeepCollectionEquality().hash(hasSetPin) ^
-      const DeepCollectionEquality().hash(hasSetSecurityQuestions) ^
-      const DeepCollectionEquality().hash(hasSetNickname) ^
-      const DeepCollectionEquality().hash(isPhoneVerified) ^
-      const DeepCollectionEquality().hash(pinChangeRequired) ^
-      const DeepCollectionEquality().hash(suspended) ^
-      const DeepCollectionEquality().hash(chatRoomToken);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(userId),
+        const DeepCollectionEquality().hash(username),
+        const DeepCollectionEquality().hash(avatar),
+        const DeepCollectionEquality().hash(name),
+        const DeepCollectionEquality().hash(firstName),
+        const DeepCollectionEquality().hash(lastName),
+        const DeepCollectionEquality().hash(dateOfBirth),
+        const DeepCollectionEquality().hash(gender),
+        const DeepCollectionEquality().hash(active),
+        const DeepCollectionEquality().hash(primaryContact),
+        const DeepCollectionEquality().hash(secondaryContacts),
+        const DeepCollectionEquality().hash(languages),
+        const DeepCollectionEquality().hash(termsAccepted),
+        const DeepCollectionEquality().hash(hasSetPin),
+        const DeepCollectionEquality().hash(hasSetSecurityQuestions),
+        const DeepCollectionEquality().hash(hasSetNickname),
+        const DeepCollectionEquality().hash(isPhoneVerified),
+        const DeepCollectionEquality().hash(pinChangeRequired),
+        const DeepCollectionEquality().hash(suspended),
+        const DeepCollectionEquality().hash(chatRoomToken)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -687,7 +663,7 @@ class _$_User implements _User {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_UserToJson(this);
+    return _$$_UserToJson(this);
   }
 }
 
@@ -737,63 +713,63 @@ abstract class _User implements User {
 
   @override
   @JsonKey(name: 'userID')
-  String? get userId => throw _privateConstructorUsedError;
+  String? get userId;
   @override
   @JsonKey(name: 'userName')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
   @override // This is the nickname
   @JsonKey(name: 'avatar')
-  String? get avatar => throw _privateConstructorUsedError;
+  String? get avatar;
   @override
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override // This is the @handle
   @JsonKey(name: 'firstName')
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
   @JsonKey(name: 'lastName')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
   @JsonKey(name: 'dateOfBirth')
-  String? get dateOfBirth => throw _privateConstructorUsedError;
+  String? get dateOfBirth;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-  Gender? get gender => throw _privateConstructorUsedError;
+  Gender? get gender;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'primaryContact')
-  Contact? get primaryContact => throw _privateConstructorUsedError;
+  Contact? get primaryContact;
   @override
   @JsonKey(name: 'secondaryContacts')
-  List<Contact?>? get secondaryContacts => throw _privateConstructorUsedError;
+  List<Contact?>? get secondaryContacts;
   @override
   @JsonKey(name: 'languages')
-  List<String>? get languages => throw _privateConstructorUsedError;
+  List<String>? get languages;
   @override
   @JsonKey(name: 'termsAccepted')
-  bool? get termsAccepted => throw _privateConstructorUsedError;
+  bool? get termsAccepted;
   @override
   @JsonKey(name: 'hasSetPin')
-  bool? get hasSetPin => throw _privateConstructorUsedError;
+  bool? get hasSetPin;
   @override
   @JsonKey(name: 'hasSetSecurityQuestions')
-  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
+  bool? get hasSetSecurityQuestions;
   @override
   @JsonKey(name: 'hasSetNickname')
-  bool? get hasSetNickname => throw _privateConstructorUsedError;
+  bool? get hasSetNickname;
   @override
   @JsonKey(name: 'isPhoneVerified')
-  bool? get isPhoneVerified => throw _privateConstructorUsedError;
+  bool? get isPhoneVerified;
   @override
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
-  bool? get pinChangeRequired => throw _privateConstructorUsedError;
+  bool? get pinChangeRequired;
   @override
   @JsonKey(name: 'suspended', defaultValue: false)
-  bool? get suspended => throw _privateConstructorUsedError;
+  bool? get suspended;
   @override
-  String? get chatRoomToken => throw _privateConstructorUsedError;
+  String? get chatRoomToken;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

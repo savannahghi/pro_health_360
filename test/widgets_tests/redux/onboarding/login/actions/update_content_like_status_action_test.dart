@@ -3,7 +3,7 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:domain_objects/failures.dart';
+
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -122,7 +122,10 @@ void main() {
       await tester.tap(find.byType(MyAfyaHubPrimaryButton));
       await tester.pumpAndSettle();
 
-      expect((await err as SILException).message, networkConnectionUnreliable);
+      expect(
+        (await err as MyAfyaException).message,
+        networkConnectionUnreliable,
+      );
     });
   });
 }

@@ -1,10 +1,10 @@
 // Package imports:
-import 'package:domain_objects/value_objects.dart';
+
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'hero_image.freezed.dart';
 part 'hero_image.g.dart';
-
 
 @freezed
 class HeroImage with _$HeroImage {

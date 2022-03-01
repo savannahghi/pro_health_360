@@ -1,7 +1,7 @@
 // Flutter imports:
 import 'dart:math';
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:domain_objects/value_objects.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 // Package imports:

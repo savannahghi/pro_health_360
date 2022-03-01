@@ -6,8 +6,7 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -206,7 +205,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             imageAssetPath: errorIconUrl,
           );
 
-          throw SILException(
+          throw MyAfyaException(
             error: processedResponse.response,
             cause: 'sign_in_error',
             message: processedResponse.message,
@@ -220,13 +219,13 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         imageAssetPath: infoIconUrl,
       );
       // exception thrown incase the provided PIN is less than four digits
-      throw SILException(cause: 'pin_too_short', message: fourDigitPin);
+      throw MyAfyaException(cause: 'pin_too_short', message: fourDigitPin);
     }
   }
 
   @override
   Object wrapError(dynamic error) async {
-    if (error.runtimeType == SILException && error.error != null) {
+    if (error.runtimeType == MyAfyaException && error.error != null) {
       reportErrorToSentry(context, error.error, hint: errorLoggingIn);
     }
 

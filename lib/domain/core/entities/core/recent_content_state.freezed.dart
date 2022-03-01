@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'recent_content_state.dart';
 
@@ -31,7 +33,7 @@ class _$RecentContentStateTearOff {
     );
   }
 
-  RecentContentState fromJson(Map<String, Object> json) {
+  RecentContentState fromJson(Map<String, Object?> json) {
     return RecentContentState.fromJson(json);
   }
 }
@@ -151,7 +153,7 @@ class _$_FeedContentState implements _FeedContentState {
       this.timeoutFetchingContent});
 
   factory _$_FeedContentState.fromJson(Map<String, dynamic> json) =>
-      _$_$_FeedContentStateFromJson(json);
+      _$$_FeedContentStateFromJson(json);
 
   @override
   @JsonKey(name: 'items')
@@ -169,24 +171,22 @@ class _$_FeedContentState implements _FeedContentState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FeedContentState &&
-            (identical(other.contentItems, contentItems) ||
-                const DeepCollectionEquality()
-                    .equals(other.contentItems, contentItems)) &&
-            (identical(other.errorFetchingContent, errorFetchingContent) ||
-                const DeepCollectionEquality().equals(
-                    other.errorFetchingContent, errorFetchingContent)) &&
-            (identical(other.timeoutFetchingContent, timeoutFetchingContent) ||
-                const DeepCollectionEquality().equals(
-                    other.timeoutFetchingContent, timeoutFetchingContent)));
+        (other.runtimeType == runtimeType &&
+            other is _FeedContentState &&
+            const DeepCollectionEquality()
+                .equals(other.contentItems, contentItems) &&
+            const DeepCollectionEquality()
+                .equals(other.errorFetchingContent, errorFetchingContent) &&
+            const DeepCollectionEquality()
+                .equals(other.timeoutFetchingContent, timeoutFetchingContent));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(contentItems) ^
-      const DeepCollectionEquality().hash(errorFetchingContent) ^
-      const DeepCollectionEquality().hash(timeoutFetchingContent);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(contentItems),
+      const DeepCollectionEquality().hash(errorFetchingContent),
+      const DeepCollectionEquality().hash(timeoutFetchingContent));
 
   @JsonKey(ignore: true)
   @override
@@ -195,7 +195,7 @@ class _$_FeedContentState implements _FeedContentState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FeedContentStateToJson(this);
+    return _$$_FeedContentStateToJson(this);
   }
 }
 
@@ -210,11 +210,11 @@ abstract class _FeedContentState implements RecentContentState {
 
   @override
   @JsonKey(name: 'items')
-  List<Content?>? get contentItems => throw _privateConstructorUsedError;
+  List<Content?>? get contentItems;
   @override
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
+  bool? get errorFetchingContent;
   @override
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingContent;
   @override
   @JsonKey(ignore: true)
   _$FeedContentStateCopyWith<_FeedContentState> get copyWith =>

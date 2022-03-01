@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'record_security_question_response.dart';
 
@@ -30,7 +32,7 @@ class _$RecordSecurityQuestionResponseTearOff {
     );
   }
 
-  RecordSecurityQuestionResponse fromJson(Map<String, Object> json) {
+  RecordSecurityQuestionResponse fromJson(Map<String, Object?> json) {
     return RecordSecurityQuestionResponse.fromJson(json);
   }
 }
@@ -144,7 +146,7 @@ class _$_RecordSecurityQuestionResponse
 
   factory _$_RecordSecurityQuestionResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_RecordSecurityQuestionResponseFromJson(json);
+      _$$_RecordSecurityQuestionResponseFromJson(json);
 
   @override
   @JsonKey(name: 'securityQuestionID')
@@ -161,20 +163,18 @@ class _$_RecordSecurityQuestionResponse
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _RecordSecurityQuestionResponse &&
-            (identical(other.securityQuestionID, securityQuestionID) ||
-                const DeepCollectionEquality()
-                    .equals(other.securityQuestionID, securityQuestionID)) &&
-            (identical(other.isCorrect, isCorrect) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCorrect, isCorrect)));
+        (other.runtimeType == runtimeType &&
+            other is _RecordSecurityQuestionResponse &&
+            const DeepCollectionEquality()
+                .equals(other.securityQuestionID, securityQuestionID) &&
+            const DeepCollectionEquality().equals(other.isCorrect, isCorrect));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(securityQuestionID) ^
-      const DeepCollectionEquality().hash(isCorrect);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(securityQuestionID),
+      const DeepCollectionEquality().hash(isCorrect));
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +184,7 @@ class _$_RecordSecurityQuestionResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RecordSecurityQuestionResponseToJson(this);
+    return _$$_RecordSecurityQuestionResponseToJson(this);
   }
 }
 
@@ -200,10 +200,10 @@ abstract class _RecordSecurityQuestionResponse
 
   @override
   @JsonKey(name: 'securityQuestionID')
-  String? get securityQuestionID => throw _privateConstructorUsedError;
+  String? get securityQuestionID;
   @override
   @JsonKey(name: 'isCorrect')
-  bool? get isCorrect => throw _privateConstructorUsedError;
+  bool? get isCorrect;
   @override
   @JsonKey(ignore: true)
   _$RecordSecurityQuestionResponseCopyWith<_RecordSecurityQuestionResponse>

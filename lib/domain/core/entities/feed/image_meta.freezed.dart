@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'image_meta.dart';
 
@@ -26,7 +28,7 @@ class _$ImageMetaTearOff {
     );
   }
 
-  ImageMeta fromJson(Map<String, Object> json) {
+  ImageMeta fromJson(Map<String, Object?> json) {
     return ImageMeta.fromJson(json);
   }
 }
@@ -109,7 +111,7 @@ class _$_ImageMeta implements _ImageMeta {
   _$_ImageMeta({this.imageDownloadUrl});
 
   factory _$_ImageMeta.fromJson(Map<String, dynamic> json) =>
-      _$_$_ImageMetaFromJson(json);
+      _$$_ImageMetaFromJson(json);
 
   @override
   final String? imageDownloadUrl;
@@ -122,16 +124,15 @@ class _$_ImageMeta implements _ImageMeta {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ImageMeta &&
-            (identical(other.imageDownloadUrl, imageDownloadUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageDownloadUrl, imageDownloadUrl)));
+        (other.runtimeType == runtimeType &&
+            other is _ImageMeta &&
+            const DeepCollectionEquality()
+                .equals(other.imageDownloadUrl, imageDownloadUrl));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(imageDownloadUrl);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(imageDownloadUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -140,7 +141,7 @@ class _$_ImageMeta implements _ImageMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ImageMetaToJson(this);
+    return _$$_ImageMetaToJson(this);
   }
 }
 
@@ -151,7 +152,7 @@ abstract class _ImageMeta implements ImageMeta {
       _$_ImageMeta.fromJson;
 
   @override
-  String? get imageDownloadUrl => throw _privateConstructorUsedError;
+  String? get imageDownloadUrl;
   @override
   @JsonKey(ignore: true)
   _$ImageMetaCopyWith<_ImageMeta> get copyWith =>

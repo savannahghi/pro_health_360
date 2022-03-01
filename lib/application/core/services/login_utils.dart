@@ -22,7 +22,7 @@ Future<void> signInUser({
   required String phoneNumber,
   required bool hasConnection,
 }) async {
-  if (!validatePhoneNumber(phoneNumber)) {
+  if (!isValidPhoneNumber(phoneNumber)) {
     showFeedbackBottomSheet(
       context: context,
       modalContent: phoneRequiredText,

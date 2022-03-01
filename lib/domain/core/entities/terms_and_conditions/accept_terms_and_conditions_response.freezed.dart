@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'accept_terms_and_conditions_response.dart';
 
@@ -28,7 +30,7 @@ class _$AcceptTermsAndConditionsResponseTearOff {
     );
   }
 
-  AcceptTermsAndConditionsResponse fromJson(Map<String, Object> json) {
+  AcceptTermsAndConditionsResponse fromJson(Map<String, Object?> json) {
     return AcceptTermsAndConditionsResponse.fromJson(json);
   }
 }
@@ -125,7 +127,7 @@ class _$_AcceptTermsAndConditionsResponse
 
   factory _$_AcceptTermsAndConditionsResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$_$_AcceptTermsAndConditionsResponseFromJson(json);
+      _$$_AcceptTermsAndConditionsResponseFromJson(json);
 
   @override
   @JsonKey(name: 'acceptTerms')
@@ -139,15 +141,15 @@ class _$_AcceptTermsAndConditionsResponse
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AcceptTermsAndConditionsResponse &&
-            (identical(other.acceptTerms, acceptTerms) ||
-                const DeepCollectionEquality()
-                    .equals(other.acceptTerms, acceptTerms)));
+        (other.runtimeType == runtimeType &&
+            other is _AcceptTermsAndConditionsResponse &&
+            const DeepCollectionEquality()
+                .equals(other.acceptTerms, acceptTerms));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(acceptTerms);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(acceptTerms));
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +159,7 @@ class _$_AcceptTermsAndConditionsResponse
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AcceptTermsAndConditionsResponseToJson(this);
+    return _$$_AcceptTermsAndConditionsResponseToJson(this);
   }
 }
 
@@ -172,7 +174,7 @@ abstract class _AcceptTermsAndConditionsResponse
 
   @override
   @JsonKey(name: 'acceptTerms')
-  bool get acceptTerms => throw _privateConstructorUsedError;
+  bool get acceptTerms;
   @override
   @JsonKey(ignore: true)
   _$AcceptTermsAndConditionsResponseCopyWith<_AcceptTermsAndConditionsResponse>

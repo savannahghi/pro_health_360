@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'feed_content.dart';
 
@@ -26,7 +28,7 @@ class _$FeedContentTearOff {
     );
   }
 
-  FeedContent fromJson(Map<String, Object> json) {
+  FeedContent fromJson(Map<String, Object?> json) {
     return FeedContent.fromJson(json);
   }
 }
@@ -129,7 +131,7 @@ class _$_FeedContent implements _FeedContent {
   _$_FeedContent({@JsonKey(name: 'getContent') this.feedContent});
 
   factory _$_FeedContent.fromJson(Map<String, dynamic> json) =>
-      _$_$_FeedContentFromJson(json);
+      _$$_FeedContentFromJson(json);
 
   @override
   @JsonKey(name: 'getContent')
@@ -143,15 +145,15 @@ class _$_FeedContent implements _FeedContent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FeedContent &&
-            (identical(other.feedContent, feedContent) ||
-                const DeepCollectionEquality()
-                    .equals(other.feedContent, feedContent)));
+        (other.runtimeType == runtimeType &&
+            other is _FeedContent &&
+            const DeepCollectionEquality()
+                .equals(other.feedContent, feedContent));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(feedContent);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(feedContent));
 
   @JsonKey(ignore: true)
   @override
@@ -160,7 +162,7 @@ class _$_FeedContent implements _FeedContent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FeedContentToJson(this);
+    return _$$_FeedContentToJson(this);
   }
 }
 
@@ -173,7 +175,7 @@ abstract class _FeedContent implements FeedContent {
 
   @override
   @JsonKey(name: 'getContent')
-  FeedItems? get feedContent => throw _privateConstructorUsedError;
+  FeedItems? get feedContent;
   @override
   @JsonKey(ignore: true)
   _$FeedContentCopyWith<_FeedContent> get copyWith =>

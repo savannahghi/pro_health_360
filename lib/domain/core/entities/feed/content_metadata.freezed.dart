@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'content_metadata.dart';
 
@@ -29,7 +31,7 @@ class _$ContentMetadataTearOff {
     );
   }
 
-  ContentMetadata fromJson(Map<String, Object> json) {
+  ContentMetadata fromJson(Map<String, Object?> json) {
     return ContentMetadata.fromJson(json);
   }
 }
@@ -136,7 +138,7 @@ class _$_ContentMetadata implements _ContentMetadata {
       @JsonKey(name: 'firstPublishedAt') this.createdAt});
 
   factory _$_ContentMetadata.fromJson(Map<String, dynamic> json) =>
-      _$_$_ContentMetadataFromJson(json);
+      _$$_ContentMetadataFromJson(json);
 
   @override
   @JsonKey(name: 'contentHTMLURL')
@@ -153,20 +155,18 @@ class _$_ContentMetadata implements _ContentMetadata {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ContentMetadata &&
-            (identical(other.publicLink, publicLink) ||
-                const DeepCollectionEquality()
-                    .equals(other.publicLink, publicLink)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)));
+        (other.runtimeType == runtimeType &&
+            other is _ContentMetadata &&
+            const DeepCollectionEquality()
+                .equals(other.publicLink, publicLink) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(publicLink) ^
-      const DeepCollectionEquality().hash(createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(publicLink),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +175,7 @@ class _$_ContentMetadata implements _ContentMetadata {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ContentMetadataToJson(this);
+    return _$$_ContentMetadataToJson(this);
   }
 }
 
@@ -190,10 +190,10 @@ abstract class _ContentMetadata implements ContentMetadata {
 
   @override
   @JsonKey(name: 'contentHTMLURL')
-  String? get publicLink => throw _privateConstructorUsedError;
+  String? get publicLink;
   @override
   @JsonKey(name: 'firstPublishedAt')
-  String? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$ContentMetadataCopyWith<_ContentMetadata> get copyWith =>

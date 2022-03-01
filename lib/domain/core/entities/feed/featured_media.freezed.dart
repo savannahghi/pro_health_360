@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'featured_media.dart';
 
@@ -49,7 +51,7 @@ class _$FeaturedMediaTearOff {
     );
   }
 
-  FeaturedMedia fromJson(Map<String, Object> json) {
+  FeaturedMedia fromJson(Map<String, Object?> json) {
     return FeaturedMedia.fromJson(json);
   }
 }
@@ -271,7 +273,7 @@ class _$_FeaturedMedia implements _FeaturedMedia {
           this.thumbnail});
 
   factory _$_FeaturedMedia.fromJson(Map<String, dynamic> json) =>
-      _$_$_FeaturedMediaFromJson(json);
+      _$$_FeaturedMediaFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -306,40 +308,30 @@ class _$_FeaturedMedia implements _FeaturedMedia {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FeaturedMedia &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.mediaUrl, mediaUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.mediaUrl, mediaUrl)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.featuredMediaType, featuredMediaType) ||
-                const DeepCollectionEquality()
-                    .equals(other.featuredMediaType, featuredMediaType)) &&
-            (identical(other.duration, duration) ||
-                const DeepCollectionEquality()
-                    .equals(other.duration, duration)) &&
-            (identical(other.width, width) ||
-                const DeepCollectionEquality().equals(other.width, width)) &&
-            (identical(other.height, height) ||
-                const DeepCollectionEquality().equals(other.height, height)) &&
-            (identical(other.thumbnail, thumbnail) ||
-                const DeepCollectionEquality()
-                    .equals(other.thumbnail, thumbnail)));
+        (other.runtimeType == runtimeType &&
+            other is _FeaturedMedia &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.mediaUrl, mediaUrl) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.featuredMediaType, featuredMediaType) &&
+            const DeepCollectionEquality().equals(other.duration, duration) &&
+            const DeepCollectionEquality().equals(other.width, width) &&
+            const DeepCollectionEquality().equals(other.height, height) &&
+            const DeepCollectionEquality().equals(other.thumbnail, thumbnail));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(mediaUrl) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(featuredMediaType) ^
-      const DeepCollectionEquality().hash(duration) ^
-      const DeepCollectionEquality().hash(width) ^
-      const DeepCollectionEquality().hash(height) ^
-      const DeepCollectionEquality().hash(thumbnail);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(mediaUrl),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(featuredMediaType),
+      const DeepCollectionEquality().hash(duration),
+      const DeepCollectionEquality().hash(width),
+      const DeepCollectionEquality().hash(height),
+      const DeepCollectionEquality().hash(thumbnail));
 
   @JsonKey(ignore: true)
   @override
@@ -348,7 +340,7 @@ class _$_FeaturedMedia implements _FeaturedMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_FeaturedMediaToJson(this);
+    return _$$_FeaturedMediaToJson(this);
   }
 }
 
@@ -376,29 +368,28 @@ abstract class _FeaturedMedia implements FeaturedMedia {
 
   @override
   @JsonKey(name: 'ID')
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
   @JsonKey(name: 'url')
-  String? get mediaUrl => throw _privateConstructorUsedError;
+  String? get mediaUrl;
   @override
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
   @JsonKey(name: 'type', unknownEnumValue: FeaturedMediaType.UNKNOWN)
-  FeaturedMediaType? get featuredMediaType =>
-      throw _privateConstructorUsedError;
+  FeaturedMediaType? get featuredMediaType;
   @override
   @JsonKey(name: 'duration')
-  int? get duration => throw _privateConstructorUsedError;
+  int? get duration;
   @override
   @JsonKey(name: 'width')
-  int? get width => throw _privateConstructorUsedError;
+  int? get width;
   @override
   @JsonKey(name: 'height')
-  int? get height => throw _privateConstructorUsedError;
+  int? get height;
   @override
   @JsonKey(name: 'thumbnail')
-  String? get thumbnail => throw _privateConstructorUsedError;
+  String? get thumbnail;
   @override
   @JsonKey(ignore: true)
   _$FeaturedMediaCopyWith<_FeaturedMedia> get copyWith =>

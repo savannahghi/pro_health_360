@@ -1,5 +1,5 @@
 // Package imports:
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'saved_content_state.dart';
 
@@ -31,7 +33,7 @@ class _$SavedContentStateTearOff {
     );
   }
 
-  SavedContentState fromJson(Map<String, Object> json) {
+  SavedContentState fromJson(Map<String, Object?> json) {
     return SavedContentState.fromJson(json);
   }
 }
@@ -151,7 +153,7 @@ class _$_SavedContentState implements _SavedContentState {
       this.timeoutFetchingContent});
 
   factory _$_SavedContentState.fromJson(Map<String, dynamic> json) =>
-      _$_$_SavedContentStateFromJson(json);
+      _$$_SavedContentStateFromJson(json);
 
   @override
   @JsonKey(name: 'items')
@@ -169,24 +171,22 @@ class _$_SavedContentState implements _SavedContentState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SavedContentState &&
-            (identical(other.savedContentItems, savedContentItems) ||
-                const DeepCollectionEquality()
-                    .equals(other.savedContentItems, savedContentItems)) &&
-            (identical(other.errorFetchingContent, errorFetchingContent) ||
-                const DeepCollectionEquality().equals(
-                    other.errorFetchingContent, errorFetchingContent)) &&
-            (identical(other.timeoutFetchingContent, timeoutFetchingContent) ||
-                const DeepCollectionEquality().equals(
-                    other.timeoutFetchingContent, timeoutFetchingContent)));
+        (other.runtimeType == runtimeType &&
+            other is _SavedContentState &&
+            const DeepCollectionEquality()
+                .equals(other.savedContentItems, savedContentItems) &&
+            const DeepCollectionEquality()
+                .equals(other.errorFetchingContent, errorFetchingContent) &&
+            const DeepCollectionEquality()
+                .equals(other.timeoutFetchingContent, timeoutFetchingContent));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(savedContentItems) ^
-      const DeepCollectionEquality().hash(errorFetchingContent) ^
-      const DeepCollectionEquality().hash(timeoutFetchingContent);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(savedContentItems),
+      const DeepCollectionEquality().hash(errorFetchingContent),
+      const DeepCollectionEquality().hash(timeoutFetchingContent));
 
   @JsonKey(ignore: true)
   @override
@@ -195,7 +195,7 @@ class _$_SavedContentState implements _SavedContentState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SavedContentStateToJson(this);
+    return _$$_SavedContentStateToJson(this);
   }
 }
 
@@ -210,11 +210,11 @@ abstract class _SavedContentState implements SavedContentState {
 
   @override
   @JsonKey(name: 'items')
-  List<Content?>? get savedContentItems => throw _privateConstructorUsedError;
+  List<Content?>? get savedContentItems;
   @override
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
+  bool? get errorFetchingContent;
   @override
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingContent;
   @override
   @JsonKey(ignore: true)
   _$SavedContentStateCopyWith<_SavedContentState> get copyWith =>

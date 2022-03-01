@@ -5,8 +5,7 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -90,13 +89,13 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
           return state;
         } else {
-          throw SILException(
+          throw MyAfyaException(
             cause: 'verify_otp_error',
             message: invalidCode,
           );
         }
       } else {
-        throw SILException(
+        throw MyAfyaException(
           error: processedResponse.response,
           cause: 'verify_otp_error',
           message: processedResponse.message,
@@ -107,7 +106,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
   @override
   Object wrapError(dynamic error) async {
-    if (error.runtimeType == SILException) {
+    if (error.runtimeType == MyAfyaException) {
       showFeedbackBottomSheet(
         context: context,
         modalContent: error.message.toString(),

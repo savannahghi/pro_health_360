@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
+
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -61,13 +61,13 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
     final String? errors = _client.parseError(body);
     if (errors != null) {
       if (errors.contains('Network connection unreliable')) {
-        throw SILException(
+        throw MyAfyaException(
           cause: updateLikeContentFlag,
           message: networkConnectionUnreliable,
         );
       }
 
-      throw SILException(
+      throw MyAfyaException(
         cause: updateLikeContentFlag,
         message: somethingWentWrongText,
       );
@@ -78,7 +78,7 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
 
   @override
   Object wrapError(dynamic error) async {
-    if (error.runtimeType == SILException) {
+    if (error.runtimeType == MyAfyaException) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(

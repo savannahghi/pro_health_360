@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'hero_image.dart';
 
@@ -26,7 +28,7 @@ class _$HeroImageTearOff {
     );
   }
 
-  HeroImage fromJson(Map<String, Object> json) {
+  HeroImage fromJson(Map<String, Object?> json) {
     return HeroImage.fromJson(json);
   }
 }
@@ -110,7 +112,7 @@ class _$_HeroImage implements _HeroImage {
   _$_HeroImage({@JsonKey(name: 'url') this.url});
 
   factory _$_HeroImage.fromJson(Map<String, dynamic> json) =>
-      _$_$_HeroImageFromJson(json);
+      _$$_HeroImageFromJson(json);
 
   @override
   @JsonKey(name: 'url')
@@ -124,14 +126,14 @@ class _$_HeroImage implements _HeroImage {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _HeroImage &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+        (other.runtimeType == runtimeType &&
+            other is _HeroImage &&
+            const DeepCollectionEquality().equals(other.url, url));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(url);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(url));
 
   @JsonKey(ignore: true)
   @override
@@ -140,7 +142,7 @@ class _$_HeroImage implements _HeroImage {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_HeroImageToJson(this);
+    return _$$_HeroImageToJson(this);
   }
 }
 
@@ -152,7 +154,7 @@ abstract class _HeroImage implements HeroImage {
 
   @override
   @JsonKey(name: 'url')
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
   @override
   @JsonKey(ignore: true)
   _$HeroImageCopyWith<_HeroImage> get copyWith =>

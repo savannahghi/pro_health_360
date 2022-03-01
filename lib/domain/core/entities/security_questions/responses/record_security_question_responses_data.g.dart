@@ -7,18 +7,17 @@ part of 'record_security_question_responses_data.dart';
 // **************************************************************************
 
 _$_RecordSecurityQuestionResponsesData
-    _$_$_RecordSecurityQuestionResponsesDataFromJson(
-        Map<String, dynamic> json) {
-  return _$_RecordSecurityQuestionResponsesData(
-    recordSecurityQuestionResponses: (json['recordSecurityQuestionResponses']
-            as List<dynamic>)
-        .map((e) =>
-            RecordSecurityQuestionResponse.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+    _$$_RecordSecurityQuestionResponsesDataFromJson(
+            Map<String, dynamic> json) =>
+        _$_RecordSecurityQuestionResponsesData(
+          recordSecurityQuestionResponses:
+              (json['recordSecurityQuestionResponses'] as List<dynamic>)
+                  .map((e) => RecordSecurityQuestionResponse.fromJson(
+                      e as Map<String, dynamic>))
+                  .toList(),
+        );
 
-Map<String, dynamic> _$_$_RecordSecurityQuestionResponsesDataToJson(
+Map<String, dynamic> _$$_RecordSecurityQuestionResponsesDataToJson(
         _$_RecordSecurityQuestionResponsesData instance) =>
     <String, dynamic>{
       'recordSecurityQuestionResponses':

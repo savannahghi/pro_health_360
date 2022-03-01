@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'content_category.dart';
 
@@ -31,7 +33,7 @@ class _$ContentCategoryTearOff {
     );
   }
 
-  ContentCategory fromJson(Map<String, Object> json) {
+  ContentCategory fromJson(Map<String, Object?> json) {
     return ContentCategory.fromJson(json);
   }
 }
@@ -153,7 +155,7 @@ class _$_ContentCategory implements _ContentCategory {
       @JsonKey(name: 'iconUrl') this.icon});
 
   factory _$_ContentCategory.fromJson(Map<String, dynamic> json) =>
-      _$_$_ContentCategoryFromJson(json);
+      _$$_ContentCategoryFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -173,21 +175,19 @@ class _$_ContentCategory implements _ContentCategory {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ContentCategory &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.icon, icon) ||
-                const DeepCollectionEquality().equals(other.icon, icon)));
+        (other.runtimeType == runtimeType &&
+            other is _ContentCategory &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.icon, icon));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(icon);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(icon));
 
   @JsonKey(ignore: true)
   @override
@@ -196,7 +196,7 @@ class _$_ContentCategory implements _ContentCategory {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ContentCategoryToJson(this);
+    return _$$_ContentCategoryToJson(this);
   }
 }
 
@@ -211,13 +211,13 @@ abstract class _ContentCategory implements ContentCategory {
 
   @override
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(name: 'iconUrl')
-  String? get icon => throw _privateConstructorUsedError;
+  String? get icon;
   @override
   @JsonKey(ignore: true)
   _$ContentCategoryCopyWith<_ContentCategory> get copyWith =>

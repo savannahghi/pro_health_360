@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
-import 'package:domain_objects/value_objects.dart';
+
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 
@@ -86,7 +85,7 @@ class ResendOTPAction extends ReduxAction<AppState> {
         );
 
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
-        throw SILException(
+        throw MyAfyaException(
           error: processedResponse.response,
           cause: 'resend_otp_error',
           message: processedResponse.message,
@@ -99,7 +98,7 @@ class ResendOTPAction extends ReduxAction<AppState> {
 
   @override
   Object wrapError(dynamic error) async {
-    if (error.runtimeType == SILException && error.error != null) {
+    if (error.runtimeType == MyAfyaException && error.error != null) {
       reportErrorToSentry(context, error.error, hint: errorLoggingIn);
     }
 

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'image_detail.dart';
 
@@ -28,7 +30,7 @@ class _$ImageDetailTearOff {
     );
   }
 
-  ImageDetail fromJson(Map<String, Object> json) {
+  ImageDetail fromJson(Map<String, Object?> json) {
     return ImageDetail.fromJson(json);
   }
 }
@@ -152,7 +154,7 @@ class _$_ImageDetail implements _ImageDetail {
   _$_ImageDetail({this.id, this.title, this.meta});
 
   factory _$_ImageDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_ImageDetailFromJson(json);
+      _$$_ImageDetailFromJson(json);
 
   @override
   final int? id;
@@ -169,21 +171,19 @@ class _$_ImageDetail implements _ImageDetail {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ImageDetail &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.meta, meta) ||
-                const DeepCollectionEquality().equals(other.meta, meta)));
+        (other.runtimeType == runtimeType &&
+            other is _ImageDetail &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.meta, meta));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(meta);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(meta));
 
   @JsonKey(ignore: true)
   @override
@@ -192,7 +192,7 @@ class _$_ImageDetail implements _ImageDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ImageDetailToJson(this);
+    return _$$_ImageDetailToJson(this);
   }
 }
 
@@ -204,11 +204,11 @@ abstract class _ImageDetail implements ImageDetail {
       _$_ImageDetail.fromJson;
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
-  ImageMeta? get meta => throw _privateConstructorUsedError;
+  ImageMeta? get meta;
   @override
   @JsonKey(ignore: true)
   _$ImageDetailCopyWith<_ImageDetail> get copyWith =>

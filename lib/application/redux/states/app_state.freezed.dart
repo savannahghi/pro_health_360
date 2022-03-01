@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'app_state.dart';
 
@@ -43,7 +45,7 @@ class _$AppStateTearOff {
     );
   }
 
-  AppState fromJson(Map<String, Object> json) {
+  AppState fromJson(Map<String, Object?> json) {
     return AppState.fromJson(json);
   }
 }
@@ -358,7 +360,7 @@ class _$_AppState implements _AppState {
       @JsonKey(ignore: true) this.wait});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
-      _$_$_AppStateFromJson(json);
+      _$$_AppStateFromJson(json);
 
   @override
   final AuthCredentials? credentials;
@@ -388,47 +390,37 @@ class _$_AppState implements _AppState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AppState &&
-            (identical(other.credentials, credentials) ||
-                const DeepCollectionEquality()
-                    .equals(other.credentials, credentials)) &&
-            (identical(other.onboardingState, onboardingState) ||
-                const DeepCollectionEquality()
-                    .equals(other.onboardingState, onboardingState)) &&
-            (identical(other.homeState, homeState) ||
-                const DeepCollectionEquality()
-                    .equals(other.homeState, homeState)) &&
-            (identical(other.bottomNavigationState, bottomNavigationState) ||
-                const DeepCollectionEquality().equals(
-                    other.bottomNavigationState, bottomNavigationState)) &&
-            (identical(other.miscState, miscState) ||
-                const DeepCollectionEquality()
-                    .equals(other.miscState, miscState)) &&
-            (identical(other.clientState, clientState) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientState, clientState)) &&
-            (identical(other.connectivityState, connectivityState) ||
-                const DeepCollectionEquality()
-                    .equals(other.connectivityState, connectivityState)) &&
-            (identical(other.contentState, contentState) ||
-                const DeepCollectionEquality()
-                    .equals(other.contentState, contentState)) &&
-            (identical(other.wait, wait) ||
-                const DeepCollectionEquality().equals(other.wait, wait)));
+        (other.runtimeType == runtimeType &&
+            other is _AppState &&
+            const DeepCollectionEquality()
+                .equals(other.credentials, credentials) &&
+            const DeepCollectionEquality()
+                .equals(other.onboardingState, onboardingState) &&
+            const DeepCollectionEquality().equals(other.homeState, homeState) &&
+            const DeepCollectionEquality()
+                .equals(other.bottomNavigationState, bottomNavigationState) &&
+            const DeepCollectionEquality().equals(other.miscState, miscState) &&
+            const DeepCollectionEquality()
+                .equals(other.clientState, clientState) &&
+            const DeepCollectionEquality()
+                .equals(other.connectivityState, connectivityState) &&
+            const DeepCollectionEquality()
+                .equals(other.contentState, contentState) &&
+            const DeepCollectionEquality().equals(other.wait, wait));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(credentials) ^
-      const DeepCollectionEquality().hash(onboardingState) ^
-      const DeepCollectionEquality().hash(homeState) ^
-      const DeepCollectionEquality().hash(bottomNavigationState) ^
-      const DeepCollectionEquality().hash(miscState) ^
-      const DeepCollectionEquality().hash(clientState) ^
-      const DeepCollectionEquality().hash(connectivityState) ^
-      const DeepCollectionEquality().hash(contentState) ^
-      const DeepCollectionEquality().hash(wait);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(credentials),
+      const DeepCollectionEquality().hash(onboardingState),
+      const DeepCollectionEquality().hash(homeState),
+      const DeepCollectionEquality().hash(bottomNavigationState),
+      const DeepCollectionEquality().hash(miscState),
+      const DeepCollectionEquality().hash(clientState),
+      const DeepCollectionEquality().hash(connectivityState),
+      const DeepCollectionEquality().hash(contentState),
+      const DeepCollectionEquality().hash(wait));
 
   @JsonKey(ignore: true)
   @override
@@ -437,7 +429,7 @@ class _$_AppState implements _AppState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AppStateToJson(this);
+    return _$$_AppStateToJson(this);
   }
 }
 
@@ -456,26 +448,24 @@ abstract class _AppState implements AppState {
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
   @override
-  AuthCredentials? get credentials => throw _privateConstructorUsedError;
+  AuthCredentials? get credentials;
   @override
-  OnboardingState? get onboardingState => throw _privateConstructorUsedError;
+  OnboardingState? get onboardingState;
   @override
-  HomeState? get homeState => throw _privateConstructorUsedError;
+  HomeState? get homeState;
   @override
-  BottomNavigationState? get bottomNavigationState =>
-      throw _privateConstructorUsedError;
+  BottomNavigationState? get bottomNavigationState;
   @override
-  MiscState? get miscState => throw _privateConstructorUsedError;
+  MiscState? get miscState;
   @override
-  ClientState? get clientState => throw _privateConstructorUsedError;
+  ClientState? get clientState;
   @override
-  ConnectivityState? get connectivityState =>
-      throw _privateConstructorUsedError;
+  ConnectivityState? get connectivityState;
   @override
-  ContentState? get contentState => throw _privateConstructorUsedError;
+  ContentState? get contentState;
   @override
   @JsonKey(ignore: true)
-  Wait? get wait => throw _privateConstructorUsedError;
+  Wait? get wait;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

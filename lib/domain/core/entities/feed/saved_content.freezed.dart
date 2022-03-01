@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'saved_content.dart';
 
@@ -27,7 +29,7 @@ class _$SavedContentTearOff {
     );
   }
 
-  SavedContent fromJson(Map<String, Object> json) {
+  SavedContent fromJson(Map<String, Object?> json) {
     return SavedContent.fromJson(json);
   }
 }
@@ -133,7 +135,7 @@ class _$_SavedContent implements _SavedContent {
       {@JsonKey(name: 'getUserBookmarkedContent') this.savedContent});
 
   factory _$_SavedContent.fromJson(Map<String, dynamic> json) =>
-      _$_$_SavedContentFromJson(json);
+      _$$_SavedContentFromJson(json);
 
   @override
   @JsonKey(name: 'getUserBookmarkedContent')
@@ -147,15 +149,15 @@ class _$_SavedContent implements _SavedContent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SavedContent &&
-            (identical(other.savedContent, savedContent) ||
-                const DeepCollectionEquality()
-                    .equals(other.savedContent, savedContent)));
+        (other.runtimeType == runtimeType &&
+            other is _SavedContent &&
+            const DeepCollectionEquality()
+                .equals(other.savedContent, savedContent));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(savedContent);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(savedContent));
 
   @JsonKey(ignore: true)
   @override
@@ -164,7 +166,7 @@ class _$_SavedContent implements _SavedContent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SavedContentToJson(this);
+    return _$$_SavedContentToJson(this);
   }
 }
 
@@ -178,7 +180,7 @@ abstract class _SavedContent implements SavedContent {
 
   @override
   @JsonKey(name: 'getUserBookmarkedContent')
-  FeedItems? get savedContent => throw _privateConstructorUsedError;
+  FeedItems? get savedContent;
   @override
   @JsonKey(ignore: true)
   _$SavedContentCopyWith<_SavedContent> get copyWith =>

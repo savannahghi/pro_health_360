@@ -7,14 +7,13 @@ part of 'health_diary_details_item_obj.dart';
 // **************************************************************************
 
 HealthDiaryDetailsItemObj _$HealthDiaryDetailsItemObjFromJson(
-    Map<String, dynamic> json) {
-  return HealthDiaryDetailsItemObj(
-    svgIconPath: json['svgIconPath'] as String,
-    time: json['time'] as String,
-    description: json['description'] as String,
-    title: json['title'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    HealthDiaryDetailsItemObj(
+      svgIconPath: json['svgIconPath'] as String,
+      time: json['time'] as String,
+      description: json['description'] as String,
+      title: json['title'] as String,
+    );
 
 Map<String, dynamic> _$HealthDiaryDetailsItemObjToJson(
         HealthDiaryDetailsItemObj instance) =>

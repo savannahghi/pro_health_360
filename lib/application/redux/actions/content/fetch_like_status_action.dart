@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:domain_objects/failures.dart';
+
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -66,7 +66,7 @@ class FetchLikeStatusAction extends ReduxAction<AppState> {
         error,
         hint: 'Error while fetching your like status',
       );
-      throw SILException(
+      throw MyAfyaException(
         cause: fetchLikeStatusFlag,
         message: somethingWentWrongText,
       );
@@ -87,7 +87,7 @@ class FetchLikeStatusAction extends ReduxAction<AppState> {
 
   @override
   Object wrapError(dynamic error) async {
-    if (error.runtimeType == SILException) {
+    if (error.runtimeType == MyAfyaException) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(

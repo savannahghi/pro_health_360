@@ -6,16 +6,15 @@ part of 'pin_input_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PINInputState _$_$_PINInputStateFromJson(Map<String, dynamic> json) {
-  return _$_PINInputState(
-    healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
-    pinInputTries: json['pinInputTries'] as int?,
-    maxTryTime: json['maxTryTime'] as String?,
-    pinVerified: json['pinVerified'] as bool?,
-  );
-}
+_$_PINInputState _$$_PINInputStateFromJson(Map<String, dynamic> json) =>
+    _$_PINInputState(
+      healthPagePINInputTime: json['healthPagePINInputTime'] as String?,
+      pinInputTries: json['pinInputTries'] as int?,
+      maxTryTime: json['maxTryTime'] as String?,
+      pinVerified: json['pinVerified'] as bool?,
+    );
 
-Map<String, dynamic> _$_$_PINInputStateToJson(_$_PINInputState instance) =>
+Map<String, dynamic> _$$_PINInputStateToJson(_$_PINInputState instance) =>
     <String, dynamic>{
       'healthPagePINInputTime': instance.healthPagePINInputTime,
       'pinInputTries': instance.pinInputTries,

@@ -30,7 +30,6 @@ void main() {
   group('OnboardingUtils', () {
     late MockGraphQlClient mockGraphQlClient;
     MockDateTimeParser? dateTimeParser;
-    MockSILFCM? fcm;
 
     const MethodChannel('plugins.flutter.io/url_launcher')
         .setMockMethodCallHandler((MethodCall methodCall) async {
@@ -43,19 +42,9 @@ void main() {
     setUp(() {
       mockGraphQlClient = MockGraphQlClient();
       dateTimeParser = MockDateTimeParser();
-      fcm = MockSILFCM();
       when(dateTimeParser!.parsedExpireAt(int.parse('3600')))
           .thenReturn('2021-05-11T21:34:25.150');
-
-      when(fcm!.resetToken())
-          .thenAnswer((Invocation realInvocation) => Future<void>.value());
-
-      when(fcm!.getDeviceToken()).thenAnswer(
-        (Invocation realInvocation) => Future<String>.value('test-token'),
-      );
     });
-
-    group('should update user pin', () {});
 
     group('Login tests: process response', () {
       late Store<AppState> store;

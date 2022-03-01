@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'pin_input_state.dart';
 
@@ -33,7 +35,7 @@ class _$PINInputStateTearOff {
     );
   }
 
-  PINInputState fromJson(Map<String, Object> json) {
+  PINInputState fromJson(Map<String, Object?> json) {
     return PINInputState.fromJson(json);
   }
 }
@@ -166,7 +168,7 @@ class _$_PINInputState implements _PINInputState {
       this.pinVerified});
 
   factory _$_PINInputState.fromJson(Map<String, dynamic> json) =>
-      _$_$_PINInputStateFromJson(json);
+      _$$_PINInputStateFromJson(json);
 
   @override
   final String? healthPagePINInputTime;
@@ -185,28 +187,25 @@ class _$_PINInputState implements _PINInputState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PINInputState &&
-            (identical(other.healthPagePINInputTime, healthPagePINInputTime) ||
-                const DeepCollectionEquality().equals(
-                    other.healthPagePINInputTime, healthPagePINInputTime)) &&
-            (identical(other.pinInputTries, pinInputTries) ||
-                const DeepCollectionEquality()
-                    .equals(other.pinInputTries, pinInputTries)) &&
-            (identical(other.maxTryTime, maxTryTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxTryTime, maxTryTime)) &&
-            (identical(other.pinVerified, pinVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.pinVerified, pinVerified)));
+        (other.runtimeType == runtimeType &&
+            other is _PINInputState &&
+            const DeepCollectionEquality()
+                .equals(other.healthPagePINInputTime, healthPagePINInputTime) &&
+            const DeepCollectionEquality()
+                .equals(other.pinInputTries, pinInputTries) &&
+            const DeepCollectionEquality()
+                .equals(other.maxTryTime, maxTryTime) &&
+            const DeepCollectionEquality()
+                .equals(other.pinVerified, pinVerified));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(healthPagePINInputTime) ^
-      const DeepCollectionEquality().hash(pinInputTries) ^
-      const DeepCollectionEquality().hash(maxTryTime) ^
-      const DeepCollectionEquality().hash(pinVerified);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(healthPagePINInputTime),
+      const DeepCollectionEquality().hash(pinInputTries),
+      const DeepCollectionEquality().hash(maxTryTime),
+      const DeepCollectionEquality().hash(pinVerified));
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +214,7 @@ class _$_PINInputState implements _PINInputState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PINInputStateToJson(this);
+    return _$$_PINInputStateToJson(this);
   }
 }
 
@@ -230,13 +229,13 @@ abstract class _PINInputState implements PINInputState {
       _$_PINInputState.fromJson;
 
   @override
-  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
+  String? get healthPagePINInputTime;
   @override
-  int? get pinInputTries => throw _privateConstructorUsedError;
+  int? get pinInputTries;
   @override
-  String? get maxTryTime => throw _privateConstructorUsedError;
+  String? get maxTryTime;
   @override
-  bool? get pinVerified => throw _privateConstructorUsedError;
+  bool? get pinVerified;
   @override
   @JsonKey(ignore: true)
   _$PINInputStateCopyWith<_PINInputState> get copyWith =>

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'document.dart';
 
@@ -29,7 +31,7 @@ class _$DocumentTearOff {
     );
   }
 
-  Document fromJson(Map<String, Object> json) {
+  Document fromJson(Map<String, Object?> json) {
     return Document.fromJson(json);
   }
 }
@@ -146,7 +148,7 @@ class _$_Document implements _Document {
       @JsonKey(name: 'Document') this.documentData});
 
   factory _$_Document.fromJson(Map<String, dynamic> json) =>
-      _$_$_DocumentFromJson(json);
+      _$$_DocumentFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -163,19 +165,18 @@ class _$_Document implements _Document {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Document &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.documentData, documentData) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentData, documentData)));
+        (other.runtimeType == runtimeType &&
+            other is _Document &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.documentData, documentData));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(documentData);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(documentData));
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +185,7 @@ class _$_Document implements _Document {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DocumentToJson(this);
+    return _$$_DocumentToJson(this);
   }
 }
 
@@ -197,10 +198,10 @@ abstract class _Document implements Document {
 
   @override
   @JsonKey(name: 'ID')
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
   @JsonKey(name: 'Document')
-  DocumentData? get documentData => throw _privateConstructorUsedError;
+  DocumentData? get documentData;
   @override
   @JsonKey(ignore: true)
   _$DocumentCopyWith<_Document> get copyWith =>
@@ -226,7 +227,7 @@ class _$DocumentDataTearOff {
     );
   }
 
-  DocumentData fromJson(Map<String, Object> json) {
+  DocumentData fromJson(Map<String, Object?> json) {
     return DocumentData.fromJson(json);
   }
 }
@@ -362,7 +363,7 @@ class _$_DocumentData implements _DocumentData {
       @JsonKey(name: 'meta') this.documentMetaData});
 
   factory _$_DocumentData.fromJson(Map<String, dynamic> json) =>
-      _$_$_DocumentDataFromJson(json);
+      _$$_DocumentDataFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -382,22 +383,20 @@ class _$_DocumentData implements _DocumentData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DocumentData &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.documentMetaData, documentMetaData) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentMetaData, documentMetaData)));
+        (other.runtimeType == runtimeType &&
+            other is _DocumentData &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.documentMetaData, documentMetaData));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(documentMetaData);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(documentMetaData));
 
   @JsonKey(ignore: true)
   @override
@@ -406,7 +405,7 @@ class _$_DocumentData implements _DocumentData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DocumentDataToJson(this);
+    return _$$_DocumentDataToJson(this);
   }
 }
 
@@ -422,13 +421,13 @@ abstract class _DocumentData implements DocumentData {
 
   @override
   @JsonKey(name: 'ID')
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
   @JsonKey(name: 'meta')
-  DocumentMetaData? get documentMetaData => throw _privateConstructorUsedError;
+  DocumentMetaData? get documentMetaData;
   @override
   @JsonKey(ignore: true)
   _$DocumentDataCopyWith<_DocumentData> get copyWith =>
@@ -450,7 +449,7 @@ class _$DocumentMetaDataTearOff {
     );
   }
 
-  DocumentMetaData fromJson(Map<String, Object> json) {
+  DocumentMetaData fromJson(Map<String, Object?> json) {
     return DocumentMetaData.fromJson(json);
   }
 }
@@ -542,7 +541,7 @@ class _$_DocumentMetaData implements _DocumentMetaData {
       {@JsonKey(name: 'documentDownloadUrl') this.documentDownloadUrl});
 
   factory _$_DocumentMetaData.fromJson(Map<String, dynamic> json) =>
-      _$_$_DocumentMetaDataFromJson(json);
+      _$$_DocumentMetaDataFromJson(json);
 
   @override
   @JsonKey(name: 'documentDownloadUrl')
@@ -556,16 +555,15 @@ class _$_DocumentMetaData implements _DocumentMetaData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DocumentMetaData &&
-            (identical(other.documentDownloadUrl, documentDownloadUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentDownloadUrl, documentDownloadUrl)));
+        (other.runtimeType == runtimeType &&
+            other is _DocumentMetaData &&
+            const DeepCollectionEquality()
+                .equals(other.documentDownloadUrl, documentDownloadUrl));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(documentDownloadUrl);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(documentDownloadUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -574,7 +572,7 @@ class _$_DocumentMetaData implements _DocumentMetaData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DocumentMetaDataToJson(this);
+    return _$$_DocumentMetaDataToJson(this);
   }
 }
 
@@ -588,7 +586,7 @@ abstract class _DocumentMetaData implements DocumentMetaData {
 
   @override
   @JsonKey(name: 'documentDownloadUrl')
-  String? get documentDownloadUrl => throw _privateConstructorUsedError;
+  String? get documentDownloadUrl;
   @override
   @JsonKey(ignore: true)
   _$DocumentMetaDataCopyWith<_DocumentMetaData> get copyWith =>

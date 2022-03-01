@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'caregiver_information.dart';
 
@@ -36,7 +38,7 @@ class _$CaregiverInformationTearOff {
     );
   }
 
-  CaregiverInformation fromJson(Map<String, Object> json) {
+  CaregiverInformation fromJson(Map<String, Object?> json) {
     return CaregiverInformation.fromJson(json);
   }
 }
@@ -190,7 +192,7 @@ class _$_CaregiverInformation implements _CaregiverInformation {
           this.caregiverType});
 
   factory _$_CaregiverInformation.fromJson(Map<String, dynamic> json) =>
-      _$_$_CaregiverInformationFromJson(json);
+      _$$_CaregiverInformationFromJson(json);
 
   @override
   final String? clientID;
@@ -215,32 +217,25 @@ class _$_CaregiverInformation implements _CaregiverInformation {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CaregiverInformation &&
-            (identical(other.clientID, clientID) ||
-                const DeepCollectionEquality()
-                    .equals(other.clientID, clientID)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.caregiverType, caregiverType) ||
-                const DeepCollectionEquality()
-                    .equals(other.caregiverType, caregiverType)));
+        (other.runtimeType == runtimeType &&
+            other is _CaregiverInformation &&
+            const DeepCollectionEquality().equals(other.clientID, clientID) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.caregiverType, caregiverType));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(clientID) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(caregiverType);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(clientID),
+      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(lastName),
+      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(caregiverType));
 
   @JsonKey(ignore: true)
   @override
@@ -250,7 +245,7 @@ class _$_CaregiverInformation implements _CaregiverInformation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_CaregiverInformationToJson(this);
+    return _$$_CaregiverInformationToJson(this);
   }
 }
 
@@ -267,19 +262,19 @@ abstract class _CaregiverInformation implements CaregiverInformation {
       _$_CaregiverInformation.fromJson;
 
   @override
-  String? get clientID => throw _privateConstructorUsedError;
+  String? get clientID;
   @override
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
   @override
   @JsonKey(
       name: 'caregiverType',
       fromJson: caregiverTypeFromJson,
       toJson: caregiverTypeToJson)
-  CaregiverType? get caregiverType => throw _privateConstructorUsedError;
+  CaregiverType? get caregiverType;
   @override
   @JsonKey(ignore: true)
   _$CaregiverInformationCopyWith<_CaregiverInformation> get copyWith =>

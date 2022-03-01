@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'phone_login_state.dart';
 
@@ -29,7 +31,7 @@ class _$PhoneLoginStateTearOff {
     );
   }
 
-  PhoneLoginState fromJson(Map<String, Object> json) {
+  PhoneLoginState fromJson(Map<String, Object?> json) {
     return PhoneLoginState.fromJson(json);
   }
 }
@@ -140,9 +142,9 @@ class _$_PhoneLoginState implements _PhoneLoginState {
       {this.invalidCredentials = false, this.phoneNumber, this.pinCode});
 
   factory _$_PhoneLoginState.fromJson(Map<String, dynamic> json) =>
-      _$_$_PhoneLoginStateFromJson(json);
+      _$$_PhoneLoginStateFromJson(json);
 
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool invalidCredentials;
   @override
@@ -158,23 +160,21 @@ class _$_PhoneLoginState implements _PhoneLoginState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PhoneLoginState &&
-            (identical(other.invalidCredentials, invalidCredentials) ||
-                const DeepCollectionEquality()
-                    .equals(other.invalidCredentials, invalidCredentials)) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.pinCode, pinCode) ||
-                const DeepCollectionEquality().equals(other.pinCode, pinCode)));
+        (other.runtimeType == runtimeType &&
+            other is _PhoneLoginState &&
+            const DeepCollectionEquality()
+                .equals(other.invalidCredentials, invalidCredentials) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality().equals(other.pinCode, pinCode));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(invalidCredentials) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(pinCode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(invalidCredentials),
+      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(pinCode));
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +183,7 @@ class _$_PhoneLoginState implements _PhoneLoginState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PhoneLoginStateToJson(this);
+    return _$$_PhoneLoginStateToJson(this);
   }
 }
 
@@ -197,11 +197,11 @@ abstract class _PhoneLoginState implements PhoneLoginState {
       _$_PhoneLoginState.fromJson;
 
   @override
-  bool get invalidCredentials => throw _privateConstructorUsedError;
+  bool get invalidCredentials;
   @override
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
   @override
-  String? get pinCode => throw _privateConstructorUsedError;
+  String? get pinCode;
   @override
   @JsonKey(ignore: true)
   _$PhoneLoginStateCopyWith<_PhoneLoginState> get copyWith =>

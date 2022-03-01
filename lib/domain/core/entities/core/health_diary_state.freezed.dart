@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'health_diary_state.dart';
 
@@ -36,7 +38,7 @@ class _$HealthDiaryStateTearOff {
     );
   }
 
-  HealthDiaryState fromJson(Map<String, Object> json) {
+  HealthDiaryState fromJson(Map<String, Object?> json) {
     return HealthDiaryState.fromJson(json);
   }
 }
@@ -186,7 +188,7 @@ class _$_HealthDiaryState implements _HealthDiaryState {
       this.shouldNotShareHealthRecord});
 
   factory _$_HealthDiaryState.fromJson(Map<String, dynamic> json) =>
-      _$_$_HealthDiaryStateFromJson(json);
+      _$$_HealthDiaryStateFromJson(json);
 
   @override
   @JsonKey(name: 'getClientHealthDiaryEntries')
@@ -208,39 +210,28 @@ class _$_HealthDiaryState implements _HealthDiaryState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _HealthDiaryState &&
-            (identical(other.entries, entries) ||
-                const DeepCollectionEquality()
-                    .equals(other.entries, entries)) &&
-            (identical(other.errorFetchingDiaryEntries,
-                    errorFetchingDiaryEntries) ||
-                const DeepCollectionEquality().equals(
-                    other.errorFetchingDiaryEntries,
-                    errorFetchingDiaryEntries)) &&
-            (identical(other.timeoutFetchingDiaryEntries,
-                    timeoutFetchingDiaryEntries) ||
-                const DeepCollectionEquality().equals(
-                    other.timeoutFetchingDiaryEntries,
-                    timeoutFetchingDiaryEntries)) &&
-            (identical(
-                    other.shouldShareHealthRecord, shouldShareHealthRecord) ||
-                const DeepCollectionEquality().equals(
-                    other.shouldShareHealthRecord, shouldShareHealthRecord)) &&
-            (identical(other.shouldNotShareHealthRecord,
-                    shouldNotShareHealthRecord) ||
-                const DeepCollectionEquality().equals(
-                    other.shouldNotShareHealthRecord,
-                    shouldNotShareHealthRecord)));
+        (other.runtimeType == runtimeType &&
+            other is _HealthDiaryState &&
+            const DeepCollectionEquality().equals(other.entries, entries) &&
+            const DeepCollectionEquality().equals(
+                other.errorFetchingDiaryEntries, errorFetchingDiaryEntries) &&
+            const DeepCollectionEquality().equals(
+                other.timeoutFetchingDiaryEntries,
+                timeoutFetchingDiaryEntries) &&
+            const DeepCollectionEquality().equals(
+                other.shouldShareHealthRecord, shouldShareHealthRecord) &&
+            const DeepCollectionEquality().equals(
+                other.shouldNotShareHealthRecord, shouldNotShareHealthRecord));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(entries) ^
-      const DeepCollectionEquality().hash(errorFetchingDiaryEntries) ^
-      const DeepCollectionEquality().hash(timeoutFetchingDiaryEntries) ^
-      const DeepCollectionEquality().hash(shouldShareHealthRecord) ^
-      const DeepCollectionEquality().hash(shouldNotShareHealthRecord);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(entries),
+      const DeepCollectionEquality().hash(errorFetchingDiaryEntries),
+      const DeepCollectionEquality().hash(timeoutFetchingDiaryEntries),
+      const DeepCollectionEquality().hash(shouldShareHealthRecord),
+      const DeepCollectionEquality().hash(shouldNotShareHealthRecord));
 
   @JsonKey(ignore: true)
   @override
@@ -249,7 +240,7 @@ class _$_HealthDiaryState implements _HealthDiaryState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_HealthDiaryStateToJson(this);
+    return _$$_HealthDiaryStateToJson(this);
   }
 }
 
@@ -267,15 +258,15 @@ abstract class _HealthDiaryState implements HealthDiaryState {
 
   @override
   @JsonKey(name: 'getClientHealthDiaryEntries')
-  List<HealthDiaryEntry?>? get entries => throw _privateConstructorUsedError;
+  List<HealthDiaryEntry?>? get entries;
   @override
-  bool? get errorFetchingDiaryEntries => throw _privateConstructorUsedError;
+  bool? get errorFetchingDiaryEntries;
   @override
-  bool? get timeoutFetchingDiaryEntries => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingDiaryEntries;
   @override
-  bool? get shouldShareHealthRecord => throw _privateConstructorUsedError;
+  bool? get shouldShareHealthRecord;
   @override
-  bool? get shouldNotShareHealthRecord => throw _privateConstructorUsedError;
+  bool? get shouldNotShareHealthRecord;
   @override
   @JsonKey(ignore: true)
   _$HealthDiaryStateCopyWith<_HealthDiaryState> get copyWith =>
