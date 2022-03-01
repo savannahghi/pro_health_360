@@ -787,4 +787,6 @@ const String feedbackSubmissionSuccessfulText =
     'Thanks for sharing your feedback';
 
 const String feedbackSubmissionErrorText =
-    'An error occured sending your feedback, please try again later';
+    'An error occurred sending your feedback, please try again later';
+// clinic information
+const String keyProvider = 'Name';

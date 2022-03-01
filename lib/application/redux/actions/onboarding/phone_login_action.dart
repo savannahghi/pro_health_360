@@ -152,7 +152,21 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         dispatch(UpdateUserAction(user: user));
 
-        dispatch(UpdateClientProfileAction(id: loginResponse.clientState?.id));
+        dispatch(
+          UpdateClientProfileAction(
+            id: loginResponse.clientState?.id,
+            active: loginResponse.clientState?.active,
+            counselled: loginResponse.clientState?.counselled,
+            clientType: loginResponse.clientState?.clientType,
+            facilityID: loginResponse.clientState?.facilityID,
+            treatmentBuddy: loginResponse.clientState?.treatmentBuddy,
+            treatmentEnrollmentDate:
+                loginResponse.clientState?.treatmentEnrollmentDate,
+            facilityName: loginResponse.clientState?.facilityName,
+            chvUserID: loginResponse.clientState?.chvUserID,
+            chvUserName: loginResponse.clientState?.chvUserName,
+          ),
+        );
 
         final OnboardingPathConfig onboardingPathConfig =
             onboardingPath(appState: state);

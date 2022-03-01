@@ -27,8 +27,8 @@ class _$ClientStateTearOff {
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'clientCounselled', defaultValue: false)
-          bool? clientCounselled,
+      @JsonKey(name: 'counselled', defaultValue: false)
+          bool? counselled,
       @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
@@ -45,12 +45,20 @@ class _$ClientStateTearOff {
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           bool? isSignedIn,
+      @JsonKey(name: 'facilityName')
+          String? facilityName,
+      @JsonKey(name: 'facilityPhoneNumber')
+          String? facilityPhoneNumber,
+      @JsonKey(name: 'chvUserID')
+          String? chvUserID,
+      @JsonKey(name: 'chvUserName')
+          String? chvUserName,
       HealthDiaryState? healthDiaryState}) {
     return _ClientState(
       id: id,
       active: active,
       addresses: addresses,
-      clientCounselled: clientCounselled,
+      counselled: counselled,
       clientType: clientType,
       facilityID: facilityID,
       relatedPersons: relatedPersons,
@@ -59,6 +67,10 @@ class _$ClientStateTearOff {
       user: user,
       lastMoodRecordedDate: lastMoodRecordedDate,
       isSignedIn: isSignedIn,
+      facilityName: facilityName,
+      facilityPhoneNumber: facilityPhoneNumber,
+      chvUserID: chvUserID,
+      chvUserName: chvUserName,
       healthDiaryState: healthDiaryState,
     );
   }
@@ -79,8 +91,8 @@ mixin _$ClientState {
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'addresses')
   List<Address>? get addresses => throw _privateConstructorUsedError;
-  @JsonKey(name: 'clientCounselled', defaultValue: false)
-  bool? get clientCounselled => throw _privateConstructorUsedError;
+  @JsonKey(name: 'counselled', defaultValue: false)
+  bool? get counselled => throw _privateConstructorUsedError;
   @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
   ClientType? get clientType => throw _privateConstructorUsedError;
   @JsonKey(name: 'facilityID')
@@ -99,6 +111,14 @@ mixin _$ClientState {
   String? get lastMoodRecordedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'isSignedIn')
   bool? get isSignedIn => throw _privateConstructorUsedError;
+  @JsonKey(name: 'facilityName')
+  String? get facilityName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'facilityPhoneNumber')
+  String? get facilityPhoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chvUserID')
+  String? get chvUserID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chvUserName')
+  String? get chvUserName => throw _privateConstructorUsedError;
 
   /// The client's health diary state
   HealthDiaryState? get healthDiaryState => throw _privateConstructorUsedError;
@@ -121,8 +141,8 @@ abstract class $ClientStateCopyWith<$Res> {
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'clientCounselled', defaultValue: false)
-          bool? clientCounselled,
+      @JsonKey(name: 'counselled', defaultValue: false)
+          bool? counselled,
       @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
@@ -139,6 +159,14 @@ abstract class $ClientStateCopyWith<$Res> {
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           bool? isSignedIn,
+      @JsonKey(name: 'facilityName')
+          String? facilityName,
+      @JsonKey(name: 'facilityPhoneNumber')
+          String? facilityPhoneNumber,
+      @JsonKey(name: 'chvUserID')
+          String? chvUserID,
+      @JsonKey(name: 'chvUserName')
+          String? chvUserName,
       HealthDiaryState? healthDiaryState});
 
   $UserCopyWith<$Res>? get user;
@@ -158,7 +186,7 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? id = freezed,
     Object? active = freezed,
     Object? addresses = freezed,
-    Object? clientCounselled = freezed,
+    Object? counselled = freezed,
     Object? clientType = freezed,
     Object? facilityID = freezed,
     Object? relatedPersons = freezed,
@@ -167,6 +195,10 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
+    Object? facilityName = freezed,
+    Object? facilityPhoneNumber = freezed,
+    Object? chvUserID = freezed,
+    Object? chvUserName = freezed,
     Object? healthDiaryState = freezed,
   }) {
     return _then(_value.copyWith(
@@ -182,9 +214,9 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      clientCounselled: clientCounselled == freezed
-          ? _value.clientCounselled
-          : clientCounselled // ignore: cast_nullable_to_non_nullable
+      counselled: counselled == freezed
+          ? _value.counselled
+          : counselled // ignore: cast_nullable_to_non_nullable
               as bool?,
       clientType: clientType == freezed
           ? _value.clientType
@@ -218,6 +250,22 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
           ? _value.isSignedIn
           : isSignedIn // ignore: cast_nullable_to_non_nullable
               as bool?,
+      facilityName: facilityName == freezed
+          ? _value.facilityName
+          : facilityName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      facilityPhoneNumber: facilityPhoneNumber == freezed
+          ? _value.facilityPhoneNumber
+          : facilityPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chvUserID: chvUserID == freezed
+          ? _value.chvUserID
+          : chvUserID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chvUserName: chvUserName == freezed
+          ? _value.chvUserName
+          : chvUserName // ignore: cast_nullable_to_non_nullable
+              as String?,
       healthDiaryState: healthDiaryState == freezed
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
@@ -262,8 +310,8 @@ abstract class _$ClientStateCopyWith<$Res>
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'clientCounselled', defaultValue: false)
-          bool? clientCounselled,
+      @JsonKey(name: 'counselled', defaultValue: false)
+          bool? counselled,
       @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
@@ -280,6 +328,14 @@ abstract class _$ClientStateCopyWith<$Res>
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           bool? isSignedIn,
+      @JsonKey(name: 'facilityName')
+          String? facilityName,
+      @JsonKey(name: 'facilityPhoneNumber')
+          String? facilityPhoneNumber,
+      @JsonKey(name: 'chvUserID')
+          String? chvUserID,
+      @JsonKey(name: 'chvUserName')
+          String? chvUserName,
       HealthDiaryState? healthDiaryState});
 
   @override
@@ -303,7 +359,7 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? id = freezed,
     Object? active = freezed,
     Object? addresses = freezed,
-    Object? clientCounselled = freezed,
+    Object? counselled = freezed,
     Object? clientType = freezed,
     Object? facilityID = freezed,
     Object? relatedPersons = freezed,
@@ -312,6 +368,10 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? user = freezed,
     Object? lastMoodRecordedDate = freezed,
     Object? isSignedIn = freezed,
+    Object? facilityName = freezed,
+    Object? facilityPhoneNumber = freezed,
+    Object? chvUserID = freezed,
+    Object? chvUserName = freezed,
     Object? healthDiaryState = freezed,
   }) {
     return _then(_ClientState(
@@ -327,9 +387,9 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
-      clientCounselled: clientCounselled == freezed
-          ? _value.clientCounselled
-          : clientCounselled // ignore: cast_nullable_to_non_nullable
+      counselled: counselled == freezed
+          ? _value.counselled
+          : counselled // ignore: cast_nullable_to_non_nullable
               as bool?,
       clientType: clientType == freezed
           ? _value.clientType
@@ -363,6 +423,22 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
           ? _value.isSignedIn
           : isSignedIn // ignore: cast_nullable_to_non_nullable
               as bool?,
+      facilityName: facilityName == freezed
+          ? _value.facilityName
+          : facilityName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      facilityPhoneNumber: facilityPhoneNumber == freezed
+          ? _value.facilityPhoneNumber
+          : facilityPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chvUserID: chvUserID == freezed
+          ? _value.chvUserID
+          : chvUserID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chvUserName: chvUserName == freezed
+          ? _value.chvUserName
+          : chvUserName // ignore: cast_nullable_to_non_nullable
+              as String?,
       healthDiaryState: healthDiaryState == freezed
           ? _value.healthDiaryState
           : healthDiaryState // ignore: cast_nullable_to_non_nullable
@@ -381,8 +457,8 @@ class _$_ClientState implements _ClientState {
           this.active,
       @JsonKey(name: 'addresses')
           this.addresses,
-      @JsonKey(name: 'clientCounselled', defaultValue: false)
-          this.clientCounselled,
+      @JsonKey(name: 'counselled', defaultValue: false)
+          this.counselled,
       @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           this.clientType,
       @JsonKey(name: 'facilityID')
@@ -399,6 +475,14 @@ class _$_ClientState implements _ClientState {
           this.lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           this.isSignedIn,
+      @JsonKey(name: 'facilityName')
+          this.facilityName,
+      @JsonKey(name: 'facilityPhoneNumber')
+          this.facilityPhoneNumber,
+      @JsonKey(name: 'chvUserID')
+          this.chvUserID,
+      @JsonKey(name: 'chvUserName')
+          this.chvUserName,
       this.healthDiaryState});
 
   factory _$_ClientState.fromJson(Map<String, dynamic> json) =>
@@ -414,8 +498,8 @@ class _$_ClientState implements _ClientState {
   @JsonKey(name: 'addresses')
   final List<Address>? addresses;
   @override
-  @JsonKey(name: 'clientCounselled', defaultValue: false)
-  final bool? clientCounselled;
+  @JsonKey(name: 'counselled', defaultValue: false)
+  final bool? counselled;
   @override
   @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
   final ClientType? clientType;
@@ -443,13 +527,25 @@ class _$_ClientState implements _ClientState {
   @JsonKey(name: 'isSignedIn')
   final bool? isSignedIn;
   @override
+  @JsonKey(name: 'facilityName')
+  final String? facilityName;
+  @override
+  @JsonKey(name: 'facilityPhoneNumber')
+  final String? facilityPhoneNumber;
+  @override
+  @JsonKey(name: 'chvUserID')
+  final String? chvUserID;
+  @override
+  @JsonKey(name: 'chvUserName')
+  final String? chvUserName;
+  @override
 
   /// The client's health diary state
   final HealthDiaryState? healthDiaryState;
 
   @override
   String toString() {
-    return 'ClientState(id: $id, active: $active, addresses: $addresses, clientCounselled: $clientCounselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, healthDiaryState: $healthDiaryState)';
+    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, healthDiaryState: $healthDiaryState)';
   }
 
   @override
@@ -463,9 +559,9 @@ class _$_ClientState implements _ClientState {
             (identical(other.addresses, addresses) ||
                 const DeepCollectionEquality()
                     .equals(other.addresses, addresses)) &&
-            (identical(other.clientCounselled, clientCounselled) ||
+            (identical(other.counselled, counselled) ||
                 const DeepCollectionEquality()
-                    .equals(other.clientCounselled, clientCounselled)) &&
+                    .equals(other.counselled, counselled)) &&
             (identical(other.clientType, clientType) ||
                 const DeepCollectionEquality()
                     .equals(other.clientType, clientType)) &&
@@ -490,6 +586,18 @@ class _$_ClientState implements _ClientState {
             (identical(other.isSignedIn, isSignedIn) ||
                 const DeepCollectionEquality()
                     .equals(other.isSignedIn, isSignedIn)) &&
+            (identical(other.facilityName, facilityName) ||
+                const DeepCollectionEquality()
+                    .equals(other.facilityName, facilityName)) &&
+            (identical(other.facilityPhoneNumber, facilityPhoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.facilityPhoneNumber, facilityPhoneNumber)) &&
+            (identical(other.chvUserID, chvUserID) ||
+                const DeepCollectionEquality()
+                    .equals(other.chvUserID, chvUserID)) &&
+            (identical(other.chvUserName, chvUserName) ||
+                const DeepCollectionEquality()
+                    .equals(other.chvUserName, chvUserName)) &&
             (identical(other.healthDiaryState, healthDiaryState) ||
                 const DeepCollectionEquality()
                     .equals(other.healthDiaryState, healthDiaryState)));
@@ -501,7 +609,7 @@ class _$_ClientState implements _ClientState {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(addresses) ^
-      const DeepCollectionEquality().hash(clientCounselled) ^
+      const DeepCollectionEquality().hash(counselled) ^
       const DeepCollectionEquality().hash(clientType) ^
       const DeepCollectionEquality().hash(facilityID) ^
       const DeepCollectionEquality().hash(relatedPersons) ^
@@ -510,6 +618,10 @@ class _$_ClientState implements _ClientState {
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(lastMoodRecordedDate) ^
       const DeepCollectionEquality().hash(isSignedIn) ^
+      const DeepCollectionEquality().hash(facilityName) ^
+      const DeepCollectionEquality().hash(facilityPhoneNumber) ^
+      const DeepCollectionEquality().hash(chvUserID) ^
+      const DeepCollectionEquality().hash(chvUserName) ^
       const DeepCollectionEquality().hash(healthDiaryState);
 
   @JsonKey(ignore: true)
@@ -531,8 +643,8 @@ abstract class _ClientState implements ClientState {
           bool? active,
       @JsonKey(name: 'addresses')
           List<Address>? addresses,
-      @JsonKey(name: 'clientCounselled', defaultValue: false)
-          bool? clientCounselled,
+      @JsonKey(name: 'counselled', defaultValue: false)
+          bool? counselled,
       @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
           ClientType? clientType,
       @JsonKey(name: 'facilityID')
@@ -549,6 +661,14 @@ abstract class _ClientState implements ClientState {
           String? lastMoodRecordedDate,
       @JsonKey(name: 'isSignedIn')
           bool? isSignedIn,
+      @JsonKey(name: 'facilityName')
+          String? facilityName,
+      @JsonKey(name: 'facilityPhoneNumber')
+          String? facilityPhoneNumber,
+      @JsonKey(name: 'chvUserID')
+          String? chvUserID,
+      @JsonKey(name: 'chvUserName')
+          String? chvUserName,
       HealthDiaryState? healthDiaryState}) = _$_ClientState;
 
   factory _ClientState.fromJson(Map<String, dynamic> json) =
@@ -564,8 +684,8 @@ abstract class _ClientState implements ClientState {
   @JsonKey(name: 'addresses')
   List<Address>? get addresses => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'clientCounselled', defaultValue: false)
-  bool? get clientCounselled => throw _privateConstructorUsedError;
+  @JsonKey(name: 'counselled', defaultValue: false)
+  bool? get counselled => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
   ClientType? get clientType => throw _privateConstructorUsedError;
@@ -592,6 +712,18 @@ abstract class _ClientState implements ClientState {
   @override
   @JsonKey(name: 'isSignedIn')
   bool? get isSignedIn => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'facilityName')
+  String? get facilityName => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'facilityPhoneNumber')
+  String? get facilityPhoneNumber => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'chvUserID')
+  String? get chvUserID => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'chvUserName')
+  String? get chvUserName => throw _privateConstructorUsedError;
   @override
 
   /// The client's health diary state

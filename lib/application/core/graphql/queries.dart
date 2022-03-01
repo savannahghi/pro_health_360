@@ -320,3 +320,17 @@ query verifyPin($userID: String!, $flavour:Flavour!, $pin: String!){
   verifyPIN(userID: $userID, flavour: $flavour, pin: $pin)
 }
 ''';
+
+const String retrieveFacilityQuery = r'''
+query retrieveFacility($id: String!, $active: Boolean!){
+  retrieveFacility(id: $id, active: $active){
+    ID
+    name
+    code
+    county
+    active
+    phone
+    description
+  }
+}
+''';

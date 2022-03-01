@@ -69,3 +69,4 @@ const String verifyPINFlag = 'verify_pin_flag';
 
 // Send Feedback page
 const String sendFeedbackFlag = 'set_feedback_flag';
+const String fetchClinicInformationFlag = 'fetch_clinic_information';

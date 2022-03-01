@@ -3,6 +3,7 @@ import 'package:async_redux/async_redux.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 // TODO(abiud): rewrite this action to cater for the new fields
 class UpdateClientProfileAction extends ReduxAction<AppState> {
@@ -10,17 +11,31 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.id,
     this.active,
     this.lastMoodRecordedDate,
-    this.nickName,
     this.isSignedIn,
     this.treatmentEnrollmentDate,
+    this.counselled,
+    this.clientType,
+    this.facilityID,
+    this.treatmentBuddy,
+    this.facilityName,
+    this.facilityPhoneNumber,
+    this.chvUserID,
+    this.chvUserName,
   });
 
   final String? id;
   final bool? active;
   final String? lastMoodRecordedDate;
-  final String? nickName;
   final bool? isSignedIn;
   final String? treatmentEnrollmentDate;
+  final bool? counselled;
+  final ClientType? clientType;
+  final String? facilityID;
+  final String? treatmentBuddy;
+  final String? facilityName;
+  final String? facilityPhoneNumber;
+  final String? chvUserID;
+  final String? chvUserName;
 
   @override
   AppState reduce() {
@@ -33,6 +48,16 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
             state.clientState?.lastMoodRecordedDate,
         treatmentEnrollmentDate: this.treatmentEnrollmentDate ??
             state.clientState!.treatmentEnrollmentDate,
+        clientType: this.clientType ?? state.clientState?.clientType,
+        counselled: this.counselled ?? state.clientState?.counselled,
+        facilityID: this.facilityID ?? state.clientState?.facilityID,
+        treatmentBuddy:
+            this.treatmentBuddy ?? state.clientState?.treatmentBuddy,
+        facilityName: this.facilityName ?? state.clientState?.facilityName,
+        facilityPhoneNumber:
+            this.facilityPhoneNumber ?? state.clientState?.facilityPhoneNumber,
+        chvUserID: this.chvUserID ?? state.clientState?.chvUserID,
+        chvUserName: this.chvUserName ?? state.clientState?.chvUserName,
       ),
     );
 

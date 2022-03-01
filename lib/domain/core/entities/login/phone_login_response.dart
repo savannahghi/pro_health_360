@@ -19,6 +19,6 @@ class PhoneLoginResponse with _$PhoneLoginResponse {
   }) = _PhoneLoginResponse;
 
   factory PhoneLoginResponse.fromJson(Map<String, dynamic> json) =>
-      _$PhoneLoginResponseFromJson(json);
+    _$PhoneLoginResponseFromJson(json);
 
 }

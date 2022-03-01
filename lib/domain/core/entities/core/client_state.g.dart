@@ -13,7 +13,7 @@ _$_ClientState _$_$_ClientStateFromJson(Map<String, dynamic> json) {
     addresses: (json['addresses'] as List<dynamic>?)
         ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
         .toList(),
-    clientCounselled: json['clientCounselled'] as bool? ?? false,
+    counselled: json['counselled'] as bool? ?? false,
     clientType: _$enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']) ??
         ClientType.UNKNOWN,
     facilityID: json['facilityID'] as String?,
@@ -27,6 +27,10 @@ _$_ClientState _$_$_ClientStateFromJson(Map<String, dynamic> json) {
         : User.fromJson(json['user'] as Map<String, dynamic>),
     lastMoodRecordedDate: json['lastMoodRecordedDate'] as String?,
     isSignedIn: json['isSignedIn'] as bool?,
+    facilityName: json['facilityName'] as String?,
+    facilityPhoneNumber: json['facilityPhoneNumber'] as String?,
+    chvUserID: json['chvUserID'] as String?,
+    chvUserName: json['chvUserName'] as String?,
     healthDiaryState: json['healthDiaryState'] == null
         ? null
         : HealthDiaryState.fromJson(
@@ -39,7 +43,7 @@ Map<String, dynamic> _$_$_ClientStateToJson(_$_ClientState instance) =>
       'id': instance.id,
       'active': instance.active,
       'addresses': instance.addresses,
-      'clientCounselled': instance.clientCounselled,
+      'counselled': instance.counselled,
       'clientType': _$ClientTypeEnumMap[instance.clientType],
       'facilityID': instance.facilityID,
       'relatedPersons': instance.relatedPersons,
@@ -48,6 +52,10 @@ Map<String, dynamic> _$_$_ClientStateToJson(_$_ClientState instance) =>
       'user': instance.user,
       'lastMoodRecordedDate': instance.lastMoodRecordedDate,
       'isSignedIn': instance.isSignedIn,
+      'facilityName': instance.facilityName,
+      'facilityPhoneNumber': instance.facilityPhoneNumber,
+      'chvUserID': instance.chvUserID,
+      'chvUserName': instance.chvUserName,
       'healthDiaryState': instance.healthDiaryState,
     };
 

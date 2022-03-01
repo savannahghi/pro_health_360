@@ -1,6 +1,11 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/actions/fetch_clinic_information_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -15,11 +20,25 @@ import 'package:shared_themes/spaces.dart';
 /// It takes in required [contactNumber], [CHV], [treatmentBuddy], [age],
 /// and [keyProvider] parameters of type String
 ///
-class ClinicInformationPage extends StatelessWidget {
-  final String CHV = 'Name';
-  final String contactNumber = '0712345678';
-  final String keyProvider = 'Name';
-  final String treatmentBuddy = 'Name';
+class ClinicInformationPage extends StatefulWidget {
+  @override
+  State<ClinicInformationPage> createState() => _ClinicInformationPageState();
+}
+
+class _ClinicInformationPageState extends State<ClinicInformationPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback(
+      (Duration timeStamp) async {
+        await StoreProvider.dispatch<AppState>(
+          context,
+          FetchClinicInformationAction(context: context),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,34 +47,49 @@ class ClinicInformationPage extends StatelessWidget {
       appBar: const CustomAppBar(title: clinicInfoPageTitle),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              mediumVerticalSizedBox,
-              Text(
-                clinicContactString,
-                style: boldSize14Text(AppColors.secondaryColor),
-              ),
-              smallVerticalSizedBox,
-              CallContactActionWidget(phoneNumber: contactNumber),
-              size15VerticalSizedBox,
-              ClinicInformationItemWidget(
-                bodyText: chvString,
-                titleText: CHV,
-              ),
-              size15VerticalSizedBox,
-              ClinicInformationItemWidget(
-                bodyText: treatmentBuddyString,
-                titleText: treatmentBuddy,
-              ),
-              size15VerticalSizedBox,
-              ClinicInformationItemWidget(
-                bodyText: keyProvider,
-                titleText: keyProviderString,
-              ),
-            ],
-          ),
+        child: StoreConnector<AppState, AppStateViewModel>(
+          converter: (Store<AppState> store) =>
+              AppStateViewModel.fromStore(store),
+          builder: (BuildContext context, AppStateViewModel vm) {
+            if (vm.appState.wait!.isWaitingFor(fetchClinicInformationFlag)) {
+              return Container(
+                height: 300,
+                padding: const EdgeInsets.all(20),
+                child: const SILPlatformLoader(),
+              );
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  mediumVerticalSizedBox,
+                  Text(
+                    clinicContactString,
+                    style: boldSize14Text(AppColors.secondaryColor),
+                  ),
+                  smallVerticalSizedBox,
+                  CallContactActionWidget(
+                    phoneNumber:
+                        vm.appState.clientState?.facilityPhoneNumber ?? '',
+                  ),
+                  size15VerticalSizedBox,
+                  ClinicInformationItemWidget(
+                    bodyText: chvString,
+                    titleText: vm.appState.clientState?.chvUserName ?? '',
+                  ),
+                  size15VerticalSizedBox,
+                  ClinicInformationItemWidget(
+                    bodyText: treatmentBuddyString,
+                    titleText: vm.appState.clientState?.treatmentBuddy ?? '',
+                  ),
+                  size15VerticalSizedBox,
+                  ClinicInformationItemWidget(
+                    bodyText: keyProvider,
+                    titleText: vm.appState.clientState?.facilityName ?? '',
+                  ),
+                ],
+              );
+            }
+          },
         ),
       ),
     );
