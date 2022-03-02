@@ -157,3 +157,6 @@ const String errorPageImage = 'assets/images/error_page_image.svg';
 const String screeningToolsImage = 'assets/images/screening_tools.svg';
 const String successfulAssessmentSubmissionImage =
     'assets/images/successful_assessment_submission.svg';
+const String groupInvitesImage = 'assets/images/group_invites.svg';
+const String acceptInvitesImage = 'assets/images/accept_group_invite.svg';
+const String noInvitesImage = 'assets/images/no_invites.svg';

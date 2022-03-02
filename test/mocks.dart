@@ -1501,6 +1501,18 @@ final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
   },
 ];
 
+final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
+  'invitedCommunities': <dynamic>[
+    <String, dynamic>{
+      'id': UNKNOWN,
+      'name': UNKNOWN,
+      'memberCount': 0,
+      'description': UNKNOWN,
+      'createdBy': UNKNOWN,
+    },
+  ]
+};
+
 final Content mockContent = Content.fromJson(contentMock.first);
 final Content mockVideoContent = Content.fromJson(videoContentMock.first);
 
@@ -1529,6 +1541,14 @@ final Map<String, dynamic> mockAddress = <String, dynamic>{
   'county': null,
   'postalCode': '00300',
   'text': 'One Padmore'
+};
+
+final Map<String, dynamic> mockCommunity = <String, dynamic>{
+  'id': UNKNOWN,
+  'name': UNKNOWN,
+  'memberCount': 0,
+  'description': UNKNOWN,
+  'createdBy': UNKNOWN,
 };
 
 final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{

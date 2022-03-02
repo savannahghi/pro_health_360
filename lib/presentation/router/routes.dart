@@ -121,6 +121,10 @@ class AppRoutes {
   // successful feedback submission
   static const String successfulFeedbackSubmissionPage =
       '/successfulFeedbackSubmissionPage';
+
+  // communities group invites
+  static const String groupInvitesPage = '/groupInvitesPage';
+  static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

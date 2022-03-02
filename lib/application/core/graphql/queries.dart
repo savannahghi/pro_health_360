@@ -334,3 +334,18 @@ query retrieveFacility($id: String!, $active: Boolean!){
   }
 }
 ''';
+
+const String listUserInvitedCommunitiesQuery = r'''
+query listPendingInvites($memberID: String!, $input: QueryOption){
+  listPendingInvites(memberID: $memberID, input: $input){
+    id
+    name
+    memberCount
+    gender
+    description
+    createdBy{
+      ID
+    }
+  }
+}
+''';

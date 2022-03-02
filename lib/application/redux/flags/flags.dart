@@ -73,3 +73,5 @@ const String fetchClinicInformationFlag = 'fetch_clinic_information';
 
 // community groups page
 const String connectionFlag = 'connection_flag';
+// invited communities
+const String fetchInvitedCommunitiesFlag = 'fetch_invited_communities_flag';

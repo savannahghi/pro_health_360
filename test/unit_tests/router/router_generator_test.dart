@@ -14,6 +14,8 @@ import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
+import 'package:myafyahub/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
+import 'package:myafyahub/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
@@ -487,5 +489,33 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SuccessfulFeedbackSubmissionPage>>());
     expect(route.builder(context), isA<SuccessfulFeedbackSubmissionPage>());
+  });
+
+  test('Test router returns group invites page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.groupInvitesPage);
+
+    final MaterialPageRoute<InvitedGroupsPage> route =
+        routeGenerator(settings) as MaterialPageRoute<InvitedGroupsPage>;
+
+    expect(route, isA<MaterialPageRoute<InvitedGroupsPage>>());
+    expect(route.builder(context), isA<InvitedGroupsPage>());
+  });
+
+  test('Test router returns accept decline invites page', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.acceptGroupInvitesPage,
+      arguments: <String, dynamic>{
+        'groupId': '',
+        'groupName': '',
+        'numberOfMembers': 0,
+      },
+    );
+
+    final MaterialPageRoute<AcceptGroupInvitesPage> route =
+        routeGenerator(settings) as MaterialPageRoute<AcceptGroupInvitesPage>;
+
+    expect(route, isA<MaterialPageRoute<AcceptGroupInvitesPage>>());
+    expect(route.builder(context), isA<AcceptGroupInvitesPage>());
   });
 }

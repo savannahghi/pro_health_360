@@ -2,6 +2,7 @@
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/redux/states/communities_state.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/address.dart';
@@ -19,8 +20,7 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'addresses') List<Address>? addresses,
-    @JsonKey(name: 'counselled', defaultValue: false)
-        bool? counselled,
+    @JsonKey(name: 'counselled', defaultValue: false) bool? counselled,
     @JsonKey(name: 'clientType', defaultValue: ClientType.UNKNOWN)
         ClientType? clientType,
     @JsonKey(name: 'facilityID') String? facilityID,
@@ -37,10 +37,11 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'chvUserID') String? chvUserID,
     @JsonKey(name: 'chvUserName') String? chvUserName,
 
-
-
     /// The client's health diary state
     HealthDiaryState? healthDiaryState,
+
+    // communities state
+    CommunitiesState? communitiesState,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>
@@ -61,5 +62,9 @@ class ClientState with _$ClientState {
         isSignedIn: false,
         facilityName: UNKNOWN,
         healthDiaryState: HealthDiaryState.initial(),
+        facilityPhoneNumber: UNKNOWN,
+        chvUserID: UNKNOWN,
+        chvUserName: UNKNOWN,
+        communitiesState: CommunitiesState.initial(),
       );
 }

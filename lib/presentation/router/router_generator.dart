@@ -13,6 +13,8 @@ import 'package:myafyahub/presentation/assessment/pages/tuberculosis_assessment_
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
+import 'package:myafyahub/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
+import 'package:myafyahub/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
@@ -305,6 +307,24 @@ class RouteGenerator {
       case AppRoutes.successfulFeedbackSubmissionPage:
         return MaterialPageRoute<SuccessfulFeedbackSubmissionPage>(
           builder: (_) => const SuccessfulFeedbackSubmissionPage(),
+        );
+
+      case AppRoutes.groupInvitesPage:
+        return MaterialPageRoute<InvitedGroupsPage>(
+          builder: (_) => const InvitedGroupsPage(),
+        );
+
+      case AppRoutes.acceptGroupInvitesPage:
+        final String groupId = args['groupId'] as String;
+        final String groupName = args['groupName'] as String;
+        final int numberOfMembers = args['numberOfMembers'] as int;
+
+        return MaterialPageRoute<AcceptGroupInvitesPage>(
+          builder: (_) => AcceptGroupInvitesPage(
+            groupId: groupId,
+            groupName: groupName,
+            numberOfMembers: numberOfMembers,
+          ),
         );
 
       default:

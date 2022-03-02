@@ -22,8 +22,12 @@ CommunitiesState _$CommunitiesStateFromJson(Map<String, dynamic> json) {
 class _$CommunitiesStateTearOff {
   const _$CommunitiesStateTearOff();
 
-  _CommunitiesState call() {
-    return _CommunitiesState();
+  _CommunitiesState call(
+      {@JsonKey(name: 'invitedCommunities')
+          List<Community>? invitedCommunities}) {
+    return _CommunitiesState(
+      invitedCommunities: invitedCommunities,
+    );
   }
 
   CommunitiesState fromJson(Map<String, Object?> json) {
@@ -36,7 +40,13 @@ const $CommunitiesState = _$CommunitiesStateTearOff();
 
 /// @nodoc
 mixin _$CommunitiesState {
+  @JsonKey(name: 'invitedCommunities')
+  List<Community>? get invitedCommunities => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CommunitiesStateCopyWith<CommunitiesState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -44,6 +54,9 @@ abstract class $CommunitiesStateCopyWith<$Res> {
   factory $CommunitiesStateCopyWith(
           CommunitiesState value, $Res Function(CommunitiesState) then) =
       _$CommunitiesStateCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'invitedCommunities')
+          List<Community>? invitedCommunities});
 }
 
 /// @nodoc
@@ -54,13 +67,30 @@ class _$CommunitiesStateCopyWithImpl<$Res>
   final CommunitiesState _value;
   // ignore: unused_field
   final $Res Function(CommunitiesState) _then;
+
+  @override
+  $Res call({
+    Object? invitedCommunities = freezed,
+  }) {
+    return _then(_value.copyWith(
+      invitedCommunities: invitedCommunities == freezed
+          ? _value.invitedCommunities
+          : invitedCommunities // ignore: cast_nullable_to_non_nullable
+              as List<Community>?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$CommunitiesStateCopyWith<$Res> {
+abstract class _$CommunitiesStateCopyWith<$Res>
+    implements $CommunitiesStateCopyWith<$Res> {
   factory _$CommunitiesStateCopyWith(
           _CommunitiesState value, $Res Function(_CommunitiesState) then) =
       __$CommunitiesStateCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'invitedCommunities')
+          List<Community>? invitedCommunities});
 }
 
 /// @nodoc
@@ -73,29 +103,55 @@ class __$CommunitiesStateCopyWithImpl<$Res>
 
   @override
   _CommunitiesState get _value => super._value as _CommunitiesState;
+
+  @override
+  $Res call({
+    Object? invitedCommunities = freezed,
+  }) {
+    return _then(_CommunitiesState(
+      invitedCommunities: invitedCommunities == freezed
+          ? _value.invitedCommunities
+          : invitedCommunities // ignore: cast_nullable_to_non_nullable
+              as List<Community>?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_CommunitiesState implements _CommunitiesState {
-  _$_CommunitiesState();
+  _$_CommunitiesState(
+      {@JsonKey(name: 'invitedCommunities') this.invitedCommunities});
 
   factory _$_CommunitiesState.fromJson(Map<String, dynamic> json) =>
       _$$_CommunitiesStateFromJson(json);
 
   @override
+  @JsonKey(name: 'invitedCommunities')
+  final List<Community>? invitedCommunities;
+
+  @override
   String toString() {
-    return 'CommunitiesState()';
+    return 'CommunitiesState(invitedCommunities: $invitedCommunities)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _CommunitiesState);
+        (other.runtimeType == runtimeType &&
+            other is _CommunitiesState &&
+            const DeepCollectionEquality()
+                .equals(other.invitedCommunities, invitedCommunities));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(invitedCommunities));
+
+  @JsonKey(ignore: true)
+  @override
+  _$CommunitiesStateCopyWith<_CommunitiesState> get copyWith =>
+      __$CommunitiesStateCopyWithImpl<_CommunitiesState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -104,8 +160,18 @@ class _$_CommunitiesState implements _CommunitiesState {
 }
 
 abstract class _CommunitiesState implements CommunitiesState {
-  factory _CommunitiesState() = _$_CommunitiesState;
+  factory _CommunitiesState(
+      {@JsonKey(name: 'invitedCommunities')
+          List<Community>? invitedCommunities}) = _$_CommunitiesState;
 
   factory _CommunitiesState.fromJson(Map<String, dynamic> json) =
       _$_CommunitiesState.fromJson;
+
+  @override
+  @JsonKey(name: 'invitedCommunities')
+  List<Community>? get invitedCommunities;
+  @override
+  @JsonKey(ignore: true)
+  _$CommunitiesStateCopyWith<_CommunitiesState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

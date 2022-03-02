@@ -408,7 +408,7 @@ const String consentConfirmationText = 'I consent to be added to groups';
 const String consentText = 'Consent';
 
 // Community strings
-const String communityPageString = 'Community';
+const String communityPageString = 'Conversations';
 const String libraryPageString = 'Library';
 
 // Terms and conditions
@@ -794,3 +794,16 @@ const String keyProvider = 'Name';
 
 const String defaultStreamUserID = 'myCareHub';
 const String kindlyLogOutText = 'Kindly log out and back in to continue';
+// communities group invites
+const String groupInvitesString = 'Group Invites';
+const String groupsYouHaveBeenInvited = 'Groups you have been invited to';
+String groupInviteDescription(String groupName) =>
+    'You have been invited to join the $groupName group. Tap the options below to accept or decline the group invite';
+const String joinGroup = 'Join Group';
+const String declineInvite = 'Decline Invite';
+const String youHaveNoInvites = 'You have no invites';
+const String noInvitesDescription =
+    'There seems to be no group invites for you at the moment. We will notify you the moment you get more invites. Enjoy your day!';
+const String invitationAcceptedSuccessfully =
+    'Invitation accepted successfully';
+const String communitiesRejectionSuccessful = 'Invite rejection successful';

@@ -145,3 +145,15 @@ mutation sendFeedback($input: FeedbackResponseInput!) {
   sendFeedback(input: $input)
 }
 ''';
+
+const String rejectInvitationMutation = r'''
+mutation rejectInvitation($memberID: String!, $communityID: String!){
+  rejectInvitation(memberID: $memberID, communityID: $communityID)
+}
+''';
+
+const String acceptInvitationMutation = r'''
+mutation acceptInvitation($memberID: String!, $communityID: String!){
+  acceptInvitation(memberID: $memberID, communityID: $communityID)
+}
+''';

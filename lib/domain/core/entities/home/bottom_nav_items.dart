@@ -18,7 +18,7 @@ class BottomNavItem {
   final String text;
 }
 
-enum BottomNavIndex { home, feed, communities, myHealth }
+enum BottomNavIndex { home, feed, conversations, myHealth }
 
 List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   BottomNavItem(
@@ -35,9 +35,9 @@ List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   ),
   BottomNavItem(
     iconUrl: communityIconSvgPath,
-    text: 'Communities',
+    text: 'Conversations',
     onTapRoute: AppRoutes.communityListPage,
-    index: BottomNavIndex.communities.index,
+    index: BottomNavIndex.conversations.index,
   ),
   BottomNavItem(
     iconUrl: myHealthIconSvgPath,
