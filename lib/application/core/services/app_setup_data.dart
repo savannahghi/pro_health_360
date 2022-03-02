@@ -52,6 +52,7 @@ final AppSetupData devAppSetupData = AppSetupData(
     switchFlaggedFeaturesEndpoint: '',
     respondedSecurityQuestionsEndpoint: '',
     verifySecurityQuestionsEndpoint: '',
+    refreshStreamTokenEndpoint: kTestRefreshStreamTokenEndpoint,
   ),
 );
 
@@ -78,6 +79,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
     switchFlaggedFeaturesEndpoint: '',
     respondedSecurityQuestionsEndpoint: '',
     verifySecurityQuestionsEndpoint: '',
+    refreshStreamTokenEndpoint: kDemoRefreshStreamTokenEndpoint,
   ),
 );
 
@@ -104,5 +106,6 @@ final AppSetupData prodAppSetupData = AppSetupData(
     switchFlaggedFeaturesEndpoint: '',
     respondedSecurityQuestionsEndpoint: '',
     verifySecurityQuestionsEndpoint: '',
+    refreshStreamTokenEndpoint: kProdRefreshStreamTokenEndpoint,
   ),
 );

@@ -400,6 +400,19 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (endpoint.contains('refresh_getstream_token')) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'idToken': 'some-id-token',
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(
         json.encode(
@@ -1522,6 +1535,10 @@ final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
   'expiresIn': '3600',
   'idToken': 'some id token',
   'refreshToken': 'some refresh token'
+};
+
+final Map<String, dynamic> mockGetStreamToken = <String, dynamic>{
+  'getStreamToken': 'test.token',
 };
 
 final Map<String, dynamic> mockPrimaryContact = <String, dynamic>{

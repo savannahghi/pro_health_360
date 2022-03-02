@@ -13,6 +13,7 @@ import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
+import 'package:myafyahub/application/redux/actions/onboarding/connect_get_stream_user_action.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
@@ -22,8 +23,6 @@ import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dar
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class PreLoadApp extends StatefulWidget {
@@ -75,31 +74,15 @@ class _PreLoadAppState extends State<PreLoadApp> {
         });
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      final String clientID =
-          StoreProvider.state<AppState>(context)?.clientState?.id ?? '';
+      StoreProvider.dispatch(
+        context,
+        ConnectGetStreamUserAction(
+          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+          streamClient: widget.client, endpoint: AppWrapperBase.of(context)!.customContext!.refreshStreamTokenEndpoint,
+        ),
+      );
 
-      final String chatRoomToken = StoreProvider.state<AppState>(context)
-              ?.clientState
-              ?.user
-              ?.chatRoomToken ??
-          '';
-
-      /// Set the current user. In a production scenario, this should be done using
-      /// a backend to generate a user token using our server SDK.
-      /// Please see the following for more information:
-      /// https://getstream.io/chat/docs/flutter-dart/tokens_and_authentication/?language=dart
-      try {
-        await widget.client.connectUser(
-          stream.User(id: clientID),
-          chatRoomToken,
-        );
-      } on stream.StreamWebSocketError catch (e) {
-        Sentry.captureException(
-          e,
-          hint: e.message,
-        );
-      }
-
+    
       StoreProvider.dispatch(
         context,
         CheckTokenAction(

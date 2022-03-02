@@ -791,3 +791,5 @@ const String feedbackSubmissionErrorText =
     'An error occurred sending your feedback, please try again later';
 // clinic information
 const String keyProvider = 'Name';
+
+const String defaultStreamUserID = '36a5e4c1-1e64-4e93-8cfc-bc8d9331da80';

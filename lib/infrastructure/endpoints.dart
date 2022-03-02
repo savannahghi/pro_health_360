@@ -27,6 +27,8 @@ const String kTestRetryResendOtpEndpoint =
     'https://mycarehub-staging.savannahghi.org/send_retry_otp';
 const String kTestRefreshTokenEndpoint =
     'https://mycarehub-staging.savannahghi.org/refresh_token';
+const String kTestRefreshStreamTokenEndpoint =
+    'https://mycarehub-staging.savannahghi.org/refresh_getstream_token';
 const String kTestAnonymousLoginEndpoint =
     'https://mycarehub-staging.savannahghi.org/login_anonymous';
 const String kTestUserRecoveryPhoneNumbersEndpoint =
@@ -62,6 +64,8 @@ const String kDemoRetryResendOtpEndpoint =
     'https://mycarehub-testing.savannahghi.org/send_retry_otp';
 const String kDemoRefreshTokenEndpoint =
     'https://mycarehub-testing.savannahghi.org/refresh_token';
+    const String kDemoRefreshStreamTokenEndpoint =
+    'https://mycarehub-testing.savannahghi.org/refresh_getstream_token';
 const String kDemoAnonymousLoginEndpoint =
     'https://mycarehub-testing.savannahghi.org/login_anonymous';
 const String kDemoUserRecoveryPhoneNumbersEndpoint =
@@ -91,6 +95,8 @@ const String kProdRetryResendOtpEndpoint =
     'https://mycarehub-prod.savannahghi.org/send_retry_otp';
 const String kProdRefreshTokenEndpoint =
     'https://mycarehub-prod.savannahghi.org/refresh_token';
+    const String kProdRefreshStreamTokenEndpoint =
+    'https://mycarehub-prod.savannahghi.org/refresh_getstream_token';
 const String kProdAnonymousLoginEndpoint =
     'https://mycarehub-prod.savannahghi.org/login_anonymous';
 const String kProdUserRecoveryPhoneNumbersEndpoint =
