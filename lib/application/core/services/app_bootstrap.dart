@@ -95,37 +95,38 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
 
   final AppSetupData appSetupData = getAppSetupData(appContexts.last);
 
-  final String apiKey = FlutterConfig.get('STREAM_API_KEY') as String;
-
   final StreamChatClient streamClient = StreamChatClient(
-    apiKey,
+    appSetupData.streamAPIKey,
     logLevel: Level.ALL,
   );
 
-  runZonedGuarded(() async {
-    await SentryFlutter.init(
-      (SentryFlutterOptions options) {
-        options
-          ..dsn = appSetupData.sentryDsn
-          ..diagnosticLevel = SentryLevel.error;
-      },
-      appRunner: () => runApp(
-        MyAppWidget(
-          streamClient: streamClient,
-          store: store,
-          navigatorObserver: navigatorObserver,
-          connectivityStatus: connectivityStatus,
-          navigatorKey: appGlobalNavigatorKey,
-          appSetupData: appSetupData,
+  runZonedGuarded(
+    () async {
+      await SentryFlutter.init(
+        (SentryFlutterOptions options) {
+          options
+            ..dsn = appSetupData.sentryDsn
+            ..diagnosticLevel = SentryLevel.error;
+        },
+        appRunner: () => runApp(
+          MyAppWidget(
+            streamClient: streamClient,
+            store: store,
+            navigatorObserver: navigatorObserver,
+            connectivityStatus: connectivityStatus,
+            navigatorKey: appGlobalNavigatorKey,
+            appSetupData: appSetupData,
+          ),
         ),
-      ),
-    );
+      );
 
-    FlutterError.onError = (FlutterErrorDetails details) {
-      FlutterError.presentError(details);
-      Sentry.captureException(details.exceptionAsString());
-    };
-  }, (Object exception, StackTrace stackTrace) async {
-    await Sentry.captureException(exception, stackTrace: stackTrace);
-  });
+      FlutterError.onError = (FlutterErrorDetails details) {
+        FlutterError.presentError(details);
+        Sentry.captureException(details.exceptionAsString());
+      };
+    },
+    (Object exception, StackTrace stackTrace) async {
+      await Sentry.captureException(exception, stackTrace: stackTrace);
+    },
+  );
 }

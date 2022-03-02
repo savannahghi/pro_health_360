@@ -33,17 +33,13 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
-          DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
-          PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
-          STREAM_API_KEY: ${{ secrets.STREAM_API_KEY }}
+          ENCODED_APP_ENV: ${{ secrets.ENCODED_APP_ENV }}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
 
         run: |
           touch .env
-          echo $DEV_SENTRY_DNS > .env
-          echo $PROD_SENTRY_DNS >> .env
-          echo $STREAM_API_KEY >> .env
+          echo $ENCODED_APP_ENV | base64 --decode > .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json
@@ -90,17 +86,13 @@ jobs:
       - name: Convert secret to gc file
         env:
           GC_KEYS: ${{ secrets.GC_KEYS }}
-          DEV_SENTRY_DNS: ${{ secrets.DEV_SENTRY_DNS }}
-          STREAM_API_KEY: ${{ secrets.STREAM_API_KEY }}
-          PROD_SENTRY_DNS: ${{ secrets.PROD_SENTRY_DNS }}
+          ENCODED_APP_ENV: ${{ secrets.ENCODED_APP_ENV }}
           GOOGLE_SERVICES_INFO_PLIST_FILE: ${{secrets.GOOGLE_SERVICES_INFO_PLIST_FILE}}
           INFO_PLIST_FILE: ${{secrets.INFO_PLIST_FILE}}
 
         run: |
           touch .env
-          echo $DEV_SENTRY_DNS > .env
-          echo $PROD_SENTRY_DNS >> .env
-          echo $STREAM_API_KEY >> .env
+          echo $ENCODED_APP_ENV | base64 --decode > .env
           cd ios
           touch gc_keys.json
           echo $GC_KEYS >> gc_keys.json

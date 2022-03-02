@@ -34,7 +34,10 @@ void main() {
     test('should return initial route', () async {
       expect(getInitialRoute(0, AppRoutes.phoneLogin), AppRoutes.phoneLogin);
       expect(getInitialRoute(1, AppRoutes.feedPage), AppRoutes.feedPage);
-      expect(getInitialRoute(2, AppRoutes.myHealthPage), AppRoutes.myHealthPage);
+      expect(
+        getInitialRoute(2, AppRoutes.myHealthPage),
+        AppRoutes.myHealthPage,
+      );
     });
 
     test('formatSecurityQuestionDate should return birth date in en_GB format',
@@ -82,6 +85,9 @@ void main() {
       FlutterConfig.loadValueForTesting(<String, String>{
         'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
         'PROD_SENTRY_DNS': 'test_prod_sentry_dns',
+        'DEV_STREAM_API_KEY': 'dev_stream_api_key',
+        'DEMO_STREAM_API_KEY': 'demo_stream_api_key',
+        'PROD_STREAM_API_KEY': 'prod_stream_api_key',
       });
 
       test('should return the correct instance of AppSetupData', () async {

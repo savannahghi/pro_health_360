@@ -10,6 +10,7 @@ void main() {
     final AppSetupData appSetup = AppSetupData(
       appContexts: <AppContext>[AppContext.AppDemo],
       sentryDsn: 'some sentryDNS',
+      streamAPIKey: 'some-stream-api-key',
     );
 
     expect(appSetup.sentryDsn, 'some sentryDNS');
@@ -18,6 +19,7 @@ void main() {
     final AppSetupData sameSetup = AppSetupData(
       appContexts: <AppContext>[AppContext.AppDemo],
       sentryDsn: 'some sentryDNS',
+      streamAPIKey: 'some-stream-api-key',
     );
 
     expect(appSetup, sameSetup);

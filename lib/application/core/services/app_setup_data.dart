@@ -11,11 +11,13 @@ import 'package:quiver/core.dart';
 class AppSetupData {
   final List<AppContext> appContexts;
   final String sentryDsn;
+  final String streamAPIKey;
   final BaseContext? customContext;
 
   AppSetupData({
     required this.appContexts,
     required this.sentryDsn,
+    required this.streamAPIKey,
     this.customContext,
   });
 
@@ -32,6 +34,7 @@ class AppSetupData {
 final AppSetupData devAppSetupData = AppSetupData(
   appContexts: testAppContexts,
   sentryDsn: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+  streamAPIKey: FlutterConfig.get('DEV_STREAM_API_KEY') as String,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kTestAnonymousLoginEndpoint,
     graphqlEndpoint: kTestGraphqlEndpoint,
@@ -59,6 +62,7 @@ final AppSetupData devAppSetupData = AppSetupData(
 final AppSetupData demoAppSetupData = AppSetupData(
   appContexts: demoAppContexts,
   sentryDsn: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+  streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kDemoAnonymousLoginEndpoint,
     graphqlEndpoint: kDemoGraphqlEndpoint,
@@ -86,6 +90,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
 final AppSetupData prodAppSetupData = AppSetupData(
   appContexts: prodAppContexts,
   sentryDsn: FlutterConfig.get('PROD_SENTRY_DNS') as String,
+  streamAPIKey: FlutterConfig.get('PROD_STREAM_API_KEY') as String,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kProdAnonymousLoginEndpoint,
     graphqlEndpoint: kProdGraphqlEndpoint,
