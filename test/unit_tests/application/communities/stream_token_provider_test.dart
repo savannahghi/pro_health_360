@@ -1,0 +1,54 @@
+import 'dart:convert';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:myafyahub/application/communities/stream_token_provider.dart';
+import 'package:myafyahub/infrastructure/endpoints.dart';
+
+import '../../../mocks.dart';
+
+void main() {
+  group('StreamTokenProvider', () {
+    test('should return token if request successful', () async {
+      final MockShortSILGraphQlClient client =
+          MockShortSILGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'getStreamToken': 'some-token'}),
+          200,
+        ),
+      );
+
+      final StreamTokenProvider tokenProvider = StreamTokenProvider(
+        client: client,
+        endpoint: kTestRefreshStreamTokenEndpoint,
+      );
+
+      final String newToken = await tokenProvider.tokenProvider('userId');
+
+      expect(newToken, 'some-token');
+    });
+
+    test('should return empty string if not successful', () async {
+      final MockShortSILGraphQlClient client =
+          MockShortSILGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'error': 'some error'}),
+          400,
+        ),
+      );
+
+      final StreamTokenProvider tokenProvider = StreamTokenProvider(
+        client: client,
+        endpoint: kTestRefreshStreamTokenEndpoint,
+      );
+
+      final String newToken = await tokenProvider.tokenProvider('userId');
+
+      expect(newToken, '');
+    });
+  });
+}

@@ -21,7 +21,6 @@ import 'package:myafyahub/application/core/services/video_player_initializer.dar
 import 'package:myafyahub/application/redux/actions/bookmark_content_action.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/content/update_reactions_state_action.dart';
-import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/update_content_like_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -62,23 +61,6 @@ AppSetupData getAppSetupData(AppContext context) {
     default:
       return devAppSetupData;
   }
-}
-
-Function() logoutUser({required BuildContext context}) {
-  return () async {
-    StoreProvider.dispatch(
-      context,
-      LogoutAction(
-        navigationCallback: () async {
-          await Navigator.of(context).pushNamedAndRemoveUntil(
-            AppRoutes.phoneLogin,
-            (Route<dynamic> route) => false,
-          );
-        },
-        context: context,
-      ),
-    );
-  };
 }
 
 String getDisplayName(User? user) {

@@ -147,7 +147,7 @@ class RouteGenerator {
           builder: (_) => const AnswerSecurityQuestionPage(),
         );
 
-      case AppRoutes.communityListView:
+      case AppRoutes.communityListPage:
         return MaterialPageRoute<CommunityListViewPage>(
           builder: (_) => const CommunityListViewPage(),
         );

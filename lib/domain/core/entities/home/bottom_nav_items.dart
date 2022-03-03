@@ -36,7 +36,7 @@ List<BottomNavItem> bottomNavItems = <BottomNavItem>[
   BottomNavItem(
     iconUrl: communityIconSvgPath,
     text: 'Communities',
-    onTapRoute: AppRoutes.communityListView,
+    onTapRoute: AppRoutes.communityListPage,
     index: BottomNavIndex.communities.index,
   ),
   BottomNavItem(

@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:async';
-
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
@@ -13,7 +10,6 @@ import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
-import 'package:myafyahub/application/redux/actions/onboarding/connect_get_stream_user_action.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
@@ -22,7 +18,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class PreLoadApp extends StatefulWidget {
@@ -52,39 +47,11 @@ class PreLoadApp extends StatefulWidget {
 }
 
 class _PreLoadAppState extends State<PreLoadApp> {
-  BehaviorSubject<String> appInitialRoute = BehaviorSubject<String>();
-
-  StreamSubscription<bool>? _connectivitySub;
-
-  /// The channel we'd like to observe and participate.
-  late Channel channel;
-
   @override
   void initState() {
     super.initState();
-    _connectivitySub = widget.connectivityStatus
-        .checkConnection()
-        .asStream()
-        .mergeWith(
-          <Stream<bool>>[widget.connectivityStatus.onConnectivityChanged],
-        )
-        .distinct()
-        .listen((bool hasConnection) {
-          connectivityChanged(hasConnection: hasConnection);
-        });
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch(
-        context,
-        ConnectGetStreamUserAction(
-          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          streamClient: widget.client,
-          endpoint: AppWrapperBase.of(context)!
-              .customContext!
-              .refreshStreamTokenEndpoint,
-        ),
-      );
-
       StoreProvider.dispatch(
         context,
         CheckTokenAction(
@@ -100,26 +67,6 @@ class _PreLoadAppState extends State<PreLoadApp> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final String clientID =
-        StoreProvider.state<AppState>(context)?.clientState?.id ?? '';
-    final String? streamUserID = widget.client.state.currentUser?.id;
-
-    if (clientID.isNotEmpty &&
-        clientID != UNKNOWN &&
-        streamUserID != null &&
-        streamUserID != clientID) {
-      StoreProvider.dispatch(
-        context,
-        ConnectGetStreamUserAction(
-          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          streamClient: widget.client,
-          endpoint: AppWrapperBase.of(context)!
-              .customContext!
-              .refreshStreamTokenEndpoint,
-        ),
-      );
-    }
-
     StoreProvider.dispatch(
       context,
       CheckTokenAction(
@@ -128,12 +75,6 @@ class _PreLoadAppState extends State<PreLoadApp> {
             AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _connectivitySub?.cancel();
-    super.dispose();
   }
 
   @override
@@ -165,9 +106,11 @@ class _PreLoadAppState extends State<PreLoadApp> {
           localizationsDelegates: localizationDelegates,
           supportedLocales: locales,
           builder: (BuildContext context, Widget? childWidget) {
-            return StreamChat(
-              client: widget.client,
-              child: childWidget,
+            return UserExceptionDialog<AppState>(
+              child: StreamChat(
+                client: widget.client,
+                child: childWidget,
+              ),
             );
           },
         );

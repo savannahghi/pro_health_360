@@ -50,28 +50,6 @@ void main() {
   final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
 
   group('Utils', () {
-    testWidgets('should test logout user works correctly',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () {
-                logoutUser(context: context);
-              },
-            );
-          },
-        ),
-      );
-      await tester.pumpAndSettle();
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-      await fireEvent(tester);
-    });
-
     testWidgets('should get the correct display name from state',
         (WidgetTester tester) async {
       final Store<AppState> store =

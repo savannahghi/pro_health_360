@@ -43,7 +43,7 @@ class AppRoutes {
   static const String appointmentsPage = '/appointmentsPage';
 
   // community
-  static const String communityListView = '/communityListView';
+  static const String communityListPage = '/communityListView';
 
   // community chat screen
   static const String communityChatScreenPage = '/CommunityChatScreenPage';

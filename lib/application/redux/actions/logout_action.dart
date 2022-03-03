@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
@@ -13,10 +12,8 @@ import 'package:myafyahub/domain/core/value_objects/auth.dart';
 class LogoutAction extends ReduxAction<AppState> {
   LogoutAction({
     required this.navigationCallback,
-    required this.context,
   });
 
-  final BuildContext context;
   final Function navigationCallback;
 
   @override

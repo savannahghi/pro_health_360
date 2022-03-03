@@ -793,3 +793,4 @@ const String feedbackSubmissionErrorText =
 const String keyProvider = 'Name';
 
 const String defaultStreamUserID = 'myCareHub';
+const String kindlyLogOutText = 'Kindly log out and back in to continue';

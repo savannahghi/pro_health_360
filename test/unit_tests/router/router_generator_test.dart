@@ -213,7 +213,7 @@ void main() {
 
   test('Test router returns CommunityListView', () {
     const RouteSettings settings =
-        RouteSettings(name: AppRoutes.communityListView);
+        RouteSettings(name: AppRoutes.communityListPage);
 
     final MaterialPageRoute<CommunityListViewPage> route =
         routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>;

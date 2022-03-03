@@ -24,6 +24,7 @@ class CheckTokenAction extends ReduxAction<AppState> {
     final bool isSignedIn = state.credentials?.isSignedIn ?? false;
 
     String initialRoute = AppRoutes.phoneLogin;
+
     final int currentIndex =
         state.bottomNavigationState?.currentBottomNavIndex ?? 0;
 
