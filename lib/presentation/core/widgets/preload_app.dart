@@ -78,11 +78,13 @@ class _PreLoadAppState extends State<PreLoadApp> {
         context,
         ConnectGetStreamUserAction(
           client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          streamClient: widget.client, endpoint: AppWrapperBase.of(context)!.customContext!.refreshStreamTokenEndpoint,
+          streamClient: widget.client,
+          endpoint: AppWrapperBase.of(context)!
+              .customContext!
+              .refreshStreamTokenEndpoint,
         ),
       );
 
-    
       StoreProvider.dispatch(
         context,
         CheckTokenAction(
@@ -97,6 +99,26 @@ class _PreLoadAppState extends State<PreLoadApp> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
+    final String clientID =
+        StoreProvider.state<AppState>(context)?.clientState?.id ?? '';
+    final String? streamUserID = widget.client.state.currentUser?.id;
+
+    if (clientID.isNotEmpty &&
+        clientID != UNKNOWN &&
+        streamUserID != null &&
+        streamUserID != clientID) {
+      StoreProvider.dispatch(
+        context,
+        ConnectGetStreamUserAction(
+          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+          streamClient: widget.client,
+          endpoint: AppWrapperBase.of(context)!
+              .customContext!
+              .refreshStreamTokenEndpoint,
+        ),
+      );
+    }
 
     StoreProvider.dispatch(
       context,

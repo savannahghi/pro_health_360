@@ -27,7 +27,9 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    String userID = state.clientState?.user?.userId ?? '';
+    streamClient.closeConnection();
+    
+    String userID = state.clientState?.id ?? '';
     
     if (userID.isEmpty || userID == UNKNOWN) {
       userID = defaultStreamUserID;
@@ -55,7 +57,6 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
       }
       dispatch(UpdateUserAction(user: User(chatRoomToken: streamToken)));
     }
-
     /// Set the current user. In a production scenario, this should be done using
     /// a backend to generate a user token using our server SDK.
     /// Please see the following for more information:
