@@ -668,9 +668,6 @@ const String contraceptiveDescription =
 const String tuberculosisTitle = 'Tuberculosis';
 const String tuberculosisDescription =
     'Tap to assess yourself for tuberculosis';
-const String healthTitle = 'Mental health';
-const String healthDescription =
-    'Tap to answer a few questions about your health';
 
 // violence assessment
 const String violenceAssessmentTitle = 'Violence Assessment';

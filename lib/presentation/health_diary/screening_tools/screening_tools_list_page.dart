@@ -62,13 +62,6 @@ class ScreeningToolsListPage extends StatelessWidget {
               ),
             ),
             ScreeningToolsBanner(
-              title: healthTitle,
-              description: healthDescription,
-              onTap: () {
-                Navigator.of(context).pushNamed(AppRoutes.healthAssessmentPage);
-              },
-            ),
-            ScreeningToolsBanner(
               title: alcoholSubstanceUseTitle,
               description: alcoholSubstanceDescription,
               onTap: () {

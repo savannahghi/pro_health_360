@@ -21,7 +21,6 @@ import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
 import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/successful_feedback_submission.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
-import 'package:myafyahub/presentation/health_assessment/pages/health_assessment_page.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
@@ -292,11 +291,6 @@ class RouteGenerator {
       case AppRoutes.alcoholSubstanceUsePage:
         return MaterialPageRoute<AlcoholSubstanceUsePage>(
           builder: (_) => const AlcoholSubstanceUsePage(),
-        );
-
-      case AppRoutes.healthAssessmentPage:
-        return MaterialPageRoute<HealthAssessmentPage>(
-          builder: (_) => const HealthAssessmentPage(),
         );
 
       case AppRoutes.successfulAssessmentSubmissionPage:
