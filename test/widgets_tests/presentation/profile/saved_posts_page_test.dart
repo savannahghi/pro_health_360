@@ -64,7 +64,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.byType(ContentItem), findsNWidgets(1));
+        expect(find.byType(ContentItem), findsNWidgets(2));
       });
     });
 
@@ -116,7 +116,7 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(ContentItem), findsNWidgets(1));
+        expect(find.byType(ContentItem), findsNWidgets(2));
 
         await tester.fling(
           find.byType(ContentItem).first,
@@ -124,7 +124,7 @@ void main() {
           1000.0,
         );
         await tester.pumpAndSettle();
-        expect(find.byType(ContentItem), findsNWidgets(1));
+        expect(find.byType(ContentItem), findsNWidgets(2));
       });
     });
 
@@ -152,7 +152,7 @@ void main() {
         await tester.pumpAndSettle();
 
         final Finder contentItem = find.byType(ContentItem);
-        expect(contentItem, findsNWidgets(1));
+        expect(contentItem, findsNWidgets(2));
 
         await tester.tap(contentItem.first);
         await tester.pumpAndSettle();
