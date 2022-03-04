@@ -47,7 +47,7 @@ void main() {
         widget: const TermsAndConditionsPage(),
       );
 
-      expect(find.text(portalTermsText), findsOneWidget);
+      expect(find.text(portalTermsText), findsNWidgets(2));
       expect(find.text(readAndAcceptText), findsOneWidget);
       expect(find.text(acceptTermsText), findsOneWidget);
     });
