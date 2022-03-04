@@ -45,8 +45,10 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
       final StreamTokenProvider streamTokenProvider =
           StreamTokenProvider(client: client, endpoint: endpoint);
 
+      final String? name = state.clientState?.user?.username;
+
       await streamClient.connectUserWithProvider(
-        stream.User(id: clientId),
+        stream.User(id: clientId, name: name),
         streamTokenProvider.tokenProvider,
       );
     } on stream.StreamWebSocketError catch (e) {
