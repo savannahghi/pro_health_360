@@ -707,12 +707,12 @@ const String submitYourAssessmentString = 'Submit Your Assessment';
 //Tuberculosis assessment page
 const String tuberculosisAssessmentTitle = 'Tuberculosis Assessment';
 const String tuberculosisAssessmentDescription =
-    'Thank you for your interest in assessing yourself for Tuberculosis(TB). The information you provide will be confidential';
-const String experiencedACoughString =
-    '1. Have you experienced a cough for any duration';
-const String doYouHaveFeverString = '2. Do you have a fever?';
-const String noticedAnyWeighLossString = '3. Have you noticed any weight loss?';
-const String experienceNightSweatsString = '4. Do you experience night sweats?';
+    'Thank you for your interest in assessing yourself for Tuberculosis(TB). The information you provide will be confidential. \nIn the last one month have you had any of the following?';
+const String experiencedACoughString = '1. Cough';
+const String doYouHaveFeverString = '2. Hotness of the body (fever)?';
+const String noticedAnyWeighLossString =
+    '3. Weight loss (Do clothes that previously fitted you well seem bigger ?)';
+const String experienceNightSweatsString = '4. Sweating at night?';
 
 //Alcohol and substance use page
 const String alcoholSubstanceUseTitle = 'Alcohol and substance use';
