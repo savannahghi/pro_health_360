@@ -25,7 +25,7 @@ class _$ContentTearOff {
   _Content call(
       {@JsonKey(name: 'ID') int? contentID,
       @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'date') String? date,
+      @JsonKey(name: 'date') DateTime? date,
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
       @JsonKey(name: 'author') Author? author,
@@ -86,7 +86,7 @@ mixin _$Content {
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
-  String? get date => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'intro')
   String? get intro =>
       throw _privateConstructorUsedError; // TODO(abiud): move this to the Author object
@@ -146,7 +146,7 @@ abstract class $ContentCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'ID') int? contentID,
       @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'date') String? date,
+      @JsonKey(name: 'date') DateTime? date,
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
       @JsonKey(name: 'author') Author? author,
@@ -217,7 +217,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       intro: intro == freezed
           ? _value.intro
           : intro // ignore: cast_nullable_to_non_nullable
@@ -339,7 +339,7 @@ abstract class _$ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'ID') int? contentID,
       @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'date') String? date,
+      @JsonKey(name: 'date') DateTime? date,
       @JsonKey(name: 'intro') String? intro,
       @JsonKey(name: 'authorName') String? authorName,
       @JsonKey(name: 'author') Author? author,
@@ -414,7 +414,7 @@ class __$ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       intro: intro == freezed
           ? _value.intro
           : intro // ignore: cast_nullable_to_non_nullable
@@ -533,7 +533,7 @@ class _$_Content implements _Content {
   final String? title;
   @override
   @JsonKey(name: 'date')
-  final String? date;
+  final DateTime? date;
   @override
   @JsonKey(name: 'intro')
   final String? intro;
@@ -678,7 +678,7 @@ abstract class _Content implements Content {
   factory _Content(
           {@JsonKey(name: 'ID') int? contentID,
           @JsonKey(name: 'title') String? title,
-          @JsonKey(name: 'date') String? date,
+          @JsonKey(name: 'date') DateTime? date,
           @JsonKey(name: 'intro') String? intro,
           @JsonKey(name: 'authorName') String? authorName,
           @JsonKey(name: 'author') Author? author,
@@ -710,7 +710,7 @@ abstract class _Content implements Content {
   String? get title;
   @override
   @JsonKey(name: 'date')
-  String? get date;
+  DateTime? get date;
   @override
   @JsonKey(name: 'intro')
   String? get intro;

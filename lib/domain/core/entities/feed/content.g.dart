@@ -9,7 +9,8 @@ part of 'content.dart';
 _$_Content _$$_ContentFromJson(Map<String, dynamic> json) => _$_Content(
       contentID: json['ID'] as int?,
       title: json['title'] as String?,
-      date: json['date'] as String?,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
       intro: json['intro'] as String?,
       authorName: json['authorName'] as String?,
       author: json['author'] == null
@@ -54,7 +55,7 @@ Map<String, dynamic> _$$_ContentToJson(_$_Content instance) =>
     <String, dynamic>{
       'ID': instance.contentID,
       'title': instance.title,
-      'date': instance.date,
+      'date': instance.date?.toIso8601String(),
       'intro': instance.intro,
       'authorName': instance.authorName,
       'author': instance.author,

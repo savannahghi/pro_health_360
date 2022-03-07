@@ -117,7 +117,10 @@ class _FeedPageState extends State<FeedPage> {
                         itemBuilder: (BuildContext context, int index) {
                           final Content currentFeedItem =
                               feedItems.elementAt(index)!;
-
+                          final DateTime twoWeeksAgo =
+                              DateTime.now().subtract(const Duration(days: 14));
+                          final bool isNew =
+                              currentFeedItem.date!.isAfter(twoWeeksAgo);
                           return Padding(
                             padding: EdgeInsets.only(
                               top: index == 0 ? 15 : 7.5,
@@ -130,6 +133,7 @@ class _FeedPageState extends State<FeedPage> {
                               child: ContentItem(
                                 contentDetails: currentFeedItem,
                                 contentDisplayedType: ContentDisplayedType.FEED,
+                                isNew: isNew,
                               ),
                             ),
                           );

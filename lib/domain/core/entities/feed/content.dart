@@ -23,7 +23,7 @@ class Content with _$Content {
   factory Content({
     @JsonKey(name: 'ID') int? contentID,
     @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'date') String? date,
+    @JsonKey(name: 'date') DateTime? date,
     @JsonKey(name: 'intro') String? intro,
     // TODO(abiud): move this to the Author object
     @JsonKey(name: 'authorName') String? authorName,
@@ -58,7 +58,7 @@ class Content with _$Content {
   factory Content.initial() => Content(
         contentID: 0,
         title: UNKNOWN,
-        date: UNKNOWN,
+        date: DateTime.now(),
         intro: UNKNOWN,
         authorName: UNKNOWN,
         author: Author.initial(),
