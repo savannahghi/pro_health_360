@@ -92,198 +92,203 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
 
     return Scaffold(
       backgroundColor: AppColors.lightGreyBackgroundColor,
-      body: ListView(
-        shrinkWrap: true,
+      body: Stack(
         children: <Widget>[
-          Stack(
+          ListView(
+            shrinkWrap: true,
             children: <Widget>[
-              if (widget.payload.content.contentType == ContentType.AUDIO_VIDEO)
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 3.5,
-                  width: MediaQuery.of(context).size.width,
-                  child: _chewieVideoPlayer,
-                )
-              else
-                Container(
-                  height: MediaQuery.of(context).size.height / 3.5,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      // TODO(abiud): replace with cached network image to
-                      // handle showing an image before the network one loads
-                      image: NetworkImage(
-                        widget.payload.content.heroImage!.url!,
+              Stack(
+                children: <Widget>[
+                  if (widget.payload.content.contentType ==
+                      ContentType.AUDIO_VIDEO)
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      width: MediaQuery.of(context).size.width,
+                      child: _chewieVideoPlayer,
+                    )
+                  else
+                    Container(
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          // TODO(abiud): replace with cached network image to
+                          // handle showing an image before the network one loads
+                          image: NetworkImage(
+                            widget.payload.content.heroImage!.url!,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              if (galleryItems.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 300,
+                    child: GestureDetector(
+                      key: galleryImagePageKey,
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        if (widget.payload.content.galleryImages != null &&
+                            widget.payload.content.galleryImages!.length > 3) {
+                          Navigator.of(context).pushNamed(
+                            AppRoutes.galleryImagesPage,
+                            arguments: widget.payload.content.galleryImages,
+                          );
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[...galleryItems],
                       ),
                     ),
                   ),
                 ),
-              Positioned(
-                top: 0,
-                left: -6,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: RawMaterialButton(
-                    key: cancelButtonKey,
-                    onPressed: () => Navigator.pop(context),
-                    fillColor:
-                        AppColors.readTimeBackgroundColor.withOpacity(0.5),
-                    padding: const EdgeInsets.all(15.0),
-                    shape: const CircleBorder(),
-                    child: SvgPicture.asset(
-                      whiteCloseIconSvgPath,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          if (galleryItems.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 300,
-                child: GestureDetector(
-                  key: galleryImagePageKey,
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    if (widget.payload.content.galleryImages != null &&
-                        widget.payload.content.galleryImages!.length > 3) {
-                      Navigator.of(context).pushNamed(
-                        AppRoutes.galleryImagesPage,
-                        arguments: widget.payload.content.galleryImages,
-                      );
-                    }
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[...galleryItems],
-                  ),
-                ),
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  widget.payload.content.title ?? UNKNOWN,
-                  style: veryBoldSize18Text(Colors.black),
-                ),
-                mediumVerticalSizedBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Text(
+                      widget.payload.content.title ?? UNKNOWN,
+                      style: veryBoldSize18Text(Colors.black),
+                    ),
+                    mediumVerticalSizedBox,
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              // TODO(eugene): revert when backend is ready
-                              // image: articleDetails.authorAvatar == null
-                              //     ? const AssetImage(profileImage)
-                              //     : NetworkImage(
-                              //         articleDetails.authorAvatar!,
-                              //       ) as ImageProvider,
-                              image: AssetImage(profileImage),
-                            ),
-                          ),
-                        ),
-                        smallHorizontalSizedBox,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Row(
                           children: <Widget>[
-                            Text(
-                              widget.payload.content.authorName ?? UNKNOWN,
-                              style: veryBoldSize15Text(
-                                AppColors.greyTextColor,
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  // TODO(eugene): revert when backend is ready
+                                  // image: articleDetails.authorAvatar == null
+                                  //     ? const AssetImage(profileImage)
+                                  //     : NetworkImage(
+                                  //         articleDetails.authorAvatar!,
+                                  //       ) as ImageProvider,
+                                  image: AssetImage(profileImage),
+                                ),
                               ),
                             ),
-                            verySmallVerticalSizedBox,
-                            Row(
+                            smallHorizontalSizedBox,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  datePublishedString,
-                                  style: boldSize12Text(
+                                  widget.payload.content.authorName ?? UNKNOWN,
+                                  style: veryBoldSize15Text(
                                     AppColors.greyTextColor,
                                   ),
                                 ),
-                                publishDate,
+                                verySmallVerticalSizedBox,
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                      datePublishedString,
+                                      style: boldSize12Text(
+                                        AppColors.greyTextColor,
+                                      ),
+                                    ),
+                                    publishDate,
+                                  ],
+                                ),
                               ],
+                            )
+                          ],
+                        ),
+                        EstimatedReadTimeBadge(
+                          contentType: widget.payload.content.contentType ??
+                              ContentType.UNKNOWN,
+                          estimateReadTime:
+                              widget.payload.content.estimate ?? 0,
+                          videoDuration: hasVideo
+                              ? widget.payload.content.featuredMedia?.first
+                                  ?.duration
+                              : null,
+                        ),
+                      ],
+                    ),
+                    largeVerticalSizedBox,
+                    if (widget.payload.showReactions)
+                      Center(
+                        child: Wrap(
+                          alignment: WrapAlignment.center,
+                          runSpacing: 15,
+                          children: <Widget>[
+                            LikeContentWidget(
+                              contentID: widget.payload.content.contentID ?? 0,
+                              contentDisplayedType:
+                                  widget.payload.contentDisplayedType,
+                            ),
+                            ShareContentWidget(
+                              link: widget.payload.content.metadata?.publicLink,
+                              title: widget.payload.content.title ?? UNKNOWN,
+                              contentID: widget.payload.content.contentID ?? 0,
+                            ),
+                            verySmallHorizontalSizedBox,
+                            SaveContentWidget(
+                              contentID: widget.payload.content.contentID ?? 0,
+                              contentDisplayedType:
+                                  widget.payload.contentDisplayedType,
                             ),
                           ],
-                        )
-                      ],
-                    ),
-                    EstimatedReadTimeBadge(
-                      contentType: widget.payload.content.contentType ??
-                          ContentType.UNKNOWN,
-                      estimateReadTime: widget.payload.content.estimate ?? 0,
-                      videoDuration: hasVideo
-                          ? widget
-                              .payload.content.featuredMedia?.first?.duration
-                          : null,
-                    ),
+                        ),
+                      )
                   ],
                 ),
-                largeVerticalSizedBox,
-                if (widget.payload.showReactions)
-                  Center(
-                    child: Wrap(
-                      alignment: WrapAlignment.center,
-                      runSpacing: 15,
-                      children: <Widget>[
-                        LikeContentWidget(
-                          contentID: widget.payload.content.contentID ?? 0,
-                          contentDisplayedType:
-                              widget.payload.contentDisplayedType,
-                        ),
-                        ShareContentWidget(
-                          link: widget.payload.content.metadata?.publicLink,
-                          title: widget.payload.content.title ?? UNKNOWN,
-                          contentID: widget.payload.content.contentID ?? 0,
-                        ),
-                        verySmallHorizontalSizedBox,
-                        SaveContentWidget(
-                          contentID: widget.payload.content.contentID ?? 0,
-                          contentDisplayedType:
-                              widget.payload.contentDisplayedType,
-                        ),
-                      ],
-                    ),
-                  )
-              ],
+              ),
+              if (widget.payload.content.body != null)
+                Container(
+                  padding: const EdgeInsets.only(
+                    left: 25,
+                    right: 25,
+                    bottom: 20,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Html(
+                    data: widget.payload.content.body,
+                  ),
+                )
+              else
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: const Padding(
+                    padding: EdgeInsets.all(15),
+                    child: GenericEmptyData(),
+                  ),
+                )
+            ],
+          ),
+          Positioned(
+            top: 30,
+            left: -6,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: RawMaterialButton(
+                key: cancelButtonKey,
+                onPressed: () => Navigator.pop(context),
+                fillColor: AppColors.readTimeBackgroundColor.withOpacity(0.5),
+                padding: const EdgeInsets.all(15.0),
+                shape: const CircleBorder(),
+                child: SvgPicture.asset(
+                  whiteCloseIconSvgPath,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
-          if (widget.payload.content.body != null)
-            Container(
-              padding: const EdgeInsets.only(
-                left: 25,
-                right: 25,
-                bottom: 20,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Html(
-                data: widget.payload.content.body,
-              ),
-            )
-          else
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: const Padding(
-                padding: EdgeInsets.all(15),
-                child: GenericEmptyData(),
-              ),
-            )
         ],
       ),
     );
