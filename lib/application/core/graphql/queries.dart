@@ -47,35 +47,6 @@ query getCurrentTerms($flavour: Flavour!) {
 }
 ''';
 
-const String fetchRecentContentQuery = '''
-query fetchRecentContent {
-  fetchRecentContent {
-    author
-    authorAvatar
-    body
-    contentID
-    contentType
-    createdAt
-    estimate
-    heroImage
-    isNew
-    publicLink
-    tags
-    title
-  }
-}
-''';
-
-const String fetchSuggestedGroupsQuery = '''
-query fetchSuggestedGroups {
-  fetchSuggestedGroups {
-    avatar
-    members
-    name
-  }
-}
-''';
-
 const String fetchContentQuery = r'''
   query fetchContent($limit: Int!, $tags: [String!]! ) {
   fetchContent(limit: $limit, tags: $tags) {
