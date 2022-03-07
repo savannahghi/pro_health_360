@@ -76,3 +76,5 @@ const String connectionFlag = 'connection_flag';
 // communities
 const String fetchInvitedCommunitiesFlag = 'fetch_invited_communities_flag';
 const String fetchRecommendedCommunitiesFlag = 'fetch_recommended_communities_flag';
+const String addUserToCommunityFlag =
+    'add_user_community_flag';

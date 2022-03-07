@@ -67,7 +67,6 @@ class FetchContentAction extends ReduxAction<AppState> {
     final Map<String, dynamic> payLoad = _client.toMap(response);
 
     final String? error = parseError(payLoad);
-
     if (error != null) {
       reportErrorToSentry(
         context,

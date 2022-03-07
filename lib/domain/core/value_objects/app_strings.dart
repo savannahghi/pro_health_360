@@ -805,3 +805,5 @@ const String noInvitesDescription =
 const String invitationAcceptedSuccessfully =
     'Invitation accepted successfully';
 const String communitiesRejectionSuccessful = 'Invite rejection successful';
+
+const String addingToGroupString = 'adding you to the group';

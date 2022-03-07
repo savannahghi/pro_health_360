@@ -157,3 +157,10 @@ mutation acceptInvitation($memberID: String!, $communityID: String!){
   acceptInvitation(memberID: $memberID, communityID: $communityID)
 }
 ''';
+
+const String addMembersToCommunityMutation = r'''
+mutation addMembersToCommunity($memberIDs: [String!]!, $communityID: String!){
+  addMembersToCommunity(
+    memberIDs: $memberIDs, communityID: $communityID)
+}
+''';

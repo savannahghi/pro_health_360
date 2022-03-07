@@ -24,30 +24,14 @@ class _$GroupTearOff {
 
   _Group call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'cid') String? messagingID,
       @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'disabled') bool? disabled,
       @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'avatar') String? avatar,
-      @JsonKey(name: 'createdAt') String? createdAt,
-      @JsonKey(name: 'updatedAt') String? updatedAt,
-      @JsonKey(name: 'gender') List<Gender>? gender,
-      @JsonKey(name: 'clientType') List<ClientType>? clientType,
-      @JsonKey(name: 'inviteOnly') bool? inviteOnly,
-      @JsonKey(name: 'description') String? description}) {
+      @JsonKey(name: 'avatar') String? avatar}) {
     return _Group(
       id: id,
-      messagingID: messagingID,
       name: name,
-      disabled: disabled,
       memberCount: memberCount,
       avatar: avatar,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      gender: gender,
-      clientType: clientType,
-      inviteOnly: inviteOnly,
-      description: description,
     );
   }
 
@@ -63,28 +47,12 @@ const $Group = _$GroupTearOff();
 mixin _$Group {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'cid')
-  String? get messagingID => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'disabled')
-  bool? get disabled => throw _privateConstructorUsedError;
   @JsonKey(name: 'memberCount')
   int? get memberCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar')
   String? get avatar => throw _privateConstructorUsedError;
-  @JsonKey(name: 'createdAt')
-  String? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updatedAt')
-  String? get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gender')
-  List<Gender>? get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: 'clientType')
-  List<ClientType>? get clientType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'inviteOnly')
-  bool? get inviteOnly => throw _privateConstructorUsedError;
-  @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -97,17 +65,9 @@ abstract class $GroupCopyWith<$Res> {
       _$GroupCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'cid') String? messagingID,
       @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'disabled') bool? disabled,
       @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'avatar') String? avatar,
-      @JsonKey(name: 'createdAt') String? createdAt,
-      @JsonKey(name: 'updatedAt') String? updatedAt,
-      @JsonKey(name: 'gender') List<Gender>? gender,
-      @JsonKey(name: 'clientType') List<ClientType>? clientType,
-      @JsonKey(name: 'inviteOnly') bool? inviteOnly,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'avatar') String? avatar});
 }
 
 /// @nodoc
@@ -121,35 +81,19 @@ class _$GroupCopyWithImpl<$Res> implements $GroupCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? messagingID = freezed,
     Object? name = freezed,
-    Object? disabled = freezed,
     Object? memberCount = freezed,
     Object? avatar = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? gender = freezed,
-    Object? clientType = freezed,
-    Object? inviteOnly = freezed,
-    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      messagingID: messagingID == freezed
-          ? _value.messagingID
-          : messagingID // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabled: disabled == freezed
-          ? _value.disabled
-          : disabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
       memberCount: memberCount == freezed
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -157,30 +101,6 @@ class _$GroupCopyWithImpl<$Res> implements $GroupCopyWith<$Res> {
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gender: gender == freezed
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as List<Gender>?,
-      clientType: clientType == freezed
-          ? _value.clientType
-          : clientType // ignore: cast_nullable_to_non_nullable
-              as List<ClientType>?,
-      inviteOnly: inviteOnly == freezed
-          ? _value.inviteOnly
-          : inviteOnly // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -193,17 +113,9 @@ abstract class _$GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'cid') String? messagingID,
       @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'disabled') bool? disabled,
       @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'avatar') String? avatar,
-      @JsonKey(name: 'createdAt') String? createdAt,
-      @JsonKey(name: 'updatedAt') String? updatedAt,
-      @JsonKey(name: 'gender') List<Gender>? gender,
-      @JsonKey(name: 'clientType') List<ClientType>? clientType,
-      @JsonKey(name: 'inviteOnly') bool? inviteOnly,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'avatar') String? avatar});
 }
 
 /// @nodoc
@@ -218,35 +130,19 @@ class __$GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? messagingID = freezed,
     Object? name = freezed,
-    Object? disabled = freezed,
     Object? memberCount = freezed,
     Object? avatar = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? gender = freezed,
-    Object? clientType = freezed,
-    Object? inviteOnly = freezed,
-    Object? description = freezed,
   }) {
     return _then(_Group(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      messagingID: messagingID == freezed
-          ? _value.messagingID
-          : messagingID // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabled: disabled == freezed
-          ? _value.disabled
-          : disabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
       memberCount: memberCount == freezed
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
@@ -254,30 +150,6 @@ class __$GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gender: gender == freezed
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as List<Gender>?,
-      clientType: clientType == freezed
-          ? _value.clientType
-          : clientType // ignore: cast_nullable_to_non_nullable
-              as List<ClientType>?,
-      inviteOnly: inviteOnly == freezed
-          ? _value.inviteOnly
-          : inviteOnly // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -288,17 +160,9 @@ class __$GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
 class _$_Group implements _Group {
   _$_Group(
       {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'cid') this.messagingID,
       @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'disabled') this.disabled,
       @JsonKey(name: 'memberCount') this.memberCount,
-      @JsonKey(name: 'avatar') this.avatar,
-      @JsonKey(name: 'createdAt') this.createdAt,
-      @JsonKey(name: 'updatedAt') this.updatedAt,
-      @JsonKey(name: 'gender') this.gender,
-      @JsonKey(name: 'clientType') this.clientType,
-      @JsonKey(name: 'inviteOnly') this.inviteOnly,
-      @JsonKey(name: 'description') this.description});
+      @JsonKey(name: 'avatar') this.avatar});
 
   factory _$_Group.fromJson(Map<String, dynamic> json) =>
       _$$_GroupFromJson(json);
@@ -307,42 +171,18 @@ class _$_Group implements _Group {
   @JsonKey(name: 'id')
   final String? id;
   @override
-  @JsonKey(name: 'cid')
-  final String? messagingID;
-  @override
   @JsonKey(name: 'name')
   final String? name;
-  @override
-  @JsonKey(name: 'disabled')
-  final bool? disabled;
   @override
   @JsonKey(name: 'memberCount')
   final int? memberCount;
   @override
   @JsonKey(name: 'avatar')
   final String? avatar;
-  @override
-  @JsonKey(name: 'createdAt')
-  final String? createdAt;
-  @override
-  @JsonKey(name: 'updatedAt')
-  final String? updatedAt;
-  @override
-  @JsonKey(name: 'gender')
-  final List<Gender>? gender;
-  @override
-  @JsonKey(name: 'clientType')
-  final List<ClientType>? clientType;
-  @override
-  @JsonKey(name: 'inviteOnly')
-  final bool? inviteOnly;
-  @override
-  @JsonKey(name: 'description')
-  final String? description;
 
   @override
   String toString() {
-    return 'Group(id: $id, messagingID: $messagingID, name: $name, disabled: $disabled, memberCount: $memberCount, avatar: $avatar, createdAt: $createdAt, updatedAt: $updatedAt, gender: $gender, clientType: $clientType, inviteOnly: $inviteOnly, description: $description)';
+    return 'Group(id: $id, name: $name, memberCount: $memberCount, avatar: $avatar)';
   }
 
   @override
@@ -351,39 +191,19 @@ class _$_Group implements _Group {
         (other.runtimeType == runtimeType &&
             other is _Group &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.messagingID, messagingID) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.disabled, disabled) &&
             const DeepCollectionEquality()
                 .equals(other.memberCount, memberCount) &&
-            const DeepCollectionEquality().equals(other.avatar, avatar) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.gender, gender) &&
-            const DeepCollectionEquality()
-                .equals(other.clientType, clientType) &&
-            const DeepCollectionEquality()
-                .equals(other.inviteOnly, inviteOnly) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            const DeepCollectionEquality().equals(other.avatar, avatar));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(messagingID),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(disabled),
       const DeepCollectionEquality().hash(memberCount),
-      const DeepCollectionEquality().hash(avatar),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(clientType),
-      const DeepCollectionEquality().hash(inviteOnly),
-      const DeepCollectionEquality().hash(description));
+      const DeepCollectionEquality().hash(avatar));
 
   @JsonKey(ignore: true)
   @override
@@ -399,17 +219,9 @@ class _$_Group implements _Group {
 abstract class _Group implements Group {
   factory _Group(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'cid') String? messagingID,
       @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'disabled') bool? disabled,
       @JsonKey(name: 'memberCount') int? memberCount,
-      @JsonKey(name: 'avatar') String? avatar,
-      @JsonKey(name: 'createdAt') String? createdAt,
-      @JsonKey(name: 'updatedAt') String? updatedAt,
-      @JsonKey(name: 'gender') List<Gender>? gender,
-      @JsonKey(name: 'clientType') List<ClientType>? clientType,
-      @JsonKey(name: 'inviteOnly') bool? inviteOnly,
-      @JsonKey(name: 'description') String? description}) = _$_Group;
+      @JsonKey(name: 'avatar') String? avatar}) = _$_Group;
 
   factory _Group.fromJson(Map<String, dynamic> json) = _$_Group.fromJson;
 
@@ -417,38 +229,14 @@ abstract class _Group implements Group {
   @JsonKey(name: 'id')
   String? get id;
   @override
-  @JsonKey(name: 'cid')
-  String? get messagingID;
-  @override
   @JsonKey(name: 'name')
   String? get name;
-  @override
-  @JsonKey(name: 'disabled')
-  bool? get disabled;
   @override
   @JsonKey(name: 'memberCount')
   int? get memberCount;
   @override
   @JsonKey(name: 'avatar')
   String? get avatar;
-  @override
-  @JsonKey(name: 'createdAt')
-  String? get createdAt;
-  @override
-  @JsonKey(name: 'updatedAt')
-  String? get updatedAt;
-  @override
-  @JsonKey(name: 'gender')
-  List<Gender>? get gender;
-  @override
-  @JsonKey(name: 'clientType')
-  List<ClientType>? get clientType;
-  @override
-  @JsonKey(name: 'inviteOnly')
-  bool? get inviteOnly;
-  @override
-  @JsonKey(name: 'description')
-  String? get description;
   @override
   @JsonKey(ignore: true)
   _$GroupCopyWith<_Group> get copyWith => throw _privateConstructorUsedError;

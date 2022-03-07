@@ -19,7 +19,6 @@ import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
@@ -1522,19 +1521,8 @@ final Content mockVideoContent = Content.fromJson(videoContentMock.first);
 final Group mockGroup = Group(
   name: testString,
   avatar: 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-  clientType: <enums.ClientType>[
-    enums.ClientType.HIGH_RISK,
-    enums.ClientType.OTZ_PLUS
-  ],
-  createdAt: testString,
-  description: testString,
-  disabled: false,
-  gender: <Gender>[Gender.female, Gender.male],
   id: testString,
-  inviteOnly: false,
   memberCount: 0,
-  messagingID: testString,
-  updatedAt: testString,
 );
 
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{

@@ -13,6 +13,7 @@ import 'package:myafyahub/domain/core/entities/communities/group.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/communities/suggested_groups/suggested_group_card.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 
@@ -92,7 +93,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
                                       Group.initial();
                               return Padding(
                                 padding: const EdgeInsets.only(left: 10),
-                                child: SuggestedGroupCard(group: currentGroup),
+                                child: SuggestedGroupCard(group: currentGroup, route: AppRoutes.communityListPage,),
                               );
                             },
                           ),
