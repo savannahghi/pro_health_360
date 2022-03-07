@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -33,20 +34,49 @@ class SuggestedGroupCard extends StatelessWidget {
           smallVerticalSizedBox,
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ClipOval(
-              child: Image.network(
-                group.avatar,
-                height: 80,
-                width: 80,
-                fit: BoxFit.cover,
-              ),
-            ),
+            child: group.avatar != null &&
+                    group.avatar!.isNotEmpty &&
+                    group.avatar != UNKNOWN
+                ? ClipOval(
+                    child: Image.network(
+                      group.avatar!,
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.whiteColor,
+                    ),
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor.withOpacity(0.3),
+                      ),
+                      child: Center(
+                        child: Text(
+                          group.name != null &&
+                                  group.name!.isNotEmpty &&
+                                  group.name != UNKNOWN
+                              ? group.name![0]
+                              : 'U',
+                          style: boldSize16Text(
+                            Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
           ),
           verySmallVerticalSizedBox,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              group.name,
+              group.name ?? '',
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 14,
@@ -59,7 +89,7 @@ class SuggestedGroupCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0),
             child: Text(
-              '${group.members} members',
+              '${group.memberCount} members',
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 12,

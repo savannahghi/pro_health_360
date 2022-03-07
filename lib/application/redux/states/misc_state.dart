@@ -2,6 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -21,6 +22,7 @@ class MiscState with _$MiscState {
     String? maxTryTime,
     bool? pinVerified,
     bool? resumeTimer,
+    GroupState? groupState,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -36,5 +38,6 @@ class MiscState with _$MiscState {
         maxTryTime: UNKNOWN,
         pinVerified: false,
         resumeTimer: false,
+        groupState: GroupState.initial(),
       );
 }

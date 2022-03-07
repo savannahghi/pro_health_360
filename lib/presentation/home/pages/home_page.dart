@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:myafyahub/presentation/communities/suggested_groups/suggested_groups_section_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -24,14 +25,15 @@ class HomePage extends StatelessWidget {
         snackBar: snackbar(content: pressToExitText, durationSeconds: 3),
         child: AppScaffold(
           appBar: const CustomAppBar(showBackButton: false),
-          body: ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              const MoodChecker(),
-              const RecentContentWidget(),
-              smallVerticalSizedBox,
-              // const SuggestedGroupsSection()
-            ],
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                const MoodChecker(),
+                const RecentContentWidget(),
+                smallVerticalSizedBox,
+                const SuggestedGroupsSection(),
+              ],
+            ),
           ),
         ),
       ),

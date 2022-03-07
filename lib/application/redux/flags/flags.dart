@@ -71,7 +71,8 @@ const String verifyPINFlag = 'verify_pin_flag';
 const String sendFeedbackFlag = 'set_feedback_flag';
 const String fetchClinicInformationFlag = 'fetch_clinic_information';
 
-// community groups page
 const String connectionFlag = 'connection_flag';
-// invited communities
+
+// communities
 const String fetchInvitedCommunitiesFlag = 'fetch_invited_communities_flag';
+const String fetchRecommendedCommunitiesFlag = 'fetch_recommended_communities_flag';

@@ -13,7 +13,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
@@ -35,9 +34,7 @@ import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dar
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/auth.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -573,54 +570,6 @@ EditInformationItem nickNameEditInfo(String userNickName) =>
       ],
     );
 
-Future<void> customFetchData({
-  required StreamController<dynamic> streamController,
-  required BuildContext context,
-  required String queryString,
-  required Map<String, dynamic> variables,
-  required String logTitle,
-  String? logDescription,
-}) async {
-  streamController.add(<String, dynamic>{'loading': true});
-
-  final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-  final AppState? state = StoreProvider.state<AppState>(context);
-
-  // store the current values temporarily so as to reset state later
-
-  final String currentEndpoint =
-      AppWrapperBase.of(context)!.customContext!.graphqlEndpoint;
-  final String? currentIdToken = state!.credentials!.idToken;
-
-  _client
-    ..endpoint = dGraphEndpoint
-    ..idToken = dGraphToken;
-
-  /// fetch the data from the api
-  final Response response = await _client.query(
-    queryString,
-    variables,
-  );
-
-  final Map<String, dynamic> payLoad = _client.toMap(response);
-  final String? error = parseError(payLoad);
-
-  if (error != null) {
-    return streamController
-        .addError(<String, dynamic>{'error': _client.parseError(payLoad)});
-  }
-
-  // reset the graphql client
-
-  _client
-    ..endpoint = currentEndpoint
-    ..idToken = currentIdToken!;
-
-  return (payLoad['data'] != null)
-      ? streamController.add(payLoad['data'])
-      : streamController.add(null);
-}
-
 Gender genderFromJson(String? genderString) {
   if (genderString == null || genderString.isEmpty || genderString == UNKNOWN) {
     return Gender.unknown;
@@ -676,7 +625,7 @@ Future<void> updateLikeStatus({
   required int contentID,
   required bool isLiked,
   bool updateLikeCount = false,
-  required ContentDisplayedType contentDisplayedType,
+  required enums.ContentDisplayedType contentDisplayedType,
 }) async {
   StoreProvider.dispatch(
     context,
@@ -701,7 +650,7 @@ Future<void> updateLikeStatus({
 Future<void> updateBookmarkStatus({
   required BuildContext context,
   required int contentID,
-  required ContentDisplayedType contentDisplayedType,
+  required enums.ContentDisplayedType contentDisplayedType,
 }) async {
   //update save status locally
   StoreProvider.dispatch(
@@ -769,7 +718,7 @@ Future<ChewieController> initializeChewiController({
 
 bool getHasLiked({
   required int contentID,
-  required ContentDisplayedType contentDisplayedType,
+  required enums.ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   final List<Content?> contentItems =
@@ -787,7 +736,7 @@ bool getHasLiked({
 
 int getLikeCount({
   required int contentID,
-  required ContentDisplayedType contentDisplayedType,
+  required enums.ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   final List<Content?> contentItems =
@@ -807,7 +756,7 @@ int getLikeCount({
 
 bool getHasSaved({
   required int contentID,
-  required ContentDisplayedType contentDisplayedType,
+  required enums.ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   final List<Content?> contentItems =
@@ -824,16 +773,16 @@ bool getHasSaved({
 }
 
 List<Content?> getContentList({
-  required ContentDisplayedType contentDisplayedType,
+  required enums.ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   switch (contentDisplayedType) {
-    case ContentDisplayedType.FEED:
+    case enums.ContentDisplayedType.FEED:
       return vm.feedContentState?.contentItems ?? <Content?>[];
-    case ContentDisplayedType.BOOKMARK:
+    case enums.ContentDisplayedType.BOOKMARK:
       return vm.savedContentState?.savedContentItems ?? <Content?>[];
 
-    case ContentDisplayedType.RECENT:
+    case enums.ContentDisplayedType.RECENT:
       return vm.recentContentState?.contentItems ?? <Content?>[];
     default:
       return <Content?>[];

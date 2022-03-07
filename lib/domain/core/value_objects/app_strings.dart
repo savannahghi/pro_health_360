@@ -791,7 +791,8 @@ const String keyProvider = 'Name';
 
 const String defaultStreamUserID = 'myCareHub';
 const String kindlyLogOutText = 'Kindly log out and back in to continue';
-// communities group invites
+
+// communities
 const String groupInvitesString = 'Group Invites';
 const String groupsYouHaveBeenInvited = 'Groups you have been invited to';
 String groupInviteDescription(String groupName) =>

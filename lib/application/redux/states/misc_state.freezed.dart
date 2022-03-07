@@ -31,7 +31,8 @@ class _$MiscStateTearOff {
       int? pinInputTries,
       String? maxTryTime,
       bool? pinVerified,
-      bool? resumeTimer}) {
+      bool? resumeTimer,
+      GroupState? groupState}) {
     return _MiscState(
       initialRoute: initialRoute,
       userPin: userPin,
@@ -42,6 +43,7 @@ class _$MiscStateTearOff {
       maxTryTime: maxTryTime,
       pinVerified: pinVerified,
       resumeTimer: resumeTimer,
+      groupState: groupState,
     );
   }
 
@@ -65,6 +67,7 @@ mixin _$MiscState {
   String? get maxTryTime => throw _privateConstructorUsedError;
   bool? get pinVerified => throw _privateConstructorUsedError;
   bool? get resumeTimer => throw _privateConstructorUsedError;
+  GroupState? get groupState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -85,9 +88,11 @@ abstract class $MiscStateCopyWith<$Res> {
       int? pinInputTries,
       String? maxTryTime,
       bool? pinVerified,
-      bool? resumeTimer});
+      bool? resumeTimer,
+      GroupState? groupState});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  $GroupStateCopyWith<$Res>? get groupState;
 }
 
 /// @nodoc
@@ -109,6 +114,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? maxTryTime = freezed,
     Object? pinVerified = freezed,
     Object? resumeTimer = freezed,
+    Object? groupState = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -147,6 +153,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.resumeTimer
           : resumeTimer // ignore: cast_nullable_to_non_nullable
               as bool?,
+      groupState: groupState == freezed
+          ? _value.groupState
+          : groupState // ignore: cast_nullable_to_non_nullable
+              as GroupState?,
     ));
   }
 
@@ -159,6 +169,17 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     return $FAQsContentStateCopyWith<$Res>(_value.profileFAQsContentState!,
         (value) {
       return _then(_value.copyWith(profileFAQsContentState: value));
+    });
+  }
+
+  @override
+  $GroupStateCopyWith<$Res>? get groupState {
+    if (_value.groupState == null) {
+      return null;
+    }
+
+    return $GroupStateCopyWith<$Res>(_value.groupState!, (value) {
+      return _then(_value.copyWith(groupState: value));
     });
   }
 }
@@ -178,10 +199,13 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       int? pinInputTries,
       String? maxTryTime,
       bool? pinVerified,
-      bool? resumeTimer});
+      bool? resumeTimer,
+      GroupState? groupState});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
+  @override
+  $GroupStateCopyWith<$Res>? get groupState;
 }
 
 /// @nodoc
@@ -204,6 +228,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? maxTryTime = freezed,
     Object? pinVerified = freezed,
     Object? resumeTimer = freezed,
+    Object? groupState = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -242,6 +267,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.resumeTimer
           : resumeTimer // ignore: cast_nullable_to_non_nullable
               as bool?,
+      groupState: groupState == freezed
+          ? _value.groupState
+          : groupState // ignore: cast_nullable_to_non_nullable
+              as GroupState?,
     ));
   }
 }
@@ -258,7 +287,8 @@ class _$_MiscState implements _MiscState {
       this.pinInputTries,
       this.maxTryTime,
       this.pinVerified,
-      this.resumeTimer});
+      this.resumeTimer,
+      this.groupState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -281,10 +311,12 @@ class _$_MiscState implements _MiscState {
   final bool? pinVerified;
   @override
   final bool? resumeTimer;
+  @override
+  final GroupState? groupState;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState)';
   }
 
   @override
@@ -308,7 +340,9 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.pinVerified, pinVerified) &&
             const DeepCollectionEquality()
-                .equals(other.resumeTimer, resumeTimer));
+                .equals(other.resumeTimer, resumeTimer) &&
+            const DeepCollectionEquality()
+                .equals(other.groupState, groupState));
   }
 
   @override
@@ -322,7 +356,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(pinInputTries),
       const DeepCollectionEquality().hash(maxTryTime),
       const DeepCollectionEquality().hash(pinVerified),
-      const DeepCollectionEquality().hash(resumeTimer));
+      const DeepCollectionEquality().hash(resumeTimer),
+      const DeepCollectionEquality().hash(groupState));
 
   @JsonKey(ignore: true)
   @override
@@ -345,7 +380,8 @@ abstract class _MiscState implements MiscState {
       int? pinInputTries,
       String? maxTryTime,
       bool? pinVerified,
-      bool? resumeTimer}) = _$_MiscState;
+      bool? resumeTimer,
+      GroupState? groupState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -368,6 +404,8 @@ abstract class _MiscState implements MiscState {
   bool? get pinVerified;
   @override
   bool? get resumeTimer;
+  @override
+  GroupState? get groupState;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

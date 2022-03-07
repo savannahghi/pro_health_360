@@ -349,3 +349,51 @@ query listPendingInvites($memberID: String!, $input: QueryOption){
   }
 }
 ''';
+
+const String recommendedCommunitiesQuery = r'''
+query recommendedCommunities($clientID: String!, $limit: Int!) {
+  recommendedCommunities(clientID: $clientID, limit: $limit) {
+    id
+    cid
+    name
+    disabled
+    frozen
+    memberCount
+    createdAt
+    updatedAt
+    ageRange {
+      upperBound
+      lowerBound
+    }
+    gender
+    clientType
+    inviteOnly
+    description
+    members {
+      UserID
+      user {
+        ID
+        userID
+        name
+        role
+        username
+        gender
+      }
+      isModerator
+      invited
+      inviteAcceptedAt
+      inviteRejectedAt
+      role
+      userType
+    }
+    createdBy {
+      ID
+      userID
+      name
+      role
+      username
+      gender
+    }
+  }
+}
+''';

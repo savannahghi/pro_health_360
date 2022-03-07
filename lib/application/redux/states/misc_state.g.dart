@@ -21,6 +21,9 @@ _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
       maxTryTime: json['maxTryTime'] as String?,
       pinVerified: json['pinVerified'] as bool?,
       resumeTimer: json['resumeTimer'] as bool?,
+      groupState: json['groupState'] == null
+          ? null
+          : GroupState.fromJson(json['groupState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
@@ -34,4 +37,5 @@ Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
       'maxTryTime': instance.maxTryTime,
       'pinVerified': instance.pinVerified,
       'resumeTimer': instance.resumeTimer,
+      'groupState': instance.groupState,
     };

@@ -23,7 +23,7 @@ class RelatedPerson with _$RelatedPerson {
       name: 'relationshipType',
       defaultValue: RelationshipType.UNKNOWN,
     )
-        RelationshipType? relationshipType,
+    RelationshipType? relationshipType,
     @JsonKey(name: 'firstName')
         String? firstName,
     @JsonKey(name: 'lastName')
