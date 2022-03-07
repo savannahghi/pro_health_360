@@ -129,3 +129,10 @@ enum AppointmentStatus {
 }
 
 enum AppointmentListTye { Past, Upcoming }
+
+enum ScreeningToolsType {
+  Violence,
+  Contraceptives,
+  TB,
+  Alcohol,
+}

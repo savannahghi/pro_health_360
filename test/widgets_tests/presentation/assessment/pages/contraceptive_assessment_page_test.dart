@@ -28,7 +28,6 @@ void main() {
         widget: const ContraceptiveAssessmentPage(),
       );
 
-      expect(find.text(contraceptiveAssessmentDescription), findsOneWidget);
       expect(find.text(areYouPregnantString), findsOneWidget);
       expect(find.text(areYouOnFamilyPlanningString), findsOneWidget);
       expect(find.text(wouldYouLikeToUseFamilyPlanningString), findsOneWidget);
@@ -74,6 +73,10 @@ void main() {
       expect(
         find.byKey(contraceptiveAssessmentFeedbackButtonKey),
         findsOneWidget,
+      );
+      await tester.scrollUntilVisible(
+        find.byKey(contraceptiveAssessmentFeedbackButtonKey),
+        400,
       );
       await tester.tap(find.byKey(contraceptiveAssessmentFeedbackButtonKey));
 

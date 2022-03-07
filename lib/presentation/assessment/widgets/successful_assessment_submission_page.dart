@@ -4,12 +4,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/assessment/widgets/alcohol_assessment_information.dart';
+import 'package:myafyahub/presentation/assessment/widgets/contraceptive_information.dart';
+import 'package:myafyahub/presentation/assessment/widgets/tb_assessment_information.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/violence_assessment/widgets/violence_assessment_information.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
-  const SuccessfulAssessmentSubmissionPage({Key? key}) : super(key: key);
+  const SuccessfulAssessmentSubmissionPage({required this.screeningToolsType});
+
+  final ScreeningToolsType screeningToolsType;
+
+  Widget buildInformationWidget(ScreeningToolsType screeningToolsType) {
+    switch (screeningToolsType) {
+      case ScreeningToolsType.Violence:
+        return const ViolenceAssessmentInformation();
+
+      case ScreeningToolsType.TB:
+        return const TBAssessmentInformation();
+
+      case ScreeningToolsType.Alcohol:
+        return const AlcoholAssessmentInformation();
+
+      default:
+        return const ContraceptivesInformation();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +40,16 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Center(
         child: Container(
-          padding: const EdgeInsets.only(left: 30, right: 30, top: 28),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 30),
                 SvgPicture.asset(
                   successfulAssessmentSubmissionImage,
                   height: 286.0,
                   width: 286.0,
                 ),
-                const SizedBox(height: 20),
+                mediumVerticalSizedBox,
                 const Text(
                   assessmentSubmissionSuccessfulText,
                   textAlign: TextAlign.center,
@@ -37,22 +59,8 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(height: 20),
-                Row(
-                  children: const <Widget>[
-                    Flexible(
-                      child: Text(
-                        assessmentSubmissionSuccessfulDescription,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          color: AppColors.greyTextColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                mediumVerticalSizedBox,
+                buildInformationWidget(screeningToolsType),
                 largeVerticalSizedBox,
                 SizedBox(
                   width: double.infinity,

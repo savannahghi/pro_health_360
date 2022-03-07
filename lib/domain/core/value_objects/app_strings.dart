@@ -686,7 +686,15 @@ const String tuberculosisDescription =
 // violence assessment
 const String violenceAssessmentTitle = 'Violence Assessment';
 const String violenceAssessmentSubtitle =
-    'Thank you for choosing to share your experience about violence. the information you provide will  be confidential';
+    'If you have been hurt physically, sexually, or emotionally, including by an intimate partner, let us know by responding to the questions below.';
+const String yourResponseWillBeConfidential =
+    'Your responses will be confidentially sent to your health care provider who will reach out to you so that you can benefit from the package of services available at the facility.\n\n';
+const String weAlsoUrgeYou = 'We also urge you to ';
+const String visitTheClinicSoon = 'visit the clinic as soon as possible ';
+const String asFormsOfGBVSting = 'as forms of GBV such as ';
+const String sexualAssault = 'sexual assault';
+const String requireFirstAidServices =
+    ', require first-aid services which are most effective administered within hours.';
 const String emotionalViolence = 'Emotional violence';
 const String emotionalViolenceQuestion =
     'In the past, has anyone made you feel threatened, fearful or in danger?';
@@ -704,7 +712,13 @@ const String submitAssessment = 'Submit Assessment';
 //contraceptive assessment page
 const String contraceptiveAssessmentTitle = 'Contraceptive Assessment';
 const String contraceptiveAssessmentDescription =
-    'Thank you for your interest in contraceptives. The information you provide will be confidential';
+    'Contraceptives are birth control methods that help you choose when to have a family and the number of children you want. \n\n';
+const String ifYouIntendToUse =
+    'If you intend to use a contraceptive method, please respond to the questions below. ';
+const String providerWillContact =
+    'A health care provider will then reach out to you to discuss your choices. \n\n';
+const String ifNotContacted =
+    'In case this does not happen within a few days, we encourage you to contact the clinic directly or bring it up during your next visit.\n\n';
 const String lastMenstrualPeriodString =
     '1. When was your last menstrual period?';
 const String thisMonthString = 'This Month';
@@ -721,7 +735,9 @@ const String submitYourAssessmentString = 'Submit Your Assessment';
 //Tuberculosis assessment page
 const String tuberculosisAssessmentTitle = 'Tuberculosis Assessment';
 const String tuberculosisAssessmentDescription =
-    'Thank you for your interest in assessing yourself for Tuberculosis(TB). The information you provide will be confidential. \nIn the last one month have you had any of the following?';
+    'TB is preventable and curable. The four questions below are designed to help find out whether you might have TB.\n\nIf the answer to any of the 4 is “YES” your healthcare provider will be automatically notified so that he/she can reach out to you.';
+const String pleaseVisitClinic =
+    'We also encourage you to call or visit the clinic at your earliest convenience for further evaluation';
 const String experiencedACoughString = '1. Cough';
 const String doYouHaveFeverString = '2. Hotness of the body (fever)?';
 const String noticedAnyWeighLossString =
@@ -731,7 +747,11 @@ const String experienceNightSweatsString = '4. Sweating at night?';
 //Alcohol and substance use page
 const String alcoholSubstanceUseTitle = 'Alcohol and substance use';
 const String alcoholSubstanceUseDescription =
-    'Thank you for your interest in assessing yourself for Alcohol and substance use. The information you provide will be confidential';
+    'We encourage you to answer the questions below truthfully to determine whether your recreational use of alcohol and other substances might be harmful.';
+const String responseConfidential =
+    'Your responses will be confidentially sent to your health care provider who will then schedule a follow-up visit at your convenience.\n\n';
+const String facilitiesSpace =
+    'Our facilities provide a safe space where you can have an open conversation with a trained provider and together come up with a plan of action.';
 const String alcoholSubstanceUseQuestionOne =
     '1. Have you ridden in a car driven by someone (including yourself) who was "high" or had been using alcohol or drugs?';
 const String alcoholSubstanceUseQuestionTwo =
@@ -789,7 +809,7 @@ const String healthAssessmentQuestionTen =
 const String assessmentSubmissionSuccessfulText =
     'Thanks for sharing your assessment';
 const String assessmentSubmissionSuccessfulDescription =
-    'Your doctor may review your assessment in your next visit, or reach out if necessary';
+    'Your doctor may review your assessment in your next visit, or reach out if necessary\n\n';
 
 /// Date picker format
 const String datePickerFormat = 'dd MMM, yyyy';
