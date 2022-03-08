@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelPage extends StatelessWidget {
@@ -10,11 +13,16 @@ class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Channel channel = StreamChannel.of(context).channel;
+    String channelImage = '';
 
     String channelName = noTitleText;
 
     if (channel.extraData.containsKey('Name')) {
       channelName = channel.extraData['Name']! as String;
+    }
+
+    if (channel.extraData.containsKey('image')) {
+      channelImage = channel.extraData['image']! as String;
     }
 
     return Scaffold(
@@ -23,6 +31,24 @@ class ChannelPage extends StatelessWidget {
           channelName,
           overflow: TextOverflow.ellipsis,
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipOval(
+              child: channelImage.isNotEmpty
+                  ? Image.network(
+                      channelImage,
+                      fit: BoxFit.cover,
+                    )
+                  : SvgPicture.asset(
+                      acceptInvitesImage,
+                      height: 30,
+                      width: 30,
+                    ),
+            ),
+          ),
+          size15HorizontalSizedBox,
+        ],
       ),
       body: Column(
         children: <Widget>[
