@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelPage extends StatelessWidget {
@@ -8,9 +9,20 @@ class ChannelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Channel channel = StreamChannel.of(context).channel;
+
+    String channelName = noTitleText;
+
+    if (channel.extraData.containsKey('Name')) {
+      channelName = channel.extraData['Name']! as String;
+    }
+
     return Scaffold(
-      appBar: const ChannelHeader(
-        title: ChannelName(),
+      appBar: ChannelHeader(
+        title: Text(
+          channelName,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
       body: Column(
         children: <Widget>[

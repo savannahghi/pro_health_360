@@ -807,3 +807,6 @@ const String invitationAcceptedSuccessfully =
 const String communitiesRejectionSuccessful = 'Invite rejection successful';
 
 const String addingToGroupString = 'adding you to the group';
+
+const String noTitleText = 'No title';
+const String nothingYetText = 'nothing yet';
