@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:chewie/chewie.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerInitializer {
@@ -18,6 +19,8 @@ class VideoPlayerInitializer {
     return ChewieController(
       videoPlayerController: videoPlayerController,
       autoPlay: autoPlay,
+      systemOverlaysAfterFullScreen: <SystemUiOverlay>[SystemUiOverlay.bottom, SystemUiOverlay.top,],
+      deviceOrientationsAfterFullScreen: <DeviceOrientation>[DeviceOrientation.portraitUp],
     );
   }
 }
