@@ -35,6 +35,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
+import 'package:myafyahub/presentation/communities/group_info/widgets/group_member_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -360,6 +361,14 @@ final NotificationActions rescheduleAction = NotificationActions(
   name: 'Reschedule',
   route: '',
 );
+
+const List<Widget> membersList = <Widget>[
+  GroupMemberItem(userName: 'Dennis Kilonzo', memberID: 'dennis'),
+  GroupMemberItem(userName: 'Kigongo Kairo', memberID: 'king'),
+  GroupMemberItem(userName: 'Lailonte Koros', memberID: 'lai'),
+  GroupMemberItem(userName: 'Musau Dennis', memberID: 'musa'),
+  GroupMemberItem(userName: 'John Koech', memberID: 'john'),
+];
 
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(

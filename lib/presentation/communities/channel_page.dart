@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -32,19 +33,26 @@ class ChannelPage extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipOval(
-              child: channelImage.isNotEmpty
-                  ? Image.network(
-                      channelImage,
-                      fit: BoxFit.cover,
-                    )
-                  : SvgPicture.asset(
-                      acceptInvitesImage,
-                      height: 30,
-                      width: 30,
-                    ),
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed(
+              AppRoutes.groupInfoPage,
+              arguments: StreamChannel.of(context).channel.id,
+            ),
+            behavior: HitTestBehavior.opaque,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipOval(
+                child: channelImage.isNotEmpty
+                    ? Image.network(
+                        channelImage,
+                        fit: BoxFit.cover,
+                      )
+                    : SvgPicture.asset(
+                        acceptInvitesImage,
+                        height: 30,
+                        width: 30,
+                      ),
+              ),
             ),
           ),
           size15HorizontalSizedBox,

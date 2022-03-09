@@ -122,6 +122,7 @@ class AppRoutes {
   // communities group invites
   static const String groupInvitesPage = '/groupInvitesPage';
   static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
+  static const String groupInfoPage = '/groupInfoPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

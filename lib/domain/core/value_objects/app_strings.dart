@@ -810,5 +810,12 @@ const String communitiesRejectionSuccessful = 'Invite rejection successful';
 
 const String addingToGroupString = 'adding you to the group';
 
+const String groupTitle = 'Ruaraka Group';
+
+const String groupMembersText = 'Group Members';
+const String inviteMembers = 'Invite Members';
 const String noTitleText = 'No title';
 const String nothingYetText = 'nothing yet';
+String getGroupMembersNumber(int numberOfMembers) {
+  return '$numberOfMembers members';
+}

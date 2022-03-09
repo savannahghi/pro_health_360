@@ -13,6 +13,7 @@ import 'package:myafyahub/presentation/assessment/pages/tuberculosis_assessment_
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
+import 'package:myafyahub/presentation/communities/group_info/pages/group_info_page.dart';
 import 'package:myafyahub/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:myafyahub/presentation/communities/invited_groups/pages/invited_groups_page.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
@@ -319,6 +320,11 @@ class RouteGenerator {
             groupName: groupName,
             numberOfMembers: numberOfMembers,
           ),
+        );
+
+      case AppRoutes.groupInfoPage:
+        return MaterialPageRoute<GroupInfoPage>(
+          builder: (_) => GroupInfoPage(channelId: args as String),
         );
 
       default:

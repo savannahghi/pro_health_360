@@ -58,6 +58,8 @@ class AppColors {
   static const Color lightRedTextColor = Color(0xFFFF888B);
   static const Color purpleChillColor = Color(0xFF9269AD);
   static const Color javaColor = Color(0xFF17D1D4);
+  static const Color lightBlackTextColor = Color(0xFF555555);
+  static const Color galleryColor = Color(0xFFEBEBEB);
   static ThemeColors themeColors = ThemeColors(
     primaryColor,
     primaryColor,
