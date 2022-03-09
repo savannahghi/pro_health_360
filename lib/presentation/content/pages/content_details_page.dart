@@ -272,19 +272,25 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
             ],
           ),
           Positioned(
-            top: 30,
+            top: widget.payload.content.contentType == ContentType.AUDIO_VIDEO
+                ? 75
+                : 30,
             left: -6,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: RawMaterialButton(
+            child: Container(
+              margin: const EdgeInsets.all(10.0),
+              child: ElevatedButton(
                 key: cancelButtonKey,
                 onPressed: () => Navigator.pop(context),
-                fillColor: AppColors.readTimeBackgroundColor.withOpacity(0.5),
-                padding: const EdgeInsets.all(15.0),
-                shape: const CircleBorder(),
-                child: SvgPicture.asset(
-                  whiteCloseIconSvgPath,
-                  color: Colors.white,
+                style: ElevatedButton.styleFrom(
+                  primary: AppColors.readTimeBackgroundColor.withOpacity(0.5),
+                  shape: const CircleBorder(),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: SvgPicture.asset(
+                    whiteCloseIconSvgPath,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
