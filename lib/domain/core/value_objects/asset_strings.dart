@@ -42,7 +42,7 @@ const String noConnectionImgUrl = 'assets/images/wifi.png';
 
 const String noDataImgUrl = 'assets/images/no_data.svg';
 
-const String genericNoDataIconUrl = 'assets/icons/not_found.svg';
+const String genericErrorWidgetIconUrl = 'assets/icons/not_found.svg';
 
 //feed
 const String playIcon = 'assets/icons/playIcon.svg';
@@ -109,6 +109,7 @@ const String attachFileIcon = 'assets/icons/attach_file.svg';
 const String moderatorIcon = 'assets/icons/moderator_icon.svg';
 const String awaitingModerationIcon =
     'assets/icons/awaiting_moderation_icon.svg';
+const String emptyChatsSvg = 'assets/images/empty_chats.svg';
 
 //pin input page icons
 const String lockIcon = 'assets/icons/lock_icon.svg';

@@ -15,7 +15,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
@@ -98,7 +97,7 @@ void main() {
         widget: const ProfileFaqsPage(),
       );
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
 
     testWidgets('should display zero state widget',
@@ -193,13 +192,11 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
-
-        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
   });

@@ -55,7 +55,7 @@ class _ClinicInformationPageState extends State<ClinicInformationPage> {
               return Container(
                 height: 300,
                 padding: const EdgeInsets.all(20),
-                child: const SILPlatformLoader(),
+                child: const PlatformLoader(),
               );
             } else {
               return Column(

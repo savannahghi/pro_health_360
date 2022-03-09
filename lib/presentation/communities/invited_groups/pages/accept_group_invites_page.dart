@@ -55,7 +55,7 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
               SizedBox(
                 width: double.infinity,
                 child: loading
-                    ? const SILPlatformLoader()
+                    ? const PlatformLoader()
                     : MyAfyaHubPrimaryButton(
                         text: joinGroup,
                         onPressed: () async {

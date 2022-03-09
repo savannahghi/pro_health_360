@@ -24,9 +24,8 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/mini_content_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
-import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -155,7 +154,7 @@ void main() {
       expect(find.text(noInternetConnection), findsOneWidget);
     });
 
-    testWidgets('should render SILPlatformLoader', (WidgetTester tester) async {
+    testWidgets('should render PlatformLoader', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -172,8 +171,9 @@ void main() {
       await tester.pumpAndSettle();
       store.dispatch(WaitAction<AppState>.add(setNickNameFlag));
       await tester.pump(const Duration(seconds: 2));
-      expect(find.byType(SILPlatformLoader), findsNWidgets(2));
+      expect(find.byType(PlatformLoader), findsNWidgets(2));
     });
+
     testWidgets('Navigates to ContentDetailPage when a link is tapped  ',
         (WidgetTester tester) async {
       store.dispatch(
@@ -192,6 +192,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(ContentDetailPage), findsOneWidget);
     });
+
     testWidgets(
         'shows a generic no data widget while fetching welcome content '
         'and refresh the welcome content when prompted',
@@ -212,19 +213,30 @@ void main() {
         client: client,
         widget: SetNickNamePage(),
       );
-
       await tester.pump();
 
-      expect(find.byType(GenericNoData), findsOneWidget);
-      final Finder genericNoDataButton = find.byKey(genericNoDataButtonKey);
-      expect(genericNoDataButton, findsOneWidget);
-      await tester.ensureVisible(genericNoDataButton);
+      final Finder genericErrorWidgetButton = find.byKey(
+        const Key(
+          'error_fetching_content',
+        ),
+      );
+      expect(genericErrorWidgetButton, findsOneWidget);
+
+      await tester.ensureVisible(genericErrorWidgetButton);
       await tester.pumpAndSettle();
-      await tester.tap(genericNoDataButton);
+      await tester.tap(genericErrorWidgetButton);
       await tester.pumpAndSettle();
 
-      expect(find.byType(GenericNoData), findsOneWidget);
+      final RawMaterialButton retryBtn = genericErrorWidgetButton.first
+          .evaluate()
+          .first
+          .widget as RawMaterialButton;
+
+      retryBtn.onPressed?.call();
+
+      expect(find.byType(GenericErrorWidget), findsOneWidget);
     });
+
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
@@ -249,7 +261,7 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
+        expect(find.byType(PlatformLoader), findsOneWidget);
       });
     });
   });

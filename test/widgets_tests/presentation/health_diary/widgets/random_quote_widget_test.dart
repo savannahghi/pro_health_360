@@ -10,7 +10,6 @@ import 'package:http/http.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/random_quote_widget.dart';
 import '../../../../mocks.dart';
@@ -80,13 +79,11 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
-
         /// Refresh and expect the same thing
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
 
         await tester.pumpAndSettle();
-        expect(find.byType(GenericNoData), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       },
     );
 
@@ -139,7 +136,7 @@ void main() {
         );
 
         await tester.pump();
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
+        expect(find.byType(PlatformLoader), findsOneWidget);
       },
     );
   });

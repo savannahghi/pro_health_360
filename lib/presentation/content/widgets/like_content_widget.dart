@@ -103,7 +103,7 @@ class _LikeContentWidgetState extends State<LikeContentWidget> {
                   const SizedBox(
                     width: 20,
                     height: 20,
-                    child: SILPlatformLoader(),
+                    child: PlatformLoader(),
                   ),
                 } else ...<Widget>{
                   SvgPicture.asset(

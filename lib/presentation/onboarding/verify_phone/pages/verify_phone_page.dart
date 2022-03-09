@@ -66,9 +66,9 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                   child: Column(
                     children: <Widget>[
                       if (vm.wait!.isWaitingFor(sendOTPFlag))
-                        const SILPlatformLoader(),
+                        const PlatformLoader(),
                       if (vm.wait!.isWaitingFor(verifyOTP)) ...<Widget>[
-                        const SILPlatformLoader(),
+                        const PlatformLoader(),
                         smallVerticalSizedBox,
                         Text(
                           verifyCode,
@@ -81,7 +81,7 @@ class VerifyPhonePageState extends State<VerifyPhonePage> {
                           !vm.wait!.isWaitingFor(verifyOTP))
                         VerifyOtpWidget(
                           verifyPhoneViewModel: vm,
-                          loader: const SILPlatformLoader(),
+                          loader: const PlatformLoader(),
                           phoneNumber: phone,
                         ),
                     ],

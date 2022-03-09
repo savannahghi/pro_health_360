@@ -16,7 +16,6 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
@@ -29,7 +28,6 @@ import '../../../test_helpers.dart';
 void main() {
   group('LoginPage', () {
     late Store<AppState> store;
-    late MobileConnectivityStatus connectivityStatus;
 
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
@@ -37,50 +35,6 @@ void main() {
 
       final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
       ConnectivityPlatform.instance = fakePlatform;
-
-      connectivityStatus = MobileConnectivityStatus(
-        checkInternetCallback: () async => true,
-      );
-    });
-
-    testWidgets('MyAfyaHubCountryPicker should render a list of countries',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: MaterialApp(
-          home: Scaffold(
-            body: Builder(
-              builder: (BuildContext context) {
-                return LoginPage();
-              },
-            ),
-          ),
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      final Finder phoneInputField = find.byKey(textFormFieldKey);
-      final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
-
-      expect(phoneInputField, findsOneWidget);
-      expect(continueButton, findsOneWidget);
-
-      await tester.showKeyboard(phoneInputField);
-      await tester.enterText(phoneInputField, '0725999999');
-      await tester.pumpAndSettle();
-      await tester.tap(find.byKey(selectCountryKey));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(ListTile), findsNWidgets(7));
-      await tester.tap(find.byType(ListTile).first);
-      await tester.pumpAndSettle();
-      await tester.ensureVisible(continueButton);
-      await tester.tap(continueButton);
-      await tester.pumpAndSettle();
-      expect(find.text('+254'), findsOneWidget);
     });
 
     testWidgets('should validate Phone Number', (WidgetTester tester) async {
@@ -88,9 +42,9 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: MaterialApp(
+        widget: const MaterialApp(
           home: Scaffold(
-            body: LoginPage(connectivityStatus: connectivityStatus),
+            body: LoginPage(),
           ),
         ),
       );
@@ -118,7 +72,7 @@ void main() {
           home: Scaffold(
             body: Builder(
               builder: (BuildContext context) {
-                return LoginPage(connectivityStatus: connectivityStatus);
+                return const LoginPage();
               },
             ),
           ),
@@ -166,10 +120,10 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: MaterialApp(
+          widget: const MaterialApp(
             onGenerateRoute: RouteGenerator.generateRoute,
             home: Scaffold(
-              body: LoginPage(connectivityStatus: connectivityStatus),
+              body: LoginPage(),
             ),
           ),
         );
@@ -214,10 +168,10 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: MaterialApp(
+          widget: const MaterialApp(
             onGenerateRoute: RouteGenerator.generateRoute,
             home: Scaffold(
-              body: LoginPage(connectivityStatus: connectivityStatus),
+              body: LoginPage(),
             ),
           ),
         );
@@ -264,10 +218,10 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: MaterialApp(
+        widget: const MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           home: Scaffold(
-            body: LoginPage(connectivityStatus: connectivityStatus),
+            body: LoginPage(),
           ),
         ),
       );
@@ -326,14 +280,10 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: MaterialApp(
+        widget: const MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
           home: Scaffold(
-            body: LoginPage(
-              connectivityStatus: MobileConnectivityStatus(
-                checkInternetCallback: () async => false,
-              ),
-            ),
+            body: LoginPage(),
           ),
         ),
       );

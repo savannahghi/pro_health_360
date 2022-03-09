@@ -302,7 +302,7 @@ void main() {
         widget: const SecurityQuestionsPage(),
       );
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

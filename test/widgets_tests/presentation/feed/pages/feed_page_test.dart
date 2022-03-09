@@ -21,7 +21,6 @@ import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -209,7 +208,7 @@ void main() {
         store.dispatch(WaitAction<AppState>.add(fetchContentFlag));
         await tester.pump();
 
-        expect(find.byType(SILPlatformLoader), findsNWidgets(2));
+        expect(find.byType(PlatformLoader), findsNWidgets(2));
       });
     });
 
@@ -267,13 +266,11 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
-
-        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
   });

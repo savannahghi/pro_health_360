@@ -83,9 +83,9 @@ const String callText = 'Call support';
 const String whatsAppText = 'WhatsApp';
 const String logTitle = 'Get FAQs';
 
-const String actionTextGenericNoData = 'Retry';
+const String actionTextGenericErrorWidget = 'Retry';
 
-const String messageBodyGenericNoData =
+const String messageBodyGenericErrorWidget =
     'Something went wrong while fetching contents of this section, retry or contact support for immediate help';
 const String feedErrorDetail =
     'Something went wrong while fetching recent content, kindly try again or contact our support center for immediate help';
@@ -400,16 +400,18 @@ const String groupText = 'Group';
 const String groupInfoText = 'Group Info';
 const String exitGroupText = 'Exit Group';
 const String messageText = 'message';
+const String communityPageString = 'Conversations';
+const String libraryPageString = 'Library';
+const String emptyConversationTitle =
+    'Oops! We are unable to load your conversations';
+const String emptyConversationBody =
+    'Relax and enjoy a cup of coffee as we get your conversations up and running.';
 
 // Consent page
 const String viewTermsText = 'View terms and conditions';
 const String groupsText = 'Groups';
 const String consentConfirmationText = 'I consent to be added to groups';
 const String consentText = 'Consent';
-
-// Community strings
-const String communityPageString = 'Conversations';
-const String libraryPageString = 'Library';
 
 // Terms and conditions
 const String portalTermsText = 'Portal terms and conditions';

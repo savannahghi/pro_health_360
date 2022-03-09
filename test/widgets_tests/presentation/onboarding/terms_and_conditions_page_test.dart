@@ -115,7 +115,7 @@ void main() {
         widget: const TermsAndConditionsPage(),
       );
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

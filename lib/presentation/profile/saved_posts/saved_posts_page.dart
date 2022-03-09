@@ -17,12 +17,13 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class SavedPostPage extends StatefulWidget {
+  const SavedPostPage();
+
   @override
   State<SavedPostPage> createState() => _SavedPostPageState();
 }
@@ -63,7 +64,7 @@ class _SavedPostPageState extends State<SavedPostPage> {
                 return Container(
                   height: 300,
                   padding: const EdgeInsets.all(20),
-                  child: const SILPlatformLoader(),
+                  child: const PlatformLoader(),
                 );
               } else if (vm.savedContentState?.timeoutFetchingContent ??
                   false) {
@@ -72,17 +73,17 @@ class _SavedPostPageState extends State<SavedPostPage> {
                   action: 'fetching your saved content',
                 );
               } else if (vm.savedContentState?.errorFetchingContent ?? false) {
-                return GenericNoData(
-                  key: helpNoDataWidgetKey,
-                  type: GenericNoDataTypes.ErrorInData,
-                  actionText: actionTextGenericNoData,
+                return GenericErrorWidget(
+                  actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {
                     StoreProvider.dispatch<AppState>(
                       context,
                       FetchSavedContentAction(context: context),
                     );
                   },
-                  messageBody: messageBodyGenericNoData,
+                  messageBody: const <TextSpan>[
+                    TextSpan(text: messageBodyGenericErrorWidget)
+                  ],
                 );
               } else {
                 final List<Content?>? savedItems =

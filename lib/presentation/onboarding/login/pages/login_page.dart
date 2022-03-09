@@ -11,14 +11,11 @@ import 'package:myafyahub/application/core/services/login_utils.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:shared_themes/spaces.dart';
@@ -28,10 +25,7 @@ import 'package:shared_themes/spaces.dart';
 /// It consists of [MyAfyaHubPhoneInput] used to user input PhoneNumber,
 ///  [CustomTextField] to input PIN and [MyAfyaHubPrimaryButton] as submit button
 class LoginPage extends StatefulWidget {
-  LoginPage({ConnectivityStatus? connectivityStatus})
-      : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
-
-  final ConnectivityStatus connectivityStatus;
+  const LoginPage();
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -100,9 +94,28 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       smallVerticalSizedBox,
                       MyAfyaHubPhoneInput(
+                        textFormFieldKey: textFormFieldKey,
                         phoneNumberFormatter: formatPhoneNumber,
-                        inputController: phoneNumberInputController,
-                        labelText: enterPhoneNumberString,
+                        decoration: InputDecoration(
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          border: InputBorder.none,
+                          filled: true,
+                          fillColor: AppColors.lightGreyBackgroundColor,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.grey[200]!,
+                            ),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
+                          ),
+                        ),
                         onChanged: (String? val) {
                           final bool? invalidCredentials = vm.appState
                               .onboardingState?.phoneLogin?.invalidCredentials;
@@ -173,23 +186,18 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: (vm.appState.wait!.isWaitingFor(phoneLoginFlag))
-                        ? const SILPlatformLoader()
+                        ? const PlatformLoader()
                         : SizedBox(
                             width: double.infinity,
                             height: 52,
                             child: MyAfyaHubPrimaryButton(
                               buttonKey: phoneLoginContinueButtonKey,
                               onPressed: () async {
-                                final bool hasConnection = await widget
-                                    .connectivityStatus
-                                    .checkConnection();
-
-                                StoreProvider.dispatch(
-                                  context,
-                                  UpdateConnectivityAction(
-                                    hasConnection: hasConnection,
-                                  ),
-                                );
+                                final bool hasConnection =
+                                    StoreProvider.state<AppState>(context)
+                                            ?.connectivityState
+                                            ?.isConnected ??
+                                        false;
 
                                 final bool? isFormValid =
                                     _formKey.currentState?.validate();

@@ -24,7 +24,8 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 /// It takes in required [groupIconUrl], [groupTitle] and [groupTotalMembers] parameters
 
 class SuggestedGroupCard extends StatelessWidget {
-  const SuggestedGroupCard({Key? key, required this.group, required this.route}) : super(key: key);
+  const SuggestedGroupCard({Key? key, required this.group, required this.route})
+      : super(key: key);
 
   final Group group;
   final String route;
@@ -113,7 +114,7 @@ class SuggestedGroupCard extends StatelessWidget {
                 GroupsViewModel.fromStore(store),
             builder: (BuildContext context, GroupsViewModel vm) {
               return vm.wait.isWaitingFor(group.id)
-                  ? const SILPlatformLoader()
+                  ? const PlatformLoader()
                   : RawMaterialButton(
                       key: joinSuggestedGroupButtonKey,
                       splashColor: AppColors.secondaryColor.withOpacity(0.2),
@@ -139,7 +140,9 @@ class SuggestedGroupCard extends StatelessWidget {
                                 ..hideCurrentSnackBar()
                                 ..showSnackBar(
                                   SnackBar(
-                                    content: Text(getErrorMessage(addingToGroupString)),
+                                    content: Text(
+                                      getErrorMessage(addingToGroupString),
+                                    ),
                                     duration: const Duration(
                                       seconds: kShortSnackBarDuration,
                                     ),

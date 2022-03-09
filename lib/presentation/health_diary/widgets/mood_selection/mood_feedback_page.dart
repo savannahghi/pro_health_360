@@ -245,7 +245,7 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                         height: 48,
                         child: vm.appState.wait!
                                 .isWaitingFor(createHealthDiaryFlag)
-                            ? const SILPlatformLoader(
+                            ? const PlatformLoader(
                                 color: AppColors.secondaryColor,
                               )
                             : MyAfyaHubPrimaryButton(

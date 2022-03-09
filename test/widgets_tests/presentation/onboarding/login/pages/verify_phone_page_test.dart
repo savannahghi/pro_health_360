@@ -150,7 +150,7 @@ void main() {
       store.dispatch(WaitAction<AppState>.add(sendOTPFlag));
       await tester.pump();
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
       store.dispatch(WaitAction<AppState>.remove(sendOTPFlag));
     });
 
@@ -185,7 +185,7 @@ void main() {
       store.dispatch(WaitAction<AppState>.add(verifyOTP));
       await tester.pump();
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
       expect(find.text(verifyCode), findsOneWidget);
     });
 

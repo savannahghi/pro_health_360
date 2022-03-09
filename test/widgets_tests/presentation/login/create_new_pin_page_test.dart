@@ -18,7 +18,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
-import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -197,7 +197,7 @@ void main() {
       expect(find.text(noInternetConnection), findsOneWidget);
     });
 
-    testWidgets('should render SILPlatformLoader', (WidgetTester tester) async {
+    testWidgets('should render PlatformLoader', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -215,7 +215,7 @@ void main() {
       await tester.pumpAndSettle();
       store.dispatch(WaitAction<AppState>.add(createPinFlag));
       await tester.pump(const Duration(seconds: 2));
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

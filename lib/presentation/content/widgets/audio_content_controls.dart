@@ -32,7 +32,7 @@ class AudioContentControls extends StatelessWidget {
             ),
             width: 50.0,
             height: 50.0,
-            child: const SILPlatformLoader(
+            child: const PlatformLoader(
               color: Colors.white,
             ),
           );

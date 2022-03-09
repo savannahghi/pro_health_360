@@ -17,7 +17,6 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
@@ -151,13 +150,11 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
-
-        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
 
@@ -255,7 +252,7 @@ void main() {
         store.dispatch(WaitAction<AppState>.add(fetchRecentContentFlag));
         await tester.pump();
 
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
+        expect(find.byType(PlatformLoader), findsOneWidget);
       });
     });
   });

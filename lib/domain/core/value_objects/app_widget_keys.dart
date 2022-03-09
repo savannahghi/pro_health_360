@@ -19,8 +19,6 @@ const Key tertiaryBottomSheetButtonKey = Key('tertiary_bottom_sheet_button');
 
 const Key appBarUserKey = Key('app_bar_user_key');
 
-const Key genericNoDataButtonKey = Key('generic_no_data_button_key');
-
 // homepage content keys
 const Key homepageContentKey = Key('home_page_content_scaffold');
 const Key moodFeedbackGestureDetectorKey =

@@ -308,7 +308,7 @@ void main() {
       store.dispatch(WaitAction<AppState>.add(fetchBookmarkStatusFlag));
       await tester.pump();
 
-      expect(find.byType(SILPlatformLoader), findsNWidgets(2));
+      expect(find.byType(PlatformLoader), findsNWidgets(2));
     });
 
     testWidgets('should show gallery image if present',

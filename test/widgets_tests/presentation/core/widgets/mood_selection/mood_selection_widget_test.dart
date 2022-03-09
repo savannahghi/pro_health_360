@@ -135,7 +135,7 @@ void main() {
         widget: const MoodChecker(),
       );
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

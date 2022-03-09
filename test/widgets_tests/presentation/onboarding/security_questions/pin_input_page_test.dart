@@ -281,7 +281,7 @@ void main() {
         store.dispatch(WaitAction<AppState>.add(verifyPINFlag));
         await tester.pump();
 
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
+        expect(find.byType(PlatformLoader), findsOneWidget);
       });
     });
     testWidgets(

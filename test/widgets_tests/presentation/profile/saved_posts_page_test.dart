@@ -20,7 +20,6 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
@@ -60,7 +59,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: SavedPostPage(),
+          widget: const SavedPostPage(),
         );
         await tester.pumpAndSettle();
 
@@ -93,7 +92,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: SavedPostPage(),
+          widget: const SavedPostPage(),
         );
 
         await tester.pumpAndSettle();
@@ -111,7 +110,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: SavedPostPage(),
+          widget: const SavedPostPage(),
         );
 
         await tester.pumpAndSettle();
@@ -146,7 +145,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: SavedPostPage(),
+          widget: const SavedPostPage(),
         );
 
         await tester.pumpAndSettle();
@@ -181,12 +180,12 @@ void main() {
           tester: tester,
           store: store,
           client: client,
-          widget: SavedPostPage(),
+          widget: const SavedPostPage(),
         );
         store.dispatch(WaitAction<AppState>.add(fetchSavedContentFlag));
         await tester.pump();
 
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
+        expect(find.byType(PlatformLoader), findsOneWidget);
       });
     });
 
@@ -207,7 +206,7 @@ void main() {
           tester: tester,
           store: store,
           client: client,
-          widget: SavedPostPage(),
+          widget: const SavedPostPage(),
         );
 
         await tester.pumpAndSettle();
@@ -241,18 +240,16 @@ void main() {
           tester: tester,
           store: store,
           client: client,
-          widget: SavedPostPage(),
+          widget: const SavedPostPage(),
         );
 
         await tester.pump();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
-
-        await tester.ensureVisible(find.byKey(genericNoDataButtonKey));
-        await tester.tap(find.byKey(genericNoDataButtonKey));
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericNoData), findsOneWidget);
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
   });

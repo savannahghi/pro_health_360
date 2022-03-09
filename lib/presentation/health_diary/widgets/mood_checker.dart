@@ -45,7 +45,7 @@ class _MoodCheckerState extends State<MoodChecker> {
           return Container(
             height: 300,
             padding: const EdgeInsets.all(20),
-            child: const SILPlatformLoader(),
+            child: const PlatformLoader(),
           );
         } else {
           return canRecordMood

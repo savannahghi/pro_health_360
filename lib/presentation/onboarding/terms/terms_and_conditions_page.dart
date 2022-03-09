@@ -101,7 +101,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                       ? Container(
                                           height: 300,
                                           padding: const EdgeInsets.all(20),
-                                          child: const SILPlatformLoader(),
+                                          child: const PlatformLoader(),
                                         )
                                       : SizedBox(
                                           width: double.infinity,
@@ -146,7 +146,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     height: 48,
                     width: double.infinity,
                     child: vm.appState.wait!.isWaitingFor(acceptTermsFlag)
-                        ? const SILPlatformLoader(
+                        ? const PlatformLoader(
                             color: AppColors.secondaryColor,
                           )
                         : MyAfyaHubPrimaryButton(

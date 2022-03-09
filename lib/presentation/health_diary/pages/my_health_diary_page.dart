@@ -22,13 +22,14 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class MyHealthDiaryPage extends StatefulWidget {
+  const MyHealthDiaryPage();
+
   @override
   State<MyHealthDiaryPage> createState() => _MyHealthDiaryPageState();
 }
@@ -74,7 +75,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                 return Container(
                   height: 300,
                   padding: const EdgeInsets.all(20),
-                  child: const SILPlatformLoader(),
+                  child: const PlatformLoader(),
                 );
               } else if (vm.timeoutFetchingContent ?? false) {
                 return const GenericTimeoutWidget(
@@ -82,17 +83,17 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                   action: 'fetching your diary',
                 );
               } else if (vm.errorFetchingContent ?? false) {
-                return GenericNoData(
-                  key: helpNoDataWidgetKey,
-                  type: GenericNoDataTypes.ErrorInData,
-                  actionText: actionTextGenericNoData,
+                return GenericErrorWidget(
+                  actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {
                     StoreProvider.dispatch<AppState>(
                       context,
                       FetchHealthDiaryAction(context: context),
                     );
                   },
-                  messageBody: healthDiaryErrorDetail,
+                  messageBody: const <TextSpan>[
+                    TextSpan(text: healthDiaryErrorDetail)
+                  ],
                 );
               } else {
                 final List<HealthDiaryEntry?>? entries = vm.diaryEntries;

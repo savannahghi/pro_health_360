@@ -26,6 +26,6 @@ class _HandleDeepLinkState extends State<HandleDeepLink> {
 
   @override
   Widget build(BuildContext context) {
-    return const SILPlatformLoader();
+    return const PlatformLoader();
   }
 }

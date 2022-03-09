@@ -51,7 +51,7 @@ class _InvitedGroupsPageState extends State<InvitedGroupsPage> {
               return Container(
                 height: 300,
                 padding: const EdgeInsets.all(20),
-                child: const SILPlatformLoader(),
+                child: const PlatformLoader(),
               );
             } else {
               if (vm.appState.clientState!.communitiesState!.invitedCommunities!

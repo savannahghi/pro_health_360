@@ -15,7 +15,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -61,7 +60,7 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
           return Container(
             height: 200,
             padding: const EdgeInsets.all(20),
-            child: const SILPlatformLoader(),
+            child: const PlatformLoader(),
           );
         }
 
@@ -85,10 +84,8 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
             );
           }
 
-          return GenericNoData(
-            key: helpNoDataWidgetKey,
-            type: GenericNoDataTypes.ErrorInData,
-            actionText: actionTextGenericNoData,
+          return GenericErrorWidget(
+            actionKey: helpNoDataWidgetKey,
             recoverCallback: () async {
               await genericFetchFunction(
                 streamController: _streamController,
@@ -98,7 +95,9 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
                 variables: <String, dynamic>{},
               );
             },
-            messageBody: messageBodyGenericNoData,
+            messageBody: const <TextSpan>[
+              TextSpan(text: messageBodyGenericErrorWidget)
+            ],
           );
         }
 

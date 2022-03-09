@@ -81,7 +81,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                         ? Container(
                             height: 300,
                             padding: const EdgeInsets.all(20),
-                            child: const SILPlatformLoader(),
+                            child: const PlatformLoader(),
                           )
                         : ListView.builder(
                             itemCount: securityQuestions.length,

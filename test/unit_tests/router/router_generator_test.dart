@@ -32,7 +32,7 @@ import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_pa
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
-import 'package:myafyahub/presentation/onboarding/set_nickname/pages/congratulations_page.dart';
+import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';

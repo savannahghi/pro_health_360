@@ -17,7 +17,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
 import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -66,7 +65,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
           return Container(
             height: 300,
             padding: const EdgeInsets.all(20),
-            child: const SILPlatformLoader(),
+            child: const PlatformLoader(),
           );
         } else if (vm.recentContentState?.timeoutFetchingContent ?? false) {
           return const GenericTimeoutWidget(
@@ -74,17 +73,17 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
             action: 'fetching your recent content',
           );
         } else if (vm.recentContentState?.errorFetchingContent ?? false) {
-          return GenericNoData(
-            key: helpNoDataWidgetKey,
-            type: GenericNoDataTypes.ErrorInData,
-            actionText: actionTextGenericNoData,
+          return GenericErrorWidget(
+            actionKey: helpNoDataWidgetKey,
             recoverCallback: () async {
               StoreProvider.dispatch<AppState>(
                 context,
                 FetchRecentContentAction(context: context),
               );
             },
-            messageBody: messageBodyGenericNoData,
+            messageBody: const <TextSpan>[
+              TextSpan(text: messageBodyGenericErrorWidget)
+            ],
           );
         } else {
           final List<Content?>? recentContent =

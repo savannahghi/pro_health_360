@@ -89,7 +89,7 @@ class _PreLoadAppState extends State<PreLoadApp> {
           return MaterialApp(
             theme: AppTheme.getAppTheme(),
             home: const Scaffold(
-              body: Center(child: SILPlatformLoader()),
+              body: Center(child: PlatformLoader()),
             ),
             localizationsDelegates: localizationDelegates,
             supportedLocales: locales,

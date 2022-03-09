@@ -55,7 +55,7 @@ void main() {
       );
       await tester.pump();
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
 
     testWidgets('shows reply icon', (WidgetTester tester) async {

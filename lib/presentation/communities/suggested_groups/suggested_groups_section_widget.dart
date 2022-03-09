@@ -57,7 +57,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
                 padding: EdgeInsets.only(
                   top: 50,
                 ),
-                child: SILPlatformLoader(),
+                child: PlatformLoader(),
               )
             : vm.recommendedGroups != null && vm.recommendedGroups!.isNotEmpty
                 ? Container(
@@ -93,7 +93,10 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
                                       Group.initial();
                               return Padding(
                                 padding: const EdgeInsets.only(left: 10),
-                                child: SuggestedGroupCard(group: currentGroup, route: AppRoutes.communityListPage,),
+                                child: SuggestedGroupCard(
+                                  group: currentGroup,
+                                  route: AppRoutes.communityListPage,
+                                ),
                               );
                             },
                           ),

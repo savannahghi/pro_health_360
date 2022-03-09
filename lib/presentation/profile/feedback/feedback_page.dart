@@ -46,7 +46,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: const CustomAppBar(title: feedbackString),
           body: (vm.wait!.isWaitingFor(sendFeedbackFlag))
-              ? const SILPlatformLoader()
+              ? const PlatformLoader()
               : SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),

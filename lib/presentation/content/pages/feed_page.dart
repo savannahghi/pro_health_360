@@ -22,7 +22,6 @@ import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget
 import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
@@ -78,7 +77,7 @@ class _FeedPageState extends State<FeedPage> {
                 return Container(
                   height: 300,
                   padding: const EdgeInsets.all(20),
-                  child: const SILPlatformLoader(),
+                  child: const PlatformLoader(),
                 );
               } else if (vm.feedContentState?.timeoutFetchingContent ?? false) {
                 return const GenericTimeoutWidget(
@@ -86,17 +85,17 @@ class _FeedPageState extends State<FeedPage> {
                   action: 'fetching your feed',
                 );
               } else if (vm.feedContentState?.errorFetchingContent ?? false) {
-                return GenericNoData(
-                  key: helpNoDataWidgetKey,
-                  type: GenericNoDataTypes.ErrorInData,
-                  actionText: actionTextGenericNoData,
+                return GenericErrorWidget(
+                  actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {
                     StoreProvider.dispatch<AppState>(
                       context,
                       FetchContentAction(context: context),
                     );
                   },
-                  messageBody: messageBodyGenericNoData,
+                  messageBody: const <TextSpan>[
+                    TextSpan(text: messageBodyGenericErrorWidget)
+                  ],
                 );
               } else {
                 final List<Content?>? feedItems =

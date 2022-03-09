@@ -74,7 +74,7 @@ void main() {
       store.dispatch(WaitAction<AppState>.add(fetchClinicInformationFlag));
       await tester.pump();
 
-      expect(find.byType(SILPlatformLoader), findsOneWidget);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

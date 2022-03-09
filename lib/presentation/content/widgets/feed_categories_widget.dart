@@ -63,7 +63,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
             return Container(
               height: 50,
               padding: const EdgeInsets.all(5),
-              child: const SILPlatformLoader(),
+              child: const PlatformLoader(),
             );
           }
 

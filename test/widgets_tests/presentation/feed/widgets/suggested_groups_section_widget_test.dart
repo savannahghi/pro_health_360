@@ -44,8 +44,11 @@ void main() {
             201,
           ),
         );
-        store.dispatch(UpdateGroupStateAction(
-            recommendedGroups: <Group>[Group.initial()],),);
+        store.dispatch(
+          UpdateGroupStateAction(
+            recommendedGroups: <Group>[Group.initial()],
+          ),
+        );
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -83,7 +86,7 @@ void main() {
           widget: const SuggestedGroupsSection(),
         );
 
-        expect(find.byType(SILPlatformLoader), findsOneWidget);
+        expect(find.byType(PlatformLoader), findsOneWidget);
       });
     });
   });

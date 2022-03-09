@@ -175,7 +175,7 @@ class _PINInputPageState extends State<PINInputPage> {
                         const SizedBox(
                           width: 50,
                           height: 50,
-                          child: SILPlatformLoader(),
+                          child: PlatformLoader(),
                         )
                       else
                         Padding(

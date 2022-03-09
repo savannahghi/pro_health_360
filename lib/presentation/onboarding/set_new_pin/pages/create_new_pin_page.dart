@@ -123,7 +123,7 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                 ),
                 veryLargeVerticalSizedBox,
                 if (vm.appState.wait!.isWaitingFor(createPinFlag)) ...<Widget>{
-                  const SILPlatformLoader(
+                  const PlatformLoader(
                     color: AppColors.secondaryColor,
                   )
                 },

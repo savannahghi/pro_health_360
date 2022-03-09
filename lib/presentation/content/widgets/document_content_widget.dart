@@ -45,7 +45,7 @@ class _DocumentContentPageState extends State<DocumentContentPage> {
     return Scaffold(
       appBar: CustomAppBar(title: widget.pdfTitle),
       body: _isLoading
-          ? const Center(child: SILPlatformLoader())
+          ? const Center(child: PlatformLoader())
           : PDFView(
               filePath: _pdfDocument.path,
               autoSpacing: false,

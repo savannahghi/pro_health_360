@@ -181,7 +181,7 @@ class _EditInformationPageState extends State<EditInformationPage> {
                     width: double.infinity,
                     height: 52,
                     child: (vm.appState.wait!.isWaitingFor(editInformationFlag))
-                        ? const SILPlatformLoader()
+                        ? const PlatformLoader()
                         : MyAfyaHubPrimaryButton(
                             buttonKey: editInfoSaveBtnKey,
                             onPressed: formIsEdited

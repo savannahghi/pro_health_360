@@ -19,7 +19,6 @@ import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dar
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/content/widgets/mini_content_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_no_data_widget.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
@@ -161,7 +160,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                         return Container(
                                           height: 200,
                                           padding: const EdgeInsets.all(20),
-                                          child: const SILPlatformLoader(),
+                                          child: const PlatformLoader(),
                                         );
                                       }
 
@@ -173,12 +172,12 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                           hint:
                                               'Error fetching welcome content',
                                         );
-                                        return GenericNoData(
-                                          key: helpNoDataWidgetKey,
-                                          type: GenericNoDataTypes.ErrorInData,
-                                          actionText: actionTextGenericNoData,
-                                          recoverCallback: () async {
-                                            await genericFetchFunction(
+                                        return GenericErrorWidget(
+                                          actionKey: const Key(
+                                            'error_fetching_content',
+                                          ),
+                                          recoverCallback: () {
+                                            genericFetchFunction(
                                               streamController:
                                                   _streamController,
                                               context: context,
@@ -190,9 +189,15 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                               },
                                             );
                                           },
-                                          messageBody: messageBodyGenericNoData,
+                                          messageBody: const <TextSpan>[
+                                            TextSpan(
+                                              text:
+                                                  messageBodyGenericErrorWidget,
+                                            )
+                                          ],
                                         );
                                       }
+
                                       if (snapshot.hasData) {
                                         final FeedContent welcomeContent =
                                             FeedContent.fromJson(
@@ -264,7 +269,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                             ),
                             if (waitingForFlag) ...<Widget>{
                               veryLargeVerticalSizedBox,
-                              const SILPlatformLoader(
+                              const PlatformLoader(
                                 color: AppColors.secondaryColor,
                               ),
                             },
@@ -282,7 +287,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
             width: double.infinity,
             height: 52,
             child: (vm.appState.wait!.isWaitingFor(setNickNameFlag))
-                ? const SILPlatformLoader()
+                ? const PlatformLoader()
                 : MyAfyaHubPrimaryButton(
                     buttonKey: continueKey,
                     onPressed: () async {
