@@ -15,8 +15,6 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-// Package imports:
-import 'package:shared_themes/spaces.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   const ProfileFaqsPage();
@@ -54,18 +52,12 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
       body: SizedBox(
         child: SafeArea(
           child: SingleChildScrollView(
-            child: Padding(
+            padding: EdgeInsets.zero,
+            child: Container(
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    frequentlyAskedQuestions,
-                    style: normalSize32Text(
-                      Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  mediumVerticalSizedBox,
                   StoreConnector<AppState, FAQsContentViewModel>(
                     converter: (Store<AppState> store) =>
                         FAQsContentViewModel.fromStore(store.state),
