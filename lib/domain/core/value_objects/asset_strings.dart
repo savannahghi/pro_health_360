@@ -162,3 +162,5 @@ const String groupInvitesImage = 'assets/images/group_invites.svg';
 const String acceptInvitesImage = 'assets/images/accept_group_invite.svg';
 const String noInvitesImage = 'assets/images/no_invites.svg';
 const String groupInfoImage = 'assets/images/group_info.svg';
+const String contentIconSvgPath = 'assets/icons/content_icon.svg';
+const String contentImagePlaceHolderSvgPath = 'assets/images/content_image_placeholder.png';

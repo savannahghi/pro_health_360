@@ -98,6 +98,23 @@ void main() {
 
       expect(find.byType(GalleryImageWidget), findsOneWidget);
     });
+    testWidgets('should show placeholder if hero image is not present',
+        (WidgetTester tester) async {
+      final Content content = Content(
+        heroImage: HeroImage(url: ''),
+        galleryImages: <GalleryImage>[GalleryImage.fromJson(mockGalleryImage)],
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: ContentItem(contentDetails: content),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(contentHeroImagePlaceHolder), findsOneWidget);
+    });
 
     testWidgets('should show AudioContent if present',
         (WidgetTester tester) async {

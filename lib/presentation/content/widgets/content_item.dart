@@ -97,7 +97,7 @@ class ContentItem extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
-                      if (hasHeroImage)
+                      if (hasHeroImage) ...<Widget>{
                         LeadingGraphicWidget(
                           contentDetails: contentDetails,
                           heroImage: Row(
@@ -112,7 +112,48 @@ class ContentItem extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
+                        )
+                      } else ...<Widget>{
+                        Stack(
+                          key: contentHeroImagePlaceHolder,
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                  image: AssetImage(
+                                    contentImagePlaceHolderSvgPath,
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.3),
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                  topLeft: Radius.circular(10),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.6),
+                                  borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Center(
+                              child: SvgPicture.asset(
+                                contentIconSvgPath,
+                                color: AppColors.selectedBottomNavColor,
+                              ),
+                            )
+                          ],
+                        )
+                      },
                       // A video playback icon if there is a video
                       if (isVideo)
                         SizedBox(
