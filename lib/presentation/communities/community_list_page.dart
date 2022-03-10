@@ -8,7 +8,7 @@ import 'package:myafyahub/application/redux/actions/communities/connect_get_stre
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/communities/community_list_view_model.dart';
+import 'package:myafyahub/presentation/communities/view_models/community_list_view_model.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';

@@ -406,6 +406,7 @@ const String emptyConversationTitle =
     'Oops! We are unable to load your conversations';
 const String emptyConversationBody =
     'Relax and enjoy a cup of coffee as we get your conversations up and running.';
+const String noMembersText = 'No members';
 
 // Consent page
 const String viewTermsText = 'View terms and conditions';
@@ -818,6 +819,3 @@ const String groupMembersText = 'Group Members';
 const String inviteMembers = 'Invite Members';
 const String noTitleText = 'No title';
 const String nothingYetText = 'nothing yet';
-String getGroupMembersNumber(int numberOfMembers) {
-  return '$numberOfMembers members';
-}

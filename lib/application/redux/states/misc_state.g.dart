@@ -24,6 +24,10 @@ _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
       groupState: json['groupState'] == null
           ? null
           : GroupState.fromJson(json['groupState'] as Map<String, dynamic>),
+      channelMembersState: json['channelMembersState'] == null
+          ? null
+          : ChannelMembersState.fromJson(
+              json['channelMembersState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
@@ -38,4 +42,5 @@ Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
       'pinVerified': instance.pinVerified,
       'resumeTimer': instance.resumeTimer,
       'groupState': instance.groupState,
+      'channelMembersState': instance.channelMembersState,
     };

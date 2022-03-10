@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/communities/group_info/pages/group_info_page.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -34,10 +34,16 @@ class ChannelPage extends StatelessWidget {
         ),
         actions: <Widget>[
           GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(
-              AppRoutes.groupInfoPage,
-              arguments: StreamChannel.of(context).channel.id,
-            ),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<Route<dynamic>>(
+                  builder: (_) => StreamChannel(
+                    channel: channel,
+                    child: const GroupInfoPage(),
+                  ),
+                ),
+              );
+            },
             behavior: HitTestBehavior.opaque,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
