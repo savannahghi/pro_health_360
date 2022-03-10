@@ -1,5 +1,3 @@
-// Dart imports:
-
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +23,6 @@ import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
-
-// Package imports:
 
 class FeedPage extends StatefulWidget {
   const FeedPage();
@@ -128,7 +124,7 @@ class _FeedPageState extends State<FeedPage> {
                               left: 12,
                             ),
                             child: SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.55,
+                              height: MediaQuery.of(context).size.height * 0.38,
                               child: ContentItem(
                                 contentDetails: currentFeedItem,
                                 contentDisplayedType: ContentDisplayedType.FEED,
