@@ -131,7 +131,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                     ),
                   ),
                   SizedBox(
-                    height: 280,
+                    height: MediaQuery.of(context).size.height * 0.304,
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
