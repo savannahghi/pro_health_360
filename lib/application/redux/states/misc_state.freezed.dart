@@ -32,7 +32,8 @@ class _$MiscStateTearOff {
       String? maxTryTime,
       bool? pinVerified,
       bool? resumeTimer,
-      GroupState? groupState}) {
+      GroupState? groupState,
+      ChannelMembersState? channelMembersState}) {
     return _MiscState(
       initialRoute: initialRoute,
       userPin: userPin,
@@ -44,6 +45,7 @@ class _$MiscStateTearOff {
       pinVerified: pinVerified,
       resumeTimer: resumeTimer,
       groupState: groupState,
+      channelMembersState: channelMembersState,
     );
   }
 
@@ -68,6 +70,8 @@ mixin _$MiscState {
   bool? get pinVerified => throw _privateConstructorUsedError;
   bool? get resumeTimer => throw _privateConstructorUsedError;
   GroupState? get groupState => throw _privateConstructorUsedError;
+  ChannelMembersState? get channelMembersState =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -89,10 +93,12 @@ abstract class $MiscStateCopyWith<$Res> {
       String? maxTryTime,
       bool? pinVerified,
       bool? resumeTimer,
-      GroupState? groupState});
+      GroupState? groupState,
+      ChannelMembersState? channelMembersState});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   $GroupStateCopyWith<$Res>? get groupState;
+  $ChannelMembersStateCopyWith<$Res>? get channelMembersState;
 }
 
 /// @nodoc
@@ -115,6 +121,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? pinVerified = freezed,
     Object? resumeTimer = freezed,
     Object? groupState = freezed,
+    Object? channelMembersState = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -157,6 +164,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.groupState
           : groupState // ignore: cast_nullable_to_non_nullable
               as GroupState?,
+      channelMembersState: channelMembersState == freezed
+          ? _value.channelMembersState
+          : channelMembersState // ignore: cast_nullable_to_non_nullable
+              as ChannelMembersState?,
     ));
   }
 
@@ -182,6 +193,18 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
       return _then(_value.copyWith(groupState: value));
     });
   }
+
+  @override
+  $ChannelMembersStateCopyWith<$Res>? get channelMembersState {
+    if (_value.channelMembersState == null) {
+      return null;
+    }
+
+    return $ChannelMembersStateCopyWith<$Res>(_value.channelMembersState!,
+        (value) {
+      return _then(_value.copyWith(channelMembersState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -200,12 +223,15 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       String? maxTryTime,
       bool? pinVerified,
       bool? resumeTimer,
-      GroupState? groupState});
+      GroupState? groupState,
+      ChannelMembersState? channelMembersState});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   @override
   $GroupStateCopyWith<$Res>? get groupState;
+  @override
+  $ChannelMembersStateCopyWith<$Res>? get channelMembersState;
 }
 
 /// @nodoc
@@ -229,6 +255,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? pinVerified = freezed,
     Object? resumeTimer = freezed,
     Object? groupState = freezed,
+    Object? channelMembersState = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -271,6 +298,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.groupState
           : groupState // ignore: cast_nullable_to_non_nullable
               as GroupState?,
+      channelMembersState: channelMembersState == freezed
+          ? _value.channelMembersState
+          : channelMembersState // ignore: cast_nullable_to_non_nullable
+              as ChannelMembersState?,
     ));
   }
 }
@@ -288,7 +319,8 @@ class _$_MiscState implements _MiscState {
       this.maxTryTime,
       this.pinVerified,
       this.resumeTimer,
-      this.groupState});
+      this.groupState,
+      this.channelMembersState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -313,10 +345,12 @@ class _$_MiscState implements _MiscState {
   final bool? resumeTimer;
   @override
   final GroupState? groupState;
+  @override
+  final ChannelMembersState? channelMembersState;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState)';
   }
 
   @override
@@ -342,7 +376,9 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.resumeTimer, resumeTimer) &&
             const DeepCollectionEquality()
-                .equals(other.groupState, groupState));
+                .equals(other.groupState, groupState) &&
+            const DeepCollectionEquality()
+                .equals(other.channelMembersState, channelMembersState));
   }
 
   @override
@@ -357,7 +393,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(maxTryTime),
       const DeepCollectionEquality().hash(pinVerified),
       const DeepCollectionEquality().hash(resumeTimer),
-      const DeepCollectionEquality().hash(groupState));
+      const DeepCollectionEquality().hash(groupState),
+      const DeepCollectionEquality().hash(channelMembersState));
 
   @JsonKey(ignore: true)
   @override
@@ -381,7 +418,8 @@ abstract class _MiscState implements MiscState {
       String? maxTryTime,
       bool? pinVerified,
       bool? resumeTimer,
-      GroupState? groupState}) = _$_MiscState;
+      GroupState? groupState,
+      ChannelMembersState? channelMembersState}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -406,6 +444,8 @@ abstract class _MiscState implements MiscState {
   bool? get resumeTimer;
   @override
   GroupState? get groupState;
+  @override
+  ChannelMembersState? get channelMembersState;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

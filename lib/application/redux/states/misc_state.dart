@@ -6,6 +6,7 @@ import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'communities/channel_members_state.dart';
 
 part 'misc_state.freezed.dart';
 part 'misc_state.g.dart';
@@ -23,6 +24,7 @@ class MiscState with _$MiscState {
     bool? pinVerified,
     bool? resumeTimer,
     GroupState? groupState,
+    ChannelMembersState? channelMembersState,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -39,5 +41,6 @@ class MiscState with _$MiscState {
         pinVerified: false,
         resumeTimer: false,
         groupState: GroupState.initial(),
+        channelMembersState: ChannelMembersState(),
       );
 }
