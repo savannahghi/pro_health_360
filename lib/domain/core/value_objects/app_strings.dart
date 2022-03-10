@@ -818,3 +818,8 @@ const String groupMembersText = 'Group Members';
 const String inviteMembers = 'Invite Members';
 const String noTitleText = 'No title';
 const String nothingYetText = 'nothing yet';
+
+// share diary entry
+const String shareDiaryEntry = 'Share diary entry';
+const String shareDiaryEntryTitle =
+    'Please confirm that you want to share your diary entry below with your facility';

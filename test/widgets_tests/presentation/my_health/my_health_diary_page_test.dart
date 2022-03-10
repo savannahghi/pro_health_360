@@ -35,7 +35,7 @@ void main() {
     store = Store<AppState>(initialState: AppState.initial());
   });
 
-  group('const MyHealthDiaryPage', () {
+  group('MyHealthDiaryPage', () {
     testWidgets('should display 2 diary entries correctly',
         (WidgetTester tester) async {
       final MockGraphQlClient client = MockGraphQlClient();
@@ -52,6 +52,30 @@ void main() {
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
       expect(find.text('I am healthy'), findsOneWidget);
+    });
+
+    testWidgets('should share diary entry correctly',
+        (WidgetTester tester) async {
+      final MockGraphQlClient client = MockGraphQlClient();
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: const MyHealthDiaryPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.text('I am healthy'), findsOneWidget);
+      expect(find.byKey(shareDiaryEntryIconButtonKey), findsNWidgets(2));
+
+      await tester.tap(find.byKey(shareDiaryEntryIconButtonKey).first);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Dialog), findsOneWidget);
     });
 
     testWidgets('should display 2 diary entries and refresh to get new entries',

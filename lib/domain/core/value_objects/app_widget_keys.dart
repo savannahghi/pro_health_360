@@ -286,3 +286,8 @@ const Key questionTenNearlyEverydayKey =
     Key('question_ten_nearly_everyday_key');
 // submit health assessment
 const Key submitHealthAssessmentKey = Key('submit_health_assessment_key');
+
+const Key cancelShareDiaryEntryKey = Key('cancel_share_diary_entry_key');
+const Key shareDiaryEntryKey = Key('share_diary_entry_key');
+const Key shareDiaryEntryIconButtonKey =
+    Key('share_diary_entry_icon_button_key');
