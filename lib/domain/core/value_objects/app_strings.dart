@@ -519,11 +519,10 @@ const String inApp = 'in app';
 
 // Profile FAQs
 const String faqsText = 'FAQs';
-const String frequentlyAskedQuestions = 'Frequently asked questions';
-const String howDoIUpdateMyProfileText = 'How do i update my profile?';
+const String howDoIUpdateMyProfileText = 'How do I update my profile?';
 const String howDoICheckMyMedicalInfoText =
     'How do i check my medical information?';
-const String howDoIUpdateMyNicknameText = 'How do i update my nickname?';
+const String howDoIUpdateMyNicknameText = 'How do I update my nickname?';
 const String howDoIRescheduleAnAppointmentText =
     'How do reschedule an appointment?';
 
