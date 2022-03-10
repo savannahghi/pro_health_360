@@ -16,10 +16,7 @@ import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widge
 import 'package:shared_themes/spaces.dart';
 
 /// [ClinicInformationPage] is to display information of the clinic a client is registered to
-///
-/// It takes in required [contactNumber], [CHV], [treatmentBuddy], [age],
-/// and [keyProvider] parameters of type String
-///
+
 class ClinicInformationPage extends StatefulWidget {
   @override
   State<ClinicInformationPage> createState() => _ClinicInformationPageState();
@@ -58,33 +55,48 @@ class _ClinicInformationPageState extends State<ClinicInformationPage> {
                 child: const PlatformLoader(),
               );
             } else {
+              final String chvNameString =
+                  vm.appState.clientState?.chvUserName ?? chvName;
+              final String treatmentBuddyString =
+                  vm.appState.clientState?.treatmentBuddy ?? treatmentBuddy;
+
+              final String clinicNameString =
+                  vm.appState.clientState?.facilityName ?? clinicName;
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   mediumVerticalSizedBox,
-                  Text(
-                    clinicContactString,
-                    style: boldSize14Text(AppColors.secondaryColor),
-                  ),
+                  if (vm.appState.clientState?.facilityPhoneNumber != null &&
+                      vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                    Text(
+                      clinicContactString,
+                      style: boldSize14Text(AppColors.secondaryColor),
+                    ),
                   smallVerticalSizedBox,
-                  CallContactActionWidget(
-                    phoneNumber:
-                        vm.appState.clientState?.facilityPhoneNumber ?? '',
-                  ),
+                  if (vm.appState.clientState?.facilityPhoneNumber != null &&
+                      vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                    CallContactActionWidget(
+                      phoneNumber:
+                          vm.appState.clientState!.facilityPhoneNumber!,
+                    ),
                   size15VerticalSizedBox,
                   ClinicInformationItemWidget(
                     bodyText: chvString,
-                    titleText: vm.appState.clientState?.chvUserName ?? '',
+                    titleText: chvNameString.isEmpty ? chvName : chvNameString,
                   ),
                   size15VerticalSizedBox,
                   ClinicInformationItemWidget(
-                    bodyText: treatmentBuddyString,
-                    titleText: vm.appState.clientState?.treatmentBuddy ?? '',
+                    bodyText: treatmentBuddy,
+                    titleText: treatmentBuddyString.isEmpty
+                        ? treatmentBuddy
+                        : treatmentBuddyString,
                   ),
                   size15VerticalSizedBox,
                   ClinicInformationItemWidget(
                     bodyText: keyProvider,
-                    titleText: vm.appState.clientState?.facilityName ?? '',
+                    titleText: clinicNameString.isEmpty
+                        ? clinicName
+                        : clinicNameString,
                   ),
                 ],
               );
