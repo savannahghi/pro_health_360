@@ -434,8 +434,10 @@ const String hotlineNumberString = '0712345678';
 const String callString = 'Call';
 const String clinicContactString = 'Clinic contacts';
 const String chvString = 'CHV';
-const String treatmentBuddyString = 'Treatment buddy';
+const String treatmentBuddy = 'Treatment buddy';
 const String keyProviderString = 'Key provider';
+const String chvName = 'CHVName';
+const String clinicName = 'Clinic Name';
 
 // Page title strings
 const String myProfilePageTitle = 'My Profile';
@@ -531,7 +533,7 @@ const String tapToLearnMoreText = 'Tap to learn more';
 const String errorFetchingFAQsString = 'Error fetching FAQs';
 
 //savedPosts
-const String savedText = 'Saved';
+const String savedContentText = 'My saved content';
 const String savedVideoText = 'Saved Video';
 const String savedArticleText = 'Saved Article';
 const String feedHeaderListSavedVideo = 'How to keep yourself healthy always';
@@ -789,7 +791,7 @@ const String feedbackSubmissionSuccessfulText =
 const String feedbackSubmissionErrorText =
     'An error occurred sending your feedback, please try again later';
 // clinic information
-const String keyProvider = 'Name';
+const String keyProvider = 'Clinic Name';
 
 const String defaultStreamUserID = 'myCareHub';
 const String kindlyLogOutText = 'Kindly log out and back in to continue';

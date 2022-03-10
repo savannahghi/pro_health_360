@@ -52,7 +52,7 @@ class _SavedPostPageState extends State<SavedPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: savedText),
+      appBar: const CustomAppBar(title: savedContentText),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         children: <Widget>[

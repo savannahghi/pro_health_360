@@ -304,11 +304,6 @@ bool confirmPinValidator(String pin, String confirmPin) {
 
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
-    iconAssetPath: communityIconSvgPath,
-    route: AppRoutes.groupInvitesPage,
-    title: 'Conversations invites',
-  ),
-  UserProfileItemObj(
     iconAssetPath: profileIcon,
     route: AppRoutes.personalInfo,
     title: 'Personal information',
@@ -324,9 +319,14 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
     title: 'Clinic information',
   ),
   UserProfileItemObj(
+    iconAssetPath: communityIconSvgPath,
+    route: AppRoutes.groupInvitesPage,
+    title: 'Conversations invites',
+  ),
+  UserProfileItemObj(
     iconAssetPath: mySavedIcon,
     route: AppRoutes.savedPosts,
-    title: 'My Saved',
+    title: 'My saved content',
   ),
   UserProfileItemObj(
     iconAssetPath: faqsIcon,
