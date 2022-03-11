@@ -231,7 +231,9 @@ Widget humanizeDate({
   bool showYear = true,
 }) {
   if (loadedDate != UNKNOWN && loadedDate.isNotEmpty) {
-    final DateTime parsedDate = DateTime.tryParse(loadedDate) ?? DateTime.now();
+    final DateTime parsedDate =
+        DateTime.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
+
     final String postDayTime = DateFormat.jm().format(parsedDate);
     final String postDay = DateFormat.d().format(parsedDate);
     final String postMonth = DateFormat.MMM().format(parsedDate);

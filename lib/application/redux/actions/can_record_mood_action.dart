@@ -38,8 +38,8 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
 
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(canRecordMoodFlag));
     super.before();
+    dispatch(WaitAction<AppState>.add(canRecordMoodFlag));
   }
 
   @override
