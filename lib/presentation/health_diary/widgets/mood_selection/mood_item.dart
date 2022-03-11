@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -20,19 +21,24 @@ class MoodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        children: <Widget>[
-          SvgPicture.asset(
-            moodIcon,
-          ),
-          smallVerticalSizedBox,
-          Text(
-            moodText,
-            style: const TextStyle(color: white),
-          ),
-        ],
+    final double width = MediaQuery.of(context).size.width /5.8;
+    return SizedBox(
+      width: width,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
+          children: <Widget>[
+            SvgPicture.asset(
+              moodIcon,
+            ),
+            smallVerticalSizedBox,
+            Text(
+              moodText,
+              style: boldSize14Text(white).copyWith(),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }

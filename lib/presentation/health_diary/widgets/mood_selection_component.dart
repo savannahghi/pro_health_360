@@ -52,6 +52,7 @@ class MoodSelectionComponent extends StatelessWidget {
           mediumVerticalSizedBox,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               MoodItem(
                 key: excitedMoodKey,
