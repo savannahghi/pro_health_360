@@ -52,7 +52,7 @@ class _SavedPostPageState extends State<SavedPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: savedContentText),
+      appBar: const CustomAppBar(title: mySavedContentText),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         children: <Widget>[
@@ -81,8 +81,9 @@ class _SavedPostPageState extends State<SavedPostPage> {
                       FetchSavedContentAction(context: context),
                     );
                   },
+                  messageTitle: savedContentErrorTitleText,
                   messageBody: const <TextSpan>[
-                    TextSpan(text: messageBodyGenericErrorWidget)
+                    TextSpan(text: savedContentErrorBodyText)
                   ],
                 );
               } else {
