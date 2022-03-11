@@ -7,14 +7,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/share_diary_entry_dialog.dart';
 import 'package:shared_themes/spaces.dart';
 
 class HealthDiaryEntryWidget extends StatelessWidget {
-  const HealthDiaryEntryWidget({Key? key, required this.diaryEntry})
-      : super(key: key);
+  const HealthDiaryEntryWidget({
+    Key? key,
+    required this.diaryEntry,
+    this.isDialog = false,
+  }) : super(key: key);
 
   final HealthDiaryEntry diaryEntry;
+  final bool isDialog;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +35,18 @@ class HealthDiaryEntryWidget extends StatelessWidget {
     final MoodItemData moodItemData = getMoodColor(mood);
 
     return Padding(
-      padding: const EdgeInsets.only(top: 5, left: 8, right: 8),
+      padding: isDialog
+          ? EdgeInsets.zero
+          : const EdgeInsets.only(top: 5, left: 8, right: 8),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        padding: isDialog
+            ? const EdgeInsets.symmetric(vertical: 6)
+            : const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -46,7 +56,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
               ),
               child: SvgPicture.asset(
                 moodItemData.svgIconUrl,
-                height: 32,
+                height: isDialog ? 24 : 32,
                 color: moodItemData.color,
               ),
             ),
@@ -72,6 +82,25 @@ class HealthDiaryEntryWidget extends StatelessWidget {
                 ],
               ),
             ),
+            if (!isDialog)
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ShareDiaryEntryDialog(diaryEntry: diaryEntry);
+                    },
+                  );
+                },
+                key: shareDiaryEntryIconButtonKey,
+                behavior: HitTestBehavior.opaque,
+                child: SvgPicture.asset(
+                  shareIconUrl,
+                  width: 20,
+                  height: 20,
+                  color: AppColors.blackColor,
+                ),
+              ),
           ],
         ),
       ),
