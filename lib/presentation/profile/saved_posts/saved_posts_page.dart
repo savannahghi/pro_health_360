@@ -113,6 +113,7 @@ class _SavedPostPageState extends State<SavedPostPage> {
                               left: 12,
                             ),
                             child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.38,
                               child: ContentItem(
                                 contentDetails: currentSavedItem,
                                 contentDisplayedType:

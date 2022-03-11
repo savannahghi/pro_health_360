@@ -252,6 +252,7 @@ query getUserBookmarkedContent($userID: String!){
         url
         title
         type
+        duration
         width
         height
         thumbnail
