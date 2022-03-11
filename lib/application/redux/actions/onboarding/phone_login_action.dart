@@ -4,29 +4,24 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
-// Project imports:
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend
 ///
@@ -35,31 +30,31 @@ import 'package:myafyahub/presentation/router/routes.dart';
 /// should initiate phone login process
 class PhoneLoginAction extends ReduxAction<AppState> {
   PhoneLoginAction({
-    required this.context,
-    required this.flag,
-    required this.dateTimeParser,
+    required this.httpClient,
+    required this.loginEndpoint,
+    this.errorCallback,
   });
 
-  final BuildContext context;
-  final String flag;
-  final DateTimeParser dateTimeParser;
+  final IGraphQlClient httpClient;
+  final String loginEndpoint;
+  final void Function(String reason)? errorCallback;
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   /// returns a bottom sheet that gives the user a friendly message and an option to create an account
   @override
   void before() {
     super.before();
-    dispatch(WaitAction<AppState>.add(flag));
+    dispatch(WaitAction<AppState>.add(phoneLoginFlag));
   }
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(flag));
+    dispatch(WaitAction<AppState>.remove(phoneLoginFlag));
     super.after();
   }
 
   @override
-  Future<AppState> reduce() async {
+  Future<AppState?> reduce() async {
     /// [pin] variable is retrieving the PIN the user input in the [PhoneLogin] page from state
     /// [phoneNumber] variable is retrieving the Phone Number the user input in the [PhoneLogin] page from state
     final String? pin = state.onboardingState?.phoneLogin?.pinCode;
@@ -69,18 +64,13 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     if (pin != null &&
         pin != UNKNOWN &&
         pin.isNotEmpty &&
+        pin.length == 4 &&
         phoneNumber != null) {
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'pin': pin,
         'flavour': Flavour.consumer.name,
       };
-
-      final IGraphQlClient httpClient =
-          AppWrapperBase.of(context)!.graphQLClient;
-
-      final String loginEndpoint =
-          AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
 
       final Response httpResponse = await httpClient.callRESTAPI(
         endpoint: loginEndpoint,
@@ -130,10 +120,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           chatRoomToken: loginResponse.streamToken,
         );
 
-        final String fullname =
+        final String fullName =
             loginResponse.clientState?.user?.name ?? UNKNOWN;
-        if (fullname != UNKNOWN && fullname.isNotEmpty) {
-          final List<String> names = fullname.split(' ');
+        if (fullName != UNKNOWN && fullName.isNotEmpty) {
+          final List<String> names = fullName.split(' ');
           user = user?.copyWith(
             firstName: names.first,
             lastName: names.last,
@@ -170,11 +160,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final OnboardingPathConfig onboardingPathConfig =
             onboardingPath(appState: state);
 
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          onboardingPathConfig.route,
-          (Route<dynamic> route) => false,
-          arguments: onboardingPathConfig.arguments,
+        dispatch(
+          NavigateAction<AppState>.pushNamedAndRemoveUntil(
+            onboardingPathConfig.route,
+            (Route<dynamic> route) => false,
+            arguments: onboardingPathConfig.arguments,
+          ),
         );
+
         return state;
       } else {
         if (processedResponse.message == wrongLoginCredentials) {
@@ -185,50 +178,33 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             json.decode(httpResponse.body) as Map<String, dynamic>;
 
         if (body['code'] == 48) {
-          StoreProvider.dispatch(
-            context,
-            UpdateOnboardingStateAction(isResetPin: true),
+          dispatch(UpdateOnboardingStateAction(isResetPin: true));
+
+          dispatch(
+            NavigateAction<AppState>.pushNamed(
+              AppRoutes.verifySignUpOTP,
+              arguments: phoneNumber,
+            ),
           );
 
-          Navigator.pushNamed(
-            context,
-            AppRoutes.verifySignUpOTP,
-            arguments: phoneNumber,
-          );
           return state;
         } else {
           // exception thrown if the backend could not match the provided
           //credentials with those stored in the backend
-          showFeedbackBottomSheet(
-            context: context,
-            modalContent: processedResponse.message ?? UNKNOWN, // safety-net
-            imageAssetPath: errorIconUrl,
-          );
-
-          throw MyAfyaException(
-            error: processedResponse.response,
-            cause: 'sign_in_error',
-            message: processedResponse.message,
-          );
+          errorCallback?.call(processedResponse.message ?? UNKNOWN);
         }
       }
     } else {
-      showFeedbackBottomSheet(
-        context: context,
-        modalContent: fourDigitPin,
-        imageAssetPath: infoIconUrl,
-      );
-      // exception thrown incase the provided PIN is less than four digits
-      throw MyAfyaException(cause: 'pin_too_short', message: fourDigitPin);
+      errorCallback?.call(fourDigitPin);
+
+      return null;
     }
   }
 
   @override
-  Object wrapError(dynamic error) async {
-    if (error.runtimeType == MyAfyaException && error.error != null) {
-      reportErrorToSentry(context, error.error, hint: errorLoggingIn);
-    }
+  Object? wrapError(dynamic error) {
+    Sentry.captureException(error, hint: 'Login failed');
 
-    return error;
+    return UserException(getErrorMessage());
   }
 }

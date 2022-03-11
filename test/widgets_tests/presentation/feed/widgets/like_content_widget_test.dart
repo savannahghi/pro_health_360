@@ -25,8 +25,8 @@ void main() {
     });
     testWidgets('renders correctly with the like value set to false',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -74,8 +74,8 @@ void main() {
           contentItems: <Content>[mockContent.copyWith(hasLiked: true)],
         ),
       );
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -117,8 +117,8 @@ void main() {
           contentItems: <Content>[mockContent.copyWith(hasLiked: true)],
         ),
       );
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(

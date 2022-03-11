@@ -9,7 +9,6 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -22,14 +21,12 @@ import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nicknam
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
-import './onboarding_utils_2_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('OnboardingUtils', () {
     late MockGraphQlClient mockGraphQlClient;
-    MockDateTimeParser? dateTimeParser;
 
     const MethodChannel('plugins.flutter.io/url_launcher')
         .setMockMethodCallHandler((MethodCall methodCall) async {
@@ -41,9 +38,6 @@ void main() {
 
     setUp(() {
       mockGraphQlClient = MockGraphQlClient();
-      dateTimeParser = MockDateTimeParser();
-      when(dateTimeParser!.parsedExpireAt(int.parse('3600')))
-          .thenReturn('2021-05-11T21:34:25.150');
     });
 
     group('Login tests: process response', () {

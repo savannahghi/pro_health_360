@@ -26,8 +26,8 @@ import '../../../../test_helpers.dart';
 void main() {
   Store<AppState> store = Store<AppState>(initialState: AppState.initial());
 
-  final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-      MockShortSILGraphQlClient.withResponse(
+  final MockShortGraphQlClient mockShortSILGraphQlClient =
+      MockShortGraphQlClient.withResponse(
     'idToken',
     'endpoint',
     http.Response(

@@ -1,21 +1,22 @@
-// Flutter imports:
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// Project imports:
-import 'package:myafyahub/application/core/services/login_utils.dart';
+import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
+import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:shared_themes/spaces.dart';
@@ -102,9 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                           filled: true,
                           fillColor: AppColors.lightGreyBackgroundColor,
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey[200]!,
-                            ),
+                            borderSide: BorderSide(color: Colors.grey[200]!),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(5)),
                           ),
@@ -193,11 +192,16 @@ class _LoginPageState extends State<LoginPage> {
                             child: MyAfyaHubPrimaryButton(
                               buttonKey: phoneLoginContinueButtonKey,
                               onPressed: () async {
-                                final bool hasConnection =
-                                    StoreProvider.state<AppState>(context)
-                                            ?.connectivityState
-                                            ?.isConnected ??
-                                        false;
+                                final ConnectivityChecker connectivityChecker =
+                                    ConnectivityCheckerProvider.of(context)
+                                        .connectivityChecker;
+
+                                StoreProvider.dispatch(
+                                  context,
+                                  CheckAndUpdateConnectivityAction(
+                                    connectivityChecker: connectivityChecker,
+                                  ),
+                                );
 
                                 final bool? isFormValid =
                                     _formKey.currentState?.validate();
@@ -208,11 +212,9 @@ class _LoginPageState extends State<LoginPage> {
                                     phoneNumber != null &&
                                     pin != UNKNOWN &&
                                     phoneNumber != UNKNOWN) {
-                                  await signInUser(
-                                    context: context,
+                                  signInUser(
                                     pin: pin!,
                                     phoneNumber: phoneNumber!,
-                                    hasConnection: hasConnection,
                                   );
                                 }
                               },
@@ -229,5 +231,45 @@ class _LoginPageState extends State<LoginPage> {
         },
       ),
     );
+  }
+
+  void signInUser({
+    required String pin,
+    required String phoneNumber,
+  }) {
+    // this is the Redux Action that store the phone number and PIN user enters
+    StoreProvider.dispatch(
+      context,
+      PhoneLoginStateAction(phoneNumber: phoneNumber, pinCode: pin),
+    );
+
+    final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
+    final String loginEndpoint =
+        AppWrapperBase.of(context)!.customContext!.loginByPhoneEndpoint;
+
+    final bool hasConnection = StoreProvider.state<AppState>(context)
+            ?.connectivityState
+            ?.isConnected ??
+        false;
+
+    if (hasConnection) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        PhoneLoginAction(
+          httpClient: httpClient,
+          loginEndpoint: loginEndpoint,
+          errorCallback: (String reason) {
+            showFeedbackBottomSheet(
+              context: context,
+              modalContent: reason,
+              imageAssetPath: errorIconUrl,
+            );
+          },
+        ),
+      );
+    } else {
+      const SnackBar snackbar = SnackBar(content: Text(checkInternetText));
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
   }
 }

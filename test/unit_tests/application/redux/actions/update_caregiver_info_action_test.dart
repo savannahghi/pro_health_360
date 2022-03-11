@@ -11,8 +11,7 @@ import '../../../../mocks.dart';
 
 void main() {
   test('should catch error if present', () async {
-    final MockShortSILGraphQlClient client =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
       '',
       '',
       Response(
@@ -39,8 +38,7 @@ void main() {
   });
 
   test('should return normally', () async {
-    final MockShortSILGraphQlClient client =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
       '',
       '',
       Response(

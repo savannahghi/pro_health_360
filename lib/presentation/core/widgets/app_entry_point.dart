@@ -10,7 +10,6 @@ import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:myafyahub/presentation/core/widgets/preload_app.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
@@ -22,7 +21,6 @@ class AppEntryPoint extends StatelessWidget {
     required this.appNavigatorKey,
     required this.appNavigatorObservers,
     required this.appSetupData,
-    required this.connectivityStatus,
     required this.streamClient,
   }) : super(key: key);
 
@@ -31,7 +29,6 @@ class AppEntryPoint extends StatelessWidget {
   final List<NavigatorObserver> appNavigatorObservers;
   final Store<AppState> appStore;
   final AppSetupData appSetupData;
-  final ConnectivityStatus connectivityStatus;
   final stream.StreamChatClient streamClient;
 
   @override
@@ -67,7 +64,6 @@ class AppEntryPoint extends StatelessWidget {
               appNavigatorObservers: appNavigatorObservers,
               entryPointContext: context,
               appStore: appStore,
-              connectivityStatus: connectivityStatus,
               client: streamClient,
             ),
           );

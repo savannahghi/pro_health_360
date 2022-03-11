@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 // Project imports:
@@ -18,7 +19,7 @@ class MyAppWidget extends StatelessWidget {
     Key? key,
     required this.navigatorObserver,
     required this.store,
-    required this.connectivityStatus,
+    required this.connectivityChecker,
     required this.navigatorKey,
     required this.appSetupData,
     required this.streamClient,
@@ -26,24 +27,26 @@ class MyAppWidget extends StatelessWidget {
 
   final NavigatorObserver navigatorObserver;
   final Store<AppState> store;
-  final ConnectivityStatus connectivityStatus;
+  final ConnectivityChecker connectivityChecker;
   final GlobalKey<NavigatorState> navigatorKey;
   final AppSetupData appSetupData;
   final stream.StreamChatClient streamClient;
 
   @override
   Widget build(BuildContext context) {
-    return AppEntryPoint(
-      streamClient: streamClient,
-      appSetupData: appSetupData,
-      appStore: store,
-      appName: testAppName,
-      appNavigatorKey: navigatorKey,
-      connectivityStatus: connectivityStatus,
-      appNavigatorObservers: <NavigatorObserver>[
-        navigatorObserver,
-        SentryNavigatorObserver(),
-      ],
+    return ConnectivityCheckerProvider(
+      connectivityChecker: connectivityChecker,
+      child: AppEntryPoint(
+        streamClient: streamClient,
+        appSetupData: appSetupData,
+        appStore: store,
+        appName: testAppName,
+        appNavigatorKey: navigatorKey,
+        appNavigatorObservers: <NavigatorObserver>[
+          navigatorObserver,
+          SentryNavigatorObserver(),
+        ],
+      ),
     );
   }
 }

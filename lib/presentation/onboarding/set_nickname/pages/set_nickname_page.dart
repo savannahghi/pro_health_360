@@ -23,10 +23,10 @@ import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class SetNickNamePage extends StatefulWidget {
-  SetNickNamePage({ConnectivityStatus? connectivityStatus})
-      : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+  SetNickNamePage({ConnectivityChecker? connectivityStatus})
+      : connectivityStatus = connectivityStatus ?? MobileConnectivityChecker();
 
-  final ConnectivityStatus connectivityStatus;
+  final ConnectivityChecker connectivityStatus;
   @override
   _SetNickNamePageState createState() => _SetNickNamePageState();
 }

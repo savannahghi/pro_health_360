@@ -365,8 +365,7 @@ void main() {
 
   group('reportErrorToSentry', () {
     testWidgets('sends to sentry', (WidgetTester tester) async {
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(

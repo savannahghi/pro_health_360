@@ -18,8 +18,8 @@ import '../../../../test_helpers.dart';
 
 void main() {
   group('FeedCategoriesWidget', () {
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(

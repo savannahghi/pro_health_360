@@ -26,8 +26,8 @@ void main() {
     testWidgets(
       'should show a random quote from the backend',
       (WidgetTester tester) async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -60,8 +60,8 @@ void main() {
     testWidgets(
       'should show an error widget when fetching a quote',
       (WidgetTester tester) async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -90,8 +90,8 @@ void main() {
     testWidgets(
       'should show a timeout widget when fetching a quote',
       (WidgetTester tester) async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -116,8 +116,8 @@ void main() {
     testWidgets(
       'should show a loading indicator when fetching a quote',
       (WidgetTester tester) async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

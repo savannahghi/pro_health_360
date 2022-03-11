@@ -23,7 +23,7 @@ void main() {
     test('should not update state if error occurs during API call', () async {
       storeTester.dispatch(
         SendFeedbackAction(
-          client: MockShortSILGraphQlClient.withResponse(
+          client: MockShortGraphQlClient.withResponse(
             'idToken',
             'endpoint',
             Response(

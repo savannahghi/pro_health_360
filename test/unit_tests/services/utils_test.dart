@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/datatime_parser.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -63,22 +62,6 @@ void main() {
           formatSecurityQuestionDate(looseFormat, format: 'yyyy-MM-dd');
 
       expect(enFormat, equals(r2));
-    });
-
-    test('should parser expiredAt', () {
-      expect(DateTimeParser().parsedExpireAt(int.parse('3600')), isA<String>());
-      expect(
-        DateTimeParser().parsedExpireAt(int.parse('3600')).contains('T'),
-        true,
-      );
-
-      expect(
-        DateTimeParser(
-          useCustomDateTime: true,
-          customDateTime: DateTime.parse('2021-05-18 13:27:00'),
-        ).parsedExpireAt(int.parse('3600')),
-        isA<String>(),
-      );
     });
 
     group('getAppSetupData', () {

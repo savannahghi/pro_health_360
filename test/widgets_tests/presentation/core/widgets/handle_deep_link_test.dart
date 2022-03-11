@@ -26,8 +26,8 @@ void main() {
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(

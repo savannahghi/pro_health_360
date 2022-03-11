@@ -36,7 +36,7 @@ import '../../../../test_helpers.dart';
 void main() {
   group('PinInputPage renders correctly', () {
     late Store<AppState> store;
-    late MobileConnectivityStatus connectivityStatus;
+    late MobileConnectivityChecker connectivityStatus;
 
     setUp(() {
       final String dir = Directory.current.path;
@@ -46,7 +46,7 @@ void main() {
       final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
       ConnectivityPlatform.instance = fakePlatform;
 
-      connectivityStatus = MobileConnectivityStatus(
+      connectivityStatus = MobileConnectivityChecker(
         checkInternetCallback: () async => true,
       );
       HttpOverrides.global = TestHttpOverrides();
@@ -59,8 +59,8 @@ void main() {
       );
     });
 
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       http.Response(
@@ -123,8 +123,8 @@ void main() {
 
     testWidgets('1, 2, 3 and 4 buttons are tappable',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         http.Response(
@@ -222,8 +222,8 @@ void main() {
     });
 
     testWidgets('pressing back button works', (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         http.Response(
@@ -257,8 +257,8 @@ void main() {
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -294,7 +294,7 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: PINInputPage(
-          connectivityStatus: MobileConnectivityStatus(
+          connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => false,
           ),
         ),

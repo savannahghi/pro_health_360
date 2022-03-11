@@ -30,8 +30,8 @@ void main() {
         (WidgetTester tester) async {
       mockNetworkImages(() async {
         store.dispatch(UpdateGroupStateAction());
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -65,8 +65,8 @@ void main() {
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

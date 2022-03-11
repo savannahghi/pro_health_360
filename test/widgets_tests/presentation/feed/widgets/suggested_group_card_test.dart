@@ -26,8 +26,8 @@ void main() {
     testWidgets('join button should route is successful',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -60,8 +60,8 @@ void main() {
         'should show a snackbar with error message in case of error while adding member',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

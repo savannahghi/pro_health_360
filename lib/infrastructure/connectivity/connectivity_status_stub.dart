@@ -1,5 +1,5 @@
 // Project imports:
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 
-ConnectivityStatus getConnectivityStatus() =>
+ConnectivityChecker getConnectivityStatus() =>
     throw UnsupportedError('dart:io or dart:html must be present');

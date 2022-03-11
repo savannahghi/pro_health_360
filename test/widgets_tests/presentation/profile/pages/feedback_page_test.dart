@@ -38,8 +38,8 @@ void main() {
   testWidgets(
       'FeedbackPage navigates to successful feedback submission when sendFeedback is clicked',
       (WidgetTester tester) async {
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       http.Response(
@@ -75,8 +75,8 @@ void main() {
 
   testWidgets('should display errors if fetching data fails',
       (WidgetTester tester) async {
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       http.Response(

@@ -26,8 +26,8 @@ import '../../../../../test_helpers.dart';
 void main() {
   late Store<AppState> store;
 
-  final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-      MockShortSILGraphQlClient.withResponse(
+  final MockShortGraphQlClient mockShortSILGraphQlClient =
+      MockShortGraphQlClient.withResponse(
     'idToken',
     'endpoint',
     http.Response(
@@ -104,8 +104,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       store = Store<AppState>(initialState: AppState.initial());
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -140,8 +140,8 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
 
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -170,8 +170,8 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
 
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

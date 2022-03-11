@@ -69,8 +69,8 @@ void main() {
     testWidgets('should navigate to the different tabs',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

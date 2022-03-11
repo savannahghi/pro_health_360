@@ -10,8 +10,7 @@ import '../../../mocks.dart';
 void main() {
   group('StreamTokenProvider', () {
     test('should return token if request successful', () async {
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(
@@ -31,8 +30,7 @@ void main() {
     });
 
     test('should return empty string if not successful', () async {
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(
