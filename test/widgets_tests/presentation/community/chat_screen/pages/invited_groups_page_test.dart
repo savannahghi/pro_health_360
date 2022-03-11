@@ -17,8 +17,8 @@ import '../../../../../test_helpers.dart';
 void main() {
   group('Invited groups Page', () {
     late Store<AppState> store;
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(
@@ -40,8 +40,8 @@ void main() {
       ),
     );
 
-    final MockShortSILGraphQlClient mockShortSILGraphQlClientWithNoData =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClientWithNoData =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(

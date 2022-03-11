@@ -9,8 +9,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_helper.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 
-class MobileConnectivityStatus extends ConnectivityStatus {
-  MobileConnectivityStatus({Future<bool> Function()? checkInternetCallback})
+class MobileConnectivityChecker extends ConnectivityChecker {
+  MobileConnectivityChecker({Future<bool> Function()? checkInternetCallback})
       : _hasConnection = false,
         checkInternetCallback = checkInternetCallback ?? checkInternet {
     if (!Platform.environment.containsKey('FLUTTER_TEST')) {
@@ -50,4 +50,5 @@ class MobileConnectivityStatus extends ConnectivityStatus {
   Stream<bool> get onConnectivityChanged => _connectionChangeController.stream;
 }
 
-MobileConnectivityStatus getConnectivityStatus() => MobileConnectivityStatus();
+MobileConnectivityChecker getConnectivityStatus() =>
+    MobileConnectivityChecker();

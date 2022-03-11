@@ -32,8 +32,7 @@ void main() {
       final StoreTester<AppState> storeTester =
           StoreTester<AppState>.from(store);
 
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(
@@ -66,8 +65,7 @@ void main() {
       final StoreTester<AppState> storeTester =
           StoreTester<AppState>.from(store);
 
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(
@@ -99,8 +97,7 @@ void main() {
       final StoreTester<AppState> storeTester =
           StoreTester<AppState>.from(store);
 
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(
@@ -137,8 +134,7 @@ void main() {
       final StoreTester<AppState> storeTester =
           StoreTester<AppState>.from(store);
 
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(
@@ -175,8 +171,7 @@ void main() {
       final StoreTester<AppState> storeTester =
           StoreTester<AppState>.from(store);
 
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(

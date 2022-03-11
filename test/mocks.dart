@@ -230,9 +230,9 @@ class TestNavigatorObserver extends NavigatorObserver {
 /// a short client for providing custom responses
 ///
 /// a good use case is when you want to return error responses
-class MockShortSILGraphQlClient extends IGraphQlClient {
-  MockShortSILGraphQlClient();
-  MockShortSILGraphQlClient.withResponse(
+class MockShortGraphQlClient extends IGraphQlClient {
+  MockShortGraphQlClient();
+  MockShortGraphQlClient.withResponse(
     String idToken,
     String endpoint,
     this.response,

@@ -44,8 +44,8 @@ void main() {
       final Uint8List pdfAsBytes = pdfMockFile.readAsBytesSync();
       pdfMockFile.writeAsBytesSync(pdfAsBytes, flush: true);
 
-      final MockShortSILGraphQlClient mockGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(

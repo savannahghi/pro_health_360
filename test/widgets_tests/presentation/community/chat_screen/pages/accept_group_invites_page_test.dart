@@ -16,8 +16,8 @@ import '../../../../../test_helpers.dart';
 void main() {
   group('AcceptGroupInvitations Page', () {
     late Store<AppState> store;
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(
@@ -32,8 +32,8 @@ void main() {
       ),
     );
 
-    final MockShortSILGraphQlClient rejectMockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient rejectMockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(
@@ -48,8 +48,8 @@ void main() {
       ),
     );
 
-    final MockShortSILGraphQlClient failRejectMockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient failRejectMockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(

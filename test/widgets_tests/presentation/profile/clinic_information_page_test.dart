@@ -21,8 +21,8 @@ import '../../../test_helpers.dart';
 void main() {
   group('ClinicInformationPage', () {
     late Store<AppState> store;
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(

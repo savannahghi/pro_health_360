@@ -28,10 +28,10 @@ class PINInputPage extends StatefulWidget {
   /// [PINInputPage] is a widget used to input and validate user pin before accessing
   /// [MyHealth] section of the app
 
-  PINInputPage({ConnectivityStatus? connectivityStatus})
-      : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+  PINInputPage({ConnectivityChecker? connectivityStatus})
+      : connectivityStatus = connectivityStatus ?? MobileConnectivityChecker();
 
-  final ConnectivityStatus connectivityStatus;
+  final ConnectivityChecker connectivityStatus;
   @override
   _PINInputPageState createState() => _PINInputPageState();
   final TextEditingController _pinController = TextEditingController();

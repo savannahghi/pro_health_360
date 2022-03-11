@@ -50,8 +50,8 @@ void main() {
     testWidgets('should render resend otp button ',
         (WidgetTester tester) async {
       await tester.runAsync(() async {
-        final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

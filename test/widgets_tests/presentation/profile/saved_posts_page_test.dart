@@ -28,8 +28,8 @@ import '../../../test_helpers.dart';
 
 void main() {
   group('SavedPostsPage', () {
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(
@@ -71,8 +71,8 @@ void main() {
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -165,8 +165,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -192,8 +192,8 @@ void main() {
     testWidgets('shows a generic timeout widget while fetching the feed',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(
@@ -222,8 +222,8 @@ void main() {
       tester.binding.window.devicePixelRatioTestValue = 1;
 
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

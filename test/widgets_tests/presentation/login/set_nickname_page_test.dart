@@ -32,9 +32,9 @@ import '../../../test_helpers.dart';
 void main() {
   group('CongratulationsPage', () {
     late Store<AppState> store;
-    late MobileConnectivityStatus connectivityStatus;
-    final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-        MockShortSILGraphQlClient.withResponse(
+    late MobileConnectivityChecker connectivityStatus;
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
       Response(
@@ -61,7 +61,7 @@ void main() {
       final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
       ConnectivityPlatform.instance = fakePlatform;
 
-      connectivityStatus = MobileConnectivityStatus(
+      connectivityStatus = MobileConnectivityChecker(
         checkInternetCallback: () async => true,
       );
     });
@@ -131,7 +131,7 @@ void main() {
         store: store,
         client: mockShortSILGraphQlClient,
         widget: SetNickNamePage(
-          connectivityStatus: MobileConnectivityStatus(
+          connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => false,
           ),
         ),
@@ -197,8 +197,7 @@ void main() {
         'shows a generic no data widget while fetching welcome content '
         'and refresh the welcome content when prompted',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient client =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -240,8 +239,8 @@ void main() {
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortSILGraphQlClient client =
-            MockShortSILGraphQlClient.withResponse(
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
           'idToken',
           'endpoint',
           Response(

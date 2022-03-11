@@ -24,12 +24,12 @@ import 'package:shared_themes/spaces.dart';
 /// PIN entered in the above [CustomTextField]
 class CreateNewPINPage extends StatefulWidget {
   CreateNewPINPage({
-    ConnectivityStatus? connectivityStatus,
+    ConnectivityChecker? connectivityStatus,
     required this.phoneNumber,
-  }) : connectivityStatus = connectivityStatus ?? MobileConnectivityStatus();
+  }) : connectivityStatus = connectivityStatus ?? MobileConnectivityChecker();
 
   final String phoneNumber;
-  final ConnectivityStatus connectivityStatus;
+  final ConnectivityChecker connectivityStatus;
   @override
   _CreateNewPINPageState createState() => _CreateNewPINPageState();
 }

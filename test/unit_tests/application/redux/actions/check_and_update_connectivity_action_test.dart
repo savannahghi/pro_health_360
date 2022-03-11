@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import '../../../../mocks.dart';
 
 void main() {
@@ -19,7 +20,9 @@ void main() {
 
       storeTester.dispatch(
         CheckAndUpdateConnectivityAction(
-          checkInternetCallback: () async => true,
+          connectivityChecker: MobileConnectivityChecker(
+            checkInternetCallback: () async => true,
+          ),
         ),
       );
 

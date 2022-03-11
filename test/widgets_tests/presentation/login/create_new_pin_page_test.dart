@@ -37,7 +37,7 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: CreateNewPINPage(
-          connectivityStatus: MobileConnectivityStatus(
+          connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
           phoneNumber: '+254712345678',
@@ -63,7 +63,7 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: CreateNewPINPage(
-          connectivityStatus: MobileConnectivityStatus(
+          connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
           phoneNumber: '+254712345678',
@@ -95,7 +95,7 @@ void main() {
         store: store,
         client: mockGraphQlClient,
         widget: CreateNewPINPage(
-          connectivityStatus: MobileConnectivityStatus(
+          connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
           phoneNumber: '+254712345678',
@@ -121,8 +121,8 @@ void main() {
 
     testWidgets('Navigates to Login page if PINs are valid for reset pin  ',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -141,7 +141,7 @@ void main() {
         store: customStore,
         client: mockShortSILGraphQlClient,
         widget: CreateNewPINPage(
-          connectivityStatus: MobileConnectivityStatus(
+          connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
           phoneNumber: '+254712345678',
@@ -173,7 +173,7 @@ void main() {
         store: store,
         client: mockGraphQlClient,
         widget: CreateNewPINPage(
-          connectivityStatus: MobileConnectivityStatus(
+          connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => false,
           ),
           phoneNumber: '+254712345678',

@@ -3,7 +3,6 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -32,9 +31,6 @@ void main() {
     setUpAll(() {
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
-
-      final MockConnectivityPlatform fakePlatform = MockConnectivityPlatform();
-      ConnectivityPlatform.instance = fakePlatform;
     });
 
     testWidgets('should validate Phone Number', (WidgetTester tester) async {
@@ -42,11 +38,7 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: const MaterialApp(
-          home: Scaffold(
-            body: LoginPage(),
-          ),
-        ),
+        widget: const LoginPage(),
       );
       await tester.pumpAndSettle();
 
@@ -68,15 +60,7 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: MaterialApp(
-          home: Scaffold(
-            body: Builder(
-              builder: (BuildContext context) {
-                return const LoginPage();
-              },
-            ),
-          ),
-        ),
+        widget: const LoginPage(),
       );
       await tester.pumpAndSettle();
 
@@ -96,8 +80,8 @@ void main() {
     testWidgets('should navigate to terms page if login request is successful',
         (WidgetTester tester) async {
       mockLoginResponse.addAll(<String, dynamic>{'getCurrentTerms': termsMock});
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -120,12 +104,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: const MaterialApp(
-            onGenerateRoute: RouteGenerator.generateRoute,
-            home: Scaffold(
-              body: LoginPage(),
-            ),
-          ),
+          widget: const LoginPage(),
         );
         await tester.pump();
 
@@ -151,8 +130,8 @@ void main() {
 
     testWidgets('should navigate to verify phone if pin is expired',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
@@ -168,12 +147,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: const MaterialApp(
-            onGenerateRoute: RouteGenerator.generateRoute,
-            home: Scaffold(
-              body: LoginPage(),
-            ),
-          ),
+          widget: const LoginPage(),
         );
         await tester.pump();
 
@@ -199,8 +173,8 @@ void main() {
 
     testWidgets('should reset invalidCredentials when page loads',
         (WidgetTester tester) async {
-      final MockShortSILGraphQlClient mockShortSILGraphQlClient =
-          MockShortSILGraphQlClient.withResponse(
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
