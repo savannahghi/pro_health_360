@@ -19,7 +19,7 @@ import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
 class FetchContentAction extends ReduxAction<AppState> {
   FetchContentAction({
     required this.context,
-    this.limit = 10,
+    this.limit = 20,
     this.category,
   });
 
