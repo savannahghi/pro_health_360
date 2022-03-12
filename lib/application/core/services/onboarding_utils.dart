@@ -32,7 +32,6 @@ void clearAllFlags(BuildContext context) {
 }
 
 Future<void> setUserPIN({
-  String? phoneNumber,
   required BuildContext context,
   required String newPIN,
   required String confirmPIN,
@@ -51,7 +50,6 @@ Future<void> setUserPIN({
   await StoreProvider.dispatch<AppState>(
     context,
     CreatePINAction(
-      phone: phoneNumber,
       context: context,
       flag: createPinFlag,
       flavour: flavour,

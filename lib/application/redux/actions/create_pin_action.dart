@@ -29,13 +29,11 @@ import 'package:shared_themes/constants.dart';
 
 class CreatePINAction extends ReduxAction<AppState> {
   CreatePINAction({
-    this.phone,
     required this.context,
     required this.flag,
     required this.flavour,
   });
 
-  final String? phone;
   final BuildContext context;
   final String flag;
   final String flavour;
@@ -63,6 +61,7 @@ class CreatePINAction extends ReduxAction<AppState> {
     final String? otp = state.onboardingState?.verifyPhoneState?.otp;
     final bool isResetPin =
         state.onboardingState?.setPINState?.isResetPin ?? false;
+    final String? phone = state.onboardingState?.setPINState?.phone;
 
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {

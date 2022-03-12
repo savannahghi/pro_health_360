@@ -20,6 +20,7 @@ const String fetchRecentContentFlag = 'fetch_recent_content_flag';
 //Security Questions
 const String getSecurityQuestionsFlag = 'get_security_questions';
 const String recordSecurityQuestionsFlag = 'record_security_questions_flag';
+const String verifySecurityQuestionsFlag = 'verify_security_questions_flag';
 
 // profile faqs
 const String getFAQsFlag = 'get_faqs_flag';

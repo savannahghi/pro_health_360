@@ -42,6 +42,8 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
       isPhoneVerified: json['isPhoneVerified'] as bool?,
       hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
       hasSetNickName: json['hasSetNickName'] as bool?,
+      hasVerifiedSecurityQuestions:
+          json['hasVerifiedSecurityQuestions'] as bool?,
     );
 
 Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
@@ -57,4 +59,5 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'isPhoneVerified': instance.isPhoneVerified,
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
       'hasSetNickName': instance.hasSetNickName,
+      'hasVerifiedSecurityQuestions': instance.hasVerifiedSecurityQuestions,
     };

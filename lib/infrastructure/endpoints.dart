@@ -39,6 +39,10 @@ const String kTestSetPrimaryPhoneNumberEndpoint =
     'https://mycarehub-staging.savannahghi.org/set_primary_phonenumber';
 const String kTestUploadFileEndPoint =
     'https://engagement-staging.savannahghi.org/upload';
+const String kTestGetRecordedSecurityQuestionsEndpoint =
+    'https://mycarehub-staging.savannahghi.org/get_user_responded_security_questions';
+const String kTestVerifySecurityQuestionsEndpoint =
+    'https://mycarehub-staging.savannahghi.org/verify_security_questions';
 
 /* 
 DEMO ENDPOINTS 
@@ -64,7 +68,7 @@ const String kDemoRetryResendOtpEndpoint =
     'https://mycarehub-testing.savannahghi.org/send_retry_otp';
 const String kDemoRefreshTokenEndpoint =
     'https://mycarehub-testing.savannahghi.org/refresh_token';
-    const String kDemoRefreshStreamTokenEndpoint =
+const String kDemoRefreshStreamTokenEndpoint =
     'https://mycarehub-testing.savannahghi.org/refresh_getstream_token';
 const String kDemoAnonymousLoginEndpoint =
     'https://mycarehub-testing.savannahghi.org/login_anonymous';
@@ -76,6 +80,10 @@ const String kDemoSetPrimaryPhoneNumberEndpoint =
     'https://mycarehub-testing.savannahghi.org/set_primary_phonenumber';
 const String kDemoUploadFileEndPoint =
     'https://engagement-testing.savannahghi.org/upload';
+const String kDemoGetRecordedSecurityQuestionsEndpoint =
+    'https://mycarehub-testing.savannahghi.org/get_user_responded_security_questions';
+const String kDemoVerifySecurityQuestionsEndpoint =
+    'https://mycarehub-testing.savannahghi.org/verify_security_questions';
 
 /* PROD ENDPOINTS */
 const String kProdGraphqlEndpoint = 'https://gateway.savannahghi.org/graphql';
@@ -95,7 +103,7 @@ const String kProdRetryResendOtpEndpoint =
     'https://mycarehub-prod.savannahghi.org/send_retry_otp';
 const String kProdRefreshTokenEndpoint =
     'https://mycarehub-prod.savannahghi.org/refresh_token';
-    const String kProdRefreshStreamTokenEndpoint =
+const String kProdRefreshStreamTokenEndpoint =
     'https://mycarehub-prod.savannahghi.org/refresh_getstream_token';
 const String kProdAnonymousLoginEndpoint =
     'https://mycarehub-prod.savannahghi.org/login_anonymous';
@@ -107,3 +115,7 @@ const String kProdSetPrimaryPhoneNumberEndpoint =
     'https://mycarehub-prod.savannahghi.org/set_primary_phonenumber';
 const String kProdUploadFileEndPoint =
     'https://engagement-prod.savannahghi.org/upload';
+const String kProdGetRecordedSecurityQuestionsEndpoint =
+    'https://mycarehub-prod.savannahghi.org/get_user_responded_security_questions';
+const String kProdVerifySecurityQuestionsEndpoint =
+    'https://mycarehub-prod.savannahghi.org/verify_security_questions';

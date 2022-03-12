@@ -71,7 +71,7 @@ class RouteGenerator {
 
       case AppRoutes.createPin:
         return MaterialPageRoute<CreateNewPINPage>(
-          builder: (_) => CreateNewPINPage(phoneNumber: args as String),
+          builder: (_) => CreateNewPINPage(),
         );
 
       case AppRoutes.verifySignUpOTP:

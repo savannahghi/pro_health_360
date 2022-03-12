@@ -19,6 +19,7 @@ import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
+
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -40,7 +41,6 @@ void main() {
           connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
-          phoneNumber: '+254712345678',
         ),
       );
 
@@ -66,7 +66,6 @@ void main() {
           connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
-          phoneNumber: '+254712345678',
         ),
       );
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -98,7 +97,6 @@ void main() {
           connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
-          phoneNumber: '+254712345678',
         ),
       );
       await tester.pumpAndSettle();
@@ -144,7 +142,6 @@ void main() {
           connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
           ),
-          phoneNumber: '+254712345678',
         ),
       );
       await tester.pumpAndSettle();
@@ -176,7 +173,6 @@ void main() {
           connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => false,
           ),
-          phoneNumber: '+254712345678',
         ),
       );
       await tester.pumpAndSettle();
@@ -205,9 +201,7 @@ void main() {
         widget: Builder(
           builder: (BuildContext context) {
             store.dispatch(WaitAction<AppState>.add('resume_with_pin'));
-            return CreateNewPINPage(
-              phoneNumber: '+254712345678',
-            );
+            return CreateNewPINPage();
           },
         ),
       );

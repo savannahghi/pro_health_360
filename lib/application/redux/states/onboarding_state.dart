@@ -29,6 +29,8 @@ class OnboardingState with _$OnboardingState {
     bool? hasSetSecurityQuestions,
     // If the user has set their nickname
     bool? hasSetNickName,
+    // If the user has successfuly verified their security questions if pin is expired
+    bool? hasVerifiedSecurityQuestions,
   }) = _OnboardingState;
 
   factory OnboardingState.fromJson(Map<String, dynamic> json) =>
@@ -46,5 +48,6 @@ class OnboardingState with _$OnboardingState {
         isPhoneVerified: false,
         hasSetSecurityQuestions: false,
         hasSetNickName: false,
+        hasVerifiedSecurityQuestions: false,
       );
 }

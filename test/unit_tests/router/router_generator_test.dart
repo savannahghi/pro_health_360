@@ -106,7 +106,6 @@ void main() {
   test('Test router returns create new pin page', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.createPin,
-      arguments: '0700111222',
     );
 
     final MaterialPageRoute<CreateNewPINPage> route =

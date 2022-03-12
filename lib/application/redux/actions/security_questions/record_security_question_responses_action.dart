@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -18,7 +17,6 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -82,15 +80,11 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
     );
 
     final String route = onboardingPath(appState: state).route;
-    if (route == AppRoutes.createPin) {
-      final String phoneNumber =
-          state.clientState?.user?.primaryContact?.value ?? UNKNOWN;
-      Navigator.pushReplacementNamed(
-        context,
-        route,
-        arguments: phoneNumber,
-      );
-    }
+
+    Navigator.pushReplacementNamed(
+      context,
+      route,
+    );
 
     return state;
   }

@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
@@ -61,7 +61,6 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
                 Navigator.pushNamed(
                   context,
                   AppRoutes.createPin,
-                  arguments: phoneNumber,
                 );
               } else {
                 StoreProvider.dispatch<AppState>(

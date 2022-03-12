@@ -25,10 +25,8 @@ import 'package:shared_themes/spaces.dart';
 class CreateNewPINPage extends StatefulWidget {
   CreateNewPINPage({
     ConnectivityChecker? connectivityStatus,
-    required this.phoneNumber,
   }) : connectivityStatus = connectivityStatus ?? MobileConnectivityChecker();
 
-  final String phoneNumber;
   final ConnectivityChecker connectivityStatus;
   @override
   _CreateNewPINPageState createState() => _CreateNewPINPageState();
@@ -170,7 +168,6 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
                               }
                               if (_formKey.currentState!.validate()) {
                                 setUserPIN(
-                                  phoneNumber: widget.phoneNumber,
                                   context: context,
                                   newPIN: pin,
                                   confirmPIN: confirmPin,

@@ -119,7 +119,6 @@ void main() {
                       Navigator.pushNamed(
                         context,
                         AppRoutes.createPin,
-                        arguments: phoneNumber,
                       );
                     } else {
                       StoreProvider.dispatch<AppState>(
@@ -246,7 +245,6 @@ void main() {
                     Navigator.pushNamed(
                       context,
                       AppRoutes.createPin,
-                      arguments: phoneNumber,
                     );
                   } else {
                     StoreProvider.dispatch<AppState>(
