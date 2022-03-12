@@ -8,16 +8,18 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
+import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class PreLoadApp extends StatefulWidget {
@@ -44,10 +46,12 @@ class PreLoadApp extends StatefulWidget {
   _PreLoadAppState createState() => _PreLoadAppState();
 }
 
-class _PreLoadAppState extends State<PreLoadApp> {
+class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance?.addObserver(this);
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch(
@@ -86,13 +90,40 @@ class _PreLoadAppState extends State<PreLoadApp> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if (state == AppLifecycleState.resumed) {
+      Navigator.pushReplacementNamed(
+        appGlobalNavigatorKey.currentContext!,
+        AppRoutes.resumeWithPin,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, InitialRouteViewModel>(
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
       builder: (BuildContext context, InitialRouteViewModel vm) {
-        final String initialRoute =
-            getInitialRoute(vm.currentIndex ?? 0, vm.initialRoute);
+        String initialRoute = vm.initialRoute ?? AppRoutes.phoneLogin;
+
+        final bool isPhoneLogin =
+            initialRoute.compareTo(AppRoutes.phoneLogin) == 0;
+        final bool isResumeWithPin =
+            initialRoute.compareTo(AppRoutes.resumeWithPin) == 0;
+
+        if (!isPhoneLogin && !isResumeWithPin) {
+          initialRoute = bottomNavItems[vm.currentIndex ?? 0].onTapRoute;
+        }
+
         if (initialRoute == UNKNOWN) {
           return MaterialApp(
             theme: AppTheme.getAppTheme(),

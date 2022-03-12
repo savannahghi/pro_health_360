@@ -14,7 +14,7 @@ part 'misc_state.g.dart';
 @freezed
 class MiscState with _$MiscState {
   factory MiscState({
-    String? initialRoute,
+    @JsonKey(defaultValue: AppRoutes.phoneLogin) required String initialRoute,
     UserPin? userPin,
     List<dynamic>? libraryListItems,
     FAQsContentState? profileFAQsContentState,

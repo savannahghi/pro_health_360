@@ -6,9 +6,9 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
 
 class UpdateInitialRouteAction extends ReduxAction<AppState> {
-  UpdateInitialRouteAction({this.initialRoute});
+  UpdateInitialRouteAction({required this.initialRoute});
 
-  final String? initialRoute;
+  final String initialRoute;
 
   @override
   AppState reduce() {

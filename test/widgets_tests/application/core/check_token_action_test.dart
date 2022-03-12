@@ -14,7 +14,8 @@ import '../../../mocks.dart';
 
 void main() {
   group('CheckTokenAction', () {
-    testWidgets('should set initial route to home if token has not expired',
+    testWidgets(
+        'should set initial route to resume with pin if token has not expired',
         (WidgetTester tester) async {
       final DateTime now = DateTime.now();
       final String futureTime =
@@ -60,12 +61,12 @@ void main() {
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CheckTokenAction);
-      expect(info.state.miscState?.initialRoute, AppRoutes.home);
+      expect(info.state.miscState?.initialRoute, AppRoutes.resumeWithPin);
     });
 
     testWidgets(
-        'if token has expired should attempt to refresh token and set inital '
-        'to home page', (WidgetTester tester) async {
+        'if token has expired should attempt to refresh token and set initial '
+        'to resume with pin', (WidgetTester tester) async {
       final DateTime now = DateTime.now();
       final String futureTime =
           now.add(const Duration(minutes: 2)).toIso8601String();
@@ -110,11 +111,12 @@ void main() {
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(CheckTokenAction);
-      expect(info.state.miscState?.initialRoute, AppRoutes.home);
+
+      expect(info.state.miscState?.initialRoute, AppRoutes.resumeWithPin);
     });
 
     testWidgets(
-        'if token has expired and refresh token fails, should set inital route '
+        'if token has expired and refresh token fails, should set initial route '
         'to login page', (WidgetTester tester) async {
       final DateTime now = DateTime.now();
       final String futureTime =

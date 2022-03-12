@@ -800,23 +800,6 @@ List<Content?> getContentList({
   }
 }
 
-String getInitialRoute(int currentIndex, String? initialRoute) {
-  if (initialRoute != null && initialRoute == AppRoutes.phoneLogin) {
-    return initialRoute;
-  }
-
-  switch (currentIndex) {
-    case 1:
-      return AppRoutes.feedPage;
-
-    case 2:
-      return AppRoutes.myHealthPage;
-
-    default:
-      return AppRoutes.home;
-  }
-}
-
 int getNewLikeCount({
   required bool? hasLiked,
   required int likeCount,

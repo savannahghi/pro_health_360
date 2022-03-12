@@ -124,6 +124,9 @@ class AppRoutes {
   static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
   static const String groupInfoPage = '/groupInfoPage';
   static const String pinRequestSentPage = '/pinRequestSentPage';
+
+  // resume with pin
+  static const String resumeWithPin = '/resumeWithPin';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

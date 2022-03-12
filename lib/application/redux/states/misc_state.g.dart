@@ -7,7 +7,7 @@ part of 'misc_state.dart';
 // **************************************************************************
 
 _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
-      initialRoute: json['initialRoute'] as String?,
+      initialRoute: json['initialRoute'] as String? ?? '/phoneLogin',
       userPin: json['userPin'] == null
           ? null
           : UserPin.fromJson(json['userPin'] as Map<String, dynamic>),
