@@ -833,3 +833,9 @@ const String shareDiaryEntryTitle =
 String welcomeBackUserText(String? user) => 'Welcome back, ${user ?? ''}';
 const String resumeWithPinText =
     'Let’s get you authenticated to access your account. Please enter your PIN to continue';
+// pin reset request sent page
+const String pinResetRequestSent = 'PIN reset request sent';
+const String weHaveNotifiedAdmin =
+    'Hey, we have notified your admin about your difficulty while signing in. They will reset your PIN once they verify your information';
+const String oncePinRest =
+    'Once your PIN has been reset, you will receive an SMS with a new PIN that you will be required to change in your next login';

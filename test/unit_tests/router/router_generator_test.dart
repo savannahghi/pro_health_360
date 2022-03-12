@@ -30,6 +30,7 @@ import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_sent_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
@@ -529,5 +530,16 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<GroupInfoPage>>());
     expect(route?.builder(context), isA<GroupInfoPage>());
+  });
+
+  test('Test router returns pin request sent page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.pinRequestSentPage, arguments: '');
+
+    final MaterialPageRoute<PinRequestSentPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PinRequestSentPage>?;
+
+    expect(route, isA<MaterialPageRoute<PinRequestSentPage>>());
+    expect(route?.builder(context), isA<PinRequestSentPage>());
   });
 }
