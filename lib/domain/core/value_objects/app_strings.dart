@@ -534,7 +534,8 @@ const String errorFetchingFAQsString = 'Error fetching FAQs';
 
 //savedPosts
 const String mySavedContentText = 'My saved content';
-const String savedContentErrorTitleText = 'We are unable to get your saved content';
+const String savedContentErrorTitleText =
+    'We are unable to get your saved content';
 const String savedContentErrorBodyText =
     'There was an error while getting your saved content. Please retry or give us a moment to investigate';
 
@@ -827,3 +828,8 @@ const String nothingYetText = 'nothing yet';
 const String shareDiaryEntry = 'Share diary entry';
 const String shareDiaryEntryTitle =
     'Please confirm that you want to share your diary entry below with your facility';
+
+// resume with pin
+String welcomeBackUserText(String? user) => 'Welcome back, ${user ?? ''}';
+const String resumeWithPinText =
+    'Let’s get you authenticated to access your account. Please enter your PIN to continue';
