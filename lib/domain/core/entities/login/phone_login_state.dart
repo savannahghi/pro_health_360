@@ -12,6 +12,7 @@ class PhoneLoginState with _$PhoneLoginState {
     @Default(false) bool invalidCredentials,
     String? phoneNumber,
     String? pinCode,
+    int? failedLoginCount,
   }) = _PhoneLoginState;
 
   factory PhoneLoginState.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +21,6 @@ class PhoneLoginState with _$PhoneLoginState {
   factory PhoneLoginState.initial() => PhoneLoginState(
         phoneNumber: UNKNOWN,
         pinCode: UNKNOWN,
+        failedLoginCount: 0,
       );
 }

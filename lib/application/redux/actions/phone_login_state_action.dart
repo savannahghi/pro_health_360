@@ -14,6 +14,7 @@ class PhoneLoginStateAction extends ReduxAction<AppState> {
     this.phoneNumber,
     this.pinCode,
     this.invalidCredentials = false,
+    this.failedLoginCount,
   });
 
   /// [phoneNumber] the phone number a user inputs while logging in of type `String`
@@ -25,6 +26,7 @@ class PhoneLoginStateAction extends ReduxAction<AppState> {
 
   final String? phoneNumber;
   final String? pinCode;
+  final int? failedLoginCount;
 
   @override
   AppState reduce() {
@@ -33,6 +35,7 @@ class PhoneLoginStateAction extends ReduxAction<AppState> {
         phoneNumber: phoneNumber ?? UNKNOWN,
         pinCode: pinCode ?? UNKNOWN,
         invalidCredentials: invalidCredentials,
+        failedLoginCount: failedLoginCount ?? state.onboardingState?.phoneLogin?.failedLoginCount,
       ),
     );
     return newState;

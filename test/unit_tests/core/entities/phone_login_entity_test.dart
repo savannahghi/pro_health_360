@@ -8,7 +8,8 @@ void main() {
   final Map<String, dynamic> data = <String, dynamic>{
     'invalidCredentials': false,
     'phoneNumber': '+254728101710',
-    'pinCode': '1234'
+    'pinCode': '1234',
+    'failedLoginCount': null,
   };
   test('PhoneLogin toJson', () {
     expect(

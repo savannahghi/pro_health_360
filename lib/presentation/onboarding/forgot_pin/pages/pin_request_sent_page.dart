@@ -44,7 +44,9 @@ class PinRequestSentPage extends StatelessWidget {
                 child: MyAfyaHubPrimaryButton(
                   text: okThanksText,
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    if (Navigator.canPop(context)) {
+                      Navigator.of(context).pop();
+                    }
                   },
                 ),
               )

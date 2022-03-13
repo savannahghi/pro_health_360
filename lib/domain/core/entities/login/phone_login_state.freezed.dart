@@ -23,11 +23,15 @@ class _$PhoneLoginStateTearOff {
   const _$PhoneLoginStateTearOff();
 
   _PhoneLoginState call(
-      {bool invalidCredentials = false, String? phoneNumber, String? pinCode}) {
+      {bool invalidCredentials = false,
+      String? phoneNumber,
+      String? pinCode,
+      int? failedLoginCount}) {
     return _PhoneLoginState(
       invalidCredentials: invalidCredentials,
       phoneNumber: phoneNumber,
       pinCode: pinCode,
+      failedLoginCount: failedLoginCount,
     );
   }
 
@@ -44,6 +48,7 @@ mixin _$PhoneLoginState {
   bool get invalidCredentials => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get pinCode => throw _privateConstructorUsedError;
+  int? get failedLoginCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +61,11 @@ abstract class $PhoneLoginStateCopyWith<$Res> {
   factory $PhoneLoginStateCopyWith(
           PhoneLoginState value, $Res Function(PhoneLoginState) then) =
       _$PhoneLoginStateCopyWithImpl<$Res>;
-  $Res call({bool invalidCredentials, String? phoneNumber, String? pinCode});
+  $Res call(
+      {bool invalidCredentials,
+      String? phoneNumber,
+      String? pinCode,
+      int? failedLoginCount});
 }
 
 /// @nodoc
@@ -73,6 +82,7 @@ class _$PhoneLoginStateCopyWithImpl<$Res>
     Object? invalidCredentials = freezed,
     Object? phoneNumber = freezed,
     Object? pinCode = freezed,
+    Object? failedLoginCount = freezed,
   }) {
     return _then(_value.copyWith(
       invalidCredentials: invalidCredentials == freezed
@@ -87,6 +97,10 @@ class _$PhoneLoginStateCopyWithImpl<$Res>
           ? _value.pinCode
           : pinCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      failedLoginCount: failedLoginCount == freezed
+          ? _value.failedLoginCount
+          : failedLoginCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -98,7 +112,11 @@ abstract class _$PhoneLoginStateCopyWith<$Res>
           _PhoneLoginState value, $Res Function(_PhoneLoginState) then) =
       __$PhoneLoginStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool invalidCredentials, String? phoneNumber, String? pinCode});
+  $Res call(
+      {bool invalidCredentials,
+      String? phoneNumber,
+      String? pinCode,
+      int? failedLoginCount});
 }
 
 /// @nodoc
@@ -117,6 +135,7 @@ class __$PhoneLoginStateCopyWithImpl<$Res>
     Object? invalidCredentials = freezed,
     Object? phoneNumber = freezed,
     Object? pinCode = freezed,
+    Object? failedLoginCount = freezed,
   }) {
     return _then(_PhoneLoginState(
       invalidCredentials: invalidCredentials == freezed
@@ -131,6 +150,10 @@ class __$PhoneLoginStateCopyWithImpl<$Res>
           ? _value.pinCode
           : pinCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      failedLoginCount: failedLoginCount == freezed
+          ? _value.failedLoginCount
+          : failedLoginCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -139,7 +162,10 @@ class __$PhoneLoginStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PhoneLoginState implements _PhoneLoginState {
   _$_PhoneLoginState(
-      {this.invalidCredentials = false, this.phoneNumber, this.pinCode});
+      {this.invalidCredentials = false,
+      this.phoneNumber,
+      this.pinCode,
+      this.failedLoginCount});
 
   factory _$_PhoneLoginState.fromJson(Map<String, dynamic> json) =>
       _$$_PhoneLoginStateFromJson(json);
@@ -151,10 +177,12 @@ class _$_PhoneLoginState implements _PhoneLoginState {
   final String? phoneNumber;
   @override
   final String? pinCode;
+  @override
+  final int? failedLoginCount;
 
   @override
   String toString() {
-    return 'PhoneLoginState(invalidCredentials: $invalidCredentials, phoneNumber: $phoneNumber, pinCode: $pinCode)';
+    return 'PhoneLoginState(invalidCredentials: $invalidCredentials, phoneNumber: $phoneNumber, pinCode: $pinCode, failedLoginCount: $failedLoginCount)';
   }
 
   @override
@@ -166,7 +194,9 @@ class _$_PhoneLoginState implements _PhoneLoginState {
                 .equals(other.invalidCredentials, invalidCredentials) &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.pinCode, pinCode));
+            const DeepCollectionEquality().equals(other.pinCode, pinCode) &&
+            const DeepCollectionEquality()
+                .equals(other.failedLoginCount, failedLoginCount));
   }
 
   @override
@@ -174,7 +204,8 @@ class _$_PhoneLoginState implements _PhoneLoginState {
       runtimeType,
       const DeepCollectionEquality().hash(invalidCredentials),
       const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(pinCode));
+      const DeepCollectionEquality().hash(pinCode),
+      const DeepCollectionEquality().hash(failedLoginCount));
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +222,8 @@ abstract class _PhoneLoginState implements PhoneLoginState {
   factory _PhoneLoginState(
       {bool invalidCredentials,
       String? phoneNumber,
-      String? pinCode}) = _$_PhoneLoginState;
+      String? pinCode,
+      int? failedLoginCount}) = _$_PhoneLoginState;
 
   factory _PhoneLoginState.fromJson(Map<String, dynamic> json) =
       _$_PhoneLoginState.fromJson;
@@ -202,6 +234,8 @@ abstract class _PhoneLoginState implements PhoneLoginState {
   String? get phoneNumber;
   @override
   String? get pinCode;
+  @override
+  int? get failedLoginCount;
   @override
   @JsonKey(ignore: true)
   _$PhoneLoginStateCopyWith<_PhoneLoginState> get copyWith =>

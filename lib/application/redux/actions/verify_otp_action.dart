@@ -18,6 +18,7 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 class VerifyOTPAction extends ReduxAction<AppState> {
   VerifyOTPAction({
@@ -84,8 +85,15 @@ class VerifyOTPAction extends ReduxAction<AppState> {
               onboardingPath(appState: state);
 
           dispatch(
-            NavigateAction<AppState>.pushNamed(onboardingPathConfig.route),
+            NavigateAction<AppState>.pushReplacementNamed(
+              state.onboardingState?.isResetPin ?? false
+                  ? AppRoutes.phoneLogin
+                  : onboardingPathConfig.route,
+            ),
           );
+          dispatch(UpdateOnboardingStateAction(
+            isResetPin: false,
+          ),);
 
           return state;
         } else {

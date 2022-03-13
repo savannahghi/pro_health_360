@@ -90,19 +90,6 @@ void showToast(String message) {
   );
 }
 
-String? userPinValidator(dynamic val) {
-  final String value = val as String;
-  if (value.isEmpty) {
-    return 'A PIN is required';
-  }
-  if (!RegExp(r'^-?[0-9]+$').hasMatch(value)) {
-    return 'Only digits are allowed, 0-9';
-  }
-  if (value.length < 4) {
-    return 'Enter a four digit PIN';
-  }
-  return null;
-}
 
 String? securityQuestionValidator(String? value) {
   if (value != null && (value.isEmpty || value == UNKNOWN)) {

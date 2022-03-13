@@ -32,10 +32,6 @@ const Key requestCorrectionButtonKey = Key('request_correction_button_key');
 
 const Key cancelButtonKey = Key('cancel_button');
 
-// error alert box keys
-const Key errorAlertBoxKey = Key('error_alert_box_key');
-const Key errorAlertBoxTextKey = Key('error_alert_box_text_key');
-
 //generic empty data keys
 const Key genericContainerKey = Key('generic_container');
 const Key genericListViewKey = Key('generic_list_view');

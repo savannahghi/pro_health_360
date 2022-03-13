@@ -164,3 +164,13 @@ mutation addMembersToCommunity($memberIDs: [String!]!, $communityID: String!){
     memberIDs: $memberIDs, communityID: $communityID)
 }
 ''';
+
+const String createServiceRequestMutation = r'''
+mutation createServiceRequest($clientID: String!, $requestType: String!, $request: String){
+  createServiceRequest(
+    clientID: $clientID,
+    requestType: $requestType,
+    request: $request
+  )
+}
+''';

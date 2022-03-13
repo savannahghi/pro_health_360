@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -16,7 +17,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/widgets/error_alert_box.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
@@ -28,7 +28,7 @@ void main() {
   group('LoginPage', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
     });
@@ -221,7 +221,7 @@ void main() {
         store.state.onboardingState?.phoneLogin?.invalidCredentials,
         true,
       );
-      expect(find.byType(ErrorAlertBox), findsOneWidget);
+      expect(find.byType(LoginErrorWidget), findsOneWidget);
 
       await tester.showKeyboard(pinInputField);
       await tester.enterText(pinInputField, '1');

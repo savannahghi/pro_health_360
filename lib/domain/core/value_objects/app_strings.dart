@@ -133,7 +133,8 @@ const String loadingText = 'LOADING';
 const String enteredWrongPINString =
     'Sorry, you entered the wrong PIN, please try again.';
 const String invalidCredentialsErrorMsg =
-    'Sorry, you enter invalid credentials, please try again or get help from our help center.';
+    'Sorry, the credentials you provided are incorrect. Please try again \n\nYou can also tap the button below to reset your PIN\n';
+const String invalidCredentialSting = 'Invalid credentials';
 
 // resume with pin
 const String errMsg = 'Sorry, we could not verify your PIN. Please try again.';
