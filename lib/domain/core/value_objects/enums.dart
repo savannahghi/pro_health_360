@@ -111,3 +111,16 @@ enum ContactType { PHONE, EMAIL, UNKNOWN }
 /// The [CurrentOnboardingStage] is stored in the [onboardingState] and must be
 ///  changed at the end of each workflow
 enum CurrentOnboardingStage { Login, ChangePIN, PINExpired }
+
+// The various states that an appointment can take
+enum AppointmentStatus {
+  Scheduled,
+  Rescheduled,
+  Waiting,
+  Missed,
+  Completed,
+  InConsultation,
+  WalkIn,
+  Cancelled,
+  NeedsReschedule,
+}

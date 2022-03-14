@@ -490,8 +490,8 @@ const String myHealthTimelineText = 'My Health Timeline';
 
 //Appointments
 const String appointmentsPageTitle = 'Appointments';
-const String upcomingAppointmentsText = 'Upcoming appointments';
-const String pastAppointmentsText = 'Past appointments';
+const String upcomingAppointmentsText = 'Upcoming';
+const String pastAppointmentsText = 'Past';
 
 //New Content
 const String newContentText = 'New Content';

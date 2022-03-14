@@ -3,7 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
+import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
@@ -15,6 +15,7 @@ class AppointmentsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       appBar: const CustomAppBar(title: appointmentsPageTitle),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: DefaultTabController(
@@ -23,11 +24,11 @@ class AppointmentsPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 7.5),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: TabBar(
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(7), // Creates border
-                      color: AppColors.secondaryColor,
+                      color: AppColors.primaryColor,
                     ),
                     labelColor: Colors.white,
                     unselectedLabelColor: AppColors.secondaryColor,
@@ -36,14 +37,14 @@ class AppointmentsPage extends StatelessWidget {
                         child: Text(
                           upcomingAppointmentsText,
                           textAlign: TextAlign.center,
-                          style: normalSize12Text(),
+                          style: boldSize16Text(),
                         ),
                       ),
                       Tab(
                         child: Text(
                           pastAppointmentsText,
                           textAlign: TextAlign.center,
-                          style: normalSize12Text(),
+                          style: boldSize16Text(),
                         ),
                       ),
                     ],
@@ -53,13 +54,13 @@ class AppointmentsPage extends StatelessWidget {
                   child: TabBarView(
                     children: <Widget>[
                       AppointmentListWrapper(
-                        appointments: <NotificationDetails>[
+                        appointments: <Appointment>[
                           ...upcomingAppointments,
                           ...upcomingAppointments
                         ],
                       ),
                       AppointmentListWrapper(
-                        appointments: <NotificationDetails>[
+                        appointments: <Appointment>[
                           ...pastAppointments,
                           ...pastAppointments
                         ],

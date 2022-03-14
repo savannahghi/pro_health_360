@@ -9,16 +9,18 @@ class AppScaffold extends StatelessWidget {
   const AppScaffold({
     Key? key,
     this.appBar = const CustomAppBar(),
+    this.backgroundColor,
     required this.body,
   }) : super(key: key);
 
+  final Color? backgroundColor;
   final Widget appBar;
   final Widget? body;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: backgroundColor?? Theme.of(context).backgroundColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
         child: appBar,

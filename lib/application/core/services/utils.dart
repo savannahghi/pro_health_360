@@ -23,6 +23,7 @@ import 'package:myafyahub/application/redux/actions/update_content_like_status_a
 import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
+import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
@@ -370,38 +371,35 @@ String tooManyTriesString(int timeLeft) {
   return 'Too may tries, try again in $convertedTime minutes';
 }
 
-List<NotificationDetails> upcomingAppointments = <NotificationDetails>[
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
-    description:
-        'Your Teleconsult with Dr Tibu for 11am on 12/12/2021 has been set. Click this link to join goog/meet.consult',
-    date: formatSecurityQuestionDate(feedDate),
-    actions: <NotificationActions>[calendarAction],
+// Appointments
+
+List<Appointment> upcomingAppointments = <Appointment>[
+  Appointment(
+    type: 'Scheduled clinic visit',
+    reason: 'No reason at all',
+    date: '2022-03-13',
+    start: '0000-01-01T11:07:56Z',
+    end: '0000-01-01T12:07:56Z',
+    status: enums.AppointmentStatus.Waiting,
   ),
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: hospitalIcon),
-    description:
-        'Hospital appointment for Ruaka community center 11am on 12/12/2021',
-    date: '3 days ago',
-    actions: <NotificationActions>[calendarAction],
-  ),
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: syringeIcon),
-    description:
-        'Bloodwork appointment for Ruaka community center 11am on 12/12/2021',
-    date: '3 days ago',
-    actions: <NotificationActions>[calendarAction, rescheduleAction],
+  Appointment(
+    type: 'Scheduled clinic visit',
+    reason: 'A small reason',
+    date: '2022-03-13',
+    start: '0000-01-01T11:07:56Z',
+    end: '0000-01-01T12:07:56Z',
+    status: enums.AppointmentStatus.Waiting,
   ),
 ];
 
-List<NotificationDetails> pastAppointments = <NotificationDetails>[
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: syringeIcon),
-    status: 'MISSED',
-    description:
-        'Teleconsult with Dr Tibu for 11am on 12/12/2021 has been set. Click this link to join goog/meet.consult',
-    date: formatSecurityQuestionDate(feedDate),
-    actions: <NotificationActions>[calendarAction, rescheduleAction],
+List<Appointment> pastAppointments = <Appointment>[
+  Appointment(
+    type: 'Scheduled clinic visit',
+    reason: 'A small reason',
+    date: '2022-03-13',
+    start: '0000-01-01T11:07:56Z',
+    end: '0000-01-01T12:07:56Z',
+    status: enums.AppointmentStatus.Missed,
   ),
   ...upcomingAppointments
 ];
