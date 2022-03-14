@@ -23,7 +23,7 @@ BottomNavigationState _$BottomNavigationStateFromJson(
 class _$BottomNavigationStateTearOff {
   const _$BottomNavigationStateTearOff();
 
-  _BottomNavigationState call({int? currentBottomNavIndex}) {
+  _BottomNavigationState call({required int currentBottomNavIndex}) {
     return _BottomNavigationState(
       currentBottomNavIndex: currentBottomNavIndex,
     );
@@ -39,7 +39,7 @@ const $BottomNavigationState = _$BottomNavigationStateTearOff();
 
 /// @nodoc
 mixin _$BottomNavigationState {
-  int? get currentBottomNavIndex => throw _privateConstructorUsedError;
+  int get currentBottomNavIndex => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +52,7 @@ abstract class $BottomNavigationStateCopyWith<$Res> {
   factory $BottomNavigationStateCopyWith(BottomNavigationState value,
           $Res Function(BottomNavigationState) then) =
       _$BottomNavigationStateCopyWithImpl<$Res>;
-  $Res call({int? currentBottomNavIndex});
+  $Res call({int currentBottomNavIndex});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$BottomNavigationStateCopyWithImpl<$Res>
       currentBottomNavIndex: currentBottomNavIndex == freezed
           ? _value.currentBottomNavIndex
           : currentBottomNavIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -84,7 +84,7 @@ abstract class _$BottomNavigationStateCopyWith<$Res>
           $Res Function(_BottomNavigationState) then) =
       __$BottomNavigationStateCopyWithImpl<$Res>;
   @override
-  $Res call({int? currentBottomNavIndex});
+  $Res call({int currentBottomNavIndex});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$BottomNavigationStateCopyWithImpl<$Res>
       currentBottomNavIndex: currentBottomNavIndex == freezed
           ? _value.currentBottomNavIndex
           : currentBottomNavIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -114,13 +114,13 @@ class __$BottomNavigationStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_BottomNavigationState implements _BottomNavigationState {
-  _$_BottomNavigationState({this.currentBottomNavIndex});
+  _$_BottomNavigationState({required this.currentBottomNavIndex});
 
   factory _$_BottomNavigationState.fromJson(Map<String, dynamic> json) =>
       _$$_BottomNavigationStateFromJson(json);
 
   @override
-  final int? currentBottomNavIndex;
+  final int currentBottomNavIndex;
 
   @override
   String toString() {
@@ -153,14 +153,14 @@ class _$_BottomNavigationState implements _BottomNavigationState {
 }
 
 abstract class _BottomNavigationState implements BottomNavigationState {
-  factory _BottomNavigationState({int? currentBottomNavIndex}) =
+  factory _BottomNavigationState({required int currentBottomNavIndex}) =
       _$_BottomNavigationState;
 
   factory _BottomNavigationState.fromJson(Map<String, dynamic> json) =
       _$_BottomNavigationState.fromJson;
 
   @override
-  int? get currentBottomNavIndex;
+  int get currentBottomNavIndex;
   @override
   @JsonKey(ignore: true)
   _$BottomNavigationStateCopyWith<_BottomNavigationState> get copyWith =>

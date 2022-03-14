@@ -7,7 +7,6 @@ import 'package:myafyahub/application/redux/actions/onboarding/update_initial_ro
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class CheckTokenAction extends ReduxAction<AppState> {
@@ -24,9 +23,6 @@ class CheckTokenAction extends ReduxAction<AppState> {
     final bool isSignedIn = state.credentials?.isSignedIn ?? false;
 
     String initialRoute = AppRoutes.phoneLogin;
-
-    final int currentIndex =
-        state.bottomNavigationState?.currentBottomNavIndex ?? 0;
 
     if (isSignedIn) {
       final DateTime now = DateTime.now();
@@ -57,12 +53,14 @@ class CheckTokenAction extends ReduxAction<AppState> {
             ),
           );
 
-          initialRoute = bottomNavItems[currentIndex].onTapRoute;
+          // User is authenticated, ask them to put in their pin
+          initialRoute = AppRoutes.resumeWithPin;
         } else {
           initialRoute = AppRoutes.phoneLogin;
         }
       } else {
-        initialRoute = bottomNavItems[currentIndex].onTapRoute;
+        // User is authenticated, ask them to put in their pin
+        initialRoute = AppRoutes.resumeWithPin;
       }
     }
 

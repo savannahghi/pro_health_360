@@ -827,15 +827,21 @@ const String nothingYetText = 'nothing yet';
 // share diary entry
 const String shareDiaryEntry = 'Share diary entry';
 const String shareDiaryEntryTitle =
-    'Please confirm that you want to share your diary entry below with your facility';
+    'Please confirm that you want to share your diary entry below with your '
+    'facility';
 
 // resume with pin
 String welcomeBackUserText(String? user) => 'Welcome back, ${user ?? ''}';
 const String resumeWithPinText =
-    'Let’s get you authenticated to access your account. Please enter your PIN to continue';
+    'Let’s get you authenticated to access your account. Please enter your '
+    'PIN to continue';
+const String wrongPINText = 'Wrong PIN supplied. Please try again';
+
 // pin reset request sent page
 const String pinResetRequestSent = 'PIN reset request sent';
 const String weHaveNotifiedAdmin =
-    'Hey, we have notified your admin about your difficulty while signing in. They will reset your PIN once they verify your information';
+    'Hey, we have notified your admin about your difficulty while signing in. '
+    'They will reset your PIN once they verify your information';
 const String oncePinRest =
-    'Once your PIN has been reset, you will receive an SMS with a new PIN that you will be required to change in your next login';
+    'Once your PIN has been reset, you will receive an SMS with a new PIN that'
+    ' you will be required to change in your next login';

@@ -6,7 +6,7 @@ part 'bottom_nav_state.g.dart';
 
 @freezed
 class BottomNavigationState with _$BottomNavigationState {
-  factory BottomNavigationState({int? currentBottomNavIndex}) =
+  factory BottomNavigationState({required int currentBottomNavIndex}) =
       _BottomNavigationState;
 
   factory BottomNavigationState.fromJson(Map<String, dynamic> json) =>

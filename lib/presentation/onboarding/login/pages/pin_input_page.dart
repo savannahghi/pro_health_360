@@ -1,8 +1,10 @@
 // Project imports:
 import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
@@ -240,10 +242,18 @@ class _PINInputPageState extends State<PINInputPage> {
                           if (enteredPin.length == 4) {
                             widget._pinController.text = '';
                             if (hasConnection) {
+                              final IGraphQlClient client =
+                                  AppWrapperBase.of(context)!.graphQLClient;
+                              final String endpoint =
+                                  AppWrapperBase.of(context)!
+                                      .customContext!
+                                      .verifyPhoneEndpoint;
+
                               await StoreProvider.dispatch<AppState>(
                                 context,
                                 VerifyPINAction(
-                                  context: context,
+                                  endpoint: endpoint,
+                                  httpClient: client,
                                   inputPIN: enteredPin,
                                 ),
                               );

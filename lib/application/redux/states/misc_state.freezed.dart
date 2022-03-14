@@ -23,7 +23,8 @@ class _$MiscStateTearOff {
   const _$MiscStateTearOff();
 
   _MiscState call(
-      {String? initialRoute,
+      {@JsonKey(defaultValue: AppRoutes.phoneLogin)
+          required String initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
@@ -59,7 +60,8 @@ const $MiscState = _$MiscStateTearOff();
 
 /// @nodoc
 mixin _$MiscState {
-  String? get initialRoute => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: AppRoutes.phoneLogin)
+  String get initialRoute => throw _privateConstructorUsedError;
   UserPin? get userPin => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   FAQsContentState? get profileFAQsContentState =>
@@ -84,7 +86,7 @@ abstract class $MiscStateCopyWith<$Res> {
   factory $MiscStateCopyWith(MiscState value, $Res Function(MiscState) then) =
       _$MiscStateCopyWithImpl<$Res>;
   $Res call(
-      {String? initialRoute,
+      {@JsonKey(defaultValue: AppRoutes.phoneLogin) String initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
@@ -127,7 +129,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
       initialRoute: initialRoute == freezed
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       userPin: userPin == freezed
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
@@ -214,7 +216,7 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       __$MiscStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? initialRoute,
+      {@JsonKey(defaultValue: AppRoutes.phoneLogin) String initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
@@ -261,7 +263,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
       initialRoute: initialRoute == freezed
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       userPin: userPin == freezed
           ? _value.userPin
           : userPin // ignore: cast_nullable_to_non_nullable
@@ -310,7 +312,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MiscState implements _MiscState {
   _$_MiscState(
-      {this.initialRoute,
+      {@JsonKey(defaultValue: AppRoutes.phoneLogin) required this.initialRoute,
       this.userPin,
       this.libraryListItems,
       this.profileFAQsContentState,
@@ -326,7 +328,8 @@ class _$_MiscState implements _MiscState {
       _$$_MiscStateFromJson(json);
 
   @override
-  final String? initialRoute;
+  @JsonKey(defaultValue: AppRoutes.phoneLogin)
+  final String initialRoute;
   @override
   final UserPin? userPin;
   @override
@@ -409,7 +412,8 @@ class _$_MiscState implements _MiscState {
 
 abstract class _MiscState implements MiscState {
   factory _MiscState(
-      {String? initialRoute,
+      {@JsonKey(defaultValue: AppRoutes.phoneLogin)
+          required String initialRoute,
       UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
@@ -425,7 +429,8 @@ abstract class _MiscState implements MiscState {
       _$_MiscState.fromJson;
 
   @override
-  String? get initialRoute;
+  @JsonKey(defaultValue: AppRoutes.phoneLogin)
+  String get initialRoute;
   @override
   UserPin? get userPin;
   @override

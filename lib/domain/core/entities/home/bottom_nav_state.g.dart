@@ -9,7 +9,7 @@ part of 'bottom_nav_state.dart';
 _$_BottomNavigationState _$$_BottomNavigationStateFromJson(
         Map<String, dynamic> json) =>
     _$_BottomNavigationState(
-      currentBottomNavIndex: json['currentBottomNavIndex'] as int?,
+      currentBottomNavIndex: json['currentBottomNavIndex'] as int,
     );
 
 Map<String, dynamic> _$$_BottomNavigationStateToJson(

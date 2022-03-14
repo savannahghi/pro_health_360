@@ -25,8 +25,8 @@ class LogoutButton extends StatelessWidget {
         StoreProvider.dispatch(
           context,
           LogoutAction(
-            navigationCallback: () async {
-              await Navigator.of(context).pushNamedAndRemoveUntil(
+            navigationCallback: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
                 AppRoutes.phoneLogin,
                 (Route<dynamic> route) => false,
               );

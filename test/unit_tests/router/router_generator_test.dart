@@ -50,6 +50,7 @@ import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
+import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
@@ -541,5 +542,15 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PinRequestSentPage>>());
     expect(route?.builder(context), isA<PinRequestSentPage>());
+  });
+
+  test('Test router returns successful resume pin connector', () {
+    const RouteSettings settings = RouteSettings(name: AppRoutes.resumeWithPin);
+
+    final MaterialPageRoute<ResumePinConnector>? route =
+        routeGenerator(settings) as MaterialPageRoute<ResumePinConnector>?;
+
+    expect(route, isA<MaterialPageRoute<ResumePinConnector>>());
+    expect(route?.builder(context), isA<ResumePinConnector>());
   });
 }

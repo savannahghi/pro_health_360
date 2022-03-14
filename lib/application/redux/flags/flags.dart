@@ -80,3 +80,6 @@ const String fetchRecommendedCommunitiesFlag =
 const String addUserToCommunityFlag = 'add_user_community_flag';
 
 const String fetchMembersFlag = 'fetch_members_flag';
+
+// resume with pin
+const String resumeWithPinFlag = 'resume_with_pin';

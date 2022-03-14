@@ -30,15 +30,6 @@ void main() {
       expect(unProtectedRoutes[0], AppRoutes.phoneLogin);
     });
 
-    test('should return initial route', () async {
-      expect(getInitialRoute(0, AppRoutes.phoneLogin), AppRoutes.phoneLogin);
-      expect(getInitialRoute(1, AppRoutes.feedPage), AppRoutes.feedPage);
-      expect(
-        getInitialRoute(2, AppRoutes.myHealthPage),
-        AppRoutes.myHealthPage,
-      );
-    });
-
     test('formatSecurityQuestionDate should return birth date in en_GB format',
         () {
       initializeDateFormatting();
