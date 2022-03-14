@@ -3,7 +3,6 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 // Project imports:
@@ -612,6 +611,7 @@ const String pinSuccessString = 'PIN created successfully';
 const String pinResetSuccessString = 'PIN reset successful';
 const String requestCorrectionString = 'Request for correction';
 const String nicknameSuccessString = 'Nickname created successfully';
+const String usernameTakenText = 'Username has already been taken.';
 
 const String invalidCode =
     'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';

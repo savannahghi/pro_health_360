@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:async';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -313,9 +314,9 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                       }
                     },
                     buttonColor:
-                        waitingForFlag ? Colors.grey : AppColors.secondaryColor,
+                        waitingForFlag ? Colors.grey : AppColors.primaryColor,
                     borderColor:
-                        waitingForFlag ? Colors.grey : AppColors.secondaryColor,
+                        waitingForFlag ? Colors.grey : AppColors.primaryColor,
                     text: continueString,
                   ),
           ),

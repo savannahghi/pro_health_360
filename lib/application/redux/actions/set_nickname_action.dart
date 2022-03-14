@@ -4,17 +4,12 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
-
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/actions/complete_onboarding_tour_action.dart';
@@ -23,6 +18,8 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/colors.dart';
+import 'package:shared_themes/constants.dart';
 
 /// [SetNicknameAction] is a Redux Action whose job is to update a users nickname,
 ///
@@ -77,8 +74,15 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
+    final String? errors = _client.parseError(body);
 
-    if (_client.parseError(body) != null || responseMap['errors'] != null) {
+    if (errors != null || responseMap['errors'] != null) {
+      if (errors!.contains('71')) {
+        throw MyAfyaException(
+          cause: setNickNameFlag,
+          message: usernameTakenText,
+        );
+      }
       throw MyAfyaException(
         cause: setNickNameFlag,
         message: somethingWentWrongText,
