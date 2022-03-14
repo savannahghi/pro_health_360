@@ -36,7 +36,7 @@ class _ConsentPageState extends State<ConsentPage> {
               GestureDetector(
                 key: termsAndConditionsKey,
                 onTap: () => Navigator.of(context)
-                    .pushNamed(AppRoutes.termsAndConditions),
+                    .pushNamed(AppRoutes.termsAndConditions, arguments: true),
                 child: InformationListCard(
                   leadingIcon: const Icon(
                     UniconsLine.file_lock_alt,

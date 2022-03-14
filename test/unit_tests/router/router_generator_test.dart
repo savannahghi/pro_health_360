@@ -207,8 +207,10 @@ void main() {
   });
 
   test('Test router returns TermsAndConditionsPage', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.termsAndConditions);
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.termsAndConditions,
+      arguments: false,
+    );
     final MaterialPageRoute<TermsAndConditionsPage> route =
         routeGenerator(settings) as MaterialPageRoute<TermsAndConditionsPage>;
     expect(route, isA<MaterialPageRoute<TermsAndConditionsPage>>());

@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 // Project imports:
@@ -19,7 +18,11 @@ import 'package:shared_themes/spaces.dart';
 import 'package:unicons/unicons.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
-  const TermsAndConditionsPage({Key? key}) : super(key: key);
+  const TermsAndConditionsPage({
+    Key? key,
+    this.shouldPop,
+  }) : super(key: key);
+  final bool? shouldPop;
 
   @override
   _TermsAndConditionsPageState createState() => _TermsAndConditionsPageState();
@@ -173,6 +176,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                                       // Accept terms and conditions
                                       AcceptTermsAndConditionsAction(
                                         context: context,
+                                        shouldPop: widget.shouldPop ?? false,
                                       ),
                                     );
                                   },

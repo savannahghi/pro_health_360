@@ -85,7 +85,9 @@ class RouteGenerator {
 
       case AppRoutes.termsAndConditions:
         return MaterialPageRoute<TermsAndConditionsPage>(
-          builder: (_) => const TermsAndConditionsPage(),
+          builder: (_) => TermsAndConditionsPage(
+            shouldPop: args != null ? args as bool : null,
+          ),
         );
 
       case AppRoutes.phoneLogin:

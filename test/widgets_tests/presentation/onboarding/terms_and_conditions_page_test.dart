@@ -3,19 +3,18 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
+
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -76,6 +75,48 @@ void main() {
           store: store,
           client: mockShortSILGraphQlClient,
           widget: const TermsAndConditionsPage(),
+        );
+
+        await tester.pumpAndSettle();
+        final Finder checkBox = find.byType(Checkbox);
+        final Finder proceedButton = find.byType(MyAfyaHubPrimaryButton);
+        await tester.tap(checkBox);
+        await tester.pumpAndSettle();
+        await tester.tap(proceedButton);
+        await tester.pumpAndSettle();
+
+        expect(find.byType(TermsAndConditionsPage), findsNothing);
+      });
+    });
+
+    testWidgets('Accepts terms and conditions navigates back to consent page',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getCurrentTerms': termsMock,
+              'acceptTerms': true,
+              'fetchRecentContent': contentMock,
+              'fetchSuggestedGroups': mockSuggestions,
+              'getSecurityQuestions': securityQuestionsMock,
+            },
+          }),
+          201,
+        ),
+      );
+
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: const TermsAndConditionsPage(
+            shouldPop: true,
+          ),
         );
 
         await tester.pumpAndSettle();

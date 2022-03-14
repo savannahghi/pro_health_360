@@ -3,16 +3,15 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/accept_terms_and_conditions_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -52,7 +51,10 @@ void main() {
               onPressed: () async {
                 try {
                   await store.dispatch(
-                    AcceptTermsAndConditionsAction(context: context),
+                    AcceptTermsAndConditionsAction(
+                      context: context,
+                      shouldPop: false,
+                    ),
                   );
                 } catch (e) {
                   err = e;
