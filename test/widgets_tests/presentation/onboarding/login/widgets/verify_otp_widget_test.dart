@@ -13,15 +13,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_widget.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -80,10 +86,69 @@ void main() {
               return VerifyPhoneViewModel.fromStore(store);
             },
             builder: (BuildContext context, VerifyPhoneViewModel vm) {
-              return VerifyOtpWidget(
-                phoneNumber: vm.phoneNumber ?? UNKNOWN,
-                verifyPhoneViewModel: vm,
-                loader: const CircularProgressIndicator(),
+              return VerifyPhoneWidget(
+                vm: vm,
+                sendOTPFunction: () async {
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    SendOTPAction(
+                      context: context,
+                      resetPinPhoneNumber: phoneNumber,
+                    ),
+                  );
+                },
+                canResendOTPFunction: () async {
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    UpdateOnboardingStateAction(
+                      canResendOTP: true,
+                    ),
+                  );
+                },
+                cantResendOTPFunction: () async {
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    UpdateOnboardingStateAction(
+                      canResendOTP: false,
+                    ),
+                  );
+                },
+                onDone: (String enteredCode) {
+                  if (enteredCode == vm.otp) {
+                    if (vm.isResetPin) {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.createPin,
+                        arguments: phoneNumber,
+                      );
+                    } else {
+                      StoreProvider.dispatch<AppState>(
+                        context,
+                        VerifyOTPAction(
+                          otp: enteredCode,
+                          context: context,
+                        ),
+                      );
+                    }
+                    return;
+                  } else {
+                    showFeedbackBottomSheet(
+                      context: context,
+                      modalContent: invalidCode,
+                      imageAssetPath: errorIconUrl,
+                    );
+                  }
+                },
+                resendOTPFunction: () async {
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    SendOTPAction(
+                      context: context,
+                      isResend: true,
+                      resetPinPhoneNumber: phoneNumber,
+                    ),
+                  );
+                },
               );
             },
           ),
@@ -119,7 +184,20 @@ void main() {
 
     testWidgets('should show a loading indicator when verifying an OTP',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockClient = MockGraphQlClient();
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'sendOTP': '123456',
+              'sendRetryOTP': '123456',
+            }
+          }),
+          201,
+        ),
+      );
       store.dispatch(
         UpdateOnboardingStateAction(
           canResendOTP: true,
@@ -129,16 +207,75 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockClient,
+        client: mockShortSILGraphQlClient,
         widget: StoreConnector<AppState, VerifyPhoneViewModel>(
           converter: (Store<AppState> store) {
             return VerifyPhoneViewModel.fromStore(store);
           },
           builder: (BuildContext context, VerifyPhoneViewModel vm) {
-            return VerifyOtpWidget(
-              phoneNumber: vm.phoneNumber ?? UNKNOWN,
-              verifyPhoneViewModel: vm,
-              loader: const CircularProgressIndicator(),
+            return VerifyPhoneWidget(
+              vm: vm,
+              sendOTPFunction: () async {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  SendOTPAction(
+                    context: context,
+                    resetPinPhoneNumber: phoneNumber,
+                  ),
+                );
+              },
+              canResendOTPFunction: () async {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  UpdateOnboardingStateAction(
+                    canResendOTP: true,
+                  ),
+                );
+              },
+              cantResendOTPFunction: () async {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  UpdateOnboardingStateAction(
+                    canResendOTP: false,
+                  ),
+                );
+              },
+              onDone: (String enteredCode) {
+                if (enteredCode == vm.otp) {
+                  if (vm.isResetPin) {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.createPin,
+                      arguments: phoneNumber,
+                    );
+                  } else {
+                    StoreProvider.dispatch<AppState>(
+                      context,
+                      VerifyOTPAction(
+                        otp: enteredCode,
+                        context: context,
+                      ),
+                    );
+                  }
+                  return;
+                } else {
+                  showFeedbackBottomSheet(
+                    context: context,
+                    modalContent: invalidCode,
+                    imageAssetPath: errorIconUrl,
+                  );
+                }
+              },
+              resendOTPFunction: () async {
+                StoreProvider.dispatch<AppState>(
+                  context,
+                  SendOTPAction(
+                    context: context,
+                    isResend: true,
+                    resetPinPhoneNumber: phoneNumber,
+                  ),
+                );
+              },
             );
           },
         ),
@@ -146,11 +283,13 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(PINInputField), findsOneWidget);
+
       await tester.tap(find.byType(PINInputField));
       await tester.pumpAndSettle();
 
       expect(find.byKey(resendOtpButtonKey), findsOneWidget);
       await store.dispatch(WaitAction<AppState>.add(resendOTPFlag));
+
       await tester.pump();
 
       expect(find.byKey(resendOtpButtonKey), findsNothing);

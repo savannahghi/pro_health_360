@@ -74,16 +74,11 @@ OnboardingPathConfig onboardingPath({
   final bool hasSetNickName =
       appState?.onboardingState?.hasSetNickName ?? false;
   final bool isPINSet = appState?.onboardingState?.isPINSet ?? false;
-  final String? phoneNumber =
-      appState?.onboardingState?.phoneLogin?.phoneNumber;
 
   if (!isSignedIn) {
     return OnboardingPathConfig(route: AppRoutes.phoneLogin);
   } else if (!isPhoneVerified) {
-    return OnboardingPathConfig(
-      route: AppRoutes.verifySignUpOTP,
-      arguments: phoneNumber,
-    );
+    return OnboardingPathConfig(route: AppRoutes.verifySignUpOTP);
   } else if (!termsAccepted) {
     return OnboardingPathConfig(route: AppRoutes.termsAndConditions);
   } else if (!hasSetSecurityQuestions) {

@@ -175,9 +175,7 @@ void main() {
       expect(
         navDetails?.predicate.call(
           MaterialPageRoute<VerifyPhonePage>(
-            builder: (BuildContext context) => const VerifyPhonePage(
-              phoneNumber: '+254798000000',
-            ),
+            builder: (BuildContext context) => const VerifyPhonePage(),
           ),
         ),
         false,

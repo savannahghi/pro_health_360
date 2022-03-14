@@ -130,5 +130,52 @@ void main() {
         true,
       );
     });
+
+    testWidgets('should display bottom modal sheet if there is a backend error',
+        (WidgetTester tester) async {
+      expect(
+        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        false,
+      );
+
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'data': 'some error'}),
+          401,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MyAfyaHubPrimaryButton(
+              buttonKey: const Key('update_contacts'),
+              onPressed: () async {
+                await store.dispatch(
+                  SendOTPAction(
+                    context: context,
+                    resetPinPhoneNumber: '+254712345678',
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.tap(find.byKey(const Key('update_contacts')));
+      await tester.pumpAndSettle();
+
+      expect(
+        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        true,
+      );
+    });
   });
 }

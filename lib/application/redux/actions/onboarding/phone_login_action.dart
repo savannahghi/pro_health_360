@@ -181,10 +181,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           dispatch(UpdateOnboardingStateAction(isResetPin: true));
 
           dispatch(
-            NavigateAction<AppState>.pushNamed(
-              AppRoutes.verifySignUpOTP,
-              arguments: phoneNumber,
-            ),
+            NavigateAction<AppState>.pushNamed(AppRoutes.verifySignUpOTP),
           );
 
           return state;

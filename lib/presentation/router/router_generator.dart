@@ -75,7 +75,7 @@ class RouteGenerator {
 
       case AppRoutes.verifySignUpOTP:
         return MaterialPageRoute<VerifyPhonePage>(
-          builder: (_) => VerifyPhonePage(phoneNumber: args as String),
+          builder: (_) => const VerifyPhonePage(),
         );
 
       case AppRoutes.congratulationsPage:

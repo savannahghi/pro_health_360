@@ -1,36 +1,34 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-// Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
-import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+// Project imports:
+
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/animated_count.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOtpWidget extends StatefulWidget {
   const VerifyOtpWidget({
-    Key? key,
-    required this.phoneNumber,
     required this.loader,
-    required this.verifyPhoneViewModel,
-  }) : super(key: key);
+    this.canResendOTPFunction,
+    required this.cantResendOTPFunction,
+    required this.onDone,
+    required this.resendOTPFunction,
+    required this.vm,
+  });
 
-  final String phoneNumber;
+  final VoidCallback? canResendOTPFunction;
+  final VoidCallback cantResendOTPFunction;
   final Widget loader;
-  final VerifyPhoneViewModel verifyPhoneViewModel;
+  final void Function(String) onDone;
+  final VoidCallback resendOTPFunction;
+  final VerifyPhoneViewModel vm;
 
   @override
   VerifyOtpWidgetState createState() => VerifyOtpWidgetState();
@@ -69,12 +67,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
         .animate(_controller)
       ..addListener(() {
         if (resendTimeout == 0) {
-          StoreProvider.dispatch<AppState>(
-            context,
-            UpdateOnboardingStateAction(
-              canResendOTP: true,
-            ),
-          );
+          widget.canResendOTPFunction?.call();
         }
         setState(() {
           resendTimeout = int.parse(animation!.value.toStringAsFixed(0));
@@ -93,57 +86,29 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
     resendTimeout = 90;
     _controller.value = 0;
     _controller.forward();
-
-    StoreProvider.dispatch<AppState>(
-      context,
-      UpdateOnboardingStateAction(
-        canResendOTP: false,
-      ),
-    );
+    widget.cantResendOTPFunction.call();
   }
 
   @override
   Widget build(BuildContext context) {
-    final bool canResend = widget.verifyPhoneViewModel.canResendOTP!;
-    final bool isResetPin = widget.verifyPhoneViewModel.isResetPin;
+    final bool canResend = widget.vm.canResendOTP!;
     return Column(
       children: <Widget>[
         smallVerticalSizedBox,
         PINInputField(
           maxLength: 6,
+          controller: textEditingController,
           onDone: (String enteredCode) async {
-            if (enteredCode == widget.verifyPhoneViewModel.otp) {
-              if (isResetPin) {
-                Navigator.pushNamed(
-                  context,
-                  AppRoutes.createPin,
-                  arguments: widget.phoneNumber,
-                );
-              } else {
-                StoreProvider.dispatch<AppState>(
-                  context,
-                  VerifyOTPAction(
-                    otp: enteredCode,
-                    context: context,
-                  ),
-                );
-              }
-              return;
-            } else {
-              showFeedbackBottomSheet(
-                context: context,
-                modalContent: invalidCode,
-                imageAssetPath: errorIconUrl,
-              );
-            }
+            widget.onDone(enteredCode);
+            textEditingController.clear();
           },
         ),
         largeVerticalSizedBox,
-        if (!canResend && !widget.verifyPhoneViewModel.failedToSendOTP!)
+        if (!canResend && !widget.vm.failedToSendOTP!)
           Column(
             children: <Widget>[
               Text(
-                anOtpHasBeenSentText(widget.phoneNumber),
+                anOtpHasBeenSentText(widget.vm.phoneNumber ?? ''),
                 style: normalSize14Text(AppColors.secondaryColor),
               ),
               smallVerticalSizedBox,
@@ -152,7 +117,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
           ),
 
         ///Column should not be rendered in case of an error while sending the OTP
-        if (canResend && !widget.verifyPhoneViewModel.failedToSendOTP!)
+        if (canResend && !widget.vm.failedToSendOTP!)
           Column(
             children: <Widget>[
               Text(
@@ -160,8 +125,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                 style: normalSize14Text(AppColors.secondaryColor),
               ),
               verySmallVerticalSizedBox,
-              if (!widget.verifyPhoneViewModel.wait!
-                  .isWaitingFor(resendOTPFlag))
+              if (!widget.vm.wait!.isWaitingFor(resendOTPFlag))
                 MyAfyaHubPrimaryButton(
                   buttonKey: resendOtpButtonKey,
                   customRadius: 4,
@@ -170,15 +134,10 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                   buttonColor: AppColors.secondaryColor,
                   borderColor: AppColors.secondaryColor,
                   onPressed: () async {
-                    StoreProvider.dispatch<AppState>(
-                      context,
-                      SendOTPAction(
-                        context: context,
-                        isResend: true,
-                        callBackFunction: restartTimer,
-                        resetPinPhoneNumber: widget.phoneNumber,
-                      ),
-                    );
+                    widget.resendOTPFunction.call();
+                    restartTimer();
+                    await Future<dynamic>.delayed(const Duration(seconds: 3));
+                    textEditingController.clear();
                   },
                 )
               else ...<Widget>[

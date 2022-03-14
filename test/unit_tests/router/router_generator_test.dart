@@ -118,7 +118,6 @@ void main() {
   test('Test router returns  verify otp page', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.verifySignUpOTP,
-      arguments: '0700111222',
     );
 
     final MaterialPageRoute<VerifyPhonePage> route =

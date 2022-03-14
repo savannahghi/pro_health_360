@@ -29,6 +29,7 @@ Future<void> buildTestWidget({
   required IGraphQlClient client,
   required Widget widget,
   List<NavigatorObserver>? navigatorObservers,
+  Duration? duration,
 }) async {
   FlutterConfig.loadValueForTesting(<String, String>{
     'DEV_SENTRY_DNS': 'test_dev_sentry_dns',
@@ -67,5 +68,28 @@ Future<void> buildTestWidget({
         ),
       ),
     ),
+    duration,
   );
+}
+
+Future<void> advanceAndPump({
+  required Widget widget,
+  required WidgetTester tester,
+  required void Function(Duration) updateTime,
+  required Store<AppState> store,
+  required IGraphQlClient client,
+  List<NavigatorObserver>? navigatorObservers,
+  Duration duration = Duration.zero,
+}) async {
+  updateTime(duration);
+
+  await buildTestWidget(
+    tester: tester,
+    widget: widget,
+    duration: duration,
+    store: store,
+    client: client,
+    navigatorObservers: navigatorObservers,
+  );
+  await tester.pumpAndSettle();
 }
