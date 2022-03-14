@@ -284,13 +284,6 @@ dynamic reportErrorToSentry(
   Sentry.captureException(errorTrace, hint: hint);
 }
 
-bool confirmPinValidator(String pin, String confirmPin) {
-  if (pin != confirmPin) {
-    return false;
-  }
-  return true;
-}
-
 final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   UserProfileItemObj(
     iconAssetPath: profileIcon,

@@ -350,13 +350,9 @@ const String iVeLostWeightString = 'I\'ve lost weight';
 const String nextString = 'Next';
 const String errorCreatingHealthDiaryEntryString =
     'Error creating health diary entry';
-
-const String confirmPinString = 'Confirm new PIN';
 const String createNewPINTitleString = 'Create new PIN';
 const String resetPINTitleString = 'Reset PIN';
-const String createNewPINSubTitleString = 'Enter your new 4 digit PIN.';
 const String pinMustMatchString = 'PIN must match';
-
 //congratulations page
 String setNickNamePageTitle({required BuildContext context}) {
   /// [congratulationsPageTitle] function fetches the enrollment date from state and calculates
