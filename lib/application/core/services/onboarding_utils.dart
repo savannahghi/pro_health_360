@@ -73,7 +73,8 @@ OnboardingPathConfig onboardingPath({
       appState?.onboardingState?.hasSetSecurityQuestions ?? false;
   final bool hasSetNickName =
       appState?.onboardingState?.hasSetNickName ?? false;
-  final bool isPINSet = appState?.onboardingState?.isPINSet ?? false;
+  final bool isPINSet =
+      appState?.onboardingState?.setPINState?.isPINSet ?? false;
 
   if (!isSignedIn) {
     return OnboardingPathConfig(route: AppRoutes.phoneLogin);

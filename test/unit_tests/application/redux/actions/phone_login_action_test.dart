@@ -134,7 +134,7 @@ void main() {
         <Type>[UpdateOnboardingStateAction, PhoneLoginAction],
       );
 
-      expect(info.state.onboardingState?.isResetPin, true);
+      expect(info.state.onboardingState?.setPINState?.isResetPin, true);
     });
 
     test('show update state correctly if response is ok', () async {

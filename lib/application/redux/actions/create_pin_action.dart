@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -62,7 +61,8 @@ class CreatePINAction extends ReduxAction<AppState> {
         state.onboardingState!.createPINState!.confirmPIN;
 
     final String? otp = state.onboardingState?.verifyPhoneState?.otp;
-    final bool isResetPin = state.onboardingState?.isResetPin ?? false;
+    final bool isResetPin =
+        state.onboardingState?.setPINState?.isResetPin ?? false;
 
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {

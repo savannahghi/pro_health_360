@@ -32,9 +32,14 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
           ? null
           : VerifyPhoneState.fromJson(
               json['verifyPhoneState'] as Map<String, dynamic>),
+      verifySecurityQuestionsState: json['verifySecurityQuestionsState'] == null
+          ? null
+          : VerifySecurityQuestionsState.fromJson(
+              json['verifySecurityQuestionsState'] as Map<String, dynamic>),
+      setPINState: json['setPINState'] == null
+          ? null
+          : SetPINState.fromJson(json['setPINState'] as Map<String, dynamic>),
       isPhoneVerified: json['isPhoneVerified'] as bool?,
-      isPINSet: json['isPINSet'] as bool?,
-      isResetPin: json['isResetPin'] as bool?,
       hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
       hasSetNickName: json['hasSetNickName'] as bool?,
     );
@@ -47,9 +52,9 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'securityQuestionResponses': instance.securityQuestionResponses,
       'phoneLogin': instance.phoneLogin,
       'verifyPhoneState': instance.verifyPhoneState,
+      'verifySecurityQuestionsState': instance.verifySecurityQuestionsState,
+      'setPINState': instance.setPINState,
       'isPhoneVerified': instance.isPhoneVerified,
-      'isPINSet': instance.isPINSet,
-      'isResetPin': instance.isResetPin,
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
       'hasSetNickName': instance.hasSetNickName,
     };

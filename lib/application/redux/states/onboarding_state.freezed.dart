@@ -29,9 +29,9 @@ class _$OnboardingStateTearOff {
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
+      VerifySecurityQuestionsState? verifySecurityQuestionsState,
+      SetPINState? setPINState,
       bool? isPhoneVerified,
-      bool? isPINSet,
-      bool? isResetPin,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName}) {
     return _OnboardingState(
@@ -41,9 +41,9 @@ class _$OnboardingStateTearOff {
       securityQuestionResponses: securityQuestionResponses,
       phoneLogin: phoneLogin,
       verifyPhoneState: verifyPhoneState,
+      verifySecurityQuestionsState: verifySecurityQuestionsState,
+      setPINState: setPINState,
       isPhoneVerified: isPhoneVerified,
-      isPINSet: isPINSet,
-      isResetPin: isResetPin,
       hasSetSecurityQuestions: hasSetSecurityQuestions,
       hasSetNickName: hasSetNickName,
     );
@@ -67,13 +67,12 @@ mixin _$OnboardingState {
   List<SecurityQuestionResponse>? get securityQuestionResponses =>
       throw _privateConstructorUsedError;
   PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
-  VerifyPhoneState? get verifyPhoneState =>
+  VerifyPhoneState? get verifyPhoneState => throw _privateConstructorUsedError;
+  VerifySecurityQuestionsState? get verifySecurityQuestionsState =>
+      throw _privateConstructorUsedError;
+  SetPINState? get setPINState =>
       throw _privateConstructorUsedError; // If the user has verified their phone number
   bool? get isPhoneVerified =>
-      throw _privateConstructorUsedError; //If the user has set their PIN
-  bool? get isPINSet =>
-      throw _privateConstructorUsedError; //If the user wants to reset their PIN
-  bool? get isResetPin =>
       throw _privateConstructorUsedError; // If the user has set their security questions
   bool? get hasSetSecurityQuestions =>
       throw _privateConstructorUsedError; // If the user has set their nickname
@@ -97,9 +96,9 @@ abstract class $OnboardingStateCopyWith<$Res> {
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
+      VerifySecurityQuestionsState? verifySecurityQuestionsState,
+      SetPINState? setPINState,
       bool? isPhoneVerified,
-      bool? isPINSet,
-      bool? isResetPin,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName});
 
@@ -107,6 +106,8 @@ abstract class $OnboardingStateCopyWith<$Res> {
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
   $VerifyPhoneStateCopyWith<$Res>? get verifyPhoneState;
+  $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
+  $SetPINStateCopyWith<$Res>? get setPINState;
 }
 
 /// @nodoc
@@ -126,9 +127,9 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestionResponses = freezed,
     Object? phoneLogin = freezed,
     Object? verifyPhoneState = freezed,
+    Object? verifySecurityQuestionsState = freezed,
+    Object? setPINState = freezed,
     Object? isPhoneVerified = freezed,
-    Object? isPINSet = freezed,
-    Object? isResetPin = freezed,
     Object? hasSetSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
   }) {
@@ -157,17 +158,17 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.verifyPhoneState
           : verifyPhoneState // ignore: cast_nullable_to_non_nullable
               as VerifyPhoneState?,
+      verifySecurityQuestionsState: verifySecurityQuestionsState == freezed
+          ? _value.verifySecurityQuestionsState
+          : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
+              as VerifySecurityQuestionsState?,
+      setPINState: setPINState == freezed
+          ? _value.setPINState
+          : setPINState // ignore: cast_nullable_to_non_nullable
+              as SetPINState?,
       isPhoneVerified: isPhoneVerified == freezed
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPINSet: isPINSet == freezed
-          ? _value.isPINSet
-          : isPINSet // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isResetPin: isResetPin == freezed
-          ? _value.isResetPin
-          : isResetPin // ignore: cast_nullable_to_non_nullable
               as bool?,
       hasSetSecurityQuestions: hasSetSecurityQuestions == freezed
           ? _value.hasSetSecurityQuestions
@@ -224,6 +225,30 @@ class _$OnboardingStateCopyWithImpl<$Res>
       return _then(_value.copyWith(verifyPhoneState: value));
     });
   }
+
+  @override
+  $VerifySecurityQuestionsStateCopyWith<$Res>?
+      get verifySecurityQuestionsState {
+    if (_value.verifySecurityQuestionsState == null) {
+      return null;
+    }
+
+    return $VerifySecurityQuestionsStateCopyWith<$Res>(
+        _value.verifySecurityQuestionsState!, (value) {
+      return _then(_value.copyWith(verifySecurityQuestionsState: value));
+    });
+  }
+
+  @override
+  $SetPINStateCopyWith<$Res>? get setPINState {
+    if (_value.setPINState == null) {
+      return null;
+    }
+
+    return $SetPINStateCopyWith<$Res>(_value.setPINState!, (value) {
+      return _then(_value.copyWith(setPINState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -240,9 +265,9 @@ abstract class _$OnboardingStateCopyWith<$Res>
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
+      VerifySecurityQuestionsState? verifySecurityQuestionsState,
+      SetPINState? setPINState,
       bool? isPhoneVerified,
-      bool? isPINSet,
-      bool? isResetPin,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName});
 
@@ -254,6 +279,10 @@ abstract class _$OnboardingStateCopyWith<$Res>
   $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
   @override
   $VerifyPhoneStateCopyWith<$Res>? get verifyPhoneState;
+  @override
+  $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
+  @override
+  $SetPINStateCopyWith<$Res>? get setPINState;
 }
 
 /// @nodoc
@@ -275,9 +304,9 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestionResponses = freezed,
     Object? phoneLogin = freezed,
     Object? verifyPhoneState = freezed,
+    Object? verifySecurityQuestionsState = freezed,
+    Object? setPINState = freezed,
     Object? isPhoneVerified = freezed,
-    Object? isPINSet = freezed,
-    Object? isResetPin = freezed,
     Object? hasSetSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
   }) {
@@ -306,17 +335,17 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.verifyPhoneState
           : verifyPhoneState // ignore: cast_nullable_to_non_nullable
               as VerifyPhoneState?,
+      verifySecurityQuestionsState: verifySecurityQuestionsState == freezed
+          ? _value.verifySecurityQuestionsState
+          : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
+              as VerifySecurityQuestionsState?,
+      setPINState: setPINState == freezed
+          ? _value.setPINState
+          : setPINState // ignore: cast_nullable_to_non_nullable
+              as SetPINState?,
       isPhoneVerified: isPhoneVerified == freezed
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPINSet: isPINSet == freezed
-          ? _value.isPINSet
-          : isPINSet // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isResetPin: isResetPin == freezed
-          ? _value.isResetPin
-          : isResetPin // ignore: cast_nullable_to_non_nullable
               as bool?,
       hasSetSecurityQuestions: hasSetSecurityQuestions == freezed
           ? _value.hasSetSecurityQuestions
@@ -340,9 +369,9 @@ class _$_OnboardingState implements _OnboardingState {
       this.securityQuestionResponses,
       this.phoneLogin,
       this.verifyPhoneState,
+      this.verifySecurityQuestionsState,
+      this.setPINState,
       this.isPhoneVerified,
-      this.isPINSet,
-      this.isResetPin,
       this.hasSetSecurityQuestions,
       this.hasSetNickName});
 
@@ -361,12 +390,12 @@ class _$_OnboardingState implements _OnboardingState {
   final PhoneLoginState? phoneLogin;
   @override
   final VerifyPhoneState? verifyPhoneState;
+  @override
+  final VerifySecurityQuestionsState? verifySecurityQuestionsState;
+  @override
+  final SetPINState? setPINState;
   @override // If the user has verified their phone number
   final bool? isPhoneVerified;
-  @override //If the user has set their PIN
-  final bool? isPINSet;
-  @override //If the user wants to reset their PIN
-  final bool? isResetPin;
   @override // If the user has set their security questions
   final bool? hasSetSecurityQuestions;
   @override // If the user has set their nickname
@@ -374,7 +403,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, verifyPhoneState: $verifyPhoneState, isPhoneVerified: $isPhoneVerified, isPINSet: $isPINSet, isResetPin: $isResetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickName: $hasSetNickName)';
+    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, verifyPhoneState: $verifyPhoneState, verifySecurityQuestionsState: $verifySecurityQuestionsState, setPINState: $setPINState, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickName: $hasSetNickName)';
   }
 
   @override
@@ -394,11 +423,13 @@ class _$_OnboardingState implements _OnboardingState {
                 .equals(other.phoneLogin, phoneLogin) &&
             const DeepCollectionEquality()
                 .equals(other.verifyPhoneState, verifyPhoneState) &&
+            const DeepCollectionEquality().equals(
+                other.verifySecurityQuestionsState,
+                verifySecurityQuestionsState) &&
+            const DeepCollectionEquality()
+                .equals(other.setPINState, setPINState) &&
             const DeepCollectionEquality()
                 .equals(other.isPhoneVerified, isPhoneVerified) &&
-            const DeepCollectionEquality().equals(other.isPINSet, isPINSet) &&
-            const DeepCollectionEquality()
-                .equals(other.isResetPin, isResetPin) &&
             const DeepCollectionEquality().equals(
                 other.hasSetSecurityQuestions, hasSetSecurityQuestions) &&
             const DeepCollectionEquality()
@@ -414,9 +445,9 @@ class _$_OnboardingState implements _OnboardingState {
       const DeepCollectionEquality().hash(securityQuestionResponses),
       const DeepCollectionEquality().hash(phoneLogin),
       const DeepCollectionEquality().hash(verifyPhoneState),
+      const DeepCollectionEquality().hash(verifySecurityQuestionsState),
+      const DeepCollectionEquality().hash(setPINState),
       const DeepCollectionEquality().hash(isPhoneVerified),
-      const DeepCollectionEquality().hash(isPINSet),
-      const DeepCollectionEquality().hash(isResetPin),
       const DeepCollectionEquality().hash(hasSetSecurityQuestions),
       const DeepCollectionEquality().hash(hasSetNickName));
 
@@ -439,9 +470,9 @@ abstract class _OnboardingState implements OnboardingState {
       List<SecurityQuestionResponse>? securityQuestionResponses,
       PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
+      VerifySecurityQuestionsState? verifySecurityQuestionsState,
+      SetPINState? setPINState,
       bool? isPhoneVerified,
-      bool? isPINSet,
-      bool? isResetPin,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName}) = _$_OnboardingState;
 
@@ -460,12 +491,12 @@ abstract class _OnboardingState implements OnboardingState {
   PhoneLoginState? get phoneLogin;
   @override
   VerifyPhoneState? get verifyPhoneState;
+  @override
+  VerifySecurityQuestionsState? get verifySecurityQuestionsState;
+  @override
+  SetPINState? get setPINState;
   @override // If the user has verified their phone number
   bool? get isPhoneVerified;
-  @override //If the user has set their PIN
-  bool? get isPINSet;
-  @override //If the user wants to reset their PIN
-  bool? get isResetPin;
   @override // If the user has set their security questions
   bool? get hasSetSecurityQuestions;
   @override // If the user has set their nickname

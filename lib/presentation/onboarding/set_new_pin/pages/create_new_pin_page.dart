@@ -43,9 +43,11 @@ class _CreateNewPINPageState extends State<CreateNewPINPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isResetPin =
-        StoreProvider.state<AppState>(context)?.onboardingState?.isResetPin ??
-            false;
+    final bool isResetPin = StoreProvider.state<AppState>(context)
+            ?.onboardingState
+            ?.setPINState
+            ?.isResetPin ??
+        false;
     return OnboardingScaffold(
       title: isResetPin ? resetPINTitleString : createNewPINTitleString,
       description: createNewPINSubTitleString,

@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -86,14 +85,16 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
           dispatch(
             NavigateAction<AppState>.pushReplacementNamed(
-              state.onboardingState?.isResetPin ?? false
+              state.onboardingState?.setPINState?.isResetPin ?? false
                   ? AppRoutes.phoneLogin
                   : onboardingPathConfig.route,
             ),
           );
-          dispatch(UpdateOnboardingStateAction(
-            isResetPin: false,
-          ),);
+          dispatch(
+            UpdateOnboardingStateAction(
+              isResetPin: false,
+            ),
+          );
 
           return state;
         } else {

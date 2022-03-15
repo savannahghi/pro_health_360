@@ -4,6 +4,8 @@ import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
+import 'package:myafyahub/domain/core/entities/login/set_pin_state.dart';
+
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   UpdateOnboardingStateAction({
     this.securityQuestions,
@@ -34,10 +36,15 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final bool? oldPhoneVerified = state.onboardingState?.isPhoneVerified;
+    final SetPINState newSetPINState = SetPINState(
+      isPINSet:
+          hasSetPin ?? state.onboardingState?.setPINState?.isPINSet ?? false,
+      isResetPin:
+          isResetPin ?? state.onboardingState?.setPINState?.isResetPin ?? false,
+    );
 
     final OnboardingState? newOnboardingState = state.onboardingState?.copyWith(
-      isPINSet: hasSetPin ?? state.onboardingState?.isPINSet,
-      isResetPin: isResetPin ?? state.onboardingState?.isResetPin,
+      setPINState: newSetPINState,
       securityQuestions:
           securityQuestions ?? state.onboardingState?.securityQuestions,
       securityQuestionResponses: securityQuestionsResponses ??

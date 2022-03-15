@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -49,7 +48,8 @@ class SendOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final bool isResetPin = state.onboardingState?.isResetPin ?? false;
+    final bool isResetPin =
+        state.onboardingState?.setPINState?.isResetPin ?? false;
 
     final String phoneNumber = isResetPin
         ? resetPinPhoneNumber

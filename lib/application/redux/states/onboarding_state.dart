@@ -4,7 +4,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
+import 'package:myafyahub/domain/core/entities/login/set_pin_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_phone_state.dart';
+import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 
 part 'onboarding_state.freezed.dart';
@@ -19,12 +21,10 @@ class OnboardingState with _$OnboardingState {
     List<SecurityQuestionResponse>? securityQuestionResponses,
     PhoneLoginState? phoneLogin,
     VerifyPhoneState? verifyPhoneState,
+    VerifySecurityQuestionsState? verifySecurityQuestionsState,
+    SetPINState? setPINState,
     // If the user has verified their phone number
     bool? isPhoneVerified,
-    //If the user has set their PIN
-    bool? isPINSet,
-    //If the user wants to reset their PIN
-    bool? isResetPin,
     // If the user has set their security questions
     bool? hasSetSecurityQuestions,
     // If the user has set their nickname
@@ -41,9 +41,9 @@ class OnboardingState with _$OnboardingState {
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
         verifyPhoneState: VerifyPhoneState.initial(),
+        verifySecurityQuestionsState: VerifySecurityQuestionsState.initial(),
+        setPINState: SetPINState.initial(),
         isPhoneVerified: false,
-        isPINSet: false,
-        isResetPin: false,
         hasSetSecurityQuestions: false,
         hasSetNickName: false,
       );
