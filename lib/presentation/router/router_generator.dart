@@ -32,6 +32,7 @@ import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/consent_confirmation/consent_confirmation_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pending_pin_request_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_sent_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
@@ -345,6 +346,10 @@ class RouteGenerator {
       case AppRoutes.consentConfirmationPage:
         return MaterialPageRoute<ConsentConfirmationPage>(
           builder: (_) => const ConsentConfirmationPage(),
+        );
+      case AppRoutes.pendingPINRequestPage:
+        return MaterialPageRoute<PendingPINRequestPage>(
+          builder: (_) => const PendingPINRequestPage(),
         );
 
       default:

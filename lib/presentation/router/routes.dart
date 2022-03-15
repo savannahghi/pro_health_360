@@ -123,13 +123,16 @@ class AppRoutes {
   static const String groupInvitesPage = '/groupInvitesPage';
   static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
   static const String groupInfoPage = '/groupInfoPage';
-  static const String pinRequestSentPage = '/pinRequestSentPage';
 
   // resume with pin
   static const String resumeWithPin = '/resumeWithPin';
 
   // consent confirmation page
   static const String consentConfirmationPage = '/consentConfirmationPage';
+  
+  //pin requests
+  static const String pinRequestSentPage = '/pinRequestSentPage';
+  static const String pendingPINRequestPage = '/pendingPINRequestPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

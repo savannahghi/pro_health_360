@@ -834,7 +834,7 @@ const String resumeWithPinText =
     'PIN to continue';
 const String wrongPINText = 'Wrong PIN supplied. Please try again';
 
-// pin reset request sent page
+// pin request
 const String pinResetRequestSent = 'PIN reset request sent';
 const String weHaveNotifiedAdmin =
     'Hey, we have notified your admin about your difficulty while signing in. '
@@ -842,6 +842,11 @@ const String weHaveNotifiedAdmin =
 const String oncePinRest =
     'Once your PIN has been reset, you will receive an SMS with a new PIN that'
     ' you will be required to change in your next login';
+const String pendingPINRequestTitleString =
+    'You have a pending PIN reset request';
+const String pendingPINRequestMessageString =
+    'Please be patient while an admin approves your request. If you signed in with the wrong phone number, tap the button below to try again';
+const String signInWithAnotherNumberString = 'Sign in with another number';
 
 // consent confirmation page
 const String optOutOfMyCareHub = 'Opt out of myCareHub?';

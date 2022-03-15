@@ -31,6 +31,7 @@ import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import 'package:myafyahub/presentation/onboarding/consent_confirmation/consent_confirmation_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
+import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pending_pin_request_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_sent_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
@@ -564,5 +565,15 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<ResumePinConnector>>());
     expect(route?.builder(context), isA<ResumePinConnector>());
+  });
+  test('Test router returns PendingPINRequestPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.pendingPINRequestPage);
+
+    final MaterialPageRoute<PendingPINRequestPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PendingPINRequestPage>?;
+
+    expect(route, isA<MaterialPageRoute<PendingPINRequestPage>>());
+    expect(route?.builder(context), isA<PendingPINRequestPage>());
   });
 }

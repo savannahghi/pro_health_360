@@ -289,3 +289,4 @@ const Key shareDiaryEntryIconButtonKey =
 // consent confirmation
 const Key continueConsentButtonKey = Key('continue_consent_button_key');
 const Key abortConsentButtonKey = Key('abort_consent_button_key');
+const Key signInWithAnotherNumberButtonKey = Key('sign_in_with_another_number_button_key');
