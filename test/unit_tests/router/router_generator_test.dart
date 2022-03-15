@@ -29,6 +29,7 @@ import 'package:myafyahub/presentation/home/pages/home_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
+import 'package:myafyahub/presentation/onboarding/consent_confirmation/consent_confirmation_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_sent_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
@@ -543,6 +544,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PinRequestSentPage>>());
     expect(route?.builder(context), isA<PinRequestSentPage>());
+  });
+
+  test('Test router returns consent confirmation page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.consentConfirmationPage, arguments: '');
+
+    final MaterialPageRoute<ConsentConfirmationPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<ConsentConfirmationPage>?;
+
+    expect(route, isA<MaterialPageRoute<ConsentConfirmationPage>>());
+    expect(route?.builder(context), isA<ConsentConfirmationPage>());
   });
 
   test('Test router returns successful resume pin connector', () {

@@ -291,3 +291,7 @@ const Key cancelShareDiaryEntryKey = Key('cancel_share_diary_entry_key');
 const Key shareDiaryEntryKey = Key('share_diary_entry_key');
 const Key shareDiaryEntryIconButtonKey =
     Key('share_diary_entry_icon_button_key');
+
+// consent confirmation
+const Key continueConsentButtonKey = Key('continue_consent_button_key');
+const Key abortConsentButtonKey = Key('abort_consent_button_key');

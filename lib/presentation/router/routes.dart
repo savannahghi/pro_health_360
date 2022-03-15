@@ -127,6 +127,9 @@ class AppRoutes {
 
   // resume with pin
   static const String resumeWithPin = '/resumeWithPin';
+
+  // consent confirmation page
+  static const String consentConfirmationPage = '/consentConfirmationPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

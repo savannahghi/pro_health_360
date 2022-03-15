@@ -845,3 +845,21 @@ const String weHaveNotifiedAdmin =
 const String oncePinRest =
     'Once your PIN has been reset, you will receive an SMS with a new PIN that'
     ' you will be required to change in your next login';
+
+// consent confirmation page
+const String optOutOfMyCareHub = 'Opt out of myCareHub?';
+const String youAreChoosingToOptOut =
+    'You are choosing to opt out of myCareHub. The following will happened to your account:';
+const String yourProfileWillBeDeleted =
+    '1. Your profile will be deleted. This action is cannot be undone';
+const String youWillNotLogin =
+    '2. You will not be able to sign in to myCareHub unless you are registered again';
+const String areYouStillSure =
+    'Are you still sure that you want to opt out of myCareHub?';
+
+const String noGoBack = 'No, go back';
+const String yesContinue = 'Yes, continue';
+const String yesIam = 'Yes, I am';
+const String areYouReallySureTitle = 'Are you really sure?';
+const String optOutMessage =
+    'Are you really sure that you want to opt out of myCarehub?';
