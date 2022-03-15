@@ -129,10 +129,12 @@ class AppRoutes {
 
   // consent confirmation page
   static const String consentConfirmationPage = '/consentConfirmationPage';
-  
+
   //pin requests
   static const String pinRequestSentPage = '/pinRequestSentPage';
   static const String pendingPINRequestPage = '/pendingPINRequestPage';
+  static const String verifySecurityQuestionsHelpPage =
+      '/verifySecurityQuestionsHelpPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

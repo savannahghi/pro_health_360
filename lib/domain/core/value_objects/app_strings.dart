@@ -847,6 +847,11 @@ const String pendingPINRequestTitleString =
 const String pendingPINRequestMessageString =
     'Please be patient while an admin approves your request. If you signed in with the wrong phone number, tap the button below to try again';
 const String signInWithAnotherNumberString = 'Sign in with another number';
+const String doYouNeedHelpString = 'Do you need help?';
+const String verifySecurityQuestionHelpMessageString =
+    'You seem to be having trouble verifying your security questions. If you need help, you can make a request for an admin to reset your PIN.\n\nKindly enter your CCC number below to verify your identity';
+const String askForHelpString = 'Ask for help';
+const String tryAgainString = 'Try Again';
 
 // consent confirmation page
 const String optOutOfMyCareHub = 'Opt out of myCareHub?';
@@ -865,3 +870,4 @@ const String yesIam = 'Yes, I am';
 const String areYouReallySureTitle = 'Are you really sure?';
 const String optOutMessage =
     'Are you really sure that you want to opt out of myCarehub?';
+    const String cccNumberString = 'CCC number';

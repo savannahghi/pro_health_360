@@ -33,6 +33,7 @@ import 'package:myafyahub/presentation/onboarding/consent_confirmation/consent_c
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pending_pin_request_page.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_sent_page.dart';
+import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/verify_security_questions_help_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
@@ -575,5 +576,15 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<PendingPINRequestPage>>());
     expect(route?.builder(context), isA<PendingPINRequestPage>());
+  });
+  test('Test router returns VerifySecurityQuestionsHelpPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.verifySecurityQuestionsHelpPage);
+
+    final MaterialPageRoute<VerifySecurityQuestionsHelpPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<VerifySecurityQuestionsHelpPage>?;
+
+    expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
+    expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
   });
 }
