@@ -38,6 +38,7 @@ import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/verify_securi
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/login_counter_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
@@ -358,6 +359,10 @@ class RouteGenerator {
       case AppRoutes.verifySecurityQuestionsHelpPage:
         return MaterialPageRoute<VerifySecurityQuestionsHelpPage>(
           builder: (_) => VerifySecurityQuestionsHelpPage(),
+        );
+         case AppRoutes.loginCounterPage:
+        return MaterialPageRoute<LoginCounterPage>(
+          builder: (_) => LoginCounterPage(retryTime: args as int?,),
         );
 
       case AppRoutes.pinExpiredPage:

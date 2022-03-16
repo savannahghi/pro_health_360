@@ -37,6 +37,7 @@ import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/verify_securi
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
 import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/login_counter_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
@@ -588,6 +589,17 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
     expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
+
+  });
+  test('Test router returns LoginCounterPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.loginCounterPage, arguments: 0);
+
+    final MaterialPageRoute<LoginCounterPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<LoginCounterPage>?;
+
+    expect(route, isA<MaterialPageRoute<LoginCounterPage>>());
+    expect(route?.builder(context), isA<LoginCounterPage>());
   });
 
   test('Test router returns PinExpiredPage', () {

@@ -301,3 +301,4 @@ const Key optOutInfoItemKey = Key('opt_out_info_item_key');
 
 // PIN expired keys
 const Key changeMyPinButtonKey = Key('change_my_pin');
+const Key resetPINButtonKey = Key('reset_pin_button_key');

@@ -127,6 +127,66 @@ void main() {
         expect(find.byType(TermsAndConditionsPage), findsOneWidget);
       });
     });
+    testWidgets(
+        'should navigate to counter page in case of exponential back off and return to login after timer',
+        (WidgetTester tester) async {
+      mockLoginResponse.addAll(<String, dynamic>{'getCurrentTerms': termsMock});
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': '',
+            'code': 12,
+            'retryTime': 2.67888,
+          }),
+          200,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          hasSetSecurityQuestions: true,
+          hasSetPin: true,
+          hasSetNickName: true,
+        ),
+      );
+
+      await mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: Builder(
+            builder: (BuildContext context) {
+              return const Scaffold(
+                body: LoginPage(),
+              );
+            },
+          ),
+        );
+        await tester.pump();
+
+        final Finder phoneInputField = find.byKey(textFormFieldKey);
+        final Finder pinInputField = find.byKey(pinInputKey);
+        final Finder continueButton = find.byKey(phoneLoginContinueButtonKey);
+
+        await tester.showKeyboard(phoneInputField);
+        await tester.enterText(phoneInputField, '723456789');
+        await tester.pumpAndSettle();
+
+        await tester.showKeyboard(pinInputField);
+        await tester.enterText(pinInputField, '1234');
+        await tester.pumpAndSettle();
+
+        await tester.ensureVisible(continueButton);
+        await tester.tap(continueButton);
+        await tester.pumpAndSettle(const Duration(seconds: 10));
+        expect(find.byType(LoginPage), findsOneWidget);
+      });
+    });
 
     testWidgets('should navigate to PIN expired page if pin is expired',
         (WidgetTester tester) async {

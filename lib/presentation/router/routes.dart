@@ -137,6 +137,7 @@ class AppRoutes {
       '/verifySecurityQuestionsHelpPage';
 
   static const String pinExpiredPage = '/pinExpiredPage';
+  static const String loginCounterPage = '/loginCounterPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

@@ -85,6 +85,20 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
+        if (parsed['code'] == 12) {
+          final double? retryTime = parsed['retryTime'] as double?;
+
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.loginCounterPage,
+              (Route<dynamic> route) => false,
+              arguments: retryTime?.ceil(),
+            ),
+          );
+
+          return state;
+        }
+
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);
 
