@@ -46,9 +46,7 @@ class ShareDiaryEntryDialog extends StatelessWidget {
                 Expanded(
                   child: MyAfyaHubPrimaryButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text(comingSoonText)),
-                      );
+                      Navigator.of(context).pop();
                     },
                     text: cancelString,
                     buttonColor: AppColors.primaryColor.withOpacity(0.2),

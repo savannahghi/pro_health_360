@@ -38,16 +38,36 @@ void main() {
         tester: tester,
         store: store,
         client: graphQlClient,
-        widget: ShareDiaryEntryDialog(diaryEntry: HealthDiaryEntry.initial()),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MyAfyaHubPrimaryButton(
+              text: 'tap',
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ShareDiaryEntryDialog(
+                      diaryEntry: HealthDiaryEntry.initial(),
+                    );
+                  },
+                );
+              },
+            );
+          },
+        ),
       );
 
+      await tester.pumpAndSettle();
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
       expect(find.byType(Dialog), findsOneWidget);
-      expect(find.byType(MyAfyaHubPrimaryButton), findsNWidgets(2));
 
       await tester.tap(find.byKey(cancelShareDiaryEntryKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.text('tap'), findsOneWidget);
     });
 
     testWidgets('share button functions correctly',
