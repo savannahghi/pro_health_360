@@ -854,6 +854,8 @@ const String askForHelpString = 'Ask for help';
 const String tryAgainString = 'Try Again';
 
 // consent confirmation page
+const String optOut = 'Opt out';
+const String optOutOfMyCareHubString = 'Opt out of myCareHub';
 const String optOutOfMyCareHub = 'Opt out of myCareHub?';
 const String youAreChoosingToOptOut =
     'You are choosing to opt out of myCareHub. The following will happened to your account:';
@@ -870,4 +872,4 @@ const String yesIam = 'Yes, I am';
 const String areYouReallySureTitle = 'Are you really sure?';
 const String optOutMessage =
     'Are you really sure that you want to opt out of myCarehub?';
-    const String cccNumberString = 'CCC number';
+const String cccNumberString = 'CCC number';

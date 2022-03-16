@@ -294,3 +294,5 @@ const Key abortConsentButtonKey = Key('abort_consent_button_key');
 const Key signInWithAnotherNumberButtonKey =
     Key('sign_in_with_another_number_button_key');
 const Key askForHelpButtonKey = Key('ask_for_help_button_key');
+// opt out
+const Key optOutInfoItemKey = Key('opt_out_info_item_key');

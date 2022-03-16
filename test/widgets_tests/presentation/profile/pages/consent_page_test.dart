@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/onboarding/consent_confirmation/consent_confirmation_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/profile/consent/consent_page.dart';
 import '../../../../mocks.dart';
@@ -92,6 +93,26 @@ void main() {
 
       await tester.tap(switchFinder);
       expect(counter, 2);
+    });
+
+    testWidgets('opt out navigates correctly', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: const ConsentPage(),
+      );
+
+      expect(find.text(portalTermsText), findsOneWidget);
+      expect(find.text(viewTermsText), findsOneWidget);
+      expect(find.text(groupsText), findsOneWidget);
+      expect(find.text(consentConfirmationText), findsOneWidget);
+      expect(find.text(optOutOfMyCareHubString), findsOneWidget);
+
+      await tester.tap(find.text(optOutOfMyCareHubString));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ConsentConfirmationPage), findsOneWidget);
     });
   });
 }

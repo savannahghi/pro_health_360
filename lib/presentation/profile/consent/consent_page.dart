@@ -7,6 +7,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/spaces.dart';
 import 'package:unicons/unicons.dart';
 
 class ConsentPage extends StatefulWidget {
@@ -57,7 +58,7 @@ class _ConsentPageState extends State<ConsentPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+              smallVerticalSizedBox,
               InformationListCard(
                 leadingIcon: const Icon(
                   UniconsLine.file_lock_alt,
@@ -93,6 +94,31 @@ class _ConsentPageState extends State<ConsentPage> {
                       ),
                     )
                   ],
+                ),
+              ),
+              smallVerticalSizedBox,
+              GestureDetector(
+                key: optOutInfoItemKey,
+                onTap: () => Navigator.of(context)
+                    .pushNamed(AppRoutes.consentConfirmationPage),
+                child: InformationListCard(
+                  leadingIcon: const Icon(
+                    UniconsLine.file_lock_alt,
+                    size: 32,
+                    color: AppColors.primaryColor,
+                  ),
+                  title: Text(
+                    optOut,
+                    style: normalSize16Text(
+                      AppColors.secondaryColor,
+                    ),
+                  ),
+                  body: Text(
+                    optOutOfMyCareHubString,
+                    style: normalSize14Text(
+                      Colors.grey,
+                    ),
+                  ),
                 ),
               ),
             ],
