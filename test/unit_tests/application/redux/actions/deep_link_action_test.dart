@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/deep_link_action.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
@@ -10,6 +9,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+
 import '../../../../mocks.dart';
 
 void main() {
@@ -22,18 +22,21 @@ void main() {
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
       store.dispatch(
-        UpdateUserAction(user: phoneLoginResponse.clientState?.user),
+        UpdateUserAction(
+          user: phoneLoginResponse.userResponse?.clientState?.user,
+        ),
       );
 
       final DateTime now = DateTime.now();
-      final int expiryTime =
-          int.tryParse(phoneLoginResponse.credentials?.expiresIn ?? '3600') ??
-              3600;
+      final int expiryTime = int.tryParse(
+            phoneLoginResponse.userResponse?.credentials?.expiresIn ?? '3600',
+          ) ??
+          3600;
       final DateTime mockExpiry = now.add(Duration(seconds: expiryTime));
 
       store.dispatch(
         UpdateCredentialsAction(
-          expiresIn: phoneLoginResponse.credentials?.expiresIn,
+          expiresIn: phoneLoginResponse.userResponse?.credentials?.expiresIn,
           tokenExpiryTimestamp: mockExpiry.toIso8601String(),
           isSignedIn: true,
         ),
@@ -117,7 +120,9 @@ void main() {
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
       store.dispatch(
-        UpdateUserAction(user: phoneLoginResponse.clientState?.user),
+        UpdateUserAction(
+          user: phoneLoginResponse.userResponse?.clientState?.user,
+        ),
       );
 
       final String tokenExpiryDate =

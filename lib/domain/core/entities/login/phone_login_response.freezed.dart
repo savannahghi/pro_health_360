@@ -25,15 +25,11 @@ class _$PhoneLoginResponseTearOff {
   _PhoneLoginResponse call(
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'clientProfile') ClientState? clientState,
-      @JsonKey(name: 'getStreamToken') String? streamToken}) {
+      @JsonKey(name: 'response') UserResponse? userResponse}) {
     return _PhoneLoginResponse(
       code: code,
       message: message,
-      credentials: credentials,
-      clientState: clientState,
-      streamToken: streamToken,
+      userResponse: userResponse,
     );
   }
 
@@ -51,12 +47,8 @@ mixin _$PhoneLoginResponse {
   int? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
-  @JsonKey(name: 'credentials')
-  AuthCredentials? get credentials => throw _privateConstructorUsedError;
-  @JsonKey(name: 'clientProfile')
-  ClientState? get clientState => throw _privateConstructorUsedError;
-  @JsonKey(name: 'getStreamToken')
-  String? get streamToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'response')
+  UserResponse? get userResponse => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,12 +64,9 @@ abstract class $PhoneLoginResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'clientProfile') ClientState? clientState,
-      @JsonKey(name: 'getStreamToken') String? streamToken});
+      @JsonKey(name: 'response') UserResponse? userResponse});
 
-  $AuthCredentialsCopyWith<$Res>? get credentials;
-  $ClientStateCopyWith<$Res>? get clientState;
+  $UserResponseCopyWith<$Res>? get userResponse;
 }
 
 /// @nodoc
@@ -93,9 +82,7 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
   $Res call({
     Object? code = freezed,
     Object? message = freezed,
-    Object? credentials = freezed,
-    Object? clientState = freezed,
-    Object? streamToken = freezed,
+    Object? userResponse = freezed,
   }) {
     return _then(_value.copyWith(
       code: code == freezed
@@ -106,40 +93,21 @@ class _$PhoneLoginResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      credentials: credentials == freezed
-          ? _value.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as AuthCredentials?,
-      clientState: clientState == freezed
-          ? _value.clientState
-          : clientState // ignore: cast_nullable_to_non_nullable
-              as ClientState?,
-      streamToken: streamToken == freezed
-          ? _value.streamToken
-          : streamToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+      userResponse: userResponse == freezed
+          ? _value.userResponse
+          : userResponse // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
     ));
   }
 
   @override
-  $AuthCredentialsCopyWith<$Res>? get credentials {
-    if (_value.credentials == null) {
+  $UserResponseCopyWith<$Res>? get userResponse {
+    if (_value.userResponse == null) {
       return null;
     }
 
-    return $AuthCredentialsCopyWith<$Res>(_value.credentials!, (value) {
-      return _then(_value.copyWith(credentials: value));
-    });
-  }
-
-  @override
-  $ClientStateCopyWith<$Res>? get clientState {
-    if (_value.clientState == null) {
-      return null;
-    }
-
-    return $ClientStateCopyWith<$Res>(_value.clientState!, (value) {
-      return _then(_value.copyWith(clientState: value));
+    return $UserResponseCopyWith<$Res>(_value.userResponse!, (value) {
+      return _then(_value.copyWith(userResponse: value));
     });
   }
 }
@@ -154,14 +122,10 @@ abstract class _$PhoneLoginResponseCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'code') int? code,
       @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'credentials') AuthCredentials? credentials,
-      @JsonKey(name: 'clientProfile') ClientState? clientState,
-      @JsonKey(name: 'getStreamToken') String? streamToken});
+      @JsonKey(name: 'response') UserResponse? userResponse});
 
   @override
-  $AuthCredentialsCopyWith<$Res>? get credentials;
-  @override
-  $ClientStateCopyWith<$Res>? get clientState;
+  $UserResponseCopyWith<$Res>? get userResponse;
 }
 
 /// @nodoc
@@ -179,9 +143,7 @@ class __$PhoneLoginResponseCopyWithImpl<$Res>
   $Res call({
     Object? code = freezed,
     Object? message = freezed,
-    Object? credentials = freezed,
-    Object? clientState = freezed,
-    Object? streamToken = freezed,
+    Object? userResponse = freezed,
   }) {
     return _then(_PhoneLoginResponse(
       code: code == freezed
@@ -192,18 +154,10 @@ class __$PhoneLoginResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      credentials: credentials == freezed
-          ? _value.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as AuthCredentials?,
-      clientState: clientState == freezed
-          ? _value.clientState
-          : clientState // ignore: cast_nullable_to_non_nullable
-              as ClientState?,
-      streamToken: streamToken == freezed
-          ? _value.streamToken
-          : streamToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+      userResponse: userResponse == freezed
+          ? _value.userResponse
+          : userResponse // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
     ));
   }
 }
@@ -214,9 +168,7 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
   _$_PhoneLoginResponse(
       {@JsonKey(name: 'code') this.code,
       @JsonKey(name: 'message') this.message,
-      @JsonKey(name: 'credentials') this.credentials,
-      @JsonKey(name: 'clientProfile') this.clientState,
-      @JsonKey(name: 'getStreamToken') this.streamToken});
+      @JsonKey(name: 'response') this.userResponse});
 
   factory _$_PhoneLoginResponse.fromJson(Map<String, dynamic> json) =>
       _$$_PhoneLoginResponseFromJson(json);
@@ -228,18 +180,12 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
   @JsonKey(name: 'message')
   final String? message;
   @override
-  @JsonKey(name: 'credentials')
-  final AuthCredentials? credentials;
-  @override
-  @JsonKey(name: 'clientProfile')
-  final ClientState? clientState;
-  @override
-  @JsonKey(name: 'getStreamToken')
-  final String? streamToken;
+  @JsonKey(name: 'response')
+  final UserResponse? userResponse;
 
   @override
   String toString() {
-    return 'PhoneLoginResponse(code: $code, message: $message, credentials: $credentials, clientState: $clientState, streamToken: $streamToken)';
+    return 'PhoneLoginResponse(code: $code, message: $message, userResponse: $userResponse)';
   }
 
   @override
@@ -250,11 +196,7 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
-                .equals(other.credentials, credentials) &&
-            const DeepCollectionEquality()
-                .equals(other.clientState, clientState) &&
-            const DeepCollectionEquality()
-                .equals(other.streamToken, streamToken));
+                .equals(other.userResponse, userResponse));
   }
 
   @override
@@ -262,9 +204,7 @@ class _$_PhoneLoginResponse implements _PhoneLoginResponse {
       runtimeType,
       const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(credentials),
-      const DeepCollectionEquality().hash(clientState),
-      const DeepCollectionEquality().hash(streamToken));
+      const DeepCollectionEquality().hash(userResponse));
 
   @JsonKey(ignore: true)
   @override
@@ -281,9 +221,7 @@ abstract class _PhoneLoginResponse implements PhoneLoginResponse {
   factory _PhoneLoginResponse(
           {@JsonKey(name: 'code') int? code,
           @JsonKey(name: 'message') String? message,
-          @JsonKey(name: 'credentials') AuthCredentials? credentials,
-          @JsonKey(name: 'clientProfile') ClientState? clientState,
-          @JsonKey(name: 'getStreamToken') String? streamToken}) =
+          @JsonKey(name: 'response') UserResponse? userResponse}) =
       _$_PhoneLoginResponse;
 
   factory _PhoneLoginResponse.fromJson(Map<String, dynamic> json) =
@@ -296,14 +234,8 @@ abstract class _PhoneLoginResponse implements PhoneLoginResponse {
   @JsonKey(name: 'message')
   String? get message;
   @override
-  @JsonKey(name: 'credentials')
-  AuthCredentials? get credentials;
-  @override
-  @JsonKey(name: 'clientProfile')
-  ClientState? get clientState;
-  @override
-  @JsonKey(name: 'getStreamToken')
-  String? get streamToken;
+  @JsonKey(name: 'response')
+  UserResponse? get userResponse;
   @override
   @JsonKey(ignore: true)
   _$PhoneLoginResponseCopyWith<_PhoneLoginResponse> get copyWith =>

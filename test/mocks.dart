@@ -1113,46 +1113,73 @@ final Map<String, dynamic> termsMock = <String, dynamic>{
 final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
   'code': 0,
   'message': 'success',
-  'credentials': <String, dynamic>{
-    'expiresIn': '3600',
-    'idToken': 'some id token',
-    'refreshToken': 'some-refresh-token'
-  },
-  'clientProfile': <String, dynamic>{
-    'active': true,
-    'addresses': <Map<String, dynamic>>[
-      <String, dynamic>{
+  'response': <String, dynamic>{
+    'credentials': <String, dynamic>{
+      'expiresIn': '3600',
+      'idToken': 'some id token',
+      'refreshToken': 'some-refresh-token'
+    },
+    'clientProfile': <String, dynamic>{
+      'active': true,
+      'addresses': <Map<String, dynamic>>[
+        <String, dynamic>{
+          'active': true,
+          'addressType': 'POSTAL',
+          'country': 'Kenya',
+          'county': null,
+          'postalCode': '00300',
+          'text': 'One Padmore'
+        }
+      ],
+      'clientCounselled': true,
+      'clientType': 'PMTCT',
+      'facilityID': 'some-facility-id',
+      'relatedPersons': <Map<String, dynamic>>[
+        <String, dynamic>{
+          'active': true,
+          'dateOfBirth': '21 Nov 2002',
+          'firstName': 'Juha',
+          'gender': 'MALE',
+          'lastName': 'Kalulu',
+          'otherName': null,
+          'relatedTo': 'some-user-id',
+          'relationshipType': 'NEXT_OF_KIN',
+          'addresses': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'active': true,
+              'addressType': 'POSTAL',
+              'country': 'Kenya',
+              'county': null,
+              'postalCode': '00300',
+              'text': 'One Padmore'
+            }
+          ],
+          'primaryContact': <String, dynamic>{
+            'active': true,
+            'contact': '+254717356476',
+            'contactType': 'PHONE',
+            'optedIn': true
+          },
+          'secondaryContacts': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'active': true,
+              'contact': '+254717356476',
+              'contactType': 'PHONE',
+              'optedIn': true
+            }
+          ]
+        }
+      ],
+      'treatmentBuddy': null,
+      'treatmentEnrollmentDate': '21 Nov 2021',
+      'user': <String, dynamic>{
         'active': true,
-        'addressType': 'POSTAL',
-        'country': 'Kenya',
-        'county': null,
-        'postalCode': '00300',
-        'text': 'One Padmore'
-      }
-    ],
-    'clientCounselled': true,
-    'clientType': 'PMTCT',
-    'facilityID': 'some-facility-id',
-    'relatedPersons': <Map<String, dynamic>>[
-      <String, dynamic>{
-        'active': true,
-        'dateOfBirth': '21 Nov 2002',
+        'name': 'Juha Kalulu',
         'firstName': 'Juha',
         'gender': 'MALE',
-        'lastName': 'Kalulu',
-        'otherName': null,
-        'relatedTo': 'some-user-id',
-        'relationshipType': 'NEXT_OF_KIN',
-        'addresses': <Map<String, dynamic>>[
-          <String, dynamic>{
-            'active': true,
-            'addressType': 'POSTAL',
-            'country': 'Kenya',
-            'county': null,
-            'postalCode': '00300',
-            'text': 'One Padmore'
-          }
-        ],
+        'languages': <String>['en', 'sw'],
+        'suspended': false,
+        'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
         'primaryContact': <String, dynamic>{
           'active': true,
           'contact': '+254717356476',
@@ -1166,41 +1193,16 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
             'contactType': 'PHONE',
             'optedIn': true
           }
-        ]
-      }
-    ],
-    'treatmentBuddy': null,
-    'treatmentEnrollmentDate': '21 Nov 2021',
-    'user': <String, dynamic>{
-      'active': true,
-      'name': 'Juha Kalulu',
-      'firstName': 'Juha',
-      'gender': 'MALE',
-      'languages': <String>['en', 'sw'],
-      'suspended': false,
-      'avatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
-      'primaryContact': <String, dynamic>{
-        'active': true,
-        'contact': '+254717356476',
-        'contactType': 'PHONE',
-        'optedIn': true
+        ],
+        'lastName': 'Kalulu',
+        'pinChangeRequired': false,
+        'termsAccepted': true,
+        'userID': 'some-user-id',
+        'userName': 'Kowalski',
+        'userType': 'CLIENT',
+        'dateOfBirth': '21 Nov 2002'
       },
-      'secondaryContacts': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'active': true,
-          'contact': '+254717356476',
-          'contactType': 'PHONE',
-          'optedIn': true
-        }
-      ],
-      'lastName': 'Kalulu',
-      'pinChangeRequired': false,
-      'termsAccepted': true,
-      'userID': 'some-user-id',
-      'userName': 'Kowalski',
-      'userType': 'CLIENT',
-      'dateOfBirth': '21 Nov 2002'
-    },
+    }
   }
 };
 
