@@ -89,12 +89,14 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             PhoneLoginResponse.fromJson(parsed);
 
         final DateTime now = DateTime.now();
-        AuthCredentials? authCredentials = loginResponse.credentials?.copyWith(
+        AuthCredentials? authCredentials =
+            loginResponse.userResponse?.credentials?.copyWith(
           signedInTime: now.toIso8601String(),
           isSignedIn: true,
         );
 
-        final String? expiresIn = loginResponse.credentials?.expiresIn;
+        final String? expiresIn =
+            loginResponse.userResponse?.credentials?.expiresIn;
         if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
           final DateTime tokenExpiryTimestamp =
               now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
@@ -115,13 +117,13 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        User? user = loginResponse.clientState?.user?.copyWith(
+        User? user = loginResponse.userResponse?.clientState?.user?.copyWith(
           pinChangeRequired: false,
-          chatRoomToken: loginResponse.streamToken,
+          chatRoomToken: loginResponse.userResponse?.streamToken,
         );
 
         final String fullName =
-            loginResponse.clientState?.user?.name ?? UNKNOWN;
+            loginResponse.userResponse?.clientState?.user?.name ?? UNKNOWN;
         if (fullName != UNKNOWN && fullName.isNotEmpty) {
           final List<String> names = fullName.split(' ');
           user = user?.copyWith(
@@ -143,17 +145,18 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         dispatch(
           UpdateClientProfileAction(
-            id: loginResponse.clientState?.id,
-            active: loginResponse.clientState?.active,
-            counselled: loginResponse.clientState?.counselled,
-            clientType: loginResponse.clientState?.clientType,
-            facilityID: loginResponse.clientState?.facilityID,
-            treatmentBuddy: loginResponse.clientState?.treatmentBuddy,
-            treatmentEnrollmentDate:
-                loginResponse.clientState?.treatmentEnrollmentDate,
-            facilityName: loginResponse.clientState?.facilityName,
-            chvUserID: loginResponse.clientState?.chvUserID,
-            chvUserName: loginResponse.clientState?.chvUserName,
+            id: loginResponse.userResponse?.clientState?.id,
+            active: loginResponse.userResponse?.clientState?.active,
+            counselled: loginResponse.userResponse?.clientState?.counselled,
+            clientType: loginResponse.userResponse?.clientState?.clientType,
+            facilityID: loginResponse.userResponse?.clientState?.facilityID,
+            treatmentBuddy:
+                loginResponse.userResponse?.clientState?.treatmentBuddy,
+            treatmentEnrollmentDate: loginResponse
+                .userResponse?.clientState?.treatmentEnrollmentDate,
+            facilityName: loginResponse.userResponse?.clientState?.facilityName,
+            chvUserID: loginResponse.userResponse?.clientState?.chvUserID,
+            chvUserName: loginResponse.userResponse?.clientState?.chvUserName,
           ),
         );
 

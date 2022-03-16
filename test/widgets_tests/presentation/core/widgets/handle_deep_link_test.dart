@@ -6,7 +6,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
@@ -17,6 +16,7 @@ import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
+
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -49,18 +49,21 @@ void main() {
           Store<AppState>(initialState: AppState.initial());
 
       store.dispatch(
-        UpdateUserAction(user: phoneLoginResponse.clientState?.user),
+        UpdateUserAction(
+          user: phoneLoginResponse.userResponse?.clientState?.user,
+        ),
       );
 
       final DateTime now = DateTime.now();
-      final int expiryTime =
-          int.tryParse(phoneLoginResponse.credentials?.expiresIn ?? '3600') ??
-              3600;
+      final int expiryTime = int.tryParse(
+            phoneLoginResponse.userResponse?.credentials?.expiresIn ?? '3600',
+          ) ??
+          3600;
       final DateTime mockExpiry = now.add(Duration(seconds: expiryTime));
 
       store.dispatch(
         UpdateCredentialsAction(
-          expiresIn: phoneLoginResponse.credentials?.expiresIn,
+          expiresIn: phoneLoginResponse.userResponse?.credentials?.expiresIn,
           tokenExpiryTimestamp: mockExpiry.toIso8601String(),
           isSignedIn: true,
         ),
