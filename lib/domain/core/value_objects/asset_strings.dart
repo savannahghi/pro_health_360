@@ -169,6 +169,7 @@ const String contentImagePlaceHolderSvgPath =
 // resume with pin
 const String securitySvgAsset = 'assets/images/security.svg';
 const String pinRequestSentImage = 'assets/images/pin_request_sent.svg';
+const String pinExpiredImage = 'assets/images/pin_expired.svg';
 
 // consent confirmation page
 const String consentConfirmationImage =

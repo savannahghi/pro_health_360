@@ -17,8 +17,8 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
+import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
-import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 
 import '../../../mocks.dart';
@@ -128,7 +128,7 @@ void main() {
       });
     });
 
-    testWidgets('should navigate to verify phone if pin is expired',
+    testWidgets('should navigate to PIN expired page if pin is expired',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -167,7 +167,9 @@ void main() {
         await tester.tap(continueButton);
         await tester.pumpAndSettle();
 
-        expect(find.byType(VerifyPhonePage), findsWidgets);
+        expect(find.byType(PinExpiredPage), findsWidgets);
+        expect(find.text(pinExpiredTitle), findsOneWidget);
+        expect(find.byKey(changeMyPinButtonKey), findsOneWidget);
       });
     });
 

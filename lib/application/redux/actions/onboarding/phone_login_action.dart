@@ -180,11 +180,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final Map<String, dynamic> body =
             json.decode(httpResponse.body) as Map<String, dynamic>;
 
-        if (body['code'] == 48) {
+        if (body['code'] == 48 ||
+            (body['message']?.toString().contains('pin expired') ?? false)) {
           dispatch(UpdateOnboardingStateAction(isResetPin: true));
 
           dispatch(
-            NavigateAction<AppState>.pushNamed(AppRoutes.verifySignUpOTP),
+            NavigateAction<AppState>.pushNamed(AppRoutes.pinExpiredPage),
           );
 
           return state;

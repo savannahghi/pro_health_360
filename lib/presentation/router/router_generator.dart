@@ -37,6 +37,7 @@ import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_s
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/verify_security_questions_help_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
+import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
@@ -348,13 +349,20 @@ class RouteGenerator {
         return MaterialPageRoute<ConsentConfirmationPage>(
           builder: (_) => const ConsentConfirmationPage(),
         );
+
       case AppRoutes.pendingPINRequestPage:
         return MaterialPageRoute<PendingPINRequestPage>(
           builder: (_) => const PendingPINRequestPage(),
         );
+
       case AppRoutes.verifySecurityQuestionsHelpPage:
         return MaterialPageRoute<VerifySecurityQuestionsHelpPage>(
           builder: (_) => VerifySecurityQuestionsHelpPage(),
+        );
+
+      case AppRoutes.pinExpiredPage:
+        return MaterialPageRoute<PinExpiredPage>(
+          builder: (_) => const PinExpiredPage(),
         );
 
       default:

@@ -36,6 +36,7 @@ import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_s
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/verify_security_questions_help_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
+import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/answer_security_question_page.dart';
@@ -582,9 +583,21 @@ void main() {
         RouteSettings(name: AppRoutes.verifySecurityQuestionsHelpPage);
 
     final MaterialPageRoute<VerifySecurityQuestionsHelpPage>? route =
-        routeGenerator(settings) as MaterialPageRoute<VerifySecurityQuestionsHelpPage>?;
+        routeGenerator(settings)
+            as MaterialPageRoute<VerifySecurityQuestionsHelpPage>?;
 
     expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
     expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
+  });
+
+  test('Test router returns PinExpiredPage', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.pinExpiredPage);
+
+    final MaterialPageRoute<PinExpiredPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<PinExpiredPage>?;
+
+    expect(route, isA<MaterialPageRoute<PinExpiredPage>>());
+    expect(route?.builder(context), isA<PinExpiredPage>());
   });
 }
