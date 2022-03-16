@@ -44,6 +44,8 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
       hasSetNickName: json['hasSetNickName'] as bool?,
       hasVerifiedSecurityQuestions:
           json['hasVerifiedSecurityQuestions'] as bool?,
+      currentOnboardingStage: $enumDecodeNullable(
+          _$CurrentOnboardingStageEnumMap, json['currentOnboardingStage']),
     );
 
 Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
@@ -60,4 +62,14 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
       'hasSetNickName': instance.hasSetNickName,
       'hasVerifiedSecurityQuestions': instance.hasVerifiedSecurityQuestions,
+      'currentOnboardingStage':
+          _$CurrentOnboardingStageEnumMap[instance.currentOnboardingStage],
     };
+
+const _$CurrentOnboardingStageEnumMap = {
+  CurrentOnboardingStage.Login: 'Login',
+  CurrentOnboardingStage.Signup: 'Signup',
+  CurrentOnboardingStage.ResetPIN: 'ResetPIN',
+  CurrentOnboardingStage.ChangePIN: 'ChangePIN',
+  CurrentOnboardingStage.PINExpired: 'PINExpired',
+};

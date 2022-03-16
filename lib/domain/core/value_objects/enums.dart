@@ -96,3 +96,8 @@ enum RelationshipType {
 
 /// The type of contact being used
 enum ContactType { PHONE, EMAIL, UNKNOWN }
+
+/// The current onboarding workflow being worked on
+///
+/// This will typically be changed based on the onboarding state and the AppState
+enum CurrentOnboardingStage { Login, Signup, ResetPIN, ChangePIN, PINExpired }

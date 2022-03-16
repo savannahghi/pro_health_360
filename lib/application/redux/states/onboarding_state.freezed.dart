@@ -34,7 +34,8 @@ class _$OnboardingStateTearOff {
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName,
-      bool? hasVerifiedSecurityQuestions}) {
+      bool? hasVerifiedSecurityQuestions,
+      CurrentOnboardingStage? currentOnboardingStage}) {
     return _OnboardingState(
       createPINState: createPINState,
       termsAndConditions: termsAndConditions,
@@ -48,6 +49,7 @@ class _$OnboardingStateTearOff {
       hasSetSecurityQuestions: hasSetSecurityQuestions,
       hasSetNickName: hasSetNickName,
       hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions,
+      currentOnboardingStage: currentOnboardingStage,
     );
   }
 
@@ -79,8 +81,11 @@ mixin _$OnboardingState {
   bool? get hasSetSecurityQuestions =>
       throw _privateConstructorUsedError; // If the user has set their nickname
   bool? get hasSetNickName =>
-      throw _privateConstructorUsedError; // If the user has successfuly verified their security questions if pin is expired
-  bool? get hasVerifiedSecurityQuestions => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // If the user has successfully verified their security questions if pin is expired
+  bool? get hasVerifiedSecurityQuestions =>
+      throw _privateConstructorUsedError; // The current stage of onboarding that the user is in
+  CurrentOnboardingStage? get currentOnboardingStage =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -105,7 +110,8 @@ abstract class $OnboardingStateCopyWith<$Res> {
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName,
-      bool? hasVerifiedSecurityQuestions});
+      bool? hasVerifiedSecurityQuestions,
+      CurrentOnboardingStage? currentOnboardingStage});
 
   $CreatePINStateCopyWith<$Res>? get createPINState;
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
@@ -138,6 +144,7 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? hasSetSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
     Object? hasVerifiedSecurityQuestions = freezed,
+    Object? currentOnboardingStage = freezed,
   }) {
     return _then(_value.copyWith(
       createPINState: createPINState == freezed
@@ -188,6 +195,10 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
+      currentOnboardingStage: currentOnboardingStage == freezed
+          ? _value.currentOnboardingStage
+          : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
+              as CurrentOnboardingStage?,
     ));
   }
 
@@ -280,7 +291,8 @@ abstract class _$OnboardingStateCopyWith<$Res>
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName,
-      bool? hasVerifiedSecurityQuestions});
+      bool? hasVerifiedSecurityQuestions,
+      CurrentOnboardingStage? currentOnboardingStage});
 
   @override
   $CreatePINStateCopyWith<$Res>? get createPINState;
@@ -321,6 +333,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? hasSetSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
     Object? hasVerifiedSecurityQuestions = freezed,
+    Object? currentOnboardingStage = freezed,
   }) {
     return _then(_OnboardingState(
       createPINState: createPINState == freezed
@@ -371,6 +384,10 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
+      currentOnboardingStage: currentOnboardingStage == freezed
+          ? _value.currentOnboardingStage
+          : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
+              as CurrentOnboardingStage?,
     ));
   }
 }
@@ -390,7 +407,8 @@ class _$_OnboardingState implements _OnboardingState {
       this.isPhoneVerified,
       this.hasSetSecurityQuestions,
       this.hasSetNickName,
-      this.hasVerifiedSecurityQuestions});
+      this.hasVerifiedSecurityQuestions,
+      this.currentOnboardingStage});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$$_OnboardingStateFromJson(json);
@@ -417,12 +435,14 @@ class _$_OnboardingState implements _OnboardingState {
   final bool? hasSetSecurityQuestions;
   @override // If the user has set their nickname
   final bool? hasSetNickName;
-  @override // If the user has successfuly verified their security questions if pin is expired
+  @override // If the user has successfully verified their security questions if pin is expired
   final bool? hasVerifiedSecurityQuestions;
+  @override // The current stage of onboarding that the user is in
+  final CurrentOnboardingStage? currentOnboardingStage;
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, verifyPhoneState: $verifyPhoneState, verifySecurityQuestionsState: $verifySecurityQuestionsState, setPINState: $setPINState, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickName: $hasSetNickName, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions)';
+    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, verifyPhoneState: $verifyPhoneState, verifySecurityQuestionsState: $verifySecurityQuestionsState, setPINState: $setPINState, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickName: $hasSetNickName, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, currentOnboardingStage: $currentOnboardingStage)';
   }
 
   @override
@@ -455,7 +475,9 @@ class _$_OnboardingState implements _OnboardingState {
                 .equals(other.hasSetNickName, hasSetNickName) &&
             const DeepCollectionEquality().equals(
                 other.hasVerifiedSecurityQuestions,
-                hasVerifiedSecurityQuestions));
+                hasVerifiedSecurityQuestions) &&
+            const DeepCollectionEquality()
+                .equals(other.currentOnboardingStage, currentOnboardingStage));
   }
 
   @override
@@ -472,7 +494,8 @@ class _$_OnboardingState implements _OnboardingState {
       const DeepCollectionEquality().hash(isPhoneVerified),
       const DeepCollectionEquality().hash(hasSetSecurityQuestions),
       const DeepCollectionEquality().hash(hasSetNickName),
-      const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions));
+      const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions),
+      const DeepCollectionEquality().hash(currentOnboardingStage));
 
   @JsonKey(ignore: true)
   @override
@@ -498,7 +521,8 @@ abstract class _OnboardingState implements OnboardingState {
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
       bool? hasSetNickName,
-      bool? hasVerifiedSecurityQuestions}) = _$_OnboardingState;
+      bool? hasVerifiedSecurityQuestions,
+      CurrentOnboardingStage? currentOnboardingStage}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
@@ -525,8 +549,10 @@ abstract class _OnboardingState implements OnboardingState {
   bool? get hasSetSecurityQuestions;
   @override // If the user has set their nickname
   bool? get hasSetNickName;
-  @override // If the user has successfuly verified their security questions if pin is expired
+  @override // If the user has successfully verified their security questions if pin is expired
   bool? get hasVerifiedSecurityQuestions;
+  @override // The current stage of onboarding that the user is in
+  CurrentOnboardingStage? get currentOnboardingStage;
   @override
   @JsonKey(ignore: true)
   _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>

@@ -8,6 +8,7 @@ import 'package:myafyahub/domain/core/entities/login/set_pin_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_phone_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 part 'onboarding_state.freezed.dart';
 part 'onboarding_state.g.dart';
@@ -29,8 +30,11 @@ class OnboardingState with _$OnboardingState {
     bool? hasSetSecurityQuestions,
     // If the user has set their nickname
     bool? hasSetNickName,
-    // If the user has successfuly verified their security questions if pin is expired
+    // If the user has successfully verified their security questions if pin is expired
     bool? hasVerifiedSecurityQuestions,
+
+    // The current stage of onboarding that the user is in
+    CurrentOnboardingStage? currentOnboardingStage,
   }) = _OnboardingState;
 
   factory OnboardingState.fromJson(Map<String, dynamic> json) =>
@@ -49,5 +53,6 @@ class OnboardingState with _$OnboardingState {
         hasSetSecurityQuestions: false,
         hasSetNickName: false,
         hasVerifiedSecurityQuestions: false,
+        currentOnboardingStage: CurrentOnboardingStage.Login,
       );
 }
