@@ -9,8 +9,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/actions/resend_otp_action.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 
@@ -63,11 +63,10 @@ void main() {
               buttonKey: const Key('resend_otp'),
               onPressed: () async {
                 await store.dispatch(
-                  SendOTPAction(
+                  ResendOTPAction(
                     context: context,
-                    isResend: true,
-                    callBackFunction: () {},
-                    resetPinPhoneNumber: UNKNOWN,
+                    afterCallback: () {},
+                    phoneNumber: UNKNOWN,
                   ),
                 );
               },
@@ -112,11 +111,10 @@ void main() {
               buttonKey: const Key('resend_otp'),
               onPressed: () async {
                 await store.dispatch(
-                  SendOTPAction(
+                  ResendOTPAction(
                     context: context,
-                    isResend: true,
-                    callBackFunction: () {},
-                    resetPinPhoneNumber: '+254712345678',
+                    afterCallback: () {},
+                    phoneNumber: '+254712345678',
                   ),
                 );
               },

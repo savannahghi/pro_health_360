@@ -24,17 +24,20 @@ class ResendOTPAction extends ReduxAction<AppState> {
   ResendOTPAction({
     required this.context,
     required this.phoneNumber,
-    required this.callBackFunction,
+    this.afterCallback,
   });
 
+  // A function to be called after execution of this action is complete
+  final Function? afterCallback;
+
   final BuildContext context;
+  // The phone number to resend this OTP to
   final String phoneNumber;
-  final Function callBackFunction;
 
   @override
   void after() {
     dispatch(WaitAction<AppState>.add(resendOTPFlag));
-    callBackFunction();
+    afterCallback?.call();
     super.after();
   }
 

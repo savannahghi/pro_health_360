@@ -20,19 +20,22 @@ class SendOTPAction extends ReduxAction<AppState> {
   SendOTPAction({
     required this.context,
     required this.phoneNumber,
-    this.callBackFunction,
+    this.afterCallback,
   });
 
+  // A function to be called after execution of this action is complete
+  final Function? afterCallback;
+
   final BuildContext context;
+// The phone number to resend this OTP to
   final String phoneNumber;
-  final Function? callBackFunction;
 
   @override
   void after() {
     dispatch(WaitAction<AppState>.remove(sendOTPFlag));
 
     ///Ensure the callBackFunction is not null
-    callBackFunction?.call();
+    afterCallback?.call();
     super.after();
   }
 
@@ -112,7 +115,7 @@ class SendOTPAction extends ReduxAction<AppState> {
         );
       }
     } else {
-      //Incase user's phone number is not found
+      // In case user's phone number is not found
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
     }
   }

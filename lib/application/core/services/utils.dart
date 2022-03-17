@@ -8,7 +8,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:chewie/chewie.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -35,7 +34,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
-import 'package:myafyahub/presentation/communities/group_info/widgets/group_member_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -89,7 +87,6 @@ void showToast(String message) {
     fontSize: 16.0,
   );
 }
-
 
 String? securityQuestionValidator(String? value) {
   if (value != null && (value.isEmpty || value == UNKNOWN)) {
@@ -343,14 +340,6 @@ final NotificationActions rescheduleAction = NotificationActions(
   name: 'Reschedule',
   route: '',
 );
-
-const List<Widget> membersList = <Widget>[
-  GroupMemberItem(userName: 'Dennis Kilonzo', memberID: 'dennis'),
-  GroupMemberItem(userName: 'Kigongo Kairo', memberID: 'king'),
-  GroupMemberItem(userName: 'Lailonte Koros', memberID: 'lai'),
-  GroupMemberItem(userName: 'Musau Dennis', memberID: 'musa'),
-  GroupMemberItem(userName: 'John Koech', memberID: 'john'),
-];
 
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(
@@ -788,34 +777,6 @@ int getNewLikeCount({
     return hasLiked ? likeCount + 1 : likeCount - 1;
   }
   return likeCount;
-}
-
-Future<http.Response> retrieveOTP({
-  required IGraphQlClient httpClient,
-  required 
-  required BuildContext context,
-  required bool isResetPin,
-  required bool isResend,
-  required Map<String, dynamic> variables,
-}) async {
- 
- 
-  final String reSendOTPEndpoint =
-      AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
-
-  if (isResetPin || (isResetPin && isResend)) {
-    return httpClient.callRESTAPI(
-      endpoint: verifyPhoneEndpoint,
-      method: httpPOST,
-      variables: variables,
-    );
-  } else {
-    return httpClient.callRESTAPI(
-      endpoint: isResend ? reSendOTPEndpoint : sendOTPEndpoint,
-      method: httpPOST,
-      variables: variables,
-    );
-  }
 }
 
 void pinInputTimerStatus({required BuildContext context}) {

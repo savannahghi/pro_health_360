@@ -14,6 +14,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/resend_otp_action.dart';
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
@@ -91,26 +92,19 @@ void main() {
                 sendOTPFunction: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    SendOTPAction(
-                      context: context,
-                      resetPinPhoneNumber: phoneNumber,
-                    ),
+                    SendOTPAction(context: context, phoneNumber: phoneNumber),
                   );
                 },
                 canResendOTPFunction: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    UpdateOnboardingStateAction(
-                      canResendOTP: true,
-                    ),
+                    UpdateOnboardingStateAction(canResendOTP: true),
                   );
                 },
                 cantResendOTPFunction: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    UpdateOnboardingStateAction(
-                      canResendOTP: false,
-                    ),
+                    UpdateOnboardingStateAction(canResendOTP: false),
                   );
                 },
                 onDone: (String enteredCode) {
@@ -123,10 +117,7 @@ void main() {
                     } else {
                       StoreProvider.dispatch<AppState>(
                         context,
-                        VerifyOTPAction(
-                          otp: enteredCode,
-                          context: context,
-                        ),
+                        VerifyOTPAction(otp: enteredCode, context: context),
                       );
                     }
                     return;
@@ -141,11 +132,7 @@ void main() {
                 resendOTPFunction: () async {
                   StoreProvider.dispatch<AppState>(
                     context,
-                    SendOTPAction(
-                      context: context,
-                      isResend: true,
-                      resetPinPhoneNumber: phoneNumber,
-                    ),
+                    ResendOTPAction(context: context, phoneNumber: phoneNumber),
                   );
                 },
               );
@@ -219,24 +206,20 @@ void main() {
                   context,
                   SendOTPAction(
                     context: context,
-                    resetPinPhoneNumber: phoneNumber,
+                    phoneNumber: phoneNumber,
                   ),
                 );
               },
               canResendOTPFunction: () async {
                 StoreProvider.dispatch<AppState>(
                   context,
-                  UpdateOnboardingStateAction(
-                    canResendOTP: true,
-                  ),
+                  UpdateOnboardingStateAction(canResendOTP: true),
                 );
               },
               cantResendOTPFunction: () async {
                 StoreProvider.dispatch<AppState>(
                   context,
-                  UpdateOnboardingStateAction(
-                    canResendOTP: false,
-                  ),
+                  UpdateOnboardingStateAction(canResendOTP: false),
                 );
               },
               onDone: (String enteredCode) {
@@ -249,10 +232,7 @@ void main() {
                   } else {
                     StoreProvider.dispatch<AppState>(
                       context,
-                      VerifyOTPAction(
-                        otp: enteredCode,
-                        context: context,
-                      ),
+                      VerifyOTPAction(otp: enteredCode, context: context),
                     );
                   }
                   return;
@@ -267,11 +247,7 @@ void main() {
               resendOTPFunction: () async {
                 StoreProvider.dispatch<AppState>(
                   context,
-                  SendOTPAction(
-                    context: context,
-                    isResend: true,
-                    resetPinPhoneNumber: phoneNumber,
-                  ),
+                  ResendOTPAction(context: context, phoneNumber: phoneNumber),
                 );
               },
             );

@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/resend_otp_action.dart';
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
@@ -39,8 +40,6 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
           activeNumber = onboardingPhoneNumber;
         }
 
-        print(activeNumber);
-
         return VerifyPhoneWidget(
           vm: vm,
           sendOTPFunction: () async {
@@ -48,7 +47,7 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
               context,
               SendOTPAction(
                 context: context,
-                resetPinPhoneNumber: activeNumber,
+                phoneNumber: activeNumber,
               ),
             );
           },
@@ -96,10 +95,9 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
           resendOTPFunction: () async {
             StoreProvider.dispatch<AppState>(
               context,
-              SendOTPAction(
+              ResendOTPAction(
                 context: context,
-                isResend: true,
-                resetPinPhoneNumber: activeNumber,
+                phoneNumber: activeNumber,
               ),
             );
           },
