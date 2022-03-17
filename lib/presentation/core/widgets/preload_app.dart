@@ -94,10 +94,16 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
     super.didChangeAppLifecycleState(state);
 
     if (state == AppLifecycleState.resumed) {
-      Navigator.pushReplacementNamed(
-        appGlobalNavigatorKey.currentContext!,
-        AppRoutes.resumeWithPin,
-      );
+      final bool isSignedIn =
+          StoreProvider.state<AppState>(context)?.credentials?.isSignedIn ??
+              false;
+
+      if (isSignedIn) {
+        Navigator.pushReplacementNamed(
+          appGlobalNavigatorKey.currentContext!,
+          AppRoutes.resumeWithPin,
+        );
+      }
     }
   }
 
