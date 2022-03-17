@@ -46,7 +46,7 @@ const String requestResetPinFlag = 'request_reset_pin_flag';
 
 const String sendOTPFlag = 'sending_otp_flag';
 const String resendOTPFlag = 'resending_otp_flag';
-const String verifyOTP = 'verify_otp_flag';
+const String verifyOTPFlag = 'verify_otp_flag';
 const String requestResetPinText = 'request_reset_pin_flag';
 
 // Congratulations page

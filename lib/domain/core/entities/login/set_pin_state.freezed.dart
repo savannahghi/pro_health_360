@@ -22,11 +22,10 @@ SetPINState _$SetPINStateFromJson(Map<String, dynamic> json) {
 class _$SetPINStateTearOff {
   const _$SetPINStateTearOff();
 
-  _SetPINState call({String? phone, bool? isPINSet, bool? isResetPin}) {
+  _SetPINState call({String? phone, bool? isPINSet}) {
     return _SetPINState(
       phone: phone,
       isPINSet: isPINSet,
-      isResetPin: isResetPin,
     );
   }
 
@@ -42,9 +41,7 @@ const $SetPINState = _$SetPINStateTearOff();
 mixin _$SetPINState {
   String? get phone =>
       throw _privateConstructorUsedError; //If the user has set their PIN
-  bool? get isPINSet =>
-      throw _privateConstructorUsedError; //If the user wants to reset their PIN
-  bool? get isResetPin => throw _privateConstructorUsedError;
+  bool? get isPINSet => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +54,7 @@ abstract class $SetPINStateCopyWith<$Res> {
   factory $SetPINStateCopyWith(
           SetPINState value, $Res Function(SetPINState) then) =
       _$SetPINStateCopyWithImpl<$Res>;
-  $Res call({String? phone, bool? isPINSet, bool? isResetPin});
+  $Res call({String? phone, bool? isPINSet});
 }
 
 /// @nodoc
@@ -72,7 +69,6 @@ class _$SetPINStateCopyWithImpl<$Res> implements $SetPINStateCopyWith<$Res> {
   $Res call({
     Object? phone = freezed,
     Object? isPINSet = freezed,
-    Object? isResetPin = freezed,
   }) {
     return _then(_value.copyWith(
       phone: phone == freezed
@@ -82,10 +78,6 @@ class _$SetPINStateCopyWithImpl<$Res> implements $SetPINStateCopyWith<$Res> {
       isPINSet: isPINSet == freezed
           ? _value.isPINSet
           : isPINSet // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isResetPin: isResetPin == freezed
-          ? _value.isResetPin
-          : isResetPin // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -98,7 +90,7 @@ abstract class _$SetPINStateCopyWith<$Res>
           _SetPINState value, $Res Function(_SetPINState) then) =
       __$SetPINStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? phone, bool? isPINSet, bool? isResetPin});
+  $Res call({String? phone, bool? isPINSet});
 }
 
 /// @nodoc
@@ -115,7 +107,6 @@ class __$SetPINStateCopyWithImpl<$Res> extends _$SetPINStateCopyWithImpl<$Res>
   $Res call({
     Object? phone = freezed,
     Object? isPINSet = freezed,
-    Object? isResetPin = freezed,
   }) {
     return _then(_SetPINState(
       phone: phone == freezed
@@ -126,10 +117,6 @@ class __$SetPINStateCopyWithImpl<$Res> extends _$SetPINStateCopyWithImpl<$Res>
           ? _value.isPINSet
           : isPINSet // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isResetPin: isResetPin == freezed
-          ? _value.isResetPin
-          : isResetPin // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -137,7 +124,7 @@ class __$SetPINStateCopyWithImpl<$Res> extends _$SetPINStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SetPINState implements _SetPINState {
-  _$_SetPINState({this.phone, this.isPINSet, this.isResetPin});
+  _$_SetPINState({this.phone, this.isPINSet});
 
   factory _$_SetPINState.fromJson(Map<String, dynamic> json) =>
       _$$_SetPINStateFromJson(json);
@@ -146,12 +133,10 @@ class _$_SetPINState implements _SetPINState {
   final String? phone;
   @override //If the user has set their PIN
   final bool? isPINSet;
-  @override //If the user wants to reset their PIN
-  final bool? isResetPin;
 
   @override
   String toString() {
-    return 'SetPINState(phone: $phone, isPINSet: $isPINSet, isResetPin: $isResetPin)';
+    return 'SetPINState(phone: $phone, isPINSet: $isPINSet)';
   }
 
   @override
@@ -160,17 +145,14 @@ class _$_SetPINState implements _SetPINState {
         (other.runtimeType == runtimeType &&
             other is _SetPINState &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality().equals(other.isPINSet, isPINSet) &&
-            const DeepCollectionEquality()
-                .equals(other.isResetPin, isResetPin));
+            const DeepCollectionEquality().equals(other.isPINSet, isPINSet));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(isPINSet),
-      const DeepCollectionEquality().hash(isResetPin));
+      const DeepCollectionEquality().hash(isPINSet));
 
   @JsonKey(ignore: true)
   @override
@@ -184,8 +166,7 @@ class _$_SetPINState implements _SetPINState {
 }
 
 abstract class _SetPINState implements SetPINState {
-  factory _SetPINState({String? phone, bool? isPINSet, bool? isResetPin}) =
-      _$_SetPINState;
+  factory _SetPINState({String? phone, bool? isPINSet}) = _$_SetPINState;
 
   factory _SetPINState.fromJson(Map<String, dynamic> json) =
       _$_SetPINState.fromJson;
@@ -194,8 +175,6 @@ abstract class _SetPINState implements SetPINState {
   String? get phone;
   @override //If the user has set their PIN
   bool? get isPINSet;
-  @override //If the user wants to reset their PIN
-  bool? get isResetPin;
   @override
   @JsonKey(ignore: true)
   _$SetPINStateCopyWith<_SetPINState> get copyWith =>

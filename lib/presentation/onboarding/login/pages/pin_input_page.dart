@@ -34,20 +34,31 @@ class PINInputPage extends StatefulWidget {
       : connectivityStatus = connectivityStatus ?? MobileConnectivityChecker();
 
   final ConnectivityChecker connectivityStatus;
+
+  final TextEditingController _pinController = TextEditingController();
+
   @override
   _PINInputPageState createState() => _PINInputPageState();
-  final TextEditingController _pinController = TextEditingController();
 }
 
 class _PINInputPageState extends State<PINInputPage> {
-  final int maxTries = 4;
-  bool isCorrectPin = false;
-  String errorMessage = '';
-  late Timer timer;
   bool canEnterPin = true;
-  int _start = 300;
+  String errorMessage = '';
   TextStyle errorMessageStyle = boldSize12Text(AppColors.wrongPinTextColor);
+  bool isCorrectPin = false;
+  final int maxTries = 4;
+  late Timer timer;
   bool timerRunning = false;
+
+  int _start = 300;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
+      pinInputTimerStatus(context: context);
+    });
+  }
 
   void _startTimer() {
     timer = Timer.periodic(
@@ -88,14 +99,6 @@ class _PINInputPageState extends State<PINInputPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
-      pinInputTimerStatus(context: context);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     late String enteredPin = '';
     return WillPopScope(
@@ -104,10 +107,7 @@ class _PINInputPageState extends State<PINInputPage> {
           context,
           BottomNavAction(currentBottomNavIndex: 0),
         );
-        Navigator.popAndPushNamed(
-          context,
-          AppRoutes.home,
-        );
+        Navigator.popAndPushNamed(context, AppRoutes.home);
         return false;
       },
       child: StoreConnector<AppState, PINInputViewModel>(

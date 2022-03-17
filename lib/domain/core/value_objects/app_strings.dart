@@ -351,7 +351,7 @@ const String iVeLostWeightString = 'I\'ve lost weight';
 const String nextString = 'Next';
 const String errorCreatingHealthDiaryEntryString =
     'Error creating health diary entry';
-const String createNewPINTitleString = 'Create new PIN';
+const String createNewPINTitleString = 'Create your new PIN';
 const String resetPINTitleString = 'Reset PIN';
 const String pinMustMatchString = 'PIN must match';
 //congratulations page

@@ -64,7 +64,7 @@ class VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
                 children: <Widget>[
                   if (widget.vm.wait!.isWaitingFor(sendOTPFlag))
                     const PlatformLoader(),
-                  if (widget.vm.wait!.isWaitingFor(verifyOTP)) ...<Widget>[
+                  if (widget.vm.wait!.isWaitingFor(verifyOTPFlag)) ...<Widget>[
                     const PlatformLoader(),
                     smallVerticalSizedBox,
                     Text(
@@ -75,7 +75,7 @@ class VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
                     ),
                   ],
                   if (!widget.vm.wait!.isWaitingFor(sendOTPFlag) &&
-                      !widget.vm.wait!.isWaitingFor(verifyOTP))
+                      !widget.vm.wait!.isWaitingFor(verifyOTPFlag))
                     VerifyOtpWidget(
                       vm: widget.vm,
                       loader: const PlatformLoader(),

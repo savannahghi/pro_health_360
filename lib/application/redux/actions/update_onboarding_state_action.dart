@@ -19,7 +19,6 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.hasSetNickName,
     this.hasSetSecurityQuestions,
     this.hasSetPin,
-    this.isResetPin,
     this.hasVerifiedSecurityQuestions,
     this.currentOnboardingStage,
   });
@@ -35,7 +34,6 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   bool? hasSetNickName;
   bool? hasSetSecurityQuestions;
   bool? hasSetPin;
-  bool? isResetPin;
   bool? hasVerifiedSecurityQuestions;
   final CurrentOnboardingStage? currentOnboardingStage;
 
@@ -46,8 +44,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       phone: phone ?? state.onboardingState?.setPINState?.phone ?? UNKNOWN,
       isPINSet:
           hasSetPin ?? state.onboardingState?.setPINState?.isPINSet ?? false,
-      isResetPin:
-          isResetPin ?? state.onboardingState?.setPINState?.isResetPin ?? false,
+     
     );
 
     final OnboardingState? newOnboardingState = state.onboardingState?.copyWith(
@@ -78,6 +75,8 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
           state.onboardingState?.currentOnboardingStage,
       pinExpiredState: state.onboardingState?.pinExpiredState?.copyWith(
         otp: otp ?? state.onboardingState?.pinExpiredState?.otp,
+        isPhoneVerified: isPhoneVerified ??
+            state.onboardingState?.pinExpiredState?.isPhoneVerified,
       ),
     );
 

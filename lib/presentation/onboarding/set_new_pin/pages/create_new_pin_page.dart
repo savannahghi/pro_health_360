@@ -14,32 +14,26 @@ import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dar
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 
 class CreateNewPINPage extends StatelessWidget {
-  CreateNewPINPage({
-    ConnectivityChecker? connectivityStatus,
-  }) : connectivityStatus = connectivityStatus ?? MobileConnectivityChecker();
+  CreateNewPINPage({ConnectivityChecker? connectivityStatus})
+      : connectivityStatus = connectivityStatus ?? MobileConnectivityChecker();
 
   final ConnectivityChecker connectivityStatus;
 
   @override
   Widget build(BuildContext context) {
-    final bool isResetPin =
-        StoreProvider.state<AppState>(context)?.onboardingState?.setPINState?.isResetPin ??
-            false;
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
         return CreateNewPINWidget(
-          title: isResetPin ? resetPINTitleString : createNewPINTitleString,
+          title: createNewPINTitleString,
           loading: vm.appState.wait!.isWaitingFor(createPinFlag),
           onContinue: (String PIN, String confirmPIN) async {
-            final bool hasConnection = 
-            await connectivityStatus.checkConnection();
+            final bool hasConnection =
+                await connectivityStatus.checkConnection();
 
             StoreProvider.dispatch(
               context,
-              UpdateConnectivityAction(
-                hasConnection: hasConnection,
-              ),
+              UpdateConnectivityAction(hasConnection: hasConnection),
             );
 
             if (!hasConnection) {
@@ -50,12 +44,8 @@ class CreateNewPINPage extends StatelessWidget {
               );
               return;
             }
-            setUserPIN(
-              context: context,
-              newPIN: PIN,
-              confirmPIN: confirmPIN,
-              flavour: Flavour.consumer.name,
-            );
+
+            setUserPIN(context: context, newPIN: PIN, confirmPIN: confirmPIN);
           },
         );
       },

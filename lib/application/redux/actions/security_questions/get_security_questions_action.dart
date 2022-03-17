@@ -45,6 +45,7 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final bool isResetPin =
         state.onboardingState?.setPINState?.isResetPin ?? false;
+        
     final String? otp = state.onboardingState?.verifyPhoneState?.otp;
     final String? phone = state.onboardingState?.setPINState?.phone;
 

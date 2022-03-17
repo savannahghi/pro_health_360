@@ -177,7 +177,7 @@ void main() {
 
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
 
-      store.dispatch(WaitAction<AppState>.add(verifyOTP));
+      store.dispatch(WaitAction<AppState>.add(verifyOTPFlag));
       await tester.pump();
 
       expect(find.byType(PlatformLoader), findsOneWidget);

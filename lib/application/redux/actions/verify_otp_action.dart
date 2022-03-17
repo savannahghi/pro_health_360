@@ -20,24 +20,21 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class VerifyOTPAction extends ReduxAction<AppState> {
-  VerifyOTPAction({
-    required this.context,
-    required this.otp,
-  });
+  VerifyOTPAction({required this.context, required this.otp});
 
   final BuildContext context;
   final String otp;
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(verifyOTP));
+    dispatch(WaitAction<AppState>.remove(verifyOTPFlag));
     super.after();
   }
 
   @override
   void before() {
     super.before();
-    dispatch(WaitAction<AppState>.add(verifyOTP));
+    dispatch(WaitAction<AppState>.add(verifyOTPFlag));
   }
 
   @override
@@ -88,11 +85,6 @@ class VerifyOTPAction extends ReduxAction<AppState> {
               state.onboardingState?.setPINState?.isResetPin ?? false
                   ? AppRoutes.phoneLogin
                   : onboardingPathConfig.route,
-            ),
-          );
-          dispatch(
-            UpdateOnboardingStateAction(
-              isResetPin: false,
             ),
           );
 

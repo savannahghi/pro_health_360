@@ -37,7 +37,6 @@ Future<void> setUserPIN({
   required BuildContext context,
   required String newPIN,
   required String confirmPIN,
-  required String flavour,
 }) async {
   // this is the Redux Action that store the PINs user enters
   StoreProvider.dispatch(
@@ -51,11 +50,7 @@ Future<void> setUserPIN({
   // this is the Redux Action that handles set PIN for an existing user
   await StoreProvider.dispatch<AppState>(
     context,
-    CreatePINAction(
-      context: context,
-      flag: createPinFlag,
-      flavour: flavour,
-    ),
+    CreatePINAction(context: context),
   );
 }
 

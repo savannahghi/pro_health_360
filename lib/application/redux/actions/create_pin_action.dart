@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
@@ -30,25 +31,21 @@ import 'package:shared_themes/constants.dart';
 class CreatePINAction extends ReduxAction<AppState> {
   CreatePINAction({
     required this.context,
-    required this.flag,
-    required this.flavour,
   });
 
   final BuildContext context;
-  final String flag;
-  final String flavour;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(createPinFlag));
+    super.after();
+  }
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   /// returns a bottom sheet that gives the user a friendly message and an option to create an account
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(flag));
-  }
-
-  @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(flag));
-    super.after();
+    dispatch(WaitAction<AppState>.add(createPinFlag));
   }
 
   @override
@@ -58,43 +55,22 @@ class CreatePINAction extends ReduxAction<AppState> {
     final String? confirmPIN =
         state.onboardingState!.createPINState!.confirmPIN;
 
-    final String? otp = state.onboardingState?.verifyPhoneState?.otp;
-    final bool isResetPin =
-        state.onboardingState?.setPINState?.isResetPin ?? false;
-    final String? phone = state.onboardingState?.setPINState?.phone;
-
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {
-      // initializing of the reset_pin mutation
-      final Map<String, String?> _resetPinVariables = <String, String?>{
-        'phonenumber': phone,
-        'flavour': flavour,
-        'pin': newPIN,
-        'otp': otp,
-      };
-
       // initializing of the updateUserPin mutation
-      final Map<String, String?> _updateUserPinVariables = <String, String?>{
+      final Map<String, String?> setUserPINVariables = <String, String?>{
         'userID': userID,
         'pin': newPIN,
         'confirmPIN': confirmPIN,
-        'flavour': flavour,
+        'flavour': Flavour.consumer.name,
       };
 
       final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-      final String resetPinEndpoint =
-          AppWrapperBase.of(context)!.customContext!.updateUserPinEndpoint;
 
-      final http.Response result = isResetPin
-          ? await _client.callRESTAPI(
-              endpoint: resetPinEndpoint,
-              method: httpPOST,
-              variables: _resetPinVariables,
-            )
-          : await _client.query(
-              setUserPINMutation,
-              setUserPINMutationVariables(_updateUserPinVariables),
-            );
+      final http.Response result = await _client.query(
+        setUserPINMutation,
+        setUserPINMutationVariables(setUserPINVariables),
+      );
 
       final Map<String, dynamic> body = _client.toMap(result);
 
@@ -129,22 +105,6 @@ class CreatePINAction extends ReduxAction<AppState> {
           arguments: <String, String>{
             'duration': twoYearText,
           },
-        );
-      } else if (responseMap['data']['resetPIN'] == true) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(pinResetSuccessString),
-            duration: Duration(seconds: 2),
-          ),
-        );
-
-        StoreProvider.dispatch(
-          context,
-          UpdateOnboardingStateAction(isResetPin: false),
-        );
-        Navigator.pushReplacementNamed(
-          context,
-          AppRoutes.phoneLogin,
         );
       }
     } else {
