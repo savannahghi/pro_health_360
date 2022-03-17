@@ -12,14 +12,9 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
-class VerifyPhonePage extends StatefulWidget {
+class VerifyPhonePage extends StatelessWidget {
   const VerifyPhonePage();
 
-  @override
-  State<VerifyPhonePage> createState() => _VerifyPhonePageState();
-}
-
-class _VerifyPhonePageState extends State<VerifyPhonePage> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, VerifyPhoneViewModel>(

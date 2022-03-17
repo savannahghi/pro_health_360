@@ -17,7 +17,7 @@ class PinExpiredPage extends StatelessWidget {
       actionText: changePinCTA,
       actionCallback: () =>
           // This should kickstart the expire PIN workflow
-          Navigator.of(context).pushReplacementNamed(AppRoutes.phoneLogin),
+          Navigator.of(context).pushReplacementNamed(AppRoutes.verifyPhone),
       actionKey: changeMyPinButtonKey,
     );
   }

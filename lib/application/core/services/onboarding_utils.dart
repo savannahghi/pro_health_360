@@ -16,12 +16,6 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
-Function checkWaitingForFunc(BuildContext context) {
-  return ({required String flag}) {
-    return StoreProvider.state<AppState>(context)!.wait!.isWaitingFor(flag);
-  };
-}
-
 void clearAllFlags(BuildContext context) {
   SchedulerBinding.instance?.addPostFrameCallback((_) {
     StoreProvider.dispatch(
@@ -31,37 +25,14 @@ void clearAllFlags(BuildContext context) {
   });
 }
 
-Future<void> setUserPIN({
-  required BuildContext context,
-  required String newPIN,
-  required String confirmPIN,
-  required String flavour,
-}) async {
-  // this is the Redux Action that store the PINs user enters
-  StoreProvider.dispatch(
-    context,
-    CreatePINStateAction(
-      newPIN: newPIN,
-      confirmPIN: confirmPIN,
-    ),
-  );
-
-  // this is the Redux Action that handles set PIN for an existing user
-  await StoreProvider.dispatch<AppState>(
-    context,
-    CreatePINAction(
-      context: context,
-      flag: createPinFlag,
-      flavour: flavour,
-    ),
-  );
-}
-
 /// Determines the path to route the user to based on the app state
 OnboardingPathConfig onboardingPath({
   required AppState? appState,
   bool calledOnResume = false,
 }) {
+  final bool pinChangeRequired =
+      appState?.clientState?.user?.pinChangeRequired ?? false;
+
   final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
   final bool termsAccepted =
       appState?.clientState?.user?.termsAccepted ?? false;
@@ -74,10 +45,14 @@ OnboardingPathConfig onboardingPath({
   final bool isPINSet =
       appState?.onboardingState?.setPINState?.isPINSet ?? false;
 
+  if (pinChangeRequired) {
+    return OnboardingPathConfig(route: AppRoutes.pinExpiredPage);
+  }
+
   if (!isSignedIn) {
     return OnboardingPathConfig(route: AppRoutes.phoneLogin);
   } else if (!isPhoneVerified) {
-    return OnboardingPathConfig(route: AppRoutes.verifySignUpOTP);
+    return OnboardingPathConfig(route: AppRoutes.verifyPhone);
   } else if (!termsAccepted) {
     return OnboardingPathConfig(route: AppRoutes.termsAndConditions);
   } else if (!hasSetSecurityQuestions) {
@@ -89,24 +64,4 @@ OnboardingPathConfig onboardingPath({
   }
 
   return OnboardingPathConfig(route: AppRoutes.home);
-}
-
-Future<void> setUserNickname({
-  required BuildContext context,
-  required String nickName,
-}) async {
-  // this is the Redux Action that store the nickname user enters
-  StoreProvider.dispatch<AppState>(
-    context,
-    UpdateUserProfileAction(nickName: nickName),
-  );
-
-  // this is the Redux Action that handles set nickname for an existing user
-  await StoreProvider.dispatch<AppState>(
-    context,
-    SetNicknameAction(
-      context: context,
-      flag: setNickNameFlag,
-    ),
-  );
 }

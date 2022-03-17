@@ -121,7 +121,7 @@ void main() {
 
   test('Test router returns  verify otp page', () {
     const RouteSettings settings = RouteSettings(
-      name: AppRoutes.verifySignUpOTP,
+      name: AppRoutes.verifyPhone,
     );
 
     final MaterialPageRoute<VerifyPhonePage> route =
@@ -589,7 +589,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
     expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
-
   });
   test('Test router returns LoginCounterPage', () {
     const RouteSettings settings =

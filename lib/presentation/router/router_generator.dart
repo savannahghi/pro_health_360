@@ -78,7 +78,7 @@ class RouteGenerator {
           builder: (_) => CreateNewPINPage(),
         );
 
-      case AppRoutes.verifySignUpOTP:
+      case AppRoutes.verifyPhone:
         return MaterialPageRoute<VerifyPhonePage>(
           builder: (_) => const VerifyPhonePage(),
         );
@@ -360,9 +360,11 @@ class RouteGenerator {
         return MaterialPageRoute<VerifySecurityQuestionsHelpPage>(
           builder: (_) => VerifySecurityQuestionsHelpPage(),
         );
-         case AppRoutes.loginCounterPage:
+      case AppRoutes.loginCounterPage:
         return MaterialPageRoute<LoginCounterPage>(
-          builder: (_) => LoginCounterPage(retryTime: args as int?,),
+          builder: (_) => LoginCounterPage(
+            retryTime: args as int?,
+          ),
         );
 
       case AppRoutes.pinExpiredPage:

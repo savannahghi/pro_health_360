@@ -171,7 +171,7 @@ void main() {
           actionDispatched?.details
               as NavigatorDetails_PushNamedAndRemoveUntil?;
 
-      expect(navDetails?.newRouteName, AppRoutes.verifySignUpOTP);
+      expect(navDetails?.newRouteName, AppRoutes.verifyPhone);
       expect(
         navDetails?.predicate.call(
           MaterialPageRoute<VerifyPhonePage>(

@@ -32,9 +32,7 @@ class PhoneLoginErrorWidget extends StatelessWidget {
               isResetPin: true,
             ),
           );
-          Navigator.of(context).pushReplacementNamed(
-            AppRoutes.verifySignUpOTP,
-          );
+          Navigator.of(context).pushReplacementNamed(AppRoutes.verifyPhone);
         }
       },
     );

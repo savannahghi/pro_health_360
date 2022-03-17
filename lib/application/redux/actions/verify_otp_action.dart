@@ -29,15 +29,15 @@ class VerifyOTPAction extends ReduxAction<AppState> {
   final String otp;
 
   @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(verifyOTP));
-    super.after();
-  }
-
-  @override
   void before() {
     super.before();
     dispatch(WaitAction<AppState>.add(verifyOTP));
+  }
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(verifyOTP));
+    super.after();
   }
 
   @override

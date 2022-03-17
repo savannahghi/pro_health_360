@@ -170,7 +170,7 @@ void main() {
       });
     });
 
-    testWidgets('date picker textfield renders correctly',
+    testWidgets('date picker text field renders correctly',
         (WidgetTester tester) async {
       tester.binding.window.devicePixelRatioTestValue = 1.0;
       tester.binding.window.physicalSizeTestValue =
@@ -248,11 +248,11 @@ void main() {
       });
     });
 
-    testWidgets('Navigates to Create New Pin page',
+    testWidgets('navigates to Create New Pin page',
         (WidgetTester tester) async {
       store.dispatch(
         UpdateUserProfileAction(
-          pinChangeRequired: true,
+          pinChangeRequired: false,
           termsAccepted: true,
           isPhoneVerified: true,
         ),

@@ -6,9 +6,8 @@ class AppRoutes {
   static const String deepLink = '/app';
   // onboarding routes
   static const String phoneLogin = '/phoneLogin';
-  static const String verifyCode = '/verifyCode';
   static const String termsAndConditions = '/termsAndConditions';
-  static const String verifySignUpOTP = '/verifySignUpOTP';
+  static const String verifyPhone = '/verifyPhone';
   static const String securityQuestionsPage = '/securityQuestionsPage';
   static const String congratulationsPage = '/congratulationsPage';
 

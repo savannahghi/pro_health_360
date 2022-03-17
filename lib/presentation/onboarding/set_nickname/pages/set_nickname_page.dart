@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
@@ -307,7 +308,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                       if (isFormValid != null &&
                           isFormValid &&
                           nickName != null) {
-                        setUserNickname(
+                        _setUserNickname(
                           nickName: nickName ?? '',
                           context: context,
                         );
@@ -322,6 +323,26 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
           ),
         );
       },
+    );
+  }
+
+  void _setUserNickname({
+    required BuildContext context,
+    required String nickName,
+  }) {
+    // this is the Redux Action that store the nickname user enters
+    StoreProvider.dispatch<AppState>(
+      context,
+      UpdateUserProfileAction(nickName: nickName),
+    );
+
+    // this is the Redux Action that handles set nickname for an existing user
+    StoreProvider.dispatch<AppState>(
+      context,
+      SetNicknameAction(
+        context: context,
+        flag: setNickNameFlag,
+      ),
     );
   }
 }
