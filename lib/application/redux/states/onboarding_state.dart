@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
+import 'package:myafyahub/domain/core/entities/login/pin_expired_state.dart';
 import 'package:myafyahub/domain/core/entities/login/set_pin_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_phone_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
@@ -35,6 +36,12 @@ class OnboardingState with _$OnboardingState {
 
     // The current stage of onboarding that the user is in
     CurrentOnboardingStage? currentOnboardingStage,
+
+    // The PIN expired state state
+    PINExpiredState? pinExpiredState,
+
+    /// Shared values that will be used across all states
+    final String? phoneNumber,
   }) = _OnboardingState;
 
   factory OnboardingState.fromJson(Map<String, dynamic> json) =>
@@ -54,5 +61,7 @@ class OnboardingState with _$OnboardingState {
         hasSetNickName: false,
         hasVerifiedSecurityQuestions: false,
         currentOnboardingStage: CurrentOnboardingStage.Login,
+        pinExpiredState: PINExpiredState.initial(),
+        phoneNumber: UNKNOWN,
       );
 }

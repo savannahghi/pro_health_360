@@ -23,10 +23,12 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 class ResendOTPAction extends ReduxAction<AppState> {
   ResendOTPAction({
     required this.context,
+    required this.phoneNumber,
     required this.callBackFunction,
   });
 
   final BuildContext context;
+  final String phoneNumber;
   final Function callBackFunction;
 
   @override

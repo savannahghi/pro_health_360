@@ -67,6 +67,7 @@ AppNavConfig navPathConfig({
   /// Check whether the current onboarding stage
   final CurrentOnboardingStage? currentOnboardingStage =
       appState!.onboardingState!.currentOnboardingStage;
+
   final bool isPhoneVerified =
       appState.onboardingState?.isPhoneVerified ?? false;
   final bool termsAccepted = appState.clientState?.user?.termsAccepted ?? false;
@@ -88,6 +89,7 @@ AppNavConfig navPathConfig({
         previousRoute: AppRoutes.phoneLogin,
       );
     }
+
     return AppNavConfig(nextRoute: AppRoutes.home, previousRoute: '');
 
     /// The sign up onboarding state
@@ -123,13 +125,30 @@ AppNavConfig navPathConfig({
 
     /// The PIN expiry workflow
   } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired) {
+    final bool isPhoneVerified =
+        appState.onboardingState?.pinExpiredState?.isPhoneVerified ?? false;
+    final bool isPINChanged =
+        appState.onboardingState?.pinExpiredState?.isPINChanged ?? false;
+
     // check whether the phone is verified
+    if (!isPhoneVerified) {
+      return AppNavConfig(
+        previousRoute: AppRoutes.pinExpiredPage,
+        nextRoute: AppRoutes.verifySignUpOTP,
+      );
+    }
 
     // check whether the PIN has been changed
+    else if (!isPINChanged) {
+      return AppNavConfig(
+        previousRoute: AppRoutes.verifySignUpOTP,
+        nextRoute: AppRoutes.createPin,
+      );
+    }
 
     // Reset the state and navigate to the home page
     return AppNavConfig(nextRoute: AppRoutes.home, previousRoute: '');
-  } else if (currentOnboardingStage == CurrentOnboardingStage.ResetPIN) {
+  } else if (currentOnboardingStage == CurrentOnboardingStage.ChangePIN) {
     // verify the phone
 
     // change the PIN
@@ -139,6 +158,7 @@ AppNavConfig navPathConfig({
     // Always return the home page
     return AppNavConfig(nextRoute: AppRoutes.home, previousRoute: '');
   }
+
   // return the login page if anything else fails
   return AppNavConfig(nextRoute: AppRoutes.phoneLogin, previousRoute: '');
 }

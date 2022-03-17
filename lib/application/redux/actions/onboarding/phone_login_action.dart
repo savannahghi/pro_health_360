@@ -140,10 +140,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             loginResponse.userResponse?.clientState?.user?.name ?? UNKNOWN;
         if (fullName != UNKNOWN && fullName.isNotEmpty) {
           final List<String> names = fullName.split(' ');
-          user = user?.copyWith(
-            firstName: names.first,
-            lastName: names.last,
-          );
+          user = user?.copyWith(firstName: names.first, lastName: names.last);
         }
 
         dispatch(
@@ -196,10 +193,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         if (body['code'] == 48 ||
             (body['message']?.toString().contains('pin expired') ?? false)) {
-          dispatch(UpdateOnboardingStateAction(isResetPin: true));
-
           dispatch(
-            NavigateAction<AppState>.pushNamed(AppRoutes.pinExpiredPage),
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.pinExpiredPage,
+              (Route<dynamic> route) => false,
+            ),
           );
 
           return state;

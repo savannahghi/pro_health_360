@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/login/set_pin_state.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   UpdateOnboardingStateAction({
@@ -20,6 +21,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.hasSetPin,
     this.isResetPin,
     this.hasVerifiedSecurityQuestions,
+    this.currentOnboardingStage,
   });
 
   List<SecurityQuestion>? securityQuestions;
@@ -35,6 +37,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   bool? hasSetPin;
   bool? isResetPin;
   bool? hasVerifiedSecurityQuestions;
+  final CurrentOnboardingStage? currentOnboardingStage;
 
   @override
   AppState reduce() {
@@ -70,6 +73,11 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
         canResendOTP: canResendOTP ??
             state.onboardingState?.verifyPhoneState?.canResendOTP ??
             false,
+      ),
+      currentOnboardingStage: currentOnboardingStage ??
+          state.onboardingState?.currentOnboardingStage,
+      pinExpiredState: state.onboardingState?.pinExpiredState?.copyWith(
+        otp: otp ?? state.onboardingState?.pinExpiredState?.otp,
       ),
     );
 

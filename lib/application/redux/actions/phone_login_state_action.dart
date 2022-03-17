@@ -35,8 +35,10 @@ class PhoneLoginStateAction extends ReduxAction<AppState> {
         phoneNumber: phoneNumber ?? UNKNOWN,
         pinCode: pinCode ?? UNKNOWN,
         invalidCredentials: invalidCredentials,
-        failedLoginCount: failedLoginCount ?? state.onboardingState?.phoneLogin?.failedLoginCount,
+        failedLoginCount: failedLoginCount ??
+            state.onboardingState?.phoneLogin?.failedLoginCount,
       ),
+      phoneNumber: phoneNumber,
     );
     return newState;
   }

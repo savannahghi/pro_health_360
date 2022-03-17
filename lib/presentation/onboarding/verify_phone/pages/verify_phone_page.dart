@@ -27,7 +27,20 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
         return VerifyPhoneViewModel.fromStore(store);
       },
       builder: (BuildContext context, VerifyPhoneViewModel vm) {
+        String activeNumber;
+
         final String phoneNumber = vm.phoneNumber ?? UNKNOWN;
+        final String onboardingPhoneNumber =
+            vm.onboardingPhoneNumber ?? UNKNOWN;
+
+        if (phoneNumber != UNKNOWN) {
+          activeNumber = phoneNumber;
+        } else {
+          activeNumber = onboardingPhoneNumber;
+        }
+
+        print(activeNumber);
+
         return VerifyPhoneWidget(
           vm: vm,
           sendOTPFunction: () async {
@@ -35,7 +48,7 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
               context,
               SendOTPAction(
                 context: context,
-                resetPinPhoneNumber: phoneNumber,
+                resetPinPhoneNumber: activeNumber,
               ),
             );
           },
@@ -86,7 +99,7 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
               SendOTPAction(
                 context: context,
                 isResend: true,
-                resetPinPhoneNumber: phoneNumber,
+                resetPinPhoneNumber: activeNumber,
               ),
             );
           },

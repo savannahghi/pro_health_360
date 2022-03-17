@@ -792,17 +792,14 @@ int getNewLikeCount({
 
 Future<http.Response> retrieveOTP({
   required IGraphQlClient httpClient,
+  required 
   required BuildContext context,
   required bool isResetPin,
   required bool isResend,
   required Map<String, dynamic> variables,
 }) async {
-  final String verifyPhoneEndpoint =
-      AppWrapperBase.of(context)!.customContext!.verifyPhoneEndpoint;
-
-  final String sendOTPEndpoint =
-      AppWrapperBase.of(context)!.customContext!.sendRecoverAccountOtpEndpoint;
-
+ 
+ 
   final String reSendOTPEndpoint =
       AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
 
