@@ -373,7 +373,6 @@ void main() {
                   confirmPIN: '0000',
                   context: context,
                   newPIN: '0000',
-                  flavour: Flavour.consumer.name,
                 );
               },
             );
@@ -401,7 +400,6 @@ void main() {
                   confirmPIN: '0001',
                   context: context,
                   newPIN: '0000',
-                  flavour: Flavour.consumer.name,
                 );
               },
             );

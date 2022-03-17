@@ -43,33 +43,13 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final bool isResetPin =
-        state.onboardingState?.setPINState?.isResetPin ?? false;
-        
-    final String? otp = state.onboardingState?.verifyPhoneState?.otp;
-    final String? phone = state.onboardingState?.setPINState?.phone;
-
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
-    final String getRecordedSecurityQuestions = AppWrapperBase.of(context)!
-        .customContext!
-        .respondedSecurityQuestionsEndpoint!;
 
-    final Map<String, dynamic> getRecordedQuestionsVariables =
-        <String, dynamic>{
-      'phoneNumber': phone,
+    final http.Response result =
+        await _client.query(getSecurityQuestionsQuery, <String, dynamic>{
       'flavour': Flavour.consumer.name,
-      'otp': otp,
-    };
+    });
 
-    final http.Response result = isResetPin
-        ? await _client.callRESTAPI(
-            endpoint: getRecordedSecurityQuestions,
-            method: httpPOST,
-            variables: getRecordedQuestionsVariables,
-          )
-        : await _client.query(getSecurityQuestionsQuery, <String, dynamic>{
-            'flavour': Flavour.consumer.name,
-          });
     final Map<String, dynamic> body = _client.toMap(result);
 
     final Map<String, dynamic> responseMap =
@@ -82,43 +62,23 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
       );
     }
 
-    if (isResetPin) {
-      final RespondedSecurityQuestionsData responseData =
-          RespondedSecurityQuestionsData.fromJson(
-        responseMap['data'] as Map<String, dynamic>,
-      );
+    final SecurityQuestionsData securityQuestionsData =
+        SecurityQuestionsData.fromJson(
+      responseMap['data'] as Map<String, dynamic>,
+    );
 
-      final List<SecurityQuestionResponse> responses =
-          <SecurityQuestionResponse>[];
-      for (int i = 0; i < responseData.securityQuestions.length; i++) {
-        responses.add(SecurityQuestionResponse.initial());
-      }
-
-      dispatch(
-        UpdateOnboardingStateAction(
-          securityQuestions: responseData.securityQuestions,
-          securityQuestionsResponses: responses,
-        ),
-      );
-    } else {
-      final SecurityQuestionsData securityQuestionsData =
-          SecurityQuestionsData.fromJson(
-        responseMap['data'] as Map<String, dynamic>,
-      );
-
-      final List<SecurityQuestionResponse> responses =
-          <SecurityQuestionResponse>[];
-      for (int i = 0; i < securityQuestionsData.securityQuestions.length; i++) {
-        responses.add(SecurityQuestionResponse.initial());
-      }
-
-      dispatch(
-        UpdateOnboardingStateAction(
-          securityQuestions: securityQuestionsData.securityQuestions,
-          securityQuestionsResponses: responses,
-        ),
-      );
+    final List<SecurityQuestionResponse> responses =
+        <SecurityQuestionResponse>[];
+    for (int i = 0; i < securityQuestionsData.securityQuestions.length; i++) {
+      responses.add(SecurityQuestionResponse.initial());
     }
+
+    dispatch(
+      UpdateOnboardingStateAction(
+        securityQuestions: securityQuestionsData.securityQuestions,
+        securityQuestionsResponses: responses,
+      ),
+    );
 
     return state;
   }

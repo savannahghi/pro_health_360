@@ -28,7 +28,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_widget.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -109,18 +108,10 @@ void main() {
                 },
                 onDone: (String enteredCode) {
                   if (enteredCode == vm.otp) {
-                    if (vm.isResetPin) {
-                      Navigator.pushNamed(
-                        context,
-                        AppRoutes.createPin,
-                      );
-                    } else {
-                      StoreProvider.dispatch<AppState>(
-                        context,
-                        VerifyOTPAction(otp: enteredCode, context: context),
-                      );
-                    }
-                    return;
+                    StoreProvider.dispatch<AppState>(
+                      context,
+                      VerifyOTPAction(otp: enteredCode, context: context),
+                    );
                   } else {
                     showFeedbackBottomSheet(
                       context: context,
@@ -224,18 +215,10 @@ void main() {
               },
               onDone: (String enteredCode) {
                 if (enteredCode == vm.otp) {
-                  if (vm.isResetPin) {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoutes.createPin,
-                    );
-                  } else {
-                    StoreProvider.dispatch<AppState>(
-                      context,
-                      VerifyOTPAction(otp: enteredCode, context: context),
-                    );
-                  }
-                  return;
+                  StoreProvider.dispatch<AppState>(
+                    context,
+                    VerifyOTPAction(otp: enteredCode, context: context),
+                  );
                 } else {
                   showFeedbackBottomSheet(
                     context: context,

@@ -11,7 +11,6 @@ void main() {
     final SetPINState result2 = SetPINState.fromJson(<String, dynamic>{
       'phone': '254700111222',
       'isPINSet': true,
-      'isResetPin': false,
     });
 
     expect(result2.isPINSet, true);

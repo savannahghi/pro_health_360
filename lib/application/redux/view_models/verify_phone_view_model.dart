@@ -10,7 +10,6 @@ class VerifyPhoneViewModel extends Vm {
     required this.userID,
     required this.phoneNumber,
     required this.otp,
-    required this.isResetPin,
     this.failedToSendOTP,
     this.canResendOTP,
     this.invalidOTP,
@@ -24,7 +23,6 @@ class VerifyPhoneViewModel extends Vm {
             failedToSendOTP,
             canResendOTP,
             invalidOTP,
-            isResetPin,
             onboardingPhoneNumber,
           ],
         );
@@ -36,7 +34,6 @@ class VerifyPhoneViewModel extends Vm {
   final bool? invalidOTP;
   final bool? failedToSendOTP;
   final bool? canResendOTP;
-  final bool isResetPin;
   final String? onboardingPhoneNumber;
 
   static VerifyPhoneViewModel fromStore(Store<AppState> store) {
@@ -51,7 +48,6 @@ class VerifyPhoneViewModel extends Vm {
           state.onboardingState?.verifyPhoneState?.failedToSendOTP ?? false,
       canResendOTP:
           state.onboardingState?.verifyPhoneState?.canResendOTP ?? false,
-      isResetPin: state.onboardingState?.setPINState?.isResetPin ?? false,
       onboardingPhoneNumber: state.onboardingState?.phoneNumber ?? UNKNOWN,
     );
   }

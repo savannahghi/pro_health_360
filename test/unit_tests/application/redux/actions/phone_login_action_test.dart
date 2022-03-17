@@ -9,7 +9,6 @@ import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
@@ -112,29 +111,6 @@ void main() {
       await storeTester.waitUntil(PhoneLoginAction);
 
       expect(failureReason, 'Your phone number or PIN do not match.');
-    });
-
-    test('show handle pin reset', () async {
-      storeTester.dispatch(
-        PhoneLoginAction(
-          httpClient: MockShortGraphQlClient.withResponse(
-            'idToken',
-            'endpoint',
-            Response(
-              jsonEncode(<String, dynamic>{'code': 48}),
-              400,
-            ),
-          ),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
-          errorCallback: (_) {},
-        ),
-      );
-
-      final TestInfo<AppState> info = await storeTester.waitUntilAllGetLast(
-        <Type>[UpdateOnboardingStateAction, PhoneLoginAction],
-      );
-
-      expect(info.state.onboardingState?.setPINState?.isResetPin, true);
     });
 
     test('show update state correctly if response is ok', () async {

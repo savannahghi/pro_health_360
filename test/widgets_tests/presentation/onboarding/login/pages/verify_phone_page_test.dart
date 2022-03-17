@@ -10,7 +10,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
@@ -261,12 +260,6 @@ void main() {
         ),
       );
 
-      store.dispatch(
-        UpdateOnboardingStateAction(
-          isResetPin: true,
-        ),
-      );
-
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -302,11 +295,6 @@ void main() {
             }
           }),
           201,
-        ),
-      );
-      store.dispatch(
-        UpdateOnboardingStateAction(
-          isResetPin: true,
         ),
       );
 

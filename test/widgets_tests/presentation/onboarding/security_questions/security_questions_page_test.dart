@@ -126,7 +126,6 @@ void main() {
 
       customStore.dispatch(
         UpdateOnboardingStateAction(
-          isResetPin: true,
           securityQuestions: <SecurityQuestion>[
             SecurityQuestion.initial(),
             SecurityQuestion.initial(),
@@ -325,7 +324,6 @@ void main() {
 
       customStore.dispatch(
         UpdateOnboardingStateAction(
-          isResetPin: true,
           isPhoneVerified: true,
           hasSetSecurityQuestions: true,
           securityQuestions: <SecurityQuestion>[

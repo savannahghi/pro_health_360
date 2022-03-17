@@ -9,7 +9,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
@@ -45,8 +44,7 @@ void main() {
       await tester.pumpAndSettle();
       final Finder pinInputField = find.byType(CustomTextField).first;
       final Finder confirmPinInputField = find.byType(CustomTextField).last;
-      final Finder saveAndContinueButton =
-          find.byType(MyAfyaHubPrimaryButton);
+      final Finder saveAndContinueButton = find.byType(MyAfyaHubPrimaryButton);
 
       expect(confirmPinInputField, findsOneWidget);
 
@@ -76,7 +74,6 @@ void main() {
 
       final Store<AppState> customStore =
           Store<AppState>(initialState: AppState.initial());
-      customStore.dispatch(UpdateOnboardingStateAction(isResetPin: true));
       await buildTestWidget(
         tester: tester,
         store: customStore,
@@ -133,6 +130,5 @@ void main() {
       await tester.pump(const Duration(seconds: 2));
       expect(find.text(noInternetConnection), findsOneWidget);
     });
-
   });
 }

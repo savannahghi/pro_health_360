@@ -12,8 +12,6 @@ class ResetPINState with _$ResetPINState {
     String? phone,
     //If the user has set their PIN
     bool? isPINSet,
-    //If the user wants to reset their PIN
-    bool? isResetPin,
   }) = _ResetPINState;
 
   factory ResetPINState.fromJson(Map<String, dynamic> json) =>
@@ -22,6 +20,5 @@ class ResetPINState with _$ResetPINState {
   factory ResetPINState.initial() => ResetPINState(
         phone: UNKNOWN,
         isPINSet: false,
-        isResetPin: false,
       );
 }

@@ -13,7 +13,6 @@ import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -35,9 +34,7 @@ void main() {
         http.Response(
           json.encode(<String, dynamic>{
             'errors': <Object>[
-              <String, dynamic>{
-                'message': '4: error',
-              }
+              <String, dynamic>{'message': '4: error'}
             ]
           }),
           401,
@@ -59,13 +56,7 @@ void main() {
                       newPIN: '0000',
                     ),
                   );
-                  await store.dispatch(
-                    CreatePINAction(
-                      context: context,
-                      flag: createPinFlag,
-                      flavour: 'Test',
-                    ),
-                  );
+                  await store.dispatch(CreatePINAction(context: context));
                 } catch (e) {
                   err = e;
                 }
