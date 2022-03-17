@@ -19,10 +19,10 @@ import '../../../../../test_helpers.dart';
 
 void main() {
   group('ReSendOTPAction', () {
-    late Store<AppState> store;
+    late StoreTester<AppState> storeTester;
 
     setUp(() {
-      store = Store<AppState>(
+      storeTester = StoreTester<AppState>(
         initialState: AppState.initial()
             .copyWith
             .clientState!
@@ -41,7 +41,7 @@ void main() {
     testWidgets(
         'should fail to  resend an otp if the userID and phone number are '
         'UNKNOWN', (WidgetTester tester) async {
-      store = Store<AppState>(initialState: AppState.initial());
+      storeTester = StoreTester<AppState>(initialState: AppState.initial());
 
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -55,14 +55,14 @@ void main() {
 
       await buildTestWidget(
         tester: tester,
-        store: store,
+        store: storeTester.store,
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
             return MyAfyaHubPrimaryButton(
               buttonKey: const Key('resend_otp'),
               onPressed: () async {
-                await store.dispatch(
+                await storeTester.dispatch(
                   ResendOTPAction(
                     context: context,
                     afterCallback: () {},
@@ -79,7 +79,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        storeTester.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
         true,
       );
     });
@@ -87,7 +87,7 @@ void main() {
     testWidgets('should fail to resend an OTP if there is an API error',
         (WidgetTester tester) async {
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        storeTester.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
         false,
       );
 
@@ -101,22 +101,28 @@ void main() {
         ),
       );
 
+      late MyAfyaException err;
+
       await buildTestWidget(
         tester: tester,
-        store: store,
+        store: storeTester.store,
         client: mockShortSILGraphQlClient,
         widget: Builder(
           builder: (BuildContext context) {
             return MyAfyaHubPrimaryButton(
               buttonKey: const Key('resend_otp'),
               onPressed: () async {
-                await store.dispatch(
-                  ResendOTPAction(
-                    context: context,
-                    afterCallback: () {},
-                    phoneNumber: '+254712345678',
-                  ),
-                );
+                try {
+                  await storeTester.dispatch(
+                    ResendOTPAction(
+                      context: context,
+                      afterCallback: () {},
+                      phoneNumber: '+254712345678',
+                    ),
+                  );
+                } catch (e) {
+                  err = e as MyAfyaException;
+                }
               },
             );
           },
@@ -127,9 +133,11 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        storeTester.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
         true,
       );
+
+      expect(err.cause, 'resend_otp_error');
     });
   });
 }

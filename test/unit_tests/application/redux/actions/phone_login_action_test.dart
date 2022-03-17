@@ -9,10 +9,12 @@ import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -129,6 +131,12 @@ void main() {
     });
 
     test('navigates to next page successfully', () async {
+      storeTester.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.Signup,
+        ),
+      );
+
       storeTester.dispatch(
         PhoneLoginAction(
           httpClient: MockGraphQlClient(),

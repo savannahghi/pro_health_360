@@ -91,5 +91,6 @@ Future<void> advanceAndPump({
     client: client,
     navigatorObservers: navigatorObservers,
   );
+
   await tester.pumpAndSettle();
 }

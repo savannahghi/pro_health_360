@@ -4,17 +4,18 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
@@ -65,6 +66,11 @@ void main() {
       );
 
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.Signup,
+        ),
+      );
 
       await buildTestWidget(
         tester: tester,
@@ -75,7 +81,6 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(VerifyOtpWidget), findsOneWidget);
-      await tester.pumpAndSettle();
 
       await tester.showKeyboard(find.byType(PINInputField));
       await tester.enterText(find.byType(PINInputField), '123456');
@@ -260,6 +265,12 @@ void main() {
         ),
       );
 
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
+        ),
+      );
+
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -298,26 +309,31 @@ void main() {
         ),
       );
 
-      const Widget widget = VerifyPhonePage();
-
-      await advanceAndPump(
-        widget: widget,
-        tester: tester,
-        updateTime: (Duration duration) => now = now + duration.inMicroseconds,
-        duration: const Duration(seconds: 100),
-        client: mockShortSILGraphQlClient,
-        store: store,
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
+        ),
       );
 
-      expect(find.byKey(resendOtpButtonKey), findsOneWidget);
-      await tester.tap(find.byKey(resendOtpButtonKey));
+      now = now + const Duration(seconds: 100).inSeconds;
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: const VerifyPhonePage(),
+      );
+
       await tester.pumpAndSettle();
+      expect(find.byKey(resendOtpButtonKey), findsOneWidget);
+
+      await tester.tap(find.byKey(resendOtpButtonKey));
 
       await tester.showKeyboard(find.byType(PINInputField));
       await tester.enterText(find.byType(PINInputField), '123456');
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle(const Duration(seconds: 2));
 
-      expect(find.byType(CreateNewPINPage), findsWidgets);
+      expect(store.state.onboardingState!.isPhoneVerified, true);
     });
   });
 }

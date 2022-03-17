@@ -38,9 +38,7 @@ class CreateNewPINPage extends StatelessWidget {
 
             if (!hasConnection) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(noInternetConnection),
-                ),
+                const SnackBar(content: Text(noInternetConnection)),
               );
               return;
             }

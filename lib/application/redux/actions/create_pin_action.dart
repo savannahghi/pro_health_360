@@ -12,10 +12,13 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/nav_path_config.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
@@ -55,10 +58,26 @@ class CreatePINAction extends ReduxAction<AppState> {
     final String? confirmPIN =
         state.onboardingState!.createPINState!.confirmPIN;
 
+    final String? otp = state.onboardingState?.verifyPhoneState?.otp;
+    final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
+        CurrentOnboardingStage.PINExpired;
+
+    final String? phone = isResetPin
+        ? state.onboardingState?.phoneNumber
+        : state.onboardingState?.setPINState?.phone;
+
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {
+      // initializing of the reset_pin mutation
+      final Map<String, String?> _resetPinVariables = <String, String?>{
+        'phonenumber': phone,
+        'flavour': Flavour.consumer.name,
+        'pin': newPIN,
+        'otp': otp,
+      };
+
       // initializing of the updateUserPin mutation
-      final Map<String, String?> setUserPINVariables = <String, String?>{
+      final Map<String, String?> _updateUserPinVariables = <String, String?>{
         'userID': userID,
         'pin': newPIN,
         'confirmPIN': confirmPIN,
@@ -66,11 +85,19 @@ class CreatePINAction extends ReduxAction<AppState> {
       };
 
       final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+      final String resetPinEndpoint =
+          AppWrapperBase.of(context)!.customContext!.updateUserPinEndpoint;
 
-      final http.Response result = await _client.query(
-        setUserPINMutation,
-        setUserPINMutationVariables(setUserPINVariables),
-      );
+      final http.Response result = isResetPin
+          ? await _client.callRESTAPI(
+              endpoint: resetPinEndpoint,
+              method: httpPOST,
+              variables: _resetPinVariables,
+            )
+          : await _client.query(
+              setUserPINMutation,
+              setUserPINMutationVariables(_updateUserPinVariables),
+            );
 
       final Map<String, dynamic> body = _client.toMap(result);
 
@@ -106,6 +133,19 @@ class CreatePINAction extends ReduxAction<AppState> {
             'duration': twoYearText,
           },
         );
+      } else if (responseMap['data']['resetPIN'] == true) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(pinResetSuccessString),
+            duration: Duration(seconds: 2),
+          ),
+        );
+
+        dispatch(UpdateOnboardingStateAction(isPINChanged: true));
+
+        final AppNavConfig navConfig = navPathConfig(appState: state);
+
+        Navigator.pushReplacementNamed(context, navConfig.nextRoute);
       }
     } else {
       // scaffold that handles a mismatch in the just entered PINs by the user

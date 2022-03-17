@@ -16,6 +16,7 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
@@ -80,12 +81,18 @@ void main() {
     testWidgets('should navigate to terms page if login request is successful',
         (WidgetTester tester) async {
       mockLoginResponse.addAll(<String, dynamic>{'getCurrentTerms': termsMock});
+      mockLoginResponse.addAll(
+        <String, dynamic>{
+          'data': <String, dynamic>{'getCurrentTerms': termsMock}
+        },
+      );
+
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
         Response(
-          json.encode(<String, dynamic>{'data': mockLoginResponse}),
+          json.encode(mockLoginResponse),
           200,
         ),
       );
@@ -96,6 +103,7 @@ void main() {
           hasSetSecurityQuestions: true,
           hasSetPin: true,
           hasSetNickName: true,
+          currentOnboardingStage: CurrentOnboardingStage.Signup,
         ),
       );
 

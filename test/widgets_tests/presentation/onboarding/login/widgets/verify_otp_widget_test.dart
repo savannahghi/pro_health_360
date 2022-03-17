@@ -72,9 +72,7 @@ void main() {
         );
 
         store.dispatch(
-          UpdateOnboardingStateAction(
-            canResendOTP: true,
-          ),
+          UpdateOnboardingStateAction(canResendOTP: true),
         );
 
         await buildTestWidget(
@@ -138,7 +136,7 @@ void main() {
 
         expect(find.byKey(resendOtpButtonKey), findsOneWidget);
         await tester.tap(find.byKey(resendOtpButtonKey));
-        await tester.pumpAndSettle();
+        await tester.pump(const Duration(seconds: 60));
 
         // get the state
         final State<StatefulWidget> testState = tester.allStates.singleWhere(

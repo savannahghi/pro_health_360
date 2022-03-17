@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 class VerifyPhoneViewModel extends Vm {
   VerifyPhoneViewModel({
@@ -10,6 +11,7 @@ class VerifyPhoneViewModel extends Vm {
     required this.userID,
     required this.phoneNumber,
     required this.otp,
+    required this.currentOnboardingStage,
     this.failedToSendOTP,
     this.canResendOTP,
     this.invalidOTP,
@@ -24,6 +26,7 @@ class VerifyPhoneViewModel extends Vm {
             canResendOTP,
             invalidOTP,
             onboardingPhoneNumber,
+            currentOnboardingStage,
           ],
         );
 
@@ -35,6 +38,7 @@ class VerifyPhoneViewModel extends Vm {
   final bool? failedToSendOTP;
   final bool? canResendOTP;
   final String? onboardingPhoneNumber;
+  final CurrentOnboardingStage? currentOnboardingStage;
 
   static VerifyPhoneViewModel fromStore(Store<AppState> store) {
     final AppState state = store.state;
@@ -49,6 +53,7 @@ class VerifyPhoneViewModel extends Vm {
       canResendOTP:
           state.onboardingState?.verifyPhoneState?.canResendOTP ?? false,
       onboardingPhoneNumber: state.onboardingState?.phoneNumber ?? UNKNOWN,
+      currentOnboardingStage: state.onboardingState?.currentOnboardingStage,
     );
   }
 }

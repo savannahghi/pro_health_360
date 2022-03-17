@@ -17,9 +17,11 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:myafyahub/domain/core/entities/core/nav_path_config.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -35,9 +37,15 @@ class PhoneLoginAction extends ReduxAction<AppState> {
     this.errorCallback,
   });
 
+  final void Function(String reason)? errorCallback;
   final IGraphQlClient httpClient;
   final String loginEndpoint;
-  final void Function(String reason)? errorCallback;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(phoneLoginFlag));
+    super.after();
+  }
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   /// returns a bottom sheet that gives the user a friendly message and an option to create an account
@@ -45,12 +53,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   void before() {
     super.before();
     dispatch(WaitAction<AppState>.add(phoneLoginFlag));
-  }
-
-  @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(phoneLoginFlag));
-    super.after();
   }
 
   @override
@@ -85,21 +87,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        // Check whether exponential backoff has been triggered
-        if (parsed['code'] == 12) {
-          final double? retryTime = parsed['retryTime'] as double?;
-
-          dispatch(
-            NavigateAction<AppState>.pushNamedAndRemoveUntil(
-              AppRoutes.loginCounterPage,
-              (Route<dynamic> route) => false,
-              arguments: retryTime?.ceil(),
-            ),
-          );
-
-          return state;
-        }
-
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);
 
@@ -132,11 +119,37 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
+        // Check whether PIN change required is true
+        final bool pinChangeRequired =
+            loginResponse.userResponse!.clientState!.user!.pinChangeRequired ??
+                false;
+
+        if (pinChangeRequired) {
+          // Change the workflow to that of a new user
+          dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.Signup,
+            ),
+          );
+
+          // Navigate user to the correct route based on the state
+          final AppNavConfig navConfig = navPathConfig(appState: state);
+
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              navConfig.nextRoute,
+              (Route<dynamic> route) => false,
+            ),
+          );
+        }
+
+        // Update the user with the chatroom token
         User? user = loginResponse.userResponse?.clientState?.user?.copyWith(
           pinChangeRequired: false,
           chatRoomToken: loginResponse.userResponse?.streamToken,
         );
 
+        // Clean up the user's names
         final String fullName =
             loginResponse.userResponse?.clientState?.user?.name ?? UNKNOWN;
         if (fullName != UNKNOWN && fullName.isNotEmpty) {
@@ -172,32 +185,57 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final OnboardingPathConfig onboardingPathConfig =
-            onboardingPath(appState: state);
+        final AppNavConfig navConfig = navPathConfig(appState: state);
 
         dispatch(
           NavigateAction<AppState>.pushNamedAndRemoveUntil(
-            onboardingPathConfig.route,
+            navConfig.nextRoute,
             (Route<dynamic> route) => false,
-            arguments: onboardingPathConfig.arguments,
+            arguments: navConfig.arguments,
           ),
         );
 
         return state;
       } else {
-        if (processedResponse.message == wrongLoginCredentials) {
+        final Map<String, dynamic> parsed =
+            jsonDecode(httpResponse.body) as Map<String, dynamic>;
+
+        // TODO(abiud): replace the if elses with as switch case
+        if (processedResponse.code == 8) {
           dispatch(PhoneLoginStateAction(invalidCredentials: true));
-        }
-
-        final Map<String, dynamic> body =
-            json.decode(httpResponse.body) as Map<String, dynamic>;
-
-        if (body['code'] == 48 ||
-            (body['message']?.toString().contains('pin expired') ?? false)) {
+          // exception thrown if the backend could not match the provided
+          //credentials with those stored in the backend
+          errorCallback?.call(processedResponse.message ?? UNKNOWN);
+        } else if (processedResponse.code == 48) {
           dispatch(
             NavigateAction<AppState>.pushNamedAndRemoveUntil(
               AppRoutes.pinExpiredPage,
               (Route<dynamic> route) => false,
+            ),
+          );
+
+          return state;
+        }
+
+        // Check for an existing PIN reset request
+        else if (processedResponse.code == 72) {
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.pendingPINRequestPage,
+              (Route<dynamic> route) => false,
+            ),
+          );
+        }
+
+        // Check whether exponential backoff has been triggered
+        else if (processedResponse.code == 73) {
+          final double? retryTime = parsed['retryTime'] as double?;
+
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              AppRoutes.loginCounterPage,
+              (Route<dynamic> route) => false,
+              arguments: retryTime?.ceil(),
             ),
           );
 

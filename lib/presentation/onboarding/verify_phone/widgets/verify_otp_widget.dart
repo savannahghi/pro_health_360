@@ -99,7 +99,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
           maxLength: 6,
           controller: textEditingController,
           onDone: (String enteredCode) async {
-            widget.onDone(enteredCode);
+            widget.onDone.call(enteredCode);
             textEditingController.clear();
           },
         ),

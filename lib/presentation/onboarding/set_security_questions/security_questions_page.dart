@@ -35,9 +35,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
       (_) => StoreProvider.dispatch<AppState>(
         context,
         // retrieve the security questions
-        GetSecurityQuestionsAction(
-          context: context,
-        ),
+        GetSecurityQuestionsAction(context: context),
       ),
     );
   }

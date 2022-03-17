@@ -17,6 +17,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_questions_page.dart';
 
@@ -136,6 +137,7 @@ void main() {
             SecurityQuestionResponse.initial().copyWith(response: ''),
             SecurityQuestionResponse.initial(),
           ],
+          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
         ),
       );
 
@@ -169,7 +171,7 @@ void main() {
       });
     });
 
-    testWidgets('date picker textfield renders correctly',
+    testWidgets('date picker text field renders correctly',
         (WidgetTester tester) async {
       tester.binding.window.devicePixelRatioTestValue = 1.0;
       tester.binding.window.physicalSizeTestValue =
@@ -336,6 +338,7 @@ void main() {
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
           ],
+          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
         ),
       );
       await buildTestWidget(

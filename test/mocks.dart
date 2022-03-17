@@ -1196,13 +1196,14 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
         ],
         'lastName': 'Kalulu',
         'pinChangeRequired': false,
-        'termsAccepted': true,
+        'termsAccepted': false,
         'userID': 'some-user-id',
         'userName': 'Kowalski',
         'userType': 'CLIENT',
-        'dateOfBirth': '21 Nov 2002'
+        'dateOfBirth': '21 Nov 2002',
       },
-    }
+    },
+    'getStreamToken': 'some-test-token',
   }
 };
 

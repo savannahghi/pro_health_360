@@ -1,7 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/resend_otp_action.dart';
 import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
@@ -9,19 +8,13 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/actions/verify_otp_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
-import 'package:myafyahub/domain/core/entities/core/nav_path_config.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_widget.dart';
 
-class VerifyPhonePage extends StatefulWidget {
+class VerifyPhonePage extends StatelessWidget {
   const VerifyPhonePage();
 
-  @override
-  State<VerifyPhonePage> createState() => _VerifyPhonePageState();
-}
-
-class _VerifyPhonePageState extends State<VerifyPhonePage> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, VerifyPhoneViewModel>(
@@ -65,19 +58,12 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
             if (enteredCode == vm.otp) {
               StoreProvider.dispatch<AppState>(
                 context,
-                VerifyOTPAction(otp: enteredCode, context: context),
+                VerifyOTPAction(
+                  otp: enteredCode,
+                  context: context,
+                ),
               );
-
-              StoreProvider.dispatch<AppState>(
-                context,
-                UpdateOnboardingStateAction(isPhoneVerified: true),
-              );
-
-              final AppNavConfig navConfig = navPathConfig(
-                appState: StoreProvider.state<AppState>(context),
-              );
-
-              Navigator.of(context).pushNamed(navConfig.nextRoute);
+              return;
             } else {
               showFeedbackBottomSheet(
                 context: context,

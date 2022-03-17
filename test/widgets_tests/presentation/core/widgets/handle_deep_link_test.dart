@@ -34,10 +34,7 @@ void main() {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'getContent': <String, dynamic>{
-                'items': <dynamic>[
-                  mockContent,
-                  mockContent,
-                ]
+                'items': <dynamic>[mockContent, mockContent]
               }
             }
           }),
@@ -68,6 +65,8 @@ void main() {
           isSignedIn: true,
         ),
       );
+
+      store.dispatch(UpdateUserProfileAction(termsAccepted: true));
 
       store.dispatch(
         UpdateOnboardingStateAction(

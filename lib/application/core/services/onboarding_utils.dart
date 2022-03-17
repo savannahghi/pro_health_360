@@ -141,8 +141,8 @@ AppNavConfig navPathConfig({
       );
     }
 
-    // Reset the state and navigate to the home page
-    return AppNavConfig(nextRoute: AppRoutes.home, previousRoute: '');
+    // Reset the state and navigate to the login page
+    return AppNavConfig(nextRoute: AppRoutes.phoneLogin, previousRoute: '');
   } else if (currentOnboardingStage == CurrentOnboardingStage.ChangePIN) {
     // verify the phone
 

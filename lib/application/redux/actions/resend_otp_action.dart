@@ -48,9 +48,6 @@ class ResendOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String phoneNumber =
-        state.clientState!.user!.primaryContact!.value ?? UNKNOWN;
-
     if (phoneNumber != UNKNOWN) {
       final String sendOTPEndpoint =
           AppWrapperBase.of(context)!.customContext!.retryResendOtpEndpoint;
@@ -73,9 +70,11 @@ class ResendOTPAction extends ReduxAction<AppState> {
           processHttpResponse(httpResponse);
 
       if (processedResponse.ok == true) {
-        //Return OTP sent as string
-        final String parsed = jsonDecode(httpResponse.body) as String;
-        final String otp = parsed;
+        // Return OTP sent as string
+        final Map<String, dynamic> parsed =
+            jsonDecode(httpResponse.body) as Map<String, dynamic>;
+
+        final String otp = parsed['data']['sendRetryOTP'] as String;
 
         // save the OTP to state
         dispatch(UpdateOnboardingStateAction(otp: otp));
@@ -90,6 +89,7 @@ class ResendOTPAction extends ReduxAction<AppState> {
         );
 
         dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
+
         throw MyAfyaException(
           error: processedResponse.response,
           cause: 'resend_otp_error',
@@ -99,14 +99,5 @@ class ResendOTPAction extends ReduxAction<AppState> {
     } else {
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
     }
-  }
-
-  @override
-  Object wrapError(dynamic error) async {
-    if (error.runtimeType == MyAfyaException && error.error != null) {
-      reportErrorToSentry(context, error.error, hint: errorLoggingIn);
-    }
-
-    return error;
   }
 }
