@@ -853,3 +853,17 @@ void pinInputTimerStatus({required BuildContext context}) {
 }
 
 const int startTimer = 300;
+
+String? cccNumberValidator(dynamic val) {
+  final String value = val as String;
+  if (value.isEmpty) {
+    return 'Your CCC number is required';
+  }
+  if (!RegExp(r'^-?[0-9]+$').hasMatch(value)) {
+    return 'Only digits are allowed, 0-9';
+  }
+  if (value.length != 10) {
+    return 'Enter a ten digit CCC number';
+  }
+  return null;
+}

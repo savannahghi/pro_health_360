@@ -293,8 +293,8 @@ const Key abortConsentButtonKey = Key('abort_consent_button_key');
 //pin request
 const Key signInWithAnotherNumberButtonKey =
     Key('sign_in_with_another_number_button_key');
-
-const Key askForHelpButtonKey = Key('ask_for_help_button_key');
+const Key tryAgainButtonKey = Key('ask_for_help_button_key');
+const Key askForHelpButtonKey = Key('try_again_button_key');
 
 // opt out
 const Key optOutInfoItemKey = Key('opt_out_info_item_key');
@@ -302,3 +302,4 @@ const Key optOutInfoItemKey = Key('opt_out_info_item_key');
 // PIN expired keys
 const Key changeMyPinButtonKey = Key('change_my_pin');
 const Key resetPINButtonKey = Key('reset_pin_button_key');
+const Key cccInputKey = Key('ccc_input_key');

@@ -92,5 +92,10 @@ void main() {
       expect(getMoodColor('Other').color, AppColors.secondaryColor);
       expect(getMoodColor(null).color, AppColors.secondaryColor);
     });
+    test('cccNumberValidator( should return the various error messages', () {
+      expect(cccNumberValidator(''), 'Your CCC number is required');
+      expect(cccNumberValidator('qbc'), 'Only digits are allowed, 0-9');
+      expect(cccNumberValidator('1234'), 'Enter a ten digit CCC number');
+    });
   });
 }
