@@ -40,7 +40,7 @@ void main() {
     testWidgets('should fail to verify an OTP if there is an API error',
         (WidgetTester tester) async {
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        store.state.onboardingState!.failedToSendOTP,
         false,
       );
 

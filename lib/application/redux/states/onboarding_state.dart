@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/pin_expired_state.dart';
-import 'package:myafyahub/domain/core/entities/login/set_pin_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -20,7 +19,6 @@ class OnboardingState with _$OnboardingState {
     List<SecurityQuestion>? securityQuestions,
     List<SecurityQuestionResponse>? securityQuestionResponses,
     VerifySecurityQuestionsState? verifySecurityQuestionsState,
-    SetPINState? setPINState,
 
     // The PIN expired state state
     PINExpiredState? pinExpiredState,
@@ -88,7 +86,6 @@ class OnboardingState with _$OnboardingState {
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
         verifySecurityQuestionsState: VerifySecurityQuestionsState.initial(),
-        setPINState: SetPINState.initial(),
         isPhoneVerified: false,
         hasSetSecurityQuestions: false,
         hasSetNickName: false,
@@ -104,5 +101,6 @@ class OnboardingState with _$OnboardingState {
         pin: UNKNOWN,
         confirmPIN: UNKNOWN,
         invalidCredentials: false,
+        hasSetPin: false,
       );
 }

@@ -78,7 +78,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        storeTester.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        storeTester.state.onboardingState!.failedToSendOTP,
         true,
       );
     });
@@ -86,7 +86,7 @@ void main() {
     testWidgets('should fail to resend an OTP if there is an API error',
         (WidgetTester tester) async {
       expect(
-        storeTester.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        storeTester.state.onboardingState!.failedToSendOTP,
         false,
       );
 
@@ -132,7 +132,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        storeTester.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        storeTester.state.onboardingState!.failedToSendOTP,
         true,
       );
 

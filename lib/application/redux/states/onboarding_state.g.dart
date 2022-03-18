@@ -28,9 +28,6 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
           ? null
           : VerifySecurityQuestionsState.fromJson(
               json['verifySecurityQuestionsState'] as Map<String, dynamic>),
-      setPINState: json['setPINState'] == null
-          ? null
-          : SetPINState.fromJson(json['setPINState'] as Map<String, dynamic>),
       pinExpiredState: json['pinExpiredState'] == null
           ? null
           : PINExpiredState.fromJson(
@@ -61,7 +58,6 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'securityQuestions': instance.securityQuestions,
       'securityQuestionResponses': instance.securityQuestionResponses,
       'verifySecurityQuestionsState': instance.verifySecurityQuestionsState,
-      'setPINState': instance.setPINState,
       'pinExpiredState': instance.pinExpiredState,
       'currentOnboardingStage':
           _$CurrentOnboardingStageEnumMap[instance.currentOnboardingStage],

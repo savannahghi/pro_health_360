@@ -62,9 +62,7 @@ class CreatePINAction extends ReduxAction<AppState> {
     final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
         CurrentOnboardingStage.PINExpired;
 
-    final String? phone = isResetPin
-        ? state.onboardingState?.phoneNumber
-        : state.onboardingState?.setPINState?.phone;
+    final String? phone = state.onboardingState?.phoneNumber;
 
     // check if the new PIN matches the confirmed PIN entered by the user
     if (newPIN == confirmPIN) {

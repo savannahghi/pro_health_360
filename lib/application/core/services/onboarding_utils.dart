@@ -65,8 +65,7 @@ AppNavConfig navPathConfig({required AppState? appState}) {
   final bool hasSetSecurityQuestions =
       appState.onboardingState?.hasSetSecurityQuestions ?? false;
   final bool hasSetNickName = appState.onboardingState?.hasSetNickName ?? false;
-  final bool isPINSet =
-      appState.onboardingState?.setPINState?.isPINSet ?? false;
+  final bool isPINSet = appState.onboardingState?.hasSetPin ?? false;
 
   /// The sign in onboarding state
   if (currentOnboardingStage == CurrentOnboardingStage.Login) {

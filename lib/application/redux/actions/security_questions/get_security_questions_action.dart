@@ -48,7 +48,7 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
         CurrentOnboardingStage.PINExpired;
 
     final String? otp = state.onboardingState?.otp;
-    final String? phone = state.onboardingState?.setPINState?.phone;
+    final String? phone = state.onboardingState?.phoneNumber;
 
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
     final String getRecordedSecurityQuestions = AppWrapperBase.of(context)!

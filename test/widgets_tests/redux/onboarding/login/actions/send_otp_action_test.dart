@@ -75,7 +75,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        store.state.onboardingState?.failedToSendOTP,
         true,
       );
     });
@@ -83,7 +83,7 @@ void main() {
     testWidgets('should fail to send an OTP if there is an API error',
         (WidgetTester tester) async {
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        store.state.onboardingState?.failedToSendOTP,
         false,
       );
 
@@ -119,7 +119,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        store.state.onboardingState?.failedToSendOTP,
         true,
       );
     });
@@ -127,7 +127,7 @@ void main() {
     testWidgets('should display bottom modal sheet if there is a backend error',
         (WidgetTester tester) async {
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        store.state.onboardingState?.failedToSendOTP,
         false,
       );
 
@@ -163,7 +163,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState!.verifyPhoneState!.failedToSendOTP,
+        store.state.onboardingState?.failedToSendOTP,
         true,
       );
     });
