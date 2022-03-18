@@ -7,7 +7,7 @@ class AppStateViewModel extends Vm {
   AppStateViewModel({
     required this.appState,
     required this.wait,
-  }) : super(equals: <Object?>[appState]);
+  }) : super(equals: <Object?>[appState, wait]);
 
   final AppState appState;
   final Wait? wait;

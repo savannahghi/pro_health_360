@@ -206,7 +206,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             // exception thrown if the backend could not match the provided
             //credentials with those stored in the backend
             errorCallback?.call(processedResponse.message ?? UNKNOWN);
-            break;
+            return state;
           case 48:
             dispatch(
               NavigateAction<AppState>.pushNamedAndRemoveUntil(
@@ -214,8 +214,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
                 (Route<dynamic> route) => false,
               ),
             );
-
-            break;
+            return state;
           case 72:
             dispatch(
               NavigateAction<AppState>.pushNamedAndRemoveUntil(

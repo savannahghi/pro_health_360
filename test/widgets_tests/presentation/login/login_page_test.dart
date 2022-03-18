@@ -17,6 +17,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
 import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
@@ -256,23 +257,19 @@ void main() {
         ),
       );
 
-      expect(
-        store.state.onboardingState?.invalidCredentials,
-        false,
-      );
-
       await buildTestWidget(
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
         widget: const MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoute,
-          home: Scaffold(
-            body: LoginPage(),
-          ),
+          home: Scaffold(body: LoginPage()),
         ),
       );
-      await tester.pump();
+
+      // Should be false when we load up the page
+      expect(store.state.onboardingState?.invalidCredentials, false);
+      expect(find.byType(PhoneLoginErrorWidget), findsNothing);
 
       final Finder phoneInputField = find.byKey(textFormFieldKey);
       final Finder pinInputField = find.byKey(pinInputKey);
@@ -280,42 +277,41 @@ void main() {
 
       await tester.showKeyboard(phoneInputField);
       await tester.enterText(phoneInputField, '723456789');
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       await tester.showKeyboard(pinInputField);
       await tester.enterText(pinInputField, '1234');
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       await tester.ensureVisible(continueButton);
       await tester.tap(continueButton);
       await tester.pumpAndSettle();
 
-      expect(
-        store.state.onboardingState?.invalidCredentials,
-        true,
-      );
+      // Should be true after incorrect login credentials are supplied
+      expect(store.state.onboardingState?.invalidCredentials, true);
       expect(find.byType(LoginErrorWidget), findsOneWidget);
 
       await tester.showKeyboard(pinInputField);
       await tester.enterText(pinInputField, '1');
       await tester.pumpAndSettle();
 
-      expect(
-        store.state.onboardingState?.invalidCredentials,
-        false,
-      );
+      // should be false when any input is changed in the page
+      expect(store.state.onboardingState?.invalidCredentials, false);
+      expect(find.byType(PhoneLoginErrorWidget), findsNothing);
 
       store.dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
-      await tester.pump();
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(PhoneLoginErrorWidget), findsOneWidget);
 
       await tester.showKeyboard(phoneInputField);
       await tester.enterText(phoneInputField, '7');
       await tester.pumpAndSettle();
 
-      expect(
-        store.state.onboardingState?.invalidCredentials,
-        false,
-      );
+      // final sanity check
+      expect(store.state.onboardingState?.invalidCredentials, false);
+      expect(find.byType(PhoneLoginErrorWidget), findsNothing);
     });
 
     testWidgets(

@@ -46,7 +46,10 @@ class _LoginPageState extends State<LoginPage> {
   void didChangeDependencies() {
     if (phoneNumber == null) {
       /// reset login state upon entering this page
-      StoreProvider.dispatch(context, UpdateOnboardingStateAction());
+      StoreProvider.dispatch(
+        context,
+        UpdateOnboardingStateAction(invalidCredentials: false),
+      );
     }
     super.didChangeDependencies();
   }
@@ -153,7 +156,9 @@ class _LoginPageState extends State<LoginPage> {
                                         invalidCredentials) {
                                       StoreProvider.dispatch(
                                         context,
-                                        UpdateOnboardingStateAction(),
+                                        UpdateOnboardingStateAction(
+                                          invalidCredentials: false,
+                                        ),
                                       );
                                     }
 
@@ -194,7 +199,9 @@ class _LoginPageState extends State<LoginPage> {
                                         invalidCredentials) {
                                       StoreProvider.dispatch(
                                         context,
-                                        UpdateOnboardingStateAction(),
+                                        UpdateOnboardingStateAction(
+                                          invalidCredentials: false,
+                                        ),
                                       );
                                     }
 

@@ -323,6 +323,7 @@ void main() {
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.PINExpired,
               isPhoneVerified: true,
+              hasSetPin: true,
             ),
           );
 
