@@ -68,7 +68,7 @@ void main() {
       store.dispatch(UpdateCredentialsAction(isSignedIn: true));
       store.dispatch(
         UpdateOnboardingStateAction(
-          currentOnboardingStage: CurrentOnboardingStage.Signup,
+          currentOnboardingStage: CurrentOnboardingStage.Login,
         ),
       );
 

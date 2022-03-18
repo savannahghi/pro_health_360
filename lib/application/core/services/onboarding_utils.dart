@@ -54,10 +54,7 @@ Future<void> setUserPIN({
 }
 
 // NavigationPathConfig
-AppNavConfig navPathConfig({
-  required AppState? appState,
-  bool calledOnResume = false,
-}) {
+AppNavConfig navPathConfig({required AppState? appState}) {
   /// Check whether the current onboarding stage
   final CurrentOnboardingStage? currentOnboardingStage =
       appState!.onboardingState!.currentOnboardingStage;
@@ -77,17 +74,9 @@ AppNavConfig navPathConfig({
 
     if (!isSignedIn) {
       return AppNavConfig(previousRoute: '', nextRoute: AppRoutes.phoneLogin);
-    } else if (calledOnResume) {
-      return AppNavConfig(
-        nextRoute: AppRoutes.resumeWithPin,
-        previousRoute: AppRoutes.phoneLogin,
-      );
     }
 
-    return AppNavConfig(nextRoute: AppRoutes.home, previousRoute: '');
-
     /// The sign up onboarding state
-  } else if (currentOnboardingStage == CurrentOnboardingStage.Signup) {
     if (!isPhoneVerified) {
       return AppNavConfig(
         previousRoute: AppRoutes.phoneLogin,

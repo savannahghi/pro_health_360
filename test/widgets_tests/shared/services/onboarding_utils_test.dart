@@ -64,7 +64,7 @@ void main() {
             UpdateOnboardingStateAction(
               isPhoneVerified: true,
               hasSetSecurityQuestions: false,
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              currentOnboardingStage: CurrentOnboardingStage.Login,
             ),
           );
 
@@ -106,7 +106,7 @@ void main() {
             UpdateOnboardingStateAction(
               isPhoneVerified: true,
               hasSetSecurityQuestions: false,
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              currentOnboardingStage: CurrentOnboardingStage.Login,
             ),
           );
 
@@ -149,7 +149,7 @@ void main() {
               isPhoneVerified: true,
               hasSetSecurityQuestions: true,
               hasSetPin: false,
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              currentOnboardingStage: CurrentOnboardingStage.Login,
             ),
           );
 
@@ -192,7 +192,7 @@ void main() {
               isPhoneVerified: true,
               hasSetSecurityQuestions: true,
               hasSetPin: true,
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              currentOnboardingStage: CurrentOnboardingStage.Login,
             ),
           );
 
@@ -231,7 +231,7 @@ void main() {
 
           store.dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              currentOnboardingStage: CurrentOnboardingStage.Login,
             ),
           );
 
@@ -285,7 +285,7 @@ void main() {
 
           store.dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              currentOnboardingStage: CurrentOnboardingStage.Login,
               isPhoneVerified: true,
               hasSetSecurityQuestions: true,
               isPINChanged: true,
@@ -314,49 +314,7 @@ void main() {
           await tester.tap(find.byType(MyAfyaHubPrimaryButton));
           await tester.pumpAndSettle();
 
-          expect(path, AppRoutes.home);
-        });
-
-        testWidgets('should navigate to resume with PIN page when app resumes',
-            (WidgetTester tester) async {
-          store.dispatch(UpdateCredentialsAction(isSignedIn: true));
-          store.dispatch(
-            UpdateUserProfileAction(
-              pinChangeRequired: true,
-              isPhoneVerified: false,
-            ),
-          );
-
-          store.dispatch(
-            UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.Login,
-            ),
-          );
-
-          String path = '';
-
-          await buildTestWidget(
-            tester: tester,
-            store: store,
-            client: mockGraphQlClient,
-            widget: Builder(
-              builder: (BuildContext context) {
-                return MyAfyaHubPrimaryButton(
-                  onPressed: () {
-                    path = navPathConfig(
-                      appState: store.state,
-                      calledOnResume: true,
-                    ).nextRoute;
-                  },
-                );
-              },
-            ),
-          );
-
-          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-          await tester.pumpAndSettle();
-
-          expect(path, AppRoutes.resumeWithPin);
+          expect(path, AppRoutes.phoneLogin);
         });
 
         testWidgets(

@@ -275,7 +275,7 @@ void main() {
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
           ],
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+          currentOnboardingStage: CurrentOnboardingStage.Login,
         ),
       );
       await buildTestWidget(

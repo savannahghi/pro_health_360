@@ -91,6 +91,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             PhoneLoginResponse.fromJson(parsed);
 
         final DateTime now = DateTime.now();
+        
         AuthCredentials? authCredentials =
             loginResponse.userResponse?.credentials?.copyWith(
           signedInTime: now.toIso8601String(),
@@ -128,7 +129,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           // Change the workflow to that of a new user
           dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              currentOnboardingStage: CurrentOnboardingStage.Login,
             ),
           );
 
@@ -200,50 +201,46 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        // TODO(abiud): replace the if elses with as switch case
-        if (processedResponse.code == 8) {
-          dispatch(PhoneLoginStateAction(invalidCredentials: true));
-          // exception thrown if the backend could not match the provided
-          //credentials with those stored in the backend
-          errorCallback?.call(processedResponse.message ?? UNKNOWN);
-        } else if (processedResponse.code == 48) {
-          dispatch(
-            NavigateAction<AppState>.pushNamedAndRemoveUntil(
-              AppRoutes.pinExpiredPage,
-              (Route<dynamic> route) => false,
-            ),
-          );
+        switch (processedResponse.code) {
+          case 8:
+            dispatch(PhoneLoginStateAction(invalidCredentials: true));
+            // exception thrown if the backend could not match the provided
+            //credentials with those stored in the backend
+            errorCallback?.call(processedResponse.message ?? UNKNOWN);
+            break;
+          case 48:
+            dispatch(
+              NavigateAction<AppState>.pushNamedAndRemoveUntil(
+                AppRoutes.pinExpiredPage,
+                (Route<dynamic> route) => false,
+              ),
+            );
 
-          return state;
-        }
+            break;
+          case 72:
+            dispatch(
+              NavigateAction<AppState>.pushNamedAndRemoveUntil(
+                AppRoutes.pendingPINRequestPage,
+                (Route<dynamic> route) => false,
+              ),
+            );
+            return state;
+          case 73:
+            final double? retryTime = parsed['retryTime'] as double?;
 
-        // Check for an existing PIN reset request
-        else if (processedResponse.code == 72) {
-          dispatch(
-            NavigateAction<AppState>.pushNamedAndRemoveUntil(
-              AppRoutes.pendingPINRequestPage,
-              (Route<dynamic> route) => false,
-            ),
-          );
-        }
+            dispatch(
+              NavigateAction<AppState>.pushNamedAndRemoveUntil(
+                AppRoutes.loginCounterPage,
+                (Route<dynamic> route) => false,
+                arguments: retryTime?.ceil(),
+              ),
+            );
 
-        // Check whether exponential backoff has been triggered
-        else if (processedResponse.code == 73) {
-          final double? retryTime = parsed['retryTime'] as double?;
-
-          dispatch(
-            NavigateAction<AppState>.pushNamedAndRemoveUntil(
-              AppRoutes.loginCounterPage,
-              (Route<dynamic> route) => false,
-              arguments: retryTime?.ceil(),
-            ),
-          );
-
-          return state;
-        } else {
-          // exception thrown if the backend could not match the provided
-          //credentials with those stored in the backend
-          errorCallback?.call(processedResponse.message ?? UNKNOWN);
+            return state;
+          default:
+            // exception thrown if the backend could not match the provided
+            //credentials with those stored in the backend
+            errorCallback?.call(processedResponse.message ?? UNKNOWN);
         }
       }
     } else {

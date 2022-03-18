@@ -233,7 +233,7 @@ void main() {
     test('navigates to next page successfully', () async {
       storeTester.dispatch(
         UpdateOnboardingStateAction(
-          currentOnboardingStage: CurrentOnboardingStage.Signup,
+          currentOnboardingStage: CurrentOnboardingStage.Login,
         ),
       );
 

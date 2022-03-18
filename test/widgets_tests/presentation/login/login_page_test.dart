@@ -103,7 +103,7 @@ void main() {
           hasSetSecurityQuestions: true,
           hasSetPin: true,
           hasSetNickName: true,
-          currentOnboardingStage: CurrentOnboardingStage.Signup,
+          currentOnboardingStage: CurrentOnboardingStage.Login,
         ),
       );
 
