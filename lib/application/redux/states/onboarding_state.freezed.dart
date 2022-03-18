@@ -27,33 +27,49 @@ class _$OnboardingStateTearOff {
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
       SetPINState? setPINState,
+      PINExpiredState? pinExpiredState,
+      CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
-      bool? hasSetNickName,
       bool? hasVerifiedSecurityQuestions,
-      CurrentOnboardingStage? currentOnboardingStage,
-      PINExpiredState? pinExpiredState,
-      String? phoneNumber}) {
+      bool? hasSetNickName,
+      bool? hasSetPin,
+      String? phoneNumber,
+      String? pin,
+      String? confirmPIN,
+      String? otp,
+      int? failedLoginCount,
+      bool? invalidCredentials,
+      bool? invalidOTP,
+      bool? failedToSendOTP,
+      bool? canResendOTP}) {
     return _OnboardingState(
       createPINState: createPINState,
       termsAndConditions: termsAndConditions,
       securityQuestions: securityQuestions,
       securityQuestionResponses: securityQuestionResponses,
-      phoneLogin: phoneLogin,
       verifyPhoneState: verifyPhoneState,
       verifySecurityQuestionsState: verifySecurityQuestionsState,
       setPINState: setPINState,
+      pinExpiredState: pinExpiredState,
+      currentOnboardingStage: currentOnboardingStage,
       isPhoneVerified: isPhoneVerified,
       hasSetSecurityQuestions: hasSetSecurityQuestions,
-      hasSetNickName: hasSetNickName,
       hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions,
-      currentOnboardingStage: currentOnboardingStage,
-      pinExpiredState: pinExpiredState,
+      hasSetNickName: hasSetNickName,
+      hasSetPin: hasSetPin,
       phoneNumber: phoneNumber,
+      pin: pin,
+      confirmPIN: confirmPIN,
+      otp: otp,
+      failedLoginCount: failedLoginCount,
+      invalidCredentials: invalidCredentials,
+      invalidOTP: invalidOTP,
+      failedToSendOTP: failedToSendOTP,
+      canResendOTP: canResendOTP,
     );
   }
 
@@ -74,26 +90,50 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   List<SecurityQuestionResponse>? get securityQuestionResponses =>
       throw _privateConstructorUsedError;
-  PhoneLoginState? get phoneLogin => throw _privateConstructorUsedError;
   VerifyPhoneState? get verifyPhoneState => throw _privateConstructorUsedError;
   VerifySecurityQuestionsState? get verifySecurityQuestionsState =>
       throw _privateConstructorUsedError;
   SetPINState? get setPINState =>
+      throw _privateConstructorUsedError; // The PIN expired state state
+  PINExpiredState? get pinExpiredState => throw _privateConstructorUsedError;
+
+  ///------------WORKFLOW RELATED BOOLEANS------------
+  /// Have standardized shared values that will be used across all states
+  /// regardless of the workflow
+// The current stage of onboarding that the user is in
+  CurrentOnboardingStage? get currentOnboardingStage =>
       throw _privateConstructorUsedError; // If the user has verified their phone number
   bool? get isPhoneVerified =>
       throw _privateConstructorUsedError; // If the user has set their security questions
   bool? get hasSetSecurityQuestions =>
-      throw _privateConstructorUsedError; // If the user has set their nickname
-  bool? get hasSetNickName =>
       throw _privateConstructorUsedError; // If the user has successfully verified their security questions if pin is expired
   bool? get hasVerifiedSecurityQuestions =>
-      throw _privateConstructorUsedError; // The current stage of onboarding that the user is in
-  CurrentOnboardingStage? get currentOnboardingStage =>
-      throw _privateConstructorUsedError; // The PIN expired state state
-  PINExpiredState? get pinExpiredState => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // If the user has set their nickname
+  bool? get hasSetNickName =>
+      throw _privateConstructorUsedError; // Whether the user's PIN has been set
+  bool? get hasSetPin => throw _privateConstructorUsedError;
 
-  /// Shared values that will be used across all states
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  ///------------WORKFLOW RELATED VALUES------------
+// The currently active user's phone number
+  String? get phoneNumber => throw _privateConstructorUsedError; // The PIN
+  String? get pin => throw _privateConstructorUsedError; // The confirm PIN
+  String? get confirmPIN =>
+      throw _privateConstructorUsedError; // The OTP used when confirming the phone number
+  String? get otp => throw _privateConstructorUsedError;
+
+  ///------------LOGIN RELATED VALUES------------
+// The number of failed login attempts that this user has
+  int? get failedLoginCount =>
+      throw _privateConstructorUsedError; // Whether the credentials this user entered are invalid
+  bool? get invalidCredentials => throw _privateConstructorUsedError;
+
+  ///------------VERIFY PHONE RELATED VALUES------------
+// If the OTP entered is invalid
+  bool? get invalidOTP =>
+      throw _privateConstructorUsedError; // Whether there was a failure while sending an OTP
+  bool? get failedToSendOTP =>
+      throw _privateConstructorUsedError; //  Whether the user is allowed to resend their PIN
+  bool? get canResendOTP => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -111,21 +151,28 @@ abstract class $OnboardingStateCopyWith<$Res> {
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
       SetPINState? setPINState,
+      PINExpiredState? pinExpiredState,
+      CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
-      bool? hasSetNickName,
       bool? hasVerifiedSecurityQuestions,
-      CurrentOnboardingStage? currentOnboardingStage,
-      PINExpiredState? pinExpiredState,
-      String? phoneNumber});
+      bool? hasSetNickName,
+      bool? hasSetPin,
+      String? phoneNumber,
+      String? pin,
+      String? confirmPIN,
+      String? otp,
+      int? failedLoginCount,
+      bool? invalidCredentials,
+      bool? invalidOTP,
+      bool? failedToSendOTP,
+      bool? canResendOTP});
 
   $CreatePINStateCopyWith<$Res>? get createPINState;
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
-  $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
   $VerifyPhoneStateCopyWith<$Res>? get verifyPhoneState;
   $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
   $SetPINStateCopyWith<$Res>? get setPINState;
@@ -147,17 +194,25 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? termsAndConditions = freezed,
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
-    Object? phoneLogin = freezed,
     Object? verifyPhoneState = freezed,
     Object? verifySecurityQuestionsState = freezed,
     Object? setPINState = freezed,
+    Object? pinExpiredState = freezed,
+    Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
-    Object? hasSetNickName = freezed,
     Object? hasVerifiedSecurityQuestions = freezed,
-    Object? currentOnboardingStage = freezed,
-    Object? pinExpiredState = freezed,
+    Object? hasSetNickName = freezed,
+    Object? hasSetPin = freezed,
     Object? phoneNumber = freezed,
+    Object? pin = freezed,
+    Object? confirmPIN = freezed,
+    Object? otp = freezed,
+    Object? failedLoginCount = freezed,
+    Object? invalidCredentials = freezed,
+    Object? invalidOTP = freezed,
+    Object? failedToSendOTP = freezed,
+    Object? canResendOTP = freezed,
   }) {
     return _then(_value.copyWith(
       createPINState: createPINState == freezed
@@ -176,10 +231,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.securityQuestionResponses
           : securityQuestionResponses // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestionResponse>?,
-      phoneLogin: phoneLogin == freezed
-          ? _value.phoneLogin
-          : phoneLogin // ignore: cast_nullable_to_non_nullable
-              as PhoneLoginState?,
       verifyPhoneState: verifyPhoneState == freezed
           ? _value.verifyPhoneState
           : verifyPhoneState // ignore: cast_nullable_to_non_nullable
@@ -192,6 +243,14 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.setPINState
           : setPINState // ignore: cast_nullable_to_non_nullable
               as SetPINState?,
+      pinExpiredState: pinExpiredState == freezed
+          ? _value.pinExpiredState
+          : pinExpiredState // ignore: cast_nullable_to_non_nullable
+              as PINExpiredState?,
+      currentOnboardingStage: currentOnboardingStage == freezed
+          ? _value.currentOnboardingStage
+          : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
+              as CurrentOnboardingStage?,
       isPhoneVerified: isPhoneVerified == freezed
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
@@ -200,26 +259,54 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.hasSetSecurityQuestions
           : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetNickName: hasSetNickName == freezed
-          ? _value.hasSetNickName
-          : hasSetNickName // ignore: cast_nullable_to_non_nullable
-              as bool?,
       hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      currentOnboardingStage: currentOnboardingStage == freezed
-          ? _value.currentOnboardingStage
-          : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
-              as CurrentOnboardingStage?,
-      pinExpiredState: pinExpiredState == freezed
-          ? _value.pinExpiredState
-          : pinExpiredState // ignore: cast_nullable_to_non_nullable
-              as PINExpiredState?,
+      hasSetNickName: hasSetNickName == freezed
+          ? _value.hasSetNickName
+          : hasSetNickName // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasSetPin: hasSetPin == freezed
+          ? _value.hasSetPin
+          : hasSetPin // ignore: cast_nullable_to_non_nullable
+              as bool?,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      pin: pin == freezed
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      confirmPIN: confirmPIN == freezed
+          ? _value.confirmPIN
+          : confirmPIN // ignore: cast_nullable_to_non_nullable
+              as String?,
+      otp: otp == freezed
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      failedLoginCount: failedLoginCount == freezed
+          ? _value.failedLoginCount
+          : failedLoginCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invalidCredentials: invalidCredentials == freezed
+          ? _value.invalidCredentials
+          : invalidCredentials // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      invalidOTP: invalidOTP == freezed
+          ? _value.invalidOTP
+          : invalidOTP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      failedToSendOTP: failedToSendOTP == freezed
+          ? _value.failedToSendOTP
+          : failedToSendOTP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canResendOTP: canResendOTP == freezed
+          ? _value.canResendOTP
+          : canResendOTP // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -243,17 +330,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
     return $TermsAndConditionsCopyWith<$Res>(_value.termsAndConditions!,
         (value) {
       return _then(_value.copyWith(termsAndConditions: value));
-    });
-  }
-
-  @override
-  $PhoneLoginStateCopyWith<$Res>? get phoneLogin {
-    if (_value.phoneLogin == null) {
-      return null;
-    }
-
-    return $PhoneLoginStateCopyWith<$Res>(_value.phoneLogin!, (value) {
-      return _then(_value.copyWith(phoneLogin: value));
     });
   }
 
@@ -316,24 +392,30 @@ abstract class _$OnboardingStateCopyWith<$Res>
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
       SetPINState? setPINState,
+      PINExpiredState? pinExpiredState,
+      CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
-      bool? hasSetNickName,
       bool? hasVerifiedSecurityQuestions,
-      CurrentOnboardingStage? currentOnboardingStage,
-      PINExpiredState? pinExpiredState,
-      String? phoneNumber});
+      bool? hasSetNickName,
+      bool? hasSetPin,
+      String? phoneNumber,
+      String? pin,
+      String? confirmPIN,
+      String? otp,
+      int? failedLoginCount,
+      bool? invalidCredentials,
+      bool? invalidOTP,
+      bool? failedToSendOTP,
+      bool? canResendOTP});
 
   @override
   $CreatePINStateCopyWith<$Res>? get createPINState;
   @override
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
-  @override
-  $PhoneLoginStateCopyWith<$Res>? get phoneLogin;
   @override
   $VerifyPhoneStateCopyWith<$Res>? get verifyPhoneState;
   @override
@@ -361,17 +443,25 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? termsAndConditions = freezed,
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
-    Object? phoneLogin = freezed,
     Object? verifyPhoneState = freezed,
     Object? verifySecurityQuestionsState = freezed,
     Object? setPINState = freezed,
+    Object? pinExpiredState = freezed,
+    Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
-    Object? hasSetNickName = freezed,
     Object? hasVerifiedSecurityQuestions = freezed,
-    Object? currentOnboardingStage = freezed,
-    Object? pinExpiredState = freezed,
+    Object? hasSetNickName = freezed,
+    Object? hasSetPin = freezed,
     Object? phoneNumber = freezed,
+    Object? pin = freezed,
+    Object? confirmPIN = freezed,
+    Object? otp = freezed,
+    Object? failedLoginCount = freezed,
+    Object? invalidCredentials = freezed,
+    Object? invalidOTP = freezed,
+    Object? failedToSendOTP = freezed,
+    Object? canResendOTP = freezed,
   }) {
     return _then(_OnboardingState(
       createPINState: createPINState == freezed
@@ -390,10 +480,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.securityQuestionResponses
           : securityQuestionResponses // ignore: cast_nullable_to_non_nullable
               as List<SecurityQuestionResponse>?,
-      phoneLogin: phoneLogin == freezed
-          ? _value.phoneLogin
-          : phoneLogin // ignore: cast_nullable_to_non_nullable
-              as PhoneLoginState?,
       verifyPhoneState: verifyPhoneState == freezed
           ? _value.verifyPhoneState
           : verifyPhoneState // ignore: cast_nullable_to_non_nullable
@@ -406,6 +492,14 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.setPINState
           : setPINState // ignore: cast_nullable_to_non_nullable
               as SetPINState?,
+      pinExpiredState: pinExpiredState == freezed
+          ? _value.pinExpiredState
+          : pinExpiredState // ignore: cast_nullable_to_non_nullable
+              as PINExpiredState?,
+      currentOnboardingStage: currentOnboardingStage == freezed
+          ? _value.currentOnboardingStage
+          : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
+              as CurrentOnboardingStage?,
       isPhoneVerified: isPhoneVerified == freezed
           ? _value.isPhoneVerified
           : isPhoneVerified // ignore: cast_nullable_to_non_nullable
@@ -414,26 +508,54 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.hasSetSecurityQuestions
           : hasSetSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      hasSetNickName: hasSetNickName == freezed
-          ? _value.hasSetNickName
-          : hasSetNickName // ignore: cast_nullable_to_non_nullable
-              as bool?,
       hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      currentOnboardingStage: currentOnboardingStage == freezed
-          ? _value.currentOnboardingStage
-          : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
-              as CurrentOnboardingStage?,
-      pinExpiredState: pinExpiredState == freezed
-          ? _value.pinExpiredState
-          : pinExpiredState // ignore: cast_nullable_to_non_nullable
-              as PINExpiredState?,
+      hasSetNickName: hasSetNickName == freezed
+          ? _value.hasSetNickName
+          : hasSetNickName // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasSetPin: hasSetPin == freezed
+          ? _value.hasSetPin
+          : hasSetPin // ignore: cast_nullable_to_non_nullable
+              as bool?,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      pin: pin == freezed
+          ? _value.pin
+          : pin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      confirmPIN: confirmPIN == freezed
+          ? _value.confirmPIN
+          : confirmPIN // ignore: cast_nullable_to_non_nullable
+              as String?,
+      otp: otp == freezed
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      failedLoginCount: failedLoginCount == freezed
+          ? _value.failedLoginCount
+          : failedLoginCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invalidCredentials: invalidCredentials == freezed
+          ? _value.invalidCredentials
+          : invalidCredentials // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      invalidOTP: invalidOTP == freezed
+          ? _value.invalidOTP
+          : invalidOTP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      failedToSendOTP: failedToSendOTP == freezed
+          ? _value.failedToSendOTP
+          : failedToSendOTP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canResendOTP: canResendOTP == freezed
+          ? _value.canResendOTP
+          : canResendOTP // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -446,17 +568,25 @@ class _$_OnboardingState implements _OnboardingState {
       this.termsAndConditions,
       this.securityQuestions,
       this.securityQuestionResponses,
-      this.phoneLogin,
       this.verifyPhoneState,
       this.verifySecurityQuestionsState,
       this.setPINState,
+      this.pinExpiredState,
+      this.currentOnboardingStage,
       this.isPhoneVerified,
       this.hasSetSecurityQuestions,
-      this.hasSetNickName,
       this.hasVerifiedSecurityQuestions,
-      this.currentOnboardingStage,
-      this.pinExpiredState,
-      this.phoneNumber});
+      this.hasSetNickName,
+      this.hasSetPin,
+      this.phoneNumber,
+      this.pin,
+      this.confirmPIN,
+      this.otp,
+      this.failedLoginCount,
+      this.invalidCredentials,
+      this.invalidOTP,
+      this.failedToSendOTP,
+      this.canResendOTP});
 
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$$_OnboardingStateFromJson(json);
@@ -470,33 +600,61 @@ class _$_OnboardingState implements _OnboardingState {
   @override
   final List<SecurityQuestionResponse>? securityQuestionResponses;
   @override
-  final PhoneLoginState? phoneLogin;
-  @override
   final VerifyPhoneState? verifyPhoneState;
   @override
   final VerifySecurityQuestionsState? verifySecurityQuestionsState;
   @override
   final SetPINState? setPINState;
-  @override // If the user has verified their phone number
-  final bool? isPhoneVerified;
-  @override // If the user has set their security questions
-  final bool? hasSetSecurityQuestions;
-  @override // If the user has set their nickname
-  final bool? hasSetNickName;
-  @override // If the user has successfully verified their security questions if pin is expired
-  final bool? hasVerifiedSecurityQuestions;
-  @override // The current stage of onboarding that the user is in
-  final CurrentOnboardingStage? currentOnboardingStage;
   @override // The PIN expired state state
   final PINExpiredState? pinExpiredState;
   @override
 
-  /// Shared values that will be used across all states
+  ///------------WORKFLOW RELATED BOOLEANS------------
+  /// Have standardized shared values that will be used across all states
+  /// regardless of the workflow
+// The current stage of onboarding that the user is in
+  final CurrentOnboardingStage? currentOnboardingStage;
+  @override // If the user has verified their phone number
+  final bool? isPhoneVerified;
+  @override // If the user has set their security questions
+  final bool? hasSetSecurityQuestions;
+  @override // If the user has successfully verified their security questions if pin is expired
+  final bool? hasVerifiedSecurityQuestions;
+  @override // If the user has set their nickname
+  final bool? hasSetNickName;
+  @override // Whether the user's PIN has been set
+  final bool? hasSetPin;
+  @override
+
+  ///------------WORKFLOW RELATED VALUES------------
+// The currently active user's phone number
   final String? phoneNumber;
+  @override // The PIN
+  final String? pin;
+  @override // The confirm PIN
+  final String? confirmPIN;
+  @override // The OTP used when confirming the phone number
+  final String? otp;
+  @override
+
+  ///------------LOGIN RELATED VALUES------------
+// The number of failed login attempts that this user has
+  final int? failedLoginCount;
+  @override // Whether the credentials this user entered are invalid
+  final bool? invalidCredentials;
+  @override
+
+  ///------------VERIFY PHONE RELATED VALUES------------
+// If the OTP entered is invalid
+  final bool? invalidOTP;
+  @override // Whether there was a failure while sending an OTP
+  final bool? failedToSendOTP;
+  @override //  Whether the user is allowed to resend their PIN
+  final bool? canResendOTP;
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, phoneLogin: $phoneLogin, verifyPhoneState: $verifyPhoneState, verifySecurityQuestionsState: $verifySecurityQuestionsState, setPINState: $setPINState, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickName: $hasSetNickName, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, currentOnboardingStage: $currentOnboardingStage, pinExpiredState: $pinExpiredState, phoneNumber: $phoneNumber)';
+    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifyPhoneState: $verifyPhoneState, verifySecurityQuestionsState: $verifySecurityQuestionsState, setPINState: $setPINState, pinExpiredState: $pinExpiredState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
   }
 
   @override
@@ -513,8 +671,6 @@ class _$_OnboardingState implements _OnboardingState {
             const DeepCollectionEquality().equals(
                 other.securityQuestionResponses, securityQuestionResponses) &&
             const DeepCollectionEquality()
-                .equals(other.phoneLogin, phoneLogin) &&
-            const DeepCollectionEquality()
                 .equals(other.verifyPhoneState, verifyPhoneState) &&
             const DeepCollectionEquality().equals(
                 other.verifySecurityQuestionsState,
@@ -522,40 +678,64 @@ class _$_OnboardingState implements _OnboardingState {
             const DeepCollectionEquality()
                 .equals(other.setPINState, setPINState) &&
             const DeepCollectionEquality()
+                .equals(other.pinExpiredState, pinExpiredState) &&
+            const DeepCollectionEquality()
+                .equals(other.currentOnboardingStage, currentOnboardingStage) &&
+            const DeepCollectionEquality()
                 .equals(other.isPhoneVerified, isPhoneVerified) &&
             const DeepCollectionEquality().equals(
                 other.hasSetSecurityQuestions, hasSetSecurityQuestions) &&
-            const DeepCollectionEquality()
-                .equals(other.hasSetNickName, hasSetNickName) &&
             const DeepCollectionEquality().equals(
                 other.hasVerifiedSecurityQuestions,
                 hasVerifiedSecurityQuestions) &&
             const DeepCollectionEquality()
-                .equals(other.currentOnboardingStage, currentOnboardingStage) &&
+                .equals(other.hasSetNickName, hasSetNickName) &&
+            const DeepCollectionEquality().equals(other.hasSetPin, hasSetPin) &&
             const DeepCollectionEquality()
-                .equals(other.pinExpiredState, pinExpiredState) &&
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality().equals(other.pin, pin) &&
             const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber));
+                .equals(other.confirmPIN, confirmPIN) &&
+            const DeepCollectionEquality().equals(other.otp, otp) &&
+            const DeepCollectionEquality()
+                .equals(other.failedLoginCount, failedLoginCount) &&
+            const DeepCollectionEquality()
+                .equals(other.invalidCredentials, invalidCredentials) &&
+            const DeepCollectionEquality()
+                .equals(other.invalidOTP, invalidOTP) &&
+            const DeepCollectionEquality()
+                .equals(other.failedToSendOTP, failedToSendOTP) &&
+            const DeepCollectionEquality()
+                .equals(other.canResendOTP, canResendOTP));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(createPINState),
-      const DeepCollectionEquality().hash(termsAndConditions),
-      const DeepCollectionEquality().hash(securityQuestions),
-      const DeepCollectionEquality().hash(securityQuestionResponses),
-      const DeepCollectionEquality().hash(phoneLogin),
-      const DeepCollectionEquality().hash(verifyPhoneState),
-      const DeepCollectionEquality().hash(verifySecurityQuestionsState),
-      const DeepCollectionEquality().hash(setPINState),
-      const DeepCollectionEquality().hash(isPhoneVerified),
-      const DeepCollectionEquality().hash(hasSetSecurityQuestions),
-      const DeepCollectionEquality().hash(hasSetNickName),
-      const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions),
-      const DeepCollectionEquality().hash(currentOnboardingStage),
-      const DeepCollectionEquality().hash(pinExpiredState),
-      const DeepCollectionEquality().hash(phoneNumber));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(createPINState),
+        const DeepCollectionEquality().hash(termsAndConditions),
+        const DeepCollectionEquality().hash(securityQuestions),
+        const DeepCollectionEquality().hash(securityQuestionResponses),
+        const DeepCollectionEquality().hash(verifyPhoneState),
+        const DeepCollectionEquality().hash(verifySecurityQuestionsState),
+        const DeepCollectionEquality().hash(setPINState),
+        const DeepCollectionEquality().hash(pinExpiredState),
+        const DeepCollectionEquality().hash(currentOnboardingStage),
+        const DeepCollectionEquality().hash(isPhoneVerified),
+        const DeepCollectionEquality().hash(hasSetSecurityQuestions),
+        const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions),
+        const DeepCollectionEquality().hash(hasSetNickName),
+        const DeepCollectionEquality().hash(hasSetPin),
+        const DeepCollectionEquality().hash(phoneNumber),
+        const DeepCollectionEquality().hash(pin),
+        const DeepCollectionEquality().hash(confirmPIN),
+        const DeepCollectionEquality().hash(otp),
+        const DeepCollectionEquality().hash(failedLoginCount),
+        const DeepCollectionEquality().hash(invalidCredentials),
+        const DeepCollectionEquality().hash(invalidOTP),
+        const DeepCollectionEquality().hash(failedToSendOTP),
+        const DeepCollectionEquality().hash(canResendOTP)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -574,17 +754,25 @@ abstract class _OnboardingState implements OnboardingState {
       TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
-      PhoneLoginState? phoneLogin,
       VerifyPhoneState? verifyPhoneState,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
       SetPINState? setPINState,
+      PINExpiredState? pinExpiredState,
+      CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
-      bool? hasSetNickName,
       bool? hasVerifiedSecurityQuestions,
-      CurrentOnboardingStage? currentOnboardingStage,
-      PINExpiredState? pinExpiredState,
-      String? phoneNumber}) = _$_OnboardingState;
+      bool? hasSetNickName,
+      bool? hasSetPin,
+      String? phoneNumber,
+      String? pin,
+      String? confirmPIN,
+      String? otp,
+      int? failedLoginCount,
+      bool? invalidCredentials,
+      bool? invalidOTP,
+      bool? failedToSendOTP,
+      bool? canResendOTP}) = _$_OnboardingState;
 
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
@@ -598,29 +786,57 @@ abstract class _OnboardingState implements OnboardingState {
   @override
   List<SecurityQuestionResponse>? get securityQuestionResponses;
   @override
-  PhoneLoginState? get phoneLogin;
-  @override
   VerifyPhoneState? get verifyPhoneState;
   @override
   VerifySecurityQuestionsState? get verifySecurityQuestionsState;
   @override
   SetPINState? get setPINState;
-  @override // If the user has verified their phone number
-  bool? get isPhoneVerified;
-  @override // If the user has set their security questions
-  bool? get hasSetSecurityQuestions;
-  @override // If the user has set their nickname
-  bool? get hasSetNickName;
-  @override // If the user has successfully verified their security questions if pin is expired
-  bool? get hasVerifiedSecurityQuestions;
-  @override // The current stage of onboarding that the user is in
-  CurrentOnboardingStage? get currentOnboardingStage;
   @override // The PIN expired state state
   PINExpiredState? get pinExpiredState;
   @override
 
-  /// Shared values that will be used across all states
+  ///------------WORKFLOW RELATED BOOLEANS------------
+  /// Have standardized shared values that will be used across all states
+  /// regardless of the workflow
+// The current stage of onboarding that the user is in
+  CurrentOnboardingStage? get currentOnboardingStage;
+  @override // If the user has verified their phone number
+  bool? get isPhoneVerified;
+  @override // If the user has set their security questions
+  bool? get hasSetSecurityQuestions;
+  @override // If the user has successfully verified their security questions if pin is expired
+  bool? get hasVerifiedSecurityQuestions;
+  @override // If the user has set their nickname
+  bool? get hasSetNickName;
+  @override // Whether the user's PIN has been set
+  bool? get hasSetPin;
+  @override
+
+  ///------------WORKFLOW RELATED VALUES------------
+// The currently active user's phone number
   String? get phoneNumber;
+  @override // The PIN
+  String? get pin;
+  @override // The confirm PIN
+  String? get confirmPIN;
+  @override // The OTP used when confirming the phone number
+  String? get otp;
+  @override
+
+  ///------------LOGIN RELATED VALUES------------
+// The number of failed login attempts that this user has
+  int? get failedLoginCount;
+  @override // Whether the credentials this user entered are invalid
+  bool? get invalidCredentials;
+  @override
+
+  ///------------VERIFY PHONE RELATED VALUES------------
+// If the OTP entered is invalid
+  bool? get invalidOTP;
+  @override // Whether there was a failure while sending an OTP
+  bool? get failedToSendOTP;
+  @override //  Whether the user is allowed to resend their PIN
+  bool? get canResendOTP;
   @override
   @JsonKey(ignore: true)
   _$OnboardingStateCopyWith<_OnboardingState> get copyWith =>

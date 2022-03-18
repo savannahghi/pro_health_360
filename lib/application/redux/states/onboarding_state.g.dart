@@ -24,10 +24,6 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
               ?.map((e) =>
                   SecurityQuestionResponse.fromJson(e as Map<String, dynamic>))
               .toList(),
-      phoneLogin: json['phoneLogin'] == null
-          ? null
-          : PhoneLoginState.fromJson(
-              json['phoneLogin'] as Map<String, dynamic>),
       verifyPhoneState: json['verifyPhoneState'] == null
           ? null
           : VerifyPhoneState.fromJson(
@@ -39,18 +35,27 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
       setPINState: json['setPINState'] == null
           ? null
           : SetPINState.fromJson(json['setPINState'] as Map<String, dynamic>),
-      isPhoneVerified: json['isPhoneVerified'] as bool?,
-      hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
-      hasSetNickName: json['hasSetNickName'] as bool?,
-      hasVerifiedSecurityQuestions:
-          json['hasVerifiedSecurityQuestions'] as bool?,
-      currentOnboardingStage: $enumDecodeNullable(
-          _$CurrentOnboardingStageEnumMap, json['currentOnboardingStage']),
       pinExpiredState: json['pinExpiredState'] == null
           ? null
           : PINExpiredState.fromJson(
               json['pinExpiredState'] as Map<String, dynamic>),
+      currentOnboardingStage: $enumDecodeNullable(
+          _$CurrentOnboardingStageEnumMap, json['currentOnboardingStage']),
+      isPhoneVerified: json['isPhoneVerified'] as bool?,
+      hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
+      hasVerifiedSecurityQuestions:
+          json['hasVerifiedSecurityQuestions'] as bool?,
+      hasSetNickName: json['hasSetNickName'] as bool?,
+      hasSetPin: json['hasSetPin'] as bool?,
       phoneNumber: json['phoneNumber'] as String?,
+      pin: json['pin'] as String?,
+      confirmPIN: json['confirmPIN'] as String?,
+      otp: json['otp'] as String?,
+      failedLoginCount: json['failedLoginCount'] as int?,
+      invalidCredentials: json['invalidCredentials'] as bool?,
+      invalidOTP: json['invalidOTP'] as bool?,
+      failedToSendOTP: json['failedToSendOTP'] as bool?,
+      canResendOTP: json['canResendOTP'] as bool?,
     );
 
 Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
@@ -59,18 +64,26 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'termsAndConditions': instance.termsAndConditions,
       'securityQuestions': instance.securityQuestions,
       'securityQuestionResponses': instance.securityQuestionResponses,
-      'phoneLogin': instance.phoneLogin,
       'verifyPhoneState': instance.verifyPhoneState,
       'verifySecurityQuestionsState': instance.verifySecurityQuestionsState,
       'setPINState': instance.setPINState,
-      'isPhoneVerified': instance.isPhoneVerified,
-      'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
-      'hasSetNickName': instance.hasSetNickName,
-      'hasVerifiedSecurityQuestions': instance.hasVerifiedSecurityQuestions,
+      'pinExpiredState': instance.pinExpiredState,
       'currentOnboardingStage':
           _$CurrentOnboardingStageEnumMap[instance.currentOnboardingStage],
-      'pinExpiredState': instance.pinExpiredState,
+      'isPhoneVerified': instance.isPhoneVerified,
+      'hasSetSecurityQuestions': instance.hasSetSecurityQuestions,
+      'hasVerifiedSecurityQuestions': instance.hasVerifiedSecurityQuestions,
+      'hasSetNickName': instance.hasSetNickName,
+      'hasSetPin': instance.hasSetPin,
       'phoneNumber': instance.phoneNumber,
+      'pin': instance.pin,
+      'confirmPIN': instance.confirmPIN,
+      'otp': instance.otp,
+      'failedLoginCount': instance.failedLoginCount,
+      'invalidCredentials': instance.invalidCredentials,
+      'invalidOTP': instance.invalidOTP,
+      'failedToSendOTP': instance.failedToSendOTP,
+      'canResendOTP': instance.canResendOTP,
     };
 
 const _$CurrentOnboardingStageEnumMap = {

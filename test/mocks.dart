@@ -16,7 +16,6 @@ import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
@@ -1528,6 +1527,7 @@ final Group mockGroup = Group(
   memberCount: 0,
 );
 
+// TODO!!(abiud): fix this once the onboarding state refactor is complete
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'createPINState': CreatePINState.initial().toJson(),
   'termsAndConditions': TermsAndConditions.initial().toJson(),
@@ -1537,7 +1537,6 @@ final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'securityQuestionResponses': <Map<String, dynamic>>[
     SecurityQuestionResponse.initial().toJson(),
   ],
-  'phoneLogin': PhoneLoginState.initial().toJson(),
 };
 
 final Map<String, dynamic> mockAddress = <String, dynamic>{

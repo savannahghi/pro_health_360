@@ -10,7 +10,6 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
@@ -59,8 +58,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     /// [pin] variable is retrieving the PIN the user input in the [PhoneLogin] page from state
     /// [phoneNumber] variable is retrieving the Phone Number the user input in the [PhoneLogin] page from state
-    final String? pin = state.onboardingState?.phoneLogin?.pinCode;
-    final String? phoneNumber = state.onboardingState?.phoneLogin?.phoneNumber;
+    final String? pin = state.onboardingState?.pin;
+    final String? phoneNumber = state.onboardingState?.phoneNumber;
 
     /// Check to verify the PIN is `not null` and contains four digits
     if (pin != null &&
@@ -91,7 +90,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             PhoneLoginResponse.fromJson(parsed);
 
         final DateTime now = DateTime.now();
-        
+
         AuthCredentials? authCredentials =
             loginResponse.userResponse?.credentials?.copyWith(
           signedInTime: now.toIso8601String(),
@@ -203,7 +202,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         switch (processedResponse.code) {
           case 8:
-            dispatch(PhoneLoginStateAction(invalidCredentials: true));
+            dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
             // exception thrown if the backend could not match the provided
             //credentials with those stored in the backend
             errorCallback?.call(processedResponse.message ?? UNKNOWN);

@@ -13,7 +13,6 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
@@ -34,8 +33,8 @@ void main() {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
           onboardingState: OnboardingState(
-            phoneLogin:
-                PhoneLoginState(phoneNumber: '+254798000000', pinCode: '0000'),
+            phoneNumber: '+254798000000',
+            pin: '0000',
           ),
         ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
@@ -142,10 +141,8 @@ void main() {
     test('show handle error if pin is too short', () async {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
-          onboardingState: OnboardingState(
-            phoneLogin:
-                PhoneLoginState(phoneNumber: '+254798000000', pinCode: '0'),
-          ),
+          onboardingState:
+              OnboardingState(phoneNumber: '+254798000000', pin: '0'),
         ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );

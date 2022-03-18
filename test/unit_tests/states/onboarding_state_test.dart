@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/onboarding_state.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_login_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import '../../mocks.dart';
 
@@ -22,7 +21,6 @@ void main() {
         securityQuestionResponses: <SecurityQuestionResponse>[
           SecurityQuestionResponse.initial(),
         ],
-        phoneLogin: PhoneLoginState.initial(),
       );
 
       expect(fromJson, actual);

@@ -5,7 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -21,7 +21,7 @@ void main() {
 
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
-      store.dispatch(PhoneLoginStateAction(phoneNumber: '0712345678'));
+      store.dispatch(UpdateOnboardingStateAction(phoneNumber: '0712345678'));
     });
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(

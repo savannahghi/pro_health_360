@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -258,7 +257,7 @@ void main() {
       );
 
       expect(
-        store.state.onboardingState?.phoneLogin?.invalidCredentials,
+        store.state.onboardingState?.invalidCredentials,
         false,
       );
 
@@ -292,7 +291,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState?.phoneLogin?.invalidCredentials,
+        store.state.onboardingState?.invalidCredentials,
         true,
       );
       expect(find.byType(LoginErrorWidget), findsOneWidget);
@@ -302,11 +301,11 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState?.phoneLogin?.invalidCredentials,
+        store.state.onboardingState?.invalidCredentials,
         false,
       );
 
-      store.dispatch(PhoneLoginStateAction(invalidCredentials: true));
+      store.dispatch(UpdateOnboardingStateAction(invalidCredentials: true));
       await tester.pump();
 
       await tester.showKeyboard(phoneInputField);
@@ -314,7 +313,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        store.state.onboardingState?.phoneLogin?.invalidCredentials,
+        store.state.onboardingState?.invalidCredentials,
         false,
       );
     });

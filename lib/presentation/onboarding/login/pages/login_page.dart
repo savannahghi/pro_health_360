@@ -8,7 +8,7 @@ import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
-import 'package:myafyahub/application/redux/actions/phone_login_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
   void didChangeDependencies() {
     if (phoneNumber == null) {
       /// reset login state upon entering this page
-      StoreProvider.dispatch(context, PhoneLoginStateAction());
+      StoreProvider.dispatch(context, UpdateOnboardingStateAction());
     }
     super.didChangeDependencies();
   }
@@ -146,17 +146,14 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                   onChanged: (String? val) {
-                                    final bool? invalidCredentials = vm
-                                        .appState
-                                        .onboardingState
-                                        ?.phoneLogin
-                                        ?.invalidCredentials;
+                                    final bool? invalidCredentials = vm.appState
+                                        .onboardingState?.invalidCredentials;
 
                                     if (invalidCredentials != null &&
                                         invalidCredentials) {
                                       StoreProvider.dispatch(
                                         context,
-                                        PhoneLoginStateAction(),
+                                        UpdateOnboardingStateAction(),
                                       );
                                     }
 
@@ -190,17 +187,14 @@ class _LoginPageState extends State<LoginPage> {
                                     FilteringTextInputFormatter.digitsOnly
                                   ],
                                   onChanged: (String val) {
-                                    final bool? invalidCredentials = vm
-                                        .appState
-                                        .onboardingState
-                                        ?.phoneLogin
-                                        ?.invalidCredentials;
+                                    final bool? invalidCredentials = vm.appState
+                                        .onboardingState?.invalidCredentials;
 
                                     if (invalidCredentials != null &&
                                         invalidCredentials) {
                                       StoreProvider.dispatch(
                                         context,
-                                        PhoneLoginStateAction(),
+                                        UpdateOnboardingStateAction(),
                                       );
                                     }
 
@@ -209,10 +203,9 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                                   },
                                 ),
-                                if (vm.appState.onboardingState?.phoneLogin
+                                if (vm.appState.onboardingState
                                         ?.invalidCredentials ??
-                                    false)
-                                ...<Widget>[
+                                    false) ...<Widget>[
                                   largeVerticalSizedBox,
                                   PhoneLoginErrorWidget(
                                     formKey: _formKey,
@@ -292,7 +285,7 @@ class _LoginPageState extends State<LoginPage> {
     // this is the Redux Action that store the phone number and PIN user enters
     StoreProvider.dispatch(
       context,
-      PhoneLoginStateAction(phoneNumber: phoneNumber, pinCode: pin),
+      UpdateOnboardingStateAction(phoneNumber: phoneNumber, pin: pin),
     );
 
     final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
