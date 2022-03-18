@@ -3,7 +3,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
-import 'package:myafyahub/domain/core/entities/login/pin_expired_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -19,9 +18,6 @@ class OnboardingState with _$OnboardingState {
     List<SecurityQuestion>? securityQuestions,
     List<SecurityQuestionResponse>? securityQuestionResponses,
     VerifySecurityQuestionsState? verifySecurityQuestionsState,
-
-    // The PIN expired state state
-    PINExpiredState? pinExpiredState,
 
     ///------------WORKFLOW RELATED BOOLEANS------------
     /// Have standardized shared values that will be used across all states
@@ -91,7 +87,6 @@ class OnboardingState with _$OnboardingState {
         hasSetNickName: false,
         hasVerifiedSecurityQuestions: false,
         currentOnboardingStage: CurrentOnboardingStage.Login,
-        pinExpiredState: PINExpiredState.initial(),
         phoneNumber: UNKNOWN,
         invalidOTP: false,
         otp: UNKNOWN,

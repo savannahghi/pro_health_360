@@ -20,7 +20,6 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.hasSetPin,
     this.hasVerifiedSecurityQuestions,
     this.currentOnboardingStage,
-    this.isPINChanged,
     this.phoneNumber,
     this.invalidCredentials,
     this.pin,
@@ -37,7 +36,6 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   bool? hasSetSecurityQuestions;
   bool? hasVerifiedSecurityQuestions;
   bool? hasSetNickName;
-  final bool? isPINChanged;
 
   ///------------WORKFLOW RELATED VALUES------------
   final String? phoneNumber;
@@ -57,35 +55,35 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final OnboardingState? fromState = state.onboardingState;
+    final OnboardingState? onboardingStateFromState = state.onboardingState;
 
     final OnboardingState? newOnboardingState = state.onboardingState?.copyWith(
-      securityQuestions: securityQuestions ?? fromState?.securityQuestions,
-      securityQuestionResponses:
-          securityQuestionsResponses ?? fromState?.securityQuestionResponses,
-      isPhoneVerified: isPhoneVerified ?? fromState?.isPhoneVerified,
-      hasSetNickName: hasSetNickName ?? fromState?.hasSetNickName,
-      hasSetSecurityQuestions:
-          hasSetSecurityQuestions ?? fromState?.hasSetSecurityQuestions,
+      securityQuestions:
+          securityQuestions ?? onboardingStateFromState?.securityQuestions,
+      securityQuestionResponses: securityQuestionsResponses ??
+          onboardingStateFromState?.securityQuestionResponses,
+      isPhoneVerified:
+          isPhoneVerified ?? onboardingStateFromState?.isPhoneVerified,
+      hasSetNickName:
+          hasSetNickName ?? onboardingStateFromState?.hasSetNickName,
+      hasSetSecurityQuestions: hasSetSecurityQuestions ??
+          onboardingStateFromState?.hasSetSecurityQuestions,
       hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions ??
-          fromState?.hasVerifiedSecurityQuestions,
-      pinExpiredState: fromState?.pinExpiredState?.copyWith(
-        otp: otp ?? fromState?.pinExpiredState?.otp,
-        isPhoneVerified:
-            isPhoneVerified ?? fromState?.pinExpiredState?.isPhoneVerified,
-        isPINChanged: isPINChanged ?? fromState?.pinExpiredState?.isPINChanged,
-      ),
-      currentOnboardingStage:
-          currentOnboardingStage ?? fromState?.currentOnboardingStage,
-      hasSetPin: hasSetPin ?? fromState?.hasSetPin,
-      pin: pin ?? fromState?.pin,
-      confirmPIN: confirmPIN ?? fromState?.confirmPIN,
-      otp: otp ?? fromState?.otp,
-      failedLoginCount: failedLoginCount ?? fromState?.failedLoginCount,
-      invalidCredentials: invalidCredentials ?? fromState?.invalidCredentials,
-      invalidOTP: invalidOTP ?? fromState?.invalidOTP,
-      failedToSendOTP: failedToSendOTP ?? fromState?.failedToSendOTP,
-      canResendOTP: canResendOTP ?? fromState?.canResendOTP,
+          onboardingStateFromState?.hasVerifiedSecurityQuestions,
+      currentOnboardingStage: currentOnboardingStage ??
+          onboardingStateFromState?.currentOnboardingStage,
+      hasSetPin: hasSetPin ?? onboardingStateFromState?.hasSetPin,
+      pin: pin ?? onboardingStateFromState?.pin,
+      confirmPIN: confirmPIN ?? onboardingStateFromState?.confirmPIN,
+      otp: otp ?? onboardingStateFromState?.otp,
+      failedLoginCount:
+          failedLoginCount ?? onboardingStateFromState?.failedLoginCount,
+      invalidCredentials:
+          invalidCredentials ?? onboardingStateFromState?.invalidCredentials,
+      invalidOTP: invalidOTP ?? onboardingStateFromState?.invalidOTP,
+      failedToSendOTP:
+          failedToSendOTP ?? onboardingStateFromState?.failedToSendOTP,
+      canResendOTP: canResendOTP ?? onboardingStateFromState?.canResendOTP,
     );
 
     final AppState newState =

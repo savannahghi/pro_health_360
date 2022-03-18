@@ -139,7 +139,7 @@ class CreatePINAction extends ReduxAction<AppState> {
           ),
         );
 
-        dispatch(UpdateOnboardingStateAction(isPINChanged: true));
+        dispatch(UpdateOnboardingStateAction(hasSetPin: true));
 
         final AppNavConfig navConfig = navPathConfig(appState: state);
 

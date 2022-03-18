@@ -108,9 +108,8 @@ AppNavConfig navPathConfig({required AppState? appState}) {
     /// The PIN expiry workflow
   } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired) {
     final bool isPhoneVerified =
-        appState.onboardingState?.pinExpiredState?.isPhoneVerified ?? false;
-    final bool isPINChanged =
-        appState.onboardingState?.pinExpiredState?.isPINChanged ?? false;
+        appState.onboardingState?.isPhoneVerified ?? false;
+    final bool isPINChanged = appState.onboardingState?.hasSetPin ?? false;
 
     // check whether the phone is verified
     if (!isPhoneVerified) {

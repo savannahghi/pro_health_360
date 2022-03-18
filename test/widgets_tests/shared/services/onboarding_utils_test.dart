@@ -288,7 +288,6 @@ void main() {
               currentOnboardingStage: CurrentOnboardingStage.Login,
               isPhoneVerified: true,
               hasSetSecurityQuestions: true,
-              isPINChanged: true,
               hasSetNickName: true,
               hasSetPin: true,
             ),
@@ -323,7 +322,6 @@ void main() {
           store.dispatch(
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.PINExpired,
-              isPINChanged: true,
               isPhoneVerified: true,
             ),
           );
@@ -357,7 +355,6 @@ void main() {
           store.dispatch(
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
-              isPINChanged: true,
               isPhoneVerified: true,
             ),
           );

@@ -28,7 +28,6 @@ class _$OnboardingStateTearOff {
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
-      PINExpiredState? pinExpiredState,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -50,7 +49,6 @@ class _$OnboardingStateTearOff {
       securityQuestions: securityQuestions,
       securityQuestionResponses: securityQuestionResponses,
       verifySecurityQuestionsState: verifySecurityQuestionsState,
-      pinExpiredState: pinExpiredState,
       currentOnboardingStage: currentOnboardingStage,
       isPhoneVerified: isPhoneVerified,
       hasSetSecurityQuestions: hasSetSecurityQuestions,
@@ -87,8 +85,7 @@ mixin _$OnboardingState {
   List<SecurityQuestionResponse>? get securityQuestionResponses =>
       throw _privateConstructorUsedError;
   VerifySecurityQuestionsState? get verifySecurityQuestionsState =>
-      throw _privateConstructorUsedError; // The PIN expired state state
-  PINExpiredState? get pinExpiredState => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError;
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
@@ -145,7 +142,6 @@ abstract class $OnboardingStateCopyWith<$Res> {
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
-      PINExpiredState? pinExpiredState,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -165,7 +161,6 @@ abstract class $OnboardingStateCopyWith<$Res> {
   $CreatePINStateCopyWith<$Res>? get createPINState;
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
-  $PINExpiredStateCopyWith<$Res>? get pinExpiredState;
 }
 
 /// @nodoc
@@ -184,7 +179,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
     Object? verifySecurityQuestionsState = freezed,
-    Object? pinExpiredState = freezed,
     Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
@@ -222,10 +216,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
           ? _value.verifySecurityQuestionsState
           : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
               as VerifySecurityQuestionsState?,
-      pinExpiredState: pinExpiredState == freezed
-          ? _value.pinExpiredState
-          : pinExpiredState // ignore: cast_nullable_to_non_nullable
-              as PINExpiredState?,
       currentOnboardingStage: currentOnboardingStage == freezed
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
@@ -324,17 +314,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
       return _then(_value.copyWith(verifySecurityQuestionsState: value));
     });
   }
-
-  @override
-  $PINExpiredStateCopyWith<$Res>? get pinExpiredState {
-    if (_value.pinExpiredState == null) {
-      return null;
-    }
-
-    return $PINExpiredStateCopyWith<$Res>(_value.pinExpiredState!, (value) {
-      return _then(_value.copyWith(pinExpiredState: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -350,7 +329,6 @@ abstract class _$OnboardingStateCopyWith<$Res>
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
-      PINExpiredState? pinExpiredState,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -373,8 +351,6 @@ abstract class _$OnboardingStateCopyWith<$Res>
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   @override
   $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
-  @override
-  $PINExpiredStateCopyWith<$Res>? get pinExpiredState;
 }
 
 /// @nodoc
@@ -395,7 +371,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
     Object? verifySecurityQuestionsState = freezed,
-    Object? pinExpiredState = freezed,
     Object? currentOnboardingStage = freezed,
     Object? isPhoneVerified = freezed,
     Object? hasSetSecurityQuestions = freezed,
@@ -433,10 +408,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
           ? _value.verifySecurityQuestionsState
           : verifySecurityQuestionsState // ignore: cast_nullable_to_non_nullable
               as VerifySecurityQuestionsState?,
-      pinExpiredState: pinExpiredState == freezed
-          ? _value.pinExpiredState
-          : pinExpiredState // ignore: cast_nullable_to_non_nullable
-              as PINExpiredState?,
       currentOnboardingStage: currentOnboardingStage == freezed
           ? _value.currentOnboardingStage
           : currentOnboardingStage // ignore: cast_nullable_to_non_nullable
@@ -510,7 +481,6 @@ class _$_OnboardingState implements _OnboardingState {
       this.securityQuestions,
       this.securityQuestionResponses,
       this.verifySecurityQuestionsState,
-      this.pinExpiredState,
       this.currentOnboardingStage,
       this.isPhoneVerified,
       this.hasSetSecurityQuestions,
@@ -540,8 +510,6 @@ class _$_OnboardingState implements _OnboardingState {
   final List<SecurityQuestionResponse>? securityQuestionResponses;
   @override
   final VerifySecurityQuestionsState? verifySecurityQuestionsState;
-  @override // The PIN expired state state
-  final PINExpiredState? pinExpiredState;
   @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
@@ -589,7 +557,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, pinExpiredState: $pinExpiredState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
+    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
   }
 
   @override
@@ -608,8 +576,6 @@ class _$_OnboardingState implements _OnboardingState {
             const DeepCollectionEquality().equals(
                 other.verifySecurityQuestionsState,
                 verifySecurityQuestionsState) &&
-            const DeepCollectionEquality()
-                .equals(other.pinExpiredState, pinExpiredState) &&
             const DeepCollectionEquality()
                 .equals(other.currentOnboardingStage, currentOnboardingStage) &&
             const DeepCollectionEquality()
@@ -648,7 +614,6 @@ class _$_OnboardingState implements _OnboardingState {
         const DeepCollectionEquality().hash(securityQuestions),
         const DeepCollectionEquality().hash(securityQuestionResponses),
         const DeepCollectionEquality().hash(verifySecurityQuestionsState),
-        const DeepCollectionEquality().hash(pinExpiredState),
         const DeepCollectionEquality().hash(currentOnboardingStage),
         const DeepCollectionEquality().hash(isPhoneVerified),
         const DeepCollectionEquality().hash(hasSetSecurityQuestions),
@@ -684,7 +649,6 @@ abstract class _OnboardingState implements OnboardingState {
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
-      PINExpiredState? pinExpiredState,
       CurrentOnboardingStage? currentOnboardingStage,
       bool? isPhoneVerified,
       bool? hasSetSecurityQuestions,
@@ -714,8 +678,6 @@ abstract class _OnboardingState implements OnboardingState {
   List<SecurityQuestionResponse>? get securityQuestionResponses;
   @override
   VerifySecurityQuestionsState? get verifySecurityQuestionsState;
-  @override // The PIN expired state state
-  PINExpiredState? get pinExpiredState;
   @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
