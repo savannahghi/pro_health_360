@@ -73,7 +73,7 @@ void main() {
       final NavigatorDetails_PushNamed? navDetails =
           actionDispatched?.details as NavigatorDetails_PushNamed?;
 
-      expect(navDetails?.routeName, AppRoutes.termsAndConditions);
+      expect(navDetails?.routeName, AppRoutes.home);
     });
 
     test('should navigate to phone login if user is null', () async {

@@ -12,7 +12,7 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import '../../../../../mocks.dart';
 
 void main() {
-  group('SetNicknameAction', () {
+  group('VerifySecurityQuestionAction', () {
     late StoreTester<AppState> storeTester;
 
     setUp(() {
