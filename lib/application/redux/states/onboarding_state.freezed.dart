@@ -23,8 +23,7 @@ class _$OnboardingStateTearOff {
   const _$OnboardingStateTearOff();
 
   _OnboardingState call(
-      {CreatePINState? createPINState,
-      TermsAndConditions? termsAndConditions,
+      {TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
@@ -44,7 +43,6 @@ class _$OnboardingStateTearOff {
       bool? failedToSendOTP,
       bool? canResendOTP}) {
     return _OnboardingState(
-      createPINState: createPINState,
       termsAndConditions: termsAndConditions,
       securityQuestions: securityQuestions,
       securityQuestionResponses: securityQuestionResponses,
@@ -77,7 +75,6 @@ const $OnboardingState = _$OnboardingStateTearOff();
 
 /// @nodoc
 mixin _$OnboardingState {
-  CreatePINState? get createPINState => throw _privateConstructorUsedError;
   TermsAndConditions? get termsAndConditions =>
       throw _privateConstructorUsedError;
   List<SecurityQuestion>? get securityQuestions =>
@@ -137,8 +134,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
           OnboardingState value, $Res Function(OnboardingState) then) =
       _$OnboardingStateCopyWithImpl<$Res>;
   $Res call(
-      {CreatePINState? createPINState,
-      TermsAndConditions? termsAndConditions,
+      {TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
@@ -158,7 +154,6 @@ abstract class $OnboardingStateCopyWith<$Res> {
       bool? failedToSendOTP,
       bool? canResendOTP});
 
-  $CreatePINStateCopyWith<$Res>? get createPINState;
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
 }
@@ -174,7 +169,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? createPINState = freezed,
     Object? termsAndConditions = freezed,
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
@@ -196,10 +190,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? canResendOTP = freezed,
   }) {
     return _then(_value.copyWith(
-      createPINState: createPINState == freezed
-          ? _value.createPINState
-          : createPINState // ignore: cast_nullable_to_non_nullable
-              as CreatePINState?,
       termsAndConditions: termsAndConditions == freezed
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
@@ -280,17 +270,6 @@ class _$OnboardingStateCopyWithImpl<$Res>
   }
 
   @override
-  $CreatePINStateCopyWith<$Res>? get createPINState {
-    if (_value.createPINState == null) {
-      return null;
-    }
-
-    return $CreatePINStateCopyWith<$Res>(_value.createPINState!, (value) {
-      return _then(_value.copyWith(createPINState: value));
-    });
-  }
-
-  @override
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions {
     if (_value.termsAndConditions == null) {
       return null;
@@ -324,8 +303,7 @@ abstract class _$OnboardingStateCopyWith<$Res>
       __$OnboardingStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {CreatePINState? createPINState,
-      TermsAndConditions? termsAndConditions,
+      {TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
@@ -346,8 +324,6 @@ abstract class _$OnboardingStateCopyWith<$Res>
       bool? canResendOTP});
 
   @override
-  $CreatePINStateCopyWith<$Res>? get createPINState;
-  @override
   $TermsAndConditionsCopyWith<$Res>? get termsAndConditions;
   @override
   $VerifySecurityQuestionsStateCopyWith<$Res>? get verifySecurityQuestionsState;
@@ -366,7 +342,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? createPINState = freezed,
     Object? termsAndConditions = freezed,
     Object? securityQuestions = freezed,
     Object? securityQuestionResponses = freezed,
@@ -388,10 +363,6 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? canResendOTP = freezed,
   }) {
     return _then(_OnboardingState(
-      createPINState: createPINState == freezed
-          ? _value.createPINState
-          : createPINState // ignore: cast_nullable_to_non_nullable
-              as CreatePINState?,
       termsAndConditions: termsAndConditions == freezed
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
@@ -476,8 +447,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_OnboardingState implements _OnboardingState {
   _$_OnboardingState(
-      {this.createPINState,
-      this.termsAndConditions,
+      {this.termsAndConditions,
       this.securityQuestions,
       this.securityQuestionResponses,
       this.verifySecurityQuestionsState,
@@ -500,8 +470,6 @@ class _$_OnboardingState implements _OnboardingState {
   factory _$_OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$$_OnboardingStateFromJson(json);
 
-  @override
-  final CreatePINState? createPINState;
   @override
   final TermsAndConditions? termsAndConditions;
   @override
@@ -557,7 +525,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(createPINState: $createPINState, termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
+    return 'OnboardingState(termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
   }
 
   @override
@@ -565,8 +533,6 @@ class _$_OnboardingState implements _OnboardingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OnboardingState &&
-            const DeepCollectionEquality()
-                .equals(other.createPINState, createPINState) &&
             const DeepCollectionEquality()
                 .equals(other.termsAndConditions, termsAndConditions) &&
             const DeepCollectionEquality()
@@ -609,7 +575,6 @@ class _$_OnboardingState implements _OnboardingState {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(createPINState),
         const DeepCollectionEquality().hash(termsAndConditions),
         const DeepCollectionEquality().hash(securityQuestions),
         const DeepCollectionEquality().hash(securityQuestionResponses),
@@ -644,8 +609,7 @@ class _$_OnboardingState implements _OnboardingState {
 
 abstract class _OnboardingState implements OnboardingState {
   factory _OnboardingState(
-      {CreatePINState? createPINState,
-      TermsAndConditions? termsAndConditions,
+      {TermsAndConditions? termsAndConditions,
       List<SecurityQuestion>? securityQuestions,
       List<SecurityQuestionResponse>? securityQuestionResponses,
       VerifySecurityQuestionsState? verifySecurityQuestionsState,
@@ -668,8 +632,6 @@ abstract class _OnboardingState implements OnboardingState {
   factory _OnboardingState.fromJson(Map<String, dynamic> json) =
       _$_OnboardingState.fromJson;
 
-  @override
-  CreatePINState? get createPINState;
   @override
   TermsAndConditions? get termsAndConditions;
   @override

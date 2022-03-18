@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
-import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -40,10 +40,7 @@ Future<void> setUserPIN({
   // this is the Redux Action that store the PINs user enters
   StoreProvider.dispatch(
     context,
-    CreatePINStateAction(
-      newPIN: newPIN,
-      confirmPIN: confirmPIN,
-    ),
+    UpdateOnboardingStateAction(pin: newPIN, confirmPIN: confirmPIN),
   );
 
   // this is the Redux Action that handles set PIN for an existing user

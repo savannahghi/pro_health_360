@@ -8,10 +8,6 @@ part of 'onboarding_state.dart';
 
 _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
     _$_OnboardingState(
-      createPINState: json['createPINState'] == null
-          ? null
-          : CreatePINState.fromJson(
-              json['createPINState'] as Map<String, dynamic>),
       termsAndConditions: json['termsAndConditions'] == null
           ? null
           : TermsAndConditions.fromJson(
@@ -49,7 +45,6 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
     <String, dynamic>{
-      'createPINState': instance.createPINState,
       'termsAndConditions': instance.termsAndConditions,
       'securityQuestions': instance.securityQuestions,
       'securityQuestionResponses': instance.securityQuestionResponses,

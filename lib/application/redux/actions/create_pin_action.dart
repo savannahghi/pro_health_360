@@ -54,9 +54,8 @@ class CreatePINAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     final String? userID = state.clientState!.user!.userId;
-    final String? newPIN = state.onboardingState!.createPINState!.newPIN;
-    final String? confirmPIN =
-        state.onboardingState!.createPINState!.confirmPIN;
+    final String newPIN = state.onboardingState?.pin ?? UNKNOWN;
+    final String confirmPIN = state.onboardingState?.confirmPIN ?? UNKNOWN;
 
     final String? otp = state.onboardingState?.otp;
     final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
@@ -65,7 +64,7 @@ class CreatePINAction extends ReduxAction<AppState> {
     final String? phone = state.onboardingState?.phoneNumber;
 
     // check if the new PIN matches the confirmed PIN entered by the user
-    if (newPIN == confirmPIN) {
+    if ((newPIN != UNKNOWN && confirmPIN != UNKNOWN) && newPIN == confirmPIN) {
       // initializing of the reset_pin mutation
       final Map<String, String?> _resetPinVariables = <String, String?>{
         'phonenumber': phone,

@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
-import 'package:myafyahub/application/redux/actions/create_pin_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -53,7 +52,10 @@ void main() {
               onPressed: () async {
                 try {
                   store.dispatch(
-                    CreatePINStateAction(confirmPIN: '0000', newPIN: '0000'),
+                    UpdateOnboardingStateAction(
+                      confirmPIN: '0000',
+                      pin: '0000',
+                    ),
                   );
                   await store.dispatch(CreatePINAction(context: context));
                 } catch (e) {
@@ -90,7 +92,6 @@ void main() {
       store.dispatch(
         UpdateOnboardingStateAction(
           currentOnboardingStage: CurrentOnboardingStage.PINExpired,
-          
         ),
       );
 
@@ -105,7 +106,10 @@ void main() {
               onPressed: () async {
                 try {
                   store.dispatch(
-                    CreatePINStateAction(confirmPIN: '0000', newPIN: '0000'),
+                    UpdateOnboardingStateAction(
+                      confirmPIN: '0000',
+                      pin: '0000',
+                    ),
                   );
                   await store.dispatch(CreatePINAction(context: context));
                 } catch (e) {

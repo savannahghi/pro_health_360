@@ -2,7 +2,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -13,7 +12,6 @@ part 'onboarding_state.g.dart';
 @freezed
 class OnboardingState with _$OnboardingState {
   factory OnboardingState({
-    CreatePINState? createPINState,
     TermsAndConditions? termsAndConditions,
     List<SecurityQuestion>? securityQuestions,
     List<SecurityQuestionResponse>? securityQuestionResponses,
@@ -78,7 +76,6 @@ class OnboardingState with _$OnboardingState {
 
   factory OnboardingState.initial() => OnboardingState(
         termsAndConditions: TermsAndConditions.initial(),
-        createPINState: CreatePINState.initial(),
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
         verifySecurityQuestionsState: VerifySecurityQuestionsState.initial(),
