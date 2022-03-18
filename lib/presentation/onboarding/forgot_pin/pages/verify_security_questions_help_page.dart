@@ -1,12 +1,19 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/onboarding/pin_reset_service_request_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 
 class VerifySecurityQuestionsHelpPage extends StatefulWidget {
@@ -75,39 +82,91 @@ class _VerifySecurityQuestionsHelpPageState
                   },
                 ),
                 smallVerticalSizedBox,
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: MyAfyaHubPrimaryButton(
-                    buttonKey: askForHelpButtonKey,
-                    text: askForHelpString,
-                    onPressed: () {
-                      final bool? isFormValid =
-                          _formKey.currentState?.validate();
-                      if (isFormValid != null &&
-                          isFormValid &&
-                          cccNumber != null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(comingSoonText),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
-                smallVerticalSizedBox,
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: MyAfyaHubPrimaryButton(
-                    buttonKey: tryAgainButtonKey,
-                    text: tryAgainString,
-                    buttonColor:
-                        Theme.of(context).primaryColor.withOpacity(0.1),
-                    textStyle: normalSize14Text(AppColors.redColor),
-                    borderColor: Colors.transparent,
-                  ),
+                StoreConnector<AppState, AppStateViewModel>(
+                  converter: (Store<AppState> store) =>
+                      AppStateViewModel.fromStore(store),
+                  builder: (BuildContext context, AppStateViewModel vm) {
+                    return vm.wait?.isWaitingFor(pinResetServiceRequestFlag) ??
+                            false
+                        ? const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: PlatformLoader(),
+                          )
+                        : Column(
+                            children: <Widget>[
+                              SizedBox(
+                                width: double.infinity,
+                                height: 48,
+                                child: MyAfyaHubPrimaryButton(
+                                  buttonKey: askForHelpButtonKey,
+                                  text: askForHelpString,
+                                  onPressed: () {
+                                    final bool? isFormValid =
+                                        _formKey.currentState?.validate();
+                                    if (isFormValid != null && isFormValid) {
+                                      StoreProvider.dispatch<AppState>(
+                                        context,
+                                        PINResetServiceRequestAction(
+                                          client: AppWrapperBase.of(context)!
+                                              .graphQLClient,
+                                          cccNumber: cccNumber!,
+                                          pinResetServiceRequestEndpoint:
+                                              AppWrapperBase.of(context)!
+                                                  .customContext!
+                                                  .pinResetServiceRequestEndpoint,
+                                          onSuccess: () {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                content: Text(
+                                                    successfulPINResetRequestString,),
+                                                duration: Duration(
+                                                  seconds:
+                                                      kShortSnackBarDuration,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          onError: () {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  getErrorMessage(
+                                                    sendingPINResetRequestSting,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                  seconds:
+                                                      kShortSnackBarDuration,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ),
+                              smallVerticalSizedBox,
+                              SizedBox(
+                                width: double.infinity,
+                                height: 48,
+                                child: MyAfyaHubPrimaryButton(
+                                  buttonKey: tryAgainButtonKey,
+                                  text: tryAgainString,
+                                  buttonColor: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.1),
+                                  textStyle:
+                                      normalSize14Text(AppColors.redColor),
+                                  borderColor: Colors.transparent,
+                                ),
+                              )
+                            ],
+                          );
+                  },
                 )
               ],
             ),

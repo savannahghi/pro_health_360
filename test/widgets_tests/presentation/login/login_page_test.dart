@@ -145,11 +145,11 @@ void main() {
         'endpoint',
         Response(
           json.encode(<String, dynamic>{
-            'data': '',
-            'code': 12,
-            'retryTime': 2.67888,
+            'message': '73: wrong PIN',
+            'code': 73,
+            'retryTime': 21.8990
           }),
-          200,
+          400,
         ),
       );
 
@@ -191,7 +191,11 @@ void main() {
 
         await tester.ensureVisible(continueButton);
         await tester.tap(continueButton);
-        await tester.pumpAndSettle(const Duration(seconds: 10));
+
+        await tester.pump(const Duration(seconds: 10));
+        expect(find.byType(LoginPage), findsOneWidget);
+        await tester.pump(const Duration(seconds: 24));
+        await tester.pumpAndSettle();
         expect(find.byType(LoginPage), findsOneWidget);
       });
     });

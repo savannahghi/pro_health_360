@@ -881,3 +881,6 @@ const String pinExpiredDescription =
     'It seems that your PIN has expired. No worries though. We expire PINs so as to enhance security of your data on myCareHub.\n\nTap the button below to change your PIN';
 
 const String changePinCTA = 'Change my PIN';
+const String sendingPINResetRequestSting = 'sending your pin reset request';
+const String successfulPINResetRequestString =
+    'PIN reset requested successfully';

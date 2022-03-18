@@ -84,3 +84,6 @@ const String fetchMembersFlag = 'fetch_members_flag';
 
 // resume with pin
 const String resumeWithPinFlag = 'resume_with_pin';
+
+//pin reset service request
+const String pinResetServiceRequestFlag = 'pin_reset_service_request_flag';
