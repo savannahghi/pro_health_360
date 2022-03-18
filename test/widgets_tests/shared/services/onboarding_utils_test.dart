@@ -1,4 +1,5 @@
 // Dart imports:
+import 'dart:convert';
 import 'dart:io';
 
 // Flutter imports:
@@ -9,6 +10,7 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
@@ -254,6 +256,65 @@ void main() {
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.verifySignUpOTP);
+        });
+
+        testWidgets('should navigate to home page upon successful sign up',
+            (WidgetTester tester) async {
+          final MockShortGraphQlClient mockShortSILGraphQlClient =
+              MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              json.encode(<String, dynamic>{
+                'data': <String, dynamic>{
+                  'fetchRecentContent': <dynamic>[],
+                  'fetchSuggestedGroups': <dynamic>[]
+                }
+              }),
+              201,
+            ),
+          );
+
+          store.dispatch(
+            UpdateUserProfileAction(
+              pinChangeRequired: true,
+              isPhoneVerified: true,
+              termsAccepted: true,
+            ),
+          );
+
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.Signup,
+              isPhoneVerified: true,
+              hasSetSecurityQuestions: true,
+              isPINChanged: true,
+              hasSetNickName: true,
+              hasSetPin: true,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockShortSILGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = navPathConfig(appState: store.state).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.home);
         });
 
         testWidgets('should navigate to resume with PIN page when app resumes',
