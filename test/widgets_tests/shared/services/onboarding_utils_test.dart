@@ -17,6 +17,7 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../mocks.dart';
@@ -61,6 +62,7 @@ void main() {
             UpdateOnboardingStateAction(
               isPhoneVerified: true,
               hasSetSecurityQuestions: false,
+              currentOnboardingStage: CurrentOnboardingStage.Signup,
             ),
           );
 
@@ -74,7 +76,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(appState: store.state).route;
+                    path = navPathConfig(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -102,6 +104,7 @@ void main() {
             UpdateOnboardingStateAction(
               isPhoneVerified: true,
               hasSetSecurityQuestions: false,
+              currentOnboardingStage: CurrentOnboardingStage.Signup,
             ),
           );
 
@@ -115,7 +118,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(appState: store.state).route;
+                    path = navPathConfig(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -144,6 +147,7 @@ void main() {
               isPhoneVerified: true,
               hasSetSecurityQuestions: true,
               hasSetPin: false,
+              currentOnboardingStage: CurrentOnboardingStage.Signup,
             ),
           );
 
@@ -157,7 +161,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(appState: store.state).route;
+                    path = navPathConfig(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -186,6 +190,7 @@ void main() {
               isPhoneVerified: true,
               hasSetSecurityQuestions: true,
               hasSetPin: true,
+              currentOnboardingStage: CurrentOnboardingStage.Signup,
             ),
           );
 
@@ -199,7 +204,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(appState: store.state).route;
+                    path = navPathConfig(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -222,6 +227,12 @@ void main() {
             ),
           );
 
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.Signup,
+            ),
+          );
+
           String path = '';
 
           await buildTestWidget(
@@ -232,7 +243,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(appState: store.state).route;
+                    path = navPathConfig(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -243,6 +254,116 @@ void main() {
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.verifySignUpOTP);
+        });
+
+        testWidgets('should navigate to resume with PIN page when app resumes',
+            (WidgetTester tester) async {
+          store.dispatch(UpdateCredentialsAction(isSignedIn: true));
+          store.dispatch(
+            UpdateUserProfileAction(
+              pinChangeRequired: true,
+              isPhoneVerified: false,
+            ),
+          );
+
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.Login,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = navPathConfig(
+                      appState: store.state,
+                      calledOnResume: true,
+                    ).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.resumeWithPin);
+        });
+
+        testWidgets(
+            'should navigate to login page after successful PIN change '
+            'after expiry', (WidgetTester tester) async {
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.PINExpired,
+              isPINChanged: true,
+              isPhoneVerified: true,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = navPathConfig(appState: store.state).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.phoneLogin);
+        });
+
+        testWidgets(
+            'should navigate to login page after successful PIN change '
+            'after PIN reset', (WidgetTester tester) async {
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              isPINChanged: true,
+              isPhoneVerified: true,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = navPathConfig(appState: store.state).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.phoneLogin);
         });
 
         testWidgets('should navigate to login page page',
@@ -259,7 +380,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = onboardingPath(appState: store.state).route;
+                    path = navPathConfig(appState: store.state).nextRoute;
                   },
                 );
               },

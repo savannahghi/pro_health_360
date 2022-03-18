@@ -5,15 +5,17 @@ import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/nav_path_config.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class DeepLinkAction extends ReduxAction<AppState> {
   @override
   AppState? reduce() {
-    OnboardingPathConfig path;
+    late AppNavConfig navConfig;
 
     if (state.clientState?.user == null) {
-      path = OnboardingPathConfig(route: AppRoutes.phoneLogin);
+      navConfig =
+          AppNavConfig(nextRoute: AppRoutes.phoneLogin, previousRoute: '');
     }
 
     final DateTime now = DateTime.now();
@@ -23,21 +25,23 @@ class DeepLinkAction extends ReduxAction<AppState> {
     if (tokenExpiryTimestamp == null ||
         tokenExpiryTimestamp.isEmpty ||
         tokenExpiryTimestamp == UNKNOWN) {
-      path = OnboardingPathConfig(route: AppRoutes.phoneLogin);
+      navConfig =
+          AppNavConfig(nextRoute: AppRoutes.phoneLogin, previousRoute: '');
     } else {
       final DateTime expiresAt = DateTime.parse(tokenExpiryTimestamp);
 
       if (hasTokenExpired(expiresAt, now)) {
-        path = OnboardingPathConfig(route: AppRoutes.phoneLogin);
+        navConfig =
+            AppNavConfig(nextRoute: AppRoutes.phoneLogin, previousRoute: '');
       } else {
-        path = onboardingPath(appState: state);
+        navConfig = navPathConfig(appState: state);
       }
     }
 
     dispatch(
       NavigateAction<AppState>.pushNamed(
-        path.route,
-        arguments: path.arguments,
+        navConfig.nextRoute,
+        arguments: navConfig.arguments,
       ),
     );
 

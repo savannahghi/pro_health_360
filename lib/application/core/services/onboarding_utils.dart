@@ -2,7 +2,6 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -150,43 +149,12 @@ AppNavConfig navPathConfig({
 
     // (optional) set new security questions
 
-    // Always return the home page
-    return AppNavConfig(nextRoute: AppRoutes.home, previousRoute: '');
+    // Navigate user to the login page is they have successfully changed their PIN
+    return AppNavConfig(nextRoute: AppRoutes.phoneLogin, previousRoute: '');
   }
 
   // return the login page if anything else fails
   return AppNavConfig(nextRoute: AppRoutes.phoneLogin, previousRoute: '');
-}
-
-/// Determines the path to route the user to based on the app state
-OnboardingPathConfig onboardingPath({required AppState? appState}) {
-  final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
-  final bool termsAccepted =
-      appState?.clientState?.user?.termsAccepted ?? false;
-  final bool isPhoneVerified =
-      appState?.onboardingState?.isPhoneVerified ?? false;
-  final bool hasSetSecurityQuestions =
-      appState?.onboardingState?.hasSetSecurityQuestions ?? false;
-  final bool hasSetNickName =
-      appState?.onboardingState?.hasSetNickName ?? false;
-  final bool isPINSet =
-      appState?.onboardingState?.setPINState?.isPINSet ?? false;
-
-  if (!isSignedIn) {
-    return OnboardingPathConfig(route: AppRoutes.phoneLogin);
-  } else if (!isPhoneVerified) {
-    return OnboardingPathConfig(route: AppRoutes.verifySignUpOTP);
-  } else if (!termsAccepted) {
-    return OnboardingPathConfig(route: AppRoutes.termsAndConditions);
-  } else if (!hasSetSecurityQuestions) {
-    return OnboardingPathConfig(route: AppRoutes.securityQuestionsPage);
-  } else if (!isPINSet) {
-    return OnboardingPathConfig(route: AppRoutes.createPin);
-  } else if (!hasSetNickName) {
-    return OnboardingPathConfig(route: AppRoutes.congratulationsPage);
-  }
-
-  return OnboardingPathConfig(route: AppRoutes.home);
 }
 
 Future<void> setUserNickname({
