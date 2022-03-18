@@ -24,10 +24,6 @@ _$_OnboardingState _$$_OnboardingStateFromJson(Map<String, dynamic> json) =>
               ?.map((e) =>
                   SecurityQuestionResponse.fromJson(e as Map<String, dynamic>))
               .toList(),
-      verifyPhoneState: json['verifyPhoneState'] == null
-          ? null
-          : VerifyPhoneState.fromJson(
-              json['verifyPhoneState'] as Map<String, dynamic>),
       verifySecurityQuestionsState: json['verifySecurityQuestionsState'] == null
           ? null
           : VerifySecurityQuestionsState.fromJson(
@@ -64,7 +60,6 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
       'termsAndConditions': instance.termsAndConditions,
       'securityQuestions': instance.securityQuestions,
       'securityQuestionResponses': instance.securityQuestionResponses,
-      'verifyPhoneState': instance.verifyPhoneState,
       'verifySecurityQuestionsState': instance.verifySecurityQuestionsState,
       'setPINState': instance.setPINState,
       'pinExpiredState': instance.pinExpiredState,

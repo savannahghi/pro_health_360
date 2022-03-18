@@ -58,7 +58,7 @@ class CreatePINAction extends ReduxAction<AppState> {
     final String? confirmPIN =
         state.onboardingState!.createPINState!.confirmPIN;
 
-    final String? otp = state.onboardingState?.verifyPhoneState?.otp;
+    final String? otp = state.onboardingState?.otp;
     final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
         CurrentOnboardingStage.PINExpired;
 

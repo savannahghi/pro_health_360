@@ -46,12 +46,10 @@ class VerifyPhoneViewModel extends Vm {
       wait: state.wait,
       userID: state.clientState?.user?.userId ?? UNKNOWN,
       phoneNumber: state.clientState?.user?.primaryContact?.value ?? UNKNOWN,
-      otp: state.onboardingState?.verifyPhoneState?.otp ?? UNKNOWN,
-      invalidOTP: state.onboardingState?.verifyPhoneState?.invalidOTP ?? false,
-      failedToSendOTP:
-          state.onboardingState?.verifyPhoneState?.failedToSendOTP ?? false,
-      canResendOTP:
-          state.onboardingState?.verifyPhoneState?.canResendOTP ?? false,
+      otp: state.onboardingState?.otp ?? UNKNOWN,
+      invalidOTP: state.onboardingState?.invalidOTP ?? false,
+      failedToSendOTP: state.onboardingState?.failedToSendOTP ?? false,
+      canResendOTP: state.onboardingState?.canResendOTP ?? false,
       onboardingPhoneNumber: state.onboardingState?.phoneNumber ?? UNKNOWN,
       currentOnboardingStage: state.onboardingState?.currentOnboardingStage,
     );

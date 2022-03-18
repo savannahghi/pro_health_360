@@ -33,7 +33,6 @@ void main() {
             )
             .copyWith
             .onboardingState!
-            .verifyPhoneState!
             .call(otp: '123456', invalidOTP: false),
       );
     });

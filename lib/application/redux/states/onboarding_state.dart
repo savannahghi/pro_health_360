@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/domain/core/entities/login/create_pin.dart';
 import 'package:myafyahub/domain/core/entities/login/pin_expired_state.dart';
 import 'package:myafyahub/domain/core/entities/login/set_pin_state.dart';
-import 'package:myafyahub/domain/core/entities/login/verify_phone_state.dart';
 import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -20,7 +19,6 @@ class OnboardingState with _$OnboardingState {
     TermsAndConditions? termsAndConditions,
     List<SecurityQuestion>? securityQuestions,
     List<SecurityQuestionResponse>? securityQuestionResponses,
-    VerifyPhoneState? verifyPhoneState,
     VerifySecurityQuestionsState? verifySecurityQuestionsState,
     SetPINState? setPINState,
 
@@ -89,7 +87,6 @@ class OnboardingState with _$OnboardingState {
         createPINState: CreatePINState.initial(),
         securityQuestions: <SecurityQuestion>[],
         securityQuestionResponses: <SecurityQuestionResponse>[],
-        verifyPhoneState: VerifyPhoneState.initial(),
         verifySecurityQuestionsState: VerifySecurityQuestionsState.initial(),
         setPINState: SetPINState.initial(),
         isPhoneVerified: false,
@@ -99,5 +96,13 @@ class OnboardingState with _$OnboardingState {
         currentOnboardingStage: CurrentOnboardingStage.Login,
         pinExpiredState: PINExpiredState.initial(),
         phoneNumber: UNKNOWN,
+        invalidOTP: false,
+        otp: UNKNOWN,
+        failedLoginCount: 0,
+        failedToSendOTP: false,
+        canResendOTP: false,
+        pin: UNKNOWN,
+        confirmPIN: UNKNOWN,
+        invalidCredentials: false,
       );
 }
