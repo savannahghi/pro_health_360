@@ -72,6 +72,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 4;
+
+    // A small indicator to help us identify whether the app is running in
+    // staging or testing
+    final bool isAppTest =
+        AppWrapperBase.of(context)!.appContexts.contains(AppContext.AppTest);
+
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
@@ -94,9 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      SizedBox(
-                        height: sizedBoxHeight,
-                      ),
+                      SizedBox(height: sizedBoxHeight),
                       const OnboardingScaffoldHeader(
                         title: loginPageTitleString,
                         description: loginPageSubTitleString,
@@ -111,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                               children: <Widget>[
                                 largeVerticalSizedBox,
                                 Align(
-                                  alignment: Alignment.topLeft,
+                                  alignment: Alignment.centerLeft,
                                   child: Text(
                                     phoneNumberString,
                                     style: boldSize14Text(
@@ -274,7 +278,9 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }
                       },
-                      buttonColor: AppColors.primaryColor,
+                      buttonColor: isAppTest
+                          ? AppColors.greenHappyColor
+                          : AppColors.primaryColor,
                       borderColor: Colors.transparent,
                       text: continueString,
                     ),
