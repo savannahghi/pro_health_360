@@ -19,7 +19,7 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
 import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
-import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_page.dart';
+import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 
 import '../../../mocks.dart';
@@ -83,7 +83,9 @@ void main() {
       mockLoginResponse.addAll(<String, dynamic>{'getCurrentTerms': termsMock});
       mockLoginResponse.addAll(
         <String, dynamic>{
-          'data': <String, dynamic>{'getCurrentTerms': termsMock}
+          'data': <String, dynamic>{
+            'sendOTP': '123456',
+          }
         },
       );
 
@@ -132,9 +134,10 @@ void main() {
         await tester.tap(continueButton);
         await tester.pumpAndSettle();
 
-        expect(find.byType(TermsAndConditionsPage), findsOneWidget);
+        expect(find.byType(VerifyPhonePage), findsOneWidget);
       });
     });
+
     testWidgets(
         'should navigate to counter page in case of exponential back off and return to login after timer',
         (WidgetTester tester) async {

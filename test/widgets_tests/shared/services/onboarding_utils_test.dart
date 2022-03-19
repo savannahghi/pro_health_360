@@ -78,7 +78,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -120,7 +120,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -163,7 +163,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -206,7 +206,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -245,7 +245,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -303,7 +303,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -337,7 +337,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -357,6 +357,8 @@ void main() {
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
               isPhoneVerified: true,
+              hasSetPin: true,
+              hasSetSecurityQuestions: true,
             ),
           );
 
@@ -370,7 +372,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },
@@ -381,6 +383,109 @@ void main() {
           await tester.pumpAndSettle();
 
           expect(path, AppRoutes.phoneLogin);
+        });
+
+        testWidgets('should navigate verify phone page when changing the PIN',
+            (WidgetTester tester) async {
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              isPhoneVerified: false,
+              hasSetPin: true,
+              hasSetSecurityQuestions: true,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(appState: store.state).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.verifySignUpOTP);
+        });
+
+        testWidgets('should navigate create PIN page when changing the PIN',
+            (WidgetTester tester) async {
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              isPhoneVerified: true,
+              hasSetPin: false,
+              hasSetSecurityQuestions: true,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(appState: store.state).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.createPin);
+        });
+
+        testWidgets(
+            'should navigate security questions page when changing the PIN',
+            (WidgetTester tester) async {
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              isPhoneVerified: true,
+              hasSetPin: true,
+              hasSetSecurityQuestions: false,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(appState: store.state).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.securityQuestionsPage);
         });
 
         testWidgets('should navigate to login page page',
@@ -397,7 +502,7 @@ void main() {
               builder: (BuildContext context) {
                 return MyAfyaHubPrimaryButton(
                   onPressed: () {
-                    path = navPathConfig(appState: store.state).nextRoute;
+                    path = onboardingPath(appState: store.state).nextRoute;
                   },
                 );
               },

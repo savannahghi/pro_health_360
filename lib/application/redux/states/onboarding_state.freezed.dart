@@ -33,6 +33,7 @@ class _$OnboardingStateTearOff {
       bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName,
       bool? hasSetPin,
+      bool? hasAcceptedTerms,
       String? phoneNumber,
       String? pin,
       String? confirmPIN,
@@ -53,6 +54,7 @@ class _$OnboardingStateTearOff {
       hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions,
       hasSetNickName: hasSetNickName,
       hasSetPin: hasSetPin,
+      hasAcceptedTerms: hasAcceptedTerms,
       phoneNumber: phoneNumber,
       pin: pin,
       confirmPIN: confirmPIN,
@@ -98,7 +100,9 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError; // If the user has set their nickname
   bool? get hasSetNickName =>
       throw _privateConstructorUsedError; // Whether the user's PIN has been set
-  bool? get hasSetPin => throw _privateConstructorUsedError;
+  bool? get hasSetPin =>
+      throw _privateConstructorUsedError; // Whether the user has accepted terms and conditions
+  bool? get hasAcceptedTerms => throw _privateConstructorUsedError;
 
   ///------------WORKFLOW RELATED VALUES------------
 // The currently active user's phone number
@@ -144,6 +148,7 @@ abstract class $OnboardingStateCopyWith<$Res> {
       bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName,
       bool? hasSetPin,
+      bool? hasAcceptedTerms,
       String? phoneNumber,
       String? pin,
       String? confirmPIN,
@@ -179,6 +184,7 @@ class _$OnboardingStateCopyWithImpl<$Res>
     Object? hasVerifiedSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
     Object? hasSetPin = freezed,
+    Object? hasAcceptedTerms = freezed,
     Object? phoneNumber = freezed,
     Object? pin = freezed,
     Object? confirmPIN = freezed,
@@ -229,6 +235,10 @@ class _$OnboardingStateCopyWithImpl<$Res>
       hasSetPin: hasSetPin == freezed
           ? _value.hasSetPin
           : hasSetPin // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasAcceptedTerms: hasAcceptedTerms == freezed
+          ? _value.hasAcceptedTerms
+          : hasAcceptedTerms // ignore: cast_nullable_to_non_nullable
               as bool?,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
@@ -313,6 +323,7 @@ abstract class _$OnboardingStateCopyWith<$Res>
       bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName,
       bool? hasSetPin,
+      bool? hasAcceptedTerms,
       String? phoneNumber,
       String? pin,
       String? confirmPIN,
@@ -352,6 +363,7 @@ class __$OnboardingStateCopyWithImpl<$Res>
     Object? hasVerifiedSecurityQuestions = freezed,
     Object? hasSetNickName = freezed,
     Object? hasSetPin = freezed,
+    Object? hasAcceptedTerms = freezed,
     Object? phoneNumber = freezed,
     Object? pin = freezed,
     Object? confirmPIN = freezed,
@@ -402,6 +414,10 @@ class __$OnboardingStateCopyWithImpl<$Res>
       hasSetPin: hasSetPin == freezed
           ? _value.hasSetPin
           : hasSetPin // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasAcceptedTerms: hasAcceptedTerms == freezed
+          ? _value.hasAcceptedTerms
+          : hasAcceptedTerms // ignore: cast_nullable_to_non_nullable
               as bool?,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
@@ -457,6 +473,7 @@ class _$_OnboardingState implements _OnboardingState {
       this.hasVerifiedSecurityQuestions,
       this.hasSetNickName,
       this.hasSetPin,
+      this.hasAcceptedTerms,
       this.phoneNumber,
       this.pin,
       this.confirmPIN,
@@ -495,6 +512,8 @@ class _$_OnboardingState implements _OnboardingState {
   final bool? hasSetNickName;
   @override // Whether the user's PIN has been set
   final bool? hasSetPin;
+  @override // Whether the user has accepted terms and conditions
+  final bool? hasAcceptedTerms;
   @override
 
   ///------------WORKFLOW RELATED VALUES------------
@@ -525,7 +544,7 @@ class _$_OnboardingState implements _OnboardingState {
 
   @override
   String toString() {
-    return 'OnboardingState(termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
+    return 'OnboardingState(termsAndConditions: $termsAndConditions, securityQuestions: $securityQuestions, securityQuestionResponses: $securityQuestionResponses, verifySecurityQuestionsState: $verifySecurityQuestionsState, currentOnboardingStage: $currentOnboardingStage, isPhoneVerified: $isPhoneVerified, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasVerifiedSecurityQuestions: $hasVerifiedSecurityQuestions, hasSetNickName: $hasSetNickName, hasSetPin: $hasSetPin, hasAcceptedTerms: $hasAcceptedTerms, phoneNumber: $phoneNumber, pin: $pin, confirmPIN: $confirmPIN, otp: $otp, failedLoginCount: $failedLoginCount, invalidCredentials: $invalidCredentials, invalidOTP: $invalidOTP, failedToSendOTP: $failedToSendOTP, canResendOTP: $canResendOTP)';
   }
 
   @override
@@ -554,6 +573,8 @@ class _$_OnboardingState implements _OnboardingState {
             const DeepCollectionEquality()
                 .equals(other.hasSetNickName, hasSetNickName) &&
             const DeepCollectionEquality().equals(other.hasSetPin, hasSetPin) &&
+            const DeepCollectionEquality()
+                .equals(other.hasAcceptedTerms, hasAcceptedTerms) &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.pin, pin) &&
@@ -585,6 +606,7 @@ class _$_OnboardingState implements _OnboardingState {
         const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions),
         const DeepCollectionEquality().hash(hasSetNickName),
         const DeepCollectionEquality().hash(hasSetPin),
+        const DeepCollectionEquality().hash(hasAcceptedTerms),
         const DeepCollectionEquality().hash(phoneNumber),
         const DeepCollectionEquality().hash(pin),
         const DeepCollectionEquality().hash(confirmPIN),
@@ -619,6 +641,7 @@ abstract class _OnboardingState implements OnboardingState {
       bool? hasVerifiedSecurityQuestions,
       bool? hasSetNickName,
       bool? hasSetPin,
+      bool? hasAcceptedTerms,
       String? phoneNumber,
       String? pin,
       String? confirmPIN,
@@ -657,6 +680,8 @@ abstract class _OnboardingState implements OnboardingState {
   bool? get hasSetNickName;
   @override // Whether the user's PIN has been set
   bool? get hasSetPin;
+  @override // Whether the user has accepted terms and conditions
+  bool? get hasAcceptedTerms;
   @override
 
   ///------------WORKFLOW RELATED VALUES------------

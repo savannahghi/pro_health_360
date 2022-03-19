@@ -79,7 +79,7 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
       ),
     );
 
-    final String route = navPathConfig(appState: state).nextRoute;
+    final String route = onboardingPath(appState: state).nextRoute;
 
     Navigator.pushReplacementNamed(
       context,

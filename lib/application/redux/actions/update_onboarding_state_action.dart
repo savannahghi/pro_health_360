@@ -25,6 +25,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.pin,
     this.confirmPIN,
     this.failedLoginCount,
+    this.hasAcceptedTerms,
   });
 
   List<SecurityQuestion>? securityQuestions;
@@ -36,6 +37,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   bool? hasSetSecurityQuestions;
   bool? hasVerifiedSecurityQuestions;
   bool? hasSetNickName;
+  bool? hasAcceptedTerms;
 
   ///------------WORKFLOW RELATED VALUES------------
   final String? phoneNumber;
@@ -84,10 +86,25 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       failedToSendOTP:
           failedToSendOTP ?? onboardingStateFromState?.failedToSendOTP,
       canResendOTP: canResendOTP ?? onboardingStateFromState?.canResendOTP,
+      phoneNumber: phoneNumber ?? onboardingStateFromState?.phoneNumber,
+      hasAcceptedTerms:
+          hasAcceptedTerms ?? onboardingStateFromState?.hasAcceptedTerms,
     );
 
     final AppState newState =
         state.copyWith(onboardingState: newOnboardingState);
+
+    return newState;
+  }
+}
+
+class ResetOnboardingStateAction extends ReduxAction<AppState> {
+  ResetOnboardingStateAction();
+
+  @override
+  AppState reduce() {
+    final AppState newState =
+        state.copyWith(onboardingState: OnboardingState.initial());
 
     return newState;
   }

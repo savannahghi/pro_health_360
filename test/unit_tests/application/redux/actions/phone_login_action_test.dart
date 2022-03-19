@@ -32,10 +32,10 @@ void main() {
     setUp(() {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
-          onboardingState: OnboardingState(
-            phoneNumber: '+254798000000',
-            pin: '0000',
-          ),
+          onboardingState: OnboardingState.initial().copyWith.call(
+                phoneNumber: '+254798000000',
+                pin: '0000',
+              ),
         ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
@@ -288,6 +288,7 @@ void main() {
 
       expect(info.error, isInstanceOf<MyAfyaException>());
     });
+
     test('should change to new user workflow when pin change is required',
         () async {
       storeTester.dispatch(
@@ -304,6 +305,7 @@ void main() {
           errorCallback: (_) {},
         ),
       );
+
       storeTester.dispatch(UpdateUserProfileAction(pinChangeRequired: true));
 
       final TestInfo<AppState> info =

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/nav_path_config.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -28,8 +28,9 @@ class PinExpiredPage extends StatelessWidget {
           ),
         );
 
-        final AppNavConfig config =
-            navPathConfig(appState: StoreProvider.state<AppState>(context));
+        final OnboardingPathInfo config = onboardingPath(
+          appState: StoreProvider.state<AppState>(context),
+        );
 
         Navigator.of(context).pushReplacementNamed(config.nextRoute);
       },

@@ -38,6 +38,9 @@ class OnboardingState with _$OnboardingState {
     // Whether the user's PIN has been set
     final bool? hasSetPin,
 
+    // Whether the user has accepted terms and conditions
+    final bool? hasAcceptedTerms,
+
     ///------------WORKFLOW RELATED VALUES------------
     // The currently active user's phone number
     final String? phoneNumber,
@@ -94,5 +97,6 @@ class OnboardingState with _$OnboardingState {
         confirmPIN: UNKNOWN,
         invalidCredentials: false,
         hasSetPin: false,
+        hasAcceptedTerms: false,
       );
 }

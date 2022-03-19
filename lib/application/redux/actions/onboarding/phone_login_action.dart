@@ -16,11 +16,10 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/nav_path_config.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -124,16 +123,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             loginResponse.userResponse!.clientState!.user!.pinChangeRequired ??
                 false;
 
+        // Check if this is a new user and kickstart the signup process
         if (pinChangeRequired) {
-          // Change the workflow to that of a new user
-          dispatch(
-            UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.Login,
-            ),
-          );
-
           // Navigate user to the correct route based on the state
-          final AppNavConfig navConfig = navPathConfig(appState: state);
+          final OnboardingPathInfo navConfig =
+              onboardingPath(appState: state);
 
           dispatch(
             NavigateAction<AppState>.pushNamedAndRemoveUntil(
@@ -159,10 +153,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         dispatch(
           UpdateOnboardingStateAction(
+            isPhoneVerified: user?.isPhoneVerified,
             hasSetNickName: user?.username != null,
             hasSetSecurityQuestions: user?.hasSetSecurityQuestions,
             hasSetPin: user?.hasSetPin,
-            isPhoneVerified: user?.isPhoneVerified,
+            hasAcceptedTerms: user?.termsAccepted,
           ),
         );
 
@@ -185,7 +180,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final AppNavConfig navConfig = navPathConfig(appState: state);
+        final OnboardingPathInfo navConfig =
+            onboardingPath(appState: state);
 
         dispatch(
           NavigateAction<AppState>.pushNamedAndRemoveUntil(
