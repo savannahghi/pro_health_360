@@ -15,7 +15,6 @@ _$_NotificationDetails _$$_NotificationDetailsFromJson(
       actions: (json['actions'] as List<dynamic>?)
           ?.map((e) => NotificationActions.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: json['status'] as String?,
     );
 
 Map<String, dynamic> _$$_NotificationDetailsToJson(
@@ -25,5 +24,4 @@ Map<String, dynamic> _$$_NotificationDetailsToJson(
       'description': instance.description,
       'date': instance.date,
       'actions': instance.actions,
-      'status': instance.status,
     };

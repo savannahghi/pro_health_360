@@ -43,22 +43,6 @@ class NotificationListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 6),
-              // The status indicator badge
-              if (notificationDetails.status != null &&
-                  notificationDetails.status!.isNotEmpty)
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.redColor.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-                  margin: const EdgeInsets.only(bottom: 5),
-                  child: Text(
-                    notificationDetails.status!,
-                    style: boldSize12Text(AppColors.redColor),
-                  ),
-                ),
               Text(
                 notificationDetails.description,
                 style: normalSize12Text(AppColors.secondaryColor),

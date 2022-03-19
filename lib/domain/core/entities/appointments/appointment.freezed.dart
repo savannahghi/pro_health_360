@@ -23,12 +23,18 @@ class _$AppointmentTearOff {
   const _$AppointmentTearOff();
 
   _Appointment call(
-      {@JsonKey(name: 'type') required String? type,
-      @JsonKey(name: 'reason') required String? reason,
-      @JsonKey(name: 'status') AppointmentStatus? status,
-      @JsonKey(name: 'date') required String? date,
-      @JsonKey(name: 'start') required String? start,
-      @JsonKey(name: 'end') required String? end}) {
+      {@JsonKey(name: 'type')
+          required String? type,
+      @JsonKey(name: 'reason')
+          required String? reason,
+      @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
+          AppointmentStatus? status,
+      @JsonKey(name: 'date')
+          required String? date,
+      @JsonKey(name: 'start')
+          required String? start,
+      @JsonKey(name: 'end')
+          required String? end}) {
     return _Appointment(
       type: type,
       reason: reason,
@@ -53,7 +59,7 @@ mixin _$Appointment {
   String? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'reason')
   String? get reason => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
+  @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
   AppointmentStatus? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
   String? get date => throw _privateConstructorUsedError;
@@ -74,12 +80,18 @@ abstract class $AppointmentCopyWith<$Res> {
           Appointment value, $Res Function(Appointment) then) =
       _$AppointmentCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'reason') String? reason,
-      @JsonKey(name: 'status') AppointmentStatus? status,
-      @JsonKey(name: 'date') String? date,
-      @JsonKey(name: 'start') String? start,
-      @JsonKey(name: 'end') String? end});
+      {@JsonKey(name: 'type')
+          String? type,
+      @JsonKey(name: 'reason')
+          String? reason,
+      @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
+          AppointmentStatus? status,
+      @JsonKey(name: 'date')
+          String? date,
+      @JsonKey(name: 'start')
+          String? start,
+      @JsonKey(name: 'end')
+          String? end});
 }
 
 /// @nodoc
@@ -136,12 +148,18 @@ abstract class _$AppointmentCopyWith<$Res>
       __$AppointmentCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'reason') String? reason,
-      @JsonKey(name: 'status') AppointmentStatus? status,
-      @JsonKey(name: 'date') String? date,
-      @JsonKey(name: 'start') String? start,
-      @JsonKey(name: 'end') String? end});
+      {@JsonKey(name: 'type')
+          String? type,
+      @JsonKey(name: 'reason')
+          String? reason,
+      @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
+          AppointmentStatus? status,
+      @JsonKey(name: 'date')
+          String? date,
+      @JsonKey(name: 'start')
+          String? start,
+      @JsonKey(name: 'end')
+          String? end});
 }
 
 /// @nodoc
@@ -196,12 +214,18 @@ class __$AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Appointment implements _Appointment {
   _$_Appointment(
-      {@JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'reason') required this.reason,
-      @JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'start') required this.start,
-      @JsonKey(name: 'end') required this.end});
+      {@JsonKey(name: 'type')
+          required this.type,
+      @JsonKey(name: 'reason')
+          required this.reason,
+      @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
+          this.status,
+      @JsonKey(name: 'date')
+          required this.date,
+      @JsonKey(name: 'start')
+          required this.start,
+      @JsonKey(name: 'end')
+          required this.end});
 
   factory _$_Appointment.fromJson(Map<String, dynamic> json) =>
       _$$_AppointmentFromJson(json);
@@ -213,7 +237,7 @@ class _$_Appointment implements _Appointment {
   @JsonKey(name: 'reason')
   final String? reason;
   @override
-  @JsonKey(name: 'status')
+  @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
   final AppointmentStatus? status;
   @override
   @JsonKey(name: 'date')
@@ -266,12 +290,18 @@ class _$_Appointment implements _Appointment {
 
 abstract class _Appointment implements Appointment {
   factory _Appointment(
-      {@JsonKey(name: 'type') required String? type,
-      @JsonKey(name: 'reason') required String? reason,
-      @JsonKey(name: 'status') AppointmentStatus? status,
-      @JsonKey(name: 'date') required String? date,
-      @JsonKey(name: 'start') required String? start,
-      @JsonKey(name: 'end') required String? end}) = _$_Appointment;
+      {@JsonKey(name: 'type')
+          required String? type,
+      @JsonKey(name: 'reason')
+          required String? reason,
+      @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
+          AppointmentStatus? status,
+      @JsonKey(name: 'date')
+          required String? date,
+      @JsonKey(name: 'start')
+          required String? start,
+      @JsonKey(name: 'end')
+          required String? end}) = _$_Appointment;
 
   factory _Appointment.fromJson(Map<String, dynamic> json) =
       _$_Appointment.fromJson;
@@ -283,7 +313,7 @@ abstract class _Appointment implements Appointment {
   @JsonKey(name: 'reason')
   String? get reason;
   @override
-  @JsonKey(name: 'status')
+  @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
   AppointmentStatus? get status;
   @override
   @JsonKey(name: 'date')

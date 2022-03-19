@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 
@@ -16,11 +17,11 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 
@@ -137,7 +138,7 @@ class _FeedPageState extends State<FeedPage> {
                     ),
                   );
                 } else if (feedItems != null) {
-                  return ContentZeroStateWidget(
+                  return GenericZeroStateWidget(
                     callBackFunction: () {
                       StoreProvider.dispatch<AppState>(
                         context,
@@ -147,6 +148,10 @@ class _FeedPageState extends State<FeedPage> {
                         ),
                       );
                     },
+                    iconUrl: contentZeroStateImageUrl,
+                    title: contentZeroStateTitle,
+                    description: contentZeroStateDescription,
+                    buttonText: contentZeroStateButtonText,
                   );
                 }
               }

@@ -10,9 +10,10 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/FAQs/faqs_content_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -114,7 +115,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                             },
                           );
                         } else if (faqsContent != null) {
-                          return ContentZeroStateWidget(
+                          return GenericZeroStateWidget(
                             callBackFunction: () {
                               StoreProvider.dispatch<AppState>(
                                 context,
@@ -123,6 +124,10 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                                 ),
                               );
                             },
+                            iconUrl: contentZeroStateImageUrl,
+                            title: contentZeroStateTitle,
+                            description: contentZeroStateDescription,
+                            buttonText: contentZeroStateButtonText,
                           );
                         }
                       }

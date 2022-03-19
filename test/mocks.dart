@@ -1526,7 +1526,6 @@ final Group mockGroup = Group(
   memberCount: 0,
 );
 
-// TODO!!(abiud): fix this once the onboarding state refactor is complete
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'termsAndConditions': TermsAndConditions.initial().toJson(),
   'securityQuestions': <Map<String, dynamic>>[

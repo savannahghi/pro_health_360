@@ -15,7 +15,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
 
 // Project imports:
@@ -27,6 +26,7 @@ import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/widgets/recent_content_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -188,12 +188,12 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(ContentZeroStateWidget), findsWidgets);
+        expect(find.byType(GenericZeroStateWidget), findsWidgets);
 
-        //Click ContentZeroStateWidget callback button
+        //Click GenericZeroStateWidget callback button
         await tester.tap(find.byType(MyAfyaHubPrimaryButton));
 
-        expect(find.byType(ContentZeroStateWidget), findsWidgets);
+        expect(find.byType(GenericZeroStateWidget), findsWidgets);
       });
     });
 

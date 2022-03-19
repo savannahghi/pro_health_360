@@ -10,7 +10,8 @@ _$_Appointment _$$_AppointmentFromJson(Map<String, dynamic> json) =>
     _$_Appointment(
       type: json['type'] as String?,
       reason: json['reason'] as String?,
-      status: $enumDecodeNullable(_$AppointmentStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(_$AppointmentStatusEnumMap, json['status']) ??
+          AppointmentStatus.UNKNOWN,
       date: json['date'] as String?,
       start: json['start'] as String?,
       end: json['end'] as String?,
@@ -36,4 +37,5 @@ const _$AppointmentStatusEnumMap = {
   AppointmentStatus.WalkIn: 'WalkIn',
   AppointmentStatus.Cancelled: 'Cancelled',
   AppointmentStatus.NeedsReschedule: 'NeedsReschedule',
+  AppointmentStatus.UNKNOWN: 'UNKNOWN',
 };

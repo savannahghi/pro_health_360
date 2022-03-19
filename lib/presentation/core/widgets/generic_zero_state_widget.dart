@@ -4,15 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 
-class ContentZeroStateWidget extends StatelessWidget {
-  const ContentZeroStateWidget({this.callBackFunction});
+class GenericZeroStateWidget extends StatelessWidget {
+  const GenericZeroStateWidget({
+    required this.callBackFunction,
+    required this.iconUrl,
+    required this.title,
+    required this.description,
+    required this.buttonText,
+  });
 
+  final String buttonText;
   final VoidCallback? callBackFunction;
+  final String description;
+  final String iconUrl;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +31,14 @@ class ContentZeroStateWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: SvgPicture.asset(
-              contentZeroStateImageUrl,
+              iconUrl,
               height: MediaQuery.of(context).size.height / 3,
               width: 250,
             ),
           ),
           smallVerticalSizedBox,
           Text(
-            contentZeroStateTitle,
+            title,
             style: boldSize16Text(
               AppColors.readTimeBackgroundColor,
             ),
@@ -38,7 +46,7 @@ class ContentZeroStateWidget extends StatelessWidget {
           ),
           smallVerticalSizedBox,
           Text(
-            contentZeroStateDescription,
+            description,
             style: normalSize15Text(
               darkGreyTextColor,
             ),
@@ -49,7 +57,7 @@ class ContentZeroStateWidget extends StatelessWidget {
             height: 48,
             width: double.infinity,
             child: MyAfyaHubPrimaryButton(
-              text: contentZeroStateButtonText,
+              text: buttonText,
               textColor: AppColors.whiteColor,
               buttonColor: Theme.of(context).primaryColor,
               borderColor: Theme.of(context).primaryColor,

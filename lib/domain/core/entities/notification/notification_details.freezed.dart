@@ -26,14 +26,12 @@ class _$NotificationDetailsTearOff {
       {@JsonKey(name: 'icon') required IconDetails icon,
       @JsonKey(name: 'description') required String description,
       @JsonKey(name: 'date') required String date,
-      @JsonKey(name: 'actions') List<NotificationActions>? actions,
-      @JsonKey(name: 'status') String? status}) {
+      @JsonKey(name: 'actions') List<NotificationActions>? actions}) {
     return _NotificationDetails(
       icon: icon,
       description: description,
       date: date,
       actions: actions,
-      status: status,
     );
   }
 
@@ -55,8 +53,6 @@ mixin _$NotificationDetails {
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'actions')
   List<NotificationActions>? get actions => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,8 +69,7 @@ abstract class $NotificationDetailsCopyWith<$Res> {
       {@JsonKey(name: 'icon') IconDetails icon,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'date') String date,
-      @JsonKey(name: 'actions') List<NotificationActions>? actions,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'actions') List<NotificationActions>? actions});
 
   $IconDetailsCopyWith<$Res> get icon;
 }
@@ -94,7 +89,6 @@ class _$NotificationDetailsCopyWithImpl<$Res>
     Object? description = freezed,
     Object? date = freezed,
     Object? actions = freezed,
-    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       icon: icon == freezed
@@ -113,10 +107,6 @@ class _$NotificationDetailsCopyWithImpl<$Res>
           ? _value.actions
           : actions // ignore: cast_nullable_to_non_nullable
               as List<NotificationActions>?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 
@@ -139,8 +129,7 @@ abstract class _$NotificationDetailsCopyWith<$Res>
       {@JsonKey(name: 'icon') IconDetails icon,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'date') String date,
-      @JsonKey(name: 'actions') List<NotificationActions>? actions,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'actions') List<NotificationActions>? actions});
 
   @override
   $IconDetailsCopyWith<$Res> get icon;
@@ -163,7 +152,6 @@ class __$NotificationDetailsCopyWithImpl<$Res>
     Object? description = freezed,
     Object? date = freezed,
     Object? actions = freezed,
-    Object? status = freezed,
   }) {
     return _then(_NotificationDetails(
       icon: icon == freezed
@@ -182,10 +170,6 @@ class __$NotificationDetailsCopyWithImpl<$Res>
           ? _value.actions
           : actions // ignore: cast_nullable_to_non_nullable
               as List<NotificationActions>?,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -197,8 +181,7 @@ class _$_NotificationDetails implements _NotificationDetails {
       {@JsonKey(name: 'icon') required this.icon,
       @JsonKey(name: 'description') required this.description,
       @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'actions') this.actions,
-      @JsonKey(name: 'status') this.status});
+      @JsonKey(name: 'actions') this.actions});
 
   factory _$_NotificationDetails.fromJson(Map<String, dynamic> json) =>
       _$$_NotificationDetailsFromJson(json);
@@ -215,13 +198,10 @@ class _$_NotificationDetails implements _NotificationDetails {
   @override
   @JsonKey(name: 'actions')
   final List<NotificationActions>? actions;
-  @override
-  @JsonKey(name: 'status')
-  final String? status;
 
   @override
   String toString() {
-    return 'NotificationDetails(icon: $icon, description: $description, date: $date, actions: $actions, status: $status)';
+    return 'NotificationDetails(icon: $icon, description: $description, date: $date, actions: $actions)';
   }
 
   @override
@@ -233,8 +213,7 @@ class _$_NotificationDetails implements _NotificationDetails {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(other.actions, actions) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.actions, actions));
   }
 
   @override
@@ -243,8 +222,7 @@ class _$_NotificationDetails implements _NotificationDetails {
       const DeepCollectionEquality().hash(icon),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(actions),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(actions));
 
   @JsonKey(ignore: true)
   @override
@@ -260,11 +238,11 @@ class _$_NotificationDetails implements _NotificationDetails {
 
 abstract class _NotificationDetails implements NotificationDetails {
   factory _NotificationDetails(
-      {@JsonKey(name: 'icon') required IconDetails icon,
-      @JsonKey(name: 'description') required String description,
-      @JsonKey(name: 'date') required String date,
-      @JsonKey(name: 'actions') List<NotificationActions>? actions,
-      @JsonKey(name: 'status') String? status}) = _$_NotificationDetails;
+          {@JsonKey(name: 'icon') required IconDetails icon,
+          @JsonKey(name: 'description') required String description,
+          @JsonKey(name: 'date') required String date,
+          @JsonKey(name: 'actions') List<NotificationActions>? actions}) =
+      _$_NotificationDetails;
 
   factory _NotificationDetails.fromJson(Map<String, dynamic> json) =
       _$_NotificationDetails.fromJson;
@@ -281,9 +259,6 @@ abstract class _NotificationDetails implements NotificationDetails {
   @override
   @JsonKey(name: 'actions')
   List<NotificationActions>? get actions;
-  @override
-  @JsonKey(name: 'status')
-  String? get status;
   @override
   @JsonKey(ignore: true)
   _$NotificationDetailsCopyWith<_NotificationDetails> get copyWith =>

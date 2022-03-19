@@ -1,15 +1,15 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
 
-// Project imports:
-
-class AppointmentListWrapper extends StatelessWidget {
-  const AppointmentListWrapper({required this.appointments});
-
-  ///[AppointmentListWrapper] renders notifications as a list for appointments page
-  final List<Appointment> appointments;
+class UpcomingAppointments extends StatelessWidget {
+  final List<Appointment> appointments = <Appointment>[
+    ...pastAppointments,
+    ...pastAppointments
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,10 @@ class AppointmentListWrapper extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.only(top: 15),
-          child: AppointmentListItem(appointment: currentAppointmentDetails),
+          child: AppointmentListItem(
+            appointment: currentAppointmentDetails,
+            appointmentListTye: AppointmentListTye.Upcoming,
+          ),
         );
       },
     );

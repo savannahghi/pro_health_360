@@ -20,8 +20,8 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
-import 'package:myafyahub/presentation/content/widgets/content_zero_state_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -111,10 +111,10 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(ContentZeroStateWidget), findsOneWidget);
+        expect(find.byType(GenericZeroStateWidget), findsOneWidget);
 
         await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-        expect(find.byType(ContentZeroStateWidget), findsOneWidget);
+        expect(find.byType(GenericZeroStateWidget), findsOneWidget);
       });
 
       addTearDown(() {

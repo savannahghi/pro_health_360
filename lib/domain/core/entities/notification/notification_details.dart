@@ -13,7 +13,6 @@ class NotificationDetails with _$NotificationDetails {
     @JsonKey(name: 'description') required String description,
     @JsonKey(name: 'date') required String date,
     @JsonKey(name: 'actions') List<NotificationActions>? actions,
-    @JsonKey(name: 'status') String? status,
   }) = _NotificationDetails;
 
   factory NotificationDetails.fromJson(Map<String, dynamic> json) =>

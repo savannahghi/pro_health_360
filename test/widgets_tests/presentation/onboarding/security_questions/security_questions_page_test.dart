@@ -171,7 +171,7 @@ void main() {
       });
     });
 
-    testWidgets('date picker text field renders correctly',
+    testWidgets('date picker TextField renders correctly',
         (WidgetTester tester) async {
       tester.binding.window.devicePixelRatioTestValue = 1.0;
       tester.binding.window.physicalSizeTestValue =

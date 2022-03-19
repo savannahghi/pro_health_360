@@ -123,4 +123,7 @@ enum AppointmentStatus {
   WalkIn,
   Cancelled,
   NeedsReschedule,
+  UNKNOWN,
 }
+
+enum AppointmentListTye { Past, Upcoming }

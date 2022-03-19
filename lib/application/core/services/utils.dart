@@ -336,12 +336,6 @@ final NotificationActions calendarAction = NotificationActions(
   route: '',
 );
 
-final NotificationActions rescheduleAction = NotificationActions(
-  icon: IconDetails(iconUrlSvgPath: calendarIcon),
-  name: 'Reschedule',
-  route: '',
-);
-
 List<NotificationDetails> notifications = <NotificationDetails>[
   NotificationDetails(
     icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),

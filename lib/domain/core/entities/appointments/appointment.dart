@@ -9,7 +9,8 @@ class Appointment with _$Appointment {
   factory Appointment({
     @JsonKey(name: 'type') required String? type,
     @JsonKey(name: 'reason') required String? reason,
-    @JsonKey(name: 'status') AppointmentStatus? status,
+    @JsonKey(name: 'status', defaultValue: AppointmentStatus.UNKNOWN)
+        AppointmentStatus? status,
     @JsonKey(name: 'date') required String? date,
     @JsonKey(name: 'start') required String? start,
     @JsonKey(name: 'end') required String? end,

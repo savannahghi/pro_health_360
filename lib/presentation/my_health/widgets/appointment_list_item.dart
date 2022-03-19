@@ -14,9 +14,13 @@ import 'package:unicons/unicons.dart';
 
 /// [AppointmentListItem] Displays the notifications with Icons and a short description
 class AppointmentListItem extends StatelessWidget {
-  const AppointmentListItem({required this.appointment});
+  const AppointmentListItem({
+    required this.appointment,
+    required this.appointmentListTye,
+  });
 
   final Appointment appointment;
+  final AppointmentListTye appointmentListTye;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +62,7 @@ class AppointmentListItem extends StatelessWidget {
                 appointmentStatus: appointment.status!,
               ),
               MyAfyaHubPrimaryButton(
+                buttonKey: addToCalendarKey,
                 buttonColor: AppColors.primaryColor.withOpacity(0.14),
                 text: addCalendarText,
                 textStyle: normalSize15Text(AppColors.primaryColor),

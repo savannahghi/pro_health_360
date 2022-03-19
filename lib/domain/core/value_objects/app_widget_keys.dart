@@ -303,3 +303,6 @@ const Key optOutInfoItemKey = Key('opt_out_info_item_key');
 const Key changeMyPinButtonKey = Key('change_my_pin');
 const Key resetPINButtonKey = Key('reset_pin_button_key');
 const Key cccInputKey = Key('ccc_input_key');
+
+// Appointment keys
+const Key addToCalendarKey = Key('add_to_calendar');

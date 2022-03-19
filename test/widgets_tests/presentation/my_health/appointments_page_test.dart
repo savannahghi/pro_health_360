@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
-import 'package:myafyahub/presentation/my_health/widgets/appointments_list.dart';
+import 'package:myafyahub/presentation/my_health/widgets/past_appointments.dart';
 import '../../../test_helpers.dart';
 
 void main() {
@@ -44,7 +44,7 @@ void main() {
       await tester.tap(find.text(pastAppointmentsText));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppointmentListWrapper), findsWidgets);
+      expect(find.byType(PastAppointments), findsWidgets);
     });
   });
 }

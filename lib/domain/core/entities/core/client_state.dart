@@ -3,6 +3,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/application/redux/states/communities_state.dart';
+import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/address.dart';
@@ -42,6 +43,12 @@ class ClientState with _$ClientState {
 
     // communities state
     CommunitiesState? communitiesState,
+
+    // Past appointments
+    List<Appointment>? pastAppointments,
+
+    // // Past appointments
+    List<Appointment>? upcomingAppointments,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>
@@ -66,5 +73,7 @@ class ClientState with _$ClientState {
         chvUserID: UNKNOWN,
         chvUserName: UNKNOWN,
         communitiesState: CommunitiesState.initial(),
+        pastAppointments: <Appointment>[],
+        upcomingAppointments: <Appointment>[],
       );
 }
