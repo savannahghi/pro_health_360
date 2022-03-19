@@ -50,26 +50,34 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
       variables: variables,
     );
     client.close();
-
     final Map<String, dynamic> payLoad = client.toMap(response);
+    final ProcessedResponse processedResponse = processHttpResponse(response);
+    if (processedResponse.ok) {
+      final bool? status = payLoad['status'] as bool?;
+      if (status != null && status) {
+        onSuccess?.call();
+        dispatch(
+          NavigateAction<AppState>.pushNamedAndRemoveUntil(
+            AppRoutes.phoneLogin,
+            (Route<dynamic> route) => false,
+          ),
+        );
+
+        return state;
+      } else {
+        onError?.call();
+        Sentry.captureException('PIN service request failed');
+        return null;
+      }
+    }
 
     final String? error = parseError(payLoad);
 
     if (error != null) {
       onError?.call();
       Sentry.captureException(error, hint: 'PIN service request failed');
-      return null;
     }
-    final bool? status = payLoad['status'] as bool?;
-    if (status != null && status) {
-      onSuccess?.call();
-      dispatch(
-        NavigateAction<AppState>.pushNamedAndRemoveUntil(
-          AppRoutes.phoneLogin,
-          (Route<dynamic> route) => false,
-        ),
-      );
-    }
-    return state;
+
+    return null;
   }
 }

@@ -13,6 +13,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -119,7 +120,8 @@ class _VerifySecurityQuestionsHelpPageState
                                                 .showSnackBar(
                                               const SnackBar(
                                                 content: Text(
-                                                    successfulPINResetRequestString,),
+                                                  successfulPINResetRequestString,
+                                                ),
                                                 duration: Duration(
                                                   seconds:
                                                       kShortSnackBarDuration,
@@ -162,6 +164,10 @@ class _VerifySecurityQuestionsHelpPageState
                                   textStyle:
                                       normalSize14Text(AppColors.redColor),
                                   borderColor: Colors.transparent,
+                                  onPressed: () => Navigator.of(context)
+                                      .pushReplacementNamed(
+                                    AppRoutes.phoneLogin,
+                                  ),
                                 ),
                               )
                             ],

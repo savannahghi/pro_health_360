@@ -11,6 +11,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/verify_security_questions_help_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -76,6 +77,28 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text(successfulPINResetRequestString), findsOneWidget);
     });
+    testWidgets('try again button works correctly',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockShortGraphQlClient(),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return Scaffold(
+              body: VerifySecurityQuestionsHelpPage(),
+            );
+          },
+        ),
+      );
+
+      final Finder tryAgainButton = find.byKey(tryAgainButtonKey);
+      expect(tryAgainButton, findsOneWidget);
+
+      await tester.tap(tryAgainButton);
+      await tester.pumpAndSettle();
+      expect(find.byType(LoginPage), findsOneWidget);
+    });
     testWidgets('should show snackbar with error message when an error occurs',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
@@ -84,7 +107,7 @@ void main() {
         'endpoint',
         Response(
           json.encode(<String, dynamic>{'error': 'some error occurred'}),
-          201,
+          400,
         ),
       );
       await buildTestWidget(
@@ -123,6 +146,44 @@ void main() {
         find.text(getErrorMessage(sendingPINResetRequestSting)),
         findsOneWidget,
       );
+    });
+    testWidgets('should show snackbar with error message when status is not true',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{'status': null}),
+          201,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return Scaffold(
+              body: VerifySecurityQuestionsHelpPage(),
+            );
+          },
+        ),
+      );
+
+      final Finder askForHelpButton = find.byKey(askForHelpButtonKey);
+      final Finder cccInput = find.byKey(cccInputKey);
+      expect(askForHelpButton, findsOneWidget);
+      expect(cccInput, findsOneWidget);
+
+      await tester.showKeyboard(cccInput);
+      await tester.enterText(cccInput, '0123456789');
+      await tester.pumpAndSettle();
+
+      await tester.tap(askForHelpButton);
+      await tester.pump(const Duration(seconds: 4));
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.text(getErrorMessage(sendingPINResetRequestSting)), findsOneWidget);
     });
     testWidgets('should show a loading indicator when sending service request',
         (WidgetTester tester) async {
