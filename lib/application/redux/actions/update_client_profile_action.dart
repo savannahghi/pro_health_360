@@ -3,6 +3,7 @@ import 'package:async_redux/async_redux.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/address.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 // TODO(abiud): rewrite this action to cater for the new fields
@@ -21,6 +22,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.facilityPhoneNumber,
     this.chvUserID,
     this.chvUserName,
+    this.addresses,
   });
 
   final String? id;
@@ -36,6 +38,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final String? facilityPhoneNumber;
   final String? chvUserID;
   final String? chvUserName;
+  final List<Address>? addresses;
 
   @override
   AppState reduce() {
@@ -58,6 +61,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
             this.facilityPhoneNumber ?? state.clientState?.facilityPhoneNumber,
         chvUserID: this.chvUserID ?? state.clientState?.chvUserID,
         chvUserName: this.chvUserName ?? state.clientState?.chvUserName,
+        addresses: this.addresses ?? state.clientState?.addresses,
       ),
     );
 

@@ -884,3 +884,4 @@ const String changePinCTA = 'Change my PIN';
 const String sendingPINResetRequestSting = 'sending your pin reset request';
 const String successfulPINResetRequestString =
     'PIN reset requested successfully';
+    const String locationNotRecorded = 'Location not recorded';

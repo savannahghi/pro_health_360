@@ -16,21 +16,9 @@ import 'package:shared_themes/spaces.dart';
 
 class UserDetailsCard extends StatelessWidget {
   /// [UserDetailsCard] is a shared widget used in [UserProfilePage]
-  ///
-  /// It takes in required [userInitials], [name], [userCCCNumber], [age], [phoneNumber]
-  /// and [home] parameters
-  const UserDetailsCard({
-    Key? key,
-    required this.cccNumber,
-    required this.age,
-    required this.home,
-  }) : super(key: key);
 
-  final String cccNumber;
-  final String age;
+  const UserDetailsCard();
 
-  ///
-  final String home;
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ClientProfileViewModel>(
@@ -38,10 +26,15 @@ class UserDetailsCard extends StatelessWidget {
           ClientProfileViewModel.fromStore(store),
       builder: (BuildContext context, ClientProfileViewModel vm) {
         final User? user = vm.clientState?.user;
+        final bool addressIsEmpty = vm.clientState!.addresses!.isEmpty;
+        final String address = addressIsEmpty
+            ? locationNotRecorded
+            : vm.clientState?.addresses?.first.text ?? locationNotRecorded;
 
         final String phone = user?.primaryContact?.value ?? UNKNOWN;
-
         final String name = getDisplayName(user);
+        const String cccNumber = '123456';
+        const String age = '18';
 
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
@@ -51,7 +44,6 @@ class UserDetailsCard extends StatelessWidget {
             boxShadow: <BoxShadow>[
               BoxShadow(
                 blurRadius: 5,
-                // spreadRadius: 1,
                 color: Colors.grey.withOpacity(0.2),
               )
             ],
@@ -87,18 +79,18 @@ class UserDetailsCard extends StatelessWidget {
                     ),
                   ),
                   smallVerticalSizedBox,
-                  Text(
+                  const Text(
                     'CCC No: $cccNumber',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
                   smallVerticalSizedBox,
-                  Text(
+                  const Text(
                     'Age: $age yrs',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -135,7 +127,7 @@ class UserDetailsCard extends StatelessWidget {
                       ),
                       size15HorizontalSizedBox,
                       Text(
-                        home,
+                        address,
                         style: const TextStyle(
                           color: AppColors.secondaryColor,
                           fontSize: 13,

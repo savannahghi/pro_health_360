@@ -15,8 +15,14 @@ import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widge
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
-class UserProfilePage extends StatelessWidget {
+class UserProfilePage extends StatefulWidget {
+  @override
+  State<UserProfilePage> createState() => _UserProfilePageState();
+}
+
+class _UserProfilePageState extends State<UserProfilePage> {
   final String age = '18';
+
   final String home = 'Karen';
 
   /// [UserProfilePage] is used to display the user information
@@ -43,11 +49,7 @@ class UserProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   largeVerticalSizedBox,
-                  UserDetailsCard(
-                    cccNumber: userCCCNumber,
-                    age: age,
-                    home: home,
-                  ),
+                  const UserDetailsCard(),
                   largeVerticalSizedBox,
                   ...List<Widget>.generate(userProfileItems.length,
                       (int index) {
@@ -101,7 +103,9 @@ class UserProfilePage extends StatelessWidget {
                       if (vm.appState.clientState?.facilityPhoneNumber !=
                               null &&
                           vm.appState.clientState!.facilityPhoneNumber!
-                              .isNotEmpty) {
+                              .isNotEmpty &&
+                          vm.appState.clientState!.facilityPhoneNumber! ==
+                              UNKNOWN) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,

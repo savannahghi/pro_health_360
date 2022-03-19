@@ -5,8 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/address.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
@@ -72,6 +74,28 @@ void main() {
       await tester.tap(personalInformationButton);
       await tester.pumpAndSettle();
       expect(find.byType(PersonalInformationPage), findsOneWidget);
+    });
+
+    testWidgets('renders user information correctly',
+        (WidgetTester tester) async {
+      store.dispatch(
+        UpdateUserProfileAction(
+          firstName: 'Test',
+          lastName: 'Name',
+        ),
+      );
+
+      store.dispatch(
+        UpdateClientProfileAction(addresses: <Address>[Address(text: 'home')]),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: baseGraphQlClientMock,
+        widget: UserProfilePage(),
+      );
+
+      expect(find.text('home'), findsOneWidget);
     });
   });
 }
