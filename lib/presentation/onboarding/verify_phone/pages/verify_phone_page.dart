@@ -22,24 +22,14 @@ class VerifyPhonePage extends StatelessWidget {
         return VerifyPhoneViewModel.fromStore(store);
       },
       builder: (BuildContext context, VerifyPhoneViewModel vm) {
-        String activeNumber;
-
         final String phoneNumber = vm.phoneNumber ?? UNKNOWN;
-        final String onboardingPhoneNumber =
-            vm.onboardingPhoneNumber ?? UNKNOWN;
-
-        if (phoneNumber != UNKNOWN) {
-          activeNumber = phoneNumber;
-        } else {
-          activeNumber = onboardingPhoneNumber;
-        }
 
         return VerifyPhoneWidget(
           vm: vm,
           sendOTPFunction: () async {
             StoreProvider.dispatch<AppState>(
               context,
-              SendOTPAction(context: context, phoneNumber: activeNumber),
+              SendOTPAction(context: context, phoneNumber: phoneNumber),
             );
           },
           canResendOTPFunction: () async {
@@ -63,7 +53,6 @@ class VerifyPhonePage extends StatelessWidget {
                   context: context,
                 ),
               );
-              return;
             } else {
               showFeedbackBottomSheet(
                 context: context,
@@ -75,7 +64,7 @@ class VerifyPhonePage extends StatelessWidget {
           resendOTPFunction: () async {
             StoreProvider.dispatch<AppState>(
               context,
-              ResendOTPAction(context: context, phoneNumber: activeNumber),
+              ResendOTPAction(context: context, phoneNumber: phoneNumber),
             );
           },
         );

@@ -42,7 +42,11 @@ void main() {
             )
             .copyWith
             .onboardingState!
-            .call(otp: '123456', invalidOTP: false),
+            .call(
+              otp: '123456',
+              invalidOTP: false,
+              phoneNumber: '+254712345678',
+            ),
       );
     });
 
@@ -68,6 +72,7 @@ void main() {
       store.dispatch(
         UpdateOnboardingStateAction(
           currentOnboardingStage: CurrentOnboardingStage.Login,
+          phoneNumber: '+254712345678',
         ),
       );
 
@@ -83,7 +88,7 @@ void main() {
 
       await tester.showKeyboard(find.byType(PINInputField));
       await tester.enterText(find.byType(PINInputField), '123456');
-      await tester.pumpAndSettle(const Duration(seconds: 5));
+      await tester.pumpAndSettle();
 
       expect(find.byType(TermsAndConditionsPage), findsWidgets);
     });

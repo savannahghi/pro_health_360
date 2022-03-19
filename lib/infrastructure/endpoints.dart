@@ -98,7 +98,7 @@ const String kProdRequestPinResetEndpoint =
 const String kProdUpdateUserPinEndpoint =
     'https://mycarehub-prod.savannahghi.org/reset_pin';
 const String kProdVerifyPhoneEndpoint =
-    'https://mycarehub-testing.savannahghi.org/verify_phone';
+    'https://mycarehub-prod.savannahghi.org/verify_phone';
 const String kProdVerifyContactOTPEndpoint =
     'https://mycarehub-prod.savannahghi.org/verify_otp';
 const String kProdCreateUserByPhoneEndpoint =

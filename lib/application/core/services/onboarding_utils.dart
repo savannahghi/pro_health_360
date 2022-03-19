@@ -141,20 +141,20 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       );
     }
 
+    // (optional) set new security questions
+    if (!hasSetSecurityQuestions) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.termsAndConditions,
+        nextRoute: AppRoutes.securityQuestionsPage,
+      );
+    }
+
     // change the PIN
     // check whether the PIN has been changed
     else if (!isPINChanged) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.verifySignUpOTP,
         nextRoute: AppRoutes.createPin,
-      );
-    }
-
-    // (optional) set new security questions
-    if (!hasSetSecurityQuestions) {
-      return OnboardingPathInfo(
-        previousRoute: AppRoutes.termsAndConditions,
-        nextRoute: AppRoutes.securityQuestionsPage,
       );
     }
 

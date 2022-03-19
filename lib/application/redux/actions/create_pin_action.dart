@@ -58,8 +58,17 @@ class CreatePINAction extends ReduxAction<AppState> {
     final String confirmPIN = state.onboardingState?.confirmPIN ?? UNKNOWN;
 
     final String? otp = state.onboardingState?.otp;
-    final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
+
+    final bool isResetPIN = state.onboardingState?.currentOnboardingStage ==
+        CurrentOnboardingStage.ResetPIN;
+    final bool isChangingPIN = state.onboardingState?.currentOnboardingStage ==
         CurrentOnboardingStage.PINExpired;
+
+    /// This value is used to indicate whether the user is resetting their PIN
+    /// or changing it after it has expired
+    ///
+    ///  We call REST for both cases hence why this boolean is important
+    final bool isResetOrChangePIN = isResetPIN || isChangingPIN;
 
     final String? phone = state.onboardingState?.phoneNumber;
 
@@ -85,7 +94,7 @@ class CreatePINAction extends ReduxAction<AppState> {
       final String resetPinEndpoint =
           AppWrapperBase.of(context)!.customContext!.updateUserPinEndpoint;
 
-      final http.Response result = isResetPin
+      final http.Response result = isResetOrChangePIN
           ? await _client.callRESTAPI(
               endpoint: resetPinEndpoint,
               method: httpPOST,
@@ -132,16 +141,17 @@ class CreatePINAction extends ReduxAction<AppState> {
         );
       } else if (responseMap['data']['resetPIN'] == true) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(pinResetSuccessString),
-            duration: Duration(seconds: 2),
+          SnackBar(
+            content: Text(
+              isResetPIN ? pinResetSuccessString : pinChangeSuccessString,
+            ),
+            duration: const Duration(seconds: 2),
           ),
         );
 
         dispatch(UpdateOnboardingStateAction(hasSetPin: true));
 
-        final OnboardingPathInfo navConfig =
-            onboardingPath(appState: state);
+        final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 
         Navigator.pushReplacementNamed(context, navConfig.nextRoute);
       }

@@ -355,7 +355,7 @@ void main() {
             'after PIN reset', (WidgetTester tester) async {
           store.dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
               isPhoneVerified: true,
               hasSetPin: true,
               hasSetSecurityQuestions: true,
@@ -389,7 +389,7 @@ void main() {
             (WidgetTester tester) async {
           store.dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
               isPhoneVerified: false,
               hasSetPin: true,
               hasSetSecurityQuestions: true,
@@ -423,7 +423,7 @@ void main() {
             (WidgetTester tester) async {
           store.dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
               isPhoneVerified: true,
               hasSetPin: false,
               hasSetSecurityQuestions: true,
@@ -458,7 +458,7 @@ void main() {
             (WidgetTester tester) async {
           store.dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.ChangePIN,
+              currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
               isPhoneVerified: true,
               hasSetPin: true,
               hasSetSecurityQuestions: false,

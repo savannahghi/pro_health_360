@@ -39,16 +39,13 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String userID = state.clientState!.user!.userId ?? UNKNOWN;
-    final String phoneNumber =
-        state.clientState!.user!.primaryContact!.value ?? UNKNOWN;
+    final String phoneNumber = state.onboardingState?.phoneNumber ?? UNKNOWN;
 
-    if (userID != UNKNOWN && phoneNumber != UNKNOWN) {
-      final String sendOTPEndpoint =
+    if (phoneNumber != UNKNOWN) {
+      final String verifyOTPEndpoint =
           AppWrapperBase.of(context)!.customContext!.verifyContactOTPEndpoint;
 
       final Map<String, dynamic> variables = <String, dynamic>{
-        'user_id': userID,
         'otp': otp,
         'phoneNumber': phoneNumber,
         'flavour': Flavour.consumer.name,
@@ -58,7 +55,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
           AppWrapperBase.of(context)!.graphQLClient;
 
       final Response httpResponse = await httpClient.callRESTAPI(
-        endpoint: sendOTPEndpoint,
+        endpoint: verifyOTPEndpoint,
         method: httpPOST,
         variables: variables,
       );
@@ -77,8 +74,7 @@ class VerifyOTPAction extends ReduxAction<AppState> {
             ),
           );
 
-          final OnboardingPathInfo navConfig =
-              onboardingPath(appState: state);
+          final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 
           dispatch(
             NavigateAction<AppState>.pushReplacementNamed(navConfig.nextRoute),

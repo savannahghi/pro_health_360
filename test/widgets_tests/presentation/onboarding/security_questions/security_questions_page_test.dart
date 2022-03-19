@@ -137,7 +137,7 @@ void main() {
             SecurityQuestionResponse.initial().copyWith(response: ''),
             SecurityQuestionResponse.initial(),
           ],
-          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
+          currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
         ),
       );
 
@@ -339,7 +339,7 @@ void main() {
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
             SecurityQuestionResponse.initial().copyWith(response: testResponse),
           ],
-          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
+          currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
         ),
       );
       await buildTestWidget(

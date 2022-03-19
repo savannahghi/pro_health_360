@@ -22,10 +22,7 @@ import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
 class GetSecurityQuestionsAction extends ReduxAction<AppState> {
-  GetSecurityQuestionsAction({
-    required this.context,
-    this.phoneNumber,
-  });
+  GetSecurityQuestionsAction({required this.context, this.phoneNumber});
 
   final BuildContext context;
   final String? phoneNumber;
@@ -45,7 +42,7 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
     final bool isResetPin = state.onboardingState?.currentOnboardingStage ==
-        CurrentOnboardingStage.PINExpired;
+        CurrentOnboardingStage.ResetPIN;
 
     final String? otp = state.onboardingState?.otp;
     final String? phone = state.onboardingState?.phoneNumber;

@@ -71,6 +71,6 @@ Map<String, dynamic> _$$_OnboardingStateToJson(_$_OnboardingState instance) =>
 
 const _$CurrentOnboardingStageEnumMap = {
   CurrentOnboardingStage.Login: 'Login',
-  CurrentOnboardingStage.ChangePIN: 'ChangePIN',
+  CurrentOnboardingStage.ResetPIN: 'ResetPIN',
   CurrentOnboardingStage.PINExpired: 'PINExpired',
 };

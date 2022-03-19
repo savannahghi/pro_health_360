@@ -15,7 +15,6 @@ class VerifyPhoneViewModel extends Vm {
     this.failedToSendOTP,
     this.canResendOTP,
     this.invalidOTP,
-    this.onboardingPhoneNumber,
   }) : super(
           equals: <Object?>[
             wait,
@@ -25,7 +24,6 @@ class VerifyPhoneViewModel extends Vm {
             failedToSendOTP,
             canResendOTP,
             invalidOTP,
-            onboardingPhoneNumber,
             currentOnboardingStage,
           ],
         );
@@ -37,7 +35,6 @@ class VerifyPhoneViewModel extends Vm {
   final bool? invalidOTP;
   final bool? failedToSendOTP;
   final bool? canResendOTP;
-  final String? onboardingPhoneNumber;
   final CurrentOnboardingStage? currentOnboardingStage;
 
   static VerifyPhoneViewModel fromStore(Store<AppState> store) {
@@ -45,12 +42,11 @@ class VerifyPhoneViewModel extends Vm {
     return VerifyPhoneViewModel(
       wait: state.wait,
       userID: state.clientState?.user?.userId ?? UNKNOWN,
-      phoneNumber: state.clientState?.user?.primaryContact?.value ?? UNKNOWN,
+      phoneNumber: state.onboardingState?.phoneNumber ?? UNKNOWN,
       otp: state.onboardingState?.otp ?? UNKNOWN,
       invalidOTP: state.onboardingState?.invalidOTP ?? false,
       failedToSendOTP: state.onboardingState?.failedToSendOTP ?? false,
       canResendOTP: state.onboardingState?.canResendOTP ?? false,
-      onboardingPhoneNumber: state.onboardingState?.phoneNumber ?? UNKNOWN,
       currentOnboardingStage: state.onboardingState?.currentOnboardingStage,
     );
   }
