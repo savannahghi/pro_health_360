@@ -860,14 +860,19 @@ const String tryAgainString = 'Try Again';
 // consent confirmation page
 const String optOut = 'Opt out';
 const String optOutOfMyCareHubString = 'Opt out of myCareHub';
-const String optOutOfMyCareHub = 'Opt out of myCareHub?';
+const String optOutOfMyCareHubTitleString = 'Opt out of myCareHub?';
 const String youAreChoosingToOptOut =
     'You are choosing to opt out of myCareHub. The following will happened to your account:';
 const String yourProfileWillBeDeleted =
-    '1. Your profile will be deleted. This action is cannot be undone';
+    '1. Your profile will be deleted. This action is cannot be undone.';
 const String youWillNotLogin =
-    '2. You will not be able to sign in to myCareHub unless you are registered again';
-const String areYouStillSure =
+    '2. You will not be able to continue to benefit from all the services on myCareHub';
+const String youWillNeedToRegisterString =
+    '3. You will need to be registered again to access myCareHub services';
+
+const String yourHealthRecordWillBeAnonymizedString =
+    '4. Your health record will be anonymized. If you wish to delete your data from myCareHub, kindly contact the admin on ';
+const String areYouStillSureString =
     'Are you still sure that you want to opt out of myCareHub?';
 
 const String noGoBack = 'No, go back';
@@ -888,3 +893,6 @@ const String sendingPINResetRequestSting = 'sending your pin reset request';
 const String successfulPINResetRequestString =
     'PIN reset requested successfully';
 const String locationNotRecorded = 'Location not recorded';
+
+const String optingOutString = 'opting out';
+const String optOutSuccessfulString = 'You have opted out successfully';

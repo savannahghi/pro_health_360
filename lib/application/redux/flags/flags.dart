@@ -87,3 +87,5 @@ const String resumeWithPinFlag = 'resume_with_pin';
 
 //pin reset service request
 const String pinResetServiceRequestFlag = 'pin_reset_service_request_flag';
+
+const String optOutFlag = 'opt_out_flag';

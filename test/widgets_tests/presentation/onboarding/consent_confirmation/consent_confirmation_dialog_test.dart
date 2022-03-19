@@ -20,7 +20,7 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: const ConsentConfirmationDialog(),
+        widget: ConsentConfirmationDialog(),
       );
 
       await tester.pumpAndSettle();
@@ -28,22 +28,5 @@ void main() {
       expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
     });
 
-    testWidgets('continue button functions correctly',
-        (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: const ConsentConfirmationDialog(),
-      );
-
-      await tester.pumpAndSettle();
-      expect(find.byType(Dialog), findsOneWidget);
-      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
-
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(find.byType(SnackBar), findsOneWidget);
-    });
   });
 }

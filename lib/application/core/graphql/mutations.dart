@@ -174,3 +174,9 @@ mutation createServiceRequest($clientID: String!, $requestType: String!, $reques
   )
 }
 ''';
+
+const String optOutMutation = r'''
+mutation optOut($phoneNumber: String!, $flavour: Flavour!) {
+  optOut(phoneNumber: $phoneNumber, flavour: $flavour)
+}
+''';

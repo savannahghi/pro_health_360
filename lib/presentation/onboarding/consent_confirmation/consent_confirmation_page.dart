@@ -1,6 +1,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -18,14 +22,21 @@ class ConsentConfirmationPage extends StatelessWidget {
       appBar: const CustomAppBar(title: optOutOfMyCareHubString),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               largeVerticalSizedBox,
-              SvgPicture.asset(consentConfirmationImage),
+              Center(
+                child: SvgPicture.asset(
+                  consentConfirmationImage,
+                  width: 200,
+                ),
+              ),
+              largeVerticalSizedBox,
               Text(
-                optOutOfMyCareHub,
+                optOutOfMyCareHubTitleString,
                 style: veryBoldSize20Text(AppColors.primaryColor),
               ),
               mediumVerticalSizedBox,
@@ -43,40 +54,66 @@ class ConsentConfirmationPage extends StatelessWidget {
                 youWillNotLogin,
                 style: normalSize14Text(AppColors.greyTextColor),
               ),
-              mediumVerticalSizedBox,
+              verySmallVerticalSizedBox,
               Text(
-                areYouStillSure,
+                youWillNeedToRegisterString,
+                style: normalSize14Text(AppColors.greyTextColor),
+              ),
+              verySmallVerticalSizedBox,
+              Text(
+                yourHealthRecordWillBeAnonymizedString,
+                style: normalSize14Text(AppColors.greyTextColor),
+              ),
+              largeVerticalSizedBox,
+              Text(
+                areYouStillSureString,
                 style: normalSize14Text(AppColors.greyTextColor),
               ),
               veryLargeVerticalSizedBox,
-              SizedBox(
-                width: double.infinity,
-                child: MyAfyaHubPrimaryButton(
-                  buttonKey: abortConsentButtonKey,
-                  text: noGoBack,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-              smallVerticalSizedBox,
-              SizedBox(
-                width: double.infinity,
-                child: MyAfyaHubPrimaryButton(
-                  buttonKey: continueConsentButtonKey,
-                  text: yesContinue,
-                  buttonColor: AppColors.primaryColor.withOpacity(0.1),
-                  textColor: AppColors.lightRedTextColor,
-                  borderColor: Colors.transparent,
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const ConsentConfirmationDialog();
-                      },
-                    );
-                  },
-                ),
+              StoreConnector<AppState, AppStateViewModel>(
+                converter: (Store<AppState> store) =>
+                    AppStateViewModel.fromStore(store),
+                builder: (BuildContext context, AppStateViewModel vm) {
+                  return vm.wait!.isWaitingFor(optOutFlag) ? const Padding(
+                    padding: EdgeInsets.all(40.0),
+                    child: PlatformLoader(),
+                  ): Column(
+                    children: <Widget>[
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: MyAfyaHubPrimaryButton(
+                          buttonKey: abortConsentButtonKey,
+                          text: noGoBack,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ),
+                      smallVerticalSizedBox,
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: MyAfyaHubPrimaryButton(
+                          buttonKey: continueConsentButtonKey,
+                          text: yesContinue,
+                          buttonColor: AppColors.primaryColor.withOpacity(0.1),
+                          textColor: AppColors.lightRedTextColor,
+                          borderColor: Colors.transparent,
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return ConsentConfirmationDialog(
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
           ),
