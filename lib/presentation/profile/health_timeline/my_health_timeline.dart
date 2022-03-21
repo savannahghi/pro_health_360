@@ -195,18 +195,5 @@ final Map<String, List<TimelineItem>> timelineItems =
       venue: 'Stay Well Center',
       time: '12:00pm',
     ),
-    TimelineItem(
-      leadingIcon: 'syringe',
-      title: 'Diary',
-      doctor: Doctor(
-        firstName: Name.withValue('James'),
-        lastName: Name.withValue('Jerms'),
-      ),
-      venue: 'Stay Well Center',
-      time: '12:00pm',
-      isDiary: true,
-      fileType: AttachmentFileType.image,
-      attachmentUrl: 'https://picsum.photos/250?image=9',
-    ),
   ],
 };

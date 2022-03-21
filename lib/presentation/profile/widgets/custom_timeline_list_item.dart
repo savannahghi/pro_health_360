@@ -1,14 +1,11 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 
 class CustomTimelineListItem extends StatelessWidget {
   const CustomTimelineListItem({
@@ -20,21 +17,7 @@ class CustomTimelineListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget? image;
-
-    if (item.attachmentUrl != null &&
-        item.fileType == AttachmentFileType.image) {
-      image = CachedNetworkImage(
-        width: 400,
-        height: 200,
-        placeholder: (BuildContext context, String url) {
-          return SvgPicture.asset(
-            placeholderImageUrl,
-          );
-        },
-        imageUrl: 'https://picsum.photos/1000/650?image=9',
-      );
-    }
+    
 
     return Container(
       padding: const EdgeInsets.all(8),
@@ -100,8 +83,6 @@ class CustomTimelineListItem extends StatelessWidget {
               ),
             ],
           ),
-          if (image != null) smallVerticalSizedBox,
-          image ?? Container(),
         ],
       ),
     );
@@ -110,25 +91,7 @@ class CustomTimelineListItem extends StatelessWidget {
   List<Widget> getItemContent(TimelineItem item) {
     final List<Widget> content = <Widget>[];
 
-    if (item.attachmentUrl != null) {
-      final String fileTypeText = item.fileType == AttachmentFileType.file
-          ? textEntryText
-          : imageFileText;
-
-      content.addAll(
-        <Widget>[
-          SvgPicture.asset(
-            attachmentIconSvg,
-            color: AppColors.greyTextColor,
-          ),
-          const SizedBox(width: 4),
-          Text(
-            fileTypeText,
-            style: normalSize10Text(AppColors.greyTextColor),
-          ),
-        ],
-      );
-    } else if (item.doctor != null) {
+     if (item.doctor != null) {
       final String? firstName = item.doctor?.firstName.getValue();
       final String? lastName = item.doctor?.lastName.getValue();
       final String venue = item.venue!;
