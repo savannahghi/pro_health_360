@@ -104,7 +104,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                               null &&
                           vm.appState.clientState!.facilityPhoneNumber!
                               .isNotEmpty &&
-                          vm.appState.clientState!.facilityPhoneNumber! ==
+                          vm.appState.clientState!.facilityPhoneNumber! !=
                               UNKNOWN) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
