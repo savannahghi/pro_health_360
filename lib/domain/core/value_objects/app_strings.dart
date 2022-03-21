@@ -884,7 +884,7 @@ const String yesContinue = 'Yes, continue';
 const String yesIam = 'Yes, I am';
 const String areYouReallySureTitle = 'Are you really sure?';
 const String optOutMessage =
-    'Are you really sure that you want to opt out of myCareHub?';
+    'Are you really sure that you want to opt out of myCareHub?\n\nOur healthcare team would be sad to see you go';
 const String cccNumberString = 'CCC number';
 
 // PIN expired page strings
