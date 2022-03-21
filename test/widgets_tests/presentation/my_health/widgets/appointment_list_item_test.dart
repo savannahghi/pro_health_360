@@ -35,7 +35,7 @@ void main() {
             end: '0000-01-01T12:07:56Z',
             status: AppointmentStatus.Waiting,
           ),
-          appointmentListTye: AppointmentListTye.Past,
+          appointmentListTye: AppointmentListTye.Upcoming,
         ),
       );
 

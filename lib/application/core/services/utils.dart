@@ -377,7 +377,7 @@ List<Appointment> upcomingAppointments = <Appointment>[
     status: enums.AppointmentStatus.Waiting,
   ),
   Appointment(
-    type: 'Scheduled clinic visit',
+    type: 'Scheduled patient examination',
     reason: 'A small reason',
     date: '2022-03-13',
     start: '0000-01-01T11:07:56Z',
@@ -389,6 +389,14 @@ List<Appointment> upcomingAppointments = <Appointment>[
 List<Appointment> pastAppointments = <Appointment>[
   Appointment(
     type: 'Scheduled clinic visit',
+    reason: 'A small reason',
+    date: '2022-03-13',
+    start: '0000-01-01T11:07:56Z',
+    end: '0000-01-01T12:07:56Z',
+    status: enums.AppointmentStatus.Missed,
+  ),
+  Appointment(
+    type: 'Scheduled group session',
     reason: 'A small reason',
     date: '2022-03-13',
     start: '0000-01-01T11:07:56Z',

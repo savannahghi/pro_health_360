@@ -6,10 +6,7 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
 
 class UpcomingAppointments extends StatelessWidget {
-  final List<Appointment> appointments = <Appointment>[
-    ...pastAppointments,
-    ...pastAppointments
-  ];
+  final List<Appointment> appointments = <Appointment>[...upcomingAppointments];
 
   @override
   Widget build(BuildContext context) {
