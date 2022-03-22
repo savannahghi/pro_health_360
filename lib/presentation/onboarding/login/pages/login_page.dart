@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final double sizedBoxHeight = MediaQuery.of(context).size.width / 4;
+    final double sizedBoxHeight = MediaQuery.of(context).size.width / 8;
 
     // A small indicator to help us identify whether the app is running in
     // staging or testing
@@ -94,10 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(height: sizedBoxHeight),
+                      
                       const OnboardingScaffoldHeader(
                         title: loginPageTitleString,
                         description: loginPageSubTitleString,
@@ -221,6 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                                     formKey: _formKey,
                                     phone: phoneNumber,
                                   ),
+                                  largeVerticalSizedBox,
                                 ],
                               ],
                             ),
