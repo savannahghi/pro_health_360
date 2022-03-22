@@ -58,20 +58,22 @@ class AppointmentListItem extends StatelessWidget {
               verySmallVerticalSizedBox,
               date,
               smallVerticalSizedBox,
-              AppointmentStatusIndicator(
-                appointmentStatus: appointment.status!,
-              ),
-              MyAfyaHubPrimaryButton(
-                buttonKey: addToCalendarKey,
-                buttonColor: AppColors.primaryColor.withOpacity(0.14),
-                text: addCalendarText,
-                textStyle: normalSize15Text(AppColors.primaryColor),
-                onPressed: () {
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(snackbar(content: comingSoonText));
-                },
-              ),
+              if (appointmentListTye == AppointmentListTye.Past)
+                AppointmentStatusIndicator(
+                  appointmentStatus: appointment.status!,
+                ),
+              if (appointmentListTye == AppointmentListTye.Upcoming)
+                MyAfyaHubPrimaryButton(
+                  buttonKey: addToCalendarKey,
+                  buttonColor: AppColors.primaryColor.withOpacity(0.14),
+                  text: addCalendarText,
+                  textStyle: normalSize15Text(AppColors.primaryColor),
+                  onPressed: () {
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(snackbar(content: comingSoonText));
+                  },
+                ),
             ],
           ),
         )
