@@ -56,7 +56,6 @@ class OptOutAction extends ReduxAction<AppState> {
 
     if (optOutStatus ?? false) {
       onSuccess.call();
-      return AppState.initial();
     } else {
       onError.call();
 

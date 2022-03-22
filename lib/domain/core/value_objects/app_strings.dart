@@ -299,6 +299,9 @@ const String answerCorrectlyToGainAccessString =
     'Answer correctly to gain access';
 
 const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';
+const String verifySecurityQuestionsString = 'Verify your security questions';
+const String verifyQuestionsDescriptionString =
+    'Please answer the following security questions about yourself. You provided the answers to these questions when you first signed up.';
 
 // TODO(abiud): remove these strings. they should be fetched from the backend
 const String whereWereYouBornString =
@@ -608,11 +611,12 @@ const String somethingWentWrongText =
 const String pinSuccessString = 'PIN created successfully';
 const String pinResetSuccessString =
     'PIN successfully reset. Please log in with your new PIN';
-    const String pinChangeSuccessString =
+const String pinChangeSuccessString =
     'PIN successfully changed. Please log in with your new PIN';
 const String requestCorrectionString = 'Request for correction';
 const String nicknameSuccessString = 'Nickname created successfully';
 const String usernameTakenText = 'Username has already been taken.';
+const String responseNotMatchingText = 'One or more responses do not match';
 
 const String invalidCode =
     'You have entered a wrong code. Kindly verify the code sent or resend the code to your phone number';
@@ -880,7 +884,7 @@ const String yesContinue = 'Yes, continue';
 const String yesIam = 'Yes, I am';
 const String areYouReallySureTitle = 'Are you really sure?';
 const String optOutMessage =
-    'Are you really sure that you want to opt out of myCareHub?';
+    'Are you really sure that you want to opt out of myCareHub?\n\nOur healthcare team would be sad to see you go';
 const String cccNumberString = 'CCC number';
 
 // PIN expired page strings

@@ -73,7 +73,8 @@ class GetSecurityQuestionsAction extends ReduxAction<AppState> {
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    if (_client.parseError(body) != null || responseMap.isEmpty) {
+    final String? errors = _client.parseError(body);
+    if (errors != null || responseMap.isEmpty) {
       throw MyAfyaException(
         cause: getSecurityQuestionsFlag,
         message: somethingWentWrongText,

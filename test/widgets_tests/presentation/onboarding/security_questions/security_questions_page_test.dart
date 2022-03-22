@@ -150,8 +150,8 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text(securityQuestionsDescriptionString), findsOneWidget);
-      expect(find.text(setSecurityQuestionsString), findsOneWidget);
+      expect(find.text(verifyQuestionsDescriptionString), findsOneWidget);
+      expect(find.text(verifySecurityQuestionsString), findsOneWidget);
       expect(find.byType(ExpandableQuestion), findsWidgets);
       expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
 

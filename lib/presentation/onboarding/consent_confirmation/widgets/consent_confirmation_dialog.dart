@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/redux/actions/logout_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/opt_out_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -60,19 +61,17 @@ class ConsentConfirmationDialog extends StatelessWidget {
                                 client:
                                     AppWrapperBase.of(context)!.graphQLClient,
                                 onSuccess: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(
-                                        optOutSuccessfulString,
-                                      ),
-                                      duration: Duration(
-                                        seconds: kShortSnackBarDuration,
-                                      ),
+                                  StoreProvider.dispatch(
+                                    context,
+                                    LogoutAction(
+                                      navigationCallback: () {
+                                        Navigator.of(context)
+                                            .pushNamedAndRemoveUntil(
+                                          AppRoutes.phoneLogin,
+                                          (Route<dynamic> route) => false,
+                                        );
+                                      },
                                     ),
-                                  );
-                                  Navigator.of(context).pushNamedAndRemoveUntil(
-                                    AppRoutes.phoneLogin,
-                                    (Route<dynamic> route) => false,
                                   );
                                 },
                                 onError: () {

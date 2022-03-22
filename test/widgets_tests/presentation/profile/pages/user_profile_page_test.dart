@@ -30,6 +30,10 @@ void main() {
           lastName: 'Name',
         ),
       );
+
+      store.dispatch(
+        UpdateClientProfileAction(facilityPhoneNumber: '0712345678'),
+      );
       await buildTestWidget(
         tester: tester,
         store: store,

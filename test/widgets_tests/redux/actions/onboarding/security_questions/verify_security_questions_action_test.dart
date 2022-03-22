@@ -43,6 +43,30 @@ void main() {
       expect(info.state.onboardingState?.hasVerifiedSecurityQuestions, false);
     });
 
+    test('should not update state if a response does not match', () async {
+      storeTester.dispatch(
+        VerifySecurityQuestionAction(
+          client: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              json.encode(<String, dynamic>{
+                'error': <String, dynamic>{},
+                'message': 'the security question response does not match'
+              }),
+              201,
+            ),
+          ),
+          verifySecurityQuestionsEndpoint: '',
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(VerifySecurityQuestionAction);
+
+      expect(info.state.onboardingState?.hasVerifiedSecurityQuestions, false);
+    });
+
     test('verifies security questions successfully', () async {
       storeTester.dispatch(
         UpdateOnboardingStateAction(

@@ -74,7 +74,7 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
 
     final String? errors = client.parseError(body);
 
-    if (errors != null) {
+    if (errors != null || responseMap['error'] != null) {
       dispatch(
         UpdateOnboardingStateAction(
           hasVerifiedSecurityQuestions: false,
@@ -84,6 +84,9 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
       Sentry.captureException(
         UserException(errors),
       );
+      if (responseMap['error'] != null) {
+        throw const UserException(responseNotMatchingText);
+      }
 
       throw const UserException(somethingWentWrongText);
     }
