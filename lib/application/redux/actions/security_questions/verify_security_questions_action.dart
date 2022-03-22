@@ -35,7 +35,7 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.add(verifySecurityQuestionsFlag));
+    dispatch(WaitAction<AppState>.remove(verifySecurityQuestionsFlag));
     super.after();
   }
 

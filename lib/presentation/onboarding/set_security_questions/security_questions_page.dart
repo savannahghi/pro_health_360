@@ -83,7 +83,9 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                     child: (vm.appState.wait!
                                 .isWaitingFor(getSecurityQuestionsFlag) ||
                             vm.appState.wait!
-                                .isWaitingFor(recordSecurityQuestionsFlag))
+                                .isWaitingFor(recordSecurityQuestionsFlag) ||
+                            vm.appState.wait!
+                                .isWaitingFor(verifySecurityQuestionsFlag))
                         ? Container(
                             height: 300,
                             padding: const EdgeInsets.all(20),
@@ -147,9 +149,11 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                           ),
                   ),
                   if (!vm.appState.wait!
-                          .isWaitingFor(getSecurityQuestionsFlag) &&
+                              .isWaitingFor(getSecurityQuestionsFlag) &&
+                          !vm.appState.wait!
+                              .isWaitingFor(recordSecurityQuestionsFlag) ||
                       !vm.appState.wait!
-                          .isWaitingFor(recordSecurityQuestionsFlag))
+                          .isWaitingFor(verifySecurityQuestionsFlag))
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
