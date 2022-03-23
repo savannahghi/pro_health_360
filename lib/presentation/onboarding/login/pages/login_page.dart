@@ -97,7 +97,6 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(height: sizedBoxHeight),
-                      
                       const OnboardingScaffoldHeader(
                         title: loginPageTitleString,
                         description: loginPageSubTitleString,
@@ -236,19 +235,18 @@ class _LoginPageState extends State<LoginPage> {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: vm.appState.wait!.isWaitingFor(phoneLoginFlag)
-              ? const PlatformLoader()
-              : Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal:
-                        ResponsiveWidget.preferredPaddingOnStretchedScreens(
-                      context: context,
-                    ),
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: MyAfyaHubPrimaryButton(
+          floatingActionButton: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveWidget.preferredPaddingOnStretchedScreens(
+                context: context,
+              ),
+            ),
+            child: SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: vm.appState.wait!.isWaitingFor(phoneLoginFlag)
+                  ? const PlatformLoader()
+                  : MyAfyaHubPrimaryButton(
                       buttonKey: phoneLoginContinueButtonKey,
                       onPressed: () async {
                         final ConnectivityChecker connectivityChecker =
@@ -284,8 +282,8 @@ class _LoginPageState extends State<LoginPage> {
                       borderColor: Colors.transparent,
                       text: continueString,
                     ),
-                  ),
-                ),
+            ),
+          ),
         );
       },
     );
