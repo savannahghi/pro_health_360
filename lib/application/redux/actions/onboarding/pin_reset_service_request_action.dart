@@ -43,6 +43,7 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'cccNumber': cccNumber,
       'phoneNumber': phoneNumber,
+      'flavour': Flavour.consumer.name,
     };
     final Response response = await client.callRESTAPI(
       endpoint: pinResetServiceRequestEndpoint,
@@ -58,7 +59,7 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
         onSuccess?.call();
         dispatch(
           NavigateAction<AppState>.pushNamedAndRemoveUntil(
-            AppRoutes.phoneLogin,
+            AppRoutes.pinRequestSentPage,
             (Route<dynamic> route) => false,
           ),
         );

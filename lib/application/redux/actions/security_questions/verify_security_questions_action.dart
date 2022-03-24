@@ -97,9 +97,7 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
       final String? errors = client.parseError(body);
 
       dispatch(
-        UpdateOnboardingStateAction(
-          hasVerifiedSecurityQuestions: false,
-        ),
+        UpdateOnboardingStateAction(hasVerifiedSecurityQuestions: false),
       );
 
       // check if the user has exceeded their
@@ -112,14 +110,10 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
         );
       } else if (processedResponse.code == 78) {
         // Throws a security questions response mismatch error
-        Sentry.captureException(
-          UserException(errors),
-        );
+        Sentry.captureException(UserException(errors));
         throw const UserException(responseNotMatchingText);
       } else if (errors != null || responseMap['error'] != null) {
-        Sentry.captureException(
-          UserException(errors),
-        );
+        Sentry.captureException(UserException(errors));
 
         throw const UserException(somethingWentWrongText);
       }

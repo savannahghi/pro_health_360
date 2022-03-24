@@ -127,6 +127,7 @@ void main() {
             ],
             'lastName': 'Kalulu',
             'pinChangeRequired': true,
+            'pinUpdateRequired': true,
             'termsAccepted': false,
             'userID': 'some-user-id',
             'userName': 'Kowalski',
@@ -307,6 +308,46 @@ void main() {
       );
 
       storeTester.dispatch(UpdateUserProfileAction(pinChangeRequired: true));
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(NavigateAction);
+
+      final NavigateAction<AppState>? actionDispatched =
+          info.action as NavigateAction<AppState>?;
+
+      final NavigatorDetails_PushNamedAndRemoveUntil? navDetails =
+          actionDispatched?.details
+              as NavigatorDetails_PushNamedAndRemoveUntil?;
+
+      expect(navDetails?.newRouteName, AppRoutes.verifySignUpOTP);
+      expect(
+        navDetails?.predicate.call(
+          MaterialPageRoute<VerifyPhonePage>(
+            builder: (BuildContext context) => const VerifyPhonePage(),
+          ),
+        ),
+        false,
+      );
+    });
+
+    test('should change to new user workflow when pin update is required',
+        () async {
+      pinChangeRequiredMock['response']['clientProfile']['user']
+          ['pinUpdateRequired'] = true;
+      storeTester.dispatch(
+        PhoneLoginAction(
+          httpClient: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              jsonEncode(pinChangeRequiredMock),
+              200,
+            ),
+          ),
+          loginEndpoint: kTestLoginByPhoneEndpoint,
+          errorCallback: (_) {},
+        ),
+      );
 
       final TestInfo<AppState> info =
           await storeTester.waitUntil(NavigateAction);

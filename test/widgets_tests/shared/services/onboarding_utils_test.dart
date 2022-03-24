@@ -359,6 +359,7 @@ void main() {
               isPhoneVerified: true,
               hasSetPin: true,
               hasSetSecurityQuestions: true,
+              hasVerifiedSecurityQuestions: true,
             ),
           );
 
@@ -423,7 +424,7 @@ void main() {
             (WidgetTester tester) async {
           store.dispatch(
             UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+              currentOnboardingStage: CurrentOnboardingStage.PINUpdate,
               isPhoneVerified: true,
               hasSetPin: false,
               hasSetSecurityQuestions: true,
@@ -594,7 +595,7 @@ void main() {
       });
     });
   });
-  group('setUserPIN', () {
+  group('setUserPIN function', () {
     late Store<AppState> store;
 
     setUpAll(() {
