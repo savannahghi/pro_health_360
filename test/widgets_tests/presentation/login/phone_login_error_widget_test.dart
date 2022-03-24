@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/forgot_pin_page.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
-import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 
 import '../../../test_helpers.dart';
 
@@ -67,6 +67,6 @@ void main() {
     await tester.tap(resetPINButton);
     await tester.pumpAndSettle();
 
-    expect(find.byType(VerifyPhonePage), findsOneWidget);
+    expect(find.byType(ForgotPINPage), findsOneWidget);
   });
 }

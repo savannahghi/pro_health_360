@@ -1,10 +1,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class PhoneLoginErrorWidget extends StatelessWidget {
@@ -27,13 +24,7 @@ class PhoneLoginErrorWidget extends StatelessWidget {
             isFormValid &&
             phone != null &&
             phone != UNKNOWN) {
-          StoreProvider.dispatch(
-            context,
-            UpdateOnboardingStateAction(
-              currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
-            ),
-          );
-          Navigator.of(context).pushReplacementNamed(AppRoutes.verifySignUpOTP);
+          Navigator.of(context).pushReplacementNamed(AppRoutes.forgotPINPage);
         }
       },
     );
