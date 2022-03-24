@@ -4,114 +4,74 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/spaces.dart';
 
 class ForgotPINPage extends StatelessWidget {
   const ForgotPINPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final AppState appState = StoreProvider.state<AppState>(context)!;
-    final List<SecurityQuestionResponse>? securityQuestionsResponses =
-        appState.onboardingState!.securityQuestionResponses;
-    final String userId = appState.clientState!.user!.userId!;
-    final List<SecurityQuestion> securityQuestions = <SecurityQuestion>[
-      SecurityQuestion(
-        securityQuestionID: 'sec_q_1',
-        questionStem: whereWereYouBornString,
-        responseType: SecurityQuestionResponseType.UNKNOWN,
-      ),
-    ];
-
-    final bool isLargeScreen = ResponsiveWidget.isLargeScreen(context);
-    final TextEditingController dateController = TextEditingController();
-    return OnboardingScaffold(
-      title: answerSecurityQuestionString,
-      description: answerCorrectlyToGainAccessString,
-      backgroundColor: Theme.of(context).backgroundColor,
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height / 1.6,
-        child: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 50),
-              child: ListView.builder(
-                itemCount: securityQuestions.length,
-                shrinkWrap: true,
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                itemBuilder: (BuildContext context, int index) {
-                  final SecurityQuestion question =
-                      securityQuestions.elementAt(index);
-
-                  final SecurityQuestionResponse? questionResponse =
-                      securityQuestionsResponses?.singleWhere(
-                    (SecurityQuestionResponse response) =>
-                        response.securityQuestionID ==
-                        question.securityQuestionID,
-                    orElse: () => SecurityQuestionResponse.initial(),
-                  );
-
-                  final String response = questionResponse?.response ?? UNKNOWN;
-                  return Container(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ExpandableQuestion(
-                      dateController: dateController,
-                      question: question.questionStem ?? UNKNOWN,
-                      hintText: answerHereString,
-                      initialValue: (response == UNKNOWN) ? null : response,
-                      onChanged: (String? value) {
-                        securityQuestionsResponses!.add(
-                          SecurityQuestionResponse(
-                            userID: userId,
-                            securityQuestionID: question.securityQuestionID,
-                            response: value,
-                          ),
-                        );
-                        StoreProvider.dispatch<AppState>(
-                          context,
-                          UpdateOnboardingStateAction(
-                            securityQuestionsResponses:
-                                securityQuestionsResponses,
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              veryLargeVerticalSizedBox,
+              SvgPicture.asset(
+                forgotPINImageSvgPath,
+                width: 260,
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: isLargeScreen ? 300 : double.infinity,
-                height: 52,
+              largeVerticalSizedBox,
+              Text(
+                forgotYourPINString,
+                style: heavySize20Text(),
+                textAlign: TextAlign.center,
+              ),
+              smallVerticalSizedBox,
+              Text(
+                forgotPINPageMessageString,
+                style: normalSize14Text(
+                  AppColors.greyTextColor,
+                ),
+              ),
+              mediumVerticalSizedBox,
+              SizedBox(
+                width: double.infinity,
+                height: 48,
                 child: MyAfyaHubPrimaryButton(
-                  text: continueString,
-                  buttonColor: AppColors.secondaryColor,
+                  buttonKey: resetPINButtonKey,
+                  text: resetMyPINString,
                   onPressed: () {
                     StoreProvider.dispatch(
                       context,
-                      BottomNavAction(
-                        currentBottomNavIndex: 2,
+                      UpdateOnboardingStateAction(
+                        currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
                       ),
                     );
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      AppRoutes.home,
-                      (Route<dynamic> route) => false,
+                    final OnboardingPathInfo config = onboardingPath(
+                      appState: StoreProvider.state<AppState>(context),
                     );
+
+                    Navigator.of(context)
+                        .pushReplacementNamed(config.nextRoute);
                   },
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
