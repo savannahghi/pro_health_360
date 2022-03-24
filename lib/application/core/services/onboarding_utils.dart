@@ -61,6 +61,8 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
   final bool termsAccepted = appState.clientState?.user?.termsAccepted ?? false;
   final bool hasSetSecurityQuestions =
       appState.onboardingState?.hasSetSecurityQuestions ?? false;
+  final bool hasVerifiedSecurityQuestions =
+      appState.onboardingState?.hasVerifiedSecurityQuestions ?? false;
   final bool hasSetNickName = appState.onboardingState?.hasSetNickName ?? false;
   final bool hasSetPin = appState.onboardingState?.hasSetPin ?? false;
   final bool isPINChanged = appState.onboardingState?.hasSetPin ?? false;
@@ -107,7 +109,8 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
     return OnboardingPathInfo(nextRoute: AppRoutes.home, previousRoute: '');
 
     /// The PIN expiry workflow
-  } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired) {
+  } else if (currentOnboardingStage == CurrentOnboardingStage.PINExpired ||
+      currentOnboardingStage == CurrentOnboardingStage.PINUpdate) {
     // check whether the phone is verified
     if (!isPhoneVerified) {
       return OnboardingPathInfo(
@@ -130,7 +133,7 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       previousRoute: '',
     );
 
-    // This means it is the [CurrentOnboardingStage.ChangePIN] that is in play
+    // This means it is the [CurrentOnboardingStage.ResetPIN] that is in play
   } else {
     // verify the phone
     // check whether the phone is verified
@@ -142,7 +145,7 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
     }
 
     // (optional) set new security questions
-    if (!hasSetSecurityQuestions) {
+    if (!hasVerifiedSecurityQuestions) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.termsAndConditions,
         nextRoute: AppRoutes.securityQuestionsPage,

@@ -47,18 +47,20 @@ class _$UserTearOff {
           List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
-      @JsonKey(name: 'termsAccepted')
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
-      @JsonKey(name: 'hasSetPin')
+      @JsonKey(name: 'hasSetPin', defaultValue: false)
           bool? hasSetPin,
-      @JsonKey(name: 'hasSetSecurityQuestions')
+      @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
           bool? hasSetSecurityQuestions,
-      @JsonKey(name: 'hasSetNickname')
+      @JsonKey(name: 'hasSetNickname', defaultValue: false)
           bool? hasSetNickname,
-      @JsonKey(name: 'isPhoneVerified')
+      @JsonKey(name: 'isPhoneVerified', defaultValue: false)
           bool? isPhoneVerified,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
       String? chatRoomToken}) {
@@ -81,6 +83,7 @@ class _$UserTearOff {
       hasSetNickname: hasSetNickname,
       isPhoneVerified: isPhoneVerified,
       pinChangeRequired: pinChangeRequired,
+      pinUpdateRequired: pinUpdateRequired,
       suspended: suspended,
       chatRoomToken: chatRoomToken,
     );
@@ -121,18 +124,28 @@ mixin _$User {
   List<Contact?>? get secondaryContacts => throw _privateConstructorUsedError;
   @JsonKey(name: 'languages')
   List<String>? get languages => throw _privateConstructorUsedError;
-  @JsonKey(name: 'termsAccepted')
+  @JsonKey(name: 'termsAccepted', defaultValue: false)
   bool? get termsAccepted => throw _privateConstructorUsedError;
-  @JsonKey(name: 'hasSetPin')
+  @JsonKey(name: 'hasSetPin', defaultValue: false)
   bool? get hasSetPin => throw _privateConstructorUsedError;
-  @JsonKey(name: 'hasSetSecurityQuestions')
+  @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
   bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
-  @JsonKey(name: 'hasSetNickname')
+  @JsonKey(name: 'hasSetNickname', defaultValue: false)
   bool? get hasSetNickname => throw _privateConstructorUsedError;
-  @JsonKey(name: 'isPhoneVerified')
+  @JsonKey(name: 'isPhoneVerified', defaultValue: false)
   bool? get isPhoneVerified => throw _privateConstructorUsedError;
+
+  /// Whether this user needs to change their PIN
+  ///
+  /// This is normally used to signify that this user is a new user
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
   bool? get pinChangeRequired => throw _privateConstructorUsedError;
+
+  /// Used to indicate that the user's PIN has been reset by someone else
+  ///
+  /// This is used to trigger the change PIN workflow
+  @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+  bool? get pinUpdateRequired => throw _privateConstructorUsedError;
   @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended => throw _privateConstructorUsedError;
   String? get chatRoomToken => throw _privateConstructorUsedError;
@@ -171,18 +184,20 @@ abstract class $UserCopyWith<$Res> {
           List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
-      @JsonKey(name: 'termsAccepted')
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
-      @JsonKey(name: 'hasSetPin')
+      @JsonKey(name: 'hasSetPin', defaultValue: false)
           bool? hasSetPin,
-      @JsonKey(name: 'hasSetSecurityQuestions')
+      @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
           bool? hasSetSecurityQuestions,
-      @JsonKey(name: 'hasSetNickname')
+      @JsonKey(name: 'hasSetNickname', defaultValue: false)
           bool? hasSetNickname,
-      @JsonKey(name: 'isPhoneVerified')
+      @JsonKey(name: 'isPhoneVerified', defaultValue: false)
           bool? isPhoneVerified,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
       String? chatRoomToken});
@@ -218,6 +233,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? hasSetNickname = freezed,
     Object? isPhoneVerified = freezed,
     Object? pinChangeRequired = freezed,
+    Object? pinUpdateRequired = freezed,
     Object? suspended = freezed,
     Object? chatRoomToken = freezed,
   }) {
@@ -294,6 +310,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.pinChangeRequired
           : pinChangeRequired // ignore: cast_nullable_to_non_nullable
               as bool?,
+      pinUpdateRequired: pinUpdateRequired == freezed
+          ? _value.pinUpdateRequired
+          : pinUpdateRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
       suspended: suspended == freezed
           ? _value.suspended
           : suspended // ignore: cast_nullable_to_non_nullable
@@ -347,18 +367,20 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
-      @JsonKey(name: 'termsAccepted')
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
-      @JsonKey(name: 'hasSetPin')
+      @JsonKey(name: 'hasSetPin', defaultValue: false)
           bool? hasSetPin,
-      @JsonKey(name: 'hasSetSecurityQuestions')
+      @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
           bool? hasSetSecurityQuestions,
-      @JsonKey(name: 'hasSetNickname')
+      @JsonKey(name: 'hasSetNickname', defaultValue: false)
           bool? hasSetNickname,
-      @JsonKey(name: 'isPhoneVerified')
+      @JsonKey(name: 'isPhoneVerified', defaultValue: false)
           bool? isPhoneVerified,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
       String? chatRoomToken});
@@ -396,6 +418,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? hasSetNickname = freezed,
     Object? isPhoneVerified = freezed,
     Object? pinChangeRequired = freezed,
+    Object? pinUpdateRequired = freezed,
     Object? suspended = freezed,
     Object? chatRoomToken = freezed,
   }) {
@@ -472,6 +495,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.pinChangeRequired
           : pinChangeRequired // ignore: cast_nullable_to_non_nullable
               as bool?,
+      pinUpdateRequired: pinUpdateRequired == freezed
+          ? _value.pinUpdateRequired
+          : pinUpdateRequired // ignore: cast_nullable_to_non_nullable
+              as bool?,
       suspended: suspended == freezed
           ? _value.suspended
           : suspended // ignore: cast_nullable_to_non_nullable
@@ -512,18 +539,20 @@ class _$_User implements _User {
           this.secondaryContacts,
       @JsonKey(name: 'languages')
           this.languages,
-      @JsonKey(name: 'termsAccepted')
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           this.termsAccepted,
-      @JsonKey(name: 'hasSetPin')
+      @JsonKey(name: 'hasSetPin', defaultValue: false)
           this.hasSetPin,
-      @JsonKey(name: 'hasSetSecurityQuestions')
+      @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
           this.hasSetSecurityQuestions,
-      @JsonKey(name: 'hasSetNickname')
+      @JsonKey(name: 'hasSetNickname', defaultValue: false)
           this.hasSetNickname,
-      @JsonKey(name: 'isPhoneVerified')
+      @JsonKey(name: 'isPhoneVerified', defaultValue: false)
           this.isPhoneVerified,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           this.pinChangeRequired,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          this.pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           this.suspended,
       this.chatRoomToken});
@@ -567,23 +596,34 @@ class _$_User implements _User {
   @JsonKey(name: 'languages')
   final List<String>? languages;
   @override
-  @JsonKey(name: 'termsAccepted')
+  @JsonKey(name: 'termsAccepted', defaultValue: false)
   final bool? termsAccepted;
   @override
-  @JsonKey(name: 'hasSetPin')
+  @JsonKey(name: 'hasSetPin', defaultValue: false)
   final bool? hasSetPin;
   @override
-  @JsonKey(name: 'hasSetSecurityQuestions')
+  @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
   final bool? hasSetSecurityQuestions;
   @override
-  @JsonKey(name: 'hasSetNickname')
+  @JsonKey(name: 'hasSetNickname', defaultValue: false)
   final bool? hasSetNickname;
   @override
-  @JsonKey(name: 'isPhoneVerified')
+  @JsonKey(name: 'isPhoneVerified', defaultValue: false)
   final bool? isPhoneVerified;
   @override
+
+  /// Whether this user needs to change their PIN
+  ///
+  /// This is normally used to signify that this user is a new user
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
   final bool? pinChangeRequired;
+  @override
+
+  /// Used to indicate that the user's PIN has been reset by someone else
+  ///
+  /// This is used to trigger the change PIN workflow
+  @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+  final bool? pinUpdateRequired;
   @override
   @JsonKey(name: 'suspended', defaultValue: false)
   final bool? suspended;
@@ -592,7 +632,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, avatar: $avatar, name: $name, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, gender: $gender, active: $active, primaryContact: $primaryContact, secondaryContacts: $secondaryContacts, languages: $languages, termsAccepted: $termsAccepted, hasSetPin: $hasSetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickname: $hasSetNickname, isPhoneVerified: $isPhoneVerified, pinChangeRequired: $pinChangeRequired, suspended: $suspended, chatRoomToken: $chatRoomToken)';
+    return 'User(userId: $userId, username: $username, avatar: $avatar, name: $name, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, gender: $gender, active: $active, primaryContact: $primaryContact, secondaryContacts: $secondaryContacts, languages: $languages, termsAccepted: $termsAccepted, hasSetPin: $hasSetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickname: $hasSetNickname, isPhoneVerified: $isPhoneVerified, pinChangeRequired: $pinChangeRequired, pinUpdateRequired: $pinUpdateRequired, suspended: $suspended, chatRoomToken: $chatRoomToken)';
   }
 
   @override
@@ -626,6 +666,8 @@ class _$_User implements _User {
                 .equals(other.isPhoneVerified, isPhoneVerified) &&
             const DeepCollectionEquality()
                 .equals(other.pinChangeRequired, pinChangeRequired) &&
+            const DeepCollectionEquality()
+                .equals(other.pinUpdateRequired, pinUpdateRequired) &&
             const DeepCollectionEquality().equals(other.suspended, suspended) &&
             const DeepCollectionEquality()
                 .equals(other.chatRoomToken, chatRoomToken));
@@ -652,6 +694,7 @@ class _$_User implements _User {
         const DeepCollectionEquality().hash(hasSetNickname),
         const DeepCollectionEquality().hash(isPhoneVerified),
         const DeepCollectionEquality().hash(pinChangeRequired),
+        const DeepCollectionEquality().hash(pinUpdateRequired),
         const DeepCollectionEquality().hash(suspended),
         const DeepCollectionEquality().hash(chatRoomToken)
       ]);
@@ -693,18 +736,20 @@ abstract class _User implements User {
           List<Contact?>? secondaryContacts,
       @JsonKey(name: 'languages')
           List<String>? languages,
-      @JsonKey(name: 'termsAccepted')
+      @JsonKey(name: 'termsAccepted', defaultValue: false)
           bool? termsAccepted,
-      @JsonKey(name: 'hasSetPin')
+      @JsonKey(name: 'hasSetPin', defaultValue: false)
           bool? hasSetPin,
-      @JsonKey(name: 'hasSetSecurityQuestions')
+      @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
           bool? hasSetSecurityQuestions,
-      @JsonKey(name: 'hasSetNickname')
+      @JsonKey(name: 'hasSetNickname', defaultValue: false)
           bool? hasSetNickname,
-      @JsonKey(name: 'isPhoneVerified')
+      @JsonKey(name: 'isPhoneVerified', defaultValue: false)
           bool? isPhoneVerified,
       @JsonKey(name: 'pinChangeRequired', defaultValue: false)
           bool? pinChangeRequired,
+      @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+          bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
       String? chatRoomToken}) = _$_User;
@@ -748,23 +793,34 @@ abstract class _User implements User {
   @JsonKey(name: 'languages')
   List<String>? get languages;
   @override
-  @JsonKey(name: 'termsAccepted')
+  @JsonKey(name: 'termsAccepted', defaultValue: false)
   bool? get termsAccepted;
   @override
-  @JsonKey(name: 'hasSetPin')
+  @JsonKey(name: 'hasSetPin', defaultValue: false)
   bool? get hasSetPin;
   @override
-  @JsonKey(name: 'hasSetSecurityQuestions')
+  @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
   bool? get hasSetSecurityQuestions;
   @override
-  @JsonKey(name: 'hasSetNickname')
+  @JsonKey(name: 'hasSetNickname', defaultValue: false)
   bool? get hasSetNickname;
   @override
-  @JsonKey(name: 'isPhoneVerified')
+  @JsonKey(name: 'isPhoneVerified', defaultValue: false)
   bool? get isPhoneVerified;
   @override
+
+  /// Whether this user needs to change their PIN
+  ///
+  /// This is normally used to signify that this user is a new user
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
   bool? get pinChangeRequired;
+  @override
+
+  /// Used to indicate that the user's PIN has been reset by someone else
+  ///
+  /// This is used to trigger the change PIN workflow
+  @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+  bool? get pinUpdateRequired;
   @override
   @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended;

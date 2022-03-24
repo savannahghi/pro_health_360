@@ -162,7 +162,7 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                         height: 52,
                         child: MyAfyaHubPrimaryButton(
                           text: saveAndContinueButtonText,
-                          buttonColor: AppColors.secondaryColor,
+                          buttonColor: AppColors.primaryColor,
                           onPressed: () {
                             final bool? isFormValid =
                                 _formKey.currentState?.validate();

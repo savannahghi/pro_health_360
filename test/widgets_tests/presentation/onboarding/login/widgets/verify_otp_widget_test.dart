@@ -80,7 +80,7 @@ void main() {
           client: mockShortSILGraphQlClient,
           widget: StoreConnector<AppState, VerifyPhoneViewModel>(
             converter: (Store<AppState> store) {
-              return VerifyPhoneViewModel.fromStore(store);
+              return VerifyPhoneViewModel.fromStore(store.state);
             },
             builder: (BuildContext context, VerifyPhoneViewModel vm) {
               return VerifyPhoneWidget(
@@ -184,7 +184,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: StoreConnector<AppState, VerifyPhoneViewModel>(
           converter: (Store<AppState> store) {
-            return VerifyPhoneViewModel.fromStore(store);
+            return VerifyPhoneViewModel.fromStore(store.state);
           },
           builder: (BuildContext context, VerifyPhoneViewModel vm) {
             return VerifyPhoneWidget(

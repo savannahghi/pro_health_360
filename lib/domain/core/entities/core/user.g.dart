@@ -26,12 +26,14 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       languages: (json['languages'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      termsAccepted: json['termsAccepted'] as bool?,
-      hasSetPin: json['hasSetPin'] as bool?,
-      hasSetSecurityQuestions: json['hasSetSecurityQuestions'] as bool?,
-      hasSetNickname: json['hasSetNickname'] as bool?,
-      isPhoneVerified: json['isPhoneVerified'] as bool?,
+      termsAccepted: json['termsAccepted'] as bool? ?? false,
+      hasSetPin: json['hasSetPin'] as bool? ?? false,
+      hasSetSecurityQuestions:
+          json['hasSetSecurityQuestions'] as bool? ?? false,
+      hasSetNickname: json['hasSetNickname'] as bool? ?? false,
+      isPhoneVerified: json['isPhoneVerified'] as bool? ?? false,
       pinChangeRequired: json['pinChangeRequired'] as bool? ?? false,
+      pinUpdateRequired: json['pinUpdateRequired'] as bool? ?? false,
       suspended: json['suspended'] as bool? ?? false,
       chatRoomToken: json['chatRoomToken'] as String?,
     );
@@ -55,6 +57,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'hasSetNickname': instance.hasSetNickname,
       'isPhoneVerified': instance.isPhoneVerified,
       'pinChangeRequired': instance.pinChangeRequired,
+      'pinUpdateRequired': instance.pinUpdateRequired,
       'suspended': instance.suspended,
       'chatRoomToken': instance.chatRoomToken,
     };

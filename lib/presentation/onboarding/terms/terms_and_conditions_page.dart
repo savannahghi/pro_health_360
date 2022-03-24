@@ -18,10 +18,7 @@ import 'package:shared_themes/spaces.dart';
 import 'package:unicons/unicons.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
-  const TermsAndConditionsPage({
-    Key? key,
-    this.shouldPop,
-  }) : super(key: key);
+  const TermsAndConditionsPage({Key? key, this.shouldPop}) : super(key: key);
   final bool? shouldPop;
 
   @override
@@ -64,7 +61,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                       child: Icon(
                         UniconsLine.file_lock_alt,
                         size: 32,
-                        color: AppColors.secondaryColor,
+                        color: AppColors.primaryColor,
                       ),
                     ),
                     title: Text(
@@ -126,7 +123,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     child: CheckBoxComponent(
                       text: acceptTermsText,
                       value: isAgreed,
-                      color: AppColors.secondaryColor,
+                      color: AppColors.primaryColor,
                       onChanged: (bool? value) async {
                         setState(() {
                           isAgreed = value!;
@@ -150,16 +147,16 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     width: double.infinity,
                     child: vm.appState.wait!.isWaitingFor(acceptTermsFlag)
                         ? const PlatformLoader(
-                            color: AppColors.secondaryColor,
+                            color: AppColors.primaryColor,
                           )
                         : MyAfyaHubPrimaryButton(
                             text: continueString,
                             borderColor:
                                 termsObject!.text != UNKNOWN && isAgreed
-                                    ? AppColors.secondaryColor
+                                    ? AppColors.primaryColor
                                     : Colors.grey,
                             buttonColor: termsObject.text != UNKNOWN && isAgreed
-                                ? AppColors.secondaryColor
+                                ? AppColors.primaryColor
                                 : Colors.grey,
                             onPressed: !isAgreed
                                 ? null

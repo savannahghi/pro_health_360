@@ -20,6 +20,7 @@ import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -98,6 +99,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         final String? expiresIn =
             loginResponse.userResponse?.credentials?.expiresIn;
+
         if (expiresIn != null && expiresIn.isNotEmpty && isNumeric(expiresIn)) {
           final DateTime tokenExpiryTimestamp =
               now.add(Duration(seconds: int.tryParse(expiresIn) ?? 0));
@@ -126,8 +128,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         // Check if this is a new user and kickstart the signup process
         if (pinChangeRequired) {
           // Navigate user to the correct route based on the state
-          final OnboardingPathInfo navConfig =
-              onboardingPath(appState: state);
+          final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 
           dispatch(
             NavigateAction<AppState>.pushNamedAndRemoveUntil(
@@ -180,8 +181,17 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        final OnboardingPathInfo navConfig =
-            onboardingPath(appState: state);
+        /// This addresses cases where a user's PIN has been reset by an admin
+        /// and it needs to be changed before accessing the platform
+        if (user?.pinUpdateRequired ?? false) {
+          dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.PINUpdate,
+            ),
+          );
+        }
+
+        final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 
         dispatch(
           NavigateAction<AppState>.pushNamedAndRemoveUntil(

@@ -37,8 +37,7 @@ class VerifyPhoneViewModel extends Vm {
   final bool? canResendOTP;
   final CurrentOnboardingStage? currentOnboardingStage;
 
-  static VerifyPhoneViewModel fromStore(Store<AppState> store) {
-    final AppState state = store.state;
+  static VerifyPhoneViewModel fromStore(AppState state) {
     return VerifyPhoneViewModel(
       wait: state.wait,
       userID: state.clientState?.user?.userId ?? UNKNOWN,

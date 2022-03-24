@@ -25,13 +25,25 @@ class User with _$User {
     @JsonKey(name: 'primaryContact') Contact? primaryContact,
     @JsonKey(name: 'secondaryContacts') List<Contact?>? secondaryContacts,
     @JsonKey(name: 'languages') List<String>? languages,
-    @JsonKey(name: 'termsAccepted') bool? termsAccepted,
-    @JsonKey(name: 'hasSetPin') bool? hasSetPin,
-    @JsonKey(name: 'hasSetSecurityQuestions') bool? hasSetSecurityQuestions,
-    @JsonKey(name: 'hasSetNickname') bool? hasSetNickname,
-    @JsonKey(name: 'isPhoneVerified') bool? isPhoneVerified,
+    @JsonKey(name: 'termsAccepted', defaultValue: false) bool? termsAccepted,
+    @JsonKey(name: 'hasSetPin', defaultValue: false) bool? hasSetPin,
+    @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
+        bool? hasSetSecurityQuestions,
+    @JsonKey(name: 'hasSetNickname', defaultValue: false) bool? hasSetNickname,
+    @JsonKey(name: 'isPhoneVerified', defaultValue: false)
+        bool? isPhoneVerified,
+
+    /// Whether this user needs to change their PIN
+    ///
+    /// This is normally used to signify that this user is a new user
     @JsonKey(name: 'pinChangeRequired', defaultValue: false)
         bool? pinChangeRequired,
+
+    /// Used to indicate that the user's PIN has been reset by someone else
+    ///
+    /// This is used to trigger the change PIN workflow
+    @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
+        bool? pinUpdateRequired,
     @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,
     String? chatRoomToken,
   }) = _User;
@@ -54,5 +66,11 @@ class User with _$User {
         termsAccepted: false,
         pinChangeRequired: false,
         chatRoomToken: UNKNOWN,
+        pinUpdateRequired: false,
+        hasSetNickname: false,
+        hasSetPin: false,
+        hasSetSecurityQuestions: false,
+        isPhoneVerified: false,
+        suspended: false,
       );
 }
