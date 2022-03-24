@@ -40,7 +40,7 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
   }
 
   @override
-  Future<AppState> reduce() async {
+  Future<AppState?> reduce() async {
     final String? phone = state.onboardingState?.phoneNumber;
     final List<SecurityQuestionResponse> securityQuestionsResponses =
         state.onboardingState!.securityQuestionResponses!;
@@ -69,42 +69,60 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
 
     client.close();
 
+    final ProcessedResponse processedResponse = processHttpResponse(result);
     final Map<String, dynamic> responseMap =
-        json.decode(result.body) as Map<String, dynamic>;
+        client.toMap(processedResponse.response);
 
-    final String? errors = client.parseError(body);
+    if (processedResponse.ok) {
+      final Map<String, dynamic> response =
+          json.decode(result.body) as Map<String, dynamic>;
 
-    if (errors != null || responseMap['error'] != null) {
+      if (response['data']['verifySecurityQuestionResponses'] != null) {
+        dispatch(
+          UpdateOnboardingStateAction(
+            hasVerifiedSecurityQuestions:
+                response['data']['verifySecurityQuestionResponses'] as bool,
+          ),
+        );
+
+        dispatch(
+          NavigateAction<AppState>.pushReplacementNamed(
+            AppRoutes.createPin,
+          ),
+        );
+      }
+    } else {
+      final String? errors = client.parseError(body);
+
       dispatch(
         UpdateOnboardingStateAction(
           hasVerifiedSecurityQuestions: false,
         ),
       );
 
-      Sentry.captureException(
-        UserException(errors),
-      );
-      if (responseMap['error'] != null) {
+      // check if the user has exceeded their
+      if (processedResponse.code == 77) {
+        // Navigate to VerifySecurityQuestionsHelp page
+        dispatch(
+          NavigateAction<AppState>.pushNamed(
+            AppRoutes.verifySecurityQuestionsHelpPage,
+          ),
+        );
+      } else if (processedResponse.code == 78) {
+        // Throws a security questions response mismatch error
+        Sentry.captureException(
+          UserException(errors),
+        );
         throw const UserException(responseNotMatchingText);
+      } else if (errors != null || responseMap['error'] != null) {
+        Sentry.captureException(
+          UserException(errors),
+        );
+
+        throw const UserException(somethingWentWrongText);
       }
-
-      throw const UserException(somethingWentWrongText);
     }
 
-    if (responseMap['data']['verifySecurityQuestionResponses'] != null) {
-      dispatch(
-        UpdateOnboardingStateAction(
-          hasVerifiedSecurityQuestions:
-              responseMap['data']['verifySecurityQuestionResponses'] as bool,
-        ),
-      );
-
-      dispatch(
-        NavigateAction<AppState>.pushReplacementNamed(
-          AppRoutes.createPin,
-        ),
-      );
-    }
     return state;
   }
 }

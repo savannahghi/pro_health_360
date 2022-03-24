@@ -110,30 +110,31 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                                         .elementAt(index)
                                         .response,
                                 onChanged: (String? value) {
-                                  if (question.responseType ==
-                                          SecurityQuestionResponseType.DATE &&
-                                      value != null) {
-                                    final String convertedDate =
-                                        formatSecurityQuestionDate(
-                                      value,
-                                      format: 'dd-MM-yyyy',
-                                    );
+                                  if (value != null) {
+                                    if (question.responseType ==
+                                        SecurityQuestionResponseType.DATE) {
+                                      final String convertedDate =
+                                          formatSecurityQuestionDate(
+                                        value,
+                                        format: 'dd-MM-yyyy',
+                                      );
 
-                                    securityQuestionsResponses[index] =
-                                        SecurityQuestionResponse(
-                                      userID: userId,
-                                      securityQuestionID:
-                                          question.securityQuestionID,
-                                      response: convertedDate,
-                                    );
-                                  } else {
-                                    securityQuestionsResponses[index] =
-                                        SecurityQuestionResponse(
-                                      userID: userId,
-                                      securityQuestionID:
-                                          question.securityQuestionID,
-                                      response: value,
-                                    );
+                                      securityQuestionsResponses[index] =
+                                          SecurityQuestionResponse(
+                                        userID: userId,
+                                        securityQuestionID:
+                                            question.securityQuestionID,
+                                        response: convertedDate,
+                                      );
+                                    } else {
+                                      securityQuestionsResponses[index] =
+                                          SecurityQuestionResponse(
+                                        userID: userId,
+                                        securityQuestionID:
+                                            question.securityQuestionID,
+                                        response: value.trim(),
+                                      );
+                                    }
                                   }
 
                                   StoreProvider.dispatch<AppState>(

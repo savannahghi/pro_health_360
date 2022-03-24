@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/actions/security_questions/verify_security_questions_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 import '../../../../../mocks.dart';
@@ -29,8 +30,11 @@ void main() {
             'idToken',
             'endpoint',
             Response(
-              json.encode(<String, dynamic>{'errors': 'error'}),
-              201,
+              json.encode(<String, dynamic>{
+                'error': <String, dynamic>{},
+                'message': '2: internal error',
+              }),
+              400,
             ),
           ),
           verifySecurityQuestionsEndpoint: '',
@@ -43,7 +47,9 @@ void main() {
       expect(info.state.onboardingState?.hasVerifiedSecurityQuestions, false);
     });
 
-    test('should not update state if a response does not match', () async {
+    test(
+        'should return response mismatch if one or more responses do not match',
+        () async {
       storeTester.dispatch(
         VerifySecurityQuestionAction(
           client: MockShortGraphQlClient.withResponse(
@@ -52,9 +58,41 @@ void main() {
             Response(
               json.encode(<String, dynamic>{
                 'error': <String, dynamic>{},
-                'message': 'the security question response does not match'
+                'message': 'security question response does not match',
+                'code': 78,
               }),
-              201,
+              400,
+            ),
+          ),
+          verifySecurityQuestionsEndpoint: '',
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(VerifySecurityQuestionAction);
+
+      expect(
+        (info.error! as UserException).msg,
+        responseNotMatchingText,
+      );
+
+      expect(info.state.onboardingState?.hasVerifiedSecurityQuestions, false);
+    });
+
+    test('should navigate to help page if more than 3 attempts are made',
+        () async {
+      storeTester.dispatch(
+        VerifySecurityQuestionAction(
+          client: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              json.encode(<String, dynamic>{
+                'error': <String, dynamic>{},
+                'message': 'security question response does not match',
+                'code': 77,
+              }),
+              400,
             ),
           ),
           verifySecurityQuestionsEndpoint: '',
