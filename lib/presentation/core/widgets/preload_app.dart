@@ -8,10 +8,12 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
+import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
@@ -94,11 +96,13 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
     super.didChangeAppLifecycleState(state);
 
     if (state == AppLifecycleState.resumed) {
-      final bool isSignedIn =
-          StoreProvider.state<AppState>(context)?.credentials?.isSignedIn ??
-              false;
+      final AppState? state = StoreProvider.state<AppState>(context);
 
-      if (isSignedIn) {
+      final bool isSignedIn = state?.credentials?.isSignedIn ?? false;
+
+      final OnboardingPathInfo route = onboardingPath(appState: state);
+
+      if (isSignedIn && route.nextRoute.compareTo(AppRoutes.home) == 0) {
         Navigator.pushReplacementNamed(
           appGlobalNavigatorKey.currentContext!,
           AppRoutes.resumeWithPin,
