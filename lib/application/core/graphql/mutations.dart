@@ -165,16 +165,6 @@ mutation addMembersToCommunity($memberIDs: [String!]!, $communityID: String!){
 }
 ''';
 
-const String createServiceRequestMutation = r'''
-mutation createServiceRequest($clientID: String!, $requestType: String!, $request: String){
-  createServiceRequest(
-    clientID: $clientID,
-    requestType: $requestType,
-    request: $request
-  )
-}
-''';
-
 const String optOutMutation = r'''
 mutation optOut($phoneNumber: String!, $flavour: Flavour!) {
   optOut(phoneNumber: $phoneNumber, flavour: $flavour)

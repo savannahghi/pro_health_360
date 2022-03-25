@@ -113,6 +113,16 @@ class CreatePINAction extends ReduxAction<AppState> {
           json.decode(result.body) as Map<String, dynamic>;
 
       if (_client.parseError(body) != null || responseMap['errors'] != null) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: const Text(somethingWentWrongText),
+              duration: const Duration(seconds: kShortSnackBarDuration),
+              action: dismissSnackBar(closeString, white, context),
+            ),
+          );
+
         throw MyAfyaException(
           cause: createPINTag,
           message: somethingWentWrongText,

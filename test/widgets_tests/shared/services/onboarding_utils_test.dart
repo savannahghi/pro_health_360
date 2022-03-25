@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:convert';
-import 'dart:io';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
@@ -18,9 +17,7 @@ import 'package:myafyahub/application/redux/actions/update_credentials_action.da
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -219,7 +216,7 @@ void main() {
           expect(path, AppRoutes.congratulationsPage);
         });
 
-        testWidgets('should navigate to verify otp page',
+        testWidgets('should navigate to verify phone page',
             (WidgetTester tester) async {
           store.dispatch(UpdateCredentialsAction(isSignedIn: true));
           store.dispatch(
@@ -455,11 +452,46 @@ void main() {
         });
 
         testWidgets(
-            'should navigate security questions page when changing the PIN',
+            'should navigate security questions page when resetting the PIN',
             (WidgetTester tester) async {
           store.dispatch(
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.ResetPIN,
+              isPhoneVerified: true,
+              hasSetPin: true,
+              hasSetSecurityQuestions: false,
+            ),
+          );
+
+          String path = '';
+
+          await buildTestWidget(
+            tester: tester,
+            store: store,
+            client: mockGraphQlClient,
+            widget: Builder(
+              builder: (BuildContext context) {
+                return MyAfyaHubPrimaryButton(
+                  onPressed: () {
+                    path = onboardingPath(appState: store.state).nextRoute;
+                  },
+                );
+              },
+            ),
+          );
+
+          await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+          await tester.pumpAndSettle();
+
+          expect(path, AppRoutes.securityQuestionsPage);
+        });
+
+        testWidgets(
+            'should navigate security questions page when changing the PIN',
+            (WidgetTester tester) async {
+          store.dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.PINUpdate,
               isPhoneVerified: true,
               hasSetPin: true,
               hasSetSecurityQuestions: false,
@@ -593,67 +625,6 @@ void main() {
 
         expect(store.state.wait!.isWaitingFor(flag), false);
       });
-    });
-  });
-  group('setUserPIN function', () {
-    late Store<AppState> store;
-
-    setUpAll(() {
-      store = Store<AppState>(initialState: AppState.initial());
-      HttpOverrides.global = null;
-    });
-    testWidgets('Navigates to Congratulations page if PINs are valid  ',
-        (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () async {
-                await setUserPIN(
-                  confirmPIN: '0000',
-                  context: context,
-                  newPIN: '0000',
-                );
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(find.byType(SetNickNamePage), findsOneWidget);
-    });
-
-    testWidgets('Shows snackbar when pins do not match',
-        (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockGraphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () async {
-                await setUserPIN(
-                  confirmPIN: '0001',
-                  context: context,
-                  newPIN: '0000',
-                );
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pump(const Duration(seconds: 1));
-      expect(find.text(pinMustMatchString), findsOneWidget);
     });
   });
 }
