@@ -236,7 +236,7 @@ class RouteGenerator {
 
       case AppRoutes.clinicInformationPage:
         return MaterialPageRoute<ClinicInformationPage>(
-          builder: (_) => ClinicInformationPage(),
+          builder: (_) => const ClinicInformationPage(),
         );
 
       case AppRoutes.settingsPage:

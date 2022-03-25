@@ -54,7 +54,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ClinicInformationPage(),
+        widget: const ClinicInformationPage(),
       );
       expect(find.byType(ClinicInformationItemWidget), findsNWidgets(3));
 
@@ -68,7 +68,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: ClinicInformationPage(),
+        widget: const ClinicInformationPage(),
       );
 
       store.dispatch(WaitAction<AppState>.add(fetchClinicInformationFlag));

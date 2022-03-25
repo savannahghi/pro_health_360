@@ -23,7 +23,7 @@ class NoSavedContentWidget extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 30),
               SvgPicture.asset(
-                noContentImage,
+                contentZeroStateImageUrl,
                 height: 286.0,
                 width: 286.0,
               ),

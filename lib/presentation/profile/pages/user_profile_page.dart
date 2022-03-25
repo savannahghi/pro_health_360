@@ -21,20 +21,6 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
-  final String age = '18';
-
-  final String home = 'Karen';
-
-  /// [UserProfilePage] is used to display the user information
-  ///
-  /// It takes in required [userInitials], [name], [userCCCNumber], [age], [phoneNumber],
-  ///  [home] and [userProfileItems] parameters
-  ///
-  /// [userProfileItems] is a list of the UserProfilePage ListTile items
-
-  // Client's Comprehensive Care Centre Number
-  final String userCCCNumber = '12345678';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +45,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         userProfileItems.elementAt(index).title;
                     final String routeName =
                         userProfileItems.elementAt(index).route;
+
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 4),
                       child: GestureDetector(

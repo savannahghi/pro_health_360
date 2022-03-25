@@ -15,9 +15,12 @@ import 'package:myafyahub/presentation/profile/widgets/call_contact_action_widge
 // Package imports:
 import 'package:shared_themes/spaces.dart';
 
-/// [ClinicInformationPage] is to display information of the clinic a client is registered to
+/// [ClinicInformationPage] is to display information of the clinic a client
+/// is registered to
 
 class ClinicInformationPage extends StatefulWidget {
+  const ClinicInformationPage();
+
   @override
   State<ClinicInformationPage> createState() => _ClinicInformationPageState();
 }

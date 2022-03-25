@@ -1,4 +1,3 @@
-const String transparentLogo = 'assets/images/transparent_logo.svg';
 const String landingBackgroundImg = 'assets/images/landing.jpg';
 const String closeIconUrl = 'assets/icons/close.png';
 const String closeIconSvg = 'assets/icons/close_icon.svg';
@@ -53,8 +52,7 @@ const String heartIconUrl = 'assets/icons/heart.svg';
 const String clockIconUrl = 'assets/icons/clock.svg';
 const String doneIconUrl = 'assets/icons/done_icon.svg';
 
-const String contentZeroStateImageUrl =
-    'assets/images/content_zero_state_image.svg';
+const String contentZeroStateImageUrl = 'assets/images/no_content_image.svg';
 
 const String profileImage = 'assets/images/profile_image.png';
 
@@ -150,7 +148,6 @@ const String leftQuoteSVGUrl = 'assets/icons/quote_left.svg';
 const String rightQuoteSVGUrl = 'assets/icons/quote_right.svg';
 
 const String successfulEntryImage = 'assets/images/successful_entry_image.svg';
-const String noContentImage = 'assets/images/no_content_image.svg';
 
 const String emptyDiaryEntryImage = 'assets/images/empty_diary.svg';
 const String errorPageImage = 'assets/images/error_page_image.svg';

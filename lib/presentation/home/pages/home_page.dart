@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:myafyahub/presentation/communities/suggested_groups/suggested_groups_section_widget.dart';
+import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_carousel.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -29,6 +30,8 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 const MoodChecker(),
+                smallVerticalSizedBox,
+                const ScreeningToolsCarousel(),
                 const RecentContentWidget(),
                 smallVerticalSizedBox,
                 const SuggestedGroupsSection(),

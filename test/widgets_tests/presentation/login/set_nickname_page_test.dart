@@ -93,6 +93,9 @@ void main() {
 
     testWidgets('Navigates to Home page if input is valid  ',
         (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(800, 1200);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
       mockNetworkImages(() async {
         store.dispatch(
           UpdateContentStateAction(contentItems: <Content>[mockContent]),
@@ -121,6 +124,11 @@ void main() {
         await tester.tap(continueButton);
         await tester.pumpAndSettle();
         expect(find.byType(HomePage), findsOneWidget);
+      });
+      
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
       });
     });
 

@@ -667,6 +667,7 @@ const String galleryImagesTitle = 'Gallery Images';
 
 /// Screening tools strings
 const String screeningToolsPageTitle = 'Screening tools';
+const String assessmentToolsTitle = 'Assessment tools';
 const String screeningToolsPageDescription =
     'Tap to take a look at some of our screening tools';
 
@@ -674,14 +675,13 @@ const String screeningToolsPageLongDescription =
     'Take charge of your health by assessing yourself using our screening tools';
 
 const String violenceTitle = 'Violence';
-const String violenceDescription =
-    'Tap to share your experience about violence';
+const String violenceDescription = 'Share your experience about violence';
 const String contraceptiveTitle = 'Contraceptives';
 const String contraceptiveDescription =
-    'Tap to learn more about contraceptives';
+    'Would you like to know more about contraceptives?';
 const String tuberculosisTitle = 'Tuberculosis';
 const String tuberculosisDescription =
-    'Tap to assess yourself for tuberculosis';
+    'Assess yourself and learn more about tuberculosis';
 
 // violence assessment
 const String violenceAssessmentTitle = 'Violence Assessment';
@@ -743,7 +743,7 @@ const String alcoholSubstanceUseQuestionFour =
 const String alcoholSubstanceUseQuestionFive =
     '5. Do your families or friends ever tell you that you should cut down on your drinking or drug use?';
 const String alcoholSubstanceDescription =
-    'Tap to assess yourself for alcohol and substance use';
+    'Tap to assess yourself for alcohol use';
 
 // health assessment
 const String healthAssessmentTitle = 'Mental Health Assessment';
@@ -819,6 +819,7 @@ const String noInvitesDescription =
 const String invitationAcceptedSuccessfully =
     'Invitation accepted successfully';
 const String communitiesRejectionSuccessful = 'Invite rejection successful';
+const String errorFetchingInvitesText = 'Error fetching group invites';
 
 const String addingToGroupString = 'adding you to the group';
 
@@ -905,3 +906,4 @@ const String forgotYourPINString = 'Forgot your PIN?';
 const String forgotPINPageMessageString =
     'Tap below to reset your PIN. You will be required to perform the following steps:\n\n1. Verify your phone number\n2. Verify your security questions\n3. Change your PIN';
 const String resetMyPINString = 'Reset my PIN';
+const String beginString = 'Begin';

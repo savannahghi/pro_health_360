@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
@@ -23,6 +24,9 @@ import '../../../../test_helpers.dart';
 void main() {
   group('HandleDeepLink', () {
     testWidgets('should dispatch DeepLinkAction', (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(800, 1200);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
       final PhoneLoginResponse phoneLoginResponse =
           PhoneLoginResponse.fromJson(mockLoginResponse);
 
@@ -89,6 +93,11 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(HomePage), findsOneWidget);
+      });
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
       });
     });
   });

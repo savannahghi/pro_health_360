@@ -54,7 +54,7 @@ void main() {
                 try {
                   await store.dispatch(
                     FetchInvitedCommunitiesAction(
-                      context: context,
+                      client: mockShortSILGraphQlClient,
                     ),
                   );
                 } catch (e) {
