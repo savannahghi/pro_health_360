@@ -7,9 +7,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/create_pin_action.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -30,24 +28,6 @@ void clearAllFlags(BuildContext context) {
       WaitAction<AppState>.clear(),
     );
   });
-}
-
-Future<void> setUserPIN({
-  required BuildContext context,
-  required String newPIN,
-  required String confirmPIN,
-}) async {
-  // this is the Redux Action that store the PINs user enters
-  StoreProvider.dispatch(
-    context,
-    UpdateOnboardingStateAction(pin: newPIN, confirmPIN: confirmPIN),
-  );
-
-  // this is the Redux Action that handles set PIN for an existing user
-  await StoreProvider.dispatch<AppState>(
-    context,
-    CreatePINAction(context: context),
-  );
 }
 
 // NavigationPathConfig
@@ -124,6 +104,14 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.verifySignUpOTP,
         nextRoute: AppRoutes.createPin,
+      );
+    }
+
+    if (currentOnboardingStage == CurrentOnboardingStage.PINUpdate &&
+        !hasSetSecurityQuestions) {
+      return OnboardingPathInfo(
+        previousRoute: AppRoutes.termsAndConditions,
+        nextRoute: AppRoutes.securityQuestionsPage,
       );
     }
 

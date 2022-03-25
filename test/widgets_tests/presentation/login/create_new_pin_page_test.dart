@@ -5,6 +5,7 @@ import 'dart:io';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 // Flutter imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -56,6 +57,38 @@ void main() {
       await tester.tap(saveAndContinueButton);
       await tester.pumpAndSettle();
       expect(find.byType(SetNickNamePage), findsOneWidget);
+    });
+
+    testWidgets('should show an error if the PINs entered do not match',
+        (WidgetTester tester) async {
+      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockGraphQlClient,
+        widget: CreateNewPINPage(
+          connectivityStatus: MobileConnectivityChecker(
+            checkInternetCallback: () async => true,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final Finder pinInputField = find.byType(CustomTextField).first;
+      final Finder confirmPinInputField = find.byType(CustomTextField).last;
+      final Finder saveAndContinueButton = find.byType(MyAfyaHubPrimaryButton);
+
+      expect(confirmPinInputField, findsOneWidget);
+
+      await tester.showKeyboard(pinInputField);
+      await tester.enterText(pinInputField, '0000');
+      await tester.showKeyboard(confirmPinInputField);
+      await tester.enterText(confirmPinInputField, '0001');
+      await tester.ensureVisible(saveAndContinueButton);
+      await tester.tap(saveAndContinueButton);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.text(pinMustMatchString), findsOneWidget);
     });
 
     testWidgets('Navigates to Login page if PINs are valid for reset pin  ',
