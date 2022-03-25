@@ -305,4 +305,11 @@ const Key resetPINButtonKey = Key('reset_pin_button_key');
 const Key cccInputKey = Key('ccc_input_key');
 
 // Appointment keys
-const Key addToCalendarKey = Key('add_to_calendar');
+const Key addToCalendarKey = Key('add_to_calendar_key');
+
+const Key violenceKey = Key('violence_key');
+const Key contraceptiveKey = Key('contraceptive_key');
+const Key tuberculosisKey = Key('tuberculosis_key');
+const Key alcoholUseKey = Key('alcohol_use_key');
+const Key screeningToolsCarouselListViewKey =
+    Key('screening_tools_carousel_list_view_key');

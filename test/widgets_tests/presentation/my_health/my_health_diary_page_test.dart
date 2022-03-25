@@ -201,6 +201,9 @@ void main() {
     testWidgets(
         'should show an empty health diary widget if there are no diary entries',
         (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(800, 1200);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
@@ -240,6 +243,11 @@ void main() {
         store.state.bottomNavigationState!.currentBottomNavIndex,
         BottomNavIndex.home.index,
       );
+
+      addTearDown(() {
+        tester.binding.window.clearPhysicalSizeTestValue();
+        tester.binding.window.clearDevicePixelRatioTestValue();
+      });
     });
 
     testWidgets(
