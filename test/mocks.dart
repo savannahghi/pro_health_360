@@ -941,12 +941,43 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
-     if (queryString == optOutMutation) {
+    if (queryString == optOutMutation) {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'optOut': true,
+            }
+          }),
+          200,
+        ),
+      );
+    }
+    if (queryString == listAppointmentsQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'fetchClientAppointments': <String, dynamic>{
+                'appointments': <dynamic>[
+                  <String, dynamic>{
+                    'type': 'DENTAL',
+                    'reason': 'test',
+                    'status': 'SCHEDULED',
+                    'date': '2022-01-04',
+                    'start': 'test',
+                    'end': 'test'
+                  },
+                  <String, dynamic>{
+                    'type': 'DENTAL',
+                    'reason': 'test',
+                    'status': 'SCHEDULED',
+                    'date': '2022-01-04',
+                    'start': 'test',
+                    'end': 'test'
+                  },
+                ],
+              }
             }
           }),
           200,

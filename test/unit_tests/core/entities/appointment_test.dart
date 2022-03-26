@@ -14,7 +14,7 @@ void main() {
       date: '2022-03-13',
       start: '0000-01-01T11:07:56Z',
       end: '0000-01-01T12:07:56Z',
-      status: AppointmentStatus.Missed,
+      status: AppointmentStatus.MISSED,
     ).toJson();
 
     expect(

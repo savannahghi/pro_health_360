@@ -116,15 +116,15 @@ enum CurrentOnboardingStage { Login, ResetPIN, PINExpired, PINUpdate }
 
 // The various states that an appointment can take
 enum AppointmentStatus {
-  Scheduled,
-  Rescheduled,
-  Waiting,
-  Missed,
-  Completed,
-  InConsultation,
-  WalkIn,
-  Cancelled,
-  NeedsReschedule,
+  SCHEDULED,
+  RESCHEDULED,
+  WAITING,
+  MISSED,
+  COMPLETED,
+  INCONSULTATION,
+  WALKIN,
+  CANCELLED,
+  NEEDSRESCHEDULE,
   UNKNOWN,
 }
 

@@ -35,7 +35,7 @@ dependencies:
   http: ^0.13.3
   image_picker: ^0.8.0+1
   intl: ^0.17.0
-  json_annotation: ^4.0.1
+  json_annotation: ^4.4.0
   json_serializable: ^6.1.4
   just_audio: ^0.9.18
   launch_review: ^3.0.1
