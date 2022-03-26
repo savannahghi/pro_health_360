@@ -48,10 +48,7 @@ class VerifyPhonePage extends StatelessWidget {
             if (enteredCode == vm.otp) {
               StoreProvider.dispatch<AppState>(
                 context,
-                VerifyOTPAction(
-                  otp: enteredCode,
-                  context: context,
-                ),
+                VerifyOTPAction(otp: enteredCode, context: context),
               );
             } else {
               showFeedbackBottomSheet(

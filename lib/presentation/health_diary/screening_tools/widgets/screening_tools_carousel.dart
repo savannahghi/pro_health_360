@@ -17,76 +17,69 @@ class ScreeningToolsCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15.0,
-              vertical: 10.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  assessmentToolsTitle,
-                  style: veryBoldSize16Text(AppColors.secondaryColor),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                assessmentToolsTitle,
+                style: veryBoldSize16Text(AppColors.secondaryColor),
+              ),
+              smallVerticalSizedBox,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  key: screeningToolsCarouselListViewKey,
+                  children: <Widget>[
+                    ScreeningToolMenuItem(
+                      title: violenceTitle,
+                      description: violenceDescription,
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.violenceAssessmentPage);
+                      },
+                      beginButtonKey: violenceKey,
+                    ),
+                    ScreeningToolMenuItem(
+                      title: contraceptiveTitle,
+                      description: contraceptiveDescription,
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.contraceptiveAssessmentPage,
+                      ),
+                      beginButtonKey: contraceptiveKey,
+                    ),
+                    ScreeningToolMenuItem(
+                      title: tuberculosisTitle,
+                      description: tuberculosisDescription,
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.tuberculosisAssessmentPage,
+                      ),
+                      beginButtonKey: tuberculosisKey,
+                    ),
+                    ScreeningToolMenuItem(
+                      title: alcoholSubstanceUseTitle,
+                      description: alcoholSubstanceDescription,
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.alcoholSubstanceUsePage);
+                      },
+                      beginButtonKey: alcoholUseKey,
+                    ),
+                  ],
                 ),
-                smallVerticalSizedBox,
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.18,
-                  child: ListView(
-                    key: screeningToolsCarouselListViewKey,
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      ScreeningToolMenuItem(
-                        title: violenceTitle,
-                        description: violenceDescription,
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.violenceAssessmentPage);
-                        },
-                        beginButtonKey: violenceKey,
-                      ),
-                      ScreeningToolMenuItem(
-                        title: contraceptiveTitle,
-                        description: contraceptiveDescription,
-                        onTap: () => Navigator.pushNamed(
-                          context,
-                          AppRoutes.contraceptiveAssessmentPage,
-                        ),
-                        beginButtonKey: contraceptiveKey,
-                      ),
-                      ScreeningToolMenuItem(
-                        title: tuberculosisTitle,
-                        description: tuberculosisDescription,
-                        onTap: () => Navigator.pushNamed(
-                          context,
-                          AppRoutes.tuberculosisAssessmentPage,
-                        ),
-                        beginButtonKey: tuberculosisKey,
-                      ),
-                      ScreeningToolMenuItem(
-                        title: alcoholSubstanceUseTitle,
-                        description: alcoholSubstanceDescription,
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(AppRoutes.alcoholSubstanceUsePage);
-                        },
-                        beginButtonKey: alcoholUseKey,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

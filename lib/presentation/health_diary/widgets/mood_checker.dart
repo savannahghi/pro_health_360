@@ -42,10 +42,9 @@ class _MoodCheckerState extends State<MoodChecker> {
         final bool canRecordMood = vm.appState.homeState?.canRecordMood ?? true;
 
         if (vm.appState.wait!.isWaitingFor(canRecordMoodFlag)) {
-          return Container(
-            height: 300,
-            padding: const EdgeInsets.all(20),
-            child: const PlatformLoader(),
+          return const Padding(
+            padding: EdgeInsets.all(20),
+            child: PlatformLoader(),
           );
         } else {
           return canRecordMood

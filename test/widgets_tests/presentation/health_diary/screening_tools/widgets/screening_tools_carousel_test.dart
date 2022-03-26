@@ -1,8 +1,5 @@
-import 'dart:ui';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -24,19 +21,17 @@ void main() {
     });
 
     testWidgets(
-      'should render correctly and navigate to the various screening tools',
+      'should navigate to violence assessment page and back',
       (WidgetTester tester) async {
-        tester.binding.window.physicalSizeTestValue = const Size(800, 1200);
-        tester.binding.window.devicePixelRatioTestValue = 1;
-
         await buildTestWidget(
           tester: tester,
           store: store,
           client: MockGraphQlClient(),
-          widget: const SingleChildScrollView(child: ScreeningToolsCarousel()),
+          widget: const ScreeningToolsCarousel(),
         );
 
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(2));
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byKey(violenceKey), findsOneWidget);
 
         // tap the violence menu item and go back
         await tester.tap(find.byKey(violenceKey));
@@ -44,36 +39,46 @@ void main() {
         expect(find.byType(ViolenceAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(2));
-
-        // tap the violence menu item and go back
-        await tester.tap(find.byKey(contraceptiveKey));
-        await tester.pumpAndSettle();
-        expect(find.byType(ContraceptiveAssessmentPage), findsOneWidget);
-        await tester.tap(find.byKey(appBarBackButtonKey));
-        await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(2));
-
-        addTearDown(() {
-          tester.binding.window.clearPhysicalSizeTestValue();
-          tester.binding.window.clearDevicePixelRatioTestValue();
-        });
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
       },
     );
 
     testWidgets(
-      'should render correctly and navigate to the other various screening tools '
-      'that are off screen',
+      'should navigate to contraceptive assessment page and back',
       (WidgetTester tester) async {
-        tester.binding.window.physicalSizeTestValue = const Size(800, 1200);
-        tester.binding.window.devicePixelRatioTestValue = 1;
-
         await buildTestWidget(
           tester: tester,
           store: store,
           client: MockGraphQlClient(),
           widget: const ScreeningToolsCarousel(),
         );
+
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byKey(contraceptiveKey), findsOneWidget);
+
+        // tap the contraceptive menu item and go back
+        await tester.scrollUntilVisible(find.byKey(contraceptiveKey), 800);
+        await tester.tap(find.byKey(contraceptiveKey));
+        await tester.pumpAndSettle();
+        expect(find.byType(ContraceptiveAssessmentPage), findsOneWidget);
+        await tester.tap(find.byKey(appBarBackButtonKey));
+        await tester.pumpAndSettle();
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+      },
+    );
+
+    testWidgets(
+      'should navigate to tuberculosis assessment page and back',
+      (WidgetTester tester) async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: MockGraphQlClient(),
+          widget: const ScreeningToolsCarousel(),
+        );
+
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byKey(tuberculosisKey), findsOneWidget);
 
         // tap the violence menu item and go back
         await tester.scrollUntilVisible(find.byKey(tuberculosisKey), 800);
@@ -82,7 +87,22 @@ void main() {
         expect(find.byType(TuberculosisAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsWidgets);
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+      },
+    );
+
+    testWidgets(
+      'should navigate to alcohol assessment page and back',
+      (WidgetTester tester) async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: MockGraphQlClient(),
+          widget: const ScreeningToolsCarousel(),
+        );
+
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byKey(tuberculosisKey), findsOneWidget);
 
         // tap the violence menu item and go back
         await tester.scrollUntilVisible(find.byKey(alcoholUseKey), 800);
@@ -91,12 +111,7 @@ void main() {
         expect(find.byType(AlcoholSubstanceUsePage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(2));
-
-        addTearDown(() {
-          tester.binding.window.clearPhysicalSizeTestValue();
-          tester.binding.window.clearDevicePixelRatioTestValue();
-        });
+        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
       },
     );
   });

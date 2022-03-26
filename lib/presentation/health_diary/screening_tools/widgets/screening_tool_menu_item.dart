@@ -17,21 +17,19 @@ class ScreeningToolMenuItem extends StatelessWidget {
     this.beginButtonKey,
   });
 
+  final Key? beginButtonKey;
   final String description;
   final Function onTap;
   final String title;
-  final Key? beginButtonKey;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.6,
+      width: MediaQuery.of(context).size.width * 0.7,
       decoration: BoxDecoration(
         color: AppColors.purpleChillColor.withOpacity(0.14),
         borderRadius: const BorderRadius.all(Radius.circular(8)),
-        border: Border.all(
-          color: AppColors.purpleChillColor.withOpacity(0.3),
-        ),
+        border: Border.all(color: AppColors.purpleChillColor.withOpacity(0.3)),
       ),
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(right: 10),
@@ -39,16 +37,11 @@ class ScreeningToolMenuItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            title,
-            style: boldSize16Text(),
-          ),
+          Text(title, style: boldSize16Text()),
           smallVerticalSizedBox,
           Text(
             description,
-            style: normalSize14Text(
-              AppColors.secondaryColor.withOpacity(0.6),
-            ),
+            style: normalSize14Text(AppColors.secondaryColor.withOpacity(0.6)),
           ),
           mediumVerticalSizedBox,
           Align(
@@ -59,9 +52,7 @@ class ScreeningToolMenuItem extends StatelessWidget {
               child: MyAfyaHubPrimaryButton(
                 text: beginString,
                 buttonKey: beginButtonKey,
-                onPressed: () {
-                  onTap.call();
-                },
+                onPressed: () => onTap.call(),
               ),
             ),
           ),
