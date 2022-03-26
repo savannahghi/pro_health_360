@@ -65,7 +65,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: MyHealthPage(),
       );
       await tester.tap(find.text(myHealthPageAppointments));

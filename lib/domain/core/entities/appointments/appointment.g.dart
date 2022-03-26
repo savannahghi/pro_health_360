@@ -28,14 +28,14 @@ Map<String, dynamic> _$$_AppointmentToJson(_$_Appointment instance) =>
     };
 
 const _$AppointmentStatusEnumMap = {
-  AppointmentStatus.Scheduled: 'Scheduled',
-  AppointmentStatus.Rescheduled: 'Rescheduled',
-  AppointmentStatus.Waiting: 'Waiting',
-  AppointmentStatus.Missed: 'Missed',
-  AppointmentStatus.Completed: 'Completed',
-  AppointmentStatus.InConsultation: 'InConsultation',
-  AppointmentStatus.WalkIn: 'WalkIn',
-  AppointmentStatus.Cancelled: 'Cancelled',
-  AppointmentStatus.NeedsReschedule: 'NeedsReschedule',
+  AppointmentStatus.SCHEDULED: 'SCHEDULED',
+  AppointmentStatus.RESCHEDULED: 'RESCHEDULED',
+  AppointmentStatus.WAITING: 'WAITING',
+  AppointmentStatus.MISSED: 'MISSED',
+  AppointmentStatus.COMPLETED: 'COMPLETED',
+  AppointmentStatus.INCONSULTATION: 'INCONSULTATION',
+  AppointmentStatus.WALKIN: 'WALKIN',
+  AppointmentStatus.CANCELLED: 'CANCELLED',
+  AppointmentStatus.NEEDSRESCHEDULE: 'NEEDSRESCHEDULE',
   AppointmentStatus.UNKNOWN: 'UNKNOWN',
 };

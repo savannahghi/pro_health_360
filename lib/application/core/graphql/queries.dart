@@ -331,3 +331,26 @@ query recommendedCommunities($clientID: String!, $limit: Int!) {
   }
 }
 ''';
+
+const String listAppointmentsQuery = r'''
+query listAppointments(
+  $clientID: ID!
+  $paginationInput: PaginationsInput!
+  $filters: [FilterParam!]
+) {
+  fetchClientAppointments(
+    clientID: $clientID
+    paginationInput: $paginationInput
+    filters: $filters
+  ) {
+    appointments {
+      type
+      reason
+      status
+      date
+      start
+      end
+    }
+  }
+}
+''';
