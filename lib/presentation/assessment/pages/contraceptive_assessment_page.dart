@@ -38,7 +38,7 @@ class ContraceptiveAssessmentPage extends StatelessWidget {
                         ),
                         mediumVerticalSizedBox,
                         Text(
-                          lastMentrualPeriodString,
+                          lastMenstrualPeriodString,
                           style: normalSize14Text(
                             AppColors.greyTextColor,
                           ),
