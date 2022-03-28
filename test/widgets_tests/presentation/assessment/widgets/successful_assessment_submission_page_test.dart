@@ -22,7 +22,7 @@ void main() {
         store: store,
         client: MockGraphQlClient(),
         widget: const SuccessfulAssessmentSubmissionPage(
-          screeningToolsType: ScreeningToolsType.Violence,
+          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
         ),
       );
       await tester.pump();

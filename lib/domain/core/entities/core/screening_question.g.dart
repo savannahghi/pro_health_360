@@ -9,12 +9,20 @@ part of 'screening_question.dart';
 _$_ScreeningQuestion _$$_ScreeningQuestionFromJson(Map<String, dynamic> json) =>
     _$_ScreeningQuestion(
       id: json['id'] as String?,
-      questionText: json['questionText'] as String?,
+      questionText: json['question'] as String?,
+      toolType: json['toolType'] as String?,
+      sequence: json['sequence'] as int?,
+      responseChoices: json['responseChoices'] as Map<String, dynamic>?,
+      meta: json['meta'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$_ScreeningQuestionToJson(
         _$_ScreeningQuestion instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'questionText': instance.questionText,
+      'question': instance.questionText,
+      'toolType': instance.toolType,
+      'sequence': instance.sequence,
+      'responseChoices': instance.responseChoices,
+      'meta': instance.meta,
     };

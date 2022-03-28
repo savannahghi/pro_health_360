@@ -23,14 +23,14 @@ class _$TBStateTearOff {
   const _$TBStateTearOff();
 
   _TBState call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) {
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) {
     return _TBState(
       screeningQuestions: screeningQuestions,
-      errorFetchingContent: errorFetchingContent,
-      timeoutFetchingContent: timeoutFetchingContent,
+      errorFetchingQuestions: errorFetchingQuestions,
+      timeoutFetchingQuestions: timeoutFetchingQuestions,
     );
   }
 
@@ -44,11 +44,11 @@ const $TBState = _$TBStateTearOff();
 
 /// @nodoc
 mixin _$TBState {
-  @JsonKey(name: 'screeningQuestions')
-  List<ScreeningQuestion>? get screeningQuestions =>
+  @JsonKey(name: 'getScreeningToolQuestions')
+  ScreeningQuestionsList? get screeningQuestions =>
       throw _privateConstructorUsedError;
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,10 +60,12 @@ abstract class $TBStateCopyWith<$Res> {
   factory $TBStateCopyWith(TBState value, $Res Function(TBState) then) =
       _$TBStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
+
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
 
 /// @nodoc
@@ -77,23 +79,35 @@ class _$TBStateCopyWithImpl<$Res> implements $TBStateCopyWith<$Res> {
   @override
   $Res call({
     Object? screeningQuestions = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_value.copyWith(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as List<ScreeningQuestion>?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as ScreeningQuestionsList?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
+  }
+
+  @override
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions {
+    if (_value.screeningQuestions == null) {
+      return null;
+    }
+
+    return $ScreeningQuestionsListCopyWith<$Res>(_value.screeningQuestions!,
+        (value) {
+      return _then(_value.copyWith(screeningQuestions: value));
+    });
   }
 }
 
@@ -103,10 +117,13 @@ abstract class _$TBStateCopyWith<$Res> implements $TBStateCopyWith<$Res> {
       __$TBStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
+
+  @override
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
 
 /// @nodoc
@@ -121,21 +138,21 @@ class __$TBStateCopyWithImpl<$Res> extends _$TBStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? screeningQuestions = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_TBState(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as List<ScreeningQuestion>?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as ScreeningQuestionsList?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -145,24 +162,24 @@ class __$TBStateCopyWithImpl<$Res> extends _$TBStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TBState implements _TBState {
   _$_TBState(
-      {@JsonKey(name: 'screeningQuestions') this.screeningQuestions,
-      this.errorFetchingContent,
-      this.timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions') this.screeningQuestions,
+      this.errorFetchingQuestions,
+      this.timeoutFetchingQuestions});
 
   factory _$_TBState.fromJson(Map<String, dynamic> json) =>
       _$$_TBStateFromJson(json);
 
   @override
-  @JsonKey(name: 'screeningQuestions')
-  final List<ScreeningQuestion>? screeningQuestions;
+  @JsonKey(name: 'getScreeningToolQuestions')
+  final ScreeningQuestionsList? screeningQuestions;
   @override
-  final bool? errorFetchingContent;
+  final bool? errorFetchingQuestions;
   @override
-  final bool? timeoutFetchingContent;
+  final bool? timeoutFetchingQuestions;
 
   @override
   String toString() {
-    return 'TBState(screeningQuestions: $screeningQuestions, errorFetchingContent: $errorFetchingContent, timeoutFetchingContent: $timeoutFetchingContent)';
+    return 'TBState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
   }
 
   @override
@@ -173,17 +190,17 @@ class _$_TBState implements _TBState {
             const DeepCollectionEquality()
                 .equals(other.screeningQuestions, screeningQuestions) &&
             const DeepCollectionEquality()
-                .equals(other.errorFetchingContent, errorFetchingContent) &&
-            const DeepCollectionEquality()
-                .equals(other.timeoutFetchingContent, timeoutFetchingContent));
+                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.timeoutFetchingQuestions, timeoutFetchingQuestions));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(screeningQuestions),
-      const DeepCollectionEquality().hash(errorFetchingContent),
-      const DeepCollectionEquality().hash(timeoutFetchingContent));
+      const DeepCollectionEquality().hash(errorFetchingQuestions),
+      const DeepCollectionEquality().hash(timeoutFetchingQuestions));
 
   @JsonKey(ignore: true)
   @override
@@ -198,20 +215,20 @@ class _$_TBState implements _TBState {
 
 abstract class _TBState implements TBState {
   factory _TBState(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) = _$_TBState;
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) = _$_TBState;
 
   factory _TBState.fromJson(Map<String, dynamic> json) = _$_TBState.fromJson;
 
   @override
-  @JsonKey(name: 'screeningQuestions')
-  List<ScreeningQuestion>? get screeningQuestions;
+  @JsonKey(name: 'getScreeningToolQuestions')
+  ScreeningQuestionsList? get screeningQuestions;
   @override
-  bool? get errorFetchingContent;
+  bool? get errorFetchingQuestions;
   @override
-  bool? get timeoutFetchingContent;
+  bool? get timeoutFetchingQuestions;
   @override
   @JsonKey(ignore: true)
   _$TBStateCopyWith<_TBState> get copyWith =>

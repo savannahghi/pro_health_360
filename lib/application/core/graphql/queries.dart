@@ -354,3 +354,19 @@ query listAppointments(
   }
 }
 ''';
+
+const String getScreeningToolsQuestionsQuery = r'''
+query getScreeningToolQuestions($toolType: String!){
+  getScreeningToolQuestions(toolType: $toolType){
+    id,
+    question,
+    toolType,
+    responseType,
+    responseChoices,
+    responseCategory,
+    sequence,
+    active,
+    meta
+  }
+}
+''';

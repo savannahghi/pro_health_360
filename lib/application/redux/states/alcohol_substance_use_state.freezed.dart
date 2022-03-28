@@ -24,14 +24,14 @@ class _$AlcoholSubstanceUseStateTearOff {
   const _$AlcoholSubstanceUseStateTearOff();
 
   _AlcoholSubstanceUseState call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) {
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) {
     return _AlcoholSubstanceUseState(
       screeningQuestions: screeningQuestions,
-      errorFetchingContent: errorFetchingContent,
-      timeoutFetchingContent: timeoutFetchingContent,
+      errorFetchingQuestions: errorFetchingQuestions,
+      timeoutFetchingQuestions: timeoutFetchingQuestions,
     );
   }
 
@@ -45,11 +45,11 @@ const $AlcoholSubstanceUseState = _$AlcoholSubstanceUseStateTearOff();
 
 /// @nodoc
 mixin _$AlcoholSubstanceUseState {
-  @JsonKey(name: 'screeningQuestions')
-  List<ScreeningQuestion>? get screeningQuestions =>
+  @JsonKey(name: 'getScreeningToolQuestions')
+  ScreeningQuestionsList? get screeningQuestions =>
       throw _privateConstructorUsedError;
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,10 +63,12 @@ abstract class $AlcoholSubstanceUseStateCopyWith<$Res> {
           $Res Function(AlcoholSubstanceUseState) then) =
       _$AlcoholSubstanceUseStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
+
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
 
 /// @nodoc
@@ -81,23 +83,35 @@ class _$AlcoholSubstanceUseStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? screeningQuestions = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_value.copyWith(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as List<ScreeningQuestion>?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as ScreeningQuestionsList?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
+  }
+
+  @override
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions {
+    if (_value.screeningQuestions == null) {
+      return null;
+    }
+
+    return $ScreeningQuestionsListCopyWith<$Res>(_value.screeningQuestions!,
+        (value) {
+      return _then(_value.copyWith(screeningQuestions: value));
+    });
   }
 }
 
@@ -109,10 +123,13 @@ abstract class _$AlcoholSubstanceUseStateCopyWith<$Res>
       __$AlcoholSubstanceUseStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
+
+  @override
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
 
 /// @nodoc
@@ -130,21 +147,21 @@ class __$AlcoholSubstanceUseStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? screeningQuestions = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_AlcoholSubstanceUseState(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as List<ScreeningQuestion>?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as ScreeningQuestionsList?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -154,24 +171,24 @@ class __$AlcoholSubstanceUseStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AlcoholSubstanceUseState implements _AlcoholSubstanceUseState {
   _$_AlcoholSubstanceUseState(
-      {@JsonKey(name: 'screeningQuestions') this.screeningQuestions,
-      this.errorFetchingContent,
-      this.timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions') this.screeningQuestions,
+      this.errorFetchingQuestions,
+      this.timeoutFetchingQuestions});
 
   factory _$_AlcoholSubstanceUseState.fromJson(Map<String, dynamic> json) =>
       _$$_AlcoholSubstanceUseStateFromJson(json);
 
   @override
-  @JsonKey(name: 'screeningQuestions')
-  final List<ScreeningQuestion>? screeningQuestions;
+  @JsonKey(name: 'getScreeningToolQuestions')
+  final ScreeningQuestionsList? screeningQuestions;
   @override
-  final bool? errorFetchingContent;
+  final bool? errorFetchingQuestions;
   @override
-  final bool? timeoutFetchingContent;
+  final bool? timeoutFetchingQuestions;
 
   @override
   String toString() {
-    return 'AlcoholSubstanceUseState(screeningQuestions: $screeningQuestions, errorFetchingContent: $errorFetchingContent, timeoutFetchingContent: $timeoutFetchingContent)';
+    return 'AlcoholSubstanceUseState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
   }
 
   @override
@@ -182,17 +199,17 @@ class _$_AlcoholSubstanceUseState implements _AlcoholSubstanceUseState {
             const DeepCollectionEquality()
                 .equals(other.screeningQuestions, screeningQuestions) &&
             const DeepCollectionEquality()
-                .equals(other.errorFetchingContent, errorFetchingContent) &&
-            const DeepCollectionEquality()
-                .equals(other.timeoutFetchingContent, timeoutFetchingContent));
+                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.timeoutFetchingQuestions, timeoutFetchingQuestions));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(screeningQuestions),
-      const DeepCollectionEquality().hash(errorFetchingContent),
-      const DeepCollectionEquality().hash(timeoutFetchingContent));
+      const DeepCollectionEquality().hash(errorFetchingQuestions),
+      const DeepCollectionEquality().hash(timeoutFetchingQuestions));
 
   @JsonKey(ignore: true)
   @override
@@ -208,21 +225,21 @@ class _$_AlcoholSubstanceUseState implements _AlcoholSubstanceUseState {
 
 abstract class _AlcoholSubstanceUseState implements AlcoholSubstanceUseState {
   factory _AlcoholSubstanceUseState(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) = _$_AlcoholSubstanceUseState;
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) = _$_AlcoholSubstanceUseState;
 
   factory _AlcoholSubstanceUseState.fromJson(Map<String, dynamic> json) =
       _$_AlcoholSubstanceUseState.fromJson;
 
   @override
-  @JsonKey(name: 'screeningQuestions')
-  List<ScreeningQuestion>? get screeningQuestions;
+  @JsonKey(name: 'getScreeningToolQuestions')
+  ScreeningQuestionsList? get screeningQuestions;
   @override
-  bool? get errorFetchingContent;
+  bool? get errorFetchingQuestions;
   @override
-  bool? get timeoutFetchingContent;
+  bool? get timeoutFetchingQuestions;
   @override
   @JsonKey(ignore: true)
   _$AlcoholSubstanceUseStateCopyWith<_AlcoholSubstanceUseState> get copyWith =>

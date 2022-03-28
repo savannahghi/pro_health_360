@@ -131,8 +131,16 @@ enum AppointmentStatus {
 enum AppointmentListTye { Past, Upcoming }
 
 enum ScreeningToolsType {
-  Violence,
-  Contraceptives,
-  TB,
-  Alcohol,
+  VIOLENCE_ASSESSMENT,
+  CONTRACEPTIVE_ASSESSMENT,
+  TB_ASSESSMENT,
+  ALCOHOL_SUBSTANCE_ASSESSMENT,
+}
+
+/// [ScreeningToolsTypeEX] extends [ScreeningToolsType] enum to get the values as
+/// strings
+extension ScreeningToolsTypeEX on ScreeningToolsType {
+  String get name {
+    return describeEnum(this);
+  }
 }

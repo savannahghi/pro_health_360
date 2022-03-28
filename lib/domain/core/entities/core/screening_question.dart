@@ -8,7 +8,11 @@ part 'screening_question.g.dart';
 class ScreeningQuestion with _$ScreeningQuestion {
   factory ScreeningQuestion({
     @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'questionText') String? questionText,
+    @JsonKey(name: 'question') String? questionText,
+    @JsonKey(name: 'toolType') String? toolType,
+    @JsonKey(name: 'sequence') int? sequence,
+    @JsonKey(name: 'responseChoices') Map<String, dynamic>? responseChoices,
+    @JsonKey(name: 'meta') Map<String, dynamic>? meta,
   }) = _ScreeningQuestion;
 
   factory ScreeningQuestion.fromJson(Map<String, dynamic> json) =>
@@ -17,5 +21,9 @@ class ScreeningQuestion with _$ScreeningQuestion {
   factory ScreeningQuestion.initial() => ScreeningQuestion(
         id: UNKNOWN,
         questionText: UNKNOWN,
+        toolType: UNKNOWN,
+        meta: <String, dynamic>{},
+        responseChoices: <String, dynamic>{},
+        sequence: 0,
       );
 }

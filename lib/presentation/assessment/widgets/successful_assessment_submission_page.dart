@@ -20,13 +20,13 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
 
   Widget buildInformationWidget(ScreeningToolsType screeningToolsType) {
     switch (screeningToolsType) {
-      case ScreeningToolsType.Violence:
+      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
         return const ViolenceAssessmentInformation();
 
-      case ScreeningToolsType.TB:
+      case ScreeningToolsType.TB_ASSESSMENT:
         return const TBAssessmentInformation();
 
-      case ScreeningToolsType.Alcohol:
+      case ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT:
         return const AlcoholAssessmentInformation();
 
       default:

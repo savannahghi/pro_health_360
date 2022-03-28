@@ -696,18 +696,6 @@ const String asFormsOfGBVSting = 'as forms of GBV such as ';
 const String sexualAssault = 'sexual assault';
 const String requireFirstAidServices =
     ', require first-aid services which are most effective administered within hours.';
-const String emotionalViolence = 'Emotional violence';
-const String emotionalViolenceQuestion =
-    'In the past, has anyone made you feel threatened, fearful or in danger?';
-const String physicalViolence = 'Physical violence';
-const String physicalViolenceQuestion =
-    'In the past, have you been slapped, punched, hit or physically hurt by someone in any way?';
-const String sexualViolence = 'Sexual violence';
-const String sexualViolenceQuestion =
-    'In the past, has anyone forced or coerced you to have sexual relations against your will?';
-const String intimatePartnerViolence = 'Intimate partner violence';
-const String intimatePartnerViolenceQuestion =
-    'Are you in a relationship with a person who threatens, frightens, insults you, treats you badly or physically hurts you?';
 const String submitAssessment = 'Submit Assessment';
 
 //contraceptive assessment page
@@ -720,18 +708,6 @@ const String providerWillContact =
     'A health care provider will then reach out to you to discuss your choices. \n\n';
 const String ifNotContacted =
     'In case this does not happen within a few days, we encourage you to contact the clinic directly or bring it up during your next visit.\n\n';
-const String lastMenstrualPeriodString =
-    '1. When was your last menstrual period?';
-const String thisMonthString = 'This Month';
-const String lastMonthString = 'Last Month';
-const String notStartedYetString = 'Not Started Yet';
-
-const String areYouPregnantString = '2. Are you pregnant?';
-const String areYouOnFamilyPlanningString =
-    '3. If no, are you on family planning?';
-const String wouldYouLikeToUseFamilyPlanningString =
-    '4. If no to Question 3, would you like to use a family planning method?';
-const String submitYourAssessmentString = 'Submit Your Assessment';
 
 //Tuberculosis assessment page
 const String tuberculosisAssessmentTitle = 'Tuberculosis Assessment';
@@ -739,11 +715,6 @@ const String tuberculosisAssessmentDescription =
     'TB is preventable and curable. The four questions below are designed to help find out whether you might have TB.\n\nIf the answer to any of the 4 is “YES” your healthcare provider will be automatically notified so that he/she can reach out to you.';
 const String pleaseVisitClinic =
     'We also encourage you to call or visit the clinic at your earliest convenience for further evaluation';
-const String experiencedACoughString = '1. Cough';
-const String doYouHaveFeverString = '2. Hotness of the body (fever)?';
-const String noticedAnyWeighLossString =
-    '3. Weight loss (Do clothes that previously fitted you well seem bigger ?)';
-const String experienceNightSweatsString = '4. Sweating at night?';
 
 //Alcohol and substance use page
 const String alcoholSubstanceUseTitle = 'Alcohol and substance use';
@@ -753,55 +724,8 @@ const String responseConfidential =
     'Your responses will be confidentially sent to your health care provider who will then schedule a follow-up visit at your convenience.\n\n';
 const String facilitiesSpace =
     'Our facilities provide a safe space where you can have an open conversation with a trained provider and together come up with a plan of action.';
-const String alcoholSubstanceUseQuestionOne =
-    '1. Have you ridden in a car driven by someone (including yourself) who was "high" or had been using alcohol or drugs?';
-const String alcoholSubstanceUseQuestionTwo =
-    '2. Do you ever alcohol or drugs to relax, feel better about yourself, or fit in?';
-const String alcoholSubstanceUseQuestionThree =
-    '3. Do you ever use alcohol or drugs while you are by yourself or alone?';
-const String alcoholSubstanceUseQuestionFour =
-    '4. Do you ever forget things you did while using alcohol or drugs?';
-const String alcoholSubstanceUseQuestionFive =
-    '5. Do your families or friends ever tell you that you should cut down on your drinking or drug use?';
 const String alcoholSubstanceDescription =
     'Tap to assess yourself for alcohol use';
-
-// health assessment
-const String healthAssessmentTitle = 'Mental Health Assessment';
-const String healthAssessmentSubtitle =
-    'Thank you for your interest in assessing health. The information you provide will be confidential';
-const String healthAssessmentDescription =
-    'Over the last 2 weeks, how often have you been bothered by any of the following problems?';
-const String notAtAllString = 'Not at all';
-const String severalDays = 'Several days';
-const String moreThanHalfTheDaysString = 'More than half the days';
-const String nearlyEveryDay = 'Nearly every day';
-
-const String healthAssessmentQuestionOne =
-    '1. Little interest or pleasure in doing things';
-
-const String healthAssessmentQuestionTwo =
-    '2. Feeling down, depressed or hopeless';
-
-const String healthAssessmentQuestionThree =
-    '3. Trouble falling or staying asleep, or sleeping too much';
-
-const String healthAssessmentQuestionFour =
-    '4. Feeling tired or having little energy';
-
-const String healthAssessmentQuestionFive = '5. Poor appetite or overeating';
-
-const String healthAssessmentQuestionSix =
-    '6. Feeling bad about yourself - or that you are a failure or have let yourself or your family down';
-
-const String healthAssessmentQuestionSeven =
-    '7. Trouble concentrating on things, such as reading the newspaper or watching television';
-
-const String healthAssessmentQuestionEight =
-    '8. Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual';
-
-const String healthAssessmentQuestionNine =
-    '9. Thoughts that you would be better off dead or of hurting yourself in some way';
 
 const String healthAssessmentQuestionTen =
     'If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?';

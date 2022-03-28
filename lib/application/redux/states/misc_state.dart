@@ -2,6 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myafyahub/application/redux/states/screening_tools_state.dart';
 import 'package:myafyahub/domain/core/entities/appointments/appointments_state.dart';
 import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 // Project imports:
@@ -26,7 +27,9 @@ class MiscState with _$MiscState {
     bool? resumeTimer,
     GroupState? groupState,
     ChannelMembersState? channelMembersState,
-    @JsonKey(name: 'fetchClientAppointments') AppointmentState? appointmentState,
+    ScreeningToolsState? screeningToolsState,
+    @JsonKey(name: 'fetchClientAppointments')
+        AppointmentState? appointmentState,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -45,5 +48,6 @@ class MiscState with _$MiscState {
         groupState: GroupState.initial(),
         channelMembersState: ChannelMembersState(),
         appointmentState: AppointmentState.initial(),
+        screeningToolsState: ScreeningToolsState.initial(),
       );
 }

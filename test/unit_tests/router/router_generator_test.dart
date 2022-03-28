@@ -478,7 +478,7 @@ void main() {
   test('Test router returns Successful TB assessment submission page', () {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.successfulAssessmentSubmissionPage,
-      arguments: <String, dynamic>{'screeningToolsType': ScreeningToolsType.TB},
+      arguments: <String, dynamic>{'screeningToolsType': ScreeningToolsType.TB_ASSESSMENT},
     );
 
     final MaterialPageRoute<SuccessfulAssessmentSubmissionPage> route =
@@ -493,7 +493,7 @@ void main() {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.successfulAssessmentSubmissionPage,
       arguments: <String, dynamic>{
-        'screeningToolsType': ScreeningToolsType.Alcohol
+        'screeningToolsType': ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT
       },
     );
 
@@ -511,7 +511,7 @@ void main() {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.successfulAssessmentSubmissionPage,
       arguments: <String, dynamic>{
-        'screeningToolsType': ScreeningToolsType.Contraceptives
+        'screeningToolsType': ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT
       },
     );
 
@@ -528,7 +528,7 @@ void main() {
     const RouteSettings settings = RouteSettings(
       name: AppRoutes.successfulAssessmentSubmissionPage,
       arguments: <String, dynamic>{
-        'screeningToolsType': ScreeningToolsType.Violence
+        'screeningToolsType': ScreeningToolsType.VIOLENCE_ASSESSMENT
       },
     );
 

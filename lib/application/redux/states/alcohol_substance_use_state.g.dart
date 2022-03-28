@@ -9,17 +9,18 @@ part of 'alcohol_substance_use_state.dart';
 _$_AlcoholSubstanceUseState _$$_AlcoholSubstanceUseStateFromJson(
         Map<String, dynamic> json) =>
     _$_AlcoholSubstanceUseState(
-      screeningQuestions: (json['screeningQuestions'] as List<dynamic>?)
-          ?.map((e) => ScreeningQuestion.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      errorFetchingContent: json['errorFetchingContent'] as bool?,
-      timeoutFetchingContent: json['timeoutFetchingContent'] as bool?,
+      screeningQuestions: json['getScreeningToolQuestions'] == null
+          ? null
+          : ScreeningQuestionsList.fromJson(
+              json['getScreeningToolQuestions'] as Map<String, dynamic>),
+      errorFetchingQuestions: json['errorFetchingQuestions'] as bool?,
+      timeoutFetchingQuestions: json['timeoutFetchingQuestions'] as bool?,
     );
 
 Map<String, dynamic> _$$_AlcoholSubstanceUseStateToJson(
         _$_AlcoholSubstanceUseState instance) =>
     <String, dynamic>{
-      'screeningQuestions': instance.screeningQuestions,
-      'errorFetchingContent': instance.errorFetchingContent,
-      'timeoutFetchingContent': instance.timeoutFetchingContent,
+      'getScreeningToolQuestions': instance.screeningQuestions,
+      'errorFetchingQuestions': instance.errorFetchingQuestions,
+      'timeoutFetchingQuestions': instance.timeoutFetchingQuestions,
     };

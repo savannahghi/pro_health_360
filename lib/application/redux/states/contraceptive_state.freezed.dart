@@ -23,14 +23,14 @@ class _$ContraceptiveStateTearOff {
   const _$ContraceptiveStateTearOff();
 
   _ContraceptiveState call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) {
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) {
     return _ContraceptiveState(
       screeningQuestions: screeningQuestions,
-      errorFetchingContent: errorFetchingContent,
-      timeoutFetchingContent: timeoutFetchingContent,
+      errorFetchingQuestions: errorFetchingQuestions,
+      timeoutFetchingQuestions: timeoutFetchingQuestions,
     );
   }
 
@@ -44,11 +44,11 @@ const $ContraceptiveState = _$ContraceptiveStateTearOff();
 
 /// @nodoc
 mixin _$ContraceptiveState {
-  @JsonKey(name: 'screeningQuestions')
-  List<ScreeningQuestion>? get screeningQuestions =>
+  @JsonKey(name: 'getScreeningToolQuestions')
+  ScreeningQuestionsList? get screeningQuestions =>
       throw _privateConstructorUsedError;
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,10 +62,12 @@ abstract class $ContraceptiveStateCopyWith<$Res> {
           ContraceptiveState value, $Res Function(ContraceptiveState) then) =
       _$ContraceptiveStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
+
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
 
 /// @nodoc
@@ -80,23 +82,35 @@ class _$ContraceptiveStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? screeningQuestions = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_value.copyWith(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as List<ScreeningQuestion>?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as ScreeningQuestionsList?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
+  }
+
+  @override
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions {
+    if (_value.screeningQuestions == null) {
+      return null;
+    }
+
+    return $ScreeningQuestionsListCopyWith<$Res>(_value.screeningQuestions!,
+        (value) {
+      return _then(_value.copyWith(screeningQuestions: value));
+    });
   }
 }
 
@@ -108,10 +122,13 @@ abstract class _$ContraceptiveStateCopyWith<$Res>
       __$ContraceptiveStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
+
+  @override
+  $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
 
 /// @nodoc
@@ -128,21 +145,21 @@ class __$ContraceptiveStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? screeningQuestions = freezed,
-    Object? errorFetchingContent = freezed,
-    Object? timeoutFetchingContent = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_ContraceptiveState(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
-              as List<ScreeningQuestion>?,
-      errorFetchingContent: errorFetchingContent == freezed
-          ? _value.errorFetchingContent
-          : errorFetchingContent // ignore: cast_nullable_to_non_nullable
+              as ScreeningQuestionsList?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
-      timeoutFetchingContent: timeoutFetchingContent == freezed
-          ? _value.timeoutFetchingContent
-          : timeoutFetchingContent // ignore: cast_nullable_to_non_nullable
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -152,24 +169,24 @@ class __$ContraceptiveStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ContraceptiveState implements _ContraceptiveState {
   _$_ContraceptiveState(
-      {@JsonKey(name: 'screeningQuestions') this.screeningQuestions,
-      this.errorFetchingContent,
-      this.timeoutFetchingContent});
+      {@JsonKey(name: 'getScreeningToolQuestions') this.screeningQuestions,
+      this.errorFetchingQuestions,
+      this.timeoutFetchingQuestions});
 
   factory _$_ContraceptiveState.fromJson(Map<String, dynamic> json) =>
       _$$_ContraceptiveStateFromJson(json);
 
   @override
-  @JsonKey(name: 'screeningQuestions')
-  final List<ScreeningQuestion>? screeningQuestions;
+  @JsonKey(name: 'getScreeningToolQuestions')
+  final ScreeningQuestionsList? screeningQuestions;
   @override
-  final bool? errorFetchingContent;
+  final bool? errorFetchingQuestions;
   @override
-  final bool? timeoutFetchingContent;
+  final bool? timeoutFetchingQuestions;
 
   @override
   String toString() {
-    return 'ContraceptiveState(screeningQuestions: $screeningQuestions, errorFetchingContent: $errorFetchingContent, timeoutFetchingContent: $timeoutFetchingContent)';
+    return 'ContraceptiveState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
   }
 
   @override
@@ -180,17 +197,17 @@ class _$_ContraceptiveState implements _ContraceptiveState {
             const DeepCollectionEquality()
                 .equals(other.screeningQuestions, screeningQuestions) &&
             const DeepCollectionEquality()
-                .equals(other.errorFetchingContent, errorFetchingContent) &&
-            const DeepCollectionEquality()
-                .equals(other.timeoutFetchingContent, timeoutFetchingContent));
+                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.timeoutFetchingQuestions, timeoutFetchingQuestions));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(screeningQuestions),
-      const DeepCollectionEquality().hash(errorFetchingContent),
-      const DeepCollectionEquality().hash(timeoutFetchingContent));
+      const DeepCollectionEquality().hash(errorFetchingQuestions),
+      const DeepCollectionEquality().hash(timeoutFetchingQuestions));
 
   @JsonKey(ignore: true)
   @override
@@ -205,21 +222,21 @@ class _$_ContraceptiveState implements _ContraceptiveState {
 
 abstract class _ContraceptiveState implements ContraceptiveState {
   factory _ContraceptiveState(
-      {@JsonKey(name: 'screeningQuestions')
-          List<ScreeningQuestion>? screeningQuestions,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) = _$_ContraceptiveState;
+      {@JsonKey(name: 'getScreeningToolQuestions')
+          ScreeningQuestionsList? screeningQuestions,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) = _$_ContraceptiveState;
 
   factory _ContraceptiveState.fromJson(Map<String, dynamic> json) =
       _$_ContraceptiveState.fromJson;
 
   @override
-  @JsonKey(name: 'screeningQuestions')
-  List<ScreeningQuestion>? get screeningQuestions;
+  @JsonKey(name: 'getScreeningToolQuestions')
+  ScreeningQuestionsList? get screeningQuestions;
   @override
-  bool? get errorFetchingContent;
+  bool? get errorFetchingQuestions;
   @override
-  bool? get timeoutFetchingContent;
+  bool? get timeoutFetchingQuestions;
   @override
   @JsonKey(ignore: true)
   _$ContraceptiveStateCopyWith<_ContraceptiveState> get copyWith =>

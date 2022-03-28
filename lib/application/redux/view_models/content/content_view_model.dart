@@ -36,9 +36,10 @@ class ContentViewModel extends Vm {
       selectedCategory: state.contentState?.feedContentState?.selectedCategory,
     );
   }
+
   final FeedContentState? feedContentState;
-  final SavedContentState? savedContentState;
   final RecentContentState? recentContentState;
-  final Wait? wait;
+  final SavedContentState? savedContentState;
   final ContentCategory? selectedCategory;
+  final Wait? wait;
 }

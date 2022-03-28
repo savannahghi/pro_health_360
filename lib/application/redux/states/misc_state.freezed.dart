@@ -35,6 +35,7 @@ class _$MiscStateTearOff {
       bool? resumeTimer,
       GroupState? groupState,
       ChannelMembersState? channelMembersState,
+      ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
           AppointmentState? appointmentState}) {
     return _MiscState(
@@ -49,6 +50,7 @@ class _$MiscStateTearOff {
       resumeTimer: resumeTimer,
       groupState: groupState,
       channelMembersState: channelMembersState,
+      screeningToolsState: screeningToolsState,
       appointmentState: appointmentState,
     );
   }
@@ -77,6 +79,8 @@ mixin _$MiscState {
   GroupState? get groupState => throw _privateConstructorUsedError;
   ChannelMembersState? get channelMembersState =>
       throw _privateConstructorUsedError;
+  ScreeningToolsState? get screeningToolsState =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'fetchClientAppointments')
   AppointmentState? get appointmentState => throw _privateConstructorUsedError;
 
@@ -103,12 +107,14 @@ abstract class $MiscStateCopyWith<$Res> {
       bool? resumeTimer,
       GroupState? groupState,
       ChannelMembersState? channelMembersState,
+      ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
           AppointmentState? appointmentState});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   $GroupStateCopyWith<$Res>? get groupState;
   $ChannelMembersStateCopyWith<$Res>? get channelMembersState;
+  $ScreeningToolsStateCopyWith<$Res>? get screeningToolsState;
   $AppointmentStateCopyWith<$Res>? get appointmentState;
 }
 
@@ -133,6 +139,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? resumeTimer = freezed,
     Object? groupState = freezed,
     Object? channelMembersState = freezed,
+    Object? screeningToolsState = freezed,
     Object? appointmentState = freezed,
   }) {
     return _then(_value.copyWith(
@@ -180,6 +187,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.channelMembersState
           : channelMembersState // ignore: cast_nullable_to_non_nullable
               as ChannelMembersState?,
+      screeningToolsState: screeningToolsState == freezed
+          ? _value.screeningToolsState
+          : screeningToolsState // ignore: cast_nullable_to_non_nullable
+              as ScreeningToolsState?,
       appointmentState: appointmentState == freezed
           ? _value.appointmentState
           : appointmentState // ignore: cast_nullable_to_non_nullable
@@ -223,6 +234,18 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
   }
 
   @override
+  $ScreeningToolsStateCopyWith<$Res>? get screeningToolsState {
+    if (_value.screeningToolsState == null) {
+      return null;
+    }
+
+    return $ScreeningToolsStateCopyWith<$Res>(_value.screeningToolsState!,
+        (value) {
+      return _then(_value.copyWith(screeningToolsState: value));
+    });
+  }
+
+  @override
   $AppointmentStateCopyWith<$Res>? get appointmentState {
     if (_value.appointmentState == null) {
       return null;
@@ -253,6 +276,7 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       bool? resumeTimer,
       GroupState? groupState,
       ChannelMembersState? channelMembersState,
+      ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
           AppointmentState? appointmentState});
 
@@ -262,6 +286,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
   $GroupStateCopyWith<$Res>? get groupState;
   @override
   $ChannelMembersStateCopyWith<$Res>? get channelMembersState;
+  @override
+  $ScreeningToolsStateCopyWith<$Res>? get screeningToolsState;
   @override
   $AppointmentStateCopyWith<$Res>? get appointmentState;
 }
@@ -288,6 +314,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? resumeTimer = freezed,
     Object? groupState = freezed,
     Object? channelMembersState = freezed,
+    Object? screeningToolsState = freezed,
     Object? appointmentState = freezed,
   }) {
     return _then(_MiscState(
@@ -335,6 +362,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.channelMembersState
           : channelMembersState // ignore: cast_nullable_to_non_nullable
               as ChannelMembersState?,
+      screeningToolsState: screeningToolsState == freezed
+          ? _value.screeningToolsState
+          : screeningToolsState // ignore: cast_nullable_to_non_nullable
+              as ScreeningToolsState?,
       appointmentState: appointmentState == freezed
           ? _value.appointmentState
           : appointmentState // ignore: cast_nullable_to_non_nullable
@@ -358,6 +389,7 @@ class _$_MiscState implements _MiscState {
       this.resumeTimer,
       this.groupState,
       this.channelMembersState,
+      this.screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments') this.appointmentState});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
@@ -387,12 +419,14 @@ class _$_MiscState implements _MiscState {
   @override
   final ChannelMembersState? channelMembersState;
   @override
+  final ScreeningToolsState? screeningToolsState;
+  @override
   @JsonKey(name: 'fetchClientAppointments')
   final AppointmentState? appointmentState;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, appointmentState: $appointmentState)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, screeningToolsState: $screeningToolsState, appointmentState: $appointmentState)';
   }
 
   @override
@@ -422,6 +456,8 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.channelMembersState, channelMembersState) &&
             const DeepCollectionEquality()
+                .equals(other.screeningToolsState, screeningToolsState) &&
+            const DeepCollectionEquality()
                 .equals(other.appointmentState, appointmentState));
   }
 
@@ -439,6 +475,7 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(resumeTimer),
       const DeepCollectionEquality().hash(groupState),
       const DeepCollectionEquality().hash(channelMembersState),
+      const DeepCollectionEquality().hash(screeningToolsState),
       const DeepCollectionEquality().hash(appointmentState));
 
   @JsonKey(ignore: true)
@@ -466,6 +503,7 @@ abstract class _MiscState implements MiscState {
       bool? resumeTimer,
       GroupState? groupState,
       ChannelMembersState? channelMembersState,
+      ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
           AppointmentState? appointmentState}) = _$_MiscState;
 
@@ -495,6 +533,8 @@ abstract class _MiscState implements MiscState {
   GroupState? get groupState;
   @override
   ChannelMembersState? get channelMembersState;
+  @override
+  ScreeningToolsState? get screeningToolsState;
   @override
   @JsonKey(name: 'fetchClientAppointments')
   AppointmentState? get appointmentState;
