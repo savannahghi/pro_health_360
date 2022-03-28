@@ -190,10 +190,10 @@ class _EditInformationPageState extends State<EditInformationPage> {
                                   }
                                 : null,
                             buttonColor: formIsEdited
-                                ? AppColors.secondaryColor
+                                ? null
                                 : Colors.grey,
                             borderColor: formIsEdited
-                                ? AppColors.secondaryColor
+                                ? null
                                 : Colors.transparent,
                             text: toBeginningOfSentenceCase(saveString),
                           ),

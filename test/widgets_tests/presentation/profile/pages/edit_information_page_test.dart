@@ -9,7 +9,6 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import '../../../../test_helpers.dart';
@@ -69,7 +68,7 @@ void main() {
         (tester.firstWidget(find.byType(MyAfyaHubPrimaryButton))
                 as MyAfyaHubPrimaryButton)
             .buttonColor,
-        AppColors.secondaryColor,
+        null,
       );
 
       await tester.tap(find.byType(MyAfyaHubPrimaryButton));
