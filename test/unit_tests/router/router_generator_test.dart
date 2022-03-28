@@ -475,9 +475,62 @@ void main() {
     expect(route.builder(context), isA<ContraceptiveAssessmentPage>());
   });
 
-  test('Test router returns Successful assessment submission page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.successfulAssessmentSubmissionPage);
+  test('Test router returns Successful TB assessment submission page', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.successfulAssessmentSubmissionPage,
+      arguments: <String, dynamic>{'screeningToolsType': ScreeningToolsType.TB},
+    );
+
+    final MaterialPageRoute<SuccessfulAssessmentSubmissionPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<SuccessfulAssessmentSubmissionPage>;
+
+    expect(route, isA<MaterialPageRoute<SuccessfulAssessmentSubmissionPage>>());
+    expect(route.builder(context), isA<SuccessfulAssessmentSubmissionPage>());
+  });
+
+  test('Test router returns Successful Alcohol assessment submission page', () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.successfulAssessmentSubmissionPage,
+      arguments: <String, dynamic>{
+        'screeningToolsType': ScreeningToolsType.Alcohol
+      },
+    );
+
+    final MaterialPageRoute<SuccessfulAssessmentSubmissionPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<SuccessfulAssessmentSubmissionPage>;
+
+    expect(route, isA<MaterialPageRoute<SuccessfulAssessmentSubmissionPage>>());
+    expect(route.builder(context), isA<SuccessfulAssessmentSubmissionPage>());
+  });
+
+  test(
+      'Test router returns Successful Contraceptive assessment submission page',
+      () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.successfulAssessmentSubmissionPage,
+      arguments: <String, dynamic>{
+        'screeningToolsType': ScreeningToolsType.Contraceptives
+      },
+    );
+
+    final MaterialPageRoute<SuccessfulAssessmentSubmissionPage> route =
+        routeGenerator(settings)
+            as MaterialPageRoute<SuccessfulAssessmentSubmissionPage>;
+
+    expect(route, isA<MaterialPageRoute<SuccessfulAssessmentSubmissionPage>>());
+    expect(route.builder(context), isA<SuccessfulAssessmentSubmissionPage>());
+  });
+
+  test('Test router returns Successful Violence assessment submission page',
+      () {
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.successfulAssessmentSubmissionPage,
+      arguments: <String, dynamic>{
+        'screeningToolsType': ScreeningToolsType.Violence
+      },
+    );
 
     final MaterialPageRoute<SuccessfulAssessmentSubmissionPage> route =
         routeGenerator(settings)
@@ -589,7 +642,6 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<VerifySecurityQuestionsHelpPage>>());
     expect(route?.builder(context), isA<VerifySecurityQuestionsHelpPage>());
-
   });
   test('Test router returns LoginCounterPage', () {
     const RouteSettings settings =

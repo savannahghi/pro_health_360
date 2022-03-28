@@ -49,6 +49,7 @@ class ClientState with _$ClientState {
 
     // // Past appointments
     List<Appointment>? upcomingAppointments,
+    // screening tools state
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>

@@ -304,8 +304,13 @@ class RouteGenerator {
         );
 
       case AppRoutes.successfulAssessmentSubmissionPage:
+        final ScreeningToolsType toolType =
+            args['screeningToolsType'] as ScreeningToolsType;
+
         return MaterialPageRoute<SuccessfulAssessmentSubmissionPage>(
-          builder: (_) => const SuccessfulAssessmentSubmissionPage(),
+          builder: (_) => SuccessfulAssessmentSubmissionPage(
+            screeningToolsType: toolType,
+          ),
         );
 
       case AppRoutes.successfulFeedbackSubmissionPage:
