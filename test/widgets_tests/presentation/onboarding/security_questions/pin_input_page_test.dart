@@ -32,7 +32,6 @@ import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
-// Project imports:
 void main() {
   group('PinInputPage renders correctly', () {
     late Store<AppState> store;
@@ -162,7 +161,8 @@ void main() {
       await tester.tap(numberThreeButton);
       await tester.tap(numberFourButton);
       await tester.pumpAndSettle();
-      expect(numberFourButton, findsNothing);
+
+      expect(find.byType(KeyPadWidget), findsNothing);
     });
     testWidgets('4, 5,  and 6,  buttons are tappable',
         (WidgetTester tester) async {

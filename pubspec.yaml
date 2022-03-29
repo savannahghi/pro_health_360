@@ -27,7 +27,6 @@ dependencies:
     sdk: flutter
   flutter_pdfview: ^1.2.1
   flutter_svg: ^1.0.3
-  fluttertoast: ^8.0.1-nullsafety.0
   freezed: ^1.1.1
   freezed_annotation: ^1.1.0
   google_fonts: 2.2.0

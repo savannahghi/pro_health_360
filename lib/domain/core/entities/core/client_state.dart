@@ -12,6 +12,8 @@ import 'package:myafyahub/domain/core/entities/core/related_person.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
+import 'health_timeline_state.dart';
+
 part 'client_state.freezed.dart';
 part 'client_state.g.dart';
 
@@ -51,6 +53,8 @@ class ClientState with _$ClientState {
     // // Past appointments
     List<Appointment>? upcomingAppointments,
     // screening tools state
+
+    HealthTimelineState? healthTimelineState,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>
@@ -78,5 +82,6 @@ class ClientState with _$ClientState {
         pastAppointments: <Appointment>[],
         upcomingAppointments: <Appointment>[],
         cccNumber: UNKNOWN,
+        healthTimelineState: HealthTimelineState.initial(),
       );
 }
