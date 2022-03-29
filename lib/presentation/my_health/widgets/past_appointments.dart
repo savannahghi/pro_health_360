@@ -58,6 +58,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                 ),
               );
             },
+            messageTitle: messageTitleGenericErrorWidget,
             messageBody: <TextSpan>[
               TextSpan(
                 text: getErrorMessage(fetchingAppointmentsString),
@@ -85,18 +86,17 @@ class _PastAppointmentsState extends State<PastAppointments> {
                   },
                 )
               : GenericErrorWidget(
-                  headerIconSvgUrl: noInvitesImage,
+                  headerIconSvgUrl: zeroAppointmentsImageSvgPath,
                   actionKey: helpNoDataWidgetKey,
                   actionText: okThanksText,
-                  type: GenericNoDataTypes.noData,
                   recoverCallback: () {
                     Navigator.of(context).pop();
                   },
                   messageTitle:
-                      getNoDataTile(appointmentsPageTitle.toLowerCase()),
+                      noAppointmentsString,
                   messageBody: <TextSpan>[
                     TextSpan(
-                      text: noAppointmentsString,
+                      text: noAppointmentsBodyString,
                       style: normalSize16Text(
                         AppColors.greyTextColor,
                       ),

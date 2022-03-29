@@ -29,7 +29,8 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
       StoreProvider.dispatch<AppState>(
         context,
         FetchAppointmentsAction(
-          client: AppWrapperBase.of(context)!.graphQLClient, comparison: 'GREATER_THAN_OR_EQUAL_TO',
+          client: AppWrapperBase.of(context)!.graphQLClient,
+          comparison: 'GREATER_THAN_OR_EQUAL_TO',
         ),
       );
     });
@@ -43,7 +44,7 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
       builder: (BuildContext context, AppointmentsViewModel vm) {
         final List<Appointment> appointments =
             vm.appointmentState?.appointments ?? <Appointment>[];
-             if (vm.wait!.isWaitingFor(fetchAppointmentsFlag)) {
+        if (vm.wait!.isWaitingFor(fetchAppointmentsFlag)) {
           return const PlatformLoader();
         } else if (vm.appointmentState?.errorFetchingAppointments ?? false) {
           return GenericErrorWidget(
@@ -57,6 +58,7 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
                 ),
               );
             },
+            messageTitle: messageTitleGenericErrorWidget,
             messageBody: <TextSpan>[
               TextSpan(
                 text: getErrorMessage(fetchingAppointmentsString),
@@ -84,18 +86,16 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
                   },
                 )
               : GenericErrorWidget(
-                headerIconSvgUrl: noInvitesImage,
+                  headerIconSvgUrl: zeroAppointmentsImageSvgPath,
                   actionKey: helpNoDataWidgetKey,
                   actionText: okThanksText,
-                  type: GenericNoDataTypes.noData,
                   recoverCallback: () {
                     Navigator.of(context).pop();
                   },
-                  messageTitle:
-                      getNoDataTile(appointmentsPageTitle.toLowerCase()),
+                  messageTitle: noAppointmentsString,
                   messageBody: <TextSpan>[
                     TextSpan(
-                      text: noAppointmentsString,
+                      text: noAppointmentsBodyString,
                       style: normalSize16Text(
                         AppColors.greyTextColor,
                       ),

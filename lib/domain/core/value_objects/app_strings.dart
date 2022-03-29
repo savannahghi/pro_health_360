@@ -83,6 +83,7 @@ const String whatsAppText = 'WhatsApp';
 const String logTitle = 'Get FAQs';
 
 const String actionTextGenericErrorWidget = 'Retry';
+const String messageTitleGenericErrorWidget = 'Oops! An error ocurred';
 
 const String messageBodyGenericErrorWidget =
     'Something went wrong while fetching contents of this section, retry or contact support for immediate help';
@@ -928,10 +929,8 @@ const String forgotPINPageMessageString =
 const String resetMyPINString = 'Reset my PIN';
 const String beginString = 'Begin';
 
-String getNoDataTile(String? message) {
-  return message != null ? 'You have no $message' : 'You have no data';
-}
-
-String noAppointmentsString = 'You have no appointments at the moment';
+String noAppointmentsString = 'You have no appointments';
+String noAppointmentsBodyString =
+    'We will show your appointments here when your doctor schedules them';
 String fetchingAppointmentsString =
     'fetching your ${appointmentsPageTitle.toLowerCase()}';
