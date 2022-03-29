@@ -32,6 +32,7 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
       facilityPhoneNumber: json['facilityPhoneNumber'] as String?,
       chvUserID: json['chvUserID'] as String?,
       chvUserName: json['chvUserName'] as String?,
+      cccNumber: json['CCCNumber'] as String?,
       healthDiaryState: json['healthDiaryState'] == null
           ? null
           : HealthDiaryState.fromJson(
@@ -66,6 +67,7 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'facilityPhoneNumber': instance.facilityPhoneNumber,
       'chvUserID': instance.chvUserID,
       'chvUserName': instance.chvUserName,
+      'CCCNumber': instance.cccNumber,
       'healthDiaryState': instance.healthDiaryState,
       'communitiesState': instance.communitiesState,
       'pastAppointments': instance.pastAppointments,

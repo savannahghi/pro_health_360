@@ -23,6 +23,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.chvUserID,
     this.chvUserName,
     this.addresses,
+    this.cccNumber,
   });
 
   final String? id;
@@ -38,6 +39,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final String? facilityPhoneNumber;
   final String? chvUserID;
   final String? chvUserName;
+  final String? cccNumber;
   final List<Address>? addresses;
 
   @override
@@ -61,6 +63,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
             this.facilityPhoneNumber ?? state.clientState?.facilityPhoneNumber,
         chvUserID: this.chvUserID ?? state.clientState?.chvUserID,
         chvUserName: this.chvUserName ?? state.clientState?.chvUserName,
+        cccNumber: this.cccNumber ?? state.clientState?.cccNumber,
         addresses: this.addresses ?? state.clientState?.addresses,
       ),
     );

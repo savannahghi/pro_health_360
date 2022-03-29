@@ -33,7 +33,7 @@ class UserDetailsCard extends StatelessWidget {
 
         final String phone = user?.primaryContact?.value ?? UNKNOWN;
         final String name = getDisplayName(user);
-        const String cccNumber = '123456';
+        final String cccNumber = vm.clientState?.cccNumber ?? UNKNOWN;
         const String age = '18';
 
         return Container(
@@ -79,9 +79,9 @@ class UserDetailsCard extends StatelessWidget {
                     ),
                   ),
                   smallVerticalSizedBox,
-                  const Text(
+                  Text(
                     'CCC No: $cccNumber',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,

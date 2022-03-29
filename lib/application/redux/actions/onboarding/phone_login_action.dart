@@ -178,6 +178,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             facilityName: loginResponse.userResponse?.clientState?.facilityName,
             chvUserID: loginResponse.userResponse?.clientState?.chvUserID,
             chvUserName: loginResponse.userResponse?.clientState?.chvUserName,
+            cccNumber: loginResponse.userResponse?.clientState?.cccNumber,
           ),
         );
 
