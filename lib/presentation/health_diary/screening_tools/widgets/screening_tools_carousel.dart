@@ -1,7 +1,9 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
 // Package imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -26,9 +28,24 @@ class ScreeningToolsCarousel extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                assessmentToolsTitle,
-                style: veryBoldSize16Text(AppColors.secondaryColor),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    assessmentToolsTitle,
+                    style: veryBoldSize16Text(AppColors.secondaryColor),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SvgPicture.asset(verticalScrollIconSvgPath),
+                      verySmallHorizontalSizedBox,
+                      Text(
+                        scrollForMoreString,
+                        style: boldSize13Text(AppColors.greyTextColor.withOpacity(0.8)),
+                      )
+                    ],
+                  )
+                ],
               ),
               smallVerticalSizedBox,
               SingleChildScrollView(

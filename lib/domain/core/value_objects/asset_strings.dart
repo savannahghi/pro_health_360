@@ -175,3 +175,5 @@ const String consentConfirmationImage =
 const String forgotPINImageSvgPath = 'assets/images/forgot_pin_image.svg';
 
 const String zeroAppointmentsImageSvgPath = 'assets/images/zero_appointments_icon.svg';
+
+const String verticalScrollIconSvgPath = 'assets/icons/vertical_scroll_icon.svg';

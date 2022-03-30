@@ -858,3 +858,4 @@ String noAppointmentsBodyString =
     'We will show your appointments here when your doctor schedules them';
 String fetchingAppointmentsString =
     'fetching your ${appointmentsPageTitle.toLowerCase()}';
+const String scrollForMoreString = 'Scroll for more';
