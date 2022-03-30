@@ -858,3 +858,7 @@ String fetchingAppointmentsString =
 const String scrollForMoreString = 'Scroll for more';
 const String clinicianHasBeenNotified =
     'Your clinician has been notified. If it is an emergency, please call us back on +254 712 345 678';
+
+String noMedicalDataString = 'Oops! No medical data';
+String noMedicalDataBodyString =
+    'Your medical information will be available soon';
