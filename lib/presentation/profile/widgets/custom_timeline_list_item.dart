@@ -2,9 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// Project imports:
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class CustomTimelineListItem extends StatelessWidget {
@@ -17,8 +15,6 @@ class CustomTimelineListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -38,7 +34,7 @@ class CustomTimelineListItem extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(12),
                 child: SvgPicture.asset(
-                  'assets/icons/${item.leadingIcon}.svg',
+                  item.leadingIcon,
                   color: item.isDiary
                       ? AppColors.whiteColor
                       : AppColors.timelineDotColor,
@@ -62,19 +58,15 @@ class CustomTimelineListItem extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            ...getItemContent(item),
-                          ],
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          item.time,
-                          style: normalSize10Text(
-                            AppColors.greyTextColor,
+                        if (item.time != null) ...<Widget>[
+                          const SizedBox(height: 4),
+                          Text(
+                            item.time!,
+                            style: normalSize10Text(
+                              AppColors.greyTextColor,
+                            ),
                           ),
-                        ),
+                        ],
                         const SizedBox(height: 4),
                       ],
                     ),
@@ -86,31 +78,5 @@ class CustomTimelineListItem extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  List<Widget> getItemContent(TimelineItem item) {
-    final List<Widget> content = <Widget>[];
-
-     if (item.doctor != null) {
-      final String? firstName = item.doctor?.firstName.getValue();
-      final String? lastName = item.doctor?.lastName.getValue();
-      final String venue = item.venue!;
-
-      content.addAll(
-        <Widget>[
-          Text(
-            getDoctorName(firstName, lastName),
-            style: normalSize10Text(AppColors.greyTextColor),
-          ),
-          const SizedBox(width: 8),
-          Text(
-            venue,
-            style: normalSize10Text(AppColors.greyTextColor),
-          ),
-        ],
-      );
-    }
-
-    return content;
   }
 }

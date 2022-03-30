@@ -27,7 +27,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
-import '../../../test_utils.dart';
 
 @GenerateMocks(
   <Type>[],
@@ -119,31 +118,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(expectedDefaultName, actualNameFromState);
-    });
-
-    testWidgets('should show a toast', (WidgetTester tester) async {
-      const Key showToastKey = Key('show_toast');
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: MyAfyaHubPrimaryButton(
-                buttonKey: showToastKey,
-                onPressed: () {
-                  showToast('Some random toast message');
-                },
-              ),
-            ),
-          ),
-        ),
-      );
-
-      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
-      expect(find.byKey(showToastKey), findsOneWidget);
-
-      // tap the button to show the toast
-      await tester.tap(find.byKey(showToastKey));
-      await fireEvent(tester);
     });
 
     testWidgets(
