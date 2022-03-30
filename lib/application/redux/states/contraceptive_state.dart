@@ -10,6 +10,7 @@ class ContraceptiveState with _$ContraceptiveState {
     @JsonKey(name: 'getScreeningToolQuestions')
         ScreeningQuestionsList? screeningQuestions,
     bool? errorFetchingQuestions,
+    bool? errorAnsweringQuestions,
     bool? timeoutFetchingQuestions,
   }) = _ContraceptiveState;
 
@@ -20,5 +21,6 @@ class ContraceptiveState with _$ContraceptiveState {
         screeningQuestions: ScreeningQuestionsList.initial(),
         errorFetchingQuestions: false,
         timeoutFetchingQuestions: false,
+        errorAnsweringQuestions: false,
       );
 }

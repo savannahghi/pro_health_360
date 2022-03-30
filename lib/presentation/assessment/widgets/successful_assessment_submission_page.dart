@@ -4,35 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/assessment/widgets/alcohol_assessment_information.dart';
-import 'package:myafyahub/presentation/assessment/widgets/contraceptive_information.dart';
-import 'package:myafyahub/presentation/assessment/widgets/tb_assessment_information.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:myafyahub/presentation/violence_assessment/widgets/violence_assessment_information.dart';
 import 'package:shared_themes/spaces.dart';
 
 class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
-  const SuccessfulAssessmentSubmissionPage({required this.screeningToolsType});
-
-  final ScreeningToolsType screeningToolsType;
-
-  Widget buildInformationWidget(ScreeningToolsType screeningToolsType) {
-    switch (screeningToolsType) {
-      case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return const ViolenceAssessmentInformation();
-
-      case ScreeningToolsType.TB_ASSESSMENT:
-        return const TBAssessmentInformation();
-
-      case ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT:
-        return const AlcoholAssessmentInformation();
-
-      default:
-        return const ContraceptivesInformation();
-    }
-  }
+  const SuccessfulAssessmentSubmissionPage();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +37,11 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
                   ),
                 ),
                 mediumVerticalSizedBox,
-                buildInformationWidget(screeningToolsType),
+                Text(
+                  clinicianHasBeenNotified,
+                  style: normalSize14Text(AppColors.greyTextColor),
+                  textAlign: TextAlign.center,
+                ),
                 largeVerticalSizedBox,
                 SizedBox(
                   width: double.infinity,

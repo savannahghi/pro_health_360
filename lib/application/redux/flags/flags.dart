@@ -97,6 +97,7 @@ const String fetchingContraceptivesQuestionsFlag =
     'fetch_contraceptives_questions_flags';
 const String fetchingTBQuestionsFlag = 'fetch_TB_questions_flags';
 const String fetchingAlcoholQuestionsFlag = 'fetch_alcohol_questions_flags';
+const String answerScreeningQuestionsFlag = 'answer_screening_questions_flag';
 
 // health timeline flags
 const String fetchHealthTimelineFlag = 'fetch_health_timeline';

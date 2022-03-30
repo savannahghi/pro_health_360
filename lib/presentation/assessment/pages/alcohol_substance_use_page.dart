@@ -2,7 +2,8 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/fetch_violence_screening_questions_action.dart';
+import 'package:myafyahub/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
+import 'package:myafyahub/application/redux/actions/screening_tools/fetch_screening_questions_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/screening_tools/screening_tools_view_model.dart';
@@ -12,7 +13,6 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/assessment/widgets/alcohol_assessment_information.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/violence_assessment/widgets/screening_tools_question_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -87,14 +87,17 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                           height: 48,
                           child: MyAfyaHubPrimaryButton(
                             buttonKey: alcoholSubstanceFeedbackButtonKey,
-                            onPressed: () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.successfulAssessmentSubmissionPage,
-                              arguments: <String, dynamic>{
-                                'screeningToolsType': ScreeningToolsType
-                                    .ALCOHOL_SUBSTANCE_ASSESSMENT
-                              },
-                            ),
+                            onPressed: () {
+                              StoreProvider.dispatch(
+                                context,
+                                AnswerScreeningToolsAction(
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
+                                  screeningToolsType: ScreeningToolsType
+                                      .ALCOHOL_SUBSTANCE_ASSESSMENT,
+                                ),
+                              );
+                            },
                             buttonColor: AppColors.primaryColor,
                             borderColor: Colors.transparent,
                             text: submitAssessment,

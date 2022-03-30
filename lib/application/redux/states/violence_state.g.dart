@@ -14,6 +14,7 @@ _$_ViolenceState _$$_ViolenceStateFromJson(Map<String, dynamic> json) =>
               json['getScreeningToolQuestions'] as Map<String, dynamic>),
       errorFetchingQuestions: json['errorFetchingQuestions'] as bool?,
       timeoutFetchingQuestions: json['timeoutFetchingQuestions'] as bool?,
+      errorAnsweringQuestions: json['errorAnsweringQuestions'] as bool?,
     );
 
 Map<String, dynamic> _$$_ViolenceStateToJson(_$_ViolenceState instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$$_ViolenceStateToJson(_$_ViolenceState instance) =>
       'getScreeningToolQuestions': instance.screeningQuestions,
       'errorFetchingQuestions': instance.errorFetchingQuestions,
       'timeoutFetchingQuestions': instance.timeoutFetchingQuestions,
+      'errorAnsweringQuestions': instance.errorAnsweringQuestions,
     };

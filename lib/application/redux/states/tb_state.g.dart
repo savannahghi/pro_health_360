@@ -13,6 +13,7 @@ _$_TBState _$$_TBStateFromJson(Map<String, dynamic> json) => _$_TBState(
               json['getScreeningToolQuestions'] as Map<String, dynamic>),
       errorFetchingQuestions: json['errorFetchingQuestions'] as bool?,
       timeoutFetchingQuestions: json['timeoutFetchingQuestions'] as bool?,
+      errorAnsweringQuestions: json['errorAnsweringQuestions'] as bool?,
     );
 
 Map<String, dynamic> _$$_TBStateToJson(_$_TBState instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_TBStateToJson(_$_TBState instance) =>
       'getScreeningToolQuestions': instance.screeningQuestions,
       'errorFetchingQuestions': instance.errorFetchingQuestions,
       'timeoutFetchingQuestions': instance.timeoutFetchingQuestions,
+      'errorAnsweringQuestions': instance.errorAnsweringQuestions,
     };

@@ -10,9 +10,11 @@ class UpdateContraceptiveStateAction extends ReduxAction<AppState> {
     this.errorFetchingQuestions,
     this.timeoutFetchingQuestions,
     this.screeningQuestions,
+    this.errorAnsweringQuestions,
   });
 
   final bool? errorFetchingQuestions;
+  final bool? errorAnsweringQuestions;
   final ScreeningQuestionsList? screeningQuestions;
   final bool? timeoutFetchingQuestions;
 
@@ -25,6 +27,9 @@ class UpdateContraceptiveStateAction extends ReduxAction<AppState> {
       errorFetchingQuestions: errorFetchingQuestions ??
           state.miscState?.screeningToolsState?.contraceptiveState
               ?.errorFetchingQuestions,
+      errorAnsweringQuestions: errorAnsweringQuestions ??
+          state.miscState?.screeningToolsState?.contraceptiveState
+              ?.errorAnsweringQuestions,
       timeoutFetchingQuestions: timeoutFetchingQuestions ??
           state.miscState?.screeningToolsState?.contraceptiveState
               ?.timeoutFetchingQuestions,

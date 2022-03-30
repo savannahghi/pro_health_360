@@ -10,9 +10,11 @@ class UpdateAlcoholStateAction extends ReduxAction<AppState> {
     this.errorFetchingQuestions,
     this.timeoutFetchingQuestions,
     this.screeningQuestions,
+    this.errorAnsweringQuestions,
   });
 
   final bool? errorFetchingQuestions;
+  final bool? errorAnsweringQuestions;
   final ScreeningQuestionsList? screeningQuestions;
   final bool? timeoutFetchingQuestions;
 
@@ -26,6 +28,9 @@ class UpdateAlcoholStateAction extends ReduxAction<AppState> {
       errorFetchingQuestions: errorFetchingQuestions ??
           state.miscState?.screeningToolsState?.alcoholSubstanceUseState
               ?.errorFetchingQuestions,
+      errorAnsweringQuestions: errorAnsweringQuestions ??
+          state.miscState?.screeningToolsState?.alcoholSubstanceUseState
+              ?.errorAnsweringQuestions,
       timeoutFetchingQuestions: timeoutFetchingQuestions ??
           state.miscState?.screeningToolsState?.alcoholSubstanceUseState
               ?.timeoutFetchingQuestions,

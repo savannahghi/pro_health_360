@@ -26,11 +26,13 @@ class _$TBStateTearOff {
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions}) {
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions}) {
     return _TBState(
       screeningQuestions: screeningQuestions,
       errorFetchingQuestions: errorFetchingQuestions,
       timeoutFetchingQuestions: timeoutFetchingQuestions,
+      errorAnsweringQuestions: errorAnsweringQuestions,
     );
   }
 
@@ -49,6 +51,7 @@ mixin _$TBState {
       throw _privateConstructorUsedError;
   bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
   bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get errorAnsweringQuestions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +66,8 @@ abstract class $TBStateCopyWith<$Res> {
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions});
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions});
 
   $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
@@ -81,6 +85,7 @@ class _$TBStateCopyWithImpl<$Res> implements $TBStateCopyWith<$Res> {
     Object? screeningQuestions = freezed,
     Object? errorFetchingQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
+    Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_value.copyWith(
       screeningQuestions: screeningQuestions == freezed
@@ -94,6 +99,10 @@ class _$TBStateCopyWithImpl<$Res> implements $TBStateCopyWith<$Res> {
       timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+          ? _value.errorAnsweringQuestions
+          : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -120,7 +129,8 @@ abstract class _$TBStateCopyWith<$Res> implements $TBStateCopyWith<$Res> {
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions});
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions});
 
   @override
   $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
@@ -140,6 +150,7 @@ class __$TBStateCopyWithImpl<$Res> extends _$TBStateCopyWithImpl<$Res>
     Object? screeningQuestions = freezed,
     Object? errorFetchingQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
+    Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_TBState(
       screeningQuestions: screeningQuestions == freezed
@@ -154,6 +165,10 @@ class __$TBStateCopyWithImpl<$Res> extends _$TBStateCopyWithImpl<$Res>
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
+      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+          ? _value.errorAnsweringQuestions
+          : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -164,7 +179,8 @@ class _$_TBState implements _TBState {
   _$_TBState(
       {@JsonKey(name: 'getScreeningToolQuestions') this.screeningQuestions,
       this.errorFetchingQuestions,
-      this.timeoutFetchingQuestions});
+      this.timeoutFetchingQuestions,
+      this.errorAnsweringQuestions});
 
   factory _$_TBState.fromJson(Map<String, dynamic> json) =>
       _$$_TBStateFromJson(json);
@@ -176,10 +192,12 @@ class _$_TBState implements _TBState {
   final bool? errorFetchingQuestions;
   @override
   final bool? timeoutFetchingQuestions;
+  @override
+  final bool? errorAnsweringQuestions;
 
   @override
   String toString() {
-    return 'TBState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
+    return 'TBState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions, errorAnsweringQuestions: $errorAnsweringQuestions)';
   }
 
   @override
@@ -192,7 +210,9 @@ class _$_TBState implements _TBState {
             const DeepCollectionEquality()
                 .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
             const DeepCollectionEquality().equals(
-                other.timeoutFetchingQuestions, timeoutFetchingQuestions));
+                other.timeoutFetchingQuestions, timeoutFetchingQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.errorAnsweringQuestions, errorAnsweringQuestions));
   }
 
   @override
@@ -200,7 +220,8 @@ class _$_TBState implements _TBState {
       runtimeType,
       const DeepCollectionEquality().hash(screeningQuestions),
       const DeepCollectionEquality().hash(errorFetchingQuestions),
-      const DeepCollectionEquality().hash(timeoutFetchingQuestions));
+      const DeepCollectionEquality().hash(timeoutFetchingQuestions),
+      const DeepCollectionEquality().hash(errorAnsweringQuestions));
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +239,8 @@ abstract class _TBState implements TBState {
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions}) = _$_TBState;
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions}) = _$_TBState;
 
   factory _TBState.fromJson(Map<String, dynamic> json) = _$_TBState.fromJson;
 
@@ -229,6 +251,8 @@ abstract class _TBState implements TBState {
   bool? get errorFetchingQuestions;
   @override
   bool? get timeoutFetchingQuestions;
+  @override
+  bool? get errorAnsweringQuestions;
   @override
   @JsonKey(ignore: true)
   _$TBStateCopyWith<_TBState> get copyWith =>

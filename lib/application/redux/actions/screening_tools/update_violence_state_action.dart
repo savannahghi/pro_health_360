@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/violence_state.dart';
@@ -10,9 +9,11 @@ class UpdateViolenceStateAction extends ReduxAction<AppState> {
     this.errorFetchingQuestions,
     this.timeoutFetchingQuestions,
     this.screeningQuestions,
+    this.errorAnsweringQuestions,
   });
 
   final bool? errorFetchingQuestions;
+  final bool? errorAnsweringQuestions;
   final ScreeningQuestionsList? screeningQuestions;
   final bool? timeoutFetchingQuestions;
 
@@ -25,6 +26,9 @@ class UpdateViolenceStateAction extends ReduxAction<AppState> {
       errorFetchingQuestions: errorFetchingQuestions ??
           state.miscState?.screeningToolsState?.violenceState
               ?.errorFetchingQuestions,
+      errorAnsweringQuestions: errorAnsweringQuestions ??
+          state.miscState?.screeningToolsState?.violenceState
+              ?.errorAnsweringQuestions,
       timeoutFetchingQuestions: timeoutFetchingQuestions ??
           state.miscState?.screeningToolsState?.violenceState
               ?.timeoutFetchingQuestions,

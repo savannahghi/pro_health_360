@@ -4,7 +4,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/fetch_violence_screening_questions_action.dart';
+import 'package:myafyahub/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/update_alcohol_state_action.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/update_contraceptive_state.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/update_tb_state.dart';
@@ -17,7 +17,7 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import '../../../../mocks.dart';
 
 void main() {
-  group('FetchViolenceScreeningQuestionsAction', () {
+  group('AnswerScreeningToolsAction', () {
     late StoreTester<AppState> storeTester;
 
     setUp(() {
@@ -28,115 +28,16 @@ void main() {
       );
     });
 
-    test('shows loading indicator successfully', () async {
-      storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
-          client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
-        ),
-      );
-
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
-
-      expect(
-        info.state.wait!.isWaitingFor(fetchingViolenceQuestionsFlag),
-        false,
-      );
-    });
-
-    test('should run successfully for violence', () async {
-      storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
-          client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
-        ),
-      );
-
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateViolenceStateAction);
-
-      expect(
-        info.state.wait!.isWaitingFor(fetchingViolenceQuestionsFlag),
-        false,
-      );
-      expect(
-        info.state.miscState?.screeningToolsState?.violenceState,
-        isNotNull,
-      );
-    });
-
-    test('should run successfully for contraceptives', () async {
-      storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
-          client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
-        ),
-      );
-
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateContraceptiveStateAction);
-
-      expect(
-        info.state.wait!.isWaitingFor(fetchingContraceptivesQuestionsFlag),
-        false,
-      );
-      expect(
-        info.state.miscState?.screeningToolsState?.contraceptiveState,
-        isNotNull,
-      );
-    });
-    test('should run successfully for alcohol', () async {
-      storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
-          client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
-        ),
-      );
-
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateAlcoholStateAction);
-
-      expect(
-        info.state.wait!.isWaitingFor(fetchingAlcoholQuestionsFlag),
-        false,
-      );
-      expect(
-        info.state.miscState?.screeningToolsState?.alcoholSubstanceUseState,
-        isNotNull,
-      );
-    });
-    test('should run successfully for tb', () async {
-      storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
-          client: MockGraphQlClient(),
-          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
-        ),
-      );
-
-      final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateTBStateAction);
-
-      expect(
-        info.state.wait!.isWaitingFor(fetchingTBQuestionsFlag),
-        false,
-      );
-      expect(
-        info.state.miscState?.screeningToolsState?.tbState,
-        isNotNull,
-      );
-    });
-
     test('should dispatch error if body is null for violence', () async {
       storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
+        AnswerScreeningToolsAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'answerScreeningToolQuestion': <dynamic>[]
                 }
               }),
               200,
@@ -150,7 +51,7 @@ void main() {
           await storeTester.waitUntil(UpdateViolenceStateAction);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingViolenceQuestionsFlag),
+        info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
         false,
       );
       expect(
@@ -159,21 +60,21 @@ void main() {
       );
       expect(
         info.state.miscState?.screeningToolsState?.violenceState
-            ?.errorFetchingQuestions,
+            ?.errorAnsweringQuestions,
         true,
       );
     });
 
     test('should dispatch error if body is null for contraceptives', () async {
       storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
+        AnswerScreeningToolsAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'answerScreeningToolQuestion': <dynamic>[]
                 }
               }),
               200,
@@ -187,7 +88,7 @@ void main() {
           await storeTester.waitUntil(UpdateContraceptiveStateAction);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingContraceptivesQuestionsFlag),
+        info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
         false,
       );
       expect(
@@ -196,20 +97,20 @@ void main() {
       );
       expect(
         info.state.miscState?.screeningToolsState?.contraceptiveState
-            ?.errorFetchingQuestions,
+            ?.errorAnsweringQuestions,
         true,
       );
     });
     test('should dispatch error if body is null for alcohol', () async {
       storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
+        AnswerScreeningToolsAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'answerScreeningToolQuestion': <dynamic>[]
                 }
               }),
               200,
@@ -223,7 +124,7 @@ void main() {
           await storeTester.waitUntil(UpdateAlcoholStateAction);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingAlcoholQuestionsFlag),
+        info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
         false,
       );
       expect(
@@ -232,20 +133,20 @@ void main() {
       );
       expect(
         info.state.miscState?.screeningToolsState?.alcoholSubstanceUseState
-            ?.errorFetchingQuestions,
+            ?.errorAnsweringQuestions,
         true,
       );
     });
     test('should dispatch error if body is null for tb', () async {
       storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
+        AnswerScreeningToolsAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
             Response(
               jsonEncode(<String, dynamic>{
                 'data': <String, dynamic>{
-                  'getScreeningToolQuestions': <dynamic>[]
+                  'answerScreeningToolQuestion': <dynamic>[]
                 }
               }),
               200,
@@ -259,7 +160,7 @@ void main() {
           await storeTester.waitUntil(UpdateTBStateAction);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingTBQuestionsFlag),
+        info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
         false,
       );
       expect(
@@ -268,14 +169,14 @@ void main() {
       );
       expect(
         info.state.miscState?.screeningToolsState?.tbState
-            ?.errorFetchingQuestions,
+            ?.errorAnsweringQuestions,
         true,
       );
     });
 
     test('should throw error if api call is not 200', () async {
       storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
+        AnswerScreeningToolsAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -289,7 +190,7 @@ void main() {
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
+          await storeTester.waitUntil(AnswerScreeningToolsAction);
 
       expect(
         (info.error! as UserException).msg,
@@ -300,7 +201,7 @@ void main() {
 
     test('should throw error if response has error', () async {
       storeTester.dispatch(
-        FetchScreeningToolsQuestionsAction(
+        AnswerScreeningToolsAction(
           client: MockShortGraphQlClient.withResponse(
             '',
             '',
@@ -314,11 +215,11 @@ void main() {
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
+          await storeTester.waitUntil(AnswerScreeningToolsAction);
 
       expect(
         (info.error! as UserException).msg,
-        getErrorMessage('fetching questions'),
+        getErrorMessage('posting answers'),
       );
     });
   });

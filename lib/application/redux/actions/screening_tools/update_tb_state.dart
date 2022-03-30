@@ -10,11 +10,14 @@ class UpdateTBStateAction extends ReduxAction<AppState> {
     this.errorFetchingQuestions,
     this.timeoutFetchingQuestions,
     this.screeningQuestions,
+    this.errorAnsweringQuestions,
   });
 
   final bool? errorFetchingQuestions;
+  final bool? errorAnsweringQuestions;
   final ScreeningQuestionsList? screeningQuestions;
   final bool? timeoutFetchingQuestions;
+
   @override
   Future<AppState?> reduce() async {
     final TBState newTBState = TBState(
@@ -22,6 +25,9 @@ class UpdateTBStateAction extends ReduxAction<AppState> {
           state.miscState?.screeningToolsState?.tbState?.screeningQuestions,
       errorFetchingQuestions: errorFetchingQuestions ??
           state.miscState?.screeningToolsState?.tbState?.errorFetchingQuestions,
+      errorAnsweringQuestions: errorAnsweringQuestions ??
+          state
+              .miscState?.screeningToolsState?.tbState?.errorAnsweringQuestions,
       timeoutFetchingQuestions: timeoutFetchingQuestions ??
           state.miscState?.screeningToolsState?.tbState
               ?.timeoutFetchingQuestions,

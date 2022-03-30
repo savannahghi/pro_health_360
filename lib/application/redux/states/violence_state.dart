@@ -11,6 +11,7 @@ class ViolenceState with _$ViolenceState {
         ScreeningQuestionsList? screeningQuestions,
     bool? errorFetchingQuestions,
     bool? timeoutFetchingQuestions,
+    bool? errorAnsweringQuestions,
   }) = _ViolenceState;
 
   factory ViolenceState.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +21,6 @@ class ViolenceState with _$ViolenceState {
         screeningQuestions: ScreeningQuestionsList.initial(),
         errorFetchingQuestions: false,
         timeoutFetchingQuestions: false,
+        errorAnsweringQuestions: false,
       );
 }

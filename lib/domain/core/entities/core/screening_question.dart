@@ -9,6 +9,7 @@ class ScreeningQuestion with _$ScreeningQuestion {
   factory ScreeningQuestion({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'question') String? questionText,
+    @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'toolType') String? toolType,
     @JsonKey(name: 'sequence') int? sequence,
     @JsonKey(name: 'responseChoices') Map<String, dynamic>? responseChoices,
@@ -25,5 +26,6 @@ class ScreeningQuestion with _$ScreeningQuestion {
         meta: <String, dynamic>{},
         responseChoices: <String, dynamic>{},
         sequence: 0,
+        answer: UNKNOWN,
       );
 }

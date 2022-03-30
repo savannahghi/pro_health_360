@@ -15,6 +15,7 @@ _$_AlcoholSubstanceUseState _$$_AlcoholSubstanceUseStateFromJson(
               json['getScreeningToolQuestions'] as Map<String, dynamic>),
       errorFetchingQuestions: json['errorFetchingQuestions'] as bool?,
       timeoutFetchingQuestions: json['timeoutFetchingQuestions'] as bool?,
+      errorAnsweringQuestions: json['errorAnsweringQuestions'] as bool?,
     );
 
 Map<String, dynamic> _$$_AlcoholSubstanceUseStateToJson(
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$_AlcoholSubstanceUseStateToJson(
       'getScreeningToolQuestions': instance.screeningQuestions,
       'errorFetchingQuestions': instance.errorFetchingQuestions,
       'timeoutFetchingQuestions': instance.timeoutFetchingQuestions,
+      'errorAnsweringQuestions': instance.errorAnsweringQuestions,
     };

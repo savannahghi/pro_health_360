@@ -856,3 +856,5 @@ String noAppointmentsBodyString =
 String fetchingAppointmentsString =
     'fetching your ${appointmentsPageTitle.toLowerCase()}';
 const String scrollForMoreString = 'Scroll for more';
+const String clinicianHasBeenNotified =
+    'Your clinician has been notified. If it is an emergency, please call us back on +254 712 345 678';

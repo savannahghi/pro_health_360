@@ -11,6 +11,7 @@ class AlcoholSubstanceUseState with _$AlcoholSubstanceUseState {
         ScreeningQuestionsList? screeningQuestions,
     bool? errorFetchingQuestions,
     bool? timeoutFetchingQuestions,
+    bool? errorAnsweringQuestions,
   }) = _AlcoholSubstanceUseState;
 
   factory AlcoholSubstanceUseState.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +21,6 @@ class AlcoholSubstanceUseState with _$AlcoholSubstanceUseState {
         screeningQuestions: ScreeningQuestionsList.initial(),
         errorFetchingQuestions: false,
         timeoutFetchingQuestions: false,
+        errorAnsweringQuestions: false,
       );
 }

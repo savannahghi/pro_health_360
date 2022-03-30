@@ -1,15 +1,11 @@
-// Flutter imports:
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-// Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/assessment/pages/alcohol_substance_use_page.dart';
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/violence_assessment/widgets/screening_tools_question_widget.dart';
-
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

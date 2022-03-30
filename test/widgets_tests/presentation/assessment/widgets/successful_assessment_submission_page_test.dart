@@ -4,7 +4,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
 
@@ -21,9 +20,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: const SuccessfulAssessmentSubmissionPage(
-          screeningToolsType: ScreeningToolsType.VIOLENCE_ASSESSMENT,
-        ),
+        widget: const SuccessfulAssessmentSubmissionPage(),
       );
       await tester.pump();
 

@@ -26,11 +26,13 @@ class _$ViolenceStateTearOff {
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions}) {
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions}) {
     return _ViolenceState(
       screeningQuestions: screeningQuestions,
       errorFetchingQuestions: errorFetchingQuestions,
       timeoutFetchingQuestions: timeoutFetchingQuestions,
+      errorAnsweringQuestions: errorAnsweringQuestions,
     );
   }
 
@@ -49,6 +51,7 @@ mixin _$ViolenceState {
       throw _privateConstructorUsedError;
   bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
   bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get errorAnsweringQuestions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +68,8 @@ abstract class $ViolenceStateCopyWith<$Res> {
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions});
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions});
 
   $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
 }
@@ -84,6 +88,7 @@ class _$ViolenceStateCopyWithImpl<$Res>
     Object? screeningQuestions = freezed,
     Object? errorFetchingQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
+    Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_value.copyWith(
       screeningQuestions: screeningQuestions == freezed
@@ -97,6 +102,10 @@ class _$ViolenceStateCopyWithImpl<$Res>
       timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+          ? _value.errorAnsweringQuestions
+          : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -125,7 +134,8 @@ abstract class _$ViolenceStateCopyWith<$Res>
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions});
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions});
 
   @override
   $ScreeningQuestionsListCopyWith<$Res>? get screeningQuestions;
@@ -147,6 +157,7 @@ class __$ViolenceStateCopyWithImpl<$Res>
     Object? screeningQuestions = freezed,
     Object? errorFetchingQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
+    Object? errorAnsweringQuestions = freezed,
   }) {
     return _then(_ViolenceState(
       screeningQuestions: screeningQuestions == freezed
@@ -161,6 +172,10 @@ class __$ViolenceStateCopyWithImpl<$Res>
           ? _value.timeoutFetchingQuestions
           : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
               as bool?,
+      errorAnsweringQuestions: errorAnsweringQuestions == freezed
+          ? _value.errorAnsweringQuestions
+          : errorAnsweringQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -171,7 +186,8 @@ class _$_ViolenceState implements _ViolenceState {
   _$_ViolenceState(
       {@JsonKey(name: 'getScreeningToolQuestions') this.screeningQuestions,
       this.errorFetchingQuestions,
-      this.timeoutFetchingQuestions});
+      this.timeoutFetchingQuestions,
+      this.errorAnsweringQuestions});
 
   factory _$_ViolenceState.fromJson(Map<String, dynamic> json) =>
       _$$_ViolenceStateFromJson(json);
@@ -183,10 +199,12 @@ class _$_ViolenceState implements _ViolenceState {
   final bool? errorFetchingQuestions;
   @override
   final bool? timeoutFetchingQuestions;
+  @override
+  final bool? errorAnsweringQuestions;
 
   @override
   String toString() {
-    return 'ViolenceState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
+    return 'ViolenceState(screeningQuestions: $screeningQuestions, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions, errorAnsweringQuestions: $errorAnsweringQuestions)';
   }
 
   @override
@@ -199,7 +217,9 @@ class _$_ViolenceState implements _ViolenceState {
             const DeepCollectionEquality()
                 .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
             const DeepCollectionEquality().equals(
-                other.timeoutFetchingQuestions, timeoutFetchingQuestions));
+                other.timeoutFetchingQuestions, timeoutFetchingQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.errorAnsweringQuestions, errorAnsweringQuestions));
   }
 
   @override
@@ -207,7 +227,8 @@ class _$_ViolenceState implements _ViolenceState {
       runtimeType,
       const DeepCollectionEquality().hash(screeningQuestions),
       const DeepCollectionEquality().hash(errorFetchingQuestions),
-      const DeepCollectionEquality().hash(timeoutFetchingQuestions));
+      const DeepCollectionEquality().hash(timeoutFetchingQuestions),
+      const DeepCollectionEquality().hash(errorAnsweringQuestions));
 
   @JsonKey(ignore: true)
   @override
@@ -225,7 +246,8 @@ abstract class _ViolenceState implements ViolenceState {
       {@JsonKey(name: 'getScreeningToolQuestions')
           ScreeningQuestionsList? screeningQuestions,
       bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions}) = _$_ViolenceState;
+      bool? timeoutFetchingQuestions,
+      bool? errorAnsweringQuestions}) = _$_ViolenceState;
 
   factory _ViolenceState.fromJson(Map<String, dynamic> json) =
       _$_ViolenceState.fromJson;
@@ -237,6 +259,8 @@ abstract class _ViolenceState implements ViolenceState {
   bool? get errorFetchingQuestions;
   @override
   bool? get timeoutFetchingQuestions;
+  @override
+  bool? get errorAnsweringQuestions;
   @override
   @JsonKey(ignore: true)
   _$ViolenceStateCopyWith<_ViolenceState> get copyWith =>

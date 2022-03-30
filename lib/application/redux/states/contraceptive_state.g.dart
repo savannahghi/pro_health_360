@@ -14,6 +14,7 @@ _$_ContraceptiveState _$$_ContraceptiveStateFromJson(
           : ScreeningQuestionsList.fromJson(
               json['getScreeningToolQuestions'] as Map<String, dynamic>),
       errorFetchingQuestions: json['errorFetchingQuestions'] as bool?,
+      errorAnsweringQuestions: json['errorAnsweringQuestions'] as bool?,
       timeoutFetchingQuestions: json['timeoutFetchingQuestions'] as bool?,
     );
 
@@ -22,5 +23,6 @@ Map<String, dynamic> _$$_ContraceptiveStateToJson(
     <String, dynamic>{
       'getScreeningToolQuestions': instance.screeningQuestions,
       'errorFetchingQuestions': instance.errorFetchingQuestions,
+      'errorAnsweringQuestions': instance.errorAnsweringQuestions,
       'timeoutFetchingQuestions': instance.timeoutFetchingQuestions,
     };

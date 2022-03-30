@@ -11,6 +11,7 @@ class TBState with _$TBState {
         ScreeningQuestionsList? screeningQuestions,
     bool? errorFetchingQuestions,
     bool? timeoutFetchingQuestions,
+    bool? errorAnsweringQuestions,
   }) = _TBState;
 
   factory TBState.fromJson(Map<String, dynamic> json) =>
@@ -20,5 +21,6 @@ class TBState with _$TBState {
         screeningQuestions: ScreeningQuestionsList.initial(),
         errorFetchingQuestions: false,
         timeoutFetchingQuestions: false,
+        errorAnsweringQuestions: false,
       );
 }

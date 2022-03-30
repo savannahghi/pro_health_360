@@ -170,3 +170,9 @@ mutation optOut($phoneNumber: String!, $flavour: Flavour!) {
   optOut(phoneNumber: $phoneNumber, flavour: $flavour)
 }
 ''';
+
+const String answerScreeningToolQuestionMutation = r'''
+mutation answerScreeningToolQuestion($screeningToolResponses: [ScreeningToolQuestionResponseInput!]!){
+  answerScreeningToolQuestion(screeningToolResponses: $screeningToolResponses)
+}
+''';
