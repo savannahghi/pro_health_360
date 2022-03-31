@@ -843,18 +843,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
-    //resume with pin
-    if (queryString == resumeWithPinQuery) {
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{'resumeWithPIN': true}
-          }),
-          201,
-        ),
-      );
-    }
-
     //set User PIN
     if (queryString == setUserPINMutation) {
       return Future<http.Response>.value(

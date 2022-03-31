@@ -24,7 +24,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/mini_content_widget.dart';
-import 'package:myafyahub/presentation/home/pages/home_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -91,7 +91,7 @@ void main() {
       });
     });
 
-    testWidgets('Navigates to Home page if input is valid  ',
+    testWidgets('Navigates to login if nickname has been set',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(800, 1200);
       tester.binding.window.devicePixelRatioTestValue = 1;
@@ -123,9 +123,10 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(continueButton);
         await tester.pumpAndSettle();
-        expect(find.byType(HomePage), findsOneWidget);
+
+        expect(find.byType(LoginPage), findsOneWidget);
       });
-      
+
       addTearDown(() {
         tester.binding.window.clearPhysicalSizeTestValue();
         tester.binding.window.clearDevicePixelRatioTestValue();

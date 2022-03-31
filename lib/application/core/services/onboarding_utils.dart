@@ -45,7 +45,7 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
       appState.onboardingState?.hasVerifiedSecurityQuestions ?? false;
   final bool hasSetNickName = appState.onboardingState?.hasSetNickName ?? false;
   final bool hasSetPin = appState.onboardingState?.hasSetPin ?? false;
-  final bool isPINChanged = appState.onboardingState?.hasSetPin ?? false;
+  final bool hasSetPIN = appState.onboardingState?.hasSetPin ?? false;
 
   /// The sign in onboarding state
   if (currentOnboardingStage == CurrentOnboardingStage.Login) {
@@ -100,7 +100,7 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
     }
 
     // check whether the PIN has been changed
-    else if (!isPINChanged) {
+    else if (!hasSetPIN) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.verifySignUpOTP,
         nextRoute: AppRoutes.createPin,
@@ -142,7 +142,7 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
 
     // change the PIN
     // check whether the PIN has been changed
-    else if (!isPINChanged) {
+    else if (!hasSetPIN) {
       return OnboardingPathInfo(
         previousRoute: AppRoutes.verifySignUpOTP,
         nextRoute: AppRoutes.createPin,
@@ -170,9 +170,6 @@ Future<void> setUserNickname({
   // this is the Redux Action that handles set nickname for an existing user
   await StoreProvider.dispatch<AppState>(
     context,
-    SetNicknameAction(
-      context: context,
-      flag: setNickNameFlag,
-    ),
+    SetNicknameAction(context: context, flag: setNickNameFlag),
   );
 }

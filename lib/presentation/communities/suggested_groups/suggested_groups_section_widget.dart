@@ -54,9 +54,7 @@ class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
       builder: (BuildContext context, GroupsViewModel vm) {
         return vm.wait.isWaitingFor(fetchRecommendedCommunitiesFlag)
             ? const Padding(
-                padding: EdgeInsets.only(
-                  top: 50,
-                ),
+                padding: EdgeInsets.only(top: 50),
                 child: PlatformLoader(),
               )
             : vm.recommendedGroups != null && vm.recommendedGroups!.isNotEmpty

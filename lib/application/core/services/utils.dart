@@ -645,7 +645,7 @@ MoodItemData getMoodColor(String? mood) {
   }
 }
 
-Future<ChewieController> initializeChewiController({
+Future<ChewieController> initializeChewieController({
   required String dataSource,
 }) {
   return VideoPlayerInitializer().initializePlayer(

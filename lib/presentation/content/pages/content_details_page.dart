@@ -51,7 +51,7 @@ class _ContentDetailPageState extends State<ContentDetailPage> {
     if (widget.payload.content.contentType == ContentType.AUDIO_VIDEO) {
       _chewieVideoPlayer = _chewieVideoPlayer ??
           ChewieVideoPlayer(
-            chewieController: initializeChewiController(
+            chewieController: initializeChewieController(
               dataSource:
                   widget.payload.content.featuredMedia?.first?.mediaUrl ??
                       UNKNOWN,

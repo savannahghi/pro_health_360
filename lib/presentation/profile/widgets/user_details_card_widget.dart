@@ -26,7 +26,7 @@ class UserDetailsCard extends StatelessWidget {
           ClientProfileViewModel.fromStore(store),
       builder: (BuildContext context, ClientProfileViewModel vm) {
         final User? user = vm.clientState?.user;
-        final bool addressIsEmpty = vm.clientState!.addresses!.isEmpty;
+        final bool addressIsEmpty = vm.clientState?.addresses?.isEmpty ?? true;
         final String address = addressIsEmpty
             ? locationNotRecorded
             : vm.clientState?.addresses?.first.text ?? locationNotRecorded;

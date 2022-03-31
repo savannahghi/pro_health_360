@@ -104,7 +104,7 @@ class ResetOnboardingStateAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     final AppState newState =
-        state.copyWith(onboardingState: OnboardingState.initial());
+        state.copyWith.call(onboardingState: OnboardingState.initial());
 
     return newState;
   }
