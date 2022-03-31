@@ -1,7 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
 import 'package:intl/intl.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/health_timeline/fetch_health_timeline_action.dart';
@@ -40,7 +42,12 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    StoreProvider.dispatch(context, FetchHealthTimelineAction());
+    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
+
+    StoreProvider.dispatch(
+      context,
+      FetchHealthTimelineAction(httpClient: client),
+    );
   }
 
   void calculateHeights(List<String> dates) {

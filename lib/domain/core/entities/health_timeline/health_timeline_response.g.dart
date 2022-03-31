@@ -9,7 +9,7 @@ part of 'health_timeline_response.dart';
 _$_HealthTimelineResponse _$$_HealthTimelineResponseFromJson(
         Map<String, dynamic> json) =>
     _$_HealthTimelineResponse(
-      healthTimelineItems: (json['healthTimelineItems'] as List<dynamic>?)
+      patientTimeline: (json['patientTimeline'] as List<dynamic>?)
               ?.map((e) => FhirResource.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <FhirResource>[],
@@ -18,5 +18,5 @@ _$_HealthTimelineResponse _$$_HealthTimelineResponseFromJson(
 Map<String, dynamic> _$$_HealthTimelineResponseToJson(
         _$_HealthTimelineResponse instance) =>
     <String, dynamic>{
-      'healthTimelineItems': instance.healthTimelineItems,
+      'patientTimeline': instance.patientTimeline,
     };

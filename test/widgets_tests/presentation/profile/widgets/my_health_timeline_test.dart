@@ -1,8 +1,11 @@
 // Flutter imports:
+import 'dart:convert';
+
 import 'package:async_redux/async_redux.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 
 // Project imports:
@@ -15,10 +18,19 @@ import '../../../../test_helpers.dart';
 void main() {
   group('MyHealthTimeline', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'data': mockHealthTimelineItems}),
+          200,
+        ),
+      );
+
       await buildTestWidget(
         tester: tester,
         store: Store<AppState>(initialState: AppState.initial()),
-        client: MockGraphQlClient(),
+        client: client,
         widget: const MyHealthTimeline(),
       );
       await tester.pumpAndSettle();

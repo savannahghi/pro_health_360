@@ -40,6 +40,7 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'chvUserID') String? chvUserID,
     @JsonKey(name: 'chvUserName') String? chvUserName,
     @JsonKey(name: 'CCCNumber') String? cccNumber,
+    @JsonKey(name: 'fhirPatientID') String? fhirPatientID,
 
     /// The client's health diary state
     HealthDiaryState? healthDiaryState,
@@ -82,6 +83,7 @@ class ClientState with _$ClientState {
         pastAppointments: <Appointment>[],
         upcomingAppointments: <Appointment>[],
         cccNumber: UNKNOWN,
+        fhirPatientID: UNKNOWN,
         healthTimelineState: HealthTimelineState.initial(),
       );
 }

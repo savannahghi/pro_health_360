@@ -370,3 +370,9 @@ query getScreeningToolQuestions($toolType: String!){
   }
 }
 ''';
+
+const String patientTimelineQuery = r'''
+query patientTimeline($patientID: String!, $count: Int!) {
+  patientTimeline(patientID: $patientID, count: $count)
+}
+''';
