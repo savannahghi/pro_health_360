@@ -1,5 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -7,9 +8,12 @@ class GroupMemberItem extends StatelessWidget {
   const GroupMemberItem({
     required this.userName,
     required this.memberID,
+    this.isModerator = false,
   });
+
   final String userName;
   final String memberID;
+  final bool isModerator;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,9 @@ class GroupMemberItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    userName.trim()[0].toUpperCase(),
+                    userName.isNotEmpty
+                        ? userName.trim()[0].toUpperCase()
+                        : 'U',
                     style: boldSize14Text(AppColors.primaryColor),
                   ),
                 ),
@@ -41,6 +47,18 @@ class GroupMemberItem extends StatelessWidget {
               ),
             ],
           ),
+          if (isModerator)
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: AppColors.lightGrey),
+              ),
+              padding: const EdgeInsets.all(4),
+              child: const Text(
+                moderatorText,
+                style: TextStyle(fontSize: 11, color: AppColors.lightGrey),
+              ),
+            ),
         ],
       ),
     );

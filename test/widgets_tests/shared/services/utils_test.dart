@@ -418,4 +418,34 @@ void main() {
     await tester.pumpAndSettle();
     expect(testMessage, 'Congratulations on your 3 years health journey');
   });
+
+  testWidgets('showTextSnackbar should show snackbar',
+      (WidgetTester tester) async {
+    await buildTestWidget(
+      tester: tester,
+      store: store,
+      client: MockGraphQlClient(),
+      widget: Builder(
+        builder: (BuildContext context) {
+          return MyAfyaHubPrimaryButton(
+            onPressed: () {
+              showTextSnackbar(ScaffoldMessenger.of(context), content: 'Test');
+            },
+          );
+        },
+      ),
+    );
+
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(SnackBar), findsOneWidget);
+    expect(find.text('Test'), findsOneWidget);
+    expect(find.text(closeString), findsOneWidget);
+
+    await tester.tap(find.text(closeString));
+    await tester.pumpAndSettle();
+    expect(find.byType(SnackBar), findsNothing);
+    expect(find.text('Test'), findsNothing);
+  });
 }

@@ -24,9 +24,12 @@ class _$GroupStateTearOff {
 
   _GroupState call(
       {@JsonKey(name: 'recommendedCommunities')
-          List<Group?>? recommendedGroups}) {
+          List<Group?>? recommendedGroups,
+      @JsonKey(name: 'listCommunityMembers')
+          List<GroupMember?>? groupMembers}) {
     return _GroupState(
       recommendedGroups: recommendedGroups,
+      groupMembers: groupMembers,
     );
   }
 
@@ -42,6 +45,8 @@ const $GroupState = _$GroupStateTearOff();
 mixin _$GroupState {
   @JsonKey(name: 'recommendedCommunities')
   List<Group?>? get recommendedGroups => throw _privateConstructorUsedError;
+  @JsonKey(name: 'listCommunityMembers')
+  List<GroupMember?>? get groupMembers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,8 +60,8 @@ abstract class $GroupStateCopyWith<$Res> {
           GroupState value, $Res Function(GroupState) then) =
       _$GroupStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'recommendedCommunities')
-          List<Group?>? recommendedGroups});
+      {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
+      @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers});
 }
 
 /// @nodoc
@@ -70,12 +75,17 @@ class _$GroupStateCopyWithImpl<$Res> implements $GroupStateCopyWith<$Res> {
   @override
   $Res call({
     Object? recommendedGroups = freezed,
+    Object? groupMembers = freezed,
   }) {
     return _then(_value.copyWith(
       recommendedGroups: recommendedGroups == freezed
           ? _value.recommendedGroups
           : recommendedGroups // ignore: cast_nullable_to_non_nullable
               as List<Group?>?,
+      groupMembers: groupMembers == freezed
+          ? _value.groupMembers
+          : groupMembers // ignore: cast_nullable_to_non_nullable
+              as List<GroupMember?>?,
     ));
   }
 }
@@ -87,8 +97,8 @@ abstract class _$GroupStateCopyWith<$Res> implements $GroupStateCopyWith<$Res> {
       __$GroupStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'recommendedCommunities')
-          List<Group?>? recommendedGroups});
+      {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
+      @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers});
 }
 
 /// @nodoc
@@ -104,12 +114,17 @@ class __$GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recommendedGroups = freezed,
+    Object? groupMembers = freezed,
   }) {
     return _then(_GroupState(
       recommendedGroups: recommendedGroups == freezed
           ? _value.recommendedGroups
           : recommendedGroups // ignore: cast_nullable_to_non_nullable
               as List<Group?>?,
+      groupMembers: groupMembers == freezed
+          ? _value.groupMembers
+          : groupMembers // ignore: cast_nullable_to_non_nullable
+              as List<GroupMember?>?,
     ));
   }
 }
@@ -118,7 +133,8 @@ class __$GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GroupState implements _GroupState {
   _$_GroupState(
-      {@JsonKey(name: 'recommendedCommunities') this.recommendedGroups});
+      {@JsonKey(name: 'recommendedCommunities') this.recommendedGroups,
+      @JsonKey(name: 'listCommunityMembers') this.groupMembers});
 
   factory _$_GroupState.fromJson(Map<String, dynamic> json) =>
       _$$_GroupStateFromJson(json);
@@ -126,10 +142,13 @@ class _$_GroupState implements _GroupState {
   @override
   @JsonKey(name: 'recommendedCommunities')
   final List<Group?>? recommendedGroups;
+  @override
+  @JsonKey(name: 'listCommunityMembers')
+  final List<GroupMember?>? groupMembers;
 
   @override
   String toString() {
-    return 'GroupState(recommendedGroups: $recommendedGroups)';
+    return 'GroupState(recommendedGroups: $recommendedGroups, groupMembers: $groupMembers)';
   }
 
   @override
@@ -138,12 +157,16 @@ class _$_GroupState implements _GroupState {
         (other.runtimeType == runtimeType &&
             other is _GroupState &&
             const DeepCollectionEquality()
-                .equals(other.recommendedGroups, recommendedGroups));
+                .equals(other.recommendedGroups, recommendedGroups) &&
+            const DeepCollectionEquality()
+                .equals(other.groupMembers, groupMembers));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(recommendedGroups));
+      runtimeType,
+      const DeepCollectionEquality().hash(recommendedGroups),
+      const DeepCollectionEquality().hash(groupMembers));
 
   @JsonKey(ignore: true)
   @override
@@ -159,7 +182,9 @@ class _$_GroupState implements _GroupState {
 abstract class _GroupState implements GroupState {
   factory _GroupState(
       {@JsonKey(name: 'recommendedCommunities')
-          List<Group?>? recommendedGroups}) = _$_GroupState;
+          List<Group?>? recommendedGroups,
+      @JsonKey(name: 'listCommunityMembers')
+          List<GroupMember?>? groupMembers}) = _$_GroupState;
 
   factory _GroupState.fromJson(Map<String, dynamic> json) =
       _$_GroupState.fromJson;
@@ -167,6 +192,9 @@ abstract class _GroupState implements GroupState {
   @override
   @JsonKey(name: 'recommendedCommunities')
   List<Group?>? get recommendedGroups;
+  @override
+  @JsonKey(name: 'listCommunityMembers')
+  List<GroupMember?>? get groupMembers;
   @override
   @JsonKey(ignore: true)
   _$GroupStateCopyWith<_GroupState> get copyWith =>

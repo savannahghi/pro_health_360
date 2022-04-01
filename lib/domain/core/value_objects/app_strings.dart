@@ -408,6 +408,7 @@ const String emptyConversationTitle =
 const String emptyConversationBody =
     'Relax and enjoy a cup of coffee as we get your conversations up and running.';
 const String noMembersText = 'No members';
+const String moderatorText = 'Moderator';
 
 // Consent page
 const String viewTermsText = 'View terms and conditions';

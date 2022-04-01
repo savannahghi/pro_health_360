@@ -773,3 +773,23 @@ String capitalizeFirst(String input) {
 }
 
 const int startTimer = 300;
+
+void showTextSnackbar(
+  ScaffoldMessengerState scaffoldMessengerState, {
+  required String content,
+  SnackBarAction? action,
+}) {
+  scaffoldMessengerState
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        content: Text(content),
+        duration: const Duration(seconds: 5),
+        action: SnackBarAction(
+          label: closeString,
+          textColor: Colors.white,
+          onPressed: () => scaffoldMessengerState.hideCurrentSnackBar(),
+        ),
+      ),
+    );
+}

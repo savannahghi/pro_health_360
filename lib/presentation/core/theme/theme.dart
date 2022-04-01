@@ -61,6 +61,7 @@ class AppColors {
   static const Color lightBlackTextColor = Color(0xFF555555);
   static const Color galleryColor = Color(0xFFEBEBEB);
   static const Color resumeWithPinTitleColor = Color(0xFF2F3946);
+  static const Color lightGrey = Color(0xFF696979);
 
   static ThemeColors themeColors = ThemeColors(
     primaryColor,

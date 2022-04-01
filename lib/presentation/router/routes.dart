@@ -119,7 +119,6 @@ class AppRoutes {
   // communities group invites
   static const String groupInvitesPage = '/groupInvitesPage';
   static const String acceptGroupInvitesPage = '/acceptGroupInvitesPage';
-  static const String groupInfoPage = '/groupInfoPage';
 
   // resume with pin
   static const String resumeWithPin = '/resumeWithPin';

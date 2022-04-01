@@ -12,9 +12,15 @@ _$_GroupState _$$_GroupStateFromJson(Map<String, dynamic> json) =>
           ?.map((e) =>
               e == null ? null : Group.fromJson(e as Map<String, dynamic>))
           .toList(),
+      groupMembers: (json['listCommunityMembers'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : GroupMember.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_GroupStateToJson(_$_GroupState instance) =>
     <String, dynamic>{
       'recommendedCommunities': instance.recommendedGroups,
+      'listCommunityMembers': instance.groupMembers,
     };

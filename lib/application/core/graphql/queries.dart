@@ -367,3 +367,17 @@ query patientTimeline($patientID: String!, $count: Int!) {
   patientTimeline(patientID: $patientID, count: $count)
 }
 ''';
+
+const String listCommunityMembersQuery = r'''
+query listCommunityMembers($communityID: ID!){
+	listCommunityMembers(communityID: $communityID) {
+      user{
+        ID
+        username
+        role
+        extraData
+      }
+      isModerator
+  }
+}
+''';
