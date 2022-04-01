@@ -10,7 +10,7 @@ import 'package:myafyahub/application/redux/actions/update_user_profile_action.d
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/home/pages/home_page.dart';
+import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
 
 import '../../../mocks.dart';
@@ -79,7 +79,7 @@ void main() {
       await tester.pump();
       await tester.pump();
 
-      expect(find.byType(HomePage), findsOneWidget);
+      expect(find.byType(LoginPage), findsOneWidget);
     });
 
     testWidgets('provides correct logout functionality',

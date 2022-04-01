@@ -11,7 +11,7 @@ import 'package:myafyahub/application/redux/actions/onboarding/phone_login_actio
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
+import 'package:myafyahub/application/redux/view_models/login_page_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -54,17 +54,6 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
 
     clearAllFlags(context);
-
-    WidgetsBinding.instance?.addPostFrameCallback(
-      (Duration timeStamp) {
-        /// clear any active flags
-
-        if (phoneNumber == null) {
-          /// reset login state upon entering this page
-          StoreProvider.dispatch(context, ResetOnboardingStateAction());
-        }
-      },
-    );
   }
 
   @override
@@ -76,9 +65,10 @@ class _LoginPageState extends State<LoginPage> {
     final bool isAppTest =
         AppWrapperBase.of(context)!.appContexts.contains(AppContext.AppTest);
 
-    return StoreConnector<AppState, AppStateViewModel>(
-      converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
-      builder: (BuildContext context, AppStateViewModel vm) {
+    return StoreConnector<AppState, LoginPageViewModel>(
+      converter: (Store<AppState> store) =>
+          LoginPageViewModel.fromState(store.state),
+      builder: (BuildContext context, LoginPageViewModel vm) {
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SizedBox(
@@ -150,8 +140,8 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                   onChanged: (String? val) {
-                                    final bool? invalidCredentials = vm.appState
-                                        .onboardingState?.invalidCredentials;
+                                    final bool? invalidCredentials =
+                                        vm.invalidCredentials;
 
                                     if (invalidCredentials != null &&
                                         invalidCredentials) {
@@ -194,8 +184,8 @@ class _LoginPageState extends State<LoginPage> {
                                     FilteringTextInputFormatter.digitsOnly
                                   ],
                                   onChanged: (String val) {
-                                    final bool? invalidCredentials = vm.appState
-                                        .onboardingState?.invalidCredentials;
+                                    final bool? invalidCredentials =
+                                        vm.invalidCredentials;
 
                                     if (invalidCredentials != null &&
                                         invalidCredentials) {
@@ -213,9 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                                   },
                                 ),
-                                if (vm.appState.onboardingState
-                                        ?.invalidCredentials ??
-                                    false) ...<Widget>[
+                                if (vm.invalidCredentials ?? false) ...<Widget>[
                                   largeVerticalSizedBox,
                                   PhoneLoginErrorWidget(
                                     formKey: _formKey,
@@ -245,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
             child: SizedBox(
               width: double.infinity,
               height: 48,
-              child: vm.appState.wait!.isWaitingFor(phoneLoginFlag)
+              child: vm.wait!.isWaitingFor(phoneLoginFlag)
                   ? const PlatformLoader()
                   : MyAfyaHubPrimaryButton(
                       buttonKey: phoneLoginContinueButtonKey,

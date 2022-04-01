@@ -105,7 +105,7 @@ void main() {
       final NavigatorDetails_PushReplacementNamed? navDetails =
           actionDispatched?.details as NavigatorDetails_PushReplacementNamed?;
 
-      expect(navDetails?.routeName, AppRoutes.home);
+      expect(navDetails?.routeName, AppRoutes.phoneLogin);
     });
 
     test('should handle other error response', () async {
