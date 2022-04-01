@@ -102,3 +102,6 @@ const String answerScreeningQuestionsFlag = 'answer_screening_questions_flag';
 
 // health timeline flags
 const String fetchHealthTimelineFlag = 'fetch_health_timeline';
+
+// medical data
+const String fetchMedicalDataFlag = 'fetch_health_timeline';

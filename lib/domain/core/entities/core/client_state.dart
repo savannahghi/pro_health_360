@@ -4,12 +4,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/application/redux/states/communities_state.dart';
 import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/address.dart';
 import 'package:myafyahub/domain/core/entities/core/health_diary_state.dart';
 import 'package:myafyahub/domain/core/entities/core/related_person.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
+import 'package:myafyahub/domain/core/entities/medical_data/medical_data_state.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 import 'health_timeline_state.dart';
@@ -56,6 +56,9 @@ class ClientState with _$ClientState {
     // screening tools state
 
     HealthTimelineState? healthTimelineState,
+
+    // Medical data state
+    MedicalDataState? medicalDataState,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>
@@ -85,5 +88,6 @@ class ClientState with _$ClientState {
         cccNumber: UNKNOWN,
         fhirPatientID: UNKNOWN,
         healthTimelineState: HealthTimelineState.initial(),
+        medicalDataState: MedicalDataState.initial(),
       );
 }

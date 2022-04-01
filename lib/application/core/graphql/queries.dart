@@ -381,3 +381,30 @@ query listCommunityMembers($communityID: ID!){
   }
 }
 ''';
+
+const String medicalDataQuery = r'''
+query getMedicalData($patientID: String!) {
+  getMedicalData(patientID: $patientID) {
+    regimen {
+      Category
+    }
+    allergies {
+      ClinicalStatus{
+        Text
+      }
+    }
+    weight{
+      ValueString
+    }
+    viralLoad {
+      ValueString
+    }
+    bmi {
+      ValueString
+    }
+    cd4Count {
+      ValueString
+    }
+  }
+}
+''';

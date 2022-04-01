@@ -52,6 +52,10 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
           ? null
           : HealthTimelineState.fromJson(
               json['healthTimelineState'] as Map<String, dynamic>),
+      medicalDataState: json['medicalDataState'] == null
+          ? null
+          : MedicalDataState.fromJson(
+              json['medicalDataState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
@@ -79,6 +83,7 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'pastAppointments': instance.pastAppointments,
       'upcomingAppointments': instance.upcomingAppointments,
       'healthTimelineState': instance.healthTimelineState,
+      'medicalDataState': instance.medicalDataState,
     };
 
 const _$ClientTypeEnumMap = {
