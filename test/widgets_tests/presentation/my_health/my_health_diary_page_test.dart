@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
-import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_banner.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 
 // Project imports:
@@ -153,14 +151,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(GenericTimeoutWidget), findsOneWidget);
-
-      expect(find.byType(ScreeningToolsBanner), findsOneWidget);
-
-      expect(find.byType(ScreeningToolsBanner), findsOneWidget);
-      await tester.tap(find.byType(ScreeningToolsBanner));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(ScreeningToolsListPage), findsOneWidget);
     });
 
     testWidgets('should show a no data widget when fetching diary entries',

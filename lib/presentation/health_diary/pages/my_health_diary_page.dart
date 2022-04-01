@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_banner.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -59,14 +58,6 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
       body: ListView(
         children: <Widget>[
           smallVerticalSizedBox,
-          ScreeningToolsBanner(
-            title: screeningToolsPageTitle,
-            description: screeningToolsPageDescription,
-            onTap: () => Navigator.pushNamed(
-              context,
-              AppRoutes.screeningToolsListPage,
-            ),
-          ),
           StoreConnector<AppState, HealthDiaryViewModel>(
             converter: (Store<AppState> store) =>
                 HealthDiaryViewModel.fromStore(store.state),
