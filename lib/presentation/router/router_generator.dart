@@ -23,7 +23,6 @@ import 'package:myafyahub/presentation/content/widgets/document_content_widget.d
 import 'package:myafyahub/presentation/content/widgets/successful_feedback_submission.dart';
 import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
-import 'package:myafyahub/presentation/health_diary/screening_tools/screening_tools_list_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_feedback_page.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 import 'package:myafyahub/presentation/home/pages/home_page.dart';
@@ -276,11 +275,6 @@ class RouteGenerator {
       case AppRoutes.forgotPINPage:
         return MaterialPageRoute<ForgotPINPage>(
           builder: (_) => const ForgotPINPage(),
-        );
-
-      case AppRoutes.screeningToolsListPage:
-        return MaterialPageRoute<ScreeningToolsListPage>(
-          builder: (_) => const ScreeningToolsListPage(),
         );
 
       case AppRoutes.violenceAssessmentPage:
