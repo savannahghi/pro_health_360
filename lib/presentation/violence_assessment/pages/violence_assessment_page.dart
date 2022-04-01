@@ -77,6 +77,7 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                     // submit button
                     SizedBox(
                       width: double.infinity,
+                      height: 48,
                       child: MyAfyaHubPrimaryButton(
                         text: submitAssessment,
                         buttonKey: submitViolenceAssessmentKey,
