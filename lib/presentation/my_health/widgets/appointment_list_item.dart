@@ -1,12 +1,14 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 // Package imports:
 import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
@@ -17,10 +19,12 @@ class AppointmentListItem extends StatelessWidget {
   const AppointmentListItem({
     required this.appointment,
     required this.appointmentListTye,
+    this.rescheduleCallBack,
   });
 
   final Appointment appointment;
   final AppointmentListTye appointmentListTye;
+  final VoidCallback? rescheduleCallBack;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +43,18 @@ class AppointmentListItem extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColors.primaryColor.withOpacity(0.14),
+            color: appointment.pendingReschedule
+                ? AppColors.coralColor.withOpacity(0.14)
+                : AppColors.primaryColor.withOpacity(0.14),
           ),
-          child: const Icon(
-            UniconsLine.stethoscope,
-            color: AppColors.primaryColor,
+          child: SvgPicture.asset(
+            appointment.pendingReschedule
+                ? appointmentRescheduledIconSvgPath
+                : appointmentCalendarIconSvgPath,
           ),
         ),
         smallHorizontalSizedBox,
+
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,23 +64,26 @@ class AppointmentListItem extends StatelessWidget {
                 style: normalSize15Text(AppColors.secondaryColor),
               ),
               verySmallVerticalSizedBox,
-              date,
+              if (appointment.pendingReschedule)
+                Text(
+                  beingRescheduledString,
+                  style: normalSize13Text(AppColors.coralColor),
+                )
+              else
+                date,
               smallVerticalSizedBox,
               if (appointmentListTye == AppointmentListTye.Past)
                 AppointmentStatusIndicator(
                   appointmentStatus: appointment.status!,
                 ),
-              if (appointmentListTye == AppointmentListTye.Upcoming)
+              if (appointmentListTye == AppointmentListTye.Upcoming &&
+                  !appointment.pendingReschedule)
                 MyAfyaHubPrimaryButton(
-                  buttonKey: addToCalendarKey,
+                  buttonKey: rescheduleButtonKey,
                   buttonColor: AppColors.primaryColor.withOpacity(0.14),
-                  text: addCalendarText,
+                  text: rescheduleText,
                   textStyle: normalSize15Text(AppColors.primaryColor),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(snackbar(content: comingSoonText));
-                  },
+                  onPressed: rescheduleCallBack,
                 ),
             ],
           ),

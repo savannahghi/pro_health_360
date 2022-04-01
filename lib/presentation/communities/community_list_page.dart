@@ -106,7 +106,7 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
                     ],
                     headerIconSvgUrl: emptyChatsSvg,
                     recoverCallback: () {
-                      channelListController.loadData!();
+                      channelListController.loadData?.call();
                     },
                   );
                 },

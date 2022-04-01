@@ -997,23 +997,39 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
               'fetchClientAppointments': <String, dynamic>{
                 'appointments': <dynamic>[
                   <String, dynamic>{
+                    'ID': '1234',
                     'type': 'DENTAL',
                     'reason': 'test',
                     'status': 'SCHEDULED',
                     'date': '2022-01-04',
                     'start': 'test',
-                    'end': 'test'
+                    'end': 'test',
+                    'hasRescheduledAppointment': false
                   },
                   <String, dynamic>{
+                    'ID': '56789',
                     'type': 'DENTAL',
                     'reason': 'test',
                     'status': 'SCHEDULED',
                     'date': '2022-01-04',
                     'start': 'test',
-                    'end': 'test'
+                    'end': 'test',
+                    'hasRescheduledAppointment': true
                   },
                 ],
               }
+            }
+          }),
+          200,
+        ),
+      );
+    }
+    if (queryString == rescheduleAppointmentMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'rescheduleAppointment': true,
             }
           }),
           200,

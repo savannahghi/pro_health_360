@@ -305,7 +305,7 @@ const Key resetPINButtonKey = Key('reset_pin_button_key');
 const Key cccInputKey = Key('ccc_input_key');
 
 // Appointment keys
-const Key addToCalendarKey = Key('add_to_calendar_key');
+const Key rescheduleButtonKey = Key('reschedule_button_key');
 
 const Key violenceKey = Key('violence_key');
 const Key contraceptiveKey = Key('contraceptive_key');

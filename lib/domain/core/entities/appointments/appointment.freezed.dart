@@ -23,7 +23,9 @@ class _$AppointmentTearOff {
   const _$AppointmentTearOff();
 
   _Appointment call(
-      {@JsonKey(name: 'type')
+      {@JsonKey(name: 'ID')
+          required String? id,
+      @JsonKey(name: 'type')
           required String? type,
       @JsonKey(name: 'reason')
           required String? reason,
@@ -34,14 +36,18 @@ class _$AppointmentTearOff {
       @JsonKey(name: 'start')
           required String? start,
       @JsonKey(name: 'end')
-          required String? end}) {
+          required String? end,
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+          required bool pendingReschedule}) {
     return _Appointment(
+      id: id,
       type: type,
       reason: reason,
       status: status,
       date: date,
       start: start,
       end: end,
+      pendingReschedule: pendingReschedule,
     );
   }
 
@@ -55,6 +61,8 @@ const $Appointment = _$AppointmentTearOff();
 
 /// @nodoc
 mixin _$Appointment {
+  @JsonKey(name: 'ID')
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
   String? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'reason')
@@ -67,6 +75,8 @@ mixin _$Appointment {
   String? get start => throw _privateConstructorUsedError;
   @JsonKey(name: 'end')
   String? get end => throw _privateConstructorUsedError;
+  @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+  bool get pendingReschedule => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -80,7 +90,9 @@ abstract class $AppointmentCopyWith<$Res> {
           Appointment value, $Res Function(Appointment) then) =
       _$AppointmentCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'type')
+      {@JsonKey(name: 'ID')
+          String? id,
+      @JsonKey(name: 'type')
           String? type,
       @JsonKey(name: 'reason')
           String? reason,
@@ -91,7 +103,9 @@ abstract class $AppointmentCopyWith<$Res> {
       @JsonKey(name: 'start')
           String? start,
       @JsonKey(name: 'end')
-          String? end});
+          String? end,
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+          bool pendingReschedule});
 }
 
 /// @nodoc
@@ -104,14 +118,20 @@ class _$AppointmentCopyWithImpl<$Res> implements $AppointmentCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? type = freezed,
     Object? reason = freezed,
     Object? status = freezed,
     Object? date = freezed,
     Object? start = freezed,
     Object? end = freezed,
+    Object? pendingReschedule = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -136,6 +156,10 @@ class _$AppointmentCopyWithImpl<$Res> implements $AppointmentCopyWith<$Res> {
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as String?,
+      pendingReschedule: pendingReschedule == freezed
+          ? _value.pendingReschedule
+          : pendingReschedule // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -148,7 +172,9 @@ abstract class _$AppointmentCopyWith<$Res>
       __$AppointmentCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'type')
+      {@JsonKey(name: 'ID')
+          String? id,
+      @JsonKey(name: 'type')
           String? type,
       @JsonKey(name: 'reason')
           String? reason,
@@ -159,7 +185,9 @@ abstract class _$AppointmentCopyWith<$Res>
       @JsonKey(name: 'start')
           String? start,
       @JsonKey(name: 'end')
-          String? end});
+          String? end,
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+          bool pendingReschedule});
 }
 
 /// @nodoc
@@ -174,14 +202,20 @@ class __$AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? type = freezed,
     Object? reason = freezed,
     Object? status = freezed,
     Object? date = freezed,
     Object? start = freezed,
     Object? end = freezed,
+    Object? pendingReschedule = freezed,
   }) {
     return _then(_Appointment(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -206,6 +240,10 @@ class __$AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as String?,
+      pendingReschedule: pendingReschedule == freezed
+          ? _value.pendingReschedule
+          : pendingReschedule // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -214,7 +252,9 @@ class __$AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Appointment implements _Appointment {
   _$_Appointment(
-      {@JsonKey(name: 'type')
+      {@JsonKey(name: 'ID')
+          required this.id,
+      @JsonKey(name: 'type')
           required this.type,
       @JsonKey(name: 'reason')
           required this.reason,
@@ -225,11 +265,16 @@ class _$_Appointment implements _Appointment {
       @JsonKey(name: 'start')
           required this.start,
       @JsonKey(name: 'end')
-          required this.end});
+          required this.end,
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+          required this.pendingReschedule});
 
   factory _$_Appointment.fromJson(Map<String, dynamic> json) =>
       _$$_AppointmentFromJson(json);
 
+  @override
+  @JsonKey(name: 'ID')
+  final String? id;
   @override
   @JsonKey(name: 'type')
   final String? type;
@@ -248,10 +293,13 @@ class _$_Appointment implements _Appointment {
   @override
   @JsonKey(name: 'end')
   final String? end;
+  @override
+  @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+  final bool pendingReschedule;
 
   @override
   String toString() {
-    return 'Appointment(type: $type, reason: $reason, status: $status, date: $date, start: $start, end: $end)';
+    return 'Appointment(id: $id, type: $type, reason: $reason, status: $status, date: $date, start: $start, end: $end, pendingReschedule: $pendingReschedule)';
   }
 
   @override
@@ -259,23 +307,28 @@ class _$_Appointment implements _Appointment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Appointment &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.reason, reason) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.start, start) &&
-            const DeepCollectionEquality().equals(other.end, end));
+            const DeepCollectionEquality().equals(other.end, end) &&
+            const DeepCollectionEquality()
+                .equals(other.pendingReschedule, pendingReschedule));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(reason),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(start),
-      const DeepCollectionEquality().hash(end));
+      const DeepCollectionEquality().hash(end),
+      const DeepCollectionEquality().hash(pendingReschedule));
 
   @JsonKey(ignore: true)
   @override
@@ -290,7 +343,9 @@ class _$_Appointment implements _Appointment {
 
 abstract class _Appointment implements Appointment {
   factory _Appointment(
-      {@JsonKey(name: 'type')
+      {@JsonKey(name: 'ID')
+          required String? id,
+      @JsonKey(name: 'type')
           required String? type,
       @JsonKey(name: 'reason')
           required String? reason,
@@ -301,11 +356,16 @@ abstract class _Appointment implements Appointment {
       @JsonKey(name: 'start')
           required String? start,
       @JsonKey(name: 'end')
-          required String? end}) = _$_Appointment;
+          required String? end,
+      @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+          required bool pendingReschedule}) = _$_Appointment;
 
   factory _Appointment.fromJson(Map<String, dynamic> json) =
       _$_Appointment.fromJson;
 
+  @override
+  @JsonKey(name: 'ID')
+  String? get id;
   @override
   @JsonKey(name: 'type')
   String? get type;
@@ -324,6 +384,9 @@ abstract class _Appointment implements Appointment {
   @override
   @JsonKey(name: 'end')
   String? get end;
+  @override
+  @JsonKey(name: 'hasRescheduledAppointment', defaultValue: false)
+  bool get pendingReschedule;
   @override
   @JsonKey(ignore: true)
   _$AppointmentCopyWith<_Appointment> get copyWith =>

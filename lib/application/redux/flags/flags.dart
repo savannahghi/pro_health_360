@@ -90,6 +90,7 @@ const String pinResetServiceRequestFlag = 'pin_reset_service_request_flag';
 
 const String optOutFlag = 'opt_out_flag';
 const String fetchAppointmentsFlag = 'fetch_appointments_flag';
+const String rescheduleAppointmentFlag = 'reschedule_appointment_flag';
 
 //screening tools flags
 const String fetchingViolenceQuestionsFlag = 'fetch_violence_questions_flags';

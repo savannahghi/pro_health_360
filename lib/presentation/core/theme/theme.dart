@@ -97,6 +97,7 @@ class AppColors {
   static const Color inputGreyColor = Color(0xfff4f4f4);
   static const Color verySadColor = Color(0xffFF642A);
   static const Color extraLightGray = Color(0xffF2F2F2);
+  static const Color coralColor = Color(0xffff8c54); 
 }
 
 class ThemeColors {

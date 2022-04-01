@@ -9,12 +9,14 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 void main() {
   test('Appointment should convert to/fromJson', () {
     final Map<String, dynamic> appointment = Appointment(
+      id: '1234',
       type: 'Scheduled clinic visit',
       reason: 'A small reason',
       date: '2022-03-13',
       start: '0000-01-01T11:07:56Z',
       end: '0000-01-01T12:07:56Z',
       status: AppointmentStatus.MISSED,
+      pendingReschedule: false,
     ).toJson();
 
     expect(

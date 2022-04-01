@@ -520,12 +520,7 @@ const String inApp = 'in app';
 
 // Profile FAQs
 const String faqsText = 'FAQs';
-const String howDoIUpdateMyProfileText = 'How do I update my profile?';
-const String howDoICheckMyMedicalInfoText =
-    'How do i check my medical information?';
-const String howDoIUpdateMyNicknameText = 'How do I update my nickname?';
-const String howDoIRescheduleAnAppointmentText =
-    'How do reschedule an appointment?';
+const String rescheduleText = 'Reschedule';
 
 const String comingSoonText = 'Coming soon';
 const String loremIpsumText =
@@ -864,3 +859,6 @@ const String clinicianHasBeenNotified =
 String noMedicalDataString = 'Oops! No medical data';
 String noMedicalDataBodyString =
     'Your medical information will be available soon';
+const String appointmentRescheduledMessageString =
+    'Your appointment reschedule request has been sent';
+const String beingRescheduledString = 'Being rescheduled';

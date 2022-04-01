@@ -176,3 +176,11 @@ mutation answerScreeningToolQuestion($screeningToolResponses: [ScreeningToolQues
   answerScreeningToolQuestion(screeningToolResponses: $screeningToolResponses)
 }
 ''';
+
+const String rescheduleAppointmentMutation = r'''
+mutation rescheduleAppointment($appointmentID: String!) {
+  rescheduleAppointment(
+    appointmentID: $appointmentID,
+  )
+}
+''';

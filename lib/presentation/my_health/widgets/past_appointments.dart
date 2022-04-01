@@ -30,7 +30,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
         context,
         FetchAppointmentsAction(
           client: AppWrapperBase.of(context)!.graphQLClient,
-          comparison: 'LESS_THAN_OR_EQUAL_TO',
+          comparison: 'LESS_THAN',
         ),
       );
     });

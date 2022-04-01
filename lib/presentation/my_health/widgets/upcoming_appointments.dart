@@ -3,7 +3,9 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:myafyahub/application/redux/actions/my_health/fetch_appointments_action.dart';
+import 'package:myafyahub/application/redux/actions/my_health/reschedule_appointment_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/appointments/appointments_view_model.dart';
@@ -14,6 +16,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
+import 'package:shared_themes/constants.dart';
 
 class UpcomingAppointments extends StatefulWidget {
   @override
@@ -43,7 +46,7 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
           AppointmentsViewModel.fromStore(store.state),
       builder: (BuildContext context, AppointmentsViewModel vm) {
         final List<Appointment> appointments =
-            vm.appointmentState?.appointments ?? <Appointment>[];
+        vm.appointmentState?.appointments ?? <Appointment>[];
         if (vm.wait!.isWaitingFor(fetchAppointmentsFlag)) {
           return const PlatformLoader();
         } else if (vm.appointmentState?.errorFetchingAppointments ?? false) {
@@ -78,10 +81,56 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
 
                     return Padding(
                       padding: const EdgeInsets.only(top: 15),
-                      child: AppointmentListItem(
-                        appointment: currentAppointmentDetails,
-                        appointmentListTye: AppointmentListTye.Upcoming,
-                      ),
+                      child: vm.wait!.isWaitingFor(
+                        '${rescheduleAppointmentFlag}_${currentAppointmentDetails.id ?? ''}',
+                      )
+                          ? const PlatformLoader()
+                          : AppointmentListItem(
+                              appointment: currentAppointmentDetails,
+                              appointmentListTye: AppointmentListTye.Upcoming,
+                              rescheduleCallBack: () =>
+                                  StoreProvider.dispatch<AppState>(
+                                context,
+                                RescheduleAppointmentAction(
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
+                                  appointmentId:
+                                      currentAppointmentDetails.id ?? '',
+                                  onSuccess: () {
+                                    ScaffoldMessenger.of(context)
+                                      ..hideCurrentSnackBar()
+                                      ..showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            appointmentRescheduledMessageString,
+                                          ),
+                                          duration: Duration(
+                                            seconds: kShortSnackBarDuration,
+                                          ),
+                                        ),
+                                      );
+                                    StoreProvider.dispatch<AppState>(
+                                      context,
+                                      FetchAppointmentsAction(
+                                        client: AppWrapperBase.of(context)!
+                                            .graphQLClient,
+                                        comparison: 'GREATER_THAN_OR_EQUAL_TO',
+                                      ),
+                                    );
+                                  },
+                                  onError: () => ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                      SnackBar(
+                                        content: Text(getErrorMessage()),
+                                        duration: const Duration(
+                                          seconds: kShortSnackBarDuration,
+                                        ),
+                                      ),
+                                    ),
+                                ),
+                              ),
+                            ),
                     );
                   },
                 )
