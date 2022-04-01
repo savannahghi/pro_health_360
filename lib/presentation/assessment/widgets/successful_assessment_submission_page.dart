@@ -1,7 +1,10 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -37,10 +40,47 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
                   ),
                 ),
                 mediumVerticalSizedBox,
-                Text(
-                  clinicianHasBeenNotified,
-                  style: normalSize14Text(AppColors.greyTextColor),
-                  textAlign: TextAlign.center,
+                StoreConnector<AppState, ClientProfileViewModel>(
+                  converter: (Store<AppState> store) {
+                    return ClientProfileViewModel.fromStore(store);
+                  },
+                  builder: (BuildContext context, ClientProfileViewModel vm) {
+                    return Wrap(
+                      children: <Widget>[
+                        RichText(
+                          text: TextSpan(
+                            text: assessmentSubmissionSuccessfulDescription,
+                            style: normalSize14Text(AppColors.greyTextColor),
+                            children: <TextSpan>[
+                              if (vm.clientState?.facilityPhoneNumber != null &&
+                                  vm.clientState!.facilityPhoneNumber!
+                                      .isNotEmpty &&
+                                  vm.clientState!.facilityPhoneNumber !=
+                                      UNKNOWN)
+                                TextSpan(
+                                  text: ifItIsAnEmergency,
+                                  style: normalSize14Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                              if (vm.clientState?.facilityPhoneNumber != null &&
+                                  vm.clientState!.facilityPhoneNumber!
+                                      .isNotEmpty &&
+                                  vm.clientState!.facilityPhoneNumber !=
+                                      UNKNOWN)
+                                TextSpan(
+                                  text: vm.clientState?.facilityPhoneNumber ??
+                                      UNKNOWN,
+                                  style: veryBoldSize14Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
                 largeVerticalSizedBox,
                 SizedBox(
@@ -53,7 +93,7 @@ class SuccessfulAssessmentSubmissionPage extends StatelessWidget {
                     borderColor: Theme.of(context).primaryColor,
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        AppRoutes.screeningToolsListPage,
+                        AppRoutes.home,
                         (Route<dynamic> route) => false,
                       );
                     },

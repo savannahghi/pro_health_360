@@ -631,7 +631,7 @@ const String randomQuoteAuthor = '- Nelson Mandela';
 
 //Feed Page
 const String contentCategoriesErrorMessage = 'Something went wrong. Retry';
-
+const String homeString = 'Home';
 const String contentSavedSuccessfully = 'Content saved successfully';
 const String diaryEntrySuccessfulText = 'Diary entry added successfully';
 const String diaryEmptyTitle = 'Your diary is empty';
@@ -731,7 +731,9 @@ const String healthAssessmentQuestionTen =
 const String assessmentSubmissionSuccessfulText =
     'Thanks for sharing your assessment';
 const String assessmentSubmissionSuccessfulDescription =
-    'Your doctor may review your assessment in your next visit, or reach out if necessary\n\n';
+    'Your clinician has been notified. ';
+const String ifItIsAnEmergency =
+    'If it is an emergency, please call us back on ';
 
 /// Date picker format
 const String datePickerFormat = 'dd MMM, yyyy';
