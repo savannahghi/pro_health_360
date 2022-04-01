@@ -71,7 +71,7 @@ class OnboardingState with _$OnboardingState {
     //  Whether the user is allowed to resend their PIN
     final bool? canResendOTP,
 
-    ///------------CHANGE PIN RELATED VALUES------------
+    ///------------ONBOARDING STATE BOOLEANS------------
   }) = _OnboardingState;
 
   factory OnboardingState.fromJson(Map<String, dynamic> json) =>

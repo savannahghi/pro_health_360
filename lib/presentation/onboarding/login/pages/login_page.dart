@@ -43,15 +43,6 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
-  void didChangeDependencies() {
-    if (phoneNumber == null) {
-      /// reset login state upon entering this page
-      StoreProvider.dispatch(context, ResetOnboardingStateAction());
-    }
-    super.didChangeDependencies();
-  }
-
-  @override
   void dispose() {
     pinController.dispose();
     phoneNumberInputController.dispose();
@@ -62,8 +53,18 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
 
-    /// clear any active flags
     clearAllFlags(context);
+
+    WidgetsBinding.instance?.addPostFrameCallback(
+      (Duration timeStamp) {
+        /// clear any active flags
+
+        if (phoneNumber == null) {
+          /// reset login state upon entering this page
+          StoreProvider.dispatch(context, ResetOnboardingStateAction());
+        }
+      },
+    );
   }
 
   @override
@@ -313,7 +314,7 @@ class _LoginPageState extends State<LoginPage> {
         context,
         PhoneLoginAction(
           httpClient: httpClient,
-          loginEndpoint: loginEndpoint,
+          endpoint: loginEndpoint,
           errorCallback: (String reason) {
             showFeedbackBottomSheet(
               context: context,

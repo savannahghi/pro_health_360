@@ -16,16 +16,6 @@ query canRecordMood($clientID: String!){
 }
 ''';
 
-const String resumeWithPinQuery = r'''
-query resumeWithPhoneAndPin($pin: String!) {
-   resumeWithPIN(pin: $pin)
-}
-''';
-
-Map<String, dynamic> resumeWithPinQueryVariables(String pin) {
-  return <String, dynamic>{'pin': pin};
-}
-
 const String getSecurityQuestionsQuery = r'''
 query getSecurityQuestions($flavour: Flavour!) {
   getSecurityQuestions(flavour: $flavour) {

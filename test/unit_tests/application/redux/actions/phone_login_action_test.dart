@@ -143,7 +143,7 @@ void main() {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
           onboardingState:
-              OnboardingState(phoneNumber: '+254798000000', pin: '0'),
+              OnboardingState(phoneNumber: '+254798000000', pin: 'UNKNOWN'),
         ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
@@ -153,7 +153,7 @@ void main() {
       storeTester.dispatch(
         PhoneLoginAction(
           httpClient: MockGraphQlClient(),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (String reason) => failureReason = reason,
         ),
       );
@@ -176,7 +176,7 @@ void main() {
               400,
             ),
           ),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (String reason) => failureReason = reason,
         ),
       );
@@ -203,7 +203,7 @@ void main() {
               400,
             ),
           ),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (String reason) => failureReason = reason,
         ),
       );
@@ -217,7 +217,7 @@ void main() {
       storeTester.dispatch(
         PhoneLoginAction(
           httpClient: MockGraphQlClient(),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (_) {},
         ),
       );
@@ -238,7 +238,7 @@ void main() {
       storeTester.dispatch(
         PhoneLoginAction(
           httpClient: MockGraphQlClient(),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (_) {},
         ),
       );
@@ -278,7 +278,7 @@ void main() {
       storeTester.dispatch(
         PhoneLoginAction(
           httpClient: client,
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (_) {},
         ),
       );
@@ -302,7 +302,7 @@ void main() {
               200,
             ),
           ),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (_) {},
         ),
       );
@@ -344,7 +344,7 @@ void main() {
               200,
             ),
           ),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (_) {},
         ),
       );
@@ -381,7 +381,7 @@ void main() {
               400,
             ),
           ),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (_) {},
         ),
       );
@@ -418,7 +418,7 @@ void main() {
               400,
             ),
           ),
-          loginEndpoint: kTestLoginByPhoneEndpoint,
+          endpoint: kTestLoginByPhoneEndpoint,
           errorCallback: (_) {},
         ),
       );

@@ -4,9 +4,9 @@ import 'package:async_redux/async_redux.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/address.dart';
+import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
-// TODO(abiud): rewrite this action to cater for the new fields
 class UpdateClientProfileAction extends ReduxAction<AppState> {
   UpdateClientProfileAction({
     this.id,
@@ -67,6 +67,20 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         addresses: this.addresses ?? state.clientState?.addresses,
       ),
     );
+
+    return newState;
+  }
+}
+
+class UpdateClientStateAction extends ReduxAction<AppState> {
+  UpdateClientStateAction({this.clientState});
+
+  final ClientState? clientState;
+
+  @override
+  AppState reduce() {
+    final AppState newState =
+        state.copyWith(clientState: clientState ?? state.clientState);
 
     return newState;
   }

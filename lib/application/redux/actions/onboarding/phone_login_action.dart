@@ -12,7 +12,6 @@ import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
@@ -24,7 +23,8 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-/// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed in using valid credentials that match those stored in the backend
+/// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed
+/// in using valid credentials that match those stored in the backend
 ///
 /// Otherwise delightfully notify user of a Login Error or credentials mismatch
 ///
@@ -32,13 +32,13 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class PhoneLoginAction extends ReduxAction<AppState> {
   PhoneLoginAction({
     required this.httpClient,
-    required this.loginEndpoint,
+    required this.endpoint,
     this.errorCallback,
   });
 
   final void Function(String reason)? errorCallback;
+  final String endpoint;
   final IGraphQlClient httpClient;
-  final String loginEndpoint;
 
   @override
   void after() {
@@ -58,15 +58,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     /// [pin] variable is retrieving the PIN the user input in the [PhoneLogin] page from state
     /// [phoneNumber] variable is retrieving the Phone Number the user input in the [PhoneLogin] page from state
-    final String? pin = state.onboardingState?.pin;
-    final String? phoneNumber = state.onboardingState?.phoneNumber;
+    final String pin = state.onboardingState?.pin ?? UNKNOWN;
+    final String phoneNumber = state.onboardingState?.phoneNumber ?? UNKNOWN;
 
-    /// Check to verify the PIN is `not null` and contains four digits
-    if (pin != null &&
-        pin != UNKNOWN &&
-        pin.isNotEmpty &&
-        pin.length == 4 &&
-        phoneNumber != null) {
+    /// Check and verify that the phone and PIN are present
+    if (pin != UNKNOWN && phoneNumber != UNKNOWN && pin.length == 4) {
       final Map<String, dynamic> variables = <String, dynamic>{
         'phoneNumber': phoneNumber,
         'pin': pin,
@@ -74,7 +70,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
       };
 
       final Response httpResponse = await httpClient.callRESTAPI(
-        endpoint: loginEndpoint,
+        endpoint: endpoint,
         method: httpPOST,
         variables: variables,
       );
@@ -84,7 +80,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
       if (processedResponse.ok) {
         final Map<String, dynamic> parsed =
-            jsonDecode(httpResponse.body) as Map<String, dynamic>;
+            jsonDecode(processedResponse.response.body) as Map<String, dynamic>;
 
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);
@@ -120,27 +116,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        // Check whether PIN change required is true
-        final bool pinChangeRequired =
-            loginResponse.userResponse!.clientState!.user!.pinChangeRequired ??
-                false;
-
-        // Check if this is a new user and kickstart the signup process
-        if (pinChangeRequired) {
-          // Navigate user to the correct route based on the state
-          final OnboardingPathInfo navConfig = onboardingPath(appState: state);
-
-          dispatch(
-            NavigateAction<AppState>.pushNamedAndRemoveUntil(
-              navConfig.nextRoute,
-              (Route<dynamic> route) => false,
-            ),
-          );
-        }
-
         // Update the user with the chatroom token
         User? user = loginResponse.userResponse?.clientState?.user?.copyWith(
-          pinChangeRequired: false,
           chatRoomToken: loginResponse.userResponse?.streamToken,
         );
 
@@ -162,32 +139,39 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        dispatch(UpdateUserAction(user: user));
-
         dispatch(
-          UpdateClientProfileAction(
-            id: loginResponse.userResponse?.clientState?.id,
-            active: loginResponse.userResponse?.clientState?.active,
-            counselled: loginResponse.userResponse?.clientState?.counselled,
-            clientType: loginResponse.userResponse?.clientState?.clientType,
-            facilityID: loginResponse.userResponse?.clientState?.facilityID,
-            treatmentBuddy:
-                loginResponse.userResponse?.clientState?.treatmentBuddy,
-            treatmentEnrollmentDate: loginResponse
-                .userResponse?.clientState?.treatmentEnrollmentDate,
-            facilityName: loginResponse.userResponse?.clientState?.facilityName,
-            chvUserID: loginResponse.userResponse?.clientState?.chvUserID,
-            chvUserName: loginResponse.userResponse?.clientState?.chvUserName,
-            cccNumber: loginResponse.userResponse?.clientState?.cccNumber,
+          UpdateClientStateAction(
+            clientState: loginResponse.userResponse?.clientState?.copyWith
+                .call(user: user),
           ),
         );
 
         /// This addresses cases where a user's PIN has been reset by an admin
         /// and it needs to be changed before accessing the platform
+        ///
+        /// Note: For this to work, the backend should trigger these properties
+        /// in the user profile (isPhoneVerified, hasSetPin, hasSetSecurityQuestions)
         if (user?.pinUpdateRequired ?? false) {
           dispatch(
             UpdateOnboardingStateAction(
               currentOnboardingStage: CurrentOnboardingStage.PINUpdate,
+              isPhoneVerified: false,
+              hasSetPin: false,
+              hasSetSecurityQuestions: false,
+            ),
+          );
+        }
+
+        /// This is used to kickstart the onboarding workflow for a new user
+        if (user?.pinChangeRequired ?? false) {
+          dispatch(
+            UpdateOnboardingStateAction(
+              currentOnboardingStage: CurrentOnboardingStage.Login,
+              isPhoneVerified: false,
+              hasAcceptedTerms: false,
+              hasSetSecurityQuestions: false,
+              hasSetPin: false,
+              hasSetNickName: false,
             ),
           );
         }

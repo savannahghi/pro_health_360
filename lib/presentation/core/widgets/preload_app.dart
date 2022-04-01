@@ -156,10 +156,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
           supportedLocales: locales,
           builder: (BuildContext context, Widget? childWidget) {
             return UserExceptionDialog<AppState>(
-              child: StreamChat(
-                client: widget.client,
-                child: childWidget,
-              ),
+              child: StreamChat(client: widget.client, child: childWidget),
             );
           },
         );

@@ -81,13 +81,9 @@ void main() {
     testWidgets('should navigate to terms page if login request is successful',
         (WidgetTester tester) async {
       mockLoginResponse.addAll(<String, dynamic>{'getCurrentTerms': termsMock});
-      mockLoginResponse.addAll(
-        <String, dynamic>{
-          'data': <String, dynamic>{
-            'sendOTP': '123456',
-          }
-        },
-      );
+      mockLoginResponse.addAll(<String, dynamic>{
+        'data': <String, dynamic>{'sendOTP': '123456'}
+      });
 
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -101,7 +97,7 @@ void main() {
 
       store.dispatch(
         UpdateOnboardingStateAction(
-          isPhoneVerified: true,
+          isPhoneVerified: false,
           hasSetSecurityQuestions: true,
           hasSetPin: true,
           hasSetNickName: true,

@@ -11,8 +11,10 @@ class BottomNavAction extends ReduxAction<AppState> {
 
   @override
   AppState reduce() {
-    final AppState newState = state.copyWith.bottomNavigationState!
-        .call(currentBottomNavIndex: currentBottomNavIndex);
+    final AppState newState = state.copyWith(
+      bottomNavigationState: state.bottomNavigationState
+          ?.copyWith(currentBottomNavIndex: currentBottomNavIndex),
+    );
 
     return newState;
   }
