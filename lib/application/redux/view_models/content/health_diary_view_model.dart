@@ -24,10 +24,13 @@ class HealthDiaryViewModel extends Vm {
     return HealthDiaryViewModel(
       wait: state.wait,
       errorFetchingContent:
-          state.clientState!.healthDiaryState!.errorFetchingDiaryEntries,
+          state.clientState!.healthDiaryState?.errorFetchingDiaryEntries ??
+              false,
       timeoutFetchingContent:
-          state.clientState!.healthDiaryState!.timeoutFetchingDiaryEntries,
-      diaryEntries: state.clientState!.healthDiaryState!.entries,
+          state.clientState!.healthDiaryState?.timeoutFetchingDiaryEntries ??
+              false,
+      diaryEntries:
+          state.clientState!.healthDiaryState?.entries ?? <HealthDiaryEntry>[],
     );
   }
 
