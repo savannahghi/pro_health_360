@@ -11,6 +11,7 @@ void main() {
       appContexts: <AppContext>[AppContext.AppDemo],
       sentryDsn: 'some sentryDNS',
       streamAPIKey: 'some-stream-api-key',
+      clinicalEndpoint: '',
     );
 
     expect(appSetup.sentryDsn, 'some sentryDNS');
@@ -20,6 +21,7 @@ void main() {
       appContexts: <AppContext>[AppContext.AppDemo],
       sentryDsn: 'some sentryDNS',
       streamAPIKey: 'some-stream-api-key',
+      clinicalEndpoint: '',
     );
 
     expect(appSetup, sameSetup);

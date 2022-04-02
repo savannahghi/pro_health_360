@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
 import 'package:intl/intl.dart';
+import 'package:myafyahub/application/core/services/app_setup_data.dart';
+import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/health_timeline/fetch_health_timeline_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -25,7 +27,12 @@ import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item
 import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
 
 class MyHealthTimeline extends StatefulWidget {
-  const MyHealthTimeline({Key? key}) : super(key: key);
+  const MyHealthTimeline({
+    Key? key,
+    this.graphQlClient,
+  }) : super(key: key);
+
+  final IGraphQlClient? graphQlClient;
 
   @override
   State<MyHealthTimeline> createState() => _MyHealthTimelineState();
@@ -42,7 +49,30 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final IGraphQlClient client = AppWrapperBase.of(context)!.graphQLClient;
+    final List<AppContext> contexts = AppWrapperBase.of(context)!.appContexts;
+    final AppSetupData appSetupData = getAppSetupData(contexts.last);
+    final String graphqlEndpoint = appSetupData.clinicalEndpoint;
+    final String refreshTokenEndpoint =
+        appSetupData.customContext?.refreshTokenEndpoint ?? '';
+
+    final String idToken =
+        StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
+    final String userID =
+        StoreProvider.state<AppState>(context)?.clientState?.user?.userId ?? '';
+
+    late IGraphQlClient client;
+
+    if (widget.graphQlClient != null) {
+      client = widget.graphQlClient!;
+    } else {
+      client = CustomClient(
+        idToken,
+        graphqlEndpoint,
+        context: context,
+        refreshTokenEndpoint: refreshTokenEndpoint,
+        userID: userID,
+      );
+    }
 
     StoreProvider.dispatch(
       context,
@@ -196,7 +226,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           title = code?.text;
           time = date;
         },
-        medication: (
+        allergyIntolerance: (
           List<AllergyIntoleranceCategory>? category,
           CodeableConcept? clinicalStatus,
           CodeableConcept? code,
@@ -210,6 +240,18 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
         ) {
           title = capitalizeFirst(describeEnum(type!));
           time = recordedDate;
+        },
+        medicationStatement: (
+          CodeableConcept? category,
+          CodeableConcept? code,
+          String? date,
+          CodeableConcept? medication,
+          ReferenceType? resourceType,
+          MedicationStatusCodes? status,
+          Reference? subject,
+          String? timelineDate,
+        ) {
+          title = medication?.text;
         },
       );
 

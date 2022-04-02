@@ -68,7 +68,7 @@ void main() {
       expect(state.healthTimelineItems.length, 1);
       expect(
         state.healthTimelineItems['30/0302022']!.first,
-        isInstanceOf<Medication>(),
+        isInstanceOf<AllergyIntolerance>(),
       );
     });
   });

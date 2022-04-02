@@ -1203,7 +1203,7 @@ packages:
     source: sdk
     version: "0.0.99"
   sms_autofill:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sms_autofill
       url: "https://pub.dartlang.org"

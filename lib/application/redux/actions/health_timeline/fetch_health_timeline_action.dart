@@ -31,7 +31,7 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'patientID': state.clientState?.fhirPatientID,
-      'count': 2,
+      'count': 10,
     };
 
     final Response response =

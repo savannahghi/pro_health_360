@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
@@ -18,7 +19,7 @@ import '../../../../test_helpers.dart';
 void main() {
   group('MyHealthTimeline', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
-      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+      final IGraphQlClient client = MockShortGraphQlClient.withResponse(
         '',
         '',
         Response(
@@ -31,7 +32,7 @@ void main() {
         tester: tester,
         store: Store<AppState>(initialState: AppState.initial()),
         client: client,
-        widget: const MyHealthTimeline(),
+        widget: MyHealthTimeline(graphQlClient: client),
       );
       await tester.pumpAndSettle();
 

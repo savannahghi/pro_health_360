@@ -24,3 +24,20 @@ extension ObservationStatusEx on ObservationStatus {
     return describeEnum(this).replaceAll('_', ' ');
   }
 }
+
+enum MedicationStatusCodes {
+  active,
+  completed,
+  entered_in_error,
+  intended,
+  stopped,
+  on_hold,
+  unknown,
+  not_taken
+}
+
+extension MedicationStatusCodesEx on MedicationStatusCodes {
+  String get name {
+    return describeEnum(this).replaceAll('_', ' ');
+  }
+}

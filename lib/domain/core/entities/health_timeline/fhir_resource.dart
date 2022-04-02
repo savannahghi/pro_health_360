@@ -28,7 +28,7 @@ class FhirResource with _$FhirResource {
 
   @FreezedUnionValue('AllergyIntolerance')
   @Implements<Resource>()
-  const factory FhirResource.medication({
+  const factory FhirResource.allergyIntolerance({
     @JsonKey(name: 'category') List<AllergyIntoleranceCategory>? category,
     @JsonKey(name: 'clinicalStatus') CodeableConcept? clinicalStatus,
     @JsonKey(name: 'code') CodeableConcept? code,
@@ -39,7 +39,21 @@ class FhirResource with _$FhirResource {
     @JsonKey(name: 'timelineDate') String? timelineDate,
     @JsonKey(name: 'type') AllergyIntoleranceType? type,
     @JsonKey(name: 'verificationStatus') CodeableConcept? verificationStatus,
-  }) = Medication;
+  }) = AllergyIntolerance;
+
+  @FreezedUnionValue('MedicationStatement')
+  @Implements<Resource>()
+  const factory FhirResource.medicationStatement({
+    @JsonKey(name: 'category') CodeableConcept? category,
+    @JsonKey(name: 'code') CodeableConcept? code,
+    @JsonKey(name: 'effectiveDateTime') String? date,
+    @JsonKey(name: 'medicationCodeableConcept') CodeableConcept? medication,
+    @JsonKey(name: 'resourceType') ReferenceType? resourceType,
+    @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+        MedicationStatusCodes? status,
+    @JsonKey(name: 'subject') Reference? subject,
+    @JsonKey(name: 'timelineDate') String? timelineDate,
+  }) = MedicationStatement;
 
   factory FhirResource.fromJson(Map<String, dynamic> json) =>
       _$FhirResourceFromJson(json);

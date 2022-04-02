@@ -1985,5 +1985,36 @@ final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{
       'type': 'allergy',
       'verificationStatus': <String, dynamic>{}
     },
+    <String, dynamic>{
+      'category': <String, dynamic>{
+        'coding': <Map<String, dynamic>>[
+          <String, dynamic>{
+            'code': '114100',
+            'display': 'Pneumonia',
+            'system': '/orgs/CIEL/sources/CIEL/concepts/114100/'
+          }
+        ],
+        'text': 'Pneumonia'
+      },
+      'effectiveDateTime': '2022-03-04',
+      'id': 'ab7313bb-3688-4f67-87db-e98bb69d0263',
+      'medicationCodeableConcept': <String, dynamic>{
+        'coding': <Map<String, dynamic>>[
+          <String, dynamic>{
+            'code': '71160',
+            'display': 'Amoxicillin',
+            'system': '/orgs/CIEL/sources/CIEL/concepts/71160/'
+          }
+        ],
+        'text': 'Amoxicillin'
+      },
+      'resourceType': 'MedicationStatement',
+      'status': 'unknown',
+      'subject': <String, dynamic>{
+        'display': '340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b',
+        'reference': 'Patient/340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b'
+      },
+      'timelineDate': '2022-03-04'
+    },
   ]
 };
