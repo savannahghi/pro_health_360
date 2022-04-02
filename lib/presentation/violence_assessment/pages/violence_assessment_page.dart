@@ -79,10 +79,16 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                       width: double.infinity,
                       height: 48,
                       child: MyAfyaHubPrimaryButton(
-                        text: submitAssessment,
                         buttonKey: submitViolenceAssessmentKey,
                         buttonColor: AppColors.primaryColor,
                         borderColor: Colors.transparent,
+                        customChild: vm.wait!
+                                .isWaitingFor(answerScreeningQuestionsFlag)
+                            ? const PlatformLoader()
+                            : Text(
+                                submitAssessment,
+                                style: veryBoldSize15Text(AppColors.whiteColor),
+                              ),
                         onPressed: () {
                           StoreProvider.dispatch(
                             context,

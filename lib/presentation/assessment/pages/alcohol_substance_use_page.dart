@@ -100,10 +100,15 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                             },
                             buttonColor: AppColors.primaryColor,
                             borderColor: Colors.transparent,
-                            text: submitAssessment,
-                            textStyle: heavySize16Text(
-                              AppColors.whiteColor,
-                            ),
+                            customChild: vm.wait!
+                                    .isWaitingFor(answerScreeningQuestionsFlag)
+                                ? const PlatformLoader()
+                                : Text(
+                                    submitAssessment,
+                                    style: veryBoldSize15Text(
+                                      AppColors.whiteColor,
+                                    ),
+                                  ),
                           ),
                         ),
                       ),
