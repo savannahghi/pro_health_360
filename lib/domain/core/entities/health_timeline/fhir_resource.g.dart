@@ -54,7 +54,8 @@ const _$ObservationStatusEnumMap = {
   ObservationStatus.Unknown: 'Unknown',
 };
 
-_$Medication _$$MedicationFromJson(Map<String, dynamic> json) => _$Medication(
+_$AllergyIntolerance _$$AllergyIntoleranceFromJson(Map<String, dynamic> json) =>
+    _$AllergyIntolerance(
       category: (json['category'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$AllergyIntoleranceCategoryEnumMap, e))
           .toList(),
@@ -82,7 +83,8 @@ _$Medication _$$MedicationFromJson(Map<String, dynamic> json) => _$Medication(
               json['verificationStatus'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$MedicationToJson(_$Medication instance) =>
+Map<String, dynamic> _$$AllergyIntoleranceToJson(
+        _$AllergyIntolerance instance) =>
     <String, dynamic>{
       'category': instance.category
           ?.map((e) => _$AllergyIntoleranceCategoryEnumMap[e])
@@ -108,4 +110,51 @@ const _$AllergyIntoleranceCategoryEnumMap = {
 const _$AllergyIntoleranceTypeEnumMap = {
   AllergyIntoleranceType.allergy: 'allergy',
   AllergyIntoleranceType.intolerance: 'intolerance',
+};
+
+_$MedicationStatement _$$MedicationStatementFromJson(
+        Map<String, dynamic> json) =>
+    _$MedicationStatement(
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
+      date: json['effectiveDateTime'] as String?,
+      medication: json['medicationCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>),
+      resourceType:
+          $enumDecodeNullable(_$ReferenceTypeEnumMap, json['resourceType']),
+      status: medicationStatusCodesFromJson(json['status'] as String?),
+      subject: json['subject'] == null
+          ? null
+          : Reference.fromJson(json['subject'] as Map<String, dynamic>),
+      timelineDate: json['timelineDate'] as String?,
+    );
+
+Map<String, dynamic> _$$MedicationStatementToJson(
+        _$MedicationStatement instance) =>
+    <String, dynamic>{
+      'category': instance.category,
+      'code': instance.code,
+      'effectiveDateTime': instance.date,
+      'medicationCodeableConcept': instance.medication,
+      'resourceType': _$ReferenceTypeEnumMap[instance.resourceType],
+      'status': _$MedicationStatusCodesEnumMap[instance.status],
+      'subject': instance.subject,
+      'timelineDate': instance.timelineDate,
+    };
+
+const _$MedicationStatusCodesEnumMap = {
+  MedicationStatusCodes.active: 'active',
+  MedicationStatusCodes.completed: 'completed',
+  MedicationStatusCodes.entered_in_error: 'entered_in_error',
+  MedicationStatusCodes.intended: 'intended',
+  MedicationStatusCodes.stopped: 'stopped',
+  MedicationStatusCodes.on_hold: 'on_hold',
+  MedicationStatusCodes.unknown: 'unknown',
+  MedicationStatusCodes.not_taken: 'not_taken',
 };

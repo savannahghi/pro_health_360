@@ -536,6 +536,19 @@ ObservationStatus observationStatusFromJson(String? observationStatusString) {
   }).first;
 }
 
+MedicationStatusCodes medicationStatusCodesFromJson(
+  String? medicationStatusString,
+) {
+  if (medicationStatusString == null || medicationStatusString.isEmpty) {
+    return MedicationStatusCodes.unknown;
+  }
+
+  return MedicationStatusCodes.values.where((MedicationStatusCodes code) {
+    return code.name.toLowerCase() ==
+        medicationStatusString.replaceAll('-', ' ').toLowerCase();
+  }).first;
+}
+
 void navigateToNewPage({
   required BuildContext context,
   required String route,

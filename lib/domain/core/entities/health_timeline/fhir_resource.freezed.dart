@@ -19,7 +19,9 @@ FhirResource _$FhirResourceFromJson(Map<String, dynamic> json) {
     case 'Observation':
       return Observation.fromJson(json);
     case 'AllergyIntolerance':
-      return Medication.fromJson(json);
+      return AllergyIntolerance.fromJson(json);
+    case 'MedicationStatement':
+      return MedicationStatement.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'resourceType', 'FhirResource',
@@ -60,7 +62,7 @@ class _$FhirResourceTearOff {
     );
   }
 
-  Medication medication(
+  AllergyIntolerance allergyIntolerance(
       {@JsonKey(name: 'category')
           List<AllergyIntoleranceCategory>? category,
       @JsonKey(name: 'clinicalStatus')
@@ -81,7 +83,7 @@ class _$FhirResourceTearOff {
           AllergyIntoleranceType? type,
       @JsonKey(name: 'verificationStatus')
           CodeableConcept? verificationStatus}) {
-    return Medication(
+    return AllergyIntolerance(
       category: category,
       clinicalStatus: clinicalStatus,
       code: code,
@@ -92,6 +94,35 @@ class _$FhirResourceTearOff {
       timelineDate: timelineDate,
       type: type,
       verificationStatus: verificationStatus,
+    );
+  }
+
+  MedicationStatement medicationStatement(
+      {@JsonKey(name: 'category')
+          CodeableConcept? category,
+      @JsonKey(name: 'code')
+          CodeableConcept? code,
+      @JsonKey(name: 'effectiveDateTime')
+          String? date,
+      @JsonKey(name: 'medicationCodeableConcept')
+          CodeableConcept? medication,
+      @JsonKey(name: 'resourceType')
+          ReferenceType? resourceType,
+      @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+          MedicationStatusCodes? status,
+      @JsonKey(name: 'subject')
+          Reference? subject,
+      @JsonKey(name: 'timelineDate')
+          String? timelineDate}) {
+    return MedicationStatement(
+      category: category,
+      code: code,
+      date: date,
+      medication: medication,
+      resourceType: resourceType,
+      status: status,
+      subject: subject,
+      timelineDate: timelineDate,
     );
   }
 
@@ -109,8 +140,6 @@ mixin _$FhirResource {
   CodeableConcept? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'resourceType')
   ReferenceType? get resourceType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'subject')
-  Reference? get patient => throw _privateConstructorUsedError;
   @JsonKey(name: 'timelineDate')
   String? get timelineDate => throw _privateConstructorUsedError;
 
@@ -155,7 +184,25 @@ mixin _$FhirResource {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)
-        medication,
+        allergyIntolerance,
+    required TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)
+        medicationStatement,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -199,7 +246,25 @@ mixin _$FhirResource {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
-        medication,
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -243,26 +308,47 @@ mixin _$FhirResource {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
-        medication,
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Observation value) observation,
-    required TResult Function(Medication value) medication,
+    required TResult Function(AllergyIntolerance value) allergyIntolerance,
+    required TResult Function(MedicationStatement value) medicationStatement,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Observation value)? observation,
-    TResult Function(Medication value)? medication,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Observation value)? observation,
-    TResult Function(Medication value)? medication,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -280,11 +366,9 @@ abstract class $FhirResourceCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'code') CodeableConcept? code,
       @JsonKey(name: 'resourceType') ReferenceType? resourceType,
-      @JsonKey(name: 'subject') Reference? patient,
       @JsonKey(name: 'timelineDate') String? timelineDate});
 
   $CodeableConceptCopyWith<$Res>? get code;
-  $ReferenceCopyWith<$Res>? get patient;
 }
 
 /// @nodoc
@@ -299,7 +383,6 @@ class _$FhirResourceCopyWithImpl<$Res> implements $FhirResourceCopyWith<$Res> {
   $Res call({
     Object? code = freezed,
     Object? resourceType = freezed,
-    Object? patient = freezed,
     Object? timelineDate = freezed,
   }) {
     return _then(_value.copyWith(
@@ -311,10 +394,6 @@ class _$FhirResourceCopyWithImpl<$Res> implements $FhirResourceCopyWith<$Res> {
           ? _value.resourceType
           : resourceType // ignore: cast_nullable_to_non_nullable
               as ReferenceType?,
-      patient: patient == freezed
-          ? _value.patient
-          : patient // ignore: cast_nullable_to_non_nullable
-              as Reference?,
       timelineDate: timelineDate == freezed
           ? _value.timelineDate
           : timelineDate // ignore: cast_nullable_to_non_nullable
@@ -330,17 +409,6 @@ class _$FhirResourceCopyWithImpl<$Res> implements $FhirResourceCopyWith<$Res> {
 
     return $CodeableConceptCopyWith<$Res>(_value.code!, (value) {
       return _then(_value.copyWith(code: value));
-    });
-  }
-
-  @override
-  $ReferenceCopyWith<$Res>? get patient {
-    if (_value.patient == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.patient!, (value) {
-      return _then(_value.copyWith(patient: value));
     });
   }
 }
@@ -372,7 +440,6 @@ abstract class $ObservationCopyWith<$Res>
 
   @override
   $CodeableConceptCopyWith<$Res>? get code;
-  @override
   $ReferenceCopyWith<$Res>? get patient;
 }
 
@@ -431,6 +498,17 @@ class _$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
           : value // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  @override
+  $ReferenceCopyWith<$Res>? get patient {
+    if (_value.patient == null) {
+      return null;
+    }
+
+    return $ReferenceCopyWith<$Res>(_value.patient!, (value) {
+      return _then(_value.copyWith(patient: value));
+    });
   }
 }
 
@@ -573,7 +651,25 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)
-        medication,
+        allergyIntolerance,
+    required TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)
+        medicationStatement,
   }) {
     return observation(category, code, date, resourceType, status, patient,
         timelineDate, value);
@@ -621,7 +717,25 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
-        medication,
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
   }) {
     return observation?.call(category, code, date, resourceType, status,
         patient, timelineDate, value);
@@ -669,7 +783,25 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
-        medication,
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
     required TResult orElse(),
   }) {
     if (observation != null) {
@@ -683,7 +815,8 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Observation value) observation,
-    required TResult Function(Medication value) medication,
+    required TResult Function(AllergyIntolerance value) allergyIntolerance,
+    required TResult Function(MedicationStatement value) medicationStatement,
   }) {
     return observation(this);
   }
@@ -692,7 +825,8 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Observation value)? observation,
-    TResult Function(Medication value)? medication,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
   }) {
     return observation?.call(this);
   }
@@ -701,7 +835,8 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Observation value)? observation,
-    TResult Function(Medication value)? medication,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
     required TResult orElse(),
   }) {
     if (observation != null) {
@@ -750,7 +885,6 @@ abstract class Observation implements FhirResource, Resource {
   ReferenceType? get resourceType;
   @JsonKey(name: 'status', fromJson: observationStatusFromJson)
   ObservationStatus? get status;
-  @override
   @JsonKey(name: 'subject')
   Reference? get patient;
   @override
@@ -765,11 +899,11 @@ abstract class Observation implements FhirResource, Resource {
 }
 
 /// @nodoc
-abstract class $MedicationCopyWith<$Res>
+abstract class $AllergyIntoleranceCopyWith<$Res>
     implements $FhirResourceCopyWith<$Res> {
-  factory $MedicationCopyWith(
-          Medication value, $Res Function(Medication) then) =
-      _$MedicationCopyWithImpl<$Res>;
+  factory $AllergyIntoleranceCopyWith(
+          AllergyIntolerance value, $Res Function(AllergyIntolerance) then) =
+      _$AllergyIntoleranceCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'category')
@@ -796,19 +930,20 @@ abstract class $MedicationCopyWith<$Res>
   $CodeableConceptCopyWith<$Res>? get clinicalStatus;
   @override
   $CodeableConceptCopyWith<$Res>? get code;
-  @override
   $ReferenceCopyWith<$Res>? get patient;
   $CodeableConceptCopyWith<$Res>? get verificationStatus;
 }
 
 /// @nodoc
-class _$MedicationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
-    implements $MedicationCopyWith<$Res> {
-  _$MedicationCopyWithImpl(Medication _value, $Res Function(Medication) _then)
-      : super(_value, (v) => _then(v as Medication));
+class _$AllergyIntoleranceCopyWithImpl<$Res>
+    extends _$FhirResourceCopyWithImpl<$Res>
+    implements $AllergyIntoleranceCopyWith<$Res> {
+  _$AllergyIntoleranceCopyWithImpl(
+      AllergyIntolerance _value, $Res Function(AllergyIntolerance) _then)
+      : super(_value, (v) => _then(v as AllergyIntolerance));
 
   @override
-  Medication get _value => super._value as Medication;
+  AllergyIntolerance get _value => super._value as AllergyIntolerance;
 
   @override
   $Res call({
@@ -823,7 +958,7 @@ class _$MedicationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
     Object? type = freezed,
     Object? verificationStatus = freezed,
   }) {
-    return _then(Medication(
+    return _then(AllergyIntolerance(
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -879,6 +1014,17 @@ class _$MedicationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
   }
 
   @override
+  $ReferenceCopyWith<$Res>? get patient {
+    if (_value.patient == null) {
+      return null;
+    }
+
+    return $ReferenceCopyWith<$Res>(_value.patient!, (value) {
+      return _then(_value.copyWith(patient: value));
+    });
+  }
+
+  @override
   $CodeableConceptCopyWith<$Res>? get verificationStatus {
     if (_value.verificationStatus == null) {
       return null;
@@ -894,8 +1040,10 @@ class _$MedicationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
 @JsonSerializable()
 @FreezedUnionValue('AllergyIntolerance')
 @Implements<Resource>()
-class _$Medication with DiagnosticableTreeMixin implements Medication {
-  const _$Medication(
+class _$AllergyIntolerance
+    with DiagnosticableTreeMixin
+    implements AllergyIntolerance {
+  const _$AllergyIntolerance(
       {@JsonKey(name: 'category') this.category,
       @JsonKey(name: 'clinicalStatus') this.clinicalStatus,
       @JsonKey(name: 'code') this.code,
@@ -907,8 +1055,8 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
       @JsonKey(name: 'type') this.type,
       @JsonKey(name: 'verificationStatus') this.verificationStatus});
 
-  factory _$Medication.fromJson(Map<String, dynamic> json) =>
-      _$$MedicationFromJson(json);
+  factory _$AllergyIntolerance.fromJson(Map<String, dynamic> json) =>
+      _$$AllergyIntoleranceFromJson(json);
 
   @override
   @JsonKey(name: 'category')
@@ -943,14 +1091,14 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FhirResource.medication(category: $category, clinicalStatus: $clinicalStatus, code: $code, patient: $patient, reaction: $reaction, recordedDate: $recordedDate, resourceType: $resourceType, timelineDate: $timelineDate, type: $type, verificationStatus: $verificationStatus)';
+    return 'FhirResource.allergyIntolerance(category: $category, clinicalStatus: $clinicalStatus, code: $code, patient: $patient, reaction: $reaction, recordedDate: $recordedDate, resourceType: $resourceType, timelineDate: $timelineDate, type: $type, verificationStatus: $verificationStatus)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'FhirResource.medication'))
+      ..add(DiagnosticsProperty('type', 'FhirResource.allergyIntolerance'))
       ..add(DiagnosticsProperty('category', category))
       ..add(DiagnosticsProperty('clinicalStatus', clinicalStatus))
       ..add(DiagnosticsProperty('code', code))
@@ -967,7 +1115,7 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Medication &&
+            other is AllergyIntolerance &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality()
                 .equals(other.clinicalStatus, clinicalStatus) &&
@@ -1001,8 +1149,8 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
 
   @JsonKey(ignore: true)
   @override
-  $MedicationCopyWith<Medication> get copyWith =>
-      _$MedicationCopyWithImpl<Medication>(this, _$identity);
+  $AllergyIntoleranceCopyWith<AllergyIntolerance> get copyWith =>
+      _$AllergyIntoleranceCopyWithImpl<AllergyIntolerance>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1046,9 +1194,27 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)
-        medication,
+        allergyIntolerance,
+    required TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)
+        medicationStatement,
   }) {
-    return medication(category, clinicalStatus, code, patient, reaction,
+    return allergyIntolerance(category, clinicalStatus, code, patient, reaction,
         recordedDate, resourceType, timelineDate, type, verificationStatus);
   }
 
@@ -1094,10 +1260,37 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
-        medication,
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
   }) {
-    return medication?.call(category, clinicalStatus, code, patient, reaction,
-        recordedDate, resourceType, timelineDate, type, verificationStatus);
+    return allergyIntolerance?.call(
+        category,
+        clinicalStatus,
+        code,
+        patient,
+        reaction,
+        recordedDate,
+        resourceType,
+        timelineDate,
+        type,
+        verificationStatus);
   }
 
   @override
@@ -1142,12 +1335,39 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
                 AllergyIntoleranceType? type,
             @JsonKey(name: 'verificationStatus')
                 CodeableConcept? verificationStatus)?
-        medication,
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
     required TResult orElse(),
   }) {
-    if (medication != null) {
-      return medication(category, clinicalStatus, code, patient, reaction,
-          recordedDate, resourceType, timelineDate, type, verificationStatus);
+    if (allergyIntolerance != null) {
+      return allergyIntolerance(
+          category,
+          clinicalStatus,
+          code,
+          patient,
+          reaction,
+          recordedDate,
+          resourceType,
+          timelineDate,
+          type,
+          verificationStatus);
     }
     return orElse();
   }
@@ -1156,41 +1376,44 @@ class _$Medication with DiagnosticableTreeMixin implements Medication {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Observation value) observation,
-    required TResult Function(Medication value) medication,
+    required TResult Function(AllergyIntolerance value) allergyIntolerance,
+    required TResult Function(MedicationStatement value) medicationStatement,
   }) {
-    return medication(this);
+    return allergyIntolerance(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Observation value)? observation,
-    TResult Function(Medication value)? medication,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
   }) {
-    return medication?.call(this);
+    return allergyIntolerance?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Observation value)? observation,
-    TResult Function(Medication value)? medication,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
     required TResult orElse(),
   }) {
-    if (medication != null) {
-      return medication(this);
+    if (allergyIntolerance != null) {
+      return allergyIntolerance(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MedicationToJson(this);
+    return _$$AllergyIntoleranceToJson(this);
   }
 }
 
-abstract class Medication implements FhirResource, Resource {
-  const factory Medication(
+abstract class AllergyIntolerance implements FhirResource, Resource {
+  const factory AllergyIntolerance(
       {@JsonKey(name: 'category')
           List<AllergyIntoleranceCategory>? category,
       @JsonKey(name: 'clinicalStatus')
@@ -1210,10 +1433,10 @@ abstract class Medication implements FhirResource, Resource {
       @JsonKey(name: 'type')
           AllergyIntoleranceType? type,
       @JsonKey(name: 'verificationStatus')
-          CodeableConcept? verificationStatus}) = _$Medication;
+          CodeableConcept? verificationStatus}) = _$AllergyIntolerance;
 
-  factory Medication.fromJson(Map<String, dynamic> json) =
-      _$Medication.fromJson;
+  factory AllergyIntolerance.fromJson(Map<String, dynamic> json) =
+      _$AllergyIntolerance.fromJson;
 
   @JsonKey(name: 'category')
   List<AllergyIntoleranceCategory>? get category;
@@ -1222,7 +1445,6 @@ abstract class Medication implements FhirResource, Resource {
   @override
   @JsonKey(name: 'code')
   CodeableConcept? get code;
-  @override
   @JsonKey(name: 'patient')
   Reference? get patient;
   @JsonKey(name: 'reaction')
@@ -1241,6 +1463,527 @@ abstract class Medication implements FhirResource, Resource {
   CodeableConcept? get verificationStatus;
   @override
   @JsonKey(ignore: true)
-  $MedicationCopyWith<Medication> get copyWith =>
+  $AllergyIntoleranceCopyWith<AllergyIntolerance> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MedicationStatementCopyWith<$Res>
+    implements $FhirResourceCopyWith<$Res> {
+  factory $MedicationStatementCopyWith(
+          MedicationStatement value, $Res Function(MedicationStatement) then) =
+      _$MedicationStatementCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'category')
+          CodeableConcept? category,
+      @JsonKey(name: 'code')
+          CodeableConcept? code,
+      @JsonKey(name: 'effectiveDateTime')
+          String? date,
+      @JsonKey(name: 'medicationCodeableConcept')
+          CodeableConcept? medication,
+      @JsonKey(name: 'resourceType')
+          ReferenceType? resourceType,
+      @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+          MedicationStatusCodes? status,
+      @JsonKey(name: 'subject')
+          Reference? subject,
+      @JsonKey(name: 'timelineDate')
+          String? timelineDate});
+
+  $CodeableConceptCopyWith<$Res>? get category;
+  @override
+  $CodeableConceptCopyWith<$Res>? get code;
+  $CodeableConceptCopyWith<$Res>? get medication;
+  $ReferenceCopyWith<$Res>? get subject;
+}
+
+/// @nodoc
+class _$MedicationStatementCopyWithImpl<$Res>
+    extends _$FhirResourceCopyWithImpl<$Res>
+    implements $MedicationStatementCopyWith<$Res> {
+  _$MedicationStatementCopyWithImpl(
+      MedicationStatement _value, $Res Function(MedicationStatement) _then)
+      : super(_value, (v) => _then(v as MedicationStatement));
+
+  @override
+  MedicationStatement get _value => super._value as MedicationStatement;
+
+  @override
+  $Res call({
+    Object? category = freezed,
+    Object? code = freezed,
+    Object? date = freezed,
+    Object? medication = freezed,
+    Object? resourceType = freezed,
+    Object? status = freezed,
+    Object? subject = freezed,
+    Object? timelineDate = freezed,
+  }) {
+    return _then(MedicationStatement(
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CodeableConcept?,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as CodeableConcept?,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      medication: medication == freezed
+          ? _value.medication
+          : medication // ignore: cast_nullable_to_non_nullable
+              as CodeableConcept?,
+      resourceType: resourceType == freezed
+          ? _value.resourceType
+          : resourceType // ignore: cast_nullable_to_non_nullable
+              as ReferenceType?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as MedicationStatusCodes?,
+      subject: subject == freezed
+          ? _value.subject
+          : subject // ignore: cast_nullable_to_non_nullable
+              as Reference?,
+      timelineDate: timelineDate == freezed
+          ? _value.timelineDate
+          : timelineDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  @override
+  $CodeableConceptCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CodeableConceptCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value));
+    });
+  }
+
+  @override
+  $CodeableConceptCopyWith<$Res>? get medication {
+    if (_value.medication == null) {
+      return null;
+    }
+
+    return $CodeableConceptCopyWith<$Res>(_value.medication!, (value) {
+      return _then(_value.copyWith(medication: value));
+    });
+  }
+
+  @override
+  $ReferenceCopyWith<$Res>? get subject {
+    if (_value.subject == null) {
+      return null;
+    }
+
+    return $ReferenceCopyWith<$Res>(_value.subject!, (value) {
+      return _then(_value.copyWith(subject: value));
+    });
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@FreezedUnionValue('MedicationStatement')
+@Implements<Resource>()
+class _$MedicationStatement
+    with DiagnosticableTreeMixin
+    implements MedicationStatement {
+  const _$MedicationStatement(
+      {@JsonKey(name: 'category')
+          this.category,
+      @JsonKey(name: 'code')
+          this.code,
+      @JsonKey(name: 'effectiveDateTime')
+          this.date,
+      @JsonKey(name: 'medicationCodeableConcept')
+          this.medication,
+      @JsonKey(name: 'resourceType')
+          this.resourceType,
+      @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+          this.status,
+      @JsonKey(name: 'subject')
+          this.subject,
+      @JsonKey(name: 'timelineDate')
+          this.timelineDate});
+
+  factory _$MedicationStatement.fromJson(Map<String, dynamic> json) =>
+      _$$MedicationStatementFromJson(json);
+
+  @override
+  @JsonKey(name: 'category')
+  final CodeableConcept? category;
+  @override
+  @JsonKey(name: 'code')
+  final CodeableConcept? code;
+  @override
+  @JsonKey(name: 'effectiveDateTime')
+  final String? date;
+  @override
+  @JsonKey(name: 'medicationCodeableConcept')
+  final CodeableConcept? medication;
+  @override
+  @JsonKey(name: 'resourceType')
+  final ReferenceType? resourceType;
+  @override
+  @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+  final MedicationStatusCodes? status;
+  @override
+  @JsonKey(name: 'subject')
+  final Reference? subject;
+  @override
+  @JsonKey(name: 'timelineDate')
+  final String? timelineDate;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'FhirResource.medicationStatement(category: $category, code: $code, date: $date, medication: $medication, resourceType: $resourceType, status: $status, subject: $subject, timelineDate: $timelineDate)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'FhirResource.medicationStatement'))
+      ..add(DiagnosticsProperty('category', category))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('date', date))
+      ..add(DiagnosticsProperty('medication', medication))
+      ..add(DiagnosticsProperty('resourceType', resourceType))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('subject', subject))
+      ..add(DiagnosticsProperty('timelineDate', timelineDate));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MedicationStatement &&
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.date, date) &&
+            const DeepCollectionEquality()
+                .equals(other.medication, medication) &&
+            const DeepCollectionEquality()
+                .equals(other.resourceType, resourceType) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.subject, subject) &&
+            const DeepCollectionEquality()
+                .equals(other.timelineDate, timelineDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(date),
+      const DeepCollectionEquality().hash(medication),
+      const DeepCollectionEquality().hash(resourceType),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(subject),
+      const DeepCollectionEquality().hash(timelineDate));
+
+  @JsonKey(ignore: true)
+  @override
+  $MedicationStatementCopyWith<MedicationStatement> get copyWith =>
+      _$MedicationStatementCopyWithImpl<MedicationStatement>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            @JsonKey(name: 'category')
+                List<CodeableConcept>? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: observationStatusFromJson)
+                ObservationStatus? status,
+            @JsonKey(name: 'subject')
+                Reference? patient,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate,
+            @JsonKey(name: 'valueString')
+                String? value)
+        observation,
+    required TResult Function(
+            @JsonKey(name: 'category')
+                List<AllergyIntoleranceCategory>? category,
+            @JsonKey(name: 'clinicalStatus')
+                CodeableConcept? clinicalStatus,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'patient')
+                Reference? patient,
+            @JsonKey(name: 'reaction')
+                List<Reaction>? reaction,
+            @JsonKey(name: 'recordedDate')
+                String? recordedDate,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate,
+            @JsonKey(name: 'type')
+                AllergyIntoleranceType? type,
+            @JsonKey(name: 'verificationStatus')
+                CodeableConcept? verificationStatus)
+        allergyIntolerance,
+    required TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)
+        medicationStatement,
+  }) {
+    return medicationStatement(category, code, date, medication, resourceType,
+        status, subject, timelineDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: 'category')
+                List<CodeableConcept>? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: observationStatusFromJson)
+                ObservationStatus? status,
+            @JsonKey(name: 'subject')
+                Reference? patient,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate,
+            @JsonKey(name: 'valueString')
+                String? value)?
+        observation,
+    TResult Function(
+            @JsonKey(name: 'category')
+                List<AllergyIntoleranceCategory>? category,
+            @JsonKey(name: 'clinicalStatus')
+                CodeableConcept? clinicalStatus,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'patient')
+                Reference? patient,
+            @JsonKey(name: 'reaction')
+                List<Reaction>? reaction,
+            @JsonKey(name: 'recordedDate')
+                String? recordedDate,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate,
+            @JsonKey(name: 'type')
+                AllergyIntoleranceType? type,
+            @JsonKey(name: 'verificationStatus')
+                CodeableConcept? verificationStatus)?
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
+  }) {
+    return medicationStatement?.call(category, code, date, medication,
+        resourceType, status, subject, timelineDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: 'category')
+                List<CodeableConcept>? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: observationStatusFromJson)
+                ObservationStatus? status,
+            @JsonKey(name: 'subject')
+                Reference? patient,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate,
+            @JsonKey(name: 'valueString')
+                String? value)?
+        observation,
+    TResult Function(
+            @JsonKey(name: 'category')
+                List<AllergyIntoleranceCategory>? category,
+            @JsonKey(name: 'clinicalStatus')
+                CodeableConcept? clinicalStatus,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'patient')
+                Reference? patient,
+            @JsonKey(name: 'reaction')
+                List<Reaction>? reaction,
+            @JsonKey(name: 'recordedDate')
+                String? recordedDate,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate,
+            @JsonKey(name: 'type')
+                AllergyIntoleranceType? type,
+            @JsonKey(name: 'verificationStatus')
+                CodeableConcept? verificationStatus)?
+        allergyIntolerance,
+    TResult Function(
+            @JsonKey(name: 'category')
+                CodeableConcept? category,
+            @JsonKey(name: 'code')
+                CodeableConcept? code,
+            @JsonKey(name: 'effectiveDateTime')
+                String? date,
+            @JsonKey(name: 'medicationCodeableConcept')
+                CodeableConcept? medication,
+            @JsonKey(name: 'resourceType')
+                ReferenceType? resourceType,
+            @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+                MedicationStatusCodes? status,
+            @JsonKey(name: 'subject')
+                Reference? subject,
+            @JsonKey(name: 'timelineDate')
+                String? timelineDate)?
+        medicationStatement,
+    required TResult orElse(),
+  }) {
+    if (medicationStatement != null) {
+      return medicationStatement(category, code, date, medication, resourceType,
+          status, subject, timelineDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Observation value) observation,
+    required TResult Function(AllergyIntolerance value) allergyIntolerance,
+    required TResult Function(MedicationStatement value) medicationStatement,
+  }) {
+    return medicationStatement(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Observation value)? observation,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
+  }) {
+    return medicationStatement?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Observation value)? observation,
+    TResult Function(AllergyIntolerance value)? allergyIntolerance,
+    TResult Function(MedicationStatement value)? medicationStatement,
+    required TResult orElse(),
+  }) {
+    if (medicationStatement != null) {
+      return medicationStatement(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MedicationStatementToJson(this);
+  }
+}
+
+abstract class MedicationStatement implements FhirResource, Resource {
+  const factory MedicationStatement(
+      {@JsonKey(name: 'category')
+          CodeableConcept? category,
+      @JsonKey(name: 'code')
+          CodeableConcept? code,
+      @JsonKey(name: 'effectiveDateTime')
+          String? date,
+      @JsonKey(name: 'medicationCodeableConcept')
+          CodeableConcept? medication,
+      @JsonKey(name: 'resourceType')
+          ReferenceType? resourceType,
+      @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+          MedicationStatusCodes? status,
+      @JsonKey(name: 'subject')
+          Reference? subject,
+      @JsonKey(name: 'timelineDate')
+          String? timelineDate}) = _$MedicationStatement;
+
+  factory MedicationStatement.fromJson(Map<String, dynamic> json) =
+      _$MedicationStatement.fromJson;
+
+  @JsonKey(name: 'category')
+  CodeableConcept? get category;
+  @override
+  @JsonKey(name: 'code')
+  CodeableConcept? get code;
+  @JsonKey(name: 'effectiveDateTime')
+  String? get date;
+  @JsonKey(name: 'medicationCodeableConcept')
+  CodeableConcept? get medication;
+  @override
+  @JsonKey(name: 'resourceType')
+  ReferenceType? get resourceType;
+  @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
+  MedicationStatusCodes? get status;
+  @JsonKey(name: 'subject')
+  Reference? get subject;
+  @override
+  @JsonKey(name: 'timelineDate')
+  String? get timelineDate;
+  @override
+  @JsonKey(ignore: true)
+  $MedicationStatementCopyWith<MedicationStatement> get copyWith =>
       throw _privateConstructorUsedError;
 }

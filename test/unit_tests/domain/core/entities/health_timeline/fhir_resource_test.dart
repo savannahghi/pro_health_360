@@ -3,7 +3,7 @@ import 'package:myafyahub/domain/core/entities/health_timeline/fhir_resource.dar
 
 void main() {
   group('FhirResource', () {
-    test('from json should deserialize medication correctly', () {
+    test('from json should deserialize allergy intolerance correctly', () {
       final Map<String, dynamic> medicationResource = <String, dynamic>{
         'category': <String>['medication'],
         'clinicalStatus': <String, dynamic>{
@@ -59,7 +59,7 @@ void main() {
 
       final FhirResource resource = FhirResource.fromJson(medicationResource);
 
-      expect(resource, isInstanceOf<Medication>());
+      expect(resource, isInstanceOf<AllergyIntolerance>());
     });
 
     test('from json should deserialize observation correctly', () {
@@ -102,6 +102,44 @@ void main() {
       final FhirResource resource = FhirResource.fromJson(observationResource);
 
       expect(resource, isInstanceOf<Observation>());
+    });
+
+    test('from json should deserialize medication statement correctly', () {
+      final Map<String, dynamic> medicationStatement = <String, dynamic>{
+        'category': <String, dynamic>{
+          'coding': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'code': '114100',
+              'display': 'Pneumonia',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/114100/'
+            }
+          ],
+          'text': 'Pneumonia'
+        },
+        'effectiveDateTime': '2022-03-04',
+        'id': 'ab7313bb-3688-4f67-87db-e98bb69d0263',
+        'medicationCodeableConcept': <String, dynamic>{
+          'coding': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'code': '71160',
+              'display': 'Amoxicillin',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/71160/'
+            }
+          ],
+          'text': 'Amoxicillin'
+        },
+        'resourceType': 'MedicationStatement',
+        'status': 'unknown',
+        'subject': <String, dynamic>{
+          'display': '340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b',
+          'reference': 'Patient/340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b'
+        },
+        'timelineDate': '2022-03-04'
+      };
+
+      final FhirResource resource = FhirResource.fromJson(medicationStatement);
+
+      expect(resource, isInstanceOf<MedicationStatement>());
     });
   });
 }

@@ -13,11 +13,13 @@ class AppSetupData {
   final String sentryDsn;
   final String streamAPIKey;
   final BaseContext? customContext;
+  final String clinicalEndpoint;
 
   AppSetupData({
     required this.appContexts,
     required this.sentryDsn,
     required this.streamAPIKey,
+    required this.clinicalEndpoint,
     this.customContext,
   });
 
@@ -56,9 +58,10 @@ final AppSetupData devAppSetupData = AppSetupData(
     respondedSecurityQuestionsEndpoint:
         kTestGetRecordedSecurityQuestionsEndpoint,
     verifySecurityQuestionsEndpoint: kTestVerifySecurityQuestionsEndpoint,
-    refreshStreamTokenEndpoint: kTestRefreshStreamTokenEndpoint, pinResetServiceRequestEndpoint: kTestPINResetServiceRequestEndpoint,
-    
+    refreshStreamTokenEndpoint: kTestRefreshStreamTokenEndpoint,
+    pinResetServiceRequestEndpoint: kTestPINResetServiceRequestEndpoint,
   ),
+  clinicalEndpoint: kTestClinicalEndpoint,
 );
 
 final AppSetupData demoAppSetupData = AppSetupData(
@@ -89,6 +92,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
     refreshStreamTokenEndpoint: kDemoRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kDemoPINResetServiceRequestEndpoint,
   ),
+  clinicalEndpoint: kDemoClinicalEndpoint,
 );
 
 final AppSetupData prodAppSetupData = AppSetupData(
@@ -119,4 +123,5 @@ final AppSetupData prodAppSetupData = AppSetupData(
     refreshStreamTokenEndpoint: kProdRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kProdPINResetServiceRequestEndpoint,
   ),
+  clinicalEndpoint: kProdClinicalEndpoint,
 );
