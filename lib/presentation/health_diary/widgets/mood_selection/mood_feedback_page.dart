@@ -45,12 +45,12 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
             converter: (Store<AppState> store) =>
                 AppStateViewModel.fromStore(store),
             builder: (BuildContext context, AppStateViewModel vm) {
-              final bool shouldShare = vm.appState.clientState!
-                      .healthDiaryState!.shouldShareHealthRecord ??
+              final bool shouldShare = vm.appState.clientState!.healthDiaryState
+                      ?.shouldShareHealthRecord ??
                   false;
 
               final bool shouldNotShare = vm.appState.clientState!
-                      .healthDiaryState!.shouldNotShareHealthRecord ??
+                      .healthDiaryState?.shouldNotShareHealthRecord ??
                   true;
 
               return Column(
