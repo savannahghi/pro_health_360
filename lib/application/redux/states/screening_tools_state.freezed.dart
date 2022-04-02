@@ -26,12 +26,14 @@ class _$ScreeningToolsStateTearOff {
       {ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
       TBState? tbState,
-      AlcoholSubstanceUseState? alcoholSubstanceUseState}) {
+      AlcoholSubstanceUseState? alcoholSubstanceUseState,
+      AvailableScreeningTools? availableScreeningTools}) {
     return _ScreeningToolsState(
       violenceState: violenceState,
       contraceptiveState: contraceptiveState,
       tbState: tbState,
       alcoholSubstanceUseState: alcoholSubstanceUseState,
+      availableScreeningTools: availableScreeningTools,
     );
   }
 
@@ -51,6 +53,8 @@ mixin _$ScreeningToolsState {
   TBState? get tbState => throw _privateConstructorUsedError;
   AlcoholSubstanceUseState? get alcoholSubstanceUseState =>
       throw _privateConstructorUsedError;
+  AvailableScreeningTools? get availableScreeningTools =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -67,12 +71,14 @@ abstract class $ScreeningToolsStateCopyWith<$Res> {
       {ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
       TBState? tbState,
-      AlcoholSubstanceUseState? alcoholSubstanceUseState});
+      AlcoholSubstanceUseState? alcoholSubstanceUseState,
+      AvailableScreeningTools? availableScreeningTools});
 
   $ViolenceStateCopyWith<$Res>? get violenceState;
   $ContraceptiveStateCopyWith<$Res>? get contraceptiveState;
   $TBStateCopyWith<$Res>? get tbState;
   $AlcoholSubstanceUseStateCopyWith<$Res>? get alcoholSubstanceUseState;
+  $AvailableScreeningToolsCopyWith<$Res>? get availableScreeningTools;
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
     Object? contraceptiveState = freezed,
     Object? tbState = freezed,
     Object? alcoholSubstanceUseState = freezed,
+    Object? availableScreeningTools = freezed,
   }) {
     return _then(_value.copyWith(
       violenceState: violenceState == freezed
@@ -108,6 +115,10 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
           ? _value.alcoholSubstanceUseState
           : alcoholSubstanceUseState // ignore: cast_nullable_to_non_nullable
               as AlcoholSubstanceUseState?,
+      availableScreeningTools: availableScreeningTools == freezed
+          ? _value.availableScreeningTools
+          : availableScreeningTools // ignore: cast_nullable_to_non_nullable
+              as AvailableScreeningTools?,
     ));
   }
 
@@ -156,6 +167,18 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
       return _then(_value.copyWith(alcoholSubstanceUseState: value));
     });
   }
+
+  @override
+  $AvailableScreeningToolsCopyWith<$Res>? get availableScreeningTools {
+    if (_value.availableScreeningTools == null) {
+      return null;
+    }
+
+    return $AvailableScreeningToolsCopyWith<$Res>(
+        _value.availableScreeningTools!, (value) {
+      return _then(_value.copyWith(availableScreeningTools: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -169,7 +192,8 @@ abstract class _$ScreeningToolsStateCopyWith<$Res>
       {ViolenceState? violenceState,
       ContraceptiveState? contraceptiveState,
       TBState? tbState,
-      AlcoholSubstanceUseState? alcoholSubstanceUseState});
+      AlcoholSubstanceUseState? alcoholSubstanceUseState,
+      AvailableScreeningTools? availableScreeningTools});
 
   @override
   $ViolenceStateCopyWith<$Res>? get violenceState;
@@ -179,6 +203,8 @@ abstract class _$ScreeningToolsStateCopyWith<$Res>
   $TBStateCopyWith<$Res>? get tbState;
   @override
   $AlcoholSubstanceUseStateCopyWith<$Res>? get alcoholSubstanceUseState;
+  @override
+  $AvailableScreeningToolsCopyWith<$Res>? get availableScreeningTools;
 }
 
 /// @nodoc
@@ -198,6 +224,7 @@ class __$ScreeningToolsStateCopyWithImpl<$Res>
     Object? contraceptiveState = freezed,
     Object? tbState = freezed,
     Object? alcoholSubstanceUseState = freezed,
+    Object? availableScreeningTools = freezed,
   }) {
     return _then(_ScreeningToolsState(
       violenceState: violenceState == freezed
@@ -216,6 +243,10 @@ class __$ScreeningToolsStateCopyWithImpl<$Res>
           ? _value.alcoholSubstanceUseState
           : alcoholSubstanceUseState // ignore: cast_nullable_to_non_nullable
               as AlcoholSubstanceUseState?,
+      availableScreeningTools: availableScreeningTools == freezed
+          ? _value.availableScreeningTools
+          : availableScreeningTools // ignore: cast_nullable_to_non_nullable
+              as AvailableScreeningTools?,
     ));
   }
 }
@@ -227,7 +258,8 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
       {this.violenceState,
       this.contraceptiveState,
       this.tbState,
-      this.alcoholSubstanceUseState});
+      this.alcoholSubstanceUseState,
+      this.availableScreeningTools});
 
   factory _$_ScreeningToolsState.fromJson(Map<String, dynamic> json) =>
       _$$_ScreeningToolsStateFromJson(json);
@@ -240,10 +272,12 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
   final TBState? tbState;
   @override
   final AlcoholSubstanceUseState? alcoholSubstanceUseState;
+  @override
+  final AvailableScreeningTools? availableScreeningTools;
 
   @override
   String toString() {
-    return 'ScreeningToolsState(violenceState: $violenceState, contraceptiveState: $contraceptiveState, tbState: $tbState, alcoholSubstanceUseState: $alcoholSubstanceUseState)';
+    return 'ScreeningToolsState(violenceState: $violenceState, contraceptiveState: $contraceptiveState, tbState: $tbState, alcoholSubstanceUseState: $alcoholSubstanceUseState, availableScreeningTools: $availableScreeningTools)';
   }
 
   @override
@@ -257,7 +291,9 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
                 .equals(other.contraceptiveState, contraceptiveState) &&
             const DeepCollectionEquality().equals(other.tbState, tbState) &&
             const DeepCollectionEquality().equals(
-                other.alcoholSubstanceUseState, alcoholSubstanceUseState));
+                other.alcoholSubstanceUseState, alcoholSubstanceUseState) &&
+            const DeepCollectionEquality().equals(
+                other.availableScreeningTools, availableScreeningTools));
   }
 
   @override
@@ -266,7 +302,8 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
       const DeepCollectionEquality().hash(violenceState),
       const DeepCollectionEquality().hash(contraceptiveState),
       const DeepCollectionEquality().hash(tbState),
-      const DeepCollectionEquality().hash(alcoholSubstanceUseState));
+      const DeepCollectionEquality().hash(alcoholSubstanceUseState),
+      const DeepCollectionEquality().hash(availableScreeningTools));
 
   @JsonKey(ignore: true)
   @override
@@ -285,7 +322,8 @@ abstract class _ScreeningToolsState implements ScreeningToolsState {
           {ViolenceState? violenceState,
           ContraceptiveState? contraceptiveState,
           TBState? tbState,
-          AlcoholSubstanceUseState? alcoholSubstanceUseState}) =
+          AlcoholSubstanceUseState? alcoholSubstanceUseState,
+          AvailableScreeningTools? availableScreeningTools}) =
       _$_ScreeningToolsState;
 
   factory _ScreeningToolsState.fromJson(Map<String, dynamic> json) =
@@ -299,6 +337,8 @@ abstract class _ScreeningToolsState implements ScreeningToolsState {
   TBState? get tbState;
   @override
   AlcoholSubstanceUseState? get alcoholSubstanceUseState;
+  @override
+  AvailableScreeningTools? get availableScreeningTools;
   @override
   @JsonKey(ignore: true)
   _$ScreeningToolsStateCopyWith<_ScreeningToolsState> get copyWith =>
