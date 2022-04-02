@@ -1,12 +1,19 @@
 // Package imports:
+import 'dart:convert';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/profile/medical_data/medical_data_item.dart';
+import 'package:myafyahub/presentation/profile/medical_data/medical_data_item_title.dart';
 import 'package:myafyahub/presentation/profile/medical_data/medical_data_page.dart';
 
+import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
@@ -21,15 +28,71 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
+        widget: const MedicalDataPage(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MedicalDataItemTitle), findsWidgets);
+      expect(find.byType(MedicalDataItem), findsWidgets);
+    });
+
+    testWidgets('renders correctly', (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: const MedicalDataPage(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MedicalDataItemTitle), findsWidgets);
+      expect(find.byType(MedicalDataItem), findsWidgets);
+    });
+
+    testWidgets(
+      'should show GenericErrorWidget when there is no data',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{'getMedicalData': null}
+            }),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          store: store,
+          tester: tester,
+          client: mockShortGraphQlClient,
+          widget: const MedicalDataPage(),
+        );
+        await tester.pumpAndSettle();
+
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
+
+        expect(genericNoDataButton, findsOneWidget);
+        await tester.tap(genericNoDataButton);
+        expect(genericNoDataButton, findsOneWidget);
+      },
+    );
+
+    testWidgets('Shows loading indicator when fetching members',
+        (WidgetTester tester) async {
+      store.dispatch(WaitAction<AppState>.add(fetchMedicalDataFlag));
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
         widget: const MedicalDataPage(),
       );
 
-      expect(find.byType(GenericErrorWidget), findsOneWidget);
-      await tester.tap(find.byKey(helpNoDataWidgetKey));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(MedicalDataPage), findsNothing);
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
   });
 }

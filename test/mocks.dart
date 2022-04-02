@@ -929,6 +929,16 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+
+    if (queryString == medicalDataQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': mockMedicalDataResponse}),
+          200,
+        ),
+      );
+    }
+
     if (queryString == optOutMutation) {
       return Future<http.Response>.value(
         http.Response(
@@ -1824,6 +1834,38 @@ Map<String, dynamic> mockUpdateClientCareGiver = <String, dynamic>{
   'lastName': 'Doe',
   'phoneNumber': '+254798000000',
   'caregiverType': 'Sibling',
+};
+
+Map<String, dynamic> mockMedicalDataState = <String, dynamic>{
+  'medicalData': mockMedicalData,
+};
+
+Map<String, dynamic> mockMedicalDataResponse = <String, dynamic>{
+  'getMedicalData': mockMedicalData,
+};
+
+Map<String, dynamic> mockMedicalData = <String, dynamic>{
+  'regimen': <String, dynamic>{
+    'Category': <String, dynamic>{'Text': 'Pneumonia'},
+  },
+  'allergies': <String, dynamic>{
+    'ClinicalStatus': <String, dynamic>{
+      'Text': 'Milk powder (cow\'s milk)',
+    },
+  },
+  'weight': <dynamic>[
+    <String, dynamic>{'ValueString': 'some-value'}
+  ],
+  'viralLoad': <dynamic>[
+    <String, dynamic>{'ValueString': 'some-value'}
+  ],
+  'bmi': <dynamic>[
+    <String, dynamic>{'ValueString': 'some-bmi-value'},
+    <String, dynamic>{'ValueString': 'second-bmi-value'}
+  ],
+  'cd4Count': <dynamic>[
+    <String, dynamic>{'ValueString': 'some-value'}
+  ],
 };
 
 final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{

@@ -63,7 +63,8 @@ class _$ClientStateTearOff {
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
       List<Appointment>? upcomingAppointments,
-      HealthTimelineState? healthTimelineState}) {
+      HealthTimelineState? healthTimelineState,
+      MedicalDataState? medicalDataState}) {
     return _ClientState(
       id: id,
       active: active,
@@ -88,6 +89,7 @@ class _$ClientStateTearOff {
       pastAppointments: pastAppointments,
       upcomingAppointments: upcomingAppointments,
       healthTimelineState: healthTimelineState,
+      medicalDataState: medicalDataState,
     );
   }
 
@@ -150,7 +152,8 @@ mixin _$ClientState {
   List<Appointment>? get upcomingAppointments =>
       throw _privateConstructorUsedError; // screening tools state
   HealthTimelineState? get healthTimelineState =>
-      throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // Medical data state
+  MedicalDataState? get medicalDataState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -204,12 +207,14 @@ abstract class $ClientStateCopyWith<$Res> {
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
       List<Appointment>? upcomingAppointments,
-      HealthTimelineState? healthTimelineState});
+      HealthTimelineState? healthTimelineState,
+      MedicalDataState? medicalDataState});
 
   $UserCopyWith<$Res>? get user;
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
   $HealthTimelineStateCopyWith<$Res>? get healthTimelineState;
+  $MedicalDataStateCopyWith<$Res>? get medicalDataState;
 }
 
 /// @nodoc
@@ -245,6 +250,7 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? pastAppointments = freezed,
     Object? upcomingAppointments = freezed,
     Object? healthTimelineState = freezed,
+    Object? medicalDataState = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -339,6 +345,10 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
           ? _value.healthTimelineState
           : healthTimelineState // ignore: cast_nullable_to_non_nullable
               as HealthTimelineState?,
+      medicalDataState: medicalDataState == freezed
+          ? _value.medicalDataState
+          : medicalDataState // ignore: cast_nullable_to_non_nullable
+              as MedicalDataState?,
     ));
   }
 
@@ -384,6 +394,17 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     return $HealthTimelineStateCopyWith<$Res>(_value.healthTimelineState!,
         (value) {
       return _then(_value.copyWith(healthTimelineState: value));
+    });
+  }
+
+  @override
+  $MedicalDataStateCopyWith<$Res>? get medicalDataState {
+    if (_value.medicalDataState == null) {
+      return null;
+    }
+
+    return $MedicalDataStateCopyWith<$Res>(_value.medicalDataState!, (value) {
+      return _then(_value.copyWith(medicalDataState: value));
     });
   }
 }
@@ -436,7 +457,8 @@ abstract class _$ClientStateCopyWith<$Res>
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
       List<Appointment>? upcomingAppointments,
-      HealthTimelineState? healthTimelineState});
+      HealthTimelineState? healthTimelineState,
+      MedicalDataState? medicalDataState});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -446,6 +468,8 @@ abstract class _$ClientStateCopyWith<$Res>
   $CommunitiesStateCopyWith<$Res>? get communitiesState;
   @override
   $HealthTimelineStateCopyWith<$Res>? get healthTimelineState;
+  @override
+  $MedicalDataStateCopyWith<$Res>? get medicalDataState;
 }
 
 /// @nodoc
@@ -483,6 +507,7 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? pastAppointments = freezed,
     Object? upcomingAppointments = freezed,
     Object? healthTimelineState = freezed,
+    Object? medicalDataState = freezed,
   }) {
     return _then(_ClientState(
       id: id == freezed
@@ -577,6 +602,10 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
           ? _value.healthTimelineState
           : healthTimelineState // ignore: cast_nullable_to_non_nullable
               as HealthTimelineState?,
+      medicalDataState: medicalDataState == freezed
+          ? _value.medicalDataState
+          : medicalDataState // ignore: cast_nullable_to_non_nullable
+              as MedicalDataState?,
     ));
   }
 }
@@ -625,7 +654,8 @@ class _$_ClientState implements _ClientState {
       this.communitiesState,
       this.pastAppointments,
       this.upcomingAppointments,
-      this.healthTimelineState});
+      this.healthTimelineState,
+      this.medicalDataState});
 
   factory _$_ClientState.fromJson(Map<String, dynamic> json) =>
       _$$_ClientStateFromJson(json);
@@ -698,10 +728,12 @@ class _$_ClientState implements _ClientState {
   final List<Appointment>? upcomingAppointments;
   @override // screening tools state
   final HealthTimelineState? healthTimelineState;
+  @override // Medical data state
+  final MedicalDataState? medicalDataState;
 
   @override
   String toString() {
-    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState)';
+    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState)';
   }
 
   @override
@@ -748,7 +780,9 @@ class _$_ClientState implements _ClientState {
             const DeepCollectionEquality()
                 .equals(other.upcomingAppointments, upcomingAppointments) &&
             const DeepCollectionEquality()
-                .equals(other.healthTimelineState, healthTimelineState));
+                .equals(other.healthTimelineState, healthTimelineState) &&
+            const DeepCollectionEquality()
+                .equals(other.medicalDataState, medicalDataState));
   }
 
   @override
@@ -776,7 +810,8 @@ class _$_ClientState implements _ClientState {
         const DeepCollectionEquality().hash(communitiesState),
         const DeepCollectionEquality().hash(pastAppointments),
         const DeepCollectionEquality().hash(upcomingAppointments),
-        const DeepCollectionEquality().hash(healthTimelineState)
+        const DeepCollectionEquality().hash(healthTimelineState),
+        const DeepCollectionEquality().hash(medicalDataState)
       ]);
 
   @JsonKey(ignore: true)
@@ -832,7 +867,8 @@ abstract class _ClientState implements ClientState {
       CommunitiesState? communitiesState,
       List<Appointment>? pastAppointments,
       List<Appointment>? upcomingAppointments,
-      HealthTimelineState? healthTimelineState}) = _$_ClientState;
+      HealthTimelineState? healthTimelineState,
+      MedicalDataState? medicalDataState}) = _$_ClientState;
 
   factory _ClientState.fromJson(Map<String, dynamic> json) =
       _$_ClientState.fromJson;
@@ -905,6 +941,8 @@ abstract class _ClientState implements ClientState {
   List<Appointment>? get upcomingAppointments;
   @override // screening tools state
   HealthTimelineState? get healthTimelineState;
+  @override // Medical data state
+  MedicalDataState? get medicalDataState;
   @override
   @JsonKey(ignore: true)
   _$ClientStateCopyWith<_ClientState> get copyWith =>

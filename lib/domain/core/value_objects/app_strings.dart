@@ -863,3 +863,12 @@ String noMedicalDataBodyString =
 const String appointmentRescheduledMessageString =
     'Your appointment reschedule request has been sent';
 const String beingRescheduledString = 'Being rescheduled';
+
+// Medical data
+String regimenTitle = 'Regimen';
+String allergiesTitle = 'Allergies';
+String weightTitle = 'Weight';
+String viralLoadTitle = 'Viral Load';
+String bmiTitle = 'BMI';
+String cd4CountTitle = 'CD4 count';
+String mostRecentString = 'Most recent';
