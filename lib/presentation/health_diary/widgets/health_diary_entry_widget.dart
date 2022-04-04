@@ -53,7 +53,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               decoration: BoxDecoration(
-                color: AppColors.listCardColor,
+                color: moodItemData.color.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: SvgPicture.asset(
@@ -98,10 +98,9 @@ class HealthDiaryEntryWidget extends StatelessWidget {
                 key: shareDiaryEntryIconButtonKey,
                 behavior: HitTestBehavior.opaque,
                 child: SvgPicture.asset(
-                  shareIconUrl,
-                  width: 20,
-                  height: 20,
-                  color: AppColors.blackColor,
+                  shareDiaryEntryIconPath,
+                  width: 50,
+                  height: 50,
                 ),
               ),
           ],

@@ -122,6 +122,8 @@ const String imageIconSvgPath = 'assets/icons/image_icon.svg';
 const String happyMoodIconSvgPath = 'assets/icons/happy_mood_icon.svg';
 const String textIconSvgPath = 'assets/icons/text_icon.svg';
 const String mehMoodIconSvgPath = 'assets/icons/meh_mood_icon.svg';
+const String shareDiaryEntryIconPath =
+    'assets/icons/share_diary_entry_icon.svg';
 
 // Mood selection icons
 const String excitedIconSvgPath = 'assets/icons/excited.svg';
