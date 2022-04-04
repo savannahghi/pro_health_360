@@ -383,10 +383,15 @@ query listCommunityMembers($communityID: ID!){
 ''';
 
 const String medicalDataQuery = r'''
-query getMedicalData($patientID: String!) {
+query medicalData($patientID: String!) {
   getMedicalData(patientID: $patientID) {
     regimen {
-      Category
+      Category{
+        Text
+      }
+      MedicationCodeableConcept{
+        Text
+      }
     }
     allergies {
       ClinicalStatus{

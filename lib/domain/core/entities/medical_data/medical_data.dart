@@ -8,8 +8,8 @@ part 'medical_data.g.dart';
 @freezed
 class MedicalData with _$MedicalData {
   factory MedicalData({
-    @JsonKey(name: 'regimen') MedicalDataDetails? regimen,
-    @JsonKey(name: 'allergies') MedicalDataDetails? allergies,
+    @JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
+    @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
     @JsonKey(name: 'weight') List<MedicalDataDetails?>? weight,
     @JsonKey(name: 'viralLoad') List<MedicalDataDetails?>? viralLoad,
     @JsonKey(name: 'bmi') List<MedicalDataDetails?>? bmi,
@@ -20,8 +20,8 @@ class MedicalData with _$MedicalData {
       _$MedicalDataFromJson(json);
 
   factory MedicalData.initial() => MedicalData(
-        regimen: MedicalDataDetails.initial(),
-        allergies: MedicalDataDetails.initial(),
+        regimen: <MedicalDataDetails>[],
+        allergies: <MedicalDataDetails>[],
         viralLoad: <MedicalDataDetails>[],
         bmi: <MedicalDataDetails>[],
         cd4Count: <MedicalDataDetails>[],

@@ -44,7 +44,7 @@ void main() {
       final MedicalData? medicalData =
           info.state.clientState?.medicalDataState?.medicalData;
 
-      expect(medicalData?.regimen?.category?.text, 'Pneumonia');
+      expect(medicalData?.regimen?[0]?.category?.text, 'Pneumonia');
       expect(medicalData?.bmi?[0]?.valueString, 'some-bmi-value');
     });
 
@@ -66,7 +66,7 @@ void main() {
       final MedicalData? medicalData =
           info.state.clientState?.medicalDataState?.medicalData;
 
-      expect(medicalData?.allergies?.valueString, UNKNOWN);
+      expect(medicalData?.allergies, <dynamic>[]);
       expect(info.errors.removeLast(), UserException(getErrorMessage()));
     });
 
@@ -88,7 +88,7 @@ void main() {
       final MedicalData? medicalData =
           info.state.clientState?.medicalDataState?.medicalData;
 
-      expect(medicalData?.allergies?.valueString, UNKNOWN);
+      expect(medicalData?.allergies, <dynamic>[]);
       expect(info.errors.removeLast(), UserException(getErrorMessage()));
     });
 
@@ -107,7 +107,7 @@ void main() {
       final MedicalData? medicalData =
           info.state.clientState?.medicalDataState?.medicalData;
 
-      expect(medicalData?.allergies?.valueString, UNKNOWN);
+      expect(medicalData?.allergies, <dynamic>[]);
       expect(info.errors.removeLast(), UserException(getErrorMessage()));
     });
   });

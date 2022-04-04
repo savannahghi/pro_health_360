@@ -1840,19 +1840,37 @@ Map<String, dynamic> mockMedicalDataState = <String, dynamic>{
   'medicalData': mockMedicalData,
 };
 
+Map<String, dynamic> mockMedicalDataDetails = <String, dynamic>{
+  'Category': <String, dynamic>{'Text': 'Pneumonia'},
+  'MedicationCodeableConcept': <String, dynamic>{
+    'Text': 'Amoxicillin',
+  },
+  'ClinicalStatus': <String, dynamic>{
+    'Text': 'Milk powder (cow\'s milk)',
+  },
+  'ValueString': 'some-value'
+};
+
 Map<String, dynamic> mockMedicalDataResponse = <String, dynamic>{
   'getMedicalData': mockMedicalData,
 };
 
 Map<String, dynamic> mockMedicalData = <String, dynamic>{
-  'regimen': <String, dynamic>{
-    'Category': <String, dynamic>{'Text': 'Pneumonia'},
-  },
-  'allergies': <String, dynamic>{
-    'ClinicalStatus': <String, dynamic>{
-      'Text': 'Milk powder (cow\'s milk)',
-    },
-  },
+  'regimen': <dynamic>[
+    <String, dynamic>{
+      'Category': <String, dynamic>{'Text': 'Pneumonia'},
+      'MedicationCodeableConcept': <String, dynamic>{
+        'Text': 'Amoxicillin',
+      },
+    }
+  ],
+  'allergies': <dynamic>[
+    <String, dynamic>{
+      'ClinicalStatus': <String, dynamic>{
+        'Text': 'Milk powder (cow\'s milk)',
+      },
+    }
+  ],
   'weight': <dynamic>[
     <String, dynamic>{'ValueString': 'some-value'}
   ],

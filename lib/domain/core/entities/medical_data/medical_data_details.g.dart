@@ -18,6 +18,10 @@ _$_MedicalDataDetails _$$_MedicalDataDetailsFromJson(
           ? null
           : MedicalDataCategory.fromJson(
               json['Category'] as Map<String, dynamic>),
+      medicationCodeableConcept: json['MedicationCodeableConcept'] == null
+          ? null
+          : MedicationCodeableConcept.fromJson(
+              json['MedicationCodeableConcept'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MedicalDataDetailsToJson(
@@ -26,4 +30,5 @@ Map<String, dynamic> _$$_MedicalDataDetailsToJson(
       'ValueString': instance.valueString,
       'ClinicalStatus': instance.clinicalStatus,
       'Category': instance.category,
+      'MedicationCodeableConcept': instance.medicationCodeableConcept,
     };

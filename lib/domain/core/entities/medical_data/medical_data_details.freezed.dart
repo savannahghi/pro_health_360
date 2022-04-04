@@ -28,11 +28,14 @@ class _$MedicalDataDetailsTearOff {
       @JsonKey(name: 'ClinicalStatus')
           MedicalDataClinicalStatus? clinicalStatus,
       @JsonKey(name: 'Category')
-          MedicalDataCategory? category}) {
+          MedicalDataCategory? category,
+      @JsonKey(name: 'MedicationCodeableConcept')
+          MedicationCodeableConcept? medicationCodeableConcept}) {
     return _MedicalDataDetails(
       valueString: valueString,
       clinicalStatus: clinicalStatus,
       category: category,
+      medicationCodeableConcept: medicationCodeableConcept,
     );
   }
 
@@ -53,6 +56,9 @@ mixin _$MedicalDataDetails {
       throw _privateConstructorUsedError;
   @JsonKey(name: 'Category')
   MedicalDataCategory? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MedicationCodeableConcept')
+  MedicationCodeableConcept? get medicationCodeableConcept =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,10 +77,13 @@ abstract class $MedicalDataDetailsCopyWith<$Res> {
       @JsonKey(name: 'ClinicalStatus')
           MedicalDataClinicalStatus? clinicalStatus,
       @JsonKey(name: 'Category')
-          MedicalDataCategory? category});
+          MedicalDataCategory? category,
+      @JsonKey(name: 'MedicationCodeableConcept')
+          MedicationCodeableConcept? medicationCodeableConcept});
 
   $MedicalDataClinicalStatusCopyWith<$Res>? get clinicalStatus;
   $MedicalDataCategoryCopyWith<$Res>? get category;
+  $MedicationCodeableConceptCopyWith<$Res>? get medicationCodeableConcept;
 }
 
 /// @nodoc
@@ -91,6 +100,7 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
     Object? valueString = freezed,
     Object? clinicalStatus = freezed,
     Object? category = freezed,
+    Object? medicationCodeableConcept = freezed,
   }) {
     return _then(_value.copyWith(
       valueString: valueString == freezed
@@ -105,6 +115,10 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MedicalDataCategory?,
+      medicationCodeableConcept: medicationCodeableConcept == freezed
+          ? _value.medicationCodeableConcept
+          : medicationCodeableConcept // ignore: cast_nullable_to_non_nullable
+              as MedicationCodeableConcept?,
     ));
   }
 
@@ -130,6 +144,18 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
       return _then(_value.copyWith(category: value));
     });
   }
+
+  @override
+  $MedicationCodeableConceptCopyWith<$Res>? get medicationCodeableConcept {
+    if (_value.medicationCodeableConcept == null) {
+      return null;
+    }
+
+    return $MedicationCodeableConceptCopyWith<$Res>(
+        _value.medicationCodeableConcept!, (value) {
+      return _then(_value.copyWith(medicationCodeableConcept: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -145,12 +171,16 @@ abstract class _$MedicalDataDetailsCopyWith<$Res>
       @JsonKey(name: 'ClinicalStatus')
           MedicalDataClinicalStatus? clinicalStatus,
       @JsonKey(name: 'Category')
-          MedicalDataCategory? category});
+          MedicalDataCategory? category,
+      @JsonKey(name: 'MedicationCodeableConcept')
+          MedicationCodeableConcept? medicationCodeableConcept});
 
   @override
   $MedicalDataClinicalStatusCopyWith<$Res>? get clinicalStatus;
   @override
   $MedicalDataCategoryCopyWith<$Res>? get category;
+  @override
+  $MedicationCodeableConceptCopyWith<$Res>? get medicationCodeableConcept;
 }
 
 /// @nodoc
@@ -169,6 +199,7 @@ class __$MedicalDataDetailsCopyWithImpl<$Res>
     Object? valueString = freezed,
     Object? clinicalStatus = freezed,
     Object? category = freezed,
+    Object? medicationCodeableConcept = freezed,
   }) {
     return _then(_MedicalDataDetails(
       valueString: valueString == freezed
@@ -183,6 +214,10 @@ class __$MedicalDataDetailsCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MedicalDataCategory?,
+      medicationCodeableConcept: medicationCodeableConcept == freezed
+          ? _value.medicationCodeableConcept
+          : medicationCodeableConcept // ignore: cast_nullable_to_non_nullable
+              as MedicationCodeableConcept?,
     ));
   }
 }
@@ -191,9 +226,14 @@ class __$MedicalDataDetailsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MedicalDataDetails implements _MedicalDataDetails {
   _$_MedicalDataDetails(
-      {@JsonKey(name: 'ValueString') this.valueString,
-      @JsonKey(name: 'ClinicalStatus') this.clinicalStatus,
-      @JsonKey(name: 'Category') this.category});
+      {@JsonKey(name: 'ValueString')
+          this.valueString,
+      @JsonKey(name: 'ClinicalStatus')
+          this.clinicalStatus,
+      @JsonKey(name: 'Category')
+          this.category,
+      @JsonKey(name: 'MedicationCodeableConcept')
+          this.medicationCodeableConcept});
 
   factory _$_MedicalDataDetails.fromJson(Map<String, dynamic> json) =>
       _$$_MedicalDataDetailsFromJson(json);
@@ -207,10 +247,13 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
   @override
   @JsonKey(name: 'Category')
   final MedicalDataCategory? category;
+  @override
+  @JsonKey(name: 'MedicationCodeableConcept')
+  final MedicationCodeableConcept? medicationCodeableConcept;
 
   @override
   String toString() {
-    return 'MedicalDataDetails(valueString: $valueString, clinicalStatus: $clinicalStatus, category: $category)';
+    return 'MedicalDataDetails(valueString: $valueString, clinicalStatus: $clinicalStatus, category: $category, medicationCodeableConcept: $medicationCodeableConcept)';
   }
 
   @override
@@ -222,7 +265,9 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
                 .equals(other.valueString, valueString) &&
             const DeepCollectionEquality()
                 .equals(other.clinicalStatus, clinicalStatus) &&
-            const DeepCollectionEquality().equals(other.category, category));
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(
+                other.medicationCodeableConcept, medicationCodeableConcept));
   }
 
   @override
@@ -230,7 +275,8 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
       runtimeType,
       const DeepCollectionEquality().hash(valueString),
       const DeepCollectionEquality().hash(clinicalStatus),
-      const DeepCollectionEquality().hash(category));
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(medicationCodeableConcept));
 
   @JsonKey(ignore: true)
   @override
@@ -245,12 +291,15 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
 
 abstract class _MedicalDataDetails implements MedicalDataDetails {
   factory _MedicalDataDetails(
-      {@JsonKey(name: 'ValueString')
-          String? valueString,
-      @JsonKey(name: 'ClinicalStatus')
-          MedicalDataClinicalStatus? clinicalStatus,
-      @JsonKey(name: 'Category')
-          MedicalDataCategory? category}) = _$_MedicalDataDetails;
+          {@JsonKey(name: 'ValueString')
+              String? valueString,
+          @JsonKey(name: 'ClinicalStatus')
+              MedicalDataClinicalStatus? clinicalStatus,
+          @JsonKey(name: 'Category')
+              MedicalDataCategory? category,
+          @JsonKey(name: 'MedicationCodeableConcept')
+              MedicationCodeableConcept? medicationCodeableConcept}) =
+      _$_MedicalDataDetails;
 
   factory _MedicalDataDetails.fromJson(Map<String, dynamic> json) =
       _$_MedicalDataDetails.fromJson;
@@ -264,6 +313,9 @@ abstract class _MedicalDataDetails implements MedicalDataDetails {
   @override
   @JsonKey(name: 'Category')
   MedicalDataCategory? get category;
+  @override
+  @JsonKey(name: 'MedicationCodeableConcept')
+  MedicationCodeableConcept? get medicationCodeableConcept;
   @override
   @JsonKey(ignore: true)
   _$MedicalDataDetailsCopyWith<_MedicalDataDetails> get copyWith =>

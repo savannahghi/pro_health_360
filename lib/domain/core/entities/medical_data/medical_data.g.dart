@@ -8,14 +8,16 @@ part of 'medical_data.dart';
 
 _$_MedicalData _$$_MedicalDataFromJson(Map<String, dynamic> json) =>
     _$_MedicalData(
-      regimen: json['regimen'] == null
-          ? null
-          : MedicalDataDetails.fromJson(
-              json['regimen'] as Map<String, dynamic>),
-      allergies: json['allergies'] == null
-          ? null
-          : MedicalDataDetails.fromJson(
-              json['allergies'] as Map<String, dynamic>),
+      regimen: (json['regimen'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : MedicalDataDetails.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      allergies: (json['allergies'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : MedicalDataDetails.fromJson(e as Map<String, dynamic>))
+          .toList(),
       weight: (json['weight'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null

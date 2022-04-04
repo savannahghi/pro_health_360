@@ -23,8 +23,8 @@ class _$MedicalDataTearOff {
   const _$MedicalDataTearOff();
 
   _MedicalData call(
-      {@JsonKey(name: 'regimen') MedicalDataDetails? regimen,
-      @JsonKey(name: 'allergies') MedicalDataDetails? allergies,
+      {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
+      @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
       @JsonKey(name: 'weight') List<MedicalDataDetails?>? weight,
       @JsonKey(name: 'viralLoad') List<MedicalDataDetails?>? viralLoad,
       @JsonKey(name: 'bmi') List<MedicalDataDetails?>? bmi,
@@ -50,9 +50,10 @@ const $MedicalData = _$MedicalDataTearOff();
 /// @nodoc
 mixin _$MedicalData {
   @JsonKey(name: 'regimen')
-  MedicalDataDetails? get regimen => throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get regimen => throw _privateConstructorUsedError;
   @JsonKey(name: 'allergies')
-  MedicalDataDetails? get allergies => throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get allergies =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'weight')
   List<MedicalDataDetails?>? get weight => throw _privateConstructorUsedError;
   @JsonKey(name: 'viralLoad')
@@ -75,15 +76,12 @@ abstract class $MedicalDataCopyWith<$Res> {
           MedicalData value, $Res Function(MedicalData) then) =
       _$MedicalDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'regimen') MedicalDataDetails? regimen,
-      @JsonKey(name: 'allergies') MedicalDataDetails? allergies,
+      {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
+      @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
       @JsonKey(name: 'weight') List<MedicalDataDetails?>? weight,
       @JsonKey(name: 'viralLoad') List<MedicalDataDetails?>? viralLoad,
       @JsonKey(name: 'bmi') List<MedicalDataDetails?>? bmi,
       @JsonKey(name: 'cd4Count') List<MedicalDataDetails?>? cd4Count});
-
-  $MedicalDataDetailsCopyWith<$Res>? get regimen;
-  $MedicalDataDetailsCopyWith<$Res>? get allergies;
 }
 
 /// @nodoc
@@ -107,11 +105,11 @@ class _$MedicalDataCopyWithImpl<$Res> implements $MedicalDataCopyWith<$Res> {
       regimen: regimen == freezed
           ? _value.regimen
           : regimen // ignore: cast_nullable_to_non_nullable
-              as MedicalDataDetails?,
+              as List<MedicalDataDetails?>?,
       allergies: allergies == freezed
           ? _value.allergies
           : allergies // ignore: cast_nullable_to_non_nullable
-              as MedicalDataDetails?,
+              as List<MedicalDataDetails?>?,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -130,28 +128,6 @@ class _$MedicalDataCopyWithImpl<$Res> implements $MedicalDataCopyWith<$Res> {
               as List<MedicalDataDetails?>?,
     ));
   }
-
-  @override
-  $MedicalDataDetailsCopyWith<$Res>? get regimen {
-    if (_value.regimen == null) {
-      return null;
-    }
-
-    return $MedicalDataDetailsCopyWith<$Res>(_value.regimen!, (value) {
-      return _then(_value.copyWith(regimen: value));
-    });
-  }
-
-  @override
-  $MedicalDataDetailsCopyWith<$Res>? get allergies {
-    if (_value.allergies == null) {
-      return null;
-    }
-
-    return $MedicalDataDetailsCopyWith<$Res>(_value.allergies!, (value) {
-      return _then(_value.copyWith(allergies: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -162,17 +138,12 @@ abstract class _$MedicalDataCopyWith<$Res>
       __$MedicalDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'regimen') MedicalDataDetails? regimen,
-      @JsonKey(name: 'allergies') MedicalDataDetails? allergies,
+      {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
+      @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
       @JsonKey(name: 'weight') List<MedicalDataDetails?>? weight,
       @JsonKey(name: 'viralLoad') List<MedicalDataDetails?>? viralLoad,
       @JsonKey(name: 'bmi') List<MedicalDataDetails?>? bmi,
       @JsonKey(name: 'cd4Count') List<MedicalDataDetails?>? cd4Count});
-
-  @override
-  $MedicalDataDetailsCopyWith<$Res>? get regimen;
-  @override
-  $MedicalDataDetailsCopyWith<$Res>? get allergies;
 }
 
 /// @nodoc
@@ -198,11 +169,11 @@ class __$MedicalDataCopyWithImpl<$Res> extends _$MedicalDataCopyWithImpl<$Res>
       regimen: regimen == freezed
           ? _value.regimen
           : regimen // ignore: cast_nullable_to_non_nullable
-              as MedicalDataDetails?,
+              as List<MedicalDataDetails?>?,
       allergies: allergies == freezed
           ? _value.allergies
           : allergies // ignore: cast_nullable_to_non_nullable
-              as MedicalDataDetails?,
+              as List<MedicalDataDetails?>?,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -239,10 +210,10 @@ class _$_MedicalData implements _MedicalData {
 
   @override
   @JsonKey(name: 'regimen')
-  final MedicalDataDetails? regimen;
+  final List<MedicalDataDetails?>? regimen;
   @override
   @JsonKey(name: 'allergies')
-  final MedicalDataDetails? allergies;
+  final List<MedicalDataDetails?>? allergies;
   @override
   @JsonKey(name: 'weight')
   final List<MedicalDataDetails?>? weight;
@@ -297,8 +268,8 @@ class _$_MedicalData implements _MedicalData {
 
 abstract class _MedicalData implements MedicalData {
   factory _MedicalData(
-          {@JsonKey(name: 'regimen') MedicalDataDetails? regimen,
-          @JsonKey(name: 'allergies') MedicalDataDetails? allergies,
+          {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
+          @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
           @JsonKey(name: 'weight') List<MedicalDataDetails?>? weight,
           @JsonKey(name: 'viralLoad') List<MedicalDataDetails?>? viralLoad,
           @JsonKey(name: 'bmi') List<MedicalDataDetails?>? bmi,
@@ -310,10 +281,10 @@ abstract class _MedicalData implements MedicalData {
 
   @override
   @JsonKey(name: 'regimen')
-  MedicalDataDetails? get regimen;
+  List<MedicalDataDetails?>? get regimen;
   @override
   @JsonKey(name: 'allergies')
-  MedicalDataDetails? get allergies;
+  List<MedicalDataDetails?>? get allergies;
   @override
   @JsonKey(name: 'weight')
   List<MedicalDataDetails?>? get weight;
