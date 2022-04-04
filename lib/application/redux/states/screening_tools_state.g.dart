@@ -24,6 +24,10 @@ _$_ScreeningToolsState _$$_ScreeningToolsStateFromJson(
           ? null
           : AlcoholSubstanceUseState.fromJson(
               json['alcoholSubstanceUseState'] as Map<String, dynamic>),
+      availableScreeningTools: json['availableScreeningTools'] == null
+          ? null
+          : AvailableScreeningTools.fromJson(
+              json['availableScreeningTools'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ScreeningToolsStateToJson(
@@ -33,4 +37,5 @@ Map<String, dynamic> _$$_ScreeningToolsStateToJson(
       'contraceptiveState': instance.contraceptiveState,
       'tbState': instance.tbState,
       'alcoholSubstanceUseState': instance.alcoholSubstanceUseState,
+      'availableScreeningTools': instance.availableScreeningTools,
     };
