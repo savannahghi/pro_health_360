@@ -178,9 +178,15 @@ const String zeroAppointmentsImageSvgPath =
     'assets/images/zero_appointments_icon.svg';
 
 const String zeroMedicalDataSvgPath = 'assets/images/no_medical_data.svg';
-const String verticalScrollIconSvgPath = 'assets/icons/vertical_scroll_icon.svg';
+const String verticalScrollIconSvgPath =
+    'assets/icons/vertical_scroll_icon.svg';
 
 const String appointmentCalendarIconSvgPath =
     'assets/icons/appointment_calendar_icon.svg';
 const String appointmentRescheduledIconSvgPath =
     'assets/icons/appointment_rescheduled_icon.svg';
+
+const String lifelineIcon = 'assets/images/lifeline.svg';
+const String flaskIcon = 'assets/images/flask.svg';
+const String allergiesIcon = 'assets/images/allergies.svg';
+const String capsuleIcon = 'assets/images/capsule.svg';

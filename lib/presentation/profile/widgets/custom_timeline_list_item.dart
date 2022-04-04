@@ -27,17 +27,15 @@ class CustomTimelineListItem extends StatelessWidget {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  color: item.isDiary
-                      ? AppColors.primaryColor
-                      : AppColors.listCardColor,
+                  color: AppColors.listCardColor,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: const EdgeInsets.all(12),
                 child: SvgPicture.asset(
                   item.leadingIcon,
-                  color: item.isDiary
-                      ? AppColors.whiteColor
-                      : AppColors.timelineDotColor,
+                  color: AppColors.timelineDotColor,
+                  width: 35,
+                  height: 35,
                 ),
               ),
               const SizedBox(width: 12),
@@ -55,21 +53,24 @@ class CustomTimelineListItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        if (item.time != null) ...<Widget>[
-                          const SizedBox(height: 4),
-                          Text(
-                            item.time!,
-                            style: normalSize10Text(
-                              AppColors.greyTextColor,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 4),
-                      ],
-                    ),
+                    if (item.subtitle != null) ...<Widget>[
+                      const SizedBox(height: 4),
+                      Text(
+                        item.subtitle!,
+                        style: normalSize10Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    ],
+                    if (item.time != null) ...<Widget>[
+                      const SizedBox(height: 4),
+                      Text(
+                        item.time!,
+                        style: normalSize10Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),

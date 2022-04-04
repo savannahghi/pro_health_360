@@ -872,3 +872,8 @@ String viralLoadTitle = 'Viral Load';
 String bmiTitle = 'BMI';
 String cd4CountTitle = 'CD4 count';
 String mostRecentString = 'Most recent';
+
+const String timelineErrorTitle = 'health timeline items';
+
+String getReactionText(String reactionSeverity, String reactionText) =>
+    'Causes $reactionSeverity $reactionText';

@@ -7,26 +7,26 @@ part of 'reaction.dart';
 // **************************************************************************
 
 _$_Reaction _$$_ReactionFromJson(Map<String, dynamic> json) => _$_Reaction(
-      substance: json['Substance'] == null
+      substance: json['substance'] == null
           ? null
-          : CodeableConcept.fromJson(json['Substance'] as Map<String, dynamic>),
-      manifestation: (json['Manifestation'] as List<dynamic>?)
+          : CodeableConcept.fromJson(json['substance'] as Map<String, dynamic>),
+      manifestation: (json['manifestation'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null
               : CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      description: json['Description'] as String?,
+      description: json['description'] as String?,
       severity: $enumDecodeNullable(
-          _$AllergyIntoleranceSeverityEnumMap, json['Severity'],
+          _$AllergyIntoleranceSeverityEnumMap, json['severity'],
           unknownValue: AllergyIntoleranceSeverity.moderate),
     );
 
 Map<String, dynamic> _$$_ReactionToJson(_$_Reaction instance) =>
     <String, dynamic>{
-      'Substance': instance.substance,
-      'Manifestation': instance.manifestation,
-      'Description': instance.description,
-      'Severity': _$AllergyIntoleranceSeverityEnumMap[instance.severity],
+      'substance': instance.substance,
+      'manifestation': instance.manifestation,
+      'description': instance.description,
+      'severity': _$AllergyIntoleranceSeverityEnumMap[instance.severity],
     };
 
 const _$AllergyIntoleranceSeverityEnumMap = {

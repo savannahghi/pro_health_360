@@ -194,9 +194,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                   itemCount: items.length,
                 );
               } else {
-                return const GenericEmptyData(
-                  item: 'health timeline items',
-                );
+                return const GenericEmptyData(item: timelineErrorTitle);
               }
             }
           },
@@ -210,7 +208,9 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
     for (final FhirResource resource in resource) {
       String? title = UNKNOWN;
+      String? subtitle;
       String? time = '';
+      String leadingIcon = syringeIcon;
 
       resource.when(
         observation: (
@@ -224,6 +224,18 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           String? value,
         ) {
           title = code?.text;
+
+          const String temperatureCodeText = 'Temperature (c)';
+          const String laboratoryCodeText = 'Laboratory';
+
+          if (code?.text?.contains(temperatureCodeText) ?? false) {
+            subtitle = value;
+            leadingIcon = lifelineIcon;
+          } else if (category?.first.text?.contains(laboratoryCodeText) ??
+              false) {
+            subtitle = status?.name;
+            leadingIcon = flaskIcon;
+          }
           time = date;
         },
         allergyIntolerance: (
@@ -238,7 +250,18 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           AllergyIntoleranceType? type,
           CodeableConcept? verificationStatus,
         ) {
-          title = capitalizeFirst(describeEnum(type!));
+          title = clinicalStatus?.text;
+          final String? reactionText =
+              reaction?.first.manifestation?.first?.text?.toLowerCase();
+          final String reactionSeverity = describeEnum(
+            reaction?.first.severity ?? AllergyIntoleranceSeverity.mild,
+          );
+
+          if (reactionText != null) {
+            subtitle = getReactionText(reactionSeverity, reactionText);
+          }
+
+          leadingIcon = allergiesIcon;
           time = recordedDate;
         },
         medicationStatement: (
@@ -252,12 +275,16 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           String? timelineDate,
         ) {
           title = medication?.text;
+
+          leadingIcon = capsuleIcon;
+          time = date;
         },
       );
 
       final TimelineItem timelineItem = TimelineItem(
-        leadingIcon: syringeIcon,
+        leadingIcon: leadingIcon,
         title: title ?? UNKNOWN,
+        subtitle: subtitle,
         time: time,
       );
 

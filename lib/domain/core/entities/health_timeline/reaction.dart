@@ -24,17 +24,17 @@ class Reaction with _$Reaction {
     ///  AllergyIntolerance.reaction.substance falls within the semantic scope
     ///  of AllergyIntolerance.code, then the receiving system should ignore
     ///  AllergyIntolerance.reaction.substance.
-    @JsonKey(name: 'Substance') CodeableConcept? substance,
+    @JsonKey(name: 'substance') CodeableConcept? substance,
 
     /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
-    @JsonKey(name: 'Manifestation') List<CodeableConcept?>? manifestation,
+    @JsonKey(name: 'manifestation') List<CodeableConcept?>? manifestation,
 
     /// Text description about the reaction as a whole, including details of the manifestation if required.
-    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'description') String? description,
 
     /// Clinical assessment of the severity of the reaction event as a whole,
     ///  potentially considering multiple different manifestations.
-    @JsonKey(name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+    @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
         AllergyIntoleranceSeverity? severity,
   }) = _Reaction;
 

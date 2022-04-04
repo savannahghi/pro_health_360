@@ -781,10 +781,6 @@ void pinInputTimerStatus({required BuildContext context}) {
   );
 }
 
-String capitalizeFirst(String input) {
-  return '${input[0].toUpperCase()}${input.substring(1).toLowerCase()}';
-}
-
 const int startTimer = 300;
 
 void showTextSnackbar(

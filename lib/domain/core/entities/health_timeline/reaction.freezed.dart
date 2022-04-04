@@ -23,13 +23,13 @@ class _$ReactionTearOff {
   const _$ReactionTearOff();
 
   _Reaction call(
-      {@JsonKey(name: 'Substance')
+      {@JsonKey(name: 'substance')
           CodeableConcept? substance,
-      @JsonKey(name: 'Manifestation')
+      @JsonKey(name: 'manifestation')
           List<CodeableConcept?>? manifestation,
-      @JsonKey(name: 'Description')
+      @JsonKey(name: 'description')
           String? description,
-      @JsonKey(name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
           AllergyIntoleranceSeverity? severity}) {
     return _Reaction(
       substance: substance,
@@ -62,22 +62,22 @@ mixin _$Reaction {
   ///  AllergyIntolerance.reaction.substance falls within the semantic scope
   ///  of AllergyIntolerance.code, then the receiving system should ignore
   ///  AllergyIntolerance.reaction.substance.
-  @JsonKey(name: 'Substance')
+  @JsonKey(name: 'substance')
   CodeableConcept? get substance => throw _privateConstructorUsedError;
 
   /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
-  @JsonKey(name: 'Manifestation')
+  @JsonKey(name: 'manifestation')
   List<CodeableConcept?>? get manifestation =>
       throw _privateConstructorUsedError;
 
   /// Text description about the reaction as a whole, including details of the manifestation if required.
-  @JsonKey(name: 'Description')
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
 
   /// Clinical assessment of the severity of the reaction event as a whole,
   ///  potentially considering multiple different manifestations.
   @JsonKey(
-      name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
   AllergyIntoleranceSeverity? get severity =>
       throw _privateConstructorUsedError;
 
@@ -92,13 +92,13 @@ abstract class $ReactionCopyWith<$Res> {
   factory $ReactionCopyWith(Reaction value, $Res Function(Reaction) then) =
       _$ReactionCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'Substance')
+      {@JsonKey(name: 'substance')
           CodeableConcept? substance,
-      @JsonKey(name: 'Manifestation')
+      @JsonKey(name: 'manifestation')
           List<CodeableConcept?>? manifestation,
-      @JsonKey(name: 'Description')
+      @JsonKey(name: 'description')
           String? description,
-      @JsonKey(name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
           AllergyIntoleranceSeverity? severity});
 
   $CodeableConceptCopyWith<$Res>? get substance;
@@ -157,13 +157,13 @@ abstract class _$ReactionCopyWith<$Res> implements $ReactionCopyWith<$Res> {
       __$ReactionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'Substance')
+      {@JsonKey(name: 'substance')
           CodeableConcept? substance,
-      @JsonKey(name: 'Manifestation')
+      @JsonKey(name: 'manifestation')
           List<CodeableConcept?>? manifestation,
-      @JsonKey(name: 'Description')
+      @JsonKey(name: 'description')
           String? description,
-      @JsonKey(name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
           AllergyIntoleranceSeverity? severity});
 
   @override
@@ -211,13 +211,13 @@ class __$ReactionCopyWithImpl<$Res> extends _$ReactionCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Reaction implements _Reaction {
   _$_Reaction(
-      {@JsonKey(name: 'Substance')
+      {@JsonKey(name: 'substance')
           this.substance,
-      @JsonKey(name: 'Manifestation')
+      @JsonKey(name: 'manifestation')
           this.manifestation,
-      @JsonKey(name: 'Description')
+      @JsonKey(name: 'description')
           this.description,
-      @JsonKey(name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
           this.severity});
 
   factory _$_Reaction.fromJson(Map<String, dynamic> json) =>
@@ -238,24 +238,24 @@ class _$_Reaction implements _Reaction {
   ///  AllergyIntolerance.reaction.substance falls within the semantic scope
   ///  of AllergyIntolerance.code, then the receiving system should ignore
   ///  AllergyIntolerance.reaction.substance.
-  @JsonKey(name: 'Substance')
+  @JsonKey(name: 'substance')
   final CodeableConcept? substance;
   @override
 
   /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
-  @JsonKey(name: 'Manifestation')
+  @JsonKey(name: 'manifestation')
   final List<CodeableConcept?>? manifestation;
   @override
 
   /// Text description about the reaction as a whole, including details of the manifestation if required.
-  @JsonKey(name: 'Description')
+  @JsonKey(name: 'description')
   final String? description;
   @override
 
   /// Clinical assessment of the severity of the reaction event as a whole,
   ///  potentially considering multiple different manifestations.
   @JsonKey(
-      name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
   final AllergyIntoleranceSeverity? severity;
 
   @override
@@ -297,13 +297,13 @@ class _$_Reaction implements _Reaction {
 
 abstract class _Reaction implements Reaction {
   factory _Reaction(
-      {@JsonKey(name: 'Substance')
+      {@JsonKey(name: 'substance')
           CodeableConcept? substance,
-      @JsonKey(name: 'Manifestation')
+      @JsonKey(name: 'manifestation')
           List<CodeableConcept?>? manifestation,
-      @JsonKey(name: 'Description')
+      @JsonKey(name: 'description')
           String? description,
-      @JsonKey(name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
           AllergyIntoleranceSeverity? severity}) = _$_Reaction;
 
   factory _Reaction.fromJson(Map<String, dynamic> json) = _$_Reaction.fromJson;
@@ -323,24 +323,24 @@ abstract class _Reaction implements Reaction {
   ///  AllergyIntolerance.reaction.substance falls within the semantic scope
   ///  of AllergyIntolerance.code, then the receiving system should ignore
   ///  AllergyIntolerance.reaction.substance.
-  @JsonKey(name: 'Substance')
+  @JsonKey(name: 'substance')
   CodeableConcept? get substance;
   @override
 
   /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
-  @JsonKey(name: 'Manifestation')
+  @JsonKey(name: 'manifestation')
   List<CodeableConcept?>? get manifestation;
   @override
 
   /// Text description about the reaction as a whole, including details of the manifestation if required.
-  @JsonKey(name: 'Description')
+  @JsonKey(name: 'description')
   String? get description;
   @override
 
   /// Clinical assessment of the severity of the reaction event as a whole,
   ///  potentially considering multiple different manifestations.
   @JsonKey(
-      name: 'Severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
+      name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
   AllergyIntoleranceSeverity? get severity;
   @override
   @JsonKey(ignore: true)
