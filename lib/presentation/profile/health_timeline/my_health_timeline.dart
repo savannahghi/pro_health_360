@@ -209,7 +209,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
     for (final FhirResource resource in resource) {
       String? title = UNKNOWN;
       String? subtitle;
-      String? time = '';
+      String? time;
       String leadingIcon = syringeIcon;
 
       resource.when(
@@ -236,7 +236,8 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
             subtitle = status?.name;
             leadingIcon = flaskIcon;
           }
-          time = date;
+
+          if (date != null) time = date;
         },
         allergyIntolerance: (
           List<AllergyIntoleranceCategory>? category,
@@ -262,7 +263,8 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           }
 
           leadingIcon = allergiesIcon;
-          time = recordedDate;
+
+          if (recordedDate != null) time = recordedDate;
         },
         medicationStatement: (
           CodeableConcept? category,
@@ -277,7 +279,8 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           title = medication?.text;
 
           leadingIcon = capsuleIcon;
-          time = date;
+
+          if (date != null) time = date;
         },
       );
 

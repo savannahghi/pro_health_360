@@ -2,6 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
@@ -64,11 +65,10 @@ class CustomTimelineListItem extends StatelessWidget {
                     ],
                     if (item.time != null) ...<Widget>[
                       const SizedBox(height: 4),
-                      Text(
-                        item.time!,
-                        style: normalSize10Text(
-                          AppColors.greyTextColor,
-                        ),
+                      humanizeDate(
+                        dateTextStyle:
+                            normalSize10Text(AppColors.greyTextColor),
+                        loadedDate: item.time!,
                       ),
                     ],
                   ],
