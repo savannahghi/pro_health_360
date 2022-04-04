@@ -28,7 +28,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Widget date = humanizeDate(
-      dateTextStyle: normalSize12Text(),
+      dateTextStyle: normalSize12Text(AppColors.greyTextColor),
       loadedDate: diaryEntry.createdAt!,
       showTime: true,
     );
@@ -44,10 +44,13 @@ class HealthDiaryEntryWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: isDialog ? moodItemData.color : Colors.transparent,
+          ),
         ),
         padding: isDialog
-            ? const EdgeInsets.symmetric(vertical: 6)
-            : const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+            ? const EdgeInsets.symmetric(vertical: 6, horizontal: 10)
+            : const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           children: <Widget>[
             Container(
@@ -58,7 +61,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
               ),
               child: SvgPicture.asset(
                 moodItemData.svgIconUrl,
-                height: isDialog ? 24 : 32,
+                height: isDialog ? 32 : 40,
                 color: moodItemData.color,
               ),
             ),
@@ -66,6 +69,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   date,
                   verySmallVerticalSizedBox,
@@ -76,9 +80,9 @@ class HealthDiaryEntryWidget extends StatelessWidget {
                   ),
                   verySmallVerticalSizedBox,
                   Text(
-                    diaryEntry.note ?? '',
+                    diaryEntry.note?.trim() ?? '',
                     style: normalSize12Text(
-                      AppColors.secondaryColor.withOpacity(0.6),
+                      AppColors.blackColor,
                     ),
                   ),
                 ],

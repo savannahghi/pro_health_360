@@ -774,7 +774,7 @@ const String nothingYetText = 'nothing yet';
 const String shareDiaryEntry = 'Share diary entry';
 const String shareDiaryEntryTitle =
     'Please confirm that you want to share your diary entry below with your '
-    'facility';
+    'clinician';
 
 // resume with pin
 String welcomeBackUserText(String? user) => 'Welcome back, ${user ?? ''}';
