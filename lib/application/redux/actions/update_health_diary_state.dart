@@ -25,8 +25,8 @@ class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
 
   @override
   Future<AppState> reduce() async {
-    final HealthDiaryState? diaryState =
-        state.clientState?.healthDiaryState?.copyWith.call(
+    final HealthDiaryState diaryState =
+       HealthDiaryState(
       entries: diaryEntries ?? state.clientState?.healthDiaryState?.entries,
       errorFetchingDiaryEntries: errorFetchingDiaryEntries ??
           state.clientState?.healthDiaryState?.errorFetchingDiaryEntries,

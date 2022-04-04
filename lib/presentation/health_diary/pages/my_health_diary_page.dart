@@ -107,6 +107,7 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                         if (currentEntry != null) {
                           return HealthDiaryEntryWidget(
                             diaryEntry: currentEntry,
+                            index: index,
                           );
                         } else {
                           return const SizedBox();

@@ -15,13 +15,15 @@ import 'package:shared_themes/spaces.dart';
 
 class HealthDiaryEntryWidget extends StatelessWidget {
   const HealthDiaryEntryWidget({
-    Key? key,
     required this.diaryEntry,
     this.isDialog = false,
-  }) : super(key: key);
+    this.index,
+  });
 
   final HealthDiaryEntry diaryEntry;
   final bool isDialog;
+  // this index is used to determine if the entry is the first one and hence whether to display share icon
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,8 @@ class HealthDiaryEntryWidget extends StatelessWidget {
                 ],
               ),
             ),
-            if (!isDialog)
+            // share icon
+            if (!isDialog && index == 0)
               GestureDetector(
                 onTap: () {
                   showDialog(

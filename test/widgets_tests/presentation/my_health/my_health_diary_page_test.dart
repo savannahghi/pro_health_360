@@ -68,7 +68,7 @@ void main() {
       expect(find.byType(CustomAppBar), findsOneWidget);
       expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
       expect(find.text('I am healthy'), findsOneWidget);
-      expect(find.byKey(shareDiaryEntryIconButtonKey), findsNWidgets(2));
+      expect(find.byKey(shareDiaryEntryIconButtonKey), findsOneWidget);
 
       await tester.tap(find.byKey(shareDiaryEntryIconButtonKey).first);
       await tester.pumpAndSettle();
