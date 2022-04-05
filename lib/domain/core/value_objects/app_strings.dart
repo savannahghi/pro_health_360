@@ -877,3 +877,6 @@ const String timelineErrorTitle = 'health timeline items';
 
 String getReactionText(String reactionSeverity, String reactionText) =>
     'Causes $reactionSeverity $reactionText';
+
+const String pickDateString = 'Pick a date';
+const String dateRequiredString = 'Date is required';

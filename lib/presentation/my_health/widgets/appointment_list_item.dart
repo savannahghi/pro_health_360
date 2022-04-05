@@ -12,7 +12,6 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:unicons/unicons.dart';
 
 /// [AppointmentListItem] Displays the notifications with Icons and a short description
 class AppointmentListItem extends StatelessWidget {
@@ -31,7 +30,6 @@ class AppointmentListItem extends StatelessWidget {
     final Widget date = humanizeDate(
       dateTextStyle: normalSize12Text(AppColors.greyTextColor),
       loadedDate: appointment.date!,
-      showTime: true,
     );
 
     return Row(
@@ -60,7 +58,7 @@ class AppointmentListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                appointment.type ?? '',
+                appointment.reason ?? '',
                 style: normalSize15Text(AppColors.secondaryColor),
               ),
               verySmallVerticalSizedBox,
@@ -72,10 +70,6 @@ class AppointmentListItem extends StatelessWidget {
               else
                 date,
               smallVerticalSizedBox,
-              if (appointmentListTye == AppointmentListTye.Past)
-                AppointmentStatusIndicator(
-                  appointmentStatus: appointment.status!,
-                ),
               if (appointmentListTye == AppointmentListTye.Upcoming &&
                   !appointment.pendingReschedule)
                 MyAfyaHubPrimaryButton(
@@ -88,30 +82,6 @@ class AppointmentListItem extends StatelessWidget {
             ],
           ),
         )
-      ],
-    );
-  }
-}
-
-class AppointmentStatusIndicator extends StatelessWidget {
-  const AppointmentStatusIndicator({Key? key, required this.appointmentStatus})
-      : super(key: key);
-  final AppointmentStatus appointmentStatus;
-
-  @override
-  Widget build(BuildContext context) {
-    // A function that determines the icons and the text
-    return Row(
-      children: <Widget>[
-        const Icon(
-          UniconsSolid.check_circle,
-          color: AppColors.greenHappyColor,
-        ),
-        verySmallHorizontalSizedBox,
-        Text(
-          'Completed',
-          style: normalSize13Text(AppColors.greenHappyColor),
-        ),
       ],
     );
   }

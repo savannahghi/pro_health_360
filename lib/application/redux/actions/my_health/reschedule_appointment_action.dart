@@ -13,12 +13,16 @@ class RescheduleAppointmentAction extends ReduxAction<AppState> {
   final String appointmentId;
   final VoidCallback? onSuccess;
   final VoidCallback? onError;
+  final VoidCallback? onDone;
+  final String? date;
 
   RescheduleAppointmentAction({
+    this.date,
     required this.client,
     required this.appointmentId,
     this.onSuccess,
     this.onError,
+    this.onDone,
   });
 
   @override
@@ -39,6 +43,7 @@ class RescheduleAppointmentAction extends ReduxAction<AppState> {
         '${rescheduleAppointmentFlag}_$appointmentId',
       ),
     );
+    onDone?.call();
     super.after();
   }
 
@@ -46,6 +51,7 @@ class RescheduleAppointmentAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'appointmentID': appointmentId,
+      'date': date,
     };
 
     final Response response = await client.query(

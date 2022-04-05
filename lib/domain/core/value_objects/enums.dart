@@ -114,20 +114,6 @@ enum ContactType { PHONE, EMAIL, UNKNOWN }
 ///  changed at the end of each workflow
 enum CurrentOnboardingStage { Login, ResetPIN, PINExpired, PINUpdate }
 
-// The various states that an appointment can take
-enum AppointmentStatus {
-  SCHEDULED,
-  RESCHEDULED,
-  WAITING,
-  MISSED,
-  COMPLETED,
-  INCONSULTATION,
-  WALKIN,
-  CANCELLED,
-  NEEDSRESCHEDULE,
-  UNKNOWN,
-}
-
 enum AppointmentListTye { Past, Upcoming }
 
 enum ScreeningToolsType {

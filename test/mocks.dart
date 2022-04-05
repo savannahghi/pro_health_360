@@ -1002,7 +1002,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                     'date': '2022-01-04',
                     'start': 'test',
                     'end': 'test',
-                    'hasRescheduledAppointment': false
+                    'HasRescheduledAppointment': false
                   },
                   <String, dynamic>{
                     'ID': '56789',
@@ -1012,7 +1012,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
                     'date': '2022-01-04',
                     'start': 'test',
                     'end': 'test',
-                    'hasRescheduledAppointment': true
+                    'HasRescheduledAppointment': true
                   },
                 ],
               }

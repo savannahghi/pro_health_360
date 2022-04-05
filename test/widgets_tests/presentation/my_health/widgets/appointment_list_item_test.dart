@@ -28,12 +28,8 @@ void main() {
         widget: AppointmentListItem(
           appointment: Appointment(
             id: '1234',
-            type: 'Scheduled clinic visit',
             reason: 'No reason at all',
             date: '2022-03-13',
-            start: '0000-01-01T11:07:56Z',
-            end: '0000-01-01T12:07:56Z',
-            status: AppointmentStatus.WAITING,
             pendingReschedule: false,
           ),
           appointmentListTye: AppointmentListTye.Upcoming,
@@ -41,7 +37,7 @@ void main() {
       );
 
       expect(find.byType(AppointmentListItem), findsOneWidget);
-      expect(find.text('Scheduled clinic visit'), findsOneWidget);
+      expect(find.text('No reason at all'), findsOneWidget);
     });
   });
 }

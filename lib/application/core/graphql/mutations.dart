@@ -178,9 +178,10 @@ mutation answerScreeningToolQuestion($screeningToolResponses: [ScreeningToolQues
 ''';
 
 const String rescheduleAppointmentMutation = r'''
-mutation rescheduleAppointment($appointmentID: String!) {
+mutation rescheduleAppointment($appointmentID: String!, $date: Date!) {
   rescheduleAppointment(
     appointmentID: $appointmentID,
+    date: $date,
   )
 }
 ''';

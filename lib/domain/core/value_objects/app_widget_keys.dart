@@ -313,3 +313,4 @@ const Key tuberculosisKey = Key('tuberculosis_key');
 const Key alcoholUseKey = Key('alcohol_use_key');
 const Key screeningToolsCarouselListViewKey =
     Key('screening_tools_carousel_list_view_key');
+const Key rescheduleDateKey = Key('reschedule_date_key');
