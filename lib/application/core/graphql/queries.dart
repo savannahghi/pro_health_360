@@ -153,6 +153,7 @@ query getHealthDiaryQuote {
 const String getHealthDiaryEntriesQuery = r'''
 query getHealthDiaryEntries($clientID: String!){
   getClientHealthDiaryEntries(clientID: $clientID){
+    id
     active
     mood
     note

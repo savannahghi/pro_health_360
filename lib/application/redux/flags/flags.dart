@@ -107,3 +107,7 @@ const String fetchHealthTimelineFlag = 'fetch_health_timeline';
 
 // medical data
 const String fetchMedicalDataFlag = 'fetch_health_timeline';
+
+//share diary entry
+const String shareDiaryEntryFlag = 'share_diary_entry_flag';
+

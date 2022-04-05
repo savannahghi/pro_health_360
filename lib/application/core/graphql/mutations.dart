@@ -185,3 +185,8 @@ mutation rescheduleAppointment($appointmentID: String!, $date: Date!) {
   )
 }
 ''';
+const String shareHealthDiaryEntryMutation = r'''
+mutation shareHealthDiaryEntry($healthDiaryEntryID: String!){
+  shareHealthDiaryEntry(healthDiaryEntryID: $healthDiaryEntryID)
+}
+''';

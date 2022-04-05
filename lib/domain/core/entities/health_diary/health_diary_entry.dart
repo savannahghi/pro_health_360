@@ -20,6 +20,7 @@ class HealthDiaryEdge with _$HealthDiaryEdge {
 @freezed
 class HealthDiaryEntry with _$HealthDiaryEntry {
   factory HealthDiaryEntry({
+    @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'mood') String? mood,
     @JsonKey(name: 'note') String? note,
     @JsonKey(name: 'entryType') String? entryType,
@@ -36,5 +37,6 @@ class HealthDiaryEntry with _$HealthDiaryEntry {
         entryType: UNKNOWN,
         createdAt: UNKNOWN,
         active: false,
+        id: UNKNOWN,
       );
 }
