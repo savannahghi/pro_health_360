@@ -50,13 +50,20 @@ class GroupMemberItem extends StatelessWidget {
           if (isModerator)
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: AppColors.lightGrey),
+                color: AppColors.greenHappyColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  color: AppColors.greenHappyColor.withOpacity(0.1),
+                ),
               ),
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: const Text(
                 moderatorText,
-                style: TextStyle(fontSize: 11, color: AppColors.lightGrey),
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                  color: AppColors.greenHappyColor,
+                ),
               ),
             ),
         ],
