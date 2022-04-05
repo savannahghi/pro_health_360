@@ -52,6 +52,8 @@ const String requestResetPinText = 'request_reset_pin_flag';
 // Congratulations page
 const String setNickNameFlag = 'set_nickname_flag';
 
+const String completeOnboarding = 'complete_onboarding';
+
 const String editInformationFlag = 'edit_information_flag';
 
 //Content Details Page

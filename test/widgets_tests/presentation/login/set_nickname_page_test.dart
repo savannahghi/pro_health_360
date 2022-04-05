@@ -41,6 +41,7 @@ void main() {
         json.encode(<String, dynamic>{
           'data': <String, dynamic>{
             'setNickName': true,
+            'completeOnboardingTour': true,
             'fetchRecentContent': contentMock,
             'getContent': <String, dynamic>{
               'items': <dynamic>[
@@ -100,6 +101,7 @@ void main() {
         store.dispatch(
           UpdateContentStateAction(contentItems: <Content>[mockContent]),
         );
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -108,9 +110,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        final Finder nameInputField = find.byKey(
-          nameInputKey,
-        );
+        final Finder nameInputField = find.byKey(nameInputKey);
         final Finder continueButton = find.byKey(continueKey);
 
         expect(continueButton, findsOneWidget);
@@ -270,6 +270,63 @@ void main() {
         await tester.pump();
 
         expect(find.byType(PlatformLoader), findsOneWidget);
+      });
+    });
+
+    testWidgets('shows snackbar if error occurred while setting nickname',
+        (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(800, 1200);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'setNickName': false,
+              'completeOnboardingTour': true,
+              'fetchRecentContent': contentMock,
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[
+                  contentMock.first,
+                  contentMock.first,
+                ]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+
+      mockNetworkImages(() async {
+        store.dispatch(
+          UpdateContentStateAction(contentItems: <Content>[mockContent]),
+        );
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: client,
+          widget: SetNickNamePage(connectivityStatus: connectivityStatus),
+        );
+        await tester.pumpAndSettle();
+
+        final Finder nameInputField = find.byKey(nameInputKey);
+        final Finder continueButton = find.byKey(continueKey);
+
+        expect(continueButton, findsOneWidget);
+        expect(nameInputField, findsOneWidget);
+
+        await tester.showKeyboard(nameInputField);
+        await tester.enterText(nameInputField, 'test');
+
+        await tester.ensureVisible(continueButton);
+        await tester.pumpAndSettle();
+        await tester.tap(continueButton);
+        await tester.pumpAndSettle();
+
+        expect(find.text(errorSettingNicknameText), findsOneWidget);
       });
     });
   });

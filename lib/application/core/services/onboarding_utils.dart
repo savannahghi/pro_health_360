@@ -1,17 +1,16 @@
-// Dart imports:
-import 'dart:async';
-
 // Package imports:
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -157,19 +156,26 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
   }
 }
 
-Future<void> setUserNickname({
+void setUserNickname({
   required BuildContext context,
   required String nickName,
-}) async {
-  // this is the Redux Action that store the nickname user enters
+}) {
+  // this is the Redux Action that handles set nickname for an existing user
   StoreProvider.dispatch<AppState>(
     context,
-    UpdateUserProfileAction(nickName: nickName),
-  );
-
-  // this is the Redux Action that handles set nickname for an existing user
-  await StoreProvider.dispatch<AppState>(
-    context,
-    SetNicknameAction(context: context, flag: setNickNameFlag),
+    SetNicknameAction(
+      nickname: nickName,
+      client: AppWrapperBase.of(context)!.graphQLClient,
+      onSuccess: () {
+        showTextSnackbar(
+          ScaffoldMessenger.of(context),
+          content: nicknameSuccessString,
+        );
+      },
+      onError: (String error) {
+        showTextSnackbar(ScaffoldMessenger.of(context), content: error);
+      },
+      flag: setNickNameFlag,
+    ),
   );
 }
