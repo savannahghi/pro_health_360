@@ -880,3 +880,11 @@ String getReactionText(String reactionSeverity, String reactionText) =>
 
 const String pickDateString = 'Pick a date';
 const String dateRequiredString = 'Date is required';
+const String diaryEntrySharedSuccessfully =
+    'Diary entry shared with clinician successfully';
+const String diaryEntryNotShared =
+    'Sorry, Diary entry not shared due to an error';
+
+const String errorSettingNicknameText = 'Error setting nickname';
+const String onboardingErrorText =
+    'Onboarding tour not completed. Something went wrong';

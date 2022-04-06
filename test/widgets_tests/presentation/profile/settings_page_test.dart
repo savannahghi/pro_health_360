@@ -25,6 +25,7 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
     });
+
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -62,6 +63,7 @@ void main() {
             'data': <String, dynamic>{
               'setNickName': true,
               'fetchRecentContent': contentMock,
+              'completeOnboardingTour': true,
             }
           }),
           201,
@@ -107,7 +109,7 @@ void main() {
               }
             ]
           }),
-          401,
+          200,
         ),
       );
 

@@ -1,12 +1,12 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
@@ -58,41 +58,35 @@ class SettingsPage extends StatelessWidget {
                               editInformationItem: nickNameEditInfo(
                                 vm.clientState?.user?.username ?? UNKNOWN,
                               ),
-                              submitFunction: (
-                                EditInformationItem editInformationItem,
-                              ) async {
-                                final String initialNickName =
-                                    vm.clientState?.user?.username ?? UNKNOWN;
+                              submitFunction:
+                                  (EditInformationItem editInformationItem) {
+                                final String newNickname = editInformationItem
+                                    .editInformationInputItem[0]
+                                    .inputController
+                                    .text;
 
-                                ///Set username/NickName to the new nickname
                                 StoreProvider.dispatch<AppState>(
                                   context,
-                                  UpdateUserProfileAction(
-                                    nickName: editInformationItem
-                                        .editInformationInputItem[0]
-                                        .inputController
-                                        .text,
+                                  SetNicknameAction(
+                                    nickname: newNickname,
+                                    client: AppWrapperBase.of(context)!
+                                        .graphQLClient,
+                                    flag: editInformationFlag,
+                                    shouldNavigate: false,
+                                    onSuccess: () {
+                                      showTextSnackbar(
+                                        ScaffoldMessenger.of(context),
+                                        content: nicknameSuccessString,
+                                      );
+                                    },
+                                    onError: (String error) {
+                                      showTextSnackbar(
+                                        ScaffoldMessenger.of(context),
+                                        content: error,
+                                      );
+                                    },
                                   ),
                                 );
-
-                                try {
-                                  await StoreProvider.dispatch<AppState>(
-                                    context,
-                                    SetNicknameAction(
-                                      context: context,
-                                      flag: editInformationFlag,
-                                      shouldNavigate: false,
-                                    ),
-                                  );
-                                } catch (error) {
-                                  /// Incase an error occurs it resets back the username/nickname
-                                  StoreProvider.dispatch<AppState>(
-                                    context,
-                                    UpdateUserProfileAction(
-                                      nickName: initialNickName,
-                                    ),
-                                  );
-                                }
 
                                 ///Will return to the previous page after submitting
                                 Navigator.pop(context);

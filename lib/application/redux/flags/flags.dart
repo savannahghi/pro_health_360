@@ -52,6 +52,8 @@ const String requestResetPinText = 'request_reset_pin_flag';
 // Congratulations page
 const String setNickNameFlag = 'set_nickname_flag';
 
+const String completeOnboarding = 'complete_onboarding';
+
 const String editInformationFlag = 'edit_information_flag';
 
 //Content Details Page
@@ -107,3 +109,7 @@ const String fetchHealthTimelineFlag = 'fetch_health_timeline';
 
 // medical data
 const String fetchMedicalDataFlag = 'fetch_health_timeline';
+
+//share diary entry
+const String shareDiaryEntryFlag = 'share_diary_entry_flag';
+

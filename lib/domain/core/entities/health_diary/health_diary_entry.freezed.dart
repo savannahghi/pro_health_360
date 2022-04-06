@@ -184,12 +184,14 @@ class _$HealthDiaryEntryTearOff {
   const _$HealthDiaryEntryTearOff();
 
   _HealthDiaryEntry call(
-      {@JsonKey(name: 'mood') String? mood,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'mood') String? mood,
       @JsonKey(name: 'note') String? note,
       @JsonKey(name: 'entryType') String? entryType,
       @JsonKey(name: 'createdAt') String? createdAt,
       @JsonKey(name: 'active', defaultValue: false) bool? active}) {
     return _HealthDiaryEntry(
+      id: id,
       mood: mood,
       note: note,
       entryType: entryType,
@@ -208,6 +210,8 @@ const $HealthDiaryEntry = _$HealthDiaryEntryTearOff();
 
 /// @nodoc
 mixin _$HealthDiaryEntry {
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'mood')
   String? get mood => throw _privateConstructorUsedError;
   @JsonKey(name: 'note')
@@ -231,7 +235,8 @@ abstract class $HealthDiaryEntryCopyWith<$Res> {
           HealthDiaryEntry value, $Res Function(HealthDiaryEntry) then) =
       _$HealthDiaryEntryCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'mood') String? mood,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'mood') String? mood,
       @JsonKey(name: 'note') String? note,
       @JsonKey(name: 'entryType') String? entryType,
       @JsonKey(name: 'createdAt') String? createdAt,
@@ -249,6 +254,7 @@ class _$HealthDiaryEntryCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? mood = freezed,
     Object? note = freezed,
     Object? entryType = freezed,
@@ -256,6 +262,10 @@ class _$HealthDiaryEntryCopyWithImpl<$Res>
     Object? active = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       mood: mood == freezed
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
@@ -288,7 +298,8 @@ abstract class _$HealthDiaryEntryCopyWith<$Res>
       __$HealthDiaryEntryCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'mood') String? mood,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'mood') String? mood,
       @JsonKey(name: 'note') String? note,
       @JsonKey(name: 'entryType') String? entryType,
       @JsonKey(name: 'createdAt') String? createdAt,
@@ -308,6 +319,7 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? mood = freezed,
     Object? note = freezed,
     Object? entryType = freezed,
@@ -315,6 +327,10 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
     Object? active = freezed,
   }) {
     return _then(_HealthDiaryEntry(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       mood: mood == freezed
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
@@ -343,7 +359,8 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   _$_HealthDiaryEntry(
-      {@JsonKey(name: 'mood') this.mood,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'mood') this.mood,
       @JsonKey(name: 'note') this.note,
       @JsonKey(name: 'entryType') this.entryType,
       @JsonKey(name: 'createdAt') this.createdAt,
@@ -352,6 +369,9 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   factory _$_HealthDiaryEntry.fromJson(Map<String, dynamic> json) =>
       _$$_HealthDiaryEntryFromJson(json);
 
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
   @override
   @JsonKey(name: 'mood')
   final String? mood;
@@ -370,7 +390,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
   @override
   String toString() {
-    return 'HealthDiaryEntry(mood: $mood, note: $note, entryType: $entryType, createdAt: $createdAt, active: $active)';
+    return 'HealthDiaryEntry(id: $id, mood: $mood, note: $note, entryType: $entryType, createdAt: $createdAt, active: $active)';
   }
 
   @override
@@ -378,6 +398,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _HealthDiaryEntry &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.mood, mood) &&
             const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.entryType, entryType) &&
@@ -388,6 +409,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(mood),
       const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(entryType),
@@ -407,7 +429,8 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
 abstract class _HealthDiaryEntry implements HealthDiaryEntry {
   factory _HealthDiaryEntry(
-          {@JsonKey(name: 'mood') String? mood,
+          {@JsonKey(name: 'id') String? id,
+          @JsonKey(name: 'mood') String? mood,
           @JsonKey(name: 'note') String? note,
           @JsonKey(name: 'entryType') String? entryType,
           @JsonKey(name: 'createdAt') String? createdAt,
@@ -417,6 +440,9 @@ abstract class _HealthDiaryEntry implements HealthDiaryEntry {
   factory _HealthDiaryEntry.fromJson(Map<String, dynamic> json) =
       _$_HealthDiaryEntry.fromJson;
 
+  @override
+  @JsonKey(name: 'id')
+  String? get id;
   @override
   @JsonKey(name: 'mood')
   String? get mood;

@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -79,11 +82,95 @@ void main() {
         tester: tester,
         store: store,
         client: graphQlClient,
-        widget: ShareDiaryEntryDialog(diaryEntry: HealthDiaryEntry.initial()),
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MyAfyaHubPrimaryButton(
+              text: 'Tap',
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ShareDiaryEntryDialog(
+                      diaryEntry: HealthDiaryEntry.initial(),
+                    );
+                  },
+                );
+              },
+            );
+          },
+        ),
       );
 
+      await tester.pumpAndSettle();
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
       expect(find.byType(Dialog), findsOneWidget);
-      expect(find.byType(MyAfyaHubPrimaryButton), findsNWidgets(2));
+      expect(
+        find.byType(MyAfyaHubPrimaryButton, skipOffstage: false),
+        findsNWidgets(3),
+      );
+
+      await tester.tap(find.byKey(shareDiaryEntryKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SnackBar), findsOneWidget);
+    });
+
+    testWidgets('share displays error snackbar correctly',
+        (WidgetTester tester) async {
+      final Store<AppState> store =
+          Store<AppState>(initialState: AppState.initial());
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'shareHealthDiaryEntry': false,
+            }
+          }),
+          200,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return MyAfyaHubPrimaryButton(
+              text: 'Tap',
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ShareDiaryEntryDialog(
+                      diaryEntry: HealthDiaryEntry.initial(),
+                    );
+                  },
+                );
+              },
+            );
+          },
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(MyAfyaHubPrimaryButton), findsOneWidget);
+
+      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Dialog), findsOneWidget);
+      expect(
+        find.byType(MyAfyaHubPrimaryButton, skipOffstage: false),
+        findsNWidgets(3),
+      );
 
       await tester.tap(find.byKey(shareDiaryEntryKey));
       await tester.pumpAndSettle();

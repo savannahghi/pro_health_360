@@ -91,7 +91,7 @@ const String kDemoVerifySecurityQuestionsEndpoint =
 const String kDemoPINResetServiceRequestEndpoint =
     'https://mycarehub-testing.savannahghi.org/service-requests';
 const String kDemoClinicalEndpoint =
-    'https://clinical-staging.savannahghi.org/graphql';
+    'https://clinical-testing.savannahghi.org/graphql';
 
 /* PROD ENDPOINTS */
 const String kProdGraphqlEndpoint = 'https://gateway.savannahghi.org/graphql';
@@ -130,4 +130,4 @@ const String kProdVerifySecurityQuestionsEndpoint =
 const String kProdPINResetServiceRequestEndpoint =
     'https://mycarehub-prod.savannahghi.org/service-requests';
 const String kProdClinicalEndpoint =
-    'https://clinical-staging.savannahghi.org/graphql';
+    'https://clinical-prod.savannahghi.org/graphql';

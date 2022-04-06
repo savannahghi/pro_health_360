@@ -1,11 +1,9 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 // Package imports:
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
@@ -15,12 +13,11 @@ import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/complete_onboarding_tour_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/constants.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// [SetNicknameAction] is a Redux Action whose job is to update a users nickname,
 ///
@@ -30,14 +27,20 @@ import 'package:shared_themes/constants.dart';
 
 class SetNicknameAction extends ReduxAction<AppState> {
   SetNicknameAction({
-    required this.context,
     required this.flag,
+    required this.client,
+    required this.nickname,
     this.shouldNavigate = true,
+    this.onError,
+    this.onSuccess,
   });
 
-  final BuildContext context;
   final String flag;
+  final IGraphQlClient client;
+  final String nickname;
   final bool shouldNavigate;
+  final void Function(String)? onError;
+  final void Function()? onSuccess;
 
   /// [wrapError] used to wrap error thrown during execution of the `reduce()` method
   @override
@@ -53,95 +56,80 @@ class SetNicknameAction extends ReduxAction<AppState> {
   }
 
   @override
-  Future<AppState> reduce() async {
-    final String userID = state.clientState!.user!.userId!;
-    final String userName = state.clientState!.user!.username!;
+  Future<AppState?> reduce() async {
+    final String? userID = state.clientState?.user?.userId;
+    final String? userName = state.clientState?.user?.username;
 
     // initializing of the SetNicknameAction mutation
-    final Map<String, String> _variables = <String, String>{
+    final Map<String, String?> variables = <String, String?>{
       'userID': userID,
       'nickname': userName,
     };
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
 
-    final http.Response result = await _client.query(
+    final http.Response result = await client.query(
       setNickNameMutation,
-      _variables,
+      variables,
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final ProcessedResponse processed = processHttpResponse(result);
 
-    _client.close();
+    if (processed.ok) {
+      final Map<String, dynamic> body = client.toMap(result);
+      client.close();
+      final String? errors = client.parseError(body);
 
-    final Map<String, dynamic> responseMap =
-        json.decode(result.body) as Map<String, dynamic>;
-    final String? errors = _client.parseError(body);
+      if (errors != null) {
+        if (errors.contains('71')) {
+          onError?.call(usernameTakenText);
+          return null;
+        }
 
-    if (errors != null || responseMap['errors'] != null) {
-      if (errors!.contains('71')) {
-        throw MyAfyaException(
-          cause: setNickNameFlag,
-          message: usernameTakenText,
-        );
+        onError?.call(somethingWentWrongText);
+        Sentry.captureException(UserException(errors));
+
+        return null;
       }
-      throw MyAfyaException(
-        cause: setNickNameFlag,
-        message: somethingWentWrongText,
-      );
-    }
 
-    if (responseMap['data']['setNickName'] != null &&
-        responseMap['data']['setNickName'] == true) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          const SnackBar(
-            content: Text(nicknameSuccessString),
-            duration: Duration(seconds: 2),
+      if (body['data']['setNickName'] == true) {
+        dispatch(UpdateOnboardingStateAction(hasSetNickName: true));
+        dispatch(UpdateUserProfileAction(nickName: nickname));
+
+        onSuccess?.call();
+
+        await dispatch(
+          CompleteOnboardingTourAction(
+            client: client,
+            userID: userID,
           ),
         );
 
-      dispatch(
-        UpdateOnboardingStateAction(hasSetNickName: true),
-      );
+        if (shouldNavigate) {
+          final OnboardingPathInfo path = onboardingPath(appState: state);
 
-      await dispatch(
-        CompleteOnboardingTourAction(
-          context: context,
-          flag: flag,
-          userID: userID,
-        ),
-      );
-
-      if (shouldNavigate) {
-        final OnboardingPathInfo path = onboardingPath(appState: state);
-
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          path.nextRoute,
-          (Route<dynamic> route) => false,
-          arguments: path.arguments,
-        );
+          dispatch(
+            NavigateAction<AppState>.pushNamedAndRemoveUntil(
+              path.nextRoute,
+              (Route<dynamic> route) => false,
+              arguments: path.arguments,
+            ),
+          );
+        }
+      } else {
+        onError?.call(errorSettingNicknameText);
+        return null;
       }
+    } else {
+      throw UserException(getErrorMessage());
     }
-
-    return state;
   }
 
   @override
-  Object wrapError(dynamic error) async {
-    if (error.runtimeType == MyAfyaException) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            content: Text(error.message.toString()),
-            duration: const Duration(seconds: kShortSnackBarDuration),
-            action: dismissSnackBar(closeString, white, context),
-          ),
-        );
+  Object? wrapError(dynamic error) {
+    if (error.runtimeType == UserException) {
       return error;
     }
-    return error;
+
+    Sentry.captureException(error);
+    return UserException(getErrorMessage());
   }
 }
