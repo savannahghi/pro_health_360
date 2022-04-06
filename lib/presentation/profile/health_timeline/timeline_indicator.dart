@@ -23,7 +23,7 @@ class TimelineIndicator extends StatelessWidget {
             children: <Widget>[
               Text(
                 date.day.toString(),
-                style: boldSize22Text(AppColors.greyTextColor),
+                style: boldSize22Text(AppColors.primaryColor),
               ),
               Text(
                 '${date.month}/${date.year}',

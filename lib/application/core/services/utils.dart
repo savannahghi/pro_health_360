@@ -277,11 +277,6 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
     title: 'Personal information',
   ),
   UserProfileItemObj(
-    iconAssetPath: medicalDataIcon,
-    route: AppRoutes.medicalData,
-    title: 'Medical data',
-  ),
-  UserProfileItemObj(
     iconAssetPath: clinicIcon,
     route: AppRoutes.clinicInformationPage,
     title: 'Clinic information',

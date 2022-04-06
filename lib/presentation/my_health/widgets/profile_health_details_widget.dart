@@ -34,11 +34,12 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                   svgPath,
                   width: 15,
                   height: 15,
+                  color: AppColors.primaryColor,
                 ),
                 verySmallHorizontalSizedBox,
                 Text(
                   title,
-                  style: normalSize14Text(AppColors.secondaryColor),
+                  style: normalSize14Text(AppColors.greyTextColor),
                 ),
               ],
             ),
@@ -48,7 +49,7 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                   text: TextSpan(
                     text: description,
                     style: boldSize30Text(
-                      AppColors.secondaryColor,
+                      AppColors.primaryColor,
                     ),
                     children: <TextSpan>[
                       TextSpan(

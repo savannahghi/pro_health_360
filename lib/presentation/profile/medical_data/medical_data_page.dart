@@ -72,7 +72,7 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: medicalDataPageTitle),
+      appBar: const CustomAppBar(title: medicalDataTitle),
       body: SafeArea(
         child: StoreConnector<AppState, MedicalDataViewModel>(
           converter: (Store<AppState> store) =>

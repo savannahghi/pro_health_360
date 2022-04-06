@@ -28,13 +28,13 @@ class CustomTimelineListItem extends StatelessWidget {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  color: AppColors.listCardColor,
+                  color: AppColors.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: const EdgeInsets.all(12),
                 child: SvgPicture.asset(
                   item.leadingIcon,
-                  color: AppColors.timelineDotColor,
+                  color: AppColors.primaryColor,
                   width: 35,
                   height: 35,
                 ),
@@ -50,7 +50,7 @@ class CustomTimelineListItem extends StatelessWidget {
                       child: Text(
                         item.title,
                         style: normalSize12Text(
-                          AppColors.timelineDotColor,
+                          AppColors.primaryColor,
                         ),
                       ),
                     ),

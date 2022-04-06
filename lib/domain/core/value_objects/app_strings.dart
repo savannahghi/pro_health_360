@@ -446,7 +446,7 @@ const String clinicName = 'Clinic Name';
 const String myProfilePageTitle = 'My Profile';
 const String clinicInfoPageTitle = 'Clinic Information';
 const String personalInfoPageTitle = 'Personal Information';
-const String medicalDataPageTitle = 'Medical Data';
+const String medicalDataTitle = 'My Medical Data';
 
 //feed Item Widget
 const String feedHeader =

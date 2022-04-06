@@ -54,43 +54,44 @@ class _MyHealthPageState extends State<MyHealthPage> {
               GestureDetector(
                 onTap: () =>
                     Navigator.pushNamed(context, AppRoutes.userProfilePage),
-                child: InformationListCard(
-                  title: Text(
-                    myHealthPageProfile,
-                    style: boldSize16Text(AppColors.secondaryColor),
-                  ),
-                  alternateLeadingIcon: Container(
-                    padding: const EdgeInsets.all(13.5),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.primaryColor,
-                    ),
-                    child: Center(
-                      child: StoreConnector<AppState, ClientProfileViewModel>(
-                        converter: (Store<AppState> store) =>
-                            ClientProfileViewModel.fromStore(store),
-                        builder:
-                            (BuildContext context, ClientProfileViewModel vm) {
-                          final User? userProfileState = vm.clientState?.user;
+                child: StoreConnector<AppState, ClientProfileViewModel>(
+                  converter: (Store<AppState> store) =>
+                      ClientProfileViewModel.fromStore(store),
+                  builder: (BuildContext context, ClientProfileViewModel vm) {
+                    final User? userProfileState = vm.clientState?.user;
+                    final String firstName = userProfileState?.firstName ?? '';
+                    final String lastName = userProfileState?.lastName ?? '';
 
-                          return Text(
+                    return InformationListCard(
+                      title: Text(
+                        myHealthPageProfile,
+                        style: boldSize16Text(AppColors.secondaryColor),
+                      ),
+                      alternateLeadingIcon: Container(
+                        padding: const EdgeInsets.all(13.5),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.primaryColor.withOpacity(0.1),
+                        ),
+                        child: Center(
+                          child: Text(
                             extractNamesInitials(
                               name: getDisplayName(userProfileState),
                             ),
                             style: boldSize20Text(
-                              AppColors.whiteColor,
+                              AppColors.primaryColor,
                             ),
-                          );
-                        },
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  body: Text(
-                    myHealthPagePatient,
-                    style: normalSize14Text(
-                      AppColors.greyTextColor,
-                    ),
-                  ),
+                      body: Text(
+                        '$firstName $lastName',
+                        style: normalSize14Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
               size15VerticalSizedBox,
@@ -130,20 +131,20 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         title: Text(
                           myHealthPageHealthDiary,
                           style: normalSize12Text(
-                            AppColors.secondaryColor,
+                            AppColors.greyTextColor,
                           ),
                         ),
                         alternateLeadingIcon: Container(
                           padding: const EdgeInsets.all(18),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).backgroundColor,
+                            color: AppColors.primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: SvgPicture.asset(
                             healthDiaryIcon,
                             width: 20,
                             height: 20,
-                            color: AppColors.secondaryColor,
+                            color: AppColors.primaryColor,
                           ),
                         ),
                       ),
@@ -160,25 +161,65 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         title: Text(
                           myHealthPageAppointments,
                           style: normalSize12Text(
-                            AppColors.secondaryColor,
+                            AppColors.greyTextColor,
                           ),
                         ),
                         alternateLeadingIcon: Container(
                           padding: const EdgeInsets.all(18),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).backgroundColor,
+                            color: AppColors.primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: SvgPicture.asset(
                             appointmentIcon,
                             width: 20,
                             height: 20,
-                            color: AppColors.secondaryColor,
+                            color: AppColors.primaryColor,
                           ),
                         ),
                       ),
                     ),
                   ),
+                ],
+              ),
+              size15VerticalSizedBox,
+              Row(
+                children: <Widget>[
+                  Flexible(
+                    child: GestureDetector(
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        AppRoutes.medicalData,
+                      ),
+                      child: InformationListCard(
+                        title: Text(
+                          medicalDataTitle,
+                          style: normalSize12Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                        alternateLeadingIcon: Container(
+                          padding: const EdgeInsets.all(18),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryColor.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: SvgPicture.asset(
+                            medicalDataIcon,
+                            width: 20,
+                            height: 20,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  smallHorizontalSizedBox,
+                  const Flexible(
+                    child: SizedBox(
+                      width: double.infinity,
+                    ),
+                  )
                 ],
               ),
               const SizedBox(height: 20),
