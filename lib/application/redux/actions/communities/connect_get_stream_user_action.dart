@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:myafyahub/application/communities/stream_token_provider.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -9,6 +10,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ConnectGetStreamUserAction extends ReduxAction<AppState> {
   final stream.StreamChatClient streamClient;
@@ -56,6 +58,13 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
         ),
         streamTokenProvider.tokenProvider,
       );
+
+      final FirebaseMessaging messaging = FirebaseMessaging.instance;
+      final String? token = await messaging.getToken();
+      await streamClient.addDevice(token ?? '', PushProvider.firebase);
+      messaging.onTokenRefresh.listen((String token) {
+        streamClient.addDevice(token, PushProvider.firebase);
+      });
     } on stream.StreamWebSocketError catch (e) {
       switch (e.errorCode) {
         case stream.ChatErrorCode.undefinedToken:
