@@ -1,7 +1,7 @@
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
+import 'package:myafyahub/application/redux/actions/set_push_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
@@ -62,6 +63,14 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
           httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
           refreshTokenEndpoint:
               AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+        ),
+      );
+
+      StoreProvider.dispatch(
+        context,
+        SetPushToken(
+          firebaseMessaging: FirebaseMessaging.instance,
+          client: AppWrapperBase.of(context)!.graphQLClient,
         ),
       );
     });

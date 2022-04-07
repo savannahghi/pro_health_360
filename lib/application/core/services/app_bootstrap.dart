@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -112,6 +113,8 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
     appSetupData.streamAPIKey,
     logLevel: Level.ALL,
   );
+
+  await Firebase.initializeApp();
 
   runZonedGuarded(
     () async {
