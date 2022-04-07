@@ -140,9 +140,10 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    final Map<String, dynamic> map = getAnswersVariables(screeningToolsType);
     final Response response = await client.query(
       answerScreeningToolQuestionMutation,
-      getAnswersVariables(screeningToolsType),
+      map,
     );
 
     final ProcessedResponse processedResponse = processHttpResponse(response);

@@ -28,13 +28,13 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(fetchingViolenceQuestionsFlag));
+    dispatch(WaitAction<AppState>.remove(fetchingQuestionsFlag));
     super.after();
   }
 
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(fetchingViolenceQuestionsFlag));
+    dispatch(WaitAction<AppState>.add(fetchingQuestionsFlag));
     super.before();
   }
 

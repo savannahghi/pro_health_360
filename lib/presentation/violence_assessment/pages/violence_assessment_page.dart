@@ -47,7 +47,7 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
           return ScreeningToolsViewModel.fromStore(store);
         },
         builder: (BuildContext context, ScreeningToolsViewModel vm) {
-          if (vm.wait!.isWaitingFor(fetchingViolenceQuestionsFlag)) {
+          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
             return const PlatformLoader();
           } else {
             return SingleChildScrollView(

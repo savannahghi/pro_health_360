@@ -49,7 +49,7 @@ class _ContraceptiveAssessmentPageState
           return ScreeningToolsViewModel.fromStore(store);
         },
         builder: (BuildContext context, ScreeningToolsViewModel vm) {
-          if (vm.wait!.isWaitingFor(fetchingContraceptivesQuestionsFlag)) {
+          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
             return const PlatformLoader();
           } else {
             return SingleChildScrollView(

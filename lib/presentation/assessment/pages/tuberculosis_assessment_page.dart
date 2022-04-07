@@ -49,7 +49,7 @@ class _TuberculosisAssessmentPageState
         },
         builder: (BuildContext context, ScreeningToolsViewModel vm) {
           final double appBarHeight = AppBar().preferredSize.height;
-          if (vm.wait!.isWaitingFor(fetchingTBQuestionsFlag)) {
+          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
             return const PlatformLoader();
           } else {
             return SingleChildScrollView(

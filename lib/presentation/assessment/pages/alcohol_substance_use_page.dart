@@ -48,7 +48,7 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
           return ScreeningToolsViewModel.fromStore(store);
         },
         builder: (BuildContext context, ScreeningToolsViewModel vm) {
-          if (vm.wait!.isWaitingFor(fetchingAlcoholQuestionsFlag)) {
+          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
             return const PlatformLoader();
           } else {
             return SingleChildScrollView(
@@ -69,7 +69,8 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                     ScreeningToolQuestionWidget(
                       screeningToolsQuestions: vm.alcoholSubstanceUseState!
                           .screeningQuestions!.screeningQuestionsList!,
-                          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+                      screeningToolsType:
+                          ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
                     ),
 
                     mediumVerticalSizedBox,
