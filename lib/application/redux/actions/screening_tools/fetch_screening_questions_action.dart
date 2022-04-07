@@ -4,16 +4,18 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_alcohol_state_action.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_contraceptive_state.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_tb_state.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_violence_state_action.dart';
+import 'package:myafyahub/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/alcohol_substance_use_state.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/contraceptive_state.dart';
+import 'package:myafyahub/application/redux/states/tb_state.dart';
+import 'package:myafyahub/application/redux/states/violence_state.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_questions_list.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
   FetchScreeningToolsQuestionsAction({
@@ -41,21 +43,22 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
   }) {
     switch (type) {
       case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return UpdateViolenceStateAction(
-          errorFetchingQuestions: true,
+        return UpdateScreeningToolsState(
+          violenceState: ViolenceState(errorFetchingQuestions: true),
         );
       case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return UpdateContraceptiveStateAction(
-          errorFetchingQuestions: true,
+        return UpdateScreeningToolsState(
+          contraceptiveState: ContraceptiveState(errorFetchingQuestions: true),
         );
 
       case ScreeningToolsType.TB_ASSESSMENT:
-        return UpdateTBStateAction(
-          errorFetchingQuestions: true,
+        return UpdateScreeningToolsState(
+          tbState: TBState(errorFetchingQuestions: true),
         );
       default:
-        return UpdateAlcoholStateAction(
-          errorFetchingQuestions: true,
+        return UpdateScreeningToolsState(
+          alcoholSubstanceUseState:
+              AlcoholSubstanceUseState(errorFetchingQuestions: true),
         );
     }
   }
@@ -66,21 +69,29 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
   }) {
     switch (type) {
       case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return UpdateViolenceStateAction(
-          screeningQuestions: screeningQuestionsList,
+        return UpdateScreeningToolsState(
+          violenceState: ViolenceState(
+            screeningQuestions: screeningQuestionsList,
+          ),
         );
       case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return UpdateContraceptiveStateAction(
-          screeningQuestions: screeningQuestionsList,
+        return UpdateScreeningToolsState(
+          contraceptiveState: ContraceptiveState(
+            screeningQuestions: screeningQuestionsList,
+          ),
         );
 
       case ScreeningToolsType.TB_ASSESSMENT:
-        return UpdateTBStateAction(
-          screeningQuestions: screeningQuestionsList,
+        return UpdateScreeningToolsState(
+          tbState: TBState(
+            screeningQuestions: screeningQuestionsList,
+          ),
         );
       default:
-        return UpdateAlcoholStateAction(
-          screeningQuestions: screeningQuestionsList,
+        return UpdateScreeningToolsState(
+          alcoholSubstanceUseState: AlcoholSubstanceUseState(
+            screeningQuestions: screeningQuestionsList,
+          ),
         );
     }
   }

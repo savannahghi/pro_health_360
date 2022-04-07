@@ -1,6 +1,8 @@
+import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/assessment/pages/alcohol_substance_use_page.dart';
@@ -29,8 +31,12 @@ void main() {
           client: MockGraphQlClient(),
           widget: const ScreeningToolsCarousel(),
         );
+        await tester.pumpAndSettle();
 
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(
+          find.byType(ScreeningToolMenuItem, skipOffstage: false),
+          findsOneWidget,
+        );
         expect(find.byKey(violenceKey), findsOneWidget);
 
         // tap the violence menu item and go back
@@ -39,21 +45,50 @@ void main() {
         expect(find.byType(ViolenceAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
       },
     );
 
     testWidgets(
       'should navigate to contraceptive assessment page and back',
       (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getAvailableScreeningToolQuestions': <dynamic>[
+                  <String, dynamic>{'toolType': 'CONTRACEPTIVE_ASSESSMENT'},
+                ],
+                'getScreeningToolQuestions': <dynamic>[
+                  <String, dynamic>{
+                    'id': 'some_id',
+                    'question': 'some question here',
+                    'toolType': 'CONTRACEPTIVE_ASSESSMENT',
+                    'responseType': 'INTEGER',
+                    'responseChoices': <String, dynamic>{'0': 'Yes', '1': 'No'},
+                    'responseCategory': 'SINGLE_CHOICE',
+                    'sequence': 0,
+                    'active': true,
+                    'meta': <String, dynamic>{'violence_type': 'EMOTIONAL'}
+                  },
+                ]
+              }
+            }),
+            200,
+          ),
+        );
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: MockGraphQlClient(),
+          client: mockShortSILGraphQlClient,
           widget: const ScreeningToolsCarousel(),
         );
+        await tester.pumpAndSettle();
 
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
         expect(find.byKey(contraceptiveKey), findsOneWidget);
 
         // tap the contraceptive menu item and go back
@@ -63,21 +98,50 @@ void main() {
         expect(find.byType(ContraceptiveAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
       },
     );
 
     testWidgets(
       'should navigate to tuberculosis assessment page and back',
       (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getAvailableScreeningToolQuestions': <dynamic>[
+                  <String, dynamic>{'toolType': 'TB_ASSESSMENT'},
+                ],
+                'getScreeningToolQuestions': <dynamic>[
+                  <String, dynamic>{
+                    'id': 'some_id',
+                    'question': 'some question here',
+                    'toolType': 'TB_ASSESSMENT',
+                    'responseType': 'INTEGER',
+                    'responseChoices': <String, dynamic>{'0': 'Yes', '1': 'No'},
+                    'responseCategory': 'SINGLE_CHOICE',
+                    'sequence': 0,
+                    'active': true,
+                    'meta': <String, dynamic>{'violence_type': 'EMOTIONAL'}
+                  },
+                ]
+              }
+            }),
+            200,
+          ),
+        );
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: MockGraphQlClient(),
+          client: mockShortSILGraphQlClient,
           widget: const ScreeningToolsCarousel(),
         );
+        await tester.pumpAndSettle();
 
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
         expect(find.byKey(tuberculosisKey), findsOneWidget);
 
         // tap the violence menu item and go back
@@ -87,22 +151,51 @@ void main() {
         expect(find.byType(TuberculosisAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
       },
     );
 
     testWidgets(
       'should navigate to alcohol assessment page and back',
       (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortSILGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{
+                'getAvailableScreeningToolQuestions': <dynamic>[
+                  <String, dynamic>{'toolType': 'ALCOHOL_SUBSTANCE_ASSESSMENT'}
+                ],
+                'getScreeningToolQuestions': <dynamic>[
+                  <String, dynamic>{
+                    'id': 'some_id',
+                    'question': 'some question here',
+                    'toolType': 'ALCOHOL_SUBSTANCE_ASSESSMENT',
+                    'responseType': 'INTEGER',
+                    'responseChoices': <String, dynamic>{'0': 'Yes', '1': 'No'},
+                    'responseCategory': 'SINGLE_CHOICE',
+                    'sequence': 0,
+                    'active': true,
+                    'meta': <String, dynamic>{'violence_type': 'EMOTIONAL'}
+                  },
+                ]
+              }
+            }),
+            200,
+          ),
+        );
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: MockGraphQlClient(),
+          client: mockShortSILGraphQlClient,
           widget: const ScreeningToolsCarousel(),
         );
+        await tester.pumpAndSettle();
 
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
-        expect(find.byKey(tuberculosisKey), findsOneWidget);
+        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byKey(alcoholUseKey, skipOffstage: false), findsOneWidget);
 
         // tap the violence menu item and go back
         await tester.scrollUntilVisible(find.byKey(alcoholUseKey), 800);
@@ -111,7 +204,7 @@ void main() {
         expect(find.byType(AlcoholSubstanceUsePage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsNWidgets(4));
+        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
       },
     );
   });

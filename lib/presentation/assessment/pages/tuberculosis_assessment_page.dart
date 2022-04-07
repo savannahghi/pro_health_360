@@ -76,6 +76,7 @@ class _TuberculosisAssessmentPageState
                     ScreeningToolQuestionWidget(
                       screeningToolsQuestions: vm
                           .tBState!.screeningQuestions!.screeningQuestionsList!,
+                      screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
                     ),
                     mediumVerticalSizedBox,
                     Align(

@@ -5,12 +5,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_alcohol_state_action.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_contraceptive_state.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_tb_state.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_violence_state_action.dart';
+import 'package:myafyahub/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:myafyahub/application/redux/states/alcohol_substance_use_state.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/contraceptive_state.dart';
+import 'package:myafyahub/application/redux/states/tb_state.dart';
+import 'package:myafyahub/application/redux/states/violence_state.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -117,21 +118,22 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
   }) {
     switch (type) {
       case ScreeningToolsType.VIOLENCE_ASSESSMENT:
-        return UpdateViolenceStateAction(
-          errorAnsweringQuestions: true,
+        return UpdateScreeningToolsState(
+          violenceState: ViolenceState(errorAnsweringQuestions: true),
         );
       case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
-        return UpdateContraceptiveStateAction(
-          errorAnsweringQuestions: true,
+        return UpdateScreeningToolsState(
+          contraceptiveState: ContraceptiveState(errorAnsweringQuestions: true),
         );
 
       case ScreeningToolsType.TB_ASSESSMENT:
-        return UpdateTBStateAction(
-          errorAnsweringQuestions: true,
+        return UpdateScreeningToolsState(
+          tbState: TBState(errorAnsweringQuestions: true),
         );
       default:
-        return UpdateAlcoholStateAction(
-          errorAnsweringQuestions: true,
+        return UpdateScreeningToolsState(
+          alcoholSubstanceUseState:
+              AlcoholSubstanceUseState(errorAnsweringQuestions: true),
         );
     }
   }

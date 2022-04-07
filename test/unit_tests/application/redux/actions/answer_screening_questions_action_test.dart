@@ -5,10 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_alcohol_state_action.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_contraceptive_state.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_tb_state.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_violence_state_action.dart';
+import 'package:myafyahub/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/connectivity_state.dart';
@@ -48,7 +45,7 @@ void main() {
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateViolenceStateAction);
+          await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
         info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
@@ -85,7 +82,7 @@ void main() {
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateContraceptiveStateAction);
+          await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
         info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
@@ -121,7 +118,7 @@ void main() {
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateAlcoholStateAction);
+          await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
         info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),
@@ -157,7 +154,7 @@ void main() {
       );
 
       final TestInfo<AppState> info =
-          await storeTester.waitUntil(UpdateTBStateAction);
+          await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
         info.state.wait!.isWaitingFor(answerScreeningQuestionsFlag),

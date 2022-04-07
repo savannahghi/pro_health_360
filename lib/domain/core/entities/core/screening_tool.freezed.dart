@@ -24,10 +24,12 @@ class _$ScreeningToolTearOff {
 
   _ScreeningTool call(
       {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description}) {
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'toolType') ScreeningToolsType? toolType}) {
     return _ScreeningTool(
       title: title,
       description: description,
+      toolType: toolType,
     );
   }
 
@@ -45,6 +47,8 @@ mixin _$ScreeningTool {
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'toolType')
+  ScreeningToolsType? get toolType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +63,8 @@ abstract class $ScreeningToolCopyWith<$Res> {
       _$ScreeningToolCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'toolType') ScreeningToolsType? toolType});
 }
 
 /// @nodoc
@@ -75,6 +80,7 @@ class _$ScreeningToolCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
+    Object? toolType = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -85,6 +91,10 @@ class _$ScreeningToolCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      toolType: toolType == freezed
+          ? _value.toolType
+          : toolType // ignore: cast_nullable_to_non_nullable
+              as ScreeningToolsType?,
     ));
   }
 }
@@ -98,7 +108,8 @@ abstract class _$ScreeningToolCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'toolType') ScreeningToolsType? toolType});
 }
 
 /// @nodoc
@@ -116,6 +127,7 @@ class __$ScreeningToolCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
+    Object? toolType = freezed,
   }) {
     return _then(_ScreeningTool(
       title: title == freezed
@@ -126,6 +138,10 @@ class __$ScreeningToolCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      toolType: toolType == freezed
+          ? _value.toolType
+          : toolType // ignore: cast_nullable_to_non_nullable
+              as ScreeningToolsType?,
     ));
   }
 }
@@ -135,7 +151,8 @@ class __$ScreeningToolCopyWithImpl<$Res>
 class _$_ScreeningTool implements _ScreeningTool {
   _$_ScreeningTool(
       {@JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'description') this.description});
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'toolType') this.toolType});
 
   factory _$_ScreeningTool.fromJson(Map<String, dynamic> json) =>
       _$$_ScreeningToolFromJson(json);
@@ -146,10 +163,13 @@ class _$_ScreeningTool implements _ScreeningTool {
   @override
   @JsonKey(name: 'description')
   final String? description;
+  @override
+  @JsonKey(name: 'toolType')
+  final ScreeningToolsType? toolType;
 
   @override
   String toString() {
-    return 'ScreeningTool(title: $title, description: $description)';
+    return 'ScreeningTool(title: $title, description: $description, toolType: $toolType)';
   }
 
   @override
@@ -159,14 +179,16 @@ class _$_ScreeningTool implements _ScreeningTool {
             other is _ScreeningTool &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
-                .equals(other.description, description));
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.toolType, toolType));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description));
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(toolType));
 
   @JsonKey(ignore: true)
   @override
@@ -181,8 +203,10 @@ class _$_ScreeningTool implements _ScreeningTool {
 
 abstract class _ScreeningTool implements ScreeningTool {
   factory _ScreeningTool(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description}) = _$_ScreeningTool;
+          {@JsonKey(name: 'title') String? title,
+          @JsonKey(name: 'description') String? description,
+          @JsonKey(name: 'toolType') ScreeningToolsType? toolType}) =
+      _$_ScreeningTool;
 
   factory _ScreeningTool.fromJson(Map<String, dynamic> json) =
       _$_ScreeningTool.fromJson;
@@ -193,6 +217,9 @@ abstract class _ScreeningTool implements ScreeningTool {
   @override
   @JsonKey(name: 'description')
   String? get description;
+  @override
+  @JsonKey(name: 'toolType')
+  ScreeningToolsType? get toolType;
   @override
   @JsonKey(ignore: true)
   _$ScreeningToolCopyWith<_ScreeningTool> get copyWith =>

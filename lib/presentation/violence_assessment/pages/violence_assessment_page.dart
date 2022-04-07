@@ -68,6 +68,8 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                     ScreeningToolQuestionWidget(
                       screeningToolsQuestions: vm.violenceState!
                           .screeningQuestions!.screeningQuestionsList!,
+                      screeningToolsType:
+                          ScreeningToolsType.VIOLENCE_ASSESSMENT,
                     ),
 
                     largeVerticalSizedBox,

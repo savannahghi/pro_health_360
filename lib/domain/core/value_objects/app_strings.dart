@@ -669,13 +669,12 @@ const String screeningToolsPageLongDescription =
     'Take charge of your health by assessing yourself using our screening tools';
 
 const String violenceTitle = 'Violence';
-const String violenceDescription = 'Share your experience about violence';
+const String violenceDescription = 'Report your experience about violence';
 const String contraceptiveTitle = 'Contraceptives';
 const String contraceptiveDescription =
     'Would you like to know more about contraceptives?';
-const String tuberculosisTitle = 'Tuberculosis';
-const String tuberculosisDescription =
-    'Assess yourself and learn more about tuberculosis';
+const String tuberculosisTitle = 'Tuberculosis(TB)';
+const String tuberculosisDescription = 'Assess your risk of TB';
 
 // violence assessment
 const String violenceAssessmentTitle = 'Violence Assessment';
