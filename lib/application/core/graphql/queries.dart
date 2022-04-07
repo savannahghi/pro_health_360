@@ -414,3 +414,11 @@ query medicalData($patientID: String!) {
   }
 }
 ''';
+
+const String getAvailableScreeningToolQuery = r'''
+query getAvailableScreeningToolQuestions($clientID: String!){
+  getAvailableScreeningToolQuestions(clientID: $clientID){
+    toolType
+  }
+}
+''';

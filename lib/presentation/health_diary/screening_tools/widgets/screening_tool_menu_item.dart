@@ -34,7 +34,6 @@ class ScreeningToolMenuItem extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(right: 10),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(title, style: boldSize16Text()),
@@ -43,7 +42,7 @@ class ScreeningToolMenuItem extends StatelessWidget {
             description,
             style: normalSize14Text(AppColors.secondaryColor.withOpacity(0.6)),
           ),
-          mediumVerticalSizedBox,
+          const Spacer(),
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(

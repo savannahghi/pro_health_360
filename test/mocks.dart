@@ -987,6 +987,20 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+    if (queryString == getAvailableScreeningToolQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getAvailableScreeningToolQuestions': <dynamic>[
+                <String, dynamic>{'toolType': 'VIOLENCE_ASSESSMENT'},
+              ]
+            }
+          }),
+          200,
+        ),
+      );
+    }
     if (queryString == listAppointmentsQuery) {
       return Future<http.Response>.value(
         http.Response(

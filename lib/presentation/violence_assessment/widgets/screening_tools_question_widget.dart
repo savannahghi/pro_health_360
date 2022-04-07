@@ -1,21 +1,86 @@
+import 'package:flutter/material.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_violence_state_action.dart';
+import 'package:myafyahub/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
+import 'package:myafyahub/application/redux/states/alcohol_substance_use_state.dart';
+import 'package:myafyahub/application/redux/states/contraceptive_state.dart';
+import 'package:myafyahub/application/redux/states/tb_state.dart';
+import 'package:myafyahub/application/redux/states/violence_state.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_questions_list.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
 class ScreeningToolQuestionWidget extends StatefulWidget {
-  const ScreeningToolQuestionWidget({required this.screeningToolsQuestions});
+  const ScreeningToolQuestionWidget({
+    required this.screeningToolsQuestions,
+    required this.screeningToolsType,
+  });
 
   final List<ScreeningQuestion> screeningToolsQuestions;
+  final ScreeningToolsType screeningToolsType;
 
   @override
   State<ScreeningToolQuestionWidget> createState() =>
       _ScreeningToolQuestionWidgetState();
+}
+
+// update the respective state
+void updateScreeningToolsQuestions({
+  required ScreeningToolsType toolsType,
+  required BuildContext context,
+  required List<ScreeningQuestion> questions,
+}) {
+  switch (toolsType) {
+    case ScreeningToolsType.VIOLENCE_ASSESSMENT:
+      StoreProvider.dispatch(
+        context,
+        UpdateScreeningToolsState(
+          violenceState: ViolenceState(
+            screeningQuestions:
+                ScreeningQuestionsList(screeningQuestionsList: questions),
+          ),
+        ),
+      );
+      break;
+
+    case ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT:
+      StoreProvider.dispatch(
+        context,
+        UpdateScreeningToolsState(
+          contraceptiveState: ContraceptiveState(
+            screeningQuestions:
+                ScreeningQuestionsList(screeningQuestionsList: questions),
+          ),
+        ),
+      );
+      break;
+
+    case ScreeningToolsType.TB_ASSESSMENT:
+      StoreProvider.dispatch(
+        context,
+        UpdateScreeningToolsState(
+          tbState: TBState(
+            screeningQuestions:
+                ScreeningQuestionsList(screeningQuestionsList: questions),
+          ),
+        ),
+      );
+      break;
+    default:
+      StoreProvider.dispatch(
+        context,
+        UpdateScreeningToolsState(
+          alcoholSubstanceUseState: AlcoholSubstanceUseState(
+            screeningQuestions:
+                ScreeningQuestionsList(screeningQuestionsList: questions),
+          ),
+        ),
+      );
+      break;
+  }
 }
 
 class _ScreeningToolQuestionWidgetState
@@ -27,16 +92,25 @@ class _ScreeningToolQuestionWidgetState
       shrinkWrap: true,
       itemCount: widget.screeningToolsQuestions.length,
       itemBuilder: (BuildContext context, int index) {
+        // choices
         final Map<String, dynamic> choices =
             widget.screeningToolsQuestions[index].responseChoices!;
+
+        // sequence number
         final int sequenceNumber =
             widget.screeningToolsQuestions[index].sequence!;
+
         final List<MoodSymptomWidget> symptomWidgets = <MoodSymptomWidget>[];
+
+        // question text
         final String questionText =
             '${sequenceNumber + 1}. ${widget.screeningToolsQuestions[index].questionText!} ';
+
+        // if question has an answer
         final bool hasAnswer =
             widget.screeningToolsQuestions[index].answer == null ? false : true;
 
+        // create symptomWidget for each of the choices
         choices.forEach((String key, dynamic value) {
           symptomWidgets.add(
             MoodSymptomWidget(
@@ -63,14 +137,11 @@ class _ScreeningToolQuestionWidgetState
                   index + 1,
                   <ScreeningQuestion>[question],
                 );
-
-                StoreProvider.dispatch(
-                  context,
-                  UpdateViolenceStateAction(
-                    screeningQuestions: ScreeningQuestionsList(
-                      screeningQuestionsList: questions,
-                    ),
-                  ),
+                // update the respective state
+                updateScreeningToolsQuestions(
+                  context: context,
+                  toolsType: widget.screeningToolsType,
+                  questions: questions,
                 );
               },
             ),

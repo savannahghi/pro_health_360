@@ -25,9 +25,13 @@ class _$AvailableScreeningToolsTearOff {
 
   _AvailableScreeningTools call(
       {@JsonKey(name: 'availableScreeningTools')
-          List<ScreeningTool>? availableScreeningTools}) {
+          List<ScreeningTool>? availableScreeningTools,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) {
     return _AvailableScreeningTools(
       availableScreeningTools: availableScreeningTools,
+      errorFetchingQuestions: errorFetchingQuestions,
+      timeoutFetchingQuestions: timeoutFetchingQuestions,
     );
   }
 
@@ -44,6 +48,8 @@ mixin _$AvailableScreeningTools {
   @JsonKey(name: 'availableScreeningTools')
   List<ScreeningTool>? get availableScreeningTools =>
       throw _privateConstructorUsedError;
+  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +64,9 @@ abstract class $AvailableScreeningToolsCopyWith<$Res> {
       _$AvailableScreeningToolsCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'availableScreeningTools')
-          List<ScreeningTool>? availableScreeningTools});
+          List<ScreeningTool>? availableScreeningTools,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
 }
 
 /// @nodoc
@@ -73,12 +81,22 @@ class _$AvailableScreeningToolsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? availableScreeningTools = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_value.copyWith(
       availableScreeningTools: availableScreeningTools == freezed
           ? _value.availableScreeningTools
           : availableScreeningTools // ignore: cast_nullable_to_non_nullable
               as List<ScreeningTool>?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -92,7 +110,9 @@ abstract class _$AvailableScreeningToolsCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'availableScreeningTools')
-          List<ScreeningTool>? availableScreeningTools});
+          List<ScreeningTool>? availableScreeningTools,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions});
 }
 
 /// @nodoc
@@ -110,12 +130,22 @@ class __$AvailableScreeningToolsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? availableScreeningTools = freezed,
+    Object? errorFetchingQuestions = freezed,
+    Object? timeoutFetchingQuestions = freezed,
   }) {
     return _then(_AvailableScreeningTools(
       availableScreeningTools: availableScreeningTools == freezed
           ? _value.availableScreeningTools
           : availableScreeningTools // ignore: cast_nullable_to_non_nullable
               as List<ScreeningTool>?,
+      errorFetchingQuestions: errorFetchingQuestions == freezed
+          ? _value.errorFetchingQuestions
+          : errorFetchingQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeoutFetchingQuestions: timeoutFetchingQuestions == freezed
+          ? _value.timeoutFetchingQuestions
+          : timeoutFetchingQuestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -124,7 +154,9 @@ class __$AvailableScreeningToolsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AvailableScreeningTools implements _AvailableScreeningTools {
   _$_AvailableScreeningTools(
-      {@JsonKey(name: 'availableScreeningTools') this.availableScreeningTools});
+      {@JsonKey(name: 'availableScreeningTools') this.availableScreeningTools,
+      this.errorFetchingQuestions,
+      this.timeoutFetchingQuestions});
 
   factory _$_AvailableScreeningTools.fromJson(Map<String, dynamic> json) =>
       _$$_AvailableScreeningToolsFromJson(json);
@@ -132,10 +164,14 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
   @override
   @JsonKey(name: 'availableScreeningTools')
   final List<ScreeningTool>? availableScreeningTools;
+  @override
+  final bool? errorFetchingQuestions;
+  @override
+  final bool? timeoutFetchingQuestions;
 
   @override
   String toString() {
-    return 'AvailableScreeningTools(availableScreeningTools: $availableScreeningTools)';
+    return 'AvailableScreeningTools(availableScreeningTools: $availableScreeningTools, errorFetchingQuestions: $errorFetchingQuestions, timeoutFetchingQuestions: $timeoutFetchingQuestions)';
   }
 
   @override
@@ -144,12 +180,19 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
         (other.runtimeType == runtimeType &&
             other is _AvailableScreeningTools &&
             const DeepCollectionEquality().equals(
-                other.availableScreeningTools, availableScreeningTools));
+                other.availableScreeningTools, availableScreeningTools) &&
+            const DeepCollectionEquality()
+                .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
+            const DeepCollectionEquality().equals(
+                other.timeoutFetchingQuestions, timeoutFetchingQuestions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(availableScreeningTools));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(availableScreeningTools),
+      const DeepCollectionEquality().hash(errorFetchingQuestions),
+      const DeepCollectionEquality().hash(timeoutFetchingQuestions));
 
   @JsonKey(ignore: true)
   @override
@@ -165,9 +208,10 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
 
 abstract class _AvailableScreeningTools implements AvailableScreeningTools {
   factory _AvailableScreeningTools(
-          {@JsonKey(name: 'availableScreeningTools')
-              List<ScreeningTool>? availableScreeningTools}) =
-      _$_AvailableScreeningTools;
+      {@JsonKey(name: 'availableScreeningTools')
+          List<ScreeningTool>? availableScreeningTools,
+      bool? errorFetchingQuestions,
+      bool? timeoutFetchingQuestions}) = _$_AvailableScreeningTools;
 
   factory _AvailableScreeningTools.fromJson(Map<String, dynamic> json) =
       _$_AvailableScreeningTools.fromJson;
@@ -175,6 +219,10 @@ abstract class _AvailableScreeningTools implements AvailableScreeningTools {
   @override
   @JsonKey(name: 'availableScreeningTools')
   List<ScreeningTool>? get availableScreeningTools;
+  @override
+  bool? get errorFetchingQuestions;
+  @override
+  bool? get timeoutFetchingQuestions;
   @override
   @JsonKey(ignore: true)
   _$AvailableScreeningToolsCopyWith<_AvailableScreeningTools> get copyWith =>

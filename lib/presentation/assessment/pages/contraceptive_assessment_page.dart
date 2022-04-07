@@ -85,6 +85,8 @@ class _ContraceptiveAssessmentPageState
                     ScreeningToolQuestionWidget(
                       screeningToolsQuestions: vm.contraceptiveState!
                           .screeningQuestions!.screeningQuestionsList!,
+                      screeningToolsType:
+                          ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
                     ),
 
                     largeVerticalSizedBox,

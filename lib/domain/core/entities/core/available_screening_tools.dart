@@ -9,11 +9,16 @@ class AvailableScreeningTools with _$AvailableScreeningTools {
   factory AvailableScreeningTools({
     @JsonKey(name: 'availableScreeningTools')
         List<ScreeningTool>? availableScreeningTools,
+    bool? errorFetchingQuestions,
+    bool? timeoutFetchingQuestions,
   }) = _AvailableScreeningTools;
 
   factory AvailableScreeningTools.fromJson(Map<String, dynamic> json) =>
       _$AvailableScreeningToolsFromJson(json);
 
-  factory AvailableScreeningTools.initial() =>
-      AvailableScreeningTools(availableScreeningTools: <ScreeningTool>[]);
+  factory AvailableScreeningTools.initial() => AvailableScreeningTools(
+        availableScreeningTools: <ScreeningTool>[],
+        errorFetchingQuestions: false,
+        timeoutFetchingQuestions: false,
+      );
 }

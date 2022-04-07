@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:myafyahub/presentation/violence_assessment/widgets/screening_tools_question_widget.dart';
 
 import '../../../../mocks.dart';
@@ -32,11 +33,8 @@ void main() {
         find.byType(ScreeningToolQuestionWidget, skipOffstage: false),
         findsOneWidget,
       );
-      expect(
-        find.byType(ScreeningToolQuestionWidget, skipOffstage: false),
-        findsOneWidget,
-      );
-
+      
+       await tester.tap(find.byType(MoodSymptomWidget).first);
       await tester.ensureVisible(submitButtonFinder);
       await tester.tap(submitButtonFinder);
 

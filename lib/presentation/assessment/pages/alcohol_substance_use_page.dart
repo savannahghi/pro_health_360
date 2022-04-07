@@ -69,6 +69,7 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                     ScreeningToolQuestionWidget(
                       screeningToolsQuestions: vm.alcoholSubstanceUseState!
                           .screeningQuestions!.screeningQuestionsList!,
+                          screeningToolsType: ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
                     ),
 
                     mediumVerticalSizedBox,
