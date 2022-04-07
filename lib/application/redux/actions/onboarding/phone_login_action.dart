@@ -52,6 +52,11 @@ class PhoneLoginAction extends ReduxAction<AppState> {
   void before() {
     super.before();
     dispatch(WaitAction<AppState>.add(phoneLoginFlag));
+    dispatch(
+      UpdateOnboardingStateAction(
+        currentOnboardingStage: CurrentOnboardingStage.Login,
+      ),
+    );
   }
 
   @override
