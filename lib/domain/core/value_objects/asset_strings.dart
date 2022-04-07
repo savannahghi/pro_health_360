@@ -182,6 +182,8 @@ const String zeroAppointmentsImageSvgPath =
 const String zeroMedicalDataSvgPath = 'assets/images/no_medical_data.svg';
 const String verticalScrollIconSvgPath =
     'assets/icons/vertical_scroll_icon.svg';
+const String healthTimelineNotAvailableImage =
+    'assets/images/health_timeline_not_available.svg';
 
 const String appointmentCalendarIconSvgPath =
     'assets/icons/appointment_calendar_icon.svg';

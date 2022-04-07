@@ -19,9 +19,9 @@ import 'package:myafyahub/domain/core/entities/health_timeline/reaction.dart';
 import 'package:myafyahub/domain/core/entities/health_timeline/reference.dart';
 import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_empty_data_widget.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/timeline_indicator.dart';
 import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item.dart';
 import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
@@ -194,7 +194,16 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                   itemCount: items.length,
                 );
               } else {
-                return const GenericEmptyData(item: timelineErrorTitle);
+                return const GenericErrorWidget(
+                  actionKey: helpNoDataWidgetKey,
+                  headerIconSvgUrl: healthTimelineNotAvailableImage,
+                  messageTitle: healthTimelineAwaitsText,
+                  messageBody: <TextSpan>[
+                    TextSpan(text: healthTimelineAwaitsDescription)
+                  ],
+                  recoverCallback: null,
+                  showPrimaryButton: false,
+                );
               }
             }
           },

@@ -492,6 +492,9 @@ const String feelingString = 'Feeling';
 const String textString = 'Text';
 const String addDiaryString = 'Add diary entry';
 const String myHealthTimelineText = 'My Health Timeline';
+const String healthTimelineAwaitsText = 'Your health timeline awaits';
+const String healthTimelineAwaitsDescription =
+    'Your health timeline is not available at the moment. It will be shown when your medical information has been updated';
 
 //Appointments
 const String appointmentsPageTitle = 'Appointments';
