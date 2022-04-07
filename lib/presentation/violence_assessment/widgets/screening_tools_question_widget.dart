@@ -171,7 +171,7 @@ class _ScreeningToolQuestionWidgetState
               runSpacing: 12.0,
               children: symptomWidgets,
             ),
-            largeVerticalSizedBox
+            smallVerticalSizedBox,
           ],
         );
       },

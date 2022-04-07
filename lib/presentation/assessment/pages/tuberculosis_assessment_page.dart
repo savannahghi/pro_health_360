@@ -48,11 +48,13 @@ class _TuberculosisAssessmentPageState
           return ScreeningToolsViewModel.fromStore(store);
         },
         builder: (BuildContext context, ScreeningToolsViewModel vm) {
+          final double appBarHeight = AppBar().preferredSize.height;
           if (vm.wait!.isWaitingFor(fetchingTBQuestionsFlag)) {
             return const PlatformLoader();
           } else {
             return SingleChildScrollView(
-              child: Padding(
+              child: Container(
+                height: MediaQuery.of(context).size.height - appBarHeight,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +80,8 @@ class _TuberculosisAssessmentPageState
                           .tBState!.screeningQuestions!.screeningQuestionsList!,
                       screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
                     ),
-                    mediumVerticalSizedBox,
+                    const Spacer(),
+
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(

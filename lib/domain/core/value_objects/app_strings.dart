@@ -729,7 +729,7 @@ const String healthAssessmentQuestionTen =
 const String assessmentSubmissionSuccessfulText =
     'Thanks for sharing your assessment';
 const String assessmentSubmissionSuccessfulDescription =
-    'Your clinician has been notified. ';
+    'Thank you for sharing your assessment. Your clinic has been notified and someone from the clinical team will reach out to you.  ';
 const String ifItIsAnEmergency =
     'If it is an emergency, please call us back on ';
 
