@@ -26,6 +26,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
     this.confirmPIN,
     this.failedLoginCount,
     this.hasAcceptedTerms,
+    this.nickName,
   });
 
   List<SecurityQuestion>? securityQuestions;
@@ -44,6 +45,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
   final String? pin;
   final String? confirmPIN;
   final String? otp;
+  final String? nickName;
 
   ///------------VERIFY PIN RELATED VALUES------------
   final bool? invalidOTP;
@@ -89,6 +91,7 @@ class UpdateOnboardingStateAction extends ReduxAction<AppState> {
       phoneNumber: phoneNumber ?? onboardingStateFromState?.phoneNumber,
       hasAcceptedTerms:
           hasAcceptedTerms ?? onboardingStateFromState?.hasAcceptedTerms,
+      nickName: nickName ?? onboardingStateFromState?.nickName,
     );
 
     final AppState newState =
