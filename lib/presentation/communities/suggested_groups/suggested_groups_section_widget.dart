@@ -22,35 +22,23 @@ import 'package:shared_themes/spaces.dart';
 /// It takes in a required [suggestedGroups] parameter which is a List of
 /// the suggested groups or communities a user can join
 
-class SuggestedGroupsSection extends StatefulWidget {
+class SuggestedGroupsSection extends StatelessWidget {
   const SuggestedGroupsSection();
-
-  @override
-  State<SuggestedGroupsSection> createState() => _SuggestedGroupsSectionState();
-}
-
-class _SuggestedGroupsSectionState extends State<SuggestedGroupsSection> {
-  @override
-  void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      final String clientID =
-          StoreProvider.state<AppState>(context)?.clientState?.id ?? '';
-
-      StoreProvider.dispatch<AppState>(
-        context,
-        FetchRecommendedGroupsAction(
-          client: AppWrapperBase.of(context)!.graphQLClient,
-          variables: <String, dynamic>{'clientID': clientID, 'limit': 10},
-        ),
-      );
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, GroupsViewModel>(
       converter: (Store<AppState> store) => GroupsViewModel.fromStore(store),
+      onInit: (Store<AppState> store) {
+        final String clientID = store.state.clientState?.id ?? '';
+
+        store.dispatch(
+          FetchRecommendedGroupsAction(
+            client: AppWrapperBase.of(context)!.graphQLClient,
+            variables: <String, dynamic>{'clientID': clientID, 'limit': 10},
+          ),
+        );
+      },
       builder: (BuildContext context, GroupsViewModel vm) {
         return vm.wait.isWaitingFor(fetchRecommendedCommunitiesFlag)
             ? const Padding(

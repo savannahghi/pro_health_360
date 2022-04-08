@@ -21,25 +21,9 @@ import 'package:shared_themes/spaces.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
-class ScreeningToolsCarousel extends StatefulWidget {
+class ScreeningToolsCarousel extends StatelessWidget {
   const ScreeningToolsCarousel();
-
-  @override
-  State<ScreeningToolsCarousel> createState() => _ScreeningToolsCarouselState();
-}
-
-class _ScreeningToolsCarouselState extends State<ScreeningToolsCarousel> {
-  @override
-  void didChangeDependencies() {
-    StoreProvider.dispatch(
-      context,
-      FetchAvailableScreeningToolsAction(
-        client: AppWrapperBase.of(context)!.graphQLClient,
-      ),
-    );
-    super.didChangeDependencies();
-  }
-
+  
   String getNextNavigationRoute(ScreeningToolsType toolsType) {
     switch (toolsType) {
       case ScreeningToolsType.VIOLENCE_ASSESSMENT:
@@ -74,87 +58,95 @@ class _ScreeningToolsCarouselState extends State<ScreeningToolsCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return StoreConnector<AppState, ScreeningToolsViewModel>(
+      converter: (Store<AppState> store) {
+        return ScreeningToolsViewModel.fromStore(store);
+      },
+      onInit: (Store<AppState> store) {
+        store.dispatch(
+          FetchAvailableScreeningToolsAction(
+            client: AppWrapperBase.of(context)!.graphQLClient,
+          ),
+        );
+      },
+      builder: (BuildContext context, ScreeningToolsViewModel vm) {
+        final int itemCount =
+            vm.availableScreeningTools?.availableScreeningTools?.length ?? 0;
+
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    assessmentToolsTitle,
-                    style: veryBoldSize16Text(AppColors.secondaryColor),
-                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      SvgPicture.asset(verticalScrollIconSvgPath),
-                      verySmallHorizontalSizedBox,
                       Text(
-                        scrollForMoreString,
-                        style: boldSize13Text(
-                          AppColors.greyTextColor.withOpacity(0.8),
-                        ),
+                        assessmentToolsTitle,
+                        style: veryBoldSize16Text(AppColors.secondaryColor),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SvgPicture.asset(verticalScrollIconSvgPath),
+                          verySmallHorizontalSizedBox,
+                          Text(
+                            scrollForMoreString,
+                            style: boldSize13Text(
+                              AppColors.greyTextColor.withOpacity(0.8),
+                            ),
+                          )
+                        ],
                       )
                     ],
-                  )
-                ],
-              ),
-              smallVerticalSizedBox,
-              SizedBox(
-                height: 170,
-                child: StoreConnector<AppState, ScreeningToolsViewModel>(
-                  converter: (Store<AppState> store) {
-                    return ScreeningToolsViewModel.fromStore(store);
-                  },
-                  builder: (BuildContext context, ScreeningToolsViewModel vm) {
-                    final int itemCount = vm.availableScreeningTools
-                            ?.availableScreeningTools?.length ??
-                        0;
-                    return (vm.availableScreeningTools
-                                    ?.errorFetchingQuestions ??
-                                false) ||
-                            (vm.availableScreeningTools
-                                    ?.timeoutFetchingQuestions ??
-                                false)
-                        ? const SizedBox()
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            cacheExtent: 4,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: itemCount,
-                            itemBuilder: (BuildContext context, int index) {
-                              final ScreeningTool screeningTool = vm
-                                  .availableScreeningTools!
-                                  .availableScreeningTools![index];
+                  ),
+                  smallVerticalSizedBox,
+                  SizedBox(
+                    height: 170,
+                    child:
+                        (vm.availableScreeningTools?.errorFetchingQuestions ??
+                                    false) ||
+                                (vm.availableScreeningTools
+                                        ?.timeoutFetchingQuestions ??
+                                    false)
+                            ? const SizedBox()
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                cacheExtent: 4,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: itemCount,
+                                itemBuilder: (BuildContext context, int index) {
+                                  final ScreeningTool screeningTool = vm
+                                      .availableScreeningTools!
+                                      .availableScreeningTools![index];
 
-                              final ScreeningToolsType toolsType =
-                                  screeningTool.toolType!;
+                                  final ScreeningToolsType toolsType =
+                                      screeningTool.toolType!;
 
-                              return ScreeningToolMenuItem(
-                                title: screeningTool.title!,
-                                description: screeningTool.description!,
-                                onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                    getNextNavigationRoute(toolsType),
+                                  return ScreeningToolMenuItem(
+                                    title: screeningTool.title!,
+                                    description: screeningTool.description!,
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed(
+                                        getNextNavigationRoute(toolsType),
+                                      );
+                                    },
+                                    beginButtonKey:
+                                        getSCreeningToolsBeginKey(toolsType),
                                   );
                                 },
-                                beginButtonKey:
-                                    getSCreeningToolsBeginKey(toolsType),
-                              );
-                            },
-                          );
-                  },
-                ),
+                              ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -16,9 +16,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
-  FetchAvailableScreeningToolsAction({
-    required this.client,
-  });
+  FetchAvailableScreeningToolsAction({required this.client});
 
   final IGraphQlClient client;
 

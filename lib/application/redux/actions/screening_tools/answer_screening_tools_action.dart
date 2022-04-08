@@ -50,13 +50,15 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
             .violenceState!
             .screeningQuestions!
             .screeningQuestionsList!) {
-          (variables['screeningToolResponses'] as List<dynamic>).add(
-            <String, dynamic>{
-              'clientID': state.clientState!.id!,
-              'questionID': question.id,
-              'response': question.answer
-            },
-          );
+          if (question.answer != null) {
+            (variables['screeningToolResponses'] as List<dynamic>).add(
+              <String, dynamic>{
+                'clientID': state.clientState!.id!,
+                'questionID': question.id,
+                'response': question.answer
+              },
+            );
+          }
         }
         return variables;
 
@@ -140,9 +142,10 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    final Map<String, dynamic> map = getAnswersVariables(screeningToolsType);
     final Response response = await client.query(
       answerScreeningToolQuestionMutation,
-      getAnswersVariables(screeningToolsType),
+      map,
     );
 
     final ProcessedResponse processedResponse = processHttpResponse(response);

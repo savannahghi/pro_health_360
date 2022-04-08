@@ -95,11 +95,7 @@ const String fetchAppointmentsFlag = 'fetch_appointments_flag';
 const String rescheduleAppointmentFlag = 'reschedule_appointment_flag';
 
 //screening tools flags
-const String fetchingViolenceQuestionsFlag = 'fetch_violence_questions_flags';
-const String fetchingContraceptivesQuestionsFlag =
-    'fetch_contraceptives_questions_flags';
-const String fetchingTBQuestionsFlag = 'fetch_TB_questions_flags';
-const String fetchingAlcoholQuestionsFlag = 'fetch_alcohol_questions_flags';
+const String fetchingQuestionsFlag = 'fetching_questions_flags';
 const String answerScreeningQuestionsFlag = 'answer_screening_questions_flag';
 const String fetchAvailableScreeningToolsFlag =
     'fetch_available_screening_tools_flag';
@@ -112,4 +108,3 @@ const String fetchMedicalDataFlag = 'fetch_health_timeline';
 
 //share diary entry
 const String shareDiaryEntryFlag = 'share_diary_entry_flag';
-

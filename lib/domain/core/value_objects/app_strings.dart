@@ -692,6 +692,8 @@ const String sexualAssault = 'sexual assault';
 const String requireFirstAidServices =
     ', require first-aid services which are most effective administered within hours.';
 const String submitAssessment = 'Submit Assessment';
+const String pleaseAnswerAllQuestions =
+    'Please answer all the questions to submit your assessment';
 
 //contraceptive assessment page
 const String contraceptiveAssessmentTitle = 'Contraceptive Assessment';
@@ -729,7 +731,7 @@ const String healthAssessmentQuestionTen =
 const String assessmentSubmissionSuccessfulText =
     'Thanks for sharing your assessment';
 const String assessmentSubmissionSuccessfulDescription =
-    'Your clinician has been notified. ';
+    'Thank you for sharing your assessment. Your clinic has been notified and someone from the clinical team will reach out to you.  ';
 const String ifItIsAnEmergency =
     'If it is an emergency, please call us back on ';
 

@@ -37,7 +37,7 @@ void main() {
           await storeTester.waitUntil(FetchScreeningToolsQuestionsAction);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingViolenceQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
     });
@@ -54,7 +54,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingViolenceQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
@@ -75,7 +75,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingContraceptivesQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
@@ -95,7 +95,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingAlcoholQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
@@ -115,7 +115,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingTBQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
@@ -147,7 +147,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingViolenceQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
@@ -184,7 +184,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingContraceptivesQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
@@ -220,7 +220,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingAlcoholQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
@@ -256,7 +256,7 @@ void main() {
           await storeTester.waitUntil(UpdateScreeningToolsState);
 
       expect(
-        info.state.wait!.isWaitingFor(fetchingTBQuestionsFlag),
+        info.state.wait!.isWaitingFor(fetchingQuestionsFlag),
         false,
       );
       expect(
