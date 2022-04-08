@@ -50,13 +50,15 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
             .violenceState!
             .screeningQuestions!
             .screeningQuestionsList!) {
-          (variables['screeningToolResponses'] as List<dynamic>).add(
-            <String, dynamic>{
-              'clientID': state.clientState!.id!,
-              'questionID': question.id,
-              'response': question.answer
-            },
-          );
+          if (question.answer != null) {
+            (variables['screeningToolResponses'] as List<dynamic>).add(
+              <String, dynamic>{
+                'clientID': state.clientState!.id!,
+                'questionID': question.id,
+                'response': question.answer
+              },
+            );
+          }
         }
         return variables;
 

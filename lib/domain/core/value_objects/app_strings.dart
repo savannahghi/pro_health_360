@@ -692,6 +692,8 @@ const String sexualAssault = 'sexual assault';
 const String requireFirstAidServices =
     ', require first-aid services which are most effective administered within hours.';
 const String submitAssessment = 'Submit Assessment';
+const String pleaseAnswerAllQuestions =
+    'Please answer all the questions to submit your assessment';
 
 //contraceptive assessment page
 const String contraceptiveAssessmentTitle = 'Contraceptive Assessment';

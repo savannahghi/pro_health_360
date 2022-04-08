@@ -1,5 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
@@ -33,13 +34,37 @@ void main() {
         find.byType(ScreeningToolQuestionWidget, skipOffstage: false),
         findsOneWidget,
       );
-      
-       await tester.tap(find.byType(MoodSymptomWidget).first);
+
+      await tester.tap(find.byType(MoodSymptomWidget).first);
       await tester.ensureVisible(submitButtonFinder);
       await tester.tap(submitButtonFinder);
 
       await tester.pumpAndSettle();
       expect(find.byType(SuccessfulAssessmentSubmissionPage), findsOneWidget);
+    });
+
+    testWidgets('shows snackbar to prompt user to answer all questions',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: const ContraceptiveAssessmentPage(),
+      );
+
+      await tester.pumpAndSettle();
+      final Finder submitButtonFinder = find.byType(MyAfyaHubPrimaryButton);
+
+      expect(
+        find.byType(ScreeningToolQuestionWidget, skipOffstage: false),
+        findsOneWidget,
+      );
+
+      await tester.ensureVisible(submitButtonFinder);
+      await tester.tap(submitButtonFinder);
+
+      await tester.pumpAndSettle();
+      expect(find.byType(SnackBar), findsOneWidget);
     });
   });
 }

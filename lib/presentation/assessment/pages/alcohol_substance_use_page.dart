@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/fetch_screening_questions_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -90,15 +91,35 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                           child: MyAfyaHubPrimaryButton(
                             buttonKey: alcoholSubstanceFeedbackButtonKey,
                             onPressed: () {
-                              StoreProvider.dispatch(
-                                context,
-                                AnswerScreeningToolsAction(
-                                  client:
-                                      AppWrapperBase.of(context)!.graphQLClient,
-                                  screeningToolsType: ScreeningToolsType
-                                      .ALCOHOL_SUBSTANCE_ASSESSMENT,
-                                ),
+                              bool areAllQuestionsAnswered = false;
+                              setState(
+                                () {
+                                  areAllQuestionsAnswered =
+                                      allQuestionsAnswered(
+                                    vm
+                                        .alcoholSubstanceUseState
+                                        ?.screeningQuestions
+                                        ?.screeningQuestionsList,
+                                  );
+                                },
                               );
+                              if (areAllQuestionsAnswered) {
+                                StoreProvider.dispatch(
+                                  context,
+                                  AnswerScreeningToolsAction(
+                                    client: AppWrapperBase.of(context)!
+                                        .graphQLClient,
+                                    screeningToolsType: ScreeningToolsType
+                                        .ALCOHOL_SUBSTANCE_ASSESSMENT,
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(pleaseAnswerAllQuestions),
+                                  ),
+                                );
+                              }
                             },
                             buttonColor: AppColors.primaryColor,
                             borderColor: Colors.transparent,
