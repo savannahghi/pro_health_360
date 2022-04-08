@@ -23,6 +23,7 @@ import 'package:myafyahub/application/redux/actions/update_pin_input_details_act
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
@@ -796,4 +797,14 @@ void showTextSnackbar(
         ),
       ),
     );
+}
+
+bool allQuestionsAnswered(List<ScreeningQuestion>? questions) {
+  if (questions != null) {
+    for (final ScreeningQuestion question in questions) {
+      if (question.answer == null) return false;
+    }
+    return true;
+  }
+  return false;
 }
