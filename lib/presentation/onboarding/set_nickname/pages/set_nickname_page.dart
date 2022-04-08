@@ -1,19 +1,17 @@
 // Dart imports:
-import 'dart:async';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
+import 'package:myafyahub/application/redux/view_models/set_nickname_view_model.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/feed_content.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
@@ -37,42 +35,26 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
   TextEditingController userNameController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late Stream<dynamic> _stream;
-  late StreamController<dynamic> _streamController;
-
-  @override
-  void initState() {
-    _streamController = StreamController<dynamic>.broadcast();
-    _stream = _streamController.stream;
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
-      await genericFetchFunction(
-        streamController: _streamController,
-        context: context,
-        logTitle: 'Fetch welcome content',
-        queryString: getContentQuery,
-        variables: <String, dynamic>{
-          'Limit': '3',
-          'categoryID': 1,
-        },
-      );
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _streamController.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 4;
-    return StoreConnector<AppState, AppStateViewModel>(
-      converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
-      builder: (BuildContext context, AppStateViewModel vm) {
-        final bool waitingForFlag =
-            vm.appState.wait!.isWaitingFor(setNickNameFlag);
+    return StoreConnector<AppState, SetNicknameViewModel>(
+      converter: (Store<AppState> store) =>
+          SetNicknameViewModel.fromStore(store.state),
+      onInit: (Store<AppState> store) async {
+        StoreProvider.dispatch<AppState>(
+          context,
+          FetchContentAction(
+            context: context,
+            limit: 3,
+            category: ContentCategory(id: 3),
+          ),
+        );
+      },
+      builder: (BuildContext context, SetNicknameViewModel vm) {
+        final bool waitingForFlag = vm.wait!.isWaitingFor(setNickNameFlag);
+        final List<Content?>? feedItems = vm.feedContentState?.contentItems;
         return Scaffold(
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,
@@ -146,125 +128,88 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                       });
                                     },
                                   ),
-                                  StreamBuilder<dynamic>(
-                                    stream: _stream,
-                                    builder: (
-                                      BuildContext context,
-                                      AsyncSnapshot<dynamic> snapshot,
-                                    ) {
-                                      //show the loader before the data is displayed
-                                      if (snapshot.data
-                                              is Map<String, dynamic> &&
-                                          snapshot.data != null &&
-                                          snapshot.data['loading'] != null &&
-                                          snapshot.data['loading'] == true) {
-                                        return Container(
-                                          height: 200,
-                                          padding: const EdgeInsets.all(20),
-                                          child: const PlatformLoader(),
-                                        );
-                                      }
-
-                                      //error checking
-                                      if (snapshot.hasError) {
-                                        reportErrorToSentry(
+                                  if (vm.wait?.isWaitingFor(
+                                        fetchContentFlag,
+                                      ) ??
+                                      false)
+                                    Container(
+                                      height: 200,
+                                      padding: const EdgeInsets.all(20),
+                                      child: const PlatformLoader(),
+                                    ),
+                                  if (vm.feedContentState
+                                          ?.errorFetchingContent ??
+                                      false)
+                                    GenericErrorWidget(
+                                      actionKey: helpNoDataWidgetKey,
+                                      recoverCallback: () async {
+                                        StoreProvider.dispatch<AppState>(
                                           context,
-                                          snapshot.error,
-                                          hint:
-                                              'Error fetching welcome content',
-                                        );
-                                        return GenericErrorWidget(
-                                          actionKey: const Key(
-                                            'error_fetching_content',
+                                          FetchContentAction(
+                                            context: context,
+                                            limit: 3,
+                                            category: ContentCategory(id: 3),
                                           ),
-                                          recoverCallback: () {
-                                            genericFetchFunction(
-                                              streamController:
-                                                  _streamController,
-                                              context: context,
-                                              logTitle: 'Fetch welcome content',
-                                              queryString: getContentQuery,
-                                              variables: <String, dynamic>{
-                                                'Limit': '3',
-                                                'categoryID': 1,
-                                              },
-                                            );
-                                          },
-                                          messageBody: const <TextSpan>[
-                                            TextSpan(
-                                              text:
-                                                  messageBodyGenericErrorWidget,
-                                            )
-                                          ],
                                         );
-                                      }
-
-                                      if (snapshot.hasData) {
-                                        final FeedContent welcomeContent =
-                                            FeedContent.fromJson(
-                                          snapshot.data as Map<String, dynamic>,
-                                        );
-                                        final List<Content?>? links =
-                                            welcomeContent.feedContent?.items;
-                                        return Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                      },
+                                      messageBody: const <TextSpan>[
+                                        TextSpan(
+                                          text: messageBodyGenericErrorWidget,
+                                        )
+                                      ],
+                                    ),
+                                  if (feedItems != null && feedItems.isNotEmpty)
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
-                                            if (links?.isNotEmpty ?? false)
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  veryLargeVerticalSizedBox,
-                                                  smallVerticalSizedBox,
-                                                  Text(
-                                                    importantInformationString,
-                                                    style: TextThemes
-                                                        .boldSize16Text(
-                                                      AppColors.secondaryColor,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: double.infinity,
-                                                    height: 250,
-                                                    child: ListView.builder(
-                                                      physics:
-                                                          const BouncingScrollPhysics(),
-                                                      shrinkWrap: true,
-                                                      itemCount: links?.length,
-                                                      itemBuilder: (
-                                                        BuildContext context,
-                                                        int index,
-                                                      ) {
-                                                        final Content?
-                                                            currentLink =
-                                                            links!.elementAt(
-                                                          index,
-                                                        );
-
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                            top: 5,
-                                                          ),
-                                                          child:
-                                                              MiniContentWidget(
-                                                            contentDetails:
-                                                                currentLink,
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
-                                                ],
+                                            veryLargeVerticalSizedBox,
+                                            smallVerticalSizedBox,
+                                            Text(
+                                              importantInformationString,
+                                              style: TextThemes.boldSize16Text(
+                                                AppColors.secondaryColor,
                                               ),
+                                            ),
+                                            SizedBox(
+                                              width: double.infinity,
+                                              height: 250,
+                                              child: ListView.builder(
+                                                physics:
+                                                    const BouncingScrollPhysics(),
+                                                shrinkWrap: true,
+                                                itemCount: feedItems.length,
+                                                itemBuilder: (
+                                                  BuildContext context,
+                                                  int index,
+                                                ) {
+                                                  final Content? currentLink =
+                                                      feedItems.elementAt(
+                                                    index,
+                                                  );
+
+                                                  return Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      top: 5,
+                                                    ),
+                                                    child: MiniContentWidget(
+                                                      contentDetails:
+                                                          currentLink,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            const SizedBox()
                                           ],
-                                        );
-                                      }
-                                      return const SizedBox();
-                                    },
-                                  ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ),
@@ -287,7 +232,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             width: double.infinity,
             height: 52,
-            child: (vm.appState.wait!.isWaitingFor(setNickNameFlag))
+            child: (vm.wait!.isWaitingFor(setNickNameFlag))
                 ? const PlatformLoader()
                 : MyAfyaHubPrimaryButton(
                     buttonKey: continueKey,
@@ -307,8 +252,11 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                       if (isFormValid != null &&
                           isFormValid &&
                           nickName != null) {
+                        StoreProvider.dispatch<AppState>(
+                          context,
+                          UpdateOnboardingStateAction(nickName: nickName),
+                        );
                         setUserNickname(
-                          nickName: nickName ?? '',
                           context: context,
                         );
                       }

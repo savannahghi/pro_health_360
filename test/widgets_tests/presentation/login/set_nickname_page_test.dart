@@ -4,15 +4,13 @@ import 'dart:io';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
@@ -26,6 +24,7 @@ import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/mini_content_widget.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
+
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -224,9 +223,7 @@ void main() {
       await tester.pump();
 
       final Finder genericErrorWidgetButton = find.byKey(
-        const Key(
-          'error_fetching_content',
-        ),
+        helpNoDataWidgetKey,
       );
       expect(genericErrorWidgetButton, findsOneWidget);
 
@@ -248,26 +245,12 @@ void main() {
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
-        final MockShortGraphQlClient client =
-            MockShortGraphQlClient.withResponse(
-          'idToken',
-          'endpoint',
-          Response(
-            json.encode(<String, dynamic>{
-              'data': <String, dynamic>{'loading': true}
-            }),
-            201,
-          ),
-        );
-
         await buildTestWidget(
           tester: tester,
           store: store,
-          client: client,
+          client: MockGraphQlClient(),
           widget: SetNickNamePage(),
         );
-
-        await tester.pump();
 
         expect(find.byType(PlatformLoader), findsOneWidget);
       });

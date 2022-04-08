@@ -158,13 +158,11 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
 
 void setUserNickname({
   required BuildContext context,
-  required String nickName,
 }) {
   // this is the Redux Action that handles set nickname for an existing user
   StoreProvider.dispatch<AppState>(
     context,
     SetNicknameAction(
-      nickname: nickName,
       client: AppWrapperBase.of(context)!.graphQLClient,
       onSuccess: () {
         showTextSnackbar(

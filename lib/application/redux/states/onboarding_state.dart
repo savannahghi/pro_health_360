@@ -70,6 +70,7 @@ class OnboardingState with _$OnboardingState {
 
     //  Whether the user is allowed to resend their PIN
     final bool? canResendOTP,
+    final String? nickName,
 
     ///------------ONBOARDING STATE BOOLEANS------------
   }) = _OnboardingState;
@@ -98,5 +99,6 @@ class OnboardingState with _$OnboardingState {
         invalidCredentials: false,
         hasSetPin: false,
         hasAcceptedTerms: false,
+        nickName: UNKNOWN,
       );
 }

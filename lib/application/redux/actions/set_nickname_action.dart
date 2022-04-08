@@ -29,7 +29,6 @@ class SetNicknameAction extends ReduxAction<AppState> {
   SetNicknameAction({
     required this.flag,
     required this.client,
-    required this.nickname,
     this.shouldNavigate = true,
     this.onError,
     this.onSuccess,
@@ -37,7 +36,6 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
   final String flag;
   final IGraphQlClient client;
-  final String nickname;
   final bool shouldNavigate;
   final void Function(String)? onError;
   final void Function()? onSuccess;
@@ -58,12 +56,12 @@ class SetNicknameAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final String? userID = state.clientState?.user?.userId;
-    final String? userName = state.clientState?.user?.username;
+    final String nickname = state.onboardingState?.nickName ?? '';
 
     // initializing of the SetNicknameAction mutation
     final Map<String, String?> variables = <String, String?>{
       'userID': userID,
-      'nickname': userName,
+      'nickname': nickname,
     };
 
     final http.Response result = await client.query(
@@ -96,12 +94,7 @@ class SetNicknameAction extends ReduxAction<AppState> {
 
         onSuccess?.call();
 
-        await dispatch(
-          CompleteOnboardingTourAction(
-            client: client,
-            userID: userID,
-          ),
-        );
+        dispatch(CompleteOnboardingTourAction(client: client, userID: userID));
 
         if (shouldNavigate) {
           final OnboardingPathInfo path = onboardingPath(appState: state);

@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/set_nickname_action.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -45,11 +46,12 @@ void main() {
         ),
       );
 
+      storeTester.dispatch(UpdateOnboardingStateAction(nickName: 'test'));
+
       storeTester.dispatch(
         SetNicknameAction(
           client: client,
           flag: setNickNameFlag,
-          nickname: 'test',
         ),
       );
 
@@ -72,7 +74,6 @@ void main() {
             ),
           ),
           flag: setNickNameFlag,
-          nickname: 'test',
         ),
       );
 
@@ -97,7 +98,6 @@ void main() {
             ),
           ),
           flag: setNickNameFlag,
-          nickname: 'test',
           onError: (String error) {
             errorString = error;
           },
@@ -132,7 +132,6 @@ void main() {
             ),
           ),
           flag: setNickNameFlag,
-          nickname: 'test',
           onError: (String error) {
             errorString = error;
           },
@@ -161,7 +160,6 @@ void main() {
             ),
           ),
           flag: setNickNameFlag,
-          nickname: 'test',
         ),
       );
 
@@ -189,7 +187,7 @@ void main() {
       );
 
       storeTester.dispatch(
-        SetNicknameAction(client: client, flag: '', nickname: 'test'),
+        SetNicknameAction(client: client, flag: ''),
       );
 
       final TestInfo<AppState> info =
@@ -221,7 +219,10 @@ void main() {
       ).thenThrow(MyAfyaException(cause: 'cause', message: 'message'));
 
       storeTester.dispatch(
-        SetNicknameAction(client: client, flag: '', nickname: 'test'),
+        SetNicknameAction(
+          client: client,
+          flag: '',
+        ),
       );
 
       final TestInfo<AppState> info =
