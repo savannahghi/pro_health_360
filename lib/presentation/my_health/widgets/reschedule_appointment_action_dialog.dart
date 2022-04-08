@@ -102,7 +102,7 @@ class _RescheduleAppointmentActionDialogState
                                 StoreProvider.dispatch<AppState>(
                                   context,
                                   RescheduleAppointmentAction(
-                                    date: date.toString(),
+                                    date: getFormattedAppointDate(date),
                                     client: AppWrapperBase.of(context)!
                                         .graphQLClient,
                                     appointmentId: widget.appointmentId,

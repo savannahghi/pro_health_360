@@ -737,6 +737,9 @@ const String ifItIsAnEmergency =
 
 /// Date picker format
 const String datePickerFormat = 'dd MMM, yyyy';
+String getFormattedAppointDate(DateTime date) {
+  return '${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+}
 
 // successful feedback submission
 const String feedbackSubmissionSuccessfulText =
