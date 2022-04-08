@@ -336,12 +336,9 @@ query listAppointments(
   ) {
     appointments {
       ID
-      type
       reason
-      status
       date
-      start
-      end
+      HasRescheduledAppointment
     }
   }
 }

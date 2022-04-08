@@ -14,6 +14,7 @@ import 'package:myafyahub/application/redux/actions/update_client_profile_action
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/communities_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
@@ -146,8 +147,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         dispatch(
           UpdateClientStateAction(
-            clientState: loginResponse.userResponse?.clientState?.copyWith
-                .call(user: user),
+            clientState: loginResponse.userResponse?.clientState?.copyWith.call(
+              user: user,
+              communitiesState: CommunitiesState.initial(),
+            ),
           ),
         );
 

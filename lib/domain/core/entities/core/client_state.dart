@@ -32,7 +32,7 @@ class ClientState with _$ClientState {
     @JsonKey(name: 'treatmentEnrollmentDate') String? treatmentEnrollmentDate,
     @JsonKey(name: 'user') User? user,
 
-    ///others
+    /// others
     @JsonKey(name: 'lastMoodRecordedDate') String? lastMoodRecordedDate,
     @JsonKey(name: 'isSignedIn') bool? isSignedIn,
     @JsonKey(name: 'facilityName') String? facilityName,
@@ -51,7 +51,7 @@ class ClientState with _$ClientState {
     // Past appointments
     List<Appointment>? pastAppointments,
 
-    // // Past appointments
+    // Past appointments
     List<Appointment>? upcomingAppointments,
     // screening tools state
 

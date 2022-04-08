@@ -65,6 +65,8 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
           communitiesList: pendingInvites.communities,
         ),
       );
+
+      return state;
     } else {
       Sentry.captureException(
         const UserException(somethingWentWrongText),

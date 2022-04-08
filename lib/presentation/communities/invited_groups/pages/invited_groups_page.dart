@@ -16,28 +16,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
-class InvitedGroupsPage extends StatefulWidget {
+class InvitedGroupsPage extends StatelessWidget {
   const InvitedGroupsPage();
-
-  @override
-  State<InvitedGroupsPage> createState() => _InvitedGroupsPageState();
-}
-
-class _InvitedGroupsPageState extends State<InvitedGroupsPage> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback(
-      (Duration timeStamp) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          FetchInvitedCommunitiesAction(
-            client: AppWrapperBase.of(context)!.graphQLClient,
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +29,13 @@ class _InvitedGroupsPageState extends State<InvitedGroupsPage> {
         child: StoreConnector<AppState, InvitedGroupsViewModel>(
           converter: (Store<AppState> store) =>
               InvitedGroupsViewModel.fromStore(store),
+          onInit: (Store<AppState> store) {
+            store.dispatch(
+              FetchInvitedCommunitiesAction(
+                client: AppWrapperBase.of(context)!.graphQLClient,
+              ),
+            );
+          },
           builder: (BuildContext context, InvitedGroupsViewModel vm) {
             if (vm.wait.isWaitingFor(fetchInvitedCommunitiesFlag)) {
               return Container(

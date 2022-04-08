@@ -49,7 +49,7 @@ class AppointmentsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: TabBarView(
                     children: <Widget>[
                       UpcomingAppointments(),

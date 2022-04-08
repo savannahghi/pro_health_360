@@ -4,7 +4,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
@@ -43,20 +42,6 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
-  void dispose() {
-    pinController.dispose();
-    phoneNumberInputController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    clearAllFlags(context);
-  }
-
-  @override
   Widget build(BuildContext context) {
     final double sizedBoxHeight = MediaQuery.of(context).size.width / 8;
 
@@ -68,6 +53,13 @@ class _LoginPageState extends State<LoginPage> {
     return StoreConnector<AppState, LoginPageViewModel>(
       converter: (Store<AppState> store) =>
           LoginPageViewModel.fromState(store.state),
+      onInit: (Store<AppState> store) {
+        store.dispatch(WaitAction<AppState>.clear());
+      },
+      onDispose: (Store<AppState> store) {
+        pinController.dispose();
+        phoneNumberInputController.dispose();
+      },
       builder: (BuildContext context, LoginPageViewModel vm) {
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,

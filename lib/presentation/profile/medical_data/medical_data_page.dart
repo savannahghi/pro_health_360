@@ -23,10 +23,8 @@ import 'package:myafyahub/presentation/profile/medical_data/medical_data_item.da
 import 'package:myafyahub/presentation/profile/medical_data/medical_data_item_title.dart';
 
 class MedicalDataPage extends StatefulWidget {
-  const MedicalDataPage({
-    Key? key,
-    this.graphQlClient,
-  }) : super(key: key);
+  const MedicalDataPage({Key? key, this.graphQlClient}) : super(key: key);
+
   final IGraphQlClient? graphQlClient;
 
   @override
@@ -35,6 +33,7 @@ class MedicalDataPage extends StatefulWidget {
 
 class _MedicalDataPageState extends State<MedicalDataPage> {
   late IGraphQlClient client;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -63,9 +62,7 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
 
     StoreProvider.dispatch(
       context,
-      FetchMedicalDataAction(
-        httpClient: client,
-      ),
+      FetchMedicalDataAction(httpClient: client),
     );
   }
 
@@ -111,7 +108,7 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
               } else {
                 final List<MedicalDataDetails?>? regimen =
                     vm.medicalData?.regimen;
-                final List<MedicalDataDetails?>? alergies =
+                final List<MedicalDataDetails?>? allergies =
                     vm.medicalData?.allergies;
                 final List<MedicalDataDetails?>? weight =
                     vm.medicalData?.weight;
@@ -120,15 +117,14 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
                 final List<MedicalDataDetails?>? bmi = vm.medicalData?.bmi;
                 final List<MedicalDataDetails?>? cd4Count =
                     vm.medicalData?.cd4Count;
+
                 return Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RefreshIndicator(
                     onRefresh: () async {
                       StoreProvider.dispatch(
                         context,
-                        FetchMedicalDataAction(
-                          httpClient: client,
-                        ),
+                        FetchMedicalDataAction(httpClient: client),
                       );
                     },
                     child: ListView(
@@ -162,16 +158,16 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
                               const SizedBox(height: 24),
                             ],
                           ),
-                        if (alergies != null && alergies.isNotEmpty)
+                        if (allergies != null && allergies.isNotEmpty)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               MedicalDataItemTitle(title: allergiesTitle),
                               ...List<Widget>.generate(
-                                alergies.length,
+                                allergies.length,
                                 (int index) {
                                   final String valuesString =
-                                      alergies[index]?.clinicalStatus?.text ??
+                                      allergies[index]?.clinicalStatus?.text ??
                                           UNKNOWN;
                                   return Column(
                                     children: <Widget>[

@@ -15,32 +15,22 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
 
-class PastAppointments extends StatefulWidget {
-  @override
-  State<PastAppointments> createState() => _PastAppointmentsState();
-}
-
-class _PastAppointmentsState extends State<PastAppointments> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch<AppState>(
-        context,
-        FetchAppointmentsAction(
-          client: AppWrapperBase.of(context)!.graphQLClient,
-          comparison: 'LESS_THAN',
-        ),
-      );
-    });
-  }
+class PastAppointments extends StatelessWidget {
+  const PastAppointments();
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppointmentsViewModel>(
       converter: (Store<AppState> store) =>
           AppointmentsViewModel.fromStore(store.state),
+      onInit: (Store<AppState> store) {
+        store.dispatch(
+          FetchAppointmentsAction(
+            client: AppWrapperBase.of(context)!.graphQLClient,
+            comparison: 'LESS_THAN',
+          ),
+        );
+      },
       builder: (BuildContext context, AppointmentsViewModel vm) {
         final List<Appointment> appointments =
             vm.appointmentState?.appointments ?? <Appointment>[];
@@ -62,9 +52,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
             messageBody: <TextSpan>[
               TextSpan(
                 text: getErrorMessage(fetchingAppointmentsString),
-                style: normalSize16Text(
-                  AppColors.greyTextColor,
-                ),
+                style: normalSize16Text(AppColors.greyTextColor),
               ),
             ],
           );
@@ -92,8 +80,7 @@ class _PastAppointmentsState extends State<PastAppointments> {
                   recoverCallback: () {
                     Navigator.of(context).pop();
                   },
-                  messageTitle:
-                      noAppointmentsString,
+                  messageTitle: noAppointmentsString,
                   messageBody: <TextSpan>[
                     TextSpan(
                       text: noAppointmentsBodyString,

@@ -17,32 +17,22 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
 import 'package:myafyahub/presentation/my_health/widgets/reschedule_appointment_action_dialog.dart';
 
-class UpcomingAppointments extends StatefulWidget {
-  @override
-  State<UpcomingAppointments> createState() => _UpcomingAppointmentsState();
-}
-
-class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      StoreProvider.dispatch<AppState>(
-        context,
-        FetchAppointmentsAction(
-          client: AppWrapperBase.of(context)!.graphQLClient,
-          comparison: 'GREATER_THAN_OR_EQUAL_TO',
-        ),
-      );
-    });
-  }
+class UpcomingAppointments extends StatelessWidget {
+  const UpcomingAppointments();
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppointmentsViewModel>(
       converter: (Store<AppState> store) =>
           AppointmentsViewModel.fromStore(store.state),
+      onInit: (Store<AppState> store) {
+        store.dispatch(
+          FetchAppointmentsAction(
+            client: AppWrapperBase.of(context)!.graphQLClient,
+            comparison: 'GREATER_THAN_OR_EQUAL_TO',
+          ),
+        );
+      },
       builder: (BuildContext context, AppointmentsViewModel vm) {
         final List<Appointment> appointments =
             vm.appointmentState?.appointments ?? <Appointment>[];
@@ -81,18 +71,17 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
                     return Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: AppointmentListItem(
-                              appointment: currentAppointmentDetails,
-                              appointmentListTye: AppointmentListTye.Upcoming,
-                              rescheduleCallBack: () => showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return RescheduleAppointmentActionDialog(
-                                    appointmentId:
-                                        currentAppointmentDetails.id ?? '',
-                                  );
-                                },
-                              ),
-                            ),
+                        appointment: currentAppointmentDetails,
+                        appointmentListTye: AppointmentListTye.Upcoming,
+                        rescheduleCallBack: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return RescheduleAppointmentActionDialog(
+                              appointmentId: currentAppointmentDetails.id ?? '',
+                            );
+                          },
+                        ),
+                      ),
                     );
                   },
                 )

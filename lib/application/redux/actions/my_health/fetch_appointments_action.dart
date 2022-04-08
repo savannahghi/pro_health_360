@@ -13,10 +13,7 @@ class FetchAppointmentsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final String comparison;
 
-  FetchAppointmentsAction({
-    required this.client,
-    required this.comparison,
-  });
+  FetchAppointmentsAction({required this.client, required this.comparison});
 
   @override
   void before() {

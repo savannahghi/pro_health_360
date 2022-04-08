@@ -10,19 +10,20 @@ import 'package:myafyahub/domain/core/entities/medical_data/medical_data_state.d
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchMedicalDataAction extends ReduxAction<AppState> {
-  final IGraphQlClient httpClient;
   FetchMedicalDataAction({required this.httpClient});
 
-  @override
-  void before() {
-    super.before();
-    dispatch(WaitAction<AppState>.add(fetchMedicalDataFlag));
-  }
+  final IGraphQlClient httpClient;
 
   @override
   void after() {
     super.after();
     dispatch(WaitAction<AppState>.remove(fetchMedicalDataFlag));
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(fetchMedicalDataFlag));
   }
 
   @override

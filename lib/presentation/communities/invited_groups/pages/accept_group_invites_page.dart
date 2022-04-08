@@ -54,6 +54,7 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
               largeVerticalSizedBox,
               SizedBox(
                 width: double.infinity,
+                height: 48,
                 child: loading
                     ? const PlatformLoader()
                     : MyAfyaHubPrimaryButton(
@@ -73,10 +74,11 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                         },
                       ),
               ),
-              mediumVerticalSizedBox,
+              smallVerticalSizedBox,
               if (!loading)
                 SizedBox(
                   width: double.infinity,
+                  height: 48,
                   child: MyAfyaHubPrimaryButton(
                     borderColor: Colors.transparent,
                     buttonColor: AppColors.primaryColor.withOpacity(0.1),

@@ -148,7 +148,7 @@ mixin _$ClientState {
   CommunitiesState? get communitiesState =>
       throw _privateConstructorUsedError; // Past appointments
   List<Appointment>? get pastAppointments =>
-      throw _privateConstructorUsedError; // // Past appointments
+      throw _privateConstructorUsedError; // Past appointments
   List<Appointment>? get upcomingAppointments =>
       throw _privateConstructorUsedError; // screening tools state
   HealthTimelineState? get healthTimelineState =>
@@ -724,7 +724,7 @@ class _$_ClientState implements _ClientState {
   final CommunitiesState? communitiesState;
   @override // Past appointments
   final List<Appointment>? pastAppointments;
-  @override // // Past appointments
+  @override // Past appointments
   final List<Appointment>? upcomingAppointments;
   @override // screening tools state
   final HealthTimelineState? healthTimelineState;
@@ -937,7 +937,7 @@ abstract class _ClientState implements ClientState {
   CommunitiesState? get communitiesState;
   @override // Past appointments
   List<Appointment>? get pastAppointments;
-  @override // // Past appointments
+  @override // Past appointments
   List<Appointment>? get upcomingAppointments;
   @override // screening tools state
   HealthTimelineState? get healthTimelineState;

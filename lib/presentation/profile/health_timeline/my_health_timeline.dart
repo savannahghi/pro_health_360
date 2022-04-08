@@ -27,10 +27,7 @@ import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item
 import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
 
 class MyHealthTimeline extends StatefulWidget {
-  const MyHealthTimeline({
-    Key? key,
-    this.graphQlClient,
-  }) : super(key: key);
+  const MyHealthTimeline({Key? key, this.graphQlClient}) : super(key: key);
 
   final IGraphQlClient? graphQlClient;
 
