@@ -20,7 +20,6 @@ import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -32,9 +31,7 @@ import 'package:shared_themes/constants.dart';
 /// should initiate change PIN process
 
 class CreatePINAction extends ReduxAction<AppState> {
-  CreatePINAction({
-    required this.context,
-  });
+  CreatePINAction({required this.context});
 
   final BuildContext context;
 
@@ -142,13 +139,9 @@ class CreatePINAction extends ReduxAction<AppState> {
           UpdateOnboardingStateAction(hasSetPin: true),
         );
 
-        Navigator.pushReplacementNamed(
-          context,
-          AppRoutes.congratulationsPage,
-          arguments: <String, String>{
-            'duration': twoYearText,
-          },
-        );
+        final OnboardingPathInfo navConfig = onboardingPath(appState: state);
+
+        Navigator.pushReplacementNamed(context, navConfig.nextRoute);
       } else if (responseMap['data']['resetPIN'] == true) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

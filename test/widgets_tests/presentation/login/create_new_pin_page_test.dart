@@ -9,13 +9,14 @@ import 'package:flutter/material.dart';
 // Flutter imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
 import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
-import 'package:myafyahub/presentation/onboarding/set_nickname/pages/set_nickname_page.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -29,13 +30,32 @@ void main() {
       HttpOverrides.global = null;
     });
 
-    testWidgets('Navigates to Congratulations page if PINs are valid  ',
+    testWidgets('Navigates to login page if PINs are valid when setting a PIN ',
         (WidgetTester tester) async {
-      final MockGraphQlClient mockGraphQlClient = MockGraphQlClient();
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
+          hasSetPin: true,
+        ),
+      );
+
+      final MockShortGraphQlClient mockShortSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{'setUserPIN': true}
+          }),
+          200,
+        ),
+      );
+
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockGraphQlClient,
+        client: mockShortSILGraphQlClient,
         widget: CreateNewPINPage(
           connectivityStatus: MobileConnectivityChecker(
             checkInternetCallback: () async => true,
@@ -56,7 +76,8 @@ void main() {
       await tester.ensureVisible(saveAndContinueButton);
       await tester.tap(saveAndContinueButton);
       await tester.pumpAndSettle();
-      expect(find.byType(SetNickNamePage), findsOneWidget);
+
+      expect(find.byType(LoginPage), findsOneWidget);
     });
 
     testWidgets('should show an error if the PINs entered do not match',
@@ -102,6 +123,14 @@ void main() {
             'data': <String, dynamic>{'resetPIN': true}
           }),
           200,
+        ),
+      );
+
+      store.dispatch(
+        UpdateOnboardingStateAction(
+          isPhoneVerified: true,
+          currentOnboardingStage: CurrentOnboardingStage.PINExpired,
+          hasSetPin: true,
         ),
       );
 
