@@ -96,6 +96,7 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
             client: stream.StreamChat.of(context).client,
             child: stream.ChannelsBloc(
               child: stream.ChannelListView(
+                channelListController: channelListController,
                 errorBuilder: (BuildContext context, Object error) {
                   return GenericErrorWidget(
                     messageTitle: emptyConversationTitle,

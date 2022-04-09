@@ -42,6 +42,13 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
     }
 
     try {
+      if (streamClient.wsConnectionStatus ==
+              stream.ConnectionStatus.connected ||
+          streamClient.wsConnectionStatus ==
+              stream.ConnectionStatus.connecting) {
+        return null;
+      }
+
       final StreamTokenProvider streamTokenProvider =
           StreamTokenProvider(client: client, endpoint: endpoint);
 

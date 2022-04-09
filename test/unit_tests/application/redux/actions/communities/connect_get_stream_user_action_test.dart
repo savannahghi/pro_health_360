@@ -42,6 +42,9 @@ void main() {
       );
 
       final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
       when(mockStreamChatClient.connectUserWithProvider(any, any))
           .thenAnswer((_) => Future<OwnUser>.value(OwnUser(id: 'id')));
 
@@ -57,6 +60,56 @@ void main() {
           await storeTester.waitUntil(ConnectGetStreamUserAction);
 
       expect(info.dispatchCount, 4);
+    });
+
+    test(
+        'should return if connection in progress or already in already connected',
+        () async {
+      store.dispatch(UpdateClientProfileAction(id: 'some-id'));
+
+      final StoreTester<AppState> storeTester =
+          StoreTester<AppState>.from(store);
+
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'getStreamToken': 'some-token'}),
+          200,
+        ),
+      );
+
+      final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.connected);
+
+      storeTester.dispatch(
+        ConnectGetStreamUserAction(
+          streamClient: mockStreamChatClient,
+          client: client,
+          endpoint: kTestRefreshStreamTokenEndpoint,
+        ),
+      );
+
+      TestInfo<AppState> info =
+          await storeTester.waitUntil(ConnectGetStreamUserAction);
+
+      expect(info.dispatchCount, 4);
+
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.connecting);
+
+      storeTester.dispatch(
+        ConnectGetStreamUserAction(
+          streamClient: mockStreamChatClient,
+          client: client,
+          endpoint: kTestRefreshStreamTokenEndpoint,
+        ),
+      );
+
+      info = await storeTester.waitUntil(ConnectGetStreamUserAction);
+
+      expect(info.dispatchCount, 7);
     });
 
     test('should throw exception if client profile id is null', () async {
@@ -107,6 +160,9 @@ void main() {
       );
 
       final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
       when(mockStreamChatClient.connectUserWithProvider(any, any)).thenThrow(
         StreamWebSocketError(
           'error',
@@ -144,6 +200,9 @@ void main() {
       );
 
       final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
       when(mockStreamChatClient.connectUserWithProvider(any, any)).thenThrow(
         StreamWebSocketError(
           'error',
@@ -181,6 +240,9 @@ void main() {
       );
 
       final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.wsConnectionStatus)
+          .thenReturn(ConnectionStatus.disconnected);
+
       when(mockStreamChatClient.connectUserWithProvider(any, any)).thenThrow(
         MyAfyaException(cause: 'random error', message: 'message'),
       );
