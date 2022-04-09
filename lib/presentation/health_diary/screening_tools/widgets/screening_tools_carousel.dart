@@ -23,7 +23,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 class ScreeningToolsCarousel extends StatelessWidget {
   const ScreeningToolsCarousel();
-  
+
   String getNextNavigationRoute(ScreeningToolsType toolsType) {
     switch (toolsType) {
       case ScreeningToolsType.VIOLENCE_ASSESSMENT:
@@ -73,79 +73,78 @@ class ScreeningToolsCarousel extends StatelessWidget {
         final int itemCount =
             vm.availableScreeningTools?.availableScreeningTools?.length ?? 0;
 
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-              child: Column(
+        return (vm.availableScreeningTools?.errorFetchingQuestions ?? false) ||
+                (vm.availableScreeningTools?.timeoutFetchingQuestions ?? false)
+            ? const SizedBox()
+            : Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        assessmentToolsTitle,
-                        style: veryBoldSize16Text(AppColors.secondaryColor),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          SvgPicture.asset(verticalScrollIconSvgPath),
-                          verySmallHorizontalSizedBox,
-                          Text(
-                            scrollForMoreString,
-                            style: boldSize13Text(
-                              AppColors.greyTextColor.withOpacity(0.8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 10.0,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              assessmentToolsTitle,
+                              style:
+                                  veryBoldSize16Text(AppColors.secondaryColor),
                             ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  smallVerticalSizedBox,
-                  SizedBox(
-                    height: 170,
-                    child:
-                        (vm.availableScreeningTools?.errorFetchingQuestions ??
-                                    false) ||
-                                (vm.availableScreeningTools
-                                        ?.timeoutFetchingQuestions ??
-                                    false)
-                            ? const SizedBox()
-                            : ListView.builder(
-                                shrinkWrap: true,
-                                cacheExtent: 4,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: itemCount,
-                                itemBuilder: (BuildContext context, int index) {
-                                  final ScreeningTool screeningTool = vm
-                                      .availableScreeningTools!
-                                      .availableScreeningTools![index];
+                            Row(
+                              children: <Widget>[
+                                SvgPicture.asset(verticalScrollIconSvgPath),
+                                verySmallHorizontalSizedBox,
+                                Text(
+                                  scrollForMoreString,
+                                  style: boldSize13Text(
+                                    AppColors.greyTextColor.withOpacity(0.8),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                        smallVerticalSizedBox,
+                        SizedBox(
+                          height: 170,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            cacheExtent: 4,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: itemCount,
+                            itemBuilder: (BuildContext context, int index) {
+                              final ScreeningTool screeningTool = vm
+                                  .availableScreeningTools!
+                                  .availableScreeningTools![index];
 
-                                  final ScreeningToolsType toolsType =
-                                      screeningTool.toolType!;
+                              final ScreeningToolsType toolsType =
+                                  screeningTool.toolType!;
 
-                                  return ScreeningToolMenuItem(
-                                    title: screeningTool.title!,
-                                    description: screeningTool.description!,
-                                    onTap: () {
-                                      Navigator.of(context).pushNamed(
-                                        getNextNavigationRoute(toolsType),
-                                      );
-                                    },
-                                    beginButtonKey:
-                                        getSCreeningToolsBeginKey(toolsType),
+                              return ScreeningToolMenuItem(
+                                title: screeningTool.title!,
+                                description: screeningTool.description!,
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    getNextNavigationRoute(toolsType),
                                   );
                                 },
-                              ),
+                                beginButtonKey:
+                                    getSCreeningToolsBeginKey(toolsType),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
-              ),
-            ),
-          ],
-        );
+              );
       },
     );
   }
