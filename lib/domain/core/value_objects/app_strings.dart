@@ -562,17 +562,22 @@ const String savedString = 'Saved';
 
 //Feedback Page
 const String feedbackString = 'Feedback';
-const String weValueFeedbackString = 'We value your feedback';
-const String anyThoughtsToShareString =
-    'Do you have any thoughts you\'d like to share?';
-const String howToImproveExperienceString =
-    'Let us know how we might improve your experience in the app';
-const String followUpOnFeedbackString =
-    'May we follow up with you on your feedback??';
 const String yesString = 'Yes';
 const String noString = 'No';
-const String sendFeedbackString = 'Send feedback';
+const String submitFeedbackString = 'Submit feedback';
 const String cancelString = 'Cancel';
+const String helpUsImprove = 'Help us improve';
+const String selectOneOption =
+    'Please select one of the feedback options below and give your thoughts on the same';
+const String feedbackType = 'Feedback type';
+const String generalFeedBack = 'General feedback';
+const String servicesOffered = 'Services offered in your clinic';
+const String shareYourThoughts = 'Share your thoughts';
+const String shareYourThoughtsPrompt = 'Share your thoughts...';
+const String followUpOnFeedbackString =
+    'Would you like us to reach out to you for more details about your feedback?';
+const String serviceName = 'Service name';
+const String serviceNamePrompt = 'Enter the name of the service...';
 
 //Article Details Page
 const String datePublishedString = 'Published on ';

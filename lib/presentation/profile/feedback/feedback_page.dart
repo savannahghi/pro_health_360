@@ -3,6 +3,8 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/send_feedback_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -10,10 +12,11 @@ import 'package:myafyahub/application/redux/view_models/app_state_view_model.dar
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/profile/medical_data/medical_data_item_title.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -24,251 +27,239 @@ import 'package:shared_themes/spaces.dart';
 class FeedbackPage extends StatefulWidget {
   /// [FeedbackPage] is used to get user feedback on app usage
   ///
-  const FeedbackPage({Key? key}) : super(key: key);
+  const FeedbackPage();
 
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
 }
 
+bool isSubmitActive({
+  required FeedBackType feedBackType,
+  required String feedBackText,
+  String? searchString,
+}) {
+  if (feedBackType == FeedBackType.SERVICES) {
+    if (feedBackText.isNotEmpty && (searchString?.isNotEmpty ?? false)) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    if (feedBackText.isNotEmpty) {
+      return true;
+    }
+  }
+  return false;
+}
+
 class _FeedbackPageState extends State<FeedbackPage> {
-  late FollowUpChoice followUpChoice = FollowUpChoice.Unknown;
   final TextEditingController feedBackInputController = TextEditingController();
-  bool isMessageAvailable = false;
-  bool requiresFollowUp = false;
-  String message = '';
+  final TextEditingController serviceInputController = TextEditingController();
+
+  bool allowFollowUp = false;
+  FeedBackType feedBackType = FeedBackType.GENERAL;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) => AppStateViewModel.fromStore(store),
       builder: (BuildContext context, AppStateViewModel vm) {
+        final List<String> feedbackTypesList = <String>[];
+        for (final FeedBackType type in FeedBackType.values) {
+          feedbackTypesList.add(getFeedBackTypeDescription(type));
+        }
+        final bool canSubmit = isSubmitActive(
+          feedBackType: feedBackType,
+          feedBackText: feedBackInputController.text,
+          searchString: serviceInputController.text,
+        );
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: const CustomAppBar(title: feedbackString),
           body: (vm.wait!.isWaitingFor(sendFeedbackFlag))
               ? const PlatformLoader()
               : SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height / 1.2,
-                      child: Stack(
-                        children: <Widget>[
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 12,
+                    ),
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Center(child: SvgPicture.asset(feedbackImage)),
+                        mediumVerticalSizedBox,
+                        Center(
+                          child: Text(
+                            helpUsImprove,
+                            style: veryBoldSize20Text(AppColors.primaryColor),
+                          ),
+                        ),
+                        size15VerticalSizedBox,
+                        Text(
+                          selectOneOption,
+                          style: normalSize15Text(AppColors.greyTextColor),
+                        ),
+                        size15VerticalSizedBox,
+                        Text(
+                          feedbackType,
+                          style: normalSize13Text(AppColors.greyTextColor),
+                        ),
+                        smallVerticalSizedBox,
+                        SelectOptionField(
+                          decoration: const InputDecoration(
+                            filled: true,
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0x00eeeeee)),
+                            ),
+                          ),
+                          value: feedbackTypesList.first,
+                          options: feedbackTypesList,
+                          dropDownInputKey: feedbackTypeDropDownKey,
+                          onChanged: (String? name) {
+                            if (name ==
+                                getFeedBackTypeDescription(
+                                  FeedBackType.GENERAL,
+                                )) {
+                              setState(() {
+                                feedBackType = FeedBackType.GENERAL;
+                              });
+                            } else {
+                              setState(() {
+                                feedBackType = FeedBackType.SERVICES;
+                              });
+                            }
+                          },
+                        ),
+                        if (feedBackType == FeedBackType.SERVICES)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              largeVerticalSizedBox,
-                              const MedicalDataItemTitle(
-                                title: weValueFeedbackString,
-                              ),
+                              mediumVerticalSizedBox,
                               Text(
-                                howToImproveExperienceString,
-                                style: lightSize16Text(AppColors.greyTextColor)
-                                    .copyWith(fontSize: 12),
+                                serviceName,
+                                style:
+                                    normalSize13Text(AppColors.greyTextColor),
                               ),
-                              veryLargeVerticalSizedBox,
-                              const MedicalDataItemTitle(
-                                title: anyThoughtsToShareString,
-                              ),
+                              size15VerticalSizedBox,
                               TextField(
-                                key: feedbackTextFieldKey,
-                                controller: feedBackInputController,
+                                key: serviceTextFieldKey,
+                                controller: serviceInputController,
                                 keyboardType: TextInputType.multiline,
-                                maxLines: 9,
-                                minLines: 8,
-                                onChanged: (String value) {
-                                  setState(() {
-                                    message = value;
-                                  });
-                                },
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10.0)),
-                                    borderSide: BorderSide(
-                                      color: AppColors.secondaryColor,
-                                    ),
+                                  fillColor: AppColors.listCardColor,
+                                  border: InputBorder.none,
+                                  hintText: serviceNamePrompt,
+                                  hintStyle: normalSize13Text(
+                                    AppColors.greyTextColor.withOpacity(0.7),
                                   ),
                                 ),
+                                onChanged: (String? text) => setState(() {}),
                               ),
-                              veryLargeVerticalSizedBox,
-                              const MedicalDataItemTitle(
-                                title: followUpOnFeedbackString,
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  GestureDetector(
-                                    key: yesButtonKey,
-                                    onTap: () {
-                                      setState(() {
-                                        followUpChoice = FollowUpChoice.Yes;
-                                        requiresFollowUp = true;
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 14.0,
-                                        right: 40.0,
-                                      ),
-                                      child: Row(
-                                        children: <Widget>[
-                                          SizedBox(
-                                            width: 20,
-                                            height: 20,
-                                            child: Radio<FollowUpChoice>(
-                                              key: yesRadioButtonKey,
-                                              activeColor:
-                                                  AppColors.secondaryColor,
-                                              value: FollowUpChoice.Yes,
-                                              groupValue: followUpChoice,
-                                              onChanged:
-                                                  (FollowUpChoice? value) {
-                                                setState(() {
-                                                  followUpChoice = value!;
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                          verySmallHorizontalSizedBox,
-                                          Text(
-                                            yesString,
-                                            style: lightSize16Text(
-                                              AppColors.greyTextColor,
-                                            ).copyWith(
-                                              fontSize: 12,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  smallHorizontalSizedBox,
-                                  GestureDetector(
-                                    key: noButtonKey,
-                                    onTap: () {
-                                      setState(() {
-                                        followUpChoice = FollowUpChoice.No;
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0,
-                                      ),
-                                      child: Row(
-                                        children: <Widget>[
-                                          SizedBox(
-                                            width: 20,
-                                            child: Radio<FollowUpChoice>(
-                                              key: noRadioButtonKey,
-                                              value: FollowUpChoice.No,
-                                              groupValue: followUpChoice,
-                                              onChanged:
-                                                  (FollowUpChoice? value) {
-                                                setState(() {
-                                                  followUpChoice = value!;
-                                                  requiresFollowUp = false;
-                                                });
-                                              },
-                                              activeColor:
-                                                  AppColors.secondaryColor,
-                                            ),
-                                          ),
-                                          verySmallHorizontalSizedBox,
-                                          Text(
-                                            noString,
-                                            style: lightSize16Text(
-                                              AppColors.greyTextColor,
-                                            ).copyWith(
-                                              fontSize: 12,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              size15VerticalSizedBox,
                             ],
                           ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 150,
-                                  height: 40,
-                                  child: MyAfyaHubPrimaryButton(
-                                    buttonKey: sendFeedbackButtonKey,
-                                    onPressed: message.isEmpty
-                                        ? null
-                                        : () async {
-                                            await StoreProvider.dispatch<
-                                                AppState>(
-                                              context,
-                                              SendFeedbackAction(
-                                                client:
-                                                    AppWrapperBase.of(context)!
-                                                        .graphQLClient,
-                                                message: feedBackInputController
-                                                    .text,
-                                                requiresFollowUp:
-                                                    requiresFollowUp,
-                                                onSuccess: () {
-                                                  Navigator.of(context)
-                                                      .pushNamed(
-                                                    AppRoutes
-                                                        .successfulFeedbackSubmissionPage,
-                                                  );
-                                                },
-                                                onError: () {
-                                                  ScaffoldMessenger.of(context)
-                                                    ..hideCurrentSnackBar()
-                                                    ..showSnackBar(
-                                                      const SnackBar(
-                                                        content: Text(
-                                                          feedbackSubmissionErrorText,
-                                                        ),
-                                                      ),
-                                                    );
-                                                },
-                                              ),
-                                            );
-                                          },
-                                    buttonColor:
-                                        feedBackInputController.text.isNotEmpty
-                                            ? AppColors.secondaryColor
-                                            : Colors.grey,
-                                    borderColor: Colors.transparent,
-                                    text: sendFeedbackString,
-                                    textStyle: normalSize14Text(Colors.white),
-                                  ),
-                                ),
-                                smallHorizontalSizedBox,
-                                SizedBox(
-                                  width: 150,
-                                  height: 40,
-                                  child: MyAfyaHubPrimaryButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    buttonKey: cancelFeedbackButtonKey,
-                                    buttonColor: Colors.transparent,
-                                    borderColor: AppColors.secondaryColor,
-                                    text: cancelString,
-                                    textStyle: normalSize14Text(
-                                      AppColors.secondaryColor,
-                                    ),
-                                  ),
-                                ),
-                                largeVerticalSizedBox,
-                              ],
+                        mediumVerticalSizedBox,
+                        Text(
+                          shareYourThoughts,
+                          style: normalSize13Text(AppColors.greyTextColor),
+                        ),
+                        size15VerticalSizedBox,
+                        TextField(
+                          key: feedbackTextFieldKey,
+                          controller: feedBackInputController,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 5,
+                          minLines: 4,
+                          onChanged: (String? text) => setState(() {}),
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: AppColors.listCardColor,
+                            border: InputBorder.none,
+                            hintText: shareYourThoughtsPrompt,
+                            hintStyle: normalSize13Text(
+                              AppColors.greyTextColor.withOpacity(0.7),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        mediumVerticalSizedBox,
+                        Text(
+                          followUpOnFeedbackString,
+                          style: normalSize14Text(AppColors.greyTextColor),
+                        ),
+                        size15VerticalSizedBox,
+                        Row(
+                          children: <Widget>[
+                            MoodSymptomWidget(
+                              title: yesString,
+                              gestureKey: yesFeedbackKey,
+                              isSelected: allowFollowUp,
+                              onTap: () {
+                                setState(() {
+                                  allowFollowUp = true;
+                                });
+                              },
+                            ),
+                            mediumHorizontalSizedBox,
+                            MoodSymptomWidget(
+                              gestureKey: noFeedbackKey,
+                              title: noString,
+                              isSelected: !allowFollowUp,
+                              onTap: () {
+                                setState(() {
+                                  allowFollowUp = false;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        largeVerticalSizedBox,
+                        SizedBox(
+                          height: 48,
+                          width: double.infinity,
+                          child: MyAfyaHubPrimaryButton(
+                            buttonKey: sendFeedbackButtonKey,
+                            onPressed: canSubmit
+                                ? () async {
+                                    await StoreProvider.dispatch<AppState>(
+                                      context,
+                                      SendFeedbackAction(
+                                        client: AppWrapperBase.of(context)!
+                                            .graphQLClient,
+                                        message: feedBackInputController.text,
+                                        requiresFollowUp: allowFollowUp,
+                                        onSuccess: () {
+                                          Navigator.of(context).pushNamed(
+                                            AppRoutes
+                                                .successfulFeedbackSubmissionPage,
+                                          );
+                                        },
+                                        onError: () {
+                                          ScaffoldMessenger.of(context)
+                                            ..hideCurrentSnackBar()
+                                            ..showSnackBar(
+                                              const SnackBar(
+                                                content: Text(
+                                                  feedbackSubmissionErrorText,
+                                                ),
+                                              ),
+                                            );
+                                        },
+                                      ),
+                                    );
+                                  }
+                                : null,
+                            buttonColor: canSubmit
+                                ? AppColors.primaryColor
+                                : Colors.grey,
+                            borderColor: Colors.transparent,
+                            text: submitFeedbackString,
+                            textStyle: veryBoldSize15Text(Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

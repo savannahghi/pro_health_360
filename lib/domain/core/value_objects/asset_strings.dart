@@ -194,3 +194,6 @@ const String lifelineIcon = 'assets/images/lifeline.svg';
 const String flaskIcon = 'assets/images/flask.svg';
 const String allergiesIcon = 'assets/images/allergies.svg';
 const String capsuleIcon = 'assets/images/capsule.svg';
+
+// feedback
+const String feedbackImage = 'assets/images/feedback.svg';

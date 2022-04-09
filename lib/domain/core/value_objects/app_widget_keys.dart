@@ -93,12 +93,11 @@ const Key appBarNotificationKey = Key('app_bar_notification_key');
 
 //Feedback page widget keys
 const Key sendFeedbackButtonKey = Key('send_feedback_button_key');
-const Key cancelFeedbackButtonKey = Key('cancel_feedback_button_key');
-const Key noRadioButtonKey = Key('no_radio_button_key');
-const Key yesRadioButtonKey = Key('yes_radio_button_key');
-const Key yesButtonKey = Key('yes_button_key');
-const Key noButtonKey = Key('no_button_key');
-const Key feedbackTextFieldKey = Key('feedback_textfield_key');
+const Key feedbackTextFieldKey = Key('feedback_text_field_key');
+const Key feedbackTypeDropDownKey = Key('feedback_type_dropDown_key');
+const Key yesFeedbackKey = Key('yes_feedback_key');
+const Key noFeedbackKey = Key('no_feedback_key');
+const Key serviceTextFieldKey = Key('service_textField_key');
 
 const Key pinInputPageBackKey = Key('pin_input_page_back_key');
 

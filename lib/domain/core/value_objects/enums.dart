@@ -4,8 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 
-enum FollowUpChoice { Yes, No, Unknown }
-
 enum MoodType {
   VERY_HAPPY,
   HAPPY,
@@ -129,4 +127,9 @@ extension ScreeningToolsTypeEX on ScreeningToolsType {
   String get name {
     return describeEnum(this);
   }
+}
+
+enum FeedBackType {
+  GENERAL,
+  SERVICES,
 }

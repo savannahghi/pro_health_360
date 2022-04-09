@@ -35,6 +35,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart' as enums;
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -748,4 +749,14 @@ bool allQuestionsAnswered(List<ScreeningQuestion>? questions) {
     return true;
   }
   return false;
+}
+
+String getFeedBackTypeDescription(FeedBackType feedBackType) {
+  switch (feedBackType) {
+    case FeedBackType.GENERAL:
+      return generalFeedBack;
+
+    default:
+      return servicesOffered;
+  }
 }
