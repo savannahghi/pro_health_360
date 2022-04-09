@@ -412,8 +412,6 @@ const String moderatorText = 'Moderator';
 
 // Consent page
 const String viewTermsText = 'View terms and conditions';
-const String groupsText = 'Groups';
-const String consentConfirmationText = 'I consent to be added to groups';
 const String consentText = 'Consent';
 
 // Terms and conditions

@@ -1,9 +1,6 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -37,8 +34,6 @@ void main() {
 
       expect(find.text(portalTermsText), findsOneWidget);
       expect(find.text(viewTermsText), findsOneWidget);
-      expect(find.text(groupsText), findsOneWidget);
-      expect(find.text(consentConfirmationText), findsOneWidget);
     });
 
     testWidgets('terms page navigates correctly', (WidgetTester tester) async {
@@ -70,31 +65,6 @@ void main() {
       expect(find.byType(TermsAndConditionsPage), findsOneWidget);
     });
 
-    testWidgets('tapping switch calls onChanged method',
-        (WidgetTester tester) async {
-      int counter = 0;
-
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: ConsentPage(
-          onChanged: (bool value) {
-            counter++;
-          },
-        ),
-      );
-
-      final Finder switchFinder = find.byType(Switch);
-      expect(switchFinder, findsOneWidget);
-
-      await tester.tap(switchFinder);
-      expect(counter, 1);
-
-      await tester.tap(switchFinder);
-      expect(counter, 2);
-    });
-
     testWidgets('opt out navigates correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -105,8 +75,6 @@ void main() {
 
       expect(find.text(portalTermsText), findsOneWidget);
       expect(find.text(viewTermsText), findsOneWidget);
-      expect(find.text(groupsText), findsOneWidget);
-      expect(find.text(consentConfirmationText), findsOneWidget);
       expect(find.text(optOutOfMyCareHubString), findsOneWidget);
 
       await tester.tap(find.text(optOutOfMyCareHubString));
