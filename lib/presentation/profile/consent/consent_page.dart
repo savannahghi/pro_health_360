@@ -59,44 +59,6 @@ class _ConsentPageState extends State<ConsentPage> {
                 ),
               ),
               smallVerticalSizedBox,
-              InformationListCard(
-                leadingIcon: const Icon(
-                  UniconsLine.file_lock_alt,
-                  size: 32,
-                  color: AppColors.primaryColor,
-                ),
-                title: Text(
-                  groupsText,
-                  style: normalSize16Text(
-                    AppColors.secondaryColor,
-                  ),
-                ),
-                body: Row(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 8,
-                      child: Text(
-                        consentConfirmationText,
-                        style: normalSize14Text(Colors.grey),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 2,
-                      child: Switch(
-                        activeColor: AppColors.primaryColor,
-                        value: groupsSwitchValue,
-                        onChanged: (bool value) {
-                          setState(() {
-                            widget.onChanged?.call(value);
-                            groupsSwitchValue = value;
-                          });
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              smallVerticalSizedBox,
               GestureDetector(
                 key: optOutInfoItemKey,
                 onTap: () => Navigator.of(context)
