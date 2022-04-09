@@ -42,6 +42,7 @@ class PersonalInformationPage extends StatelessWidget {
                           AppColors.secondaryColor,
                         ),
                       ),
+                      verySmallVerticalSizedBox,
                       Text(
                         myProfileCaregiverDescriptionText,
                         style: normalSize14Text(
@@ -105,9 +106,6 @@ class PersonalInformationPage extends StatelessWidget {
                     preferredLanguage,
                     style: normalSize16Text(AppColors.secondaryColor),
                   ),
-                  EditInformationButtonWidget(
-                    editInformationItem: preferredLanguageEditInfo,
-                  ),
                 ],
               ),
               smallVerticalSizedBox,
@@ -122,9 +120,6 @@ class PersonalInformationPage extends StatelessWidget {
                   Text(
                     preferredClinic,
                     style: normalSize16Text(AppColors.secondaryColor),
-                  ),
-                  EditInformationButtonWidget(
-                    editInformationItem: preferredClinicEditInfo,
                   ),
                 ],
               ),
@@ -141,9 +136,6 @@ class PersonalInformationPage extends StatelessWidget {
                   Text(
                     preferredCommunication,
                     style: normalSize16Text(AppColors.secondaryColor),
-                  ),
-                  EditInformationButtonWidget(
-                    editInformationItem: preferredCommunicationEditInfo,
                   ),
                 ],
               ),

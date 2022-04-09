@@ -418,65 +418,6 @@ final EditInformationItem careGiverEditInfo = EditInformationItem(
   ],
 );
 
-final EditInformationInputItem preferredLanguageInputItem =
-    EditInformationInputItem(
-  fieldName: selectYourPreferredLanguage,
-  hintText: selectYourPreferredLanguage,
-  inputType: EditInformationInputType.DropDown,
-  inputController: TextEditingController(),
-  dropDownOptionList: <String>[
-    english,
-    swahili,
-  ],
-);
-
-final EditInformationItem preferredLanguageEditInfo = EditInformationItem(
-  title: preferredLanguage,
-  editInformationInputItem: <EditInformationInputItem>[
-    preferredLanguageInputItem
-  ],
-);
-
-final EditInformationInputItem preferredClinicInputItem =
-    EditInformationInputItem(
-  fieldName: selectYourPreferredClinic,
-  hintText: selectYourPreferredClinic,
-  inputType: EditInformationInputType.DropDown,
-  inputController: TextEditingController(),
-  dropDownOptionList: <String>[
-    clinic,
-    equityAfiaUmoja,
-    kenyattaHospital,
-  ],
-);
-
-final EditInformationItem preferredClinicEditInfo = EditInformationItem(
-  title: preferredClinic,
-  editInformationInputItem: <EditInformationInputItem>[
-    preferredClinicInputItem
-  ],
-);
-
-final EditInformationInputItem preferredCommunicationInputItem =
-    EditInformationInputItem(
-  fieldName: selectYourPreferredCommunication,
-  hintText: selectYourPreferredCommunication,
-  inputType: EditInformationInputType.DropDown,
-  inputController: TextEditingController(),
-  dropDownOptionList: <String>[
-    inApp,
-    whatsAppText,
-    textString,
-  ],
-);
-
-final EditInformationItem preferredCommunicationEditInfo = EditInformationItem(
-  title: communicationChannel,
-  editInformationInputItem: <EditInformationInputItem>[
-    preferredCommunicationInputItem
-  ],
-);
-
 EditInformationInputItem nickNameInputItem(String userNickName) =>
     EditInformationInputItem(
       fieldName: nickNameFieldName,
