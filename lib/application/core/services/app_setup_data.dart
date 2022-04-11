@@ -60,6 +60,7 @@ final AppSetupData devAppSetupData = AppSetupData(
     verifySecurityQuestionsEndpoint: kTestVerifySecurityQuestionsEndpoint,
     refreshStreamTokenEndpoint: kTestRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kTestPINResetServiceRequestEndpoint,
+    optInClientEndpoint: '',
   ),
   clinicalEndpoint: kTestClinicalEndpoint,
 );
@@ -91,6 +92,7 @@ final AppSetupData demoAppSetupData = AppSetupData(
     verifySecurityQuestionsEndpoint: kDemoVerifySecurityQuestionsEndpoint,
     refreshStreamTokenEndpoint: kDemoRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kDemoPINResetServiceRequestEndpoint,
+    optInClientEndpoint: '',
   ),
   clinicalEndpoint: kDemoClinicalEndpoint,
 );
@@ -122,6 +124,7 @@ final AppSetupData prodAppSetupData = AppSetupData(
     verifySecurityQuestionsEndpoint: kProdVerifySecurityQuestionsEndpoint,
     refreshStreamTokenEndpoint: kProdRefreshStreamTokenEndpoint,
     pinResetServiceRequestEndpoint: kProdPINResetServiceRequestEndpoint,
+    optInClientEndpoint: '',
   ),
   clinicalEndpoint: kProdClinicalEndpoint,
 );
