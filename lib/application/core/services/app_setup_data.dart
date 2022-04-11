@@ -66,7 +66,7 @@ final AppSetupData devAppSetupData = AppSetupData(
 
 final AppSetupData demoAppSetupData = AppSetupData(
   appContexts: demoAppContexts,
-  sentryDsn: FlutterConfig.get('DEV_SENTRY_DNS') as String,
+  sentryDsn: FlutterConfig.get('DEMO_SENTRY_DNS') as String,
   streamAPIKey: FlutterConfig.get('DEMO_STREAM_API_KEY') as String,
   customContext: const BaseContext(
     anonymousLoginEndpoint: kDemoAnonymousLoginEndpoint,
