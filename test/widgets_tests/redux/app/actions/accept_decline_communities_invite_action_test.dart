@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -54,7 +55,7 @@ void main() {
                 try {
                   await store.dispatch(
                     AcceptDeclineCommunitiesInviteAction(
-                      context: context,
+                      client: AppWrapperBase.of(context)!.graphQLClient,
                       communityID: '',
                       hasAcceptedInvite: true,
                     ),

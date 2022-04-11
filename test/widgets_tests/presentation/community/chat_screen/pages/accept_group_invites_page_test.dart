@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
-import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
@@ -16,7 +16,7 @@ import '../../../../../test_helpers.dart';
 void main() {
   group('AcceptGroupInvitations Page', () {
     late Store<AppState> store;
-    final MockShortGraphQlClient mockShortSILGraphQlClient =
+    final MockShortGraphQlClient failRejectMockShortSILGraphQlClient =
         MockShortGraphQlClient.withResponse(
       'idToken',
       'endpoint',
@@ -24,13 +24,19 @@ void main() {
         json.encode(
           <String, dynamic>{
             'data': <String, dynamic>{
-              'acceptInvitation': true,
+              'rejectInvitation': false,
             }
           },
         ),
         201,
       ),
     );
+    setUpAll(() {
+      store = Store<AppState>(
+        initialState: AppState.initial()
+          ..clientState!.copyWith(facilityID: 'id'),
+      );
+    });
 
     final MockShortGraphQlClient rejectMockShortSILGraphQlClient =
         MockShortGraphQlClient.withResponse(
@@ -44,23 +50,7 @@ void main() {
             }
           },
         ),
-        201,
-      ),
-    );
-
-    final MockShortGraphQlClient failRejectMockShortSILGraphQlClient =
-        MockShortGraphQlClient.withResponse(
-      'idToken',
-      'endpoint',
-      Response(
-        json.encode(
-          <String, dynamic>{
-            'data': <String, dynamic>{
-              'rejectInvitation': null,
-            }
-          },
-        ),
-        201,
+        200,
       ),
     );
     setUpAll(() {
@@ -75,11 +65,12 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: mockShortSILGraphQlClient,
+        client: MockGraphQlClient(),
         widget: const AcceptGroupInvitesPage(
           groupId: '',
           groupName: '',
           numberOfMembers: 0,
+          acceptInviteRoute: AppRoutes.userProfilePage,
         ),
       );
       await tester.pumpAndSettle();
@@ -91,8 +82,9 @@ void main() {
       await tester.tap(find.text(joinGroup));
       await tester.pumpAndSettle();
 
-      expect(find.byType(UserProfilePage), findsOneWidget);
+      expect(find.byType(AcceptGroupInvitesPage), findsNothing);
     });
+
     testWidgets('renders correctly and rejects an invitation',
         (WidgetTester tester) async {
       await buildTestWidget(
@@ -114,10 +106,10 @@ void main() {
       await tester.tap(find.text(declineInvite));
       await tester.pumpAndSettle();
 
-      expect(find.byType(UserProfilePage), findsOneWidget);
+      expect(find.byType(AcceptGroupInvitesPage), findsNothing);
     });
 
-    testWidgets('fails to rejects an invitation', (WidgetTester tester) async {
+    testWidgets('fails to reject an invitation', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -135,7 +127,7 @@ void main() {
       expect(find.text(declineInvite), findsOneWidget);
 
       await tester.tap(find.text(declineInvite));
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       expect(find.byType(SnackBar), findsOneWidget);
     });

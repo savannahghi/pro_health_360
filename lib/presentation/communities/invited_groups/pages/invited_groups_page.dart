@@ -99,7 +99,7 @@ class InvitedGroupsPage extends StatelessWidget {
                             communitiesList[index].memberCount ?? 0,
                       );
                     },
-                  )
+                  ),
                 ],
               );
             }

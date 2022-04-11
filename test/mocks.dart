@@ -1061,6 +1061,35 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+    if (queryString == acceptInvitationMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'acceptInvitation': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
+    if (queryString == rejectInvitationMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'rejectInvitation': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     if (queryString == shareHealthDiaryEntryMutation) {
       return Future<http.Response>.value(

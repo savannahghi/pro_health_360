@@ -1,4 +1,5 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +8,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class AcceptGroupInvitesPage extends StatefulWidget {
@@ -14,10 +16,12 @@ class AcceptGroupInvitesPage extends StatefulWidget {
     required this.groupId,
     required this.groupName,
     required this.numberOfMembers,
+    this.acceptInviteRoute = AppRoutes.communityListPage,
   });
   final String groupName;
   final String groupId;
   final int numberOfMembers;
+  final String acceptInviteRoute;
 
   @override
   State<AcceptGroupInvitesPage> createState() => _AcceptGroupInvitesPageState();
@@ -59,16 +63,50 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                     ? const PlatformLoader()
                     : MyAfyaHubPrimaryButton(
                         text: joinGroup,
-                        onPressed: () async {
+                        onPressed: () {
                           setState(() {
                             loading = true;
                           });
-                          await StoreProvider.dispatch(
+                          StoreProvider.dispatch(
                             context,
                             AcceptDeclineCommunitiesInviteAction(
                               hasAcceptedInvite: true,
                               communityID: widget.groupId,
-                              context: context,
+                              client: AppWrapperBase.of(context)!.graphQLClient,
+                              onDeclineSuccess: () {
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      content:
+                                          Text(communitiesRejectionSuccessful),
+                                    ),
+                                  );
+                                Navigator.of(context)
+                                    .pushNamed(AppRoutes.userProfilePage);
+                              },
+                              onAcceptSuccess: () {
+                                Navigator.of(context)
+                                    .pushNamed(widget.acceptInviteRoute);
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      content:
+                                          Text(invitationAcceptedSuccessfully),
+                                    ),
+                                  );
+                              },
+                              onError: () {
+                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(
+                                    const SnackBar(
+                                      content: Text(genericErrorOccurred),
+                                    ),
+                                  );
+                              },
                             ),
                           );
                         },
@@ -93,7 +131,28 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                         AcceptDeclineCommunitiesInviteAction(
                           hasAcceptedInvite: false,
                           communityID: widget.groupId,
-                          context: context,
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          onDeclineSuccess: () {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(
+                                  content: Text(communitiesRejectionSuccessful),
+                                ),
+                              );
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.userProfilePage);
+                          },
+                          onError: () {
+                            Navigator.of(context).pop();
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(
+                                  content: Text(genericErrorOccurred),
+                                ),
+                              );
+                          },
                         ),
                       );
                     },
