@@ -5,47 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000346">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000316">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000527">
+      <testcase classname="fastlane.lanes" name="1: setup_travis" time="0.000564">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="11.234134">
+      <testcase classname="fastlane.lanes" name="2: match" time="5.557843">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.00502">
+      <testcase classname="fastlane.lanes" name="3: app_store_connect_api_key" time="0.005459">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="4.714854">
+      <testcase classname="fastlane.lanes" name="4: latest_testflight_build_number" time="4.384471">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="2.094348">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.887588">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.000324">
+      <testcase classname="fastlane.lanes" name="6: is_ci" time="0.000389">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000272">
+      <testcase classname="fastlane.lanes" name="7: is_ci" time="0.000362">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: build_app" time="72.897266">
+      <testcase classname="fastlane.lanes" name="8: build_app" time="310.830295">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="5.933328">
         
       </testcase>
     
