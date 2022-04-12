@@ -63,153 +63,131 @@ class _LoginPageState extends State<LoginPage> {
       builder: (BuildContext context, LoginPageViewModel vm) {
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
-          body: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal:
-                        ResponsiveWidget.preferredPaddingOnStretchedScreens(
-                      context: context,
-                    ),
+          body: SafeArea(
+            child: Form(
+              key: _formKey,
+              child: Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                padding: EdgeInsets.symmetric(
+                  horizontal:
+                      ResponsiveWidget.preferredPaddingOnStretchedScreens(
+                    context: context,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(height: sizedBoxHeight),
-                      const OnboardingScaffoldHeader(
-                        title: loginPageTitleString,
-                        description: loginPageSubTitleString,
+                ),
+                child: ListView(
+                  children: <Widget>[
+                    SizedBox(height: sizedBoxHeight),
+                    const OnboardingScaffoldHeader(
+                      title: loginPageTitleString,
+                      description: loginPageSubTitleString,
+                    ),
+                    smallVerticalSizedBox,
+                    largeVerticalSizedBox,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        phoneNumberString,
+                        style: boldSize14Text(
+                          AppColors.greyTextColor,
+                        ),
                       ),
-                      smallVerticalSizedBox,
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 1.6,
-                        child: Form(
-                          key: _formKey,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: <Widget>[
-                                largeVerticalSizedBox,
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    phoneNumberString,
-                                    style: boldSize14Text(
-                                      AppColors.greyTextColor,
-                                    ),
-                                  ),
-                                ),
-                                smallVerticalSizedBox,
-                                MyAfyaHubPhoneInput(
-                                  textFormFieldKey: textFormFieldKey,
-                                  phoneNumberFormatter: formatPhoneNumber,
-                                  decoration: InputDecoration(
-                                    floatingLabelBehavior:
-                                        FloatingLabelBehavior.never,
-                                    border: InputBorder.none,
-                                    filled: true,
-                                    fillColor:
-                                        AppColors.lightGreyBackgroundColor,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey[200]!),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(5),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(5),
-                                      ),
-                                    ),
-                                  ),
-                                  onChanged: (String? val) {
-                                    final bool? invalidCredentials =
-                                        vm.invalidCredentials;
-
-                                    if (invalidCredentials != null &&
-                                        invalidCredentials) {
-                                      StoreProvider.dispatch(
-                                        context,
-                                        UpdateOnboardingStateAction(
-                                          invalidCredentials: false,
-                                          phoneNumber: val,
-                                        ),
-                                      );
-                                    }
-
-                                    setState(() {
-                                      phoneNumber = val;
-                                    });
-                                  },
-                                ),
-                                mediumVerticalSizedBox,
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    pinString,
-                                    style: boldSize14Text(
-                                      AppColors.greyTextColor,
-                                    ),
-                                  ),
-                                ),
-                                smallVerticalSizedBox,
-                                CustomTextField(
-                                  formFieldKey: pinInputKey,
-                                  borderColor: Colors.grey[200],
-                                  maxLength: 4,
-                                  maxLines: 1,
-                                  keyboardType: TextInputType.number,
-                                  obscureText: true,
-                                  hintText: enterYourString,
-                                  validator: userPinValidator,
-                                  autovalidateMode: AutovalidateMode.disabled,
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  onChanged: (String val) {
-                                    final bool? invalidCredentials =
-                                        vm.invalidCredentials;
-
-                                    if (invalidCredentials != null &&
-                                        invalidCredentials) {
-                                      StoreProvider.dispatch(
-                                        context,
-                                        UpdateOnboardingStateAction(
-                                          invalidCredentials: false,
-                                          pin: val,
-                                        ),
-                                      );
-                                    }
-
-                                    setState(() {
-                                      pin = val;
-                                    });
-                                  },
-                                ),
-                                if (vm.invalidCredentials ?? false) ...<Widget>[
-                                  largeVerticalSizedBox,
-                                  PhoneLoginErrorWidget(
-                                    formKey: _formKey,
-                                    phone: phoneNumber,
-                                  ),
-                                  largeVerticalSizedBox,
-                                ],
-                              ],
-                            ),
+                    ),
+                    smallVerticalSizedBox,
+                    MyAfyaHubPhoneInput(
+                      textFormFieldKey: textFormFieldKey,
+                      phoneNumberFormatter: formatPhoneNumber,
+                      decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: InputBorder.none,
+                        filled: true,
+                        fillColor: AppColors.lightGreyBackgroundColor,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey[200]!),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
                           ),
                         ),
                       ),
+                      onChanged: (String? val) {
+                        final bool? invalidCredentials = vm.invalidCredentials;
+
+                        if (invalidCredentials != null && invalidCredentials) {
+                          StoreProvider.dispatch(
+                            context,
+                            UpdateOnboardingStateAction(
+                              invalidCredentials: false,
+                              phoneNumber: val,
+                            ),
+                          );
+                        }
+
+                        setState(() {
+                          phoneNumber = val;
+                        });
+                      },
+                    ),
+                    mediumVerticalSizedBox,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        pinString,
+                        style: boldSize14Text(
+                          AppColors.greyTextColor,
+                        ),
+                      ),
+                    ),
+                    smallVerticalSizedBox,
+                    CustomTextField(
+                      formFieldKey: pinInputKey,
+                      borderColor: Colors.grey[200],
+                      maxLength: 4,
+                      maxLines: 1,
+                      keyboardType: TextInputType.number,
+                      obscureText: true,
+                      hintText: enterYourString,
+                      validator: userPinValidator,
+                      autovalidateMode: AutovalidateMode.disabled,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      onChanged: (String val) {
+                        final bool? invalidCredentials = vm.invalidCredentials;
+
+                        if (invalidCredentials != null && invalidCredentials) {
+                          StoreProvider.dispatch(
+                            context,
+                            UpdateOnboardingStateAction(
+                              invalidCredentials: false,
+                              pin: val,
+                            ),
+                          );
+                        }
+
+                        setState(() {
+                          pin = val;
+                        });
+                      },
+                    ),
+                    if (vm.invalidCredentials ?? false) ...<Widget>[
+                      largeVerticalSizedBox,
+                      PhoneLoginErrorWidget(
+                        formKey: _formKey,
+                        phone: phoneNumber,
+                      ),
+                      const SizedBox(
+                        height: 70,
+                      ),
                     ],
-                  ),
+                  ],
                 ),
               ),
             ),
