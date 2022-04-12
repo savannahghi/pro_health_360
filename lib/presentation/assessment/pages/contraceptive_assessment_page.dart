@@ -89,8 +89,6 @@ class _ContraceptiveAssessmentPageState
                       screeningToolsType:
                           ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
                     ),
-
-                    largeVerticalSizedBox,
                     const ContraceptivesInformation(),
                     SizedBox(
                       width: double.infinity,

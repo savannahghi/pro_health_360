@@ -72,8 +72,6 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                       screeningToolsType:
                           ScreeningToolsType.VIOLENCE_ASSESSMENT,
                     ),
-
-                    largeVerticalSizedBox,
                     // contains guidance information
                     const ViolenceAssessmentInformation(),
                     size15VerticalSizedBox,

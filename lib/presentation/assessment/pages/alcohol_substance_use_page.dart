@@ -73,8 +73,6 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                       screeningToolsType:
                           ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
                     ),
-
-                    mediumVerticalSizedBox,
                     const AlcoholAssessmentInformation(),
                     mediumVerticalSizedBox,
                     Align(

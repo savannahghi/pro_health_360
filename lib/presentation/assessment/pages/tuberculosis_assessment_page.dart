@@ -81,7 +81,6 @@ class _TuberculosisAssessmentPageState
                           .tBState!.screeningQuestions!.screeningQuestionsList!,
                       screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
                     ),
-                    const Spacer(),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
