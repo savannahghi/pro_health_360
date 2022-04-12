@@ -27,18 +27,23 @@ class MedicalDataItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       width: width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: <Widget>[
-          Text(
-            data,
-            style: normalSize14Text(AppColors.greyTextColor),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                data,
+                style: normalSize14Text(AppColors.greyTextColor),
+              ),
+              if (description != null)
+                Text(
+                  description!,
+                  style: normalSize10Text(AppColors.primaryColor),
+                )
+            ],
           ),
-          if (description != null)
-            Text(
-              description!,
-              style: normalSize10Text(AppColors.primaryColor),
-            )
+          const SizedBox(height: 4),
         ],
       ),
     );

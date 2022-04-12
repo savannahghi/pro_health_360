@@ -13,7 +13,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
-import 'package:myafyahub/presentation/profile/medical_data/medical_data_page.dart';
+import 'package:myafyahub/presentation/profile/medical_data/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 
 import '../../../mocks.dart';

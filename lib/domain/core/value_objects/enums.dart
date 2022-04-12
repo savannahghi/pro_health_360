@@ -133,3 +133,13 @@ enum FeedBackType {
   GENERAL,
   SERVICES,
 }
+
+enum MedicalDataType { REGIMEN, ALLERGIES, WEIGHT, VIRAL_LOAD, BMI, CD4COUNT }
+
+/// [MedicalDataTypeEX] extends [MedicalDataType] enum to get the values as
+/// strings
+extension MedicalDataTypeEX on MedicalDataType {
+  String get name {
+    return '${describeEnum(this)[0].toUpperCase()}${describeEnum(this).replaceAll('_', ' ').substring(1).toLowerCase()}';
+  }
+}

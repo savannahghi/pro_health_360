@@ -1926,6 +1926,15 @@ Map<String, dynamic> mockMedicalData = <String, dynamic>{
   ],
 };
 
+Map<String, dynamic> mockEmptyMedicalData = <String, dynamic>{
+  'regimen': <dynamic>[],
+  'allergies': <dynamic>[],
+  'weight': <dynamic>[],
+  'viralLoad': <dynamic>[],
+  'bmi': <dynamic>[],
+  'cd4Count': <dynamic>[],
+};
+
 Map<String, dynamic> mockViralLoadDataResponse = <String, dynamic>{
   'searchFHIRObservation': mockViralLoadData,
 };

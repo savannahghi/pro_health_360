@@ -10,9 +10,9 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/profile/medical_data/medical_data_item.dart';
-import 'package:myafyahub/presentation/profile/medical_data/medical_data_item_title.dart';
-import 'package:myafyahub/presentation/profile/medical_data/medical_data_page.dart';
+import 'package:myafyahub/presentation/profile/medical_data/pages/medical_data_page.dart';
+import 'package:myafyahub/presentation/profile/medical_data/widgets/medical_data_item.dart';
+import 'package:myafyahub/presentation/profile/medical_data/widgets/medical_data_item_title.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -101,6 +101,37 @@ void main() {
       expect(find.byType(MedicalDataItemTitle), findsWidgets);
       expect(find.byType(MedicalDataItem), findsWidgets);
     });
+
+    testWidgets(
+      'should show GenericErrorWidget when medical data responses are empty',
+      (WidgetTester tester) async {
+        final MockShortGraphQlClient mockShortGraphQlClient =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{'getMedicalData': mockEmptyMedicalData}
+            }),
+            201,
+          ),
+        );
+
+        await buildTestWidget(
+          store: store,
+          tester: tester,
+          client: mockShortGraphQlClient,
+          widget: const MedicalDataPage(),
+        );
+        await tester.pumpAndSettle();
+
+        final Finder genericNoDataButton = find.byKey(helpNoDataWidgetKey);
+
+        expect(genericNoDataButton, findsOneWidget);
+        await tester.tap(genericNoDataButton);
+        expect(genericNoDataButton, findsOneWidget);
+      },
+    );
 
     testWidgets(
       'should show GenericErrorWidget when there is no data',
