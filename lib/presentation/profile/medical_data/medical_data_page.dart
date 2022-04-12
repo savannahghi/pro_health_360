@@ -35,43 +35,45 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
   late IGraphQlClient client;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final List<AppContext> contexts = AppWrapperBase.of(context)!.appContexts;
-    final AppSetupData appSetupData = getAppSetupData(contexts.last);
-    final String graphqlEndpoint = appSetupData.clinicalEndpoint;
-    final String refreshTokenEndpoint =
-        appSetupData.customContext?.refreshTokenEndpoint ?? '';
-
-    final String idToken =
-        StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
-    final String userID =
-        StoreProvider.state<AppState>(context)?.clientState?.user?.userId ?? '';
-
-    if (widget.graphQlClient != null) {
-      client = widget.graphQlClient!;
-    } else {
-      client = CustomClient(
-        idToken,
-        graphqlEndpoint,
-        context: context,
-        refreshTokenEndpoint: refreshTokenEndpoint,
-        userID: userID,
-      );
-    }
-
-    StoreProvider.dispatch(
-      context,
-      FetchMedicalDataAction(httpClient: client),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: medicalDataTitle),
       body: SafeArea(
         child: StoreConnector<AppState, MedicalDataViewModel>(
+          onInit: (Store<AppState> store) {
+            final List<AppContext> contexts =
+                AppWrapperBase.of(context)!.appContexts;
+            final AppSetupData appSetupData = getAppSetupData(contexts.last);
+            final String graphqlEndpoint = appSetupData.clinicalEndpoint;
+            final String refreshTokenEndpoint =
+                appSetupData.customContext?.refreshTokenEndpoint ?? '';
+
+            final String idToken =
+                StoreProvider.state<AppState>(context)?.credentials?.idToken ??
+                    '';
+            final String userID = StoreProvider.state<AppState>(context)
+                    ?.clientState
+                    ?.user
+                    ?.userId ??
+                '';
+
+            if (widget.graphQlClient != null) {
+              client = widget.graphQlClient!;
+            } else {
+              client = CustomClient(
+                idToken,
+                graphqlEndpoint,
+                context: context,
+                refreshTokenEndpoint: refreshTokenEndpoint,
+                userID: userID,
+              );
+            }
+
+            StoreProvider.dispatch(
+              context,
+              FetchMedicalDataAction(httpClient: client),
+            );
+          },
           converter: (Store<AppState> store) =>
               MedicalDataViewModel.fromStore(store),
           builder: (BuildContext context, MedicalDataViewModel vm) {

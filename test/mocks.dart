@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/message_codec.dart';
@@ -24,9 +26,6 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 import 'package:video_player/video_player.dart';
-
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
-import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 
 import 'test_utils.dart';
 
@@ -939,6 +938,15 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       return Future<http.Response>.value(
         http.Response(
           json.encode(<String, dynamic>{'data': mockMedicalDataResponse}),
+          200,
+        ),
+      );
+    }
+
+    if (queryString == searchObservationsQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': mockViralLoadDataResponse}),
           200,
         ),
       );
@@ -1915,6 +1923,25 @@ Map<String, dynamic> mockMedicalData = <String, dynamic>{
   ],
   'cd4Count': <dynamic>[
     <String, dynamic>{'ValueString': 'some-value'}
+  ],
+};
+
+Map<String, dynamic> mockViralLoadDataResponse = <String, dynamic>{
+  'searchFHIRObservation': mockViralLoadData,
+};
+
+Map<String, dynamic> mockViralLoadData = <String, dynamic>{
+  'edges': <dynamic>[
+    <String, dynamic>{
+      'node': <String, dynamic>{
+        'Status': 'some-status',
+        'ValueString': '50,000',
+        'EffectiveInstant': '2022-02-08T12:45:25Z',
+        'Code': <String, dynamic>{
+          'Text': 'HIV viral load',
+        },
+      },
+    }
   ],
 };
 

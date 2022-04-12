@@ -1,7 +1,11 @@
 // Package imports:
+import 'dart:convert';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -32,7 +36,7 @@ void main() {
         tester: tester,
         store: store,
         client: client,
-        widget: MyHealthPage(),
+        widget: const MyHealthPage(),
       );
       expect(find.byType(MyHealthPage), findsOneWidget);
       expect(find.text(myHealthPageHealthDiary), findsOneWidget);
@@ -54,7 +58,7 @@ void main() {
         tester: tester,
         store: store,
         client: baseGraphQlClientMock,
-        widget: MyHealthPage(),
+        widget: const MyHealthPage(),
       );
 
       await tester.tap(find.text(myHealthPageProfile));
@@ -67,7 +71,7 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: MyHealthPage(),
+        widget: const MyHealthPage(),
       );
       await tester.tap(find.text(myHealthPageAppointments));
       await tester.pumpAndSettle();
@@ -75,12 +79,24 @@ void main() {
     });
 
     testWidgets('navigates to MedicalData Page ', (WidgetTester tester) async {
+      final IGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'data': mockViralLoadDataResponse}),
+          200,
+        ),
+      );
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: MockGraphQlClient(),
-        widget: MyHealthPage(),
+        client: client,
+        widget: MyHealthPage(
+          graphQlClient: client,
+        ),
       );
+      await tester.pumpAndSettle();
+
       await tester.tap(find.text(medicalDataTitle));
       await tester.pumpAndSettle();
       expect(find.byType(MedicalDataPage), findsOneWidget);
