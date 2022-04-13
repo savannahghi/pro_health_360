@@ -89,7 +89,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
               ),
             ),
             // share icon
-            if (!isDialog && index == 0)
+            if (!isDialog && index == 0 && !(diaryEntry.shareWithHealthWorker ?? true))
               GestureDetector(
                 onTap: () {
                   showDialog(

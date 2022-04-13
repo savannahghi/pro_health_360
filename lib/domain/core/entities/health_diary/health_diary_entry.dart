@@ -26,6 +26,8 @@ class HealthDiaryEntry with _$HealthDiaryEntry {
     @JsonKey(name: 'entryType') String? entryType,
     @JsonKey(name: 'createdAt') String? createdAt,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
+    @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+        bool? shareWithHealthWorker,
   }) = _HealthDiaryEntry;
 
   factory HealthDiaryEntry.fromJson(Map<String, dynamic> json) =>
@@ -38,5 +40,6 @@ class HealthDiaryEntry with _$HealthDiaryEntry {
         createdAt: UNKNOWN,
         active: false,
         id: UNKNOWN,
+        shareWithHealthWorker: false,
       );
 }

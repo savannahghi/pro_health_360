@@ -184,12 +184,20 @@ class _$HealthDiaryEntryTearOff {
   const _$HealthDiaryEntryTearOff();
 
   _HealthDiaryEntry call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'mood') String? mood,
-      @JsonKey(name: 'note') String? note,
-      @JsonKey(name: 'entryType') String? entryType,
-      @JsonKey(name: 'createdAt') String? createdAt,
-      @JsonKey(name: 'active', defaultValue: false) bool? active}) {
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'mood')
+          String? mood,
+      @JsonKey(name: 'note')
+          String? note,
+      @JsonKey(name: 'entryType')
+          String? entryType,
+      @JsonKey(name: 'createdAt')
+          String? createdAt,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+          bool? shareWithHealthWorker}) {
     return _HealthDiaryEntry(
       id: id,
       mood: mood,
@@ -197,6 +205,7 @@ class _$HealthDiaryEntryTearOff {
       entryType: entryType,
       createdAt: createdAt,
       active: active,
+      shareWithHealthWorker: shareWithHealthWorker,
     );
   }
 
@@ -222,6 +231,8 @@ mixin _$HealthDiaryEntry {
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+  bool? get shareWithHealthWorker => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -235,12 +246,20 @@ abstract class $HealthDiaryEntryCopyWith<$Res> {
           HealthDiaryEntry value, $Res Function(HealthDiaryEntry) then) =
       _$HealthDiaryEntryCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'mood') String? mood,
-      @JsonKey(name: 'note') String? note,
-      @JsonKey(name: 'entryType') String? entryType,
-      @JsonKey(name: 'createdAt') String? createdAt,
-      @JsonKey(name: 'active', defaultValue: false) bool? active});
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'mood')
+          String? mood,
+      @JsonKey(name: 'note')
+          String? note,
+      @JsonKey(name: 'entryType')
+          String? entryType,
+      @JsonKey(name: 'createdAt')
+          String? createdAt,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+          bool? shareWithHealthWorker});
 }
 
 /// @nodoc
@@ -260,6 +279,7 @@ class _$HealthDiaryEntryCopyWithImpl<$Res>
     Object? entryType = freezed,
     Object? createdAt = freezed,
     Object? active = freezed,
+    Object? shareWithHealthWorker = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -286,6 +306,10 @@ class _$HealthDiaryEntryCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
+      shareWithHealthWorker: shareWithHealthWorker == freezed
+          ? _value.shareWithHealthWorker
+          : shareWithHealthWorker // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -298,12 +322,20 @@ abstract class _$HealthDiaryEntryCopyWith<$Res>
       __$HealthDiaryEntryCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'mood') String? mood,
-      @JsonKey(name: 'note') String? note,
-      @JsonKey(name: 'entryType') String? entryType,
-      @JsonKey(name: 'createdAt') String? createdAt,
-      @JsonKey(name: 'active', defaultValue: false) bool? active});
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'mood')
+          String? mood,
+      @JsonKey(name: 'note')
+          String? note,
+      @JsonKey(name: 'entryType')
+          String? entryType,
+      @JsonKey(name: 'createdAt')
+          String? createdAt,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+          bool? shareWithHealthWorker});
 }
 
 /// @nodoc
@@ -325,6 +357,7 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
     Object? entryType = freezed,
     Object? createdAt = freezed,
     Object? active = freezed,
+    Object? shareWithHealthWorker = freezed,
   }) {
     return _then(_HealthDiaryEntry(
       id: id == freezed
@@ -351,6 +384,10 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool?,
+      shareWithHealthWorker: shareWithHealthWorker == freezed
+          ? _value.shareWithHealthWorker
+          : shareWithHealthWorker // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -359,12 +396,20 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   _$_HealthDiaryEntry(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'mood') this.mood,
-      @JsonKey(name: 'note') this.note,
-      @JsonKey(name: 'entryType') this.entryType,
-      @JsonKey(name: 'createdAt') this.createdAt,
-      @JsonKey(name: 'active', defaultValue: false) this.active});
+      {@JsonKey(name: 'id')
+          this.id,
+      @JsonKey(name: 'mood')
+          this.mood,
+      @JsonKey(name: 'note')
+          this.note,
+      @JsonKey(name: 'entryType')
+          this.entryType,
+      @JsonKey(name: 'createdAt')
+          this.createdAt,
+      @JsonKey(name: 'active', defaultValue: false)
+          this.active,
+      @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+          this.shareWithHealthWorker});
 
   factory _$_HealthDiaryEntry.fromJson(Map<String, dynamic> json) =>
       _$$_HealthDiaryEntryFromJson(json);
@@ -387,10 +432,13 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   @override
   @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
+  @override
+  @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+  final bool? shareWithHealthWorker;
 
   @override
   String toString() {
-    return 'HealthDiaryEntry(id: $id, mood: $mood, note: $note, entryType: $entryType, createdAt: $createdAt, active: $active)';
+    return 'HealthDiaryEntry(id: $id, mood: $mood, note: $note, entryType: $entryType, createdAt: $createdAt, active: $active, shareWithHealthWorker: $shareWithHealthWorker)';
   }
 
   @override
@@ -403,7 +451,9 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
             const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.entryType, entryType) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.active, active));
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality()
+                .equals(other.shareWithHealthWorker, shareWithHealthWorker));
   }
 
   @override
@@ -414,7 +464,8 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
       const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(entryType),
       const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(active));
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(shareWithHealthWorker));
 
   @JsonKey(ignore: true)
   @override
@@ -429,13 +480,20 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
 abstract class _HealthDiaryEntry implements HealthDiaryEntry {
   factory _HealthDiaryEntry(
-          {@JsonKey(name: 'id') String? id,
-          @JsonKey(name: 'mood') String? mood,
-          @JsonKey(name: 'note') String? note,
-          @JsonKey(name: 'entryType') String? entryType,
-          @JsonKey(name: 'createdAt') String? createdAt,
-          @JsonKey(name: 'active', defaultValue: false) bool? active}) =
-      _$_HealthDiaryEntry;
+      {@JsonKey(name: 'id')
+          String? id,
+      @JsonKey(name: 'mood')
+          String? mood,
+      @JsonKey(name: 'note')
+          String? note,
+      @JsonKey(name: 'entryType')
+          String? entryType,
+      @JsonKey(name: 'createdAt')
+          String? createdAt,
+      @JsonKey(name: 'active', defaultValue: false)
+          bool? active,
+      @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+          bool? shareWithHealthWorker}) = _$_HealthDiaryEntry;
 
   factory _HealthDiaryEntry.fromJson(Map<String, dynamic> json) =
       _$_HealthDiaryEntry.fromJson;
@@ -458,6 +516,9 @@ abstract class _HealthDiaryEntry implements HealthDiaryEntry {
   @override
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active;
+  @override
+  @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
+  bool? get shareWithHealthWorker;
   @override
   @JsonKey(ignore: true)
   _$HealthDiaryEntryCopyWith<_HealthDiaryEntry> get copyWith =>

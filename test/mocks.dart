@@ -1655,7 +1655,8 @@ final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
     'mood': 'HAPPY',
     'note': 'I am healthy',
     'entryType': 'HOME_PAGE_HEALTH_DIARY_ENTRY',
-    'createdAt': '2021-11-30T16:17:57Z'
+    'createdAt': '2021-11-30T16:17:57Z',
+    'shareWithHealthWorker': false,
   },
   <String, dynamic>{
     'active': true,
