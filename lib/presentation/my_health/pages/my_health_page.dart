@@ -10,6 +10,7 @@ import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/custom_client.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/medical_data/fetch_next_refill_data_action.dart';
 import 'package:myafyahub/application/redux/actions/medical_data/fetch_viral_load_data_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -88,6 +89,12 @@ class _MyHealthPageState extends State<MyHealthPage> {
           store.dispatch(
             FetchViralLoadDataAction(httpClient: client),
           );
+
+          store.dispatch(
+            FetchNextRefillDataAction(
+              httpClient: AppWrapperBase.of(context)!.graphQLClient,
+            ),
+          );
         },
         converter: (Store<AppState> store) =>
             ClientProfileViewModel.fromStore(store),
@@ -97,6 +104,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
           final String lastName = userProfileState?.lastName ?? '';
           final List<ViralLoadNode?> viralLoadData =
               vm.clientState?.viralLoadData?.edges ?? <ViralLoadNode>[];
+
+          final String nextRefill =
+              vm.clientState?.nextRefillData?.nextRefill ?? '';
+          final Map<String, String> nextRefillDate =
+              extractNextRefillDate(nextRefill);
 
           return SingleChildScrollView(
             child: Padding(
@@ -140,11 +152,12 @@ class _MyHealthPageState extends State<MyHealthPage> {
                   if (vm.wait!.isWaitingFor(fetchViralLoadDataFlag))
                     Container(
                       height: 300,
+                      width: double.infinity,
                       padding: const EdgeInsets.all(20),
                       child: const PlatformLoader(),
                     ),
-                  if ((!vm.wait!.isWaitingFor(fetchViralLoadDataFlag)) &&
-                      viralLoadData.isNotEmpty)
+                  if (!vm.wait!.isWaitingFor(fetchViralLoadDataFlag) &&
+                      (viralLoadData.isNotEmpty || nextRefill.isNotEmpty))
                     Container(
                       height: 110,
                       decoration: BoxDecoration(
@@ -152,20 +165,25 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          ProfileHealthDetailsWidget(
-                            svgPath: viralLoadIcon,
-                            title: myHealthViralLoad,
-                            description:
-                                viralLoadData.first?.node?.valueString ?? '',
-                            descriptionSubScript: myHealthViralLoadReadingUnit,
-                          ),
-                          const ProfileHealthDetailsWidget(
-                            svgPath: nextRefillIcon,
-                            title: myHealthNextRefill,
-                            description: myHealthNextRefillDate,
-                            descriptionSubScript: myHealthNextRefillMonth,
-                          ),
+                          if (viralLoadData.isNotEmpty)
+                            ProfileHealthDetailsWidget(
+                              svgPath: viralLoadIcon,
+                              title: myHealthViralLoad,
+                              description:
+                                  viralLoadData.first?.node?.valueString ?? '',
+                              descriptionSubScript:
+                                  myHealthViralLoadReadingUnit,
+                            ),
+                          if (nextRefill.isNotEmpty)
+                            ProfileHealthDetailsWidget(
+                              svgPath: nextRefillIcon,
+                              title: myHealthNextRefill,
+                              description: nextRefillDate['day'] ?? '',
+                              descriptionSubScript:
+                                  nextRefillDate['month'] ?? '',
+                            ),
                         ],
                       ),
                     ),

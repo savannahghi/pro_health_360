@@ -227,6 +227,18 @@ Widget humanizeDate({
   return const SizedBox();
 }
 
+Map<String, String> extractNextRefillDate(String loadedDate) {
+  final DateTime parsedDate =
+      DateTime?.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
+  final String postDay = DateFormat.d().format(parsedDate);
+  final String postMonth = DateFormat.MMM().format(parsedDate);
+
+  return <String, String>{
+    'day': postDay,
+    'month': postMonth,
+  };
+}
+
 String getEnvironmentContext(List<AppContext> contexts) {
   if (contexts.contains(AppContext.AppProd)) {
     return 'prod';

@@ -2000,6 +2000,10 @@ Map<String, dynamic> mockEmptyMedicalData = <String, dynamic>{
   'cd4Count': <dynamic>[],
 };
 
+Map<String, dynamic> mockNextRefillDataResponse = <String, dynamic>{
+  'nextRefill': '2023-12-12',
+};
+
 Map<String, dynamic> mockViralLoadDataResponse = <String, dynamic>{
   'searchFHIRObservation': mockViralLoadData,
 };
