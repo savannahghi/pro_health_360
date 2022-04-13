@@ -412,6 +412,30 @@ query medicalData($patientID: String!) {
 }
 ''';
 
+const String searchObservationsQuery = r'''
+query SearchObservations($params: Map!) {
+  searchFHIRObservation(params: $params) {
+    edges {
+      node {
+        ID
+        Status
+        Code {
+          Text
+          Coding {
+            Display
+            Code
+            System
+            UserSelected
+          }
+        }
+        ValueString
+        EffectiveInstant
+      }
+    }
+  }
+}
+''';
+
 const String getAvailableScreeningToolQuery = r'''
 query getAvailableScreeningToolQuestions($clientID: String!){
   getAvailableScreeningToolQuestions(clientID: $clientID){

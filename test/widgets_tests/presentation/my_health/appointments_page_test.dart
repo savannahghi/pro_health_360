@@ -6,7 +6,6 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -16,6 +15,7 @@ import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
 import 'package:myafyahub/presentation/my_health/widgets/past_appointments.dart';
 import 'package:myafyahub/presentation/my_health/widgets/reschedule_appointment_action_dialog.dart';
+
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -108,8 +108,7 @@ void main() {
 
         expect(find.byType(PlatformLoader), findsOneWidget);
       });
-      testWidgets(
-          'should show show dialog when reschedule button is tapped',
+      testWidgets('should show show dialog when reschedule button is tapped',
           (WidgetTester tester) async {
         await buildTestWidget(
           tester: tester,
@@ -153,7 +152,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockNullShortGraphQlClient,
-          widget: MyHealthPage(),
+          widget: const MyHealthPage(),
         );
 
         final Finder helpNoDataWidgetButton = find.byKey(helpNoDataWidgetKey);
@@ -167,9 +166,6 @@ void main() {
 
         expect(find.byType(AppointmentsPage), findsNothing);
       });
-     
-     
- 
     });
     group('Past Appointments Page', () {
       testWidgets(
@@ -193,7 +189,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockNullShortGraphQlClient,
-          widget: MyHealthPage(),
+          widget: const MyHealthPage(),
         );
 
         final Finder helpNoDataWidgetButton = find.byKey(helpNoDataWidgetKey);

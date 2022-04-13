@@ -219,7 +219,7 @@ class RouteGenerator {
 
       case AppRoutes.myHealthPage:
         return MaterialPageRoute<MyHealthPage>(
-          builder: (_) => MyHealthPage(),
+          builder: (_) => const MyHealthPage(),
         );
 
       case AppRoutes.myHealthDiaryPage:
