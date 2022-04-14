@@ -615,11 +615,13 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     if (queryString == getHealthDiaryEntriesQuery) {
       return Future<http.Response>.value(
         http.Response(
-          json.encode(<String, dynamic>{
-            'data': <String, dynamic>{
-              'getClientHealthDiaryEntries': mockDiaryEntries,
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'getClientHealthDiaryEntries': mockDiaryEntries,
+              },
             },
-          }),
+          ),
           201,
         ),
       );
@@ -1658,6 +1660,14 @@ final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
     'createdAt': '2021-11-30T16:17:57Z',
     'shareWithHealthWorker': false,
     'sharedAt': DateTime.now().subtract(const Duration(hours: 5)).toString()
+  },
+  <String, dynamic>{
+    'active': true,
+    'mood': 'HAPPY',
+    'note': 'I am very healthy',
+    'entryType': 'HOME_PAGE_HEALTH_DIARY_ENTRY',
+    'createdAt': '2021-11-30T16:17:53Z',
+    'sharedAt': DateTime.now().subtract(const Duration(minutes: 10)).toString()
   },
   <String, dynamic>{
     'active': true,

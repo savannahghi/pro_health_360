@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -109,6 +110,25 @@ class HealthDiaryEntryWidget extends StatelessWidget {
                   shareDiaryEntryIconPath,
                   width: 50,
                   height: 50,
+                ),
+              ),
+            if (!isDialog && index == 0 && wasSharedWithinLastFourHrs)
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.greenHappyColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(
+                    color: AppColors.greenHappyColor.withOpacity(0.1),
+                  ),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                child: const Text(
+                  shared,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    color: AppColors.greenHappyColor,
+                  ),
                 ),
               ),
           ],

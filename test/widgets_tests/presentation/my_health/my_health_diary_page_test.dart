@@ -34,7 +34,7 @@ void main() {
   });
 
   group('MyHealthDiaryPage', () {
-    testWidgets('should display 2 diary entries correctly',
+    testWidgets('should display 3 diary entries correctly',
         (WidgetTester tester) async {
       final MockGraphQlClient client = MockGraphQlClient();
 
@@ -48,8 +48,37 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomAppBar), findsOneWidget);
-      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
       expect(find.text('I am healthy'), findsOneWidget);
+    });
+    testWidgets('should display 1 shared diary entry correctly',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'getClientHealthDiaryEntries': <dynamic>[mockDiaryEntries.last],
+              },
+            },
+          ),
+          200,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: const MyHealthDiaryPage(),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomAppBar), findsOneWidget);
+      expect(find.byType(HealthDiaryEntryWidget), findsOneWidget);
     });
 
     testWidgets('should share diary entry correctly',
@@ -66,7 +95,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomAppBar), findsOneWidget);
-      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
       expect(find.text('I am healthy'), findsOneWidget);
       expect(find.byKey(shareDiaryEntryIconButtonKey), findsOneWidget);
 
@@ -76,7 +105,7 @@ void main() {
       expect(find.byType(Dialog), findsOneWidget);
     });
 
-    testWidgets('should display 2 diary entries and refresh to get new entries',
+    testWidgets('should display 3 diary entries and refresh to get new entries',
         (WidgetTester tester) async {
       final MockGraphQlClient client = MockGraphQlClient();
 
@@ -90,7 +119,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomAppBar), findsOneWidget);
-      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
       expect(find.text('I am healthy'), findsOneWidget);
 
       await tester.fling(
@@ -101,7 +130,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(CustomAppBar), findsOneWidget);
-      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(2));
+      expect(find.byType(HealthDiaryEntryWidget), findsNWidgets(3));
       expect(find.text('I am healthy'), findsOneWidget);
     });
 

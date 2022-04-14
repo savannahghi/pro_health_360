@@ -19,7 +19,7 @@ void main() {
       <String, dynamic>{'getClientHealthDiaryEntries': mockDiaryEntries},
     );
 
-    expect(entryState.entries!.length, 2);
+    expect(entryState.entries!.length, 3);
     expect(entryState.entries!.first, isA<HealthDiaryEntry>());
     expect(entryState.entries!.first!.mood, 'HAPPY');
   });
