@@ -25,6 +25,7 @@ _$_HealthDiaryEntry _$$_HealthDiaryEntryFromJson(Map<String, dynamic> json) =>
       note: json['note'] as String?,
       entryType: json['entryType'] as String?,
       createdAt: json['createdAt'] as String?,
+      sharedAt: json['sharedAt'] as String?,
       active: json['active'] as bool? ?? false,
       shareWithHealthWorker: json['shareWithHealthWorker'] as bool? ?? false,
     );
@@ -36,6 +37,7 @@ Map<String, dynamic> _$$_HealthDiaryEntryToJson(_$_HealthDiaryEntry instance) =>
       'note': instance.note,
       'entryType': instance.entryType,
       'createdAt': instance.createdAt,
+      'sharedAt': instance.sharedAt,
       'active': instance.active,
       'shareWithHealthWorker': instance.shareWithHealthWorker,
     };

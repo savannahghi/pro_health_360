@@ -194,6 +194,8 @@ class _$HealthDiaryEntryTearOff {
           String? entryType,
       @JsonKey(name: 'createdAt')
           String? createdAt,
+      @JsonKey(name: 'sharedAt')
+          String? sharedAt,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
@@ -204,6 +206,7 @@ class _$HealthDiaryEntryTearOff {
       note: note,
       entryType: entryType,
       createdAt: createdAt,
+      sharedAt: sharedAt,
       active: active,
       shareWithHealthWorker: shareWithHealthWorker,
     );
@@ -229,6 +232,8 @@ mixin _$HealthDiaryEntry {
   String? get entryType => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdAt')
   String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sharedAt')
+  String? get sharedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active => throw _privateConstructorUsedError;
   @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
@@ -256,6 +261,8 @@ abstract class $HealthDiaryEntryCopyWith<$Res> {
           String? entryType,
       @JsonKey(name: 'createdAt')
           String? createdAt,
+      @JsonKey(name: 'sharedAt')
+          String? sharedAt,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
@@ -278,6 +285,7 @@ class _$HealthDiaryEntryCopyWithImpl<$Res>
     Object? note = freezed,
     Object? entryType = freezed,
     Object? createdAt = freezed,
+    Object? sharedAt = freezed,
     Object? active = freezed,
     Object? shareWithHealthWorker = freezed,
   }) {
@@ -301,6 +309,10 @@ class _$HealthDiaryEntryCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sharedAt: sharedAt == freezed
+          ? _value.sharedAt
+          : sharedAt // ignore: cast_nullable_to_non_nullable
               as String?,
       active: active == freezed
           ? _value.active
@@ -332,6 +344,8 @@ abstract class _$HealthDiaryEntryCopyWith<$Res>
           String? entryType,
       @JsonKey(name: 'createdAt')
           String? createdAt,
+      @JsonKey(name: 'sharedAt')
+          String? sharedAt,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
@@ -356,6 +370,7 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
     Object? note = freezed,
     Object? entryType = freezed,
     Object? createdAt = freezed,
+    Object? sharedAt = freezed,
     Object? active = freezed,
     Object? shareWithHealthWorker = freezed,
   }) {
@@ -379,6 +394,10 @@ class __$HealthDiaryEntryCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sharedAt: sharedAt == freezed
+          ? _value.sharedAt
+          : sharedAt // ignore: cast_nullable_to_non_nullable
               as String?,
       active: active == freezed
           ? _value.active
@@ -406,6 +425,8 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
           this.entryType,
       @JsonKey(name: 'createdAt')
           this.createdAt,
+      @JsonKey(name: 'sharedAt')
+          this.sharedAt,
       @JsonKey(name: 'active', defaultValue: false)
           this.active,
       @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
@@ -430,6 +451,9 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
   @JsonKey(name: 'createdAt')
   final String? createdAt;
   @override
+  @JsonKey(name: 'sharedAt')
+  final String? sharedAt;
+  @override
   @JsonKey(name: 'active', defaultValue: false)
   final bool? active;
   @override
@@ -438,7 +462,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
 
   @override
   String toString() {
-    return 'HealthDiaryEntry(id: $id, mood: $mood, note: $note, entryType: $entryType, createdAt: $createdAt, active: $active, shareWithHealthWorker: $shareWithHealthWorker)';
+    return 'HealthDiaryEntry(id: $id, mood: $mood, note: $note, entryType: $entryType, createdAt: $createdAt, sharedAt: $sharedAt, active: $active, shareWithHealthWorker: $shareWithHealthWorker)';
   }
 
   @override
@@ -451,6 +475,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
             const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.entryType, entryType) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.sharedAt, sharedAt) &&
             const DeepCollectionEquality().equals(other.active, active) &&
             const DeepCollectionEquality()
                 .equals(other.shareWithHealthWorker, shareWithHealthWorker));
@@ -464,6 +489,7 @@ class _$_HealthDiaryEntry implements _HealthDiaryEntry {
       const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(entryType),
       const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(sharedAt),
       const DeepCollectionEquality().hash(active),
       const DeepCollectionEquality().hash(shareWithHealthWorker));
 
@@ -490,6 +516,8 @@ abstract class _HealthDiaryEntry implements HealthDiaryEntry {
           String? entryType,
       @JsonKey(name: 'createdAt')
           String? createdAt,
+      @JsonKey(name: 'sharedAt')
+          String? sharedAt,
       @JsonKey(name: 'active', defaultValue: false)
           bool? active,
       @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
@@ -513,6 +541,9 @@ abstract class _HealthDiaryEntry implements HealthDiaryEntry {
   @override
   @JsonKey(name: 'createdAt')
   String? get createdAt;
+  @override
+  @JsonKey(name: 'sharedAt')
+  String? get sharedAt;
   @override
   @JsonKey(name: 'active', defaultValue: false)
   bool? get active;

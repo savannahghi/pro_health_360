@@ -35,6 +35,10 @@ class HealthDiaryEntryWidget extends StatelessWidget {
 
     final String mood = removeUnderscores(diaryEntry.mood ?? '');
     final MoodItemData moodItemData = getMoodColor(mood);
+    final DateTime sharedDateTime = DateTime.parse(diaryEntry.sharedAt!);
+    final Duration difference = DateTime.now().difference(sharedDateTime);
+    final bool wasSharedWithinLastFourHrs =
+        (difference.inHours <= 4) ? true : false;
 
     return Padding(
       padding: isDialog
@@ -89,7 +93,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
               ),
             ),
             // share icon
-            if (!isDialog && index == 0 && !(diaryEntry.shareWithHealthWorker ?? true))
+            if (!isDialog && index == 0 && !wasSharedWithinLastFourHrs)
               GestureDetector(
                 onTap: () {
                   showDialog(

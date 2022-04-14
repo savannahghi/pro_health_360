@@ -160,6 +160,7 @@ query getHealthDiaryEntries($clientID: String!){
     entryType
     createdAt
     shareWithHealthWorker
+    sharedAt
   }
 }
 ''';

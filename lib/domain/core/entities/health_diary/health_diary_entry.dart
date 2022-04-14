@@ -25,6 +25,7 @@ class HealthDiaryEntry with _$HealthDiaryEntry {
     @JsonKey(name: 'note') String? note,
     @JsonKey(name: 'entryType') String? entryType,
     @JsonKey(name: 'createdAt') String? createdAt,
+    @JsonKey(name: 'sharedAt') String? sharedAt,
     @JsonKey(name: 'active', defaultValue: false) bool? active,
     @JsonKey(name: 'shareWithHealthWorker', defaultValue: false)
         bool? shareWithHealthWorker,
@@ -41,5 +42,7 @@ class HealthDiaryEntry with _$HealthDiaryEntry {
         active: false,
         id: UNKNOWN,
         shareWithHealthWorker: false,
+        sharedAt:
+            DateTime.now().subtract(const Duration(minutes: 10)).toString(),
       );
 }
