@@ -132,68 +132,15 @@ const Key galleryImagePageKey = Key('gallery_image_page_key');
 const Key editPersonalInfoKey = Key('edit_personal_info_key');
 
 const Key editInfoSaveBtnKey = Key('edit_information_save_btn');
-// violence assessment page
-const Key yesEmotionalAssessmentKey = Key('yes_emotional_assessment_key');
-const Key noEmotionalAssessmentKey = Key('no_emotional_assessment_key');
-
-const Key yesPhysicalAssessmentKey = Key('yes_physical_assessment_key');
-const Key noPhysicalAssessmentKey = Key('no_physical_assessment_key');
-
-const Key yesSexualAssessmentKey = Key('yes_sexual_assessment_key');
-const Key noSexualAssessmentKey = Key('no_sexual_assessment_key');
-
-const Key yesIntimateAssessmentKey = Key('yes_intimate_assessment_key');
-const Key noIntimateAssessmentKey = Key('no_intimate_assessment_key');
 
 const Key submitViolenceAssessmentKey = Key('submit_violence_assessment_key');
 const Key editInfoSaveBtn = Key('edit_information_save_btn');
 
-//contraceptive assessment page
-const Key thisMonthKey = Key('this_month_key');
-const Key lastMonthKey = Key('last_month_key');
-const Key notStartedYetKey = Key('not_started_key');
-const Key yesPregnantKey = Key('yes_pregnant_key');
-const Key noPregnantKey = Key('no_pregnant_key');
-const Key yesOnFamilyPlanningKey = Key('yes_on_family_planning_key');
-const Key noOnFamilyPlanningKey = Key('no_on_family_planning_key');
-
-const Key yesToUseFamilyPlanningKey = Key('yes_to_use_family_planning_key');
-const Key noToUseFamilyPlanningKey = Key('no_to_use_family_planning_key');
-
 const Key contraceptiveAssessmentFeedbackButtonKey =
     Key('contraceptive_assessment_feedback_button_key');
 
-//tuberculosis assessment page
-const Key yesExperienceCoughKey = Key('yes_experienced_cough_key');
-const Key noExperienceCoughKey = Key('no_experienced_cough_key');
-
-const Key yesHaveAFeverCoughKey = Key('yes_have_a_fever_key');
-const Key noHaveAFeverCoughKey = Key('no_have_a_fever_key');
-
-const Key yesWeightLossKey = Key('yes_weight_loss_key');
-const Key noWeightLossKey = Key('no_weight_loss_key');
-
-const Key yesNightSweatsKey = Key('yes_night_sweats_key');
-const Key noNightSweatsKey = Key('no_night_sweats_key');
-
 const Key tuberculosisAssessmentFeedbackButtonKey =
     Key('tuberculosis_assessment_feedback_button_key');
-
-//tuberculosis assessment page
-const Key yesQuestionOneKey = Key('yes_question_one_key');
-const Key noQuestionOneKey = Key('no_question_one_key');
-
-const Key yesQuestionTwoKey = Key('yes_question_two_key');
-const Key noQuestionTwoKey = Key('no_question_two_key');
-
-const Key yesQuestionThreeKey = Key('yes_question_three_key');
-const Key noQuestionThreeKey = Key('no_question_three_key');
-
-const Key yesQuestionFourKey = Key('yes_question_four_key');
-const Key noQuestionFourKey = Key('no_question_four_key');
-
-const Key yesQuestionFiveKey = Key('yes_question_five_key');
-const Key noQuestionFiveKey = Key('no_question_five_key');
 
 const Key alcoholSubstanceFeedbackButtonKey =
     Key('alcohol_substance_feedback_button_key');
@@ -313,3 +260,6 @@ const Key alcoholUseKey = Key('alcohol_use_key');
 const Key screeningToolsCarouselListViewKey =
     Key('screening_tools_carousel_list_view_key');
 const Key rescheduleDateKey = Key('reschedule_date_key');
+
+const Key yesShareEntireEntryKey = Key('yes_share_entire_key');
+const Key noShareEntireEntryKey = Key('no_share_entire_key');

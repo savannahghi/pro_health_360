@@ -898,3 +898,5 @@ const String diaryEntryNotShared =
 const String errorSettingNicknameText = 'Error setting nickname';
 const String onboardingErrorText =
     'Onboarding tour not completed. Something went wrong';
+const String wouldYouLikeToShareEntireText =
+    'Would you like to share your entire health diary alongside this diary entry?';

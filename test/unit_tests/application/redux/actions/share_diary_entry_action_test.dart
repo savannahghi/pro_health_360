@@ -38,6 +38,7 @@ void main() {
       int testNumber = 0;
       storeTester.dispatch(
         ShareDiaryEntryAction(
+          canShareEntireDiaryEntry: true,
           healthDiaryEntryID: '',
           client: mockShortSILGraphQlClient,
           onSuccess: () {
@@ -68,6 +69,7 @@ void main() {
       int testNumber = 0;
       storeTester.dispatch(
         ShareDiaryEntryAction(
+          canShareEntireDiaryEntry: true,
           healthDiaryEntryID: '',
           client: mockShortSILGraphQlClient,
           onSuccess: () {},
@@ -99,6 +101,7 @@ void main() {
       );
       storeTester.dispatch(
         ShareDiaryEntryAction(
+          canShareEntireDiaryEntry: true,
           healthDiaryEntryID: '',
           client: mockShortSILGraphQlClient,
           onSuccess: () {},
@@ -133,6 +136,7 @@ void main() {
       );
       storeTester.dispatch(
         ShareDiaryEntryAction(
+          canShareEntireDiaryEntry: true,
           healthDiaryEntryID: '',
           client: mockShortSILGraphQlClient,
           onSuccess: () {},

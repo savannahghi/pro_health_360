@@ -28,6 +28,14 @@ void main() {
         widget: ShareDiaryEntryDialog(diaryEntry: HealthDiaryEntry.initial()),
       );
 
+      expect(find.byKey(yesShareEntireEntryKey), findsOneWidget);
+      expect(find.byKey(noShareEntireEntryKey), findsOneWidget);
+
+      await tester.tap(find.byKey(yesShareEntireEntryKey));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(noShareEntireEntryKey));
+      await tester.pumpAndSettle();
+
       expect(find.byType(Dialog), findsOneWidget);
       expect(find.byType(MyAfyaHubPrimaryButton), findsNWidgets(2));
     });

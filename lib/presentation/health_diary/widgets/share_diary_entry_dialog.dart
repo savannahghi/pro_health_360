@@ -4,6 +4,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/actions/share_diary_entry_action.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -15,11 +16,17 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 
-class ShareDiaryEntryDialog extends StatelessWidget {
+class ShareDiaryEntryDialog extends StatefulWidget {
   const ShareDiaryEntryDialog({required this.diaryEntry});
 
   final HealthDiaryEntry diaryEntry;
 
+  @override
+  State<ShareDiaryEntryDialog> createState() => _ShareDiaryEntryDialogState();
+}
+
+class _ShareDiaryEntryDialogState extends State<ShareDiaryEntryDialog> {
+  bool canShareEntireEntry = false;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -39,14 +46,45 @@ class ShareDiaryEntryDialog extends StatelessWidget {
             size15VerticalSizedBox,
             Text(
               shareDiaryEntryTitle,
-              style: boldSize14Text(AppColors.greyTextColor),
+              style: normalSize14Text(AppColors.greyTextColor),
             ),
             mediumVerticalSizedBox,
             HealthDiaryEntryWidget(
-              diaryEntry: diaryEntry,
+              diaryEntry: widget.diaryEntry,
               isDialog: true,
             ),
-            largeVerticalSizedBox,
+            size15VerticalSizedBox,
+            Text(
+              wouldYouLikeToShareEntireText,
+              style: normalSize14Text(AppColors.greyTextColor),
+            ),
+            size15VerticalSizedBox,
+            Row(
+              children: <Widget>[
+                MoodSymptomWidget(
+                  title: yesString,
+                  gestureKey: yesShareEntireEntryKey,
+                  isSelected: canShareEntireEntry,
+                  onTap: () {
+                    setState(() {
+                      canShareEntireEntry = true;
+                    });
+                  },
+                ),
+                size15HorizontalSizedBox,
+                MoodSymptomWidget(
+                  title: noString,
+                  gestureKey: noShareEntireEntryKey,
+                  isSelected: !canShareEntireEntry,
+                  onTap: () {
+                    setState(() {
+                      canShareEntireEntry = false;
+                    });
+                  },
+                ),
+              ],
+            ),
+            mediumVerticalSizedBox,
             Row(
               children: <Widget>[
                 Expanded(
@@ -73,6 +111,7 @@ class ShareDiaryEntryDialog extends StatelessWidget {
                           StoreProvider.dispatch(
                             context,
                             ShareDiaryEntryAction(
+                              canShareEntireDiaryEntry: canShareEntireEntry,
                               client: AppWrapperBase.of(context)!.graphQLClient,
                               onSuccess: () {
                                 Navigator.of(context).pop();
@@ -90,7 +129,7 @@ class ShareDiaryEntryDialog extends StatelessWidget {
                                   ),
                                 );
                               },
-                              healthDiaryEntryID: diaryEntry.id!,
+                              healthDiaryEntryID: widget.diaryEntry.id!,
                             ),
                           );
                         },

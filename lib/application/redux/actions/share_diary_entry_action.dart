@@ -16,12 +16,14 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
     required this.onSuccess,
     required this.onFailure,
     required this.healthDiaryEntryID,
+    required this.canShareEntireDiaryEntry,
   });
 
   final void Function()? onSuccess;
   final void Function()? onFailure;
   final IGraphQlClient client;
   final String healthDiaryEntryID;
+  final bool canShareEntireDiaryEntry;
 
   @override
   void after() {
