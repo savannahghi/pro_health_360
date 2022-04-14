@@ -5,6 +5,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/actions/share_diary_entry_action.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -114,11 +115,9 @@ class _ShareDiaryEntryDialogState extends State<ShareDiaryEntryDialog> {
                               canShareEntireDiaryEntry: canShareEntireEntry,
                               client: AppWrapperBase.of(context)!.graphQLClient,
                               onSuccess: () {
-                                Navigator.of(context).pop();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(diaryEntrySharedSuccessfully),
-                                  ),
+                                Navigator.popAndPushNamed(
+                                  context,
+                                  AppRoutes.successfulEntryPage,
                                 );
                               },
                               onFailure: () {

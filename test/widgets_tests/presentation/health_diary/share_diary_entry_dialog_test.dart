@@ -9,6 +9,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/share_diary_entry_dialog.dart';
+import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -124,7 +125,7 @@ void main() {
       await tester.tap(find.byKey(shareDiaryEntryKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.byType(SuccessfulDiaryEntryPage), findsOneWidget);
     });
 
     testWidgets('share displays error snackbar correctly',
