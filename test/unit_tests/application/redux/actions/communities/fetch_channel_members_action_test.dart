@@ -38,7 +38,7 @@ void main() {
               'listCommunityMembers': <Map<String, dynamic>>[
                 <String, dynamic>{
                   'user': <String, dynamic>{
-                    'ID': 'some-id',
+                    'id': 'some-id',
                     'username': 'John',
                     'role': 'user',
                     'name': 'John Doe',

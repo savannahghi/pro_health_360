@@ -308,9 +308,6 @@ query listPendingInvites($memberID: String!, $input: QueryOption){
     memberCount
     gender
     description
-    createdBy{
-      ID
-    }
   }
 }
 ''';
@@ -372,7 +369,8 @@ const String listCommunityMembersQuery = r'''
 query listCommunityMembers($communityID: ID!){
 	listCommunityMembers(communityID: $communityID) {
       user{
-        ID
+        id
+        userID
         username
         role
         extraData
