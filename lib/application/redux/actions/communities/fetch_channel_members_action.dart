@@ -24,6 +24,7 @@ class FetchChannelMembersAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
+    dispatch(UpdateGroupStateAction(groupMembers: <GroupMember>[]));
     dispatch(WaitAction<AppState>.add(fetchMembersFlag));
   }
 
