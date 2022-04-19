@@ -187,8 +187,8 @@ mutation rescheduleAppointment($appointmentID: String!, $date: Date!) {
 ''';
 
 const String shareHealthDiaryEntryMutation = r'''
-mutation shareHealthDiaryEntry($healthDiaryEntryID: String!){
-  shareHealthDiaryEntry(healthDiaryEntryID: $healthDiaryEntryID)
+mutation shareHealthDiaryEntry($healthDiaryEntryID: String!, $shareHealthDiaryEntry: Boolean!){
+  shareHealthDiaryEntry(healthDiaryEntryID: $healthDiaryEntryID, shareEntireHealthDiary: $shareHealthDiaryEntry)
 }
 ''';
 

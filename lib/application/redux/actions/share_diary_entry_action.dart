@@ -4,6 +4,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:http/http.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:myafyahub/application/redux/actions/fetch_health_diary_action.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:myafyahub/application/core/graphql/mutations.dart';
@@ -27,6 +28,7 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
 
   @override
   void after() {
+    dispatch(FetchHealthDiaryAction(client: client));
     dispatch(WaitAction<AppState>.remove(shareDiaryEntryFlag));
     super.after();
   }
@@ -41,6 +43,7 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'healthDiaryEntryID': healthDiaryEntryID,
+      'shareHealthDiaryEntry': canShareEntireDiaryEntry
     };
     final Response response =
         await client.query(shareHealthDiaryEntryMutation, variables);

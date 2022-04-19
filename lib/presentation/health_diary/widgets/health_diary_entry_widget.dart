@@ -22,9 +22,10 @@ class HealthDiaryEntryWidget extends StatelessWidget {
   });
 
   final HealthDiaryEntry diaryEntry;
-  final bool isDialog;
   // this index is used to determine if the entry is the first one and hence whether to display share icon
   final int? index;
+
+  final bool isDialog;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +37,15 @@ class HealthDiaryEntryWidget extends StatelessWidget {
 
     final String mood = removeUnderscores(diaryEntry.mood ?? '');
     final MoodItemData moodItemData = getMoodColor(mood);
-    final DateTime sharedDateTime = DateTime.parse(diaryEntry.sharedAt!);
-    final Duration difference = DateTime.now().difference(sharedDateTime);
-    final bool wasSharedWithinLastFourHrs =
-        (difference.inHours <= 4) ? true : false;
+
+    bool wasSharedWithinLastFourHrs = false;
+    final DateTime? sharedDateTime =
+        DateTime.tryParse(diaryEntry.sharedAt ?? '');
+
+    if (sharedDateTime != null) {
+      final Duration difference = DateTime.now().difference(sharedDateTime);
+      wasSharedWithinLastFourHrs = (difference.inHours < 4) ? true : false;
+    }
 
     return Padding(
       padding: isDialog

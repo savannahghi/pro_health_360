@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -39,7 +40,9 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
     WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch<AppState>(
         context,
-        FetchHealthDiaryAction(context: context),
+        FetchHealthDiaryAction(
+          client: AppWrapperBase.of(context)!.graphQLClient,
+        ),
       );
     });
     super.initState();
@@ -79,7 +82,9 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                   recoverCallback: () async {
                     StoreProvider.dispatch<AppState>(
                       context,
-                      FetchHealthDiaryAction(context: context),
+                      FetchHealthDiaryAction(
+                        client: AppWrapperBase.of(context)!.graphQLClient,
+                      ),
                     );
                   },
                   messageBody: const <TextSpan>[
@@ -95,7 +100,9 @@ class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
                     onRefresh: () async {
                       StoreProvider.dispatch<AppState>(
                         context,
-                        FetchHealthDiaryAction(context: context),
+                        FetchHealthDiaryAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                        ),
                       );
                     },
                     child: ListView.builder(
