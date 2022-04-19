@@ -18,13 +18,19 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class SendFeedbackAction extends ReduxAction<AppState> {
   SendFeedbackAction({
     required this.client,
-    required this.message,
+    required this.feedback,
+    required this.feedbackType,
+    required this.satisfactionLevel,
     this.requiresFollowUp = false,
+    this.serviceName,
     this.onSuccess,
     this.onError,
   });
 
-  final String message;
+  final String feedback;
+  final String feedbackType;
+  final int satisfactionLevel;
+  final String? serviceName;
   final bool requiresFollowUp;
   final IGraphQlClient client;
   final void Function()? onSuccess;
@@ -49,7 +55,10 @@ class SendFeedbackAction extends ReduxAction<AppState> {
     final Map<String, dynamic> variables = <String, dynamic>{
       'input': <String, dynamic>{
         'userID': userID,
-        'message': message,
+        'feedbackType': feedbackType,
+        'satisfactionLevel': satisfactionLevel,
+        'feedback': feedback,
+        'serviceName': serviceName,
         'requiresFollowUp': requiresFollowUp,
       }
     };
@@ -78,6 +87,8 @@ class SendFeedbackAction extends ReduxAction<AppState> {
 
     if (responseMap['data']['sendFeedback'] == true) {
       onSuccess?.call();
+    } else {
+      onError?.call();
     }
 
     return state;

@@ -753,7 +753,7 @@ bool allQuestionsAnswered(List<ScreeningQuestion>? questions) {
 
 String getFeedBackTypeDescription(FeedBackType feedBackType) {
   switch (feedBackType) {
-    case FeedBackType.GENERAL:
+    case FeedBackType.GENERAL_FEEDBACK:
       return generalFeedBack;
 
     default:

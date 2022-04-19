@@ -110,6 +110,13 @@ void main() {
 
     await tester.pumpAndSettle();
 
+    await tester.ensureVisible(find.byKey(oneRatingButtonKey));
+
+    expect(find.byKey(oneRatingButtonKey), findsOneWidget);
+    await tester.tap(find.byKey(oneRatingButtonKey));
+
+    await tester.pumpAndSettle();
+
     final Finder sendRequestButton = find.byKey(sendFeedbackButtonKey);
 
     await tester.ensureVisible(sendRequestButton);
@@ -151,6 +158,15 @@ void main() {
 
     expect(find.byKey(yesFeedbackKey), findsOneWidget);
     expect(find.byKey(noFeedbackKey), findsOneWidget);
+
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byKey(oneRatingButtonKey));
+
+    expect(find.byKey(oneRatingButtonKey), findsOneWidget);
+    await tester.tap(find.byKey(oneRatingButtonKey));
+
+    await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(yesFeedbackKey));
     await tester.pumpAndSettle();
@@ -203,5 +219,60 @@ void main() {
     await tester.tap(sendRequestButton);
     await tester.pumpAndSettle();
     expect(find.byType(FeedbackPage), findsOneWidget);
+  });
+  testWidgets('should display error snackbar if fetching data fails',
+      (WidgetTester tester) async {
+    final MockShortGraphQlClient mockShortSILGraphQlClient =
+        MockShortGraphQlClient.withResponse(
+      'idToken',
+      'endpoint',
+      http.Response(
+        json.encode(
+          <String, dynamic>{
+            'data': <String, dynamic>{'sendFeedback': false}
+          },
+        ),
+        201,
+      ),
+    );
+
+    await buildTestWidget(
+      tester: tester,
+      store: store,
+      client: mockShortSILGraphQlClient,
+      widget: const FeedbackPage(),
+    );
+
+    await tester.pumpAndSettle();
+
+    final Finder textFormField = find.byKey(feedbackTextFieldKey);
+
+    expect(textFormField, findsOneWidget);
+    await tester.showKeyboard(textFormField);
+    await tester.enterText(textFormField, 'text');
+
+    expect(find.byKey(yesFeedbackKey), findsOneWidget);
+    expect(find.byKey(noFeedbackKey), findsOneWidget);
+
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byKey(oneRatingButtonKey));
+
+    expect(find.byKey(oneRatingButtonKey), findsOneWidget);
+    await tester.tap(find.byKey(oneRatingButtonKey));
+
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(yesFeedbackKey));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(noFeedbackKey));
+
+    await tester.pumpAndSettle();
+    final Finder sendRequestButton = find.byKey(sendFeedbackButtonKey);
+
+    await tester.ensureVisible(sendRequestButton);
+    await tester.tap(sendRequestButton);
+    await tester.pumpAndSettle();
+    expect(find.byType(SnackBar), findsOneWidget);
   });
 }

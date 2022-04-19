@@ -130,8 +130,14 @@ extension ScreeningToolsTypeEX on ScreeningToolsType {
 }
 
 enum FeedBackType {
-  GENERAL,
-  SERVICES,
+  GENERAL_FEEDBACK,
+  SERVICES_OFFERED,
+}
+
+extension FeedBackTypeEx on FeedBackType {
+  String get name {
+    return describeEnum(this);
+  }
 }
 
 enum MedicalDataType { REGIMEN, ALLERGIES, WEIGHT, VIRAL_LOAD, BMI, CD4COUNT }

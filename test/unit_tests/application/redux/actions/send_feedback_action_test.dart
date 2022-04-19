@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/actions/send_feedback_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 import '../../../../mocks.dart';
 
@@ -23,6 +24,9 @@ void main() {
     test('should not update state if error occurs during API call', () async {
       storeTester.dispatch(
         SendFeedbackAction(
+          satisfactionLevel: 1,
+          serviceName: '',
+          feedbackType: FeedBackType.GENERAL_FEEDBACK.name,
           client: MockShortGraphQlClient.withResponse(
             'idToken',
             'endpoint',
@@ -31,7 +35,7 @@ void main() {
               201,
             ),
           ),
-          message: 'Great app',
+          feedback: 'Great app',
         ),
       );
 
@@ -39,6 +43,38 @@ void main() {
           await storeTester.waitUntil(SendFeedbackAction);
 
       expect(info.state.wait!.isWaitingFor(sendFeedbackFlag), false);
+    });
+
+    test('on error callback is called when there is an error in the response',
+        () async {
+      int testNumber = 0;
+      storeTester.dispatch(
+        SendFeedbackAction(
+          satisfactionLevel: 1,
+          serviceName: '',
+          feedbackType: FeedBackType.GENERAL_FEEDBACK.name,
+          client: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              json.encode(
+                <String, dynamic>{
+                  'data': <String, dynamic>{'sendFeedback': false}
+                },
+              ),
+              201,
+            ),
+          ),
+          onError: () {
+            testNumber++;
+          },
+          feedback: 'Great app',
+        ),
+      );
+
+      await storeTester.waitUntil(SendFeedbackAction);
+
+      expect(testNumber, 1);
     });
   });
 }

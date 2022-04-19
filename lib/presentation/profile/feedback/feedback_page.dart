@@ -17,16 +17,12 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
+import 'package:myafyahub/presentation/profile/feedback/widgets/rating_button.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
-// Package imports
-
-// Project imports
-
+/// [FeedbackPage] is used to get user feedback on app usage
 class FeedbackPage extends StatefulWidget {
-  /// [FeedbackPage] is used to get user feedback on app usage
-  ///
   const FeedbackPage();
 
   @override
@@ -36,16 +32,19 @@ class FeedbackPage extends StatefulWidget {
 bool isSubmitActive({
   required FeedBackType feedBackType,
   required String feedBackText,
+  required int selectedRating,
   String? searchString,
 }) {
-  if (feedBackType == FeedBackType.SERVICES) {
-    if (feedBackText.isNotEmpty && (searchString?.isNotEmpty ?? false)) {
+  if (feedBackType == FeedBackType.SERVICES_OFFERED) {
+    if (feedBackText.isNotEmpty &&
+        (searchString?.isNotEmpty ?? false) &&
+        selectedRating != 0) {
       return true;
     } else {
       return false;
     }
   } else {
-    if (feedBackText.isNotEmpty) {
+    if (feedBackText.isNotEmpty && selectedRating != 0) {
       return true;
     }
   }
@@ -57,7 +56,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
   final TextEditingController serviceInputController = TextEditingController();
 
   bool allowFollowUp = false;
-  FeedBackType feedBackType = FeedBackType.GENERAL;
+  FeedBackType feedBackType = FeedBackType.GENERAL_FEEDBACK;
+  int selectedRating = 0;
+  void onRatingButtonPressed(int selectedButton) {
+    setState(() {
+      selectedRating = selectedButton;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +77,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
           feedBackType: feedBackType,
           feedBackText: feedBackInputController.text,
           searchString: serviceInputController.text,
+          selectedRating: selectedRating,
         );
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
@@ -120,19 +126,61 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           onChanged: (String? name) {
                             if (name ==
                                 getFeedBackTypeDescription(
-                                  FeedBackType.GENERAL,
+                                  FeedBackType.GENERAL_FEEDBACK,
                                 )) {
                               setState(() {
-                                feedBackType = FeedBackType.GENERAL;
+                                feedBackType = FeedBackType.GENERAL_FEEDBACK;
                               });
                             } else {
                               setState(() {
-                                feedBackType = FeedBackType.SERVICES;
+                                feedBackType = FeedBackType.SERVICES_OFFERED;
                               });
                             }
                           },
                         ),
-                        if (feedBackType == FeedBackType.SERVICES)
+                        size15VerticalSizedBox,
+                        Text(
+                          howSatisfiedText,
+                          style: normalSize13Text(AppColors.greyTextColor),
+                        ),
+                        smallVerticalSizedBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            RatingButton(
+                              value: 1,
+                              isSelected: selectedRating == 1,
+                              buttonKey: oneRatingButtonKey,
+                              onPressed: onRatingButtonPressed,
+                            ),
+                            RatingButton(
+                              buttonKey: twoRatingButtonKey,
+                              value: 2,
+                              isSelected: selectedRating == 2,
+                              onPressed: onRatingButtonPressed,
+                            ),
+                            RatingButton(
+                              value: 3,
+                              buttonKey: threeRatingButtonKey,
+                              isSelected: selectedRating == 3,
+                              onPressed: onRatingButtonPressed,
+                            ),
+                            RatingButton(
+                              value: 4,
+                              buttonKey: fourRatingButtonKey,
+                              isSelected: selectedRating == 4,
+                              onPressed: onRatingButtonPressed,
+                            ),
+                            RatingButton(
+                              value: 5,
+                              buttonKey: fiveRatingButtonKey,
+                              isSelected: selectedRating == 5,
+                              onPressed: onRatingButtonPressed,
+                            ),
+                          ],
+                        ),
+                        smallVerticalSizedBox,
+                        if (feedBackType == FeedBackType.SERVICES_OFFERED)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -228,7 +276,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                       SendFeedbackAction(
                                         client: AppWrapperBase.of(context)!
                                             .graphQLClient,
-                                        message: feedBackInputController.text,
+                                        satisfactionLevel: selectedRating,
+                                        serviceName: (feedBackType ==
+                                                FeedBackType.SERVICES_OFFERED)
+                                            ? serviceInputController.text
+                                            : '',
+                                        feedbackType: feedBackType.name,
+                                        feedback: feedBackInputController.text,
                                         requiresFollowUp: allowFollowUp,
                                         onSuccess: () {
                                           Navigator.of(context).pushNamed(
