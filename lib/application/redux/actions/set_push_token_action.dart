@@ -57,6 +57,5 @@ class SetPushToken extends ReduxAction<AppState> {
   @override
   Object? wrapError(dynamic error) {
     Sentry.captureException(error);
-    return UserException(getErrorMessage());
   }
 }
