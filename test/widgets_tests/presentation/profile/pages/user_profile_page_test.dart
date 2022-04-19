@@ -13,6 +13,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
+import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
@@ -37,9 +38,10 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: UserProfilePage(),
       );
+      await tester.pumpAndSettle();
       expect(find.byType(UserDetailsCard), findsWidgets);
       final Finder userProfileListItem = find.byType(InformationListCard);
       final Finder hotlineCallButton = find.byKey(hotlineCallButtonKey);
@@ -67,7 +69,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: UserProfilePage(),
       );
       final Finder personalInformationButton =
@@ -95,7 +97,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: UserProfilePage(),
       );
 

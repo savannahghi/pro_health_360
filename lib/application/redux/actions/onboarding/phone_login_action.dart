@@ -145,9 +145,23 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
+        // add fhir info
+        final String fhirPatientId =
+            loginResponse.userResponse?.clientState?.fhirPatientID ?? UNKNOWN;
+        final String chvName =
+            loginResponse.userResponse?.clientState?.chvUserName ?? UNKNOWN;
+        final String facilityId =
+            loginResponse.userResponse?.clientState?.facilityID ?? UNKNOWN;
+        final String treatmentBuddy =
+            loginResponse.userResponse?.clientState?.treatmentBuddy ?? UNKNOWN;
+
         dispatch(
           UpdateClientStateAction(
             clientState: loginResponse.userResponse?.clientState?.copyWith.call(
+              fhirPatientID: fhirPatientId,
+              chvUserName: chvName,
+              facilityID: facilityId,
+              treatmentBuddy: treatmentBuddy,
               user: user,
               communitiesState: CommunitiesState.initial(),
             ),

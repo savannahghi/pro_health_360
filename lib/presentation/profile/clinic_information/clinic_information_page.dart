@@ -1,7 +1,7 @@
 // Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/material.dart';
 import 'package:myafyahub/application/redux/actions/fetch_clinic_information_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -29,7 +29,7 @@ class _ClinicInformationPageState extends State<ClinicInformationPage> {
 
     WidgetsBinding.instance?.addPostFrameCallback(
       (Duration timeStamp) async {
-        await StoreProvider.dispatch<AppState>(
+        StoreProvider.dispatch<AppState>(
           context,
           FetchClinicInformationAction(context: context),
         );

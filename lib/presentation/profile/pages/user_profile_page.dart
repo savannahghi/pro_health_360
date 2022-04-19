@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/fetch_clinic_information_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -97,40 +99,55 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   }),
                   mediumVerticalSizedBox,
                   StoreConnector<AppState, AppStateViewModel>(
+                    onInit: (Store<AppState> store) {
+                      store.dispatch(
+                        FetchClinicInformationAction(context: context),
+                      );
+                    },
                     converter: (Store<AppState> store) =>
                         AppStateViewModel.fromStore(store),
                     builder: (BuildContext context, AppStateViewModel vm) {
-                      if (vm.appState.clientState?.facilityPhoneNumber !=
-                              null &&
-                          vm.appState.clientState!.facilityPhoneNumber!
-                              .isNotEmpty &&
-                          vm.appState.clientState!.facilityPhoneNumber! !=
-                              UNKNOWN) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            const Text(
-                              hotlineString,
-                              style: TextStyle(
-                                color: AppColors.secondaryColor,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                              ),
-                            ),
-                            smallVerticalSizedBox,
-                            CallContactActionWidget(
-                              backgroundColor: AppColors.hotlineBackgroundColor,
-                              phoneNumber:
-                                  vm.appState.clientState!.facilityPhoneNumber!,
-                              textColor: Colors.white,
-                              iconColor: AppColors.secondaryColor,
-                              iconBackground: AppColors.whiteColor,
-                            ),
-                          ],
+                      if (vm.appState.wait!
+                          .isWaitingFor(fetchClinicInformationFlag)) {
+                        return Container(
+                          height: 300,
+                          padding: const EdgeInsets.all(20),
+                          child: const PlatformLoader(),
                         );
                       } else {
-                        return const SizedBox();
+                        if (vm.appState.clientState?.facilityPhoneNumber !=
+                                null &&
+                            vm.appState.clientState!.facilityPhoneNumber!
+                                .isNotEmpty &&
+                            vm.appState.clientState!.facilityPhoneNumber! !=
+                                UNKNOWN) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              const Text(
+                                hotlineString,
+                                style: TextStyle(
+                                  color: AppColors.secondaryColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              smallVerticalSizedBox,
+                              CallContactActionWidget(
+                                backgroundColor:
+                                    AppColors.hotlineBackgroundColor,
+                                phoneNumber: vm
+                                    .appState.clientState!.facilityPhoneNumber!,
+                                textColor: Colors.white,
+                                iconColor: AppColors.secondaryColor,
+                                iconBackground: AppColors.whiteColor,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
                       }
                     },
                   ),
