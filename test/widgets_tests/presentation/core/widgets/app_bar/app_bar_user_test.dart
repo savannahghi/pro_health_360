@@ -14,6 +14,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_user.dart';
 import '../../../../../mock_image_http_client.dart';
+import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 import '../../../../../test_utils.dart';
 
@@ -39,7 +40,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: Builder(
           builder: (BuildContext context) {
             return const AppbarUser();

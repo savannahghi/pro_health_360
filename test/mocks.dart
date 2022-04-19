@@ -627,6 +627,29 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString == retrieveFacilityQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'retrieveFacility': <String, dynamic>{
+                  'ID': 'some-id',
+                  'name': 'name',
+                  'code': 1111,
+                  'county': 'Nairobi',
+                  'active': true,
+                  'phone': '+254712345678',
+                  'description': 'name Hospital'
+                }
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     if (queryString.contains('canrecordmood')) {
       return Future<http.Response>.value(
         http.Response(
