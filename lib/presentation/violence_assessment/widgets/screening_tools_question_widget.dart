@@ -150,13 +150,19 @@ class _ScreeningToolQuestionWidgetState
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            // if question contains a heading
             if (widget.screeningToolsQuestions[index].meta != null)
-              Text(
-                widget.screeningToolsQuestions[index].meta!['violence_type']
-                    as String,
-                style: veryBoldSize18Text(
-                  AppColors.greyTextColor,
-                ),
+              Column(
+                children: <Widget>[
+                  smallVerticalSizedBox,
+                  Text(
+                    widget.screeningToolsQuestions[index].meta!['violence_type']
+                        as String,
+                    style: veryBoldSize17Text(
+                      AppColors.greyTextColor,
+                    ),
+                  ),
+                ],
               ),
             smallVerticalSizedBox,
             Text(
@@ -165,7 +171,7 @@ class _ScreeningToolQuestionWidgetState
                 AppColors.greyTextColor,
               ),
             ),
-            size15VerticalSizedBox,
+            smallVerticalSizedBox,
             Wrap(
               spacing: 12.0,
               runSpacing: 12.0,

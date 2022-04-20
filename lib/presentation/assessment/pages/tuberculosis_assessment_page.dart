@@ -81,50 +81,43 @@ class _TuberculosisAssessmentPageState
                           .tBState!.screeningQuestions!.screeningQuestionsList!,
                       screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 20,
-                          right: 10,
-                          left: 10,
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 48,
-                          child: MyAfyaHubPrimaryButton(
-                            buttonKey: tuberculosisAssessmentFeedbackButtonKey,
-                            onPressed: () {
-                              bool areAllQuestionsAnswered = false;
-                              setState(() {
-                                areAllQuestionsAnswered = allQuestionsAnswered(
-                                  vm.tBState?.screeningQuestions
-                                      ?.screeningQuestionsList,
-                                );
-                              });
+                    mediumVerticalSizedBox,
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: tuberculosisAssessmentFeedbackButtonKey,
+                        onPressed: () {
+                          bool areAllQuestionsAnswered = false;
+                          setState(() {
+                            areAllQuestionsAnswered = allQuestionsAnswered(
+                              vm.tBState?.screeningQuestions
+                                  ?.screeningQuestionsList,
+                            );
+                          });
 
-                              if (areAllQuestionsAnswered) {
-                                StoreProvider.dispatch(
-                                  context,
-                                  AnswerScreeningToolsAction(
-                                    client: AppWrapperBase.of(context)!
-                                        .graphQLClient,
-                                    screeningToolsType:
-                                        ScreeningToolsType.TB_ASSESSMENT,
-                                  ),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(pleaseAnswerAllQuestions),
-                                  ),
-                                );
-                              }
-                            },
-                            buttonColor: AppColors.primaryColor,
-                            borderColor: Colors.transparent,
-                            customChild: vm.wait!
-                                    .isWaitingFor(answerScreeningQuestionsFlag)
+                          if (areAllQuestionsAnswered) {
+                            StoreProvider.dispatch(
+                              context,
+                              AnswerScreeningToolsAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                screeningToolsType:
+                                    ScreeningToolsType.TB_ASSESSMENT,
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(pleaseAnswerAllQuestions),
+                              ),
+                            );
+                          }
+                        },
+                        buttonColor: AppColors.primaryColor,
+                        borderColor: Colors.transparent,
+                        customChild:
+                            vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
                                 ? const PlatformLoader()
                                 : Text(
                                     submitAssessment,
@@ -132,10 +125,9 @@ class _TuberculosisAssessmentPageState
                                       AppColors.whiteColor,
                                     ),
                                   ),
-                          ),
-                        ),
                       ),
                     ),
+                    size40VerticalSizedBox,
                   ],
                 ),
               ),
