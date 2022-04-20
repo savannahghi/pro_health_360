@@ -902,3 +902,4 @@ const String wouldYouLikeToShareEntireText =
     'Would you like to share your entire health diary alongside this diary entry?';
 const String shared = 'Shared';
 const String howSatisfiedText = 'How satisfied are you with the platform?';
+const String ratingsHint ='1 - Not satisfied ; 5 - Most satisfied';
