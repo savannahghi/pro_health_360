@@ -75,54 +75,43 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                     ),
                     const AlcoholAssessmentInformation(),
                     mediumVerticalSizedBox,
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 20,
-                          right: 10,
-                          left: 10,
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 48,
-                          child: MyAfyaHubPrimaryButton(
-                            buttonKey: alcoholSubstanceFeedbackButtonKey,
-                            onPressed: () {
-                              bool areAllQuestionsAnswered = false;
-                              setState(
-                                () {
-                                  areAllQuestionsAnswered =
-                                      allQuestionsAnswered(
-                                    vm
-                                        .alcoholSubstanceUseState
-                                        ?.screeningQuestions
-                                        ?.screeningQuestionsList,
-                                  );
-                                },
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: alcoholSubstanceFeedbackButtonKey,
+                        onPressed: () {
+                          bool areAllQuestionsAnswered = false;
+                          setState(
+                            () {
+                              areAllQuestionsAnswered = allQuestionsAnswered(
+                                vm.alcoholSubstanceUseState?.screeningQuestions
+                                    ?.screeningQuestionsList,
                               );
-                              if (areAllQuestionsAnswered) {
-                                StoreProvider.dispatch(
-                                  context,
-                                  AnswerScreeningToolsAction(
-                                    client: AppWrapperBase.of(context)!
-                                        .graphQLClient,
-                                    screeningToolsType: ScreeningToolsType
-                                        .ALCOHOL_SUBSTANCE_ASSESSMENT,
-                                  ),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(pleaseAnswerAllQuestions),
-                                  ),
-                                );
-                              }
                             },
-                            buttonColor: AppColors.primaryColor,
-                            borderColor: Colors.transparent,
-                            customChild: vm.wait!
-                                    .isWaitingFor(answerScreeningQuestionsFlag)
+                          );
+                          if (areAllQuestionsAnswered) {
+                            StoreProvider.dispatch(
+                              context,
+                              AnswerScreeningToolsAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                                screeningToolsType: ScreeningToolsType
+                                    .ALCOHOL_SUBSTANCE_ASSESSMENT,
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(pleaseAnswerAllQuestions),
+                              ),
+                            );
+                          }
+                        },
+                        buttonColor: AppColors.primaryColor,
+                        borderColor: Colors.transparent,
+                        customChild:
+                            vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
                                 ? const PlatformLoader()
                                 : Text(
                                     submitAssessment,
@@ -130,10 +119,9 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                                       AppColors.whiteColor,
                                     ),
                                   ),
-                          ),
-                        ),
                       ),
                     ),
+                    size40VerticalSizedBox,
                   ],
                 ),
               ),
