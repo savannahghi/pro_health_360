@@ -12,6 +12,7 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/set_push_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
+import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 
 import '../../../../mocks.dart';
 import 'set_push_token_action_test.mocks.dart';
@@ -29,7 +30,9 @@ void main() {
       messaging = FirebaseMessaging.instance;
 
       storeTester = StoreTester<AppState>(
-        initialState: AppState.initial(),
+        initialState: AppState.initial().copyWith(
+          credentials: AuthCredentials(isSignedIn: true),
+        ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
     });

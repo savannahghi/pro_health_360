@@ -15,22 +15,35 @@ class SetPushToken extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final String? token = await firebaseMessaging.getToken();
+    if (state.credentials?.isSignedIn ?? false) {
+      final String? token = await firebaseMessaging.getToken();
 
-    final Map<String, dynamic> variables = <String, dynamic>{'token': token};
-    final Response response =
-        await client.query(setPushTokenMutation, variables);
+      final Map<String, dynamic> variables = <String, dynamic>{'token': token};
+      final Response response =
+          await client.query(setPushTokenMutation, variables);
 
-    final ProcessedResponse processed = processHttpResponse(response);
+      final ProcessedResponse processed = processHttpResponse(response);
 
-    if (processed.ok) {
-      final Map<String, dynamic> responseBody = client.toMap(response);
+      if (processed.ok) {
+        final Map<String, dynamic> responseBody = client.toMap(response);
 
-      final String? errors = client.parseError(responseBody);
+        final String? errors = client.parseError(responseBody);
 
-      if (errors != null) {
+        if (errors != null) {
+          Sentry.captureException(
+            errors,
+            hint: <String, dynamic>{
+              'request': setPushTokenMutation,
+              'variables': variables,
+              'response': response,
+            },
+          );
+        }
+
+        return null;
+      } else {
         Sentry.captureException(
-          errors,
+          UserException(getErrorMessage()),
           hint: <String, dynamic>{
             'request': setPushTokenMutation,
             'variables': variables,
@@ -40,18 +53,7 @@ class SetPushToken extends ReduxAction<AppState> {
       }
 
       return null;
-    } else {
-      Sentry.captureException(
-        UserException(getErrorMessage()),
-        hint: <String, dynamic>{
-          'request': setPushTokenMutation,
-          'variables': variables,
-          'response': response,
-        },
-      );
     }
-
-    return null;
   }
 
   @override
