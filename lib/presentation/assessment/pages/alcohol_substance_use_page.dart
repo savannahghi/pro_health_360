@@ -40,95 +40,96 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: alcoholSubstanceUseTitle,
-      ),
-      body: StoreConnector<AppState, ScreeningToolsViewModel>(
-        converter: (Store<AppState> store) {
-          return ScreeningToolsViewModel.fromStore(store);
-        },
-        builder: (BuildContext context, ScreeningToolsViewModel vm) {
-          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
-            return const PlatformLoader();
-          } else {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    largeVerticalSizedBox,
-                    Text(
-                      alcoholSubstanceUseDescription,
-                      style: normalSize14Text(
-                        AppColors.greyTextColor,
-                      ),
+    return StoreConnector<AppState, ScreeningToolsViewModel>(
+      converter: (Store<AppState> store) {
+        return ScreeningToolsViewModel.fromStore(store);
+      },
+      builder: (BuildContext context, ScreeningToolsViewModel vm) {
+        return Scaffold(
+          appBar: const CustomAppBar(
+            title: alcoholSubstanceUseTitle,
+          ),
+          body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+              ? const PlatformLoader()
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        largeVerticalSizedBox,
+                        Text(
+                          alcoholSubstanceUseDescription,
+                          style: normalSize14Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                        mediumVerticalSizedBox,
+                        // questions
+                        ScreeningToolQuestionWidget(
+                          screeningToolsQuestions: vm.alcoholSubstanceUseState!
+                              .screeningQuestions!.screeningQuestionsList!,
+                          screeningToolsType:
+                              ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+                        ),
+                        const AlcoholAssessmentInformation(),
+                        const SizedBox(height: 80),
+                      ],
                     ),
-                    mediumVerticalSizedBox,
-                    // questions
-                    ScreeningToolQuestionWidget(
-                      screeningToolsQuestions: vm.alcoholSubstanceUseState!
-                          .screeningQuestions!.screeningQuestionsList!,
-                      screeningToolsType:
-                          ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
-                    ),
-                    const AlcoholAssessmentInformation(),
-                    mediumVerticalSizedBox,
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: MyAfyaHubPrimaryButton(
-                        buttonKey: alcoholSubstanceFeedbackButtonKey,
-                        onPressed: () {
-                          bool areAllQuestionsAnswered = false;
-                          setState(
-                            () {
-                              areAllQuestionsAnswered = allQuestionsAnswered(
-                                vm.alcoholSubstanceUseState?.screeningQuestions
-                                    ?.screeningQuestionsList,
-                              );
-                            },
-                          );
-                          if (areAllQuestionsAnswered) {
-                            StoreProvider.dispatch(
-                              context,
-                              AnswerScreeningToolsAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                screeningToolsType: ScreeningToolsType
-                                    .ALCOHOL_SUBSTANCE_ASSESSMENT,
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(pleaseAnswerAllQuestions),
-                              ),
-                            );
-                          }
-                        },
-                        buttonColor: AppColors.primaryColor,
-                        borderColor: Colors.transparent,
-                        customChild:
-                            vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
-                                ? const PlatformLoader()
-                                : Text(
-                                    submitAssessment,
-                                    style: veryBoldSize15Text(
-                                      AppColors.whiteColor,
-                                    ),
-                                  ),
-                      ),
-                    ),
-                    size40VerticalSizedBox,
-                  ],
+                  ),
                 ),
-              ),
-            );
-          }
-        },
-      ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+              ? const SizedBox()
+              : Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  width: double.infinity,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: alcoholSubstanceFeedbackButtonKey,
+                    onPressed: () {
+                      bool areAllQuestionsAnswered = false;
+                      setState(
+                        () {
+                          areAllQuestionsAnswered = allQuestionsAnswered(
+                            vm.alcoholSubstanceUseState?.screeningQuestions
+                                ?.screeningQuestionsList,
+                          );
+                        },
+                      );
+                      if (areAllQuestionsAnswered) {
+                        StoreProvider.dispatch(
+                          context,
+                          AnswerScreeningToolsAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            screeningToolsType:
+                                ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(pleaseAnswerAllQuestions),
+                          ),
+                        );
+                      }
+                    },
+                    buttonColor: AppColors.primaryColor,
+                    borderColor: Colors.transparent,
+                    customChild:
+                        vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
+                            ? const PlatformLoader()
+                            : Text(
+                                submitAssessment,
+                                style: veryBoldSize15Text(
+                                  AppColors.whiteColor,
+                                ),
+                              ),
+                  ),
+                ),
+        );
+      },
     );
   }
 }

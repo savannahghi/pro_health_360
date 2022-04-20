@@ -41,105 +41,110 @@ class _ContraceptiveAssessmentPageState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: contraceptiveAssessmentTitle,
-      ),
-      body: StoreConnector<AppState, ScreeningToolsViewModel>(
-        converter: (Store<AppState> store) {
-          return ScreeningToolsViewModel.fromStore(store);
-        },
-        builder: (BuildContext context, ScreeningToolsViewModel vm) {
-          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
-            return const PlatformLoader();
-          } else {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
+    return StoreConnector<AppState, ScreeningToolsViewModel>(
+      converter: (Store<AppState> store) {
+        return ScreeningToolsViewModel.fromStore(store);
+      },
+      builder: (BuildContext context, ScreeningToolsViewModel vm) {
+        return Scaffold(
+          appBar: const CustomAppBar(
+            title: contraceptiveAssessmentTitle,
+          ),
+          body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+              ? const PlatformLoader()
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Flexible(
-                          child: RichText(
-                            text: TextSpan(
-                              text: contraceptiveAssessmentDescription,
-                              style: normalSize14Text(
-                                AppColors.greyTextColor,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: ifYouIntendToUse,
+                        Row(
+                          children: <Widget>[
+                            Flexible(
+                              child: RichText(
+                                text: TextSpan(
+                                  text: contraceptiveAssessmentDescription,
                                   style: normalSize14Text(
                                     AppColors.greyTextColor,
                                   ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: ifYouIntendToUse,
+                                      style: normalSize14Text(
+                                        AppColors.greyTextColor,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
+                        size15VerticalSizedBox,
+                        // questions
+                        ScreeningToolQuestionWidget(
+                          screeningToolsQuestions: vm.contraceptiveState!
+                              .screeningQuestions!.screeningQuestionsList!,
+                          screeningToolsType:
+                              ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+                        ),
+                        const ContraceptivesInformation(),
+
+                        size40VerticalSizedBox,
                       ],
                     ),
-                    size15VerticalSizedBox,
-                    // questions
-                    ScreeningToolQuestionWidget(
-                      screeningToolsQuestions: vm.contraceptiveState!
-                          .screeningQuestions!.screeningQuestionsList!,
-                      screeningToolsType:
-                          ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
-                    ),
-                    const ContraceptivesInformation(),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: MyAfyaHubPrimaryButton(
-                        buttonKey: contraceptiveAssessmentFeedbackButtonKey,
-                        onPressed: () {
-                          bool areAllQuestionsAnswered = false;
-                          setState(() {
-                            areAllQuestionsAnswered = allQuestionsAnswered(
-                              vm.contraceptiveState?.screeningQuestions
-                                  ?.screeningQuestionsList,
-                            );
-                          });
-                          if (areAllQuestionsAnswered) {
-                            StoreProvider.dispatch(
-                              context,
-                              AnswerScreeningToolsAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                screeningToolsType:
-                                    ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(pleaseAnswerAllQuestions),
-                              ),
-                            );
-                          }
-                        },
-                        buttonColor: AppColors.primaryColor,
-                        borderColor: Colors.transparent,
-                        customChild: vm.wait!
-                                .isWaitingFor(answerScreeningQuestionsFlag)
+                  ),
+                ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+              ? const SizedBox()
+              : Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  width: double.infinity,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: contraceptiveAssessmentFeedbackButtonKey,
+                    onPressed: () {
+                      bool areAllQuestionsAnswered = false;
+                      setState(() {
+                        areAllQuestionsAnswered = allQuestionsAnswered(
+                          vm.contraceptiveState?.screeningQuestions
+                              ?.screeningQuestionsList,
+                        );
+                      });
+                      if (areAllQuestionsAnswered) {
+                        StoreProvider.dispatch(
+                          context,
+                          AnswerScreeningToolsAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            screeningToolsType:
+                                ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(pleaseAnswerAllQuestions),
+                          ),
+                        );
+                      }
+                    },
+                    buttonColor: AppColors.primaryColor,
+                    borderColor: Colors.transparent,
+                    customChild:
+                        vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
                             ? const PlatformLoader()
                             : Text(
                                 submitAssessment,
-                                style: veryBoldSize15Text(AppColors.whiteColor),
+                                style: veryBoldSize15Text(
+                                  AppColors.whiteColor,
+                                ),
                               ),
-                      ),
-                    ),
-                    size40VerticalSizedBox,
-                  ],
+                  ),
                 ),
-              ),
-            );
-          }
-        },
-      ),
+        );
+      },
     );
   }
 }

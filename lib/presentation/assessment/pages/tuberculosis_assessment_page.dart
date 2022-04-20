@@ -40,101 +40,99 @@ class _TuberculosisAssessmentPageState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: tuberculosisAssessmentTitle,
-      ),
-      body: StoreConnector<AppState, ScreeningToolsViewModel>(
-        converter: (Store<AppState> store) {
-          return ScreeningToolsViewModel.fromStore(store);
-        },
-        builder: (BuildContext context, ScreeningToolsViewModel vm) {
-          final double appBarHeight = AppBar().preferredSize.height;
-          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
-            return const PlatformLoader();
-          } else {
-            return SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height - appBarHeight,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    largeVerticalSizedBox,
-                    Text(
-                      tuberculosisAssessmentDescription,
-                      style: normalSize14Text(
-                        AppColors.greyTextColor,
-                      ),
+    return StoreConnector<AppState, ScreeningToolsViewModel>(
+      converter: (Store<AppState> store) {
+        return ScreeningToolsViewModel.fromStore(store);
+      },
+      builder: (BuildContext context, ScreeningToolsViewModel vm) {
+        final double appBarHeight = AppBar().preferredSize.height;
+        return Scaffold(
+          appBar: const CustomAppBar(
+            title: tuberculosisAssessmentTitle,
+          ),
+          body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+              ? const PlatformLoader()
+              : SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height - appBarHeight,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        largeVerticalSizedBox,
+                        Text(
+                          tuberculosisAssessmentDescription,
+                          style: normalSize14Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                        smallVerticalSizedBox,
+                        Text(
+                          pleaseVisitClinic,
+                          style: normalSize14Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                        mediumVerticalSizedBox,
+                        // questions
+                        ScreeningToolQuestionWidget(
+                          screeningToolsQuestions: vm.tBState!
+                              .screeningQuestions!.screeningQuestionsList!,
+                          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
+                        ),
+                        size40VerticalSizedBox,
+                      ],
                     ),
-                    smallVerticalSizedBox,
-                    Text(
-                      pleaseVisitClinic,
-                      style: normalSize14Text(
-                        AppColors.greyTextColor,
-                      ),
-                    ),
-                    mediumVerticalSizedBox,
-                    // questions
-                    ScreeningToolQuestionWidget(
-                      screeningToolsQuestions: vm
-                          .tBState!.screeningQuestions!.screeningQuestionsList!,
+                  ),
+                ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+              ? const SizedBox()
+              : Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            width: double.infinity,
+            height: 48,
+            child: MyAfyaHubPrimaryButton(
+              buttonKey: tuberculosisAssessmentFeedbackButtonKey,
+              onPressed: () {
+                bool areAllQuestionsAnswered = false;
+                setState(() {
+                  areAllQuestionsAnswered = allQuestionsAnswered(
+                    vm.tBState?.screeningQuestions?.screeningQuestionsList,
+                  );
+                });
+
+                if (areAllQuestionsAnswered) {
+                  StoreProvider.dispatch(
+                    context,
+                    AnswerScreeningToolsAction(
+                      client: AppWrapperBase.of(context)!.graphQLClient,
                       screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
                     ),
-                    mediumVerticalSizedBox,
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: MyAfyaHubPrimaryButton(
-                        buttonKey: tuberculosisAssessmentFeedbackButtonKey,
-                        onPressed: () {
-                          bool areAllQuestionsAnswered = false;
-                          setState(() {
-                            areAllQuestionsAnswered = allQuestionsAnswered(
-                              vm.tBState?.screeningQuestions
-                                  ?.screeningQuestionsList,
-                            );
-                          });
-
-                          if (areAllQuestionsAnswered) {
-                            StoreProvider.dispatch(
-                              context,
-                              AnswerScreeningToolsAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                screeningToolsType:
-                                    ScreeningToolsType.TB_ASSESSMENT,
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(pleaseAnswerAllQuestions),
-                              ),
-                            );
-                          }
-                        },
-                        buttonColor: AppColors.primaryColor,
-                        borderColor: Colors.transparent,
-                        customChild:
-                            vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
-                                ? const PlatformLoader()
-                                : Text(
-                                    submitAssessment,
-                                    style: veryBoldSize15Text(
-                                      AppColors.whiteColor,
-                                    ),
-                                  ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(pleaseAnswerAllQuestions),
+                    ),
+                  );
+                }
+              },
+              buttonColor: AppColors.primaryColor,
+              borderColor: Colors.transparent,
+              customChild: vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
+                  ? const PlatformLoader()
+                  : Text(
+                      submitAssessment,
+                      style: veryBoldSize15Text(
+                        AppColors.whiteColor,
                       ),
                     ),
-                    size40VerticalSizedBox,
-                  ],
-                ),
-              ),
-            );
-          }
-        },
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

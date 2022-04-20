@@ -39,93 +39,103 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: violenceAssessmentTitle,
-      ),
-      body: StoreConnector<AppState, ScreeningToolsViewModel>(
-        converter: (Store<AppState> store) {
-          return ScreeningToolsViewModel.fromStore(store);
-        },
-        builder: (BuildContext context, ScreeningToolsViewModel vm) {
-          if (vm.wait!.isWaitingFor(fetchingQuestionsFlag)) {
-            return const PlatformLoader();
-          } else {
-            return SingleChildScrollView(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      violenceAssessmentSubtitle,
-                      style: normalSize14Text(
-                        AppColors.greyTextColor,
-                      ),
+    return StoreConnector<AppState, ScreeningToolsViewModel>(
+      converter: (Store<AppState> store) {
+        return ScreeningToolsViewModel.fromStore(store);
+      },
+      builder: (BuildContext context, ScreeningToolsViewModel vm) {
+        return Scaffold(
+          appBar: const CustomAppBar(
+            title: violenceAssessmentTitle,
+          ),
+          body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+              ? const PlatformLoader()
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 14,
                     ),
-                    mediumVerticalSizedBox,
-                    // questions
-                    ScreeningToolQuestionWidget(
-                      screeningToolsQuestions: vm.violenceState!
-                          .screeningQuestions!.screeningQuestionsList!,
-                      screeningToolsType:
-                          ScreeningToolsType.VIOLENCE_ASSESSMENT,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          violenceAssessmentSubtitle,
+                          style: normalSize14Text(
+                            AppColors.greyTextColor,
+                          ),
+                        ),
+                        mediumVerticalSizedBox,
+                        // questions
+                        ScreeningToolQuestionWidget(
+                          screeningToolsQuestions: vm.violenceState!
+                              .screeningQuestions!.screeningQuestionsList!,
+                          screeningToolsType:
+                              ScreeningToolsType.VIOLENCE_ASSESSMENT,
+                        ),
+                        // contains guidance information
+                        const ViolenceAssessmentInformation(),
+                        const SizedBox(
+                          height: 80,
+                        ),
+                      ],
                     ),
-                    // contains guidance information
-                    const ViolenceAssessmentInformation(),
-                    size15VerticalSizedBox,
-                    // submit button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: MyAfyaHubPrimaryButton(
-                        buttonKey: submitViolenceAssessmentKey,
-                        buttonColor: AppColors.primaryColor,
-                        borderColor: Colors.transparent,
-                        customChild: vm.wait!
-                                .isWaitingFor(answerScreeningQuestionsFlag)
+                  ),
+                ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: vm.wait!.isWaitingFor(
+            fetchingQuestionsFlag,
+          )
+              ? const SizedBox()
+              : Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  width: double.infinity,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: submitViolenceAssessmentKey,
+                    buttonColor: AppColors.primaryColor,
+                    borderColor: Colors.transparent,
+                    customChild:
+                        vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
                             ? const PlatformLoader()
                             : Text(
                                 submitAssessment,
-                                style: veryBoldSize15Text(AppColors.whiteColor),
+                                style: veryBoldSize15Text(
+                                  AppColors.whiteColor,
+                                ),
                               ),
-                        onPressed: () {
-                          bool areAllQuestionsAnswered = false;
-                          setState(() {
-                            areAllQuestionsAnswered = allQuestionsAnswered(
-                              vm.violenceState?.screeningQuestions
-                                  ?.screeningQuestionsList,
-                            );
-                          });
-                          if (areAllQuestionsAnswered) {
-                            StoreProvider.dispatch(
-                              context,
-                              AnswerScreeningToolsAction(
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                screeningToolsType:
-                                    ScreeningToolsType.VIOLENCE_ASSESSMENT,
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(pleaseAnswerAllQuestions),
-                              ),
-                            );
-                          }
+                    onPressed: () {
+                      bool areAllQuestionsAnswered = false;
+                      setState(
+                        () {
+                          areAllQuestionsAnswered = allQuestionsAnswered(
+                            vm.violenceState?.screeningQuestions
+                                ?.screeningQuestionsList,
+                          );
                         },
-                      ),
-                    ),
-                    size40VerticalSizedBox
-                  ],
+                      );
+                      if (areAllQuestionsAnswered) {
+                        StoreProvider.dispatch(
+                          context,
+                          AnswerScreeningToolsAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            screeningToolsType:
+                                ScreeningToolsType.VIOLENCE_ASSESSMENT,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(pleaseAnswerAllQuestions),
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
-              ),
-            );
-          }
-        },
-      ),
+        );
+      },
     );
   }
 }
