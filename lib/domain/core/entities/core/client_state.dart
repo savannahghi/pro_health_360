@@ -10,6 +10,7 @@ import 'package:myafyahub/domain/core/entities/core/health_diary_state.dart';
 import 'package:myafyahub/domain/core/entities/core/related_person.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/medical_data/medical_data_state.dart';
+import 'package:myafyahub/domain/core/entities/medical_data/next_refill_data.dart';
 import 'package:myafyahub/domain/core/entities/viral_load/viral_load_edges.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
@@ -63,6 +64,9 @@ class ClientState with _$ClientState {
 
     // viral load data
     ViralLoadEdges? viralLoadData,
+
+    // next refill data
+    NextRefillData? nextRefillData,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>
@@ -94,5 +98,6 @@ class ClientState with _$ClientState {
         healthTimelineState: HealthTimelineState.initial(),
         medicalDataState: MedicalDataState.initial(),
         viralLoadData: ViralLoadEdges.initial(),
+        nextRefillData: NextRefillData.initial(),
       );
 }

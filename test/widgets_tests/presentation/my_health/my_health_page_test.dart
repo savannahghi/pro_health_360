@@ -83,7 +83,12 @@ void main() {
         '',
         '',
         Response(
-          jsonEncode(<String, dynamic>{'data': mockViralLoadDataResponse}),
+          jsonEncode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'searchFHIRObservation': mockViralLoadData,
+              'nextRefill': '2023-12-12'
+            }
+          }),
           200,
         ),
       );

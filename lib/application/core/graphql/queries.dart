@@ -443,3 +443,9 @@ query getAvailableScreeningToolQuestions($clientID: String!){
   }
 }
 ''';
+
+const String nextRefillQuery = r'''
+query nextRefill ($clientID: ID!){
+  nextRefill(clientID: $clientID)
+}
+''';
