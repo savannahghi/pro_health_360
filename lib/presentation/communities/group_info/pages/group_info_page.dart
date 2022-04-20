@@ -3,7 +3,6 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/communities/fetch_channel_members_action.dart';
@@ -16,7 +15,6 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/communities/group_info/widgets/group_member_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-
 import 'package:shared_themes/spaces.dart';
 
 class GroupInfoPage extends StatefulWidget {
@@ -80,14 +78,14 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                       return GroupsViewModel.fromStore(store);
                     },
                     builder: (BuildContext context, GroupsViewModel vm) {
-                      final List<GroupMember?>? members = vm.groupMembers;
-
-                      if (members == null) {
-                        return const GenericErrorWidget(recoverCallback: null);
-                      }
+                      final List<GroupMember?> members =
+                          vm.groupMembers ?? <GroupMember>[];
 
                       if (vm.wait.isWaitingFor(fetchMembersFlag)) {
                         return const PlatformLoader();
+                      }
+                      if (members.isEmpty) {
+                        return const GenericErrorWidget(recoverCallback: null);
                       }
 
                       return Text(
@@ -110,14 +108,15 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                       return GroupsViewModel.fromStore(store);
                     },
                     builder: (BuildContext context, GroupsViewModel vm) {
-                      final List<GroupMember?>? members = vm.groupMembers;
-
-                      if (members == null) {
-                        return const GenericErrorWidget(recoverCallback: null);
-                      }
+                      final List<GroupMember?> members =
+                          vm.groupMembers ?? <GroupMember>[];
 
                       if (vm.wait.isWaitingFor(fetchMembersFlag)) {
                         return const PlatformLoader();
+                      }
+
+                      if (members.isEmpty) {
+                        return const GenericErrorWidget(recoverCallback: null);
                       }
 
                       return ListView.builder(
