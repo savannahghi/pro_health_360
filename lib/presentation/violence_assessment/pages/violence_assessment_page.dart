@@ -64,7 +64,7 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                         AppColors.greyTextColor,
                       ),
                     ),
-                    largeVerticalSizedBox,
+                    mediumVerticalSizedBox,
                     // questions
                     ScreeningToolQuestionWidget(
                       screeningToolsQuestions: vm.violenceState!
@@ -117,7 +117,8 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                           }
                         },
                       ),
-                    )
+                    ),
+                    size40VerticalSizedBox
                   ],
                 ),
               ),

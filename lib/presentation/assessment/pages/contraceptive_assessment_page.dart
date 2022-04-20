@@ -132,6 +132,7 @@ class _ContraceptiveAssessmentPageState
                               ),
                       ),
                     ),
+                    size40VerticalSizedBox,
                   ],
                 ),
               ),
