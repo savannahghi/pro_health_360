@@ -180,6 +180,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           ],
                         ),
                         smallVerticalSizedBox,
+                        Text(
+                          ratingsHint,
+                          style: normalSize12Text(AppColors.greyTextColor),
+                        ),
+                        smallVerticalSizedBox,
                         if (feedBackType == FeedBackType.SERVICES_OFFERED)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
