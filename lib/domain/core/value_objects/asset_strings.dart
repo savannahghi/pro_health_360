@@ -197,3 +197,6 @@ const String capsuleIcon = 'assets/images/capsule.svg';
 
 // feedback
 const String feedbackImage = 'assets/images/feedback.svg';
+
+// security questions
+const String noSecurityQuestionsImage = 'assets/images/no_questions_image.svg';

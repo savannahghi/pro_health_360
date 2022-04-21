@@ -17,6 +17,8 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/set_security_questions/security_question_widget.dart';
@@ -91,70 +93,89 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                             padding: const EdgeInsets.all(20),
                             child: const PlatformLoader(),
                           )
-                        : ListView.builder(
-                            itemCount: securityQuestions.length,
-                            shrinkWrap: true,
-                            padding: const EdgeInsets.only(top: 5, bottom: 5),
-                            itemBuilder: (BuildContext context, int index) {
-                              final SecurityQuestion question =
-                                  securityQuestions.elementAt(index);
-
-                              return SecurityQuestionWidget(
-                                securityQuestion: question,
-                                response: (securityQuestionsResponses
-                                            .elementAt(index)
-                                            .response ==
-                                        UNKNOWN)
-                                    ? null
-                                    : securityQuestionsResponses
-                                        .elementAt(index)
-                                        .response,
-                                onChanged: (String? value) {
-                                  if (value != null) {
-                                    if (question.responseType ==
-                                        SecurityQuestionResponseType.DATE) {
-                                      final String convertedDate =
-                                          formatSecurityQuestionDate(
-                                        value,
-                                        format: 'dd-MM-yyyy',
-                                      );
-
-                                      securityQuestionsResponses[index] =
-                                          SecurityQuestionResponse(
-                                        userID: userId,
-                                        securityQuestionID:
-                                            question.securityQuestionID,
-                                        response: convertedDate,
-                                      );
-                                    } else {
-                                      securityQuestionsResponses[index] =
-                                          SecurityQuestionResponse(
-                                        userID: userId,
-                                        securityQuestionID:
-                                            question.securityQuestionID,
-                                        response: value.trim(),
-                                      );
-                                    }
-                                  }
-
+                        : securityQuestions.isEmpty
+                            ? GenericErrorWidget(
+                                actionKey: helpNoDataWidgetKey,
+                                headerIconSvgUrl: noSecurityQuestionsImage,
+                                recoverCallback: () async {
                                   StoreProvider.dispatch<AppState>(
                                     context,
-                                    UpdateOnboardingStateAction(
-                                      securityQuestionsResponses:
-                                          securityQuestionsResponses,
+                                    GetSecurityQuestionsAction(
+                                      context: context,
                                     ),
                                   );
                                 },
-                              );
-                            },
-                          ),
+                                messageTitle: noQuestionsLoadedString,
+                                messageBody: const <TextSpan>[
+                                  TextSpan(text: noQuestionsLoadedDescription)
+                                ],
+                              )
+                            : ListView.builder(
+                                itemCount: securityQuestions.length,
+                                shrinkWrap: true,
+                                padding:
+                                    const EdgeInsets.only(top: 5, bottom: 5),
+                                itemBuilder: (BuildContext context, int index) {
+                                  final SecurityQuestion question =
+                                      securityQuestions.elementAt(index);
+
+                                  return SecurityQuestionWidget(
+                                    securityQuestion: question,
+                                    response: (securityQuestionsResponses
+                                                .elementAt(index)
+                                                .response ==
+                                            UNKNOWN)
+                                        ? null
+                                        : securityQuestionsResponses
+                                            .elementAt(index)
+                                            .response,
+                                    onChanged: (String? value) {
+                                      if (value != null) {
+                                        if (question.responseType ==
+                                            SecurityQuestionResponseType.DATE) {
+                                          final String convertedDate =
+                                              formatSecurityQuestionDate(
+                                            value,
+                                            format: 'dd-MM-yyyy',
+                                          );
+
+                                          securityQuestionsResponses[index] =
+                                              SecurityQuestionResponse(
+                                            userID: userId,
+                                            securityQuestionID:
+                                                question.securityQuestionID,
+                                            response: convertedDate,
+                                          );
+                                        } else {
+                                          securityQuestionsResponses[index] =
+                                              SecurityQuestionResponse(
+                                            userID: userId,
+                                            securityQuestionID:
+                                                question.securityQuestionID,
+                                            response: value.trim(),
+                                          );
+                                        }
+                                      }
+
+                                      StoreProvider.dispatch<AppState>(
+                                        context,
+                                        UpdateOnboardingStateAction(
+                                          securityQuestionsResponses:
+                                              securityQuestionsResponses,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                   ),
-                  if (!vm.appState.wait!
-                              .isWaitingFor(getSecurityQuestionsFlag) &&
+                  if ((!vm.appState.wait!
+                                  .isWaitingFor(getSecurityQuestionsFlag) &&
+                              !vm.appState.wait!
+                                  .isWaitingFor(recordSecurityQuestionsFlag) ||
                           !vm.appState.wait!
-                              .isWaitingFor(recordSecurityQuestionsFlag) ||
-                      !vm.appState.wait!
-                          .isWaitingFor(verifySecurityQuestionsFlag))
+                              .isWaitingFor(verifySecurityQuestionsFlag)) &&
+                      securityQuestions.isNotEmpty)
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(

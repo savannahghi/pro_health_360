@@ -303,6 +303,9 @@ const String kindlyAnswerAllQuestionsString = 'Kindly answer all questions';
 const String verifySecurityQuestionsString = 'Verify your security questions';
 const String verifyQuestionsDescriptionString =
     'Please answer the following security questions about yourself. You provided the answers to these questions when you first signed up.';
+const String noQuestionsLoadedString = 'No questions loaded';
+const String noQuestionsLoadedDescription =
+    'We were unable to load your security questions. Tap below load them again';
 
 // TODO(abiud): remove these strings. they should be fetched from the backend
 const String whereWereYouBornString =
