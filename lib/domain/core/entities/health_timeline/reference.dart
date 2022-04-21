@@ -16,8 +16,8 @@ class Reference with _$Reference {
     ///  version specific or not. If the reference is not to a FHIR RESTful
     ///  server, then it should be assumed to be version specific. Internal
     ///  fragment references (start with '#') refer to contained resources.
-    @JsonKey(name: 'Reference') String? reference,
-    @JsonKey(name: 'Display') String? display,
+    @JsonKey(name: 'reference') String? reference,
+    @JsonKey(name: 'display') String? display,
   }) = _Reference;
 
   factory Reference.fromJson(Map<String, dynamic> json) =>

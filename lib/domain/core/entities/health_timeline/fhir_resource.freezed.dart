@@ -137,7 +137,7 @@ const $FhirResource = _$FhirResourceTearOff();
 /// @nodoc
 mixin _$FhirResource {
   @JsonKey(name: 'code')
-  CodeableConcept? get code => throw _privateConstructorUsedError;
+  CodeableConcept? get code => throw _privateConstructorUsedError; // distinct
   @JsonKey(name: 'resourceType')
   ReferenceType? get resourceType => throw _privateConstructorUsedError;
   @JsonKey(name: 'timelineDate')
@@ -539,7 +539,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   @override
   @JsonKey(name: 'effectiveDateTime')
   final String? date;
-  @override
+  @override // distinct
   @JsonKey(name: 'resourceType')
   final ReferenceType? resourceType;
   @override
@@ -880,7 +880,7 @@ abstract class Observation implements FhirResource, Resource {
   CodeableConcept? get code;
   @JsonKey(name: 'effectiveDateTime')
   String? get date;
-  @override
+  @override // distinct
   @JsonKey(name: 'resourceType')
   ReferenceType? get resourceType;
   @JsonKey(name: 'status', fromJson: observationStatusFromJson)

@@ -23,8 +23,8 @@ class _$ReferenceTearOff {
   const _$ReferenceTearOff();
 
   _Reference call(
-      {@JsonKey(name: 'Reference') String? reference,
-      @JsonKey(name: 'Display') String? display}) {
+      {@JsonKey(name: 'reference') String? reference,
+      @JsonKey(name: 'display') String? display}) {
     return _Reference(
       reference: reference,
       display: display,
@@ -49,9 +49,9 @@ mixin _$Reference {
   ///  version specific or not. If the reference is not to a FHIR RESTful
   ///  server, then it should be assumed to be version specific. Internal
   ///  fragment references (start with '#') refer to contained resources.
-  @JsonKey(name: 'Reference')
+  @JsonKey(name: 'reference')
   String? get reference => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Display')
+  @JsonKey(name: 'display')
   String? get display => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,8 +65,8 @@ abstract class $ReferenceCopyWith<$Res> {
   factory $ReferenceCopyWith(Reference value, $Res Function(Reference) then) =
       _$ReferenceCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'Reference') String? reference,
-      @JsonKey(name: 'Display') String? display});
+      {@JsonKey(name: 'reference') String? reference,
+      @JsonKey(name: 'display') String? display});
 }
 
 /// @nodoc
@@ -102,8 +102,8 @@ abstract class _$ReferenceCopyWith<$Res> implements $ReferenceCopyWith<$Res> {
       __$ReferenceCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'Reference') String? reference,
-      @JsonKey(name: 'Display') String? display});
+      {@JsonKey(name: 'reference') String? reference,
+      @JsonKey(name: 'display') String? display});
 }
 
 /// @nodoc
@@ -137,8 +137,8 @@ class __$ReferenceCopyWithImpl<$Res> extends _$ReferenceCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Reference implements _Reference {
   _$_Reference(
-      {@JsonKey(name: 'Reference') this.reference,
-      @JsonKey(name: 'Display') this.display});
+      {@JsonKey(name: 'reference') this.reference,
+      @JsonKey(name: 'display') this.display});
 
   factory _$_Reference.fromJson(Map<String, dynamic> json) =>
       _$$_ReferenceFromJson(json);
@@ -153,10 +153,10 @@ class _$_Reference implements _Reference {
   ///  version specific or not. If the reference is not to a FHIR RESTful
   ///  server, then it should be assumed to be version specific. Internal
   ///  fragment references (start with '#') refer to contained resources.
-  @JsonKey(name: 'Reference')
+  @JsonKey(name: 'reference')
   final String? reference;
   @override
-  @JsonKey(name: 'Display')
+  @JsonKey(name: 'display')
   final String? display;
 
   @override
@@ -192,8 +192,8 @@ class _$_Reference implements _Reference {
 
 abstract class _Reference implements Reference {
   factory _Reference(
-      {@JsonKey(name: 'Reference') String? reference,
-      @JsonKey(name: 'Display') String? display}) = _$_Reference;
+      {@JsonKey(name: 'reference') String? reference,
+      @JsonKey(name: 'display') String? display}) = _$_Reference;
 
   factory _Reference.fromJson(Map<String, dynamic> json) =
       _$_Reference.fromJson;
@@ -208,10 +208,10 @@ abstract class _Reference implements Reference {
   ///  version specific or not. If the reference is not to a FHIR RESTful
   ///  server, then it should be assumed to be version specific. Internal
   ///  fragment references (start with '#') refer to contained resources.
-  @JsonKey(name: 'Reference')
+  @JsonKey(name: 'reference')
   String? get reference;
   @override
-  @JsonKey(name: 'Display')
+  @JsonKey(name: 'display')
   String? get display;
   @override
   @JsonKey(ignore: true)
