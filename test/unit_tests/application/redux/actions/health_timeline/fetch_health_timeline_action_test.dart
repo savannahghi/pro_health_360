@@ -45,7 +45,7 @@ void main() {
           info.state.clientState?.healthTimelineState?.healthTimelineItems;
 
       expect(items?.isNotEmpty, true);
-      expect(items?.length, 3);
+      expect(items?.length, 4);
     });
 
     test('throws error if response contains error', () async {

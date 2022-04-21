@@ -17,7 +17,7 @@ class FhirResource with _$FhirResource {
   const factory FhirResource.observation({
     @JsonKey(name: 'category') List<CodeableConcept>? category,
     @JsonKey(name: 'code') CodeableConcept? code,
-    @JsonKey(name: 'effectiveDateTime') String? date, // distinct
+    @JsonKey(name: 'effectiveInstant') String? date, // distinct
     @JsonKey(name: 'resourceType') ReferenceType? resourceType,
     @JsonKey(name: 'status', fromJson: observationStatusFromJson)
         ObservationStatus? status,

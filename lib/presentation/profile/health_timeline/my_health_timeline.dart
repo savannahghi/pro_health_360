@@ -86,7 +86,6 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
       if (keyContext != null) {
         final RenderBox? box = keyContext.findRenderObject() as RenderBox?;
-
         heights[date] = box?.size.height ?? 1.0;
       }
     }
@@ -141,11 +140,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
                     final DateTime date = DateFormat('yy-MM-dd').parse(key);
 
-                    double height = heights[key] ?? 1;
-
-                    if (hasDoneCalculation && index == 0) {
-                      height = heights[key]! * 0.8;
-                    }
+                    final double height = heights[key] ?? 1;
 
                     final List<FhirResource> fhirResources =
                         vm.healthTimelineItems![key]!;
@@ -163,22 +158,19 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                             ],
                           ),
                         ),
-                        if (hasDoneCalculation)
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: index == 0 ? height * 0.3 : 0.0,
-                              right: 12.0,
-                            ),
-                            child: CustomPaint(
-                              size: Size(1, height),
-                              painter: DashedLine(
-                                dotOffset: index != 0 ? 44.0 : 0.0,
-                                dashSize: 5,
-                                gapSize: 2,
-                                color: AppColors.timelineDotColor,
-                              ),
+                        if (hasDoneCalculation) ...<Widget>[
+                          CustomPaint(
+                            size: Size(1, height),
+                            painter: DashedLine(
+                              dashOffset: index == 0 ? 30 : 0,
+                              dotOffset: 30,
+                              dashSize: 5,
+                              gapSize: 2,
+                              color: AppColors.timelineDotColor,
                             ),
                           ),
+                          const SizedBox(width: 12),
+                        ],
                         Flexible(
                           flex: 8,
                           child: Column(
@@ -229,18 +221,23 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           String? timelineDate,
           String? value,
         ) {
-          title = code?.text;
+          final String? categoryCode = category?.first.coding?.first?.code;
 
-          const String temperatureCodeText = 'Temperature (c)';
-          const String laboratoryCodeText = 'Laboratory';
-
-          if (code?.text?.contains(temperatureCodeText) ?? false) {
-            subtitle = value;
+          if (categoryCode == 'vital-signs') {
             leadingIcon = lifelineIcon;
-          } else if (category?.first.text?.contains(laboratoryCodeText) ??
-              false) {
-            subtitle = status?.name;
+          } else if (categoryCode == 'laboratory') {
             leadingIcon = flaskIcon;
+          }
+
+          title = code?.coding?.first?.display;
+
+          final DateTime? parsedDate =
+              DateTime.tryParse(value ?? '')?.toLocal();
+
+          if (parsedDate != null) {
+            subtitle = DateFormat('d MMM y').format(parsedDate);
+          } else {
+            subtitle = value;
           }
 
           if (date != null) time = date;

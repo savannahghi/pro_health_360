@@ -2213,6 +2213,41 @@ final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{
       },
       'timelineDate': '2022-03-04'
     },
+    <String, dynamic>{
+      'category': <dynamic>[
+        <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': 'vital-signs',
+              'display': 'Vital Signs',
+              'system':
+                  'http://terminology.hl7.org/CodeSystem/observation-category'
+            }
+          ],
+          'text': 'Vital Signs'
+        }
+      ],
+      'code': <String, dynamic>{
+        'coding': <dynamic>[
+          <String, dynamic>{
+            'code': '5096',
+            'display': 'Return visit date',
+            'system': '/orgs/CIEL/sources/CIEL/concepts/5096/'
+          }
+        ],
+        'text': 'Return visit date'
+      },
+      'effectiveInstant': '2022-04-05T09:36:28Z',
+      'id': '3f753b78-7c91-4693-b8fd-f45f5a6538e6',
+      'resourceType': 'Observation',
+      'status': 'preliminary',
+      'subject': <String, dynamic>{
+        'display': '510a98f5-8e39-465f-abf8-663c150ce355',
+        'reference': 'Patient/510a98f5-8e39-465f-abf8-663c150ce355'
+      },
+      'timelineDate': '2022-04-05T09:36:28Z',
+      'valueString': '2022-04-21'
+    }
   ]
 };
 

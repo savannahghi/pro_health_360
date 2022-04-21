@@ -14,7 +14,7 @@ _$Observation _$$ObservationFromJson(Map<String, dynamic> json) =>
       code: json['code'] == null
           ? null
           : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
-      date: json['effectiveDateTime'] as String?,
+      date: json['effectiveInstant'] as String?,
       resourceType:
           $enumDecodeNullable(_$ReferenceTypeEnumMap, json['resourceType']),
       status: observationStatusFromJson(json['status'] as String?),
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$ObservationToJson(_$Observation instance) =>
     <String, dynamic>{
       'category': instance.category,
       'code': instance.code,
-      'effectiveDateTime': instance.date,
+      'effectiveInstant': instance.date,
       'resourceType': _$ReferenceTypeEnumMap[instance.resourceType],
       'status': _$ObservationStatusEnumMap[instance.status],
       'subject': instance.patient,

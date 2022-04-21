@@ -38,7 +38,7 @@ class _$FhirResourceTearOff {
           List<CodeableConcept>? category,
       @JsonKey(name: 'code')
           CodeableConcept? code,
-      @JsonKey(name: 'effectiveDateTime')
+      @JsonKey(name: 'effectiveInstant')
           String? date,
       @JsonKey(name: 'resourceType')
           ReferenceType? resourceType,
@@ -150,7 +150,7 @@ mixin _$FhirResource {
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -212,7 +212,7 @@ mixin _$FhirResource {
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -274,7 +274,7 @@ mixin _$FhirResource {
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -425,7 +425,7 @@ abstract class $ObservationCopyWith<$Res>
           List<CodeableConcept>? category,
       @JsonKey(name: 'code')
           CodeableConcept? code,
-      @JsonKey(name: 'effectiveDateTime')
+      @JsonKey(name: 'effectiveInstant')
           String? date,
       @JsonKey(name: 'resourceType')
           ReferenceType? resourceType,
@@ -520,7 +520,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   const _$Observation(
       {@JsonKey(name: 'category') this.category,
       @JsonKey(name: 'code') this.code,
-      @JsonKey(name: 'effectiveDateTime') this.date,
+      @JsonKey(name: 'effectiveInstant') this.date,
       @JsonKey(name: 'resourceType') this.resourceType,
       @JsonKey(name: 'status', fromJson: observationStatusFromJson) this.status,
       @JsonKey(name: 'subject') this.patient,
@@ -537,7 +537,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   @JsonKey(name: 'code')
   final CodeableConcept? code;
   @override
-  @JsonKey(name: 'effectiveDateTime')
+  @JsonKey(name: 'effectiveInstant')
   final String? date;
   @override // distinct
   @JsonKey(name: 'resourceType')
@@ -617,7 +617,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -683,7 +683,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -749,7 +749,7 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -857,7 +857,7 @@ abstract class Observation implements FhirResource, Resource {
           List<CodeableConcept>? category,
       @JsonKey(name: 'code')
           CodeableConcept? code,
-      @JsonKey(name: 'effectiveDateTime')
+      @JsonKey(name: 'effectiveInstant')
           String? date,
       @JsonKey(name: 'resourceType')
           ReferenceType? resourceType,
@@ -878,7 +878,7 @@ abstract class Observation implements FhirResource, Resource {
   @override
   @JsonKey(name: 'code')
   CodeableConcept? get code;
-  @JsonKey(name: 'effectiveDateTime')
+  @JsonKey(name: 'effectiveInstant')
   String? get date;
   @override // distinct
   @JsonKey(name: 'resourceType')
@@ -1160,7 +1160,7 @@ class _$AllergyIntolerance
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -1226,7 +1226,7 @@ class _$AllergyIntolerance
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -1301,7 +1301,7 @@ class _$AllergyIntolerance
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -1707,7 +1707,7 @@ class _$MedicationStatement
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -1773,7 +1773,7 @@ class _$MedicationStatement
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
@@ -1839,7 +1839,7 @@ class _$MedicationStatement
                 List<CodeableConcept>? category,
             @JsonKey(name: 'code')
                 CodeableConcept? code,
-            @JsonKey(name: 'effectiveDateTime')
+            @JsonKey(name: 'effectiveInstant')
                 String? date,
             @JsonKey(name: 'resourceType')
                 ReferenceType? resourceType,
