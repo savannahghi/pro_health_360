@@ -8,7 +8,6 @@ part 'caregiver_information.g.dart';
 @freezed
 class CaregiverInformation with _$CaregiverInformation {
   factory CaregiverInformation({
-    String? clientID,
     String? firstName,
     String? lastName,
     String? phoneNumber,
@@ -18,4 +17,11 @@ class CaregiverInformation with _$CaregiverInformation {
 
   factory CaregiverInformation.fromJson(Map<String, dynamic> json) =>
       _$CaregiverInformationFromJson(json);
+
+  factory CaregiverInformation.initial() => CaregiverInformation(
+        firstName: UNKNOWN,
+        lastName: UNKNOWN,
+        phoneNumber: UNKNOWN,
+        caregiverType: CaregiverType.HEALTHCARE_PROFESSIONAL,
+      );
 }

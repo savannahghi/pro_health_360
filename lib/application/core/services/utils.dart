@@ -414,14 +414,14 @@ final EditInformationItem careGiverEditInfo = EditInformationItem(
   editInformationInputItem: <EditInformationInputItem>[
     EditInformationInputItem(
       fieldName: firstName,
-      hintText: janeDoe,
+      hintText: jane,
       inputType: EditInformationInputType.Text,
       inputController: TextEditingController(),
       apiFieldValue: 'firstName',
     ),
     EditInformationInputItem(
       fieldName: lastName,
-      hintText: janeDoe,
+      hintText: doe,
       inputType: EditInformationInputType.Text,
       inputController: TextEditingController(),
       apiFieldValue: 'lastName',
@@ -462,17 +462,17 @@ String genderToJson(Gender? gender) {
 
 CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
   if (caregiverTypeString == null || caregiverTypeString.isEmpty) {
-    return CaregiverType.Sibling;
+    return CaregiverType.HEALTHCARE_PROFESSIONAL;
   }
 
   return CaregiverType.values.where((CaregiverType caregiverType) {
-    return caregiverType.name.toLowerCase() ==
-        caregiverTypeString.toLowerCase();
+    return caregiverType.name.toUpperCase() ==
+        caregiverTypeString.toUpperCase();
   }).first;
 }
 
 String caregiverTypeToJson(CaregiverType? caregiverType) {
-  return caregiverType?.name ?? CaregiverType.Sibling.name;
+  return caregiverType?.name ?? CaregiverType.HEALTHCARE_PROFESSIONAL.name;
 }
 
 ObservationStatus observationStatusFromJson(String? observationStatusString) {

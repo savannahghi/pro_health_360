@@ -14,7 +14,7 @@ packages:
       name: afya_moja_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.82"
+    version: "0.0.84"
   analyzer:
     dependency: transitive
     description:
@@ -1028,7 +1028,7 @@ packages:
       name: pin_input_text_field
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.2"
   platform:
     dependency: "direct main"
     description:

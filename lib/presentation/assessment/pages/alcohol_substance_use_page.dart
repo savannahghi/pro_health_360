@@ -50,7 +50,11 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
             title: alcoholSubstanceUseTitle,
           ),
           body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
-              ? const PlatformLoader()
+              ? Container(
+                  height: 300,
+                  padding: const EdgeInsets.all(20),
+                  child: const PlatformLoader(),
+                )
               : SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),

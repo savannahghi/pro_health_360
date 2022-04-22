@@ -510,9 +510,11 @@ const String viewAllText = 'View All';
 const String myProfileCaregiverText = 'Caregiver information';
 const String myProfileCaregiverDescriptionText =
     'Could be a parent, guardian or nurse';
-const String janeDoe = 'Jane Doe';
+const String jane = 'Jane';
+const String doe = 'Doe';
 const String father = 'Father';
 const String firstName = 'First Name';
+const String fullName = 'Full Name';
 const String lastName = 'Last Name';
 const String phoneNumber = 'Phone number';
 const String relationText = 'How are you related';
@@ -905,4 +907,4 @@ const String wouldYouLikeToShareEntireText =
     'Would you like to share your entire health diary alongside this diary entry?';
 const String shared = 'Shared';
 const String howSatisfiedText = 'How satisfied are you with the platform?';
-const String ratingsHint ='1 - Not satisfied ; 5 - Most satisfied';
+const String ratingsHint = '1 - Not satisfied ; 5 - Most satisfied';

@@ -449,3 +449,13 @@ query nextRefill ($clientID: ID!){
   nextRefill(clientID: $clientID)
 }
 ''';
+const String getClientCaregiverQuery = r'''
+query getClientCaregiver($clientID: String!){
+  getClientCaregiver(clientID: $clientID){
+    firstName,
+    lastName,
+    phoneNumber,
+    caregiverType
+  }
+}
+''';

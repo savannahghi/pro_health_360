@@ -5,18 +5,17 @@ import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dar
 import '../../../../mocks.dart';
 
 void main() {
-  test('CaregiverInformation serialisation', () {
+  test('CaregiverInformation serialization', () {
     expect(
       CaregiverInformation.fromJson(mockUpdateClientCareGiver),
       isA<CaregiverInformation>(),
     );
 
     final CaregiverInformation mockInstance = CaregiverInformation(
-      clientID: 'clientID',
       firstName: 'John',
       lastName: 'Doe',
       phoneNumber: '+254798000000',
-      caregiverType: CaregiverType.Sibling,
+      caregiverType: CaregiverType.SIBLING,
     );
 
     expect(

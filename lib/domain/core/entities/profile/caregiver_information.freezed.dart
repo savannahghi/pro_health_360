@@ -23,14 +23,12 @@ class _$CaregiverInformationTearOff {
   const _$CaregiverInformationTearOff();
 
   _CaregiverInformation call(
-      {String? clientID,
-      String? firstName,
+      {String? firstName,
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
           CaregiverType? caregiverType}) {
     return _CaregiverInformation(
-      clientID: clientID,
       firstName: firstName,
       lastName: lastName,
       phoneNumber: phoneNumber,
@@ -48,7 +46,6 @@ const $CaregiverInformation = _$CaregiverInformationTearOff();
 
 /// @nodoc
 mixin _$CaregiverInformation {
-  String? get clientID => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get lastName => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -70,8 +67,7 @@ abstract class $CaregiverInformationCopyWith<$Res> {
           $Res Function(CaregiverInformation) then) =
       _$CaregiverInformationCopyWithImpl<$Res>;
   $Res call(
-      {String? clientID,
-      String? firstName,
+      {String? firstName,
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
@@ -89,17 +85,12 @@ class _$CaregiverInformationCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? clientID = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? phoneNumber = freezed,
     Object? caregiverType = freezed,
   }) {
     return _then(_value.copyWith(
-      clientID: clientID == freezed
-          ? _value.clientID
-          : clientID // ignore: cast_nullable_to_non_nullable
-              as String?,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -128,8 +119,7 @@ abstract class _$CaregiverInformationCopyWith<$Res>
       __$CaregiverInformationCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? clientID,
-      String? firstName,
+      {String? firstName,
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
@@ -149,17 +139,12 @@ class __$CaregiverInformationCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? clientID = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? phoneNumber = freezed,
     Object? caregiverType = freezed,
   }) {
     return _then(_CaregiverInformation(
-      clientID: clientID == freezed
-          ? _value.clientID
-          : clientID // ignore: cast_nullable_to_non_nullable
-              as String?,
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -184,8 +169,7 @@ class __$CaregiverInformationCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CaregiverInformation implements _CaregiverInformation {
   _$_CaregiverInformation(
-      {this.clientID,
-      this.firstName,
+      {this.firstName,
       this.lastName,
       this.phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
@@ -194,8 +178,6 @@ class _$_CaregiverInformation implements _CaregiverInformation {
   factory _$_CaregiverInformation.fromJson(Map<String, dynamic> json) =>
       _$$_CaregiverInformationFromJson(json);
 
-  @override
-  final String? clientID;
   @override
   final String? firstName;
   @override
@@ -211,7 +193,7 @@ class _$_CaregiverInformation implements _CaregiverInformation {
 
   @override
   String toString() {
-    return 'CaregiverInformation(clientID: $clientID, firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, caregiverType: $caregiverType)';
+    return 'CaregiverInformation(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, caregiverType: $caregiverType)';
   }
 
   @override
@@ -219,7 +201,6 @@ class _$_CaregiverInformation implements _CaregiverInformation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CaregiverInformation &&
-            const DeepCollectionEquality().equals(other.clientID, clientID) &&
             const DeepCollectionEquality().equals(other.firstName, firstName) &&
             const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality()
@@ -231,7 +212,6 @@ class _$_CaregiverInformation implements _CaregiverInformation {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(clientID),
       const DeepCollectionEquality().hash(firstName),
       const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(phoneNumber),
@@ -251,8 +231,7 @@ class _$_CaregiverInformation implements _CaregiverInformation {
 
 abstract class _CaregiverInformation implements CaregiverInformation {
   factory _CaregiverInformation(
-      {String? clientID,
-      String? firstName,
+      {String? firstName,
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
@@ -261,8 +240,6 @@ abstract class _CaregiverInformation implements CaregiverInformation {
   factory _CaregiverInformation.fromJson(Map<String, dynamic> json) =
       _$_CaregiverInformation.fromJson;
 
-  @override
-  String? get clientID;
   @override
   String? get firstName;
   @override

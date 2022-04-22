@@ -49,7 +49,11 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
             title: violenceAssessmentTitle,
           ),
           body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
-              ? const PlatformLoader()
+              ? Container(
+                  height: 300,
+                  padding: const EdgeInsets.all(20),
+                  child: const PlatformLoader(),
+                )
               : SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(

@@ -23,9 +23,10 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: PersonalInformationPage(),
       );
+      await tester.pumpAndSettle();
 
       expect(find.text(myProfileCaregiverText), findsOneWidget);
       expect(find.text(preferredLanguage), findsOneWidget);

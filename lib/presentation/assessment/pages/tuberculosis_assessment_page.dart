@@ -51,7 +51,11 @@ class _TuberculosisAssessmentPageState
             title: tuberculosisAssessmentTitle,
           ),
           body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
-              ? const PlatformLoader()
+              ? Container(
+                  height: 300,
+                  padding: const EdgeInsets.all(20),
+                  child: const PlatformLoader(),
+                )
               : SingleChildScrollView(
                   child: Container(
                     height: MediaQuery.of(context).size.height - appBarHeight,

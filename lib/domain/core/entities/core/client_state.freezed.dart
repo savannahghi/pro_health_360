@@ -66,7 +66,8 @@ class _$ClientStateTearOff {
       HealthTimelineState? healthTimelineState,
       MedicalDataState? medicalDataState,
       ViralLoadEdges? viralLoadData,
-      NextRefillData? nextRefillData}) {
+      NextRefillData? nextRefillData,
+      CaregiverInformation? caregiverInformation}) {
     return _ClientState(
       id: id,
       active: active,
@@ -94,6 +95,7 @@ class _$ClientStateTearOff {
       medicalDataState: medicalDataState,
       viralLoadData: viralLoadData,
       nextRefillData: nextRefillData,
+      caregiverInformation: caregiverInformation,
     );
   }
 
@@ -161,7 +163,10 @@ mixin _$ClientState {
       throw _privateConstructorUsedError; // viral load data
   ViralLoadEdges? get viralLoadData =>
       throw _privateConstructorUsedError; // next refill data
-  NextRefillData? get nextRefillData => throw _privateConstructorUsedError;
+  NextRefillData? get nextRefillData =>
+      throw _privateConstructorUsedError; // caregiver information
+  CaregiverInformation? get caregiverInformation =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -218,7 +223,8 @@ abstract class $ClientStateCopyWith<$Res> {
       HealthTimelineState? healthTimelineState,
       MedicalDataState? medicalDataState,
       ViralLoadEdges? viralLoadData,
-      NextRefillData? nextRefillData});
+      NextRefillData? nextRefillData,
+      CaregiverInformation? caregiverInformation});
 
   $UserCopyWith<$Res>? get user;
   $HealthDiaryStateCopyWith<$Res>? get healthDiaryState;
@@ -227,6 +233,7 @@ abstract class $ClientStateCopyWith<$Res> {
   $MedicalDataStateCopyWith<$Res>? get medicalDataState;
   $ViralLoadEdgesCopyWith<$Res>? get viralLoadData;
   $NextRefillDataCopyWith<$Res>? get nextRefillData;
+  $CaregiverInformationCopyWith<$Res>? get caregiverInformation;
 }
 
 /// @nodoc
@@ -265,6 +272,7 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
     Object? medicalDataState = freezed,
     Object? viralLoadData = freezed,
     Object? nextRefillData = freezed,
+    Object? caregiverInformation = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -371,6 +379,10 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
           ? _value.nextRefillData
           : nextRefillData // ignore: cast_nullable_to_non_nullable
               as NextRefillData?,
+      caregiverInformation: caregiverInformation == freezed
+          ? _value.caregiverInformation
+          : caregiverInformation // ignore: cast_nullable_to_non_nullable
+              as CaregiverInformation?,
     ));
   }
 
@@ -451,6 +463,18 @@ class _$ClientStateCopyWithImpl<$Res> implements $ClientStateCopyWith<$Res> {
       return _then(_value.copyWith(nextRefillData: value));
     });
   }
+
+  @override
+  $CaregiverInformationCopyWith<$Res>? get caregiverInformation {
+    if (_value.caregiverInformation == null) {
+      return null;
+    }
+
+    return $CaregiverInformationCopyWith<$Res>(_value.caregiverInformation!,
+        (value) {
+      return _then(_value.copyWith(caregiverInformation: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -504,7 +528,8 @@ abstract class _$ClientStateCopyWith<$Res>
       HealthTimelineState? healthTimelineState,
       MedicalDataState? medicalDataState,
       ViralLoadEdges? viralLoadData,
-      NextRefillData? nextRefillData});
+      NextRefillData? nextRefillData,
+      CaregiverInformation? caregiverInformation});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -520,6 +545,8 @@ abstract class _$ClientStateCopyWith<$Res>
   $ViralLoadEdgesCopyWith<$Res>? get viralLoadData;
   @override
   $NextRefillDataCopyWith<$Res>? get nextRefillData;
+  @override
+  $CaregiverInformationCopyWith<$Res>? get caregiverInformation;
 }
 
 /// @nodoc
@@ -560,6 +587,7 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
     Object? medicalDataState = freezed,
     Object? viralLoadData = freezed,
     Object? nextRefillData = freezed,
+    Object? caregiverInformation = freezed,
   }) {
     return _then(_ClientState(
       id: id == freezed
@@ -666,6 +694,10 @@ class __$ClientStateCopyWithImpl<$Res> extends _$ClientStateCopyWithImpl<$Res>
           ? _value.nextRefillData
           : nextRefillData // ignore: cast_nullable_to_non_nullable
               as NextRefillData?,
+      caregiverInformation: caregiverInformation == freezed
+          ? _value.caregiverInformation
+          : caregiverInformation // ignore: cast_nullable_to_non_nullable
+              as CaregiverInformation?,
     ));
   }
 }
@@ -717,7 +749,8 @@ class _$_ClientState implements _ClientState {
       this.healthTimelineState,
       this.medicalDataState,
       this.viralLoadData,
-      this.nextRefillData});
+      this.nextRefillData,
+      this.caregiverInformation});
 
   factory _$_ClientState.fromJson(Map<String, dynamic> json) =>
       _$$_ClientStateFromJson(json);
@@ -796,10 +829,12 @@ class _$_ClientState implements _ClientState {
   final ViralLoadEdges? viralLoadData;
   @override // next refill data
   final NextRefillData? nextRefillData;
+  @override // caregiver information
+  final CaregiverInformation? caregiverInformation;
 
   @override
   String toString() {
-    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData)';
+    return 'ClientState(id: $id, active: $active, addresses: $addresses, counselled: $counselled, clientType: $clientType, facilityID: $facilityID, relatedPersons: $relatedPersons, treatmentBuddy: $treatmentBuddy, treatmentEnrollmentDate: $treatmentEnrollmentDate, user: $user, lastMoodRecordedDate: $lastMoodRecordedDate, isSignedIn: $isSignedIn, facilityName: $facilityName, facilityPhoneNumber: $facilityPhoneNumber, chvUserID: $chvUserID, chvUserName: $chvUserName, cccNumber: $cccNumber, fhirPatientID: $fhirPatientID, healthDiaryState: $healthDiaryState, communitiesState: $communitiesState, pastAppointments: $pastAppointments, upcomingAppointments: $upcomingAppointments, healthTimelineState: $healthTimelineState, medicalDataState: $medicalDataState, viralLoadData: $viralLoadData, nextRefillData: $nextRefillData, caregiverInformation: $caregiverInformation)';
   }
 
   @override
@@ -852,7 +887,9 @@ class _$_ClientState implements _ClientState {
             const DeepCollectionEquality()
                 .equals(other.viralLoadData, viralLoadData) &&
             const DeepCollectionEquality()
-                .equals(other.nextRefillData, nextRefillData));
+                .equals(other.nextRefillData, nextRefillData) &&
+            const DeepCollectionEquality()
+                .equals(other.caregiverInformation, caregiverInformation));
   }
 
   @override
@@ -883,7 +920,8 @@ class _$_ClientState implements _ClientState {
         const DeepCollectionEquality().hash(healthTimelineState),
         const DeepCollectionEquality().hash(medicalDataState),
         const DeepCollectionEquality().hash(viralLoadData),
-        const DeepCollectionEquality().hash(nextRefillData)
+        const DeepCollectionEquality().hash(nextRefillData),
+        const DeepCollectionEquality().hash(caregiverInformation)
       ]);
 
   @JsonKey(ignore: true)
@@ -942,7 +980,8 @@ abstract class _ClientState implements ClientState {
       HealthTimelineState? healthTimelineState,
       MedicalDataState? medicalDataState,
       ViralLoadEdges? viralLoadData,
-      NextRefillData? nextRefillData}) = _$_ClientState;
+      NextRefillData? nextRefillData,
+      CaregiverInformation? caregiverInformation}) = _$_ClientState;
 
   factory _ClientState.fromJson(Map<String, dynamic> json) =
       _$_ClientState.fromJson;
@@ -1021,6 +1060,8 @@ abstract class _ClientState implements ClientState {
   ViralLoadEdges? get viralLoadData;
   @override // next refill data
   NextRefillData? get nextRefillData;
+  @override // caregiver information
+  CaregiverInformation? get caregiverInformation;
   @override
   @JsonKey(ignore: true)
   _$ClientStateCopyWith<_ClientState> get copyWith =>

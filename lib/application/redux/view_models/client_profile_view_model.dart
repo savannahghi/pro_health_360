@@ -7,14 +7,19 @@ import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 class ClientProfileViewModel extends Vm {
   final Wait? wait;
   final ClientState? clientState;
+  final String? facilityName;
 
-  ClientProfileViewModel({required this.wait, required this.clientState})
-      : super(equals: <Object?>[wait, clientState]);
+  ClientProfileViewModel({
+    required this.wait,
+    required this.clientState,
+    required this.facilityName,
+  }) : super(equals: <Object?>[wait, clientState]);
 
   static ClientProfileViewModel fromStore(Store<AppState> store) {
     return ClientProfileViewModel(
       clientState: store.state.clientState,
       wait: store.state.wait,
+      facilityName: store.state.clientState?.facilityName,
     );
   }
 }

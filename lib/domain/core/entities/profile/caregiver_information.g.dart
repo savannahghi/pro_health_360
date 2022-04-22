@@ -9,7 +9,6 @@ part of 'caregiver_information.dart';
 _$_CaregiverInformation _$$_CaregiverInformationFromJson(
         Map<String, dynamic> json) =>
     _$_CaregiverInformation(
-      clientID: json['clientID'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
@@ -19,7 +18,6 @@ _$_CaregiverInformation _$$_CaregiverInformationFromJson(
 Map<String, dynamic> _$$_CaregiverInformationToJson(
         _$_CaregiverInformation instance) =>
     <String, dynamic>{
-      'clientID': instance.clientID,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'phoneNumber': instance.phoneNumber,

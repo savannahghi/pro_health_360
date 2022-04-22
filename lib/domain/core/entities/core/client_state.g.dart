@@ -64,6 +64,10 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
           ? null
           : NextRefillData.fromJson(
               json['nextRefillData'] as Map<String, dynamic>),
+      caregiverInformation: json['caregiverInformation'] == null
+          ? null
+          : CaregiverInformation.fromJson(
+              json['caregiverInformation'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
@@ -94,6 +98,7 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'medicalDataState': instance.medicalDataState,
       'viralLoadData': instance.viralLoadData,
       'nextRefillData': instance.nextRefillData,
+      'caregiverInformation': instance.caregiverInformation,
     };
 
 const _$ClientTypeEnumMap = {

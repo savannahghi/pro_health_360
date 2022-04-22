@@ -933,6 +933,24 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString == getClientCaregiverQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getClientCaregiver': <String, dynamic>{
+                'firstName': 'Jac',
+                'lastName': 'Dough',
+                'phoneNumber': '+254712344679',
+                'caregiverType': 'SIBLING'
+              }
+            }
+          }),
+          200,
+        ),
+      );
+    }
+
     if (queryString == checkIfUserBookmarkedContentQuery) {
       return Future<http.Response>.value(
         http.Response(
@@ -1934,7 +1952,6 @@ class _FakeClosedCaptionFile extends ClosedCaptionFile {
 }
 
 Map<String, dynamic> mockUpdateClientCareGiver = <String, dynamic>{
-  'clientID': 'clientID',
   'firstName': 'John',
   'lastName': 'Doe',
   'phoneNumber': '+254798000000',
