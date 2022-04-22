@@ -1,11 +1,11 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/address.dart';
 import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
+import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 class UpdateClientProfileAction extends ReduxAction<AppState> {
@@ -26,6 +26,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.addresses,
     this.cccNumber,
     this.caregiverInformation,
+    this.notifications,
   });
 
   final String? id;
@@ -44,6 +45,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final String? cccNumber;
   final List<Address>? addresses;
   final CaregiverInformation? caregiverInformation;
+  final List<NotificationDetails?>? notifications;
 
   @override
   AppState reduce() {
@@ -70,6 +72,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         addresses: this.addresses ?? state.clientState?.addresses,
         caregiverInformation: this.caregiverInformation ??
             state.clientState?.caregiverInformation,
+        notifications: this.notifications ?? state.clientState?.notifications,
       ),
     );
 

@@ -1,14 +1,13 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/notifications/notification_list_item.dart' as local;
+import 'package:myafyahub/presentation/notifications/notification_list_item.dart'
+    as local;
 
 void main() {
   group('NotificationListItem', () {
@@ -20,13 +19,9 @@ void main() {
             return Scaffold(
               body: local.NotificationListItem(
                 notificationDetails: NotificationDetails(
-                  icon: IconDetails(
-                    iconUrlSvgPath: teleConsultVideoNotificationIcon,
-                  ),
-                  description:
-                      'Your Teleconsult with Dr Tibu for 11am has been set. '
+                  body: 'Your Teleconsult with Dr Tibu for 11am has been set. '
                       'Click this link to join ',
-                  date: 'July 12 2021',
+                  createdAt: 'July 12 2021',
                 ),
               ),
             );
@@ -51,13 +46,9 @@ void main() {
             return Scaffold(
               body: local.NotificationListItem(
                 notificationDetails: NotificationDetails(
-                  icon: IconDetails(
-                    iconUrlSvgPath: teleConsultVideoNotificationIcon,
-                  ),
-                  description:
-                      'Your Teleconsult with Dr Tibu for 11am has been set. '
+                  body: 'Your Teleconsult with Dr Tibu for 11am has been set. '
                       'Click this link to join ',
-                  date: 'July 12 2021',
+                  createdAt: 'July 12 2021',
                   actions: <NotificationActions>[
                     NotificationActions(
                       icon: IconDetails(iconUrlSvgPath: calendarIcon),

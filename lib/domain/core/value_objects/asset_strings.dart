@@ -90,6 +90,8 @@ const String teleConsultVideoNotificationIcon =
     'assets/icons/tele_consult_video_notification_icon.svg';
 const String wellnessSurveyNotificationIcon =
     'assets/icons/wellness_survey_notification_icon.svg';
+const String noNotificationsImageSvgPath =
+    'assets/images/notifications_zero_state_image.svg';
 
 //Appointments Icons
 const String hospitalIcon = 'assets/icons/hospital_icon.svg';

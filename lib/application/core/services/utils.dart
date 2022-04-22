@@ -29,7 +29,6 @@ import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:myafyahub/domain/core/entities/health_timeline/fhir_enums.dart';
-import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -327,32 +326,18 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   ),
 ];
 
-final NotificationActions calendarAction = NotificationActions(
-  icon: IconDetails(iconUrlSvgPath: calendarIcon),
-  name: 'Add to Calendar',
-  route: '',
-);
-
-List<NotificationDetails> notifications = <NotificationDetails>[
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: teleConsultVideoNotificationIcon),
-    description:
-        'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join goog/meet.consult',
-    date: formatSecurityQuestionDate(feedDate),
-    actions: <NotificationActions>[calendarAction],
-  ),
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: teleConsultNotificationIcon),
-    description:
-        'You have a teleconsult with doctor Wellman. Click  Here to schedule the call ',
-    date: formatSecurityQuestionDate(feedDate),
-  ),
-  NotificationDetails(
-    icon: IconDetails(iconUrlSvgPath: wellnessSurveyNotificationIcon),
-    description: 'Wellness Survey',
-    date: formatSecurityQuestionDate(feedDate),
-  ),
-];
+String getNotificationIcon(enums.NotificationType type) {
+  switch (type) {
+    case enums.NotificationType.APPOINTMENT:
+      return hospitalIcon;
+    case enums.NotificationType.COMMUNITIES:
+      return communityIconSvgPath;
+    case enums.NotificationType.SERVICE_REQUEST:
+      return hospitalIcon;
+    case enums.NotificationType.UNKNOWN:
+      return notificationIcon;
+  }
+}
 
 String tooManyTriesString(int timeLeft) {
   final DateFormat f = DateFormat('mm:ss');

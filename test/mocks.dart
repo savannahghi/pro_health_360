@@ -1147,6 +1147,15 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString.contains(listNotificationsQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{'data': mockNotificationsResponse}),
+          201,
+        ),
+      );
+    }
+
     return Future<http.Response>.value(
       http.Response(
         json.encode(<String, dynamic>{'data': <String, dynamic>{}}),
@@ -1220,12 +1229,31 @@ Map<String, dynamic> mockNotificationActions = <String, dynamic>{
 };
 
 Map<String, dynamic> mockNotification = <String, dynamic>{
-  'icon': mockIconDetails,
   'description':
       'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
   'date': 'July 21 2021',
+  'type': 'APPOINTMENT',
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed'
+};
+
+Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
+  'fetchNotifications': <String, dynamic>{
+    'notifications': <dynamic>[
+      mockNotification,
+      <String, dynamic>{
+        'id': 'some-id',
+        'title': 'title',
+        'type': 'SERVICE_REQUEST',
+        'body':
+            'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
+        'isRead': false,
+        'date': 'July 21 2021',
+        'actions': <dynamic>[mockNotificationActions],
+        'status': 'Missed'
+      },
+    ]
+  }
 };
 
 Map<String, dynamic> mockBottomNavigationState = <String, dynamic>{

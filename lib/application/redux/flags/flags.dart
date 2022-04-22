@@ -114,3 +114,6 @@ const String shareDiaryEntryFlag = 'share_diary_entry_flag';
 
 // caregiver information
 const String fetchCaregiverInfoFlag = 'fetch_caregiver_info_flag';
+
+// notifications
+const String fetchNotificationsFlag = 'fetch_notifications_flag';

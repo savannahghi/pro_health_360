@@ -3,9 +3,11 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -13,11 +15,13 @@ import 'package:shared_themes/spaces.dart';
 class NotificationListItem extends StatelessWidget {
   const NotificationListItem({required this.notificationDetails});
 
-  final NotificationDetails notificationDetails;
+  final NotificationDetails? notificationDetails;
 
   @override
   Widget build(BuildContext context) {
-    final String iconString = notificationDetails.icon.iconUrlSvgPath;
+    final String iconString = getNotificationIcon(
+      notificationDetails?.type ?? NotificationType.UNKNOWN,
+    );
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,20 +48,20 @@ class NotificationListItem extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 6),
               Text(
-                notificationDetails.description,
+                notificationDetails?.body ?? UNKNOWN,
                 style: normalSize12Text(AppColors.secondaryColor),
               ),
               const SizedBox(height: 5),
               Text(
-                notificationDetails.date,
+                notificationDetails?.createdAt ?? UNKNOWN,
                 style: normalSize12Text(Colors.grey),
               ),
               const SizedBox(height: 10),
-              if (notificationDetails.actions != null &&
-                  notificationDetails.actions!.isNotEmpty)
+              if (notificationDetails?.actions != null &&
+                  notificationDetails!.actions!.isNotEmpty)
                 Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: notificationDetails.actions!
+                  children: notificationDetails!.actions!
                       .map(
                         (NotificationActions notificationActions) => Container(
                           margin: const EdgeInsets.only(right: 10),

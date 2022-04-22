@@ -548,6 +548,9 @@ const String feedHeaderListSavedVideo = 'How to keep yourself healthy always';
 //notifications
 const String addCalendarText = 'Add to Calendar';
 const String notificationsText = 'Notifications';
+const String noNotificationsTitle = 'You have no notifications';
+const String noNotificationsDescription =
+    'You have no notifications at this time. We will notify you when we have more';
 
 //Pin input page strings
 const String enterChatPINString = 'Enter your PIN to view your chats';

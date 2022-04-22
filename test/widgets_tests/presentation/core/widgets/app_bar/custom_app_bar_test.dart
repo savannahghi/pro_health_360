@@ -19,6 +19,7 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_user.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/notifications/notifications_page.dart';
 import '../../../../../mock_image_http_client.dart';
+import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
@@ -145,7 +146,7 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        client: baseGraphQlClientMock,
+        client: MockGraphQlClient(),
         widget: const CustomAppBar(),
       );
 
