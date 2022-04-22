@@ -106,5 +106,6 @@ const _$ClientTypeEnumMap = {
   ClientType.HIGH_RISK: 'HIGH_RISK',
   ClientType.SPOUSES: 'SPOUSES',
   ClientType.YOUTH: 'YOUTH',
+  ClientType.KenyaEMR: 'KenyaEMR',
   ClientType.UNKNOWN: 'UNKNOWN',
 };

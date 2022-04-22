@@ -33,17 +33,6 @@ class SecurityQuestionsPage extends StatefulWidget {
 class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController dateController = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback(
-      (_) => StoreProvider.dispatch<AppState>(
-        context,
-        // retrieve the security questions
-        GetSecurityQuestionsAction(context: context),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +41,13 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
     return StoreConnector<AppState, AppStateViewModel>(
       converter: (Store<AppState> store) {
         return AppStateViewModel.fromStore(store);
+      },
+      onInit: (Store<AppState> store) {
+        StoreProvider.dispatch<AppState>(
+          context,
+          // retrieve the security questions
+          GetSecurityQuestionsAction(context: context),
+        );
       },
       builder: (BuildContext context, AppStateViewModel vm) {
         final List<SecurityQuestion> securityQuestions =
@@ -119,16 +115,17 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                                   final SecurityQuestion question =
                                       securityQuestions.elementAt(index);
 
+                                  final String questionResponse =
+                                      securityQuestionsResponses
+                                              .elementAt(index)
+                                              .response ??
+                                          '';
+
                                   return SecurityQuestionWidget(
                                     securityQuestion: question,
-                                    response: (securityQuestionsResponses
-                                                .elementAt(index)
-                                                .response ==
-                                            UNKNOWN)
+                                    response: (questionResponse == UNKNOWN)
                                         ? null
-                                        : securityQuestionsResponses
-                                            .elementAt(index)
-                                            .response,
+                                        : questionResponse,
                                     onChanged: (String? value) {
                                       if (value != null) {
                                         if (question.responseType ==

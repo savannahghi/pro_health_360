@@ -76,6 +76,7 @@ enum ClientType {
   HIGH_RISK,
   SPOUSES,
   YOUTH,
+  KenyaEMR, // This is used for a user who has been synchronized from KenyaEMR
   UNKNOWN
 }
 
