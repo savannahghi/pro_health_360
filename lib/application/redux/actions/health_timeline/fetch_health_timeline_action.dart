@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
+import 'package:intl/intl.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -61,11 +62,15 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
 
       for (int i = 0; i < responseItems.length; i++) {
         final FhirResource responseItem = responseItems[i];
-        if (responseItem.timelineDate != null) {
-          if (items.containsKey(responseItem.timelineDate)) {
-            items[responseItem.timelineDate]!.add(responseItem);
+        final DateTime? date =
+            DateTime.tryParse(responseItem.timelineDate ?? '')?.toLocal();
+
+        if (date != null) {
+          final String formattedDate = DateFormat('yyyy-MM-dd').format(date);
+          if (items.containsKey(formattedDate)) {
+            items[formattedDate]?.add(responseItem);
           } else {
-            items[responseItem.timelineDate!] = <FhirResource>[responseItem];
+            items[formattedDate] = <FhirResource>[responseItem];
           }
         }
       }

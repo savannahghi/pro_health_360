@@ -223,9 +223,9 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
         ) {
           final String? categoryCode = category?.first.coding?.first?.code;
 
-          if (categoryCode == 'vital-signs') {
+          if (categoryCode == ObservationCategoryCodes.vital_signs.name) {
             leadingIcon = lifelineIcon;
-          } else if (categoryCode == 'laboratory') {
+          } else if (categoryCode == ObservationCategoryCodes.laboratory.name) {
             leadingIcon = flaskIcon;
           }
 

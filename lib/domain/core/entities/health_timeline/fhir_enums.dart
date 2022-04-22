@@ -25,6 +25,24 @@ extension ObservationStatusEx on ObservationStatus {
   }
 }
 
+enum ObservationCategoryCodes {
+  vital_signs,
+  social_history,
+  imaging,
+  laboratory,
+  procedure,
+  survey,
+  exam,
+  therapy,
+  activity
+}
+
+extension ObservationCategoryCodesEx on ObservationCategoryCodes {
+  String get name {
+    return describeEnum(this).replaceAll('_', '-');
+  }
+}
+
 enum MedicationStatusCodes {
   active,
   completed,
