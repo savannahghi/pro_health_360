@@ -1,3 +1,3 @@
-const String prodAppName = 'My Afya Hub';
-const String demoAppName = 'My Afya Hub Demo';
-const String testAppName = 'My Afya Hub Test';
+const String prodAppName = 'myCareHub';
+const String demoAppName = 'myCareHub Demo';
+const String testAppName = 'myCareHub Test';

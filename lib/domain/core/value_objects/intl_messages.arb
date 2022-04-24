@@ -254,9 +254,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "allowPhoneNumberUsageText": "Allow My Afya Hub to use your phone number for communications",
+  "allowPhoneNumberUsageText": "Allow myCareHub to use your phone number for communications",
   "@allowPhoneNumberUsageText": {
-    "description": "allow My Afya Hub to use your phone number for communication",
+    "description": "allow myCareHub to use your phone number for communication",
     "type": "text",
     "placeholders": {}
   },

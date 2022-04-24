@@ -5,4 +5,4 @@
 
 PRODUCT_BUNDLE_IDENTIFIER=com.savannah.myafyahub
 FLUTTER_TARGET=lib/bin/main_prod.dart
-APP_NAME=My Afya Hub
+APP_NAME=myCareHub

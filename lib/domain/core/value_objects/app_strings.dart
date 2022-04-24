@@ -76,7 +76,7 @@ const String faqTextSubtitle =
     'We are here to help, browse through our frequently asked questions';
 const String faqSubtitle =
     'Quickly get help from our team or go through our FAQs';
-const String faqPageTitle = 'My Afya Hub Support Center';
+const String faqPageTitle = 'myCareHub Support Center';
 const String silPhoneNumber = 'tel:+254790360360';
 const String callText = 'Call support';
 const String whatsAppText = 'WhatsApp';
@@ -122,7 +122,7 @@ const String appStoreID = '1496576692';
 const String googlePlayIdentifier = 'com.savannah.myafyahub';
 const String rateNow = 'Rate now';
 const String later = 'Later';
-const String dialogTitle = 'Enjoying My Afya Hub?';
+const String dialogTitle = 'Enjoying myCareHub?';
 const String dialogSubtitle = 'Leave a rating';
 
 //create account strings
@@ -225,9 +225,8 @@ const String fetchingYourLibraryText = 'Fetching your library';
 
 const String personalDetails = 'Personal details';
 const String personalDetailsDesc =
-    'Tell us more about you. We use the information below to enhance your My Afya Hub experience.';
-final String copyrightString =
-    'Copyright ©️ ${returnCurrentYear()} My Afya Hub';
+    'Tell us more about you. We use the information below to enhance your myCareHub experience.';
+final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} myCareHub';
 
 // this is the version of the currently running app.
 // it has to be defined as a const otherwise the compiler will return the default
