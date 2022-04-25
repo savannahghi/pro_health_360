@@ -148,8 +148,8 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                           smallVerticalSizedBox,
                           TextField(
                             key: moodFeedbackTextFieldKey,
+                            keyboardType: TextInputType.visiblePassword,
                             controller: feedBackInputController,
-                            keyboardType: TextInputType.multiline,
                             style: normalSize14Text(
                               AppColors.greyTextColor,
                             ),
@@ -226,39 +226,38 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                               ],
                             ),
                             mediumVerticalSizedBox,
-                            SizedBox(
-                              width: double.infinity,
-                              height: 48,
-                              child: vm.appState.wait!
-                                      .isWaitingFor(createHealthDiaryFlag)
-                                  ? const PlatformLoader(
-                                      color: AppColors.secondaryColor,
-                                    )
-                                  : MyAfyaHubPrimaryButton(
-                                      buttonKey: moodFeedbackButtonKey,
-                                      onPressed: () {
-                                        if (feedBackInputController
-                                            .text.isNotEmpty) {
-                                          StoreProvider.dispatch<AppState>(
-                                            context,
-                                            CreateHealthDiaryAction(
-                                              context: context,
-                                              mood: widget.moodType.value,
-                                              note:
-                                                  feedBackInputController.text,
-                                            ),
-                                          );
-                                        }
-                                      },
-                                      buttonColor: AppColors.primaryColor,
-                                      borderColor: Colors.transparent,
-                                      text: saveString,
-                                      textStyle: heavySize18Text(
-                                        AppColors.whiteColor,
-                                      ),
-                                    ),
-                            ),
                           ],
+                          SizedBox(
+                            width: double.infinity,
+                            height: 48,
+                            child: vm.appState.wait!
+                                    .isWaitingFor(createHealthDiaryFlag)
+                                ? const PlatformLoader(
+                                    color: AppColors.secondaryColor,
+                                  )
+                                : MyAfyaHubPrimaryButton(
+                                    buttonKey: moodFeedbackButtonKey,
+                                    onPressed: () {
+                                      if (feedBackInputController
+                                          .text.isNotEmpty) {
+                                        StoreProvider.dispatch<AppState>(
+                                          context,
+                                          CreateHealthDiaryAction(
+                                            context: context,
+                                            mood: widget.moodType.value,
+                                            note: feedBackInputController.text,
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    buttonColor: AppColors.primaryColor,
+                                    borderColor: Colors.transparent,
+                                    text: saveString,
+                                    textStyle: heavySize18Text(
+                                      AppColors.whiteColor,
+                                    ),
+                                  ),
+                          ),
                         ],
                       ),
                     ),
