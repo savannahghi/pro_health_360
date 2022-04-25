@@ -22,6 +22,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/timeline_indicator.dart';
 import 'package:myafyahub/presentation/profile/widgets/custom_timeline_list_item.dart';
 import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
@@ -97,15 +98,17 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          myHealthTimelineText,
-          style: boldSize14Text(AppColors.greyTextColor),
-        ),
-        const SizedBox(height: 20),
-        StoreConnector<AppState, HealthTimelineViewModel>(
+    const String lowerBound = '50';
+    const String upperBound = '100';
+
+    return Scaffold(
+      appBar: const CustomAppBar(
+        title: myHealthTimelineText,
+        showBackButton: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: StoreConnector<AppState, HealthTimelineViewModel>(
           converter: (Store<AppState> store) {
             return HealthTimelineViewModel.fromStore(store);
           },
@@ -132,55 +135,68 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                 final List<String> items =
                     vm.healthTimelineItems!.keys.toList();
 
-                return ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    final String key = items[index];
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        myHealthTimelineText,
+                        style: boldSize14Text(AppColors.greyTextColor),
+                      ),
+                      const SizedBox(height: 20),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          final String key = items[index];
 
-                    final DateTime date = DateFormat('yy-MM-dd').parse(key);
+                          final DateTime date =
+                              DateFormat('yy-MM-dd').parse(key);
 
-                    final double height = heights[key] ?? 1;
+                          final double height = heights[key] ?? 1;
 
-                    final List<FhirResource> fhirResources =
-                        vm.healthTimelineItems![key]!;
+                          final List<FhirResource> fhirResources =
+                              vm.healthTimelineItems![key]!;
 
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      key: keys[key],
-                      children: <Widget>[
-                        Flexible(
-                          flex: 2,
-                          child: Column(
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            key: keys[key],
                             children: <Widget>[
-                              const SizedBox(height: 24),
-                              TimelineIndicator(date: date),
+                              Flexible(
+                                flex: 2,
+                                child: Column(
+                                  children: <Widget>[
+                                    const SizedBox(height: 24),
+                                    TimelineIndicator(date: date),
+                                  ],
+                                ),
+                              ),
+                              if (hasDoneCalculation) ...<Widget>[
+                                CustomPaint(
+                                  size: Size(1, height),
+                                  painter: DashedLine(
+                                    dashOffset: index == 0 ? 30 : 0,
+                                    dotOffset: 30,
+                                    dashSize: 5,
+                                    gapSize: 2,
+                                    color: AppColors.timelineDotColor,
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                              ],
+                              Flexible(
+                                flex: 8,
+                                child: Column(
+                                  children: getItemCards(fhirResources),
+                                ),
+                              ),
                             ],
-                          ),
-                        ),
-                        if (hasDoneCalculation) ...<Widget>[
-                          CustomPaint(
-                            size: Size(1, height),
-                            painter: DashedLine(
-                              dashOffset: index == 0 ? 30 : 0,
-                              dotOffset: 30,
-                              dashSize: 5,
-                              gapSize: 2,
-                              color: AppColors.timelineDotColor,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                        ],
-                        Flexible(
-                          flex: 8,
-                          child: Column(
-                            children: getItemCards(fhirResources),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                  itemCount: items.length,
+                          );
+                        },
+                        itemCount: items.length,
+                      ),
+                    ],
+                  ),
                 );
               } else {
                 return const GenericErrorWidget(
@@ -197,7 +213,70 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
             }
           },
         ),
-      ],
+      ),
+      bottomNavigationBar: Container(
+        color: AppColors.unSelectedReactionBackgroundColor,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 85,
+                height: 46,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: const <Widget>[
+                    Text(
+                      lowerBound,
+                      style: TextStyle(color: AppColors.primaryColor),
+                    ),
+                    Text(
+                      '-',
+                      style: TextStyle(color: AppColors.primaryColor),
+                    ),
+                    Text(
+                      upperBound,
+                      style: TextStyle(color: AppColors.primaryColor),
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      itemsText,
+                      style: TextStyle(color: AppColors.primaryColor),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: 85,
+                height: 46,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 

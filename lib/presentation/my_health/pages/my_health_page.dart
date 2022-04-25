@@ -23,7 +23,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/my_health/widgets/profile_health_details_widget.dart';
-import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -254,7 +253,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
                   size15VerticalSizedBox,
                   Row(
                     children: <Widget>[
-                      Flexible(
+                      Expanded(
                         child: GestureDetector(
                           onTap: () => Navigator.pushNamed(
                             context,
@@ -284,15 +283,33 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         ),
                       ),
                       smallHorizontalSizedBox,
-                      const Flexible(
-                        child: SizedBox(
-                          width: double.infinity,
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(AppRoutes.myHealthTimeline),
+                          child: InformationListCard(
+                            title: Text(
+                              healthTimelineText,
+                              style: normalSize12Text(AppColors.greyTextColor),
+                            ),
+                            alternateLeadingIcon: Container(
+                              padding: const EdgeInsets.all(18),
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryColor.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: SvgPicture.asset(
+                                medicalDataIcon,
+                                width: 20,
+                                height: 20,
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ),
                         ),
                       )
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  const MyHealthTimeline(),
                 ],
               ),
             ),

@@ -13,6 +13,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
+import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
 import 'package:myafyahub/presentation/profile/medical_data/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 
@@ -105,6 +106,21 @@ void main() {
       await tester.tap(find.text(medicalDataTitle));
       await tester.pumpAndSettle();
       expect(find.byType(MedicalDataPage), findsOneWidget);
+    });
+
+    testWidgets('navigates to health timeline page ',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: const MyHealthPage(),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(healthTimelineText));
+      await tester.pumpAndSettle();
+      expect(find.byType(MyHealthTimeline), findsOneWidget);
     });
   });
 }
