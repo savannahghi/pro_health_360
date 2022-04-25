@@ -134,6 +134,8 @@ class AppRoutes {
 
   static const String pinExpiredPage = '/pinExpiredPage';
   static const String loginCounterPage = '/loginCounterPage';
+
+  static const String myHealthTimeline = '/myHealthTimeline';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

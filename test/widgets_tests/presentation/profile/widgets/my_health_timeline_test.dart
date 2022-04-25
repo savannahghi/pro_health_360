@@ -37,8 +37,29 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(MyHealthTimeline), findsOneWidget);
-      expect(find.text('My Health Timeline'), findsOneWidget);
+      expect(find.text('My Health Timeline'), findsNWidgets(2));
       expect(find.byType(TimelineIndicator), findsWidgets);
+    });
+
+    testWidgets('works with custom client', (WidgetTester tester) async {
+      final IGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'data': mockHealthTimelineItems}),
+          200,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: Store<AppState>(initialState: AppState.initial()),
+        client: client,
+        widget: const MyHealthTimeline(),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MyHealthTimeline), findsOneWidget);
     });
   });
 }
