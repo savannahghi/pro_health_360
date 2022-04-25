@@ -627,6 +627,19 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
       );
     }
 
+    if (queryString == updateClientCaregiverMutation) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{'createOrUpdateClientCaregiver': true}
+            },
+          ),
+          201,
+        ),
+      );
+    }
+
     if (queryString == retrieveFacilityQuery) {
       return Future<http.Response>.value(
         http.Response(
@@ -1983,7 +1996,7 @@ Map<String, dynamic> mockUpdateClientCareGiver = <String, dynamic>{
   'firstName': 'John',
   'lastName': 'Doe',
   'phoneNumber': '+254798000000',
-  'caregiverType': 'Sibling',
+  'caregiverType': 'SIBLING',
 };
 
 Map<String, dynamic> mockMedicalDataState = <String, dynamic>{

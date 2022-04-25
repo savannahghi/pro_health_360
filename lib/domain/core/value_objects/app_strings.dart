@@ -912,3 +912,5 @@ const String wouldYouLikeToShareEntireText =
 const String shared = 'Shared';
 const String howSatisfiedText = 'How satisfied are you with the platform?';
 const String ratingsHint = '1 - Not satisfied ; 5 - Most satisfied';
+const String caregiverInfoSavedSuccess =
+    'Caregiver information saved successfully';

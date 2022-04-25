@@ -29,6 +29,7 @@ import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
 import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:myafyahub/domain/core/entities/health_timeline/fhir_enums.dart';
+import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
@@ -374,47 +375,48 @@ bool shouldInputPIN(BuildContext context) {
       differenceFromLastInput > 20;
 }
 
-final EditInformationInputItem phoneInputItem = EditInformationInputItem(
-  fieldName: phoneNumber,
-  hintText: hotlineNumberString,
-  inputType: EditInformationInputType.Text,
-  inputController: TextEditingController(),
-  apiFieldValue: 'phoneNumber',
-);
-
-final EditInformationInputItem relationInputItem = EditInformationInputItem(
-  fieldName: relationText,
-  hintText: relationText,
-  inputType: EditInformationInputType.DropDown,
-  inputController: TextEditingController(),
-  dropDownOptionList: CaregiverType.values
-      .map<String>((CaregiverType type) => type.name)
-      .toList(),
-  apiFieldValue: 'caregiverType',
-);
-
-final EditInformationItem careGiverEditInfo = EditInformationItem(
-  title: myProfileCaregiverText,
-  description: myProfileCaregiverDescriptionText,
-  editInformationInputItem: <EditInformationInputItem>[
-    EditInformationInputItem(
-      fieldName: firstName,
-      hintText: jane,
-      inputType: EditInformationInputType.Text,
-      inputController: TextEditingController(),
-      apiFieldValue: 'firstName',
-    ),
-    EditInformationInputItem(
-      fieldName: lastName,
-      hintText: doe,
-      inputType: EditInformationInputType.Text,
-      inputController: TextEditingController(),
-      apiFieldValue: 'lastName',
-    ),
-    phoneInputItem,
-    relationInputItem,
-  ],
-);
+EditInformationItem getEditCareGiverInfo({
+  required CaregiverInformation caregiverInformation,
+}) {
+  return EditInformationItem(
+    title: myProfileCaregiverText,
+    description: myProfileCaregiverDescriptionText,
+    editInformationInputItem: <EditInformationInputItem>[
+      EditInformationInputItem(
+        fieldName: firstName,
+        hintText: caregiverInformation.firstName ?? jane,
+        inputType: EditInformationInputType.Text,
+        inputController: TextEditingController(),
+        apiFieldValue: 'firstName',
+      ),
+      EditInformationInputItem(
+        fieldName: lastName,
+        hintText: caregiverInformation.lastName ?? doe,
+        inputType: EditInformationInputType.Text,
+        inputController: TextEditingController(),
+        apiFieldValue: 'lastName',
+      ),
+      EditInformationInputItem(
+        fieldName: phoneNumber,
+        hintText: caregiverInformation.phoneNumber ?? hotlineNumberString,
+        inputType: EditInformationInputType.Text,
+        inputController: TextEditingController(),
+        apiFieldValue: 'phoneNumber',
+      ),
+      EditInformationInputItem(
+        fieldName: relationText,
+        hintText: relationText,
+        inputType: EditInformationInputType.DropDown,
+        inputController: TextEditingController(),
+        dropdownValue: caregiverInformation.caregiverType!.name,
+        dropDownOptionList: CaregiverType.values
+            .map<String>((CaregiverType type) => type.name)
+            .toList(),
+        apiFieldValue: 'caregiverType',
+      ),
+    ],
+  );
+}
 
 EditInformationInputItem nickNameInputItem(String userNickName) =>
     EditInformationInputItem(
@@ -450,14 +452,29 @@ CaregiverType caregiverTypeFromJson(String? caregiverTypeString) {
     return CaregiverType.HEALTHCARE_PROFESSIONAL;
   }
 
-  return CaregiverType.values.where((CaregiverType caregiverType) {
-    return caregiverType.name.toUpperCase() ==
-        caregiverTypeString.toUpperCase();
-  }).first;
+  switch (caregiverTypeString.toUpperCase()) {
+    case 'FATHER':
+      return CaregiverType.FATHER;
+    case 'MOTHER':
+      return CaregiverType.MOTHER;
+    case 'SIBLING':
+      return CaregiverType.SIBLING;
+    default:
+      return CaregiverType.HEALTHCARE_PROFESSIONAL;
+  }
 }
 
 String caregiverTypeToJson(CaregiverType? caregiverType) {
-  return caregiverType?.name ?? CaregiverType.HEALTHCARE_PROFESSIONAL.name;
+  switch (caregiverType) {
+    case CaregiverType.FATHER:
+      return 'FATHER';
+    case CaregiverType.MOTHER:
+      return 'MOTHER';
+    case CaregiverType.SIBLING:
+      return 'SIBLING';
+    default:
+      return 'HEALTHCARE_PROFESSIONAL';
+  }
 }
 
 ObservationStatus observationStatusFromJson(String? observationStatusString) {

@@ -120,23 +120,9 @@ mutation unbookmarkContent($userID: String!, $contentItemID: Int!){
 }
 ''';
 
-const String updateClientCaregiver = r'''
-mutation createOrUpdateClientCaregiver(
-  $clientID: String,
-  $firstName: String,
-  $lastName:String,
-  $phoneNumber: String,
-  $caregiverType: CaregiverType
-){
-  createOrUpdateClientCaregiver(
-    caregiverInput:{
-      clientID: $clientID, 
-      firstName: $firstName,
-      lastName: $lastName,
-      phoneNumber: $phoneNumber,
-      caregiverType: $caregiverType,
-  	}
-  )
+const String updateClientCaregiverMutation = r'''
+mutation createOrUpdateClientCaregiver($caregiverInput: CaregiverInput){
+  createOrUpdateClientCaregiver(caregiverInput: $caregiverInput)
 }
 ''';
 

@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
@@ -30,7 +32,9 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
-          editInformationItem: careGiverEditInfo,
+          editInformationItem: getEditCareGiverInfo(
+            caregiverInformation: CaregiverInformation.initial(),
+          ),
         ),
       );
 
@@ -47,7 +51,9 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
-          editInformationItem: careGiverEditInfo,
+          editInformationItem: getEditCareGiverInfo(
+            caregiverInformation: CaregiverInformation.initial(),
+          ),
         ),
       );
 
@@ -68,7 +74,9 @@ void main() {
         store: store,
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
-          editInformationItem: careGiverEditInfo,
+          editInformationItem: getEditCareGiverInfo(
+            caregiverInformation: CaregiverInformation.initial(),
+          ),
         ),
       );
 
@@ -96,7 +104,23 @@ void main() {
         client: baseGraphQlClientMock,
         widget: EditInformationButtonWidget(
           submitFunction: (EditInformationItem editInformationItem) {},
-          editInformationItem: nickNameEditInfo('Test'),
+          editInformationItem: EditInformationItem(
+            title: nickNameString,
+            editInformationInputItem: <EditInformationInputItem>[
+              EditInformationInputItem(
+                fieldName: relationText,
+                hintText: relationText,
+                inputType: EditInformationInputType.DropDown,
+                inputController: TextEditingController(),
+                dropdownValue: CaregiverType.FATHER.name,
+                dropDownOptionList: CaregiverType.values
+                    .map<String>((CaregiverType type) => type.name)
+                    .toList(),
+                apiFieldValue: 'caregiverType',
+              ),
+              nickNameInputItem('userNickName')
+            ],
+          ),
         ),
       );
 

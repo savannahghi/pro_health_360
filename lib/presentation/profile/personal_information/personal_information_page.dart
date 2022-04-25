@@ -19,6 +19,7 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import 'package:myafyahub/presentation/core/widgets/personal_information_secondary_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/personal_information_widget.dart';
 import 'package:myafyahub/presentation/profile/widgets/edit_info_button_widget.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class PersonalInformationPage extends StatelessWidget {
@@ -59,11 +60,12 @@ class PersonalInformationPage extends StatelessWidget {
                       ? doe
                       : caregiverInformation?.lastName ?? doe;
               final String fullNames = '$firstName $lastName';
-              final String phoneNumber = ((caregiverInformation?.phoneNumber ??
-                          hotlineNumberString) ==
-                      UNKNOWN)
-                  ? hotlineNumberString
-                  : caregiverInformation?.phoneNumber ?? hotlineNumberString;
+              final String phoneNumberVal =
+                  ((caregiverInformation?.phoneNumber ?? hotlineNumberString) ==
+                          UNKNOWN)
+                      ? hotlineNumberString
+                      : caregiverInformation?.phoneNumber ??
+                          hotlineNumberString;
 
               final String relation = caregiverInformation!.caregiverType!.name;
               final String facilityName = vm.facilityName ?? clinic;
@@ -98,7 +100,9 @@ class PersonalInformationPage extends StatelessWidget {
                         ),
                         EditInformationButtonWidget(
                           editBtnKey: editPersonalInfoKey,
-                          editInformationItem: careGiverEditInfo,
+                          editInformationItem: getEditCareGiverInfo(
+                            caregiverInformation: caregiverInformation,
+                          ),
                           submitFunction:
                               (EditInformationItem editInformationItem) {
                             final Map<String, dynamic> variables =
@@ -118,8 +122,26 @@ class PersonalInformationPage extends StatelessWidget {
                               context,
                               UpdateCaregiverInfoAction(
                                 caregiverInformation: info,
-                                graphQlClient:
+                                client:
                                     AppWrapperBase.of(context)!.graphQLClient,
+                                onSuccess: () {
+                                  Navigator.of(context).pushReplacementNamed(
+                                    AppRoutes.personalInfo,
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(caregiverInfoSavedSuccess),
+                                    ),
+                                  );
+                                  // in order to fetch the new values
+                                  StoreProvider.dispatch(
+                                    context,
+                                    FetchCaregiverInformationAction(
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                    ),
+                                  );
+                                },
                               ),
                             );
                           },
@@ -135,7 +157,7 @@ class PersonalInformationPage extends StatelessWidget {
                     verySmallVerticalSizedBox,
                     PersonalInformationSecondaryWidget(
                       fieldName: phoneNumber,
-                      fieldValue: hotlineNumberString,
+                      fieldValue: phoneNumberVal,
                     ),
                     verySmallVerticalSizedBox,
                     PersonalInformationSecondaryWidget(

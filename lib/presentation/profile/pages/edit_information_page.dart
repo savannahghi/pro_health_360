@@ -35,10 +35,32 @@ class EditInformationPage extends StatefulWidget {
 class _EditInformationPageState extends State<EditInformationPage> {
   bool formIsEdited = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String dropdownValue = father;
+  late String? dropdownValue;
+
+  bool containsDropDown(
+    List<EditInformationInputItem> editInformationInputItem,
+  ) {
+    for (final EditInformationInputItem item in editInformationInputItem) {
+      if (item.inputType == EditInformationInputType.DropDown) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (!formIsEdited &&
+        containsDropDown(widget.editInformationItem.editInformationInputItem)) {
+      dropdownValue = widget.editInformationItem.editInformationInputItem
+              .firstWhere(
+                (EditInformationInputItem element) =>
+                    element.inputType == EditInformationInputType.DropDown,
+              )
+              .dropdownValue ??
+          father;
+    }
+
     return Scaffold(
       appBar: CustomAppBar(
         title: editInfoTitle(widget.editInformationItem.title),
@@ -137,7 +159,7 @@ class _EditInformationPageState extends State<EditInformationPage> {
                             ),
                             smallVerticalSizedBox,
                             EditInformationDropDown(
-                              value: dropdownValue,
+                              value: dropdownValue ?? '',
                               items:
                                   editInformationInputItem.dropDownOptionList!,
                               onChange: (String? value) {
@@ -189,12 +211,9 @@ class _EditInformationPageState extends State<EditInformationPage> {
                                     widget.onSubmit(widget.editInformationItem);
                                   }
                                 : null,
-                            buttonColor: formIsEdited
-                                ? null
-                                : Colors.grey,
-                            borderColor: formIsEdited
-                                ? null
-                                : Colors.transparent,
+                            buttonColor: formIsEdited ? null : Colors.grey,
+                            borderColor:
+                                formIsEdited ? null : Colors.transparent,
                             text: toBeginningOfSentenceCase(saveString),
                           ),
                   ),

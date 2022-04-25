@@ -21,6 +21,7 @@ class EditInformationInputItem {
     required this.inputType,
     required this.inputController,
     this.dropDownOptionList,
+    this.dropdownValue,
     String? apiFieldValue,
   })   // Asserts that the dropDown cannot be null if it is a dropdown
   : assert(
@@ -36,4 +37,5 @@ class EditInformationInputItem {
   final TextEditingController inputController;
   final List<String>? dropDownOptionList;
   final String apiFieldValue;
+  final String? dropdownValue;
 }
