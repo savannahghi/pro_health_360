@@ -27,20 +27,8 @@ class CommunityListViewPage extends StatefulWidget {
 }
 
 class _CommunityListViewPageState extends State<CommunityListViewPage> {
-  late String clientId;
-  late stream.StreamChatClient streamChatClient;
-
   final stream.ChannelListController channelListController =
       stream.ChannelListController();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      clientId = StoreProvider.state<AppState>(context)!.clientState!.id!;
-      streamChatClient = stream.StreamChat.of(context).client;
-    });
-  }
 
   @override
   void didChangeDependencies() {
@@ -60,12 +48,6 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
         ),
       );
     }
-  }
-
-  @override
-  void dispose() {
-    streamChatClient.disconnectUser();
-    super.dispose();
   }
 
   @override
