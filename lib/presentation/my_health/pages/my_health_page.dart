@@ -159,17 +159,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     ),
                   if (!vm.wait!.isWaitingFor(fetchViralLoadDataFlag) &&
                       (viralLoadData.isNotEmpty || nextRefill.isNotEmpty))
-                    Container(
-                      height: 110,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          if (viralLoadData.isNotEmpty)
-                            ProfileHealthDetailsWidget(
+                    Row(
+                      children: <Widget>[
+                        if (viralLoadData.isNotEmpty)
+                          Expanded(
+                            child: ProfileHealthDetailsWidget(
                               svgPath: viralLoadIcon,
                               title: myHealthViralLoad,
                               description:
@@ -177,16 +171,22 @@ class _MyHealthPageState extends State<MyHealthPage> {
                               descriptionSubScript:
                                   myHealthViralLoadReadingUnit,
                             ),
-                          if (nextRefill.isNotEmpty)
-                            ProfileHealthDetailsWidget(
+                          ),
+                        if (viralLoadData.isNotEmpty) smallHorizontalSizedBox,
+                        if (nextRefill.isNotEmpty)
+                          Expanded(
+                            child: ProfileHealthDetailsWidget(
                               svgPath: nextRefillIcon,
                               title: myHealthNextRefill,
                               description: nextRefillDate['day'] ?? '',
                               descriptionSubScript:
                                   nextRefillDate['month'] ?? '',
                             ),
-                        ],
-                      ),
+                          ),
+                        if (viralLoadData.isEmpty) smallHorizontalSizedBox,
+                        if (nextRefill.isEmpty || viralLoadData.isEmpty)
+                          const Spacer(),
+                      ],
                     ),
                   size15VerticalSizedBox,
                   Row(

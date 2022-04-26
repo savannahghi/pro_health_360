@@ -87,7 +87,7 @@ void main() {
           jsonEncode(<String, dynamic>{
             'data': <String, dynamic>{
               'searchFHIRObservation': mockViralLoadData,
-              'nextRefill': '2023-12-12'
+              'nextRefill': ''
             }
           }),
           200,
@@ -106,6 +106,33 @@ void main() {
       await tester.tap(find.text(medicalDataTitle));
       await tester.pumpAndSettle();
       expect(find.byType(MedicalDataPage), findsOneWidget);
+    });
+
+    testWidgets('renders next refill data ', (WidgetTester tester) async {
+      final IGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'searchFHIRObservation': mockViralLoadData,
+              'nextRefill': '2023-12-12'
+            }
+          }),
+          200,
+        ),
+      );
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: MyHealthPage(
+          graphQlClient: client,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text(myHealthNextRefill), findsOneWidget);
     });
 
     testWidgets('navigates to health timeline page ',

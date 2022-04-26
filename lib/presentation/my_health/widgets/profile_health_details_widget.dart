@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/svg.dart';
 // Project imports:
@@ -23,10 +24,16 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
+      height: 90,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               children: <Widget>[
@@ -43,23 +50,24 @@ class ProfileHealthDetailsWidget extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(
-              child: Center(
-                child: RichText(
-                  text: TextSpan(
-                    text: description,
-                    style: boldSize30Text(
-                      AppColors.primaryColor,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: descriptionSubScript,
-                        style: normalSize14Text(
-                          AppColors.secondaryColor,
-                        ),
-                      )
-                    ],
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 8.0,
+              ),
+              child: RichText(
+                text: TextSpan(
+                  text: description,
+                  style: boldSize30Text(
+                    AppColors.primaryColor,
                   ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: descriptionSubScript,
+                      style: normalSize14Text(
+                        AppColors.secondaryColor,
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
