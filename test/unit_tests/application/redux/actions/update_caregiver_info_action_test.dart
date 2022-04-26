@@ -1,66 +1,105 @@
 import 'dart:convert';
 
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/actions/profile/update_caregiver_information_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
 
 import '../../../../mocks.dart';
 
 void main() {
-  test('should catch error if present', () async {
-    final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
-      '',
-      '',
-      Response(
-        json.encode(<String, dynamic>{'data': '', 'error': 'test'}),
-        200,
-      ),
-    );
+  group('UpdateCareInformationAction', () {
+    late StoreTester<AppState> storeTester;
 
-    final StoreTester<AppState> storeTester =
-        StoreTester<AppState>(initialState: AppState.initial());
+    setUp(() {
+      storeTester = StoreTester<AppState>(
+        initialState: AppState.initial()
+            .copyWith(connectivityState: ConnectivityState(isConnected: true)),
+        testInfoPrinter: (TestInfo<dynamic> testInfo) {},
+      );
+    });
+    test('should catch error if present', () async {
+      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          json.encode(<String, dynamic>{'data': '', 'error': 'test'}),
+          500,
+        ),
+      );
 
-    storeTester.dispatch(
-      UpdateCaregiverInfoAction(
-        caregiverInformation: CaregiverInformation(),
-        graphQlClient: client,
-      ),
-    );
+      final StoreTester<AppState> storeTester =
+          StoreTester<AppState>(initialState: AppState.initial());
 
-    final TestInfo<AppState> info =
-        await storeTester.waitUntil(UpdateCaregiverInfoAction);
+      storeTester.dispatch(
+        UpdateCaregiverInfoAction(
+          caregiverInformation: CaregiverInformation(),
+          client: client,
+        ),
+      );
 
-    // TODO: write more appropriate test after hooking up state
-    expect(info.state.clientState, AppState.initial().clientState);
-  });
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(UpdateCaregiverInfoAction);
 
-  test('should return normally', () async {
-    final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
-      '',
-      '',
-      Response(
-        json.encode(<String, dynamic>{'data': ''}),
-        200,
-      ),
-    );
+      expect(
+        (info.error! as UserException).msg,
+        'Sorry, an unknown error occurred, please try again or get help from our help center.',
+      );
+    });
 
-    final StoreTester<AppState> storeTester =
-        StoreTester<AppState>(initialState: AppState.initial());
+    test('should throw error when data is null', () async {
+      storeTester.dispatch(
+        UpdateCaregiverInfoAction(
+          caregiverInformation: CaregiverInformation(),
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              json.encode(
+                <String, dynamic>{
+                  'data': <String, dynamic>{
+                    'createOrUpdateClientCaregiver': null
+                  }
+                },
+              ),
+              201,
+            ),
+          ),
+        ),
+      );
 
-    storeTester.dispatch(
-      UpdateCaregiverInfoAction(
-        caregiverInformation: CaregiverInformation(),
-        graphQlClient: client,
-      ),
-    );
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(UpdateCaregiverInfoAction);
 
-    final TestInfo<AppState> info =
-        await storeTester.waitUntil(UpdateCaregiverInfoAction);
+      expect((info.error! as UserException).msg, null);
+    });
 
-    // TODO: write more appropriate test after hooking up state
-    expect(info.state.clientState, AppState.initial().clientState);
+    test('should throw error if response has error', () async {
+      storeTester.dispatch(
+        UpdateCaregiverInfoAction(
+          caregiverInformation: CaregiverInformation(),
+          client: MockShortGraphQlClient.withResponse(
+            '',
+            '',
+            Response(
+              jsonEncode(<String, String>{'error': 'error occurred'}),
+              200,
+            ),
+          ),
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(UpdateCaregiverInfoAction);
+
+      expect(
+        (info.error! as UserException).msg,
+        getErrorMessage('updating caregiver information'),
+      );
+    });
   });
 }

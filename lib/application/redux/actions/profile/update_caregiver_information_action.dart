@@ -3,6 +3,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -10,33 +11,50 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class UpdateCaregiverInfoAction extends ReduxAction<AppState> {
   UpdateCaregiverInfoAction({
     required this.caregiverInformation,
-    required this.graphQlClient,
+    required this.client,
+    this.onSuccess,
   });
 
   final CaregiverInformation caregiverInformation;
-  final IGraphQlClient graphQlClient;
+  final IGraphQlClient client;
+  final void Function()? onSuccess;
 
   @override
   Future<AppState?> reduce() async {
-    final Response result = await graphQlClient.query(
-      updateClientCaregiver,
-      caregiverInformation.toJson(),
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'caregiverInput': caregiverInformation.toJson()
+    };
+    variables['caregiverInput']['clientID'] = state.clientState?.id ?? UNKNOWN;
+    final Response response = await client.query(
+      updateClientCaregiverMutation,
+      variables,
     );
 
-    final Map<String, dynamic> payLoad = graphQlClient.toMap(result);
-    final String? error = parseError(payLoad);
+    final ProcessedResponse processedResponse = processHttpResponse(response);
 
-    // TODO: Save to state after fetching
-    // final CaregiverQueryResponse caregiverQueryResponse =
-    //     CaregiverQueryResponse.fromJson(payLoad);
+    if (processedResponse.ok) {
+      final Map<String, dynamic> body = client.toMap(response);
 
-    if (error != null) {
-      Sentry.captureException(
-        error,
-        hint: 'Error while updating caregiver information',
-      );
+      final String? errors = client.parseError(body);
 
-      return null;
+      if (errors != null) {
+        Sentry.captureException(
+          UserException(errors),
+        );
+
+        throw UserException(
+          getErrorMessage('updating caregiver information'),
+        );
+      }
+      if (body['data']?['createOrUpdateClientCaregiver'] == true) {
+        dispatch(UpdateClientProfileAction());
+        onSuccess?.call();
+      } else {
+        Sentry.captureException(UserException(processedResponse.message));
+        throw UserException(processedResponse.message);
+      }
+    } else {
+      throw UserException(processedResponse.message);
     }
   }
 }
