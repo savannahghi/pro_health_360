@@ -104,7 +104,6 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: myHealthTimelineText,
-        showBackButton: false,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

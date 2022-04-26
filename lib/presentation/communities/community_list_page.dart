@@ -7,12 +7,11 @@ import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/communities/view_models/community_list_view_model.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/communities/channel_page.dart';
+import 'package:myafyahub/presentation/communities/view_models/community_list_view_model.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
@@ -53,8 +52,12 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      appBar:
-          const CustomAppBar(title: communityPageString, showBackButton: false),
+      bottomNavIndex: 2,
+      appBar: const CustomAppBar(
+        title: communityPageString,
+        showBackButton: false,
+        bottomNavIndex: 2,
+      ),
       body: StoreConnector<AppState, CommunityListViewModel>(
         converter: (Store<AppState> store) {
           return CommunityListViewModel.fromStore(store);

@@ -28,7 +28,9 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: NotificationsPage(),
+        widget: const NotificationsPage(
+          bottomNavIndex: 0,
+        ),
       );
 
       await tester.pumpAndSettle();
@@ -57,7 +59,9 @@ void main() {
       await buildTestWidget(
         tester: tester,
         store: store,
-        widget: NotificationsPage(),
+        widget: const NotificationsPage(
+          bottomNavIndex: 0,
+        ),
         client: mockShortGraphQlClient,
       );
 

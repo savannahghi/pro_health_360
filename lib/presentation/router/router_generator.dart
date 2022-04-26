@@ -206,7 +206,9 @@ class RouteGenerator {
 
       case AppRoutes.notificationsPage:
         return MaterialPageRoute<NotificationsPage>(
-          builder: (_) => NotificationsPage(),
+          builder: (_) => NotificationsPage(
+            bottomNavIndex: args as int,
+          ),
         );
 
       case AppRoutes.appointmentsPage:

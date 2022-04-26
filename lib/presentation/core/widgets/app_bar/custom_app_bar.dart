@@ -20,8 +20,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     this.leadingWidget = const AppbarUser(),
     this.title,
-    this.trailingWidget = const AppBarNotification(),
+    this.trailingWidget,
     this.showBackButton = true,
+    this.bottomNavIndex = 0,
   });
 
   final Widget? leadingWidget;
@@ -31,6 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   // whether to show the back button instead of the profile image. defaults to
   // true because most screens use it
   final bool showBackButton;
+  final int bottomNavIndex;
 
   @override
   Size get preferredSize => const Size.fromHeight(100.0);
@@ -54,7 +56,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             if (showBackButton) const AppBarBackButton() else leadingWidget!,
-
             Flexible(
               child: Text(
                 title ?? '',
@@ -62,10 +63,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     boldSize16Text().copyWith(color: AppColors.secondaryColor),
               ),
             ),
-
-            // This can never be null because the default widget is already
-            // set in the constructor
-            trailingWidget!,
+            trailingWidget ??
+                AppBarNotification(
+                  bottomNavIndex: bottomNavIndex,
+                ),
           ],
         ),
       ),

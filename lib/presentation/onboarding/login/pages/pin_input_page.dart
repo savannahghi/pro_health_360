@@ -1,5 +1,6 @@
 // Project imports:
 import 'dart:async';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
@@ -131,6 +132,7 @@ class _PINInputPageState extends State<PINInputPage> {
           return Scaffold(
             backgroundColor: Theme.of(context).backgroundColor,
             appBar: CustomAppBar(
+              bottomNavIndex: 3,
               leadingWidget: GestureDetector(
                 key: pinInputPageBackKey,
                 onTap: () {
