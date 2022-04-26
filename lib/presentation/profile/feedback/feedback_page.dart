@@ -19,6 +19,7 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 import 'package:myafyahub/presentation/profile/feedback/widgets/rating_button.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:shared_themes/constants.dart';
 import 'package:shared_themes/spaces.dart';
 
 /// [FeedbackPage] is used to get user feedback on app usage
@@ -268,60 +269,77 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             ),
                           ],
                         ),
-                        largeVerticalSizedBox,
-                        SizedBox(
-                          height: 48,
-                          width: double.infinity,
-                          child: MyAfyaHubPrimaryButton(
-                            buttonKey: sendFeedbackButtonKey,
-                            onPressed: canSubmit
-                                ? () async {
-                                    await StoreProvider.dispatch<AppState>(
-                                      context,
-                                      SendFeedbackAction(
-                                        client: AppWrapperBase.of(context)!
-                                            .graphQLClient,
-                                        satisfactionLevel: selectedRating,
-                                        serviceName: (feedBackType ==
-                                                FeedBackType.SERVICES_OFFERED)
-                                            ? serviceInputController.text
-                                            : '',
-                                        feedbackType: feedBackType.name,
-                                        feedback: feedBackInputController.text,
-                                        requiresFollowUp: allowFollowUp,
-                                        onSuccess: () {
-                                          Navigator.of(context).pushNamed(
-                                            AppRoutes
-                                                .successfulFeedbackSubmissionPage,
-                                          );
-                                        },
-                                        onError: () {
-                                          ScaffoldMessenger.of(context)
-                                            ..hideCurrentSnackBar()
-                                            ..showSnackBar(
-                                              const SnackBar(
-                                                content: Text(
-                                                  feedbackSubmissionErrorText,
-                                                ),
-                                              ),
-                                            );
-                                        },
-                                      ),
-                                    );
-                                  }
-                                : null,
-                            buttonColor: canSubmit
-                                ? AppColors.primaryColor
-                                : Colors.grey,
-                            borderColor: Colors.transparent,
-                            text: submitFeedbackString,
-                            textStyle: veryBoldSize15Text(Colors.white),
-                          ),
-                        ),
+                        size70VerticalSizedBox,
                       ],
                     ),
                   ),
                 ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            height: 48,
+            width: double.infinity,
+            child: MyAfyaHubPrimaryButton(
+              buttonKey: sendFeedbackButtonKey,
+              onPressed: canSubmit
+                  ? () async {
+                      await StoreProvider.dispatch<AppState>(
+                        context,
+                        SendFeedbackAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                          satisfactionLevel: selectedRating,
+                          serviceName:
+                              (feedBackType == FeedBackType.SERVICES_OFFERED)
+                                  ? serviceInputController.text
+                                  : '',
+                          feedbackType: feedBackType.name,
+                          feedback: feedBackInputController.text,
+                          requiresFollowUp: allowFollowUp,
+                          onSuccess: () {
+                            Navigator.of(context).pushNamed(
+                              AppRoutes.successfulFeedbackSubmissionPage,
+                            );
+                          },
+                          onError: () {
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    feedbackSubmissionErrorText,
+                                  ),
+                                ),
+                              );
+                          },
+                        ),
+                      );
+                    }
+                  : () => ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          getFeedBackValidationMessage(
+                            feedBackType: feedBackType,
+                            feedBackText: feedBackInputController.text,
+                            searchString: serviceInputController.text,
+                            selectedRating: selectedRating,
+                          ),
+                        ),
+                        duration: const Duration(
+                          seconds: kShortSnackBarDuration,
+                        ),
+                      ),
+                    ),
+              buttonColor: canSubmit ? AppColors.primaryColor : Colors.grey,
+              borderColor: Colors.transparent,
+              text: submitFeedbackString,
+              textStyle: veryBoldSize15Text(Colors.white),
+            ),
+          ),
         );
       },
     );

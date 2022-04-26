@@ -7,6 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -92,6 +93,32 @@ void main() {
       expect(getMoodColor('Very Sad').color, AppColors.verySadColor);
       expect(getMoodColor('Other').color, AppColors.secondaryColor);
       expect(getMoodColor(null).color, AppColors.secondaryColor);
+    });
+    test('getFeedBackValidationMessage should return the various messages', () {
+      expect(
+        getFeedBackValidationMessage(
+          feedBackType: FeedBackType.SERVICES_OFFERED,
+          feedBackText: '',
+          selectedRating: 0,
+        ),
+        'Please select a rating',
+      );
+      expect(
+        getFeedBackValidationMessage(
+          feedBackType: FeedBackType.SERVICES_OFFERED,
+          feedBackText: '',
+          selectedRating: 1,
+        ),
+        'Please enter the name of service',
+      );
+      expect(
+        getFeedBackValidationMessage(
+          feedBackType: FeedBackType.GENERAL_FEEDBACK,
+          feedBackText: '',
+          selectedRating: 1,
+        ),
+        'Please share your thoughts',
+      );
     });
   });
 }

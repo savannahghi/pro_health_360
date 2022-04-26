@@ -774,3 +774,19 @@ String getFeedBackTypeDescription(FeedBackType feedBackType) {
       return servicesOffered;
   }
 }
+
+String getFeedBackValidationMessage({
+  required FeedBackType feedBackType,
+  required String feedBackText,
+  required int selectedRating,
+  String? searchString,
+}) {
+  final bool serviceEntered = searchString?.isEmpty ?? true;
+  if (selectedRating == 0) {
+    return 'Please select a rating';
+  } else if (feedBackType == enums.FeedBackType.SERVICES_OFFERED && serviceEntered){
+    return 'Please enter the name of service';
+  }else{
+    return 'Please share your thoughts';
+  }
+}
