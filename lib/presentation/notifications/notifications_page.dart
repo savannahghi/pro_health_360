@@ -22,12 +22,18 @@ import 'package:myafyahub/presentation/notifications/notification_list_item.dart
 // Package imports:
 
 class NotificationsPage extends StatelessWidget {
+  const NotificationsPage({required this.bottomNavIndex});
+
+  final int bottomNavIndex;
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      appBar: const CustomAppBar(
+      bottomNavIndex: bottomNavIndex,
+      appBar: CustomAppBar(
         title: notificationsText,
-        trailingWidget: SizedBox(),
+        trailingWidget: const SizedBox(),
+        bottomNavIndex: bottomNavIndex,
       ),
       body: StoreConnector<AppState, NotificationsViewModel>(
         onInit: (Store<AppState> store) {

@@ -48,6 +48,7 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
         return Scaffold(
           appBar: const CustomAppBar(
             title: alcoholSubstanceUseTitle,
+             
           ),
           body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
               ? Container(

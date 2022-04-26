@@ -2,7 +2,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 // Project imports:
@@ -15,7 +14,6 @@ import 'package:myafyahub/application/redux/actions/set_push_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
@@ -132,16 +130,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
       converter: (Store<AppState> store) =>
           InitialRouteViewModel.fromStore(store.state),
       builder: (BuildContext context, InitialRouteViewModel vm) {
-        String initialRoute = vm.initialRoute ?? AppRoutes.phoneLogin;
-
-        final bool isPhoneLogin =
-            initialRoute.compareTo(AppRoutes.phoneLogin) == 0;
-        final bool isResumeWithPin =
-            initialRoute.compareTo(AppRoutes.resumeWithPin) == 0;
-
-        if (!isPhoneLogin && !isResumeWithPin) {
-          initialRoute = bottomNavItems[vm.currentIndex ?? 0].onTapRoute;
-        }
+        final String initialRoute = vm.initialRoute ?? AppRoutes.phoneLogin;
 
         if (initialRoute == UNKNOWN) {
           return MaterialApp(

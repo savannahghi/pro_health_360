@@ -1,15 +1,13 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
-
 // Project imports:
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_pin_input_details_action.dart';
@@ -17,6 +15,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/home/widgets/bottom_nav_bar.dart';
 import 'package:myafyahub/presentation/onboarding/login/pages/pin_input_page.dart';
+
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
@@ -31,7 +30,9 @@ void main() {
         tester: tester,
         store: store,
         client: GraphQlClient,
-        widget: const BottomNavBar(),
+        widget: const BottomNavBar(
+          bottomNavIndex: 0,
+        ),
       );
       await tester.pumpAndSettle();
 
@@ -50,7 +51,9 @@ void main() {
           builder: (BuildContext context) {
             return Scaffold(
               body: Container(),
-              bottomNavigationBar: const BottomNavBar(),
+              bottomNavigationBar: const BottomNavBar(
+                bottomNavIndex: 0,
+              ),
             );
           },
         ),
@@ -108,7 +111,9 @@ void main() {
           client: mockShortSILGraphQlClient,
           widget: Scaffold(
             body: Container(),
-            bottomNavigationBar: const BottomNavBar(),
+            bottomNavigationBar: const BottomNavBar(
+              bottomNavIndex: 0,
+            ),
           ),
         );
 

@@ -53,9 +53,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      bottomNavIndex: 3,
       appBar: const CustomAppBar(
         title: myHealthPageTitle,
         showBackButton: false,
+        bottomNavIndex: 3,
       ),
       body: StoreConnector<AppState, ClientProfileViewModel>(
         onInit: (Store<AppState> store) {

@@ -13,7 +13,11 @@ class AppointmentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      appBar: const CustomAppBar(title: appointmentsPageTitle),
+      bottomNavIndex: 3,
+      appBar: const CustomAppBar(
+        title: appointmentsPageTitle,
+        bottomNavIndex: 3,
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
