@@ -1,6 +1,6 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 
 class NotificationsViewModel extends Vm {
   final Wait wait;

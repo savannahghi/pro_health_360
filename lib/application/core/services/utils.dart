@@ -327,15 +327,15 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   ),
 ];
 
-String getNotificationIcon(enums.NotificationType type) {
+String getNotificationIcon(NotificationType type) {
   switch (type) {
-    case enums.NotificationType.APPOINTMENT:
-      return hospitalIcon;
-    case enums.NotificationType.COMMUNITIES:
+    case NotificationType.APPOINTMENT:
+      return appointmentIcon;
+    case NotificationType.COMMUNITIES:
       return communityIconSvgPath;
-    case enums.NotificationType.SERVICE_REQUEST:
-      return hospitalIcon;
-    case enums.NotificationType.UNKNOWN:
+    case NotificationType.SERVICE_REQUEST:
+      return profileIcon;
+    case NotificationType.UNKNOWN:
       return notificationIcon;
   }
 }
@@ -784,9 +784,10 @@ String getFeedBackValidationMessage({
   final bool serviceEntered = searchString?.isEmpty ?? true;
   if (selectedRating == 0) {
     return 'Please select a rating';
-  } else if (feedBackType == enums.FeedBackType.SERVICES_OFFERED && serviceEntered){
+  } else if (feedBackType == enums.FeedBackType.SERVICES_OFFERED &&
+      serviceEntered) {
     return 'Please enter the name of service';
-  }else{
+  } else {
     return 'Please share your thoughts';
   }
 }

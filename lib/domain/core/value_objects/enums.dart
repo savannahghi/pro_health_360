@@ -150,5 +150,3 @@ extension MedicalDataTypeEX on MedicalDataType {
     return '${describeEnum(this)[0].toUpperCase()}${describeEnum(this).replaceAll('_', ' ').substring(1).toLowerCase()}';
   }
 }
-
-enum NotificationType { APPOINTMENT, SERVICE_REQUEST, COMMUNITIES, UNKNOWN }

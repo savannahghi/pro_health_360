@@ -1,6 +1,6 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 
 part 'notifications_response.freezed.dart';
 part 'notifications_response.g.dart';

@@ -9,7 +9,6 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/notifications/notifications_view_model.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/entities/notification/notification_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
@@ -59,7 +58,6 @@ class NotificationsPage extends StatelessWidget {
             child: notifications.isEmpty
                 ? GenericErrorWidget(
                     actionKey: helpNoDataWidgetKey,
-                    actionText: okThanksText,
                     recoverCallback: () async {
                       StoreProvider.dispatch<AppState>(
                         context,
