@@ -89,82 +89,12 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
                             padding: const EdgeInsets.all(20),
                             child: const PlatformLoader(),
                           )
-                        : securityQuestions.isEmpty
-                            ? GenericErrorWidget(
-                                actionKey: helpNoDataWidgetKey,
-                                headerIconSvgUrl: noSecurityQuestionsImage,
-                                recoverCallback: () async {
-                                  StoreProvider.dispatch<AppState>(
-                                    context,
-                                    GetSecurityQuestionsAction(
-                                      context: context,
-                                    ),
-                                  );
-                                },
-                                messageTitle: noQuestionsLoadedString,
-                                messageBody: const <TextSpan>[
-                                  TextSpan(text: noQuestionsLoadedDescription)
-                                ],
-                              )
-                            : ListView.builder(
-                                itemCount: securityQuestions.length,
-                                shrinkWrap: true,
-                                padding:
-                                    const EdgeInsets.only(top: 5, bottom: 5),
-                                itemBuilder: (BuildContext context, int index) {
-                                  final SecurityQuestion question =
-                                      securityQuestions.elementAt(index);
-
-                                  final String questionResponse =
-                                      securityQuestionsResponses
-                                              .elementAt(index)
-                                              .response ??
-                                          '';
-
-                                  return SecurityQuestionWidget(
-                                    securityQuestion: question,
-                                    response: (questionResponse == UNKNOWN)
-                                        ? null
-                                        : questionResponse,
-                                    onChanged: (String? value) {
-                                      if (value != null) {
-                                        if (question.responseType ==
-                                            SecurityQuestionResponseType.DATE) {
-                                          final String convertedDate =
-                                              formatSecurityQuestionDate(
-                                            value,
-                                            format: 'dd-MM-yyyy',
-                                          );
-
-                                          securityQuestionsResponses[index] =
-                                              SecurityQuestionResponse(
-                                            userID: userId,
-                                            securityQuestionID:
-                                                question.securityQuestionID,
-                                            response: convertedDate,
-                                          );
-                                        } else {
-                                          securityQuestionsResponses[index] =
-                                              SecurityQuestionResponse(
-                                            userID: userId,
-                                            securityQuestionID:
-                                                question.securityQuestionID,
-                                            response: value.trim(),
-                                          );
-                                        }
-                                      }
-
-                                      StoreProvider.dispatch<AppState>(
-                                        context,
-                                        UpdateOnboardingStateAction(
-                                          securityQuestionsResponses:
-                                              securityQuestionsResponses,
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                        : securityQuestionsBody(
+                            securityQuestions: securityQuestions,
+                            securityQuestionsResponses:
+                                securityQuestionsResponses,
+                            userID: userId,
+                          ),
                   ),
                   if ((!vm.appState.wait!
                                   .isWaitingFor(getSecurityQuestionsFlag) &&
@@ -242,5 +172,77 @@ class _SecurityQuestionsPageState extends State<SecurityQuestionsPage> {
         );
       },
     );
+  }
+
+  Widget securityQuestionsBody({
+    required List<SecurityQuestion> securityQuestions,
+    required List<SecurityQuestionResponse> securityQuestionsResponses,
+    required String userID,
+  }) {
+    if (securityQuestions.isEmpty) {
+      return GenericErrorWidget(
+        actionKey: helpNoDataWidgetKey,
+        headerIconSvgUrl: noSecurityQuestionsImage,
+        recoverCallback: () async {
+          StoreProvider.dispatch<AppState>(
+            context,
+            GetSecurityQuestionsAction(
+              context: context,
+            ),
+          );
+        },
+        messageTitle: noQuestionsLoadedString,
+        messageBody: const <TextSpan>[
+          TextSpan(text: noQuestionsLoadedDescription)
+        ],
+      );
+    } else {
+      return ListView.builder(
+        itemCount: securityQuestions.length,
+        shrinkWrap: true,
+        padding: const EdgeInsets.only(top: 5, bottom: 5),
+        itemBuilder: (BuildContext context, int index) {
+          final SecurityQuestion question = securityQuestions.elementAt(index);
+
+          final String questionResponse =
+              securityQuestionsResponses.elementAt(index).response ?? '';
+
+          return SecurityQuestionWidget(
+            securityQuestion: question,
+            response: (questionResponse == UNKNOWN) ? null : questionResponse,
+            onChanged: (String? value) {
+              if (value != null) {
+                if (question.responseType ==
+                    SecurityQuestionResponseType.DATE) {
+                  final String convertedDate = formatSecurityQuestionDate(
+                    value,
+                    format: 'dd-MM-yyyy',
+                  );
+
+                  securityQuestionsResponses[index] = SecurityQuestionResponse(
+                    userID: userID,
+                    securityQuestionID: question.securityQuestionID,
+                    response: convertedDate,
+                  );
+                } else {
+                  securityQuestionsResponses[index] = SecurityQuestionResponse(
+                    userID: userID,
+                    securityQuestionID: question.securityQuestionID,
+                    response: value.trim(),
+                  );
+                }
+              }
+
+              StoreProvider.dispatch<AppState>(
+                context,
+                UpdateOnboardingStateAction(
+                  securityQuestionsResponses: securityQuestionsResponses,
+                ),
+              );
+            },
+          );
+        },
+      );
+    }
   }
 }
