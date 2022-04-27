@@ -33,30 +33,34 @@ class MedicalDataWidget extends StatelessWidget {
                 medicalDataDetails[index]?.clinicalStatus?.text ?? UNKNOWN;
             final String valuesString =
                 medicalDataDetails[index]?.valueString ?? UNKNOWN;
-            return Column(
-              children: <Widget>[
-                if (medicalDataType == MedicalDataType.REGIMEN)
-                  MedicalDataItem(
-                    data: '$category - $medicationCodeableConcept',
-                  ),
-                if (medicalDataType == MedicalDataType.ALLERGIES)
-                  MedicalDataItem(
-                    data: clinicalStatusText,
-                    description: index == 0 ? mostRecentString : '',
-                  ),
-                if (medicalDataType == MedicalDataType.WEIGHT)
-                  MedicalDataItem(
-                    data: '$valuesString kg',
-                    description: index == 0 ? mostRecentString : '',
-                  ),
-                if (medicalDataType == MedicalDataType.VIRAL_LOAD ||
-                    medicalDataType == MedicalDataType.BMI ||
-                    medicalDataType == MedicalDataType.CD4COUNT)
-                  MedicalDataItem(
-                    data: valuesString,
-                    description: index == 0 ? mostRecentString : '',
-                  ),
-              ],
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
+                children: <Widget>[
+                  if (medicalDataType == MedicalDataType.REGIMEN)
+                    MedicalDataItem(
+                      data: '$category - $medicationCodeableConcept',
+                    ),
+                  if (medicalDataType == MedicalDataType.ALLERGIES)
+                    MedicalDataItem(
+                      data: clinicalStatusText,
+                      description: index == 0 ? mostRecentString : '',
+                    ),
+                  if (medicalDataType == MedicalDataType.WEIGHT)
+                    MedicalDataItem(
+                      data: '$valuesString kg',
+                      description: index == 0 ? mostRecentString : '',
+                    ),
+                  if (medicalDataType == MedicalDataType.VIRAL_LOAD ||
+                      medicalDataType == MedicalDataType.BMI ||
+                      medicalDataType == MedicalDataType.CD4COUNT)
+                    MedicalDataItem(
+                      data: valuesString,
+                      description: index == 0 ? mostRecentString : '',
+                    ),
+                  const SizedBox(height: 4),
+                ],
+              ),
             );
           },
         ),
