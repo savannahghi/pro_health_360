@@ -14,9 +14,9 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
           .toList(),
       counselled: json['counselled'] as bool? ?? false,
-      clientType:
-          $enumDecodeNullable(_$ClientTypeEnumMap, json['clientType']) ??
-              ClientType.UNKNOWN,
+      clientTypes: (json['clientTypes'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$ClientTypeEnumMap, e))
+          .toList(),
       facilityID: json['facilityID'] as String?,
       relatedPersons: (json['relatedPersons'] as List<dynamic>?)
           ?.map((e) => RelatedPerson.fromJson(e as Map<String, dynamic>))
@@ -81,7 +81,8 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'active': instance.active,
       'addresses': instance.addresses,
       'counselled': instance.counselled,
-      'clientType': _$ClientTypeEnumMap[instance.clientType],
+      'clientTypes':
+          instance.clientTypes?.map((e) => _$ClientTypeEnumMap[e]).toList(),
       'facilityID': instance.facilityID,
       'relatedPersons': instance.relatedPersons,
       'treatmentBuddy': instance.treatmentBuddy,

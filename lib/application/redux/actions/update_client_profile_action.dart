@@ -16,7 +16,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.isSignedIn,
     this.treatmentEnrollmentDate,
     this.counselled,
-    this.clientType,
+    this.clientTypes,
     this.facilityID,
     this.treatmentBuddy,
     this.facilityName,
@@ -35,7 +35,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
   final bool? isSignedIn;
   final String? treatmentEnrollmentDate;
   final bool? counselled;
-  final ClientType? clientType;
+  final List<ClientType>? clientTypes;
   final String? facilityID;
   final String? treatmentBuddy;
   final String? facilityName;
@@ -58,7 +58,7 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
             state.clientState?.lastMoodRecordedDate,
         treatmentEnrollmentDate: this.treatmentEnrollmentDate ??
             state.clientState!.treatmentEnrollmentDate,
-        clientType: this.clientType ?? state.clientState?.clientType,
+        clientTypes: this.clientTypes ?? state.clientState?.clientTypes,
         counselled: this.counselled ?? state.clientState?.counselled,
         facilityID: this.facilityID ?? state.clientState?.facilityID,
         treatmentBuddy:
