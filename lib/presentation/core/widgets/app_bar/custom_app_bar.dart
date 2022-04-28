@@ -61,6 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 title ?? '',
                 style:
                     boldSize16Text().copyWith(color: AppColors.secondaryColor),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             trailingWidget ??
