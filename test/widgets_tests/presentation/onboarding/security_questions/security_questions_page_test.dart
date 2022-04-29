@@ -37,8 +37,7 @@ void main() {
       json.encode(<String, dynamic>{
         'data': <String, dynamic>{
           'getSecurityQuestions': securityQuestionsMock,
-          'recordSecurityQuestionResponses':
-              mockRecordSecurityQuestionResponseData,
+          'recordSecurityQuestionResponses': recordSecurityQuestionReponseMock,
         },
       }),
       201,

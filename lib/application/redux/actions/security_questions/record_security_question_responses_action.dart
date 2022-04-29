@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
@@ -63,28 +62,32 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
 
     _client.close();
 
-    final Map<String, dynamic> responseMap =
-        json.decode(result.body) as Map<String, dynamic>;
-
-    if (_client.parseError(body) != null || responseMap['errors'] != null) {
+    if (_client.parseError(body) != null) {
       throw MyAfyaException(
         cause: recordSecurityQuestionsFlag,
         message: somethingWentWrongText,
       );
     }
 
-    dispatch(
-      UpdateOnboardingStateAction(
-        hasSetSecurityQuestions: true,
-      ),
+    final RecordSecurityQuestionResponsesData responseMap =
+        RecordSecurityQuestionResponsesData.fromJson(
+      body['data'] as Map<String, dynamic>,
     );
 
-    final String route = onboardingPath(appState: state).nextRoute;
+    if (responseMap.recordSecurityQuestionResponses.isNotEmpty) {
+      dispatch(
+        UpdateOnboardingStateAction(
+          hasSetSecurityQuestions: true,
+        ),
+      );
 
-    Navigator.pushReplacementNamed(
-      context,
-      route,
-    );
+      final String route = onboardingPath(appState: state).nextRoute;
+
+      Navigator.pushReplacementNamed(
+        context,
+        route,
+      );
+    }
 
     return state;
   }
