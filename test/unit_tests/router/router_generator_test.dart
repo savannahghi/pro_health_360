@@ -442,8 +442,10 @@ void main() {
   });
 
   test('Test router returns Successful entry page', () {
-    const RouteSettings settings =
-        RouteSettings(name: AppRoutes.successfulEntryPage);
+    const RouteSettings settings = RouteSettings(
+      name: AppRoutes.successfulEntryPage,
+      arguments: DiaryEntrySuccessType.created,
+    );
 
     final MaterialPageRoute<SuccessfulDiaryEntryPage> route =
         routeGenerator(settings) as MaterialPageRoute<SuccessfulDiaryEntryPage>;

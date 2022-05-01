@@ -110,7 +110,9 @@ class RouteGenerator {
 
       case AppRoutes.successfulEntryPage:
         return MaterialPageRoute<SuccessfulDiaryEntryPage>(
-          builder: (_) => const SuccessfulDiaryEntryPage(),
+          builder: (_) => SuccessfulDiaryEntryPage(
+            diaryEntrySuccessType: args as DiaryEntrySuccessType,
+          ),
         );
 
       case AppRoutes.editInformationPage:

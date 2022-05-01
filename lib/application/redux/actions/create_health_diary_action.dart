@@ -13,6 +13,7 @@ import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -95,7 +96,11 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
           canRecordMood: false,
         ),
       );
-      Navigator.popAndPushNamed(context, AppRoutes.successfulEntryPage);
+      Navigator.popAndPushNamed(
+        context,
+        AppRoutes.successfulEntryPage,
+        arguments: DiaryEntrySuccessType.created,
+      );
     }
 
     return state;

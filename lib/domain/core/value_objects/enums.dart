@@ -150,3 +150,7 @@ extension MedicalDataTypeEX on MedicalDataType {
     return '${describeEnum(this)[0].toUpperCase()}${describeEnum(this).replaceAll('_', ' ').substring(1).toLowerCase()}';
   }
 }
+
+// to render the success page
+// can either be created successfully or shared successfully
+enum DiaryEntrySuccessType { shared, created }

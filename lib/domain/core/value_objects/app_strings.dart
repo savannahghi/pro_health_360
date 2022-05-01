@@ -645,6 +645,7 @@ const String contentCategoriesErrorMessage = 'Something went wrong. Retry';
 const String homeString = 'Home';
 const String contentSavedSuccessfully = 'Content saved successfully';
 const String diaryEntrySuccessfulText = 'Diary entry added successfully';
+const String diaryEntrySharedSuccessfulText = 'Diary entry shared successfully';
 const String diaryEmptyTitle = 'Your diary is empty';
 const String diaryEmptyDescription =
     'No worries, let’s get you started. Tap the button below to make your first diary entry. You will be redirected to the home page';

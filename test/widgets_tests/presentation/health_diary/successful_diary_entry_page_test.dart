@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -29,7 +30,9 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: const SuccessfulDiaryEntryPage(),
+        widget: const SuccessfulDiaryEntryPage(
+          diaryEntrySuccessType: DiaryEntrySuccessType.created,
+        ),
         navigatorObservers: <NavigatorObserver>[observer],
       );
       await tester.pump();
