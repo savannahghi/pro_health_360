@@ -21,6 +21,7 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
   @override
   void before() {
     super.before();
+    dispatch(UpdateClientProfileAction(notifications: <NotificationDetails>[]));
     dispatch(WaitAction<AppState>.add(fetchNotificationsFlag));
   }
 
@@ -36,7 +37,7 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'userID': userID,
-      'flavour': Flavour.pro.name,
+      'flavour': Flavour.consumer.name,
       'paginationInput': <String, dynamic>{
         'Limit': 10,
         'CurrentPage': 1,

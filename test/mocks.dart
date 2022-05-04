@@ -1244,7 +1244,7 @@ Map<String, dynamic> mockNotificationActions = <String, dynamic>{
 Map<String, dynamic> mockNotification = <String, dynamic>{
   'description':
       'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
-  'date': 'July 21 2021',
+  'createdAt': '2022-04-28T07:00:20Z',
   'type': 'APPOINTMENT',
   'actions': <dynamic>[mockNotificationActions],
   'status': 'Missed'
@@ -1261,7 +1261,7 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
         'body':
             'Your Teleconsult with Dr Tibu for 11am has been set. Click this link to join ',
         'isRead': false,
-        'date': 'July 21 2021',
+        'createdAt': '2022-04-28T07:00:20Z',
         'actions': <dynamic>[mockNotificationActions],
         'status': 'Missed'
       },

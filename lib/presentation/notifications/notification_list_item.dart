@@ -21,6 +21,12 @@ class NotificationListItem extends StatelessWidget {
       notificationDetails?.type ?? NotificationType.UNKNOWN,
     );
 
+    final Widget date = humanizeDate(
+      dateTextStyle: normalSize12Text(AppColors.greyTextColor),
+      loadedDate: notificationDetails?.createdAt ?? '',
+      showTime: true,
+    );
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -46,14 +52,11 @@ class NotificationListItem extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 6),
               Text(
-                notificationDetails?.body ?? UNKNOWN,
+                notificationDetails?.body ?? '',
                 style: normalSize12Text(AppColors.secondaryColor),
               ),
               const SizedBox(height: 5),
-              Text(
-                notificationDetails?.createdAt ?? UNKNOWN,
-                style: normalSize12Text(Colors.grey),
-              ),
+              date,
               const SizedBox(height: 10),
               if (notificationDetails?.actions != null &&
                   notificationDetails!.actions!.isNotEmpty)
