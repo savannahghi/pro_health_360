@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/spaces.dart';
 
 // Project imports:
@@ -17,7 +18,9 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class SuccessfulDiaryEntryPage extends StatelessWidget {
-  const SuccessfulDiaryEntryPage({Key? key}) : super(key: key);
+  const SuccessfulDiaryEntryPage({required this.diaryEntrySuccessType});
+
+  final DiaryEntrySuccessType diaryEntrySuccessType;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,8 @@ class SuccessfulDiaryEntryPage extends StatelessWidget {
             builder: (BuildContext context, ClientProfileViewModel vm) {
               final String userName =
                   vm.clientState?.user?.firstName ?? UNKNOWN;
-              final bool hasSharedEntry = vm.clientState?.healthDiaryState?.shouldNotShareHealthRecord ??
+              final bool hasSharedEntry = vm.clientState?.healthDiaryState
+                      ?.shouldNotShareHealthRecord ??
                   false;
 
               return SingleChildScrollView(
@@ -45,10 +49,12 @@ class SuccessfulDiaryEntryPage extends StatelessWidget {
                       width: 286.0,
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      diaryEntrySuccessfulText,
+                    Text(
+                      diaryEntrySuccessType == DiaryEntrySuccessType.created
+                          ? diaryEntrySuccessfulText
+                          : diaryEntrySharedSuccessfulText,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
