@@ -23,6 +23,7 @@ import 'package:myafyahub/application/redux/actions/update_pin_input_details_act
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
@@ -41,6 +42,8 @@ import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
 import 'package:video_player/video_player.dart';
+
+import 'onboarding_utils.dart';
 
 Future<bool> onWillPopCallback() {
   return Future<bool>.value(false);
@@ -790,4 +793,17 @@ String getFeedBackValidationMessage({
   } else {
     return 'Please share your thoughts';
   }
+}
+
+bool resumeWithPIN(AppState appState) {
+  final bool isSignedIn = appState.credentials?.isSignedIn ?? false;
+
+  final String inactiveTime = appState.miscState?.inactiveTime ?? UNKNOWN;
+  final int timeDifference = inactiveTime == UNKNOWN
+      ? 0
+      : DateTime.now().difference(DateTime.parse(inactiveTime)).inMinutes;
+  final OnboardingPathInfo route = onboardingPath(appState: appState);
+  return isSignedIn &&
+      route.nextRoute.compareTo(AppRoutes.home) == 0 &&
+      timeDifference > 1;
 }

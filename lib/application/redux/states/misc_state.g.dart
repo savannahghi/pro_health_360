@@ -36,6 +36,8 @@ _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
           ? null
           : AppointmentState.fromJson(
               json['fetchClientAppointments'] as Map<String, dynamic>),
+      inactiveTime: json['inactiveTime'] as String?,
+      resumeWithPin: json['resumeWithPin'] as bool?,
     );
 
 Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
@@ -53,4 +55,6 @@ Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
       'channelMembersState': instance.channelMembersState,
       'screeningToolsState': instance.screeningToolsState,
       'fetchClientAppointments': instance.appointmentState,
+      'inactiveTime': instance.inactiveTime,
+      'resumeWithPin': instance.resumeWithPin,
     };

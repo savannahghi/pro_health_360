@@ -30,6 +30,8 @@ class MiscState with _$MiscState {
     ScreeningToolsState? screeningToolsState,
     @JsonKey(name: 'fetchClientAppointments')
         AppointmentState? appointmentState,
+    String? inactiveTime,
+    bool? resumeWithPin,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -49,5 +51,7 @@ class MiscState with _$MiscState {
         channelMembersState: ChannelMembersState(),
         appointmentState: AppointmentState.initial(),
         screeningToolsState: ScreeningToolsState.initial(),
+        inactiveTime: UNKNOWN,
+        resumeWithPin: false,
       );
 }

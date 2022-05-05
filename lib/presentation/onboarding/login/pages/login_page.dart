@@ -183,10 +183,8 @@ class _LoginPageState extends State<LoginPage> {
                         formKey: _formKey,
                         phone: phoneNumber,
                       ),
-                      const SizedBox(
-                        height: 70,
-                      ),
                     ],
+                    size70VerticalSizedBox,
                   ],
                 ),
               ),

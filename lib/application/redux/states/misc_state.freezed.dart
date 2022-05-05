@@ -37,7 +37,9 @@ class _$MiscStateTearOff {
       ChannelMembersState? channelMembersState,
       ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
-          AppointmentState? appointmentState}) {
+          AppointmentState? appointmentState,
+      String? inactiveTime,
+      bool? resumeWithPin}) {
     return _MiscState(
       initialRoute: initialRoute,
       userPin: userPin,
@@ -52,6 +54,8 @@ class _$MiscStateTearOff {
       channelMembersState: channelMembersState,
       screeningToolsState: screeningToolsState,
       appointmentState: appointmentState,
+      inactiveTime: inactiveTime,
+      resumeWithPin: resumeWithPin,
     );
   }
 
@@ -83,6 +87,8 @@ mixin _$MiscState {
       throw _privateConstructorUsedError;
   @JsonKey(name: 'fetchClientAppointments')
   AppointmentState? get appointmentState => throw _privateConstructorUsedError;
+  String? get inactiveTime => throw _privateConstructorUsedError;
+  bool? get resumeWithPin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -109,7 +115,9 @@ abstract class $MiscStateCopyWith<$Res> {
       ChannelMembersState? channelMembersState,
       ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
-          AppointmentState? appointmentState});
+          AppointmentState? appointmentState,
+      String? inactiveTime,
+      bool? resumeWithPin});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   $GroupStateCopyWith<$Res>? get groupState;
@@ -141,6 +149,8 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? channelMembersState = freezed,
     Object? screeningToolsState = freezed,
     Object? appointmentState = freezed,
+    Object? inactiveTime = freezed,
+    Object? resumeWithPin = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -195,6 +205,14 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.appointmentState
           : appointmentState // ignore: cast_nullable_to_non_nullable
               as AppointmentState?,
+      inactiveTime: inactiveTime == freezed
+          ? _value.inactiveTime
+          : inactiveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resumeWithPin: resumeWithPin == freezed
+          ? _value.resumeWithPin
+          : resumeWithPin // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -278,7 +296,9 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
       ChannelMembersState? channelMembersState,
       ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
-          AppointmentState? appointmentState});
+          AppointmentState? appointmentState,
+      String? inactiveTime,
+      bool? resumeWithPin});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
@@ -316,6 +336,8 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? channelMembersState = freezed,
     Object? screeningToolsState = freezed,
     Object? appointmentState = freezed,
+    Object? inactiveTime = freezed,
+    Object? resumeWithPin = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -370,6 +392,14 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.appointmentState
           : appointmentState // ignore: cast_nullable_to_non_nullable
               as AppointmentState?,
+      inactiveTime: inactiveTime == freezed
+          ? _value.inactiveTime
+          : inactiveTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resumeWithPin: resumeWithPin == freezed
+          ? _value.resumeWithPin
+          : resumeWithPin // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -390,7 +420,9 @@ class _$_MiscState implements _MiscState {
       this.groupState,
       this.channelMembersState,
       this.screeningToolsState,
-      @JsonKey(name: 'fetchClientAppointments') this.appointmentState});
+      @JsonKey(name: 'fetchClientAppointments') this.appointmentState,
+      this.inactiveTime,
+      this.resumeWithPin});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -423,10 +455,14 @@ class _$_MiscState implements _MiscState {
   @override
   @JsonKey(name: 'fetchClientAppointments')
   final AppointmentState? appointmentState;
+  @override
+  final String? inactiveTime;
+  @override
+  final bool? resumeWithPin;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, screeningToolsState: $screeningToolsState, appointmentState: $appointmentState)';
+    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, screeningToolsState: $screeningToolsState, appointmentState: $appointmentState, inactiveTime: $inactiveTime, resumeWithPin: $resumeWithPin)';
   }
 
   @override
@@ -458,7 +494,11 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.screeningToolsState, screeningToolsState) &&
             const DeepCollectionEquality()
-                .equals(other.appointmentState, appointmentState));
+                .equals(other.appointmentState, appointmentState) &&
+            const DeepCollectionEquality()
+                .equals(other.inactiveTime, inactiveTime) &&
+            const DeepCollectionEquality()
+                .equals(other.resumeWithPin, resumeWithPin));
   }
 
   @override
@@ -476,7 +516,9 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(groupState),
       const DeepCollectionEquality().hash(channelMembersState),
       const DeepCollectionEquality().hash(screeningToolsState),
-      const DeepCollectionEquality().hash(appointmentState));
+      const DeepCollectionEquality().hash(appointmentState),
+      const DeepCollectionEquality().hash(inactiveTime),
+      const DeepCollectionEquality().hash(resumeWithPin));
 
   @JsonKey(ignore: true)
   @override
@@ -505,7 +547,9 @@ abstract class _MiscState implements MiscState {
       ChannelMembersState? channelMembersState,
       ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
-          AppointmentState? appointmentState}) = _$_MiscState;
+          AppointmentState? appointmentState,
+      String? inactiveTime,
+      bool? resumeWithPin}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -538,6 +582,10 @@ abstract class _MiscState implements MiscState {
   @override
   @JsonKey(name: 'fetchClientAppointments')
   AppointmentState? get appointmentState;
+  @override
+  String? get inactiveTime;
+  @override
+  bool? get resumeWithPin;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>
