@@ -63,6 +63,7 @@ class HealthDiaryEntryWidget extends StatelessWidget {
             ? const EdgeInsets.symmetric(vertical: 6, horizontal: 10)
             : const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
