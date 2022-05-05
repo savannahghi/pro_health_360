@@ -32,9 +32,11 @@ class MedicalDataItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(
-                data,
-                style: normalSize14Text(AppColors.greyTextColor),
+              Flexible(
+                child: Text(
+                  data,
+                  style: normalSize14Text(AppColors.greyTextColor),
+                ),
               ),
               if (description != null)
                 Text(
