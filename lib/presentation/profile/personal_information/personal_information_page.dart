@@ -19,7 +19,6 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import 'package:myafyahub/presentation/core/widgets/personal_information_secondary_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/personal_information_widget.dart';
 import 'package:myafyahub/presentation/profile/widgets/edit_info_button_widget.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class PersonalInformationPage extends StatelessWidget {
@@ -111,8 +110,13 @@ class PersonalInformationPage extends StatelessWidget {
                             for (final EditInformationInputItem element
                                 in editInformationItem
                                     .editInformationInputItem) {
-                              variables[element.apiFieldValue] =
-                                  element.inputController.text;
+                              if (element.inputController.text.isNotEmpty) {
+                                variables[element.apiFieldValue] =
+                                    element.inputController.text;
+                              } else {
+                                variables[element.apiFieldValue] =
+                                    element.hintText;
+                              }
                             }
 
                             final CaregiverInformation info =
@@ -125,9 +129,7 @@ class PersonalInformationPage extends StatelessWidget {
                                 client:
                                     AppWrapperBase.of(context)!.graphQLClient,
                                 onSuccess: () {
-                                  Navigator.of(context).pushReplacementNamed(
-                                    AppRoutes.personalInfo,
-                                  );
+                                  Navigator.of(context).pop();
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text(caregiverInfoSavedSuccess),
