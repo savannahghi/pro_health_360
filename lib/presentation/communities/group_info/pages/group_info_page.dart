@@ -9,18 +9,18 @@ import 'package:myafyahub/application/redux/actions/communities/fetch_channel_me
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/groups/groups_view_model.dart';
-import 'package:myafyahub/domain/core/entities/communities/group_member.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/communities/group_info/widgets/group_member_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:shared_themes/spaces.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+
+import 'group_member_connector.dart';
 
 class GroupInfoPage extends StatefulWidget {
-  const GroupInfoPage({required this.channelId, required this.channelName});
+  const GroupInfoPage({required this.channelName});
 
-  final String channelId;
   final String channelName;
 
   @override
@@ -33,12 +33,13 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     super.didChangeDependencies();
 
     final IGraphQlClient httpClient = AppWrapperBase.of(context)!.graphQLClient;
+    final Channel channel = StreamChannel.of(context).channel;
 
     StoreProvider.dispatch(
       context,
       FetchChannelMembersAction(
         httpClient: httpClient,
-        channelId: widget.channelId,
+        channelId: channel.id!,
         onError: (_) {
           showTextSnackbar(
             ScaffoldMessenger.of(context),
@@ -51,6 +52,9 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Channel channel = StreamChannel.of(context).channel;
+    final String channelName = widget.channelName;
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: groupInfoText,
@@ -119,6 +123,18 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                         return const GenericErrorWidget(recoverCallback: null);
                       }
 
+                      final List<Role>? clientRoles = vm.clientRoles;
+
+                      final List<Role>? communityRoles = clientRoles
+                          ?.where(
+                            (Role role) =>
+                                role.name == RoleValue.COMMUNITY_MANAGEMENT,
+                          )
+                          .toList();
+
+                      final bool canModerate =
+                          communityRoles != null && communityRoles.isNotEmpty;
+
                       return ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
@@ -127,11 +143,25 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                           final GroupMember member = members[index]!;
 
                           final bool isModerator = member.isModerator;
+                          final bool isBanned =
+                              member.memberDetails?.extraData?.isBanned ??
+                                  false;
 
-                          return GroupMemberItem(
+                          return GroupMemberConnector(
+                            itemKey: ValueKey<int>(index),
                             userName: member.memberDetails?.username ?? UNKNOWN,
                             memberID: member.memberDetails?.id ?? '',
+                            communityId: channel.id!,
+                            communityName: channelName,
                             isModerator: isModerator,
+                            canModerate: canModerate,
+                            isBanned: isBanned,
+                            onError: (String errorMessage) {
+                              showTextSnackbar(
+                                ScaffoldMessenger.of(context),
+                                content: errorMessage,
+                              );
+                            },
                           );
                         },
                       );

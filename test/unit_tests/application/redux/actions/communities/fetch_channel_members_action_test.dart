@@ -9,9 +9,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/communities/fetch_channel_members_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/communities/ban_status.dart';
-import 'package:myafyahub/domain/core/entities/communities/group_member.dart';
-import 'package:myafyahub/domain/core/entities/communities/member.dart';
 
 import '../../../../../mocks.dart';
 import 'fetch_channel_members_action_test.mocks.dart';
@@ -69,7 +66,7 @@ void main() {
             role: 'user',
             username: 'John',
             gender: Gender.male,
-            extraData: ExtraData(bannedInCommunity: false),
+            extraData: ExtraData(isBanned: false),
           ),
         ),
       );

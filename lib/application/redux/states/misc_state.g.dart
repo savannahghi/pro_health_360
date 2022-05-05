@@ -8,9 +8,6 @@ part of 'misc_state.dart';
 
 _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
       initialRoute: json['initialRoute'] as String? ?? '/phoneLogin',
-      userPin: json['userPin'] == null
-          ? null
-          : UserPin.fromJson(json['userPin'] as Map<String, dynamic>),
       libraryListItems: json['libraryListItems'] as List<dynamic>?,
       profileFAQsContentState: json['profileFAQsContentState'] == null
           ? null
@@ -43,7 +40,6 @@ _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
 Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
     <String, dynamic>{
       'initialRoute': instance.initialRoute,
-      'userPin': instance.userPin,
       'libraryListItems': instance.libraryListItems,
       'profileFAQsContentState': instance.profileFAQsContentState,
       'healthPagePINInputTime': instance.healthPagePINInputTime,

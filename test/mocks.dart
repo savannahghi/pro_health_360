@@ -2309,6 +2309,25 @@ final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{
   ]
 };
 
+final Map<String, dynamic> groupStateMock = <String, dynamic>{
+  'listCommunityMembers': <dynamic>[
+    <String, dynamic>{
+      'user': <String, dynamic>{
+        'id': UNKNOWN,
+        'userID': UNKNOWN,
+        'name': UNKNOWN,
+        'role': UNKNOWN,
+        'username': UNKNOWN,
+        'gender': 'unknown',
+        'extraData': <String, dynamic>{
+          'bannedInCommunity': false,
+        }
+      },
+      'isModerator': true,
+    },
+  ],
+};
+
 final MockFirebaseMessaging kMockMessagingPlatform = MockFirebaseMessaging();
 
 void setupFirebaseMessagingMocks() {

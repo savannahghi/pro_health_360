@@ -6,7 +6,6 @@ import 'package:myafyahub/application/redux/states/screening_tools_state.dart';
 import 'package:myafyahub/domain/core/entities/appointments/appointments_state.dart';
 import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/entities/login/user_pin.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'communities/channel_members_state.dart';
 
@@ -17,7 +16,6 @@ part 'misc_state.g.dart';
 class MiscState with _$MiscState {
   factory MiscState({
     @JsonKey(defaultValue: AppRoutes.phoneLogin) required String initialRoute,
-    UserPin? userPin,
     List<dynamic>? libraryListItems,
     FAQsContentState? profileFAQsContentState,
     String? healthPagePINInputTime,
@@ -39,7 +37,6 @@ class MiscState with _$MiscState {
 
   factory MiscState.initial() => MiscState(
         initialRoute: AppRoutes.phoneLogin,
-        userPin: UserPin(),
         libraryListItems: <dynamic>[],
         profileFAQsContentState: FAQsContentState.initial(),
         healthPagePINInputTime: UNKNOWN,

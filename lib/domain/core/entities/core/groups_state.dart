@@ -1,7 +1,7 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
-import 'package:myafyahub/domain/core/entities/communities/group_member.dart';
 
 part 'groups_state.freezed.dart';
 part 'groups_state.g.dart';
@@ -18,5 +18,6 @@ class GroupState with _$GroupState {
 
   factory GroupState.initial() => GroupState(
         recommendedGroups: <Group?>[],
+        groupMembers: <GroupMember>[],
       );
 }

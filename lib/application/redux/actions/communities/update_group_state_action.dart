@@ -1,7 +1,7 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
-import 'package:myafyahub/domain/core/entities/communities/group_member.dart';
 import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 
 class UpdateGroupStateAction extends ReduxAction<AppState> {
@@ -14,7 +14,7 @@ class UpdateGroupStateAction extends ReduxAction<AppState> {
   });
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final GroupState? groupState = state.miscState?.groupState?.copyWith(
       recommendedGroups:
           recommendedGroups ?? state.miscState?.groupState?.recommendedGroups,

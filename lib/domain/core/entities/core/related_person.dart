@@ -4,7 +4,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/core/address.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -23,7 +22,7 @@ class RelatedPerson with _$RelatedPerson {
       name: 'relationshipType',
       defaultValue: RelationshipType.UNKNOWN,
     )
-    RelationshipType? relationshipType,
+        RelationshipType? relationshipType,
     @JsonKey(name: 'firstName')
         String? firstName,
     @JsonKey(name: 'lastName')

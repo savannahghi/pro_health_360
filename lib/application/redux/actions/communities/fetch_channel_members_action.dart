@@ -6,7 +6,6 @@ import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/communities/update_group_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/communities/group_member.dart';
 import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 

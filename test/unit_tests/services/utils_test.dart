@@ -13,6 +13,7 @@ import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/client_state.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -100,6 +101,7 @@ void main() {
       expect(getMoodColor('Other').color, AppColors.secondaryColor);
       expect(getMoodColor(null).color, AppColors.secondaryColor);
     });
+
     test('getFeedBackValidationMessage should return the various messages', () {
       expect(
         getFeedBackValidationMessage(
@@ -154,5 +156,35 @@ void main() {
       expect(resumeWithPIN(AppState.initial()), false);
       expect(resumeWithPIN(AppState.initial()), false);
     });
+  });
+
+  test('userBannedMessage should return the correct message', () {
+    expect(userBannedMessage(), 'User banned successfully');
+    expect(
+      userBannedMessage(userName: 'test', communityName: 'test'),
+      'You have banned test from test',
+    );
+    expect(userBannedMessage(userName: 'test'), 'You have banned test');
+    expect(
+      userBannedMessage(
+        isBanned: true,
+      ),
+      'User unbanned successfully',
+    );
+    expect(
+      userBannedMessage(
+        userName: 'test',
+        communityName: 'test',
+        isBanned: true,
+      ),
+      'You have unbanned test from test',
+    );
+    expect(
+      userBannedMessage(
+        userName: 'test',
+        isBanned: true,
+      ),
+      'You have unbanned test',
+    );
   });
 }

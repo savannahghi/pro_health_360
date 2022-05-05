@@ -1,9 +1,5 @@
-// Package imports:
-
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-// Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
 
 part 'user.freezed.dart';
@@ -46,6 +42,7 @@ class User with _$User {
         bool? pinUpdateRequired,
     @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,
     String? chatRoomToken,
+    @JsonKey(name: 'roles') List<Role>? roles,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -72,5 +69,6 @@ class User with _$User {
         hasSetSecurityQuestions: false,
         isPhoneVerified: false,
         suspended: false,
+        roles: <Role>[],
       );
 }

@@ -54,12 +54,17 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
 
       final String? name = state.clientState?.user?.name;
       final String? username = state.clientState?.user?.username;
+      final String? userId = state.clientState?.user?.userId;
 
       await streamClient.connectUserWithProvider(
         stream.User(
           id: clientId,
           name: name,
-          extraData: <String, dynamic>{'username': username},
+          extraData: <String, dynamic>{
+            'username': username,
+            'userType': 'CLIENT',
+            'userID': userId,
+          },
         ),
         streamTokenProvider.tokenProvider,
       );

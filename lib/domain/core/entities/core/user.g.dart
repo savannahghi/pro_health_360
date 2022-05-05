@@ -36,6 +36,9 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       pinUpdateRequired: json['pinUpdateRequired'] as bool? ?? false,
       suspended: json['suspended'] as bool? ?? false,
       chatRoomToken: json['chatRoomToken'] as String?,
+      roles: (json['roles'] as List<dynamic>?)
+          ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -60,4 +63,5 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'pinUpdateRequired': instance.pinUpdateRequired,
       'suspended': instance.suspended,
       'chatRoomToken': instance.chatRoomToken,
+      'roles': instance.roles,
     };

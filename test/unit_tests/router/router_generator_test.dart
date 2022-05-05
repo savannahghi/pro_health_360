@@ -12,7 +12,6 @@ import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
-import 'package:myafyahub/presentation/communities/chat_screen/pages/community_chat_screen_page.dart';
 import 'package:myafyahub/presentation/communities/community_list_page.dart';
 import 'package:myafyahub/presentation/communities/invited_groups/pages/accept_group_invites_page.dart';
 import 'package:myafyahub/presentation/communities/invited_groups/pages/invited_groups_page.dart';
@@ -229,22 +228,6 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<CommunityListViewPage>;
     expect(route, isA<MaterialPageRoute<CommunityListViewPage>>());
     expect(route.builder(context), isA<CommunityListViewPage>());
-  });
-
-  test('Test router returns CommunityChatScreenPage', () {
-    const RouteSettings settings = RouteSettings(
-      name: AppRoutes.communityChatScreenPage,
-      arguments: CommunityListItem(
-        title: 'title',
-        message: 'message',
-        lastMessageDate: 'lastMessageDate',
-      ),
-    );
-
-    final MaterialPageRoute<CommunityChatScreenPage> route =
-        routeGenerator(settings) as MaterialPageRoute<CommunityChatScreenPage>;
-    expect(route, isA<MaterialPageRoute<CommunityChatScreenPage>>());
-    expect(route.builder(context), isA<CommunityChatScreenPage>());
   });
 
   test('Test router returns  FeedPage', () {

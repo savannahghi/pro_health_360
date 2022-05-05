@@ -183,3 +183,27 @@ mutation setPushToken($token: String!){
   setPushToken(token: $token)
 }
 ''';
+
+const String removeFromGroupMutation = r'''
+mutation removeMembersFromCommunity($communityID: String!, $memberIDs: [String!]!){
+  removeMembersFromCommunity(communityID: $communityID, memberIDs: $memberIDs)
+}
+''';
+
+const String promoteToModeratorMutation = r'''
+mutation addModerators($memberIDs: [String!]!, $communityID: String!){
+  addModerators(memberIDs: $memberIDs, communityID: $communityID)
+}
+''';
+
+const String banUserMutation = r'''
+mutation BanUser($memberID: String!, $bannedBy: String!, $communityID: String!){
+  banUser(MemberID: $memberID, bannedBy: $bannedBy, communityID: $communityID)
+}
+''';
+
+const String unBanUserMutation = r'''
+mutation UnBanUser($memberID: String!, $communityID: String!){
+  unBanUser(memberID: $memberID, communityID: $communityID)
+}
+''';

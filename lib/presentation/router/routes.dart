@@ -45,9 +45,6 @@ class AppRoutes {
   // community
   static const String communityListPage = '/communityListView';
 
-  // community chat screen
-  static const String communityChatScreenPage = '/CommunityChatScreenPage';
-
   // Answer Security Question
   static const String answerSecurityQuestionPage =
       '/answerSecurityQuestionPage';

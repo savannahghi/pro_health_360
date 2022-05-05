@@ -39,10 +39,7 @@ class ChannelPage extends StatelessWidget {
                 MaterialPageRoute<Route<dynamic>>(
                   builder: (_) => StreamChannel(
                     channel: channel,
-                    child: GroupInfoPage(
-                      channelId: channel.id!,
-                      channelName: channelName,
-                    ),
+                    child: GroupInfoPage(channelName: channelName),
                   ),
                 ),
               );

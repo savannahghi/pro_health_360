@@ -782,8 +782,27 @@ const String communitiesRejectionSuccessful = 'Invite rejection successful';
 const String errorFetchingInvitesText = 'Error fetching group invites';
 
 const String addingToGroupString = 'adding you to the group';
-
+const String removedFromGroup = 'removed from the group successfully';
+const String unableToRemove = 'was not removed from group due to an error';
+const String errorPromotingAdminText = 'Error promoting user to admin';
 const String groupTitle = 'Ruaraka Group';
+
+String userBannedMessage({
+  bool isBanned = false,
+  String? userName,
+  String? communityName,
+}) {
+  if (userName != null &&
+      userName.isNotEmpty &&
+      communityName != null &&
+      communityName.isNotEmpty) {
+    return 'You have ${isBanned ? 'unbanned' : 'banned'} $userName from $communityName';
+  } else if (userName != null && userName.isNotEmpty) {
+    return 'You have ${isBanned ? 'unbanned' : 'banned'} $userName';
+  } else {
+    return 'User ${isBanned ? 'unbanned' : 'banned'} successfully';
+  }
+}
 
 const String groupMembersText = 'Group Members';
 const String inviteMembers = 'Invite Members';

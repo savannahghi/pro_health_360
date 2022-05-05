@@ -81,8 +81,12 @@ const String fetchInvitedCommunitiesFlag = 'fetch_invited_communities_flag';
 const String fetchRecommendedCommunitiesFlag =
     'fetch_recommended_communities_flag';
 const String addUserToCommunityFlag = 'add_user_community_flag';
-
 const String fetchMembersFlag = 'fetch_members_flag';
+const String removeFromGroupFlag = 'remove_from group_flag';
+const String promoteToAdminFlag = 'promote_to_admin_flag';
+const String banUserFlag = 'ban_user_flag';
+const String unBanUserFlag = 'unban_user_flag';
+const String fetchGroupMembersFlag = 'fetch_group_members_flag';
 
 // resume with pin
 const String resumeWithPinFlag = 'resume_with_pin';

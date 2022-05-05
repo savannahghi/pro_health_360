@@ -25,7 +25,6 @@ class _$MiscStateTearOff {
   _MiscState call(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
           required String initialRoute,
-      UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
@@ -42,7 +41,6 @@ class _$MiscStateTearOff {
       bool? resumeWithPin}) {
     return _MiscState(
       initialRoute: initialRoute,
-      userPin: userPin,
       libraryListItems: libraryListItems,
       profileFAQsContentState: profileFAQsContentState,
       healthPagePINInputTime: healthPagePINInputTime,
@@ -71,7 +69,6 @@ const $MiscState = _$MiscStateTearOff();
 mixin _$MiscState {
   @JsonKey(defaultValue: AppRoutes.phoneLogin)
   String get initialRoute => throw _privateConstructorUsedError;
-  UserPin? get userPin => throw _privateConstructorUsedError;
   List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   FAQsContentState? get profileFAQsContentState =>
       throw _privateConstructorUsedError;
@@ -103,7 +100,6 @@ abstract class $MiscStateCopyWith<$Res> {
   $Res call(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
           String initialRoute,
-      UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
@@ -137,7 +133,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
   @override
   $Res call({
     Object? initialRoute = freezed,
-    Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? profileFAQsContentState = freezed,
     Object? healthPagePINInputTime = freezed,
@@ -157,10 +152,6 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      userPin: userPin == freezed
-          ? _value.userPin
-          : userPin // ignore: cast_nullable_to_non_nullable
-              as UserPin?,
       libraryListItems: libraryListItems == freezed
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
@@ -284,7 +275,6 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
   $Res call(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
           String initialRoute,
-      UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
@@ -324,7 +314,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? initialRoute = freezed,
-    Object? userPin = freezed,
     Object? libraryListItems = freezed,
     Object? profileFAQsContentState = freezed,
     Object? healthPagePINInputTime = freezed,
@@ -344,10 +333,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
               as String,
-      userPin: userPin == freezed
-          ? _value.userPin
-          : userPin // ignore: cast_nullable_to_non_nullable
-              as UserPin?,
       libraryListItems: libraryListItems == freezed
           ? _value.libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
@@ -409,7 +394,6 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 class _$_MiscState implements _MiscState {
   _$_MiscState(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin) required this.initialRoute,
-      this.userPin,
       this.libraryListItems,
       this.profileFAQsContentState,
       this.healthPagePINInputTime,
@@ -430,8 +414,6 @@ class _$_MiscState implements _MiscState {
   @override
   @JsonKey(defaultValue: AppRoutes.phoneLogin)
   final String initialRoute;
-  @override
-  final UserPin? userPin;
   @override
   final List<dynamic>? libraryListItems;
   @override
@@ -462,7 +444,7 @@ class _$_MiscState implements _MiscState {
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, userPin: $userPin, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, screeningToolsState: $screeningToolsState, appointmentState: $appointmentState, inactiveTime: $inactiveTime, resumeWithPin: $resumeWithPin)';
+    return 'MiscState(initialRoute: $initialRoute, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, screeningToolsState: $screeningToolsState, appointmentState: $appointmentState, inactiveTime: $inactiveTime, resumeWithPin: $resumeWithPin)';
   }
 
   @override
@@ -472,7 +454,6 @@ class _$_MiscState implements _MiscState {
             other is _MiscState &&
             const DeepCollectionEquality()
                 .equals(other.initialRoute, initialRoute) &&
-            const DeepCollectionEquality().equals(other.userPin, userPin) &&
             const DeepCollectionEquality()
                 .equals(other.libraryListItems, libraryListItems) &&
             const DeepCollectionEquality().equals(
@@ -505,7 +486,6 @@ class _$_MiscState implements _MiscState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(initialRoute),
-      const DeepCollectionEquality().hash(userPin),
       const DeepCollectionEquality().hash(libraryListItems),
       const DeepCollectionEquality().hash(profileFAQsContentState),
       const DeepCollectionEquality().hash(healthPagePINInputTime),
@@ -535,7 +515,6 @@ abstract class _MiscState implements MiscState {
   factory _MiscState(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
           required String initialRoute,
-      UserPin? userPin,
       List<dynamic>? libraryListItems,
       FAQsContentState? profileFAQsContentState,
       String? healthPagePINInputTime,
@@ -557,8 +536,6 @@ abstract class _MiscState implements MiscState {
   @override
   @JsonKey(defaultValue: AppRoutes.phoneLogin)
   String get initialRoute;
-  @override
-  UserPin? get userPin;
   @override
   List<dynamic>? get libraryListItems;
   @override
