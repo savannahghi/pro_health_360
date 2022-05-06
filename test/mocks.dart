@@ -466,6 +466,19 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     Map<String, dynamic> variables, [
     ContentType contentType = ContentType.json,
   ]) {
+    if (queryString.contains(patientTimelineQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': mockHealthTimelineItems,
+            },
+          ),
+          200,
+        ),
+      );
+    }
+
     if (json.encode(variables) == sendOTPTesterVariables) {
       return Future<http.Response>.value(
         http.Response(

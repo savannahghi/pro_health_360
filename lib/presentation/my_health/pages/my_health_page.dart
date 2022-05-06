@@ -23,12 +23,15 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/my_health/widgets/profile_health_details_widget.dart';
+import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 class MyHealthPage extends StatefulWidget {
   const MyHealthPage({this.graphQlClient});
+
   final IGraphQlClient? graphQlClient;
+
   @override
   State<MyHealthPage> createState() => _MyHealthPageState();
 }
@@ -285,33 +288,16 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         ),
                       ),
                       smallHorizontalSizedBox,
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(AppRoutes.myHealthTimeline),
-                          child: InformationListCard(
-                            title: Text(
-                              healthTimelineText,
-                              style: normalSize12Text(AppColors.greyTextColor),
-                            ),
-                            alternateLeadingIcon: Container(
-                              padding: const EdgeInsets.all(18),
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryColor.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: SvgPicture.asset(
-                                medicalDataIcon,
-                                width: 20,
-                                height: 20,
-                                color: AppColors.primaryColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
                     ],
                   ),
+                  MyHealthTimeline(
+                    graphQlClient: getCustomClient(),
+                    showMore: true,
+                    showMoreCallback: () {
+                      Navigator.of(context)
+                          .pushNamed(AppRoutes.myHealthTimeline);
+                    },
+                  )
                 ],
               ),
             ),
@@ -319,5 +305,31 @@ class _MyHealthPageState extends State<MyHealthPage> {
         },
       ),
     );
+  }
+
+  IGraphQlClient getCustomClient() {
+    if (widget.graphQlClient != null) {
+      return widget.graphQlClient!;
+    } else {
+      final List<AppContext> contexts = AppWrapperBase.of(context)!.appContexts;
+      final AppSetupData appSetupData = getAppSetupData(contexts.last);
+      final String graphqlEndpoint = appSetupData.clinicalEndpoint;
+      final String refreshTokenEndpoint =
+          appSetupData.customContext?.refreshTokenEndpoint ?? '';
+
+      final String idToken =
+          StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
+      final String userID =
+          StoreProvider.state<AppState>(context)?.clientState?.user?.userId ??
+              '';
+
+      return CustomClient(
+        idToken,
+        graphqlEndpoint,
+        context: context,
+        refreshTokenEndpoint: refreshTokenEndpoint,
+        userID: userID,
+      );
+    }
   }
 }

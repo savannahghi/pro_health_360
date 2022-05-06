@@ -7,10 +7,14 @@ class TimelinePaginationControls extends StatelessWidget {
     Key? key,
     required this.lowerBound,
     required this.upperBound,
+    required this.prevPageAction,
+    required this.nextPageAction,
   }) : super(key: key);
 
   final String lowerBound;
   final String upperBound;
+  final VoidCallback? prevPageAction;
+  final VoidCallback? nextPageAction;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +32,12 @@ class TimelinePaginationControls extends StatelessWidget {
                 color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
+              child: IconButton(
+                onPressed: prevPageAction,
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
               ),
             ),
             Container(
@@ -68,9 +75,12 @@ class TimelinePaginationControls extends StatelessWidget {
                 color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.white,
+              child: IconButton(
+                onPressed: nextPageAction,
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],

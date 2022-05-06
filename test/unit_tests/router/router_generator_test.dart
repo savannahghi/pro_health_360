@@ -47,7 +47,7 @@ import 'package:myafyahub/presentation/profile/consent/consent_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
-import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
+import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline_container.dart';
 import 'package:myafyahub/presentation/profile/medical_data/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
@@ -646,11 +646,12 @@ void main() {
     const RouteSettings settings =
         RouteSettings(name: AppRoutes.myHealthTimeline);
 
-    final MaterialPageRoute<MyHealthTimeline>? route =
-        routeGenerator(settings) as MaterialPageRoute<MyHealthTimeline>?;
+    final MaterialPageRoute<MyHealthTimelineContainer>? route =
+        routeGenerator(settings)
+            as MaterialPageRoute<MyHealthTimelineContainer>?;
 
-    expect(route, isA<MaterialPageRoute<MyHealthTimeline>>());
-    expect(route?.builder(context), isA<MyHealthTimeline>());
+    expect(route, isA<MaterialPageRoute<MyHealthTimelineContainer>>());
+    expect(route?.builder(context), isA<MyHealthTimelineContainer>());
   });
 
   test('Test router returns survey page', () {

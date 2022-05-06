@@ -45,7 +45,7 @@ import 'package:myafyahub/presentation/profile/consent/consent_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
-import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
+import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline_container.dart';
 import 'package:myafyahub/presentation/profile/medical_data/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
@@ -355,8 +355,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.myHealthTimeline:
-        return MaterialPageRoute<MyHealthTimeline>(
-          builder: (_) => const MyHealthTimeline(),
+        return MaterialPageRoute<MyHealthTimelineContainer>(
+          builder: (_) => const MyHealthTimelineContainer(),
         );
 
       case AppRoutes.surveysPage:

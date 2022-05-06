@@ -79,8 +79,10 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
         }
       }
 
-      final HealthTimelineState newState =
-          HealthTimelineState(healthTimelineItems: items);
+      final HealthTimelineState newState = HealthTimelineState(
+        healthTimelineItems: items,
+        offset: state.clientState?.healthTimelineState?.offset ?? 0,
+      );
 
       final AppState appState = state.copyWith(
         clientState: state.clientState?.copyWith(healthTimelineState: newState),

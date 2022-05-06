@@ -14,6 +14,7 @@ import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.d
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
+import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline_container.dart';
 import 'package:myafyahub/presentation/profile/medical_data/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 
@@ -141,13 +142,18 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: const MyHealthPage(),
+        widget: MyHealthPage(graphQlClient: MockGraphQlClient()),
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(healthTimelineText));
-      await tester.pumpAndSettle();
       expect(find.byType(MyHealthTimeline), findsOneWidget);
+
+      final Finder viewMore = find.text(viewMoreText);
+      expect(find.text(viewMoreText), findsOneWidget);
+      await tester.ensureVisible(viewMore);
+      await tester.tap(viewMore);
+      await tester.pumpAndSettle();
+      expect(find.byType(MyHealthTimelineContainer), findsOneWidget);
     });
   });
 }
