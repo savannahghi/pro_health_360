@@ -1507,6 +1507,10 @@ final Map<String, dynamic> documentContentMock = <String, dynamic>{
     }
   ],
 };
+final Map<String, dynamic> contentEngagementMock = <String, dynamic>{
+  'contentId': 'some_id',
+  'contentOpenedAt': '2021-08-23T06:42:05.085216Z'
+};
 
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{

@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/recent_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_engagement_state.dart';
 
 part 'content_state.freezed.dart';
 part 'content_state.g.dart';
@@ -15,6 +16,7 @@ class ContentState with _$ContentState {
     FeedContentState? feedContentState,
     SavedContentState? savedContentState,
     RecentContentState? recentContentState,
+    ContentEngagementState? contentEngagementState,
   }) = _ContentState;
 
   factory ContentState.fromJson(Map<String, dynamic> json) =>
@@ -24,5 +26,6 @@ class ContentState with _$ContentState {
         feedContentState: FeedContentState.initial(),
         savedContentState: SavedContentState.initial(),
         recentContentState: RecentContentState.initial(),
+        contentEngagementState: ContentEngagementState.initial(),
       );
 }
