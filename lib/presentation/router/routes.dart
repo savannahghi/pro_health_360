@@ -133,6 +133,7 @@ class AppRoutes {
   static const String loginCounterPage = '/loginCounterPage';
 
   static const String myHealthTimeline = '/myHealthTimeline';
+  static const String surveysPage = '/surveysPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

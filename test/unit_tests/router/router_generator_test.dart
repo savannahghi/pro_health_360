@@ -57,6 +57,7 @@ import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/surveys/surveys_page.dart';
 import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
 
 import '../../mocks.dart';
@@ -650,5 +651,15 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<MyHealthTimeline>>());
     expect(route?.builder(context), isA<MyHealthTimeline>());
+  });
+
+  test('Test router returns survey page', () {
+    const RouteSettings settings = RouteSettings(name: AppRoutes.surveysPage);
+
+    final MaterialPageRoute<SurveysPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<SurveysPage>?;
+
+    expect(route, isA<MaterialPageRoute<SurveysPage>>());
+    expect(route?.builder(context), isA<SurveysPage>());
   });
 }
