@@ -100,7 +100,7 @@ class _ContraceptiveAssessmentPageState
                   ),
                 ),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.miniCenterFloat,
           floatingActionButton: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
               ? const SizedBox()
               : Container(

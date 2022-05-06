@@ -48,7 +48,6 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
         return Scaffold(
           appBar: const CustomAppBar(
             title: alcoholSubstanceUseTitle,
-             
           ),
           body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
               ? Container(
@@ -84,7 +83,7 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                   ),
                 ),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.miniCenterFloat,
           floatingActionButton: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
               ? const SizedBox()
               : Container(

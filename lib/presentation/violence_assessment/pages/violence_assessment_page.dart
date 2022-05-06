@@ -87,7 +87,7 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                   ),
                 ),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.miniCenterFloat,
           floatingActionButton: vm.wait!.isWaitingFor(
             fetchingQuestionsFlag,
           )

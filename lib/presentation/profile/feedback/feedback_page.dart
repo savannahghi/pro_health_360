@@ -275,7 +275,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   ),
                 ),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.miniCenterFloat,
           floatingActionButton: Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,

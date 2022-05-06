@@ -90,51 +90,54 @@ class _TuberculosisAssessmentPageState
                   ),
                 ),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.miniCenterFloat,
           floatingActionButton: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
               ? const SizedBox()
               : Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            width: double.infinity,
-            height: 48,
-            child: MyAfyaHubPrimaryButton(
-              buttonKey: tuberculosisAssessmentFeedbackButtonKey,
-              onPressed: () {
-                bool areAllQuestionsAnswered = false;
-                setState(() {
-                  areAllQuestionsAnswered = allQuestionsAnswered(
-                    vm.tBState?.screeningQuestions?.screeningQuestionsList,
-                  );
-                });
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  width: double.infinity,
+                  height: 48,
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: tuberculosisAssessmentFeedbackButtonKey,
+                    onPressed: () {
+                      bool areAllQuestionsAnswered = false;
+                      setState(() {
+                        areAllQuestionsAnswered = allQuestionsAnswered(
+                          vm.tBState?.screeningQuestions
+                              ?.screeningQuestionsList,
+                        );
+                      });
 
-                if (areAllQuestionsAnswered) {
-                  StoreProvider.dispatch(
-                    context,
-                    AnswerScreeningToolsAction(
-                      client: AppWrapperBase.of(context)!.graphQLClient,
-                      screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(pleaseAnswerAllQuestions),
-                    ),
-                  );
-                }
-              },
-              buttonColor: AppColors.primaryColor,
-              borderColor: Colors.transparent,
-              customChild: vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
-                  ? const PlatformLoader()
-                  : Text(
-                      submitAssessment,
-                      style: veryBoldSize15Text(
-                        AppColors.whiteColor,
-                      ),
-                    ),
-            ),
-          ),
+                      if (areAllQuestionsAnswered) {
+                        StoreProvider.dispatch(
+                          context,
+                          AnswerScreeningToolsAction(
+                            client: AppWrapperBase.of(context)!.graphQLClient,
+                            screeningToolsType:
+                                ScreeningToolsType.TB_ASSESSMENT,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(pleaseAnswerAllQuestions),
+                          ),
+                        );
+                      }
+                    },
+                    buttonColor: AppColors.primaryColor,
+                    borderColor: Colors.transparent,
+                    customChild:
+                        vm.wait!.isWaitingFor(answerScreeningQuestionsFlag)
+                            ? const PlatformLoader()
+                            : Text(
+                                submitAssessment,
+                                style: veryBoldSize15Text(
+                                  AppColors.whiteColor,
+                                ),
+                              ),
+                  ),
+                ),
         );
       },
     );
