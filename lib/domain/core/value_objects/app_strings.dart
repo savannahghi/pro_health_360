@@ -497,6 +497,7 @@ const String healthTimelineText = 'Health timeline';
 const String healthTimelineAwaitsDescription =
     'Your health timeline is not available at the moment. It will be shown when your medical information has been updated';
 const String itemsText = 'Items';
+const String viewMoreText = 'View more';
 
 //Appointments
 const String appointmentsPageTitle = 'Appointments';

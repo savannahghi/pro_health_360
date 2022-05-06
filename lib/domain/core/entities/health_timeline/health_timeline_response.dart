@@ -7,9 +7,10 @@ part 'health_timeline_response.g.dart';
 @freezed
 class HealthTimelineResponse with _$HealthTimelineResponse {
   factory HealthTimelineResponse({
-    @JsonKey(name: 'patientTimeline')
+    @JsonKey(name: 'timeline')
     @Default(<FhirResource>[])
         List<FhirResource> patientTimeline,
+    @JsonKey(name: 'totalCount') @Default(0) int count,
   }) = _HealthTimelineResponse;
 
   factory HealthTimelineResponse.fromJson(Map<String, dynamic> json) =>

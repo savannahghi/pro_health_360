@@ -24,9 +24,11 @@ class _$HealthTimelineStateTearOff {
 
   _HealthTimelineState call(
       {Map<String, List<FhirResource>> healthTimelineItems =
-          const <String, List<FhirResource>>{}}) {
+          const <String, List<FhirResource>>{},
+      int offset = 0}) {
     return _HealthTimelineState(
       healthTimelineItems: healthTimelineItems,
+      offset: offset,
     );
   }
 
@@ -42,6 +44,7 @@ const $HealthTimelineState = _$HealthTimelineStateTearOff();
 mixin _$HealthTimelineState {
   Map<String, List<FhirResource>> get healthTimelineItems =>
       throw _privateConstructorUsedError;
+  int get offset => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +57,7 @@ abstract class $HealthTimelineStateCopyWith<$Res> {
   factory $HealthTimelineStateCopyWith(
           HealthTimelineState value, $Res Function(HealthTimelineState) then) =
       _$HealthTimelineStateCopyWithImpl<$Res>;
-  $Res call({Map<String, List<FhirResource>> healthTimelineItems});
+  $Res call({Map<String, List<FhirResource>> healthTimelineItems, int offset});
 }
 
 /// @nodoc
@@ -69,12 +72,17 @@ class _$HealthTimelineStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? healthTimelineItems = freezed,
+    Object? offset = freezed,
   }) {
     return _then(_value.copyWith(
       healthTimelineItems: healthTimelineItems == freezed
           ? _value.healthTimelineItems
           : healthTimelineItems // ignore: cast_nullable_to_non_nullable
               as Map<String, List<FhirResource>>,
+      offset: offset == freezed
+          ? _value.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -86,7 +94,7 @@ abstract class _$HealthTimelineStateCopyWith<$Res>
           $Res Function(_HealthTimelineState) then) =
       __$HealthTimelineStateCopyWithImpl<$Res>;
   @override
-  $Res call({Map<String, List<FhirResource>> healthTimelineItems});
+  $Res call({Map<String, List<FhirResource>> healthTimelineItems, int offset});
 }
 
 /// @nodoc
@@ -103,12 +111,17 @@ class __$HealthTimelineStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? healthTimelineItems = freezed,
+    Object? offset = freezed,
   }) {
     return _then(_HealthTimelineState(
       healthTimelineItems: healthTimelineItems == freezed
           ? _value.healthTimelineItems
           : healthTimelineItems // ignore: cast_nullable_to_non_nullable
               as Map<String, List<FhirResource>>,
+      offset: offset == freezed
+          ? _value.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -117,7 +130,8 @@ class __$HealthTimelineStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_HealthTimelineState implements _HealthTimelineState {
   _$_HealthTimelineState(
-      {this.healthTimelineItems = const <String, List<FhirResource>>{}});
+      {this.healthTimelineItems = const <String, List<FhirResource>>{},
+      this.offset = 0});
 
   factory _$_HealthTimelineState.fromJson(Map<String, dynamic> json) =>
       _$$_HealthTimelineStateFromJson(json);
@@ -125,10 +139,13 @@ class _$_HealthTimelineState implements _HealthTimelineState {
   @JsonKey()
   @override
   final Map<String, List<FhirResource>> healthTimelineItems;
+  @JsonKey()
+  @override
+  final int offset;
 
   @override
   String toString() {
-    return 'HealthTimelineState(healthTimelineItems: $healthTimelineItems)';
+    return 'HealthTimelineState(healthTimelineItems: $healthTimelineItems, offset: $offset)';
   }
 
   @override
@@ -137,12 +154,15 @@ class _$_HealthTimelineState implements _HealthTimelineState {
         (other.runtimeType == runtimeType &&
             other is _HealthTimelineState &&
             const DeepCollectionEquality()
-                .equals(other.healthTimelineItems, healthTimelineItems));
+                .equals(other.healthTimelineItems, healthTimelineItems) &&
+            const DeepCollectionEquality().equals(other.offset, offset));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(healthTimelineItems));
+      runtimeType,
+      const DeepCollectionEquality().hash(healthTimelineItems),
+      const DeepCollectionEquality().hash(offset));
 
   @JsonKey(ignore: true)
   @override
@@ -158,14 +178,16 @@ class _$_HealthTimelineState implements _HealthTimelineState {
 
 abstract class _HealthTimelineState implements HealthTimelineState {
   factory _HealthTimelineState(
-          {Map<String, List<FhirResource>> healthTimelineItems}) =
-      _$_HealthTimelineState;
+      {Map<String, List<FhirResource>> healthTimelineItems,
+      int offset}) = _$_HealthTimelineState;
 
   factory _HealthTimelineState.fromJson(Map<String, dynamic> json) =
       _$_HealthTimelineState.fromJson;
 
   @override
   Map<String, List<FhirResource>> get healthTimelineItems;
+  @override
+  int get offset;
   @override
   @JsonKey(ignore: true)
   _$HealthTimelineStateCopyWith<_HealthTimelineState> get copyWith =>

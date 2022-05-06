@@ -9,14 +9,16 @@ part of 'health_timeline_response.dart';
 _$_HealthTimelineResponse _$$_HealthTimelineResponseFromJson(
         Map<String, dynamic> json) =>
     _$_HealthTimelineResponse(
-      patientTimeline: (json['patientTimeline'] as List<dynamic>?)
+      patientTimeline: (json['timeline'] as List<dynamic>?)
               ?.map((e) => FhirResource.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <FhirResource>[],
+      count: json['totalCount'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_HealthTimelineResponseToJson(
         _$_HealthTimelineResponse instance) =>
     <String, dynamic>{
-      'patientTimeline': instance.patientTimeline,
+      'timeline': instance.patientTimeline,
+      'totalCount': instance.count,
     };

@@ -24,10 +24,13 @@ class _$HealthTimelineResponseTearOff {
   const _$HealthTimelineResponseTearOff();
 
   _HealthTimelineResponse call(
-      {@JsonKey(name: 'patientTimeline')
-          List<FhirResource> patientTimeline = const <FhirResource>[]}) {
+      {@JsonKey(name: 'timeline')
+          List<FhirResource> patientTimeline = const <FhirResource>[],
+      @JsonKey(name: 'totalCount')
+          int count = 0}) {
     return _HealthTimelineResponse(
       patientTimeline: patientTimeline,
+      count: count,
     );
   }
 
@@ -41,8 +44,10 @@ const $HealthTimelineResponse = _$HealthTimelineResponseTearOff();
 
 /// @nodoc
 mixin _$HealthTimelineResponse {
-  @JsonKey(name: 'patientTimeline')
+  @JsonKey(name: 'timeline')
   List<FhirResource> get patientTimeline => throw _privateConstructorUsedError;
+  @JsonKey(name: 'totalCount')
+  int get count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +61,8 @@ abstract class $HealthTimelineResponseCopyWith<$Res> {
           $Res Function(HealthTimelineResponse) then) =
       _$HealthTimelineResponseCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'patientTimeline') List<FhirResource> patientTimeline});
+      {@JsonKey(name: 'timeline') List<FhirResource> patientTimeline,
+      @JsonKey(name: 'totalCount') int count});
 }
 
 /// @nodoc
@@ -71,12 +77,17 @@ class _$HealthTimelineResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? patientTimeline = freezed,
+    Object? count = freezed,
   }) {
     return _then(_value.copyWith(
       patientTimeline: patientTimeline == freezed
           ? _value.patientTimeline
           : patientTimeline // ignore: cast_nullable_to_non_nullable
               as List<FhirResource>,
+      count: count == freezed
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -89,7 +100,8 @@ abstract class _$HealthTimelineResponseCopyWith<$Res>
       __$HealthTimelineResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'patientTimeline') List<FhirResource> patientTimeline});
+      {@JsonKey(name: 'timeline') List<FhirResource> patientTimeline,
+      @JsonKey(name: 'totalCount') int count});
 }
 
 /// @nodoc
@@ -106,12 +118,17 @@ class __$HealthTimelineResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? patientTimeline = freezed,
+    Object? count = freezed,
   }) {
     return _then(_HealthTimelineResponse(
       patientTimeline: patientTimeline == freezed
           ? _value.patientTimeline
           : patientTimeline // ignore: cast_nullable_to_non_nullable
               as List<FhirResource>,
+      count: count == freezed
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -120,19 +137,22 @@ class __$HealthTimelineResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_HealthTimelineResponse implements _HealthTimelineResponse {
   _$_HealthTimelineResponse(
-      {@JsonKey(name: 'patientTimeline')
-          this.patientTimeline = const <FhirResource>[]});
+      {@JsonKey(name: 'timeline') this.patientTimeline = const <FhirResource>[],
+      @JsonKey(name: 'totalCount') this.count = 0});
 
   factory _$_HealthTimelineResponse.fromJson(Map<String, dynamic> json) =>
       _$$_HealthTimelineResponseFromJson(json);
 
   @override
-  @JsonKey(name: 'patientTimeline')
+  @JsonKey(name: 'timeline')
   final List<FhirResource> patientTimeline;
+  @override
+  @JsonKey(name: 'totalCount')
+  final int count;
 
   @override
   String toString() {
-    return 'HealthTimelineResponse(patientTimeline: $patientTimeline)';
+    return 'HealthTimelineResponse(patientTimeline: $patientTimeline, count: $count)';
   }
 
   @override
@@ -141,12 +161,15 @@ class _$_HealthTimelineResponse implements _HealthTimelineResponse {
         (other.runtimeType == runtimeType &&
             other is _HealthTimelineResponse &&
             const DeepCollectionEquality()
-                .equals(other.patientTimeline, patientTimeline));
+                .equals(other.patientTimeline, patientTimeline) &&
+            const DeepCollectionEquality().equals(other.count, count));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(patientTimeline));
+      runtimeType,
+      const DeepCollectionEquality().hash(patientTimeline),
+      const DeepCollectionEquality().hash(count));
 
   @JsonKey(ignore: true)
   @override
@@ -162,15 +185,18 @@ class _$_HealthTimelineResponse implements _HealthTimelineResponse {
 
 abstract class _HealthTimelineResponse implements HealthTimelineResponse {
   factory _HealthTimelineResponse(
-      {@JsonKey(name: 'patientTimeline')
-          List<FhirResource> patientTimeline}) = _$_HealthTimelineResponse;
+      {@JsonKey(name: 'timeline') List<FhirResource> patientTimeline,
+      @JsonKey(name: 'totalCount') int count}) = _$_HealthTimelineResponse;
 
   factory _HealthTimelineResponse.fromJson(Map<String, dynamic> json) =
       _$_HealthTimelineResponse.fromJson;
 
   @override
-  @JsonKey(name: 'patientTimeline')
+  @JsonKey(name: 'timeline')
   List<FhirResource> get patientTimeline;
+  @override
+  @JsonKey(name: 'totalCount')
+  int get count;
   @override
   @JsonKey(ignore: true)
   _$HealthTimelineResponseCopyWith<_HealthTimelineResponse> get copyWith =>

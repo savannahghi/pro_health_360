@@ -19,10 +19,12 @@ _$_HealthTimelineState _$$_HealthTimelineStateFromJson(
                         .toList()),
               ) ??
               const <String, List<FhirResource>>{},
+      offset: json['offset'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_HealthTimelineStateToJson(
         _$_HealthTimelineState instance) =>
     <String, dynamic>{
       'healthTimelineItems': instance.healthTimelineItems,
+      'offset': instance.offset,
     };

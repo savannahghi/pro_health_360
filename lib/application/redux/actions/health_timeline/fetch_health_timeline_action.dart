@@ -30,9 +30,13 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
+    final int? offset = state.clientState?.healthTimelineState?.offset;
     final Map<String, dynamic> variables = <String, dynamic>{
-      'patientID': state.clientState?.fhirPatientID,
-      'count': 10,
+      'input': <String, dynamic>{
+        'patientID': state.clientState?.fhirPatientID,
+        'offset': offset,
+        'limit': 10,
+      }
     };
 
     final Response response =
@@ -51,7 +55,7 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
 
       final HealthTimelineResponse healthTimelineResponse =
           HealthTimelineResponse.fromJson(
-        mapped['data'] as Map<String, dynamic>,
+        mapped['data']['patientHealthTimeline'] as Map<String, dynamic>,
       );
 
       final Map<String, List<FhirResource>> items =

@@ -360,8 +360,11 @@ query getScreeningToolQuestions($toolType: String!){
 ''';
 
 const String patientTimelineQuery = r'''
-query patientTimeline($patientID: String!, $count: Int!) {
-  patientTimeline(patientID: $patientID, count: $count)
+query patientTimeline($input: HealthTimelineInput!) {
+  patientHealthTimeline(input: $input) {
+    totalCount
+    timeline
+  }
 }
 ''';
 
