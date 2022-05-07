@@ -12,6 +12,7 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_carousel.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/mood_checker.dart';
+import 'package:myafyahub/presentation/home/widgets/survey_carousel.dart';
 import 'package:shared_themes/spaces.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,6 +37,8 @@ class HomePage extends StatelessWidget {
             const RecentContentWidget(),
             smallVerticalSizedBox,
             const SuggestedGroupsSection(),
+            smallVerticalSizedBox,
+            const SurveyCarousel(),
           ],
         ),
       ),

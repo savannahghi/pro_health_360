@@ -275,3 +275,4 @@ const Key fiveRatingButtonKey = Key('five_rating_button_key');
 const Key mentalHealthSurveyKey = Key('mental_health_survey_key');
 const Key healthSurveyKey = Key('health_survey_key');
 const Key platformSurveyKey = Key('platform_survey_key');
+const Key phq9surveyKey = Key('phq9_survey_key');
