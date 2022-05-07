@@ -24,10 +24,12 @@ class SurveyItem extends StatelessWidget {
       key: gestureKey,
       behavior: HitTestBehavior.opaque,
       onTap: () async {
+        final String encodedUrl = Uri.encodeFull(url);
         await launch(
-          url,
+          encodedUrl,
           forceWebView: true,
           enableJavaScript: true,
+          forceSafariVC: true,
         );
       },
       child: Container(
