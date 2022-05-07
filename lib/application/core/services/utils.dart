@@ -335,19 +335,6 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
   ),
 ];
 
-String getNotificationIcon(NotificationType type) {
-  switch (type) {
-    case NotificationType.APPOINTMENT:
-      return appointmentIcon;
-    case NotificationType.COMMUNITIES:
-      return communityIconSvgPath;
-    case NotificationType.SERVICE_REQUEST:
-      return profileIcon;
-    case NotificationType.UNKNOWN:
-      return notificationIcon;
-  }
-}
-
 String tooManyTriesString(int timeLeft) {
   final DateFormat f = DateFormat('mm:ss');
   final String convertedTime =
