@@ -6,14 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/spaces.dart';
 
-// Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-
-class ScreeningToolMenuItem extends StatelessWidget {
-  const ScreeningToolMenuItem({
+class HomePageCarouselItem extends StatelessWidget {
+  const HomePageCarouselItem({
     required this.title,
     required this.description,
     required this.onTap,
+    required this.buttonTitle,
     this.beginButtonKey,
   });
 
@@ -21,6 +19,7 @@ class ScreeningToolMenuItem extends StatelessWidget {
   final String description;
   final Function onTap;
   final String title;
+  final String buttonTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ class ScreeningToolMenuItem extends StatelessWidget {
               width: double.infinity,
               height: 48,
               child: MyAfyaHubPrimaryButton(
-                text: beginString,
+                text: buttonTitle,
                 buttonKey: beginButtonKey,
                 onPressed: () => onTap.call(),
               ),

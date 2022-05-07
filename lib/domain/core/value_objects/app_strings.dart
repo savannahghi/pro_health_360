@@ -947,3 +947,4 @@ const String healthSurveyDescription =
     'A health services survey for your facility';
 const String platformSurvey = 'Platform satisfaction survey';
 const String platformSurveyDescription = 'A survey about your platform use';
+const String respondString = 'Respond';

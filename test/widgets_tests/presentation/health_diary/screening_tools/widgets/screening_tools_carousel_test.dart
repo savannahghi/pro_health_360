@@ -34,7 +34,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(
-          find.byType(ScreeningToolMenuItem, skipOffstage: false),
+          find.byType(HomePageCarouselItem, skipOffstage: false),
           findsOneWidget,
         );
         expect(find.byKey(violenceKey), findsOneWidget);
@@ -45,7 +45,7 @@ void main() {
         expect(find.byType(ViolenceAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byType(HomePageCarouselItem), findsOneWidget);
       },
     );
 
@@ -88,7 +88,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byType(HomePageCarouselItem), findsOneWidget);
         expect(find.byKey(contraceptiveKey), findsOneWidget);
 
         // tap the contraceptive menu item and go back
@@ -98,7 +98,7 @@ void main() {
         expect(find.byType(ContraceptiveAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byType(HomePageCarouselItem), findsOneWidget);
       },
     );
 
@@ -141,7 +141,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byType(HomePageCarouselItem), findsOneWidget);
         expect(find.byKey(tuberculosisKey), findsOneWidget);
 
         // tap the violence menu item and go back
@@ -151,7 +151,7 @@ void main() {
         expect(find.byType(TuberculosisAssessmentPage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byType(HomePageCarouselItem), findsOneWidget);
       },
     );
 
@@ -194,7 +194,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byType(HomePageCarouselItem), findsOneWidget);
         expect(find.byKey(alcoholUseKey, skipOffstage: false), findsOneWidget);
 
         // tap the violence menu item and go back
@@ -204,7 +204,7 @@ void main() {
         expect(find.byType(AlcoholSubstanceUsePage), findsOneWidget);
         await tester.tap(find.byKey(appBarBackButtonKey));
         await tester.pumpAndSettle();
-        expect(find.byType(ScreeningToolMenuItem), findsOneWidget);
+        expect(find.byType(HomePageCarouselItem), findsOneWidget);
       },
     );
   });

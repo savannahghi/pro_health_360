@@ -126,7 +126,7 @@ class ScreeningToolsCarousel extends StatelessWidget {
                               final ScreeningToolsType toolsType =
                                   screeningTool.toolType!;
 
-                              return ScreeningToolMenuItem(
+                              return HomePageCarouselItem(
                                 title: screeningTool.title!,
                                 description: screeningTool.description!,
                                 onTap: () {
@@ -134,6 +134,7 @@ class ScreeningToolsCarousel extends StatelessWidget {
                                     getNextNavigationRoute(toolsType),
                                   );
                                 },
+                                buttonTitle: beginString,
                                 beginButtonKey:
                                     getSCreeningToolsBeginKey(toolsType),
                               );
