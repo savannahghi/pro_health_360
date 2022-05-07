@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 
 const String requestTimeoutError =
     'We could not perform this process in time. Please try again';
@@ -554,6 +555,22 @@ const String notificationsText = 'Notifications';
 const String noNotificationsTitle = 'You have no notifications';
 const String noNotificationsDescription =
     'You have no notifications at this time. We will notify you when we have more';
+String getNotificationActionString(NotificationType notificationType) {
+  switch (notificationType) {
+    case NotificationType.APPOINTMENT:
+      return 'View Appointments';
+    default:
+      return 'View Communities';
+  }
+}
+String getNotificationActionRoute(NotificationType notificationType) {
+  switch (notificationType) {
+    case NotificationType.APPOINTMENT:
+      return AppRoutes.appointmentsPage;
+    default:
+      return AppRoutes.communityListPage;
+  }
+}
 
 //Pin input page strings
 const String enterChatPINString = 'Enter your PIN to view your chats';
