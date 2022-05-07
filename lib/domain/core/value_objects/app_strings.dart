@@ -935,3 +935,15 @@ const String howSatisfiedText = 'How satisfied are you with the platform?';
 const String ratingsHint = '1 - Not satisfied ; 5 - Most satisfied';
 const String caregiverInfoSavedSuccess =
     'Caregiver information saved successfully';
+
+// surveys
+const String surveys = 'Surveys';
+const String surveysTitle = 'Surveys you have been invited to respond to';
+const String mentalHealthSurvey = 'Mental health survey';
+const String mentalHealthSurveyDescription =
+    'A simple Yes or No question set about your mental health';
+const String healthSurvey = 'Health services survey';
+const String healthSurveyDescription =
+    'A health services survey for your facility';
+const String platformSurvey = 'Platform satisfaction survey';
+const String platformSurveyDescription = 'A survey about your platform use';

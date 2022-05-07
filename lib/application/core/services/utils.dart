@@ -299,6 +299,11 @@ final List<UserProfileItemObj> userProfileItems = <UserProfileItemObj>[
     title: 'Clinic information',
   ),
   UserProfileItemObj(
+    iconAssetPath: surveyItemImage,
+    route: AppRoutes.surveysPage,
+    title: 'Surveys',
+  ),
+  UserProfileItemObj(
     iconAssetPath: communityIconSvgPath,
     route: AppRoutes.groupInvitesPage,
     title: 'Conversations invites',

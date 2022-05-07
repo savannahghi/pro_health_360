@@ -54,6 +54,7 @@ import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/surveys/surveys_page.dart';
 import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
 
 /// The router generator for the app. The arrangement in this config must match that
@@ -356,6 +357,11 @@ class RouteGenerator {
       case AppRoutes.myHealthTimeline:
         return MaterialPageRoute<MyHealthTimeline>(
           builder: (_) => const MyHealthTimeline(),
+        );
+
+      case AppRoutes.surveysPage:
+        return MaterialPageRoute<SurveysPage>(
+          builder: (_) => const SurveysPage(),
         );
 
       default:

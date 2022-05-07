@@ -270,3 +270,8 @@ const Key twoRatingButtonKey = Key('two_rating_button_key');
 const Key threeRatingButtonKey = Key('three_rating_button_key');
 const Key fourRatingButtonKey = Key('four_rating_button_key');
 const Key fiveRatingButtonKey = Key('five_rating_button_key');
+
+// surveys keys
+const Key mentalHealthSurveyKey = Key('mental_health_survey_key');
+const Key healthSurveyKey = Key('health_survey_key');
+const Key platformSurveyKey = Key('platform_survey_key');

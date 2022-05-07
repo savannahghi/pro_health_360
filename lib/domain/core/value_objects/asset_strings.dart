@@ -202,3 +202,7 @@ const String feedbackImage = 'assets/images/feedback.svg';
 
 // security questions
 const String noSecurityQuestionsImage = 'assets/images/no_questions_image.svg';
+
+// surveys
+const String surveyItemImage = 'assets/icons/clipboard.svg';
+const String surveysImage = 'assets/images/surveys.svg';
