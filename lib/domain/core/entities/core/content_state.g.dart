@@ -20,7 +20,10 @@ _$_ContentState _$$_ContentStateFromJson(Map<String, dynamic> json) =>
           ? null
           : RecentContentState.fromJson(
               json['recentContentState'] as Map<String, dynamic>),
-      contentEngagementState: json['contentEngagementState'],
+      contentEngagementState: json['contentEngagementState'] == null
+          ? null
+          : ContentEngagementState.fromJson(
+              json['contentEngagementState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ContentStateToJson(_$_ContentState instance) =>

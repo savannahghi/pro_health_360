@@ -73,6 +73,7 @@ abstract class $ContentStateCopyWith<$Res> {
   $FeedContentStateCopyWith<$Res>? get feedContentState;
   $SavedContentStateCopyWith<$Res>? get savedContentState;
   $RecentContentStateCopyWith<$Res>? get recentContentState;
+  $ContentEngagementStateCopyWith<$Res>? get contentEngagementState;
 }
 
 /// @nodoc
@@ -143,6 +144,18 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
       return _then(_value.copyWith(recentContentState: value));
     });
   }
+
+  @override
+  $ContentEngagementStateCopyWith<$Res>? get contentEngagementState {
+    if (_value.contentEngagementState == null) {
+      return null;
+    }
+
+    return $ContentEngagementStateCopyWith<$Res>(_value.contentEngagementState!,
+        (value) {
+      return _then(_value.copyWith(contentEngagementState: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -164,6 +177,8 @@ abstract class _$ContentStateCopyWith<$Res>
   $SavedContentStateCopyWith<$Res>? get savedContentState;
   @override
   $RecentContentStateCopyWith<$Res>? get recentContentState;
+  @override
+  $ContentEngagementStateCopyWith<$Res>? get contentEngagementState;
 }
 
 /// @nodoc
