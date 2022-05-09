@@ -9,16 +9,16 @@ import 'package:myafyahub/infrastructure/repository/database_base.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:myafyahub/infrastructure/repository/sqlite.dart';
 
-/// [BeWellDatabaseMobile] is the main entry for interacting with the database for My Afya Hub mobile
+/// [MyAfyaHubDatabaseMobile] is the main entry for interacting with the database for My Afya Hub mobile
 /// It uses sqlite which a common RDMS. Unlike other key:value storage, sqlite offers
 /// high flexibility when storing structured data.
 /// The idea is to store, sessions, permissions(highly structured) and anything else
 /// that required persistence.
 /// When a new state has been added, it needs to be serialized so that it may be saved in the database
 /// The command to serialize is [flutter pub run build_runner build --delete-conflicting-outputs]
-class BeWellDatabaseMobile<T extends DatabaseExecutor>
-    implements BeWellDatabaseBase<T> {
-  BeWellDatabaseMobile({this.initializeDB});
+class MyAfyaHubDatabaseMobile<T extends DatabaseExecutor>
+    implements MyAfyaHubDatabaseBase<T> {
+  MyAfyaHubDatabaseMobile({this.initializeDB});
 
   final InitializeDB<T>? initializeDB;
 

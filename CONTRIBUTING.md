@@ -31,7 +31,7 @@ The following is a set of guidelines for contributing to `AfyaMoja`, which is ho
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Savannah Informatics Limited Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior via email to [BeWell Feedback](mailto:feedback@bewell.co.ke).
+This project and everyone participating in it is governed by the [Savannah Informatics Limited Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior via email to [MyAfyaHub Feedback](mailto:feedback@bewell.co.ke).
 
 ## TL-DR I just have a question
 

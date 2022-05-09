@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 // Project imports:
 import 'package:myafyahub/infrastructure/repository/sqlite.dart';
 
-abstract class BewellStateDatabase extends Database {}
+abstract class MyAfyaHubStateDatabase extends Database {}
 
 class InitializeDB<T extends DatabaseExecutor> extends InitializeDBHelper<T> {
   InitializeDB({required String dbName}) : super(dbName: dbName);

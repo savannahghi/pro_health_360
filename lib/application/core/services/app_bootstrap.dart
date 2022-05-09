@@ -35,8 +35,8 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
     <DeviceOrientation>[DeviceOrientation.portraitUp],
   );
 
-  final BeWellStateDatabase stateDB =
-      BeWellStateDatabase(dataBaseName: silDatabaseName);
+  final MyAfyaHubStateDatabase stateDB =
+      MyAfyaHubStateDatabase(dataBaseName: silDatabaseName);
 
   /// initialize the database
   await stateDB.init();
