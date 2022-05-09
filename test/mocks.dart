@@ -2025,7 +2025,7 @@ Map<String, dynamic> mockMedicalDataDetails = <String, dynamic>{
   'MedicationCodeableConcept': <String, dynamic>{
     'Text': 'Amoxicillin',
   },
-  'ClinicalStatus': <String, dynamic>{
+  'Code': <String, dynamic>{
     'Text': 'Milk powder (cow\'s milk)',
   },
   'ValueString': 'some-value'

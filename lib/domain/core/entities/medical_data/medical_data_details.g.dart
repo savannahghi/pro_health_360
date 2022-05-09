@@ -10,10 +10,9 @@ _$_MedicalDataDetails _$$_MedicalDataDetailsFromJson(
         Map<String, dynamic> json) =>
     _$_MedicalDataDetails(
       valueString: json['ValueString'] as String?,
-      clinicalStatus: json['ClinicalStatus'] == null
+      code: json['Code'] == null
           ? null
-          : MedicalDataClinicalStatus.fromJson(
-              json['ClinicalStatus'] as Map<String, dynamic>),
+          : MedicalDataCode.fromJson(json['Code'] as Map<String, dynamic>),
       category: json['Category'] == null
           ? null
           : MedicalDataCategory.fromJson(
@@ -28,7 +27,7 @@ Map<String, dynamic> _$$_MedicalDataDetailsToJson(
         _$_MedicalDataDetails instance) =>
     <String, dynamic>{
       'ValueString': instance.valueString,
-      'ClinicalStatus': instance.clinicalStatus,
+      'Code': instance.code,
       'Category': instance.category,
       'MedicationCodeableConcept': instance.medicationCodeableConcept,
     };

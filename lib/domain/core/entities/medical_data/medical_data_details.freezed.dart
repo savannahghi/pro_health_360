@@ -25,15 +25,15 @@ class _$MedicalDataDetailsTearOff {
   _MedicalDataDetails call(
       {@JsonKey(name: 'ValueString')
           String? valueString,
-      @JsonKey(name: 'ClinicalStatus')
-          MedicalDataClinicalStatus? clinicalStatus,
+      @JsonKey(name: 'Code')
+          MedicalDataCode? code,
       @JsonKey(name: 'Category')
           MedicalDataCategory? category,
       @JsonKey(name: 'MedicationCodeableConcept')
           MedicationCodeableConcept? medicationCodeableConcept}) {
     return _MedicalDataDetails(
       valueString: valueString,
-      clinicalStatus: clinicalStatus,
+      code: code,
       category: category,
       medicationCodeableConcept: medicationCodeableConcept,
     );
@@ -51,9 +51,8 @@ const $MedicalDataDetails = _$MedicalDataDetailsTearOff();
 mixin _$MedicalDataDetails {
   @JsonKey(name: 'ValueString')
   String? get valueString => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ClinicalStatus')
-  MedicalDataClinicalStatus? get clinicalStatus =>
-      throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  MedicalDataCode? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'Category')
   MedicalDataCategory? get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'MedicationCodeableConcept')
@@ -74,14 +73,14 @@ abstract class $MedicalDataDetailsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'ValueString')
           String? valueString,
-      @JsonKey(name: 'ClinicalStatus')
-          MedicalDataClinicalStatus? clinicalStatus,
+      @JsonKey(name: 'Code')
+          MedicalDataCode? code,
       @JsonKey(name: 'Category')
           MedicalDataCategory? category,
       @JsonKey(name: 'MedicationCodeableConcept')
           MedicationCodeableConcept? medicationCodeableConcept});
 
-  $MedicalDataClinicalStatusCopyWith<$Res>? get clinicalStatus;
+  $MedicalDataCodeCopyWith<$Res>? get code;
   $MedicalDataCategoryCopyWith<$Res>? get category;
   $MedicationCodeableConceptCopyWith<$Res>? get medicationCodeableConcept;
 }
@@ -98,7 +97,7 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? valueString = freezed,
-    Object? clinicalStatus = freezed,
+    Object? code = freezed,
     Object? category = freezed,
     Object? medicationCodeableConcept = freezed,
   }) {
@@ -107,10 +106,10 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
               as String?,
-      clinicalStatus: clinicalStatus == freezed
-          ? _value.clinicalStatus
-          : clinicalStatus // ignore: cast_nullable_to_non_nullable
-              as MedicalDataClinicalStatus?,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as MedicalDataCode?,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -123,14 +122,13 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
   }
 
   @override
-  $MedicalDataClinicalStatusCopyWith<$Res>? get clinicalStatus {
-    if (_value.clinicalStatus == null) {
+  $MedicalDataCodeCopyWith<$Res>? get code {
+    if (_value.code == null) {
       return null;
     }
 
-    return $MedicalDataClinicalStatusCopyWith<$Res>(_value.clinicalStatus!,
-        (value) {
-      return _then(_value.copyWith(clinicalStatus: value));
+    return $MedicalDataCodeCopyWith<$Res>(_value.code!, (value) {
+      return _then(_value.copyWith(code: value));
     });
   }
 
@@ -168,15 +166,15 @@ abstract class _$MedicalDataDetailsCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'ValueString')
           String? valueString,
-      @JsonKey(name: 'ClinicalStatus')
-          MedicalDataClinicalStatus? clinicalStatus,
+      @JsonKey(name: 'Code')
+          MedicalDataCode? code,
       @JsonKey(name: 'Category')
           MedicalDataCategory? category,
       @JsonKey(name: 'MedicationCodeableConcept')
           MedicationCodeableConcept? medicationCodeableConcept});
 
   @override
-  $MedicalDataClinicalStatusCopyWith<$Res>? get clinicalStatus;
+  $MedicalDataCodeCopyWith<$Res>? get code;
   @override
   $MedicalDataCategoryCopyWith<$Res>? get category;
   @override
@@ -197,7 +195,7 @@ class __$MedicalDataDetailsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? valueString = freezed,
-    Object? clinicalStatus = freezed,
+    Object? code = freezed,
     Object? category = freezed,
     Object? medicationCodeableConcept = freezed,
   }) {
@@ -206,10 +204,10 @@ class __$MedicalDataDetailsCopyWithImpl<$Res>
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
               as String?,
-      clinicalStatus: clinicalStatus == freezed
-          ? _value.clinicalStatus
-          : clinicalStatus // ignore: cast_nullable_to_non_nullable
-              as MedicalDataClinicalStatus?,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as MedicalDataCode?,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -228,8 +226,8 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
   _$_MedicalDataDetails(
       {@JsonKey(name: 'ValueString')
           this.valueString,
-      @JsonKey(name: 'ClinicalStatus')
-          this.clinicalStatus,
+      @JsonKey(name: 'Code')
+          this.code,
       @JsonKey(name: 'Category')
           this.category,
       @JsonKey(name: 'MedicationCodeableConcept')
@@ -242,8 +240,8 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
   @JsonKey(name: 'ValueString')
   final String? valueString;
   @override
-  @JsonKey(name: 'ClinicalStatus')
-  final MedicalDataClinicalStatus? clinicalStatus;
+  @JsonKey(name: 'Code')
+  final MedicalDataCode? code;
   @override
   @JsonKey(name: 'Category')
   final MedicalDataCategory? category;
@@ -253,7 +251,7 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
 
   @override
   String toString() {
-    return 'MedicalDataDetails(valueString: $valueString, clinicalStatus: $clinicalStatus, category: $category, medicationCodeableConcept: $medicationCodeableConcept)';
+    return 'MedicalDataDetails(valueString: $valueString, code: $code, category: $category, medicationCodeableConcept: $medicationCodeableConcept)';
   }
 
   @override
@@ -263,8 +261,7 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
             other is _MedicalDataDetails &&
             const DeepCollectionEquality()
                 .equals(other.valueString, valueString) &&
-            const DeepCollectionEquality()
-                .equals(other.clinicalStatus, clinicalStatus) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(
                 other.medicationCodeableConcept, medicationCodeableConcept));
@@ -274,7 +271,7 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(valueString),
-      const DeepCollectionEquality().hash(clinicalStatus),
+      const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(medicationCodeableConcept));
 
@@ -293,8 +290,8 @@ abstract class _MedicalDataDetails implements MedicalDataDetails {
   factory _MedicalDataDetails(
           {@JsonKey(name: 'ValueString')
               String? valueString,
-          @JsonKey(name: 'ClinicalStatus')
-              MedicalDataClinicalStatus? clinicalStatus,
+          @JsonKey(name: 'Code')
+              MedicalDataCode? code,
           @JsonKey(name: 'Category')
               MedicalDataCategory? category,
           @JsonKey(name: 'MedicationCodeableConcept')
@@ -308,8 +305,8 @@ abstract class _MedicalDataDetails implements MedicalDataDetails {
   @JsonKey(name: 'ValueString')
   String? get valueString;
   @override
-  @JsonKey(name: 'ClinicalStatus')
-  MedicalDataClinicalStatus? get clinicalStatus;
+  @JsonKey(name: 'Code')
+  MedicalDataCode? get code;
   @override
   @JsonKey(name: 'Category')
   MedicalDataCategory? get category;
