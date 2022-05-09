@@ -5,9 +5,14 @@ import 'package:myafyahub/domain/core/entities/health_timeline/fhir_resource.dar
 
 class UpdateHealthTimelineAction extends ReduxAction<AppState> {
   final int? offset;
+  final int? count;
   final Map<String, List<FhirResource>>? healthTimelineItems;
 
-  UpdateHealthTimelineAction({this.offset, this.healthTimelineItems});
+  UpdateHealthTimelineAction({
+    this.offset,
+    this.healthTimelineItems,
+    this.count,
+  });
 
   @override
   AppState reduce() {
@@ -15,6 +20,7 @@ class UpdateHealthTimelineAction extends ReduxAction<AppState> {
         state.clientState!.healthTimelineState!;
     final HealthTimelineState newHealthTimelineState = currentState.copyWith(
       offset: offset ?? currentState.offset,
+      count: count ?? currentState.count,
       healthTimelineItems:
           healthTimelineItems ?? currentState.healthTimelineItems,
     );

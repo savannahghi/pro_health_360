@@ -17,6 +17,7 @@ class HealthTimelineViewModelFactory
     return HealthTimelineOffsetViewModel(
       wait: state.wait!,
       offset: state.clientState?.healthTimelineState?.offset,
+      count: state.clientState?.healthTimelineState?.count ?? 0,
       updateOffset: updateOffset,
       fetchMore: fetchMore,
     );

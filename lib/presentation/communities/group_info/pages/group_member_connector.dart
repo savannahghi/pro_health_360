@@ -46,6 +46,7 @@ class GroupMemberConnector extends StatelessWidget {
       onTap: () {
         if (canModerate) showModerationDialog(context);
       },
+      userType: 'CLIENT',
     );
   }
 

@@ -13,8 +13,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchHealthTimelineAction extends ReduxAction<AppState> {
   final IGraphQlClient httpClient;
+  final int limit;
 
-  FetchHealthTimelineAction({required this.httpClient});
+  FetchHealthTimelineAction({
+    required this.httpClient,
+    this.limit = 10,
+  });
 
   @override
   void before() {
@@ -35,7 +39,7 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
       'input': <String, dynamic>{
         'patientID': state.clientState?.fhirPatientID,
         'offset': offset,
-        'limit': 10,
+        'limit': limit,
       }
     };
 
@@ -82,6 +86,7 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
       final HealthTimelineState newState = HealthTimelineState(
         healthTimelineItems: items,
         offset: state.clientState?.healthTimelineState?.offset ?? 0,
+        count: healthTimelineResponse.count,
       );
 
       final AppState appState = state.copyWith(

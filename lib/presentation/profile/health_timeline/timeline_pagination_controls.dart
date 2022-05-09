@@ -7,8 +7,8 @@ class TimelinePaginationControls extends StatelessWidget {
     Key? key,
     required this.lowerBound,
     required this.upperBound,
-    required this.prevPageAction,
-    required this.nextPageAction,
+    this.prevPageAction,
+    this.nextPageAction,
   }) : super(key: key);
 
   final String lowerBound;
@@ -29,7 +29,9 @@ class TimelinePaginationControls extends StatelessWidget {
               width: 85,
               height: 46,
               decoration: BoxDecoration(
-                color: AppColors.primaryColor,
+                color: prevPageAction == null
+                    ? Colors.grey
+                    : AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: IconButton(
@@ -72,7 +74,9 @@ class TimelinePaginationControls extends StatelessWidget {
               width: 85,
               height: 46,
               decoration: BoxDecoration(
-                color: AppColors.primaryColor,
+                color: nextPageAction == null
+                    ? Colors.grey
+                    : AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: IconButton(

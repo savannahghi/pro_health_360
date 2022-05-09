@@ -20,6 +20,7 @@ _$_HealthTimelineState _$$_HealthTimelineStateFromJson(
               ) ??
               const <String, List<FhirResource>>{},
       offset: json['offset'] as int? ?? 0,
+      count: json['count'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_HealthTimelineStateToJson(
@@ -27,4 +28,5 @@ Map<String, dynamic> _$$_HealthTimelineStateToJson(
     <String, dynamic>{
       'healthTimelineItems': instance.healthTimelineItems,
       'offset': instance.offset,
+      'count': instance.count,
     };

@@ -2100,12 +2100,12 @@ Map<String, dynamic> mockViralLoadData = <String, dynamic>{
 
 final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{
   'patientHealthTimeline': <String, dynamic>{
-    'totalCount': 0,
+    'totalCount': 30,
     'timeline': <Map<String, dynamic>>[
       <String, dynamic>{
-        'category': <Map<String, dynamic>>[
+        'category': <dynamic>[
           <String, dynamic>{
-            'coding': <Map<String, dynamic>>[
+            'coding': <dynamic>[
               <String, dynamic>{
                 'code': 'vital-signs',
                 'display': 'Vital Signs',
@@ -2117,25 +2117,359 @@ final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{
           }
         ],
         'code': <String, dynamic>{
-          'coding': <Map<String, dynamic>>[
+          'coding': <dynamic>[
             <String, dynamic>{
-              'code': '5088',
-              'display': 'Temperature (c)',
-              'system': '/orgs/CIEL/sources/CIEL/concepts/5088/'
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
             }
           ],
-          'text': 'Temperature (c)'
+          'text': 'Height (cm)'
         },
-        'effectiveDateTime': '2022-05-04',
-        'id': '9ce7577a-4975-4e45-b48f-67cea229be45',
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': '73e69080-5d5a-481e-97f9-a004589b6f56',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
         'resourceType': 'Observation',
         'status': 'preliminary',
         'subject': <String, dynamic>{
-          'display': '8371c56f-2cc3-4ea9-9db7-2befef290f9c',
-          'reference': 'Patient/8371c56f-2cc3-4ea9-9db7-2befef290f9c'
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
         },
-        'timelineDate': '2022-05-04',
-        'valueString': '36.5'
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': '9bc8b78f-ce36-4906-9bec-5936d520ef3b',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': 'e1bf5db2-bd65-46f7-932e-423f1ccd9051',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': '5edb4d3f-7aec-429d-8fc4-440aeec8eced',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': 'd2b2975a-4002-4735-b9e6-15c2c44b50f9',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': 'cbca415f-02be-4251-a6d5-f4106752acc8',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': 'ac3b73c9-5a3a-430c-b1a3-15f6ad572e74',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': 'f7b0ea6a-a6ee-4eac-a1ae-2fa7fb408302',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
+      },
+      <String, dynamic>{
+        'category': <dynamic>[
+          <String, dynamic>{
+            'coding': <dynamic>[
+              <String, dynamic>{
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
+                'system':
+                    'http://terminology.hl7.org/CodeSystem/observation-category'
+              }
+            ],
+            'text': 'Vital Signs'
+          }
+        ],
+        'code': <String, dynamic>{
+          'coding': <dynamic>[
+            <String, dynamic>{
+              'code': '5090',
+              'display': 'Height (cm)',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5090/'
+            }
+          ],
+          'text': 'Height (cm)'
+        },
+        'effectiveInstant': '2022-01-04T12:45:25Z',
+        'id': 'e273444a-53b4-469b-8a8a-b5d9b02f7e1e',
+        'performer': <dynamic>[
+          <String, dynamic>{
+            'display': 'Agha Khan',
+            'reference': 'Organization/a84fc567-8c65-4529-9894-15d0cfe9be00'
+          }
+        ],
+        'resourceType': 'Observation',
+        'status': 'preliminary',
+        'subject': <String, dynamic>{
+          'display': 'Paul',
+          'reference': 'Patient/8597b8a4-c9e0-4efa-9f41-b30843873252'
+        },
+        'timelineDate': '2022-01-04T12:45:25Z',
+        'valueString': '176'
       },
       <String, dynamic>{
         'category': <Map<String, dynamic>>[
@@ -2173,39 +2507,70 @@ final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{
         'valueString': 'Non Reactive'
       },
       <String, dynamic>{
-        'category': <Map<String, dynamic>>[
+        'category': <dynamic>[
           <String, dynamic>{
-            'coding': <Map<String, dynamic>>[
+            'coding': <dynamic>[
               <String, dynamic>{
-                'code': 'laboratory',
-                'display': 'Laboratory',
+                'code': 'vital-signs',
+                'display': 'Vital Signs',
                 'system':
                     'http://terminology.hl7.org/CodeSystem/observation-category'
               }
             ],
-            'text': 'Laboratory'
+            'text': 'Vital Signs'
           }
         ],
         'code': <String, dynamic>{
-          'coding': <Map<String, dynamic>>[
+          'coding': <dynamic>[
             <String, dynamic>{
-              'code': '306',
-              'display': 'Widal test',
-              'system': '/orgs/CIEL/sources/CIEL/concepts/306/'
+              'code': '5096',
+              'display': 'Return visit date',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/5096/'
             }
           ],
-          'text': 'Widal test'
+          'text': 'Return visit date'
         },
-        'effectiveDateTime': '2022-03-05',
-        'id': 'e22f4054-4f97-4996-b0aa-ffee9765e283',
+        'effectiveInstant': '2022-04-05T09:36:28Z',
+        'id': '3f753b78-7c91-4693-b8fd-f45f5a6538e6',
         'resourceType': 'Observation',
         'status': 'preliminary',
         'subject': <String, dynamic>{
-          'display': '8371c56f-2cc3-4ea9-9db7-2befef290f9c',
-          'reference': 'Patient/8371c56f-2cc3-4ea9-9db7-2befef290f9c'
+          'display': '510a98f5-8e39-465f-abf8-663c150ce355',
+          'reference': 'Patient/510a98f5-8e39-465f-abf8-663c150ce355'
         },
-        'timelineDate': '2022-03-05',
-        'valueString': 'Non Reactive'
+        'timelineDate': '2022-04-05T09:36:28Z',
+        'valueString': '2022-04-21'
+      },
+      <String, dynamic>{
+        'category': <String, dynamic>{
+          'coding': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'code': '114100',
+              'display': 'Pneumonia',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/114100/'
+            }
+          ],
+          'text': 'Pneumonia'
+        },
+        'effectiveDateTime': '2022-03-04',
+        'id': 'ab7313bb-3688-4f67-87db-e98bb69d0263',
+        'medicationCodeableConcept': <String, dynamic>{
+          'coding': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'code': '71160',
+              'display': 'Amoxicillin',
+              'system': '/orgs/CIEL/sources/CIEL/concepts/71160/'
+            }
+          ],
+          'text': 'Amoxicillin'
+        },
+        'resourceType': 'MedicationStatement',
+        'status': 'unknown',
+        'subject': <String, dynamic>{
+          'display': '340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b',
+          'reference': 'Patient/340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b'
+        },
+        'timelineDate': '2022-03-04'
       },
       <String, dynamic>{
         'category': <String>['medication'],
@@ -2259,72 +2624,6 @@ final Map<String, dynamic> mockHealthTimelineItems = <String, dynamic>{
         'type': 'allergy',
         'verificationStatus': <String, dynamic>{}
       },
-      <String, dynamic>{
-        'category': <String, dynamic>{
-          'coding': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'code': '114100',
-              'display': 'Pneumonia',
-              'system': '/orgs/CIEL/sources/CIEL/concepts/114100/'
-            }
-          ],
-          'text': 'Pneumonia'
-        },
-        'effectiveDateTime': '2022-03-04',
-        'id': 'ab7313bb-3688-4f67-87db-e98bb69d0263',
-        'medicationCodeableConcept': <String, dynamic>{
-          'coding': <Map<String, dynamic>>[
-            <String, dynamic>{
-              'code': '71160',
-              'display': 'Amoxicillin',
-              'system': '/orgs/CIEL/sources/CIEL/concepts/71160/'
-            }
-          ],
-          'text': 'Amoxicillin'
-        },
-        'resourceType': 'MedicationStatement',
-        'status': 'unknown',
-        'subject': <String, dynamic>{
-          'display': '340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b',
-          'reference': 'Patient/340611da-fcd0-4fc2-bb29-ef6ba3bbcb0b'
-        },
-        'timelineDate': '2022-03-04'
-      },
-      <String, dynamic>{
-        'category': <dynamic>[
-          <String, dynamic>{
-            'coding': <dynamic>[
-              <String, dynamic>{
-                'code': 'vital-signs',
-                'display': 'Vital Signs',
-                'system':
-                    'http://terminology.hl7.org/CodeSystem/observation-category'
-              }
-            ],
-            'text': 'Vital Signs'
-          }
-        ],
-        'code': <String, dynamic>{
-          'coding': <dynamic>[
-            <String, dynamic>{
-              'code': '5096',
-              'display': 'Return visit date',
-              'system': '/orgs/CIEL/sources/CIEL/concepts/5096/'
-            }
-          ],
-          'text': 'Return visit date'
-        },
-        'effectiveInstant': '2022-04-05T09:36:28Z',
-        'id': '3f753b78-7c91-4693-b8fd-f45f5a6538e6',
-        'resourceType': 'Observation',
-        'status': 'preliminary',
-        'subject': <String, dynamic>{
-          'display': '510a98f5-8e39-465f-abf8-663c150ce355',
-          'reference': 'Patient/510a98f5-8e39-465f-abf8-663c150ce355'
-        },
-        'timelineDate': '2022-04-05T09:36:28Z',
-        'valueString': '2022-04-21'
-      }
     ],
   },
 };

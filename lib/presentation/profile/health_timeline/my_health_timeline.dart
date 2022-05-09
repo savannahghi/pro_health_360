@@ -51,7 +51,10 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
 
     StoreProvider.dispatch(
       context,
-      FetchHealthTimelineAction(httpClient: widget.graphQlClient),
+      FetchHealthTimelineAction(
+        httpClient: widget.graphQlClient,
+        limit: widget.numberOfRecords,
+      ),
     );
   }
 
@@ -127,7 +130,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
           AllergyIntoleranceType? type,
           CodeableConcept? verificationStatus,
         ) {
-          title = clinicalStatus?.text;
+          title = code?.text;
           final String? reactionText =
               reaction?.first.manifestation?.first?.text?.toLowerCase();
           final String reactionSeverity = describeEnum(
@@ -214,21 +217,6 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                       final List<FhirResource> fhirResources =
                           vm.healthTimelineItems![key]!;
 
-                      if (widget.showMore && index == items.length - 1) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: MyAfyaHubPrimaryButton(
-                            onPressed: () => widget.showMoreCallback?.call(),
-                            text: viewMoreText,
-                            buttonColor:
-                                AppColors.primaryColor.withOpacity(0.2),
-                            borderColor: Colors.transparent,
-                            textColor: AppColors.primaryColor,
-                            buttonKey: cancelShareDiaryEntryKey,
-                          ),
-                        );
-                      }
-
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         key: keys[key],
@@ -281,6 +269,21 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
                 }
               },
             ),
+            if (widget.showMore && widget.numberOfRecords >= 10)
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: MyAfyaHubPrimaryButton(
+                    buttonKey: const Key('view_more_key'),
+                    onPressed: () => widget.showMoreCallback?.call(),
+                    text: viewMoreText,
+                    buttonColor: AppColors.primaryColor.withOpacity(0.2),
+                    borderColor: Colors.transparent,
+                    textColor: AppColors.primaryColor,
+                  ),
+                ),
+              ),
           ],
         ),
       ),

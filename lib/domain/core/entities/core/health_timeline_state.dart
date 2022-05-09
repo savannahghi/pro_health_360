@@ -10,6 +10,7 @@ class HealthTimelineState with _$HealthTimelineState {
     @Default(<String, List<FhirResource>>{})
         Map<String, List<FhirResource>> healthTimelineItems,
     @Default(0) int offset,
+    @Default(0) int count,
   }) = _HealthTimelineState;
 
   factory HealthTimelineState.fromJson(Map<String, dynamic> json) =>

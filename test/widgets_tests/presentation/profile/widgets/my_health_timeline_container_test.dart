@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/actions/health_timeline/update_health_timeline_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline_container.dart';
 
@@ -16,6 +21,8 @@ void main() {
     });
 
     testWidgets('back button works', (WidgetTester tester) async {
+      store.dispatch(UpdateHealthTimelineAction(offset: 10, count: 30));
+
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -35,6 +42,8 @@ void main() {
     });
 
     testWidgets('forward button works', (WidgetTester tester) async {
+      store.dispatch(UpdateHealthTimelineAction(offset: 10, count: 30));
+
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -48,9 +57,33 @@ void main() {
       await tester.tap(forwardArrow);
       await tester.pumpAndSettle();
 
-      expect(find.text('11'), findsOneWidget);
+      expect(find.text('21'), findsOneWidget);
       expect(find.text('-'), findsOneWidget);
-      expect(find.text('20'), findsOneWidget);
+      expect(find.text('30'), findsOneWidget);
+    });
+
+    testWidgets('should work with provided client',
+        (WidgetTester tester) async {
+      final IGraphQlClient client = MockShortGraphQlClient.withResponse(
+        '',
+        '',
+        Response(
+          jsonEncode(<String, dynamic>{'data': mockHealthTimelineItems}),
+          200,
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: client,
+        widget: MyHealthTimelineContainer(
+          graphQlClient: client,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(MyHealthTimelineContainer), findsOneWidget);
     });
   });
 }

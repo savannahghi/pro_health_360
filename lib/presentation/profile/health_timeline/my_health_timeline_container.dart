@@ -63,27 +63,34 @@ class _MyHealthTimelineContainerState extends State<MyHealthTimelineContainer> {
           StoreConnector<AppState, HealthTimelineOffsetViewModel>(
         vm: () => HealthTimelineViewModelFactory(client: getCustomClient()),
         builder: (BuildContext context, HealthTimelineOffsetViewModel vm) {
-          final int lowerBound = (vm.offset ?? 0) + 1;
+          final int offset = vm.offset ?? 0;
+          final int lowerBound = offset + 1;
           final int upperBound = lowerBound + 9;
+          final bool hasReachedEnd = (offset + 10) > vm.count - 1;
+          final bool isAtBeginning = offset == 0;
 
           return TimelinePaginationControls(
             lowerBound: lowerBound.toString(),
             upperBound: upperBound.toString(),
-            nextPageAction: () {
-              vm.updateOffset?.call((vm.offset ?? 0) + 10);
-              vm.fetchMore?.call();
-            },
-            prevPageAction: () {
-              int currentOffset = vm.offset ?? 0;
-              int difference = 10;
-              if (currentOffset < 10) {
-                currentOffset = 0;
-                difference = 0;
-              }
+            nextPageAction: !hasReachedEnd
+                ? () {
+                    vm.updateOffset?.call(offset + 10);
+                    vm.fetchMore?.call();
+                  }
+                : null,
+            prevPageAction: !isAtBeginning
+                ? () {
+                    int currentOffset = offset;
+                    int difference = 10;
+                    if (currentOffset < 10) {
+                      currentOffset = 0;
+                      difference = 0;
+                    }
 
-              vm.updateOffset?.call(currentOffset - difference);
-              vm.fetchMore?.call();
-            },
+                    vm.updateOffset?.call(currentOffset - difference);
+                    vm.fetchMore?.call();
+                  }
+                : null,
           );
         },
       ),
