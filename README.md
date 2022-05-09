@@ -21,7 +21,7 @@ To dig into the data. go to [Stat Counter](https://gs.statcounter.com/screen-res
 
 Examples of apps serving the Kenyan market and doing well with portrait lock are Mpesa and Bolt.
 
-### How to setup and run Bewell
+### How to setup and run myafyahub
 
 1. Use `git clone git@github.com:savannahghi/myafyahub.git` to clone this project.
 
