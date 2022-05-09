@@ -1,6 +1,6 @@
-/// [BeWellDatabaseBase] defines an interface to be fulfilled so that a storage component
+/// [MyAfyaHubDatabaseBase] defines an interface to be fulfilled so that a storage component
 /// may work, for each exclusive platform. (Mobile and Web)
-abstract class BeWellDatabaseBase<T> {
+abstract class MyAfyaHubDatabaseBase<T> {
   /// get the [database] instance
   Future<T> get database;
 

@@ -1551,7 +1551,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
     'isNew': true,
     'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
     'meta': <String, dynamic>{
-      'contentHTMLURL': 'https://bewell.co.ke/',
+      'contentHTMLURL': 'https://mycarehub.co.ke/',
       'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
     },
     'tagNames': <String>['Recommended', 'Health', 'Fitness'],
@@ -1712,7 +1712,7 @@ final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
     ],
     'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
     'meta': <String, dynamic>{
-      'contentHTMLURL': 'https://bewell.co.ke/',
+      'contentHTMLURL': 'https://mycarehub.co.ke/',
       'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
     },
     'tagNames': <String>['Recommended', 'Health', 'Fitness'],
