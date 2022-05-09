@@ -6,15 +6,15 @@ part 'medical_data_clinical_status.freezed.dart';
 part 'medical_data_clinical_status.g.dart';
 
 @freezed
-class MedicalDataClinicalStatus with _$MedicalDataClinicalStatus {
-  factory MedicalDataClinicalStatus({
+class MedicalDataCode with _$MedicalDataCode {
+  factory MedicalDataCode({
     @JsonKey(name: 'Text') String? text,
-  }) = _MedicalDataClinicalStatus;
+  }) = _MedicalDataCode;
 
-  factory MedicalDataClinicalStatus.fromJson(Map<String, dynamic> json) =>
-      _$MedicalDataClinicalStatusFromJson(json);
+  factory MedicalDataCode.fromJson(Map<String, dynamic> json) =>
+      _$MedicalDataCodeFromJson(json);
 
-  factory MedicalDataClinicalStatus.initial() => MedicalDataClinicalStatus(
+  factory MedicalDataCode.initial() => MedicalDataCode(
         text: UNKNOWN,
       );
 }

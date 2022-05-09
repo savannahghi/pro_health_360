@@ -395,7 +395,7 @@ query medicalData($patientID: String!) {
       }
     }
     allergies {
-      ClinicalStatus{
+      Code{
         Text
       }
     }

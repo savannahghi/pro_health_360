@@ -12,7 +12,7 @@ part 'medical_data_details.g.dart';
 class MedicalDataDetails with _$MedicalDataDetails {
   factory MedicalDataDetails({
     @JsonKey(name: 'ValueString') String? valueString,
-    @JsonKey(name: 'ClinicalStatus') MedicalDataClinicalStatus? clinicalStatus,
+    @JsonKey(name: 'Code') MedicalDataCode? code,
     @JsonKey(name: 'Category') MedicalDataCategory? category,
     @JsonKey(name: 'MedicationCodeableConcept')
         MedicationCodeableConcept? medicationCodeableConcept,
@@ -23,7 +23,7 @@ class MedicalDataDetails with _$MedicalDataDetails {
 
   factory MedicalDataDetails.initial() => MedicalDataDetails(
         valueString: UNKNOWN,
-        clinicalStatus: MedicalDataClinicalStatus.initial(),
+        code: MedicalDataCode.initial(),
         category: MedicalDataCategory.initial(),
         medicationCodeableConcept: MedicationCodeableConcept.initial(),
       );

@@ -1,4 +1,3 @@
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/entities/medical_data/medical_data_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -25,14 +24,14 @@ class MedicalDataWidget extends StatelessWidget {
           medicalDataDetails.length,
           (int index) {
             final String category =
-                medicalDataDetails[index]?.category?.text ?? UNKNOWN;
+                medicalDataDetails[index]?.category?.text ?? '';
             final String medicationCodeableConcept =
                 medicalDataDetails[index]?.medicationCodeableConcept?.text ??
-                    UNKNOWN;
+                    '';
             final String clinicalStatusText =
-                medicalDataDetails[index]?.clinicalStatus?.text ?? UNKNOWN;
+                medicalDataDetails[index]?.code?.text ?? '';
             final String valuesString =
-                medicalDataDetails[index]?.valueString ?? UNKNOWN;
+                medicalDataDetails[index]?.valueString ?? '';
             return SizedBox(
               width: double.infinity,
               child: Column(
