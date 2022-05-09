@@ -6,6 +6,7 @@ import 'package:myafyahub/domain/core/entities/core/content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/recent_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
+import 'package:myafyahub/domain/core/entities/feed/content_engagement_state.dart';
 
 void main() {
   test('should convert from/to json', () {
@@ -16,7 +17,8 @@ void main() {
     final ContentState result2 = ContentState.fromJson(<String, dynamic>{
       'savedContentState': <String, dynamic>{
         'items': <Map<String, dynamic>>[
-          <String, dynamic>{'ID': 1}]
+          <String, dynamic>{'ID': 1}
+        ]
       }
     });
 
@@ -33,6 +35,7 @@ void main() {
         feedContentState: FeedContentState.initial(),
         savedContentState: SavedContentState.initial(),
         recentContentState: RecentContentState.initial(),
+        contentEngagementState: ContentEngagementState.initial(),
       ),
     );
   });
