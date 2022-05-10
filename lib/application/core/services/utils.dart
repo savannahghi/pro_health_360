@@ -23,6 +23,7 @@ import 'package:myafyahub/application/redux/actions/update_pin_input_details_act
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:myafyahub/domain/core/entities/core/notification_action_info.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
@@ -785,4 +786,21 @@ bool resumeWithPIN(AppState appState) {
   return isSignedIn &&
       route.nextRoute.compareTo(AppRoutes.home) == 0 &&
       timeDifference > 1;
+}
+
+NotificationActionInfo getNotificationInfo(NotificationType notificationType) {
+  switch (notificationType) {
+    case NotificationType.COMMUNITIES:
+      return NotificationActionInfo(
+        actionTitle: 'View Communities',
+        route: AppRoutes.communityListPage,
+      );
+    case NotificationType.APPOINTMENT:
+      return NotificationActionInfo(
+        actionTitle: 'View Appointments',
+        route: AppRoutes.appointmentsPage,
+      );
+    default:
+      return NotificationActionInfo(actionTitle: null, route: null);
+  }
 }

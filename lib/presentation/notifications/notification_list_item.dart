@@ -3,7 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/entities/core/notification_action_info.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -20,38 +20,92 @@ class NotificationListItem extends StatelessWidget {
     final NotificationType notificationType =
         notificationDetails?.type ?? NotificationType.UNKNOWN;
 
-    final Widget date = humanizeDate(
-      dateTextStyle: normalSize10Text(AppColors.greyTextColor.withOpacity(0.6)),
-      loadedDate: notificationDetails?.createdAt ?? '',
-      showTime: true,
-    );
-
+    final NotificationActionInfo notificationInfo =
+        getNotificationInfo(notificationType);
+    final String? actionTitle = notificationInfo.actionTitle;
+    final double _width = MediaQuery.of(context).size.width - 60;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          notificationDetails?.body ?? '',
-          style: normalSize12Text(AppColors.secondaryColor),
-        ),
-        smallVerticalSizedBox,
-        date,
-        smallVerticalSizedBox,
-        if (notificationType == NotificationType.APPOINTMENT ||
-            notificationType == NotificationType.COMMUNITIES)
-          SizedBox(
-            height: 34,
-            child: MyAfyaHubPrimaryButton(
-              buttonKey: notificationItemActionKey,
-              buttonColor: AppColors.primaryColor.withOpacity(0.14),
-              text: getNotificationActionString(notificationType),
-              textStyle: normalSize11Text(AppColors.primaryColor),
-              onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(
-                getNotificationActionRoute(notificationType),
-                (Route<dynamic> route) => false,
+        mediumVerticalSizedBox,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 12,
+              height: 12,
+              margin: const EdgeInsets.only(
+                right: 8.0,
+                top: 1.5,
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: notificationDetails?.isRead ?? false
+                    ? Colors.transparent
+                    : AppColors.greenColor,
               ),
             ),
-          ),
-        verySmallVerticalSizedBox,
+            SizedBox(
+              width: _width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          notificationDetails?.title ?? '',
+                          style: normalSize13Text(AppColors.secondaryColor),
+                        ),
+                      ),
+                      Text(
+                        summarizeDate(notificationDetails?.createdAt ?? ''),
+                        style: normalSize12Text(
+                          AppColors.greyTextColor.withOpacity(0.6),
+                        ),
+                      ),
+                    ],
+                  ),
+                  smallVerticalSizedBox,
+                  Text(
+                    notificationDetails?.body ?? '',
+                    style: normalSize12Text(
+                      AppColors.greyTextColor.withOpacity(0.8),
+                    ),
+                  ),
+                  if (actionTitle != null)
+                    Container(
+                      margin: const EdgeInsets.only(
+                        top: 10.0,
+                      ),
+                      height: 34,
+                      child: MyAfyaHubPrimaryButton(
+                        buttonKey: notificationItemActionKey,
+                        buttonColor: AppColors.primaryColor.withOpacity(0.10),
+                        text: actionTitle,
+                        textStyle: normalSize12Text(AppColors.primaryColor),
+                        borderColor: AppColors.primaryColor.withOpacity(0.14),
+                        onPressed: notificationInfo.route != null
+                            ? () =>
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  notificationInfo.route!,
+                                  (Route<dynamic> route) => false,
+                                )
+                            : null,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 10, left: 20),
+          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          height: 1,
+          width: _width,
+        )
       ],
     );
   }

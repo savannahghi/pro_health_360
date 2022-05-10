@@ -83,11 +83,8 @@ class NotificationsPage extends StatelessWidget {
                       final NotificationDetails? currentNotificationDetails =
                           notifications.elementAt(index);
 
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: consumer.NotificationListItem(
-                          notificationDetails: currentNotificationDetails,
-                        ),
+                      return consumer.NotificationListItem(
+                        notificationDetails: currentNotificationDetails,
                       );
                     },
                   ),
