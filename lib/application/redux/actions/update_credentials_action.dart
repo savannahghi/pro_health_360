@@ -6,13 +6,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 
 class UpdateCredentialsAction extends ReduxAction<AppState> {
-  final String? idToken;
-  final String? expiresIn;
-  final String? refreshToken;
-  final bool? isSignedIn;
-  final String? signedInTime;
-  final String? tokenExpiryTimestamp;
-
   UpdateCredentialsAction({
     this.idToken,
     this.expiresIn,
@@ -20,7 +13,16 @@ class UpdateCredentialsAction extends ReduxAction<AppState> {
     this.isSignedIn,
     this.signedInTime,
     this.tokenExpiryTimestamp,
+    this.pushToken,
   });
+
+  final String? expiresIn;
+  final String? idToken;
+  final bool? isSignedIn;
+  final String? pushToken;
+  final String? refreshToken;
+  final String? signedInTime;
+  final String? tokenExpiryTimestamp;
 
   @override
   AppState reduce() {
@@ -32,6 +34,7 @@ class UpdateCredentialsAction extends ReduxAction<AppState> {
       signedInTime: signedInTime ?? state.credentials?.signedInTime,
       tokenExpiryTimestamp:
           tokenExpiryTimestamp ?? state.credentials?.tokenExpiryTimestamp,
+      pushToken: pushToken ?? state.credentials?.pushToken,
     );
 
     return state.copyWith(credentials: newCredentials ?? state.credentials);

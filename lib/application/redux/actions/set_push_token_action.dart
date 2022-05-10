@@ -4,19 +4,23 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SetPushToken extends ReduxAction<AppState> {
+  SetPushToken({required this.client, required this.firebaseMessaging});
+
   final IGraphQlClient client;
   final FirebaseMessaging firebaseMessaging;
-
-  SetPushToken({required this.client, required this.firebaseMessaging});
 
   @override
   Future<AppState?> reduce() async {
     if (state.credentials?.isSignedIn ?? false) {
       final String? token = await firebaseMessaging.getToken();
+      final String tokenFromState = state.credentials?.pushToken ?? UNKNOWN;
+
+      if (tokenFromState.compareTo(token ?? '') == 0) return null;
 
       final Map<String, dynamic> variables = <String, dynamic>{'token': token};
       final Response response =
@@ -39,7 +43,9 @@ class SetPushToken extends ReduxAction<AppState> {
             },
           );
         }
-
+        dispatch(
+          UpdateCredentialsAction(pushToken: token),
+        );
         return null;
       } else {
         Sentry.captureException(

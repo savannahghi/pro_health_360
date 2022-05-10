@@ -6,6 +6,7 @@ import 'dart:io';
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -37,7 +38,9 @@ void main() {
     late Store<AppState> store;
     late MobileConnectivityChecker connectivityStatus;
 
-    setUp(() {
+    setUp(() async {
+      setupFirebaseMessagingMocks();
+      await Firebase.initializeApp();
       final String dir = Directory.current.path;
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(UpdateConnectivityAction(hasConnection: true));

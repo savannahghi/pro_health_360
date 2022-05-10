@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -29,8 +30,10 @@ import '../../../test_helpers.dart';
 void main() {
   late Store<AppState> store;
 
-  setUp(() {
+  setUp(() async {
     store = Store<AppState>(initialState: AppState.initial());
+    setupFirebaseMessagingMocks();
+    await Firebase.initializeApp();
   });
 
   group('MyHealthDiaryPage', () {

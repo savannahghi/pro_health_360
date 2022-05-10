@@ -17,6 +17,7 @@ class AuthCredentials with _$AuthCredentials {
     // Other supporting fields that are not returned by the backend
     bool? isSignedIn,
     String? signedInTime,
+    String? pushToken,
   }) = _AuthCredentials;
 
   factory AuthCredentials.fromJson(Map<String, dynamic> json) =>
@@ -29,5 +30,6 @@ class AuthCredentials with _$AuthCredentials {
         isSignedIn: false,
         signedInTime: UNKNOWN,
         tokenExpiryTimestamp: UNKNOWN,
+        pushToken: UNKNOWN,
       );
 }
