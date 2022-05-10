@@ -1,13 +1,12 @@
 // Flutter imports:
 
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 
 class UpdateContentStateAction extends ReduxAction<AppState> {
   UpdateContentStateAction({

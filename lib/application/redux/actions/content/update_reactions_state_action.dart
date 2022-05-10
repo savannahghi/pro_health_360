@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 
@@ -7,8 +8,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/recent_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 class UpdateReactionStatusAction extends ReduxAction<AppState> {
   UpdateReactionStatusAction({

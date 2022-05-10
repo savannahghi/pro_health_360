@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:afya_moja_core/afya_moja_core.dart' as core;
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
@@ -18,7 +18,6 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
@@ -1290,7 +1289,7 @@ Map<String, dynamic> mockSecurityQuestion = <String, dynamic>{
   'SecurityQuestionID': 'id',
   'QuestionStem': 'question_stem',
   'Description': 'description',
-  'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
+  'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
   'Active': true,
 };
 
@@ -1299,21 +1298,21 @@ final List<dynamic> securityQuestionsMock = <dynamic>[
     'SecurityQuestionID': 'id1',
     'QuestionStem': 'What are the last 4 digits of your CCC number?',
     'Description': 'Please provide the last 4 digits of your clinic number',
-    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
+    'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
   <String, dynamic>{
     'SecurityQuestionID': 'id2',
     'QuestionStem': 'Which month did you start your treatment?',
     'Description': 'Enter the month you started your treatment',
-    'ResponseType': SecurityQuestionResponseType.DATE.name,
+    'ResponseType': core.SecurityQuestionResponseType.DATE.name,
     'Active': true,
   },
   <String, dynamic>{
     'SecurityQuestionID': 'id3',
     'QuestionStem': 'Which county is your clinic located?',
     'Description': 'enter the name of the county in small letters',
-    'ResponseType': SecurityQuestionResponseType.UNKNOWN.name,
+    'ResponseType': core.SecurityQuestionResponseType.UNKNOWN.name,
     'Active': true,
   },
 ];
@@ -1359,7 +1358,7 @@ Map<String, dynamic> mockFAQContent = <String, dynamic>{
   'Title': 'title',
   'Body': 'body',
   'Description': 'description',
-  'Flavour': Flavour.consumer.name,
+  'Flavour': core.Flavour.consumer.name,
 };
 
 final Map<String, dynamic> termsMock = <String, dynamic>{
@@ -1524,6 +1523,15 @@ final Map<String, dynamic> contentEngagementMock = <String, dynamic>{
   'contentId': 'some_id',
   'contentOpenedAt': '2021-08-23T06:42:05.085216Z'
 };
+
+final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
+  'id': 2,
+  'image': <String, dynamic>{
+    'title': 'mockImage',
+    'meta': <String, String>{'imageDownloadUrl': 'testImage'}
+  }
+};
+
 
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
@@ -1719,13 +1727,6 @@ final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
   },
 ];
 
-final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
-  'id': 2,
-  'image': <String, dynamic>{
-    'title': 'mockImage',
-    'meta': <String, String>{'imageDownloadUrl': 'testImage'}
-  }
-};
 
 final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
   <String, dynamic>{
@@ -1781,17 +1782,17 @@ final List<Map<String, dynamic>> mockDiaryEntries = <Map<String, dynamic>>[
 final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
   'invitedCommunities': <dynamic>[
     <String, dynamic>{
-      'id': UNKNOWN,
-      'name': UNKNOWN,
+      'id': core.UNKNOWN,
+      'name': core.UNKNOWN,
       'memberCount': 0,
-      'description': UNKNOWN,
-      'createdBy': UNKNOWN,
+      'description': core.UNKNOWN,
+      'createdBy': core.UNKNOWN,
     },
   ]
 };
 
-final Content mockContent = Content.fromJson(contentMock.first);
-final Content mockVideoContent = Content.fromJson(videoContentMock.first);
+final core.Content mockContent = core.Content.fromJson(contentMock.first);
+final core.Content mockVideoContent = core.Content.fromJson(videoContentMock.first);
 
 final Group mockGroup = Group(
   name: testString,
@@ -1803,10 +1804,10 @@ final Group mockGroup = Group(
 final Map<String, dynamic> mockOnboardingState = <String, dynamic>{
   'termsAndConditions': TermsAndConditions.initial().toJson(),
   'securityQuestions': <Map<String, dynamic>>[
-    SecurityQuestion.initial().toJson(),
+    core.SecurityQuestion.initial().toJson(),
   ],
   'securityQuestionResponses': <Map<String, dynamic>>[
-    SecurityQuestionResponse.initial().toJson(),
+    core.SecurityQuestionResponse.initial().toJson(),
   ],
 };
 
@@ -1820,11 +1821,11 @@ final Map<String, dynamic> mockAddress = <String, dynamic>{
 };
 
 final Map<String, dynamic> mockCommunity = <String, dynamic>{
-  'id': UNKNOWN,
-  'name': UNKNOWN,
+  'id': core.UNKNOWN,
+  'name': core.UNKNOWN,
   'memberCount': 0,
-  'description': UNKNOWN,
-  'createdBy': UNKNOWN,
+  'description': core.UNKNOWN,
+  'createdBy': core.UNKNOWN,
 };
 
 final Map<String, dynamic> mockAuthCredentials = <String, dynamic>{
@@ -1849,7 +1850,6 @@ final Map<String, dynamic> mockFeedContent = <String, dynamic>{
     'items': <dynamic>[contentMock.first]
   },
 };
-
 final Map<String, dynamic> mockListContentCategories = <String, dynamic>{
   'listContentCategories': categoriesMock
 };
@@ -2636,11 +2636,11 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
   'listCommunityMembers': <dynamic>[
     <String, dynamic>{
       'user': <String, dynamic>{
-        'id': UNKNOWN,
-        'userID': UNKNOWN,
-        'name': UNKNOWN,
-        'role': UNKNOWN,
-        'username': UNKNOWN,
+        'id': core.UNKNOWN,
+        'userID': core.UNKNOWN,
+        'name': core.UNKNOWN,
+        'role': core.UNKNOWN,
+        'username': core.UNKNOWN,
         'gender': 'unknown',
         'extraData': <String, dynamic>{
           'bannedInCommunity': false,

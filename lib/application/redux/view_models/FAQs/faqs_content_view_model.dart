@@ -30,6 +30,6 @@ class FAQsContentViewModel extends Vm {
 
   final bool? errorFetchingFAQs;
   final bool? timeoutFetchingFAQs;
-  final List<FAQContent?>? faqItems;
+  final List<Content?>? faqItems;
   final Wait? wait;
 }

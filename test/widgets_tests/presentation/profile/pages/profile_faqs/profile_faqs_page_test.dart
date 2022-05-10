@@ -14,10 +14,10 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
+import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
-import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
-import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 
 import '../../../../../mocks.dart';
@@ -33,9 +33,11 @@ void main() {
     http.Response(
       json.encode(<String, dynamic>{
         'data': <String, dynamic>{
-          'getFAQContent': <dynamic>[
-            mockFAQContent,
-          ],
+          'getContent': <String, dynamic>{
+            'items': <dynamic>[
+              contentMock.first,
+            ]
+          },
         },
       }),
       201,
@@ -44,40 +46,27 @@ void main() {
 
   group('ProfileFaqsPage', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
-      tester.binding.window.physicalSizeTestValue =
-          typicalLargePhoneScreenSizePortrait;
       TestWidgetsFlutterBinding.ensureInitialized();
       store = Store<AppState>(initialState: AppState.initial());
-      store.dispatch(
-        UpdateFAQsContentAction(
-          profileFAQs: <FAQContent>[
-            FAQContent.initial().copyWith(title: 'title'),
-          ],
-        ),
-      );
 
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortSILGraphQlClient,
-        widget: const ProfileFaqsPage(),
-      );
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: ProfileFaqsPage(),
+        );
 
-      await tester.pumpAndSettle();
+        await tester.pumpAndSettle();
 
-      expect(find.text(faqsText), findsOneWidget);
-      expect(find.byKey(appBarBackButtonKey), findsOneWidget);
-      expect(find.byType(FAQItem), findsWidgets);
+        expect(find.text(faqsText), findsOneWidget);
+        expect(find.byKey(appBarBackButtonKey), findsOneWidget);
+        expect(find.byType(ContentItem), findsOneWidget);
 
-      await tester.tap(find.text('title'));
-      await tester.pumpAndSettle();
+        await tester.tap(find.text('Tips on how to keep yourself healthy'));
+        await tester.pumpAndSettle();
 
-      expect(find.byType(FAQDetailViewPage), findsWidgets);
-
-      addTearDown(() {
-        tester.binding.window.clearPhysicalSizeTestValue();
-        tester.binding.window.clearDevicePixelRatioTestValue();
+        expect(find.byType(ContentDetailPage), findsWidgets);
       });
     });
 
@@ -93,7 +82,7 @@ void main() {
         tester: tester,
         store: store,
         client: mockShortSILGraphQlClient,
-        widget: const ProfileFaqsPage(),
+        widget: ProfileFaqsPage(),
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);
@@ -111,7 +100,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'getFAQContent': <dynamic>[],
+              'getContent': <String, dynamic>{'items': <dynamic>[]},
             },
           }),
           201,
@@ -123,7 +112,7 @@ void main() {
           tester: tester,
           store: store,
           client: mockShortSILGraphQlClient,
-          widget: const ProfileFaqsPage(),
+          widget: ProfileFaqsPage(),
         );
 
         await tester.pumpAndSettle();
@@ -153,7 +142,7 @@ void main() {
           tester: tester,
           store: store,
           client: client,
-          widget: const ProfileFaqsPage(),
+          widget: ProfileFaqsPage(),
         );
 
         await tester.pumpAndSettle();
@@ -186,7 +175,7 @@ void main() {
           tester: tester,
           store: store,
           client: client,
-          widget: const ProfileFaqsPage(),
+          widget: ProfileFaqsPage(),
         );
 
         await tester.pump();

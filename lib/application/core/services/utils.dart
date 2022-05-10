@@ -23,12 +23,10 @@ import 'package:myafyahub/application/redux/actions/update_pin_input_details_act
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:myafyahub/domain/core/entities/core/notification_action_info.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/core/user_profile_item_obj.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
 import 'package:myafyahub/domain/core/entities/health_timeline/fhir_enums.dart';
 import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
@@ -511,7 +509,7 @@ Future<void> updateLikeStatus({
   required int contentID,
   required bool isLiked,
   bool updateLikeCount = false,
-  required enums.ContentDisplayedType contentDisplayedType,
+  required ContentDisplayedType contentDisplayedType,
 }) async {
   StoreProvider.dispatch(
     context,
@@ -536,7 +534,7 @@ Future<void> updateLikeStatus({
 Future<void> updateBookmarkStatus({
   required BuildContext context,
   required int contentID,
-  required enums.ContentDisplayedType contentDisplayedType,
+  required ContentDisplayedType contentDisplayedType,
 }) async {
   //update save status locally
   StoreProvider.dispatch(
@@ -604,7 +602,7 @@ Future<ChewieController> initializeChewieController({
 
 bool getHasLiked({
   required int contentID,
-  required enums.ContentDisplayedType contentDisplayedType,
+  required ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   final List<Content?> contentItems =
@@ -622,7 +620,7 @@ bool getHasLiked({
 
 int getLikeCount({
   required int contentID,
-  required enums.ContentDisplayedType contentDisplayedType,
+  required ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   final List<Content?> contentItems =
@@ -642,7 +640,7 @@ int getLikeCount({
 
 bool getHasSaved({
   required int contentID,
-  required enums.ContentDisplayedType contentDisplayedType,
+  required ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   final List<Content?> contentItems =
@@ -659,16 +657,16 @@ bool getHasSaved({
 }
 
 List<Content?> getContentList({
-  required enums.ContentDisplayedType contentDisplayedType,
+  required ContentDisplayedType contentDisplayedType,
   required ContentViewModel vm,
 }) {
   switch (contentDisplayedType) {
-    case enums.ContentDisplayedType.FEED:
+    case ContentDisplayedType.FEED:
       return vm.feedContentState?.contentItems ?? <Content?>[];
-    case enums.ContentDisplayedType.BOOKMARK:
+    case ContentDisplayedType.BOOKMARK:
       return vm.savedContentState?.savedContentItems ?? <Content?>[];
 
-    case enums.ContentDisplayedType.RECENT:
+    case ContentDisplayedType.RECENT:
       return vm.recentContentState?.contentItems ?? <Content?>[];
     default:
       return <Content?>[];

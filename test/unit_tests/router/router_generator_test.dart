@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
 import 'package:myafyahub/presentation/assessment/widgets/successful_assessment_submission_page.dart';
@@ -44,7 +43,6 @@ import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_pag
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/profile/clinic_information/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/consent/consent_page.dart';
-import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline_container.dart';
@@ -329,22 +327,6 @@ void main() {
         routeGenerator(settings) as MaterialPageRoute<ProfileFaqsPage>;
     expect(route, isA<MaterialPageRoute<ProfileFaqsPage>>());
     expect(route.builder(context), isA<ProfileFaqsPage>());
-  });
-
-  test('Test router returns FAQDetailViewPage', () {
-    final FAQContent payload = FAQContent.fromJson(<String, dynamic>{
-      'title': 'title',
-      'body': 'body',
-    });
-
-    final RouteSettings settings =
-        RouteSettings(name: AppRoutes.faqDetailViewPage, arguments: payload);
-
-    final MaterialPageRoute<FAQDetailViewPage> route =
-        routeGenerator(settings) as MaterialPageRoute<FAQDetailViewPage>;
-
-    expect(route, isA<MaterialPageRoute<FAQDetailViewPage>>());
-    expect(route.builder(context), isA<FAQDetailViewPage>());
   });
 
   test('Test router returns ClinicInformationPage', () {

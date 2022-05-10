@@ -267,19 +267,6 @@ query getUserBookmarkedContent($userID: String!){
 }
 ''';
 
-const String getFAQContentQuery = r'''
-query getFAQContent($flavour: Flavour!, $limit: Int!){
-  getFAQContent(flavour: $flavour, limit: $limit ){
-    ID
-    Active
-    Title
-    Description
-    Body
-    Flavour
-  }
-}
-''';
-
 const String verifyPinQuery = r'''
 query verifyPin($userID: String!, $flavour:Flavour!, $pin: String!){
   verifyPIN(userID: $userID, flavour: $flavour, pin: $pin)

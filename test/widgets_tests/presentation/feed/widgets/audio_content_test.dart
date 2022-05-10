@@ -11,12 +11,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_metadata.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
 import 'package:myafyahub/presentation/content/widgets/audio_content_controls.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';

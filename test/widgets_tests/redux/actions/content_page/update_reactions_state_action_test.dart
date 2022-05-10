@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/content/update_reactions_state_action.dart';

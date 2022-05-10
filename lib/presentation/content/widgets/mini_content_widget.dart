@@ -2,8 +2,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 /// Mini content widget is used to display content at a glance

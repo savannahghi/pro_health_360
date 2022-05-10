@@ -11,14 +11,14 @@ import 'package:myafyahub/application/redux/view_models/FAQs/faqs_content_view_m
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
-import 'package:myafyahub/presentation/profile/faqs/faq_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
-  const ProfileFaqsPage();
+  // const ProfileFaqsPage();
 
   @override
   _ProfileFaqsPageState createState() => _ProfileFaqsPageState();
@@ -29,19 +29,13 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      final FAQsContentState? state = StoreProvider.state<AppState>(context)
-          ?.miscState
-          ?.profileFAQsContentState;
-
-      if (state?.profileFAQs?.isEmpty ?? true) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          // retrieve the FAQS
-          FetchFAQSContentAction(
-            context: context,
-          ),
-        );
-      }
+      StoreProvider.dispatch<AppState>(
+        context,
+        // retrieve the FAQS
+        FetchFAQSContentAction(
+          context: context,
+        ),
+      );
     });
   }
 
@@ -55,7 +49,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
           child: SingleChildScrollView(
             padding: EdgeInsets.zero,
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -88,27 +82,29 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                           ],
                         );
                       } else {
-                        final List<FAQContent?>? faqsContent = vm.faqItems;
+                        final List<Content?>? faqsContent = vm.faqItems;
 
                         if ((faqsContent?.isNotEmpty ?? false) &&
                             (faqsContent != null)) {
                           return ListView.builder(
                             shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
                             itemCount: faqsContent.length,
-                            itemBuilder: (_, int index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.faqDetailViewPage,
-                                    arguments: faqsContent[index],
-                                  );
-                                },
-                                child: FAQItem(
-                                  faqContent: FAQContent(
-                                    title: faqsContent[index]?.title ?? UNKNOWN,
-                                    body: loremIpsumText,
+                            itemBuilder: (BuildContext context, int index) {
+                              final Content currentSavedItem =
+                                  faqsContent.elementAt(index)!;
+
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                  top: index == 0 ? 15 : 7.5,
+                                ),
+                                child: SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.38,
+                                  child: ContentItem(
+                                    contentDetails: currentSavedItem,
+                                    contentDisplayedType:
+                                        ContentDisplayedType.BOOKMARK,
+                                    showReactions: false,
                                   ),
                                 ),
                               );

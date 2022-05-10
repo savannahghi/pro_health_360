@@ -16,7 +16,6 @@ import 'package:myafyahub/application/redux/actions/update_content_state_action.
 import 'package:myafyahub/application/redux/actions/update_saved_content_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';

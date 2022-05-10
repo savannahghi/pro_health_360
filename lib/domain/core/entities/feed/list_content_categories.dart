@@ -1,8 +1,6 @@
 // Package imports:
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-// Project imports:
-import 'package:myafyahub/domain/core/entities/feed/content_category.dart';
 
 part 'list_content_categories.freezed.dart';
 part 'list_content_categories.g.dart';

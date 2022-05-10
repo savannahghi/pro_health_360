@@ -24,16 +24,21 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 class FetchFAQSContentAction extends ReduxAction<AppState> {
   FetchFAQSContentAction({
     required this.context,
-    this.limit = 10,
   });
 
   final BuildContext context;
-  final int limit;
 
   @override
   void before() {
-    dispatch(WaitAction<AppState>.add(getFAQsFlag));
     super.before();
+
+    dispatch(WaitAction<AppState>.add(getFAQsFlag));
+    dispatch(
+      UpdateFAQsContentAction(
+        errorFetchingFAQs: false,
+        timeoutFetchingFAQs: false,
+      ),
+    );
   }
 
   @override
@@ -45,12 +50,15 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final Map<String, dynamic> variables = <String, dynamic>{
+      'categoryID': 10002,
+      'Limit': '20',
+    };
 
-    final http.Response result =
-        await _client.query(getFAQContentQuery, <String, dynamic>{
-      'flavour': Flavour.consumer.name,
-      'limit': limit,
-    });
+    final http.Response result = await _client.query(
+      getContentQuery,
+      variables,
+    );
 
     final Map<String, dynamic> body = _client.toMap(result);
 
@@ -75,23 +83,23 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    final FAQContentResponse profileFAQsData = FAQContentResponse.fromJson(
+    final FeedContent profileFAQsData = FeedContent.fromJson(
       responseMap['data'] as Map<String, dynamic>,
     );
 
-    if (profileFAQsData.profileFAQsContent != null) {
-      final List<FAQContent>? items = profileFAQsData.profileFAQsContent;
+    if (profileFAQsData.feedContent != null) {
+      final List<Content>? items = profileFAQsData.feedContent?.items;
 
       if (items != null && items.isNotEmpty) {
         dispatch(
           UpdateFAQsContentAction(
-            profileFAQs: profileFAQsData.profileFAQsContent,
+            profileFAQs: items,
           ),
         );
       } else {
         dispatch(
           UpdateFAQsContentAction(
-            profileFAQs: <FAQContent>[],
+            profileFAQs: <Content>[],
             errorFetchingFAQs: false,
             timeoutFetchingFAQs: false,
           ),

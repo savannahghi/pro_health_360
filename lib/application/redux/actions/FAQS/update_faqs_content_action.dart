@@ -11,7 +11,7 @@ class UpdateFAQsContentAction extends ReduxAction<AppState> {
     this.timeoutFetchingFAQs,
   });
 
-  final List<FAQContent?>? profileFAQs;
+  final List<Content?>? profileFAQs;
   final bool? errorFetchingFAQs;
   final bool? timeoutFetchingFAQs;
 

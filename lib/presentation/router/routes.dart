@@ -62,9 +62,6 @@ class AppRoutes {
   // Profile Faqs Page
   static const String profileFaqsPage = '/profileFaqsPage';
 
-  // Profile Faqs Page
-  static const String faqDetailViewPage = '/faqDetailViewPage';
-
   //Clinic Information Page
   static const String clinicInformationPage = '/clinicInformationPage';
 

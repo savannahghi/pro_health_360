@@ -1,8 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
-import 'package:myafyahub/domain/core/entities/feed/gallery_image.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/assessment/pages/alcohol_substance_use_page.dart';
@@ -42,7 +40,6 @@ import 'package:myafyahub/presentation/onboarding/terms/terms_and_conditions_pag
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/profile/clinic_information/clinic_information_page.dart';
 import 'package:myafyahub/presentation/profile/consent/consent_page.dart';
-import 'package:myafyahub/presentation/profile/faqs/faq_detail_view_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline_container.dart';
@@ -144,7 +141,7 @@ class RouteGenerator {
 
       case AppRoutes.profileFaqsPage:
         return MaterialPageRoute<ProfileFaqsPage>(
-          builder: (_) => const ProfileFaqsPage(),
+          builder: (_) => ProfileFaqsPage(),
         );
 
       case AppRoutes.securityQuestionsPage:
@@ -257,11 +254,6 @@ class RouteGenerator {
           builder: (_) => GalleryImagesPage(
             images: args as List<GalleryImage>,
           ),
-        );
-
-      case AppRoutes.faqDetailViewPage:
-        return MaterialPageRoute<FAQDetailViewPage>(
-          builder: (_) => FAQDetailViewPage(payload: args as FAQContent),
         );
 
       case AppRoutes.forgotPINPage:

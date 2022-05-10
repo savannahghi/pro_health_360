@@ -4,12 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/feed/content.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
 import 'package:myafyahub/presentation/content/widgets/gallery_image_widget.dart';
 import 'package:myafyahub/presentation/content/widgets/leading_graphic_widget.dart';
@@ -25,11 +22,13 @@ class ContentItem extends StatelessWidget {
     required this.contentDetails,
     this.isNew = false,
     this.contentDisplayedType = ContentDisplayedType.UNKNOWN,
+    this.showReactions = true,
   });
 
   final Content contentDetails;
   final bool isNew;
   final ContentDisplayedType contentDisplayedType;
+  final bool showReactions;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +77,7 @@ class ContentItem extends StatelessWidget {
             arguments: ContentDetails(
               content: contentDetails,
               contentDisplayedType: contentDisplayedType,
+              showReactions: showReactions,
             ),
           );
         }
@@ -217,26 +217,27 @@ class ContentItem extends StatelessWidget {
                               AppColors.greyTextColor,
                             ),
                           ),
-                        // Reactions
-                        Padding(
-                          padding: const EdgeInsets.only(top: 18, bottom: 4),
-                          child: Row(
-                            children: <Widget>[
-                              ReactionItem(
-                                iconUrl: heartIconUrl,
-                                count: contentDetails.likeCount,
-                              ),
-                              ReactionItem(
-                                iconUrl: shareIconUrl,
-                                count: contentDetails.shareCount,
-                              ),
-                              ReactionItem(
-                                iconUrl: saveIconUrl,
-                                count: contentDetails.bookmarkCount,
-                              ),
-                            ],
+                        if (showReactions)
+                          // Reactions
+                          Padding(
+                            padding: const EdgeInsets.only(top: 18, bottom: 4),
+                            child: Row(
+                              children: <Widget>[
+                                ReactionItem(
+                                  iconUrl: heartIconUrl,
+                                  count: contentDetails.likeCount,
+                                ),
+                                ReactionItem(
+                                  iconUrl: shareIconUrl,
+                                  count: contentDetails.shareCount,
+                                ),
+                                ReactionItem(
+                                  iconUrl: saveIconUrl,
+                                  count: contentDetails.bookmarkCount,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   )
