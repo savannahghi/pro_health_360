@@ -26,7 +26,7 @@ class _$HealthTimelineStateTearOff {
       {Map<String, List<FhirResource>> healthTimelineItems =
           const <String, List<FhirResource>>{},
       int offset = 0,
-      int count = 0}) {
+      int count = 10}) {
     return _HealthTimelineState(
       healthTimelineItems: healthTimelineItems,
       offset: offset,
@@ -151,7 +151,7 @@ class _$_HealthTimelineState implements _HealthTimelineState {
   _$_HealthTimelineState(
       {this.healthTimelineItems = const <String, List<FhirResource>>{},
       this.offset = 0,
-      this.count = 0});
+      this.count = 10});
 
   factory _$_HealthTimelineState.fromJson(Map<String, dynamic> json) =>
       _$$_HealthTimelineStateFromJson(json);

@@ -20,7 +20,7 @@ _$_HealthTimelineState _$$_HealthTimelineStateFromJson(
               ) ??
               const <String, List<FhirResource>>{},
       offset: json['offset'] as int? ?? 0,
-      count: json['count'] as int? ?? 0,
+      count: json['count'] as int? ?? 10,
     );
 
 Map<String, dynamic> _$$_HealthTimelineStateToJson(

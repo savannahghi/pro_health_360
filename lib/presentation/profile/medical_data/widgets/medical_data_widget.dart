@@ -1,3 +1,4 @@
+import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myafyahub/domain/core/entities/medical_data/medical_data_details.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
@@ -25,11 +26,13 @@ class MedicalDataWidget extends StatelessWidget {
           (int index) {
             final String category =
                 medicalDataDetails[index]?.category?.text ?? '';
+
             final String medicationCodeableConcept =
                 medicalDataDetails[index]?.medicationCodeableConcept?.text ??
                     '';
             final String clinicalStatusText =
                 medicalDataDetails[index]?.code?.text ?? '';
+
             final String valuesString =
                 medicalDataDetails[index]?.valueString ?? '';
             return SizedBox(
@@ -40,7 +43,9 @@ class MedicalDataWidget extends StatelessWidget {
                     MedicalDataItem(
                       data: '$category - $medicationCodeableConcept',
                     ),
-                  if (medicalDataType == MedicalDataType.ALLERGIES)
+                  if (medicalDataType == MedicalDataType.ALLERGIES &&
+                      clinicalStatusText.isNotEmpty &&
+                      clinicalStatusText.compareTo(UNKNOWN) != 0)
                     MedicalDataItem(
                       data: clinicalStatusText,
                       description: index == 0 ? mostRecentString : '',

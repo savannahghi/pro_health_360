@@ -2046,9 +2046,13 @@ Map<String, dynamic> mockMedicalData = <String, dynamic>{
   ],
   'allergies': <dynamic>[
     <String, dynamic>{
-      'ClinicalStatus': <String, dynamic>{
-        'Text': 'Milk powder (cow\'s milk)',
-      },
+      'Code': <String, dynamic>{'Text': 'Beef'}
+    },
+    <String, dynamic>{
+      'Code': <String, dynamic>{'Text': 'Shellfish'}
+    },
+    <String, dynamic>{
+      'Code': <String, dynamic>{'Text': 'Shellfish'}
     }
   ],
   'weight': <dynamic>[
