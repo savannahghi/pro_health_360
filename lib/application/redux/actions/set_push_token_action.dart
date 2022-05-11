@@ -1,26 +1,31 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:myafyahub/application/core/graphql/mutations.dart';
 import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class SetPushToken extends ReduxAction<AppState> {
-  SetPushToken({required this.client, required this.firebaseMessaging});
+  SetPushToken({
+    required this.client,
+    required this.streamClient,
+    required this.token,
+  });
 
   final IGraphQlClient client;
-  final FirebaseMessaging firebaseMessaging;
+  final StreamChatClient streamClient;
+  final String token;
 
   @override
   Future<AppState?> reduce() async {
     if (state.credentials?.isSignedIn ?? false) {
-      final String? token = await firebaseMessaging.getToken();
       final String tokenFromState = state.credentials?.pushToken ?? UNKNOWN;
+      if (tokenFromState.compareTo(token) == 0) return null;
 
-      if (tokenFromState.compareTo(token ?? '') == 0) return null;
+      await streamClient.addDevice(token, PushProvider.firebase);
 
       final Map<String, dynamic> variables = <String, dynamic>{'token': token};
       final Response response =

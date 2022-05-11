@@ -235,8 +235,6 @@ const String APPVERSION =
 
 const String appVersionString = 'Current Version:';
 
-const String buildContactProviderState = 'buildContactProviderState';
-
 const String errorLoggingIn = 'Error logging in';
 const String errorSigningUp = 'Error signing up';
 const String errorResettingPIN = 'Error resetting PIN';
@@ -954,3 +952,17 @@ const String faqsZeroStateDescription =
     'There are no FAQs at this time, they will show up here once they have been added';
 const String phq9SurveyUrl =
     'https://mycarehub.odk.savannahghi.org/-/single/7YNzF5TjcVpp86Q2D5C4EIL3EGQjYkW?st=uUMj9fDZBC8l41CCkLSkiLPkko8cpM4ocE5hABkcCLSZAJc6zKB4aCYYwr5LtFTk';
+
+String newChatMessageTitle(String? username, String? channelName) {
+  String baseMessage = 'New message';
+
+  if (username != null) {
+    baseMessage = '$baseMessage from $username';
+  }
+
+  if (channelName != null) {
+    baseMessage = '$baseMessage in $channelName';
+  }
+
+  return baseMessage;
+}

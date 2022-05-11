@@ -2,14 +2,35 @@
 // in myafyahub/test/unit_tests/application/redux/actions/set_push_token_action_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i4;
-import 'dart:convert' as _i5;
-import 'dart:typed_data' as _i6;
+import 'dart:async' as _i12;
+import 'dart:convert' as _i13;
+import 'dart:typed_data' as _i14;
 
+import 'package:dio/dio.dart' as _i24;
 import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart'
-    as _i3;
+    as _i11;
 import 'package:http/http.dart' as _i2;
+import 'package:logging/logging.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:stream_chat/src/client/channel.dart' as _i9;
+import 'package:stream_chat/src/client/client.dart' as _i3;
+import 'package:stream_chat/src/client/retry_policy.dart' as _i5;
+import 'package:stream_chat/src/core/api/requests.dart' as _i21;
+import 'package:stream_chat/src/core/api/responses.dart' as _i7;
+import 'package:stream_chat/src/core/api/stream_chat_api.dart' as _i26;
+import 'package:stream_chat/src/core/http/token.dart' as _i8;
+import 'package:stream_chat/src/core/http/token_manager.dart' as _i19;
+import 'package:stream_chat/src/core/models/attachment_file.dart' as _i23;
+import 'package:stream_chat/src/core/models/channel_model.dart' as _i22;
+import 'package:stream_chat/src/core/models/channel_state.dart' as _i10;
+import 'package:stream_chat/src/core/models/event.dart' as _i16;
+import 'package:stream_chat/src/core/models/filter.dart' as _i20;
+import 'package:stream_chat/src/core/models/member.dart' as _i27;
+import 'package:stream_chat/src/core/models/message.dart' as _i25;
+import 'package:stream_chat/src/core/models/own_user.dart' as _i6;
+import 'package:stream_chat/src/core/models/user.dart' as _i18;
+import 'package:stream_chat/src/db/chat_persistence_client.dart' as _i15;
+import 'package:stream_chat/src/ws/connection_status.dart' as _i17;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,10 +49,103 @@ class _FakeResponse_1 extends _i1.Fake implements _i2.Response {}
 class _FakeStreamedResponse_2 extends _i1.Fake implements _i2.StreamedResponse {
 }
 
+class _FakeClientState_3 extends _i1.Fake implements _i3.ClientState {}
+
+class _FakeLevel_4 extends _i1.Fake implements _i4.Level {}
+
+class _FakeLogger_5 extends _i1.Fake implements _i4.Logger {}
+
+class _FakeRetryPolicy_6 extends _i1.Fake implements _i5.RetryPolicy {}
+
+class _FakeOwnUser_7 extends _i1.Fake implements _i6.OwnUser {}
+
+class _FakeQueryUsersResponse_8 extends _i1.Fake
+    implements _i7.QueryUsersResponse {}
+
+class _FakeQueryBannedUsersResponse_9 extends _i1.Fake
+    implements _i7.QueryBannedUsersResponse {}
+
+class _FakeSearchMessagesResponse_10 extends _i1.Fake
+    implements _i7.SearchMessagesResponse {}
+
+class _FakeSendFileResponse_11 extends _i1.Fake
+    implements _i7.SendFileResponse {}
+
+class _FakeSendImageResponse_12 extends _i1.Fake
+    implements _i7.SendImageResponse {}
+
+class _FakeEmptyResponse_13 extends _i1.Fake implements _i7.EmptyResponse {}
+
+class _FakeUpdateChannelResponse_14 extends _i1.Fake
+    implements _i7.UpdateChannelResponse {}
+
+class _FakePartialUpdateChannelResponse_15 extends _i1.Fake
+    implements _i7.PartialUpdateChannelResponse {}
+
+class _FakeListDevicesResponse_16 extends _i1.Fake
+    implements _i7.ListDevicesResponse {}
+
+class _FakeToken_17 extends _i1.Fake implements _i8.Token {}
+
+class _FakeChannel_18 extends _i1.Fake implements _i9.Channel {}
+
+class _FakeChannelState_19 extends _i1.Fake implements _i10.ChannelState {}
+
+class _FakeQueryMembersResponse_20 extends _i1.Fake
+    implements _i7.QueryMembersResponse {}
+
+class _FakeAcceptInviteResponse_21 extends _i1.Fake
+    implements _i7.AcceptInviteResponse {}
+
+class _FakeRejectInviteResponse_22 extends _i1.Fake
+    implements _i7.RejectInviteResponse {}
+
+class _FakeAddMembersResponse_23 extends _i1.Fake
+    implements _i7.AddMembersResponse {}
+
+class _FakeRemoveMembersResponse_24 extends _i1.Fake
+    implements _i7.RemoveMembersResponse {}
+
+class _FakeInviteMembersResponse_25 extends _i1.Fake
+    implements _i7.InviteMembersResponse {}
+
+class _FakeSendActionResponse_26 extends _i1.Fake
+    implements _i7.SendActionResponse {}
+
+class _FakeUpdateUsersResponse_27 extends _i1.Fake
+    implements _i7.UpdateUsersResponse {}
+
+class _FakeSendReactionResponse_28 extends _i1.Fake
+    implements _i7.SendReactionResponse {}
+
+class _FakeSendMessageResponse_29 extends _i1.Fake
+    implements _i7.SendMessageResponse {}
+
+class _FakeQueryRepliesResponse_30 extends _i1.Fake
+    implements _i7.QueryRepliesResponse {}
+
+class _FakeQueryReactionsResponse_31 extends _i1.Fake
+    implements _i7.QueryReactionsResponse {}
+
+class _FakeUpdateMessageResponse_32 extends _i1.Fake
+    implements _i7.UpdateMessageResponse {}
+
+class _FakeGetMessageResponse_33 extends _i1.Fake
+    implements _i7.GetMessageResponse {}
+
+class _FakeGetMessagesByIdResponse_34 extends _i1.Fake
+    implements _i7.GetMessagesByIdResponse {}
+
+class _FakeTranslateMessageResponse_35 extends _i1.Fake
+    implements _i7.TranslateMessageResponse {}
+
+class _FakeOGAttachmentResponse_36 extends _i1.Fake
+    implements _i7.OGAttachmentResponse {}
+
 /// A class which mocks [IGraphQlClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
+class MockIGraphQlClient extends _i1.Mock implements _i11.IGraphQlClient {
   MockIGraphQlClient() {
     _i1.throwOnMissingStub(this);
   }
@@ -73,18 +187,18 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
       (super.noSuchMethod(Invocation.method(#toMap, [response]),
           returnValue: <String, dynamic>{}) as Map<String, dynamic>);
   @override
-  _i4.Future<_i2.Response> query(
+  _i12.Future<_i2.Response> query(
           String? queryString, Map<String, dynamic>? variables) =>
       (super.noSuchMethod(Invocation.method(#query, [queryString, variables]),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> postWithTimeout(Map<String, dynamic>? bodyMap) =>
+  _i12.Future<_i2.Response> postWithTimeout(Map<String, dynamic>? bodyMap) =>
       (super.noSuchMethod(Invocation.method(#postWithTimeout, [bodyMap]),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> callRESTAPI(
+  _i12.Future<_i2.Response> callRESTAPI(
           {String? endpoint,
           String? method,
           Map<String, dynamic>? variables}) =>
@@ -95,75 +209,847 @@ class MockIGraphQlClient extends _i1.Mock implements _i3.IGraphQlClient {
                 #variables: variables
               }),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.StreamedResponse> send(_i2.BaseRequest? request) =>
+  _i12.Future<_i2.StreamedResponse> send(_i2.BaseRequest? request) =>
       (super.noSuchMethod(Invocation.method(#send, [request]),
               returnValue:
                   Future<_i2.StreamedResponse>.value(_FakeStreamedResponse_2()))
-          as _i4.Future<_i2.StreamedResponse>);
+          as _i12.Future<_i2.StreamedResponse>);
   @override
-  _i4.Future<_i2.Response> head(Uri? url, {Map<String, String>? headers}) =>
+  _i12.Future<_i2.Response> head(Uri? url, {Map<String, String>? headers}) =>
       (super.noSuchMethod(Invocation.method(#head, [url], {#headers: headers}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> get(Uri? url, {Map<String, String>? headers}) =>
+  _i12.Future<_i2.Response> get(Uri? url, {Map<String, String>? headers}) =>
       (super.noSuchMethod(Invocation.method(#get, [url], {#headers: headers}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> post(Uri? url,
+  _i12.Future<_i2.Response> post(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i5.Encoding? encoding}) =>
+          _i13.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#post, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> put(Uri? url,
+  _i12.Future<_i2.Response> put(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i5.Encoding? encoding}) =>
+          _i13.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#put, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> patch(Uri? url,
+  _i12.Future<_i2.Response> patch(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i5.Encoding? encoding}) =>
+          _i13.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#patch, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> delete(Uri? url,
+  _i12.Future<_i2.Response> delete(Uri? url,
           {Map<String, String>? headers,
           Object? body,
-          _i5.Encoding? encoding}) =>
+          _i13.Encoding? encoding}) =>
       (super.noSuchMethod(
               Invocation.method(#delete, [url],
                   {#headers: headers, #body: body, #encoding: encoding}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_1()))
-          as _i4.Future<_i2.Response>);
+          as _i12.Future<_i2.Response>);
   @override
-  _i4.Future<String> read(Uri? url, {Map<String, String>? headers}) =>
+  _i12.Future<String> read(Uri? url, {Map<String, String>? headers}) =>
       (super.noSuchMethod(Invocation.method(#read, [url], {#headers: headers}),
-          returnValue: Future<String>.value('')) as _i4.Future<String>);
+          returnValue: Future<String>.value('')) as _i12.Future<String>);
   @override
-  _i4.Future<_i6.Uint8List> readBytes(Uri? url,
+  _i12.Future<_i14.Uint8List> readBytes(Uri? url,
           {Map<String, String>? headers}) =>
       (super.noSuchMethod(
               Invocation.method(#readBytes, [url], {#headers: headers}),
-              returnValue: Future<_i6.Uint8List>.value(_i6.Uint8List(0)))
-          as _i4.Future<_i6.Uint8List>);
+              returnValue: Future<_i14.Uint8List>.value(_i14.Uint8List(0)))
+          as _i12.Future<_i14.Uint8List>);
   @override
   void close() => super.noSuchMethod(Invocation.method(#close, []),
       returnValueForMissingStub: null);
+}
+
+/// A class which mocks [StreamChatClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStreamChatClient extends _i1.Mock implements _i3.StreamChatClient {
+  MockStreamChatClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.ClientState get state => (super.noSuchMethod(Invocation.getter(#state),
+      returnValue: _FakeClientState_3()) as _i3.ClientState);
+  @override
+  set state(_i3.ClientState? _state) =>
+      super.noSuchMethod(Invocation.setter(#state, _state),
+          returnValueForMissingStub: null);
+  @override
+  _i4.Level get logLevel => (super.noSuchMethod(Invocation.getter(#logLevel),
+      returnValue: _FakeLevel_4()) as _i4.Level);
+  @override
+  _i4.Logger get logger => (super.noSuchMethod(Invocation.getter(#logger),
+      returnValue: _FakeLogger_5()) as _i4.Logger);
+  @override
+  _i3.LogHandlerFunction get logHandlerFunction =>
+      (super.noSuchMethod(Invocation.getter(#logHandlerFunction),
+          returnValue: (_i4.LogRecord record) {}) as _i3.LogHandlerFunction);
+  @override
+  set logHandlerFunction(_i3.LogHandlerFunction? _logHandlerFunction) => super
+      .noSuchMethod(Invocation.setter(#logHandlerFunction, _logHandlerFunction),
+          returnValueForMissingStub: null);
+  @override
+  set chatPersistenceClient(_i15.ChatPersistenceClient? value) =>
+      super.noSuchMethod(Invocation.setter(#chatPersistenceClient, value),
+          returnValueForMissingStub: null);
+  @override
+  bool get persistenceEnabled =>
+      (super.noSuchMethod(Invocation.getter(#persistenceEnabled),
+          returnValue: false) as bool);
+  @override
+  _i5.RetryPolicy get retryPolicy =>
+      (super.noSuchMethod(Invocation.getter(#retryPolicy),
+          returnValue: _FakeRetryPolicy_6()) as _i5.RetryPolicy);
+  @override
+  _i12.Stream<_i16.Event> get eventStream =>
+      (super.noSuchMethod(Invocation.getter(#eventStream),
+          returnValue: Stream<_i16.Event>.empty()) as _i12.Stream<_i16.Event>);
+  @override
+  _i17.ConnectionStatus get wsConnectionStatus => (super.noSuchMethod(
+      Invocation.getter(#wsConnectionStatus),
+      returnValue: _i17.ConnectionStatus.connected) as _i17.ConnectionStatus);
+  @override
+  _i12.Stream<_i17.ConnectionStatus> get wsConnectionStatusStream =>
+      (super.noSuchMethod(Invocation.getter(#wsConnectionStatusStream),
+              returnValue: Stream<_i17.ConnectionStatus>.empty())
+          as _i12.Stream<_i17.ConnectionStatus>);
+  @override
+  _i4.Logger detachedLogger(String? name) =>
+      (super.noSuchMethod(Invocation.method(#detachedLogger, [name]),
+          returnValue: _FakeLogger_5()) as _i4.Logger);
+  @override
+  _i12.Future<_i6.OwnUser> connectUser(_i18.User? user, String? token,
+          {bool? connectWebSocket = true}) =>
+      (super.noSuchMethod(
+              Invocation.method(#connectUser, [user, token],
+                  {#connectWebSocket: connectWebSocket}),
+              returnValue: Future<_i6.OwnUser>.value(_FakeOwnUser_7()))
+          as _i12.Future<_i6.OwnUser>);
+  @override
+  _i12.Future<_i6.OwnUser> connectUserWithProvider(
+          _i18.User? user, _i19.TokenProvider? tokenProvider,
+          {bool? connectWebSocket = true}) =>
+      (super.noSuchMethod(
+              Invocation.method(#connectUserWithProvider, [user, tokenProvider],
+                  {#connectWebSocket: connectWebSocket}),
+              returnValue: Future<_i6.OwnUser>.value(_FakeOwnUser_7()))
+          as _i12.Future<_i6.OwnUser>);
+  @override
+  _i12.Future<_i6.OwnUser> connectAnonymousUser(
+          {bool? connectWebSocket = true}) =>
+      (super.noSuchMethod(
+              Invocation.method(#connectAnonymousUser, [],
+                  {#connectWebSocket: connectWebSocket}),
+              returnValue: Future<_i6.OwnUser>.value(_FakeOwnUser_7()))
+          as _i12.Future<_i6.OwnUser>);
+  @override
+  _i12.Future<_i6.OwnUser> connectGuestUser(_i18.User? user,
+          {bool? connectWebSocket = true}) =>
+      (super.noSuchMethod(
+              Invocation.method(#connectGuestUser, [user],
+                  {#connectWebSocket: connectWebSocket}),
+              returnValue: Future<_i6.OwnUser>.value(_FakeOwnUser_7()))
+          as _i12.Future<_i6.OwnUser>);
+  @override
+  _i12.Future<_i6.OwnUser> openConnection() =>
+      (super.noSuchMethod(Invocation.method(#openConnection, []),
+              returnValue: Future<_i6.OwnUser>.value(_FakeOwnUser_7()))
+          as _i12.Future<_i6.OwnUser>);
+  @override
+  void closeConnection() =>
+      super.noSuchMethod(Invocation.method(#closeConnection, []),
+          returnValueForMissingStub: null);
+  @override
+  void handleEvent(_i16.Event? event) =>
+      super.noSuchMethod(Invocation.method(#handleEvent, [event]),
+          returnValueForMissingStub: null);
+  @override
+  _i12.Stream<_i16.Event> on(
+          [String? eventType,
+          String? eventType2,
+          String? eventType3,
+          String? eventType4]) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #on, [eventType, eventType2, eventType3, eventType4]),
+          returnValue: Stream<_i16.Event>.empty()) as _i12.Stream<_i16.Event>);
+  @override
+  _i12.Future<void> sync({List<String>? cids, DateTime? lastSyncAt}) =>
+      (super.noSuchMethod(
+          Invocation.method(#sync, [], {#cids: cids, #lastSyncAt: lastSyncAt}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub:
+              Future<void>.value()) as _i12.Future<void>);
+  @override
+  _i12.Stream<List<_i9.Channel>> queryChannels(
+          {_i20.Filter? filter,
+          List<_i21.SortOption<_i22.ChannelModel>>? sort,
+          bool? state = true,
+          bool? watch = true,
+          bool? presence = false,
+          int? memberLimit,
+          int? messageLimit,
+          _i21.PaginationParams? paginationParams =
+              const _i21.PaginationParams(),
+          bool? waitForConnect = true}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryChannels, [], {
+                #filter: filter,
+                #sort: sort,
+                #state: state,
+                #watch: watch,
+                #presence: presence,
+                #memberLimit: memberLimit,
+                #messageLimit: messageLimit,
+                #paginationParams: paginationParams,
+                #waitForConnect: waitForConnect
+              }),
+              returnValue: Stream<List<_i9.Channel>>.empty())
+          as _i12.Stream<List<_i9.Channel>>);
+  @override
+  _i12.Future<List<_i9.Channel>> queryChannelsOnline(
+          {_i20.Filter? filter,
+          List<_i21.SortOption<_i22.ChannelModel>>? sort,
+          bool? state = true,
+          bool? watch = true,
+          bool? presence = false,
+          int? memberLimit,
+          int? messageLimit,
+          bool? waitForConnect = true,
+          _i21.PaginationParams? paginationParams =
+              const _i21.PaginationParams()}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryChannelsOnline, [], {
+                #filter: filter,
+                #sort: sort,
+                #state: state,
+                #watch: watch,
+                #presence: presence,
+                #memberLimit: memberLimit,
+                #messageLimit: messageLimit,
+                #waitForConnect: waitForConnect,
+                #paginationParams: paginationParams
+              }),
+              returnValue: Future<List<_i9.Channel>>.value(<_i9.Channel>[]))
+          as _i12.Future<List<_i9.Channel>>);
+  @override
+  _i12.Future<List<_i9.Channel>> queryChannelsOffline(
+          {_i20.Filter? filter,
+          List<_i21.SortOption<_i22.ChannelModel>>? sort,
+          _i21.PaginationParams? paginationParams =
+              const _i21.PaginationParams()}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryChannelsOffline, [], {
+                #filter: filter,
+                #sort: sort,
+                #paginationParams: paginationParams
+              }),
+              returnValue: Future<List<_i9.Channel>>.value(<_i9.Channel>[]))
+          as _i12.Future<List<_i9.Channel>>);
+  @override
+  _i12.Future<_i7.QueryUsersResponse> queryUsers(
+          {bool? presence,
+          _i20.Filter? filter,
+          List<_i21.SortOption<dynamic>>? sort,
+          _i21.PaginationParams? pagination}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryUsers, [], {
+                #presence: presence,
+                #filter: filter,
+                #sort: sort,
+                #pagination: pagination
+              }),
+              returnValue: Future<_i7.QueryUsersResponse>.value(
+                  _FakeQueryUsersResponse_8()))
+          as _i12.Future<_i7.QueryUsersResponse>);
+  @override
+  _i12.Future<_i7.QueryBannedUsersResponse> queryBannedUsers(
+          {_i20.Filter? filter,
+          List<_i21.SortOption<dynamic>>? sort,
+          _i21.PaginationParams? pagination}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryBannedUsers, [],
+                  {#filter: filter, #sort: sort, #pagination: pagination}),
+              returnValue: Future<_i7.QueryBannedUsersResponse>.value(
+                  _FakeQueryBannedUsersResponse_9()))
+          as _i12.Future<_i7.QueryBannedUsersResponse>);
+  @override
+  _i12.Future<_i7.SearchMessagesResponse> search(_i20.Filter? filter,
+          {String? query,
+          List<_i21.SortOption<dynamic>>? sort,
+          _i21.PaginationParams? paginationParams,
+          _i20.Filter? messageFilters}) =>
+      (super.noSuchMethod(
+              Invocation.method(#search, [
+                filter
+              ], {
+                #query: query,
+                #sort: sort,
+                #paginationParams: paginationParams,
+                #messageFilters: messageFilters
+              }),
+              returnValue: Future<_i7.SearchMessagesResponse>.value(
+                  _FakeSearchMessagesResponse_10()))
+          as _i12.Future<_i7.SearchMessagesResponse>);
+  @override
+  _i12.Future<_i7.SendFileResponse> sendFile(
+          _i23.AttachmentFile? file, String? channelId, String? channelType,
+          {_i24.ProgressCallback? onSendProgress,
+          _i24.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendFile, [file, channelId, channelType],
+                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              returnValue: Future<_i7.SendFileResponse>.value(
+                  _FakeSendFileResponse_11()))
+          as _i12.Future<_i7.SendFileResponse>);
+  @override
+  _i12.Future<_i7.SendImageResponse> sendImage(
+          _i23.AttachmentFile? image, String? channelId, String? channelType,
+          {_i24.ProgressCallback? onSendProgress,
+          _i24.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendImage, [image, channelId, channelType],
+                  {#onSendProgress: onSendProgress, #cancelToken: cancelToken}),
+              returnValue: Future<_i7.SendImageResponse>.value(
+                  _FakeSendImageResponse_12()))
+          as _i12.Future<_i7.SendImageResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> deleteFile(
+          String? url, String? channelId, String? channelType,
+          {_i24.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+              Invocation.method(#deleteFile, [url, channelId, channelType],
+                  {#cancelToken: cancelToken}),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> deleteImage(
+          String? url, String? channelId, String? channelType,
+          {_i24.CancelToken? cancelToken}) =>
+      (super.noSuchMethod(
+              Invocation.method(#deleteImage, [url, channelId, channelType],
+                  {#cancelToken: cancelToken}),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.UpdateChannelResponse> updateChannel(
+          String? channelId, String? channelType, Map<String, Object?>? data,
+          {_i25.Message? message}) =>
+      (super.noSuchMethod(
+              Invocation.method(#updateChannel, [channelId, channelType, data],
+                  {#message: message}),
+              returnValue: Future<_i7.UpdateChannelResponse>.value(
+                  _FakeUpdateChannelResponse_14()))
+          as _i12.Future<_i7.UpdateChannelResponse>);
+  @override
+  _i12.Future<_i7.PartialUpdateChannelResponse> updateChannelPartial(
+          String? channelId, String? channelType,
+          {Map<String, Object?>? set, List<String>? unset}) =>
+      (super.noSuchMethod(
+              Invocation.method(#updateChannelPartial, [channelId, channelType],
+                  {#set: set, #unset: unset}),
+              returnValue: Future<_i7.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_15()))
+          as _i12.Future<_i7.PartialUpdateChannelResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> addDevice(
+          String? id, _i26.PushProvider? pushProvider) =>
+      (super.noSuchMethod(Invocation.method(#addDevice, [id, pushProvider]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.ListDevicesResponse> getDevices() =>
+      (super.noSuchMethod(Invocation.method(#getDevices, []),
+              returnValue: Future<_i7.ListDevicesResponse>.value(
+                  _FakeListDevicesResponse_16()))
+          as _i12.Future<_i7.ListDevicesResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> removeDevice(String? id) =>
+      (super.noSuchMethod(Invocation.method(#removeDevice, [id]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i8.Token devToken(String? userId) =>
+      (super.noSuchMethod(Invocation.method(#devToken, [userId]),
+          returnValue: _FakeToken_17()) as _i8.Token);
+  @override
+  _i9.Channel channel(String? type,
+          {String? id, Map<String, Object?>? extraData}) =>
+      (super.noSuchMethod(
+          Invocation.method(#channel, [type], {#id: id, #extraData: extraData}),
+          returnValue: _FakeChannel_18()) as _i9.Channel);
+  @override
+  _i12.Future<_i10.ChannelState> createChannel(String? channelType,
+          {String? channelId, Map<String, Object?>? channelData}) =>
+      (super.noSuchMethod(
+              Invocation.method(#createChannel, [channelType],
+                  {#channelId: channelId, #channelData: channelData}),
+              returnValue:
+                  Future<_i10.ChannelState>.value(_FakeChannelState_19()))
+          as _i12.Future<_i10.ChannelState>);
+  @override
+  _i12.Future<_i10.ChannelState> watchChannel(String? channelType,
+          {String? channelId, Map<String, Object?>? channelData}) =>
+      (super.noSuchMethod(
+              Invocation.method(#watchChannel, [channelType],
+                  {#channelId: channelId, #channelData: channelData}),
+              returnValue:
+                  Future<_i10.ChannelState>.value(_FakeChannelState_19()))
+          as _i12.Future<_i10.ChannelState>);
+  @override
+  _i12.Future<_i10.ChannelState> queryChannel(String? channelType,
+          {bool? state = true,
+          bool? watch = false,
+          bool? presence = false,
+          String? channelId,
+          Map<String, Object?>? channelData,
+          _i21.PaginationParams? messagesPagination,
+          _i21.PaginationParams? membersPagination,
+          _i21.PaginationParams? watchersPagination}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryChannel, [
+                channelType
+              ], {
+                #state: state,
+                #watch: watch,
+                #presence: presence,
+                #channelId: channelId,
+                #channelData: channelData,
+                #messagesPagination: messagesPagination,
+                #membersPagination: membersPagination,
+                #watchersPagination: watchersPagination
+              }),
+              returnValue:
+                  Future<_i10.ChannelState>.value(_FakeChannelState_19()))
+          as _i12.Future<_i10.ChannelState>);
+  @override
+  _i12.Future<_i7.QueryMembersResponse> queryMembers(String? channelType,
+          {_i20.Filter? filter,
+          String? channelId,
+          List<_i27.Member>? members,
+          List<_i21.SortOption<dynamic>>? sort,
+          _i21.PaginationParams? pagination}) =>
+      (super.noSuchMethod(
+              Invocation.method(#queryMembers, [
+                channelType
+              ], {
+                #filter: filter,
+                #channelId: channelId,
+                #members: members,
+                #sort: sort,
+                #pagination: pagination
+              }),
+              returnValue: Future<_i7.QueryMembersResponse>.value(
+                  _FakeQueryMembersResponse_20()))
+          as _i12.Future<_i7.QueryMembersResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> hideChannel(
+          String? channelId, String? channelType,
+          {bool? clearHistory = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#hideChannel, [channelId, channelType],
+                  {#clearHistory: clearHistory}),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> showChannel(
+          String? channelId, String? channelType) =>
+      (super.noSuchMethod(
+              Invocation.method(#showChannel, [channelId, channelType]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> deleteChannel(
+          String? channelId, String? channelType) =>
+      (super.noSuchMethod(
+              Invocation.method(#deleteChannel, [channelId, channelType]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> truncateChannel(
+          String? channelId, String? channelType) =>
+      (super.noSuchMethod(
+              Invocation.method(#truncateChannel, [channelId, channelType]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> muteChannel(String? channelCid,
+          {Duration? expiration}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #muteChannel, [channelCid], {#expiration: expiration}),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> unmuteChannel(String? channelCid) =>
+      (super.noSuchMethod(Invocation.method(#unmuteChannel, [channelCid]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.AcceptInviteResponse> acceptChannelInvite(
+          String? channelId, String? channelType, {_i25.Message? message}) =>
+      (super.noSuchMethod(
+              Invocation.method(#acceptChannelInvite, [channelId, channelType],
+                  {#message: message}),
+              returnValue: Future<_i7.AcceptInviteResponse>.value(
+                  _FakeAcceptInviteResponse_21()))
+          as _i12.Future<_i7.AcceptInviteResponse>);
+  @override
+  _i12.Future<_i7.RejectInviteResponse> rejectChannelInvite(
+          String? channelId, String? channelType, {_i25.Message? message}) =>
+      (super.noSuchMethod(
+              Invocation.method(#rejectChannelInvite, [channelId, channelType],
+                  {#message: message}),
+              returnValue: Future<_i7.RejectInviteResponse>.value(
+                  _FakeRejectInviteResponse_22()))
+          as _i12.Future<_i7.RejectInviteResponse>);
+  @override
+  _i12.Future<_i7.AddMembersResponse> addChannelMembers(
+          String? channelId, String? channelType, List<String>? memberIds,
+          {_i25.Message? message}) =>
+      (super.noSuchMethod(
+              Invocation.method(#addChannelMembers,
+                  [channelId, channelType, memberIds], {#message: message}),
+              returnValue: Future<_i7.AddMembersResponse>.value(
+                  _FakeAddMembersResponse_23()))
+          as _i12.Future<_i7.AddMembersResponse>);
+  @override
+  _i12.Future<_i7.RemoveMembersResponse> removeChannelMembers(
+          String? channelId, String? channelType, List<String>? memberIds,
+          {_i25.Message? message}) =>
+      (super.noSuchMethod(
+              Invocation.method(#removeChannelMembers,
+                  [channelId, channelType, memberIds], {#message: message}),
+              returnValue: Future<_i7.RemoveMembersResponse>.value(
+                  _FakeRemoveMembersResponse_24()))
+          as _i12.Future<_i7.RemoveMembersResponse>);
+  @override
+  _i12.Future<_i7.InviteMembersResponse> inviteChannelMembers(
+          String? channelId, String? channelType, List<String>? memberIds,
+          {_i25.Message? message}) =>
+      (super.noSuchMethod(
+              Invocation.method(#inviteChannelMembers,
+                  [channelId, channelType, memberIds], {#message: message}),
+              returnValue: Future<_i7.InviteMembersResponse>.value(
+                  _FakeInviteMembersResponse_25()))
+          as _i12.Future<_i7.InviteMembersResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> stopChannelWatching(
+          String? channelId, String? channelType) =>
+      (super.noSuchMethod(
+              Invocation.method(#stopChannelWatching, [channelId, channelType]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.SendActionResponse> sendAction(
+          String? channelId,
+          String? channelType,
+          String? messageId,
+          Map<String, Object?>? formData) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #sendAction, [channelId, channelType, messageId, formData]),
+              returnValue: Future<_i7.SendActionResponse>.value(
+                  _FakeSendActionResponse_26()))
+          as _i12.Future<_i7.SendActionResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> markChannelRead(
+          String? channelId, String? channelType, {String? messageId}) =>
+      (super.noSuchMethod(
+              Invocation.method(#markChannelRead, [channelId, channelType],
+                  {#messageId: messageId}),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.UpdateUsersResponse> updateUser(_i18.User? user) =>
+      (super.noSuchMethod(Invocation.method(#updateUser, [user]),
+              returnValue: Future<_i7.UpdateUsersResponse>.value(
+                  _FakeUpdateUsersResponse_27()))
+          as _i12.Future<_i7.UpdateUsersResponse>);
+  @override
+  _i12.Future<_i7.UpdateUsersResponse> updateUsers(List<_i18.User>? users) =>
+      (super.noSuchMethod(Invocation.method(#updateUsers, [users]),
+              returnValue: Future<_i7.UpdateUsersResponse>.value(
+                  _FakeUpdateUsersResponse_27()))
+          as _i12.Future<_i7.UpdateUsersResponse>);
+  @override
+  _i12.Future<_i7.UpdateUsersResponse> partialUpdateUser(String? id,
+          {Map<String, Object?>? set, List<String>? unset}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #partialUpdateUser, [id], {#set: set, #unset: unset}),
+              returnValue: Future<_i7.UpdateUsersResponse>.value(
+                  _FakeUpdateUsersResponse_27()))
+          as _i12.Future<_i7.UpdateUsersResponse>);
+  @override
+  _i12.Future<_i7.UpdateUsersResponse> partialUpdateUsers(
+          List<_i21.PartialUpdateUserRequest>? users) =>
+      (super.noSuchMethod(Invocation.method(#partialUpdateUsers, [users]),
+              returnValue: Future<_i7.UpdateUsersResponse>.value(
+                  _FakeUpdateUsersResponse_27()))
+          as _i12.Future<_i7.UpdateUsersResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> banUser(String? targetUserId,
+          [Map<String, dynamic>? options = const {}]) =>
+      (super.noSuchMethod(Invocation.method(#banUser, [targetUserId, options]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> unbanUser(String? targetUserId,
+          [Map<String, dynamic>? options = const {}]) =>
+      (super.noSuchMethod(
+              Invocation.method(#unbanUser, [targetUserId, options]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> shadowBan(String? targetID,
+          [Map<String, dynamic>? options = const {}]) =>
+      (super.noSuchMethod(Invocation.method(#shadowBan, [targetID, options]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> removeShadowBan(String? targetID,
+          [Map<String, dynamic>? options = const {}]) =>
+      (super.noSuchMethod(
+              Invocation.method(#removeShadowBan, [targetID, options]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> muteUser(String? userId) =>
+      (super.noSuchMethod(Invocation.method(#muteUser, [userId]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> unmuteUser(String? userId) =>
+      (super.noSuchMethod(Invocation.method(#unmuteUser, [userId]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> flagMessage(String? messageId) =>
+      (super.noSuchMethod(Invocation.method(#flagMessage, [messageId]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> unflagMessage(String? messageId) =>
+      (super.noSuchMethod(Invocation.method(#unflagMessage, [messageId]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> flagUser(String? userId) =>
+      (super.noSuchMethod(Invocation.method(#flagUser, [userId]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> unflagUser(String? userId) =>
+      (super.noSuchMethod(Invocation.method(#unflagUser, [userId]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> markAllRead() => (super.noSuchMethod(
+          Invocation.method(#markAllRead, []),
+          returnValue: Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+      as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> sendEvent(
+          String? channelId, String? channelType, _i16.Event? event) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendEvent, [channelId, channelType, event]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.SendReactionResponse> sendReaction(
+          String? messageId, String? reactionType,
+          {int? score = 1,
+          Map<String, Object?>? extraData = const {},
+          bool? enforceUnique = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendReaction, [
+                messageId,
+                reactionType
+              ], {
+                #score: score,
+                #extraData: extraData,
+                #enforceUnique: enforceUnique
+              }),
+              returnValue: Future<_i7.SendReactionResponse>.value(
+                  _FakeSendReactionResponse_28()))
+          as _i12.Future<_i7.SendReactionResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> deleteReaction(
+          String? messageId, String? reactionType) =>
+      (super.noSuchMethod(
+              Invocation.method(#deleteReaction, [messageId, reactionType]),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.SendMessageResponse> sendMessage(
+          _i25.Message? message, String? channelId, String? channelType,
+          {bool? skipPush = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#sendMessage, [message, channelId, channelType],
+                  {#skipPush: skipPush}),
+              returnValue: Future<_i7.SendMessageResponse>.value(
+                  _FakeSendMessageResponse_29()))
+          as _i12.Future<_i7.SendMessageResponse>);
+  @override
+  _i12.Future<_i7.QueryRepliesResponse> getReplies(String? parentId,
+          {_i21.PaginationParams? options}) =>
+      (super.noSuchMethod(
+              Invocation.method(#getReplies, [parentId], {#options: options}),
+              returnValue: Future<_i7.QueryRepliesResponse>.value(
+                  _FakeQueryRepliesResponse_30()))
+          as _i12.Future<_i7.QueryRepliesResponse>);
+  @override
+  _i12.Future<_i7.QueryReactionsResponse> getReactions(String? messageId,
+          {_i21.PaginationParams? pagination}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #getReactions, [messageId], {#pagination: pagination}),
+              returnValue: Future<_i7.QueryReactionsResponse>.value(
+                  _FakeQueryReactionsResponse_31()))
+          as _i12.Future<_i7.QueryReactionsResponse>);
+  @override
+  _i12.Future<_i7.UpdateMessageResponse> updateMessage(_i25.Message? message) =>
+      (super.noSuchMethod(Invocation.method(#updateMessage, [message]),
+              returnValue: Future<_i7.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_32()))
+          as _i12.Future<_i7.UpdateMessageResponse>);
+  @override
+  _i12.Future<_i7.UpdateMessageResponse> partialUpdateMessage(String? messageId,
+          {Map<String, Object?>? set, List<String>? unset}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #partialUpdateMessage, [messageId], {#set: set, #unset: unset}),
+          returnValue: Future<_i7.UpdateMessageResponse>.value(
+              _FakeUpdateMessageResponse_32())) as _i12
+          .Future<_i7.UpdateMessageResponse>);
+  @override
+  _i12.Future<_i7.EmptyResponse> deleteMessage(String? messageId,
+          {bool? hard}) =>
+      (super.noSuchMethod(
+              Invocation.method(#deleteMessage, [messageId], {#hard: hard}),
+              returnValue:
+                  Future<_i7.EmptyResponse>.value(_FakeEmptyResponse_13()))
+          as _i12.Future<_i7.EmptyResponse>);
+  @override
+  _i12.Future<_i7.GetMessageResponse> getMessage(String? messageId) =>
+      (super.noSuchMethod(Invocation.method(#getMessage, [messageId]),
+              returnValue: Future<_i7.GetMessageResponse>.value(
+                  _FakeGetMessageResponse_33()))
+          as _i12.Future<_i7.GetMessageResponse>);
+  @override
+  _i12.Future<_i7.GetMessagesByIdResponse> getMessagesById(
+          String? channelId, String? channelType, List<String>? messageIDs) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #getMessagesById, [channelId, channelType, messageIDs]),
+              returnValue: Future<_i7.GetMessagesByIdResponse>.value(
+                  _FakeGetMessagesByIdResponse_34()))
+          as _i12.Future<_i7.GetMessagesByIdResponse>);
+  @override
+  _i12.Future<_i7.TranslateMessageResponse> translateMessage(
+          String? messageId, String? language) =>
+      (super.noSuchMethod(
+              Invocation.method(#translateMessage, [messageId, language]),
+              returnValue: Future<_i7.TranslateMessageResponse>.value(
+                  _FakeTranslateMessageResponse_35()))
+          as _i12.Future<_i7.TranslateMessageResponse>);
+  @override
+  _i12.Future<_i7.PartialUpdateChannelResponse> enableSlowdown(
+          String? channelId, String? channelType, int? cooldown) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #enableSlowdown, [channelId, channelType, cooldown]),
+              returnValue: Future<_i7.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_15()))
+          as _i12.Future<_i7.PartialUpdateChannelResponse>);
+  @override
+  _i12.Future<_i7.PartialUpdateChannelResponse> disableSlowdown(
+          String? channelId, String? channelType) =>
+      (super.noSuchMethod(
+              Invocation.method(#disableSlowdown, [channelId, channelType]),
+              returnValue: Future<_i7.PartialUpdateChannelResponse>.value(
+                  _FakePartialUpdateChannelResponse_15()))
+          as _i12.Future<_i7.PartialUpdateChannelResponse>);
+  @override
+  _i12.Future<_i7.UpdateMessageResponse> pinMessage(String? messageId,
+          {Object? timeoutOrExpirationDate}) =>
+      (super.noSuchMethod(
+              Invocation.method(#pinMessage, [messageId],
+                  {#timeoutOrExpirationDate: timeoutOrExpirationDate}),
+              returnValue: Future<_i7.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_32()))
+          as _i12.Future<_i7.UpdateMessageResponse>);
+  @override
+  _i12.Future<_i7.UpdateMessageResponse> unpinMessage(String? messageId) =>
+      (super.noSuchMethod(Invocation.method(#unpinMessage, [messageId]),
+              returnValue: Future<_i7.UpdateMessageResponse>.value(
+                  _FakeUpdateMessageResponse_32()))
+          as _i12.Future<_i7.UpdateMessageResponse>);
+  @override
+  _i12.Future<_i7.OGAttachmentResponse> enrichUrl(String? url) =>
+      (super.noSuchMethod(Invocation.method(#enrichUrl, [url]),
+              returnValue: Future<_i7.OGAttachmentResponse>.value(
+                  _FakeOGAttachmentResponse_36()))
+          as _i12.Future<_i7.OGAttachmentResponse>);
+  @override
+  _i12.Future<void> disconnectUser({bool? flushChatPersistence = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#disconnectUser, [],
+                  {#flushChatPersistence: flushChatPersistence}),
+              returnValue: Future<void>.value(),
+              returnValueForMissingStub: Future<void>.value())
+          as _i12.Future<void>);
+  @override
+  _i12.Future<void> dispose() => (super.noSuchMethod(
+      Invocation.method(#dispose, []),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i12.Future<void>);
 }

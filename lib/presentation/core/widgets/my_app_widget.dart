@@ -23,6 +23,7 @@ class MyAppWidget extends StatelessWidget {
     required this.navigatorKey,
     required this.appSetupData,
     required this.streamClient,
+    this.fcmToken,
   }) : super(key: key);
 
   final NavigatorObserver navigatorObserver;
@@ -31,6 +32,7 @@ class MyAppWidget extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
   final AppSetupData appSetupData;
   final stream.StreamChatClient streamClient;
+  final String? fcmToken;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class MyAppWidget extends StatelessWidget {
         appStore: store,
         appName: testAppName,
         appNavigatorKey: navigatorKey,
+        fcmToken: fcmToken,
         appNavigatorObservers: <NavigatorObserver>[
           navigatorObserver,
           SentryNavigatorObserver(),

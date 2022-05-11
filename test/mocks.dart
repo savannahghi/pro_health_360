@@ -1,4 +1,5 @@
 // Dart imports:
+import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
@@ -1741,7 +1742,6 @@ final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
 ];
 
 final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
-
   <String, dynamic>{
     'id': 2,
     'name': 'recommended',

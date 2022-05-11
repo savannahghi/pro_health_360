@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -11,23 +9,20 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/set_push_token_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:firebase_messaging_platform_interface/firebase_messaging_platform_interface.dart';
 import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../../../mocks.dart';
 import 'set_push_token_action_test.mocks.dart';
 
-@GenerateMocks(<Type>[IGraphQlClient])
+@GenerateMocks(<Type>[IGraphQlClient, StreamChatClient])
 void main() {
   group('SetPushToken', () {
     late StoreTester<AppState> storeTester;
-    late FirebaseMessaging messaging;
+    late MockStreamChatClient mockStreamChatClient;
 
-    setUp(() async {
+    setUp(() {
       setupFirebaseMessagingMocks();
-      await Firebase.initializeApp();
-      FirebaseMessagingPlatform.instance = kMockMessagingPlatform;
-      messaging = FirebaseMessaging.instance;
 
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
@@ -35,12 +30,17 @@ void main() {
         ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
+
+      mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.addDevice(any, any))
+          .thenAnswer((_) => Future<EmptyResponse>.value(EmptyResponse()));
     });
 
     test('should handle error', () async {
       storeTester.dispatch(
         SetPushToken(
-          firebaseMessaging: messaging,
+          token: '',
+          streamClient: mockStreamChatClient,
           client: MockShortGraphQlClient.withResponse(
             'idToken',
             'endpoint',
@@ -62,7 +62,8 @@ void main() {
     test('should handle unexpected error', () async {
       storeTester.dispatch(
         SetPushToken(
-          firebaseMessaging: messaging,
+          streamClient: mockStreamChatClient,
+          token: '',
           client: MockShortGraphQlClient.withResponse(
             'idToken',
             'endpoint',
@@ -90,7 +91,8 @@ void main() {
 
       storeTester.dispatch(
         SetPushToken(
-          firebaseMessaging: messaging,
+          streamClient: mockStreamChatClient,
+          token: '',
           client: client,
         ),
       );

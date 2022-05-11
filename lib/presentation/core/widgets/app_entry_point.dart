@@ -22,6 +22,7 @@ class AppEntryPoint extends StatelessWidget {
     required this.appNavigatorObservers,
     required this.appSetupData,
     required this.streamClient,
+    this.fcmToken,
   }) : super(key: key);
 
   final String appName;
@@ -30,6 +31,7 @@ class AppEntryPoint extends StatelessWidget {
   final Store<AppState> appStore;
   final AppSetupData appSetupData;
   final stream.StreamChatClient streamClient;
+  final String? fcmToken;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,7 @@ class AppEntryPoint extends StatelessWidget {
               entryPointContext: context,
               appStore: appStore,
               client: streamClient,
+              fcmToken: fcmToken,
             ),
           );
         },

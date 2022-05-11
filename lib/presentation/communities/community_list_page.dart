@@ -1,10 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/core/services/custom_client.dart';
-import 'package:myafyahub/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 // Project imports:
@@ -28,26 +25,6 @@ class CommunityListViewPage extends StatefulWidget {
 class _CommunityListViewPageState extends State<CommunityListViewPage> {
   final stream.ChannelListController channelListController =
       stream.ChannelListController();
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final AppState state = StoreProvider.state<AppState>(context)!;
-
-    if (state != AppState.initial()) {
-      StoreProvider.dispatch(
-        context,
-        ConnectGetStreamUserAction(
-          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          streamClient: stream.StreamChat.of(context).client,
-          endpoint: AppWrapperBase.of(context)!
-              .customContext!
-              .refreshStreamTokenEndpoint,
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
