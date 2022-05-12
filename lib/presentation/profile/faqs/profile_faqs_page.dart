@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -33,7 +34,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
         context,
         // retrieve the FAQS
         FetchFAQSContentAction(
-          context: context,
+          client: AppWrapperBase.of(context)!.graphQLClient,
         ),
       );
     });
@@ -57,24 +58,31 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                     converter: (Store<AppState> store) =>
                         FAQsContentViewModel.fromStore(store.state),
                     builder: (BuildContext context, FAQsContentViewModel vm) {
-                      if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
+                      if ((vm.wait?.isWaitingFor(getFAQsFlag) ?? false) ||
+                          (vm.wait?.isWaitingFor(fetchContentCategoriesFlag) ??
+                              false)) {
                         return Container(
                           height: 300,
                           padding: const EdgeInsets.all(20),
                           child: const PlatformLoader(),
                         );
-                      } else if (vm.timeoutFetchingFAQs ?? false) {
+                      } else if (vm.timeoutFetchingFAQs! ||
+                          vm.timeoutFetchingContentCategories!) {
                         return const GenericTimeoutWidget(
                           route: AppRoutes.home,
                           action: 'fetching Frequently Asked Questions',
                         );
-                      } else if (vm.errorFetchingFAQs ?? false) {
+                      } else if (vm.errorFetchingFAQs! ||
+                          vm.errorFetchingContentCategories!) {
                         return GenericErrorWidget(
                           actionKey: helpNoDataWidgetKey,
                           recoverCallback: () async {
                             StoreProvider.dispatch<AppState>(
                               context,
-                              FetchFAQSContentAction(context: context),
+                              FetchFAQSContentAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                              ),
                             );
                           },
                           messageBody: const <TextSpan>[
@@ -116,13 +124,14 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                               StoreProvider.dispatch<AppState>(
                                 context,
                                 FetchFAQSContentAction(
-                                  context: context,
+                                  client:
+                                      AppWrapperBase.of(context)!.graphQLClient,
                                 ),
                               );
                             },
                             iconUrl: contentZeroStateImageUrl,
-                            title: contentZeroStateTitle,
-                            description: contentZeroStateDescription,
+                            title: faqsZeroStateTitle,
+                            description: faqsZeroStateDescription,
                             buttonText: contentZeroStateButtonText,
                           );
                         }

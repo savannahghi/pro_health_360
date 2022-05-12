@@ -1180,6 +1180,20 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+    if (queryString.contains(getCategoriesQuery)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'listContentCategories': categoriesMock,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     return Future<http.Response>.value(
       http.Response(
@@ -1532,7 +1546,6 @@ final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
   }
 };
 
-
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
     'ID': 1,
@@ -1727,16 +1740,16 @@ final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
   },
 ];
 
-
 final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
-  <String, dynamic>{
-    'id': 1,
-    'name': 'welcome',
-    'iconUrl': 'test-image.png',
-  },
+
   <String, dynamic>{
     'id': 2,
     'name': 'recommended',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 1,
+    'name': 'welcome',
     'iconUrl': 'test-image.png',
   },
   <String, dynamic>{
@@ -1747,6 +1760,11 @@ final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
   <String, dynamic>{
     'id': 4,
     'name': 'diet',
+    'iconUrl': 'test-image.png',
+  },
+  <String, dynamic>{
+    'id': 10002,
+    'name': 'faqs',
     'iconUrl': 'test-image.png',
   }
 ];
@@ -1792,7 +1810,8 @@ final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
 };
 
 final core.Content mockContent = core.Content.fromJson(contentMock.first);
-final core.Content mockVideoContent = core.Content.fromJson(videoContentMock.first);
+final core.Content mockVideoContent =
+    core.Content.fromJson(videoContentMock.first);
 
 final Group mockGroup = Group(
   name: testString,

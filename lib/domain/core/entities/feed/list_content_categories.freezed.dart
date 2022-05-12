@@ -24,9 +24,13 @@ class _$ListContentCategoryTearOff {
 
   _ListContentCategory call(
       {@JsonKey(name: 'listContentCategories')
-          List<ContentCategory?>? contentCategories}) {
+          List<ContentCategory?>? contentCategories,
+      bool? errorFetchingContentCategories,
+      bool? timeoutFetchingContentCategories}) {
     return _ListContentCategory(
       contentCategories: contentCategories,
+      errorFetchingContentCategories: errorFetchingContentCategories,
+      timeoutFetchingContentCategories: timeoutFetchingContentCategories,
     );
   }
 
@@ -43,6 +47,10 @@ mixin _$ListContentCategory {
   @JsonKey(name: 'listContentCategories')
   List<ContentCategory?>? get contentCategories =>
       throw _privateConstructorUsedError;
+  bool? get errorFetchingContentCategories =>
+      throw _privateConstructorUsedError;
+  bool? get timeoutFetchingContentCategories =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +65,9 @@ abstract class $ListContentCategoryCopyWith<$Res> {
       _$ListContentCategoryCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'listContentCategories')
-          List<ContentCategory?>? contentCategories});
+          List<ContentCategory?>? contentCategories,
+      bool? errorFetchingContentCategories,
+      bool? timeoutFetchingContentCategories});
 }
 
 /// @nodoc
@@ -72,12 +82,23 @@ class _$ListContentCategoryCopyWithImpl<$Res>
   @override
   $Res call({
     Object? contentCategories = freezed,
+    Object? errorFetchingContentCategories = freezed,
+    Object? timeoutFetchingContentCategories = freezed,
   }) {
     return _then(_value.copyWith(
       contentCategories: contentCategories == freezed
           ? _value.contentCategories
           : contentCategories // ignore: cast_nullable_to_non_nullable
               as List<ContentCategory?>?,
+      errorFetchingContentCategories: errorFetchingContentCategories == freezed
+          ? _value.errorFetchingContentCategories
+          : errorFetchingContentCategories // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeoutFetchingContentCategories: timeoutFetchingContentCategories ==
+              freezed
+          ? _value.timeoutFetchingContentCategories
+          : timeoutFetchingContentCategories // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -91,7 +112,9 @@ abstract class _$ListContentCategoryCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'listContentCategories')
-          List<ContentCategory?>? contentCategories});
+          List<ContentCategory?>? contentCategories,
+      bool? errorFetchingContentCategories,
+      bool? timeoutFetchingContentCategories});
 }
 
 /// @nodoc
@@ -108,12 +131,23 @@ class __$ListContentCategoryCopyWithImpl<$Res>
   @override
   $Res call({
     Object? contentCategories = freezed,
+    Object? errorFetchingContentCategories = freezed,
+    Object? timeoutFetchingContentCategories = freezed,
   }) {
     return _then(_ListContentCategory(
       contentCategories: contentCategories == freezed
           ? _value.contentCategories
           : contentCategories // ignore: cast_nullable_to_non_nullable
               as List<ContentCategory?>?,
+      errorFetchingContentCategories: errorFetchingContentCategories == freezed
+          ? _value.errorFetchingContentCategories
+          : errorFetchingContentCategories // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeoutFetchingContentCategories: timeoutFetchingContentCategories ==
+              freezed
+          ? _value.timeoutFetchingContentCategories
+          : timeoutFetchingContentCategories // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -122,7 +156,9 @@ class __$ListContentCategoryCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ListContentCategory implements _ListContentCategory {
   _$_ListContentCategory(
-      {@JsonKey(name: 'listContentCategories') this.contentCategories});
+      {@JsonKey(name: 'listContentCategories') this.contentCategories,
+      this.errorFetchingContentCategories,
+      this.timeoutFetchingContentCategories});
 
   factory _$_ListContentCategory.fromJson(Map<String, dynamic> json) =>
       _$$_ListContentCategoryFromJson(json);
@@ -130,10 +166,14 @@ class _$_ListContentCategory implements _ListContentCategory {
   @override
   @JsonKey(name: 'listContentCategories')
   final List<ContentCategory?>? contentCategories;
+  @override
+  final bool? errorFetchingContentCategories;
+  @override
+  final bool? timeoutFetchingContentCategories;
 
   @override
   String toString() {
-    return 'ListContentCategory(contentCategories: $contentCategories)';
+    return 'ListContentCategory(contentCategories: $contentCategories, errorFetchingContentCategories: $errorFetchingContentCategories, timeoutFetchingContentCategories: $timeoutFetchingContentCategories)';
   }
 
   @override
@@ -142,12 +182,21 @@ class _$_ListContentCategory implements _ListContentCategory {
         (other.runtimeType == runtimeType &&
             other is _ListContentCategory &&
             const DeepCollectionEquality()
-                .equals(other.contentCategories, contentCategories));
+                .equals(other.contentCategories, contentCategories) &&
+            const DeepCollectionEquality().equals(
+                other.errorFetchingContentCategories,
+                errorFetchingContentCategories) &&
+            const DeepCollectionEquality().equals(
+                other.timeoutFetchingContentCategories,
+                timeoutFetchingContentCategories));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(contentCategories));
+      runtimeType,
+      const DeepCollectionEquality().hash(contentCategories),
+      const DeepCollectionEquality().hash(errorFetchingContentCategories),
+      const DeepCollectionEquality().hash(timeoutFetchingContentCategories));
 
   @JsonKey(ignore: true)
   @override
@@ -164,7 +213,9 @@ class _$_ListContentCategory implements _ListContentCategory {
 abstract class _ListContentCategory implements ListContentCategory {
   factory _ListContentCategory(
       {@JsonKey(name: 'listContentCategories')
-          List<ContentCategory?>? contentCategories}) = _$_ListContentCategory;
+          List<ContentCategory?>? contentCategories,
+      bool? errorFetchingContentCategories,
+      bool? timeoutFetchingContentCategories}) = _$_ListContentCategory;
 
   factory _ListContentCategory.fromJson(Map<String, dynamic> json) =
       _$_ListContentCategory.fromJson;
@@ -172,6 +223,10 @@ abstract class _ListContentCategory implements ListContentCategory {
   @override
   @JsonKey(name: 'listContentCategories')
   List<ContentCategory?>? get contentCategories;
+  @override
+  bool? get errorFetchingContentCategories;
+  @override
+  bool? get timeoutFetchingContentCategories;
   @override
   @JsonKey(ignore: true)
   _$ListContentCategoryCopyWith<_ListContentCategory> get copyWith =>

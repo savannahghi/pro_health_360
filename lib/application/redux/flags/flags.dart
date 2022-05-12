@@ -121,3 +121,6 @@ const String fetchCaregiverInfoFlag = 'fetch_caregiver_info_flag';
 
 // notifications
 const String fetchNotificationsFlag = 'fetch_notifications_flag';
+
+//content categories
+const String fetchContentCategoriesFlag = 'fetch_content_categories_flag';

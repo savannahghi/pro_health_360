@@ -9,9 +9,16 @@ part 'list_content_categories.g.dart';
 class ListContentCategory with _$ListContentCategory {
   factory ListContentCategory({
     @JsonKey(name: 'listContentCategories')
-        List<ContentCategory?>? contentCategories,
+    List<ContentCategory?>? contentCategories,
+    bool? errorFetchingContentCategories,
+    bool? timeoutFetchingContentCategories,
   }) = _ListContentCategory;
 
   factory ListContentCategory.fromJson(Map<String, dynamic> json) =>
       _$ListContentCategoryFromJson(json);
+  factory ListContentCategory.initial() => ListContentCategory(
+        contentCategories: <ContentCategory>[],
+        errorFetchingContentCategories: false,
+        timeoutFetchingContentCategories: false,
+      );
 }

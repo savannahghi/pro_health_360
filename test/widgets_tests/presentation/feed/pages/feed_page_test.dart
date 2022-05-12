@@ -11,11 +11,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/actions/update_content_categories_action.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
@@ -52,6 +54,13 @@ void main() {
 
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
+      store.dispatch(
+        UpdateContentCategoriesAction(
+          contentCategories: ListContentCategory.fromJson(<String, dynamic>{
+            'listContentCategories': categoriesMock,
+          }).contentCategories,
+        ),
+      );
     });
 
     testWidgets('should fetch feed items and display them correctly',
@@ -65,7 +74,6 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-
         await tester.tap(find.text('All'));
         await tester.pumpAndSettle();
 
@@ -134,9 +142,6 @@ void main() {
           client: mockShortSILGraphQlClient,
           widget: const FeedPage(),
         );
-
-        await tester.pumpAndSettle();
-        await tester.tap(find.text('All'));
         await tester.pumpAndSettle();
 
         expect(find.byType(ContentItem), findsNWidgets(2));
@@ -205,10 +210,38 @@ void main() {
           client: client,
           widget: const FeedPage(),
         );
+        store.dispatch(WaitAction<AppState>.add(fetchContentCategoriesFlag));
+        await tester.pump();
+
+        expect(find.byType(PlatformLoader), findsOneWidget);
+      });
+    });
+    testWidgets('shows a loading indicator when fetching content',
+        (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      mockNetworkImages(() async {
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{
+              'data': <String, dynamic>{'loading': true}
+            }),
+            201,
+          ),
+        );
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: client,
+          widget: const FeedPage(),
+        );
         store.dispatch(WaitAction<AppState>.add(fetchContentFlag));
         await tester.pump();
 
-        expect(find.byType(PlatformLoader), findsNWidgets(2));
+        expect(find.byType(PlatformLoader), findsOneWidget);
       });
     });
 
@@ -234,7 +267,34 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericTimeoutWidget), findsNWidgets(2));
+        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+      });
+    });
+    testWidgets('shows a generic timeout widget while fetching categories',
+        (WidgetTester tester) async {
+      mockNetworkImages(() async {
+        final MockShortGraphQlClient client =
+            MockShortGraphQlClient.withResponse(
+          'idToken',
+          'endpoint',
+          Response(
+            json.encode(<String, dynamic>{'error': 'timeout'}),
+            201,
+          ),
+        );
+        store.dispatch(
+          UpdateContentCategoriesAction(timeoutFetchingContentCategories: true),
+        );
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: client,
+          widget: const FeedPage(),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
       });
     });
 
@@ -273,5 +333,6 @@ void main() {
         expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
+    
   });
 }

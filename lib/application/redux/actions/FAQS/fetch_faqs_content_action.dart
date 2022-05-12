@@ -6,32 +6,26 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/FAQS/update_faqs_content_action.dart';
+import 'package:myafyahub/application/redux/actions/content/fetch_content_categories_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 
 class FetchFAQSContentAction extends ReduxAction<AppState> {
   FetchFAQSContentAction({
-    required this.context,
+    required this.client,
   });
 
-  final BuildContext context;
+  final IGraphQlClient client;
 
   @override
   void before() {
-    super.before();
-
     dispatch(WaitAction<AppState>.add(getFAQsFlag));
     dispatch(
       UpdateFAQsContentAction(
@@ -39,6 +33,8 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
         timeoutFetchingFAQs: false,
       ),
     );
+    dispatch(FetchContentCategoriesAction(client: client));
+    super.before();
   }
 
   @override
@@ -49,28 +45,31 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;
+    final int? faqCategoryId =
+        state.contentState?.categoriesList?.contentCategories
+            ?.firstWhere(
+              (ContentCategory? contentCategory) =>
+                  contentCategory?.name == 'faqs',
+              orElse: () => ContentCategory.initial().copyWith(id: -1),
+            )
+            ?.id;
+
+
     final Map<String, dynamic> variables = <String, dynamic>{
-      'categoryID': 10002,
+      'categoryID': faqCategoryId,
       'Limit': '20',
     };
 
-    final http.Response result = await _client.query(
+    final http.Response result = await client.query(
       getContentQuery,
       variables,
     );
 
-    final Map<String, dynamic> body = _client.toMap(result);
+    final Map<String, dynamic> body = client.toMap(result);
 
     final String? error = parseError(body);
 
     if (error != null) {
-      reportErrorToSentry(
-        context,
-        error,
-        hint: errorFetchingFAQsString,
-      );
-
       if (error == 'timeout') {
         dispatch(UpdateFAQsContentAction(timeoutFetchingFAQs: true));
         return null;

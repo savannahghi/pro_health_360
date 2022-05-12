@@ -26,11 +26,13 @@ class _$ContentStateTearOff {
       {FeedContentState? feedContentState,
       SavedContentState? savedContentState,
       RecentContentState? recentContentState,
+      ListContentCategory? categoriesList,
       ContentEngagementState? contentEngagementState}) {
     return _ContentState(
       feedContentState: feedContentState,
       savedContentState: savedContentState,
       recentContentState: recentContentState,
+      categoriesList: categoriesList,
       contentEngagementState: contentEngagementState,
     );
   }
@@ -50,6 +52,7 @@ mixin _$ContentState {
       throw _privateConstructorUsedError;
   RecentContentState? get recentContentState =>
       throw _privateConstructorUsedError;
+  ListContentCategory? get categoriesList => throw _privateConstructorUsedError;
   ContentEngagementState? get contentEngagementState =>
       throw _privateConstructorUsedError;
 
@@ -68,11 +71,13 @@ abstract class $ContentStateCopyWith<$Res> {
       {FeedContentState? feedContentState,
       SavedContentState? savedContentState,
       RecentContentState? recentContentState,
+      ListContentCategory? categoriesList,
       ContentEngagementState? contentEngagementState});
 
   $FeedContentStateCopyWith<$Res>? get feedContentState;
   $SavedContentStateCopyWith<$Res>? get savedContentState;
   $RecentContentStateCopyWith<$Res>? get recentContentState;
+  $ListContentCategoryCopyWith<$Res>? get categoriesList;
   $ContentEngagementStateCopyWith<$Res>? get contentEngagementState;
 }
 
@@ -89,6 +94,7 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
     Object? feedContentState = freezed,
     Object? savedContentState = freezed,
     Object? recentContentState = freezed,
+    Object? categoriesList = freezed,
     Object? contentEngagementState = freezed,
   }) {
     return _then(_value.copyWith(
@@ -104,6 +110,10 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
           ? _value.recentContentState
           : recentContentState // ignore: cast_nullable_to_non_nullable
               as RecentContentState?,
+      categoriesList: categoriesList == freezed
+          ? _value.categoriesList
+          : categoriesList // ignore: cast_nullable_to_non_nullable
+              as ListContentCategory?,
       contentEngagementState: contentEngagementState == freezed
           ? _value.contentEngagementState
           : contentEngagementState // ignore: cast_nullable_to_non_nullable
@@ -146,6 +156,17 @@ class _$ContentStateCopyWithImpl<$Res> implements $ContentStateCopyWith<$Res> {
   }
 
   @override
+  $ListContentCategoryCopyWith<$Res>? get categoriesList {
+    if (_value.categoriesList == null) {
+      return null;
+    }
+
+    return $ListContentCategoryCopyWith<$Res>(_value.categoriesList!, (value) {
+      return _then(_value.copyWith(categoriesList: value));
+    });
+  }
+
+  @override
   $ContentEngagementStateCopyWith<$Res>? get contentEngagementState {
     if (_value.contentEngagementState == null) {
       return null;
@@ -169,6 +190,7 @@ abstract class _$ContentStateCopyWith<$Res>
       {FeedContentState? feedContentState,
       SavedContentState? savedContentState,
       RecentContentState? recentContentState,
+      ListContentCategory? categoriesList,
       ContentEngagementState? contentEngagementState});
 
   @override
@@ -177,6 +199,8 @@ abstract class _$ContentStateCopyWith<$Res>
   $SavedContentStateCopyWith<$Res>? get savedContentState;
   @override
   $RecentContentStateCopyWith<$Res>? get recentContentState;
+  @override
+  $ListContentCategoryCopyWith<$Res>? get categoriesList;
   @override
   $ContentEngagementStateCopyWith<$Res>? get contentEngagementState;
 }
@@ -196,6 +220,7 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
     Object? feedContentState = freezed,
     Object? savedContentState = freezed,
     Object? recentContentState = freezed,
+    Object? categoriesList = freezed,
     Object? contentEngagementState = freezed,
   }) {
     return _then(_ContentState(
@@ -211,6 +236,10 @@ class __$ContentStateCopyWithImpl<$Res> extends _$ContentStateCopyWithImpl<$Res>
           ? _value.recentContentState
           : recentContentState // ignore: cast_nullable_to_non_nullable
               as RecentContentState?,
+      categoriesList: categoriesList == freezed
+          ? _value.categoriesList
+          : categoriesList // ignore: cast_nullable_to_non_nullable
+              as ListContentCategory?,
       contentEngagementState: contentEngagementState == freezed
           ? _value.contentEngagementState
           : contentEngagementState // ignore: cast_nullable_to_non_nullable
@@ -226,6 +255,7 @@ class _$_ContentState implements _ContentState {
       {this.feedContentState,
       this.savedContentState,
       this.recentContentState,
+      this.categoriesList,
       this.contentEngagementState});
 
   factory _$_ContentState.fromJson(Map<String, dynamic> json) =>
@@ -238,11 +268,13 @@ class _$_ContentState implements _ContentState {
   @override
   final RecentContentState? recentContentState;
   @override
+  final ListContentCategory? categoriesList;
+  @override
   final ContentEngagementState? contentEngagementState;
 
   @override
   String toString() {
-    return 'ContentState(feedContentState: $feedContentState, savedContentState: $savedContentState, recentContentState: $recentContentState, contentEngagementState: $contentEngagementState)';
+    return 'ContentState(feedContentState: $feedContentState, savedContentState: $savedContentState, recentContentState: $recentContentState, categoriesList: $categoriesList, contentEngagementState: $contentEngagementState)';
   }
 
   @override
@@ -257,6 +289,8 @@ class _$_ContentState implements _ContentState {
             const DeepCollectionEquality()
                 .equals(other.recentContentState, recentContentState) &&
             const DeepCollectionEquality()
+                .equals(other.categoriesList, categoriesList) &&
+            const DeepCollectionEquality()
                 .equals(other.contentEngagementState, contentEngagementState));
   }
 
@@ -266,6 +300,7 @@ class _$_ContentState implements _ContentState {
       const DeepCollectionEquality().hash(feedContentState),
       const DeepCollectionEquality().hash(savedContentState),
       const DeepCollectionEquality().hash(recentContentState),
+      const DeepCollectionEquality().hash(categoriesList),
       const DeepCollectionEquality().hash(contentEngagementState));
 
   @JsonKey(ignore: true)
@@ -284,6 +319,7 @@ abstract class _ContentState implements ContentState {
       {FeedContentState? feedContentState,
       SavedContentState? savedContentState,
       RecentContentState? recentContentState,
+      ListContentCategory? categoriesList,
       ContentEngagementState? contentEngagementState}) = _$_ContentState;
 
   factory _ContentState.fromJson(Map<String, dynamic> json) =
@@ -295,6 +331,8 @@ abstract class _ContentState implements ContentState {
   SavedContentState? get savedContentState;
   @override
   RecentContentState? get recentContentState;
+  @override
+  ListContentCategory? get categoriesList;
   @override
   ContentEngagementState? get contentEngagementState;
   @override

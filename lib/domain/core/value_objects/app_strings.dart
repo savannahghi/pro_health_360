@@ -947,3 +947,8 @@ const String healthSurveyDescription =
 const String platformSurvey = 'Platform satisfaction survey';
 const String platformSurveyDescription = 'A survey about your platform use';
 const String respondString = 'Respond';
+
+
+// FAQs
+const String faqsZeroStateTitle = 'No FAQs found';
+const String faqsZeroStateDescription = 'There are no FAQs at this time, they will show up here once they have been added';

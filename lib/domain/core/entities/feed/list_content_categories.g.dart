@@ -14,10 +14,17 @@ _$_ListContentCategory _$$_ListContentCategoryFromJson(
               ? null
               : ContentCategory.fromJson(e as Map<String, dynamic>))
           .toList(),
+      errorFetchingContentCategories:
+          json['errorFetchingContentCategories'] as bool?,
+      timeoutFetchingContentCategories:
+          json['timeoutFetchingContentCategories'] as bool?,
     );
 
 Map<String, dynamic> _$$_ListContentCategoryToJson(
         _$_ListContentCategory instance) =>
     <String, dynamic>{
       'listContentCategories': instance.contentCategories,
+      'errorFetchingContentCategories': instance.errorFetchingContentCategories,
+      'timeoutFetchingContentCategories':
+          instance.timeoutFetchingContentCategories,
     };

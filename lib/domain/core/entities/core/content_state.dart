@@ -6,6 +6,7 @@ import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/recent_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_engagement_state.dart';
+import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 
 part 'content_state.freezed.dart';
 part 'content_state.g.dart';
@@ -16,6 +17,7 @@ class ContentState with _$ContentState {
     FeedContentState? feedContentState,
     SavedContentState? savedContentState,
     RecentContentState? recentContentState,
+    ListContentCategory? categoriesList,
     ContentEngagementState? contentEngagementState,
   }) = _ContentState;
 
@@ -27,5 +29,6 @@ class ContentState with _$ContentState {
         savedContentState: SavedContentState.initial(),
         recentContentState: RecentContentState.initial(),
         contentEngagementState: ContentEngagementState.initial(),
+        categoriesList: ListContentCategory.initial(),
       );
 }

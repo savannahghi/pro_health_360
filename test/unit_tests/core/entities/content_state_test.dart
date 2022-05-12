@@ -7,6 +7,7 @@ import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/recent_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_engagement_state.dart';
+import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 
 void main() {
   test('should convert from/to json', () {
@@ -36,6 +37,7 @@ void main() {
         savedContentState: SavedContentState.initial(),
         recentContentState: RecentContentState.initial(),
         contentEngagementState: ContentEngagementState.initial(),
+        categoriesList: ListContentCategory.initial(),
       ),
     );
   });
