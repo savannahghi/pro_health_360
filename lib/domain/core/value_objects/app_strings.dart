@@ -924,9 +924,6 @@ const String platformSurveyDescription = 'A survey about your platform use';
 const String respondString = 'Respond';
 
 // FAQs
-const String phq9SurveyUrl =
-    'https://mycarehub.odk.savannahghi.org/-/single/7YNzF5TjcVpp86Q2D5C4EIL3EGQjYkW?st=uUMj9fDZBC8l41CCkLSkiLPkko8cpM4ocE5hABkcCLSZAJc6zKB4aCYYwr5LtFTk';
-
 String newChatMessageTitle(String? username, String? channelName) {
   String baseMessage = 'New message';
 

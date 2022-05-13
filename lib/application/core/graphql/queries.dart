@@ -472,3 +472,14 @@ query listNotifications(
   }
 }
 ''';
+
+const String getUserSurveyFormsQuery = r'''
+query getUserSurveyForms($userID: String!) {
+  getUserSurveyForms(userID: $userID) {
+    id,
+    link,
+    title,
+    description,
+  }
+}
+''';

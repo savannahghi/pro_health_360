@@ -10,12 +10,10 @@ class SurveyItem extends StatelessWidget {
   const SurveyItem({
     required this.gestureKey,
     required this.title,
-    required this.description,
     required this.url,
   });
 
   final String title;
-  final String description;
   final String url;
   final Key gestureKey;
 
@@ -50,10 +48,6 @@ class SurveyItem extends StatelessWidget {
               style: boldSize18Text(AppColors.blackColor.withOpacity(0.8)),
             ),
             smallVerticalSizedBox,
-            Text(
-              description,
-              style: normalSize14Text(AppColors.greyTextColor),
-            ),
           ],
         ),
       ),

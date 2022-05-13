@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myafyahub/application/redux/states/screening_tools_state.dart';
 import 'package:myafyahub/domain/core/entities/appointments/appointments_state.dart';
 import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
-// Project imports:
+import 'package:myafyahub/domain/core/entities/surveys/survey.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'communities/channel_members_state.dart';
 
@@ -30,6 +30,7 @@ class MiscState with _$MiscState {
         AppointmentState? appointmentState,
     String? inactiveTime,
     bool? resumeWithPin,
+    List<Survey>? availableSurveysList,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -50,5 +51,6 @@ class MiscState with _$MiscState {
         screeningToolsState: ScreeningToolsState.initial(),
         inactiveTime: UNKNOWN,
         resumeWithPin: false,
+        availableSurveysList: <Survey>[],
       );
 }

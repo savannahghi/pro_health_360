@@ -1082,6 +1082,25 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+    if (queryString == getUserSurveyFormsQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getUserSurveyForms': <dynamic>[
+                <String, dynamic>{
+                  'id': '725d719d-d720-47d0-860e-64b8431a4cad',
+                  'link': 'https://mycarehub.org',
+                  'title': 'phq9',
+                  'description': 'description'
+                },
+              ]
+            }
+          }),
+          200,
+        ),
+      );
+    }
     if (queryString == listAppointmentsQuery) {
       return Future<http.Response>.value(
         http.Response(
@@ -1492,7 +1511,8 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
   }
 };
 
-final core.Content mockVideoContent = core.Content.fromJson(videoContentMock.first);
+final core.Content mockVideoContent =
+    core.Content.fromJson(videoContentMock.first);
 
 final Map<String, dynamic> documentContentMock = <String, dynamic>{
   'ID': 16,
@@ -1751,7 +1771,7 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
         'thumbnail': ''
       }
     ],
-     'galleryImages': <Map<String, dynamic>>[
+    'galleryImages': <Map<String, dynamic>>[
       mockGalleryImage,
       mockGalleryImage,
       mockGalleryImage,

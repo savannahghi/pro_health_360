@@ -1,8 +1,9 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/surveys/custom_webview_page.dart';
 import 'package:myafyahub/presentation/surveys/surveys_page.dart';
 
 import '../../../mocks.dart';
@@ -39,8 +40,10 @@ void main() {
 
       expect(find.text(surveysTitle), findsOneWidget);
 
-      await tester.tap(find.byKey(healthSurveyKey));
+      await tester.tap(find.byKey(const Key('phq9')));
       await tester.pumpAndSettle();
+
+      expect(find.byType(CustomWebView), findsOneWidget);
     });
   });
 }
