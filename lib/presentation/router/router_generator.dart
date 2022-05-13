@@ -51,6 +51,7 @@ import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:myafyahub/presentation/surveys/custom_webview_page.dart';
 import 'package:myafyahub/presentation/surveys/surveys_page.dart';
 import 'package:myafyahub/presentation/violence_assessment/pages/violence_assessment_page.dart';
 
@@ -354,6 +355,14 @@ class RouteGenerator {
       case AppRoutes.surveysPage:
         return MaterialPageRoute<SurveysPage>(
           builder: (_) => const SurveysPage(),
+        );
+
+      case AppRoutes.customWebviewPage:
+        return MaterialPageRoute<CustomWebView>(
+          builder: (_) => CustomWebView(
+            appBarTitle: args['appBarTitle'] as String,
+            url: args['url'] as String,
+          ),
         );
 
       default:

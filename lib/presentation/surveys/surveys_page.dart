@@ -32,8 +32,7 @@ class SurveysPage extends StatelessWidget {
               largeVerticalSizedBox,
               const SurveyItem(
                 gestureKey: healthSurveyKey,
-                url:
-                    'https://mycarehub.odk.savannahghi.org/-/single/7YNzF5TjcVpp86Q2D5C4EIL3EGQjYkW?st=uUMj9fDZBC8l41CCkLSkiLPkko8cpM4ocE5hABkcCLSZAJc6zKB4aCYYwr5LtFTk',
+                url: phq9SurveyUrl,
                 title: healthSurvey,
                 description: healthSurveyDescription,
               ),

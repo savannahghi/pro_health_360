@@ -59,7 +59,14 @@ class SurveyCarousel extends StatelessWidget {
                       title: 'PHQ-9',
                       description: 'A survey to assess your mental health',
                       onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.surveysPage);
+                        final String encodedUrl = Uri.encodeFull(phq9SurveyUrl);
+                        Navigator.of(context).pushNamed(
+                          AppRoutes.customWebviewPage,
+                          arguments: <String, dynamic>{
+                            'url': encodedUrl,
+                            'appBarTitle': surveys
+                          },
+                        );
                       },
                       beginButtonKey: phq9surveyKey,
                       buttonTitle: respondString,

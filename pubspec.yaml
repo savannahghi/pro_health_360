@@ -60,6 +60,7 @@ dependencies:
   upgrader: ^3.4.1
   url_launcher: ^6.0.6
   video_player: ^2.2.7
+  webview_flutter: ^3.0.4
 
 dependency_overrides:
   firebase_messaging_platform_interface: 3.1.6

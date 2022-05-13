@@ -4,11 +4,11 @@
 
 ### Project prerequisites
 
-1. The **myCareHub** app runs on Flutter version 2.2.3. To check the flutter version and channel installed in your machine run `flutter --version`.
+1. The **myCareHub** app runs on Flutter version 2.5.3. To check the flutter version and channel installed in your machine run `flutter --version`.
 
 2. To switch from another channel of Flutter to the stable channel run `flutter channel stable`.
 
-3. To install Flutter version 2.0.3 run `flutter version v2.0.3`.
+3. To install Flutter version 2.5.3 run `flutter version v2.5.3`.
 
 Looks like we are done with the prerequisites :-)
 

@@ -1,9 +1,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
 
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SurveyItem extends StatelessWidget {
   const SurveyItem({
@@ -25,11 +26,12 @@ class SurveyItem extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: () async {
         final String encodedUrl = Uri.encodeFull(url);
-        await launch(
-          encodedUrl,
-          forceWebView: true,
-          enableJavaScript: true,
-          forceSafariVC: true,
+        Navigator.of(context).pushNamed(
+          AppRoutes.customWebviewPage,
+          arguments: <String, dynamic>{
+            'url': encodedUrl,
+            'appBarTitle': surveys
+          },
         );
       },
       child: Container(
