@@ -10,7 +10,6 @@ import 'package:intl/intl.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -41,7 +40,8 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
             .where(
               (ContentCategory? element) =>
                   element!.name!.toLowerCase() != 'welcome' &&
-                  element.name!.toLowerCase() != 'faqs',
+                  element.name!.toLowerCase() != 'consumer-faqs'&&
+                  element.name!.toLowerCase() != 'pro-faqs',
             )
             .toList()
       ];

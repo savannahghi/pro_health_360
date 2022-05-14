@@ -5,6 +5,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/application/redux/actions/notifications/read_notifications_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -39,7 +40,7 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
       'userID': userID,
       'flavour': Flavour.consumer.name,
       'paginationInput': <String, dynamic>{
-        'Limit': 10,
+        'Limit': 20,
         'CurrentPage': 1,
       }
     };
@@ -77,7 +78,25 @@ class FetchNotificationsAction extends ReduxAction<AppState> {
             notifications: notifications,
           ),
         );
-        return null;
+        final List<String?> ids = <String>[];
+
+        for (int i = 0; i < notifications.length; i++) {
+          final bool isRead = notifications[i].isRead ?? false;
+          if (!isRead) {
+            ids.add(notifications[i].id);
+          }
+        }
+
+        if (ids.isNotEmpty) {
+          dispatch(
+            ReadNotificationsAction(
+              client: client,
+              ids: ids,
+            ),
+          );
+        }
+
+        return state;
       }
     } else {
       throw UserException(processedResponse.message);

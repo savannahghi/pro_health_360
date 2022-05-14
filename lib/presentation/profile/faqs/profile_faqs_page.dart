@@ -14,9 +14,7 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
   // const ProfileFaqsPage();
@@ -68,9 +66,21 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                         );
                       } else if (vm.timeoutFetchingFAQs! ||
                           vm.timeoutFetchingContentCategories!) {
-                        return const GenericTimeoutWidget(
-                          route: AppRoutes.home,
-                          action: 'fetching Frequently Asked Questions',
+                        return GenericErrorWidget(
+                          actionKey: helpNoDataWidgetKey,
+                          recoverCallback: () async {
+                            StoreProvider.dispatch<AppState>(
+                              context,
+                              FetchFAQSContentAction(
+                                client:
+                                    AppWrapperBase.of(context)!.graphQLClient,
+                              ),
+                            );
+                          },
+                          messageTitle: '',
+                          messageBody:  <TextSpan>[
+                            TextSpan(text: getErrorMessage(fetchingFAQsString))
+                          ],
                         );
                       } else if (vm.errorFetchingFAQs! ||
                           vm.errorFetchingContentCategories!) {
@@ -85,8 +95,9 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                               ),
                             );
                           },
-                          messageBody: const <TextSpan>[
-                            TextSpan(text: messageBodyGenericErrorWidget)
+                          messageTitle: '',
+                          messageBody:  <TextSpan>[
+                            TextSpan(text: getErrorMessage(fetchingFAQsString))
                           ],
                         );
                       } else {
@@ -130,8 +141,8 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                               );
                             },
                             iconUrl: contentZeroStateImageUrl,
-                            title: faqsZeroStateTitle,
-                            description: faqsZeroStateDescription,
+                            title: noFAQsTitle,
+                            description: noFAQsDescription,
                             buttonText: contentZeroStateButtonText,
                           );
                         }

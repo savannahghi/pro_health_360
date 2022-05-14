@@ -6,7 +6,6 @@ import 'package:async_redux/async_redux.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 
 class UpdateContentCategoriesAction extends ReduxAction<AppState> {
   UpdateContentCategoriesAction({

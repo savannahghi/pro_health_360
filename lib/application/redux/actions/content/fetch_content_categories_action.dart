@@ -13,7 +13,6 @@ import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/redux/actions/update_content_categories_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/list_content_categories.dart';
 
 class FetchContentCategoriesAction extends ReduxAction<AppState> {
   FetchContentCategoriesAction({

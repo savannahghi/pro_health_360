@@ -1195,6 +1195,20 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+    if (queryString.contains(readNotificationsMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'readNotifications': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     return Future<http.Response>.value(
       http.Response(
@@ -1274,7 +1288,8 @@ Map<String, dynamic> mockNotification = <String, dynamic>{
   'createdAt': '2022-04-28T07:00:20Z',
   'type': 'APPOINTMENT',
   'actions': <dynamic>[mockNotificationActions],
-  'status': 'Missed'
+  'status': 'Missed',
+  'id': 'some-id',
 };
 
 Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
@@ -1764,7 +1779,7 @@ final List<Map<String, dynamic>> categoriesMock = <Map<String, dynamic>>[
   },
   <String, dynamic>{
     'id': 10002,
-    'name': 'faqs',
+    'name': 'consumer-faqs',
     'iconUrl': 'test-image.png',
   }
 ];

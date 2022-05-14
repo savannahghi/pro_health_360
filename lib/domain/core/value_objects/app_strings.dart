@@ -451,24 +451,6 @@ const String feedHeader =
     'Tips on how to keep yourself properly hydrated while exercising';
 const String feedDate = '2021-08-23T06:42:05.085216Z';
 const String feedReadTime = '5 minutes';
-String contentReadDuration(int duration) =>
-    duration == 0 ? '...' : '${(duration / 60).floor()} min read';
-String contentAudioVideoDuration(int duration) =>
-    duration == 0 ? '...' : '${(duration / 60).floor()} min';
-
-String audioTime(int duration) {
-  Duration(seconds: duration);
-  final int min = (duration / 60).floor();
-  final int sec = duration % 60;
-  String formattedSec;
-  if (sec <= 9) {
-    formattedSec = '0$sec';
-  } else {
-    formattedSec = '$sec';
-  }
-
-  return '$min:$formattedSec';
-}
 
 const String newText = 'New';
 const String pdfText = 'PDF';
@@ -947,9 +929,6 @@ const String platformSurveyDescription = 'A survey about your platform use';
 const String respondString = 'Respond';
 
 // FAQs
-const String faqsZeroStateTitle = 'No FAQs found';
-const String faqsZeroStateDescription =
-    'There are no FAQs at this time, they will show up here once they have been added';
 const String phq9SurveyUrl =
     'https://mycarehub.odk.savannahghi.org/-/single/7YNzF5TjcVpp86Q2D5C4EIL3EGQjYkW?st=uUMj9fDZBC8l41CCkLSkiLPkko8cpM4ocE5hABkcCLSZAJc6zKB4aCYYwr5LtFTk';
 
@@ -966,3 +945,7 @@ String newChatMessageTitle(String? username, String? channelName) {
 
   return baseMessage;
 }
+const String noFAQsTitle = 'No FAQs available';
+const String noFAQsDescription =
+    'No worries though, check back in later and we will have them ready for you';
+const String fetchingFAQsString = 'fetching FAQs';

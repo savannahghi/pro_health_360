@@ -49,7 +49,7 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
         state.contentState?.categoriesList?.contentCategories
             ?.firstWhere(
               (ContentCategory? contentCategory) =>
-                  contentCategory?.name == 'faqs',
+                  contentCategory?.name == 'consumer-faqs',
               orElse: () => ContentCategory.initial().copyWith(id: -1),
             )
             ?.id;

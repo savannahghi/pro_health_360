@@ -207,3 +207,8 @@ mutation UnBanUser($memberID: String!, $communityID: String!){
   unBanUser(memberID: $memberID, communityID: $communityID)
 }
 ''';
+const String readNotificationsMutation = r'''
+mutation readNotifications($ids: [ID!]!){
+  readNotifications(ids: $ids)
+}
+''';

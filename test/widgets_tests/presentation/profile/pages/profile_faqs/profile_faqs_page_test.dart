@@ -17,7 +17,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/widgets/content_item.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 
@@ -50,7 +49,7 @@ void main() {
     store.dispatch(
       UpdateContentCategoriesAction(
         contentCategories: <ContentCategory>[
-          ContentCategory(id: 10002, name: 'faqs', icon: 'test')
+          ContentCategory(id: 10002, name: 'consumer-faqs', icon: 'test')
         ],
       ),
     );
@@ -139,7 +138,7 @@ void main() {
       });
     });
 
-    testWidgets('shows a generic timeout widget while fetching the feed',
+    testWidgets('shows a GenericErrorWidget while fetching the feed',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
         final MockShortGraphQlClient client =
@@ -160,7 +159,12 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(GenericTimeoutWidget), findsNWidgets(1));
+        expect(find.byType(GenericErrorWidget), findsNWidgets(1));
+        await tester.ensureVisible(find.byKey(helpNoDataWidgetKey));
+        await tester.tap(find.byKey(helpNoDataWidgetKey));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
 
