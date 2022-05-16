@@ -21,6 +21,7 @@ import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_erro
 import 'package:myafyahub/presentation/onboarding/pin_expired/pages/pin_expired_page.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/pages/verify_phone_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
@@ -32,6 +33,8 @@ void main() {
     setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
+      final Map<String, Object> values = <String, Object>{'clientId': 1};
+      SharedPreferences.setMockInitialValues(values);
     });
 
     testWidgets('should validate Phone Number', (WidgetTester tester) async {

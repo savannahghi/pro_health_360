@@ -9,8 +9,13 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 class StreamTokenProvider {
   final IGraphQlClient client;
   final String endpoint;
+  final void Function(String)? saveToken;
 
-  StreamTokenProvider({required this.client, required this.endpoint});
+  StreamTokenProvider({
+    required this.client,
+    required this.endpoint,
+    this.saveToken,
+  });
 
   Future<String> tokenProvider(String userId) async {
     final Response httpResponse = await client.callRESTAPI(
@@ -27,6 +32,7 @@ class StreamTokenProvider {
 
     if (processedResponse.ok) {
       final GetStreamToken result = GetStreamToken.fromJson(responseBody);
+      saveToken?.call(result.getStreamToken ?? '');
 
       return result.getStreamToken ?? '';
     }

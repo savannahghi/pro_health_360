@@ -9,7 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
@@ -23,6 +22,7 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
@@ -112,29 +112,11 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
     appSetupData.streamAPIKey,
     logLevel: Level.ALL,
   );
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('streamApiKey', appSetupData.streamAPIKey);
 
   await Firebase.initializeApp();
   final String? fcmToken = await FirebaseMessaging.instance.getToken();
-
-  // Initialize the flutter local notifications plugin
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  // Configure the android notification settings
-  const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('app_icon');
-
-  // Configure the iOS notification settings
-  const IOSInitializationSettings initializationSettingsIOS =
-      IOSInitializationSettings();
-
-// Initialize the flutter local notifications plugin with both the android and
-// iOS settings
-  const InitializationSettings initializationSettings = InitializationSettings(
-    android: initializationSettingsAndroid,
-    iOS: initializationSettingsIOS,
-  );
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   runZonedGuarded(
     () async {

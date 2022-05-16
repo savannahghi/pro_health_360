@@ -63,7 +63,7 @@ class _$UserTearOff {
           bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
-      String? chatRoomToken,
+      String? streamToken,
       @JsonKey(name: 'roles')
           List<Role>? roles}) {
     return _User(
@@ -87,7 +87,7 @@ class _$UserTearOff {
       pinChangeRequired: pinChangeRequired,
       pinUpdateRequired: pinUpdateRequired,
       suspended: suspended,
-      chatRoomToken: chatRoomToken,
+      streamToken: streamToken,
       roles: roles,
     );
   }
@@ -151,7 +151,7 @@ mixin _$User {
   bool? get pinUpdateRequired => throw _privateConstructorUsedError;
   @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended => throw _privateConstructorUsedError;
-  String? get chatRoomToken => throw _privateConstructorUsedError;
+  String? get streamToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'roles')
   List<Role>? get roles => throw _privateConstructorUsedError;
 
@@ -205,7 +205,7 @@ abstract class $UserCopyWith<$Res> {
           bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
-      String? chatRoomToken,
+      String? streamToken,
       @JsonKey(name: 'roles')
           List<Role>? roles});
 
@@ -242,7 +242,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? pinChangeRequired = freezed,
     Object? pinUpdateRequired = freezed,
     Object? suspended = freezed,
-    Object? chatRoomToken = freezed,
+    Object? streamToken = freezed,
     Object? roles = freezed,
   }) {
     return _then(_value.copyWith(
@@ -326,9 +326,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.suspended
           : suspended // ignore: cast_nullable_to_non_nullable
               as bool?,
-      chatRoomToken: chatRoomToken == freezed
-          ? _value.chatRoomToken
-          : chatRoomToken // ignore: cast_nullable_to_non_nullable
+      streamToken: streamToken == freezed
+          ? _value.streamToken
+          : streamToken // ignore: cast_nullable_to_non_nullable
               as String?,
       roles: roles == freezed
           ? _value.roles
@@ -395,7 +395,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
           bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
-      String? chatRoomToken,
+      String? streamToken,
       @JsonKey(name: 'roles')
           List<Role>? roles});
 
@@ -434,7 +434,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? pinChangeRequired = freezed,
     Object? pinUpdateRequired = freezed,
     Object? suspended = freezed,
-    Object? chatRoomToken = freezed,
+    Object? streamToken = freezed,
     Object? roles = freezed,
   }) {
     return _then(_User(
@@ -518,9 +518,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.suspended
           : suspended // ignore: cast_nullable_to_non_nullable
               as bool?,
-      chatRoomToken: chatRoomToken == freezed
-          ? _value.chatRoomToken
-          : chatRoomToken // ignore: cast_nullable_to_non_nullable
+      streamToken: streamToken == freezed
+          ? _value.streamToken
+          : streamToken // ignore: cast_nullable_to_non_nullable
               as String?,
       roles: roles == freezed
           ? _value.roles
@@ -574,7 +574,7 @@ class _$_User implements _User {
           this.pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           this.suspended,
-      this.chatRoomToken,
+      this.streamToken,
       @JsonKey(name: 'roles')
           this.roles});
 
@@ -649,14 +649,14 @@ class _$_User implements _User {
   @JsonKey(name: 'suspended', defaultValue: false)
   final bool? suspended;
   @override
-  final String? chatRoomToken;
+  final String? streamToken;
   @override
   @JsonKey(name: 'roles')
   final List<Role>? roles;
 
   @override
   String toString() {
-    return 'User(userId: $userId, username: $username, avatar: $avatar, name: $name, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, gender: $gender, active: $active, primaryContact: $primaryContact, secondaryContacts: $secondaryContacts, languages: $languages, termsAccepted: $termsAccepted, hasSetPin: $hasSetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickname: $hasSetNickname, isPhoneVerified: $isPhoneVerified, pinChangeRequired: $pinChangeRequired, pinUpdateRequired: $pinUpdateRequired, suspended: $suspended, chatRoomToken: $chatRoomToken, roles: $roles)';
+    return 'User(userId: $userId, username: $username, avatar: $avatar, name: $name, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, gender: $gender, active: $active, primaryContact: $primaryContact, secondaryContacts: $secondaryContacts, languages: $languages, termsAccepted: $termsAccepted, hasSetPin: $hasSetPin, hasSetSecurityQuestions: $hasSetSecurityQuestions, hasSetNickname: $hasSetNickname, isPhoneVerified: $isPhoneVerified, pinChangeRequired: $pinChangeRequired, pinUpdateRequired: $pinUpdateRequired, suspended: $suspended, streamToken: $streamToken, roles: $roles)';
   }
 
   @override
@@ -694,7 +694,7 @@ class _$_User implements _User {
                 .equals(other.pinUpdateRequired, pinUpdateRequired) &&
             const DeepCollectionEquality().equals(other.suspended, suspended) &&
             const DeepCollectionEquality()
-                .equals(other.chatRoomToken, chatRoomToken) &&
+                .equals(other.streamToken, streamToken) &&
             const DeepCollectionEquality().equals(other.roles, roles));
   }
 
@@ -721,7 +721,7 @@ class _$_User implements _User {
         const DeepCollectionEquality().hash(pinChangeRequired),
         const DeepCollectionEquality().hash(pinUpdateRequired),
         const DeepCollectionEquality().hash(suspended),
-        const DeepCollectionEquality().hash(chatRoomToken),
+        const DeepCollectionEquality().hash(streamToken),
         const DeepCollectionEquality().hash(roles)
       ]);
 
@@ -778,7 +778,7 @@ abstract class _User implements User {
           bool? pinUpdateRequired,
       @JsonKey(name: 'suspended', defaultValue: false)
           bool? suspended,
-      String? chatRoomToken,
+      String? streamToken,
       @JsonKey(name: 'roles')
           List<Role>? roles}) = _$_User;
 
@@ -853,7 +853,7 @@ abstract class _User implements User {
   @JsonKey(name: 'suspended', defaultValue: false)
   bool? get suspended;
   @override
-  String? get chatRoomToken;
+  String? get streamToken;
   @override
   @JsonKey(name: 'roles')
   List<Role>? get roles;

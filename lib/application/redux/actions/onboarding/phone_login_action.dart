@@ -23,6 +23,7 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// [PhoneLoginAction] is a Redux Action whose job is to verify a user signed
 /// in using valid credentials that match those stored in the backend
@@ -91,6 +92,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);
 
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString(
+          'clientId',
+          loginResponse.userResponse?.clientState?.id ?? '',
+        );
+
         final DateTime now = DateTime.now();
 
         AuthCredentials? authCredentials =
@@ -122,10 +129,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        // Update the user with the chatroom token
-        User? user = loginResponse.userResponse?.clientState?.user?.copyWith(
-          chatRoomToken: loginResponse.userResponse?.streamToken,
-        );
+        User? user = loginResponse.userResponse?.clientState?.user;
 
         // Clean up the user's names
         final String fullName =

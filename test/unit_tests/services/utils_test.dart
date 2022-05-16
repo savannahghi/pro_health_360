@@ -1,10 +1,15 @@
-// Package imports:
 import 'package:app_wrapper/app_wrapper.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_local_notifications_platform_interface/flutter_local_notifications_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-// Project imports:
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
+import 'package:myafyahub/application/core/services/notifications_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
@@ -17,8 +22,17 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
+import '../../mocks.dart';
+import 'utils_test.mocks.dart';
+
+@GenerateMocks(<Type>[stream.StreamChatClient])
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('Utils', () {
     test('should sentence case username', () {
       expect(
@@ -27,11 +41,6 @@ void main() {
       );
       expect(sentenceCaseUserName(firstName: 'u', lastName: 'm'), 'u m');
       expect(sentenceCaseUserName(firstName: '', lastName: ''), ' ');
-    });
-
-    test('should return false on onWillPopCallback call', () async {
-      final bool res = await onWillPopCallback();
-      expect(res, false);
     });
 
     test('should return an unprotected route', () async {
@@ -196,4 +205,125 @@ void main() {
       newChatMessageTitle('John', 'test group'),
     );
   });
+
+  group('handleNotifications', () {
+    test('works correctly', () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+
+      const MethodChannel('dexterous.com/flutter/local_notifications')
+          .setMockMethodCallHandler((MethodCall call) {
+        if (call.method == 'initialize') {
+          return Future<bool>.value(true);
+        }
+      });
+
+      final MockFlutterLocalNotificationsPlugin mock =
+          MockFlutterLocalNotificationsPlugin();
+
+      FlutterLocalNotificationsPlatform.instance = mock;
+
+      final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(mockStreamChatClient.getMessage(any)).thenAnswer(
+        (_) => Future<stream.GetMessageResponse>.value(
+          stream.GetMessageResponse.fromJson(<String, dynamic>{
+            'channel': <String, dynamic>{
+              'id': 'channel_id',
+              'type': 'messaging',
+              'extraData': <String, dynamic>{'Name': 'test group'},
+            },
+            'message': <String, dynamic>{
+              'id': 'test',
+              'text': 'test',
+              'user': <String, dynamic>{'id': 'test', 'name': 'test user'}
+            }
+          }),
+        ),
+      );
+
+      await handleNotification(
+        RemoteMessage.fromMap(<String, dynamic>{
+          'data': <String, dynamic>{'id': 'test', 'type': 'message.new'}
+        }),
+        mockStreamChatClient,
+      );
+
+      verify(mockStreamChatClient.getMessage('test')).called(1);
+
+      debugDefaultTargetPlatformOverride = null;
+    });
+  });
+
+  group('backgroundMessageHandler', () {
+    setupFirebaseMessagingMocks();
+
+    test('works correctly', () async {
+      final Map<String, Object> values = <String, Object>{
+        'streamToken': 'test-stream-token',
+        'clientId': 'test-client-id',
+      };
+      SharedPreferences.setMockInitialValues(values);
+
+      final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
+      when(
+        mockStreamChatClient.connectUser(
+          stream.User(id: 'test-client-id'),
+          'test-stream-token',
+          connectWebSocket: false,
+        ),
+      ).thenAnswer((_) {
+        return Future<stream.OwnUser>.value(
+          stream.OwnUser.fromJson(const <String, dynamic>{
+            'id': 'test',
+            'name': 'test user',
+            'avatar': 'test',
+            'extraData': <String, dynamic>{}
+          }),
+        );
+      });
+
+      when(mockStreamChatClient.getMessage(any)).thenAnswer(
+        (_) => Future<stream.GetMessageResponse>.value(
+          stream.GetMessageResponse.fromJson(<String, dynamic>{
+            'channel': <String, dynamic>{
+              'id': 'channel_id',
+              'type': 'messaging',
+              'extraData': <String, dynamic>{'Name': 'test group'},
+            },
+            'message': <String, dynamic>{
+              'id': 'test',
+              'text': 'test',
+              'user': <String, dynamic>{'id': 'test', 'name': 'test user'}
+            }
+          }),
+        ),
+      );
+
+      await backgroundMessageHandler(
+        RemoteMessage.fromMap(<String, dynamic>{
+          'data': <String, dynamic>{'id': 'test', 'type': 'message.new'}
+        }),
+        testChatClient: mockStreamChatClient,
+      );
+
+      verify(
+        mockStreamChatClient.connectUser(
+          stream.User(id: 'test-client-id'),
+          'test-stream-token',
+          connectWebSocket: false,
+        ),
+      ).called(1);
+    });
+  });
+}
+
+class MockFlutterLocalNotificationsPlugin extends Mock
+    with MockPlatformInterfaceMixin
+    implements FlutterLocalNotificationsPlatform {
+  @override
+  Future<void> show(
+    int id,
+    String? title,
+    String? body, {
+    String? payload,
+  }) async {}
 }

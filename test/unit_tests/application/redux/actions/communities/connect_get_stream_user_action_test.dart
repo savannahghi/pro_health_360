@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/communities/stream_token_provider.dart';
 import 'package:myafyahub/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -52,7 +53,10 @@ void main() {
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
           client: client,
-          endpoint: kTestRefreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: client,
+            endpoint: kTestRefreshStreamTokenEndpoint,
+          ),
         ),
       );
 
@@ -87,7 +91,10 @@ void main() {
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
           client: client,
-          endpoint: kTestRefreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: client,
+            endpoint: kTestRefreshStreamTokenEndpoint,
+          ),
         ),
       );
 
@@ -103,7 +110,10 @@ void main() {
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
           client: client,
-          endpoint: kTestRefreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: client,
+            endpoint: kTestRefreshStreamTokenEndpoint,
+          ),
         ),
       );
 
@@ -133,7 +143,10 @@ void main() {
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
           client: client,
-          endpoint: kTestRefreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: client,
+            endpoint: kTestRefreshStreamTokenEndpoint,
+          ),
         ),
       );
 
@@ -174,7 +187,10 @@ void main() {
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
           client: client,
-          endpoint: kTestRefreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: client,
+            endpoint: kTestRefreshStreamTokenEndpoint,
+          ),
         ),
       );
 
@@ -214,7 +230,10 @@ void main() {
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
           client: client,
-          endpoint: kTestRefreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: client,
+            endpoint: kTestRefreshStreamTokenEndpoint,
+          ),
         ),
       );
 
@@ -251,7 +270,10 @@ void main() {
         ConnectGetStreamUserAction(
           streamClient: mockStreamChatClient,
           client: client,
-          endpoint: kTestRefreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: client,
+            endpoint: kTestRefreshStreamTokenEndpoint,
+          ),
         ),
       );
 

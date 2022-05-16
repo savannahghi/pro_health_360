@@ -3,8 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart'
-    as local_notifications;
+import 'package:myafyahub/application/communities/stream_token_provider.dart';
 import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -13,17 +12,19 @@ import 'package:myafyahub/application/redux/actions/communities/connect_get_stre
 import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
 import 'package:myafyahub/application/redux/actions/set_push_token_action.dart';
 import 'package:myafyahub/application/redux/actions/update_misc_state_action.dart';
+import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
@@ -44,7 +45,7 @@ class PreLoadApp extends StatefulWidget {
   final Store<AppState> appStore;
   final BuildContext entryPointContext;
   final List<AppContext> thisAppContexts;
-  final StreamChatClient client;
+  final stream.StreamChatClient client;
   final String? fcmToken;
 
   @override
@@ -68,14 +69,28 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
         ),
       );
 
+      final User? user =
+          StoreProvider.state<AppState>(context)?.clientState?.user;
       StoreProvider.dispatch(
         context,
         ConnectGetStreamUserAction(
           client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
           streamClient: widget.client,
-          endpoint: AppWrapperBase.of(context)!
-              .customContext!
-              .refreshStreamTokenEndpoint,
+          streamTokenProvider: StreamTokenProvider(
+            client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+            endpoint: AppWrapperBase.of(context)!
+                .customContext!
+                .refreshStreamTokenEndpoint,
+            saveToken: (String newToken) async {
+              final SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              prefs.setString('streamToken', newToken);
+              StoreProvider.dispatch(
+                context,
+                UpdateUserAction(user: user?.copyWith(streamToken: newToken)),
+              );
+            },
+          ),
         ),
       );
 
@@ -194,47 +209,12 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
           supportedLocales: locales,
           builder: (BuildContext context, Widget? childWidget) {
             return UserExceptionDialog<AppState>(
-              child: StreamChat(client: widget.client, child: childWidget),
+              child:
+                  stream.StreamChat(client: widget.client, child: childWidget),
             );
           },
         );
       },
     );
-  }
-
-  Future<void> handleNotification(
-    RemoteMessage message,
-    StreamChatClient chatClient,
-  ) async {
-    final Map<String, dynamic> data = message.data;
-
-    if (data['type'] == 'message.new') {
-      final local_notifications.FlutterLocalNotificationsPlugin
-          flutterLocalNotificationsPlugin =
-          local_notifications.FlutterLocalNotificationsPlugin();
-      final String messageId = data['id'] as String;
-      final GetMessageResponse response =
-          await chatClient.getMessage(messageId);
-
-      final String? channelName =
-          response.channel?.extraData['Name'] as String?;
-
-      const local_notifications.NotificationDetails notificationDetails =
-          local_notifications.NotificationDetails(
-        android: local_notifications.AndroidNotificationDetails(
-          'new_message',
-          'New message notifications channel',
-        ),
-      );
-      flutterLocalNotificationsPlugin.show(
-        1,
-        newChatMessageTitle(
-          response.message.user?.name,
-          channelName,
-        ),
-        response.message.text,
-        notificationDetails,
-      );
-    }
   }
 }

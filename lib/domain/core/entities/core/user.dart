@@ -41,7 +41,7 @@ class User with _$User {
     @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
         bool? pinUpdateRequired,
     @JsonKey(name: 'suspended', defaultValue: false) bool? suspended,
-    String? chatRoomToken,
+    String? streamToken,
     @JsonKey(name: 'roles') List<Role>? roles,
   }) = _User;
 
@@ -62,7 +62,7 @@ class User with _$User {
         languages: <String>[],
         termsAccepted: false,
         pinChangeRequired: false,
-        chatRoomToken: UNKNOWN,
+        streamToken: UNKNOWN,
         pinUpdateRequired: false,
         hasSetNickname: false,
         hasSetPin: false,

@@ -6,6 +6,7 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:myafyahub/application/communities/stream_token_provider.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
@@ -13,12 +14,12 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 class ConnectGetStreamUserAction extends ReduxAction<AppState> {
   final stream.StreamChatClient streamClient;
   final IGraphQlClient client;
-  final String endpoint;
+  final StreamTokenProvider streamTokenProvider;
 
   ConnectGetStreamUserAction({
     required this.streamClient,
     required this.client,
-    required this.endpoint,
+    required this.streamTokenProvider,
   });
 
   @override
@@ -49,12 +50,11 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
         return null;
       }
 
-      final StreamTokenProvider streamTokenProvider =
-          StreamTokenProvider(client: client, endpoint: endpoint);
+      final User? user = state.clientState?.user;
 
-      final String? name = state.clientState?.user?.name;
-      final String? username = state.clientState?.user?.username;
-      final String? userId = state.clientState?.user?.userId;
+      final String? name = user?.name;
+      final String? username = user?.username;
+      final String? userId = user?.userId;
 
       await streamClient.connectUserWithProvider(
         stream.User(

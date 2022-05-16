@@ -93,6 +93,7 @@ jobs:
             lcov --remove coverage/lcov.info 'lib/**/*.freezed.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/**/*.gr.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/infrastructure/repository/sqlite.dart' -o coverage/lcov.info
+            lcov --remove coverage/lcov.info 'lib/application/core/services/notifications_utils.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/presentation/core/widgets/preload_app.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/presentation/communities/*.dart' -o coverage/lcov.info
             lcov --remove coverage/lcov.info 'lib/presentation/core/widgets/app_entry_point.dart' -o coverage/lcov.info
