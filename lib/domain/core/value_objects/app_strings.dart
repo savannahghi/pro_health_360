@@ -945,7 +945,12 @@ String newChatMessageTitle(String? username, String? channelName) {
 
   return baseMessage;
 }
+
 const String noFAQsTitle = 'No FAQs available';
 const String noFAQsDescription =
     'No worries though, check back in later and we will have them ready for you';
 const String fetchingFAQsString = 'fetching FAQs';
+
+const String kindlyCheckItOutString = 'Kindly check it out';
+const String shareContentSubjectString =
+    'Hello, here is an exciting content from myCareHub';

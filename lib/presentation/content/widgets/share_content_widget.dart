@@ -31,7 +31,7 @@ class ShareContentWidget extends StatelessWidget {
       onTap: () async {
         if (link != null && link != UNKNOWN && link!.isNotEmpty) {
           Share.share(
-            link!,
+            '$shareContentSubjectString${title.isNotEmpty && title != UNKNOWN ? ': ' : title}. $kindlyCheckItOutString.\n$link',
             subject: title,
           );
           await StoreProvider.dispatch(
