@@ -62,6 +62,7 @@ class AppColors {
   static const Color galleryColor = Color(0xFFEBEBEB);
   static const Color resumeWithPinTitleColor = Color(0xFF2F3946);
   static const Color lightGrey = Color(0xFF696979);
+  static const Color orangeColor = Color(0xFFF0997A);
 
   static ThemeColors themeColors = ThemeColors(
     primaryColor,
@@ -98,7 +99,7 @@ class AppColors {
   static const Color inputGreyColor = Color(0xfff4f4f4);
   static const Color verySadColor = Color(0xffFF642A);
   static const Color extraLightGray = Color(0xffF2F2F2);
-  static const Color coralColor = Color(0xffff8c54); 
+  static const Color coralColor = Color(0xffff8c54);
 }
 
 class ThemeColors {

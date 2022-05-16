@@ -58,6 +58,8 @@ class SurveyCarousel extends StatelessWidget {
                     HomePageCarouselItem(
                       title: 'PHQ-9',
                       description: 'A survey to assess your mental health',
+                      containerColor: AppColors.orangeColor.withOpacity(0.14),
+                      buttonTextColor: AppColors.orangeColor,
                       onTap: () {
                         final String encodedUrl = Uri.encodeFull(phq9SurveyUrl);
                         Navigator.of(context).pushNamed(
@@ -68,6 +70,7 @@ class SurveyCarousel extends StatelessWidget {
                           },
                         );
                       },
+                      buttonColor: AppColors.orangeColor.withOpacity(0.3),
                       beginButtonKey: phq9surveyKey,
                       buttonTitle: respondString,
                     )

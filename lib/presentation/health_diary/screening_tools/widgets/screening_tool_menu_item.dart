@@ -12,30 +12,39 @@ class HomePageCarouselItem extends StatelessWidget {
     required this.description,
     required this.onTap,
     required this.buttonTitle,
+    required this.containerColor,
+    required this.buttonTextColor,
+    required this.buttonColor,
     this.beginButtonKey,
   });
 
   final Key? beginButtonKey;
+  final String buttonTitle;
+  final Color containerColor;
   final String description;
   final Function onTap;
+  final Color buttonTextColor;
+  final Color buttonColor;
   final String title;
-  final String buttonTitle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.7,
       decoration: BoxDecoration(
-        color: AppColors.purpleChillColor.withOpacity(0.14),
+        color: containerColor,
         borderRadius: const BorderRadius.all(Radius.circular(8)),
-        border: Border.all(color: AppColors.purpleChillColor.withOpacity(0.3)),
+        border: Border.all(color: buttonTextColor.withOpacity(0.3)),
       ),
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(right: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title, style: boldSize16Text()),
+          Text(
+            title,
+            style: heavySize16Text(buttonTextColor),
+          ),
           smallVerticalSizedBox,
           Text(
             description,
@@ -48,9 +57,14 @@ class HomePageCarouselItem extends StatelessWidget {
               width: double.infinity,
               height: 48,
               child: MyAfyaHubPrimaryButton(
-                text: buttonTitle,
+                borderColor: Colors.transparent,
+                buttonColor: buttonColor,
                 buttonKey: beginButtonKey,
                 onPressed: () => onTap.call(),
+                customChild: Text(
+                  buttonTitle,
+                  style: veryBoldSize15Text(buttonTextColor),
+                ),
               ),
             ),
           ),

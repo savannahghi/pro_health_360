@@ -128,6 +128,11 @@ class ScreeningToolsCarousel extends StatelessWidget {
 
                               return HomePageCarouselItem(
                                 title: screeningTool.title!,
+                                containerColor:
+                                    AppColors.primaryColor.withOpacity(0.14),
+                                buttonTextColor: AppColors.primaryColor,
+                                buttonColor:
+                                    AppColors.primaryColor.withOpacity(0.3),
                                 description: screeningTool.description!,
                                 onTap: () {
                                   Navigator.of(context).pushNamed(
