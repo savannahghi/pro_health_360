@@ -116,16 +116,25 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
   await Firebase.initializeApp();
   final String? fcmToken = await FirebaseMessaging.instance.getToken();
 
+  // Initialize the flutter local notifications plugin
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
+  // Configure the android notification settings
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('app_icon');
+
+  // Configure the iOS notification settings
+  const IOSInitializationSettings initializationSettingsIOS =
+      IOSInitializationSettings();
+
+// Initialize the flutter local notifications plugin with both the android and
+// iOS settings
   const InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
+    iOS: initializationSettingsIOS,
   );
-  await flutterLocalNotificationsPlugin.initialize(
-    initializationSettings,
-  );
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   runZonedGuarded(
     () async {
