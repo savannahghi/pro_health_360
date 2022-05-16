@@ -25,7 +25,6 @@ import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
-import 'package:video_player/video_player.dart';
 
 import 'test_utils.dart';
 
@@ -1493,6 +1492,8 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
   }
 };
 
+final core.Content mockVideoContent = core.Content.fromJson(videoContentMock.first);
+
 final Map<String, dynamic> documentContentMock = <String, dynamic>{
   'ID': 16,
   'title': 'Test Document',
@@ -1561,6 +1562,7 @@ final Map<String, dynamic> mockGalleryImage = <String, dynamic>{
     'meta': <String, String>{'imageDownloadUrl': 'testImage'}
   }
 };
+final core.Content mockContent = core.Content.fromJson(contentMock.first);
 
 final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
   <String, dynamic>{
@@ -1707,6 +1709,56 @@ final List<Map<String, dynamic>> contentMock = <Map<String, dynamic>>[
       }
     ],
   },
+  <String, dynamic>{
+    'ID': 1,
+    'title': 'Tips on how to keep yourself healthy',
+    'date': '2021-08-23T06:42:05.085216Z',
+    'intro': 'Keep yourself healthy',
+    'authorName': 'Abiud Orina',
+    'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+    'author': <String, dynamic>{'ID': 'some-id'},
+    'itemType': 'ARTICLE',
+    'timeEstimateSeconds': 180,
+    'body':
+        'The coronavirus pandemic has affected our lives, our economy, and nearly every corner of the globe. Almost 4 billion vaccine doses have been administered worldwide; 53 for every 100 people. But the worldwide numbers of infections continue to rise, driven by the Delta variant with highly vaccinated regions like Western Europe and the United States, where cases are relatively low but climbing fast. As cases continue to surge, you can take some steps to keep yourself and your family safe. Here are some tips from our trusted science team.',
+    'heroImageRendition': <String, dynamic>{
+      'url': 'https://i.postimg.cc/zvW46yxk/wellness.jpg',
+    },
+    'likeCount': 180,
+    'bookmarkCount': 180,
+    'viewCount': 180,
+    'shareCount': 180,
+    'hasSaved': false,
+    'hasLiked': false,
+    'documents': <dynamic>[],
+    'isNew': true,
+    'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    'meta': <String, dynamic>{
+      'contentHTMLURL': 'https://mycarehub.co.ke/',
+      'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+    },
+    'tagNames': <String>['Recommended', 'Health', 'Fitness'],
+    'featuredMedia': <Map<String, dynamic>>[
+      <String, dynamic>{
+        'ID': 7,
+        'url':
+            'https://storage.googleapis.com/mycarehub-test/media/media/Background_Music_Soft_Piano_Music.aac',
+        'title': 'Background',
+        'type': 'audio',
+        'width': 0,
+        'duration': 6,
+        'height': 0,
+        'thumbnail': ''
+      }
+    ],
+     'galleryImages': <Map<String, dynamic>>[
+      mockGalleryImage,
+      mockGalleryImage,
+      mockGalleryImage,
+      mockGalleryImage,
+      mockGalleryImage,
+    ],
+  },
 ];
 
 final List<Map<String, dynamic>> videoContentMock = <Map<String, dynamic>>[
@@ -1823,10 +1875,6 @@ final Map<String, dynamic> mockCommunitiesState = <String, dynamic>{
     },
   ]
 };
-
-final core.Content mockContent = core.Content.fromJson(contentMock.first);
-final core.Content mockVideoContent =
-    core.Content.fromJson(videoContentMock.first);
 
 final Group mockGroup = Group(
   name: testString,
@@ -1956,92 +2004,6 @@ final Map<String, dynamic> mockQuote = <String, dynamic>{
     'author': 'myAfyaHub'
   },
 };
-
-// chewi mocks
-class MockVideoPlayerController extends ValueNotifier<VideoPlayerValue>
-    implements VideoPlayerController {
-  MockVideoPlayerController()
-      : super(VideoPlayerValue(duration: Duration.zero));
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
-  }
-
-  @override
-  int textureId = VideoPlayerController.kUninitializedTextureId;
-
-  @override
-  String get dataSource => '';
-
-  @override
-  Map<String, String> get httpHeaders => <String, String>{};
-
-  @override
-  DataSourceType get dataSourceType => DataSourceType.file;
-
-  @override
-  String get package => '';
-
-  @override
-  Future<Duration> get position async => value.position;
-
-  @override
-  Future<void> seekTo(Duration moment) async {}
-
-  @override
-  Future<void> setVolume(double volume) async {}
-
-  @override
-  Future<void> setPlaybackSpeed(double speed) async {}
-
-  @override
-  Future<void> initialize() async {}
-
-  @override
-  Future<void> pause() async {}
-
-  @override
-  Future<void> play() async {}
-
-  @override
-  Future<void> setLooping(bool looping) async {}
-
-  @override
-  VideoFormat? get formatHint => null;
-
-  @override
-  Future<ClosedCaptionFile> get closedCaptionFile => _loadClosedCaption();
-
-  @override
-  VideoPlayerOptions? get videoPlayerOptions => null;
-
-  @override
-  void setCaptionOffset(Duration offset) {}
-}
-
-Future<ClosedCaptionFile> _loadClosedCaption() async =>
-    _FakeClosedCaptionFile();
-
-class _FakeClosedCaptionFile extends ClosedCaptionFile {
-  @override
-  List<Caption> get captions {
-    return <Caption>[
-      const Caption(
-        text: 'one',
-        number: 0,
-        start: Duration(milliseconds: 100),
-        end: Duration(milliseconds: 200),
-      ),
-      const Caption(
-        text: 'two',
-        number: 1,
-        start: Duration(milliseconds: 300),
-        end: Duration(milliseconds: 400),
-      ),
-    ];
-  }
-}
 
 Map<String, dynamic> mockUpdateClientCareGiver = <String, dynamic>{
   'firstName': 'John',

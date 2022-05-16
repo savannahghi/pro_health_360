@@ -365,7 +365,10 @@ void main() {
   test('Test router returns ContentDetailPage', () {
     final RouteSettings settings = RouteSettings(
       name: AppRoutes.contentDetailPage,
-      arguments: ContentDetails(content: mockContent),
+      arguments: <String, dynamic>{
+        'payload': ContentDetails(content: mockContent),
+        'showReactions': true,
+      },
     );
     final MaterialPageRoute<ContentDetailPage> route =
         routeGenerator(settings) as MaterialPageRoute<ContentDetailPage>;

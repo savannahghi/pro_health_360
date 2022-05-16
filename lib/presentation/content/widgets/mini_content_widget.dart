@@ -15,10 +15,11 @@ class MiniContentWidget extends StatelessWidget {
       return GestureDetector(
         onTap: () => Navigator.of(context).pushNamed(
           AppRoutes.contentDetailPage,
-          arguments: ContentDetails(
-            content: contentDetails!,
-            showReactions: false,
-          ),
+          arguments: <String, dynamic>{
+            'payload': ContentDetails(
+              content: contentDetails!,
+            ),
+          },
         ),
         child: Container(
           constraints: const BoxConstraints(

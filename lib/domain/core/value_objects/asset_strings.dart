@@ -7,8 +7,6 @@ const String infoIconUrl = 'assets/icons/info.svg';
 // the infamous spaceman used in the main files
 const String errorDisplayImgUrl = 'assets/images/error-display.png';
 
-//pdf icon
-const String pdfIconSvg = 'assets/icons/pdf_icon.svg';
 
 //Verify OTP
 const String errorImageSvg = 'assets/images/error_image.svg';
@@ -49,12 +47,9 @@ const String contentItemImageUrl = 'assets/images/sample_health_image.jpg';
 const String saveIconUrl = 'assets/icons/save.svg';
 const String shareIconUrl = 'assets/icons/share.svg';
 const String heartIconUrl = 'assets/icons/heart.svg';
-const String clockIconUrl = 'assets/icons/clock.svg';
 const String doneIconUrl = 'assets/icons/done_icon.svg';
 
 const String contentZeroStateImageUrl = 'assets/images/no_content_image.svg';
-
-const String profileImage = 'assets/images/profile_image.png';
 
 const String paperClipIcon = 'assets/icons/paper_clip_icon.svg';
 
@@ -137,13 +132,9 @@ const String verySadIconSvgPath = 'assets/icons/very_sad.svg';
 const String moodSelectionBackgroundUrl =
     'assets/images/mood_selection_background.png';
 
-const String placeholderImageUrl = 'assets/images/placeholder_image.svg';
-
 const String attachmentIconSvg = 'assets/icons/attachment.svg';
-const String emptyStateCover = 'assets/images/empty_state.png';
 
 const String selectedLikeIconSvgPath = 'assets/icons/selected_like_icon.svg';
-const String whiteCloseIconSvgPath = 'assets/icons/white_close_icon.svg';
 const String selectedSaveIconSvgPath = 'assets/icons/selected_save_icon.svg';
 //Error icons
 const String errorOutlineIconSvg = 'assets/icons/error_outline.svg';
@@ -163,9 +154,6 @@ const String groupInvitesImage = 'assets/images/group_invites.svg';
 const String acceptInvitesImage = 'assets/images/accept_group_invite.svg';
 const String noInvitesImage = 'assets/images/no_invites.svg';
 const String groupInfoImage = 'assets/images/group_info.svg';
-const String contentIconSvgPath = 'assets/icons/content_icon.svg';
-const String contentImagePlaceHolderSvgPath =
-    'assets/images/content_image_placeholder.png';
 
 // resume with pin
 const String securitySvgAsset = 'assets/images/security.svg';

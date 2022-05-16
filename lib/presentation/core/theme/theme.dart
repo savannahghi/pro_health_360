@@ -91,7 +91,6 @@ class AppColors {
   static const Color mehMoodColor = Color(0xFF857C00);
   static const Color timelineDotColor = Color(0xFF06103B);
   static const Color selectedBottomNavColor = Color(0xFFF79E25);
-  static const Color readTimeBackgroundColor = Color(0xff4c4c4c);
   static const Color unSelectedReactionBackgroundColor = Color(0xffeaebf4);
   static const Color unSelectedReactionIconColor = Color(0xff697489);
   static const Color selectedReactionBackgroundColor = Color(0xfffeeced);

@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:chewie/chewie.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,7 +13,6 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/video_player_initializer.dart';
 import 'package:myafyahub/application/redux/actions/bookmark_content_action.dart';
 import 'package:myafyahub/application/redux/actions/bottom_nav_action.dart';
 import 'package:myafyahub/application/redux/actions/content/update_reactions_state_action.dart';
@@ -40,7 +38,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_themes/spaces.dart';
-import 'package:video_player/video_player.dart';
 
 import 'onboarding_utils.dart';
 
@@ -200,34 +197,6 @@ Future<dynamic> showFeedbackBottomSheet({
   );
 }
 
-// Parses date then converts it to the format 18 May 2021 at 12:00 AM
-Widget humanizeDate({
-  required TextStyle dateTextStyle,
-  required String loadedDate,
-  bool showTime = false,
-  bool showYear = true,
-}) {
-  if (loadedDate != UNKNOWN && loadedDate.isNotEmpty) {
-    final DateTime parsedDate =
-        DateTime.tryParse(loadedDate)?.toLocal() ?? DateTime.now();
-
-    final String postDayTime = DateFormat.jm().format(parsedDate);
-    final String postDay = DateFormat.d().format(parsedDate);
-    final String postMonth = DateFormat.MMM().format(parsedDate);
-    final String postYear = DateFormat.y().format(parsedDate);
-
-    return Row(
-      children: <Widget>[
-        Text(
-          '$postDay $postMonth ${showYear ? postYear : ''}${showTime ? ' at $postDayTime' : ''}',
-          style: dateTextStyle,
-        ),
-      ],
-    );
-  }
-
-  return const SizedBox();
-}
 
 Map<String, String> extractNextRefillDate(String loadedDate) {
   final DateTime parsedDate =
@@ -589,15 +558,6 @@ MoodItemData getMoodColor(String? mood) {
     default:
       return MoodItemData.initial();
   }
-}
-
-Future<ChewieController> initializeChewieController({
-  required String dataSource,
-}) {
-  return VideoPlayerInitializer().initializePlayer(
-    videoPlayerController: VideoPlayerController.network(dataSource),
-    autoPlay: false,
-  );
 }
 
 bool getHasLiked({

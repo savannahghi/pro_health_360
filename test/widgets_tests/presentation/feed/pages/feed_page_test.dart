@@ -20,7 +20,7 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
 import 'package:myafyahub/presentation/content/pages/feed_page.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
+import 'package:myafyahub/presentation/content/pages/gallery_images_page.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import '../../../../mocks.dart';
@@ -186,6 +186,83 @@ void main() {
         expect(find.byType(ContentItem), findsNWidgets(2));
       });
     });
+    testWidgets('navigates to the detail view of a feed item and document page',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[documentContentMock]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockSILGraphQlClient,
+          widget: const FeedPage(),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentItem), findsOneWidget);
+
+        await tester.tap(find.byKey(feedContentItemKey));
+      });
+    });
+    testWidgets('if gallery images are more than 3 should navigate to gallery ',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[contentMock.last]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockSILGraphQlClient,
+          widget: const FeedPage(),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentItem), findsOneWidget);
+
+        await tester.tap(find.byKey(feedContentItemKey));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentDetailPage), findsOneWidget);
+        
+        await tester.tap(find.byKey(const Key('gallery_image_page_key')));
+        await tester.pumpAndSettle();
+        expect(find.byType(GalleryImagesPage), findsOneWidget);
+      });
+    });
 
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
@@ -332,6 +409,5 @@ void main() {
         expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
-    
   });
 }

@@ -7,11 +7,9 @@ environment:
   sdk: ">=2.14.4 <3.0.0"
 
 dependencies:
-  afya_moja_core: ^0.0.96
+  afya_moja_core: ^0.0.97
   app_wrapper: ^0.1.35
   async_redux: ^13.3.1
-  cached_network_image: ^3.0.0
-  chewie: ^1.2.2
   collection: ^1.15.0
   connectivity_plus: ^2.0.3
   debug_logger: ^0.0.23
@@ -39,7 +37,6 @@ dependencies:
   intl: ^0.17.0
   json_annotation: ^4.4.0
   json_serializable: ^6.1.4
-  just_audio: ^0.9.18
   launch_review: ^3.0.1
   path: ^1.8.0
   path_provider: ^2.0.8
@@ -60,7 +57,6 @@ dependencies:
   unicons: ^2.0.1
   upgrader: ^3.4.1
   url_launcher: ^6.0.6
-  video_player: ^2.2.7
   webview_flutter: ^3.0.4
 
 dependency_overrides:

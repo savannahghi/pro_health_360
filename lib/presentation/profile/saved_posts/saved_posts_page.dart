@@ -13,7 +13,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
@@ -117,6 +116,31 @@ class _SavedPostPageState extends State<SavedPostPage> {
                                 contentDetails: currentSavedItem,
                                 contentDisplayedType:
                                     ContentDisplayedType.BOOKMARK,
+                                onTapPdfCallback: () =>
+                                    Navigator.of(context).pushNamed(
+                                  AppRoutes.viewDocumentPage,
+                                  arguments: <String, dynamic>{
+                                    'pdfTitle': currentSavedItem
+                                        .documents!.first.documentData!.title,
+                                    'pdfUrl': currentSavedItem
+                                        .documents!
+                                        .first
+                                        .documentData!
+                                        .documentMetaData!
+                                        .documentDownloadUrl,
+                                  },
+                                ),
+                                onTapCallback: () =>
+                                    Navigator.of(context).pushNamed(
+                                  AppRoutes.contentDetailPage,
+                                  arguments: <String, dynamic>{
+                                    'payload': ContentDetails(
+                                      content: currentSavedItem,
+                                      contentDisplayedType:
+                                          ContentDisplayedType.BOOKMARK,
+                                    ),
+                                  },
+                                ),
                               ),
                             ),
                           );

@@ -40,7 +40,7 @@ class GenericZeroStateWidget extends StatelessWidget {
           Text(
             title,
             style: boldSize16Text(
-              AppColors.readTimeBackgroundColor,
+              readTimeBackgroundColor,
             ),
             textAlign: TextAlign.center,
           ),

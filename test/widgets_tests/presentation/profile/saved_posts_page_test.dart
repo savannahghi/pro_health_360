@@ -18,7 +18,7 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
+import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/saved_posts/widgets/no_saved_content_widget.dart';
@@ -156,6 +156,60 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(ContentDetailPage), findsOneWidget);
+      final Finder likeButton = find.byType(LikeContentWidget);
+
+        expect(likeButton, findsOneWidget);
+
+        await tester.ensureVisible(likeButton);
+        await tester.pumpAndSettle();
+        await tester.tap(likeButton);
+        await tester.pumpAndSettle();
+
+        expect(find.text('Like'), findsNothing);
+      });
+    });
+    testWidgets('navigates to the document page',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+             'getUserBookmarkedContent': <String, dynamic>{
+                'items': <dynamic>[documentContentMock]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      mockNetworkImages(() async {
+        store.dispatch(
+          UpdateContentStateAction(
+            contentItems: <Content>[
+              Content.fromJson(
+                documentContentMock,
+              ),
+            ],
+          ),
+        );
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockSILGraphQlClient,
+          widget: const SavedPostPage(),
+        );
+
+        await tester.pumpAndSettle();
+
+        final Finder contentItem = find.byType(ContentItem);
+        expect(contentItem, findsOneWidget);
+
+        await tester.tap(contentItem);
       });
     });
 

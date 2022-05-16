@@ -244,9 +244,12 @@ class RouteGenerator {
         );
 
       case AppRoutes.contentDetailPage:
+        final ContentDetails payload = args['payload'] as ContentDetails;
+        final bool? showReactions = args['showReactions'] as bool?;
         return MaterialPageRoute<ContentDetailPage>(
           builder: (_) => ContentDetailPage(
-            payload: args as ContentDetails,
+            payload: payload,
+            showReactions: showReactions,
           ),
         );
 

@@ -4,9 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/content/widgets/audio_content.dart';
 import 'package:myafyahub/presentation/content/widgets/content_meta_data_widget.dart';
-import 'package:myafyahub/presentation/content/widgets/leading_graphic_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
@@ -41,10 +39,12 @@ class FeedPageContentItem extends StatelessWidget {
                 FeaturedMediaType.video) {
           Navigator.of(context).pushNamed(
             AppRoutes.contentDetailPage,
-            arguments: ContentDetails(
+            arguments: <String, dynamic>{
+              'payload': ContentDetails(
               content: content,
               contentDisplayedType: ContentDisplayedType.RECENT,
             ),
+            },
           );
         }
       },

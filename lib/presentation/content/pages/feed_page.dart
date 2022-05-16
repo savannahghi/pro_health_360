@@ -15,7 +15,6 @@ import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_categories_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
@@ -147,6 +146,31 @@ class _FeedPageState extends State<FeedPage> {
                                   contentDisplayedType:
                                       ContentDisplayedType.FEED,
                                   isNew: isNew,
+                                  onTapPdfCallback: () =>
+                                      Navigator.of(context).pushNamed(
+                                    AppRoutes.viewDocumentPage,
+                                    arguments: <String, dynamic>{
+                                      'pdfTitle': currentFeedItem
+                                          .documents!.first.documentData!.title,
+                                      'pdfUrl': currentFeedItem
+                                          .documents!
+                                          .first
+                                          .documentData!
+                                          .documentMetaData!
+                                          .documentDownloadUrl,
+                                    },
+                                  ),
+                                  onTapCallback: () =>
+                                      Navigator.of(context).pushNamed(
+                                    AppRoutes.contentDetailPage,
+                                    arguments: <String, dynamic>{
+                                      'payload': ContentDetails(
+                                        content: currentFeedItem,
+                                        contentDisplayedType:
+                                            ContentDisplayedType.FEED,
+                                      ),
+                                    },
+                                  ),
                                 ),
                               ),
                             );

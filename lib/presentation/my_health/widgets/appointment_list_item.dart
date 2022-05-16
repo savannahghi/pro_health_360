@@ -2,7 +2,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 // Package imports:
 import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';

@@ -14,7 +14,7 @@ packages:
       name: afya_moja_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.96"
+    version: "0.0.97"
   analyzer:
     dependency: transitive
     description:
@@ -135,7 +135,7 @@ packages:
     source: hosted
     version: "8.1.2"
   cached_network_image:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cached_network_image
       url: "https://pub.dartlang.org"
@@ -191,7 +191,7 @@ packages:
     source: hosted
     version: "2.0.1"
   chewie:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: chewie
       url: "https://pub.dartlang.org"
@@ -743,7 +743,7 @@ packages:
     source: hosted
     version: "6.1.5"
   just_audio:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: just_audio
       url: "https://pub.dartlang.org"
@@ -1518,7 +1518,7 @@ packages:
     source: hosted
     version: "3.1.0"
   video_player:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: video_player
       url: "https://pub.dartlang.org"

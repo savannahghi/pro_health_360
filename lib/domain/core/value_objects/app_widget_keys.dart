@@ -116,8 +116,6 @@ const Key forgotPINButtonKey = Key('forgot_PIN_button_key');
 
 const Key feedContentItemKey = Key('feed_content_item_key');
 const Key feedVideoPlayIconKey = Key('feed_video_play_icon_key');
-const Key contentHeroImagePlaceHolder = Key('content_hero_image_place_holder');
-
 const Key likeButtonKey = Key('like_button_key');
 const Key shareButtonKey = Key('share_button_key');
 const Key saveButtonKey = Key('save_button_key');
@@ -126,8 +124,6 @@ const Key healthDiaryRetryButtonKey = Key('retry_health_diary');
 
 const Key shareHealthDiaryKey = Key('share_health_diary');
 const Key dontShareHealthDiaryKey = Key('dont_share_health_diary');
-
-const Key galleryImagePageKey = Key('gallery_image_page_key');
 
 const Key editPersonalInfoKey = Key('edit_personal_info_key');
 

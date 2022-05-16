@@ -16,7 +16,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
-import 'package:myafyahub/presentation/content/widgets/content_item.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 
@@ -101,6 +100,42 @@ void main() {
       );
 
       expect(find.byType(PlatformLoader), findsOneWidget);
+    });
+
+    testWidgets('navigates to the detail view of a feed item and document page',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'listContentCategories': categoriesMock,
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[documentContentMock]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockSILGraphQlClient,
+          widget: ProfileFaqsPage(),
+        );
+
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ContentItem), findsOneWidget);
+
+        await tester.tap(find.byKey(feedContentItemKey));
+      });
     });
 
     testWidgets('should display zero state widget',

@@ -453,8 +453,6 @@ const String feedDate = '2021-08-23T06:42:05.085216Z';
 const String feedReadTime = '5 minutes';
 
 const String newText = 'New';
-const String pdfText = 'PDF';
-
 //My Health Page
 const String myHealthPageTitle = 'My Health';
 const String myHealthPageProfile = 'My Profile';
@@ -567,9 +565,6 @@ const String followUpOnFeedbackString =
     'Would you like us to reach out to you for more details about your feedback?';
 const String serviceName = 'Service name';
 const String serviceNamePrompt = 'Enter the name of the service...';
-
-//Article Details Page
-const String datePublishedString = 'Published on ';
 
 const String termsAndConditionsString = 'Terms and conditions';
 
