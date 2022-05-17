@@ -27,25 +27,27 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
     this.cccNumber,
     this.caregiverInformation,
     this.notifications,
+    this.hasCaregiverInfo,
   });
 
-  final String? id;
   final bool? active;
-  final String? lastMoodRecordedDate;
-  final bool? isSignedIn;
-  final String? treatmentEnrollmentDate;
-  final bool? counselled;
-  final List<ClientType>? clientTypes;
-  final String? facilityID;
-  final String? treatmentBuddy;
-  final String? facilityName;
-  final String? facilityPhoneNumber;
-  final String? chvUserID;
-  final String? chvUserName;
-  final String? cccNumber;
   final List<Address>? addresses;
   final CaregiverInformation? caregiverInformation;
+  final String? cccNumber;
+  final String? chvUserID;
+  final String? chvUserName;
+  final List<ClientType>? clientTypes;
+  final bool? counselled;
+  final String? facilityID;
+  final String? facilityName;
+  final String? facilityPhoneNumber;
+  final bool? hasCaregiverInfo;
+  final String? id;
+  final bool? isSignedIn;
+  final String? lastMoodRecordedDate;
   final List<NotificationDetails?>? notifications;
+  final String? treatmentBuddy;
+  final String? treatmentEnrollmentDate;
 
   @override
   AppState reduce() {
@@ -73,6 +75,8 @@ class UpdateClientProfileAction extends ReduxAction<AppState> {
         caregiverInformation: this.caregiverInformation ??
             state.clientState?.caregiverInformation,
         notifications: this.notifications ?? state.clientState?.notifications,
+        hasCareGiverInfo:
+            this.hasCaregiverInfo ?? state.clientState?.hasCareGiverInfo,
       ),
     );
 

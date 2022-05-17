@@ -70,6 +70,7 @@ class ClientState with _$ClientState {
 
     // caregiver information
     CaregiverInformation? caregiverInformation,
+    bool? hasCareGiverInfo,
     // staff notifications
     List<NotificationDetails?>? notifications,
   }) = _ClientState;
@@ -106,5 +107,6 @@ class ClientState with _$ClientState {
         nextRefillData: NextRefillData.initial(),
         caregiverInformation: CaregiverInformation.initial(),
         notifications: <NotificationDetails>[],
+        hasCareGiverInfo: false,
       );
 }

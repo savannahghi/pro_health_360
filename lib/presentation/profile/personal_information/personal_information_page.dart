@@ -75,98 +75,107 @@ class PersonalInformationPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     // parent/caregiver/guardian details
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              myProfileCaregiverText,
-                              style: boldSize16Text(
-                                AppColors.secondaryColor,
-                              ),
-                            ),
-                            verySmallVerticalSizedBox,
-                            Text(
-                              myProfileCaregiverDescriptionText,
-                              style: normalSize14Text(
-                                AppColors.greyTextColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                        EditInformationButtonWidget(
-                          editBtnKey: editPersonalInfoKey,
-                          editInformationItem: getEditCareGiverInfo(
-                            caregiverInformation: caregiverInformation,
-                          ),
-                          submitFunction:
-                              (EditInformationItem editInformationItem) {
-                            final Map<String, dynamic> variables =
-                                <String, dynamic>{};
-
-                            for (final EditInformationInputItem element
-                                in editInformationItem
-                                    .editInformationInputItem) {
-                              if (element.inputController.text.isNotEmpty) {
-                                variables[element.apiFieldValue] =
-                                    element.inputController.text;
-                              } else {
-                                variables[element.apiFieldValue] =
-                                    element.hintText;
-                              }
-                            }
-
-                            final CaregiverInformation info =
-                                CaregiverInformation.fromJson(variables);
-
-                            StoreProvider.dispatch(
-                              context,
-                              UpdateCaregiverInfoAction(
-                                caregiverInformation: info,
-                                client:
-                                    AppWrapperBase.of(context)!.graphQLClient,
-                                onSuccess: () {
-                                  Navigator.of(context).pop();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(caregiverInfoSavedSuccess),
+                    if (vm.clientState?.hasCareGiverInfo ?? false)
+                      Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    myProfileCaregiverText,
+                                    style: boldSize16Text(
+                                      AppColors.secondaryColor,
                                     ),
-                                  );
-                                  // in order to fetch the new values
+                                  ),
+                                  verySmallVerticalSizedBox,
+                                  Text(
+                                    myProfileCaregiverDescriptionText,
+                                    style: normalSize14Text(
+                                      AppColors.greyTextColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              EditInformationButtonWidget(
+                                editBtnKey: editPersonalInfoKey,
+                                editInformationItem: getEditCareGiverInfo(
+                                  caregiverInformation: caregiverInformation,
+                                ),
+                                submitFunction:
+                                    (EditInformationItem editInformationItem) {
+                                  final Map<String, dynamic> variables =
+                                      <String, dynamic>{};
+
+                                  for (final EditInformationInputItem element
+                                      in editInformationItem
+                                          .editInformationInputItem) {
+                                    if (element
+                                        .inputController.text.isNotEmpty) {
+                                      variables[element.apiFieldValue] =
+                                          element.inputController.text;
+                                    } else {
+                                      variables[element.apiFieldValue] =
+                                          element.hintText;
+                                    }
+                                  }
+
+                                  final CaregiverInformation info =
+                                      CaregiverInformation.fromJson(variables);
+
                                   StoreProvider.dispatch(
                                     context,
-                                    FetchCaregiverInformationAction(
+                                    UpdateCaregiverInfoAction(
+                                      caregiverInformation: info,
                                       client: AppWrapperBase.of(context)!
                                           .graphQLClient,
+                                      onSuccess: () {
+                                        Navigator.of(context).pop();
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content:
+                                                Text(caregiverInfoSavedSuccess),
+                                          ),
+                                        );
+                                        // in order to fetch the new values
+                                        StoreProvider.dispatch(
+                                          context,
+                                          FetchCaregiverInformationAction(
+                                            client: AppWrapperBase.of(context)!
+                                                .graphQLClient,
+                                          ),
+                                        );
+                                      },
                                     ),
                                   );
                                 },
                               ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-
-                    mediumVerticalSizedBox,
-                    PersonalInformationSecondaryWidget(
-                      fieldName: fullName,
-                      fieldValue: fullNames,
-                    ),
-                    verySmallVerticalSizedBox,
-                    PersonalInformationSecondaryWidget(
-                      fieldName: phoneNumber,
-                      fieldValue: phoneNumberVal,
-                    ),
-                    verySmallVerticalSizedBox,
-                    PersonalInformationSecondaryWidget(
-                      fieldName: relationText,
-                      fieldValue: relation,
-                    ),
-                    largeVerticalSizedBox,
+                            ],
+                          ),
+                          mediumVerticalSizedBox,
+                          PersonalInformationSecondaryWidget(
+                            fieldName: fullName,
+                            fieldValue: fullNames,
+                          ),
+                          verySmallVerticalSizedBox,
+                          PersonalInformationSecondaryWidget(
+                            fieldName: phoneNumber,
+                            fieldValue: phoneNumberVal,
+                          ),
+                          verySmallVerticalSizedBox,
+                          PersonalInformationSecondaryWidget(
+                            fieldName: relationText,
+                            fieldValue: relation,
+                          ),
+                          largeVerticalSizedBox,
+                        ],
+                      )
+                    else
+                      Container(),
 
                     //preferred language
                     Row(
