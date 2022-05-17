@@ -77,16 +77,26 @@ class NotificationsPage extends StatelessWidget {
                       ),
                     ],
                   )
-                : ListView.builder(
-                    itemCount: notifications.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final NotificationDetails? currentNotificationDetails =
-                          notifications.elementAt(index);
-
-                      return consumer.NotificationListItem(
-                        notificationDetails: currentNotificationDetails,
+                : RefreshIndicator(
+                    onRefresh: () async {
+                      StoreProvider.dispatch<AppState>(
+                        context,
+                        FetchNotificationsAction(
+                          client: AppWrapperBase.of(context)!.graphQLClient,
+                        ),
                       );
                     },
+                    child: ListView.builder(
+                      itemCount: notifications.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final NotificationDetails? currentNotificationDetails =
+                            notifications.elementAt(index);
+
+                        return consumer.NotificationListItem(
+                          notificationDetails: currentNotificationDetails,
+                        );
+                      },
+                    ),
                   ),
           );
         },

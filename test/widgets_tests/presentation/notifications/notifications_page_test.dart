@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -36,6 +37,31 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(consumer.NotificationListItem), findsNWidgets(2));
+    });
+  testWidgets('should refresh notifications correctly',
+        (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: const NotificationsPage(
+          bottomNavIndex: 0,
+        ),
+      );
+      final Finder notificationListItem = find.byType(consumer.NotificationListItem);
+      await tester.pumpAndSettle();
+
+      expect(notificationListItem, findsNWidgets(2));
+
+      await tester.fling(
+        notificationListItem.first,
+        const Offset(0.0, 300.0),
+        1000.0,
+      );
+      await tester.pumpAndSettle();
+      expect(notificationListItem, findsNWidgets(2));
     });
 
     testWidgets(

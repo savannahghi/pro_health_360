@@ -172,6 +172,31 @@ void main() {
         expect(find.byType(GenericZeroStateWidget), findsOneWidget);
       });
     });
+    testWidgets('should refresh FAQs correctly', (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
+      tester.binding.window.devicePixelRatioTestValue = 1;
+
+      mockNetworkImages(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: ProfileFaqsPage(),
+        );
+        final Finder contentItem = find.byType(ContentItem);
+        await tester.pumpAndSettle();
+
+        expect(contentItem, findsOneWidget);
+
+        await tester.fling(
+          contentItem,
+          const Offset(0.0, 300.0),
+          1000.0,
+        );
+        await tester.pumpAndSettle();
+        expect(contentItem, findsOneWidget);
+      });
+    });
 
     testWidgets('shows a GenericErrorWidget while fetching the feed',
         (WidgetTester tester) async {
@@ -238,7 +263,7 @@ void main() {
         expect(find.byType(GenericErrorWidget), findsOneWidget);
       });
     });
-    
+
     testWidgets(
         'shows a generic no data widget while fetching the FAQs '
         'and there is id', (WidgetTester tester) async {
