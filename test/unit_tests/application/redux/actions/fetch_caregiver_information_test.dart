@@ -67,7 +67,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchCaregiverInformationAction);
 
-      expect((info.error! as UserException).msg, null);
+      expect(info.state.clientState!.hasCareGiverInfo, false);
     });
 
     test('should throw error if response has error', () async {

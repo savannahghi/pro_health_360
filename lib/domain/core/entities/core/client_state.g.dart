@@ -68,6 +68,7 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
           ? null
           : CaregiverInformation.fromJson(
               json['caregiverInformation'] as Map<String, dynamic>),
+      hasCareGiverInfo: json['hasCareGiverInfo'] as bool?,
       notifications: (json['notifications'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -105,6 +106,7 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'viralLoadData': instance.viralLoadData,
       'nextRefillData': instance.nextRefillData,
       'caregiverInformation': instance.caregiverInformation,
+      'hasCareGiverInfo': instance.hasCareGiverInfo,
       'notifications': instance.notifications,
     };
 

@@ -62,11 +62,19 @@ class FetchCaregiverInformationAction extends ReduxAction<AppState> {
         );
 
         dispatch(
-          UpdateClientProfileAction(caregiverInformation: caregiverInformation),
+          UpdateClientProfileAction(
+            caregiverInformation: caregiverInformation,
+            hasCaregiverInfo: true,
+          ),
         );
       } else {
-        Sentry.captureException(UserException(processedResponse.message));
-        throw UserException(processedResponse.message);
+        // when client has no caregiver information
+        dispatch(
+          UpdateClientProfileAction(
+            hasCaregiverInfo: false,
+            caregiverInformation: CaregiverInformation.initial(),
+          ),
+        );
       }
     } else {
       throw UserException(processedResponse.message);
