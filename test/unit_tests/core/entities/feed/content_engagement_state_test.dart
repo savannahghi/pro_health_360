@@ -10,6 +10,6 @@ void main() {
   test('ContentEngagementState fromJson', () {
     final ContentEngagementState contentEngagementState =
         ContentEngagementState.fromJson(contentEngagementMock);
-    expect(contentEngagementState.contentId, 'some_id');
+    expect(contentEngagementState.contentId, 1);
   });
 }

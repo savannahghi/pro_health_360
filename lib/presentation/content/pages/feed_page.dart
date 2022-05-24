@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_content_categories_action.dart';
+import 'package:myafyahub/application/redux/actions/update_content_engagement_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
@@ -146,31 +147,51 @@ class _FeedPageState extends State<FeedPage> {
                                   contentDisplayedType:
                                       ContentDisplayedType.FEED,
                                   isNew: isNew,
-                                  onTapPdfCallback: () =>
-                                      Navigator.of(context).pushNamed(
-                                    AppRoutes.viewDocumentPage,
-                                    arguments: <String, dynamic>{
-                                      'pdfTitle': currentFeedItem
-                                          .documents!.first.documentData!.title,
-                                      'pdfUrl': currentFeedItem
-                                          .documents!
-                                          .first
-                                          .documentData!
-                                          .documentMetaData!
-                                          .documentDownloadUrl,
-                                    },
-                                  ),
-                                  onTapCallback: () =>
-                                      Navigator.of(context).pushNamed(
-                                    AppRoutes.contentDetailPage,
-                                    arguments: <String, dynamic>{
-                                      'payload': ContentDetails(
-                                        content: currentFeedItem,
-                                        contentDisplayedType:
-                                            ContentDisplayedType.FEED,
+                                  onTapPdfCallback: () {
+                                    // record the time the content was tapped for viewing
+                                    StoreProvider.dispatch(
+                                      context,
+                                      UpdateContentEngagementStateAction(
+                                        contentId: currentFeedItem.contentID,
+                                        contentOpenedAt:
+                                            DateTime.now().toString(),
                                       ),
-                                    },
-                                  ),
+                                    );
+                                    Navigator.of(context).pushNamed(
+                                      AppRoutes.viewDocumentPage,
+                                      arguments: <String, dynamic>{
+                                        'pdfTitle': currentFeedItem.documents!
+                                            .first.documentData!.title,
+                                        'pdfUrl': currentFeedItem
+                                            .documents!
+                                            .first
+                                            .documentData!
+                                            .documentMetaData!
+                                            .documentDownloadUrl,
+                                      },
+                                    );
+                                  },
+                                  
+                                  onTapCallback: () {
+                                    StoreProvider.dispatch(
+                                      context,
+                                      UpdateContentEngagementStateAction(
+                                        contentId: currentFeedItem.contentID,
+                                        contentOpenedAt:
+                                            DateTime.now().toString(),
+                                      ),
+                                    );
+                                    Navigator.of(context).pushNamed(
+                                      AppRoutes.contentDetailPage,
+                                      arguments: <String, dynamic>{
+                                        'payload': ContentDetails(
+                                          content: currentFeedItem,
+                                          contentDisplayedType:
+                                              ContentDisplayedType.FEED,
+                                        ),
+                                      },
+                                    );
+                                  },
                                 ),
                               ),
                             );

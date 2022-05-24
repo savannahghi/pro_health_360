@@ -8,7 +8,7 @@ class UpdateContentEngagementStateAction extends ReduxAction<AppState> {
     this.contentOpenedAt,
   });
 
-  final String? contentId;
+  final int? contentId;
   final String? contentOpenedAt;
 
   @override

@@ -212,3 +212,9 @@ mutation readNotifications($ids: [ID!]!){
   readNotifications(ids: $ids)
 }
 ''';
+
+const String contentViewDurationMutation = r'''
+mutation collectMetric($input:MetricInput!) {
+  collectMetric(input:$input)
+}
+''';
