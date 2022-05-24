@@ -60,7 +60,7 @@ const String emptyLibraryCopy =
     'Your library is empty. We will notify you once we have more items.';
 const String libraryNoDataCopy =
     'Something went wrong while loading your library, check later or get help from our help center.';
-const String libraryTitle = 'Library';
+const String feedTitle = 'Feed';
 
 //profile
 const String accountSection = 'Account';

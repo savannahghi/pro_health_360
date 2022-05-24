@@ -8,6 +8,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as local_notifications;
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -816,4 +818,31 @@ Future<FlutterLocalNotificationsPlugin> setupLocalNotifications() async {
   );
 
   return flutterLocalNotificationsPlugin;
+}
+
+Future<void> logUserEvent({
+  required String name,
+  Map<String, dynamic>? parameters,
+  required AppState? state,
+  required AnalyticsEventType eventType,
+}) async {
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+  final Map<String, dynamic> enrichedParams = <String, dynamic>{};
+
+  // Get the user ID and their names
+  final String? userID = state!.clientState!.user!.userId;
+  final String? userNames = state.clientState!.user!.name;
+
+  enrichedParams.addAll(<String, dynamic>{
+    'userID': userID,
+    'userNames': userNames,
+    'eventType': describeEnum(eventType),
+  });
+
+  if (parameters != null) {
+    enrichedParams.addAll(parameters);
+  }
+
+  await analytics.logEvent(name: name, parameters: enrichedParams);
 }

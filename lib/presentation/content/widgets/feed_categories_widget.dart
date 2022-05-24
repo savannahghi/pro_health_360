@@ -6,10 +6,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -40,7 +43,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
             .where(
               (ContentCategory? element) =>
                   element!.name!.toLowerCase() != 'welcome' &&
-                  element.name!.toLowerCase() != 'consumer-faqs'&&
+                  element.name!.toLowerCase() != 'consumer-faqs' &&
                   element.name!.toLowerCase() != 'pro-faqs',
             )
             .toList()
@@ -75,6 +78,16 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                 itemBuilder: (BuildContext context, int index) {
                   final ContentCategory contentCategory =
                       contentCategories[index]!;
+
+                  final String chipLabel =
+                      toBeginningOfSentenceCase(contentCategory.name) ??
+                          UNKNOWN;
+
+                  final Color chipColor =
+                      widget.selectedCategory!.name == contentCategory.name
+                          ? AppColors.whiteColor
+                          : AppColors.primaryColor;
+
                   return Padding(
                     padding: EdgeInsets.only(left: index == 0 ? 1 : 7.5),
                     child: ChoiceChip(
@@ -84,13 +97,9 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                         contentCategory,
                       ),
                       label: Text(
-                        toBeginningOfSentenceCase(contentCategory.name) ??
-                            UNKNOWN,
+                        chipLabel,
                         style: normalSize16Text().copyWith(
-                          color: widget.selectedCategory!.name ==
-                                  contentCategory.name
-                              ? AppColors.whiteColor
-                              : AppColors.primaryColor,
+                          color: chipColor,
                         ),
                       ),
                       labelStyle: const TextStyle(color: AppColors.whiteColor),
@@ -100,7 +109,18 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                       selected:
                           widget.selectedCategory!.name == contentCategory.name,
                       selectedColor: AppColors.primaryColor,
-                      onSelected: (bool selected) {
+                      onSelected: (bool selected) async {
+                        // Log event for analytics
+                        await logUserEvent(
+                          name: filterContentCategoriesEvent,
+                          state: StoreProvider.state<AppState>(context),
+                          eventType:
+                              AnalyticsEventType.CONTENT_INTERACTION_EVENT,
+                          parameters: <String, dynamic>{
+                            'category': chipLabel,
+                          },
+                        );
+
                         StoreProvider.dispatch<AppState>(
                           context,
                           FetchContentAction(

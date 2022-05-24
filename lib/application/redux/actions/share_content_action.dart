@@ -13,9 +13,12 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -64,6 +67,15 @@ class ShareContentAction extends ReduxAction<AppState> {
         message: somethingWentWrongText,
       );
     }
+
+    await logUserEvent(
+      name: shareContentEvent,
+      state: state,
+      eventType: AnalyticsEventType.CONTENT_INTERACTION_EVENT,
+      parameters: <String, dynamic>{
+        'contentID': contentID,
+      },
+    );
 
     return state;
   }

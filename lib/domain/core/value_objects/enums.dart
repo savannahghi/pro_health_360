@@ -147,3 +147,18 @@ extension MedicalDataTypeEX on MedicalDataType {
 // to render the success page
 // can either be created successfully or shared successfully
 enum DiaryEntrySuccessType { shared, created }
+
+/// The types of events that we will collect on myCareHub
+enum AnalyticsEventType {
+  // Navigation events
+  NAVIGATION_EVENT,
+
+  // General app interactions i.e record diary entry
+  INTERACTION_EVENT,
+
+  // Used for likes, shared and saves in content
+  CONTENT_INTERACTION_EVENT,
+
+  // Used for all authentication events e.g login, logout
+  AUTH_EVENT
+}

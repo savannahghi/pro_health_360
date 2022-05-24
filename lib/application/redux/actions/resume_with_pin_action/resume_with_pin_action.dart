@@ -5,10 +5,13 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ResumeWithPinAction extends ReduxAction<AppState> {
@@ -71,6 +74,12 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         final bool pinVerified = body['data']['verifyPIN'] as bool;
         if (pinVerified) {
           final OnboardingPathInfo path = onboardingPath(appState: state);
+
+          await logUserEvent(
+            name: resumeWithPINEvent,
+            state: state,
+            eventType: AnalyticsEventType.AUTH_EVENT,
+          );
 
           dispatch(
             NavigateAction<AppState>.pushReplacementNamed(path.nextRoute),

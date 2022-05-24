@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/src/response.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/auth_status_action.dart';
 import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
@@ -19,6 +20,7 @@ import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -210,6 +212,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             (Route<dynamic> route) => false,
             arguments: navConfig.arguments,
           ),
+        );
+
+        await logUserEvent(
+          name: loginEvent,
+          state: state,
+          eventType: AnalyticsEventType.AUTH_EVENT,
         );
 
         return state;

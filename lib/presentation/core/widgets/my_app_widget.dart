@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -23,10 +24,12 @@ class MyAppWidget extends StatelessWidget {
     required this.navigatorKey,
     required this.appSetupData,
     required this.streamClient,
+    required this.analyticsObserver,
     this.fcmToken,
   }) : super(key: key);
 
   final NavigatorObserver navigatorObserver;
+  final FirebaseAnalyticsObserver analyticsObserver;
   final Store<AppState> store;
   final ConnectivityChecker connectivityChecker;
   final GlobalKey<NavigatorState> navigatorKey;
@@ -48,6 +51,7 @@ class MyAppWidget extends StatelessWidget {
         appNavigatorObservers: <NavigatorObserver>[
           navigatorObserver,
           SentryNavigatorObserver(),
+          analyticsObserver,
         ],
       ),
     );

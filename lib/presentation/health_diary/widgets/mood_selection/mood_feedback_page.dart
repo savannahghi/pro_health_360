@@ -109,35 +109,6 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                             ),
                           ),
                           mediumVerticalSizedBox,
-                          // TODO: (paul) hook the returned moods from backend
-                          // Text(
-                          //   selectWhatBestDescribesHowYourCurrentConditionString,
-                          //   style:  normalSize16Text(
-                          //     AppColors.greyTextColor,
-                          //   ),
-                          // ),
-                          // mediumVerticalSizedBox,
-                          // if (shouldSelectSymptoms)
-                          //   Wrap(
-                          //     spacing: 12.0,
-                          //     runSpacing: 12.0,
-                          //     children: const <Widget>[
-                          //       MoodSymptomWidget(
-                          //         title: iHaveNightSweatsString,
-                          //       ),
-                          //       MoodSymptomWidget(
-                          //         title: iHaveAFeverString,
-                          //         isSelected: true,
-                          //       ),
-                          //       MoodSymptomWidget(
-                          //         title: imCoughingString,
-                          //       ),
-                          //       MoodSymptomWidget(
-                          //         title: iVeLostWeightString,
-                          //       ),
-                          //     ],
-                          //   ),
-                          mediumVerticalSizedBox,
                           mediumVerticalSizedBox,
                           Text(
                             elaborateString,

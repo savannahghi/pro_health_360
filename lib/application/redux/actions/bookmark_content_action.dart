@@ -11,6 +11,8 @@ import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
@@ -67,6 +69,15 @@ class BookmarkContentAction extends ReduxAction<AppState> {
     }
 
     if (responseMap['data']['bookmarkContent'] == true) {
+      await logUserEvent(
+        name: saveContentEvent,
+        state: state,
+        eventType: AnalyticsEventType.CONTENT_INTERACTION_EVENT,
+        parameters: <String, dynamic>{
+          'contentID': contentID,
+        },
+      );
+
       ScaffoldMessenger.of(context).showSnackBar(
         snackbar(
           content: const Text(contentSavedSuccessfully),

@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
@@ -112,11 +114,37 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
     appSetupData.streamAPIKey,
     logLevel: Level.ALL,
   );
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setString('streamApiKey', appSetupData.streamAPIKey);
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+  await sharedPreferences.setString('streamApiKey', appSetupData.streamAPIKey);
 
   await Firebase.initializeApp();
   final String? fcmToken = await FirebaseMessaging.instance.getToken();
+
+  // Initialize the flutter local notifications plugin
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  // Configure the android notification settings
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('app_icon');
+
+  // Configure the iOS notification settings
+  const IOSInitializationSettings initializationSettingsIOS =
+      IOSInitializationSettings();
+
+// Initialize the flutter local notifications plugin with both the android and
+// iOS settings
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: initializationSettingsIOS,
+  );
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+  // Setup firebase analytics observers
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  final FirebaseAnalyticsObserver analyticsObserver =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   runZonedGuarded(
     () async {
@@ -135,6 +163,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
             navigatorKey: appGlobalNavigatorKey,
             appSetupData: appSetupData,
             fcmToken: fcmToken,
+            analyticsObserver: analyticsObserver,
           ),
         ),
       );
