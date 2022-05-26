@@ -33,6 +33,9 @@ class SurveyCarousel extends StatelessWidget {
       },
       builder: (BuildContext context, AppStateViewModel state) {
         final MiscState miscState = state.appState.miscState!;
+        if (miscState.availableSurveysList?.isEmpty ?? true) {
+          return const SizedBox();
+        }
         return Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
