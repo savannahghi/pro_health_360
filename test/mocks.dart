@@ -1571,8 +1571,8 @@ final Map<String, dynamic> documentContentMock = <String, dynamic>{
   ],
 };
 final Map<String, dynamic> contentEngagementMock = <String, dynamic>{
-  'contentId': 'some_id',
-  'contentOpenedAt': '2021-08-23T06:42:05.085216Z'
+  'contentId': 1,
+  'contentOpenedAt': '2021-01-01'
 };
 
 final Map<String, dynamic> mockGalleryImage = <String, dynamic>{

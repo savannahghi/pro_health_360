@@ -24,7 +24,7 @@ class _$ContentEngagementStateTearOff {
   const _$ContentEngagementStateTearOff();
 
   _ContentEngagementState call(
-      {@JsonKey(name: 'contentId') String? contentId,
+      {@JsonKey(name: 'contentId') int? contentId,
       @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt}) {
     return _ContentEngagementState(
       contentId: contentId,
@@ -43,7 +43,7 @@ const $ContentEngagementState = _$ContentEngagementStateTearOff();
 /// @nodoc
 mixin _$ContentEngagementState {
   @JsonKey(name: 'contentId')
-  String? get contentId => throw _privateConstructorUsedError;
+  int? get contentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'contentOpenedAt')
   String? get contentOpenedAt => throw _privateConstructorUsedError;
 
@@ -59,7 +59,7 @@ abstract class $ContentEngagementStateCopyWith<$Res> {
           $Res Function(ContentEngagementState) then) =
       _$ContentEngagementStateCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'contentId') String? contentId,
+      {@JsonKey(name: 'contentId') int? contentId,
       @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt});
 }
 
@@ -81,7 +81,7 @@ class _$ContentEngagementStateCopyWithImpl<$Res>
       contentId: contentId == freezed
           ? _value.contentId
           : contentId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       contentOpenedAt: contentOpenedAt == freezed
           ? _value.contentOpenedAt
           : contentOpenedAt // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$ContentEngagementStateCopyWith<$Res>
       __$ContentEngagementStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'contentId') String? contentId,
+      {@JsonKey(name: 'contentId') int? contentId,
       @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt});
 }
 
@@ -122,7 +122,7 @@ class __$ContentEngagementStateCopyWithImpl<$Res>
       contentId: contentId == freezed
           ? _value.contentId
           : contentId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       contentOpenedAt: contentOpenedAt == freezed
           ? _value.contentOpenedAt
           : contentOpenedAt // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ class _$_ContentEngagementState implements _ContentEngagementState {
 
   @override
   @JsonKey(name: 'contentId')
-  final String? contentId;
+  final int? contentId;
   @override
   @JsonKey(name: 'contentOpenedAt')
   final String? contentOpenedAt;
@@ -183,7 +183,7 @@ class _$_ContentEngagementState implements _ContentEngagementState {
 
 abstract class _ContentEngagementState implements ContentEngagementState {
   factory _ContentEngagementState(
-          {@JsonKey(name: 'contentId') String? contentId,
+          {@JsonKey(name: 'contentId') int? contentId,
           @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt}) =
       _$_ContentEngagementState;
 
@@ -192,7 +192,7 @@ abstract class _ContentEngagementState implements ContentEngagementState {
 
   @override
   @JsonKey(name: 'contentId')
-  String? get contentId;
+  int? get contentId;
   @override
   @JsonKey(name: 'contentOpenedAt')
   String? get contentOpenedAt;

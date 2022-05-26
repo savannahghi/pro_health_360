@@ -28,10 +28,10 @@ void main() {
   });
 
   test('ContentState initial is set', () {
-    final ContentState initialAddress = ContentState.initial();
+    final ContentState initialContentState = ContentState.initial();
 
     expect(
-      initialAddress,
+      initialContentState,
       ContentState(
         feedContentState: FeedContentState.initial(),
         savedContentState: SavedContentState.initial(),

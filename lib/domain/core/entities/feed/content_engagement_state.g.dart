@@ -9,7 +9,7 @@ part of 'content_engagement_state.dart';
 _$_ContentEngagementState _$$_ContentEngagementStateFromJson(
         Map<String, dynamic> json) =>
     _$_ContentEngagementState(
-      contentId: json['contentId'] as String?,
+      contentId: json['contentId'] as int?,
       contentOpenedAt: json['contentOpenedAt'] as String?,
     );
 
