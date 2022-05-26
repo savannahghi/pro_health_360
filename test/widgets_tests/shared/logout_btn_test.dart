@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -16,6 +17,11 @@ import '../../test_helpers.dart';
 import '../../test_utils.dart';
 
 void main() {
+  setUp(() async {
+    setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
+  });
+
   final Store<AppState> store = Store<AppState>(
     initialState: AppState.initial(),
   );

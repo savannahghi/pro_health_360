@@ -27,6 +27,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 import 'test_utils.dart';
+import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
+import 'package:flutter/services.dart';
 
 class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
   @override
@@ -2717,6 +2719,49 @@ Future<T> neverEndingFuture<T>() async {
   while (true) {
     await Future<T>.delayed(const Duration(minutes: 5));
   }
+}
+
+final List<MethodCall> methodCallLog = <MethodCall>[];
+
+void setupFirebaseAnalyticsMocks() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  MethodChannelFirebase.channel
+      .setMockMethodCallHandler((MethodCall call) async {
+    if (call.method == 'Firebase#initializeCore') {
+      return <Map<String, dynamic>>[
+        <String, dynamic>{
+          'name': defaultFirebaseAppName,
+          'options': <String, dynamic>{
+            'apiKey': '123',
+            'appId': '123',
+            'messagingSenderId': '123',
+            'projectId': '123',
+          },
+          'pluginConstants': <String, dynamic>{},
+        }
+      ];
+    }
+
+    if (call.method == 'Firebase#initializeApp') {
+      return <String, dynamic>{
+        'name': call.arguments['appName'],
+        'options': call.arguments['options'],
+        'pluginConstants': <String, dynamic>{},
+      };
+    }
+
+    return null;
+  });
+
+  MethodChannelFirebaseAnalytics.channel
+      .setMockMethodCallHandler((MethodCall methodCall) async {
+    methodCallLog.add(methodCall);
+    switch (methodCall.method) {
+      default:
+        return false;
+    }
+  });
 }
 
 class MockFirebaseMessaging extends Mock

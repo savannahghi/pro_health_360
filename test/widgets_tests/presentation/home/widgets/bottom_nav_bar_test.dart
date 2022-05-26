@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,6 +21,11 @@ import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
+  setUp(() async {
+    setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
+  });
+
   group('myAfyaHub bottom navigation bar', () {
     final MockGraphQlClient GraphQlClient = MockGraphQlClient();
     final Store<AppState> store =
@@ -30,9 +36,7 @@ void main() {
         tester: tester,
         store: store,
         client: GraphQlClient,
-        widget: const BottomNavBar(
-          bottomNavIndex: 0,
-        ),
+        widget: const BottomNavBar(bottomNavIndex: 0),
       );
       await tester.pumpAndSettle();
 
@@ -134,6 +138,7 @@ void main() {
         expect(find.text('My Health'), findsWidgets);
         await tester.tap(find.text('My Health').first);
         await tester.pumpAndSettle();
+
         expect(store.state.bottomNavigationState!.currentBottomNavIndex, 3);
         expect(find.byType(PINInputPage), findsOneWidget);
 

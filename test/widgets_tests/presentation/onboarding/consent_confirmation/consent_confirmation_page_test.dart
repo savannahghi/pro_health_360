@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -18,6 +19,11 @@ import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
+  setUp(() async {
+    setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
+  });
+
   group('ConsentConfirmation Page', () {
     late Store<AppState> store;
 
@@ -90,8 +96,10 @@ void main() {
 
       expect(find.text('tap'), findsOneWidget);
     });
-     testWidgets('should show snackbar with error message when optOut status is not true', (WidgetTester tester) async {
-       final MockShortGraphQlClient mockShortGraphQlClient =
+    testWidgets(
+        'should show snackbar with error message when optOut status is not true',
+        (WidgetTester tester) async {
+      final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
@@ -186,7 +194,8 @@ void main() {
         findsOneWidget,
       );
     });
-    testWidgets('should show a loading indicator on ConsentConfirmationDialog', (WidgetTester tester) async {
+    testWidgets('should show a loading indicator on ConsentConfirmationDialog',
+        (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',

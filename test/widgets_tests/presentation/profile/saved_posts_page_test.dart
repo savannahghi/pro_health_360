@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -35,10 +36,7 @@ void main() {
         json.encode(<String, dynamic>{
           'data': <String, dynamic>{
             'getUserBookmarkedContent': <String, dynamic>{
-              'items': <dynamic>[
-                contentMock.first,
-                contentMock.first,
-              ]
+              'items': <dynamic>[contentMock.first, contentMock.first]
             }
           }
         }),
@@ -47,8 +45,10 @@ void main() {
     );
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('should fetch feed items and display them correctly',
@@ -156,7 +156,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(ContentDetailPage), findsOneWidget);
-      final Finder likeButton = find.byType(LikeContentWidget);
+        final Finder likeButton = find.byType(LikeContentWidget);
 
         expect(likeButton, findsOneWidget);
 
@@ -168,8 +168,7 @@ void main() {
         expect(find.text('Like'), findsNothing);
       });
     });
-    testWidgets('navigates to the document page',
-        (WidgetTester tester) async {
+    testWidgets('navigates to the document page', (WidgetTester tester) async {
       final MockShortGraphQlClient mockSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
@@ -177,7 +176,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-             'getUserBookmarkedContent': <String, dynamic>{
+              'getUserBookmarkedContent': <String, dynamic>{
                 'items': <dynamic>[documentContentMock]
               }
             }

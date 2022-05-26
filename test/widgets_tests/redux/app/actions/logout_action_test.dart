@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -19,48 +20,46 @@ void main() {
   late Store<AppState> store;
   late MockGraphQlClient graphQlClient;
 
-  setUpAll(() async {
+  setUp(() async {
+    setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
     store = Store<AppState>(initialState: AppState.initial());
     graphQlClient = MockGraphQlClient();
   });
 
-  group('OnboardingUtils 2', () {
-    testWidgets('should logout user', (WidgetTester tester) async {
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: graphQlClient,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () async {
-                StoreProvider.dispatch(
-                  context,
-                  LogoutAction(
-                    navigationCallback: () async {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Testing'),
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      );
+  testWidgets('Logout action should logout user', (WidgetTester tester) async {
+    await buildTestWidget(
+      tester: tester,
+      store: store,
+      client: graphQlClient,
+      widget: Builder(
+        builder: (BuildContext context) {
+          return MyAfyaHubPrimaryButton(
+            onPressed: () async {
+              StoreProvider.dispatch(
+                context,
+                LogoutAction(
+                  navigationCallback: () async {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Testing')),
+                    );
+                  },
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
 
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-      expect(find.text('Testing'), findsOneWidget);
-      expect(store.state.clientState, ClientState.initial());
-      expect(
-        store.state.bottomNavigationState,
-        BottomNavigationState.initial(),
-      );
-      expect(store.state.onboardingState, OnboardingState.initial());
-    });
+    await tester.tap(find.byType(MyAfyaHubPrimaryButton));
+    await tester.pumpAndSettle();
+    expect(find.text('Testing'), findsOneWidget);
+    expect(store.state.clientState, ClientState.initial());
+    expect(
+      store.state.bottomNavigationState,
+      BottomNavigationState.initial(),
+    );
+    expect(store.state.onboardingState, OnboardingState.initial());
   });
 }

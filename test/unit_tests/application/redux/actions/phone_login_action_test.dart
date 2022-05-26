@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -29,7 +30,7 @@ void main() {
   group('PhoneLoginAction', () {
     late StoreTester<AppState> storeTester;
 
-    setUp(() {
+    setUp(() async {
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial().copyWith(
           onboardingState: OnboardingState.initial().copyWith.call(
@@ -39,6 +40,8 @@ void main() {
         ),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     final Map<String, dynamic> pinChangeRequiredMock = <String, dynamic>{

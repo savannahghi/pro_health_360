@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 // Flutter imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -21,6 +22,11 @@ import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';
 
 void main() {
+  setUp(() async {
+    setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
+  });
+
   group('MoodFeedbackPage', () {
     late Store<AppState> store;
 

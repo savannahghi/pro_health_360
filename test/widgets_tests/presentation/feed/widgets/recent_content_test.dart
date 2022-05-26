@@ -5,6 +5,7 @@ import 'dart:ui';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/basic.dart';
 
@@ -55,12 +56,15 @@ void main() {
     );
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
       store.dispatch(
         UpdateContentStateAction(contentItems: <Content>[mockContent]),
       );
+
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('should render recent content and display them correctly',

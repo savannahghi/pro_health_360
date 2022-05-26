@@ -4,6 +4,7 @@ import 'dart:ui';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -51,7 +52,7 @@ void main() {
 
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(
         UpdateContentCategoriesAction(
@@ -60,6 +61,8 @@ void main() {
           }).contentCategories,
         ),
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('should fetch feed items and display them correctly',
@@ -72,7 +75,8 @@ void main() {
           widget: const FeedPage(),
         );
 
-        await tester.pumpAndSettle();
+        await tester.pumpAndSettle(const Duration(seconds: 10));
+
         await tester.tap(find.text('All'));
         await tester.pumpAndSettle();
 
@@ -257,7 +261,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(ContentDetailPage), findsOneWidget);
-        
+
         await tester.tap(find.byKey(const Key('gallery_image_page_key')));
         await tester.pumpAndSettle();
         expect(find.byType(GalleryImagesPage), findsOneWidget);

@@ -23,8 +23,37 @@ import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart'
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
-class FeedPage extends StatelessWidget {
+class FeedPage extends StatefulWidget {
   const FeedPage();
+
+  @override
+  State<FeedPage> createState() => _FeedPageState();
+}
+
+class _FeedPageState extends State<FeedPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      await StoreProvider.dispatch<AppState>(
+        context,
+        FetchContentCategoriesAction(
+          client: AppWrapperBase.of(context)!.graphQLClient,
+        ),
+      );
+      final FeedContentState? state = StoreProvider.state<AppState>(context)
+          ?.contentState
+          ?.feedContentState;
+
+      if (state?.contentItems?.isEmpty ?? true) {
+        StoreProvider.dispatch<AppState>(
+          context,
+          FetchContentAction(context: context),
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +67,6 @@ class FeedPage extends StatelessWidget {
       body: StoreConnector<AppState, ContentViewModel>(
         converter: (Store<AppState> store) =>
             ContentViewModel.fromStore(store.state),
-        onInit: (Store<AppState> store) {
-          store.dispatch(
-            FetchContentCategoriesAction(
-              client: AppWrapperBase.of(context)!.graphQLClient,
-            ),
-          );
-          final FeedContentState? state = StoreProvider.state<AppState>(context)
-              ?.contentState
-              ?.feedContentState;
-
-          if (state?.contentItems?.isEmpty ?? true) {
-            StoreProvider.dispatch<AppState>(
-              context,
-              FetchContentAction(context: context),
-            );
-          }
-        },
         builder: (BuildContext context, ContentViewModel vm) {
           final List<Content?>? feedItems = vm.feedContentState?.contentItems;
           return SizedBox(

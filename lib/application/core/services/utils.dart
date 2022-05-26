@@ -834,6 +834,10 @@ Future<void> logUserEvent({
   final String? userID = state!.clientState!.user!.userId;
   final String? userNames = state.clientState!.user!.name;
 
+  if (userID == UNKNOWN || userNames == UNKNOWN) {
+    return;
+  }
+
   enrichedParams.addAll(<String, dynamic>{
     'userID': userID,
     'userNames': userNames,
