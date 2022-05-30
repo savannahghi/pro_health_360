@@ -9,6 +9,7 @@ import 'package:myafyahub/application/redux/actions/communities/update_invited_c
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/communities/pending_invites_response.dart';
+import 'package:myafyahub/domain/core/entities/core/community.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -60,11 +61,17 @@ class FetchInvitedCommunitiesAction extends ReduxAction<AppState> {
         responseMap['data'] as Map<String, dynamic>,
       );
 
-      dispatch(
-        UpdateInvitedCommunitiesStateAction(
-          communitiesList: pendingInvites.communities,
-        ),
-      );
+      if (pendingInvites.communities?.isNotEmpty ?? false) {
+        dispatch(
+          UpdateInvitedCommunitiesStateAction(
+            communitiesList: pendingInvites.communities,
+          ),
+        );
+      } else {
+        dispatch(
+          UpdateInvitedCommunitiesStateAction(communitiesList: <Community>[]),
+        );
+      }
 
       return state;
     } else {

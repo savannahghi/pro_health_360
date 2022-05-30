@@ -36,6 +36,8 @@ class UserDetailsCard extends StatelessWidget {
         final String cccNumber = vm.clientState?.cccNumber ?? UNKNOWN;
         const String age = '18';
 
+        final String nickName = vm.clientState?.user?.username ?? '';
+
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
           decoration: BoxDecoration(
@@ -96,6 +98,16 @@ class UserDetailsCard extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  smallVerticalSizedBox,
+                  Text(
+                    'Nickname: $nickName',
+                    style: const TextStyle(
+                      color: AppColors.secondaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   largeVerticalSizedBox,
                   Row(
                     children: <Widget>[
@@ -136,33 +148,6 @@ class UserDetailsCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  mediumVerticalSizedBox,
-                  //todo (byron) return this later when backend and workflow is ready
-                  // GestureDetector(
-                  //   key: requestCorrectionButtonKey,
-                  //   onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                  //     const SnackBar(
-                  //       content: Text(comingSoonText),
-                  //       duration: Duration(seconds: 2),
-                  //     ),
-                  //   ),
-                  //   child: Container(
-                  //     padding: const EdgeInsets.symmetric(
-                  //       vertical: 8,
-                  //       horizontal: 8,
-                  //     ),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.white.withOpacity(0.6),
-                  //       borderRadius: BorderRadius.circular(5),
-                  //     ),
-                  //     child: Text(
-                  //       requestCorrectionString,
-                  //       style: boldSize13Text(
-                  //         AppColors.secondaryColor,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ],
