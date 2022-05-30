@@ -43,16 +43,71 @@ class PreLoadApp extends StatefulWidget {
   final GlobalKey<NavigatorState> appNavigatorKey;
   final List<NavigatorObserver> appNavigatorObservers;
   final Store<AppState> appStore;
-  final BuildContext entryPointContext;
-  final List<AppContext> thisAppContexts;
   final stream.StreamChatClient client;
+  final BuildContext entryPointContext;
   final String? fcmToken;
+  final List<AppContext> thisAppContexts;
 
   @override
   _PreLoadAppState createState() => _PreLoadAppState();
 }
 
 class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    final AppState? appState = StoreProvider.state<AppState>(context);
+    final bool resumeWithPin = appState?.miscState?.resumeWithPin ?? false;
+    if (state == AppLifecycleState.inactive && resumeWithPin) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        UpdateMiscStateAction(inactiveTime: DateTime.now().toString()),
+      );
+    }
+
+    if (state == AppLifecycleState.resumed) {
+      StoreProvider.dispatch<AppState>(
+        context,
+        UpdateMiscStateAction(resumeWithPin: true),
+      );
+      Navigator.pushReplacementNamed(
+        appGlobalNavigatorKey.currentContext!,
+        AppRoutes.resumeWithPin,
+      );
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    StoreProvider.dispatch(
+      context,
+      CheckTokenAction(
+        httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+        refreshTokenEndpoint:
+            AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
+      ),
+    );
+
+    final ConnectivityChecker connectivityChecker =
+        ConnectivityCheckerProvider.of(context).connectivityChecker;
+
+    StoreProvider.dispatch(
+      context,
+      CheckAndUpdateConnectivityAction(
+        connectivityChecker: connectivityChecker,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -121,62 +176,6 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
         );
       });
     });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    StoreProvider.dispatch(
-      context,
-      CheckTokenAction(
-        httpClient: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-        refreshTokenEndpoint:
-            AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
-      ),
-    );
-
-    final ConnectivityChecker connectivityChecker =
-        ConnectivityCheckerProvider.of(context).connectivityChecker;
-
-    StoreProvider.dispatch(
-      context,
-      CheckAndUpdateConnectivityAction(
-        connectivityChecker: connectivityChecker,
-      ),
-    );
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-
-    final AppState? appState = StoreProvider.state<AppState>(context);
-    final bool resumeWithPin = appState?.miscState?.resumeWithPin ?? false;
-    if (state == AppLifecycleState.inactive && !resumeWithPin) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        UpdateMiscStateAction(inactiveTime: DateTime.now().toString()),
-      );
-    }
-
-    if (state == AppLifecycleState.resumed &&
-        resumeWithPIN(appState ?? AppState.initial())) {
-      StoreProvider.dispatch<AppState>(
-        context,
-        UpdateMiscStateAction(resumeWithPin: true),
-      );
-      Navigator.pushReplacementNamed(
-        appGlobalNavigatorKey.currentContext!,
-        AppRoutes.resumeWithPin,
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
-    super.dispose();
   }
 
   @override

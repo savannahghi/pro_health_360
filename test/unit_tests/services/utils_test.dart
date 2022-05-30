@@ -15,11 +15,6 @@ import 'package:myafyahub/application/core/services/notifications_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/misc_state.dart';
-import 'package:myafyahub/application/redux/states/onboarding_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/client_state.dart';
-import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -142,34 +137,6 @@ void main() {
         ),
         'Please share your thoughts',
       );
-    });
-
-    test('resumeWithPIN returns the correct value', () {
-      expect(
-        resumeWithPIN(
-          AppState.initial().copyWith(
-            credentials: AuthCredentials.initial().copyWith(isSignedIn: true),
-            onboardingState: OnboardingState.initial().copyWith(
-              isPhoneVerified: true,
-              hasSetSecurityQuestions: true,
-              hasVerifiedSecurityQuestions: true,
-              hasSetNickName: true,
-              hasSetPin: true,
-              hasAcceptedTerms: true,
-            ),
-            miscState: MiscState.initial().copyWith(
-              inactiveTime: DateTime.now()
-                  .subtract(const Duration(minutes: 10))
-                  .toString(),
-            ),
-            clientState:
-                ClientState.initial().copyWith(user: User(termsAccepted: true)),
-          ),
-        ),
-        true,
-      );
-      expect(resumeWithPIN(AppState.initial()), false);
-      expect(resumeWithPIN(AppState.initial()), false);
     });
   });
 
