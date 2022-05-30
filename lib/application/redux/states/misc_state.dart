@@ -31,6 +31,8 @@ class MiscState with _$MiscState {
     String? inactiveTime,
     bool? resumeWithPin,
     List<Survey>? availableSurveysList,
+    // track the number of time a wrong PIN has been input on the resume with PIN workflow
+    int? resumeWithPINRetries,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>
@@ -52,5 +54,6 @@ class MiscState with _$MiscState {
         inactiveTime: UNKNOWN,
         resumeWithPin: false,
         availableSurveysList: <Survey>[],
+        resumeWithPINRetries: 0,
       );
 }

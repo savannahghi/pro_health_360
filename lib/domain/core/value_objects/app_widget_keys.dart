@@ -238,6 +238,7 @@ const Key signInWithAnotherNumberButtonKey =
     Key('sign_in_with_another_number_button_key');
 const Key askForHelpButtonKey = Key('ask_for_help_button_key');
 const Key tryAgainButtonKey = Key('try_again_button_key');
+const Key signInButtonKey = Key('sign_in_button_key');
 
 // opt out
 const Key optOutInfoItemKey = Key('opt_out_info_item_key');

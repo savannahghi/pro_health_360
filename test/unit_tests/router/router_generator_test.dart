@@ -53,6 +53,7 @@ import 'package:myafyahub/presentation/profile/personal_information/personal_inf
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
+import 'package:myafyahub/presentation/resume_with_pin/wrong_resume_with_pin_attempts_page.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/surveys/surveys_page.dart';
@@ -647,5 +648,15 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<SurveysPage>>());
     expect(route?.builder(context), isA<SurveysPage>());
+  });
+  test('Test router returns wrong resume page', () {
+    const RouteSettings settings =
+        RouteSettings(name: AppRoutes.wrongResumeWithPINPage);
+
+    final MaterialPageRoute<WrongResumeWithPinPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<WrongResumeWithPinPage>?;
+
+    expect(route, isA<MaterialPageRoute<WrongResumeWithPinPage>>());
+    expect(route?.builder(context), isA<WrongResumeWithPinPage>());
   });
 }

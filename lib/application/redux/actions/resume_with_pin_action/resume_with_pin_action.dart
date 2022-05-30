@@ -6,20 +6,17 @@ import 'package:http/http.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/redux/actions/update_misc_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class ResumeWithPinAction extends ReduxAction<AppState> {
-  final IGraphQlClient httpClient;
-  final String endpoint;
-  final String pin;
-  final VoidCallback? wrongPinCallback;
-
   ResumeWithPinAction({
     required this.httpClient,
     required this.endpoint,
@@ -27,16 +24,21 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
     this.wrongPinCallback,
   });
 
-  @override
-  void before() {
-    super.before();
-    dispatch(WaitAction<AppState>.add(resumeWithPinFlag));
-  }
+  final String endpoint;
+  final IGraphQlClient httpClient;
+  final String pin;
+  final VoidCallback? wrongPinCallback;
 
   @override
   void after() {
     dispatch(WaitAction<AppState>.remove(resumeWithPinFlag));
     super.after();
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(resumeWithPinFlag));
   }
 
   @override
@@ -63,7 +65,24 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
       if (error != null) {
         if (error.contains('8')) {
           wrongPinCallback?.call();
-          throw const UserException(wrongPINText);
+          final int resumeWithPInRetries =
+              state.miscState?.resumeWithPINRetries ?? 0;
+          if (resumeWithPInRetries < 3) {
+            dispatch(
+              UpdateMiscStateAction(
+                resumeWithPINRetries: resumeWithPInRetries + 1,
+              ),
+            );
+            throw const UserException(wrongPINText);
+          } else {
+            await dispatch(
+              NavigateAction<AppState>.pushNamed(
+                AppRoutes.wrongResumeWithPINPage,
+              ),
+            );
+            dispatch(UpdateMiscStateAction(resumeWithPINRetries: 0));
+            return state;
+          }
         }
 
         Sentry.captureException(error, hint: 'Error while verifying user PIN');

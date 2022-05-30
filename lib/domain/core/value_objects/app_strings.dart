@@ -949,3 +949,14 @@ const String fetchingFAQsString = 'fetching FAQs';
 const String kindlyCheckItOutString = 'Kindly check it out';
 const String shareContentSubjectString =
     'Hello, here is an exciting content from myCareHub';
+
+const String tooManyAttemptsString = 'Too many login attempts';
+const String tooManyAttemptsMessageString =
+    'You have made too many login attempts. No worries though, you can try again in ';
+const String requestForAssistanceMessageString =
+    'You can also request for assistance from your doctor or admin by tapping on the button below';
+const String tooManyVerificationAttempts = 'Too many PIN verification attempts';
+const String signIn = 'Sign in';
+
+const String tooManyVerificationAttemptsSubtitle =
+    'You have made too many PIN verification attempts. Tap the button below to sign in';

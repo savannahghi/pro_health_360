@@ -39,7 +39,8 @@ class _$MiscStateTearOff {
           AppointmentState? appointmentState,
       String? inactiveTime,
       bool? resumeWithPin,
-      List<Survey>? availableSurveysList}) {
+      List<Survey>? availableSurveysList,
+      int? resumeWithPINRetries}) {
     return _MiscState(
       initialRoute: initialRoute,
       libraryListItems: libraryListItems,
@@ -56,6 +57,7 @@ class _$MiscStateTearOff {
       inactiveTime: inactiveTime,
       resumeWithPin: resumeWithPin,
       availableSurveysList: availableSurveysList,
+      resumeWithPINRetries: resumeWithPINRetries,
     );
   }
 
@@ -88,7 +90,9 @@ mixin _$MiscState {
   AppointmentState? get appointmentState => throw _privateConstructorUsedError;
   String? get inactiveTime => throw _privateConstructorUsedError;
   bool? get resumeWithPin => throw _privateConstructorUsedError;
-  List<Survey>? get availableSurveysList => throw _privateConstructorUsedError;
+  List<Survey>? get availableSurveysList =>
+      throw _privateConstructorUsedError; // track the number of time a wrong PIN has been input on the resume with PIN workflow
+  int? get resumeWithPINRetries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -117,7 +121,8 @@ abstract class $MiscStateCopyWith<$Res> {
           AppointmentState? appointmentState,
       String? inactiveTime,
       bool? resumeWithPin,
-      List<Survey>? availableSurveysList});
+      List<Survey>? availableSurveysList,
+      int? resumeWithPINRetries});
 
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
   $GroupStateCopyWith<$Res>? get groupState;
@@ -151,6 +156,7 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
     Object? inactiveTime = freezed,
     Object? resumeWithPin = freezed,
     Object? availableSurveysList = freezed,
+    Object? resumeWithPINRetries = freezed,
   }) {
     return _then(_value.copyWith(
       initialRoute: initialRoute == freezed
@@ -213,6 +219,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
           ? _value.availableSurveysList
           : availableSurveysList // ignore: cast_nullable_to_non_nullable
               as List<Survey>?,
+      resumeWithPINRetries: resumeWithPINRetries == freezed
+          ? _value.resumeWithPINRetries
+          : resumeWithPINRetries // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -298,7 +308,8 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
           AppointmentState? appointmentState,
       String? inactiveTime,
       bool? resumeWithPin,
-      List<Survey>? availableSurveysList});
+      List<Survey>? availableSurveysList,
+      int? resumeWithPINRetries});
 
   @override
   $FAQsContentStateCopyWith<$Res>? get profileFAQsContentState;
@@ -338,6 +349,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? inactiveTime = freezed,
     Object? resumeWithPin = freezed,
     Object? availableSurveysList = freezed,
+    Object? resumeWithPINRetries = freezed,
   }) {
     return _then(_MiscState(
       initialRoute: initialRoute == freezed
@@ -400,6 +412,10 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           ? _value.availableSurveysList
           : availableSurveysList // ignore: cast_nullable_to_non_nullable
               as List<Survey>?,
+      resumeWithPINRetries: resumeWithPINRetries == freezed
+          ? _value.resumeWithPINRetries
+          : resumeWithPINRetries // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -422,7 +438,8 @@ class _$_MiscState implements _MiscState {
       @JsonKey(name: 'fetchClientAppointments') this.appointmentState,
       this.inactiveTime,
       this.resumeWithPin,
-      this.availableSurveysList});
+      this.availableSurveysList,
+      this.resumeWithPINRetries});
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -459,10 +476,12 @@ class _$_MiscState implements _MiscState {
   final bool? resumeWithPin;
   @override
   final List<Survey>? availableSurveysList;
+  @override // track the number of time a wrong PIN has been input on the resume with PIN workflow
+  final int? resumeWithPINRetries;
 
   @override
   String toString() {
-    return 'MiscState(initialRoute: $initialRoute, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, screeningToolsState: $screeningToolsState, appointmentState: $appointmentState, inactiveTime: $inactiveTime, resumeWithPin: $resumeWithPin, availableSurveysList: $availableSurveysList)';
+    return 'MiscState(initialRoute: $initialRoute, libraryListItems: $libraryListItems, profileFAQsContentState: $profileFAQsContentState, healthPagePINInputTime: $healthPagePINInputTime, pinInputTries: $pinInputTries, maxTryTime: $maxTryTime, pinVerified: $pinVerified, resumeTimer: $resumeTimer, groupState: $groupState, channelMembersState: $channelMembersState, screeningToolsState: $screeningToolsState, appointmentState: $appointmentState, inactiveTime: $inactiveTime, resumeWithPin: $resumeWithPin, availableSurveysList: $availableSurveysList, resumeWithPINRetries: $resumeWithPINRetries)';
   }
 
   @override
@@ -499,7 +518,9 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.resumeWithPin, resumeWithPin) &&
             const DeepCollectionEquality()
-                .equals(other.availableSurveysList, availableSurveysList));
+                .equals(other.availableSurveysList, availableSurveysList) &&
+            const DeepCollectionEquality()
+                .equals(other.resumeWithPINRetries, resumeWithPINRetries));
   }
 
   @override
@@ -519,7 +540,8 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(appointmentState),
       const DeepCollectionEquality().hash(inactiveTime),
       const DeepCollectionEquality().hash(resumeWithPin),
-      const DeepCollectionEquality().hash(availableSurveysList));
+      const DeepCollectionEquality().hash(availableSurveysList),
+      const DeepCollectionEquality().hash(resumeWithPINRetries));
 
   @JsonKey(ignore: true)
   @override
@@ -550,7 +572,8 @@ abstract class _MiscState implements MiscState {
           AppointmentState? appointmentState,
       String? inactiveTime,
       bool? resumeWithPin,
-      List<Survey>? availableSurveysList}) = _$_MiscState;
+      List<Survey>? availableSurveysList,
+      int? resumeWithPINRetries}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
@@ -587,6 +610,8 @@ abstract class _MiscState implements MiscState {
   bool? get resumeWithPin;
   @override
   List<Survey>? get availableSurveysList;
+  @override // track the number of time a wrong PIN has been input on the resume with PIN workflow
+  int? get resumeWithPINRetries;
   @override
   @JsonKey(ignore: true)
   _$MiscStateCopyWith<_MiscState> get copyWith =>

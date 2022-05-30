@@ -132,6 +132,7 @@ class AppRoutes {
   static const String myHealthTimeline = '/myHealthTimeline';
   static const String surveysPage = '/surveysPage';
   static const String customWebviewPage = '/customWebviewPage';
+  static const String wrongResumeWithPINPage = '/wrongResumeWithPINPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

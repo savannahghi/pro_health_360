@@ -50,6 +50,7 @@ import 'package:myafyahub/presentation/profile/personal_information/personal_inf
 import 'package:myafyahub/presentation/profile/saved_posts/saved_posts_page.dart';
 import 'package:myafyahub/presentation/profile/settings/settings_page.dart';
 import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
+import 'package:myafyahub/presentation/resume_with_pin/wrong_resume_with_pin_attempts_page.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:myafyahub/presentation/surveys/custom_webview_page.dart';
 import 'package:myafyahub/presentation/surveys/surveys_page.dart';
@@ -366,6 +367,11 @@ class RouteGenerator {
             appBarTitle: args['appBarTitle'] as String,
             url: args['url'] as String,
           ),
+        );
+
+      case AppRoutes.wrongResumeWithPINPage:
+        return MaterialPageRoute<WrongResumeWithPinPage>(
+          builder: (_) => const WrongResumeWithPinPage(),
         );
 
       default:

@@ -307,7 +307,7 @@ String tooManyTriesString(int timeLeft) {
   final String convertedTime =
       f.format(DateTime.fromMillisecondsSinceEpoch(timeLeft * 1000));
 
-  return 'Too may tries, try again in $convertedTime minutes';
+  return 'Too many tries, try again in $convertedTime minutes';
 }
 
 bool shouldInputPIN(BuildContext context) {

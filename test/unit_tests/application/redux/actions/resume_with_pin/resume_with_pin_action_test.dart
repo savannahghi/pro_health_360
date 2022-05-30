@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
+import 'package:myafyahub/application/redux/actions/update_misc_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/infrastructure/endpoints.dart';
@@ -31,6 +32,30 @@ void main() {
       await Firebase.initializeApp();
     });
 
+    test('should handle multiple wrong pin', () async {
+      storeTester.dispatch(UpdateMiscStateAction(resumeWithPINRetries: 5));
+      storeTester.dispatch(
+        ResumeWithPinAction(
+          httpClient: MockShortGraphQlClient.withResponse(
+            'idToken',
+            'endpoint',
+            Response(
+              jsonEncode(
+                <String, dynamic>{'code': 8, 'error': '8: wrong PIN'},
+              ),
+              200,
+            ),
+          ),
+          endpoint: kTestVerifyPhoneEndpoint,
+          pin: '0000',
+        ),
+      );
+
+      final TestInfo<AppState> info =
+          await storeTester.waitUntil(ResumeWithPinAction);
+
+      expect(info.state.miscState!.resumeWithPINRetries, 0);
+    });
     test('should handle wrong pin', () async {
       storeTester.dispatch(
         ResumeWithPinAction(
