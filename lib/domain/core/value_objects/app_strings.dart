@@ -607,6 +607,9 @@ const String invalidCode =
 const String verifyCode = 'Verifying Code';
 const String likeString = 'like';
 const String shareString = 'Share';
+const String copyString = 'Copy Link';
+const String linkCopiedString =
+    'The link has been copied to your clipboard. Paste it anywhere you wish to share it';
 const String sendOTPError =
     'There was an error while sending your verification code. Let’s get you a fresh verification code';
 

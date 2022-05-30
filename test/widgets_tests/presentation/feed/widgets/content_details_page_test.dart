@@ -6,6 +6,8 @@ import 'dart:io';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 // Project imports:
@@ -28,8 +30,9 @@ void main() {
     setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
-       setupFirebaseAnalyticsMocks();
+      setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
+      TestWidgetsFlutterBinding.ensureInitialized();
     });
 
     final MockShortGraphQlClient mockShortSILGraphQlClient =
@@ -49,9 +52,8 @@ void main() {
         201,
       ),
     );
- 
 
-    testWidgets('Like button is tappable', (WidgetTester tester) async {
+    testWidgets('should like a content item', (WidgetTester tester) async {
       store.dispatch(
         UpdateContentStateAction(contentItems: <Content>[mockContent]),
       );
@@ -81,7 +83,7 @@ void main() {
       expect(find.text('Like'), findsNothing);
     });
 
-    testWidgets('Share button is tappable', (WidgetTester tester) async {
+    testWidgets('should share a content item', (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortSILGraphQlClient =
           MockShortGraphQlClient.withResponse(
         'idToken',
@@ -120,14 +122,14 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Share'), findsOneWidget);
     });
-    testWidgets('Save button is tappable', (WidgetTester tester) async {
+
+    testWidgets('should save a content item', (WidgetTester tester) async {
       store.dispatch(
         UpdateContentStateAction(
           contentItems: <Content>[mockContent.copyWith(contentID: 9)],
         ),
       );
       await tester.runAsync(() async {
-        TestWidgetsFlutterBinding.ensureInitialized();
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -165,7 +167,71 @@ void main() {
         expect(find.text(saveString), findsNothing);
       });
     });
-testWidgets('show loading indicators while fetching like and save status',
+
+    testWidgets('should copy content link to the clipboard',
+        (WidgetTester tester) async {
+      final List<MethodCall> methodCallLog = <MethodCall>[];
+      SystemChannels.platform
+          .setMockMethodCallHandler((MethodCall methodCall) async {
+        methodCallLog.add(methodCall);
+      });
+
+      store.dispatch(
+        UpdateContentStateAction(
+          contentItems: <Content>[
+            mockContent.copyWith(
+              contentID: 9,
+              metadata: ContentMetadata.initial()
+                  .copyWith
+                  .call(publicLink: 'some-link.com'),
+            )
+          ],
+        ),
+      );
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: ContentDetailPage(
+          payload: ContentDetails(
+            content: mockContent.copyWith(
+              metadata: ContentMetadata.initial().copyWith.call(
+                    publicLink: 'some-link.com',
+                    createdAt: '',
+                  ),
+            ),
+            contentDisplayedType: ContentDisplayedType.FEED,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final Finder copyButton = find.byKey(copyButtonKey);
+
+      expect(copyButton, findsOneWidget);
+
+      await tester.ensureVisible(copyButton);
+      await tester.pumpAndSettle();
+      await tester.tap(copyButton);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.text(linkCopiedString), findsOneWidget);
+      expect(methodCallLog.isEmpty, false);
+      expect(methodCallLog.length, 2);
+      expect(
+        methodCallLog.last,
+        isMethodCall(
+          'Clipboard.setData',
+          arguments: <String, dynamic>{
+            'text': 'some-link.com',
+          },
+        ),
+      );
+    });
+
+    testWidgets(
+        'should show loading indicators while fetching like and save status',
         (WidgetTester tester) async {
       store.dispatch(
         UpdateContentStateAction(contentItems: <Content>[mockContent]),
@@ -183,6 +249,5 @@ testWidgets('show loading indicators while fetching like and save status',
 
       expect(find.byType(PlatformLoader), findsNWidgets(2));
     });
-
   });
 }

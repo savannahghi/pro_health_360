@@ -41,9 +41,9 @@ class FeedPageContentItem extends StatelessWidget {
             AppRoutes.contentDetailPage,
             arguments: <String, dynamic>{
               'payload': ContentDetails(
-              content: content,
-              contentDisplayedType: ContentDisplayedType.RECENT,
-            ),
+                content: content,
+                contentDisplayedType: ContentDisplayedType.RECENT,
+              ),
             },
           );
         }

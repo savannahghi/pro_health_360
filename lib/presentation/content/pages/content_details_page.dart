@@ -20,9 +20,7 @@ class ContentDetailPage extends StatelessWidget {
     return ContentDetailWidget(
       payload: payload,
       reactionsWidget: showReactions ?? true
-          ? ReactionsWidget(
-              contentDetails: payload,
-            )
+          ? ReactionsWidget(contentDetails: payload)
           : const SizedBox(),
       onCloseCallback: () {
         StoreProvider.dispatch(

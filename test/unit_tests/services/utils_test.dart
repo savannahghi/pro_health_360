@@ -23,14 +23,13 @@ import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
-
-import '../../mocks.dart';
 import 'utils_test.mocks.dart';
-
-@GenerateMocks(<Type>[stream.StreamChatClient])
 import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 
+import '../../mocks.dart';
+
+@GenerateMocks(<Type>[stream.StreamChatClient])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 

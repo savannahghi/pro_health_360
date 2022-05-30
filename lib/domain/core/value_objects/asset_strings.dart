@@ -7,7 +7,6 @@ const String infoIconUrl = 'assets/icons/info.svg';
 // the infamous spaceman used in the main files
 const String errorDisplayImgUrl = 'assets/images/error-display.png';
 
-
 //Verify OTP
 const String errorImageSvg = 'assets/images/error_image.svg';
 
@@ -136,6 +135,8 @@ const String attachmentIconSvg = 'assets/icons/attachment.svg';
 
 const String selectedLikeIconSvgPath = 'assets/icons/selected_like_icon.svg';
 const String selectedSaveIconSvgPath = 'assets/icons/selected_save_icon.svg';
+const String copyIconSvgPath = 'assets/icons/copy.svg';
+
 //Error icons
 const String errorOutlineIconSvg = 'assets/icons/error_outline.svg';
 

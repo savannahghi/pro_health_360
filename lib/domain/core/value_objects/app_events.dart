@@ -16,4 +16,6 @@ const String unlikeContentEvent = 'unlike_content_client';
 
 const String shareContentEvent = 'share_content_client';
 
+const String copyContentEvent = 'copy_content_client';
+
 const String saveContentEvent = 'save_content_client';
