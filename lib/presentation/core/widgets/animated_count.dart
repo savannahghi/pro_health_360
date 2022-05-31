@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class AnimatedCount extends ImplicitlyAnimatedWidget {
-  const AnimatedCount(
-      {required this.count,
-      required Duration duration,
-      Curve curve = Curves.linear,})
-      : super(duration: duration, curve: curve);
+  const AnimatedCount({
+    required this.count,
+    required Duration duration,
+    Curve curve = Curves.linear,
+  }) : super(duration: duration, curve: curve);
 
   final int count;
 
@@ -20,8 +20,11 @@ class _AnimatedCountState extends AnimatedWidgetBaseState<AnimatedCount> {
 
   @override
   void forEachTween(TweenVisitor<dynamic> visitor) {
-    _count = visitor(_count, widget.count,
-        (dynamic value) => IntTween(begin: value as int),)! as IntTween;
+    _count = visitor(
+      _count,
+      widget.count,
+      (dynamic value) => IntTween(begin: value as int),
+    )! as IntTween;
   }
 
   @override
@@ -29,10 +32,11 @@ class _AnimatedCountState extends AnimatedWidgetBaseState<AnimatedCount> {
     return Text.rich(
       TextSpan(
         children: <TextSpan>[
-          const TextSpan(text: 'Resend in '),
+          const TextSpan(text: 'You can request for another OTP in '),
           TextSpan(
-              text: _count!.evaluate(animation).toString(),
-              style: TextThemes.heavySize14Text(Colors.black),),
+            text: _count!.evaluate(animation).toString(),
+            style: TextThemes.heavySize14Text(Colors.black),
+          ),
         ],
       ),
     );
