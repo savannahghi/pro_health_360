@@ -23,13 +23,21 @@ class _$SurveyTearOff {
   const _$SurveyTearOff();
 
   _Survey call(
-      {@JsonKey(name: 'title') String? title,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
-      @JsonKey(name: 'description') String? description}) {
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'projectID') String? projectID,
+      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'formID') String? formID}) {
     return _Survey(
+      id: id,
       title: title,
       link: link,
       description: description,
+      projectID: projectID,
+      linkID: linkID,
+      formID: formID,
     );
   }
 
@@ -43,12 +51,20 @@ const $Survey = _$SurveyTearOff();
 
 /// @nodoc
 mixin _$Survey {
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'link')
   String? get link => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'projectID')
+  String? get projectID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'linkID')
+  String? get linkID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'formID')
+  String? get formID => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,9 +76,13 @@ abstract class $SurveyCopyWith<$Res> {
   factory $SurveyCopyWith(Survey value, $Res Function(Survey) then) =
       _$SurveyCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'title') String? title,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'projectID') String? projectID,
+      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'formID') String? formID});
 }
 
 /// @nodoc
@@ -75,11 +95,19 @@ class _$SurveyCopyWithImpl<$Res> implements $SurveyCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? link = freezed,
     Object? description = freezed,
+    Object? projectID = freezed,
+    Object? linkID = freezed,
+    Object? formID = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -92,6 +120,18 @@ class _$SurveyCopyWithImpl<$Res> implements $SurveyCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      projectID: projectID == freezed
+          ? _value.projectID
+          : projectID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      linkID: linkID == freezed
+          ? _value.linkID
+          : linkID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      formID: formID == freezed
+          ? _value.formID
+          : formID // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -102,9 +142,13 @@ abstract class _$SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
       __$SurveyCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'title') String? title,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
-      @JsonKey(name: 'description') String? description});
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'projectID') String? projectID,
+      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'formID') String? formID});
 }
 
 /// @nodoc
@@ -118,11 +162,19 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? link = freezed,
     Object? description = freezed,
+    Object? projectID = freezed,
+    Object? linkID = freezed,
+    Object? formID = freezed,
   }) {
     return _then(_Survey(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -135,6 +187,18 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      projectID: projectID == freezed
+          ? _value.projectID
+          : projectID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      linkID: linkID == freezed
+          ? _value.linkID
+          : linkID // ignore: cast_nullable_to_non_nullable
+              as String?,
+      formID: formID == freezed
+          ? _value.formID
+          : formID // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -143,13 +207,20 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Survey implements _Survey {
   _$_Survey(
-      {@JsonKey(name: 'title') this.title,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'link') this.link,
-      @JsonKey(name: 'description') this.description});
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'projectID') this.projectID,
+      @JsonKey(name: 'linkID') this.linkID,
+      @JsonKey(name: 'formID') this.formID});
 
   factory _$_Survey.fromJson(Map<String, dynamic> json) =>
       _$$_SurveyFromJson(json);
 
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -159,10 +230,19 @@ class _$_Survey implements _Survey {
   @override
   @JsonKey(name: 'description')
   final String? description;
+  @override
+  @JsonKey(name: 'projectID')
+  final String? projectID;
+  @override
+  @JsonKey(name: 'linkID')
+  final String? linkID;
+  @override
+  @JsonKey(name: 'formID')
+  final String? formID;
 
   @override
   String toString() {
-    return 'Survey(title: $title, link: $link, description: $description)';
+    return 'Survey(id: $id, title: $title, link: $link, description: $description, projectID: $projectID, linkID: $linkID, formID: $formID)';
   }
 
   @override
@@ -170,18 +250,26 @@ class _$_Survey implements _Survey {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Survey &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.link, link) &&
             const DeepCollectionEquality()
-                .equals(other.description, description));
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.projectID, projectID) &&
+            const DeepCollectionEquality().equals(other.linkID, linkID) &&
+            const DeepCollectionEquality().equals(other.formID, formID));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(link),
-      const DeepCollectionEquality().hash(description));
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(projectID),
+      const DeepCollectionEquality().hash(linkID),
+      const DeepCollectionEquality().hash(formID));
 
   @JsonKey(ignore: true)
   @override
@@ -196,12 +284,19 @@ class _$_Survey implements _Survey {
 
 abstract class _Survey implements Survey {
   factory _Survey(
-      {@JsonKey(name: 'title') String? title,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
-      @JsonKey(name: 'description') String? description}) = _$_Survey;
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'projectID') String? projectID,
+      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'formID') String? formID}) = _$_Survey;
 
   factory _Survey.fromJson(Map<String, dynamic> json) = _$_Survey.fromJson;
 
+  @override
+  @JsonKey(name: 'id')
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -211,6 +306,15 @@ abstract class _Survey implements Survey {
   @override
   @JsonKey(name: 'description')
   String? get description;
+  @override
+  @JsonKey(name: 'projectID')
+  String? get projectID;
+  @override
+  @JsonKey(name: 'linkID')
+  String? get linkID;
+  @override
+  @JsonKey(name: 'formID')
+  String? get formID;
   @override
   @JsonKey(ignore: true)
   _$SurveyCopyWith<_Survey> get copyWith => throw _privateConstructorUsedError;

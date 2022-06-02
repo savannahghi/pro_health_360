@@ -33,6 +33,8 @@ class MiscState with _$MiscState {
     List<Survey>? availableSurveysList,
     // track the number of time a wrong PIN has been input on the resume with PIN workflow
     int? resumeWithPINRetries,
+    // selected survey to be opened
+    Survey? selectedSurvey,
   }) = _MiscState;
 
   factory MiscState.fromJson(Map<String, dynamic> json) =>

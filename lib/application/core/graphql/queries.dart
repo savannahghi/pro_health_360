@@ -480,6 +480,9 @@ query getUserSurveyForms($userID: String!) {
     link,
     title,
     description,
+    projectID,
+    linkID,
+    formID,
   }
 }
 ''';

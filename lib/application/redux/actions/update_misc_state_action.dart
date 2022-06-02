@@ -11,12 +11,14 @@ class UpdateMiscStateAction extends ReduxAction<AppState> {
     this.resumeWithPin,
     this.availableSurveyList,
     this.resumeWithPINRetries,
+    this.selectedSurvey,
   });
 
   final List<Survey>? availableSurveyList;
   final String? inactiveTime;
   final bool? resumeWithPin;
   final int? resumeWithPINRetries;
+  final Survey? selectedSurvey;
 
   @override
   AppState reduce() {
@@ -28,6 +30,7 @@ class UpdateMiscStateAction extends ReduxAction<AppState> {
             availableSurveyList ?? state.miscState?.availableSurveysList,
         resumeWithPINRetries:
             resumeWithPINRetries ?? state.miscState?.resumeWithPINRetries,
+        selectedSurvey: selectedSurvey ?? state.miscState?.selectedSurvey,
       ),
     );
 
