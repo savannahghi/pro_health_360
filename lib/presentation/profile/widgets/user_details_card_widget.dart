@@ -34,8 +34,8 @@ class UserDetailsCard extends StatelessWidget {
         final String phone = user?.primaryContact?.value ?? UNKNOWN;
         final String name = getDisplayName(user);
         final String cccNumber = vm.clientState?.cccNumber ?? UNKNOWN;
-        const String age = '18';
-
+        final String dateOfBirth = vm.clientState?.user?.dateOfBirth ?? UNKNOWN;
+        final String age = calculateAge(dateOfBirth);
         final String nickName = vm.clientState?.user?.username ?? '';
 
         return Container(
@@ -90,9 +90,9 @@ class UserDetailsCard extends StatelessWidget {
                     ),
                   ),
                   smallVerticalSizedBox,
-                  const Text(
+                  Text(
                     'Age: $age yrs',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,

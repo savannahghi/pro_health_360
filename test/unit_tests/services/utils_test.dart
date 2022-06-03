@@ -387,6 +387,13 @@ void main() {
         );
       },
     );
+
+    test('calculate age calculates age correctly', () {
+      final String fiveYearAgo =
+          DateTime.now().subtract(const Duration(days: 365 * 5)).toString();
+      final String age = calculateAge(fiveYearAgo);
+      expect(age, '5');
+    });
   });
 }
 

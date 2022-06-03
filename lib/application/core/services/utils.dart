@@ -834,3 +834,15 @@ Future<void> logUserEvent({
 
   await analytics.logEvent(name: name, parameters: enrichedParams);
 }
+
+/// calculates someone's age from the date of birth
+String calculateAge(String dateOfBirth) {
+  if (dateOfBirth.isEmpty || dateOfBirth == UNKNOWN) {
+    return 'No age recorded';
+  }
+  final DateTime parsedDate = DateTime.parse(dateOfBirth);
+
+  return (DateTime.now().difference(parsedDate).inDays / 365)
+      .round()
+      .toString();
+}
