@@ -27,8 +27,8 @@ class _$SurveyTearOff {
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'projectID') String? projectID,
-      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'projectID') int? projectID,
+      @JsonKey(name: 'linkID') int? linkID,
       @JsonKey(name: 'formID') String? formID}) {
     return _Survey(
       id: id,
@@ -60,9 +60,9 @@ mixin _$Survey {
   @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'projectID')
-  String? get projectID => throw _privateConstructorUsedError;
+  int? get projectID => throw _privateConstructorUsedError;
   @JsonKey(name: 'linkID')
-  String? get linkID => throw _privateConstructorUsedError;
+  int? get linkID => throw _privateConstructorUsedError;
   @JsonKey(name: 'formID')
   String? get formID => throw _privateConstructorUsedError;
 
@@ -80,8 +80,8 @@ abstract class $SurveyCopyWith<$Res> {
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'projectID') String? projectID,
-      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'projectID') int? projectID,
+      @JsonKey(name: 'linkID') int? linkID,
       @JsonKey(name: 'formID') String? formID});
 }
 
@@ -123,11 +123,11 @@ class _$SurveyCopyWithImpl<$Res> implements $SurveyCopyWith<$Res> {
       projectID: projectID == freezed
           ? _value.projectID
           : projectID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       linkID: linkID == freezed
           ? _value.linkID
           : linkID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       formID: formID == freezed
           ? _value.formID
           : formID // ignore: cast_nullable_to_non_nullable
@@ -146,8 +146,8 @@ abstract class _$SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'projectID') String? projectID,
-      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'projectID') int? projectID,
+      @JsonKey(name: 'linkID') int? linkID,
       @JsonKey(name: 'formID') String? formID});
 }
 
@@ -190,11 +190,11 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
       projectID: projectID == freezed
           ? _value.projectID
           : projectID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       linkID: linkID == freezed
           ? _value.linkID
           : linkID // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       formID: formID == freezed
           ? _value.formID
           : formID // ignore: cast_nullable_to_non_nullable
@@ -232,10 +232,10 @@ class _$_Survey implements _Survey {
   final String? description;
   @override
   @JsonKey(name: 'projectID')
-  final String? projectID;
+  final int? projectID;
   @override
   @JsonKey(name: 'linkID')
-  final String? linkID;
+  final int? linkID;
   @override
   @JsonKey(name: 'formID')
   final String? formID;
@@ -288,8 +288,8 @@ abstract class _Survey implements Survey {
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'link') String? link,
       @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'projectID') String? projectID,
-      @JsonKey(name: 'linkID') String? linkID,
+      @JsonKey(name: 'projectID') int? projectID,
+      @JsonKey(name: 'linkID') int? linkID,
       @JsonKey(name: 'formID') String? formID}) = _$_Survey;
 
   factory _Survey.fromJson(Map<String, dynamic> json) = _$_Survey.fromJson;
@@ -308,10 +308,10 @@ abstract class _Survey implements Survey {
   String? get description;
   @override
   @JsonKey(name: 'projectID')
-  String? get projectID;
+  int? get projectID;
   @override
   @JsonKey(name: 'linkID')
-  String? get linkID;
+  int? get linkID;
   @override
   @JsonKey(name: 'formID')
   String? get formID;

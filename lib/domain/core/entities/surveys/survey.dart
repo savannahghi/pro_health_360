@@ -11,8 +11,8 @@ class Survey with _$Survey {
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'link') String? link,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'projectID') String? projectID,
-    @JsonKey(name: 'linkID') String? linkID,
+    @JsonKey(name: 'projectID') int? projectID,
+    @JsonKey(name: 'linkID') int? linkID,
     @JsonKey(name: 'formID') String? formID,
   }) = _Survey;
 
@@ -24,7 +24,7 @@ class Survey with _$Survey {
         link: UNKNOWN,
         formID: UNKNOWN,
         id: UNKNOWN,
-        linkID: UNKNOWN,
-        projectID: UNKNOWN,
+        linkID: 0,
+        projectID: 0,
       );
 }

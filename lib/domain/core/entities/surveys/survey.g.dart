@@ -11,8 +11,8 @@ _$_Survey _$$_SurveyFromJson(Map<String, dynamic> json) => _$_Survey(
       title: json['title'] as String?,
       link: json['link'] as String?,
       description: json['description'] as String?,
-      projectID: json['projectID'] as String?,
-      linkID: json['linkID'] as String?,
+      projectID: json['projectID'] as int?,
+      linkID: json['linkID'] as int?,
       formID: json['formID'] as String?,
     );
 
