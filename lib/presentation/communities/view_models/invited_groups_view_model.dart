@@ -14,6 +14,6 @@ class InvitedGroupsViewModel extends Vm {
     );
   }
 
-  final List<Community>? invitedCommunities;
+  final List<Community?>? invitedCommunities;
   final Wait wait;
 }

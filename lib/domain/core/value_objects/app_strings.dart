@@ -399,6 +399,7 @@ const String importantInformationString = 'Important Information';
 // Community strings
 const String groupText = 'Group';
 const String groupInfoText = 'Group Info';
+const String tapToViewFlaggedMessagesText = 'Tap to view flagged messages';
 const String exitGroupText = 'Exit Group';
 const String messageText = 'message';
 const String communityPageString = 'Conversations';
@@ -763,7 +764,24 @@ const String addingToGroupString = 'adding you to the group';
 const String removedFromGroup = 'removed from the group successfully';
 const String unableToRemove = 'was not removed from group due to an error';
 const String errorPromotingAdminText = 'Error promoting user to admin';
+const String errorDemotingAdminText = 'Error demoting user';
+
 const String groupTitle = 'Ruaraka Group';
+const String moderationHelpText =
+    'Long press on a member to promote them to a moderator, '
+    'remove or ban them from this group';
+const String messageDeletedText = 'Message deleted successfully';
+const String deleteMessageString = 'Delete Message';
+const String banUserText = 'Ban user';
+const String flaggedMessagesString = 'Flagged messages';
+const String noFlaggedMessagesTitle = 'No flagged messages';
+const String messagesDisplayedHereText =
+    'When users flag messages, they will be displayed here for your intervention.';
+const String canDeleteOrBanText =
+    'You can choose to delete the message or ban a user from this group';
+const String flaggedMessagesDescription =
+    'Here are messages that have been marked as inappropriate or offensive by'
+    ' this group’s members';
 
 String userBannedMessage({
   bool isBanned = false,

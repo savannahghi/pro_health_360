@@ -196,6 +196,12 @@ mutation addModerators($memberIDs: [String!]!, $communityID: String!){
 }
 ''';
 
+const String demoteModeratorMutation = r'''
+mutation demoteModerators($memberIDs: [String!]!, $communityID: String!){
+  demoteModerators(memberIDs: $memberIDs, communityID: $communityID)
+}
+''';
+
 const String banUserMutation = r'''
 mutation BanUser($memberID: String!, $bannedBy: String!, $communityID: String!){
   banUser(MemberID: $memberID, bannedBy: $bannedBy, communityID: $communityID)
@@ -222,5 +228,11 @@ mutation collectMetric($input:MetricInput!) {
 const String verifySurveySubmissionMutation = r'''
 mutation verifySurveySubmission($input: VerifySurveySubmissionInput!){
   verifySurveySubmission(input: $input)
+}
+''';
+
+const String deleteCommunityMessageMutation = r'''
+mutation deleteCommunityMessage($messageID: String!){
+  deleteCommunityMessage(messageID: $messageID)
 }
 ''';

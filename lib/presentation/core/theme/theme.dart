@@ -63,6 +63,7 @@ class AppColors {
   static const Color resumeWithPinTitleColor = Color(0xFF2F3946);
   static const Color lightGrey = Color(0xFF696979);
   static const Color orangeColor = Color(0xFFF0997A);
+  static const Color grey50 = Color(0xFF7A7B8E);
 
   static ThemeColors themeColors = ThemeColors(
     primaryColor,

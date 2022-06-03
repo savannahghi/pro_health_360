@@ -87,6 +87,8 @@ const String promoteToAdminFlag = 'promote_to_admin_flag';
 const String banUserFlag = 'ban_user_flag';
 const String unBanUserFlag = 'unban_user_flag';
 const String fetchGroupMembersFlag = 'fetch_group_members_flag';
+const String fetchFlaggedMessagesFlag = 'fetch_flagged_messages_flag';
+const String deleteCommunityMessageFlag = 'delete_community_messages_flag';
 
 // resume with pin
 const String resumeWithPinFlag = 'resume_with_pin';
@@ -127,4 +129,5 @@ const String fetchContentCategoriesFlag = 'fetch_content_categories_flag';
 
 //surveys
 const String fetchAvailableSurveysFlag = 'fetch_available_surveys_flag';
+
 const String verifySurveySubmissionFlag = 'verify_survey_submission_flag';

@@ -70,15 +70,9 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
     );
     final List<GroupMember?>? groupMembers = groupState.groupMembers;
 
-    final GroupState? newGroupState = state.miscState?.groupState?.copyWith(
-      groupMembers: groupMembers,
-    );
+    dispatch(UpdateGroupStateAction(groupMembers: groupMembers));
 
-    final AppState newState = state.copyWith(
-      miscState: state.miscState?.copyWith(groupState: newGroupState),
-    );
-
-    return newState;
+    return state;
   }
 
   @override

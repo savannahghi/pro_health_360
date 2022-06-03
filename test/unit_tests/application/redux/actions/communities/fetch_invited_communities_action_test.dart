@@ -54,7 +54,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchInvitedCommunitiesAction);
 
-      final List<Community>? invitedCommunities =
+      final List<Community?>? invitedCommunities =
           info.state.clientState?.communitiesState?.invitedCommunities;
 
       expect(
@@ -83,7 +83,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchInvitedCommunitiesAction);
 
-      final List<Community>? invitedCommunities =
+      final List<Community?>? invitedCommunities =
           info.state.clientState?.communitiesState?.invitedCommunities;
 
       expect(
@@ -108,7 +108,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchInvitedCommunitiesAction);
 
-      final List<Community>? invitedCommunities =
+      final List<Community?>? invitedCommunities =
           info.state.clientState?.communitiesState?.invitedCommunities;
 
       expect(
@@ -130,7 +130,7 @@ void main() {
       final TestInfo<AppState> info =
           await storeTester.waitUntil(FetchInvitedCommunitiesAction);
 
-      final List<Community>? invitedCommunities =
+      final List<Community?>? invitedCommunities =
           info.state.clientState?.communitiesState?.invitedCommunities;
 
       expect(
