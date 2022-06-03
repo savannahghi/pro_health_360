@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/application/redux/actions/surveys/fetch_available_surveys_action.dart';
+import 'package:myafyahub/application/redux/actions/update_misc_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
@@ -84,6 +85,13 @@ class SurveyCarousel extends StatelessWidget {
                           onTap: () {
                             final String encodedUrl = Uri.encodeFull(
                               miscState.availableSurveysList![index].link!,
+                            );
+                            StoreProvider.dispatch(
+                              context,
+                              UpdateMiscStateAction(
+                                selectedSurvey:
+                                    miscState.availableSurveysList![index],
+                              ),
                             );
                             Navigator.of(context).pushNamed(
                               AppRoutes.customWebviewPage,

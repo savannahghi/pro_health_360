@@ -39,6 +39,9 @@ _$_MiscState _$$_MiscStateFromJson(Map<String, dynamic> json) => _$_MiscState(
           ?.map((e) => Survey.fromJson(e as Map<String, dynamic>))
           .toList(),
       resumeWithPINRetries: json['resumeWithPINRetries'] as int?,
+      selectedSurvey: json['selectedSurvey'] == null
+          ? null
+          : Survey.fromJson(json['selectedSurvey'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
@@ -59,4 +62,5 @@ Map<String, dynamic> _$$_MiscStateToJson(_$_MiscState instance) =>
       'resumeWithPin': instance.resumeWithPin,
       'availableSurveysList': instance.availableSurveysList,
       'resumeWithPINRetries': instance.resumeWithPINRetries,
+      'selectedSurvey': instance.selectedSurvey,
     };

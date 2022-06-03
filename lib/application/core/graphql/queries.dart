@@ -480,6 +480,32 @@ query getUserSurveyForms($userID: String!) {
     link,
     title,
     description,
+    projectID,
+    linkID,
+    formID,
+  }
+}
+''';
+
+const String listFlaggedMessagesQuery = r'''
+query listFlaggedMessages($communityCID: String,$memberIDs: [String]){
+  listFlaggedMessages(communityCID: $communityCID,memberIDs: $memberIDs){
+    message{
+      id
+      text
+      created_at
+      user{
+        id
+        userID
+        name
+        username
+      }
+       attachments{
+        type
+        title
+        image_url
+      }
+    }
   }
 }
 ''';

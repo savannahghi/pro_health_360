@@ -195,3 +195,5 @@ const String noSecurityQuestionsImage = 'assets/images/no_questions_image.svg';
 // surveys
 const String surveyItemImage = 'assets/icons/clipboard.svg';
 const String surveysImage = 'assets/images/surveys.svg';
+
+const String noFlaggedMessagesImage = 'assets/images/no_flagged_messages.svg';

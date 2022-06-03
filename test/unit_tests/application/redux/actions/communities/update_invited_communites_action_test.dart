@@ -30,7 +30,7 @@ void main() {
 
       expect(
         store.state.clientState?.communitiesState?.invitedCommunities?.first
-            .name,
+            ?.name,
         'Test community',
       );
 
@@ -45,7 +45,7 @@ void main() {
 
       expect(
         store.state.clientState?.communitiesState?.invitedCommunities?.first
-            .name,
+            ?.name,
         'Test community',
       );
     });

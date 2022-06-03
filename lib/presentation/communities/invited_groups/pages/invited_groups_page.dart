@@ -77,7 +77,7 @@ class InvitedGroupsPage extends StatelessWidget {
                 ),
               );
             } else {
-              final List<Community> communitiesList = vm.invitedCommunities!;
+              final List<Community?> communitiesList = vm.invitedCommunities!;
               return ListView(
                 shrinkWrap: true,
                 children: <Widget>[
@@ -93,10 +93,10 @@ class InvitedGroupsPage extends StatelessWidget {
                     itemCount: communitiesList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GroupInviteItem(
-                        groupName: communitiesList[index].name ?? '',
-                        groupId: communitiesList[index].id!,
+                        groupName: communitiesList[index]?.name ?? '',
+                        groupId: communitiesList[index]?.id ?? '',
                         numberOfMembers:
-                            communitiesList[index].memberCount ?? 0,
+                            communitiesList[index]?.memberCount ?? 0,
                       );
                     },
                   ),

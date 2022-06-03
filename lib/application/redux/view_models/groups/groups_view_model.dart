@@ -8,14 +8,25 @@ class GroupsViewModel extends Vm {
   final List<Group?>? recommendedGroups;
   final List<GroupMember?>? groupMembers;
   final List<Role>? clientRoles;
+  final bool? isModerator;
+  final bool? isOwner;
 
   GroupsViewModel({
     required this.wait,
     this.recommendedGroups,
     this.groupMembers,
     this.clientRoles,
+    this.isModerator,
+    this.isOwner,
   }) : super(
-          equals: <Object?>[wait, recommendedGroups, groupMembers, clientRoles],
+          equals: <Object?>[
+            wait,
+            recommendedGroups,
+            groupMembers,
+            clientRoles,
+            isModerator,
+            isOwner,
+          ],
         );
 
   factory GroupsViewModel.fromStore(Store<AppState> store) {
@@ -24,6 +35,7 @@ class GroupsViewModel extends Vm {
       recommendedGroups: store.state.miscState?.groupState?.recommendedGroups,
       groupMembers: store.state.miscState?.groupState?.groupMembers,
       clientRoles: store.state.clientState?.user?.roles,
+      isModerator: store.state.miscState?.groupState?.isModerator,
     );
   }
 }
