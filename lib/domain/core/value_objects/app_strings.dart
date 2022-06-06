@@ -431,9 +431,14 @@ const String awaitingModerationString = 'Awaiting Moderation';
 const String typeYourMessageHereString = 'Type your Message here';
 
 //User Profile
-const String hotlineString = 'Hotline';
+const String hotlineTitle = 'Hotline';
+const String hotlinesTitle = 'Hotlines';
+const String hotlineDescription =
+    'Tap to call your facility for immediate assistance by someone from our healthcare team';
+
 const String hotlineNumberString = '0712345678';
 const String callString = 'Call';
+const String moreHelplines = 'More Helplines';
 const String clinicContactString = 'Clinic contacts';
 const String chvString = 'CHV';
 const String treatmentBuddy = 'Treatment buddy';
@@ -978,3 +983,8 @@ const String signIn = 'Sign in';
 
 const String tooManyVerificationAttemptsSubtitle =
     'You have made too many PIN verification attempts. Tap the button below to sign in';
+
+/// Hotlines strings
+const String hotlinesPageTitle = 'Help is a phone call away';
+const String hotlinesPageDescription =
+    'Call any of the helplines below to get prompt assistance';

@@ -9,7 +9,10 @@ import 'package:myafyahub/application/redux/actions/update_client_profile_action
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/address.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/presentation/profile/hotline/pages/hotlines_page.dart';
+import 'package:myafyahub/presentation/profile/hotline/widgets/hotline_widget.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
 import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
 import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
@@ -20,58 +23,77 @@ void main() {
   group('UserProfilePage', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() {
       store = Store<AppState>(initialState: AppState.initial());
+      store.dispatch(
+        UpdateUserProfileAction(firstName: 'Test', lastName: 'Name'),
+      );
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {
-      store.dispatch(
-        UpdateUserProfileAction(
-          firstName: 'Test',
-          lastName: 'Name',
-        ),
-      );
-
-      store.dispatch(
-        UpdateClientProfileAction(facilityPhoneNumber: '0712345678'),
-      );
       await buildTestWidget(
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
         widget: UserProfilePage(),
       );
+
       await tester.pumpAndSettle();
       expect(find.byType(UserDetailsCard), findsWidgets);
+
       final Finder userProfileListItem = find.byType(InformationListCard);
-      final Finder hotlineCallButton = find.byKey(hotlineCallButtonKey);
-      // final Finder requestCorrectionButton =
-      //     find.byKey(requestCorrectionButtonKey);
+      final Finder hotlineWidget = find.byType(HotlineWidget);
 
       expect(userProfileListItem, findsNWidgets(userProfileItems.length));
-      expect(hotlineCallButton, findsOneWidget);
-      // todo(byron) return this when backend and workflow is ready
-      // expect(requestCorrectionButton, findsOneWidget);
+      expect(hotlineWidget, findsOneWidget);
+    });
 
-      // await tester.tap(requestCorrectionButton);
-      // await tester.pumpAndSettle();
-      // expect(find.text(comingSoonText), findsOneWidget);
+    testWidgets('should show more hotlines when prompted',
+        (WidgetTester tester) async {
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: MockGraphQlClient(),
+        widget: UserProfilePage(),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(UserDetailsCard), findsWidgets);
+
+      final Finder userProfileListItem = find.byType(InformationListCard);
+      final Finder hotlineWidget = find.byType(HotlineWidget);
+      expect(userProfileListItem, findsNWidgets(userProfileItems.length));
+      expect(hotlineWidget, findsOneWidget);
+
+      /// Verify the 2 hotline buttons are present
+      final Finder hotlineCallButton = find.byKey(hotlineCallButtonKey);
+      final Finder hotlineMoreHotlinesButton =
+          find.byKey(hotlineMoreHotlinesKey);
+
+      expect(hotlineCallButton, findsOneWidget);
+      expect(hotlineMoreHotlinesButton, findsOneWidget);
+
+      await tester.scrollUntilVisible(hotlineCallButton, 800);
+      await tester.tap(hotlineCallButton);
+      await tester.pumpAndSettle();
+
+      await tester.scrollUntilVisible(hotlineMoreHotlinesButton, 800);
+      await tester.tap(hotlineMoreHotlinesButton);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HotlinesPage), findsOneWidget);
+      expect(find.text(hotlinesTitle), findsOneWidget);
     });
 
     testWidgets('navigates to PersonalInformationPage correctly',
         (WidgetTester tester) async {
-      store.dispatch(
-        UpdateUserProfileAction(
-          firstName: 'Test',
-          lastName: 'Name',
-        ),
-      );
       await buildTestWidget(
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
         widget: UserProfilePage(),
       );
+
       final Finder personalInformationButton =
           find.text('Personal information');
       expect(personalInformationButton, findsOneWidget);
@@ -85,15 +107,9 @@ void main() {
     testWidgets('renders user information correctly',
         (WidgetTester tester) async {
       store.dispatch(
-        UpdateUserProfileAction(
-          firstName: 'Test',
-          lastName: 'Name',
-        ),
-      );
-
-      store.dispatch(
         UpdateClientProfileAction(addresses: <Address>[Address(text: 'home')]),
       );
+
       await buildTestWidget(
         tester: tester,
         store: store,

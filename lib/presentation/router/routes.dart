@@ -133,6 +133,8 @@ class AppRoutes {
   static const String surveysPage = '/surveysPage';
   static const String customWebviewPage = '/customWebviewPage';
   static const String wrongResumeWithPINPage = '/wrongResumeWithPINPage';
+
+  static const String hotlinesPage = '/hotlinesPage';
 }
 
 List<String> unProtectedRoutes = <String>[AppRoutes.phoneLogin];

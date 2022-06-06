@@ -46,6 +46,7 @@ import 'package:myafyahub/presentation/profile/consent/consent_page.dart';
 import 'package:myafyahub/presentation/profile/faqs/profile_faqs_page.dart';
 import 'package:myafyahub/presentation/profile/feedback/feedback_page.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline_container.dart';
+import 'package:myafyahub/presentation/profile/hotline/pages/hotlines_page.dart';
 import 'package:myafyahub/presentation/profile/medical_data/pages/medical_data_page.dart';
 import 'package:myafyahub/presentation/profile/pages/edit_information_page.dart';
 import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
@@ -658,5 +659,15 @@ void main() {
 
     expect(route, isA<MaterialPageRoute<WrongResumeWithPinPage>>());
     expect(route?.builder(context), isA<WrongResumeWithPinPage>());
+  });
+
+  test('Test router returns hotlines page', () {
+    const RouteSettings settings = RouteSettings(name: AppRoutes.hotlinesPage);
+
+    final MaterialPageRoute<HotlinesPage>? route =
+        routeGenerator(settings) as MaterialPageRoute<HotlinesPage>?;
+
+    expect(route, isA<MaterialPageRoute<HotlinesPage>>());
+    expect(route?.builder(context), isA<HotlinesPage>());
   });
 }

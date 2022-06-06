@@ -61,7 +61,9 @@ const Key selectCountryKey = Key('select_country_key');
 const Key nameInputKey = Key('name_input_key');
 const Key joinSuggestedGroupButtonKey = Key('join_suggested_group_button_key');
 
+// Hotlines on the user profile page
 const Key hotlineCallButtonKey = Key('hotline_call_button_key');
+const Key hotlineMoreHotlinesKey = Key('hotline_more_hotlines_key');
 
 // community page
 const Key communityListViewKey = Key('community_list_view_key');
