@@ -12,29 +12,40 @@ import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
 class FetchAppointmentsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final String comparison;
+  final int? page;
 
-  FetchAppointmentsAction({required this.client, required this.comparison});
+  FetchAppointmentsAction({
+    required this.client,
+    required this.comparison,
+    this.page,
+  });
 
   @override
   void before() {
     super.before();
     dispatch(UpdateAppointmentStateAction(errorFetchingAppointments: false));
-    dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
+    dispatch(WaitAction<AppState>.add('$fetchAppointmentsFlag${page ?? ''}'));
   }
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(fetchAppointmentsFlag));
+    dispatch(
+      WaitAction<AppState>.remove('$fetchAppointmentsFlag${page ?? ''}'),
+    );
     super.after();
   }
 
   @override
   Future<AppState?> reduce() async {
     final String clientID = state.clientState?.id ?? '';
+    final int currentPage = state.miscState?.appointmentState?.currentPage ?? 1;
     final String date = DateTime.now().toString();
     final Map<String, dynamic> variables = <String, dynamic>{
       'clientID': clientID,
-      'paginationInput': <String, dynamic>{'Limit': 20, 'CurrentPage': 1},
+      'paginationInput': <String, dynamic>{
+        'Limit': 20,
+        'CurrentPage': page ?? currentPage,
+      },
       'filters': <dynamic>[
         <String, dynamic>{
           'fieldName': 'date',
@@ -55,18 +66,37 @@ class FetchAppointmentsAction extends ReduxAction<AppState> {
     final String? error = parseError(payLoad);
 
     if (error != null) {
-      dispatch(UpdateAppointmentStateAction(errorFetchingAppointments: true));
+      dispatch(
+        UpdateAppointmentStateAction(
+          errorFetchingAppointments: true,
+        ),
+      );
       return state;
     }
     final MiscState miscState = MiscState.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
 
-    final List<Appointment> appointments =
+    List<Appointment> appointments =
+        state.miscState?.appointmentState?.appointments ?? <Appointment>[];
+    final List<Appointment> newAppointments =
         miscState.appointmentState?.appointments ?? <Appointment>[];
-
+    if (currentPage == 1) {
+      appointments = newAppointments;
+    } else {
+      appointments += newAppointments;
+    }
+    final int newCurrentPage = page != null
+        ? page! + 1
+        : newAppointments.length < 20
+            ? currentPage
+            : currentPage + 1;
     dispatch(
-      UpdateAppointmentStateAction(appointments: appointments),
+      UpdateAppointmentStateAction(
+        appointments: appointments,
+        currentPage: newCurrentPage,
+        hasNextPage: newCurrentPage > currentPage,
+      ),
     );
 
     return state;

@@ -1109,28 +1109,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
               'fetchClientAppointments': <String, dynamic>{
-                'appointments': <dynamic>[
-                  <String, dynamic>{
-                    'ID': '1234',
-                    'type': 'DENTAL',
-                    'reason': 'test',
-                    'status': 'SCHEDULED',
-                    'date': '2022-01-04',
-                    'start': 'test',
-                    'end': 'test',
-                    'HasRescheduledAppointment': false
-                  },
-                  <String, dynamic>{
-                    'ID': '56789',
-                    'type': 'DENTAL',
-                    'reason': 'test',
-                    'status': 'SCHEDULED',
-                    'date': '2022-01-04',
-                    'start': 'test',
-                    'end': 'test',
-                    'HasRescheduledAppointment': true
-                  },
-                ],
+                'appointments': mockAppointments,
               }
             }
           }),
@@ -1330,6 +1309,229 @@ Map<String, dynamic> mockNotificationsResponse = <String, dynamic>{
     ]
   }
 };
+
+final List<dynamic> mockAppointments = <dynamic>[
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+  <String, dynamic>{
+    'ID': '1234',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': false
+  },
+  <String, dynamic>{
+    'ID': '56789',
+    'type': 'DENTAL',
+    'reason': 'test',
+    'status': 'SCHEDULED',
+    'date': '2022-01-04',
+    'start': 'test',
+    'end': 'test',
+    'HasRescheduledAppointment': true
+  },
+];
 
 Map<String, dynamic> mockBottomNavigationState = <String, dynamic>{
   'currentBottomNavIndex': 0,

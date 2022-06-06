@@ -1,5 +1,6 @@
 // Package imports:
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
@@ -13,7 +14,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
 import 'package:myafyahub/presentation/my_health/pages/my_health_page.dart';
 import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
-import 'package:myafyahub/presentation/my_health/widgets/past_appointments.dart';
 import 'package:myafyahub/presentation/my_health/widgets/reschedule_appointment_action_dialog.dart';
 
 import '../../../mocks.dart';
@@ -65,6 +65,8 @@ void main() {
     );
 
     testWidgets('renders correctly', (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(700, 4200);
+
       await buildTestWidget(
         tester: tester,
         store: store,
@@ -72,18 +74,34 @@ void main() {
         widget: AppointmentsPage(),
       );
 
+      final Finder appointmentListItem = find.byType(AppointmentListItem);
+      await tester.pumpAndSettle();
       expect(find.byType(AppointmentsPage), findsOneWidget);
       expect(find.text(upcomingAppointmentsText), findsOneWidget);
+      expect(appointmentListItem, findsWidgets);
+      await tester.fling(
+        appointmentListItem.last,
+        const Offset(0.0, -30000.0),
+        10000.0,
+      );
+      await tester.pumpAndSettle();
+
+      expect(appointmentListItem, findsWidgets);
       expect(find.text(pastAppointmentsText), findsOneWidget);
+
+      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
     });
 
     testWidgets('displays the second tab', (WidgetTester tester) async {
+      tester.binding.window.physicalSizeTestValue = const Size(700, 3000);
       await buildTestWidget(
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
         widget: AppointmentsPage(),
       );
+
+      final Finder appointmentListItem = find.byType(AppointmentListItem);
 
       expect(find.byType(AppointmentsPage), findsOneWidget);
       expect(find.text(upcomingAppointmentsText), findsOneWidget);
@@ -91,14 +109,24 @@ void main() {
       await tester.tap(find.text(pastAppointmentsText));
       await tester.pumpAndSettle();
 
-      expect(find.byType(PastAppointments), findsWidgets);
+      expect(appointmentListItem, findsWidgets);
+      await tester.fling(
+        appointmentListItem.last,
+        const Offset(0.0, -30000.0),
+        10000.0,
+      );
+      await tester.pumpAndSettle();
+
+      expect(appointmentListItem, findsWidgets);
+
+      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
     });
 
     group('Upcoming Appointments Page', () {
       testWidgets(
           'should show a loading indicator when fetching upcoming appointments',
           (WidgetTester tester) async {
-        store.dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
+        store.dispatch(WaitAction<AppState>.add('${fetchAppointmentsFlag}1'));
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -106,6 +134,19 @@ void main() {
           widget: AppointmentsPage(),
         );
 
+        expect(find.byType(PlatformLoader), findsOneWidget);
+      });
+      testWidgets(
+          'should show a loading indicator when fetching more upcoming appointments',
+          (WidgetTester tester) async {
+        store.dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: MockGraphQlClient(),
+          widget: AppointmentsPage(),
+        );
+        await tester.pump();
         expect(find.byType(PlatformLoader), findsOneWidget);
       });
       testWidgets('should show show dialog when reschedule button is tapped',
@@ -118,9 +159,9 @@ void main() {
         );
         await tester.pumpAndSettle();
         final Finder rescheduleButton = find.byKey(rescheduleButtonKey);
-        expect(rescheduleButton, findsOneWidget);
+        expect(rescheduleButton, findsNWidgets(2));
 
-        await tester.tap(rescheduleButton);
+        await tester.tap(rescheduleButton.first);
         await tester.pumpAndSettle();
         expect(find.byType(RescheduleAppointmentActionDialog), findsOneWidget);
       });
@@ -171,7 +212,7 @@ void main() {
       testWidgets(
           'should show a loading indicator when fetching past appointments',
           (WidgetTester tester) async {
-        store.dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
+        store.dispatch(WaitAction<AppState>.add('${fetchAppointmentsFlag}1'));
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -180,6 +221,24 @@ void main() {
         );
 
         await tester.tap(find.text(pastAppointmentsText));
+
+        expect(find.byType(PlatformLoader), findsOneWidget);
+      });
+      testWidgets(
+          'should show a loading indicator when fetching more past appointments',
+          (WidgetTester tester) async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: MockGraphQlClient(),
+          widget: AppointmentsPage(),
+        );
+
+        await tester.tap(find.text(pastAppointmentsText));
+        
+        store.dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
+        await tester.pump();
+        await tester.pump(const Duration(seconds: 5));
 
         expect(find.byType(PlatformLoader), findsOneWidget);
       });

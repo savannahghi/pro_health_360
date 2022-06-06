@@ -6,10 +6,14 @@ import 'package:myafyahub/domain/core/entities/appointments/appointments_state.d
 class UpdateAppointmentStateAction extends ReduxAction<AppState> {
   final List<Appointment>? appointments;
   final bool? errorFetchingAppointments;
+  final int? currentPage;
+  final bool? hasNextPage;
 
   UpdateAppointmentStateAction({
     this.appointments,
     this.errorFetchingAppointments,
+    this.currentPage,
+    this.hasNextPage,
   });
 
   @override
@@ -17,10 +21,14 @@ class UpdateAppointmentStateAction extends ReduxAction<AppState> {
     final AppointmentState? appointmentState =
         state.miscState?.appointmentState?.copyWith(
       appointments:
-          appointments,
-      errorFetchingAppointments: errorFetchingAppointments,
+          appointments ?? state.miscState?.appointmentState?.appointments,
+      errorFetchingAppointments: errorFetchingAppointments ??
+          state.miscState?.appointmentState?.errorFetchingAppointments,
+      currentPage:
+          currentPage ?? state.miscState?.appointmentState?.currentPage,
+      hasNextPage:
+          hasNextPage ?? state.miscState?.appointmentState?.hasNextPage,
     );
-
 
     return state.copyWith(
       miscState: state.miscState?.copyWith(appointmentState: appointmentState),
