@@ -8,5 +8,5 @@ import 'application/core/services/app_bootstrap.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseMessaging.onBackgroundMessage(backgroundMessageHandler);
-  appBootStrap(testAppContexts);
+  appBootStrap(demoAppContexts);
 }
