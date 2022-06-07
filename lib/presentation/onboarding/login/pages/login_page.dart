@@ -61,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
         phoneNumberInputController.dispose();
       },
       builder: (BuildContext context, LoginPageViewModel vm) {
+        final TargetPlatform _platform = Theme.of(context).platform;
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SafeArea(
@@ -200,15 +201,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Center(
-                    child: Text(
-                      '$appVersionString $APPVERSION',
-                      style: normalSize9Text(Colors.grey),
+                if (_platform != TargetPlatform.iOS)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Center(
+                      child: Text(
+                        '$appVersionString $APPVERSION',
+                        style: normalSize9Text(Colors.grey),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),
