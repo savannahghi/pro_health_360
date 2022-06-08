@@ -11,11 +11,17 @@ _$_AppointmentState _$$_AppointmentStateFromJson(Map<String, dynamic> json) =>
       appointments: (json['appointments'] as List<dynamic>?)
           ?.map((e) => Appointment.fromJson(e as Map<String, dynamic>))
           .toList(),
+      currentPage: json['currentPage'] as int?,
+      hasNextPage: json['hasNextPage'] as bool?,
+      isFirstLoad: json['isFirstLoad'] as bool?,
       errorFetchingAppointments: json['errorFetchingAppointments'] as bool?,
     );
 
 Map<String, dynamic> _$$_AppointmentStateToJson(_$_AppointmentState instance) =>
     <String, dynamic>{
       'appointments': instance.appointments,
+      'currentPage': instance.currentPage,
+      'hasNextPage': instance.hasNextPage,
+      'isFirstLoad': instance.isFirstLoad,
       'errorFetchingAppointments': instance.errorFetchingAppointments,
     };

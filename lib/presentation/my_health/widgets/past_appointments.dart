@@ -4,6 +4,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:myafyahub/application/redux/actions/my_health/fetch_appointments_action.dart';
+import 'package:myafyahub/application/redux/actions/my_health/update_appointment_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/appointments/appointments_view_model.dart';
@@ -20,21 +21,44 @@ class PastAppointments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _listController = ScrollController();
     return StoreConnector<AppState, AppointmentsViewModel>(
       converter: (Store<AppState> store) =>
           AppointmentsViewModel.fromStore(store.state),
-      onInit: (Store<AppState> store) {
+      onInit: (Store<AppState> store) async {
+        _listController.addListener(() {
+          final double maxScroll = _listController.position.maxScrollExtent;
+          final double currentScroll = _listController.position.pixels;
+          if (maxScroll <= currentScroll &&
+              !store.state.wait!.isWaitingFor(fetchAppointmentsFlag) &&
+              store.state.miscState!.appointmentState!.hasNextPage!) {
+            store.dispatch(
+              FetchAppointmentsAction(
+                client: AppWrapperBase.of(context)!.graphQLClient,
+                comparison: 'GREATER_THAN_OR_EQUAL_TO',
+              ),
+            );
+          }
+        });
+        await store.dispatch(
+          UpdateAppointmentStateAction(
+            appointments: <Appointment>[],
+            currentPage: 1,
+            hasNextPage: true,
+          ),
+        );
         store.dispatch(
           FetchAppointmentsAction(
             client: AppWrapperBase.of(context)!.graphQLClient,
             comparison: 'LESS_THAN',
+            page: 1,
           ),
         );
       },
       builder: (BuildContext context, AppointmentsViewModel vm) {
         final List<Appointment> appointments =
             vm.appointmentState?.appointments ?? <Appointment>[];
-        if (vm.wait!.isWaitingFor(fetchAppointmentsFlag)) {
+        if (vm.wait!.isWaitingFor('${fetchAppointmentsFlag}1')) {
           return const PlatformLoader();
         } else if (vm.appointmentState?.errorFetchingAppointments ?? false) {
           return GenericErrorWidget(
@@ -45,6 +69,7 @@ class PastAppointments extends StatelessWidget {
                 FetchAppointmentsAction(
                   client: AppWrapperBase.of(context)!.graphQLClient,
                   comparison: 'LESS_THAN_OR_EQUAL_TO',
+                  page: 1,
                 ),
               );
             },
@@ -58,20 +83,29 @@ class PastAppointments extends StatelessWidget {
           );
         } else {
           return appointments.isNotEmpty
-              ? ListView.builder(
-                  itemCount: appointments.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final Appointment currentAppointmentDetails =
-                        appointments.elementAt(index);
+              ? Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: appointments.length,
+                        controller: _listController,
+                        itemBuilder: (BuildContext context, int index) {
+                          final Appointment currentAppointmentDetails =
+                              appointments.elementAt(index);
 
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: AppointmentListItem(
-                        appointment: currentAppointmentDetails,
-                        appointmentListTye: AppointmentListTye.Past,
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: AppointmentListItem(
+                              appointment: currentAppointmentDetails,
+                              appointmentListTye: AppointmentListTye.Past,
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
+                    ),
+                    if (vm.wait?.isWaitingFor(fetchAppointmentsFlag) ?? false)
+                      const PlatformLoader()
+                  ],
                 )
               : GenericErrorWidget(
                   headerIconSvgUrl: zeroAppointmentsImageSvgPath,

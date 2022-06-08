@@ -8,6 +8,8 @@ part 'appointments_state.g.dart';
 class AppointmentState with _$AppointmentState {
   factory AppointmentState({
     @JsonKey(name: 'appointments') List<Appointment>? appointments,
+    int? currentPage,
+    bool? hasNextPage,
     bool? errorFetchingAppointments,
   }) = _AppointmentState;
 
@@ -17,5 +19,7 @@ class AppointmentState with _$AppointmentState {
   factory AppointmentState.initial() => AppointmentState(
         appointments: <Appointment>[],
         errorFetchingAppointments: false,
+        currentPage: 1,
+        hasNextPage: true,
       );
 }
