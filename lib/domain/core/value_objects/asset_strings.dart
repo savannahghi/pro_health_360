@@ -197,3 +197,4 @@ const String surveyItemImage = 'assets/icons/clipboard.svg';
 const String surveysImage = 'assets/images/surveys.svg';
 
 const String noFlaggedMessagesImage = 'assets/images/no_flagged_messages.svg';
+const String noChatImage = 'assets/images/no_chat.svg';

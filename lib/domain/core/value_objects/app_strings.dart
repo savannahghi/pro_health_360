@@ -988,3 +988,7 @@ const String tooManyVerificationAttemptsSubtitle =
 const String hotlinesPageTitle = 'Help is a phone call away';
 const String hotlinesPageDescription =
     'Call any of the helplines below to get prompt assistance';
+const String noConversationsAvailable = 'No conversations available';
+const String noConversationsDescription =
+    'You have not been added to any conversation yet. Tap below to view your conversation invites';
+const String viewInvites = 'View Invites';
