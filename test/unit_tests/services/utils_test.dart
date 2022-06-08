@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/notifications_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
@@ -334,12 +335,10 @@ void main() {
     test(
       'should fail to log an event when the userID and user names are unknown',
       () async {
-        final Store<AppState> store =
-            Store<AppState>(initialState: AppState.initial());
+        // TODO!!(abiud): move these tests into the analytics service tests
 
-        await logUserEvent(
+        await AnalyticsService().logEvent(
           name: 'testEvent',
-          state: store.state,
           eventType: AnalyticsEventType.AUTH_EVENT,
         );
 
@@ -359,9 +358,10 @@ void main() {
         );
 
         store.dispatch(UpdateUserProfileAction());
-        await logUserEvent(
+
+        // TODO!!(abiud): move these tests into the analytics service tests
+        await AnalyticsService().logEvent(
           name: 'testEvent',
-          state: store.state,
           eventType: AnalyticsEventType.AUTH_EVENT,
           parameters: <String, dynamic>{'test_param': 'value'},
         );

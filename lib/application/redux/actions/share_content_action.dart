@@ -13,7 +13,7 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_events.dart';
@@ -68,13 +68,10 @@ class ShareContentAction extends ReduxAction<AppState> {
       );
     }
 
-    await logUserEvent(
+    await AnalyticsService().logEvent(
       name: shareContentEvent,
-      state: state,
       eventType: AnalyticsEventType.CONTENT_INTERACTION_EVENT,
-      parameters: <String, dynamic>{
-        'contentID': contentID,
-      },
+      parameters: <String, dynamic>{'contentID': contentID},
     );
 
     return state;

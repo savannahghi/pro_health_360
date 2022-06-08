@@ -11,6 +11,7 @@ import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -75,9 +76,8 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
       );
     }
 
-    await logUserEvent(
+    await AnalyticsService().logEvent(
       name: isLiked ? likeContentEvent : unlikeContentEvent,
-      state: state,
       eventType: AnalyticsEventType.CONTENT_INTERACTION_EVENT,
       parameters: <String, dynamic>{
         'contentID': contentID,
