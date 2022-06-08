@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_misc_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -94,9 +94,8 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
         if (pinVerified) {
           final OnboardingPathInfo path = onboardingPath(appState: state);
 
-          await logUserEvent(
+          await AnalyticsService().logEvent(
             name: resumeWithPINEvent,
-            state: state,
             eventType: AnalyticsEventType.AUTH_EVENT,
           );
 

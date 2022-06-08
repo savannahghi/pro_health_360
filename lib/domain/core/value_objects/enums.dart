@@ -160,5 +160,8 @@ enum AnalyticsEventType {
   CONTENT_INTERACTION_EVENT,
 
   // Used for all authentication events e.g login, logout
-  AUTH_EVENT
+  AUTH_EVENT,
+
+  /// General user behavior event like filling in a survey
+  BEHAVIOR_EVENT
 }
