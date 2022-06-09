@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -15,6 +16,9 @@ void main() {
     testWidgets('should display successfully', (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
+
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
 
       await buildTestWidget(
         tester: tester,

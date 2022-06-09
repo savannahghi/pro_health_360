@@ -2,12 +2,15 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/redux/actions/communities/fetch_invited_communities_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/community.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/communities/invited_groups/widgets/group_invite_item.dart';
 import 'package:myafyahub/presentation/communities/view_models/invited_groups_view_model.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -69,8 +72,19 @@ class InvitedGroupsPage extends StatelessWidget {
                       width: double.infinity,
                       child: MyAfyaHubPrimaryButton(
                         text: okThanksText,
-                        onPressed: () => Navigator.of(context)
-                            .pushReplacementNamed(AppRoutes.userProfilePage),
+                        onPressed: () async {
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          } else {
+                            await AnalyticsService().logEvent(
+                              name: viewProfile,
+                              eventType: AnalyticsEventType.NAVIGATION,
+                            );
+                            Navigator.of(context).pushReplacementNamed(
+                              AppRoutes.userProfilePage,
+                            );
+                          }
+                        },
                       ),
                     )
                   ],

@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,8 +25,11 @@ import '../../../test_helpers.dart';
 void main() {
   group('MyHealthPage', () {
     late Store<AppState> store;
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
+
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {

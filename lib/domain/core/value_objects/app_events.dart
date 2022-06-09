@@ -19,3 +19,5 @@ const String shareContentEvent = 'share_content';
 const String copyContentEvent = 'copy_content';
 
 const String saveContentEvent = 'save_content';
+
+const String viewProfile = 'view_profile';

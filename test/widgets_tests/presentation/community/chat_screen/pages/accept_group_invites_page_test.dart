@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -31,11 +32,13 @@ void main() {
         201,
       ),
     );
-    setUpAll(() {
+    setUpAll(() async {
       store = Store<AppState>(
         initialState: AppState.initial()
           ..clientState!.copyWith(facilityID: 'id'),
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     final MockShortGraphQlClient rejectMockShortSILGraphQlClient =
@@ -100,12 +103,25 @@ void main() {
         tester: tester,
         store: store,
         client: rejectMockShortSILGraphQlClient,
-        widget: const AcceptGroupInvitesPage(
-          groupId: '',
-          groupName: '',
-          numberOfMembers: 0,
+        widget: Builder(
+          builder: (BuildContext context) {
+            return RawMaterialButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.acceptGroupInvitesPage,
+                  arguments: <String, dynamic>{
+                    'groupId': 'test',
+                    'groupName': 'test',
+                    'numberOfMembers': 20,
+                  },
+                );
+              },
+            );
+          },
         ),
       );
+
+      await tester.tap(find.byType(RawMaterialButton));
       await tester.pumpAndSettle();
 
       expect(find.byType(MyAfyaHubPrimaryButton), findsNWidgets(2));
