@@ -95,12 +95,14 @@ class RouteGenerator {
       case AppRoutes.phoneLogin:
         return MaterialPageRoute<LoginPage>(
           builder: (_) => const LoginPage(),
+          settings: const RouteSettings(name: 'Login page'),
         );
 
       // the homepage route config
       case AppRoutes.home:
         return MaterialPageRoute<HomePage>(
           builder: (_) => HomePage(),
+          settings: const RouteSettings(name: 'Home page'),
         );
 
       case AppRoutes.moodFeedbackPage:
@@ -196,6 +198,7 @@ class RouteGenerator {
       case AppRoutes.feedPage:
         return MaterialPageRoute<FeedPage>(
           builder: (_) => const FeedPage(),
+          settings: const RouteSettings(name: 'User feed page'),
         );
 
       case AppRoutes.notificationsPage:
@@ -238,6 +241,7 @@ class RouteGenerator {
       case AppRoutes.feedbackPage:
         return MaterialPageRoute<FeedbackPage>(
           builder: (_) => const FeedbackPage(),
+          settings: const RouteSettings(name: 'Feedback page'),
         );
 
       case AppRoutes.pinInputPage:
