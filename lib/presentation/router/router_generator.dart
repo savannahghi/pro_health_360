@@ -1,7 +1,9 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/domain/core/entities/profile/edit_information_item.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/assessment/pages/alcohol_substance_use_page.dart';
 import 'package:myafyahub/presentation/assessment/pages/contraceptive_assessment_page.dart';
@@ -278,11 +280,23 @@ class RouteGenerator {
       case AppRoutes.contentDetailPage:
         final ContentDetails payload = args['payload'] as ContentDetails;
         final bool? showReactions = args['showReactions'] as bool?;
+
         return MaterialPageRoute<ContentDetailPage>(
-          builder: (_) => ContentDetailPage(
-            payload: payload,
-            showReactions: showReactions,
-          ),
+          builder: (_) {
+            /// Log this as a view event
+            AnalyticsService().logEvent(
+              name: viewContentEvent,
+              eventType: AnalyticsEventType.CONTENT_INTERACTION,
+              parameters: <String, dynamic>{
+                'contentID': payload.content.contentID,
+              },
+            ).then((_) => null);
+
+            return ContentDetailPage(
+              payload: payload,
+              showReactions: showReactions,
+            );
+          },
           settings: const RouteSettings(name: 'Content details page'),
         );
 

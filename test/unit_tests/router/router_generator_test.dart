@@ -3,6 +3,7 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -364,7 +365,10 @@ void main() {
     expect(route.builder(context), isA<PINInputPage>());
   });
 
-  test('Test router returns ContentDetailPage', () {
+  test('Test router returns ContentDetailPage', () async {
+    await setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
+
     final RouteSettings settings = RouteSettings(
       name: AppRoutes.contentDetailPage,
       arguments: <String, dynamic>{

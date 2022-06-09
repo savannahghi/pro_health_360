@@ -94,8 +94,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
         final PhoneLoginResponse loginResponse =
             PhoneLoginResponse.fromJson(parsed);
 
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString(
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+
+        await sharedPreferences.setString(
           'clientId',
           loginResponse.userResponse?.clientState?.id ?? '',
         );
@@ -133,6 +135,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         User? user = loginResponse.userResponse?.clientState?.user;
 
+        await AnalyticsService().setUserId(user?.userId);
+
         // Clean up the user's names
         final String fullName =
             loginResponse.userResponse?.clientState?.user?.name ?? UNKNOWN;
@@ -160,6 +164,8 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             loginResponse.userResponse?.clientState?.facilityID ?? UNKNOWN;
         final String treatmentBuddy =
             loginResponse.userResponse?.clientState?.treatmentBuddy ?? UNKNOWN;
+
+        await AnalyticsService().setUserFacility(facilityId);
 
         dispatch(
           UpdateClientStateAction(
@@ -214,8 +220,6 @@ class PhoneLoginAction extends ReduxAction<AppState> {
           ),
         );
 
-        await AnalyticsService().setUserId(user?.userId);
-
         await AnalyticsService().logEvent(
           name: loginEvent,
           eventType: AnalyticsEventType.AUTH,
@@ -232,6 +236,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
             // exception thrown if the backend could not match the provided
             //credentials with those stored in the backend
             errorCallback?.call(processedResponse.message ?? UNKNOWN);
+            await AnalyticsService().logEvent(
+              name: incorrectCredentialsLoginEvent,
+              eventType: AnalyticsEventType.AUTH,
+            );
             return state;
           case 48:
             dispatch(
@@ -240,6 +248,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
                 (Route<dynamic> route) => false,
               ),
             );
+            await AnalyticsService().logEvent(
+              name: pinExpiredEvent,
+              eventType: AnalyticsEventType.AUTH,
+            );
             return state;
           case 72:
             dispatch(
@@ -247,6 +259,10 @@ class PhoneLoginAction extends ReduxAction<AppState> {
                 AppRoutes.pendingPINRequestPage,
                 (Route<dynamic> route) => false,
               ),
+            );
+            await AnalyticsService().logEvent(
+              name: pendingPinResetServiceRequest,
+              eventType: AnalyticsEventType.AUTH,
             );
             return state;
           case 73:
@@ -260,10 +276,20 @@ class PhoneLoginAction extends ReduxAction<AppState> {
               ),
             );
 
+            await AnalyticsService().logEvent(
+              name: exponentialBackoffEvent,
+              eventType: AnalyticsEventType.AUTH,
+              parameters: <String, dynamic>{'retryTime': retryTime?.ceil()},
+            );
+
             return state;
           default:
             // exception thrown if the backend could not match the provided
             //credentials with those stored in the backend
+            await AnalyticsService().logEvent(
+              name: unknownAuthErrorEvent,
+              eventType: AnalyticsEventType.AUTH,
+            );
             errorCallback?.call(processedResponse.message ?? UNKNOWN);
         }
       }

@@ -171,7 +171,6 @@ class _FeedPageState extends State<FeedPage> {
                                       },
                                     );
                                   },
-                                  
                                   onTapCallback: () {
                                     StoreProvider.dispatch(
                                       context,

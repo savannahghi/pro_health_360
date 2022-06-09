@@ -44,8 +44,15 @@ class AnalyticsService {
   /// Adds a set of common properties that are common for all events for this
   /// user. This means that all events in the future will contain this metadata
   Future<void> setUserId(String? id) async {
-    if (id != null && id.isNotEmpty) {
+    if (id != null && id.isNotEmpty && id != UNKNOWN) {
       await _analytics.setUserId(id: id);
+    }
+  }
+
+  /// Safely sets the facility ID of the currently logged in user
+  Future<void> setUserFacility(String? facilityID) async {
+    if (facilityID != null && facilityID.isNotEmpty && facilityID != UNKNOWN) {
+      await _analytics.setUserProperty(name: 'facilityID', value: facilityID);
     }
   }
 

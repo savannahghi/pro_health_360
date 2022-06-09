@@ -3,60 +3,43 @@ import 'dart:async';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:http/http.dart' as http;
-import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/feed/content_engagement_state.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 
-/// [SendContentEngagementTimeAction] is a Redux Action that sends the amount of time a user has
-///  viewed some specific cone
+/// [SendContentEngagementTimeAction] is a Redux Action that sends the amount of
+///  time a user has viewed some specific content. It saves this as an event to
+///  Firebase for analytics
 class SendContentEngagementTimeAction extends ReduxAction<AppState> {
-  SendContentEngagementTimeAction({
-    required this.client,
-  });
-
-  final IGraphQlClient client;
+  SendContentEngagementTimeAction();
 
   @override
-  Future<AppState> reduce() async {
+  Future<AppState?> reduce() async {
     final ContentEngagementState contentEngagementState =
         state.contentState!.contentEngagementState!;
-    final String? userID = state.clientState?.user?.userId;
+
     final int contentId = contentEngagementState.contentId!;
+
     final DateTime contentOpenedAt =
         DateTime.parse(contentEngagementState.contentOpenedAt!);
     final String differenceInSeconds =
         DateTime.now().difference(contentOpenedAt).inSeconds.toString();
 
-    final Map<String, dynamic> variables = <String, dynamic>{
-      'input': <String, dynamic>{
-        'userID': userID,
-        'type': 'CONTENT',
-        'event': <String, dynamic>{
-          'contentIds': contentId,
-          'duration': differenceInSeconds,
-        }
+    final Map<String, dynamic> params = <String, dynamic>{
+      'event': <String, dynamic>{
+        'contentID': contentId,
+        'duration': differenceInSeconds,
       }
     };
 
-    final http.Response result = await client.query(
-      contentViewDurationMutation,
-      variables,
+    /// Log this as an event
+    await AnalyticsService().logEvent(
+      name: contentInteractionTimeEvent,
+      eventType: AnalyticsEventType.CONTENT_INTERACTION,
+      parameters: params,
     );
-
-    final Map<String, dynamic> body = client.toMap(result);
-    client.close();
-
-    final String? errors = client.parseError(body);
-
-    if (errors != null) {
-      Sentry.captureException(
-        UserException(errors),
-      );
-      throw const UserException('sending content feedback time');
-    }
 
     return state;
   }

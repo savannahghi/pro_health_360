@@ -79,9 +79,7 @@ class UpdateContentLikeStatusAction extends ReduxAction<AppState> {
     await AnalyticsService().logEvent(
       name: isLiked ? likeContentEvent : unlikeContentEvent,
       eventType: AnalyticsEventType.CONTENT_INTERACTION,
-      parameters: <String, dynamic>{
-        'contentID': contentID,
-      },
+      parameters: <String, dynamic>{'contentID': contentID},
     );
 
     return null;

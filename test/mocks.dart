@@ -2972,9 +2972,9 @@ Future<T> neverEndingFuture<T>() async {
   }
 }
 
-final List<MethodCall> methodCallLog = <MethodCall>[];
-
-void setupFirebaseAnalyticsMocks() {
+Future<void> setupFirebaseAnalyticsMocks({
+  Function(MethodCall)? updateLogFunc,
+}) async {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelFirebase.channel
@@ -3007,7 +3007,10 @@ void setupFirebaseAnalyticsMocks() {
 
   MethodChannelFirebaseAnalytics.channel
       .setMockMethodCallHandler((MethodCall methodCall) async {
-    methodCallLog.add(methodCall);
+    if (updateLogFunc != null) {
+      updateLogFunc.call(methodCall);
+    }
+
     switch (methodCall.method) {
       default:
         return false;

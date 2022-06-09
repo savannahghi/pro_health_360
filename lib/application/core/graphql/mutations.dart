@@ -219,12 +219,6 @@ mutation readNotifications($ids: [ID!]!){
 }
 ''';
 
-const String contentViewDurationMutation = r'''
-mutation collectMetric($input:MetricInput!) {
-  collectMetric(input:$input)
-}
-''';
-
 const String verifySurveySubmissionMutation = r'''
 mutation verifySurveySubmission($input: VerifySurveySubmissionInput!){
   verifySurveySubmission(input: $input)

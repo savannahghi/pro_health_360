@@ -4,6 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
@@ -11,9 +12,11 @@ import 'package:myafyahub/application/redux/actions/update_onboarding_state_acti
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/login_page_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
@@ -308,6 +311,10 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       const SnackBar snackbar = SnackBar(content: Text(checkInternetText));
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
+      AnalyticsService().logEvent(
+        name: noConnectionEvent,
+        eventType: AnalyticsEventType.CONNECTIVITY,
+      );
     }
   }
 }

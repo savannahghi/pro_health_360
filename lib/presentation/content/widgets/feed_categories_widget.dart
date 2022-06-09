@@ -114,9 +114,7 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                         await AnalyticsService().logEvent(
                           name: filterContentCategoriesEvent,
                           eventType: AnalyticsEventType.CONTENT_INTERACTION,
-                          parameters: <String, dynamic>{
-                            'category': chipLabel,
-                          },
+                          parameters: <String, dynamic>{'category': chipLabel},
                         );
 
                         StoreProvider.dispatch<AppState>(

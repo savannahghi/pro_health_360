@@ -7,6 +7,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -53,7 +54,10 @@ void main() {
       ),
     );
 
-    setUp(() {
+    setUp(() async {
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
+
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
       store.dispatch(UpdateConnectivityAction(hasConnection: true));

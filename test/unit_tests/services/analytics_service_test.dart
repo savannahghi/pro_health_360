@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/core/services/analytics_service.dart';
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
-import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
+
+import '../../mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -14,48 +14,14 @@ void main() {
     final List<MethodCall> methodCallLog = <MethodCall>[];
 
     setUp(() async {
-      MethodChannelFirebaseAnalytics.channel
-          .setMockMethodCallHandler((MethodCall methodCall) async {
-        methodCallLog.add(methodCall);
-        switch (methodCall.method) {
-          default:
-            return false;
-        }
-      });
+      setupFirebaseAnalyticsMocks(
+        updateLogFunc: (MethodCall call) => methodCallLog.add(call),
+      );
 
-      MethodChannelFirebase.channel
-          .setMockMethodCallHandler((MethodCall call) async {
-        if (call.method == 'Firebase#initializeCore') {
-          return <Map<String, dynamic>>[
-            <String, dynamic>{
-              'name': defaultFirebaseAppName,
-              'options': <String, dynamic>{
-                'apiKey': '123',
-                'appId': '123',
-                'messagingSenderId': '123',
-                'projectId': '123',
-              },
-              'pluginConstants': <String, dynamic>{},
-            }
-          ];
-        }
-
-        if (call.method == 'Firebase#initializeApp') {
-          return <String, dynamic>{
-            'name': call.arguments['appName'],
-            'options': call.arguments['options'],
-            'pluginConstants': <String, dynamic>{},
-          };
-        }
-
-        return null;
-      });
       await Firebase.initializeApp();
     });
 
-    tearDown(() {
-      methodCallLog.clear();
-    });
+    tearDown(() => methodCallLog.clear());
 
     test('should return the correct analytics observer', () {
       expect(
@@ -120,6 +86,21 @@ void main() {
         isMethodCall(
           'Analytics#setUserId',
           arguments: <String, dynamic>{'userId': 'test-user-id'},
+        ),
+      ]);
+    });
+
+    test('should set the current user facility', () async {
+      await AnalyticsService().setUserFacility('test-user-facility-id');
+
+      expect(methodCallLog.length, 1);
+      expect(methodCallLog, <Matcher>[
+        isMethodCall(
+          'Analytics#setUserProperty',
+          arguments: <String, Object>{
+            'name': 'facilityID',
+            'value': 'test-user-facility-id',
+          },
         ),
       ]);
     });

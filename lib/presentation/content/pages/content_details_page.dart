@@ -1,5 +1,4 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:myafyahub/application/redux/actions/send_content_engagement_time_action.dart';
@@ -7,11 +6,8 @@ import 'package:myafyahub/presentation/content/widgets/reactions_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class ContentDetailPage extends StatelessWidget {
-  const ContentDetailPage({
-    Key? key,
-    required this.payload,
-    this.showReactions,
-  }) : super(key: key);
+  const ContentDetailPage({Key? key, required this.payload, this.showReactions})
+      : super(key: key);
   final ContentDetails payload;
   final bool? showReactions;
 
@@ -23,12 +19,7 @@ class ContentDetailPage extends StatelessWidget {
           ? ReactionsWidget(contentDetails: payload)
           : const SizedBox(),
       onCloseCallback: () {
-        StoreProvider.dispatch(
-          context,
-          SendContentEngagementTimeAction(
-            client: AppWrapperBase.of(context)!.graphQLClient,
-          ),
-        );
+        StoreProvider.dispatch(context, SendContentEngagementTimeAction());
         Navigator.of(context).pop();
       },
       galleryImageCallback: () {

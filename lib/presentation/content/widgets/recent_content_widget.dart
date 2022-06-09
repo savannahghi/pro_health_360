@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 // Project imports:
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
@@ -11,9 +12,11 @@ import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/content/content_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/content_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/content/widgets/feed_page_content_item.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
@@ -104,14 +107,17 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                       children: <Widget>[
                         Text(
                           newContentText,
-                          style: veryBoldSize16Text(
-                            AppColors.secondaryColor,
-                          ),
+                          style: veryBoldSize16Text(AppColors.secondaryColor),
                         ),
                         verySmallVerticalSizedBox,
                         GestureDetector(
                           key: viewAllButtonKey,
-                          onTap: () {
+                          onTap: () async {
+                            /// Log event to google analytics
+                            await AnalyticsService().logEvent(
+                              name: viewAllContentEvent,
+                              eventType: AnalyticsEventType.NAVIGATION,
+                            );
                             navigateToNewPage(
                               context: context,
                               route: AppRoutes.feedPage,
@@ -120,9 +126,7 @@ class _RecentContentWidgetState extends State<RecentContentWidget> {
                           },
                           child: Text(
                             viewAllText,
-                            style: normalSize16Text(
-                              AppColors.secondaryColor,
-                            ),
+                            style: normalSize16Text(AppColors.secondaryColor),
                           ),
                         ),
                       ],

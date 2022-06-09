@@ -161,4 +161,7 @@ enum AnalyticsEventType {
 
   // Used for all authentication events e.g login, logout
   AUTH,
+
+  // Connectivity events
+  CONNECTIVITY
 }

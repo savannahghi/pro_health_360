@@ -29,16 +29,14 @@ void main() {
         tester: tester,
         store: store,
         client: MockGraphQlClient(),
-        widget: const NotificationsPage(
-          bottomNavIndex: 0,
-        ),
+        widget: const NotificationsPage(bottomNavIndex: 0),
       );
 
       await tester.pumpAndSettle();
 
       expect(find.byType(consumer.NotificationListItem), findsNWidgets(2));
     });
-  testWidgets('should refresh notifications correctly',
+    testWidgets('should refresh notifications correctly',
         (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
@@ -50,7 +48,8 @@ void main() {
           bottomNavIndex: 0,
         ),
       );
-      final Finder notificationListItem = find.byType(consumer.NotificationListItem);
+      final Finder notificationListItem =
+          find.byType(consumer.NotificationListItem);
       await tester.pumpAndSettle();
 
       expect(notificationListItem, findsNWidgets(2));
