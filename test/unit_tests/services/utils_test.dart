@@ -1,8 +1,6 @@
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'package:async_redux/async_redux.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_local_notifications_platform_interface/flutter_local_notifications_platform_interface.dart';
@@ -13,19 +11,14 @@ import 'package:mockito/mockito.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/notifications_utils.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 import 'utils_test.mocks.dart';
-import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 
 import '../../mocks.dart';
 
@@ -287,124 +280,10 @@ void main() {
     });
   });
 
-  group('logUserEvent', () {
-    final List<MethodCall> methodCallLog = <MethodCall>[];
-
-    TestWidgetsFlutterBinding.ensureInitialized();
-
-    setUp(() async {
-      MethodChannelFirebaseAnalytics.channel
-          .setMockMethodCallHandler((MethodCall methodCall) async {
-        methodCallLog.add(methodCall);
-        switch (methodCall.method) {
-          default:
-            return false;
-        }
-      });
-      MethodChannelFirebase.channel
-          .setMockMethodCallHandler((MethodCall call) async {
-        if (call.method == 'Firebase#initializeCore') {
-          return <Map<String, dynamic>>[
-            <String, dynamic>{
-              'name': defaultFirebaseAppName,
-              'options': <String, dynamic>{
-                'apiKey': '123',
-                'appId': '123',
-                'messagingSenderId': '123',
-                'projectId': '123',
-              },
-              'pluginConstants': <String, dynamic>{},
-            }
-          ];
-        }
-
-        if (call.method == 'Firebase#initializeApp') {
-          return <String, dynamic>{
-            'name': call.arguments['appName'],
-            'options': call.arguments['options'],
-            'pluginConstants': <String, dynamic>{},
-          };
-        }
-
-        return null;
-      });
-      await Firebase.initializeApp();
-    });
-
-    test(
-      'should fail to log an event when the userID and user names are unknown',
-      () async {
-        final Store<AppState> store =
-            Store<AppState>(initialState: AppState.initial());
-
-        await logUserEvent(
-          name: 'testEvent',
-          state: store.state,
-          eventType: AnalyticsEventType.AUTH_EVENT,
-        );
-
-        expect(methodCallLog, isEmpty);
-      },
-    );
-
-    test(
-      'should log an event when the userID and user names are available',
-      () async {
-        final Store<AppState> store = Store<AppState>(
-          initialState: AppState.initial()
-              .copyWith
-              .clientState!
-              .user!
-              .call(userId: 'some-user-id', name: 'Test User'),
-        );
-
-        store.dispatch(UpdateUserProfileAction());
-        await logUserEvent(
-          name: 'testEvent',
-          state: store.state,
-          eventType: AnalyticsEventType.AUTH_EVENT,
-          parameters: <String, dynamic>{'test_param': 'value'},
-        );
-
-        expect(methodCallLog.length, 1);
-        expect(methodCallLog.first, isA<MethodCall>());
-        expect(
-          methodCallLog,
-          <Matcher>[
-            isMethodCall(
-              'Analytics#logEvent',
-              arguments: <String, dynamic>{
-                'eventName': 'testEvent',
-                'parameters': <String, dynamic>{
-                  'userID': 'some-user-id',
-                  'userNames': 'Test User',
-                  'eventType': 'AUTH_EVENT',
-                  'test_param': 'value',
-                },
-              },
-            )
-          ],
-        );
-      },
-    );
-
-    test('calculate age calculates age correctly', () {
-      final String fiveYearAgo =
-          DateTime.now().subtract(const Duration(days: 365 * 5)).toString();
-      final String age = calculateAge(fiveYearAgo);
-      expect(age, '5');
-    });
+  test('calculate age calculates age correctly', () {
+    final String fiveYearAgo =
+        DateTime.now().subtract(const Duration(days: 365 * 5)).toString();
+    final String age = calculateAge(fiveYearAgo);
+    expect(age, '5');
   });
-}
-
-class MockFlutterLocalNotificationsPlugin extends Mock
-    with MockPlatformInterfaceMixin
-    implements FlutterLocalNotificationsPlatform {
-  @override
-  Future<void> show(
-    int id,
-    String? title,
-    String? body, {
-    String? payload,
-  }) async {}
 }

@@ -6,7 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/content/fetch_content_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -111,11 +111,9 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                       selectedColor: AppColors.primaryColor,
                       onSelected: (bool selected) async {
                         // Log event for analytics
-                        await logUserEvent(
+                        await AnalyticsService().logEvent(
                           name: filterContentCategoriesEvent,
-                          state: StoreProvider.state<AppState>(context),
-                          eventType:
-                              AnalyticsEventType.CONTENT_INTERACTION_EVENT,
+                          eventType: AnalyticsEventType.CONTENT_INTERACTION,
                           parameters: <String, dynamic>{
                             'category': chipLabel,
                           },
