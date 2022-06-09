@@ -96,7 +96,7 @@ class ResumeWithPinAction extends ReduxAction<AppState> {
 
           await AnalyticsService().logEvent(
             name: resumeWithPINEvent,
-            eventType: AnalyticsEventType.AUTH_EVENT,
+            eventType: AnalyticsEventType.AUTH,
           );
 
           dispatch(

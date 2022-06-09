@@ -95,7 +95,7 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
       // Log event for analytic
       await AnalyticsService().logEvent(
         name: recordDiaryEntryEvent,
-        eventType: AnalyticsEventType.INTERACTION_EVENT,
+        eventType: AnalyticsEventType.INTERACTION,
         parameters: <String, dynamic>{
           'mood': mood,
           'reportToStaff': shouldShareHealthRecord

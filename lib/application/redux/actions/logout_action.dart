@@ -18,7 +18,7 @@ class LogoutAction extends ReduxAction<AppState> {
 
     await AnalyticsService().logEvent(
       name: logoutEvent,
-      eventType: AnalyticsEventType.AUTH_EVENT,
+      eventType: AnalyticsEventType.AUTH,
     );
 
     await AnalyticsService().reset();

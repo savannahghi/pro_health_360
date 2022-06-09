@@ -12,6 +12,7 @@ import 'package:firebase_messaging_platform_interface/firebase_messaging_platfor
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/message_codec.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:flutter_local_notifications_platform_interface/flutter_local_notifications_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -3160,4 +3161,16 @@ class MockFirebaseMessaging extends Mock
 
 class TestFirebaseMessagingPlatform extends FirebaseMessagingPlatform {
   TestFirebaseMessagingPlatform() : super();
+}
+
+class MockFlutterLocalNotificationsPlugin extends Mock
+    with MockPlatformInterfaceMixin
+    implements FlutterLocalNotificationsPlatform {
+  @override
+  Future<void> show(
+    int id,
+    String? title,
+    String? body, {
+    String? payload,
+  }) async {}
 }

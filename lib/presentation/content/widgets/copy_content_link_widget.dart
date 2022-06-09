@@ -35,7 +35,7 @@ class CopyContentLinkWidget extends StatelessWidget {
         Clipboard.setData(ClipboardData(text: publicLink)).then((_) async {
           await AnalyticsService().logEvent(
             name: copyContentEvent,
-            eventType: AnalyticsEventType.CONTENT_INTERACTION_EVENT,
+            eventType: AnalyticsEventType.CONTENT_INTERACTION,
             parameters: <String, dynamic>{
               'contentID': contentID,
             },

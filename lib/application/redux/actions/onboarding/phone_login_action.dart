@@ -218,7 +218,7 @@ class PhoneLoginAction extends ReduxAction<AppState> {
 
         await AnalyticsService().logEvent(
           name: loginEvent,
-          eventType: AnalyticsEventType.AUTH_EVENT,
+          eventType: AnalyticsEventType.AUTH,
         );
 
         return state;

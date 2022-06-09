@@ -151,17 +151,14 @@ enum DiaryEntrySuccessType { shared, created }
 /// The types of events that we will collect on myCareHub
 enum AnalyticsEventType {
   // Navigation events
-  NAVIGATION_EVENT,
+  NAVIGATION,
 
   // General app interactions i.e record diary entry
-  INTERACTION_EVENT,
+  INTERACTION,
 
   // Used for likes, shared and saves in content
-  CONTENT_INTERACTION_EVENT,
+  CONTENT_INTERACTION,
 
   // Used for all authentication events e.g login, logout
-  AUTH_EVENT,
-
-  /// General user behavior event like filling in a survey
-  BEHAVIOR_EVENT
+  AUTH,
 }

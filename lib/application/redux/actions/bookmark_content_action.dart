@@ -72,7 +72,7 @@ class BookmarkContentAction extends ReduxAction<AppState> {
     if (responseMap['data']['bookmarkContent'] == true) {
       await AnalyticsService().logEvent(
         name: saveContentEvent,
-        eventType: AnalyticsEventType.CONTENT_INTERACTION_EVENT,
+        eventType: AnalyticsEventType.CONTENT_INTERACTION,
         parameters: <String, dynamic>{
           'contentID': contentID,
         },

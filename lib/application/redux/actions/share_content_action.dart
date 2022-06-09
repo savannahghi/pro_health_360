@@ -70,7 +70,7 @@ class ShareContentAction extends ReduxAction<AppState> {
 
     await AnalyticsService().logEvent(
       name: shareContentEvent,
-      eventType: AnalyticsEventType.CONTENT_INTERACTION_EVENT,
+      eventType: AnalyticsEventType.CONTENT_INTERACTION,
       parameters: <String, dynamic>{'contentID': contentID},
     );
 
