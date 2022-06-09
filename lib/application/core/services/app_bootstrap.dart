@@ -143,7 +143,7 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   await AnalyticsService().init(
-    environment: appSetupData.appContexts.first.toString(),
+    environment: describeEnum(appSetupData.appContexts.first),
   );
 
   runZonedGuarded(
