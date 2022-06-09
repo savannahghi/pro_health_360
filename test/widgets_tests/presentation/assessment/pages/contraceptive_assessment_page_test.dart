@@ -1,5 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -15,7 +16,9 @@ void main() {
   group('ContraceptiveAssessmentPage', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       store = Store<AppState>(initialState: AppState.initial());
     });
 

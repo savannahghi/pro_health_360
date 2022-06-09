@@ -40,3 +40,8 @@ const String pendingPinResetServiceRequest =
     'pending_pin_reset_service_request';
 
 const String incorrectCredentialsLoginEvent = 'incorrect_credentials_login';
+const String viewScreeningToolEvent = 'view_screening_tool_event';
+
+const String abandonScreeningToolEvent = 'abandon_screening_tool_event';
+
+const String successfulToolAssessmentEvent = 'successful_tool_assessment_event';

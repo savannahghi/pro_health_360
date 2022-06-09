@@ -4,10 +4,12 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/fetch_available_screening_tools_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/screening_tools/screening_tools_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/screening_tool.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -127,14 +129,17 @@ class ScreeningToolsCarousel extends StatelessWidget {
                                   screeningTool.toolType!;
 
                               return HomePageCarouselItem(
+                                type: HomePageCarouselItemType.SCREENING_TOOL,
                                 title: screeningTool.title!,
-                                containerColor:
-                                    AppColors.primaryColor.withOpacity(0.14),
-                                buttonTextColor: AppColors.primaryColor,
-                                buttonColor:
-                                    AppColors.primaryColor.withOpacity(0.3),
                                 description: screeningTool.description!,
-                                onTap: () {
+                                onTap: () async {
+                                  AnalyticsService().logEvent(
+                                    name: viewScreeningToolEvent,
+                                    eventType: AnalyticsEventType.NAVIGATION,
+                                    parameters: <String, String>{
+                                      'screeningToolType': toolsType.name
+                                    },
+                                  );
                                   Navigator.of(context).pushNamed(
                                     getNextNavigationRoute(toolsType),
                                   );

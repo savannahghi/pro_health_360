@@ -1,10 +1,9 @@
-// Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:shared_themes/spaces.dart';
+
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 
 class HomePageCarouselItem extends StatelessWidget {
   const HomePageCarouselItem({
@@ -12,23 +11,32 @@ class HomePageCarouselItem extends StatelessWidget {
     required this.description,
     required this.onTap,
     required this.buttonTitle,
-    required this.containerColor,
-    required this.buttonTextColor,
-    required this.buttonColor,
+    required this.type,
     this.beginButtonKey,
   });
 
   final Key? beginButtonKey;
   final String buttonTitle;
-  final Color containerColor;
   final String description;
   final Function onTap;
-  final Color buttonTextColor;
-  final Color buttonColor;
   final String title;
+  final HomePageCarouselItemType type;
 
   @override
   Widget build(BuildContext context) {
+    // initialize colors depending on type
+    final Color buttonTextColor =
+        (type == HomePageCarouselItemType.SCREENING_TOOL)
+            ? AppColors.primaryColor
+            : AppColors.orangeColor;
+    final Color containerColor =
+        (type == HomePageCarouselItemType.SCREENING_TOOL)
+            ? AppColors.primaryColor.withOpacity(0.14)
+            : AppColors.orangeColor.withOpacity(0.14);
+    final Color buttonColor = (type == HomePageCarouselItemType.SCREENING_TOOL)
+        ? AppColors.primaryColor.withOpacity(0.3)
+        : AppColors.orangeColor.withOpacity(0.3);
+
     return Container(
       width: MediaQuery.of(context).size.width * 0.7,
       decoration: BoxDecoration(

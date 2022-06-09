@@ -2,17 +2,20 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/answer_screening_tools_action.dart';
 import 'package:myafyahub/application/redux/actions/screening_tools/fetch_screening_questions_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/screening_tools/screening_tools_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:myafyahub/presentation/core/widgets/custom_back_button.dart';
 import 'package:myafyahub/presentation/violence_assessment/widgets/screening_tools_question_widget.dart';
 import 'package:shared_themes/spaces.dart';
 
@@ -38,6 +41,19 @@ class _TuberculosisAssessmentPageState
     super.didChangeDependencies();
   }
 
+  Future<bool> onWillPop() async {
+    // log abandoning assessment tool
+    await AnalyticsService().logEvent(
+      name: abandonScreeningToolEvent,
+      eventType: AnalyticsEventType.INTERACTION,
+      parameters: <String, dynamic>{
+        'screeningToolType': ScreeningToolsType.TB_ASSESSMENT.name
+      },
+    );
+    Navigator.of(context).pop();
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ScreeningToolsViewModel>(
@@ -47,48 +63,54 @@ class _TuberculosisAssessmentPageState
       builder: (BuildContext context, ScreeningToolsViewModel vm) {
         final double appBarHeight = AppBar().preferredSize.height;
         return Scaffold(
-          appBar: const CustomAppBar(
+          appBar: CustomAppBar(
             title: tuberculosisAssessmentTitle,
+            showBackButton: false,
+            leadingWidget: CustomBackButton(onTapped: () => onWillPop()),
           ),
-          body: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
-              ? Container(
-                  height: 300,
-                  padding: const EdgeInsets.all(20),
-                  child: const PlatformLoader(),
-                )
-              : SingleChildScrollView(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height - appBarHeight,
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        largeVerticalSizedBox,
-                        Text(
-                          tuberculosisAssessmentDescription,
-                          style: normalSize14Text(
-                            AppColors.greyTextColor,
+          body: WillPopScope(
+            onWillPop: onWillPop,
+            child: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
+                ? Container(
+                    height: 300,
+                    padding: const EdgeInsets.all(20),
+                    child: const PlatformLoader(),
+                  )
+                : SingleChildScrollView(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height - appBarHeight,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          largeVerticalSizedBox,
+                          Text(
+                            tuberculosisAssessmentDescription,
+                            style: normalSize14Text(
+                              AppColors.greyTextColor,
+                            ),
                           ),
-                        ),
-                        smallVerticalSizedBox,
-                        Text(
-                          pleaseVisitClinic,
-                          style: normalSize14Text(
-                            AppColors.greyTextColor,
+                          smallVerticalSizedBox,
+                          Text(
+                            pleaseVisitClinic,
+                            style: normalSize14Text(
+                              AppColors.greyTextColor,
+                            ),
                           ),
-                        ),
-                        mediumVerticalSizedBox,
-                        // questions
-                        ScreeningToolQuestionWidget(
-                          screeningToolsQuestions: vm.tBState!
-                              .screeningQuestions!.screeningQuestionsList!,
-                          screeningToolsType: ScreeningToolsType.TB_ASSESSMENT,
-                        ),
-                        size40VerticalSizedBox,
-                      ],
+                          mediumVerticalSizedBox,
+                          // questions
+                          ScreeningToolQuestionWidget(
+                            screeningToolsQuestions: vm.tBState!
+                                .screeningQuestions!.screeningQuestionsList!,
+                            screeningToolsType:
+                                ScreeningToolsType.TB_ASSESSMENT,
+                          ),
+                          size40VerticalSizedBox,
+                        ],
+                      ),
                     ),
                   ),
-                ),
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterFloat,
           floatingActionButton: vm.wait!.isWaitingFor(fetchingQuestionsFlag)
@@ -132,9 +154,7 @@ class _TuberculosisAssessmentPageState
                             ? const PlatformLoader()
                             : Text(
                                 submitAssessment,
-                                style: veryBoldSize15Text(
-                                  AppColors.whiteColor,
-                                ),
+                                style: veryBoldSize15Text(AppColors.whiteColor),
                               ),
                   ),
                 ),

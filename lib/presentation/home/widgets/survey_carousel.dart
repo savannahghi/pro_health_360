@@ -10,6 +10,7 @@ import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tool_menu_item.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -80,6 +81,7 @@ class SurveyCarousel extends StatelessWidget {
                       itemCount: miscState.availableSurveysList!.length,
                       itemBuilder: (BuildContext context, int index) {
                         return HomePageCarouselItem(
+                          type: HomePageCarouselItemType.SURVEY,
                           title: miscState.availableSurveysList![index].title!,
                           description: '',
                           onTap: () {
@@ -103,10 +105,6 @@ class SurveyCarousel extends StatelessWidget {
                           },
                           beginButtonKey: phq9surveyKey,
                           buttonTitle: respondString,
-                          containerColor:
-                              AppColors.orangeColor.withOpacity(0.14),
-                          buttonTextColor: AppColors.orangeColor,
-                          buttonColor: AppColors.orangeColor.withOpacity(0.3),
                         );
                       },
                     ),

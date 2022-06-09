@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -18,7 +19,9 @@ import '../../../../../test_helpers.dart';
 void main() {
   group('ScreeningToolsCarousel', () {
     late Store<AppState> store;
-    setUp(() {
+    setUp(() async {
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       store = Store<AppState>(initialState: AppState.initial());
     });
 

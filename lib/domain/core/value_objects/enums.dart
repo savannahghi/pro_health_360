@@ -165,3 +165,5 @@ enum AnalyticsEventType {
   // Connectivity events
   CONNECTIVITY
 }
+
+enum HomePageCarouselItemType { SCREENING_TOOL, SURVEY }
