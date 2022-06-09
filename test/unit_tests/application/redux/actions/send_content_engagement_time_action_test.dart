@@ -36,7 +36,7 @@ void main() {
         contentInteractionTimeEvent,
       );
       expect(
-        methodCallLog.first.arguments['parameters']['event'],
+        methodCallLog.first.arguments['parameters'],
         isNotNull,
       );
     });

@@ -28,10 +28,8 @@ class SendContentEngagementTimeAction extends ReduxAction<AppState> {
         DateTime.now().difference(contentOpenedAt).inSeconds.toString();
 
     final Map<String, dynamic> params = <String, dynamic>{
-      'event': <String, dynamic>{
-        'contentID': contentId,
-        'duration': differenceInSeconds,
-      }
+      'contentID': contentId,
+      'duration': differenceInSeconds,
     };
 
     /// Log this as an event
