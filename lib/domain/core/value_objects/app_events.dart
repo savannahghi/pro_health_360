@@ -28,6 +28,8 @@ const String viewMyHealthPageEvent = 'view_my_health';
 
 const String viewMyMedicalDataEvent = 'view_my_medical_data';
 
+const String viewAppointmentsEvent = 'view_appointments';
+
 const String viewMyHealthDiaryEvent = 'view_my_health_diary';
 
 const String viewNotificationsEvent = 'view_notifications';

@@ -249,7 +249,16 @@ class RouteGenerator {
 
       case AppRoutes.appointmentsPage:
         return MaterialPageRoute<AppointmentsPage>(
-          builder: (_) => AppointmentsPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewAppointmentsEvent,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return AppointmentsPage();
+          },
           settings: const RouteSettings(name: 'Appointments page'),
         );
 

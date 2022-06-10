@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -23,8 +24,10 @@ void main() {
   group('Appointments', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     final MockShortGraphQlClient mockLoadingShortGraphQlClient =
