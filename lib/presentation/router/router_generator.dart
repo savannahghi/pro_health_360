@@ -249,7 +249,16 @@ class RouteGenerator {
 
       case AppRoutes.userProfilePage:
         return MaterialPageRoute<UserProfilePage>(
-          builder: (_) => UserProfilePage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewProfile,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return UserProfilePage();
+          },
           settings: const RouteSettings(name: 'user profile page'),
         );
 

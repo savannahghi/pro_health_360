@@ -2,11 +2,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/application/core/services/analytics_service.dart';
-import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:shared_themes/spaces.dart';
@@ -50,10 +47,6 @@ class SuccessfulFeedbackSubmissionPage extends StatelessWidget {
                     buttonColor: Theme.of(context).primaryColor,
                     borderColor: Theme.of(context).primaryColor,
                     onPressed: () async {
-                      await AnalyticsService().logEvent(
-                        name: viewProfile,
-                        eventType: AnalyticsEventType.NAVIGATION,
-                      );
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         AppRoutes.userProfilePage,
                         (Route<dynamic> route) => false,

@@ -16,8 +16,7 @@ void main() {
     testWidgets('should display successfully', (WidgetTester tester) async {
       final Store<AppState> store =
           Store<AppState>(initialState: AppState.initial());
-
-      setupFirebaseAnalyticsMocks();
+           setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
 
       await buildTestWidget(

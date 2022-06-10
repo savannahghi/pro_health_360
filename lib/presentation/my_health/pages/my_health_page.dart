@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/custom_client.dart';
 // Project imports:
@@ -18,10 +17,8 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/entities/viral_load/viral_load_node.dart';
-import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
@@ -98,10 +95,6 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () async {
-                          await AnalyticsService().logEvent(
-                            name: viewProfile,
-                            eventType: AnalyticsEventType.NAVIGATION,
-                          );
                           Navigator.pushNamed(
                             context,
                             AppRoutes.userProfilePage,

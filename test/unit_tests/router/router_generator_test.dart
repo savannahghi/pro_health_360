@@ -184,7 +184,10 @@ void main() {
     expect(route.builder(context), isA<LoginPage>());
   });
 
-  test('Test router returns incoming  userProfile page', () {
+  test('Test router returns incoming  userProfile page', () async {
+    await setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
+
     const RouteSettings settings = RouteSettings(name: AppRoutes.userProfile);
     final MaterialPageRoute<UserProfilePage> route =
         routeGenerator(settings) as MaterialPageRoute<UserProfilePage>;

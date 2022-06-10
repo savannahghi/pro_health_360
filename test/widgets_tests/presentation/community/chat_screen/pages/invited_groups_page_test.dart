@@ -64,14 +64,11 @@ void main() {
       ),
     );
 
-    setUpAll(() {
+    setUpAll(() async {
       store = Store<AppState>(
         initialState: AppState.initial()
           ..clientState!.copyWith(facilityID: 'id'),
       );
-    });
-
-    setUp(() async {
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
     });
