@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Flutter imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -28,7 +29,7 @@ void main() {
 
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
       final String dir = Directory.current.path;
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
@@ -39,6 +40,8 @@ void main() {
           lastName: 'Name',
         ),
       );
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets('should render correctly with profile initials',

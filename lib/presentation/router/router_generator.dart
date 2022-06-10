@@ -205,7 +205,16 @@ class RouteGenerator {
 
       case AppRoutes.medicalData:
         return MaterialPageRoute<MedicalDataPage>(
-          builder: (_) => const MedicalDataPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewMyMedicalDataEvent,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const MedicalDataPage();
+          },
           settings: const RouteSettings(name: 'Medical data page'),
         );
 
@@ -223,9 +232,18 @@ class RouteGenerator {
 
       case AppRoutes.notificationsPage:
         return MaterialPageRoute<NotificationsPage>(
-          builder: (_) => NotificationsPage(
-            bottomNavIndex: args as int,
-          ),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewNotificationsEvent,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return NotificationsPage(
+              bottomNavIndex: args as int,
+            );
+          },
           settings: const RouteSettings(name: 'Notifications page'),
         );
 
@@ -237,13 +255,31 @@ class RouteGenerator {
 
       case AppRoutes.myHealthPage:
         return MaterialPageRoute<MyHealthPage>(
-          builder: (_) => const MyHealthPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewMyHealthPageEvent,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const MyHealthPage();
+          },
           settings: const RouteSettings(name: 'My health page'),
         );
 
       case AppRoutes.myHealthDiaryPage:
         return MaterialPageRoute<MyHealthDiaryPage>(
-          builder: (_) => const MyHealthDiaryPage(),
+          builder: (_) {
+            /// Log as a navigation event
+            AnalyticsService()
+                .logEvent(
+                  name: viewMyHealthDiaryEvent,
+                  eventType: AnalyticsEventType.NAVIGATION,
+                )
+                .then((_) => null);
+            return const MyHealthDiaryPage();
+          },
           settings: const RouteSettings(name: 'My health diary page'),
         );
 

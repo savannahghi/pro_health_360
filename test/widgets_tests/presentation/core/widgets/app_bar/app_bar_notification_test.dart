@@ -3,6 +3,7 @@ import 'dart:io';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
@@ -23,7 +24,7 @@ void main() {
 
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async  {
       final String dir = Directory.current.path;
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = TestHttpOverrides();
@@ -34,6 +35,8 @@ void main() {
           lastName: 'Name',
         ),
       );
+    setupFirebaseAnalyticsMocks();
+    await Firebase.initializeApp();
     });
 
     testWidgets(

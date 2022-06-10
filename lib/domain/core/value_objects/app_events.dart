@@ -8,6 +8,8 @@ const String resumeWithPINEvent = 'resume_with_pin';
 
 const String recordDiaryEntryEvent = 'record_diary_entry';
 
+const String shareDiaryEntryEvent = 'share_diary_entry';
+
 const String filterContentCategoriesEvent = 'filter_content_by_category';
 
 const String likeContentEvent = 'like_content';
@@ -21,6 +23,14 @@ const String copyContentEvent = 'copy_content';
 const String saveContentEvent = 'save_content';
 
 const String viewProfile = 'view_profile';
+
+const String viewMyHealthPageEvent = 'view_my_health';
+
+const String viewMyMedicalDataEvent = 'view_my_medical_data';
+
+const String viewMyHealthDiaryEvent = 'view_my_health_diary';
+
+const String viewNotificationsEvent = 'view_notifications';
 
 const String viewAllContentEvent = 'view_all_content';
 

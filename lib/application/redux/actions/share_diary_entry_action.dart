@@ -4,7 +4,10 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:http/http.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/redux/actions/fetch_health_diary_action.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:myafyahub/application/core/graphql/mutations.dart';
@@ -63,6 +66,14 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage('sharing diary entry'));
       }
       if (body['data']?['shareHealthDiaryEntry'] == true) {
+          // Log event for analytic
+        await AnalyticsService().logEvent(
+          name: shareDiaryEntryEvent,
+          eventType: AnalyticsEventType.INTERACTION,
+          parameters: <String, dynamic>{
+            'healthDiaryEntryID': healthDiaryEntryID,
+          },
+        );
         onSuccess?.call();
       } else {
         onFailure?.call();
