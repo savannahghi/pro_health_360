@@ -156,9 +156,7 @@ OnboardingPathInfo onboardingPath({required AppState? appState}) {
   }
 }
 
-void setUserNickname({
-  required BuildContext context,
-}) {
+void setUserNickname({required BuildContext context}) {
   // this is the Redux Action that handles set nickname for an existing user
   StoreProvider.dispatch<AppState>(
     context,

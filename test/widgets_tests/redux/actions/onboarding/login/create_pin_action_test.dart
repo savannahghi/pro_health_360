@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -24,7 +25,9 @@ void main() {
   group('CreatePINAction', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() async {
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       store = Store<AppState>(initialState: AppState.initial());
     });
 

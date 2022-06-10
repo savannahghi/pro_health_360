@@ -8,18 +8,22 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:myafyahub/application/core/graphql/mutations.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/onboarding_utils.dart';
 import 'package:myafyahub/application/redux/actions/update_terms_and_conditions_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/core/onboarding_path_info.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/accept_terms_and_conditions_response.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
@@ -94,6 +98,18 @@ class AcceptTermsAndConditionsAction extends ReduxAction<AppState> {
       navConfig.nextRoute,
       (Route<dynamic> route) => false,
       arguments: navConfig.arguments,
+    );
+
+    final CurrentOnboardingStage? onboardingStage =
+        state.onboardingState?.currentOnboardingStage;
+
+    AnalyticsService().logEvent(
+      name: acceptTermsEvent,
+      eventType: AnalyticsEventType.ONBOARDING,
+      parameters: <String, dynamic>{
+        'next_page': navConfig.nextRoute,
+        'current_onboarding_workflow': describeEnum(onboardingStage!),
+      },
     );
 
     return state;

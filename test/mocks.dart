@@ -1574,23 +1574,14 @@ Map<String, dynamic> mockSecurityQuestionsData = <String, dynamic>{
   'getSecurityQuestions': securityQuestionsMock
 };
 
-final List<dynamic> recordSecurityQuestionReponseMock = <dynamic>[
-  <String, dynamic>{
-    'securityQuestionID': 'id1',
-    'isCorrect': true,
-  },
-  <String, dynamic>{
-    'SecurityQuestionID': 'id2',
-    'isCorrect': true,
-  },
-  <String, dynamic>{
-    'SecurityQuestionID': 'id3',
-    'isCorrect': true,
-  },
+final List<dynamic> recordSecurityQuestionResponseMock = <dynamic>[
+  <String, dynamic>{'securityQuestionID': 'id1', 'isCorrect': true},
+  <String, dynamic>{'SecurityQuestionID': 'id2', 'isCorrect': true},
+  <String, dynamic>{'SecurityQuestionID': 'id3', 'isCorrect': true},
 ];
 
 Map<String, dynamic> mockRecordSecurityQuestionResponseData = <String, dynamic>{
-  'recordSecurityQuestionResponses': recordSecurityQuestionReponseMock
+  'recordSecurityQuestionResponses': recordSecurityQuestionResponseMock
 };
 
 Map<String, dynamic> mockSecurityQuestionResponse = <String, dynamic>{

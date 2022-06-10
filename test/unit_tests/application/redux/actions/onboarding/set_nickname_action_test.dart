@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,7 +25,9 @@ void main() {
   group('SetNicknameAction', () {
     late StoreTester<AppState> storeTester;
 
-    setUp(() {
+    setUp(() async {
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial(),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},

@@ -241,9 +241,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                           _formKey.currentState?.validate();
                       if (!hasConnection) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(noInternetConnection),
-                          ),
+                          const SnackBar(content: Text(noInternetConnection)),
                         );
                         return;
                       }
@@ -254,9 +252,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                           context,
                           UpdateOnboardingStateAction(nickName: nickName),
                         );
-                        setUserNickname(
-                          context: context,
-                        );
+                        setUserNickname(context: context);
                       }
                     },
                     buttonColor:

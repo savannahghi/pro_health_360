@@ -5,6 +5,7 @@ import 'dart:io';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // Flutter imports:
 import 'package:flutter_test/flutter_test.dart';
@@ -25,7 +26,9 @@ void main() {
   group('CreateNewPINPage', () {
     late Store<AppState> store;
 
-    setUpAll(() {
+    setUp(() async {
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       store = Store<AppState>(initialState: AppState.initial());
       HttpOverrides.global = null;
     });

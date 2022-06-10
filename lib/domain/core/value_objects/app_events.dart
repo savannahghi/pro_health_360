@@ -60,3 +60,24 @@ const String abandonScreeningToolEvent = 'abandon_screening_tool_event';
 const String successfulToolAssessmentEvent = 'successful_tool_assessment_event';
 
 const String viewSurveyEvent = 'view_survey_event';
+
+const String sendOTPEvent = 'send_OTP';
+
+const String resendOTPEvent = 'resend_OTP';
+
+const String verifyOTPEvent = 'verify_OTP';
+
+const String acceptTermsEvent = 'accept_terms';
+
+const String recordSecurityQuestionsEvent = 'record_security_questions';
+
+const String verifySecurityQuestionsEvent = 'verify_security_questions';
+
+const String unMatchingSecurityQuestionResponsesEvent =
+    'un_matching_security_question_responses';
+
+const String securityQuestionThresholdEvent = 'security_question_threshold';
+
+const String setNicknameEvent = 'set_nickname';
+
+const String setUserPINEvent = 'set_PIN';

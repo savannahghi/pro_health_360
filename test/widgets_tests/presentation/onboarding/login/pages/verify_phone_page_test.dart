@@ -4,6 +4,7 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -29,7 +30,9 @@ void main() {
     late Store<AppState> store;
     late int now;
 
-    setUp(() {
+    setUp(() async {
+      setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
       now = DateTime.now().microsecondsSinceEpoch;
       store = Store<AppState>(
         initialState: AppState.initial()

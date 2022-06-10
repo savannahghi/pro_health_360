@@ -4,6 +4,7 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -37,7 +38,7 @@ void main() {
       json.encode(<String, dynamic>{
         'data': <String, dynamic>{
           'getSecurityQuestions': securityQuestionsMock,
-          'recordSecurityQuestionResponses': recordSecurityQuestionReponseMock,
+          'recordSecurityQuestionResponses': recordSecurityQuestionResponseMock,
         },
       }),
       201,
@@ -49,6 +50,11 @@ void main() {
   const String testResponse = 'Test';
 
   group('SecurityQuestions', () {
+    setUp(() async {
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
+    });
+
     testWidgets('renders correctly', (WidgetTester tester) async {
       tester.binding.window.devicePixelRatioTestValue = 1.0;
       tester.binding.window.physicalSizeTestValue =

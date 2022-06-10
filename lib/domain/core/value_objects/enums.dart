@@ -163,7 +163,10 @@ enum AnalyticsEventType {
   AUTH,
 
   // Connectivity events
-  CONNECTIVITY
+  CONNECTIVITY,
+
+  /// Events used in the onboarding workflow
+  ONBOARDING
 }
 
 enum HomePageCarouselItemType { SCREENING_TOOL, SURVEY }

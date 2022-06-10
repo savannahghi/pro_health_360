@@ -146,9 +146,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                     height: 48,
                     width: double.infinity,
                     child: vm.appState.wait!.isWaitingFor(acceptTermsFlag)
-                        ? const PlatformLoader(
-                            color: AppColors.primaryColor,
-                          )
+                        ? const PlatformLoader(color: AppColors.primaryColor)
                         : MyAfyaHubPrimaryButton(
                             text: continueString,
                             borderColor:
