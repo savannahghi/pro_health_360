@@ -3,11 +3,13 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/redux/actions/surveys/fetch_available_surveys_action.dart';
 import 'package:myafyahub/application/redux/actions/update_misc_state_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
@@ -84,7 +86,7 @@ class SurveyCarousel extends StatelessWidget {
                           type: HomePageCarouselItemType.SURVEY,
                           title: miscState.availableSurveysList![index].title!,
                           description: '',
-                          onTap: () {
+                          onTap: () async {
                             final String encodedUrl = Uri.encodeFull(
                               miscState.availableSurveysList![index].link!,
                             );
@@ -94,6 +96,14 @@ class SurveyCarousel extends StatelessWidget {
                                 selectedSurvey:
                                     miscState.availableSurveysList![index],
                               ),
+                            );
+                            await AnalyticsService().logEvent(
+                              name: viewSurveyEvent,
+                              eventType: AnalyticsEventType.NAVIGATION,
+                              parameters: <String, dynamic>{
+                                'screeningToolType':
+                                    miscState.availableSurveysList![index].title
+                              },
                             );
                             Navigator.of(context).pushNamed(
                               AppRoutes.customWebviewPage,
