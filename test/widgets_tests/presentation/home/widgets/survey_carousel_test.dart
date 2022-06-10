@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -13,8 +14,10 @@ import '../../../../test_helpers.dart';
 void main() {
   group('SurveyCarousel', () {
     late Store<AppState> store;
-    setUp(() {
+    setUp(() async {
       store = Store<AppState>(initialState: AppState.initial());
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
     });
 
     testWidgets(
