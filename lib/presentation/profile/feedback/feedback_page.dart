@@ -101,6 +101,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           child: Text(
                             helpUsImprove,
                             style: veryBoldSize20Text(AppColors.primaryColor),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         size15VerticalSizedBox,

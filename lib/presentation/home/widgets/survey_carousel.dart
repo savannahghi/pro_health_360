@@ -101,7 +101,7 @@ class SurveyCarousel extends StatelessWidget {
                               name: viewSurveyEvent,
                               eventType: AnalyticsEventType.NAVIGATION,
                               parameters: <String, dynamic>{
-                                'screeningToolType':
+                                'surveyTitle':
                                     miscState.availableSurveysList![index].title
                               },
                             );

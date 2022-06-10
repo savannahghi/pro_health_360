@@ -502,7 +502,7 @@ const String father = 'Father';
 const String firstName = 'First Name';
 const String fullName = 'Full Name';
 const String lastName = 'Last Name';
-const String phoneNumber = 'Phone number';
+const String phoneNumber = 'Phone Number';
 const String relationText = 'How are you related';
 const String preferredLanguage = 'Preferred Language';
 const String english = 'English';
@@ -559,7 +559,7 @@ const String yesString = 'Yes';
 const String noString = 'No';
 const String submitFeedbackString = 'Submit feedback';
 const String cancelString = 'Cancel';
-const String helpUsImprove = 'Help us improve';
+const String helpUsImprove = 'Please tell us what you think about myCareHub';
 const String selectOneOption =
     'Please select one of the feedback options below and give your thoughts on the same';
 const String feedbackType = 'Feedback type';
