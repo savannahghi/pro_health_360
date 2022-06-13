@@ -80,4 +80,10 @@ const String securityQuestionThresholdEvent = 'security_question_threshold';
 
 const String setNicknameEvent = 'set_nickname';
 
-const String setUserPINEvent = 'set_PIN';
+const String completeOnboardingEvent = 'complete_onboarding';
+
+const String pinResetServiceRequestEvent = 'pin_reset_service_request';
+
+const String createPINEvent = 'create_pin';
+
+const String resetPINEvent = 'reset_pin';

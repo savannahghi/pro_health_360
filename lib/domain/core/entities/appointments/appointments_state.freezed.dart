@@ -26,13 +26,11 @@ class _$AppointmentStateTearOff {
       {@JsonKey(name: 'appointments') List<Appointment>? appointments,
       int? currentPage,
       bool? hasNextPage,
-      bool? isFirstLoad,
       bool? errorFetchingAppointments}) {
     return _AppointmentState(
       appointments: appointments,
       currentPage: currentPage,
       hasNextPage: hasNextPage,
-      isFirstLoad: isFirstLoad,
       errorFetchingAppointments: errorFetchingAppointments,
     );
   }
@@ -51,7 +49,6 @@ mixin _$AppointmentState {
   List<Appointment>? get appointments => throw _privateConstructorUsedError;
   int? get currentPage => throw _privateConstructorUsedError;
   bool? get hasNextPage => throw _privateConstructorUsedError;
-  bool? get isFirstLoad => throw _privateConstructorUsedError;
   bool? get errorFetchingAppointments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,7 +66,6 @@ abstract class $AppointmentStateCopyWith<$Res> {
       {@JsonKey(name: 'appointments') List<Appointment>? appointments,
       int? currentPage,
       bool? hasNextPage,
-      bool? isFirstLoad,
       bool? errorFetchingAppointments});
 }
 
@@ -87,7 +83,6 @@ class _$AppointmentStateCopyWithImpl<$Res>
     Object? appointments = freezed,
     Object? currentPage = freezed,
     Object? hasNextPage = freezed,
-    Object? isFirstLoad = freezed,
     Object? errorFetchingAppointments = freezed,
   }) {
     return _then(_value.copyWith(
@@ -102,10 +97,6 @@ class _$AppointmentStateCopyWithImpl<$Res>
       hasNextPage: hasNextPage == freezed
           ? _value.hasNextPage
           : hasNextPage // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFirstLoad: isFirstLoad == freezed
-          ? _value.isFirstLoad
-          : isFirstLoad // ignore: cast_nullable_to_non_nullable
               as bool?,
       errorFetchingAppointments: errorFetchingAppointments == freezed
           ? _value.errorFetchingAppointments
@@ -126,7 +117,6 @@ abstract class _$AppointmentStateCopyWith<$Res>
       {@JsonKey(name: 'appointments') List<Appointment>? appointments,
       int? currentPage,
       bool? hasNextPage,
-      bool? isFirstLoad,
       bool? errorFetchingAppointments});
 }
 
@@ -146,7 +136,6 @@ class __$AppointmentStateCopyWithImpl<$Res>
     Object? appointments = freezed,
     Object? currentPage = freezed,
     Object? hasNextPage = freezed,
-    Object? isFirstLoad = freezed,
     Object? errorFetchingAppointments = freezed,
   }) {
     return _then(_AppointmentState(
@@ -161,10 +150,6 @@ class __$AppointmentStateCopyWithImpl<$Res>
       hasNextPage: hasNextPage == freezed
           ? _value.hasNextPage
           : hasNextPage // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFirstLoad: isFirstLoad == freezed
-          ? _value.isFirstLoad
-          : isFirstLoad // ignore: cast_nullable_to_non_nullable
               as bool?,
       errorFetchingAppointments: errorFetchingAppointments == freezed
           ? _value.errorFetchingAppointments
@@ -181,7 +166,6 @@ class _$_AppointmentState implements _AppointmentState {
       {@JsonKey(name: 'appointments') this.appointments,
       this.currentPage,
       this.hasNextPage,
-      this.isFirstLoad,
       this.errorFetchingAppointments});
 
   factory _$_AppointmentState.fromJson(Map<String, dynamic> json) =>
@@ -195,13 +179,11 @@ class _$_AppointmentState implements _AppointmentState {
   @override
   final bool? hasNextPage;
   @override
-  final bool? isFirstLoad;
-  @override
   final bool? errorFetchingAppointments;
 
   @override
   String toString() {
-    return 'AppointmentState(appointments: $appointments, currentPage: $currentPage, hasNextPage: $hasNextPage, isFirstLoad: $isFirstLoad, errorFetchingAppointments: $errorFetchingAppointments)';
+    return 'AppointmentState(appointments: $appointments, currentPage: $currentPage, hasNextPage: $hasNextPage, errorFetchingAppointments: $errorFetchingAppointments)';
   }
 
   @override
@@ -215,8 +197,6 @@ class _$_AppointmentState implements _AppointmentState {
                 .equals(other.currentPage, currentPage) &&
             const DeepCollectionEquality()
                 .equals(other.hasNextPage, hasNextPage) &&
-            const DeepCollectionEquality()
-                .equals(other.isFirstLoad, isFirstLoad) &&
             const DeepCollectionEquality().equals(
                 other.errorFetchingAppointments, errorFetchingAppointments));
   }
@@ -227,7 +207,6 @@ class _$_AppointmentState implements _AppointmentState {
       const DeepCollectionEquality().hash(appointments),
       const DeepCollectionEquality().hash(currentPage),
       const DeepCollectionEquality().hash(hasNextPage),
-      const DeepCollectionEquality().hash(isFirstLoad),
       const DeepCollectionEquality().hash(errorFetchingAppointments));
 
   @JsonKey(ignore: true)
@@ -246,7 +225,6 @@ abstract class _AppointmentState implements AppointmentState {
       {@JsonKey(name: 'appointments') List<Appointment>? appointments,
       int? currentPage,
       bool? hasNextPage,
-      bool? isFirstLoad,
       bool? errorFetchingAppointments}) = _$_AppointmentState;
 
   factory _AppointmentState.fromJson(Map<String, dynamic> json) =
@@ -259,8 +237,6 @@ abstract class _AppointmentState implements AppointmentState {
   int? get currentPage;
   @override
   bool? get hasNextPage;
-  @override
-  bool? get isFirstLoad;
   @override
   bool? get errorFetchingAppointments;
   @override

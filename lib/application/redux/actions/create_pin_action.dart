@@ -144,6 +144,18 @@ class CreatePINAction extends ReduxAction<AppState> {
 
         final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 
+        final CurrentOnboardingStage? onboardingStage =
+            state.onboardingState!.currentOnboardingStage;
+
+        await AnalyticsService().logEvent(
+          name: createPINEvent,
+          eventType: AnalyticsEventType.ONBOARDING,
+          parameters: <String, dynamic>{
+            'next_page': navConfig.nextRoute,
+            'current_onboarding_workflow': describeEnum(onboardingStage!),
+          },
+        );
+
         Navigator.pushReplacementNamed(context, navConfig.nextRoute);
       } else if (responseMap['data']['resetPIN'] == true) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -159,19 +171,19 @@ class CreatePINAction extends ReduxAction<AppState> {
 
         final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 
-        Navigator.pushReplacementNamed(context, navConfig.nextRoute);
-
         final CurrentOnboardingStage? onboardingStage =
             state.onboardingState!.currentOnboardingStage;
 
         await AnalyticsService().logEvent(
-          name: setUserPINEvent,
+          name: resetPINEvent,
           eventType: AnalyticsEventType.ONBOARDING,
           parameters: <String, dynamic>{
             'next_page': navConfig.nextRoute,
             'current_onboarding_workflow': describeEnum(onboardingStage!),
           },
         );
+
+        Navigator.pushReplacementNamed(context, navConfig.nextRoute);
       }
     } else {
       // scaffold that handles a mismatch in the just entered PINs by the user

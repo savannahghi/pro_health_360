@@ -98,7 +98,8 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
         eventType: AnalyticsEventType.INTERACTION,
         parameters: <String, dynamic>{
           'mood': mood,
-          'reportToStaff': shouldShareHealthRecord
+          'reportToStaff': shouldShareHealthRecord,
+          'note': note,
         },
       );
 

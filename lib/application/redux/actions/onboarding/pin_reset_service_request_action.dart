@@ -5,19 +5,16 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/domain/core/value_objects/app_events.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class PINResetServiceRequestAction extends ReduxAction<AppState> {
-  final IGraphQlClient client;
-  final String pinResetServiceRequestEndpoint;
-  final VoidCallback? onError;
-  final VoidCallback? onSuccess;
-  final String cccNumber;
-
   PINResetServiceRequestAction({
     required this.client,
     required this.pinResetServiceRequestEndpoint,
@@ -25,16 +22,23 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
     this.onSuccess,
     required this.cccNumber,
   });
-  @override
-  void before() {
-    super.before();
-    dispatch(WaitAction<AppState>.add(pinResetServiceRequestFlag));
-  }
+
+  final String cccNumber;
+  final IGraphQlClient client;
+  final VoidCallback? onError;
+  final VoidCallback? onSuccess;
+  final String pinResetServiceRequestEndpoint;
 
   @override
   void after() {
     dispatch(WaitAction<AppState>.remove(pinResetServiceRequestFlag));
     super.after();
+  }
+
+  @override
+  void before() {
+    super.before();
+    dispatch(WaitAction<AppState>.add(pinResetServiceRequestFlag));
   }
 
   @override
@@ -62,6 +66,11 @@ class PINResetServiceRequestAction extends ReduxAction<AppState> {
             AppRoutes.pinRequestSentPage,
             (Route<dynamic> route) => false,
           ),
+        );
+
+        await AnalyticsService().logEvent(
+          name: pinResetServiceRequestEvent,
+          eventType: AnalyticsEventType.ONBOARDING,
         );
 
         return state;

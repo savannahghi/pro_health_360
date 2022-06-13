@@ -96,21 +96,28 @@ class SetNicknameAction extends ReduxAction<AppState> {
         dispatch(UpdateOnboardingStateAction(hasSetNickName: true));
         dispatch(UpdateUserProfileAction(nickName: nickname));
 
-        onSuccess?.call();
-
-        dispatch(CompleteOnboardingTourAction(client: client, userID: userID));
-
+        final OnboardingPathInfo path = onboardingPath(appState: state);
         final CurrentOnboardingStage? onboardingStage =
             state.onboardingState!.currentOnboardingStage;
 
-        final OnboardingPathInfo path = onboardingPath(appState: state);
+        onSuccess?.call();
+
+        dispatch(CompleteOnboardingTourAction(client: client, userID: userID));
+        await AnalyticsService().logEvent(
+          name: completeOnboardingEvent,
+          eventType: AnalyticsEventType.ONBOARDING,
+          parameters: <String, dynamic>{
+            'next_page': path.nextRoute,
+            'current_onboarding_workflow': describeEnum(onboardingStage!),
+          },
+        );
 
         await AnalyticsService().logEvent(
           name: setNicknameEvent,
           eventType: AnalyticsEventType.ONBOARDING,
           parameters: <String, dynamic>{
             'next_page': path.nextRoute,
-            'current_onboarding_workflow': describeEnum(onboardingStage!),
+            'current_onboarding_workflow': describeEnum(onboardingStage),
           },
         );
 

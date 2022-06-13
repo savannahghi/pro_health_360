@@ -260,10 +260,12 @@ class PhoneLoginAction extends ReduxAction<AppState> {
                 (Route<dynamic> route) => false,
               ),
             );
+
             await AnalyticsService().logEvent(
               name: pendingPinResetServiceRequest,
               eventType: AnalyticsEventType.AUTH,
             );
+
             return state;
           case 73:
             final double? retryTime = parsed['retryTime'] as double?;

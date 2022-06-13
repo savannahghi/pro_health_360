@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -20,10 +21,14 @@ void main() {
   group('VerifySecurityQuestionsHelpPage', () {
     late Store<AppState> store;
 
-    setUp(() {
+    setUp(() async {
+      await setupFirebaseAnalyticsMocks();
+      await Firebase.initializeApp();
+
       store = Store<AppState>(initialState: AppState.initial());
       store.dispatch(UpdateOnboardingStateAction(phoneNumber: '0712345678'));
     });
+
     testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
@@ -33,6 +38,7 @@ void main() {
       );
       expect(find.byType(MyAfyaHubPrimaryButton), findsNWidgets(2));
     });
+
     testWidgets('CCC number input validates correctly',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
@@ -77,6 +83,7 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text(successfulPINResetRequestString), findsOneWidget);
     });
+
     testWidgets('try again button works correctly',
         (WidgetTester tester) async {
       await buildTestWidget(
@@ -99,6 +106,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(LoginPage), findsOneWidget);
     });
+
     testWidgets('should show snackbar with error message when an error occurs',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
@@ -147,7 +155,9 @@ void main() {
         findsOneWidget,
       );
     });
-    testWidgets('should show snackbar with error message when status is not true',
+
+    testWidgets(
+        'should show snackbar with error message when status is not true',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
           MockShortGraphQlClient.withResponse(
@@ -183,8 +193,12 @@ void main() {
       await tester.tap(askForHelpButton);
       await tester.pump(const Duration(seconds: 4));
       expect(find.byType(SnackBar), findsOneWidget);
-      expect(find.text(getErrorMessage(sendingPINResetRequestSting)), findsOneWidget);
+      expect(
+        find.text(getErrorMessage(sendingPINResetRequestSting)),
+        findsOneWidget,
+      );
     });
+
     testWidgets('should show a loading indicator when sending service request',
         (WidgetTester tester) async {
       final MockShortGraphQlClient mockShortGraphQlClient =
