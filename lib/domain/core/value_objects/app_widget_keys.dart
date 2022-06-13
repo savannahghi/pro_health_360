@@ -278,3 +278,4 @@ const Key platformSurveyKey = Key('platform_survey_key');
 const Key phq9surveyKey = Key('phq9_survey_key');
 
 const Key notificationItemActionKey = Key('notification_item_action_key');
+const Key okThanksButtonKey = Key('ok_thanks_button_key');

@@ -3,6 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_svg/svg.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/accept_terms_and_conditions_action.dart';
 import 'package:myafyahub/application/redux/actions/get_terms_action.dart';
@@ -12,6 +13,8 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
 import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:shared_themes/spaces.dart';
@@ -116,67 +119,101 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
                       ),
                     ),
                   ),
-
-                  // Accepts terms check box
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: CheckBoxComponent(
-                      text: acceptTermsText,
-                      value: isAgreed,
-                      color: AppColors.primaryColor,
-                      onChanged: (bool? value) async {
-                        setState(() {
-                          isAgreed = value!;
-                        });
-                        if (vm.appState.onboardingState!.termsAndConditions!
-                                .text !=
-                            UNKNOWN) {
-                          setState(() {
-                            isAgreed = value!;
-                          });
-                        }
-                      },
-                    ),
-                  ),
-
-                  smallVerticalSizedBox,
-
-                  // Continue button
-                  SizedBox(
-                    height: 48,
-                    width: double.infinity,
-                    child: vm.appState.wait!.isWaitingFor(acceptTermsFlag)
-                        ? const PlatformLoader(color: AppColors.primaryColor)
-                        : MyAfyaHubPrimaryButton(
-                            text: continueString,
-                            borderColor:
-                                termsObject!.text != UNKNOWN && isAgreed
-                                    ? AppColors.primaryColor
-                                    : Colors.grey,
-                            buttonColor: termsObject.text != UNKNOWN && isAgreed
-                                ? AppColors.primaryColor
-                                : Colors.grey,
-                            onPressed: !isAgreed
-                                ? null
-                                : () {
-                                    StoreProvider.dispatch(
-                                      context,
-                                      UpdateUserProfileAction(
-                                        termsAccepted: true,
-                                      ),
-                                    );
-
-                                    StoreProvider.dispatch<AppState>(
-                                      context,
-                                      // Accept terms and conditions
-                                      AcceptTermsAndConditionsAction(
-                                        context: context,
-                                        shouldPop: widget.shouldPop ?? false,
-                                      ),
-                                    );
-                                  },
+                  if (vm.appState.clientState?.user?.termsAccepted ?? false)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              SvgPicture.asset(checkIcon),
+                              smallHorizontalSizedBox,
+                              Text(
+                                youHaveAcceptedTerms,
+                                style: normalSize14Text(greenHappyColor),
+                              )
+                            ],
                           ),
-                  ),
+                          mediumVerticalSizedBox,
+                          SizedBox(
+                            height: 48,
+                            width: double.infinity,
+                            child: MyAfyaHubPrimaryButton(
+                              text: okThanksText,
+                              buttonKey: okThanksButtonKey,
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  else
+                    Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: CheckBoxComponent(
+                            text: acceptTermsText,
+                            value: isAgreed,
+                            color: AppColors.primaryColor,
+                            onChanged: (bool? value) async {
+                              setState(() {
+                                isAgreed = value!;
+                              });
+                              if (vm.appState.onboardingState!
+                                      .termsAndConditions!.text !=
+                                  UNKNOWN) {
+                                setState(() {
+                                  isAgreed = value!;
+                                });
+                              }
+                            },
+                          ),
+                        ),
+                        smallVerticalSizedBox,
+
+                        // Continue button
+                        SizedBox(
+                          height: 48,
+                          width: double.infinity,
+                          child: vm.appState.wait!.isWaitingFor(acceptTermsFlag)
+                              ? const PlatformLoader(
+                                  color: AppColors.primaryColor,
+                                )
+                              : MyAfyaHubPrimaryButton(
+                                  text: continueString,
+                                  borderColor:
+                                      termsObject!.text != UNKNOWN && isAgreed
+                                          ? AppColors.primaryColor
+                                          : Colors.grey,
+                                  buttonColor:
+                                      termsObject.text != UNKNOWN && isAgreed
+                                          ? AppColors.primaryColor
+                                          : Colors.grey,
+                                  onPressed: !isAgreed
+                                      ? null
+                                      : () {
+                                          StoreProvider.dispatch(
+                                            context,
+                                            UpdateUserProfileAction(
+                                              termsAccepted: true,
+                                            ),
+                                          );
+
+                                          StoreProvider.dispatch<AppState>(
+                                            context,
+                                            // Accept terms and conditions
+                                            AcceptTermsAndConditionsAction(
+                                              context: context,
+                                              shouldPop:
+                                                  widget.shouldPop ?? false,
+                                            ),
+                                          );
+                                        },
+                                ),
+                        ),
+                      ],
+                    ),
                 ],
               );
             },
