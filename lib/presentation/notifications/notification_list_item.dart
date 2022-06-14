@@ -6,7 +6,6 @@ import 'package:myafyahub/application/core/services/utils.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 
 /// [NotificationListItem] Displays the notifications with Icons and a short description
 class NotificationListItem extends StatelessWidget {

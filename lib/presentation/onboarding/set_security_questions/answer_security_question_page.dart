@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/colors.dart';
-import 'package:shared_themes/spaces.dart';
 
 class AnswerSecurityQuestionPage extends StatelessWidget {
   const AnswerSecurityQuestionPage();
@@ -15,7 +13,7 @@ class AnswerSecurityQuestionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController dateController = TextEditingController();
     return Scaffold(
-      backgroundColor: authBackgroundColor,
+      backgroundColor: AppColors.authBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),

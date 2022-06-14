@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 
 /// [GenericTimeoutWidget] is called when a timeout has occurred when fetching data from the
 /// API. It's purpose is to communicate a specific message, the server could not return a response in time

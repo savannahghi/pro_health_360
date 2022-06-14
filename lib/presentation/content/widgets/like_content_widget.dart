@@ -14,7 +14,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 
 /// [LikeContentWidget] Displays like status on the content details page
 class LikeContentWidget extends StatefulWidget {

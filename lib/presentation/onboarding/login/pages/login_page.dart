@@ -21,7 +21,6 @@ import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dar
 import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
-import 'package:shared_themes/spaces.dart';
 
 /// [LoginPage] is parsed in [PhoneNumberLoginPage]
 ///

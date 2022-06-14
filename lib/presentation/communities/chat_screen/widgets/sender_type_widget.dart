@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 
 class SenderTypeWidget extends StatelessWidget {
   /// [SenderTypeWidget] used within [ReceivedMessageItem] to the type of sender

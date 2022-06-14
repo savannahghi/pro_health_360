@@ -3,7 +3,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 
 class PersonalInformationSecondaryWidget extends StatelessWidget {
   final String fieldName;

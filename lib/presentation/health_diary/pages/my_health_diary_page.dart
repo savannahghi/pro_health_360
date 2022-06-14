@@ -23,7 +23,6 @@ import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart'
 import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
 import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 class MyHealthDiaryPage extends StatefulWidget {
   const MyHealthDiaryPage();

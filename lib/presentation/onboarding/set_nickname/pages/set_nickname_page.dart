@@ -16,7 +16,6 @@ import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dar
 import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/content/widgets/mini_content_widget.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 import 'package:shared_themes/text_themes.dart';
 
 class SetNickNamePage extends StatefulWidget {

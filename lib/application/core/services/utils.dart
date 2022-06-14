@@ -40,7 +40,6 @@ import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 AppSetupData getAppSetupData(AppContext context) {
@@ -79,6 +78,18 @@ String getDisplayName(User? user) {
 String? securityQuestionValidator(String? value) {
   if (value != null && (value.isEmpty || value == UNKNOWN)) {
     return 'A Response is required';
+  }
+  return null;
+}
+
+String? appointmentDateValidator(String? value) {
+  if (value?.isEmpty ?? true) {
+    return dateRequiredString;
+  } else if (!(DateFormat(datePickerFormat)
+          .parseLoose(value!)
+          .compareTo(DateTime.now()) >
+      0)) {
+    return inValidDateString;
   }
   return null;
 }

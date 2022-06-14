@@ -70,6 +70,8 @@ void main() {
 
       final Finder rescheduleButton = find.byKey(rescheduleButtonKey);
       final Finder rescheduleDate = find.byKey(rescheduleDateKey);
+      final DateTime currentDate = DateTime.now().add(const Duration(days: 1));
+
       expect(find.byType(GestureDetector), findsOneWidget);
       await tester.tap(find.byType(GestureDetector));
       await tester.pumpAndSettle();
@@ -82,11 +84,13 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(rescheduleDate);
       await tester.pumpAndSettle();
-      expect(find.text(eligibleYear.year.toString()), findsOneWidget);
-      await tester.tap(find.text(eligibleYear.year.toString()));
+
+      expect(find.text(currentDate.year.toString()), findsOneWidget);
+      await tester.tap(find.text(currentYear.toString()));
       await tester.pumpAndSettle();
-      expect(find.text(currentDay.toString()), findsOneWidget);
-      await tester.tap(find.text(currentDay.toString()));
+
+      expect(find.text(currentDate.day.toString()), findsOneWidget);
+      await tester.tap(find.text(currentDate.day.toString()));
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle();
       await tester.tap(rescheduleButton);
@@ -173,6 +177,7 @@ void main() {
 
       final Finder rescheduleButton = find.byKey(rescheduleButtonKey);
       final Finder rescheduleDate = find.byKey(rescheduleDateKey);
+      final DateTime currentDate = DateTime.now().add(const Duration(days: 1));
 
       expect(find.byType(GestureDetector), findsOneWidget);
       await tester.tap(find.byType(GestureDetector));
@@ -183,11 +188,13 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(rescheduleDate);
       await tester.pumpAndSettle();
-      expect(find.text(eligibleYear.year.toString()), findsOneWidget);
-      await tester.tap(find.text(eligibleYear.year.toString()));
+
+      expect(find.text(currentDate.year.toString()), findsOneWidget);
+      await tester.tap(find.text(currentYear.toString()));
       await tester.pumpAndSettle();
-      expect(find.text(currentDay.toString()), findsOneWidget);
-      await tester.tap(find.text(currentDay.toString()));
+
+      expect(find.text(currentDate.day.toString()), findsOneWidget);
+      await tester.tap(find.text(currentDate.day.toString()));
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle();
       await tester.tap(rescheduleButton);
@@ -220,6 +227,7 @@ void main() {
 
       final Finder rescheduleButton = find.byKey(rescheduleButtonKey);
       final Finder rescheduleDate = find.byKey(rescheduleDateKey);
+      final DateTime currentDate = DateTime.now().add(const Duration(days: 1));
 
       expect(find.byType(GestureDetector), findsOneWidget);
       await tester.tap(find.byType(GestureDetector));
@@ -230,11 +238,12 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(rescheduleDate);
       await tester.pumpAndSettle();
-      expect(find.text(eligibleYear.year.toString()), findsOneWidget);
-      await tester.tap(find.text(eligibleYear.year.toString()));
+      expect(find.text(currentDate.year.toString()), findsOneWidget);
+      await tester.tap(find.text(currentYear.toString()));
       await tester.pumpAndSettle();
-      expect(find.text(currentDay.toString()), findsOneWidget);
-      await tester.tap(find.text(currentDay.toString()));
+
+      expect(find.text(currentDate.day.toString()), findsOneWidget);
+      await tester.tap(find.text(currentDate.day.toString()));
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle();
       await tester.tap(rescheduleButton);

@@ -10,7 +10,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/error_card_widget.dart';
 import 'package:myafyahub/presentation/onboarding/verify_phone/widgets/verify_otp_widget.dart';
-import 'package:shared_themes/spaces.dart';
 
 class VerifyPhoneWidget extends StatefulWidget {
   const VerifyPhoneWidget({

@@ -10,7 +10,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/animated_count.dart';
-import 'package:shared_themes/spaces.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOtpWidget extends StatefulWidget {

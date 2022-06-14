@@ -10,7 +10,6 @@ import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:shared_themes/spaces.dart';
 
 /// [AppointmentListItem] Displays the notifications with Icons and a short description
 class AppointmentListItem extends StatelessWidget {

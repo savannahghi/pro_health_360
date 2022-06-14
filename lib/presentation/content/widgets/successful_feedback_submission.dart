@@ -6,7 +6,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 class SuccessfulFeedbackSubmissionPage extends StatelessWidget {
   const SuccessfulFeedbackSubmissionPage({Key? key}) : super(key: key);

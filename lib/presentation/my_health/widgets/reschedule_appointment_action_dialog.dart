@@ -3,6 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/my_health/fetch_appointments_action.dart';
 import 'package:myafyahub/application/redux/actions/my_health/reschedule_appointment_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -12,7 +13,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:shared_themes/constants.dart';
-import 'package:shared_themes/spaces.dart';
 
 class RescheduleAppointmentActionDialog extends StatefulWidget {
   const RescheduleAppointmentActionDialog({
@@ -54,13 +54,9 @@ class _RescheduleAppointmentActionDialogState
               mediumVerticalSizedBox,
               DatePickerField(
                 gestureDateKey: rescheduleDateKey,
+                initialAllowedDate: DateTime.now(),
                 controller: rescheduleDateTextController,
-                validator: (String? value) {
-                  if (value?.isEmpty ?? true) {
-                    return dateRequiredString;
-                  }
-                  return null;
-                },
+                validator: appointmentDateValidator,
                 decoration: InputDecoration(
                   suffixIcon: const Icon(Icons.date_range),
                   border: OutlineInputBorder(

@@ -22,7 +22,6 @@ import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 class RecentContentWidget extends StatefulWidget {
   const RecentContentWidget();

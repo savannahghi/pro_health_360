@@ -18,7 +18,6 @@ import 'package:myafyahub/presentation/communities/flagged_messages/pages/flagge
 import 'package:myafyahub/presentation/communities/group_info/pages/group_member_connector.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:shared_themes/spaces.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class GroupInfoPage extends StatefulWidget {

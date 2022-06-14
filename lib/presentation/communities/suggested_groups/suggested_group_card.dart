@@ -10,9 +10,6 @@ import 'package:myafyahub/application/redux/view_models/groups/groups_view_model
 import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
-// Package imports:
-import 'package:shared_themes/spaces.dart';
-
 // Project imports:
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';

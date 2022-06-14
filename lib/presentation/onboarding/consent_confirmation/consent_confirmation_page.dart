@@ -11,7 +11,6 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/onboarding/consent_confirmation/widgets/consent_confirmation_dialog.dart';
-import 'package:shared_themes/spaces.dart';
 
 class ConsentConfirmationPage extends StatelessWidget {
   const ConsentConfirmationPage({Key? key}) : super(key: key);

@@ -25,7 +25,6 @@ import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold
 import 'package:myafyahub/presentation/my_health/widgets/profile_health_details_widget.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_themes/spaces.dart';
 
 class MyHealthPage extends StatefulWidget {
   const MyHealthPage({this.graphQlClient});
