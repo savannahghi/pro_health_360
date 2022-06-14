@@ -10,22 +10,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+
 import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/app_setup_data.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
 import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,19 +54,6 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
     persistor: PersistorPrinterDecorator<AppState>(stateDB),
     defaultDistinct: true,
   );
-
-  final ConnectivityChecker connectivityChecker = ConnectivityChecker.initial();
-
-  connectivityChecker
-      .checkConnection()
-      .asStream()
-      .mergeWith(
-        <Stream<bool>>[connectivityChecker.onConnectivityChanged],
-      )
-      .distinct()
-      .listen((bool hasConnection) {
-        store.dispatch(UpdateConnectivityAction(hasConnection: hasConnection));
-      });
 
   final NavigatorObserver navigatorObserver = NavigatorObserver();
 
@@ -159,7 +144,6 @@ Future<void> appBootStrap(List<AppContext> appContexts) async {
             streamClient: streamClient,
             store: store,
             navigatorObserver: navigatorObserver,
-            connectivityChecker: connectivityChecker,
             navigatorKey: appGlobalNavigatorKey,
             appSetupData: appSetupData,
             fcmToken: fcmToken,

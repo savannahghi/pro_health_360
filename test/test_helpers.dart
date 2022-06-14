@@ -16,8 +16,6 @@ import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
 import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
-import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'widgets_tests/shared/utils_test.mocks.dart';
 
@@ -50,20 +48,15 @@ Future<void> buildTestWidget({
         appContexts: testAppContexts,
         graphQLClient: client,
         baseContext: devAppSetupData.customContext,
-        child: ConnectivityCheckerProvider(
-          connectivityChecker: MobileConnectivityChecker(
-            checkInternetCallback: () => Future<bool>.value(true),
-          ),
-          child: MaterialApp(
-            localizationsDelegates: localizationDelegates,
-            supportedLocales: locales,
-            navigatorKey: appGlobalNavigatorKey,
-            onGenerateRoute: RouteGenerator.generateRoute,
-            navigatorObservers: navigatorObservers ?? <NavigatorObserver>[],
-            home: Scaffold(
-              body: Center(
-                child: widget,
-              ),
+        child: MaterialApp(
+          localizationsDelegates: localizationDelegates,
+          supportedLocales: locales,
+          navigatorKey: appGlobalNavigatorKey,
+          onGenerateRoute: RouteGenerator.generateRoute,
+          navigatorObservers: navigatorObservers ?? <NavigatorObserver>[],
+          home: Scaffold(
+            body: Center(
+              child: widget,
             ),
           ),
         ),

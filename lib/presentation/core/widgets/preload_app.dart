@@ -3,28 +3,30 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/src/streams/merge.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
+
 import 'package:myafyahub/application/communities/stream_token_provider.dart';
 import 'package:myafyahub/application/core/services/custom_client.dart';
 import 'package:myafyahub/application/core/services/localization.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/check_token_action.dart';
 import 'package:myafyahub/application/redux/actions/set_push_token_action.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/update_misc_state_action.dart';
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/application/redux/view_models/onboarding/initial_route_view_model.dart';
 import 'package:myafyahub/domain/core/entities/core/user.dart';
 import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
 import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/router/router_generator.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 class PreLoadApp extends StatefulWidget {
   const PreLoadApp({
@@ -90,16 +92,6 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
             AppWrapperBase.of(context)!.customContext!.refreshTokenEndpoint,
       ),
     );
-
-    final ConnectivityChecker connectivityChecker =
-        ConnectivityCheckerProvider.of(context).connectivityChecker;
-
-    StoreProvider.dispatch(
-      context,
-      CheckAndUpdateConnectivityAction(
-        connectivityChecker: connectivityChecker,
-      ),
-    );
   }
 
   @override
@@ -115,6 +107,27 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
     WidgetsBinding.instance?.addObserver(this);
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+      final ConnectivityChecker connectivityChecker =
+          ConnectivityChecker.initial();
+
+      connectivityChecker
+          .checkConnection()
+          .asStream()
+          .mergeWith(
+            <Stream<bool>>[connectivityChecker.onConnectivityChanged],
+          )
+          .distinct()
+          .listen((bool hasConnection) {
+            StoreProvider.dispatch(
+              context,
+              UpdateConnectivityAction(hasConnection: hasConnection),
+            );
+            if (!hasConnection) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text(connectionLostText)),
+              );
+            }
+          });
       StoreProvider.dispatch(
         context,
         CheckTokenAction(

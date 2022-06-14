@@ -4,9 +4,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_graphql_client/src/i_flutter_graphql_client.dart';
+
 import 'package:myafyahub/application/core/services/analytics_service.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/onboarding/phone_login_action.dart';
 import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
@@ -17,8 +17,6 @@ import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_provider.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/onboarding/login/widgets/phone_login_error_widget.dart';
 
@@ -233,18 +231,6 @@ class _LoginPageState extends State<LoginPage> {
                   : MyAfyaHubPrimaryButton(
                       buttonKey: phoneLoginContinueButtonKey,
                       onPressed: () async {
-                        final ConnectivityChecker connectivityChecker =
-                            ConnectivityCheckerProvider.of(
-                          context,
-                        ).connectivityChecker;
-
-                        StoreProvider.dispatch(
-                          context,
-                          CheckAndUpdateConnectivityAction(
-                            connectivityChecker: connectivityChecker,
-                          ),
-                        );
-
                         final bool? isFormValid =
                             _formKey.currentState?.validate();
 
