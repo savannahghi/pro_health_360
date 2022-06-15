@@ -21,6 +21,7 @@ import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart'
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:myafyahub/presentation/core/widgets/generic_zero_state_widget.dart';
+import 'package:myafyahub/presentation/core/widgets/no_connection_widget.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
 
 class FeedPage extends StatefulWidget {
@@ -69,6 +70,9 @@ class _FeedPageState extends State<FeedPage> {
             ContentViewModel.fromStore(store.state),
         builder: (BuildContext context, ContentViewModel vm) {
           final List<Content?>? feedItems = vm.feedContentState?.contentItems;
+          if (!(vm.connectivityState?.isConnected ?? false)) {
+            return const NoConnectionWidget();
+          }
           return SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(

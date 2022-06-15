@@ -12,6 +12,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/actions/update_content_categories_action.dart';
 
 // Project imports:
@@ -68,6 +69,8 @@ void main() {
     testWidgets('should fetch feed items and display them correctly',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -113,6 +116,8 @@ void main() {
       );
 
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -139,6 +144,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -164,6 +171,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -211,6 +220,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -246,6 +257,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -273,6 +286,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
           'idToken',
@@ -301,6 +316,8 @@ void main() {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
           'idToken',
@@ -328,6 +345,8 @@ void main() {
     testWidgets('shows a generic timeout widget while fetching the feed',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
           'idToken',
@@ -353,6 +372,8 @@ void main() {
     testWidgets('shows a generic timeout widget while fetching categories',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
           'idToken',
@@ -385,6 +406,8 @@ void main() {
       tester.binding.window.devicePixelRatioTestValue = 1;
 
       mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
           'idToken',

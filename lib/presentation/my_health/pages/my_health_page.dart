@@ -22,6 +22,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
+import 'package:myafyahub/presentation/core/widgets/no_connection_widget.dart';
 import 'package:myafyahub/presentation/my_health/widgets/profile_health_details_widget.dart';
 import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
 import 'package:myafyahub/presentation/router/routes.dart';
@@ -50,6 +51,32 @@ class _MyHealthPageState extends State<MyHealthPage> {
     });
   }
 
+  IGraphQlClient getCustomClient() {
+    if (widget.graphQlClient != null) {
+      return widget.graphQlClient!;
+    } else {
+      final List<AppContext> contexts = AppWrapperBase.of(context)!.appContexts;
+      final AppSetupData appSetupData = getAppSetupData(contexts.last);
+      final String graphqlEndpoint = appSetupData.clinicalEndpoint;
+      final String refreshTokenEndpoint =
+          appSetupData.customContext?.refreshTokenEndpoint ?? '';
+
+      final String idToken =
+          StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
+      final String userID =
+          StoreProvider.state<AppState>(context)?.clientState?.user?.userId ??
+              '';
+
+      return CustomClient(
+        idToken,
+        graphqlEndpoint,
+        context: context,
+        refreshTokenEndpoint: refreshTokenEndpoint,
+        userID: userID,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -59,38 +86,41 @@ class _MyHealthPageState extends State<MyHealthPage> {
         showBackButton: false,
         bottomNavIndex: 3,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Column(
-            children: <Widget>[
-              StoreConnector<AppState, ClientProfileViewModel>(
-                onInit: (Store<AppState> store) {
-                  store.dispatch(
-                    FetchViralLoadDataAction(httpClient: getCustomClient()),
-                  );
+      body: StoreConnector<AppState, ClientProfileViewModel>(
+        onInit: (Store<AppState> store) {
+          store.dispatch(
+            FetchViralLoadDataAction(httpClient: getCustomClient()),
+          );
 
-                  store.dispatch(
-                    FetchNextRefillDataAction(
-                      httpClient: AppWrapperBase.of(context)!.graphQLClient,
-                    ),
-                  );
-                },
-                converter: (Store<AppState> store) =>
-                    ClientProfileViewModel.fromStore(store),
-                builder: (BuildContext context, ClientProfileViewModel vm) {
-                  final User? userProfileState = vm.clientState?.user;
-                  final String firstName = userProfileState?.firstName ?? '';
-                  final String lastName = userProfileState?.lastName ?? '';
-                  final List<ViralLoadNode?> viralLoadData =
-                      vm.clientState?.viralLoadData?.edges ?? <ViralLoadNode>[];
+          store.dispatch(
+            FetchNextRefillDataAction(
+              httpClient: AppWrapperBase.of(context)!.graphQLClient,
+            ),
+          );
+        },
+        converter: (Store<AppState> store) =>
+            ClientProfileViewModel.fromStore(store),
+        builder: (BuildContext context, ClientProfileViewModel vm) {
+          final User? userProfileState = vm.clientState?.user;
+          final String firstName = userProfileState?.firstName ?? '';
+          final String lastName = userProfileState?.lastName ?? '';
+          final List<ViralLoadNode?> viralLoadData =
+              vm.clientState?.viralLoadData?.edges ?? <ViralLoadNode>[];
 
-                  final String nextRefill =
-                      vm.clientState?.nextRefillData?.nextRefill ?? '';
-                  final Map<String, String> nextRefillDate =
-                      extractNextRefillDate(nextRefill);
+          final String nextRefill =
+              vm.clientState?.nextRefillData?.nextRefill ?? '';
+          final Map<String, String> nextRefillDate =
+              extractNextRefillDate(nextRefill);
 
-                  return Column(
+          if (!(vm.connectivityState?.isConnected ?? false)) {
+            return const NoConnectionWidget();
+          }
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  Column(
                     children: <Widget>[
                       GestureDetector(
                         onTap: () async {
@@ -170,146 +200,124 @@ class _MyHealthPageState extends State<MyHealthPage> {
                               const Spacer(),
                           ],
                         ),
+                      size15VerticalSizedBox,
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                context,
+                                AppRoutes.myHealthDiaryPage,
+                              ),
+                              child: InformationListCard(
+                                title: Text(
+                                  myHealthPageHealthDiary,
+                                  style: normalSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                                alternateLeadingIcon: Container(
+                                  padding: const EdgeInsets.all(18),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        AppColors.primaryColor.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    healthDiaryIcon,
+                                    width: 20,
+                                    height: 20,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          smallHorizontalSizedBox,
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                context,
+                                AppRoutes.appointmentsPage,
+                              ),
+                              child: InformationListCard(
+                                title: Text(
+                                  myHealthPageAppointments,
+                                  style: normalSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                                alternateLeadingIcon: Container(
+                                  padding: const EdgeInsets.all(18),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        AppColors.primaryColor.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    appointmentIcon,
+                                    width: 20,
+                                    height: 20,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      size15VerticalSizedBox,
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                context,
+                                AppRoutes.medicalData,
+                              ),
+                              child: InformationListCard(
+                                title: Text(
+                                  medicalDataTitle,
+                                  style: normalSize12Text(
+                                    AppColors.greyTextColor,
+                                  ),
+                                ),
+                                alternateLeadingIcon: Container(
+                                  padding: const EdgeInsets.all(18),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        AppColors.primaryColor.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: SvgPicture.asset(
+                                    medicalDataIcon,
+                                    width: 20,
+                                    height: 20,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          smallHorizontalSizedBox,
+                        ],
+                      ),
+                      MyHealthTimeline(
+                        graphQlClient: getCustomClient(),
+                        showMore: true,
+                        showMoreCallback: () {
+                          Navigator.of(context)
+                              .pushNamed(AppRoutes.myHealthTimeline);
+                        },
+                      )
                     ],
-                  );
-                },
-              ),
-              size15VerticalSizedBox,
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                        context,
-                        AppRoutes.myHealthDiaryPage,
-                      ),
-                      child: InformationListCard(
-                        title: Text(
-                          myHealthPageHealthDiary,
-                          style: normalSize12Text(
-                            AppColors.greyTextColor,
-                          ),
-                        ),
-                        alternateLeadingIcon: Container(
-                          padding: const EdgeInsets.all(18),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: SvgPicture.asset(
-                            healthDiaryIcon,
-                            width: 20,
-                            height: 20,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  smallHorizontalSizedBox,
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                        context,
-                        AppRoutes.appointmentsPage,
-                      ),
-                      child: InformationListCard(
-                        title: Text(
-                          myHealthPageAppointments,
-                          style: normalSize12Text(
-                            AppColors.greyTextColor,
-                          ),
-                        ),
-                        alternateLeadingIcon: Container(
-                          padding: const EdgeInsets.all(18),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: SvgPicture.asset(
-                            appointmentIcon,
-                            width: 20,
-                            height: 20,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
-              size15VerticalSizedBox,
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                        context,
-                        AppRoutes.medicalData,
-                      ),
-                      child: InformationListCard(
-                        title: Text(
-                          medicalDataTitle,
-                          style: normalSize12Text(
-                            AppColors.greyTextColor,
-                          ),
-                        ),
-                        alternateLeadingIcon: Container(
-                          padding: const EdgeInsets.all(18),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: SvgPicture.asset(
-                            medicalDataIcon,
-                            width: 20,
-                            height: 20,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  smallHorizontalSizedBox,
-                ],
-              ),
-              MyHealthTimeline(
-                graphQlClient: getCustomClient(),
-                showMore: true,
-                showMoreCallback: () {
-                  Navigator.of(context).pushNamed(AppRoutes.myHealthTimeline);
-                },
-              )
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
-  }
-
-  IGraphQlClient getCustomClient() {
-    if (widget.graphQlClient != null) {
-      return widget.graphQlClient!;
-    } else {
-      final List<AppContext> contexts = AppWrapperBase.of(context)!.appContexts;
-      final AppSetupData appSetupData = getAppSetupData(contexts.last);
-      final String graphqlEndpoint = appSetupData.clinicalEndpoint;
-      final String refreshTokenEndpoint =
-          appSetupData.customContext?.refreshTokenEndpoint ?? '';
-
-      final String idToken =
-          StoreProvider.state<AppState>(context)?.credentials?.idToken ?? '';
-      final String userID =
-          StoreProvider.state<AppState>(context)?.clientState?.user?.userId ??
-              '';
-
-      return CustomClient(
-        idToken,
-        graphqlEndpoint,
-        context: context,
-        refreshTokenEndpoint: refreshTokenEndpoint,
-        userID: userID,
-      );
-    }
   }
 }

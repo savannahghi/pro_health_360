@@ -1,12 +1,9 @@
-// Flutter imports:
-// Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-// Project imports:
 import 'package:myafyahub/application/core/graphql/queries.dart';
 import 'package:myafyahub/application/core/services/utils.dart';
 import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
@@ -20,9 +17,15 @@ class FetchContentAction extends ReduxAction<AppState> {
     this.category,
   });
 
+  final ContentCategory? category;
   final BuildContext context;
   final int limit;
-  final ContentCategory? category;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(fetchContentFlag));
+    super.after();
+  }
 
   @override
   void before() {
@@ -35,12 +38,6 @@ class FetchContentAction extends ReduxAction<AppState> {
       ),
     );
     dispatch(WaitAction<AppState>.add(fetchContentFlag));
-  }
-
-  @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(fetchContentFlag));
-    super.after();
   }
 
   @override
