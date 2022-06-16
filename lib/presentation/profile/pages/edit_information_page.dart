@@ -121,7 +121,11 @@ class _EditInformationPageState extends State<EditInformationPage> {
                               CustomTextField(
                                 formFieldKey: ValueKey<String>('$index'),
                                 borderColor: Colors.grey[200],
-                                keyboardType: TextInputType.text,
+                                keyboardType:
+                                    (editInformationInputItem.fieldName ==
+                                            phoneNumber)
+                                        ? TextInputType.number
+                                        : TextInputType.text,
                                 controller:
                                     editInformationInputItem.inputController,
                                 hintText: editInformationInputItem.hintText,
