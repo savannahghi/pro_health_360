@@ -10,6 +10,7 @@ class GroupsViewModel extends Vm {
   final List<Role>? clientRoles;
   final bool? isModerator;
   final bool? isOwner;
+  final String? clientId;
 
   GroupsViewModel({
     required this.wait,
@@ -18,6 +19,7 @@ class GroupsViewModel extends Vm {
     this.clientRoles,
     this.isModerator,
     this.isOwner,
+    this.clientId,
   }) : super(
           equals: <Object?>[
             wait,
@@ -26,6 +28,7 @@ class GroupsViewModel extends Vm {
             clientRoles,
             isModerator,
             isOwner,
+            clientId,
           ],
         );
 
@@ -36,6 +39,7 @@ class GroupsViewModel extends Vm {
       groupMembers: store.state.miscState?.groupState?.groupMembers,
       clientRoles: store.state.clientState?.user?.roles,
       isModerator: store.state.miscState?.groupState?.isModerator,
+      clientId: store.state.clientState?.id,
     );
   }
 }
