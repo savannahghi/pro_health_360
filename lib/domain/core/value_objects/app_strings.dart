@@ -997,3 +997,8 @@ const String youHaveAcceptedTerms = 'You have already accepted these terms';
 const String noConnectionText = 'No connection';
 const String noConnectionDescriptionText =
     'You don’t seem to have an internet connection. Please check your connection and try again';
+const String noStringsAvailable = 'No surveys available';
+const String noStringsAvailableDescription =
+    'There are no surveys available for you at the moment. We will notify you when they are available';
+const String recheckAvailableSurveys =
+    'Tap the button below to check if there are any new surveys available';
