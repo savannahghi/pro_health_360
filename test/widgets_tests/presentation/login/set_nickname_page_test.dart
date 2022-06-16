@@ -182,7 +182,7 @@ void main() {
       await tester.pumpAndSettle();
       store.dispatch(WaitAction<AppState>.add(setNickNameFlag));
       await tester.pump(const Duration(seconds: 2));
-      expect(find.byType(PlatformLoader), findsNWidgets(2));
+      expect(find.byType(PlatformLoader), findsOneWidget);
     });
 
     testWidgets('Navigates to ContentDetailPage when a link is tapped  ',

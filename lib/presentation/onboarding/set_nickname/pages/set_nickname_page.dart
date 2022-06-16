@@ -210,12 +210,6 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                 ],
                               ),
                             ),
-                            if (waitingForFlag) ...<Widget>{
-                              veryLargeVerticalSizedBox,
-                              const PlatformLoader(
-                                color: AppColors.secondaryColor,
-                              ),
-                            },
                           ],
                         ),
                       )
@@ -229,7 +223,7 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             width: double.infinity,
             height: 52,
-            child: (vm.wait!.isWaitingFor(setNickNameFlag))
+            child: waitingForFlag
                 ? const PlatformLoader()
                 : MyAfyaHubPrimaryButton(
                     buttonKey: continueKey,
