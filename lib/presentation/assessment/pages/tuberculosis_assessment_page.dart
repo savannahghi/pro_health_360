@@ -105,6 +105,7 @@ class _TuberculosisAssessmentPageState
                                 ScreeningToolsType.TB_ASSESSMENT,
                           ),
                           size40VerticalSizedBox,
+                          const SizedBox(height: 80),
                         ],
                       ),
                     ),

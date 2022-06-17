@@ -11,10 +11,10 @@ packages:
   afya_moja_core:
     dependency: "direct main"
     description:
-      name: afya_moja_core
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
+      path: "/home/jngugi/coding/work/afya_moja_core"
+      relative: false
+    source: path
+    version: "0.1.4"
   analyzer:
     dependency: transitive
     description:

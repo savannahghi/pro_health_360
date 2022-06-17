@@ -37,7 +37,10 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'communityID': channelId
+      'communityID': channelId,
+      'input': <String, dynamic>{
+        'filter': <String, String>{'invite': 'accepted'}
+      }
     };
 
     final Response response = await client.query(

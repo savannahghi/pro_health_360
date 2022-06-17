@@ -100,6 +100,7 @@ class _AlcoholSubstanceUsePageState extends State<AlcoholSubstanceUsePage> {
                                 ScreeningToolsType.ALCOHOL_SUBSTANCE_ASSESSMENT,
                           ),
                           const AlcoholAssessmentInformation(),
+                          size40VerticalSizedBox,
                           const SizedBox(height: 80),
                         ],
                       ),
