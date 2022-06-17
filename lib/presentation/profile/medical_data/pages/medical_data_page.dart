@@ -107,7 +107,7 @@ class _MedicalDataPageState extends State<MedicalDataPage> {
                     StoreProvider.dispatch(
                       context,
                       FetchMedicalDataAction(
-                        httpClient: AppWrapperBase.of(context)!.graphQLClient,
+                        httpClient: client,
                       ),
                     );
                   },
