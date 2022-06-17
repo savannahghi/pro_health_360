@@ -98,6 +98,7 @@ class _ViolenceAssessmentPageState extends State<ViolenceAssessmentPage> {
                           ),
                           // contains guidance information
                           const ViolenceAssessmentInformation(),
+                          size40VerticalSizedBox,
                           const SizedBox(
                             height: 80,
                           ),

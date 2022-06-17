@@ -112,8 +112,8 @@ class _ContraceptiveAssessmentPageState
                                 ScreeningToolsType.CONTRACEPTIVE_ASSESSMENT,
                           ),
                           const ContraceptivesInformation(),
-
                           size40VerticalSizedBox,
+                          const SizedBox(height: 80),
                         ],
                       ),
                     ),
