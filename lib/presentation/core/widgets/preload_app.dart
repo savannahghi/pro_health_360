@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
@@ -55,6 +57,9 @@ class PreLoadApp extends StatefulWidget {
 }
 
 class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
+  final ConnectivityChecker connectivityChecker = ConnectivityChecker.initial();
+  StreamSubscription<bool>? connectivityCheckerSubscription;
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
@@ -97,6 +102,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance?.removeObserver(this);
+    connectivityCheckerSubscription?.cancel();
     super.dispose();
   }
 
@@ -107,27 +113,6 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
     WidgetsBinding.instance?.addObserver(this);
 
     WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      final ConnectivityChecker connectivityChecker =
-          ConnectivityChecker.initial();
-
-      connectivityChecker
-          .checkConnection()
-          .asStream()
-          .mergeWith(
-            <Stream<bool>>[connectivityChecker.onConnectivityChanged],
-          )
-          .distinct()
-          .listen((bool hasConnection) {
-            StoreProvider.dispatch(
-              context,
-              UpdateConnectivityAction(hasConnection: hasConnection),
-            );
-            if (!hasConnection) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text(connectionLostText)),
-              );
-            }
-          });
       StoreProvider.dispatch(
         context,
         CheckTokenAction(
@@ -220,6 +205,29 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
           localizationsDelegates: localizationDelegates,
           supportedLocales: locales,
           builder: (BuildContext context, Widget? childWidget) {
+            connectivityCheckerSubscription = connectivityChecker
+                .checkConnection()
+                .asStream()
+                .mergeWith(
+                  <Stream<bool>>[connectivityChecker.onConnectivityChanged],
+                )
+                .distinct()
+                .listen((bool hasConnection) {
+                  final bool hasConn = StoreProvider.state<AppState>(context)
+                          ?.connectivityState
+                          ?.isConnected ??
+                      false;
+
+                  if (!hasConnection && hasConn) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text(connectionLostText)),
+                    );
+                  }
+                  StoreProvider.dispatch(
+                    context,
+                    UpdateConnectivityAction(hasConnection: hasConnection),
+                  );
+                });
             return UserExceptionDialog<AppState>(
               child:
                   stream.StreamChat(client: widget.client, child: childWidget),
