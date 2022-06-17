@@ -776,7 +776,7 @@ const String moderationHelpText =
     'Long press on a member to promote them to a moderator, '
     'remove or ban them from this group';
 const String messageDeletedText = 'Message deleted successfully';
-const String deleteMessageString = 'Delete Message';
+const String deleteMessageString = 'Delete';
 const String banUserText = 'Ban user';
 const String flaggedMessagesString = 'Flagged messages';
 const String noFlaggedMessagesTitle = 'No flagged messages';
