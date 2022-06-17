@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.14.4 <3.0.0"
 
 dependencies:
-  afya_moja_core: ^0.1.1
+  afya_moja_core: ^0.1.2
   app_wrapper: ^0.1.35
   async_redux: ^13.3.1
   collection: ^1.15.0
