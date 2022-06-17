@@ -25,11 +25,13 @@ class _$GroupStateTearOff {
   _GroupState call(
       {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
       @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
+      List<Community?>? communities,
       bool? isModerator,
       bool? isOwner}) {
     return _GroupState(
       recommendedGroups: recommendedGroups,
       groupMembers: groupMembers,
+      communities: communities,
       isModerator: isModerator,
       isOwner: isOwner,
     );
@@ -49,6 +51,7 @@ mixin _$GroupState {
   List<Group?>? get recommendedGroups => throw _privateConstructorUsedError;
   @JsonKey(name: 'listCommunityMembers')
   List<GroupMember?>? get groupMembers => throw _privateConstructorUsedError;
+  List<Community?>? get communities => throw _privateConstructorUsedError;
   bool? get isModerator => throw _privateConstructorUsedError;
   bool? get isOwner => throw _privateConstructorUsedError;
 
@@ -66,6 +69,7 @@ abstract class $GroupStateCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
       @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
+      List<Community?>? communities,
       bool? isModerator,
       bool? isOwner});
 }
@@ -82,6 +86,7 @@ class _$GroupStateCopyWithImpl<$Res> implements $GroupStateCopyWith<$Res> {
   $Res call({
     Object? recommendedGroups = freezed,
     Object? groupMembers = freezed,
+    Object? communities = freezed,
     Object? isModerator = freezed,
     Object? isOwner = freezed,
   }) {
@@ -94,6 +99,10 @@ class _$GroupStateCopyWithImpl<$Res> implements $GroupStateCopyWith<$Res> {
           ? _value.groupMembers
           : groupMembers // ignore: cast_nullable_to_non_nullable
               as List<GroupMember?>?,
+      communities: communities == freezed
+          ? _value.communities
+          : communities // ignore: cast_nullable_to_non_nullable
+              as List<Community?>?,
       isModerator: isModerator == freezed
           ? _value.isModerator
           : isModerator // ignore: cast_nullable_to_non_nullable
@@ -115,6 +124,7 @@ abstract class _$GroupStateCopyWith<$Res> implements $GroupStateCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
       @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
+      List<Community?>? communities,
       bool? isModerator,
       bool? isOwner});
 }
@@ -133,6 +143,7 @@ class __$GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
   $Res call({
     Object? recommendedGroups = freezed,
     Object? groupMembers = freezed,
+    Object? communities = freezed,
     Object? isModerator = freezed,
     Object? isOwner = freezed,
   }) {
@@ -145,6 +156,10 @@ class __$GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
           ? _value.groupMembers
           : groupMembers // ignore: cast_nullable_to_non_nullable
               as List<GroupMember?>?,
+      communities: communities == freezed
+          ? _value.communities
+          : communities // ignore: cast_nullable_to_non_nullable
+              as List<Community?>?,
       isModerator: isModerator == freezed
           ? _value.isModerator
           : isModerator // ignore: cast_nullable_to_non_nullable
@@ -163,6 +178,7 @@ class _$_GroupState implements _GroupState {
   _$_GroupState(
       {@JsonKey(name: 'recommendedCommunities') this.recommendedGroups,
       @JsonKey(name: 'listCommunityMembers') this.groupMembers,
+      this.communities,
       this.isModerator,
       this.isOwner});
 
@@ -176,13 +192,15 @@ class _$_GroupState implements _GroupState {
   @JsonKey(name: 'listCommunityMembers')
   final List<GroupMember?>? groupMembers;
   @override
+  final List<Community?>? communities;
+  @override
   final bool? isModerator;
   @override
   final bool? isOwner;
 
   @override
   String toString() {
-    return 'GroupState(recommendedGroups: $recommendedGroups, groupMembers: $groupMembers, isModerator: $isModerator, isOwner: $isOwner)';
+    return 'GroupState(recommendedGroups: $recommendedGroups, groupMembers: $groupMembers, communities: $communities, isModerator: $isModerator, isOwner: $isOwner)';
   }
 
   @override
@@ -195,6 +213,8 @@ class _$_GroupState implements _GroupState {
             const DeepCollectionEquality()
                 .equals(other.groupMembers, groupMembers) &&
             const DeepCollectionEquality()
+                .equals(other.communities, communities) &&
+            const DeepCollectionEquality()
                 .equals(other.isModerator, isModerator) &&
             const DeepCollectionEquality().equals(other.isOwner, isOwner));
   }
@@ -204,6 +224,7 @@ class _$_GroupState implements _GroupState {
       runtimeType,
       const DeepCollectionEquality().hash(recommendedGroups),
       const DeepCollectionEquality().hash(groupMembers),
+      const DeepCollectionEquality().hash(communities),
       const DeepCollectionEquality().hash(isModerator),
       const DeepCollectionEquality().hash(isOwner));
 
@@ -222,6 +243,7 @@ abstract class _GroupState implements GroupState {
   factory _GroupState(
       {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
       @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
+      List<Community?>? communities,
       bool? isModerator,
       bool? isOwner}) = _$_GroupState;
 
@@ -234,6 +256,8 @@ abstract class _GroupState implements GroupState {
   @override
   @JsonKey(name: 'listCommunityMembers')
   List<GroupMember?>? get groupMembers;
+  @override
+  List<Community?>? get communities;
   @override
   bool? get isModerator;
   @override

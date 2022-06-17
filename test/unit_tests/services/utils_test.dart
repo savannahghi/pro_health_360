@@ -286,13 +286,19 @@ void main() {
     final String age = calculateAge(fiveYearAgo);
     expect(age, '5');
   });
+
   test('appointmentDateValidator works correctly', () {
     expect(appointmentDateValidator(null), dateRequiredString);
     expect(appointmentDateValidator(''), dateRequiredString);
     expect(
-      appointmentDateValidator('17 Jun, 2021',
+      appointmentDateValidator(
+        '17 Jun, 2021',
       ),
       inValidDateString,
     );
+  });
+
+  test('capitalize works correctly', () {
+    expect(capitalize('test'), 'Test');
   });
 }

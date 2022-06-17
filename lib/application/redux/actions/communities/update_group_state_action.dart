@@ -2,11 +2,13 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
+import 'package:myafyahub/domain/core/entities/core/community.dart';
 import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 
 class UpdateGroupStateAction extends ReduxAction<AppState> {
   final List<Group?>? recommendedGroups;
   final List<GroupMember?>? groupMembers;
+  final List<Community?>? communities;
   final bool? isModerator;
   final bool? isOwner;
 
@@ -15,6 +17,7 @@ class UpdateGroupStateAction extends ReduxAction<AppState> {
     this.groupMembers,
     this.isModerator,
     this.isOwner,
+    this.communities,
   });
 
   @override
@@ -26,6 +29,7 @@ class UpdateGroupStateAction extends ReduxAction<AppState> {
       groupMembers: groupMembers ?? oldState?.groupMembers,
       isModerator: isModerator ?? oldState?.isModerator,
       isOwner: isOwner ?? oldState?.isOwner,
+      communities: communities ?? oldState?.communities,
     );
 
     final AppState newState = state.copyWith(

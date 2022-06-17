@@ -4,19 +4,6 @@ mutation completeSignup($flavour: Flavour!){
 }
 ''';
 
-const String updateUserProfileMutation = r'''
-mutation updateUserProfile($input: UserProfileInput!) {
-  updateUserProfile(input: $input) {
-    userBioData {
-      firstName
-      lastName
-      gender
-      dateOfBirth
-    }
-  }
-}
-''';
-
 const String registerDeviceTokenQuery = r'''
 mutation RegisterPushToken($token: String!) {
   registerPushToken(token: $token)
