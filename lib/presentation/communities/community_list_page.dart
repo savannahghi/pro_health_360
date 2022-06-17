@@ -16,6 +16,7 @@ import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/communities/channel_page.dart';
 import 'package:myafyahub/presentation/communities/chat_screen/widgets/empty_conversations_widget.dart';
 import 'package:myafyahub/presentation/communities/view_models/community_list_view_model.dart';
+import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -67,6 +68,7 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      backgroundColor: AppColors.whiteColor,
       bottomNavIndex: 2,
       appBar: const CustomAppBar(
         title: communityPageString,
