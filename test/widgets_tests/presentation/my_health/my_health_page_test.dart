@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -29,6 +30,7 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
+      store.dispatch(UpdateConnectivityAction(hasConnection: true));
     });
 
     testWidgets('renders correctly', (WidgetTester tester) async {

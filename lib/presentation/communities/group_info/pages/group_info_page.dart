@@ -147,7 +147,8 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                     false;
 
                                 final String userType =
-                                    currentMember.userType?.name ?? '';
+                                    currentMember.userType?.name ??
+                                        UserType.CLIENT.name;
 
                                 return GroupMemberConnector(
                                   itemKey: ValueKey<int>(index),
@@ -159,6 +160,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                   isModerator: isModerator,
                                   canModerate: vm.isModerator ?? false,
                                   isBanned: isBanned,
+                                  clientId: vm.clientId ?? '',
                                   onError: (String errorMessage) {
                                     showTextSnackbar(
                                       ScaffoldMessenger.of(context),

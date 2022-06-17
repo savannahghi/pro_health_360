@@ -4,6 +4,7 @@ import 'package:async_redux/async_redux.dart';
 
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:myafyahub/application/redux/states/connectivity_state.dart';
 import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/recent_content_state.dart';
 import 'package:myafyahub/domain/core/entities/core/saved_content_state.dart';
@@ -16,6 +17,7 @@ class ContentViewModel extends Vm {
     this.savedContentState,
     this.selectedCategory,
     this.listContentCategory,
+    this.connectivityState,
   }) : super(
           equals: <Object?>[
             wait,
@@ -24,6 +26,7 @@ class ContentViewModel extends Vm {
             recentContentState,
             selectedCategory,
             listContentCategory,
+            connectivityState,
           ],
         );
 
@@ -35,6 +38,7 @@ class ContentViewModel extends Vm {
       recentContentState: state.contentState?.recentContentState,
       selectedCategory: state.contentState?.feedContentState?.selectedCategory,
       listContentCategory: state.contentState?.categoriesList,
+      connectivityState: state.connectivityState,
     );
   }
 
@@ -43,5 +47,6 @@ class ContentViewModel extends Vm {
   final SavedContentState? savedContentState;
   final ContentCategory? selectedCategory;
   final ListContentCategory? listContentCategory;
+  final ConnectivityState? connectivityState;
   final Wait? wait;
 }

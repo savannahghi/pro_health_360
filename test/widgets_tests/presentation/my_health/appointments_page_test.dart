@@ -7,6 +7,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:myafyahub/application/redux/actions/update_connectivity_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 // Project imports:
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -192,6 +193,8 @@ void main() {
       });
       testWidgets('should show zero state widget if no appointments',
           (WidgetTester tester) async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -238,7 +241,7 @@ void main() {
         );
 
         await tester.tap(find.text(pastAppointmentsText));
-        
+
         store.dispatch(WaitAction<AppState>.add(fetchAppointmentsFlag));
         await tester.pump();
         await tester.pump(const Duration(seconds: 5));
@@ -247,6 +250,8 @@ void main() {
       });
       testWidgets('should show zero state widget if no appointments',
           (WidgetTester tester) async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
         await buildTestWidget(
           tester: tester,
           store: store,

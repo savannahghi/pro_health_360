@@ -14,6 +14,7 @@ class GroupMemberConnector extends StatelessWidget {
     required this.communityId,
     required this.communityName,
     required this.userType,
+    required this.clientId,
     this.isModerator = false,
     this.canModerate = false,
     this.isBanned = false,
@@ -31,6 +32,7 @@ class GroupMemberConnector extends StatelessWidget {
   final bool canModerate;
   final bool isBanned;
   final String userType;
+  final String clientId;
   final void Function(String)? onError;
   final void Function(String?)? onSuccess;
 
@@ -46,7 +48,9 @@ class GroupMemberConnector extends StatelessWidget {
       canModerate: canModerate,
       isBanned: isBanned,
       onLongPress: () {
-        if (canModerate) showModerationDialog(context);
+        if (canModerate && clientId.compareTo(memberID) != 0) {
+          showModerationDialog(context);
+        }
       },
       userType: userType,
     );
@@ -74,7 +78,15 @@ class GroupMemberConnector extends StatelessWidget {
                   vm.wait.isWaitingFor(isBanned ? unBanUserFlag : banUserFlag),
               isRemoving: vm.wait.isWaitingFor(removeFromGroupFlag),
               onPromoteTapped: vm.promote,
-              onBanTapped: isBanned ? vm.unBan : vm.ban,
+              onBanTapped: clientId.compareTo(memberID) == 0
+                  ? null
+                  : () {
+                      if (isBanned) {
+                        vm.unBan?.call();
+                      } else {
+                        vm.ban?.call();
+                      }
+                    },
               onRemoveTapped: vm.remove,
             );
           },

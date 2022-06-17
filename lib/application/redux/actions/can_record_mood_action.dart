@@ -43,7 +43,7 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
   }
 
   @override
-  Future<AppState> reduce() async {
+  Future<AppState?> reduce() async {
     final String? clientId = state.clientState!.id;
 
     // initializing of CanRecordMoodAction mutation

@@ -4,15 +4,16 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myafyahub/application/redux/actions/surveys/fetch_available_surveys_action.dart';
+import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/misc_state.dart';
 import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
-
+import 'package:myafyahub/domain/core/entities/surveys/survey.dart';
 import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
 import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
 import 'package:myafyahub/presentation/core/theme/theme.dart';
 import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:myafyahub/presentation/surveys/widgets/survey_item.dart';
+import 'package:myafyahub/presentation/surveys/widgets/survey_zero_state_widget.dart';
 
 class SurveysPage extends StatelessWidget {
   const SurveysPage({Key? key}) : super(key: key);
@@ -36,7 +37,19 @@ class SurveysPage extends StatelessWidget {
             );
           },
           builder: (BuildContext context, AppStateViewModel state) {
-            final MiscState miscState = state.appState.miscState!;
+            final List<Survey> availableSurveys =
+                state.appState.miscState!.availableSurveysList ?? <Survey>[];
+            if (state.wait!.isWaitingFor(fetchAvailableSurveysFlag)) {
+              return Container(
+                height: 300,
+                padding: const EdgeInsets.all(20),
+                child: const PlatformLoader(),
+              );
+            }
+            if (availableSurveys.isEmpty) {
+              return const SurveyZeroStateWidget();
+            }
+
             return Column(
               children: <Widget>[
                 SvgPicture.asset(surveysImage),
@@ -49,16 +62,16 @@ class SurveysPage extends StatelessWidget {
                 ListView.builder(
                   shrinkWrap: true,
                   cacheExtent: 4,
-                  itemCount: miscState.availableSurveysList!.length,
+                  itemCount: availableSurveys.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
                       children: <Widget>[
                         SurveyItem(
                           gestureKey: Key(
-                            miscState.availableSurveysList![index].title!,
+                            availableSurveys[index].title!,
                           ),
-                          url: miscState.availableSurveysList![index].link!,
-                          title: miscState.availableSurveysList![index].title!,
+                          url: availableSurveys[index].link!,
+                          title: availableSurveys[index].title!,
                         ),
                         verySmallVerticalSizedBox,
                       ],
