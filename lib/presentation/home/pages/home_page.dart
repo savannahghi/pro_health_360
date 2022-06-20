@@ -34,19 +34,21 @@ class HomePage extends StatelessWidget {
             if (!vm.connectivityState.isConnected) {
               return const NoConnectionWidget();
             }
-            return ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                const MoodChecker(),
-                smallVerticalSizedBox,
-                const ScreeningToolsCarousel(),
-                smallVerticalSizedBox,
-                const RecentContentWidget(),
-                smallVerticalSizedBox,
-                const SuggestedGroupsSection(),
-                smallVerticalSizedBox,
-                const SurveyCarousel(),
-              ],
+            return SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  const MoodChecker(),
+                  smallVerticalSizedBox,
+                  const ScreeningToolsCarousel(),
+                  smallVerticalSizedBox,
+                  const RecentContentWidget(),
+                  smallVerticalSizedBox,
+                  const SuggestedGroupsSection(),
+                  smallVerticalSizedBox,
+                  const SurveyCarousel(),
+                  mediumVerticalSizedBox,
+                ],
+              ),
             );
           },
         ),
