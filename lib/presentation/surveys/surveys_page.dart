@@ -22,65 +22,68 @@ class SurveysPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: surveys),
-      body: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        child: StoreConnector<AppState, AppStateViewModel>(
-          converter: (Store<AppState> store) {
-            return AppStateViewModel.fromStore(store);
-          },
-          onInit: (Store<AppState> store) {
-            store.dispatch(
-              FetchAvailableSurveysAction(
-                client: AppWrapperBase.of(context)!.graphQLClient,
-              ),
-            );
-          },
-          builder: (BuildContext context, AppStateViewModel state) {
-            final List<Survey> availableSurveys =
-                state.appState.miscState!.availableSurveysList ?? <Survey>[];
-            if (state.wait!.isWaitingFor(fetchAvailableSurveysFlag)) {
-              return Container(
-                height: 300,
-                padding: const EdgeInsets.all(20),
-                child: const PlatformLoader(),
-              );
-            }
-            if (availableSurveys.isEmpty) {
-              return const SurveyZeroStateWidget();
-            }
-
-            return Column(
-              children: <Widget>[
-                SvgPicture.asset(surveysImage),
-                size15VerticalSizedBox,
-                Text(
-                  surveysTitle,
-                  style: normalSize14Text(AppColors.greyTextColor),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          child: StoreConnector<AppState, AppStateViewModel>(
+            converter: (Store<AppState> store) {
+              return AppStateViewModel.fromStore(store);
+            },
+            onInit: (Store<AppState> store) {
+              store.dispatch(
+                FetchAvailableSurveysAction(
+                  client: AppWrapperBase.of(context)!.graphQLClient,
                 ),
-                largeVerticalSizedBox,
-                ListView.builder(
-                  shrinkWrap: true,
-                  cacheExtent: 4,
-                  itemCount: availableSurveys.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
+              );
+            },
+            builder: (BuildContext context, AppStateViewModel state) {
+              final List<Survey> availableSurveys =
+                  state.appState.miscState!.availableSurveysList ?? <Survey>[];
+              if (state.wait!.isWaitingFor(fetchAvailableSurveysFlag)) {
+                return Container(
+                  height: 300,
+                  padding: const EdgeInsets.all(20),
+                  child: const PlatformLoader(),
+                );
+              }
+              if (availableSurveys.isEmpty) {
+                return const SurveyZeroStateWidget();
+              }
+
+              final List<Widget> surveysWidgetList = <Widget>[];
+              availableSurveys.map(
+                (Survey survey) {
+                  surveysWidgetList.add(
+                    Column(
                       children: <Widget>[
                         SurveyItem(
                           gestureKey: Key(
-                            availableSurveys[index].title!,
+                            survey.title!,
                           ),
-                          url: availableSurveys[index].link!,
-                          title: availableSurveys[index].title!,
+                          url: survey.link!,
+                          title: survey.title!,
                         ),
                         verySmallVerticalSizedBox,
                       ],
-                    );
-                  },
-                ),
-              ],
-            );
-          },
+                    ),
+                  );
+                },
+              ).toList();
+              return Column(
+                children: <Widget>[
+                  SvgPicture.asset(surveysImage),
+                  size15VerticalSizedBox,
+                  Text(
+                    surveysTitle,
+                    style: normalSize14Text(AppColors.greyTextColor),
+                  ),
+                  largeVerticalSizedBox,
+                  ...surveysWidgetList,
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
