@@ -16,9 +16,9 @@
                     <gradient android:type="linear"  android:startX="256" android:startY="384" android:endX="768" android:endY="500">
 
 
-                        <item android:color="#ffffff" android:offset="0" />
+                        <item android:color="#f59e28" android:offset="0" />
 
-                        <item android:color="#ffffff" android:offset="1" />
+                        <item android:color="#f59e28" android:offset="1" />
 
                     </gradient>
 
