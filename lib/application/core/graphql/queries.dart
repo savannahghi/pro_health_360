@@ -356,8 +356,8 @@ query patientTimeline($input: HealthTimelineInput!) {
 ''';
 
 const String listCommunityMembersQuery = r'''
-query listCommunityMembers($communityID: ID!){
-	listCommunityMembers(communityID: $communityID) {
+query listCommunityMembers($communityID: ID!, $input: QueryOption!){
+	listCommunityMembers(communityID: $communityID, input: $input) {
       user{
         id
         userID
