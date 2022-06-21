@@ -77,7 +77,6 @@ class GroupMemberConnector extends StatelessWidget {
               isBanning:
                   vm.wait.isWaitingFor(isBanned ? unBanUserFlag : banUserFlag),
               isRemoving: vm.wait.isWaitingFor(removeFromGroupFlag),
-              onPromoteTapped: vm.promote,
               onBanTapped: clientId.compareTo(memberID) == 0
                   ? null
                   : () {

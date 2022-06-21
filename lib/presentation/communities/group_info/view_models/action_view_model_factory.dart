@@ -2,9 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:myafyahub/application/redux/actions/communities/ban_user_action.dart';
-import 'package:myafyahub/application/redux/actions/communities/demote_moderator_action.dart';
 import 'package:myafyahub/application/redux/actions/communities/fetch_group_members_action.dart';
-import 'package:myafyahub/application/redux/actions/communities/promote_to_moderator_action.dart';
 import 'package:myafyahub/application/redux/actions/communities/remove_from_group_action.dart';
 import 'package:myafyahub/application/redux/actions/communities/unban_user_action.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
@@ -22,9 +20,8 @@ class ActionViewModelFactory extends VmFactory<AppState, GroupMemberConnector> {
   ModerationActionsViewModel fromStore() {
     return ModerationActionsViewModel(
       wait: state.wait!,
-      unBan: () => unbanUser(),
+      unBan: () => unBanUser(),
       ban: () => banUser(),
-      promote: () => promoteToModerator(),
       remove: () => remove(),
     );
   }
@@ -51,38 +48,6 @@ class ActionViewModelFactory extends VmFactory<AppState, GroupMemberConnector> {
     );
   }
 
-  void promoteToModerator() {
-    if (dumbWidget.isModerator) {
-      dispatch(
-        DemoteModeratorAction(
-          client: client,
-          memberIds: <String>[dumbWidget.memberID],
-          communityId: dumbWidget.communityId,
-          successCallback: () {
-            dumbWidget.onSuccess?.call('Successfully demoted to normal user');
-
-            refreshGroupMembers();
-            dispatch(NavigateAction<AppState>.pop());
-          },
-        ),
-      );
-    } else {
-      dispatch(
-        PromoteToModeratorAction(
-          client: client,
-          memberIds: <String>[dumbWidget.memberID],
-          communityId: dumbWidget.communityId,
-          successCallback: () {
-            dumbWidget.onSuccess?.call('Successfully promoted to admin');
-
-            refreshGroupMembers();
-            dispatch(NavigateAction<AppState>.pop());
-          },
-        ),
-      );
-    }
-  }
-
   void banUser() {
     dispatch(
       BanUserAction(
@@ -105,7 +70,7 @@ class ActionViewModelFactory extends VmFactory<AppState, GroupMemberConnector> {
     );
   }
 
-  void unbanUser() {
+  void unBanUser() {
     dispatch(
       UnBanUserAction(
         client: client,

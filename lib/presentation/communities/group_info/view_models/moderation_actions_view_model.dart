@@ -10,9 +10,9 @@ class ModerationActionsViewModel extends Vm {
 
   ModerationActionsViewModel({
     required this.wait,
-    required this.unBan,
-    required this.ban,
-    required this.promote,
-    required this.remove,
+    this.unBan,
+    this.ban,
+    this.promote,
+    this.remove,
   }) : super(equals: <Object?>[wait]);
 }
