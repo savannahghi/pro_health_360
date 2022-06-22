@@ -23,19 +23,26 @@
                                     <constraint firstAttribute="height" constant="280" id="EIz-v2-iPx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Powered by myCareHub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAP-Wj-pkc">
-                                <rect key="frame" x="101" y="863" width="203" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cLZ-1i-OtZ">
+                                <rect key="frame" x="30" y="884.33333333333337" width="368" height="21.666666666666629"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by myCareHub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8q-hm-4m3">
+                                        <rect key="frame" x="0.0" y="0.0" width="368" height="21.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.91372549530000002" green="0.63529413940000001" blue="0.270588249" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6dU-Tu-TWy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="AFC-ev-4kh"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="cLZ-1i-OtZ" secondAttribute="trailing" constant="30" id="Nxa-fl-kI5"/>
+                            <constraint firstAttribute="bottom" secondItem="cLZ-1i-OtZ" secondAttribute="bottom" constant="20" id="PzE-jq-udE"/>
+                            <constraint firstItem="cLZ-1i-OtZ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="30" id="XM7-fN-f5m"/>
                             <constraint firstItem="6dU-Tu-TWy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jWx-h7-WF6"/>
                         </constraints>
                         <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>

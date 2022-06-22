@@ -6,6 +6,6 @@
     <!-- You can insert your own image assets here -->
     <item android:drawable="@drawable/project_logo" android:gravity="center"/>
 
-    <item android:drawable="@drawable/powered_by_mycarehub" android:gravity="center|bottom" android:bottom="20dp" />
+    <item android:drawable="@drawable/powered_by_mycarehub" android:gravity="bottom" android:bottom="50dp" />
 
 </layer-list>

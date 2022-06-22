@@ -1,10 +1,10 @@
-# myCareHub
+# ProHealth360
 
 ## Project setup
 
 ### Project prerequisites
 
-1. The **myCareHub** app runs on Flutter version 2.5.3. To check the flutter version and channel installed in your machine run `flutter --version`.
+1. The **ProHealth360** app runs on Flutter version 2.5.3. To check the flutter version and channel installed in your machine run `flutter --version`.
 
 2. To switch from another channel of Flutter to the stable channel run `flutter channel stable`.
 

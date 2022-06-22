@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProHealth360</string>
+    <color name="ic_launcher_background">#F59E28</color>
 </resources>
