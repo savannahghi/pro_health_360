@@ -2,8 +2,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/domain/core/entities/profile/timeline_item.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/domain/core/entities/profile/timeline_item.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class CustomTimelineListItem extends StatelessWidget {
   const CustomTimelineListItem({

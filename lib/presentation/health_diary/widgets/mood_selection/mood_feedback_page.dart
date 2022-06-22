@@ -4,16 +4,16 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/create_health_diary_action.dart';
-import 'package:myafyahub/application/redux/actions/update_health_diary_state.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
+import 'package:pro_health_360/application/redux/actions/create_health_diary_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_health_diary_state.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/app_state_view_model.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
 
 class MoodFeedbackPage extends StatefulWidget {
   /// [MoodFeedbackPage] is used to get user feedback based on their current mood.

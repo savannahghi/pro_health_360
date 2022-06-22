@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/actions/share_diary_entry_action.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:pro_health_360/application/redux/actions/share_diary_entry_action.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/mood_selection/mood_symptom_widget.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/content/health_diary_view_model.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/content/health_diary_view_model.dart';
+import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 
 class ShareDiaryEntryDialog extends StatefulWidget {
   const ShareDiaryEntryDialog({required this.diaryEntry});

@@ -48,7 +48,7 @@ lib/generated_plugin_registrant.dart
 
 #iOS Related
 /ios/976SPS3FV4.cer
-/ios/AppStore_com.savannah.myafyahub.mobileprovision
+/ios/AppStore_com.mycarehub.prohealth360.mobileprovision
 /ios/Default-568h@2x.png
 /ios/Runner.app.dSYM.zip
 /ios/Runner.ipa
@@ -123,6 +123,7 @@ google-services.json
 
 # Obfuscation related
 app.*.map.json
+dump/
 
 # Android Studio will place build artifacts here
 /android/app/debug

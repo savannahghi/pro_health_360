@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/login/user_response.dart';
+import 'package:pro_health_360/domain/core/entities/login/user_response.dart';
 
 part 'phone_login_response.freezed.dart';
 part 'phone_login_response.g.dart';

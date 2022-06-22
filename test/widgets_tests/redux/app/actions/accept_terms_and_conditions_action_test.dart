@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
-import 'package:myafyahub/application/redux/actions/accept_terms_and_conditions_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/actions/accept_terms_and_conditions_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

@@ -5,15 +5,15 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/communities/fetch_recommended_communities_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/groups/groups_view_model.dart';
-import 'package:myafyahub/domain/core/entities/communities/group.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/communities/suggested_groups/suggested_group_card.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:pro_health_360/application/redux/actions/communities/fetch_recommended_communities_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/groups/groups_view_model.dart';
+import 'package:pro_health_360/domain/core/entities/communities/group.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/presentation/communities/suggested_groups/suggested_group_card.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 /// [SuggestedGroupsSection] is a widget used in the Feed Page
 ///

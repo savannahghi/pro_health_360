@@ -2,8 +2,8 @@
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/home_state.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/home_state.dart';
 
 class UpdateHomeStateAction extends ReduxAction<AppState> {
   UpdateHomeStateAction({

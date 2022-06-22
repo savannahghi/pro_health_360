@@ -54,7 +54,7 @@ android {
     }
 
     defaultConfig {
-        applicationId 'com.savannah.myafyahub'
+        applicationId 'com.mycarehub.prohealth360'
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()

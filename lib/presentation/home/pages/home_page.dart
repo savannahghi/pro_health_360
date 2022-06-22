@@ -2,18 +2,18 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/connectivity_view_model.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/communities/suggested_groups/suggested_groups_section_widget.dart';
-import 'package:myafyahub/presentation/content/widgets/recent_content_widget.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:myafyahub/presentation/core/widgets/no_connection_widget.dart';
-import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tools_carousel.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/mood_checker.dart';
-import 'package:myafyahub/presentation/home/widgets/survey_carousel.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/connectivity_view_model.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/communities/suggested_groups/suggested_groups_section_widget.dart';
+import 'package:pro_health_360/presentation/content/widgets/recent_content_widget.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
+import 'package:pro_health_360/presentation/core/widgets/no_connection_widget.dart';
+import 'package:pro_health_360/presentation/health_diary/screening_tools/widgets/screening_tools_carousel.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/mood_checker.dart';
+import 'package:pro_health_360/presentation/home/widgets/survey_carousel.dart';
 
 class HomePage extends StatelessWidget {
   @override

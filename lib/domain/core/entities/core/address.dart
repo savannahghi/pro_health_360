@@ -4,7 +4,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 part 'address.freezed.dart';
 part 'address.g.dart';

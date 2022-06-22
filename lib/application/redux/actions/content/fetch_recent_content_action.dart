@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/update_recent_content_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/actions/update_recent_content_state_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 
 class FetchRecentContentAction extends ReduxAction<AppState> {
   FetchRecentContentAction({

@@ -6,11 +6,11 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
-import 'package:myafyahub/domain/core/entities/profile/caregiver_information.dart';
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
+import 'package:pro_health_360/domain/core/entities/profile/caregiver_information.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 
 class FetchCaregiverInformationAction extends ReduxAction<AppState> {
   FetchCaregiverInformationAction({

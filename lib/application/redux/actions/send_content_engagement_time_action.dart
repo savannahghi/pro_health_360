@@ -3,11 +3,11 @@ import 'dart:async';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/core/services/analytics_service.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/feed/content_engagement_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_events.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/feed/content_engagement_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 /// [SendContentEngagementTimeAction] is a Redux Action that sends the amount of
 ///  time a user has viewed some specific content. It saves this as an event to

@@ -11,13 +11,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/content/pages/content_details_page.dart';
-import 'package:myafyahub/presentation/content/widgets/like_content_widget.dart';
+import 'package:pro_health_360/application/redux/actions/update_content_state_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/content/pages/content_details_page.dart';
+import 'package:pro_health_360/presentation/content/widgets/like_content_widget.dart';
 
 import '../../../../mock_image_http_client.dart';
 import '../../../../mocks.dart';

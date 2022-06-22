@@ -7,9 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/redux/actions/set_push_token_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
+import 'package:pro_health_360/application/redux/actions/set_push_token_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../../../mocks.dart';

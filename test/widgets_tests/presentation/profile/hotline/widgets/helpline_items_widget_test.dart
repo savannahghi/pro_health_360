@@ -1,8 +1,8 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/core/helpline.dart';
-import 'package:myafyahub/presentation/profile/hotline/widgets/helpline_items_widget.dart';
+import 'package:pro_health_360/domain/core/entities/core/helpline.dart';
+import 'package:pro_health_360/presentation/profile/hotline/widgets/helpline_items_widget.dart';
 
 void main() {
   testWidgets(

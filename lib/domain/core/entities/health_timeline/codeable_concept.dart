@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/coding.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/coding.dart';
 
 part 'codeable_concept.freezed.dart';
 part 'codeable_concept.g.dart';

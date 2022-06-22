@@ -3,10 +3,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/my_health/widgets/appointment_list_item.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/presentation/my_health/widgets/appointment_list_item.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -19,8 +19,7 @@ void main() {
       store = Store<AppState>(initialState: AppState.initial());
     });
 
-    testWidgets('renders correctly',
-        (WidgetTester tester) async {
+    testWidgets('renders correctly', (WidgetTester tester) async {
       await buildTestWidget(
         tester: tester,
         store: store,

@@ -9,17 +9,17 @@ import 'package:async_redux/async_redux.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/connectivity_state.dart';
-import 'package:myafyahub/application/redux/states/misc_state.dart';
-import 'package:myafyahub/application/redux/states/onboarding_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/client_state.dart';
-import 'package:myafyahub/domain/core/entities/core/content_state.dart';
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
-import 'package:myafyahub/infrastructure/repository/database_base.dart';
-import 'package:myafyahub/infrastructure/repository/database_mobile.dart';
-import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
+import 'package:pro_health_360/application/redux/states/misc_state.dart';
+import 'package:pro_health_360/application/redux/states/onboarding_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/content_state.dart';
+import 'package:pro_health_360/domain/core/entities/home/bottom_nav_state.dart';
+import 'package:pro_health_360/infrastructure/repository/database_base.dart';
+import 'package:pro_health_360/infrastructure/repository/database_mobile.dart';
+import 'package:pro_health_360/infrastructure/repository/initialize_db.dart';
 
 /// [MyAfyaHubStateDatabase] is the middleware that interacts with the database on behalf
 /// of the application. From the apps perspective, it doesn't care which database
@@ -108,7 +108,7 @@ class MyAfyaHubStateDatabase implements PersistorPrinterDecorator<AppState> {
   @visibleForTesting
   Future<void> persistState(
     AppState newState,
-    MyAfyaHubDatabaseBase<dynamic> database,
+    ProHealthDatabaseBase<dynamic> database,
   ) async {
     // save credentials state
     await database.saveState(
@@ -155,7 +155,9 @@ class MyAfyaHubStateDatabase implements PersistorPrinterDecorator<AppState> {
 
   /// retrieves app state to the database
   @visibleForTesting
-  Future<AppState> retrieveState(MyAfyaHubDatabaseBase<dynamic> database) async {
+  Future<AppState> retrieveState(
+    ProHealthDatabaseBase<dynamic> database,
+  ) async {
     return AppState().copyWith(
       // retrieve user state
       credentials: AuthCredentials.fromJson(

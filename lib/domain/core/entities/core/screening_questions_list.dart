@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/core/screening_question.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_question.dart';
 
 part 'screening_questions_list.freezed.dart';
 part 'screening_questions_list.g.dart';

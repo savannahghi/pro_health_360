@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/client_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 
 void main() {
   group('ClientState', () {

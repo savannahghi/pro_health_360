@@ -5,10 +5,10 @@ import 'dart:async';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 class AnalyticsService {
   final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;

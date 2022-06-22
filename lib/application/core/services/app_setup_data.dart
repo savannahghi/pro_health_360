@@ -4,8 +4,8 @@ import 'package:app_wrapper/app_wrapper.dart' show AppContext, BaseContext;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_config/flutter_config.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_context_constants.dart';
+import 'package:pro_health_360/infrastructure/endpoints.dart';
 import 'package:quiver/core.dart';
 
 class AppSetupData {

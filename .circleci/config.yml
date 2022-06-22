@@ -228,7 +228,6 @@ workflows:
            branches:
              only:
                - develop
-               - upgrade-ci-images
      - deploy_to_play_store_alpha:
          requires:
            - run_tests_and_generate_coverage
@@ -250,3 +249,4 @@ workflows:
            branches:
              only:
                - prod
+               - debug-deploy-to-new-account

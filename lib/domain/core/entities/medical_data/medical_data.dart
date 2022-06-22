@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/medical_data/medical_data_details.dart';
+import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_details.dart';
 
 part 'medical_data.freezed.dart';
 part 'medical_data.g.dart';

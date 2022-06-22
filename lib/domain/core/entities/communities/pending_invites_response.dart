@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/core/community.dart';
+import 'package:pro_health_360/domain/core/entities/core/community.dart';
 
 part 'pending_invites_response.freezed.dart';
 part 'pending_invites_response.g.dart';

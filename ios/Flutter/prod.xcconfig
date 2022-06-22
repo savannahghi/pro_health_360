@@ -3,6 +3,6 @@
 #include "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-prod.xcconfig"
 #include "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-prod.xcconfig"
 
-PRODUCT_BUNDLE_IDENTIFIER=com.savannah.myafyahub
+PRODUCT_BUNDLE_IDENTIFIER=com.mycarehub.prohealth360
 FLUTTER_TARGET=lib/bin/main_prod.dart
 APP_NAME=myCareHub

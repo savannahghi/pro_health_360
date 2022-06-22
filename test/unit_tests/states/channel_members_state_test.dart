@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/communities/channel_members_state.dart';
+import 'package:pro_health_360/application/redux/states/communities/channel_members_state.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 void main() {

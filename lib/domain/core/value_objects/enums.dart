@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 
 enum MoodType {
   VERY_HAPPY,

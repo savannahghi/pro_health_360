@@ -1,10 +1,10 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:myafyahub/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/resume_with_pin/resume_pin_connector.dart';
-import 'package:myafyahub/presentation/resume_with_pin/resume_pin_view_model.dart';
+import 'package:pro_health_360/application/redux/actions/resume_with_pin_action/resume_with_pin_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/presentation/resume_with_pin/resume_pin_connector.dart';
+import 'package:pro_health_360/presentation/resume_with_pin/resume_pin_view_model.dart';
 
 class ResumePinFactory extends VmFactory<AppState, ResumePinConnector> {
   final IGraphQlClient client;

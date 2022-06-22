@@ -17,12 +17,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 // Project imports:
-import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/domain/core/entities/communities/group.dart';
-import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
+import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/domain/core/entities/communities/group.dart';
+import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/infrastructure/repository/initialize_db.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;

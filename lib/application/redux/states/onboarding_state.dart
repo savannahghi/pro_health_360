@@ -2,9 +2,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
-import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/entities/login/verify_security_questions_state.dart';
+import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 part 'onboarding_state.freezed.dart';
 part 'onboarding_state.g.dart';

@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/accept_terms_and_conditions_action.dart';
-import 'package:myafyahub/application/redux/actions/get_terms_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/app_state_view_model.dart';
-import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/application/redux/actions/accept_terms_and_conditions_action.dart';
+import 'package:pro_health_360/application/redux/actions/get_terms_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/app_state_view_model.dart';
+import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:unicons/unicons.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {

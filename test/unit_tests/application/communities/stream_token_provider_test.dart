@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/communities/stream_token_provider.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:pro_health_360/application/communities/stream_token_provider.dart';
+import 'package:pro_health_360/infrastructure/endpoints.dart';
 
 import '../../../mocks.dart';
 

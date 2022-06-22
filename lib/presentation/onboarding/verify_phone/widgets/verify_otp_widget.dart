@@ -2,14 +2,14 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
 // Project imports:
 
-import 'package:myafyahub/application/redux/view_models/verify_phone_view_model.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/animated_count.dart';
+import 'package:pro_health_360/application/redux/view_models/verify_phone_view_model.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/widgets/animated_count.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOtpWidget extends StatefulWidget {

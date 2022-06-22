@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/misc_state.dart';
+import 'package:pro_health_360/application/redux/states/misc_state.dart';
 
 void main() {
   test('MiscState should convert from/to json', () {

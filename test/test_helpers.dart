@@ -10,13 +10,13 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/localization.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_context_constants.dart';
-import 'package:myafyahub/domain/core/value_objects/app_name_constants.dart';
-import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
-import 'package:myafyahub/presentation/router/router_generator.dart';
+import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/application/core/services/localization.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_context_constants.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_name_constants.dart';
+import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
+import 'package:pro_health_360/presentation/router/router_generator.dart';
 import 'widgets_tests/shared/utils_test.mocks.dart';
 
 final BaseGraphQlClient baseGraphQlClientMock = BaseGraphQlClient();

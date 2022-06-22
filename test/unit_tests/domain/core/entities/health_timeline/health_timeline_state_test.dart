@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/core/health_timeline_state.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/fhir_resource.dart';
+import 'package:pro_health_360/domain/core/entities/core/health_timeline_state.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/fhir_resource.dart';
 
 void main() {
   group('HealthTimelineState', () {

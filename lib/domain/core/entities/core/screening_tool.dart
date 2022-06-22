@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 part 'screening_tool.freezed.dart';
 part 'screening_tool.g.dart';

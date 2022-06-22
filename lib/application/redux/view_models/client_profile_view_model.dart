@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:async_redux/async_redux.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/connectivity_state.dart';
-import 'package:myafyahub/domain/core/entities/core/client_state.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 
 class ClientProfileViewModel extends Vm {
   ClientProfileViewModel({

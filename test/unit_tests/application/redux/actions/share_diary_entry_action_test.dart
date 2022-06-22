@@ -4,9 +4,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:myafyahub/application/redux/actions/share_diary_entry_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/connectivity_state.dart';
+import 'package:pro_health_360/application/redux/actions/share_diary_entry_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
 
 import '../../../../mocks.dart';
 

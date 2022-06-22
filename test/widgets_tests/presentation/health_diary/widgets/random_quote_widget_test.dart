@@ -8,10 +8,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/random_quote_widget.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/random_quote_widget.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

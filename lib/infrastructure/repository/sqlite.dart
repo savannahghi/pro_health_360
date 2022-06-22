@@ -4,7 +4,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
-import 'package:myafyahub/infrastructure/repository/migrations.dart';
+import 'package:pro_health_360/infrastructure/repository/migrations.dart';
 
 Future<T> initDatabase<T extends DatabaseExecutor>(String dbName) async {
   final String _dbPath = await getDatabasesPath();

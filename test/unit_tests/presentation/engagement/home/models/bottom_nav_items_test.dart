@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
+import 'package:pro_health_360/domain/core/entities/home/bottom_nav_items.dart';
 
 void main() {
   test('BottomNavIndex returns the correct index', () {
