@@ -195,22 +195,41 @@ class _LoginPageState extends State<LoginPage> {
                               phone: phoneNumber,
                             ),
                           ],
+                          largeVerticalSizedBox,
+                          Center(
+                            child: Text(
+                              copyrightString,
+                              style: normalSize10Text(Colors.grey),
+                            ),
+                          ),
+                          smallVerticalSizedBox,
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 30.0),
+                            child: Text(
+                              poweredByMyCareHubString,
+                              style: normalSize10Text(Colors.grey),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          smallVerticalSizedBox,
+                          if (_platform != TargetPlatform.iOS)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: Center(
+                                child: Text(
+                                  '$appVersionString $APPVERSION',
+                                  style: normalSize9Text(Colors.grey),
+                                ),
+                              ),
+                            ),
+                          smallVerticalSizedBox,
                           size70VerticalSizedBox,
                         ],
                       ),
                     ),
                   ),
                 ),
-                if (_platform != TargetPlatform.iOS)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Center(
-                      child: Text(
-                        '$appVersionString $APPVERSION',
-                        style: normalSize9Text(Colors.grey),
-                      ),
-                    ),
-                  ),
               ],
             ),
           ),

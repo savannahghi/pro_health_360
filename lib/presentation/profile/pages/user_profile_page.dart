@@ -19,6 +19,7 @@ class UserProfilePage extends StatefulWidget {
 class _UserProfilePageState extends State<UserProfilePage> {
   @override
   Widget build(BuildContext context) {
+    final TargetPlatform _platform = Theme.of(context).platform;
     return Scaffold(
       appBar: const CustomAppBar(title: myHealthPageProfile),
       body: Padding(
@@ -96,12 +97,19 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         ),
                       ),
                       smallVerticalSizedBox,
-                      Center(
-                        child: Text(
-                          '$appVersionString $APPVERSION',
-                          style: normalSize9Text(Colors.grey),
-                        ),
+                      Text(
+                        poweredByMyCareHubString,
+                        style: normalSize10Text(Colors.grey),
+                        textAlign: TextAlign.center,
                       ),
+                      smallVerticalSizedBox,
+                      if (_platform != TargetPlatform.iOS)
+                        Center(
+                          child: Text(
+                            '$appVersionString $APPVERSION',
+                            style: normalSize9Text(Colors.grey),
+                          ),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 50),

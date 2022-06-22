@@ -226,7 +226,11 @@ const String fetchingYourLibraryText = 'Fetching your library';
 const String personalDetails = 'Personal details';
 const String personalDetailsDesc =
     'Tell us more about you. We use the information below to enhance your myCareHub experience.';
-final String copyrightString = 'Copyright ©️ ${returnCurrentYear()} myCareHub';
+final String copyrightString =
+    'Content © University of Nairobi ${returnCurrentYear()}';
+const String copyrightDescriptionString =
+    'myCareHub™ is a platform developed by Johnson & Johnson Global public Health, used under license';
+const String poweredByMyCareHubString = 'Powered by myCareHub™';
 
 // this is the version of the currently running app.
 // it has to be defined as a const otherwise the compiler will return the default
