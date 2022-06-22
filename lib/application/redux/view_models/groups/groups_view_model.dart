@@ -2,6 +2,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
 import 'package:myafyahub/domain/core/entities/communities/group.dart';
+import 'package:myafyahub/domain/core/entities/core/community.dart';
 
 class GroupsViewModel extends Vm {
   final Wait wait;
@@ -11,6 +12,7 @@ class GroupsViewModel extends Vm {
   final bool? isModerator;
   final bool? isOwner;
   final String? clientId;
+  final List<Community?>? communities;
 
   GroupsViewModel({
     required this.wait,
@@ -20,6 +22,7 @@ class GroupsViewModel extends Vm {
     this.isModerator,
     this.isOwner,
     this.clientId,
+    this.communities,
   }) : super(
           equals: <Object?>[
             wait,
@@ -29,6 +32,7 @@ class GroupsViewModel extends Vm {
             isModerator,
             isOwner,
             clientId,
+            communities,
           ],
         );
 
@@ -40,6 +44,7 @@ class GroupsViewModel extends Vm {
       clientRoles: store.state.clientState?.user?.roles,
       isModerator: store.state.miscState?.groupState?.isModerator,
       clientId: store.state.clientState?.id,
+      communities: store.state.miscState?.groupState?.communities,
     );
   }
 }

@@ -356,8 +356,8 @@ query patientTimeline($input: HealthTimelineInput!) {
 ''';
 
 const String listCommunityMembersQuery = r'''
-query listCommunityMembers($communityID: ID!, $input: QueryOption!){
-	listCommunityMembers(communityID: $communityID, input: $input) {
+query listCommunityMembers($communityID: ID!, $communityMembersFilter: QueryOption!, $listCommunitiesFilter: QueryOption!){
+	listCommunityMembers(communityID: $communityID, input: $communityMembersFilter) {
       user{
         id
         userID
@@ -366,6 +366,14 @@ query listCommunityMembers($communityID: ID!, $input: QueryOption!){
         extraData
       }
       isModerator
+  }
+  listCommunities(input: $listCommunitiesFilter) {
+    ageRange {
+      lowerBound
+      upperBound
+    }
+    gender
+    clientType
   }
 }
 ''';

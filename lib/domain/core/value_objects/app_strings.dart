@@ -806,6 +806,10 @@ String userBannedMessage({
 }
 
 const String groupMembersText = 'Group Members';
+const String groupInformationText = 'Group Information';
+const String clientTypesText = 'Client types';
+const String ageGroupsText = 'Age groups';
+const String genderText = 'Gender';
 const String inviteMembers = 'Invite Members';
 const String noTitleText = 'No title';
 const String nothingYetText = 'nothing yet';

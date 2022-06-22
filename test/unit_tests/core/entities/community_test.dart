@@ -5,14 +5,18 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
 import 'package:myafyahub/domain/core/entities/core/community.dart';
+import 'package:myafyahub/domain/core/value_objects/enums.dart';
 import '../../../mocks.dart';
 
 void main() {
   test('Community fromJson', () {
+    final Community community = Community.fromJson(mockCommunity);
     expect(
-      Community.fromJson(mockCommunity),
+      community,
       isA<Community>(),
     );
+
+    expect(community.clientType?.first.name, ClientType.PMTCT.name);
   });
 
   test('Community initial is set', () {
@@ -34,9 +38,9 @@ void main() {
       initialCommunity.description,
       UNKNOWN,
     );
-     expect(
+    expect(
       initialCommunity.createdBy,
-      UNKNOWN,
+      Member.initial(),
     );
   });
 }

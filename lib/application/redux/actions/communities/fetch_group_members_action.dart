@@ -5,10 +5,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:myafyahub/application/core/graphql/queries.dart';
+import 'package:myafyahub/application/redux/actions/communities/list_group_info_response.dart';
 import 'package:myafyahub/application/redux/actions/communities/update_group_state_action.dart';
 import 'package:myafyahub/application/redux/flags/flags.dart';
 import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchGroupMembersAction extends ReduxAction<AppState> {
@@ -38,8 +38,11 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
       'communityID': channelId,
-      'input': <String, dynamic>{
+      'communityMembersFilter': <String, dynamic>{
         'filter': <String, String>{'invite': 'accepted'}
+      },
+      'listCommunitiesFilter': <String, dynamic>{
+        'filter': <String, String>{'id': channelId}
       }
     };
 
@@ -68,12 +71,17 @@ class FetchGroupMembersAction extends ReduxAction<AppState> {
       return state;
     }
 
-    final GroupState groupState = GroupState.fromJson(
+    final ListGroupInfoResponse groupInfoResponse =
+        ListGroupInfoResponse.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
-    final List<GroupMember?>? groupMembers = groupState.groupMembers;
 
-    dispatch(UpdateGroupStateAction(groupMembers: groupMembers));
+    dispatch(
+      UpdateGroupStateAction(
+        groupMembers: groupInfoResponse.groupMembers,
+        communities: groupInfoResponse.communities,
+      ),
+    );
 
     return state;
   }
