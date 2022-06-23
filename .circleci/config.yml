@@ -249,4 +249,3 @@ workflows:
            branches:
              only:
                - prod
-               - debug-deploy-to-new-account

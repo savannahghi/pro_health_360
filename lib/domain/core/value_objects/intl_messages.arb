@@ -254,9 +254,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "allowPhoneNumberUsageText": "Allow myCareHub to use your phone number for communications",
+  "allowPhoneNumberUsageText": "Allow ProHealth360 to use your phone number for communications",
   "@allowPhoneNumberUsageText": {
-    "description": "allow myCareHub to use your phone number for communication",
+    "description": "allow ProHealth360 to use your phone number for communication",
     "type": "text",
     "placeholders": {}
   },

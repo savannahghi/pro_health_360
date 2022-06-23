@@ -5,4 +5,4 @@
 
 PRODUCT_BUNDLE_IDENTIFIER=com.mycarehub.prohealth360
 FLUTTER_TARGET=lib/main.dart
-APP_NAME=myCareHub Test 
+APP_NAME=ProHealth360 Test 

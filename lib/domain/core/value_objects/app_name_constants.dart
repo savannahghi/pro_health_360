@@ -1,5 +1,5 @@
-const String prodAppName = 'myCareHub';
-const String demoAppName = 'myCareHub Demo';
-const String testAppName = 'myCareHub Test';
+const String prodAppName = 'ProHealth360';
+const String demoAppName = 'ProHealth360 Demo';
+const String testAppName = 'ProHealth360 Test';
 
 const String appProgramName = 'myCareHub';

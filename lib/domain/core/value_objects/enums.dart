@@ -154,7 +154,7 @@ extension MedicalDataTypeEX on MedicalDataType {
 // can either be created successfully or shared successfully
 enum DiaryEntrySuccessType { shared, created }
 
-/// The types of events that we will collect on myCareHub
+/// The types of events that we will collect on ProHealth360
 enum AnalyticsEventType {
   // Navigation events
   NAVIGATION,
