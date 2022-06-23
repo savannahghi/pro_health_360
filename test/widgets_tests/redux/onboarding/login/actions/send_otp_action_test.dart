@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/send_otp_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
+import 'package:pro_health_360/application/redux/actions/send_otp_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/contact.dart';
 
 import '../../../../../mocks.dart';
 import '../../../../../test_helpers.dart';

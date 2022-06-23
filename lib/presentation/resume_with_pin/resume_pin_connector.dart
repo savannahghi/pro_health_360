@@ -2,12 +2,12 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:myafyahub/application/redux/actions/logout_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/resume_with_pin/resume_pin_view_model.dart';
-import 'package:myafyahub/presentation/resume_with_pin/resume_pin_view_model_factory.dart';
-import 'package:myafyahub/presentation/resume_with_pin/resume_with_pin_page.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:pro_health_360/application/redux/actions/logout_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/presentation/resume_with_pin/resume_pin_view_model.dart';
+import 'package:pro_health_360/presentation/resume_with_pin/resume_pin_view_model_factory.dart';
+import 'package:pro_health_360/presentation/resume_with_pin/resume_with_pin_page.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 class ResumePinConnector extends StatelessWidget {
   const ResumePinConnector({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/security_questions/responses/record_security_question_response.dart';
+import 'package:pro_health_360/domain/core/entities/security_questions/responses/record_security_question_response.dart';
 
 part 'record_security_question_responses_data.freezed.dart';
 part 'record_security_question_responses_data.g.dart';

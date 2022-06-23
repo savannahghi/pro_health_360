@@ -6,8 +6,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 // Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 
 const String requestTimeoutError =
     'We could not perform this process in time. Please try again';
@@ -117,18 +117,8 @@ const String weeklyDiet = 'Create your weekly diet';
 const String whatYouCanDo = 'What you can do';
 const String workout = 'Make your workout routine';
 
-//App Rating
-const String appStoreID = '1496576692';
-const String googlePlayIdentifier = 'com.savannah.myafyahub';
-const String rateNow = 'Rate now';
-const String later = 'Later';
-const String dialogTitle = 'Enjoying myCareHub?';
-const String dialogSubtitle = 'Leave a rating';
-
 //create account strings
 const String createAccount = 'Create your account';
-
-const String loadingText = 'LOADING';
 
 //login strings
 const String enteredWrongPINString =
@@ -141,12 +131,6 @@ const String resetPINString = 'Reset your PIN';
 // resume with pin
 const String errMsg = 'Sorry, we could not verify your PIN. Please try again.';
 const String wrongPIN = 'You entered an incorrect PIN. Please try again.';
-
-// Sliver app bar
-const String welcomeMessage = 'What would you like to do today?';
-
-// medications landing page strings
-const String medicationsTitle = 'Buy medicine';
 
 const String medicationsDescription =
     'Buy medicine via a prescription. You can also take a'

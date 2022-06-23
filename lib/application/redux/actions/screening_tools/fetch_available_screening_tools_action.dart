@@ -6,14 +6,14 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/available_screening_tools.dart';
-import 'package:myafyahub/domain/core/entities/core/screening_tool.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/redux/actions/screening_tools/update_screening_tools_state_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/available_screening_tools.dart';
+import 'package:pro_health_360/domain/core/entities/core/screening_tool.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
   FetchAvailableScreeningToolsAction({required this.client});

@@ -1,8 +1,8 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/resume_with_pin/resume_with_pin_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/presentation/resume_with_pin/resume_with_pin_page.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/login/verify_security_questions_state.dart';
+import 'package:pro_health_360/domain/core/entities/login/verify_security_questions_state.dart';
 
 void main() {
   test('should convert from/to json', () {

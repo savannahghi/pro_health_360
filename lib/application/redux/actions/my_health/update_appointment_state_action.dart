@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
-import 'package:myafyahub/domain/core/entities/appointments/appointments_state.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
+import 'package:pro_health_360/domain/core/entities/appointments/appointments_state.dart';
 
 class UpdateAppointmentStateAction extends ReduxAction<AppState> {
   final List<Appointment>? appointments;

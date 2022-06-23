@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/infrastructure/repository/database_base.dart';
+import 'package:pro_health_360/infrastructure/repository/database_base.dart';
 
 void main() {
   test('TablesEx should return correct name', () {

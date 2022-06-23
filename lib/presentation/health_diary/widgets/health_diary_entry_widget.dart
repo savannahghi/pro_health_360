@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/mood_item_data.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/share_diary_entry_dialog.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:pro_health_360/domain/core/entities/health_diary/mood_item_data.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/share_diary_entry_dialog.dart';
 
 class HealthDiaryEntryWidget extends StatelessWidget {
   const HealthDiaryEntryWidget({

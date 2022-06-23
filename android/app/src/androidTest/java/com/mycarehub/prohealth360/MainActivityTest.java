@@ -1,4 +1,4 @@
-package com.savannah.myafyahub;
+package com.mycarehub.prohealth360;
 
 import androidx.test.rule.ActivityTestRule;
 import dev.flutter.plugins.integration_test.FlutterTestRunner;

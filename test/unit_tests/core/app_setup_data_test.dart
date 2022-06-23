@@ -3,7 +3,7 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/application/core/services/app_setup_data.dart';
 
 void main() {
   test('AppSetupData creates a valid object', () {

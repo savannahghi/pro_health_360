@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/surveys/survey.dart';
+import 'package:pro_health_360/domain/core/entities/surveys/survey.dart';
 
 void main() {
   test('initial Survey works correctly', () {

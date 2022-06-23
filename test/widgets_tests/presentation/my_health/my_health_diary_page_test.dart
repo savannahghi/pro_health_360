@@ -10,19 +10,19 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/health_diary_entry_widget.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/health_diary_entry_widget.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_items.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:myafyahub/presentation/health_diary/pages/empty_health_diary.dart';
-import 'package:myafyahub/presentation/health_diary/pages/my_health_diary_page.dart';
-import 'package:myafyahub/presentation/home/pages/home_page.dart';
+import 'package:pro_health_360/application/redux/actions/update_content_state_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/home/bottom_nav_items.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
+import 'package:pro_health_360/presentation/health_diary/pages/empty_health_diary.dart';
+import 'package:pro_health_360/presentation/health_diary/pages/my_health_diary_page.dart';
+import 'package:pro_health_360/presentation/home/pages/home_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

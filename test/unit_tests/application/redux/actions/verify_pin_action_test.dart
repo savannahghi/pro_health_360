@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/redux/actions/verify_pin_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart';
+import 'package:pro_health_360/application/redux/actions/verify_pin_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/infrastructure/endpoints.dart';
 
 import '../../../../mocks.dart';
 import 'verify_pin_action_test.mocks.dart';

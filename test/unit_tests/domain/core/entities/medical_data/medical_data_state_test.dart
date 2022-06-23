@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/medical_data/medical_data_state.dart';
+import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_state.dart';
 
 import '../../../../../mocks.dart';
 

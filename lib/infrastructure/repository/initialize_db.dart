@@ -2,7 +2,7 @@
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
-import 'package:myafyahub/infrastructure/repository/sqlite.dart';
+import 'package:pro_health_360/infrastructure/repository/sqlite.dart';
 
 abstract class MyAfyaHubStateDatabase extends Database {}
 

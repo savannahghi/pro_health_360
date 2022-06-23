@@ -4,18 +4,18 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/actions/update_client_profile_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/address.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/profile/hotline/pages/hotlines_page.dart';
-import 'package:myafyahub/presentation/profile/hotline/widgets/hotline_widget.dart';
-import 'package:myafyahub/presentation/profile/pages/user_profile_page.dart';
-import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
-import 'package:myafyahub/presentation/profile/widgets/user_details_card_widget.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/address.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/profile/hotline/pages/hotlines_page.dart';
+import 'package:pro_health_360/presentation/profile/hotline/widgets/hotline_widget.dart';
+import 'package:pro_health_360/presentation/profile/pages/user_profile_page.dart';
+import 'package:pro_health_360/presentation/profile/personal_information/personal_information_page.dart';
+import 'package:pro_health_360/presentation/profile/widgets/user_details_card_widget.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 

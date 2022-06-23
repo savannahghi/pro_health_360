@@ -4,12 +4,12 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/my_health/pages/appointments_page.dart';
-import 'package:myafyahub/presentation/notifications/notification_list_item.dart'
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/presentation/my_health/pages/appointments_page.dart';
+import 'package:pro_health_360/presentation/notifications/notification_list_item.dart'
     as local;
 
 import '../../../../mocks.dart';

@@ -16,11 +16,11 @@ import 'package:shared_themes/colors.dart';
 import 'package:shared_themes/constants.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/redux/actions/update_home_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/redux/actions/update_home_state_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 
 class CanRecordMoodAction extends ReduxAction<AppState> {
   CanRecordMoodAction({

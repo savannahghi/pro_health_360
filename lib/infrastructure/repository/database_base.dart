@@ -1,6 +1,6 @@
-/// [MyAfyaHubDatabaseBase] defines an interface to be fulfilled so that a storage component
+/// [ProHealthDatabaseBase] defines an interface to be fulfilled so that a storage component
 /// may work, for each exclusive platform. (Mobile and Web)
-abstract class MyAfyaHubDatabaseBase<T> {
+abstract class ProHealthDatabaseBase<T> {
   /// get the [database] instance
   Future<T> get database;
 

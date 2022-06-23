@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/application/redux/states/alcohol_substance_use_state.dart';
-import 'package:myafyahub/application/redux/states/contraceptive_state.dart';
-import 'package:myafyahub/application/redux/states/tb_state.dart';
-import 'package:myafyahub/application/redux/states/violence_state.dart';
-import 'package:myafyahub/domain/core/entities/core/available_screening_tools.dart';
+import 'package:pro_health_360/application/redux/states/alcohol_substance_use_state.dart';
+import 'package:pro_health_360/application/redux/states/contraceptive_state.dart';
+import 'package:pro_health_360/application/redux/states/tb_state.dart';
+import 'package:pro_health_360/application/redux/states/violence_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/available_screening_tools.dart';
 
 part 'screening_tools_state.g.dart';
 part 'screening_tools_state.freezed.dart';

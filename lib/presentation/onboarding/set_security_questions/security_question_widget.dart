@@ -8,9 +8,9 @@ import 'package:flutter/services.dart';
 // Package imports:
 
 // Project imports:
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class SecurityQuestionWidget extends StatefulWidget {
   const SecurityQuestionWidget({

@@ -4,18 +4,18 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/actions/notifications/fetch_notifications_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/notifications/notifications_view_model.dart';
+import 'package:pro_health_360/application/redux/actions/notifications/fetch_notifications_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/notifications/notifications_view_model.dart';
 // Project imports:
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
-import 'package:myafyahub/presentation/notifications/notification_list_item.dart'
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
+import 'package:pro_health_360/presentation/notifications/notification_list_item.dart'
     as consumer;
 
 // Package imports:

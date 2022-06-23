@@ -7,9 +7,9 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 

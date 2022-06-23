@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/core/community.dart';
+import 'package:pro_health_360/domain/core/entities/core/community.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 part 'communities_state.freezed.dart';

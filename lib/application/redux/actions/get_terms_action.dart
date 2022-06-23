@@ -16,13 +16,13 @@ import 'package:http/http.dart' as http;
 import 'package:shared_themes/constants.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/redux/actions/update_terms_and_conditions_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions_response.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/redux/actions/update_terms_and_conditions_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_and_conditions_response.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/exception_tag.dart';
 
 class GetTermsAction extends ReduxAction<AppState> {
   GetTermsAction({

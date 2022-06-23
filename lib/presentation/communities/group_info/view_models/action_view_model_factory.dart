@@ -1,14 +1,14 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:myafyahub/application/redux/actions/communities/ban_user_action.dart';
-import 'package:myafyahub/application/redux/actions/communities/fetch_group_members_action.dart';
-import 'package:myafyahub/application/redux/actions/communities/remove_from_group_action.dart';
-import 'package:myafyahub/application/redux/actions/communities/unban_user_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/communities/group_info/pages/group_member_connector.dart';
-import 'package:myafyahub/presentation/communities/group_info/view_models/moderation_actions_view_model.dart';
+import 'package:pro_health_360/application/redux/actions/communities/ban_user_action.dart';
+import 'package:pro_health_360/application/redux/actions/communities/fetch_group_members_action.dart';
+import 'package:pro_health_360/application/redux/actions/communities/remove_from_group_action.dart';
+import 'package:pro_health_360/application/redux/actions/communities/unban_user_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/presentation/communities/group_info/pages/group_member_connector.dart';
+import 'package:pro_health_360/presentation/communities/group_info/view_models/moderation_actions_view_model.dart';
 
 class ActionViewModelFactory extends VmFactory<AppState, GroupMemberConnector> {
   final IGraphQlClient client;

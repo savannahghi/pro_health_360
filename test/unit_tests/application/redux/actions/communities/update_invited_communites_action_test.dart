@@ -1,9 +1,9 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/actions/communities/update_invited_communities_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/communities_state.dart';
-import 'package:myafyahub/domain/core/entities/core/community.dart';
+import 'package:pro_health_360/application/redux/actions/communities/update_invited_communities_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/communities_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/community.dart';
 
 void main() {
   group('UpdateInvitedCommunitiesStateAction', () {

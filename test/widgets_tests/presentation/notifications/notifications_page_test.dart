@@ -6,11 +6,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/notifications/notification_list_item.dart'
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/notifications/notification_list_item.dart'
     as consumer;
-import 'package:myafyahub/presentation/notifications/notifications_page.dart';
+import 'package:pro_health_360/presentation/notifications/notifications_page.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

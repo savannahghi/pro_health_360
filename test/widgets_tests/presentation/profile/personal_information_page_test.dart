@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/profile/personal_information/personal_information_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/profile/personal_information/personal_information_page.dart';
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';
 
@@ -48,18 +48,18 @@ void main() {
           Response(
             jsonEncode(
               <String, dynamic>{
-              'data': <String, dynamic>{
-                'retrieveFacility': <String, dynamic>{
-                  'ID': 'some-id',
-                  'name': 'name',
-                  'code': 1111,
-                  'county': 'Nairobi',
-                  'active': true,
-                  'phone': '+254712345678',
-                  'description': 'name Hospital'
+                'data': <String, dynamic>{
+                  'retrieveFacility': <String, dynamic>{
+                    'ID': 'some-id',
+                    'name': 'name',
+                    'code': 1111,
+                    'county': 'Nairobi',
+                    'active': true,
+                    'phone': '+254712345678',
+                    'description': 'name Hospital'
+                  }
                 }
-              }
-            },
+              },
             ),
             200,
           ),

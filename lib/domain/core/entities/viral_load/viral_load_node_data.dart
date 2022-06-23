@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_code.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_code.dart';
 
 part 'viral_load_node_data.freezed.dart';
 part 'viral_load_node_data.g.dart';

@@ -14,16 +14,16 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'package:myafyahub/application/core/services/analytics_service.dart';
-import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_database_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/global_keys.dart';
-import 'package:myafyahub/infrastructure/repository/database_state_persistor.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/my_app_widget.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
+import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_database_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
+import 'package:pro_health_360/infrastructure/repository/database_state_persistor.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/widgets/my_app_widget.dart';
 
 Future<void> appBootStrap(List<AppContext> appContexts) async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,10 +1,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/entities/medical_data/medical_data_details.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/presentation/profile/medical_data/widgets/medical_data_item.dart';
-import 'package:myafyahub/presentation/profile/medical_data/widgets/medical_data_item_title.dart';
+import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_details.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/presentation/profile/medical_data/widgets/medical_data_item.dart';
+import 'package:pro_health_360/presentation/profile/medical_data/widgets/medical_data_item_title.dart';
 
 class MedicalDataWidget extends StatelessWidget {
   const MedicalDataWidget({

@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:myafyahub/infrastructure/repository/database_base.dart';
+import 'package:pro_health_360/infrastructure/repository/database_base.dart';
 
 /// add migrations here for example;
 /// '''alter table _task add column done integer default 0;'''

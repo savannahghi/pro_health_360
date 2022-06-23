@@ -1,7 +1,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/codeable_concept.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/fhir_enums.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/codeable_concept.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/fhir_enums.dart';
 
 part 'reaction.freezed.dart';
 part 'reaction.g.dart';

@@ -2,10 +2,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_back_button.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_notification.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/app_bar_user.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/app_bar_back_button.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/app_bar_notification.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/app_bar_user.dart';
 
 /// [CustomAppBar] is a custom [AppBar] used for navigation and showing basic
 /// user controls

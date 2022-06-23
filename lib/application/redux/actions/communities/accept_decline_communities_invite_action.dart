@@ -4,10 +4,10 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/core/graphql/mutations.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/exception_tag.dart';
+import 'package:pro_health_360/application/core/graphql/mutations.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/exception_tag.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {

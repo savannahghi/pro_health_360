@@ -3,7 +3,7 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/feed_content_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/feed_content_state.dart';
 import '../../../mocks.dart';
 
 void main() {

@@ -8,10 +8,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/core/widgets/logout_button.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/core/widgets/logout_button.dart';
+import 'package:pro_health_360/presentation/onboarding/login/pages/login_page.dart';
 import '../../mocks.dart';
 import '../../test_helpers.dart';
 import '../../test_utils.dart';

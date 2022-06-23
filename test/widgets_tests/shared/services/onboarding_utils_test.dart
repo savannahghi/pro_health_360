@@ -10,8 +10,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/core/services/onboarding_utils.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 import '../../../test_helpers.dart';
 
 void main() {

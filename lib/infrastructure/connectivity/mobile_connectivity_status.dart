@@ -6,8 +6,8 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 // Project imports:
-import 'package:myafyahub/infrastructure/connectivity/connectivity_helper.dart';
-import 'package:myafyahub/infrastructure/connectivity/connectivity_interface.dart';
+import 'package:pro_health_360/infrastructure/connectivity/connectivity_helper.dart';
+import 'package:pro_health_360/infrastructure/connectivity/connectivity_interface.dart';
 
 class MobileConnectivityChecker extends ConnectivityChecker {
   MobileConnectivityChecker({Future<bool> Function()? checkInternetCallback})

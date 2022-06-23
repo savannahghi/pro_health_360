@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/deep_link_action.dart';
+import 'package:pro_health_360/application/redux/actions/deep_link_action.dart';
 
 class HandleDeepLink extends StatefulWidget {
   const HandleDeepLink({Key? key}) : super(key: key);

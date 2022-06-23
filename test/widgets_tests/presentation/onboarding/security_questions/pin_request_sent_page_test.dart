@@ -1,9 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/onboarding/forgot_pin/pages/pin_request_sent_page.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/presentation/onboarding/forgot_pin/pages/pin_request_sent_page.dart';
+import 'package:pro_health_360/presentation/onboarding/login/pages/login_page.dart';
 
 import '../../../../test_helpers.dart';
 

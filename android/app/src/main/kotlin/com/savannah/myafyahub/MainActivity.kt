@@ -1,4 +1,4 @@
-package com.savannah.myafyahub
+package com.mycarehub.prohealth360
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterFragmentActivity

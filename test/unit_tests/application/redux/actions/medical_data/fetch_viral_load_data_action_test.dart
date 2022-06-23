@@ -7,9 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/redux/actions/medical_data/fetch_viral_load_data_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_edges.dart';
+import 'package:pro_health_360/application/redux/actions/medical_data/fetch_viral_load_data_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_edges.dart';
 
 import '../../../../../mocks.dart';
 import 'fetch_viral_load_data_action_test.mocks.dart';
