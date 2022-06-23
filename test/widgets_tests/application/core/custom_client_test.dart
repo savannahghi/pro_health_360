@@ -16,10 +16,10 @@ import 'package:http/src/streamed_response.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 // Project imports:
-import 'package:myafyahub/application/core/services/custom_client.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/infrastructure/endpoints.dart'
+import 'package:pro_health_360/application/core/services/custom_client.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
+import 'package:pro_health_360/infrastructure/endpoints.dart'
     as my_afya_hub_endpoints;
 
 import '../../../mocks.dart';

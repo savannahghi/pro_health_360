@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/codeable_concept.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/fhir_enums.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/reaction.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/reference.dart';
-import 'package:myafyahub/domain/core/entities/health_timeline/resource.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/codeable_concept.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/fhir_enums.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/reaction.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/reference.dart';
+import 'package:pro_health_360/domain/core/entities/health_timeline/resource.dart';
 
 part 'fhir_resource.freezed.dart';
 part 'fhir_resource.g.dart';

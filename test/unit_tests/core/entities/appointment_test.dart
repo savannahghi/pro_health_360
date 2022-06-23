@@ -1,7 +1,7 @@
 // Package imports:
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
+import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
 
 void main() {
   test('Appointment should convert to/fromJson', () {

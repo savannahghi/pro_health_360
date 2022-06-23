@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class TimelineIndicator extends StatelessWidget {
   const TimelineIndicator({

@@ -2,7 +2,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/home_state.dart';
+import 'package:pro_health_360/application/redux/states/home_state.dart';
 
 void main() {
   group('HomeState', () {

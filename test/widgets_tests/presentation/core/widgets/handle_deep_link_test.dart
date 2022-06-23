@@ -10,14 +10,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/actions/update_content_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_credentials_action.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
-import 'package:myafyahub/application/redux/actions/update_user_profile_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/login/phone_login_response.dart';
-import 'package:myafyahub/presentation/core/widgets/handle_deep_link.dart';
-import 'package:myafyahub/presentation/home/pages/home_page.dart';
+import 'package:pro_health_360/application/redux/actions/update_content_state_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_credentials_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/login/phone_login_response.dart';
+import 'package:pro_health_360/presentation/core/widgets/handle_deep_link.dart';
+import 'package:pro_health_360/presentation/home/pages/home_page.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

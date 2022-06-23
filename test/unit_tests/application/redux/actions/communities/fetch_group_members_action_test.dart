@@ -6,8 +6,8 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:myafyahub/application/redux/actions/communities/fetch_group_members_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/actions/communities/fetch_group_members_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:http/http.dart';
 
 import '../../../../../mocks.dart';

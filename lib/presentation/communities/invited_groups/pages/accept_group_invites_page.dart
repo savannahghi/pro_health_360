@@ -3,12 +3,12 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:myafyahub/application/redux/actions/communities/accept_decline_communities_invite_action.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:pro_health_360/application/redux/actions/communities/accept_decline_communities_invite_action.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 class AcceptGroupInvitesPage extends StatefulWidget {
   const AcceptGroupInvitesPage({
@@ -81,7 +81,7 @@ class _AcceptGroupInvitesPageState extends State<AcceptGroupInvitesPage> {
                                           Text(communitiesRejectionSuccessful),
                                     ),
                                   );
-                               
+
                                 Navigator.of(context)
                                     .pushNamed(AppRoutes.userProfilePage);
                               },

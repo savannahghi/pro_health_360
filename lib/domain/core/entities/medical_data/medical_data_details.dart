@@ -1,9 +1,9 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/medical_data/medical_data_category.dart';
-import 'package:myafyahub/domain/core/entities/medical_data/medical_data_clinical_status.dart';
-import 'package:myafyahub/domain/core/entities/medical_data/medication_codeable_concept.dart';
+import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_category.dart';
+import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_clinical_status.dart';
+import 'package:pro_health_360/domain/core/entities/medical_data/medication_codeable_concept.dart';
 
 part 'medical_data_details.freezed.dart';
 part 'medical_data_details.g.dart';

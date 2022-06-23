@@ -10,14 +10,14 @@ import 'package:flutter/material.dart';
 // Flutter imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 // Project imports:
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
-import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
-import 'package:myafyahub/presentation/onboarding/login/pages/login_page.dart';
-import 'package:myafyahub/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/infrastructure/connectivity/mobile_connectivity_status.dart';
+import 'package:pro_health_360/presentation/onboarding/login/pages/login_page.dart';
+import 'package:pro_health_360/presentation/onboarding/set_new_pin/pages/create_new_pin_page.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

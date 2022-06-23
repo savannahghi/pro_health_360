@@ -2,11 +2,11 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/application/redux/states/screening_tools_state.dart';
-import 'package:myafyahub/domain/core/entities/appointments/appointments_state.dart';
-import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
-import 'package:myafyahub/domain/core/entities/surveys/survey.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:pro_health_360/application/redux/states/screening_tools_state.dart';
+import 'package:pro_health_360/domain/core/entities/appointments/appointments_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/groups_state.dart';
+import 'package:pro_health_360/domain/core/entities/surveys/survey.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 import 'communities/channel_members_state.dart';
 
 part 'misc_state.freezed.dart';

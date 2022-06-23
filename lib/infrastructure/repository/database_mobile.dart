@@ -5,9 +5,9 @@ import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
 
 // Project imports:
-import 'package:myafyahub/infrastructure/repository/database_base.dart';
-import 'package:myafyahub/infrastructure/repository/initialize_db.dart';
-import 'package:myafyahub/infrastructure/repository/sqlite.dart';
+import 'package:pro_health_360/infrastructure/repository/database_base.dart';
+import 'package:pro_health_360/infrastructure/repository/initialize_db.dart';
+import 'package:pro_health_360/infrastructure/repository/sqlite.dart';
 
 /// [MyAfyaHubDatabaseMobile] is the main entry for interacting with the database for My Afya Hub mobile
 /// It uses sqlite which a common RDMS. Unlike other key:value storage, sqlite offers
@@ -17,7 +17,7 @@ import 'package:myafyahub/infrastructure/repository/sqlite.dart';
 /// When a new state has been added, it needs to be serialized so that it may be saved in the database
 /// The command to serialize is [flutter pub run build_runner build --delete-conflicting-outputs]
 class MyAfyaHubDatabaseMobile<T extends DatabaseExecutor>
-    implements MyAfyaHubDatabaseBase<T> {
+    implements ProHealthDatabaseBase<T> {
   MyAfyaHubDatabaseMobile({this.initializeDB});
 
   final InitializeDB<T>? initializeDB;

@@ -4,9 +4,9 @@ import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/check_and_update_connectivity_action.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/infrastructure/connectivity/mobile_connectivity_status.dart';
+import 'package:pro_health_360/application/redux/actions/check_and_update_connectivity_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/infrastructure/connectivity/mobile_connectivity_status.dart';
 import '../../../../mocks.dart';
 
 void main() {

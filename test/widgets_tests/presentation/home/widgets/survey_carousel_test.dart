@@ -2,11 +2,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/health_diary/screening_tools/widgets/screening_tool_menu_item.dart';
-import 'package:myafyahub/presentation/home/widgets/survey_carousel.dart';
-import 'package:myafyahub/presentation/surveys/custom_webview_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/health_diary/screening_tools/widgets/screening_tool_menu_item.dart';
+import 'package:pro_health_360/presentation/home/widgets/survey_carousel.dart';
+import 'package:pro_health_360/presentation/surveys/custom_webview_page.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

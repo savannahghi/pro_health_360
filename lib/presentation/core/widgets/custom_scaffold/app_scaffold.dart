@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 // Project imports:
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/home/widgets/bottom_nav_bar.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/presentation/home/widgets/bottom_nav_bar.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
@@ -27,7 +27,9 @@ class AppScaffold extends StatelessWidget {
         child: appBar,
       ),
       body: body,
-      bottomNavigationBar: BottomNavBar(bottomNavIndex: bottomNavIndex,),
+      bottomNavigationBar: BottomNavBar(
+        bottomNavIndex: bottomNavIndex,
+      ),
     );
   }
 }

@@ -11,11 +11,11 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart' as http;
 // Project imports:
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/redux/actions/FAQS/update_faqs_content_action.dart';
-import 'package:myafyahub/application/redux/actions/content/fetch_content_categories_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/redux/actions/FAQS/update_faqs_content_action.dart';
+import 'package:pro_health_360/application/redux/actions/content/fetch_content_categories_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 
 class FetchFAQSContentAction extends ReduxAction<AppState> {
   FetchFAQSContentAction({
@@ -53,7 +53,6 @@ class FetchFAQSContentAction extends ReduxAction<AppState> {
               orElse: () => ContentCategory.initial().copyWith(id: -1),
             )
             ?.id;
-
 
     final Map<String, dynamic> variables = <String, dynamic>{
       'categoryID': faqCategoryId,

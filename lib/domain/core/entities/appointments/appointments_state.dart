@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
+import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
 
 part 'appointments_state.freezed.dart';
 part 'appointments_state.g.dart';

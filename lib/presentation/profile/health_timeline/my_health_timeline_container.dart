@@ -2,16 +2,16 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
-import 'package:myafyahub/application/core/services/app_setup_data.dart';
-import 'package:myafyahub/application/core/services/custom_client.dart';
-import 'package:myafyahub/application/core/services/utils.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/health_timeline/health_timeline_offset_view_model.dart';
-import 'package:myafyahub/application/redux/view_models/health_timeline/health_timeline_view_model_factory.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/core/widgets/app_bar/custom_app_bar.dart';
-import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
-import 'package:myafyahub/presentation/profile/health_timeline/timeline_pagination_controls.dart';
+import 'package:pro_health_360/application/core/services/app_setup_data.dart';
+import 'package:pro_health_360/application/core/services/custom_client.dart';
+import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/health_timeline/health_timeline_offset_view_model.dart';
+import 'package:pro_health_360/application/redux/view_models/health_timeline/health_timeline_view_model_factory.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
+import 'package:pro_health_360/presentation/profile/health_timeline/my_health_timeline.dart';
+import 'package:pro_health_360/presentation/profile/health_timeline/timeline_pagination_controls.dart';
 
 class MyHealthTimelineContainer extends StatefulWidget {
   const MyHealthTimelineContainer({Key? key, this.graphQlClient})

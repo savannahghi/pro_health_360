@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/presentation/communities/channel_page.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/presentation/communities/channel_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 Widget channelPreviewBuilder(BuildContext context, Channel channel) {

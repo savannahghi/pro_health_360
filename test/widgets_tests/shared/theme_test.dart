@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 void main() {
   group('Theme tests', () {

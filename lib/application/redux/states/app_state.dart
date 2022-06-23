@@ -3,14 +3,14 @@ import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/connectivity_state.dart';
-import 'package:myafyahub/application/redux/states/home_state.dart';
-import 'package:myafyahub/application/redux/states/misc_state.dart';
-import 'package:myafyahub/application/redux/states/onboarding_state.dart';
-import 'package:myafyahub/domain/core/entities/core/auth_credentials.dart';
-import 'package:myafyahub/domain/core/entities/core/client_state.dart';
-import 'package:myafyahub/domain/core/entities/core/content_state.dart';
-import 'package:myafyahub/domain/core/entities/home/bottom_nav_state.dart';
+import 'package:pro_health_360/application/redux/states/connectivity_state.dart';
+import 'package:pro_health_360/application/redux/states/home_state.dart';
+import 'package:pro_health_360/application/redux/states/misc_state.dart';
+import 'package:pro_health_360/application/redux/states/onboarding_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/content_state.dart';
+import 'package:pro_health_360/domain/core/entities/home/bottom_nav_state.dart';
 
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';

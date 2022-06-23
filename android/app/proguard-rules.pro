@@ -17,4 +17,4 @@
 -keepattributes InnerClasses
 
 # flutter_config
--keep class com.savannah.myafyahub.BuildConfig { *; }
+-keep class com.mycarehub.prohealth360.BuildConfig { *; }

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/medical_data/medical_data_response.dart';
+import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_response.dart';
 
 import '../../../../../mocks.dart';
 
@@ -10,7 +10,6 @@ void main() {
       final MedicalDataResponse medicalDataResponseMock =
           MedicalDataResponse.fromJson(mockMedicalDataResponse);
       expect(medicalDataResponseMock, isA<MedicalDataResponse>());
-      
     });
   });
 }

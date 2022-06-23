@@ -2,8 +2,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/application/core/services/analytics_service.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/application/core/services/analytics_service.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 import '../../mocks.dart';
 

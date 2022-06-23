@@ -6,11 +6,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/health_diary/health_diary_entry.dart';
-import 'package:myafyahub/domain/core/value_objects/app_widget_keys.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/share_diary_entry_dialog.dart';
-import 'package:myafyahub/presentation/health_diary/widgets/successful_diary_entry_page.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/share_diary_entry_dialog.dart';
+import 'package:pro_health_360/presentation/health_diary/widgets/successful_diary_entry_page.dart';
 
 import '../../../mocks.dart';
 import '../../../test_helpers.dart';

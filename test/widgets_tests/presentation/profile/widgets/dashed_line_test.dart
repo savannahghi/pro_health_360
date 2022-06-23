@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/presentation/profile/widgets/dashed_line.dart';
+import 'package:pro_health_360/presentation/profile/widgets/dashed_line.dart';
 
 void main() {
   group('DashedLine', () {

@@ -1,6 +1,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_node_data.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_node_data.dart';
 
 part 'viral_load_node.freezed.dart';
 part 'viral_load_node.g.dart';

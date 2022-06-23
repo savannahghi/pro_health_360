@@ -4,9 +4,9 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:myafyahub/domain/core/entities/core/address.dart';
-import 'package:myafyahub/domain/core/entities/core/contact.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/entities/core/address.dart';
+import 'package:pro_health_360/domain/core/entities/core/contact.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 part 'related_person.g.dart';
 part 'related_person.freezed.dart';

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/domain/core/entities/core/get_stream_token.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/entities/core/get_stream_token.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 
 class StreamTokenProvider {
   final IGraphQlClient client;

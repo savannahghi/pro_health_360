@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myafyahub/domain/core/value_objects/enums.dart';
+import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/actions/update_health_diary_state.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/view_models/client_profile_view_model.dart';
-import 'package:myafyahub/domain/core/value_objects/app_strings.dart';
-import 'package:myafyahub/domain/core/value_objects/asset_strings.dart';
-import 'package:myafyahub/presentation/core/theme/theme.dart';
+import 'package:pro_health_360/application/redux/actions/update_health_diary_state.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/client_profile_view_model.dart';
+import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
+import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
+import 'package:pro_health_360/presentation/core/theme/theme.dart';
 
 class SuccessfulDiaryEntryPage extends StatelessWidget {
   const SuccessfulDiaryEntryPage({required this.diaryEntrySuccessType});

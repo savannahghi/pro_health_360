@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_code.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_edges.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_node.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_node_data.dart';
-import 'package:myafyahub/domain/core/entities/viral_load/viral_load_response.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_code.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_edges.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_node.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_node_data.dart';
+import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_response.dart';
 
 import '../../../../../mocks.dart';
 

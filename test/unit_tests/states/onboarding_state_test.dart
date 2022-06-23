@@ -3,8 +3,8 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:myafyahub/application/redux/states/onboarding_state.dart';
-import 'package:myafyahub/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
+import 'package:pro_health_360/application/redux/states/onboarding_state.dart';
+import 'package:pro_health_360/domain/core/entities/terms_and_conditions/terms_and_conditions.dart';
 import '../../mocks.dart';
 
 void main() {

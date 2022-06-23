@@ -2,12 +2,12 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/core/graphql/queries.dart';
-import 'package:myafyahub/application/redux/actions/my_health/update_appointment_state_action.dart';
-import 'package:myafyahub/application/redux/flags/flags.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/application/redux/states/misc_state.dart';
-import 'package:myafyahub/domain/core/entities/appointments/appointment.dart';
+import 'package:pro_health_360/application/core/graphql/queries.dart';
+import 'package:pro_health_360/application/redux/actions/my_health/update_appointment_state_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/misc_state.dart';
+import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
 
 class FetchAppointmentsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;

@@ -1,6 +1,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 
 class FAQsContentViewModel extends Vm {
   FAQsContentViewModel({

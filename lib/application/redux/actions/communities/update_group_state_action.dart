@@ -1,9 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/domain/core/entities/communities/group.dart';
-import 'package:myafyahub/domain/core/entities/core/community.dart';
-import 'package:myafyahub/domain/core/entities/core/groups_state.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/communities/group.dart';
+import 'package:pro_health_360/domain/core/entities/core/community.dart';
+import 'package:pro_health_360/domain/core/entities/core/groups_state.dart';
 
 class UpdateGroupStateAction extends ReduxAction<AppState> {
   final List<Group?>? recommendedGroups;

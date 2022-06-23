@@ -1,9 +1,9 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:myafyahub/application/redux/actions/send_content_engagement_time_action.dart';
-import 'package:myafyahub/presentation/content/widgets/reactions_widget.dart';
-import 'package:myafyahub/presentation/router/routes.dart';
+import 'package:pro_health_360/application/redux/actions/send_content_engagement_time_action.dart';
+import 'package:pro_health_360/presentation/content/widgets/reactions_widget.dart';
+import 'package:pro_health_360/presentation/router/routes.dart';
 
 class ContentDetailPage extends StatelessWidget {
   const ContentDetailPage({Key? key, required this.payload, this.showReactions})

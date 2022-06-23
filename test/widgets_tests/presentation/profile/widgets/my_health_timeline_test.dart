@@ -8,11 +8,11 @@ import 'package:flutter_graphql_client/graph_client.dart';
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/profile/health_timeline/my_health_timeline.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/presentation/profile/health_timeline/my_health_timeline.dart';
 
 // Project imports:
-import 'package:myafyahub/presentation/profile/health_timeline/timeline_indicator.dart';
+import 'package:pro_health_360/presentation/profile/health_timeline/timeline_indicator.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';

@@ -6,8 +6,8 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:myafyahub/application/redux/states/app_state.dart';
-import 'package:myafyahub/presentation/content/widgets/document_content_widget.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/presentation/content/widgets/document_content_widget.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
