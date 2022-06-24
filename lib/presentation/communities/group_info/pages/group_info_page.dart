@@ -86,19 +86,6 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                       style: boldSize20Text(AppColors.lightBlackTextColor),
                     ),
                     verySmallVerticalSizedBox,
-                    Text(
-                      '${channel.memberCount!} members',
-                      style: boldSize16Text(AppColors.greyTextColor),
-                    ),
-                    const SizedBox(height: 30),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        groupInformationText,
-                        style: boldSize20Text(AppColors.blackColor),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
                     StoreConnector<AppState, GroupsViewModel>(
                       converter: (Store<AppState> store) =>
                           GroupsViewModel.fromStore(store),
@@ -113,9 +100,27 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                         final bool hasGenders =
                             community.gender?.isNotEmpty ?? false;
 
+                        final int groupMembersLength =
+                            vm.groupMembers?.length ?? 0;
+
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
+                            Center(
+                              child: Text(
+                                '$groupMembersLength members',
+                                style: boldSize16Text(AppColors.greyTextColor),
+                              ),
+                            ),
+                            const SizedBox(height: 30),
+                            Container(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                groupInformationText,
+                                style: boldSize20Text(AppColors.blackColor),
+                              ),
+                            ),
+                            const SizedBox(height: 20),
                             if (hasClientTypes) ...<Widget>[
                               Container(
                                 alignment: Alignment.topLeft,
