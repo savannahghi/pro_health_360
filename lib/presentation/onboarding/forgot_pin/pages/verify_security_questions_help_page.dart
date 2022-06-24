@@ -65,6 +65,7 @@ class _VerifySecurityQuestionsHelpPageState
                 smallVerticalSizedBox,
                 CustomTextField(
                   formFieldKey: cccInputKey,
+                  hintText: cccNumberHint,
                   customFillColor: AppColors.greyTextColor.withOpacity(0.08),
                   keyboardType: TextInputType.number,
                   borderColor: Colors.transparent,

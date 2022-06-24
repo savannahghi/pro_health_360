@@ -994,3 +994,5 @@ const String noStringsAvailableDescription =
     'There are no surveys available for you at the moment. We will notify you when they are available';
 const String recheckAvailableSurveys =
     'Tap the button below to check if there are any new surveys available';
+
+const String cccNumberHint = 'Enter your CCC number...';
