@@ -48,9 +48,9 @@ class AppbarUser extends StatelessWidget {
               child: Container(
                 height: 40,
                 width: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColor,
+                  color: AppColors.accentColor,
                 ),
                 child: Center(
                   child: isAvatarPresent
