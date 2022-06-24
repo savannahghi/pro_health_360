@@ -37,6 +37,7 @@ class FetchAvailableSurveysAction extends ReduxAction<AppState> {
         await client.query(getUserSurveyFormsQuery, variables);
 
     final ProcessedResponse processedResponse = processHttpResponse(response);
+
     if (processedResponse.ok) {
       final Map<String, dynamic> body = client.toMap(response);
       final String? errors = client.parseError(body);

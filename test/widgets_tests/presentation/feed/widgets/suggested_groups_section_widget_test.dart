@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:pro_health_360/application/redux/actions/communities/update_group_state_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_credentials_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 
 // Project imports:
@@ -30,6 +31,7 @@ void main() {
         (WidgetTester tester) async {
       mockNetworkImages(() async {
         store.dispatch(UpdateGroupStateAction());
+        store.dispatch(UpdateCredentialsAction(isSignedIn: true));
         final MockShortGraphQlClient mockShortSILGraphQlClient =
             MockShortGraphQlClient.withResponse(
           'idToken',
@@ -65,6 +67,7 @@ void main() {
     testWidgets('shows a loading indicator when fetching data',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
+        store.dispatch(UpdateCredentialsAction(isSignedIn: true));
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
           'idToken',

@@ -17,9 +17,7 @@ import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/feed/saved_content.dart';
 
 class FetchSavedContentAction extends ReduxAction<AppState> {
-  FetchSavedContentAction({
-    required this.context,
-  });
+  FetchSavedContentAction({required this.context});
 
   final BuildContext context;
   @override

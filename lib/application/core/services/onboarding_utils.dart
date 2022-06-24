@@ -22,10 +22,7 @@ Function checkWaitingForFunc(BuildContext context) {
 
 void clearAllFlags(BuildContext context) {
   SchedulerBinding.instance?.addPostFrameCallback((_) {
-    StoreProvider.dispatch(
-      context,
-      WaitAction<AppState>.clear(),
-    );
+    StoreProvider.dispatch(context, WaitAction<AppState>.clear());
   });
 }
 

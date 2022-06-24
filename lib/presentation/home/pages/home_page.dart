@@ -21,10 +21,7 @@ class HomePage extends StatelessWidget {
     return AppScaffold(
       key: homepageContentKey,
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: const CustomAppBar(
-        showBackButton: false,
-        title: homeString,
-      ),
+      appBar: const CustomAppBar(showBackButton: false, title: homeString),
       body: DoubleBackToCloseApp(
         snackBar: snackbar(content: pressToExitText, durationSeconds: 3),
         child: StoreConnector<AppState, ConnectivityViewModel>(

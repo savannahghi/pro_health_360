@@ -15,6 +15,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
+import 'package:pro_health_360/application/redux/actions/auth_status_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/presentation/content/widgets/feed_page_content_item.dart';
 
@@ -63,12 +64,16 @@ void main() {
         UpdateContentStateAction(contentItems: <Content>[mockContent]),
       );
 
+      store.dispatch(AuthStatusAction(isSignedIn: true));
+
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
     });
 
     testWidgets('should render recent content and display them correctly',
         (WidgetTester tester) async {
+      store.dispatch(AuthStatusAction(isSignedIn: true));
+
       const Size size = Size(640, 960);
       await tester.binding.setSurfaceSize(size);
       tester.binding.window.physicalSizeTestValue = size;
@@ -97,12 +102,36 @@ void main() {
       });
     });
 
+    testWidgets('Should fetch feed items if none are in state',
+        (WidgetTester tester) async {
+      store.dispatch(UpdateContentStateAction(contentItems: <Content>[]));
+
+      store.dispatch(AuthStatusAction(isSignedIn: true));
+
+      await buildTestWidget(
+        tester: tester,
+        store: store,
+        client: mockShortSILGraphQlClient,
+        widget: const RecentContentWidget(),
+      );
+
+      // verify the contents of the feed items are in state
+      final bool? isFeedEmpty =
+          store.state.contentState?.feedContentState?.contentItems?.isEmpty;
+
+      expect(isFeedEmpty, isNotNull);
+      expect(isFeedEmpty, false);
+    });
+
     testWidgets('View All should navigate to FeedPage',
         (WidgetTester tester) async {
       const Size size = Size(640, 960);
       await tester.binding.setSurfaceSize(size);
+
       tester.binding.window.physicalSizeTestValue = size;
       tester.binding.window.devicePixelRatioTestValue = 1;
+
+      store.dispatch(AuthStatusAction(isSignedIn: true));
 
       await buildTestWidget(
         tester: tester,
@@ -112,6 +141,8 @@ void main() {
       );
 
       await tester.pumpAndSettle();
+      await tester.pumpAndSettle();
+
       final Finder viewAllButton = find.byKey(viewAllButtonKey);
 
       expect(viewAllButton, findsOneWidget);
@@ -120,6 +151,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(viewAllButton);
       await tester.pumpAndSettle();
+
       expect(find.byType(FeedPage), findsOneWidget);
       addTearDown(() {
         tester.binding.window.clearPhysicalSizeTestValue();
@@ -130,6 +162,8 @@ void main() {
     testWidgets(
         'shows a generic no data widget while fetching the feed '
         'and refresh the feed when prompted', (WidgetTester tester) async {
+      store.dispatch(AuthStatusAction(isSignedIn: true));
+
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
 
@@ -203,6 +237,8 @@ void main() {
     testWidgets(
         'shows a generic timeout widget while fetching suggested groups',
         (WidgetTester tester) async {
+      store.dispatch(AuthStatusAction(isSignedIn: true));
+
       mockNetworkImages(() async {
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(
