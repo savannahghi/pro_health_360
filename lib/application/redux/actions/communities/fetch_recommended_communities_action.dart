@@ -13,10 +13,7 @@ class FetchRecommendedGroupsAction extends ReduxAction<AppState> {
   final IGraphQlClient client;
   final Map<String, dynamic> variables;
 
-  FetchRecommendedGroupsAction({
-    required this.client,
-    required this.variables,
-  });
+  FetchRecommendedGroupsAction({required this.client, required this.variables});
 
   @override
   void before() {
@@ -36,6 +33,7 @@ class FetchRecommendedGroupsAction extends ReduxAction<AppState> {
       recommendedCommunitiesQuery,
       variables,
     );
+
     client.close();
 
     final Map<String, dynamic> payLoad = client.toMap(response);
@@ -46,16 +44,10 @@ class FetchRecommendedGroupsAction extends ReduxAction<AppState> {
 
     if (recommendedGroups != null && recommendedGroups.isNotEmpty) {
       dispatch(
-        UpdateGroupStateAction(
-          recommendedGroups: recommendedGroups,
-        ),
+        UpdateGroupStateAction(recommendedGroups: recommendedGroups),
       );
     } else {
-      dispatch(
-        UpdateGroupStateAction(
-          recommendedGroups: <Group>[],
-        ),
-      );
+      dispatch(UpdateGroupStateAction(recommendedGroups: <Group>[]));
     }
 
     return state;

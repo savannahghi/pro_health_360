@@ -214,7 +214,7 @@ final String copyrightString =
     'Content © University of Nairobi ${returnCurrentYear()}';
 const String copyrightDescriptionString =
     'ProHealth360™ is a platform developed by Johnson & Johnson Global public Health, used under license';
-const String poweredByMyCareHubString = 'Powered by ProHealth360™';
+const String poweredByMyCareHubString = 'Powered by myCareHub™';
 
 // this is the version of the currently running app.
 // it has to be defined as a const otherwise the compiler will return the default

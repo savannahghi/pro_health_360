@@ -75,7 +75,8 @@ class ScreeningToolsCarousel extends StatelessWidget {
             vm.availableScreeningTools?.availableScreeningTools?.length ?? 0;
 
         return (vm.availableScreeningTools?.errorFetchingQuestions ?? false) ||
-                (vm.availableScreeningTools?.timeoutFetchingQuestions ?? false)
+                (vm.availableScreeningTools?.timeoutFetchingQuestions ??
+                    false || itemCount <= 0)
             ? const SizedBox()
             : Column(
                 mainAxisSize: MainAxisSize.min,

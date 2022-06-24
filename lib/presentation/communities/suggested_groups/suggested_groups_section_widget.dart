@@ -29,13 +29,16 @@ class SuggestedGroupsSection extends StatelessWidget {
       converter: (Store<AppState> store) => GroupsViewModel.fromStore(store),
       onInit: (Store<AppState> store) {
         final String clientID = store.state.clientState?.id ?? '';
+        final bool isSignedIn = store.state.credentials?.isSignedIn ?? false;
 
-        store.dispatch(
-          FetchRecommendedGroupsAction(
-            client: AppWrapperBase.of(context)!.graphQLClient,
-            variables: <String, dynamic>{'clientID': clientID, 'limit': 10},
-          ),
-        );
+        if (isSignedIn) {
+          store.dispatch(
+            FetchRecommendedGroupsAction(
+              client: AppWrapperBase.of(context)!.graphQLClient,
+              variables: <String, dynamic>{'clientID': clientID, 'limit': 10},
+            ),
+          );
+        }
       },
       builder: (BuildContext context, GroupsViewModel vm) {
         return vm.wait.isWaitingFor(fetchRecommendedCommunitiesFlag)

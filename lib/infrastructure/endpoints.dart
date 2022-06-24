@@ -1,7 +1,3 @@
-/* GENERAL */
-const String dGraphEndpoint =
-    'https://nameless-brook-310185.eu-central-1.aws.cloud.dgraph.io/graphql';
-
 /* 
 TEST ENDPOINTS 
 

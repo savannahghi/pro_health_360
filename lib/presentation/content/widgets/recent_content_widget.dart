@@ -23,41 +23,31 @@ import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.
 import 'package:pro_health_360/presentation/core/widgets/generic_zero_state_widget.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
-class RecentContentWidget extends StatefulWidget {
+class RecentContentWidget extends StatelessWidget {
   const RecentContentWidget();
-
-  @override
-  State<RecentContentWidget> createState() => _RecentContentWidgetState();
-}
-
-class _RecentContentWidgetState extends State<RecentContentWidget> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
-      final ContentState? state =
-          StoreProvider.state<AppState>(context)?.contentState;
-
-      if (state?.recentContentState?.contentItems?.isEmpty ?? true) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          FetchRecentContentAction(context: context),
-        );
-      }
-
-      if (state?.feedContentState?.contentItems?.isEmpty ?? true) {
-        StoreProvider.dispatch<AppState>(
-          context,
-          FetchContentAction(context: context),
-        );
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ContentViewModel>(
+      onInit: (Store<AppState> store) {
+        final bool isSignedIn = store.state.credentials?.isSignedIn ?? false;
+        final ContentState? contentState = store.state.contentState;
+
+        if (isSignedIn) {
+          final bool isRecentContentEmpty =
+              contentState?.recentContentState?.contentItems?.isEmpty ?? true;
+          final bool isFeedEmpty =
+              contentState?.feedContentState?.contentItems?.isEmpty ?? true;
+
+          if (isRecentContentEmpty) {
+            store.dispatch(FetchRecentContentAction(context: context));
+          }
+
+          if (isFeedEmpty) {
+            store.dispatch(FetchContentAction(context: context));
+          }
+        }
+      },
       converter: (Store<AppState> store) =>
           ContentViewModel.fromStore(store.state),
       builder: (BuildContext context, ContentViewModel vm) {
