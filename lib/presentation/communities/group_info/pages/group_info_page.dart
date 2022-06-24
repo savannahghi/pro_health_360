@@ -183,51 +183,54 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
 
                         return Column(
                           children: <Widget>[
-                            const SizedBox(height: 16),
-                            const Divider(height: 2),
-                            const SizedBox(height: 16),
-                            InkWell(
-                              onTap: () {
-                                _navigateToPage(
-                                  context,
-                                  channel,
-                                  const FlaggedMessagesPage(),
-                                );
-                              },
-                              child: Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color:
-                                      AppColors.primaryColor.withOpacity(0.14),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const <Widget>[
-                                    Text(
-                                      flaggedMessagesString,
-                                      style: TextStyle(
-                                        color: AppColors.lightBlackTextColor,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                            if (vm.isModerator ?? false) ...<Widget>[
+                              const SizedBox(height: 16),
+                              const Divider(height: 2),
+                              const SizedBox(height: 16),
+                              InkWell(
+                                onTap: () {
+                                  _navigateToPage(
+                                    context,
+                                    channel,
+                                    const FlaggedMessagesPage(),
+                                  );
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: AppColors.primaryColor
+                                        .withOpacity(0.14),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const <Widget>[
+                                      Text(
+                                        flaggedMessagesString,
+                                        style: TextStyle(
+                                          color: AppColors.lightBlackTextColor,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: 14),
-                                    Text(
-                                      tapToViewFlaggedMessagesText,
-                                      style: TextStyle(
-                                        color: AppColors.grey50,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
+                                      SizedBox(height: 14),
+                                      Text(
+                                        tapToViewFlaggedMessagesText,
+                                        style: TextStyle(
+                                          color: AppColors.grey50,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 16),
-                            const Divider(height: 2),
+                              const SizedBox(height: 16),
+                              const Divider(height: 2),
+                            ],
                             largeVerticalSizedBox,
                             Container(
                               alignment: Alignment.topLeft,
@@ -247,8 +250,8 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                                   color: AppColors.unSelectedReactionIconColor,
                                 ),
                               ),
+                              largeVerticalSizedBox,
                             ],
-                            largeVerticalSizedBox,
                             ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
