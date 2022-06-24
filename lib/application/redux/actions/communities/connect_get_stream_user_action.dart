@@ -7,7 +7,6 @@ import 'package:pro_health_360/application/communities/stream_token_provider.dar
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
-import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
@@ -37,10 +36,6 @@ class ConnectGetStreamUserAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final String clientId = state.clientState?.id ?? '';
-
-    if (clientId.isEmpty || clientId == UNKNOWN) {
-      throw const UserException(kindlyLogOutText);
-    }
 
     try {
       if (streamClient.wsConnectionStatus ==

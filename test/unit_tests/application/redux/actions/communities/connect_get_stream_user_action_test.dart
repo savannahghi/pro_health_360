@@ -10,7 +10,6 @@ import 'package:pro_health_360/application/communities/stream_token_provider.dar
 import 'package:pro_health_360/application/redux/actions/communities/connect_get_stream_user_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_client_profile_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/infrastructure/endpoints.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -120,41 +119,6 @@ void main() {
       info = await storeTester.waitUntil(ConnectGetStreamUserAction);
 
       expect(info.dispatchCount, 7);
-    });
-
-    test('should throw exception if client profile id is null', () async {
-      store.dispatch(UpdateClientProfileAction(id: ''));
-
-      final StoreTester<AppState> storeTester =
-          StoreTester<AppState>.from(store);
-
-      final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
-        '',
-        '',
-        Response(
-          jsonEncode(<String, dynamic>{'getStreamToken': 'some-token'}),
-          200,
-        ),
-      );
-
-      final MockStreamChatClient mockStreamChatClient = MockStreamChatClient();
-
-      storeTester.dispatch(
-        ConnectGetStreamUserAction(
-          streamClient: mockStreamChatClient,
-          client: client,
-          streamTokenProvider: StreamTokenProvider(
-            client: client,
-            endpoint: kTestRefreshStreamTokenEndpoint,
-          ),
-        ),
-      );
-
-      final TestInfo<AppState> info = await storeTester.waitUntilErrorGetLast(
-        error: const UserException(kindlyLogOutText),
-      );
-
-      expect(info.error, const UserException(kindlyLogOutText));
     });
 
     test('should handle StreamWebSocketError', () async {

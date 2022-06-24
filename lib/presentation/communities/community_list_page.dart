@@ -9,6 +9,7 @@ import 'package:pro_health_360/application/redux/actions/communities/connect_get
 import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 // Project imports:
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
@@ -38,31 +39,36 @@ class _CommunityListViewPageState extends State<CommunityListViewPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final User? user =
-        StoreProvider.state<AppState>(context)?.clientState?.user;
+    final ClientState? clientState =
+        StoreProvider.state<AppState>(context)?.clientState;
+    final User? user = clientState?.user;
 
-    StoreProvider.dispatch(
-      context,
-      ConnectGetStreamUserAction(
-        client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-        streamClient: stream.StreamChat.of(context).client,
-        streamTokenProvider: StreamTokenProvider(
+    if (clientState?.id != null &&
+        clientState!.id!.isNotEmpty &&
+        clientState.id! != UNKNOWN) {
+      StoreProvider.dispatch(
+        context,
+        ConnectGetStreamUserAction(
           client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          endpoint: AppWrapperBase.of(context)!
-              .customContext!
-              .refreshStreamTokenEndpoint,
-          saveToken: (String newToken) async {
-            final SharedPreferences prefs =
-                await SharedPreferences.getInstance();
-            prefs.setString('streamToken', newToken);
-            StoreProvider.dispatch(
-              context,
-              UpdateUserAction(user: user?.copyWith(streamToken: newToken)),
-            );
-          },
+          streamClient: stream.StreamChat.of(context).client,
+          streamTokenProvider: StreamTokenProvider(
+            client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+            endpoint: AppWrapperBase.of(context)!
+                .customContext!
+                .refreshStreamTokenEndpoint,
+            saveToken: (String newToken) async {
+              final SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              prefs.setString('streamToken', newToken);
+              StoreProvider.dispatch(
+                context,
+                UpdateUserAction(user: user?.copyWith(streamToken: newToken)),
+              );
+            },
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override

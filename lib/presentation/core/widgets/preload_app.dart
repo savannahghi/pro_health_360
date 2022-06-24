@@ -6,6 +6,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/actions/update_misc_state_action.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/global_keys.dart';
 import 'package:rxdart/src/streams/merge.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -122,30 +123,36 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
         ),
       );
 
-      final User? user =
-          StoreProvider.state<AppState>(context)?.clientState?.user;
-      StoreProvider.dispatch(
-        context,
-        ConnectGetStreamUserAction(
-          client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-          streamClient: widget.client,
-          streamTokenProvider: StreamTokenProvider(
+      final ClientState? clientState =
+          StoreProvider.state<AppState>(context)?.clientState;
+      final User? user = clientState?.user;
+
+      if (clientState?.id != null &&
+          clientState!.id!.isNotEmpty &&
+          clientState.id! != UNKNOWN) {
+        StoreProvider.dispatch(
+          context,
+          ConnectGetStreamUserAction(
             client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
-            endpoint: AppWrapperBase.of(context)!
-                .customContext!
-                .refreshStreamTokenEndpoint,
-            saveToken: (String newToken) async {
-              final SharedPreferences prefs =
-                  await SharedPreferences.getInstance();
-              prefs.setString('streamToken', newToken);
-              StoreProvider.dispatch(
-                context,
-                UpdateUserAction(user: user?.copyWith(streamToken: newToken)),
-              );
-            },
+            streamClient: widget.client,
+            streamTokenProvider: StreamTokenProvider(
+              client: AppWrapperBase.of(context)!.graphQLClient as CustomClient,
+              endpoint: AppWrapperBase.of(context)!
+                  .customContext!
+                  .refreshStreamTokenEndpoint,
+              saveToken: (String newToken) async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                prefs.setString('streamToken', newToken);
+                StoreProvider.dispatch(
+                  context,
+                  UpdateUserAction(user: user?.copyWith(streamToken: newToken)),
+                );
+              },
+            ),
           ),
-        ),
-      );
+        );
+      }
 
       StoreProvider.dispatch(
         context,
