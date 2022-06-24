@@ -28,6 +28,9 @@ class ChannelPage extends StatelessWidget {
 
     return Scaffold(
       appBar: ChannelHeader(
+        onTitleTap: () {
+          _navigateToGroupInfoPage(context, channel, channelName);
+        },
         title: Text(
           channelName,
           overflow: TextOverflow.ellipsis,
@@ -35,14 +38,7 @@ class ChannelPage extends StatelessWidget {
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<Route<dynamic>>(
-                  builder: (_) => StreamChannel(
-                    channel: channel,
-                    child: GroupInfoPage(channelName: channelName),
-                  ),
-                ),
-              );
+              _navigateToGroupInfoPage(context, channel, channelName);
             },
             behavior: HitTestBehavior.opaque,
             child: Padding(
@@ -76,6 +72,21 @@ class ChannelPage extends StatelessWidget {
           ),
           const MessageInput(),
         ],
+      ),
+    );
+  }
+
+  Future<dynamic> _navigateToGroupInfoPage(
+    BuildContext context,
+    Channel channel,
+    String channelName,
+  ) {
+    return Navigator.of(context).push(
+      MaterialPageRoute<Route<dynamic>>(
+        builder: (_) => StreamChannel(
+          channel: channel,
+          child: GroupInfoPage(channelName: channelName),
+        ),
       ),
     );
   }
