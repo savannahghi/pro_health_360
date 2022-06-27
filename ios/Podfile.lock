@@ -394,7 +394,7 @@ SPEC CHECKSUMS:
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   DKImagePickerController: 72fd378f244cef3d27288e0aebf217a4467e4012
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
-  FBAEMKit: 3be32ffb79fe7c0603fed00d81742b23241e89a5
+  FBAEMKit: 9ce89760a23f03ffecd907c8e1f3201160f2dcc7
   FBSDKCoreKit: eff97dea778dbe6cc4498959cffb619c75675102
   FBSDKCoreKit_Basics: c151609a1cf6976a5958febcf0043266a8fd5151
   file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
