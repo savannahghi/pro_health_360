@@ -527,7 +527,7 @@ const String noNotificationsTitle = 'You have no notifications';
 const String noNotificationsDescription =
     'You have no notifications at this time. We will notify you when we have more';
 //Pin input page strings
-const String enterChatPINString = 'Enter your PIN to view your chats';
+const String enterPINToAccessHealthInfoString = 'Enter your PIN to access your health information';
 const String forgotPINString = 'Forgot PIN?';
 const String wrongPINString = 'Wrong PIN, try again';
 
