@@ -4,7 +4,6 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -90,8 +89,11 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
     final Map<String, dynamic> responseMap =
         json.decode(result.body) as Map<String, dynamic>;
 
-    if (responseMap['data']['createHealthDiaryEntry'] != null &&
-        responseMap['data']['createHealthDiaryEntry'] == true) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['createHealthDiaryEntry'] != null &&
+        data?['createHealthDiaryEntry'] == true) {
       // Log event for analytic
       await AnalyticsService().logEvent(
         name: recordDiaryEntryEvent,
@@ -126,7 +128,7 @@ class CreateHealthDiaryAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
             action: dismissSnackBar(
               closeString,

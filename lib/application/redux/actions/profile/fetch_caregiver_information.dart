@@ -55,10 +55,12 @@ class FetchCaregiverInformationAction extends ReduxAction<AppState> {
           getErrorMessage('fetching caregiver information'),
         );
       }
-      if (body['data']?['getClientCaregiver'] != null) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['getClientCaregiver'] != null) {
         final CaregiverInformation caregiverInformation =
             CaregiverInformation.fromJson(
-          body['data']['getClientCaregiver'] as Map<String, dynamic>,
+          data?['getClientCaregiver'] as Map<String, dynamic>,
         );
 
         dispatch(
@@ -79,5 +81,7 @@ class FetchCaregiverInformationAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

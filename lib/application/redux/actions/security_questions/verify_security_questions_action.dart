@@ -83,11 +83,14 @@ class VerifySecurityQuestionAction extends ReduxAction<AppState> {
       final Map<String, dynamic> response =
           json.decode(result.body) as Map<String, dynamic>;
 
-      if (response['data']['verifySecurityQuestionResponses'] != null) {
+      final Map<String, dynamic>? data =
+          response['data'] as Map<String, dynamic>?;
+
+      if (data?['verifySecurityQuestionResponses'] != null) {
         dispatch(
           UpdateOnboardingStateAction(
             hasVerifiedSecurityQuestions:
-                response['data']['verifySecurityQuestionResponses'] as bool,
+                data?['verifySecurityQuestionResponses'] as bool,
           ),
         );
 

@@ -24,11 +24,7 @@ class ResendOTPAction extends ReduxAction<AppState> {
   ResendOTPAction({
     required this.context,
     required this.phoneNumber,
-    this.afterCallback,
   });
-
-  // A function to be called after execution of this action is complete
-  final Function? afterCallback;
 
   final BuildContext context;
   // The phone number to resend this OTP to
@@ -37,7 +33,6 @@ class ResendOTPAction extends ReduxAction<AppState> {
   @override
   void after() {
     dispatch(WaitAction<AppState>.add(resendOTPFlag));
-    afterCallback?.call();
     super.after();
   }
 
@@ -74,7 +69,10 @@ class ResendOTPAction extends ReduxAction<AppState> {
         final Map<String, dynamic> parsed =
             jsonDecode(httpResponse.body) as Map<String, dynamic>;
 
-        final String otp = parsed['data']['sendRetryOTP'] as String;
+        final Map<String, dynamic>? data =
+            parsed['data'] as Map<String, dynamic>?;
+
+        final String otp = data?['sendRetryOTP'] as String;
 
         // save the OTP to state
         dispatch(UpdateOnboardingStateAction(otp: otp));
@@ -99,5 +97,7 @@ class ResendOTPAction extends ReduxAction<AppState> {
     } else {
       dispatch(UpdateOnboardingStateAction(failedToSendOTP: true));
     }
+
+    return null;
   }
 }

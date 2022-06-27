@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +19,7 @@ class KeyPadWidget extends StatefulWidget {
     required this.canEnterPin,
   }) : super(key: key);
   final TextEditingController pinController;
-  final Function onChange;
+  final void Function(String) onChange;
   final bool isCorrectPin;
   final bool canEnterPin;
 
@@ -142,9 +141,10 @@ class _KeyPadWidgetState extends State<KeyPadWidget> {
           child: Text(
             buttonText,
             textAlign: TextAlign.center,
-            style: lightSize16Text(
-              widget.canEnterPin ? AppColors.secondaryColor : Colors.grey,
-            ).copyWith(
+            style: TextStyle(
+              fontWeight: FontWeight.w300,
+              color:
+                  widget.canEnterPin ? AppColors.secondaryColor : Colors.grey,
               fontSize: 47.0,
             ),
           ),

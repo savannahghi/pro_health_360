@@ -33,7 +33,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback(
+    WidgetsBinding.instance?.addPostFrameCallback(
       (_) => StoreProvider.dispatch<AppState>(
         context,
         GetTermsAction(context: context),

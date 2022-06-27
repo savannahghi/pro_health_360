@@ -52,7 +52,10 @@ class OptOutAction extends ReduxAction<AppState> {
       onError.call();
       return null;
     }
-    final bool? optOutStatus = payLoad['data']['optOut'] as bool?;
+
+    final Map<String, dynamic>? data = payLoad['data'] as Map<String, dynamic>?;
+
+    final bool? optOutStatus = data?['optOut'] as bool?;
 
     if (optOutStatus ?? false) {
       onSuccess.call();
@@ -61,5 +64,7 @@ class OptOutAction extends ReduxAction<AppState> {
 
       return null;
     }
+
+    return null;
   }
 }

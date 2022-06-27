@@ -180,6 +180,8 @@ void main() {
         if (call.method == 'initialize') {
           return Future<bool>.value(true);
         }
+
+        return null;
       });
 
       final MockFlutterLocalNotificationsPlugin mock =

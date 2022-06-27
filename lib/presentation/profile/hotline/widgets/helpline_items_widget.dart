@@ -47,7 +47,10 @@ class HelplineItemsWidget extends StatelessWidget {
                       width: double.infinity,
                       height: 48,
                       child: MyAfyaHubPrimaryButton(
-                        onPressed: () => launch('tel:${line.phone}'),
+                        onPressed: () {
+                          final Uri uri = Uri(scheme: 'tel', path: line.phone);
+                          launchUrl(uri);
+                        },
                         text: callString,
                       ),
                     ),

@@ -61,5 +61,7 @@ class VerifySurveySubmissionAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

@@ -129,7 +129,10 @@ class CreatePINAction extends ReduxAction<AppState> {
         );
       }
 
-      if (responseMap['data']['setUserPIN'] == true) {
+      final Map<String, dynamic>? data =
+          responseMap['data'] as Map<String, dynamic>?;
+
+      if (data?['setUserPIN'] == true) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(pinSuccessString),
@@ -157,7 +160,7 @@ class CreatePINAction extends ReduxAction<AppState> {
         );
 
         Navigator.pushReplacementNamed(context, navConfig.nextRoute);
-      } else if (responseMap['data']['resetPIN'] == true) {
+      } else if (data?['resetPIN'] == true) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -205,7 +208,7 @@ class CreatePINAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
             action: dismissSnackBar(closeString, white, context),
           ),

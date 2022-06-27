@@ -4,7 +4,6 @@ import 'dart:convert';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -88,7 +87,7 @@ class GetTermsAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
           ),
         );

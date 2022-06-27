@@ -69,7 +69,9 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
         throw const UserException(somethingWentWrongText);
       }
 
-      if (body['data']['completeOnboardingTour'] != true) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['completeOnboardingTour'] != true) {
         throw const UserException(onboardingErrorText);
       }
     } else {
@@ -84,6 +86,8 @@ class CompleteOnboardingTourAction extends ReduxAction<AppState> {
 
       throw const UserException(somethingWentWrongText);
     }
+
+    return null;
   }
 
   @override

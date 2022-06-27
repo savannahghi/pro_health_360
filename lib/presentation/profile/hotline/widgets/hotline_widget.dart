@@ -66,7 +66,8 @@ class HotlineWidget extends StatelessWidget {
                     height: 48,
                     child: MyAfyaHubPrimaryButton(
                       onPressed: () async {
-                        await launch('tel:$facilityPhone');
+                        final Uri uri = Uri(scheme: 'tel', path: facilityPhone);
+                        launchUrl(uri);
                       },
                       buttonKey: hotlineCallButtonKey,
                       text: callString,

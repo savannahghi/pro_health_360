@@ -3,10 +3,10 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
@@ -24,44 +24,6 @@ void main() {
         return Future<bool>.value(true); // set initial values here if desired
       }
       return null;
-    });
-
-    testWidgets('checkWaitingForFunc should show loading indicator',
-        (WidgetTester tester) async {
-      final Store<AppState> store =
-          Store<AppState>(initialState: AppState.initial());
-
-      const String flag = 'get_users';
-
-      bool isWaitingFor = false;
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: baseGraphQlClientMock,
-        widget: Builder(
-          builder: (BuildContext context) {
-            return MyAfyaHubPrimaryButton(
-              onPressed: () async {
-                await store.dispatch(
-                  WaitAction<AppState>.add(
-                    flag,
-                    ref: '${flag}_ref',
-                  ),
-                );
-                isWaitingFor = checkWaitingForFunc(context)(flag: flag) as bool;
-              },
-            );
-          },
-        ),
-      );
-
-      await tester.pump();
-      expect(isWaitingFor, false);
-
-      await tester.tap(find.byType(MyAfyaHubPrimaryButton));
-      await tester.pumpAndSettle();
-
-      expect(isWaitingFor, true);
     });
 
     testWidgets('clearAllFlags should clear all flags',

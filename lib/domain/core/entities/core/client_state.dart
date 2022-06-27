@@ -7,6 +7,7 @@ import 'package:pro_health_360/domain/core/entities/appointments/appointment.dar
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/core/address.dart';
 import 'package:pro_health_360/domain/core/entities/core/health_diary_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/health_timeline_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/related_person.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_state.dart';
@@ -14,8 +15,6 @@ import 'package:pro_health_360/domain/core/entities/medical_data/next_refill_dat
 import 'package:pro_health_360/domain/core/entities/profile/caregiver_information.dart';
 import 'package:pro_health_360/domain/core/entities/viral_load/viral_load_edges.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
-
-import 'health_timeline_state.dart';
 
 part 'client_state.freezed.dart';
 part 'client_state.g.dart';

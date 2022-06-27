@@ -335,6 +335,7 @@ void main() {
 
     test('should change to new user workflow when pin update is required',
         () async {
+      // ignore: avoid_dynamic_calls
       pinChangeRequiredMock['response']['clientProfile']['user']
           ['pinUpdateRequired'] = true;
       storeTester.dispatch(

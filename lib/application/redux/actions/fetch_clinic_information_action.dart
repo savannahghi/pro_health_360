@@ -63,16 +63,21 @@ class FetchClinicInformationAction extends ReduxAction<AppState> {
         message: somethingWentWrongText,
       );
     }
-    if (responseMap['data']['retrieveFacility']['name'] != null &&
-        responseMap['data']['retrieveFacility']['phone'] != null) {
+
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+    final Map<String, dynamic>? facility =
+        data?['retrieveFacility'] as Map<String, dynamic>?;
+
+    if (facility?['name'] != null && facility?['phone'] != null) {
       dispatch(
         UpdateClinicInformationStateAction(
-          facilityName:
-              responseMap['data']['retrieveFacility']['name'] as String,
-          phoneNumber:
-              responseMap['data']['retrieveFacility']['phone'] as String,
+          facilityName: facility?['name'] as String,
+          phoneNumber: facility?['phone'] as String,
         ),
       );
     }
+
+    return null;
   }
 }

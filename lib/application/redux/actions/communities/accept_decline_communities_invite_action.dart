@@ -62,12 +62,18 @@ class AcceptDeclineCommunitiesInviteAction extends ReduxAction<AppState> {
         message: somethingWentWrongText,
       );
     }
-    if (responseMap['data']['acceptInvitation'] == true) {
+
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['acceptInvitation'] == true) {
       onAcceptSuccess?.call();
-    } else if (responseMap['data']['rejectInvitation'] == true) {
+    } else if (data?['rejectInvitation'] == true) {
       onDeclineSuccess?.call();
     } else {
       onError?.call();
     }
+
+    return null;
   }
 }

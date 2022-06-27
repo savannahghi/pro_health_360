@@ -27,12 +27,14 @@ class _$CaregiverInformationTearOff {
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
-          CaregiverType? caregiverType}) {
+          CaregiverType? caregiverType,
+      String? clientID}) {
     return _CaregiverInformation(
       firstName: firstName,
       lastName: lastName,
       phoneNumber: phoneNumber,
       caregiverType: caregiverType,
+      clientID: clientID,
     );
   }
 
@@ -54,6 +56,7 @@ mixin _$CaregiverInformation {
       fromJson: caregiverTypeFromJson,
       toJson: caregiverTypeToJson)
   CaregiverType? get caregiverType => throw _privateConstructorUsedError;
+  String? get clientID => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,7 +74,8 @@ abstract class $CaregiverInformationCopyWith<$Res> {
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
-          CaregiverType? caregiverType});
+          CaregiverType? caregiverType,
+      String? clientID});
 }
 
 /// @nodoc
@@ -89,6 +93,7 @@ class _$CaregiverInformationCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? phoneNumber = freezed,
     Object? caregiverType = freezed,
+    Object? clientID = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: firstName == freezed
@@ -107,6 +112,10 @@ class _$CaregiverInformationCopyWithImpl<$Res>
           ? _value.caregiverType
           : caregiverType // ignore: cast_nullable_to_non_nullable
               as CaregiverType?,
+      clientID: clientID == freezed
+          ? _value.clientID
+          : clientID // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -123,7 +132,8 @@ abstract class _$CaregiverInformationCopyWith<$Res>
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
-          CaregiverType? caregiverType});
+          CaregiverType? caregiverType,
+      String? clientID});
 }
 
 /// @nodoc
@@ -143,6 +153,7 @@ class __$CaregiverInformationCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? phoneNumber = freezed,
     Object? caregiverType = freezed,
+    Object? clientID = freezed,
   }) {
     return _then(_CaregiverInformation(
       firstName: firstName == freezed
@@ -161,6 +172,10 @@ class __$CaregiverInformationCopyWithImpl<$Res>
           ? _value.caregiverType
           : caregiverType // ignore: cast_nullable_to_non_nullable
               as CaregiverType?,
+      clientID: clientID == freezed
+          ? _value.clientID
+          : clientID // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -173,7 +188,8 @@ class _$_CaregiverInformation implements _CaregiverInformation {
       this.lastName,
       this.phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
-          this.caregiverType});
+          this.caregiverType,
+      this.clientID});
 
   factory _$_CaregiverInformation.fromJson(Map<String, dynamic> json) =>
       _$$_CaregiverInformationFromJson(json);
@@ -190,10 +206,12 @@ class _$_CaregiverInformation implements _CaregiverInformation {
       fromJson: caregiverTypeFromJson,
       toJson: caregiverTypeToJson)
   final CaregiverType? caregiverType;
+  @override
+  final String? clientID;
 
   @override
   String toString() {
-    return 'CaregiverInformation(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, caregiverType: $caregiverType)';
+    return 'CaregiverInformation(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, caregiverType: $caregiverType, clientID: $clientID)';
   }
 
   @override
@@ -206,7 +224,8 @@ class _$_CaregiverInformation implements _CaregiverInformation {
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality()
-                .equals(other.caregiverType, caregiverType));
+                .equals(other.caregiverType, caregiverType) &&
+            const DeepCollectionEquality().equals(other.clientID, clientID));
   }
 
   @override
@@ -215,7 +234,8 @@ class _$_CaregiverInformation implements _CaregiverInformation {
       const DeepCollectionEquality().hash(firstName),
       const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(caregiverType));
+      const DeepCollectionEquality().hash(caregiverType),
+      const DeepCollectionEquality().hash(clientID));
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +255,8 @@ abstract class _CaregiverInformation implements CaregiverInformation {
       String? lastName,
       String? phoneNumber,
       @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
-          CaregiverType? caregiverType}) = _$_CaregiverInformation;
+          CaregiverType? caregiverType,
+      String? clientID}) = _$_CaregiverInformation;
 
   factory _CaregiverInformation.fromJson(Map<String, dynamic> json) =
       _$_CaregiverInformation.fromJson;
@@ -252,6 +273,8 @@ abstract class _CaregiverInformation implements CaregiverInformation {
       fromJson: caregiverTypeFromJson,
       toJson: caregiverTypeToJson)
   CaregiverType? get caregiverType;
+  @override
+  String? get clientID;
   @override
   @JsonKey(ignore: true)
   _$CaregiverInformationCopyWith<_CaregiverInformation> get copyWith =>

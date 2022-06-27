@@ -3,7 +3,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/actions/FAQS/fetch_faqs_content_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -27,7 +26,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       StoreProvider.dispatch<AppState>(
         context,
         // retrieve the FAQS

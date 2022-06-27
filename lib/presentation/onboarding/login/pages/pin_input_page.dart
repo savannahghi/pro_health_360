@@ -9,7 +9,6 @@ import 'package:flutter_graphql_client/graph_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/bottom_nav_action.dart';
-import 'package:pro_health_360/application/redux/actions/update_connectivity_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_pin_input_details_action.dart';
 import 'package:pro_health_360/application/redux/actions/verify_pin_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -231,16 +230,14 @@ class _PINInputPageState extends State<PINInputPage> {
                           widget._pinController.text = pin;
 
                           enteredPin = widget._pinController.text;
-                          final bool hasConnection =
-                              await widget.connectivityStatus.checkConnection();
 
-                          StoreProvider.dispatch(
-                            context,
-                            UpdateConnectivityAction(
-                              hasConnection: hasConnection,
-                            ),
-                          );
                           if (enteredPin.length == 4) {
+                            final bool hasConnection =
+                                StoreProvider.state<AppState>(context)
+                                        ?.connectivityState
+                                        ?.isConnected ??
+                                    false;
+
                             widget._pinController.text = '';
                             if (hasConnection) {
                               final IGraphQlClient client =

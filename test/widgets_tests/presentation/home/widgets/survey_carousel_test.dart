@@ -42,6 +42,7 @@ void main() {
 
         expect(find.byType(CustomWebView), findsOneWidget);
         final dynamic widgetsAppState = tester.state(find.byType(WidgetsApp));
+        // ignore: avoid_dynamic_calls
         await widgetsAppState.didPopRoute();
         await tester.pump();
         expect(find.byType(SurveyCarousel), findsOneWidget);

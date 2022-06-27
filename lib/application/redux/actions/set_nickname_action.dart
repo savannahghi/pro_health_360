@@ -92,7 +92,9 @@ class SetNicknameAction extends ReduxAction<AppState> {
         return null;
       }
 
-      if (body['data']['setNickName'] == true) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['setNickName'] == true) {
         dispatch(UpdateOnboardingStateAction(hasSetNickName: true));
         dispatch(UpdateUserProfileAction(nickName: nickname));
 
@@ -139,6 +141,8 @@ class SetNicknameAction extends ReduxAction<AppState> {
     } else {
       throw UserException(getErrorMessage());
     }
+
+    return null;
   }
 
   @override

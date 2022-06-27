@@ -129,7 +129,7 @@ class _ScreeningToolQuestionWidgetState
                               screeningQuestion.id ==
                               widget.screeningToolsQuestions[index].id,
                         )
-                        .copyWith(answer: key.toString());
+                        .copyWith(answer: key);
                 // replace the newly formed question in the list
                 questions.replaceRange(
                   index,

@@ -86,16 +86,7 @@ void main() {
       storeTester.dispatch(
         VerifyPINAction(
           inputPIN: '',
-          httpClient: MockShortGraphQlClient.withResponse(
-            'idToken',
-            'endpoint',
-            Response(
-              jsonEncode(
-                <String, dynamic>{'message': 'success'},
-              ),
-              200,
-            ),
-          ),
+          httpClient: client,
           endpoint: kTestVerifyPhoneEndpoint,
         ),
       );

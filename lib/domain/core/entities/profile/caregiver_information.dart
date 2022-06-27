@@ -13,6 +13,7 @@ class CaregiverInformation with _$CaregiverInformation {
     String? phoneNumber,
     @JsonKey(name: 'caregiverType', fromJson: caregiverTypeFromJson, toJson: caregiverTypeToJson)
         CaregiverType? caregiverType,
+    String? clientID,
   }) = _CaregiverInformation;
 
   factory CaregiverInformation.fromJson(Map<String, dynamic> json) =>
@@ -23,5 +24,6 @@ class CaregiverInformation with _$CaregiverInformation {
         lastName: UNKNOWN,
         phoneNumber: UNKNOWN,
         caregiverType: CaregiverType.HEALTHCARE_PROFESSIONAL,
+        clientID: UNKNOWN,
       );
 }

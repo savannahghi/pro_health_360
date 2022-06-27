@@ -32,10 +32,12 @@ void main() {
 
       expect(methodCallLog.first.method, 'Analytics#logEvent');
       expect(
+        // ignore: avoid_dynamic_calls
         methodCallLog.first.arguments['eventName'],
         contentInteractionTimeEvent,
       );
       expect(
+        // ignore: avoid_dynamic_calls
         methodCallLog.first.arguments['parameters'],
         isNotNull,
       );

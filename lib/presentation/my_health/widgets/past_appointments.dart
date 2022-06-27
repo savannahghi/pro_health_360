@@ -2,7 +2,7 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/actions/my_health/fetch_appointments_action.dart';
 import 'package:pro_health_360/application/redux/actions/my_health/update_appointment_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';

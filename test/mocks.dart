@@ -1,4 +1,6 @@
 // Dart imports:
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -29,7 +31,6 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
 import 'test_utils.dart';
 import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
-import 'package:flutter/services.dart';
 
 class MockInitializeDB extends Mock implements InitializeDB<MockStateDB> {
   @override
@@ -454,6 +455,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
           : error;
     }
     if (error is List<dynamic>) {
+      // ignore: avoid_dynamic_calls
       return error[0]['message'] as String;
     }
     if (error is Map) {
@@ -1223,6 +1225,7 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
     final dynamic _res = json.decode(response!.body);
 
     if (_res is Map) return _res as Map<String, dynamic>;
+    // ignore: avoid_dynamic_calls
     return _res[0] as Map<String, dynamic>;
   }
 }
@@ -2292,6 +2295,7 @@ Map<String, dynamic> mockUpdateClientCareGiver = <String, dynamic>{
   'lastName': 'Doe',
   'phoneNumber': '+254798000000',
   'caregiverType': 'SIBLING',
+  'clientID': core.UNKNOWN,
 };
 
 Map<String, dynamic> mockMedicalDataState = <String, dynamic>{
@@ -2952,9 +2956,10 @@ void setupFirebaseMessagingMocks() {
     }
 
     if (call.method == 'Firebase#initializeApp') {
+      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
       return <String, dynamic>{
-        'name': call.arguments['appName'],
-        'options': call.arguments['options'],
+        'name': args['appName'],
+        'options': args['options'],
         'pluginConstants': <String, dynamic>{},
       };
     }
@@ -3004,9 +3009,10 @@ Future<void> setupFirebaseAnalyticsMocks({
     }
 
     if (call.method == 'Firebase#initializeApp') {
+      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
       return <String, dynamic>{
-        'name': call.arguments['appName'],
-        'options': call.arguments['options'],
+        'name': args['appName'],
+        'options': args['options'],
         'pluginConstants': <String, dynamic>{},
       };
     }

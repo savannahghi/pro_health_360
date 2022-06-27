@@ -65,9 +65,12 @@ class FetchHealthTimelineAction extends ReduxAction<AppState> {
         throw UserException(getErrorMessage());
       }
 
+      final Map<String, dynamic>? data =
+          mapped['data'] as Map<String, dynamic>?;
+
       final HealthTimelineResponse healthTimelineResponse =
           HealthTimelineResponse.fromJson(
-        mapped['data']['patientHealthTimeline'] as Map<String, dynamic>,
+        data?['patientHealthTimeline'] as Map<String, dynamic>,
       );
 
       final Map<String, List<FhirResource>> items =

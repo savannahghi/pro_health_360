@@ -72,8 +72,11 @@ class VerifyPINAction extends ReduxAction<AppState> {
       }
     }
 
-    if (responseMap['data']['verifyPIN'] != null) {
-      final bool pinVerified = responseMap['data']['verifyPIN'] as bool;
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['verifyPIN'] != null) {
+      final bool pinVerified = data?['verifyPIN'] as bool;
       if (pinVerified) {
         dispatch(
           UpdatePINInputDetailsAction(
