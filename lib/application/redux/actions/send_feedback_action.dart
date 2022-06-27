@@ -85,7 +85,10 @@ class SendFeedbackAction extends ReduxAction<AppState> {
       throw const UserException(somethingWentWrongText);
     }
 
-    if (responseMap['data']['sendFeedback'] == true) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['sendFeedback'] == true) {
       onSuccess?.call();
     } else {
       onError?.call();

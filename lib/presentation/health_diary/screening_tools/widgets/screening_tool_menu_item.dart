@@ -17,7 +17,7 @@ class HomePageCarouselItem extends StatelessWidget {
   final Key? beginButtonKey;
   final String buttonTitle;
   final String description;
-  final Function onTap;
+  final VoidCallback onTap;
   final String title;
   final HomePageCarouselItemType type;
 

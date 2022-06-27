@@ -10,6 +10,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/animated_count.dart';
+// ignore: depend_on_referenced_packages
 import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOtpWidget extends StatefulWidget {

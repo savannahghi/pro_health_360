@@ -13,6 +13,7 @@ _$_CaregiverInformation _$$_CaregiverInformationFromJson(
       lastName: json['lastName'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       caregiverType: caregiverTypeFromJson(json['caregiverType'] as String?),
+      clientID: json['clientID'] as String?,
     );
 
 Map<String, dynamic> _$$_CaregiverInformationToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$_CaregiverInformationToJson(
       'lastName': instance.lastName,
       'phoneNumber': instance.phoneNumber,
       'caregiverType': caregiverTypeToJson(instance.caregiverType),
+      'clientID': instance.clientID,
     };

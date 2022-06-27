@@ -17,7 +17,7 @@ class MoodSymptomWidget extends StatelessWidget {
 
   final bool isSelected;
   final String title;
-  final Function? onTap;
+  final VoidCallback? onTap;
   final Key? gestureKey;
 
   @override
@@ -45,8 +45,10 @@ class MoodSymptomWidget extends StatelessWidget {
             verySmallHorizontalSizedBox,
             Text(
               title,
-              style: boldSize13Text(
-                isSelected
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 13,
+                color: isSelected
                     ? AppColors.primaryColor
                     : AppColors.unSelectedReactionIconColor,
               ),

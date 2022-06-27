@@ -47,7 +47,9 @@ class AddUserToGroupAction extends ReduxAction<AppState> {
       onError?.call(errors);
       return null;
     }
-    final bool? memberAdded = payLoad['data']['addMembersToCommunity'] as bool?;
+
+    final Map<String, dynamic>? data = payLoad['data'] as Map<String, dynamic>?;
+    final bool? memberAdded = data?['addMembersToCommunity'] as bool?;
 
     if (memberAdded ?? false) {
       onSuccess?.call();

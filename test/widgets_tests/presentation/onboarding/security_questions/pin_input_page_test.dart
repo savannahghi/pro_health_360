@@ -85,6 +85,7 @@ void main() {
         client: mockShortSILGraphQlClient,
         widget: PINInputPage(connectivityStatus: connectivityStatus),
       );
+
       expect(find.text(forgotPINString), findsOneWidget);
       final Finder numberSevenButton = find.text('7');
       final Finder numberEightButton = find.text('8');
@@ -99,9 +100,13 @@ void main() {
       expect(numberEightButton, findsOneWidget);
 
       await tester.tap(numberNineButton);
+
       await tester.tap(numberZeroButton);
+
       await tester.tap(backSpaceButton);
+
       await tester.tap(numberSevenButton);
+
       await tester.tap(numberEightButton);
 
       expect(find.text('978'), findsOneWidget);
@@ -111,8 +116,11 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.tap(numberZeroButton);
+
       await tester.tap(numberSevenButton);
+
       await tester.tap(numberEightButton);
+
       await tester.tap(numberNineButton);
 
       await tester.pump(const Duration(minutes: 2));
@@ -252,6 +260,7 @@ void main() {
       expect(find.byType(PINInputPage), findsWidgets);
 
       final dynamic widgetsCoreState = tester.state(find.byType(WidgetsApp));
+      // ignore: avoid_dynamic_calls
       expect(await widgetsCoreState.didPopRoute(), isTrue);
       await tester.pump();
 

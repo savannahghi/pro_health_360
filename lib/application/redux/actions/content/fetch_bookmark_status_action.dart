@@ -71,11 +71,14 @@ class FetchBookmarkStatusAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['checkIfUserBookmarkedContent'] != null) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['checkIfUserBookmarkedContent'] != null) {
       dispatch(
         UpdateReactionStatusAction(
           contentID: contentID,
-          hasSaved: responseMap['data']['checkIfUserBookmarkedContent'] as bool,
+          hasSaved: data?['checkIfUserBookmarkedContent'] as bool,
           contentDisplayedType: contentDisplayedType,
         ),
       );
@@ -91,7 +94,7 @@ class FetchBookmarkStatusAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
           ),
         );

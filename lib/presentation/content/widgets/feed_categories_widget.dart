@@ -4,7 +4,6 @@ import 'package:async_redux/async_redux.dart';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 // Project imports:
@@ -98,8 +97,10 @@ class _FeedCategoriesWidgetState extends State<FeedCategoriesWidget> {
                       ),
                       label: Text(
                         chipLabel,
-                        style: normalSize16Text().copyWith(
+                        style: TextStyle(
                           color: chipColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
                         ),
                       ),
                       labelStyle: const TextStyle(color: AppColors.whiteColor),

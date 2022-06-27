@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 // Project imports:

@@ -7,12 +7,8 @@ import 'package:app_wrapper/app_wrapper.dart';
 import 'package:async_redux/async_redux.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:http/src/base_request.dart';
-import 'package:http/src/response.dart';
-import 'package:http/src/streamed_response.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 // Project imports:

@@ -67,8 +67,10 @@ class RescheduleAppointmentAction extends ReduxAction<AppState> {
       onError?.call();
       return null;
     }
+
+    final Map<String, dynamic>? data = payLoad['data'] as Map<String, dynamic>?;
     final bool? appointmentRescheduled =
-        payLoad['data']['rescheduleAppointment'] as bool?;
+        data?['rescheduleAppointment'] as bool?;
 
     if (appointmentRescheduled ?? false) {
       onSuccess?.call();

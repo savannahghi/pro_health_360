@@ -6,7 +6,6 @@ import 'dart:ui';
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/basic.dart';
 
 // Package imports:

@@ -16,14 +16,13 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/communities/channel_page.dart';
 import 'package:pro_health_360/presentation/communities/chat_screen/widgets/empty_conversations_widget.dart';
+import 'package:pro_health_360/presentation/communities/community_utils.dart';
 import 'package:pro_health_360/presentation/communities/view_models/community_list_view_model.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:pro_health_360/presentation/core/widgets/custom_scaffold/app_scaffold.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
-
-import 'community_utils.dart';
 
 class CommunityListViewPage extends StatefulWidget {
   const CommunityListViewPage({Key? key}) : super(key: key);

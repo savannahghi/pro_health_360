@@ -67,10 +67,12 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
         );
       }
 
-      if (body['data'] != null &&
-          body['data']['answerScreeningToolQuestion'] != null &&
-          body['data']['answerScreeningToolQuestion'] is bool &&
-          body['data']['answerScreeningToolQuestion'] == true) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data != null &&
+          data['answerScreeningToolQuestion'] != null &&
+          data['answerScreeningToolQuestion'] is bool &&
+          data['answerScreeningToolQuestion'] == true) {
         // log event
         await AnalyticsService().logEvent(
           name: successfulToolAssessmentEvent,
@@ -93,6 +95,8 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 
   Map<String, dynamic> getAnswersVariables(ScreeningToolsType type) {

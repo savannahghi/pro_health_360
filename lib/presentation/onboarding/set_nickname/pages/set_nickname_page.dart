@@ -3,7 +3,6 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
 import 'package:pro_health_360/application/redux/actions/content/fetch_content_action.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
@@ -118,6 +117,8 @@ class _SetNickNamePageState extends State<SetNickNamePage> {
                                       if (value!.isEmpty) {
                                         return nameInputValidateString;
                                       }
+
+                                      return null;
                                     },
                                     onChanged: (String val) {
                                       setState(() {

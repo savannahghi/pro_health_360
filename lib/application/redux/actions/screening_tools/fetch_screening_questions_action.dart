@@ -122,10 +122,11 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
         );
       }
 
-      if (body['data'] != null &&
-          body['data']['getScreeningToolQuestions'] != null &&
-          (body['data']['getScreeningToolQuestions'] as List<dynamic>)
-              .isNotEmpty) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data != null &&
+          data['getScreeningToolQuestions'] != null &&
+          (data['getScreeningToolQuestions'] as List<dynamic>).isNotEmpty) {
         final ScreeningQuestionsList screeningQuestionsList =
             ScreeningQuestionsList.fromJson(
           body['data'] as Map<String, dynamic>,
@@ -148,5 +149,7 @@ class FetchScreeningToolsQuestionsAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

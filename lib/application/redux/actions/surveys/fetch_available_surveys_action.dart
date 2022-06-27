@@ -53,9 +53,11 @@ class FetchAvailableSurveysAction extends ReduxAction<AppState> {
       }
       final List<Survey> surveyList = <Survey>[];
 
-      if (body['data']?['getUserSurveyForms'] != null) {
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['getUserSurveyForms'] != null) {
         final List<dynamic>? availableSurveys =
-            body['data']?['getUserSurveyForms'] as List<dynamic>?;
+            data?['getUserSurveyForms'] as List<dynamic>?;
 
         if (availableSurveys?.isNotEmpty ?? false) {
           for (final dynamic surv in availableSurveys!) {
@@ -71,5 +73,7 @@ class FetchAvailableSurveysAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

@@ -71,11 +71,14 @@ class FetchLikeStatusAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['checkIfUserHasLikedContent'] != null) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+
+    if (data?['checkIfUserHasLikedContent'] != null) {
       dispatch(
         UpdateReactionStatusAction(
           contentID: contentID,
-          hasLiked: responseMap['data']['checkIfUserHasLikedContent'] as bool,
+          hasLiked: data?['checkIfUserHasLikedContent'] as bool,
           contentDisplayedType: contentDisplayedType,
         ),
       );
@@ -91,7 +94,7 @@ class FetchLikeStatusAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
           ),
         );

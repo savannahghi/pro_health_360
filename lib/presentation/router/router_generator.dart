@@ -128,7 +128,8 @@ class RouteGenerator {
 
       case AppRoutes.editInformationPage:
         final EditInformationItem editInformationItem =
-            args['editInformationItem'] as EditInformationItem;
+            (args as Map<String, dynamic>)['editInformationItem']
+                as EditInformationItem;
 
         void Function(EditInformationItem editInformationItem) submitFunction;
 
@@ -186,7 +187,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.viewDocumentPage:
-        final String pdfTitle = args['pdfTitle'] as String;
+        final String pdfTitle =
+            (args as Map<String, dynamic>)['pdfTitle'] as String;
         final String pdfUrl = args['pdfUrl'] as String;
 
         return MaterialPageRoute<DocumentContentPage>(
@@ -332,7 +334,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.contentDetailPage:
-        final ContentDetails payload = args['payload'] as ContentDetails;
+        final ContentDetails payload =
+            (args as Map<String, dynamic>)['payload'] as ContentDetails;
         final bool? showReactions = args['showReactions'] as bool?;
 
         return MaterialPageRoute<ContentDetailPage>(
@@ -411,7 +414,8 @@ class RouteGenerator {
         );
 
       case AppRoutes.acceptGroupInvitesPage:
-        final String groupId = args['groupId'] as String;
+        final String groupId =
+            (args as Map<String, dynamic>)['groupId'] as String;
         final String groupName = args['groupName'] as String;
         final int numberOfMembers = args['numberOfMembers'] as int;
 
@@ -483,7 +487,8 @@ class RouteGenerator {
       case AppRoutes.customWebviewPage:
         return MaterialPageRoute<CustomWebView>(
           builder: (_) => CustomWebView(
-            appBarTitle: args['appBarTitle'] as String,
+            appBarTitle:
+                (args as Map<String, dynamic>)['appBarTitle'] as String,
             url: args['url'] as String,
           ),
           settings: const RouteSettings(name: 'Webview page'),

@@ -64,7 +64,6 @@ void main() {
                 await storeTester.dispatch(
                   ResendOTPAction(
                     context: context,
-                    afterCallback: () {},
                     phoneNumber: UNKNOWN,
                   ),
                 );
@@ -115,7 +114,6 @@ void main() {
                   await storeTester.dispatch(
                     ResendOTPAction(
                       context: context,
-                      afterCallback: () {},
                       phoneNumber: '+254712345678',
                     ),
                   );

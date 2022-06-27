@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:convert';
-import 'dart:ui';
 
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';

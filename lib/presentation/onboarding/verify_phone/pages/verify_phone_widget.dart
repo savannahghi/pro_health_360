@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/flags/flags.dart';
@@ -38,7 +37,7 @@ class VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       widget.sendOTPFunction();
     });
   }

@@ -71,11 +71,13 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['canRecordMood'] != null) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+    if (data?['canRecordMood'] != null) {
       StoreProvider.dispatch(
         context,
         UpdateHomeStateAction(
-          canRecordMood: responseMap['data']['canRecordMood'] as bool,
+          canRecordMood: data!['canRecordMood'] as bool,
         ),
       );
     }
@@ -90,7 +92,7 @@ class CanRecordMoodAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
             action: dismissSnackBar(closeString, white, context),
           ),

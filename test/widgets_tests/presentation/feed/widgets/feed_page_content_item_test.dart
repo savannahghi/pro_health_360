@@ -2,7 +2,6 @@ import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';

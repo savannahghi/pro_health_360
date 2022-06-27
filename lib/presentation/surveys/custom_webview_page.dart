@@ -27,7 +27,7 @@ class _CustomWebViewState extends State<CustomWebView> {
         title: widget.appBarTitle,
         showBackButton: false,
         leadingWidget: CustomBackButton(
-          onTapped: () async {
+          onTapped: () {
             if (Navigator.canPop(context)) {
               StoreProvider.dispatch(
                 context,

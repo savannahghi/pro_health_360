@@ -22,9 +22,11 @@ class UpdateCaregiverInfoAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'caregiverInput': caregiverInformation.toJson()
+      'caregiverInput': caregiverInformation
+          .copyWith(clientID: state.clientState?.id)
+          .toJson()
     };
-    variables['caregiverInput']['clientID'] = state.clientState?.id ?? UNKNOWN;
+
     final Response response = await client.query(
       updateClientCaregiverMutation,
       variables,
@@ -46,7 +48,10 @@ class UpdateCaregiverInfoAction extends ReduxAction<AppState> {
           getErrorMessage('updating caregiver information'),
         );
       }
-      if (body['data']?['createOrUpdateClientCaregiver'] == true) {
+
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['createOrUpdateClientCaregiver'] == true) {
         dispatch(UpdateClientProfileAction());
         onSuccess?.call();
       } else {
@@ -56,5 +61,7 @@ class UpdateCaregiverInfoAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

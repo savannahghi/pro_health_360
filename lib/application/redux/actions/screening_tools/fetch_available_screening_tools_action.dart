@@ -56,14 +56,19 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
           getErrorMessage('fetching available screening tools'),
         );
       }
+
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
       final List<dynamic>? availableScreeningTools =
-          body['data']?['getAvailableScreeningToolQuestions'] as List<dynamic>?;
+          data?['getAvailableScreeningToolQuestions'] as List<dynamic>?;
       final List<ScreeningTool> screeningToolsList = <ScreeningTool>[];
 
-      if (availableScreeningTools?.isNotEmpty ?? false) {
-        for (final dynamic tool in availableScreeningTools!) {
+      if (availableScreeningTools != null &&
+          availableScreeningTools.isNotEmpty) {
+        for (final dynamic tool in availableScreeningTools) {
           final ScreeningToolsType toolType =
-              screeningToolsTypeFromString(tool['toolType'] as String);
+              // ignore: avoid_dynamic_calls
+              screeningToolsTypeFromString(tool?['toolType'] as String);
 
           screeningToolsList.add(
             ScreeningTool(
@@ -93,6 +98,8 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 
   String getScreeningToolTitle(ScreeningToolsType toolsType) {

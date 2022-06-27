@@ -16,6 +16,7 @@ void main() {
       lastName: 'Doe',
       phoneNumber: '+254798000000',
       caregiverType: CaregiverType.SIBLING,
+      clientID: UNKNOWN,
     );
 
     expect(

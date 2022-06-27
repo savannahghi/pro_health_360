@@ -26,16 +26,16 @@ class RandomQuoteWidget extends StatefulWidget {
 }
 
 class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
-  late Stream<Object> _stream;
-  late StreamController<Object> _streamController;
+  late Stream<Map<String, dynamic>> _stream;
+  late StreamController<Map<String, dynamic>> _streamController;
 
   @override
   void initState() {
     super.initState();
 
-    _streamController = StreamController<Object>.broadcast();
+    _streamController = StreamController<Map<String, dynamic>>.broadcast();
     _stream = _streamController.stream;
-    WidgetsBinding.instance!.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
       await genericFetchFunction(
         streamController: _streamController,
         context: context,
@@ -48,14 +48,15 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
+    return StreamBuilder<Map<String, dynamic>>(
       stream: _stream,
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      builder:
+          (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
         //show the loader before the data is displayed
         if (snapshot.data is Map<String, dynamic> &&
             snapshot.data != null &&
-            snapshot.data['loading'] != null &&
-            snapshot.data['loading'] == true) {
+            snapshot.data?['loading'] != null &&
+            snapshot.data?['loading'] == true) {
           return Container(
             height: 200,
             padding: const EdgeInsets.all(20),
@@ -101,8 +102,7 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
         }
 
         if (snapshot.hasData) {
-          final QuoteRelay quoteRelay =
-              QuoteRelay.fromJson(snapshot.data as Map<String, dynamic>);
+          final QuoteRelay quoteRelay = QuoteRelay.fromJson(snapshot.data!);
 
           if (quoteRelay.quote != null) {
             final Quote? quote = quoteRelay.quote;

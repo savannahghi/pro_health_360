@@ -14,12 +14,6 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
-Function checkWaitingForFunc(BuildContext context) {
-  return ({required String flag}) {
-    return StoreProvider.state<AppState>(context)!.wait!.isWaitingFor(flag);
-  };
-}
-
 void clearAllFlags(BuildContext context) {
   SchedulerBinding.instance?.addPostFrameCallback((_) {
     StoreProvider.dispatch(context, WaitAction<AppState>.clear());

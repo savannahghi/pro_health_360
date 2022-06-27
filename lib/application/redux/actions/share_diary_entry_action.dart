@@ -65,7 +65,10 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
 
         throw UserException(getErrorMessage('sharing diary entry'));
       }
-      if (body['data']?['shareHealthDiaryEntry'] == true) {
+
+      final Map<String, dynamic>? data = body['data'] as Map<String, dynamic>?;
+
+      if (data?['shareHealthDiaryEntry'] == true) {
         // Log event for analytic
         await AnalyticsService().logEvent(
           name: shareDiaryEntryEvent,
@@ -81,5 +84,7 @@ class ShareDiaryEntryAction extends ReduxAction<AppState> {
     } else {
       throw UserException(processedResponse.message);
     }
+
+    return null;
   }
 }

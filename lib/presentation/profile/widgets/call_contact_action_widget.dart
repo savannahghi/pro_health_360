@@ -62,7 +62,8 @@ class CallContactActionWidget extends StatelessWidget {
             child: GestureDetector(
               key: hotlineCallButtonKey,
               onTap: () {
-                launch('tel:$phoneNumber');
+                final Uri uri = Uri(scheme: 'tel', path: phoneNumber);
+                launchUrl(uri);
               },
               child: Row(
                 children: <Widget>[

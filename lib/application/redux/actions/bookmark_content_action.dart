@@ -69,7 +69,9 @@ class BookmarkContentAction extends ReduxAction<AppState> {
       );
     }
 
-    if (responseMap['data']['bookmarkContent'] == true) {
+    final Map<String, dynamic>? data =
+        responseMap['data'] as Map<String, dynamic>?;
+    if (data?['bookmarkContent'] == true) {
       await AnalyticsService().logEvent(
         name: saveContentEvent,
         eventType: AnalyticsEventType.CONTENT_INTERACTION,
@@ -96,7 +98,7 @@ class BookmarkContentAction extends ReduxAction<AppState> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            content: Text(error.message.toString()),
+            content: Text((error as MyAfyaException).message.toString()),
             duration: const Duration(seconds: kShortSnackBarDuration),
             action: dismissSnackBar(closeString, white, context),
           ),
