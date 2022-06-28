@@ -178,7 +178,7 @@ void main() {
         ),
       );
 
-      expect(find.text(enterChatPINString), findsOneWidget);
+      expect(find.text(enterPINToAccessHealthInfoString), findsOneWidget);
       final Finder numberFourButton = find.text('4');
       final Finder numberFiveButton = find.text('5');
       final Finder numberSixButton = find.text('6');
