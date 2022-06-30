@@ -67,6 +67,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
 
     final AppState? appState = StoreProvider.state<AppState>(context);
     final bool resumeWithPin = appState?.miscState?.resumeWithPin ?? false;
+    final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
     if (state == AppLifecycleState.inactive && resumeWithPin) {
       StoreProvider.dispatch<AppState>(
         context,
@@ -74,7 +75,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
       );
     }
 
-    if (state == AppLifecycleState.resumed) {
+    if (state == AppLifecycleState.resumed && isSignedIn) {
       StoreProvider.dispatch<AppState>(
         context,
         UpdateMiscStateAction(resumeWithPin: true),

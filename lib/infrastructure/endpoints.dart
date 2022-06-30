@@ -90,7 +90,8 @@ const String kDemoClinicalEndpoint =
     'https://clinical-testing.savannahghi.org/graphql';
 
 /* PROD ENDPOINTS */
-const String kProdGraphqlEndpoint = 'https://gateway.savannahghi.org/graphql';
+const String kProdGraphqlEndpoint =
+    'https://mycarehub-prod.savannahghi.org/graphql';
 const String kProdLoginByPhoneEndpoint =
     'https://mycarehub-prod.savannahghi.org/login_by_phone';
 const String kProdRequestPinResetEndpoint =

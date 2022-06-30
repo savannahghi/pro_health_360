@@ -165,11 +165,19 @@ class _PINInputPageState extends State<PINInputPage> {
                     children: <Widget>[
                       Container(
                         margin: const EdgeInsets.only(bottom: 10.0),
-                        child: Text(
-                          enterChatPINString,
-                          style: boldSize15Text(
-                            AppColors.secondaryColor,
-                          ).copyWith(fontSize: 14),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 50,
+                            right: 50,
+                            bottom: 5,
+                          ),
+                          child: Text(
+                            enterPINToAccessHealthInfoString,
+                            style: boldSize15Text(
+                              AppColors.secondaryColor,
+                            ).copyWith(fontSize: 14),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                       //show the loader when PIN is getting verified
