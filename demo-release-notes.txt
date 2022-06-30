@@ -1,11 +1,3 @@
 Welcome to myAyaHub. We update the app as often as possible to make it faster and more reliable for you. In case of any feedback, please contact us via mycarehub@savannahghi.org
 
-Here is what’s new in this build. Kindly test them out and provide feedback.
-
-1. Videos are now available on the platform for viewing. Navigate to the content section and you will see them. 
-2. Audios in the content section are also available for review and critique.
-3. You can now view previously recorded diary entries
-4. Once you save a content article, you can view it in the profile section under “my saved”
-5. Once a diary entry has been entered, a random quote will appear.
-
-
+This is a build to test package upgrades
