@@ -45,7 +45,7 @@ class BookmarkContentAction extends ReduxAction<AppState> {
 
     // initializing of the LikeContent mutation
     final Map<String, dynamic> _variables = <String, dynamic>{
-      'userID': userID!,
+      'userID': userID,
       'contentItemID': contentID,
     };
     final IGraphQlClient _client = AppWrapperBase.of(context)!.graphQLClient;

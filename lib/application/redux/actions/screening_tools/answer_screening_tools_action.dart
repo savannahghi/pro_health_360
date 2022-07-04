@@ -114,7 +114,7 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
           if (question.answer != null) {
             (variables['screeningToolResponses'] as List<dynamic>).add(
               <String, dynamic>{
-                'clientID': state.clientState!.id!,
+                'clientID': state.clientState!.id,
                 'questionID': question.id,
                 'response': question.answer
               },
@@ -132,7 +132,7 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
             .screeningQuestionsList!) {
           (variables['screeningToolResponses'] as List<dynamic>).add(
             <String, dynamic>{
-              'clientID': state.clientState!.id!,
+              'clientID': state.clientState!.id,
               'questionID': question.id,
               'response': question.answer
             },
@@ -149,7 +149,7 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
             .screeningQuestionsList!) {
           (variables['screeningToolResponses'] as List<dynamic>).add(
             <String, dynamic>{
-              'clientID': state.clientState!.id!,
+              'clientID': state.clientState!.id,
               'questionID': question.id,
               'response': question.answer
             },
@@ -166,7 +166,7 @@ class AnswerScreeningToolsAction extends ReduxAction<AppState> {
             .screeningQuestionsList!) {
           (variables['screeningToolResponses'] as List<dynamic>).add(
             <String, dynamic>{
-              'clientID': state.clientState!.id!,
+              'clientID': state.clientState!.id,
               'questionID': question.id,
               'response': question.answer
             },
