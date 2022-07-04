@@ -423,6 +423,8 @@ const String hotlineTitle = 'Hotline';
 const String hotlinesTitle = 'Hotlines';
 const String hotlineDescription =
     'Tap to call your facility for immediate assistance by someone from our healthcare team';
+const String noHotlineContactDescription =
+    'Your facility contacts are not available at the moment. Tap below to view more helplines';
 
 const String hotlineNumberString = '0712345678';
 const String callString = 'Call';
@@ -527,7 +529,8 @@ const String noNotificationsTitle = 'You have no notifications';
 const String noNotificationsDescription =
     'You have no notifications at this time. We will notify you when we have more';
 //Pin input page strings
-const String enterPINToAccessHealthInfoString = 'Enter your PIN to access your health information';
+const String enterPINToAccessHealthInfoString =
+    'Enter your PIN to access your health information';
 const String forgotPINString = 'Forgot PIN?';
 const String wrongPINString = 'Wrong PIN, try again';
 

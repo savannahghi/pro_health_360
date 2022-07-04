@@ -1,8 +1,8 @@
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-// Project imports:
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:pro_health_360/application/redux/actions/fetch_clinic_information_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -11,7 +11,6 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HotlineWidget extends StatelessWidget {
   const HotlineWidget({Key? key}) : super(key: key);
@@ -31,10 +30,14 @@ class HotlineWidget extends StatelessWidget {
           );
         } else {
           if (vm.appState.clientState?.facilityPhoneNumber != null &&
-              vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty &&
               vm.appState.clientState!.facilityPhoneNumber! != UNKNOWN) {
+            final String hotlineSubtitle =
+                vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty
+                    ? hotlineDescription
+                    : noHotlineContactDescription;
             final String facilityPhone =
                 vm.appState.clientState!.facilityPhoneNumber!;
+
             return Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -50,28 +53,30 @@ class HotlineWidget extends StatelessWidget {
                     hotlineTitle,
                     style: heavySize18Text(AppColors.primaryColor),
                   ),
-                  verySmallVerticalSizedBox,
+                  if (vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                    verySmallVerticalSizedBox,
                   Text(
                     vm.appState.clientState!.facilityPhoneNumber!,
                     style: boldSize15Text(AppColors.greyTextColor),
                   ),
                   smallVerticalSizedBox,
                   Text(
-                    hotlineDescription,
+                    hotlineSubtitle,
                     style: normalSize14Text(AppColors.primaryColor),
                   ),
                   size15VerticalSizedBox,
-                  SizedBox(
-                    width: double.infinity,
-                    height: 48,
-                    child: MyAfyaHubPrimaryButton(
-                      onPressed: () async {
-                        await launch('tel:$facilityPhone');
-                      },
-                      buttonKey: hotlineCallButtonKey,
-                      text: callString,
+                  if (vm.appState.clientState!.facilityPhoneNumber!.isNotEmpty)
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: MyAfyaHubPrimaryButton(
+                        onPressed: () async {
+                          await launch('tel:$facilityPhone');
+                        },
+                        buttonKey: hotlineCallButtonKey,
+                        text: callString,
+                      ),
                     ),
-                  ),
                   smallVerticalSizedBox,
                   SizedBox(
                     width: double.infinity,
