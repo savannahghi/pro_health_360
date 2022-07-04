@@ -61,13 +61,16 @@ class FetchAvailableScreeningToolsAction extends ReduxAction<AppState> {
 
       final List<dynamic>? availableScreeningTools =
           data?['getAvailableScreeningToolQuestions'] as List<dynamic>?;
+
       final List<ScreeningTool> screeningToolsList = <ScreeningTool>[];
 
       if (availableScreeningTools != null &&
           availableScreeningTools.isNotEmpty) {
-        for (final dynamic tool in availableScreeningTools) {
+        for (final dynamic screeningTool in availableScreeningTools) {
+          final Map<String, dynamic>? tool =
+              screeningTool as Map<String, dynamic>?;
+
           final ScreeningToolsType toolType =
-              // ignore: avoid_dynamic_calls
               screeningToolsTypeFromString(tool?['toolType'] as String);
 
           screeningToolsList.add(

@@ -43,7 +43,7 @@ class ShareContentAction extends ReduxAction<AppState> {
 
     // initializing of the LikeContent mutation
     final Map<String, dynamic> _variables = <String, dynamic>{
-      'UserID': userID!,
+      'UserID': userID,
       'ContentID': contentID,
       'Channel': 'SMS',
     };
