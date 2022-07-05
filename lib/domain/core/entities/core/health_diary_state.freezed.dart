@@ -12,39 +12,11 @@ part of 'health_diary_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 HealthDiaryState _$HealthDiaryStateFromJson(Map<String, dynamic> json) {
   return _HealthDiaryState.fromJson(json);
 }
-
-/// @nodoc
-class _$HealthDiaryStateTearOff {
-  const _$HealthDiaryStateTearOff();
-
-  _HealthDiaryState call(
-      {@JsonKey(name: 'getClientHealthDiaryEntries')
-          List<HealthDiaryEntry?>? entries,
-      bool? errorFetchingDiaryEntries,
-      bool? timeoutFetchingDiaryEntries,
-      bool? shouldShareHealthRecord,
-      bool? shouldNotShareHealthRecord}) {
-    return _HealthDiaryState(
-      entries: entries,
-      errorFetchingDiaryEntries: errorFetchingDiaryEntries,
-      timeoutFetchingDiaryEntries: timeoutFetchingDiaryEntries,
-      shouldShareHealthRecord: shouldShareHealthRecord,
-      shouldNotShareHealthRecord: shouldNotShareHealthRecord,
-    );
-  }
-
-  HealthDiaryState fromJson(Map<String, Object?> json) {
-    return HealthDiaryState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $HealthDiaryState = _$HealthDiaryStateTearOff();
 
 /// @nodoc
 mixin _$HealthDiaryState {
@@ -118,11 +90,11 @@ class _$HealthDiaryStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$HealthDiaryStateCopyWith<$Res>
+abstract class _$$_HealthDiaryStateCopyWith<$Res>
     implements $HealthDiaryStateCopyWith<$Res> {
-  factory _$HealthDiaryStateCopyWith(
-          _HealthDiaryState value, $Res Function(_HealthDiaryState) then) =
-      __$HealthDiaryStateCopyWithImpl<$Res>;
+  factory _$$_HealthDiaryStateCopyWith(
+          _$_HealthDiaryState value, $Res Function(_$_HealthDiaryState) then) =
+      __$$_HealthDiaryStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getClientHealthDiaryEntries')
@@ -134,15 +106,15 @@ abstract class _$HealthDiaryStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$HealthDiaryStateCopyWithImpl<$Res>
+class __$$_HealthDiaryStateCopyWithImpl<$Res>
     extends _$HealthDiaryStateCopyWithImpl<$Res>
-    implements _$HealthDiaryStateCopyWith<$Res> {
-  __$HealthDiaryStateCopyWithImpl(
-      _HealthDiaryState _value, $Res Function(_HealthDiaryState) _then)
-      : super(_value, (v) => _then(v as _HealthDiaryState));
+    implements _$$_HealthDiaryStateCopyWith<$Res> {
+  __$$_HealthDiaryStateCopyWithImpl(
+      _$_HealthDiaryState _value, $Res Function(_$_HealthDiaryState) _then)
+      : super(_value, (v) => _then(v as _$_HealthDiaryState));
 
   @override
-  _HealthDiaryState get _value => super._value as _HealthDiaryState;
+  _$_HealthDiaryState get _value => super._value as _$_HealthDiaryState;
 
   @override
   $Res call({
@@ -152,9 +124,9 @@ class __$HealthDiaryStateCopyWithImpl<$Res>
     Object? shouldShareHealthRecord = freezed,
     Object? shouldNotShareHealthRecord = freezed,
   }) {
-    return _then(_HealthDiaryState(
+    return _then(_$_HealthDiaryState(
       entries: entries == freezed
-          ? _value.entries
+          ? _value._entries
           : entries // ignore: cast_nullable_to_non_nullable
               as List<HealthDiaryEntry?>?,
       errorFetchingDiaryEntries: errorFetchingDiaryEntries == freezed
@@ -181,18 +153,27 @@ class __$HealthDiaryStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_HealthDiaryState implements _HealthDiaryState {
   _$_HealthDiaryState(
-      {@JsonKey(name: 'getClientHealthDiaryEntries') this.entries,
+      {@JsonKey(name: 'getClientHealthDiaryEntries')
+          final List<HealthDiaryEntry?>? entries,
       this.errorFetchingDiaryEntries,
       this.timeoutFetchingDiaryEntries,
       this.shouldShareHealthRecord,
-      this.shouldNotShareHealthRecord});
+      this.shouldNotShareHealthRecord})
+      : _entries = entries;
 
   factory _$_HealthDiaryState.fromJson(Map<String, dynamic> json) =>
       _$$_HealthDiaryStateFromJson(json);
 
+  final List<HealthDiaryEntry?>? _entries;
   @override
   @JsonKey(name: 'getClientHealthDiaryEntries')
-  final List<HealthDiaryEntry?>? entries;
+  List<HealthDiaryEntry?>? get entries {
+    final value = _entries;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final bool? errorFetchingDiaryEntries;
   @override
@@ -211,8 +192,8 @@ class _$_HealthDiaryState implements _HealthDiaryState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _HealthDiaryState &&
-            const DeepCollectionEquality().equals(other.entries, entries) &&
+            other is _$_HealthDiaryState &&
+            const DeepCollectionEquality().equals(other._entries, _entries) &&
             const DeepCollectionEquality().equals(
                 other.errorFetchingDiaryEntries, errorFetchingDiaryEntries) &&
             const DeepCollectionEquality().equals(
@@ -224,10 +205,11 @@ class _$_HealthDiaryState implements _HealthDiaryState {
                 other.shouldNotShareHealthRecord, shouldNotShareHealthRecord));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(entries),
+      const DeepCollectionEquality().hash(_entries),
       const DeepCollectionEquality().hash(errorFetchingDiaryEntries),
       const DeepCollectionEquality().hash(timeoutFetchingDiaryEntries),
       const DeepCollectionEquality().hash(shouldShareHealthRecord),
@@ -235,8 +217,8 @@ class _$_HealthDiaryState implements _HealthDiaryState {
 
   @JsonKey(ignore: true)
   @override
-  _$HealthDiaryStateCopyWith<_HealthDiaryState> get copyWith =>
-      __$HealthDiaryStateCopyWithImpl<_HealthDiaryState>(this, _$identity);
+  _$$_HealthDiaryStateCopyWith<_$_HealthDiaryState> get copyWith =>
+      __$$_HealthDiaryStateCopyWithImpl<_$_HealthDiaryState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -247,28 +229,28 @@ class _$_HealthDiaryState implements _HealthDiaryState {
 abstract class _HealthDiaryState implements HealthDiaryState {
   factory _HealthDiaryState(
       {@JsonKey(name: 'getClientHealthDiaryEntries')
-          List<HealthDiaryEntry?>? entries,
-      bool? errorFetchingDiaryEntries,
-      bool? timeoutFetchingDiaryEntries,
-      bool? shouldShareHealthRecord,
-      bool? shouldNotShareHealthRecord}) = _$_HealthDiaryState;
+          final List<HealthDiaryEntry?>? entries,
+      final bool? errorFetchingDiaryEntries,
+      final bool? timeoutFetchingDiaryEntries,
+      final bool? shouldShareHealthRecord,
+      final bool? shouldNotShareHealthRecord}) = _$_HealthDiaryState;
 
   factory _HealthDiaryState.fromJson(Map<String, dynamic> json) =
       _$_HealthDiaryState.fromJson;
 
   @override
   @JsonKey(name: 'getClientHealthDiaryEntries')
-  List<HealthDiaryEntry?>? get entries;
+  List<HealthDiaryEntry?>? get entries => throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingDiaryEntries;
+  bool? get errorFetchingDiaryEntries => throw _privateConstructorUsedError;
   @override
-  bool? get timeoutFetchingDiaryEntries;
+  bool? get timeoutFetchingDiaryEntries => throw _privateConstructorUsedError;
   @override
-  bool? get shouldShareHealthRecord;
+  bool? get shouldShareHealthRecord => throw _privateConstructorUsedError;
   @override
-  bool? get shouldNotShareHealthRecord;
+  bool? get shouldNotShareHealthRecord => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$HealthDiaryStateCopyWith<_HealthDiaryState> get copyWith =>
+  _$$_HealthDiaryStateCopyWith<_$_HealthDiaryState> get copyWith =>
       throw _privateConstructorUsedError;
 }

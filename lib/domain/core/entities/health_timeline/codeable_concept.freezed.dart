@@ -12,32 +12,11 @@ part of 'codeable_concept.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 CodeableConcept _$CodeableConceptFromJson(Map<String, dynamic> json) {
   return _CodeableConcept.fromJson(json);
 }
-
-/// @nodoc
-class _$CodeableConceptTearOff {
-  const _$CodeableConceptTearOff();
-
-  _CodeableConcept call(
-      {@JsonKey(name: 'coding') List<Coding?>? coding,
-      @JsonKey(name: 'text') String? text}) {
-    return _CodeableConcept(
-      coding: coding,
-      text: text,
-    );
-  }
-
-  CodeableConcept fromJson(Map<String, Object?> json) {
-    return CodeableConcept.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $CodeableConcept = _$CodeableConceptTearOff();
 
 /// @nodoc
 mixin _$CodeableConcept {
@@ -95,11 +74,11 @@ class _$CodeableConceptCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CodeableConceptCopyWith<$Res>
+abstract class _$$_CodeableConceptCopyWith<$Res>
     implements $CodeableConceptCopyWith<$Res> {
-  factory _$CodeableConceptCopyWith(
-          _CodeableConcept value, $Res Function(_CodeableConcept) then) =
-      __$CodeableConceptCopyWithImpl<$Res>;
+  factory _$$_CodeableConceptCopyWith(
+          _$_CodeableConcept value, $Res Function(_$_CodeableConcept) then) =
+      __$$_CodeableConceptCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'coding') List<Coding?>? coding,
@@ -107,24 +86,24 @@ abstract class _$CodeableConceptCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CodeableConceptCopyWithImpl<$Res>
+class __$$_CodeableConceptCopyWithImpl<$Res>
     extends _$CodeableConceptCopyWithImpl<$Res>
-    implements _$CodeableConceptCopyWith<$Res> {
-  __$CodeableConceptCopyWithImpl(
-      _CodeableConcept _value, $Res Function(_CodeableConcept) _then)
-      : super(_value, (v) => _then(v as _CodeableConcept));
+    implements _$$_CodeableConceptCopyWith<$Res> {
+  __$$_CodeableConceptCopyWithImpl(
+      _$_CodeableConcept _value, $Res Function(_$_CodeableConcept) _then)
+      : super(_value, (v) => _then(v as _$_CodeableConcept));
 
   @override
-  _CodeableConcept get _value => super._value as _CodeableConcept;
+  _$_CodeableConcept get _value => super._value as _$_CodeableConcept;
 
   @override
   $Res call({
     Object? coding = freezed,
     Object? text = freezed,
   }) {
-    return _then(_CodeableConcept(
+    return _then(_$_CodeableConcept(
       coding: coding == freezed
-          ? _value.coding
+          ? _value._coding
           : coding // ignore: cast_nullable_to_non_nullable
               as List<Coding?>?,
       text: text == freezed
@@ -139,21 +118,30 @@ class __$CodeableConceptCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CodeableConcept implements _CodeableConcept {
   _$_CodeableConcept(
-      {@JsonKey(name: 'coding') this.coding, @JsonKey(name: 'text') this.text});
+      {@JsonKey(name: 'coding') final List<Coding?>? coding,
+      @JsonKey(name: 'text') this.text})
+      : _coding = coding;
 
   factory _$_CodeableConcept.fromJson(Map<String, dynamic> json) =>
       _$$_CodeableConceptFromJson(json);
 
-  @override
+  /// A reference to a code defined by a terminology system.
+  final List<Coding?>? _coding;
 
   /// A reference to a code defined by a terminology system.
-  @JsonKey(name: 'coding')
-  final List<Coding?>? coding;
   @override
+  @JsonKey(name: 'coding')
+  List<Coding?>? get coding {
+    final value = _coding;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   /// A human language representation of the concept as seen/selected/uttered
   ///  by the user who entered the data and/or which represents the intended
   ///  meaning of the user.
+  @override
   @JsonKey(name: 'text')
   final String? text;
 
@@ -166,21 +154,22 @@ class _$_CodeableConcept implements _CodeableConcept {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CodeableConcept &&
-            const DeepCollectionEquality().equals(other.coding, coding) &&
+            other is _$_CodeableConcept &&
+            const DeepCollectionEquality().equals(other._coding, _coding) &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(coding),
+      const DeepCollectionEquality().hash(_coding),
       const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
-  _$CodeableConceptCopyWith<_CodeableConcept> get copyWith =>
-      __$CodeableConceptCopyWithImpl<_CodeableConcept>(this, _$identity);
+  _$$_CodeableConceptCopyWith<_$_CodeableConcept> get copyWith =>
+      __$$_CodeableConceptCopyWithImpl<_$_CodeableConcept>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -190,8 +179,8 @@ class _$_CodeableConcept implements _CodeableConcept {
 
 abstract class _CodeableConcept implements CodeableConcept {
   factory _CodeableConcept(
-      {@JsonKey(name: 'coding') List<Coding?>? coding,
-      @JsonKey(name: 'text') String? text}) = _$_CodeableConcept;
+      {@JsonKey(name: 'coding') final List<Coding?>? coding,
+      @JsonKey(name: 'text') final String? text}) = _$_CodeableConcept;
 
   factory _CodeableConcept.fromJson(Map<String, dynamic> json) =
       _$_CodeableConcept.fromJson;
@@ -200,16 +189,16 @@ abstract class _CodeableConcept implements CodeableConcept {
 
   /// A reference to a code defined by a terminology system.
   @JsonKey(name: 'coding')
-  List<Coding?>? get coding;
+  List<Coding?>? get coding => throw _privateConstructorUsedError;
   @override
 
   /// A human language representation of the concept as seen/selected/uttered
   ///  by the user who entered the data and/or which represents the intended
   ///  meaning of the user.
   @JsonKey(name: 'text')
-  String? get text;
+  String? get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CodeableConceptCopyWith<_CodeableConcept> get copyWith =>
+  _$$_CodeableConceptCopyWith<_$_CodeableConcept> get copyWith =>
       throw _privateConstructorUsedError;
 }

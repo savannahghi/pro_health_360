@@ -12,36 +12,11 @@ part of 'viral_load_node_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ViralLoadNodeData _$ViralLoadNodeDataFromJson(Map<String, dynamic> json) {
   return _ViralLoadNodeData.fromJson(json);
 }
-
-/// @nodoc
-class _$ViralLoadNodeDataTearOff {
-  const _$ViralLoadNodeDataTearOff();
-
-  _ViralLoadNodeData call(
-      {@JsonKey(name: 'Status') String? status,
-      @JsonKey(name: 'ValueString') String? valueString,
-      @JsonKey(name: 'EffectiveInstant') String? effectiveInstant,
-      @JsonKey(name: 'Code') ViralLoadCode? code}) {
-    return _ViralLoadNodeData(
-      status: status,
-      valueString: valueString,
-      effectiveInstant: effectiveInstant,
-      code: code,
-    );
-  }
-
-  ViralLoadNodeData fromJson(Map<String, Object?> json) {
-    return ViralLoadNodeData.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ViralLoadNodeData = _$ViralLoadNodeDataTearOff();
 
 /// @nodoc
 mixin _$ViralLoadNodeData {
@@ -123,11 +98,11 @@ class _$ViralLoadNodeDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ViralLoadNodeDataCopyWith<$Res>
+abstract class _$$_ViralLoadNodeDataCopyWith<$Res>
     implements $ViralLoadNodeDataCopyWith<$Res> {
-  factory _$ViralLoadNodeDataCopyWith(
-          _ViralLoadNodeData value, $Res Function(_ViralLoadNodeData) then) =
-      __$ViralLoadNodeDataCopyWithImpl<$Res>;
+  factory _$$_ViralLoadNodeDataCopyWith(_$_ViralLoadNodeData value,
+          $Res Function(_$_ViralLoadNodeData) then) =
+      __$$_ViralLoadNodeDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'Status') String? status,
@@ -140,15 +115,15 @@ abstract class _$ViralLoadNodeDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ViralLoadNodeDataCopyWithImpl<$Res>
+class __$$_ViralLoadNodeDataCopyWithImpl<$Res>
     extends _$ViralLoadNodeDataCopyWithImpl<$Res>
-    implements _$ViralLoadNodeDataCopyWith<$Res> {
-  __$ViralLoadNodeDataCopyWithImpl(
-      _ViralLoadNodeData _value, $Res Function(_ViralLoadNodeData) _then)
-      : super(_value, (v) => _then(v as _ViralLoadNodeData));
+    implements _$$_ViralLoadNodeDataCopyWith<$Res> {
+  __$$_ViralLoadNodeDataCopyWithImpl(
+      _$_ViralLoadNodeData _value, $Res Function(_$_ViralLoadNodeData) _then)
+      : super(_value, (v) => _then(v as _$_ViralLoadNodeData));
 
   @override
-  _ViralLoadNodeData get _value => super._value as _ViralLoadNodeData;
+  _$_ViralLoadNodeData get _value => super._value as _$_ViralLoadNodeData;
 
   @override
   $Res call({
@@ -157,7 +132,7 @@ class __$ViralLoadNodeDataCopyWithImpl<$Res>
     Object? effectiveInstant = freezed,
     Object? code = freezed,
   }) {
-    return _then(_ViralLoadNodeData(
+    return _then(_$_ViralLoadNodeData(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -212,7 +187,7 @@ class _$_ViralLoadNodeData implements _ViralLoadNodeData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ViralLoadNodeData &&
+            other is _$_ViralLoadNodeData &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
                 .equals(other.valueString, valueString) &&
@@ -221,6 +196,7 @@ class _$_ViralLoadNodeData implements _ViralLoadNodeData {
             const DeepCollectionEquality().equals(other.code, code));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -231,8 +207,9 @@ class _$_ViralLoadNodeData implements _ViralLoadNodeData {
 
   @JsonKey(ignore: true)
   @override
-  _$ViralLoadNodeDataCopyWith<_ViralLoadNodeData> get copyWith =>
-      __$ViralLoadNodeDataCopyWithImpl<_ViralLoadNodeData>(this, _$identity);
+  _$$_ViralLoadNodeDataCopyWith<_$_ViralLoadNodeData> get copyWith =>
+      __$$_ViralLoadNodeDataCopyWithImpl<_$_ViralLoadNodeData>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -242,28 +219,28 @@ class _$_ViralLoadNodeData implements _ViralLoadNodeData {
 
 abstract class _ViralLoadNodeData implements ViralLoadNodeData {
   factory _ViralLoadNodeData(
-      {@JsonKey(name: 'Status') String? status,
-      @JsonKey(name: 'ValueString') String? valueString,
-      @JsonKey(name: 'EffectiveInstant') String? effectiveInstant,
-      @JsonKey(name: 'Code') ViralLoadCode? code}) = _$_ViralLoadNodeData;
+      {@JsonKey(name: 'Status') final String? status,
+      @JsonKey(name: 'ValueString') final String? valueString,
+      @JsonKey(name: 'EffectiveInstant') final String? effectiveInstant,
+      @JsonKey(name: 'Code') final ViralLoadCode? code}) = _$_ViralLoadNodeData;
 
   factory _ViralLoadNodeData.fromJson(Map<String, dynamic> json) =
       _$_ViralLoadNodeData.fromJson;
 
   @override
   @JsonKey(name: 'Status')
-  String? get status;
+  String? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ValueString')
-  String? get valueString;
+  String? get valueString => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'EffectiveInstant')
-  String? get effectiveInstant;
+  String? get effectiveInstant => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Code')
-  ViralLoadCode? get code;
+  ViralLoadCode? get code => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ViralLoadNodeDataCopyWith<_ViralLoadNodeData> get copyWith =>
+  _$$_ViralLoadNodeDataCopyWith<_$_ViralLoadNodeData> get copyWith =>
       throw _privateConstructorUsedError;
 }

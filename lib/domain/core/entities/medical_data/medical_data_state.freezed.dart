@@ -12,29 +12,11 @@ part of 'medical_data_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MedicalDataState _$MedicalDataStateFromJson(Map<String, dynamic> json) {
   return _MedicalDataState.fromJson(json);
 }
-
-/// @nodoc
-class _$MedicalDataStateTearOff {
-  const _$MedicalDataStateTearOff();
-
-  _MedicalDataState call({MedicalData? medicalData}) {
-    return _MedicalDataState(
-      medicalData: medicalData,
-    );
-  }
-
-  MedicalDataState fromJson(Map<String, Object?> json) {
-    return MedicalDataState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MedicalDataState = _$MedicalDataStateTearOff();
 
 /// @nodoc
 mixin _$MedicalDataState {
@@ -90,11 +72,11 @@ class _$MedicalDataStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MedicalDataStateCopyWith<$Res>
+abstract class _$$_MedicalDataStateCopyWith<$Res>
     implements $MedicalDataStateCopyWith<$Res> {
-  factory _$MedicalDataStateCopyWith(
-          _MedicalDataState value, $Res Function(_MedicalDataState) then) =
-      __$MedicalDataStateCopyWithImpl<$Res>;
+  factory _$$_MedicalDataStateCopyWith(
+          _$_MedicalDataState value, $Res Function(_$_MedicalDataState) then) =
+      __$$_MedicalDataStateCopyWithImpl<$Res>;
   @override
   $Res call({MedicalData? medicalData});
 
@@ -103,21 +85,21 @@ abstract class _$MedicalDataStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$MedicalDataStateCopyWithImpl<$Res>
+class __$$_MedicalDataStateCopyWithImpl<$Res>
     extends _$MedicalDataStateCopyWithImpl<$Res>
-    implements _$MedicalDataStateCopyWith<$Res> {
-  __$MedicalDataStateCopyWithImpl(
-      _MedicalDataState _value, $Res Function(_MedicalDataState) _then)
-      : super(_value, (v) => _then(v as _MedicalDataState));
+    implements _$$_MedicalDataStateCopyWith<$Res> {
+  __$$_MedicalDataStateCopyWithImpl(
+      _$_MedicalDataState _value, $Res Function(_$_MedicalDataState) _then)
+      : super(_value, (v) => _then(v as _$_MedicalDataState));
 
   @override
-  _MedicalDataState get _value => super._value as _MedicalDataState;
+  _$_MedicalDataState get _value => super._value as _$_MedicalDataState;
 
   @override
   $Res call({
     Object? medicalData = freezed,
   }) {
-    return _then(_MedicalDataState(
+    return _then(_$_MedicalDataState(
       medicalData: medicalData == freezed
           ? _value.medicalData
           : medicalData // ignore: cast_nullable_to_non_nullable
@@ -146,19 +128,20 @@ class _$_MedicalDataState implements _MedicalDataState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MedicalDataState &&
+            other is _$_MedicalDataState &&
             const DeepCollectionEquality()
                 .equals(other.medicalData, medicalData));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(medicalData));
 
   @JsonKey(ignore: true)
   @override
-  _$MedicalDataStateCopyWith<_MedicalDataState> get copyWith =>
-      __$MedicalDataStateCopyWithImpl<_MedicalDataState>(this, _$identity);
+  _$$_MedicalDataStateCopyWith<_$_MedicalDataState> get copyWith =>
+      __$$_MedicalDataStateCopyWithImpl<_$_MedicalDataState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -167,15 +150,16 @@ class _$_MedicalDataState implements _MedicalDataState {
 }
 
 abstract class _MedicalDataState implements MedicalDataState {
-  factory _MedicalDataState({MedicalData? medicalData}) = _$_MedicalDataState;
+  factory _MedicalDataState({final MedicalData? medicalData}) =
+      _$_MedicalDataState;
 
   factory _MedicalDataState.fromJson(Map<String, dynamic> json) =
       _$_MedicalDataState.fromJson;
 
   @override
-  MedicalData? get medicalData;
+  MedicalData? get medicalData => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MedicalDataStateCopyWith<_MedicalDataState> get copyWith =>
+  _$$_MedicalDataStateCopyWith<_$_MedicalDataState> get copyWith =>
       throw _privateConstructorUsedError;
 }

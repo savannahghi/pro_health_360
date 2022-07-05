@@ -12,34 +12,11 @@ part of 'saved_content_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SavedContentState _$SavedContentStateFromJson(Map<String, dynamic> json) {
   return _SavedContentState.fromJson(json);
 }
-
-/// @nodoc
-class _$SavedContentStateTearOff {
-  const _$SavedContentStateTearOff();
-
-  _SavedContentState call(
-      {@JsonKey(name: 'items') List<Content?>? savedContentItems,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) {
-    return _SavedContentState(
-      savedContentItems: savedContentItems,
-      errorFetchingContent: errorFetchingContent,
-      timeoutFetchingContent: timeoutFetchingContent,
-    );
-  }
-
-  SavedContentState fromJson(Map<String, Object?> json) {
-    return SavedContentState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SavedContentState = _$SavedContentStateTearOff();
 
 /// @nodoc
 mixin _$SavedContentState {
@@ -98,11 +75,11 @@ class _$SavedContentStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SavedContentStateCopyWith<$Res>
+abstract class _$$_SavedContentStateCopyWith<$Res>
     implements $SavedContentStateCopyWith<$Res> {
-  factory _$SavedContentStateCopyWith(
-          _SavedContentState value, $Res Function(_SavedContentState) then) =
-      __$SavedContentStateCopyWithImpl<$Res>;
+  factory _$$_SavedContentStateCopyWith(_$_SavedContentState value,
+          $Res Function(_$_SavedContentState) then) =
+      __$$_SavedContentStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'items') List<Content?>? savedContentItems,
@@ -111,15 +88,15 @@ abstract class _$SavedContentStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SavedContentStateCopyWithImpl<$Res>
+class __$$_SavedContentStateCopyWithImpl<$Res>
     extends _$SavedContentStateCopyWithImpl<$Res>
-    implements _$SavedContentStateCopyWith<$Res> {
-  __$SavedContentStateCopyWithImpl(
-      _SavedContentState _value, $Res Function(_SavedContentState) _then)
-      : super(_value, (v) => _then(v as _SavedContentState));
+    implements _$$_SavedContentStateCopyWith<$Res> {
+  __$$_SavedContentStateCopyWithImpl(
+      _$_SavedContentState _value, $Res Function(_$_SavedContentState) _then)
+      : super(_value, (v) => _then(v as _$_SavedContentState));
 
   @override
-  _SavedContentState get _value => super._value as _SavedContentState;
+  _$_SavedContentState get _value => super._value as _$_SavedContentState;
 
   @override
   $Res call({
@@ -127,7 +104,7 @@ class __$SavedContentStateCopyWithImpl<$Res>
     Object? errorFetchingContent = freezed,
     Object? timeoutFetchingContent = freezed,
   }) {
-    return _then(_SavedContentState(
+    return _then(_$_SavedContentState(
       savedContentItems: savedContentItems == freezed
           ? _value.savedContentItems
           : savedContentItems // ignore: cast_nullable_to_non_nullable
@@ -172,7 +149,7 @@ class _$_SavedContentState implements _SavedContentState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SavedContentState &&
+            other is _$_SavedContentState &&
             const DeepCollectionEquality()
                 .equals(other.savedContentItems, savedContentItems) &&
             const DeepCollectionEquality()
@@ -181,6 +158,7 @@ class _$_SavedContentState implements _SavedContentState {
                 .equals(other.timeoutFetchingContent, timeoutFetchingContent));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -190,8 +168,9 @@ class _$_SavedContentState implements _SavedContentState {
 
   @JsonKey(ignore: true)
   @override
-  _$SavedContentStateCopyWith<_SavedContentState> get copyWith =>
-      __$SavedContentStateCopyWithImpl<_SavedContentState>(this, _$identity);
+  _$$_SavedContentStateCopyWith<_$_SavedContentState> get copyWith =>
+      __$$_SavedContentStateCopyWithImpl<_$_SavedContentState>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -201,22 +180,22 @@ class _$_SavedContentState implements _SavedContentState {
 
 abstract class _SavedContentState implements SavedContentState {
   factory _SavedContentState(
-      {@JsonKey(name: 'items') List<Content?>? savedContentItems,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) = _$_SavedContentState;
+      {@JsonKey(name: 'items') final List<Content?>? savedContentItems,
+      final bool? errorFetchingContent,
+      final bool? timeoutFetchingContent}) = _$_SavedContentState;
 
   factory _SavedContentState.fromJson(Map<String, dynamic> json) =
       _$_SavedContentState.fromJson;
 
   @override
   @JsonKey(name: 'items')
-  List<Content?>? get savedContentItems;
+  List<Content?>? get savedContentItems => throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingContent;
+  bool? get errorFetchingContent => throw _privateConstructorUsedError;
   @override
-  bool? get timeoutFetchingContent;
+  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SavedContentStateCopyWith<_SavedContentState> get copyWith =>
+  _$$_SavedContentStateCopyWith<_$_SavedContentState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,27 +12,11 @@ part of 'notification_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 NotificationState _$NotificationStateFromJson(Map<String, dynamic> json) {
   return _NotificationState.fromJson(json);
 }
-
-/// @nodoc
-class _$NotificationStateTearOff {
-  const _$NotificationStateTearOff();
-
-  _NotificationState call() {
-    return _NotificationState();
-  }
-
-  NotificationState fromJson(Map<String, Object?> json) {
-    return NotificationState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $NotificationState = _$NotificationStateTearOff();
 
 /// @nodoc
 mixin _$NotificationState {
@@ -57,22 +41,22 @@ class _$NotificationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NotificationStateCopyWith<$Res> {
-  factory _$NotificationStateCopyWith(
-          _NotificationState value, $Res Function(_NotificationState) then) =
-      __$NotificationStateCopyWithImpl<$Res>;
+abstract class _$$_NotificationStateCopyWith<$Res> {
+  factory _$$_NotificationStateCopyWith(_$_NotificationState value,
+          $Res Function(_$_NotificationState) then) =
+      __$$_NotificationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NotificationStateCopyWithImpl<$Res>
+class __$$_NotificationStateCopyWithImpl<$Res>
     extends _$NotificationStateCopyWithImpl<$Res>
-    implements _$NotificationStateCopyWith<$Res> {
-  __$NotificationStateCopyWithImpl(
-      _NotificationState _value, $Res Function(_NotificationState) _then)
-      : super(_value, (v) => _then(v as _NotificationState));
+    implements _$$_NotificationStateCopyWith<$Res> {
+  __$$_NotificationStateCopyWithImpl(
+      _$_NotificationState _value, $Res Function(_$_NotificationState) _then)
+      : super(_value, (v) => _then(v as _$_NotificationState));
 
   @override
-  _NotificationState get _value => super._value as _NotificationState;
+  _$_NotificationState get _value => super._value as _$_NotificationState;
 }
 
 /// @nodoc
@@ -91,9 +75,10 @@ class _$_NotificationState implements _NotificationState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NotificationState);
+        (other.runtimeType == runtimeType && other is _$_NotificationState);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 

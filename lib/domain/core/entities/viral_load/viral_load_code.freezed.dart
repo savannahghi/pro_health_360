@@ -12,29 +12,11 @@ part of 'viral_load_code.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ViralLoadCode _$ViralLoadCodeFromJson(Map<String, dynamic> json) {
   return _ViralLoadCode.fromJson(json);
 }
-
-/// @nodoc
-class _$ViralLoadCodeTearOff {
-  const _$ViralLoadCodeTearOff();
-
-  _ViralLoadCode call({@JsonKey(name: 'Text') String? text}) {
-    return _ViralLoadCode(
-      text: text,
-    );
-  }
-
-  ViralLoadCode fromJson(Map<String, Object?> json) {
-    return ViralLoadCode.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ViralLoadCode = _$ViralLoadCodeTearOff();
 
 /// @nodoc
 mixin _$ViralLoadCode {
@@ -78,31 +60,31 @@ class _$ViralLoadCodeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ViralLoadCodeCopyWith<$Res>
+abstract class _$$_ViralLoadCodeCopyWith<$Res>
     implements $ViralLoadCodeCopyWith<$Res> {
-  factory _$ViralLoadCodeCopyWith(
-          _ViralLoadCode value, $Res Function(_ViralLoadCode) then) =
-      __$ViralLoadCodeCopyWithImpl<$Res>;
+  factory _$$_ViralLoadCodeCopyWith(
+          _$_ViralLoadCode value, $Res Function(_$_ViralLoadCode) then) =
+      __$$_ViralLoadCodeCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class __$ViralLoadCodeCopyWithImpl<$Res>
+class __$$_ViralLoadCodeCopyWithImpl<$Res>
     extends _$ViralLoadCodeCopyWithImpl<$Res>
-    implements _$ViralLoadCodeCopyWith<$Res> {
-  __$ViralLoadCodeCopyWithImpl(
-      _ViralLoadCode _value, $Res Function(_ViralLoadCode) _then)
-      : super(_value, (v) => _then(v as _ViralLoadCode));
+    implements _$$_ViralLoadCodeCopyWith<$Res> {
+  __$$_ViralLoadCodeCopyWithImpl(
+      _$_ViralLoadCode _value, $Res Function(_$_ViralLoadCode) _then)
+      : super(_value, (v) => _then(v as _$_ViralLoadCode));
 
   @override
-  _ViralLoadCode get _value => super._value as _ViralLoadCode;
+  _$_ViralLoadCode get _value => super._value as _$_ViralLoadCode;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(_ViralLoadCode(
+    return _then(_$_ViralLoadCode(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -132,18 +114,19 @@ class _$_ViralLoadCode implements _ViralLoadCode {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ViralLoadCode &&
+            other is _$_ViralLoadCode &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
-  _$ViralLoadCodeCopyWith<_ViralLoadCode> get copyWith =>
-      __$ViralLoadCodeCopyWithImpl<_ViralLoadCode>(this, _$identity);
+  _$$_ViralLoadCodeCopyWith<_$_ViralLoadCode> get copyWith =>
+      __$$_ViralLoadCodeCopyWithImpl<_$_ViralLoadCode>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -152,7 +135,7 @@ class _$_ViralLoadCode implements _ViralLoadCode {
 }
 
 abstract class _ViralLoadCode implements ViralLoadCode {
-  factory _ViralLoadCode({@JsonKey(name: 'Text') String? text}) =
+  factory _ViralLoadCode({@JsonKey(name: 'Text') final String? text}) =
       _$_ViralLoadCode;
 
   factory _ViralLoadCode.fromJson(Map<String, dynamic> json) =
@@ -160,9 +143,9 @@ abstract class _ViralLoadCode implements ViralLoadCode {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text;
+  String? get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ViralLoadCodeCopyWith<_ViralLoadCode> get copyWith =>
+  _$$_ViralLoadCodeCopyWith<_$_ViralLoadCode> get copyWith =>
       throw _privateConstructorUsedError;
 }

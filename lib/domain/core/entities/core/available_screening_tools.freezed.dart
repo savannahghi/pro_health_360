@@ -12,36 +12,12 @@ part of 'available_screening_tools.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AvailableScreeningTools _$AvailableScreeningToolsFromJson(
     Map<String, dynamic> json) {
   return _AvailableScreeningTools.fromJson(json);
 }
-
-/// @nodoc
-class _$AvailableScreeningToolsTearOff {
-  const _$AvailableScreeningToolsTearOff();
-
-  _AvailableScreeningTools call(
-      {@JsonKey(name: 'availableScreeningTools')
-          List<ScreeningTool>? availableScreeningTools,
-      bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions}) {
-    return _AvailableScreeningTools(
-      availableScreeningTools: availableScreeningTools,
-      errorFetchingQuestions: errorFetchingQuestions,
-      timeoutFetchingQuestions: timeoutFetchingQuestions,
-    );
-  }
-
-  AvailableScreeningTools fromJson(Map<String, Object?> json) {
-    return AvailableScreeningTools.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AvailableScreeningTools = _$AvailableScreeningToolsTearOff();
 
 /// @nodoc
 mixin _$AvailableScreeningTools {
@@ -102,11 +78,11 @@ class _$AvailableScreeningToolsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AvailableScreeningToolsCopyWith<$Res>
+abstract class _$$_AvailableScreeningToolsCopyWith<$Res>
     implements $AvailableScreeningToolsCopyWith<$Res> {
-  factory _$AvailableScreeningToolsCopyWith(_AvailableScreeningTools value,
-          $Res Function(_AvailableScreeningTools) then) =
-      __$AvailableScreeningToolsCopyWithImpl<$Res>;
+  factory _$$_AvailableScreeningToolsCopyWith(_$_AvailableScreeningTools value,
+          $Res Function(_$_AvailableScreeningTools) then) =
+      __$$_AvailableScreeningToolsCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'availableScreeningTools')
@@ -116,16 +92,16 @@ abstract class _$AvailableScreeningToolsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AvailableScreeningToolsCopyWithImpl<$Res>
+class __$$_AvailableScreeningToolsCopyWithImpl<$Res>
     extends _$AvailableScreeningToolsCopyWithImpl<$Res>
-    implements _$AvailableScreeningToolsCopyWith<$Res> {
-  __$AvailableScreeningToolsCopyWithImpl(_AvailableScreeningTools _value,
-      $Res Function(_AvailableScreeningTools) _then)
-      : super(_value, (v) => _then(v as _AvailableScreeningTools));
+    implements _$$_AvailableScreeningToolsCopyWith<$Res> {
+  __$$_AvailableScreeningToolsCopyWithImpl(_$_AvailableScreeningTools _value,
+      $Res Function(_$_AvailableScreeningTools) _then)
+      : super(_value, (v) => _then(v as _$_AvailableScreeningTools));
 
   @override
-  _AvailableScreeningTools get _value =>
-      super._value as _AvailableScreeningTools;
+  _$_AvailableScreeningTools get _value =>
+      super._value as _$_AvailableScreeningTools;
 
   @override
   $Res call({
@@ -133,9 +109,9 @@ class __$AvailableScreeningToolsCopyWithImpl<$Res>
     Object? errorFetchingQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
   }) {
-    return _then(_AvailableScreeningTools(
+    return _then(_$_AvailableScreeningTools(
       availableScreeningTools: availableScreeningTools == freezed
-          ? _value.availableScreeningTools
+          ? _value._availableScreeningTools
           : availableScreeningTools // ignore: cast_nullable_to_non_nullable
               as List<ScreeningTool>?,
       errorFetchingQuestions: errorFetchingQuestions == freezed
@@ -154,16 +130,25 @@ class __$AvailableScreeningToolsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AvailableScreeningTools implements _AvailableScreeningTools {
   _$_AvailableScreeningTools(
-      {@JsonKey(name: 'availableScreeningTools') this.availableScreeningTools,
+      {@JsonKey(name: 'availableScreeningTools')
+          final List<ScreeningTool>? availableScreeningTools,
       this.errorFetchingQuestions,
-      this.timeoutFetchingQuestions});
+      this.timeoutFetchingQuestions})
+      : _availableScreeningTools = availableScreeningTools;
 
   factory _$_AvailableScreeningTools.fromJson(Map<String, dynamic> json) =>
       _$$_AvailableScreeningToolsFromJson(json);
 
+  final List<ScreeningTool>? _availableScreeningTools;
   @override
   @JsonKey(name: 'availableScreeningTools')
-  final List<ScreeningTool>? availableScreeningTools;
+  List<ScreeningTool>? get availableScreeningTools {
+    final value = _availableScreeningTools;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final bool? errorFetchingQuestions;
   @override
@@ -178,27 +163,29 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AvailableScreeningTools &&
+            other is _$_AvailableScreeningTools &&
             const DeepCollectionEquality().equals(
-                other.availableScreeningTools, availableScreeningTools) &&
+                other._availableScreeningTools, _availableScreeningTools) &&
             const DeepCollectionEquality()
                 .equals(other.errorFetchingQuestions, errorFetchingQuestions) &&
             const DeepCollectionEquality().equals(
                 other.timeoutFetchingQuestions, timeoutFetchingQuestions));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(availableScreeningTools),
+      const DeepCollectionEquality().hash(_availableScreeningTools),
       const DeepCollectionEquality().hash(errorFetchingQuestions),
       const DeepCollectionEquality().hash(timeoutFetchingQuestions));
 
   @JsonKey(ignore: true)
   @override
-  _$AvailableScreeningToolsCopyWith<_AvailableScreeningTools> get copyWith =>
-      __$AvailableScreeningToolsCopyWithImpl<_AvailableScreeningTools>(
-          this, _$identity);
+  _$$_AvailableScreeningToolsCopyWith<_$_AvailableScreeningTools>
+      get copyWith =>
+          __$$_AvailableScreeningToolsCopyWithImpl<_$_AvailableScreeningTools>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -209,22 +196,23 @@ class _$_AvailableScreeningTools implements _AvailableScreeningTools {
 abstract class _AvailableScreeningTools implements AvailableScreeningTools {
   factory _AvailableScreeningTools(
       {@JsonKey(name: 'availableScreeningTools')
-          List<ScreeningTool>? availableScreeningTools,
-      bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions}) = _$_AvailableScreeningTools;
+          final List<ScreeningTool>? availableScreeningTools,
+      final bool? errorFetchingQuestions,
+      final bool? timeoutFetchingQuestions}) = _$_AvailableScreeningTools;
 
   factory _AvailableScreeningTools.fromJson(Map<String, dynamic> json) =
       _$_AvailableScreeningTools.fromJson;
 
   @override
   @JsonKey(name: 'availableScreeningTools')
-  List<ScreeningTool>? get availableScreeningTools;
+  List<ScreeningTool>? get availableScreeningTools =>
+      throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingQuestions;
+  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
   @override
-  bool? get timeoutFetchingQuestions;
+  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AvailableScreeningToolsCopyWith<_AvailableScreeningTools> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AvailableScreeningToolsCopyWith<_$_AvailableScreeningTools>
+      get copyWith => throw _privateConstructorUsedError;
 }

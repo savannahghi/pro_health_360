@@ -12,7 +12,7 @@ part of 'fhir_resource.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 FhirResource _$FhirResourceFromJson(Map<String, dynamic> json) {
   switch (json['resourceType']) {
@@ -30,111 +30,6 @@ FhirResource _$FhirResourceFromJson(Map<String, dynamic> json) {
 }
 
 /// @nodoc
-class _$FhirResourceTearOff {
-  const _$FhirResourceTearOff();
-
-  Observation observation(
-      {@JsonKey(name: 'category')
-          List<CodeableConcept>? category,
-      @JsonKey(name: 'code')
-          CodeableConcept? code,
-      @JsonKey(name: 'effectiveInstant')
-          String? date,
-      @JsonKey(name: 'resourceType')
-          ReferenceType? resourceType,
-      @JsonKey(name: 'status', fromJson: observationStatusFromJson)
-          ObservationStatus? status,
-      @JsonKey(name: 'subject')
-          Reference? patient,
-      @JsonKey(name: 'timelineDate')
-          String? timelineDate,
-      @JsonKey(name: 'valueString')
-          String? value}) {
-    return Observation(
-      category: category,
-      code: code,
-      date: date,
-      resourceType: resourceType,
-      status: status,
-      patient: patient,
-      timelineDate: timelineDate,
-      value: value,
-    );
-  }
-
-  AllergyIntolerance allergyIntolerance(
-      {@JsonKey(name: 'category')
-          List<AllergyIntoleranceCategory>? category,
-      @JsonKey(name: 'clinicalStatus')
-          CodeableConcept? clinicalStatus,
-      @JsonKey(name: 'code')
-          CodeableConcept? code,
-      @JsonKey(name: 'patient')
-          Reference? patient,
-      @JsonKey(name: 'reaction')
-          List<Reaction>? reaction,
-      @JsonKey(name: 'recordedDate')
-          String? recordedDate,
-      @JsonKey(name: 'resourceType')
-          ReferenceType? resourceType,
-      @JsonKey(name: 'timelineDate')
-          String? timelineDate,
-      @JsonKey(name: 'type')
-          AllergyIntoleranceType? type,
-      @JsonKey(name: 'verificationStatus')
-          CodeableConcept? verificationStatus}) {
-    return AllergyIntolerance(
-      category: category,
-      clinicalStatus: clinicalStatus,
-      code: code,
-      patient: patient,
-      reaction: reaction,
-      recordedDate: recordedDate,
-      resourceType: resourceType,
-      timelineDate: timelineDate,
-      type: type,
-      verificationStatus: verificationStatus,
-    );
-  }
-
-  MedicationStatement medicationStatement(
-      {@JsonKey(name: 'category')
-          CodeableConcept? category,
-      @JsonKey(name: 'code')
-          CodeableConcept? code,
-      @JsonKey(name: 'effectiveDateTime')
-          String? date,
-      @JsonKey(name: 'medicationCodeableConcept')
-          CodeableConcept? medication,
-      @JsonKey(name: 'resourceType')
-          ReferenceType? resourceType,
-      @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
-          MedicationStatusCodes? status,
-      @JsonKey(name: 'subject')
-          Reference? subject,
-      @JsonKey(name: 'timelineDate')
-          String? timelineDate}) {
-    return MedicationStatement(
-      category: category,
-      code: code,
-      date: date,
-      medication: medication,
-      resourceType: resourceType,
-      status: status,
-      subject: subject,
-      timelineDate: timelineDate,
-    );
-  }
-
-  FhirResource fromJson(Map<String, Object?> json) {
-    return FhirResource.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $FhirResource = _$FhirResourceTearOff();
-
-/// @nodoc
 mixin _$FhirResource {
   @JsonKey(name: 'code')
   CodeableConcept? get code => throw _privateConstructorUsedError; // distinct
@@ -142,7 +37,6 @@ mixin _$FhirResource {
   ReferenceType? get resourceType => throw _privateConstructorUsedError;
   @JsonKey(name: 'timelineDate')
   String? get timelineDate => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -414,11 +308,11 @@ class _$FhirResourceCopyWithImpl<$Res> implements $FhirResourceCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $ObservationCopyWith<$Res>
+abstract class _$$ObservationCopyWith<$Res>
     implements $FhirResourceCopyWith<$Res> {
-  factory $ObservationCopyWith(
-          Observation value, $Res Function(Observation) then) =
-      _$ObservationCopyWithImpl<$Res>;
+  factory _$$ObservationCopyWith(
+          _$Observation value, $Res Function(_$Observation) then) =
+      __$$ObservationCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'category')
@@ -444,14 +338,14 @@ abstract class $ObservationCopyWith<$Res>
 }
 
 /// @nodoc
-class _$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
-    implements $ObservationCopyWith<$Res> {
-  _$ObservationCopyWithImpl(
-      Observation _value, $Res Function(Observation) _then)
-      : super(_value, (v) => _then(v as Observation));
+class __$$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
+    implements _$$ObservationCopyWith<$Res> {
+  __$$ObservationCopyWithImpl(
+      _$Observation _value, $Res Function(_$Observation) _then)
+      : super(_value, (v) => _then(v as _$Observation));
 
   @override
-  Observation get _value => super._value as Observation;
+  _$Observation get _value => super._value as _$Observation;
 
   @override
   $Res call({
@@ -464,9 +358,9 @@ class _$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
     Object? timelineDate = freezed,
     Object? value = freezed,
   }) {
-    return _then(Observation(
+    return _then(_$Observation(
       category: category == freezed
-          ? _value.category
+          ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept>?,
       code: code == freezed
@@ -514,32 +408,39 @@ class _$ObservationCopyWithImpl<$Res> extends _$FhirResourceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@FreezedUnionValue('Observation')
-@Implements<Resource>()
 class _$Observation with DiagnosticableTreeMixin implements Observation {
   const _$Observation(
-      {@JsonKey(name: 'category') this.category,
+      {@JsonKey(name: 'category') final List<CodeableConcept>? category,
       @JsonKey(name: 'code') this.code,
       @JsonKey(name: 'effectiveInstant') this.date,
       @JsonKey(name: 'resourceType') this.resourceType,
       @JsonKey(name: 'status', fromJson: observationStatusFromJson) this.status,
       @JsonKey(name: 'subject') this.patient,
       @JsonKey(name: 'timelineDate') this.timelineDate,
-      @JsonKey(name: 'valueString') this.value});
+      @JsonKey(name: 'valueString') this.value})
+      : _category = category;
 
   factory _$Observation.fromJson(Map<String, dynamic> json) =>
       _$$ObservationFromJson(json);
 
+  final List<CodeableConcept>? _category;
   @override
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? get category {
+    final value = _category;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'code')
   final CodeableConcept? code;
   @override
   @JsonKey(name: 'effectiveInstant')
   final String? date;
-  @override // distinct
+// distinct
+  @override
   @JsonKey(name: 'resourceType')
   final ReferenceType? resourceType;
   @override
@@ -579,8 +480,8 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Observation &&
-            const DeepCollectionEquality().equals(other.category, category) &&
+            other is _$Observation &&
+            const DeepCollectionEquality().equals(other._category, _category) &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality()
@@ -592,10 +493,11 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
             const DeepCollectionEquality().equals(other.value, value));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(_category),
       const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(resourceType),
@@ -606,8 +508,8 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
 
   @JsonKey(ignore: true)
   @override
-  $ObservationCopyWith<Observation> get copyWith =>
-      _$ObservationCopyWithImpl<Observation>(this, _$identity);
+  _$$ObservationCopyWith<_$Observation> get copyWith =>
+      __$$ObservationCopyWithImpl<_$Observation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -854,56 +756,56 @@ class _$Observation with DiagnosticableTreeMixin implements Observation {
 abstract class Observation implements FhirResource, Resource {
   const factory Observation(
       {@JsonKey(name: 'category')
-          List<CodeableConcept>? category,
+          final List<CodeableConcept>? category,
       @JsonKey(name: 'code')
-          CodeableConcept? code,
+          final CodeableConcept? code,
       @JsonKey(name: 'effectiveInstant')
-          String? date,
+          final String? date,
       @JsonKey(name: 'resourceType')
-          ReferenceType? resourceType,
+          final ReferenceType? resourceType,
       @JsonKey(name: 'status', fromJson: observationStatusFromJson)
-          ObservationStatus? status,
+          final ObservationStatus? status,
       @JsonKey(name: 'subject')
-          Reference? patient,
+          final Reference? patient,
       @JsonKey(name: 'timelineDate')
-          String? timelineDate,
+          final String? timelineDate,
       @JsonKey(name: 'valueString')
-          String? value}) = _$Observation;
+          final String? value}) = _$Observation;
 
   factory Observation.fromJson(Map<String, dynamic> json) =
       _$Observation.fromJson;
 
   @JsonKey(name: 'category')
-  List<CodeableConcept>? get category;
+  List<CodeableConcept>? get category => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'code')
-  CodeableConcept? get code;
+  CodeableConcept? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'effectiveInstant')
-  String? get date;
+  String? get date => throw _privateConstructorUsedError;
   @override // distinct
   @JsonKey(name: 'resourceType')
-  ReferenceType? get resourceType;
+  ReferenceType? get resourceType => throw _privateConstructorUsedError;
   @JsonKey(name: 'status', fromJson: observationStatusFromJson)
-  ObservationStatus? get status;
+  ObservationStatus? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'subject')
-  Reference? get patient;
+  Reference? get patient => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'timelineDate')
-  String? get timelineDate;
+  String? get timelineDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'valueString')
-  String? get value;
+  String? get value => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ObservationCopyWith<Observation> get copyWith =>
+  _$$ObservationCopyWith<_$Observation> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AllergyIntoleranceCopyWith<$Res>
+abstract class _$$AllergyIntoleranceCopyWith<$Res>
     implements $FhirResourceCopyWith<$Res> {
-  factory $AllergyIntoleranceCopyWith(
-          AllergyIntolerance value, $Res Function(AllergyIntolerance) then) =
-      _$AllergyIntoleranceCopyWithImpl<$Res>;
+  factory _$$AllergyIntoleranceCopyWith(_$AllergyIntolerance value,
+          $Res Function(_$AllergyIntolerance) then) =
+      __$$AllergyIntoleranceCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'category')
@@ -935,15 +837,15 @@ abstract class $AllergyIntoleranceCopyWith<$Res>
 }
 
 /// @nodoc
-class _$AllergyIntoleranceCopyWithImpl<$Res>
+class __$$AllergyIntoleranceCopyWithImpl<$Res>
     extends _$FhirResourceCopyWithImpl<$Res>
-    implements $AllergyIntoleranceCopyWith<$Res> {
-  _$AllergyIntoleranceCopyWithImpl(
-      AllergyIntolerance _value, $Res Function(AllergyIntolerance) _then)
-      : super(_value, (v) => _then(v as AllergyIntolerance));
+    implements _$$AllergyIntoleranceCopyWith<$Res> {
+  __$$AllergyIntoleranceCopyWithImpl(
+      _$AllergyIntolerance _value, $Res Function(_$AllergyIntolerance) _then)
+      : super(_value, (v) => _then(v as _$AllergyIntolerance));
 
   @override
-  AllergyIntolerance get _value => super._value as AllergyIntolerance;
+  _$AllergyIntolerance get _value => super._value as _$AllergyIntolerance;
 
   @override
   $Res call({
@@ -958,9 +860,9 @@ class _$AllergyIntoleranceCopyWithImpl<$Res>
     Object? type = freezed,
     Object? verificationStatus = freezed,
   }) {
-    return _then(AllergyIntolerance(
+    return _then(_$AllergyIntolerance(
       category: category == freezed
-          ? _value.category
+          ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
               as List<AllergyIntoleranceCategory>?,
       clinicalStatus: clinicalStatus == freezed
@@ -976,7 +878,7 @@ class _$AllergyIntoleranceCopyWithImpl<$Res>
           : patient // ignore: cast_nullable_to_non_nullable
               as Reference?,
       reaction: reaction == freezed
-          ? _value.reaction
+          ? _value._reaction
           : reaction // ignore: cast_nullable_to_non_nullable
               as List<Reaction>?,
       recordedDate: recordedDate == freezed
@@ -1038,29 +940,46 @@ class _$AllergyIntoleranceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@FreezedUnionValue('AllergyIntolerance')
-@Implements<Resource>()
 class _$AllergyIntolerance
     with DiagnosticableTreeMixin
     implements AllergyIntolerance {
   const _$AllergyIntolerance(
-      {@JsonKey(name: 'category') this.category,
-      @JsonKey(name: 'clinicalStatus') this.clinicalStatus,
-      @JsonKey(name: 'code') this.code,
-      @JsonKey(name: 'patient') this.patient,
-      @JsonKey(name: 'reaction') this.reaction,
-      @JsonKey(name: 'recordedDate') this.recordedDate,
-      @JsonKey(name: 'resourceType') this.resourceType,
-      @JsonKey(name: 'timelineDate') this.timelineDate,
-      @JsonKey(name: 'type') this.type,
-      @JsonKey(name: 'verificationStatus') this.verificationStatus});
+      {@JsonKey(name: 'category')
+          final List<AllergyIntoleranceCategory>? category,
+      @JsonKey(name: 'clinicalStatus')
+          this.clinicalStatus,
+      @JsonKey(name: 'code')
+          this.code,
+      @JsonKey(name: 'patient')
+          this.patient,
+      @JsonKey(name: 'reaction')
+          final List<Reaction>? reaction,
+      @JsonKey(name: 'recordedDate')
+          this.recordedDate,
+      @JsonKey(name: 'resourceType')
+          this.resourceType,
+      @JsonKey(name: 'timelineDate')
+          this.timelineDate,
+      @JsonKey(name: 'type')
+          this.type,
+      @JsonKey(name: 'verificationStatus')
+          this.verificationStatus})
+      : _category = category,
+        _reaction = reaction;
 
   factory _$AllergyIntolerance.fromJson(Map<String, dynamic> json) =>
       _$$AllergyIntoleranceFromJson(json);
 
+  final List<AllergyIntoleranceCategory>? _category;
   @override
   @JsonKey(name: 'category')
-  final List<AllergyIntoleranceCategory>? category;
+  List<AllergyIntoleranceCategory>? get category {
+    final value = _category;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'clinicalStatus')
   final CodeableConcept? clinicalStatus;
@@ -1070,9 +989,16 @@ class _$AllergyIntolerance
   @override
   @JsonKey(name: 'patient')
   final Reference? patient;
+  final List<Reaction>? _reaction;
   @override
   @JsonKey(name: 'reaction')
-  final List<Reaction>? reaction;
+  List<Reaction>? get reaction {
+    final value = _reaction;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'recordedDate')
   final String? recordedDate;
@@ -1115,13 +1041,13 @@ class _$AllergyIntolerance
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AllergyIntolerance &&
-            const DeepCollectionEquality().equals(other.category, category) &&
+            other is _$AllergyIntolerance &&
+            const DeepCollectionEquality().equals(other._category, _category) &&
             const DeepCollectionEquality()
                 .equals(other.clinicalStatus, clinicalStatus) &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.patient, patient) &&
-            const DeepCollectionEquality().equals(other.reaction, reaction) &&
+            const DeepCollectionEquality().equals(other._reaction, _reaction) &&
             const DeepCollectionEquality()
                 .equals(other.recordedDate, recordedDate) &&
             const DeepCollectionEquality()
@@ -1133,14 +1059,15 @@ class _$AllergyIntolerance
                 .equals(other.verificationStatus, verificationStatus));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(_category),
       const DeepCollectionEquality().hash(clinicalStatus),
       const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(patient),
-      const DeepCollectionEquality().hash(reaction),
+      const DeepCollectionEquality().hash(_reaction),
       const DeepCollectionEquality().hash(recordedDate),
       const DeepCollectionEquality().hash(resourceType),
       const DeepCollectionEquality().hash(timelineDate),
@@ -1149,8 +1076,9 @@ class _$AllergyIntolerance
 
   @JsonKey(ignore: true)
   @override
-  $AllergyIntoleranceCopyWith<AllergyIntolerance> get copyWith =>
-      _$AllergyIntoleranceCopyWithImpl<AllergyIntolerance>(this, _$identity);
+  _$$AllergyIntoleranceCopyWith<_$AllergyIntolerance> get copyWith =>
+      __$$AllergyIntoleranceCopyWithImpl<_$AllergyIntolerance>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1415,64 +1343,65 @@ class _$AllergyIntolerance
 abstract class AllergyIntolerance implements FhirResource, Resource {
   const factory AllergyIntolerance(
       {@JsonKey(name: 'category')
-          List<AllergyIntoleranceCategory>? category,
+          final List<AllergyIntoleranceCategory>? category,
       @JsonKey(name: 'clinicalStatus')
-          CodeableConcept? clinicalStatus,
+          final CodeableConcept? clinicalStatus,
       @JsonKey(name: 'code')
-          CodeableConcept? code,
+          final CodeableConcept? code,
       @JsonKey(name: 'patient')
-          Reference? patient,
+          final Reference? patient,
       @JsonKey(name: 'reaction')
-          List<Reaction>? reaction,
+          final List<Reaction>? reaction,
       @JsonKey(name: 'recordedDate')
-          String? recordedDate,
+          final String? recordedDate,
       @JsonKey(name: 'resourceType')
-          ReferenceType? resourceType,
+          final ReferenceType? resourceType,
       @JsonKey(name: 'timelineDate')
-          String? timelineDate,
+          final String? timelineDate,
       @JsonKey(name: 'type')
-          AllergyIntoleranceType? type,
+          final AllergyIntoleranceType? type,
       @JsonKey(name: 'verificationStatus')
-          CodeableConcept? verificationStatus}) = _$AllergyIntolerance;
+          final CodeableConcept? verificationStatus}) = _$AllergyIntolerance;
 
   factory AllergyIntolerance.fromJson(Map<String, dynamic> json) =
       _$AllergyIntolerance.fromJson;
 
   @JsonKey(name: 'category')
-  List<AllergyIntoleranceCategory>? get category;
+  List<AllergyIntoleranceCategory>? get category =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'clinicalStatus')
-  CodeableConcept? get clinicalStatus;
+  CodeableConcept? get clinicalStatus => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'code')
-  CodeableConcept? get code;
+  CodeableConcept? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'patient')
-  Reference? get patient;
+  Reference? get patient => throw _privateConstructorUsedError;
   @JsonKey(name: 'reaction')
-  List<Reaction>? get reaction;
+  List<Reaction>? get reaction => throw _privateConstructorUsedError;
   @JsonKey(name: 'recordedDate')
-  String? get recordedDate;
+  String? get recordedDate => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'resourceType')
-  ReferenceType? get resourceType;
+  ReferenceType? get resourceType => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'timelineDate')
-  String? get timelineDate;
+  String? get timelineDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
-  AllergyIntoleranceType? get type;
+  AllergyIntoleranceType? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'verificationStatus')
-  CodeableConcept? get verificationStatus;
+  CodeableConcept? get verificationStatus => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $AllergyIntoleranceCopyWith<AllergyIntolerance> get copyWith =>
+  _$$AllergyIntoleranceCopyWith<_$AllergyIntolerance> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MedicationStatementCopyWith<$Res>
+abstract class _$$MedicationStatementCopyWith<$Res>
     implements $FhirResourceCopyWith<$Res> {
-  factory $MedicationStatementCopyWith(
-          MedicationStatement value, $Res Function(MedicationStatement) then) =
-      _$MedicationStatementCopyWithImpl<$Res>;
+  factory _$$MedicationStatementCopyWith(_$MedicationStatement value,
+          $Res Function(_$MedicationStatement) then) =
+      __$$MedicationStatementCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'category')
@@ -1500,15 +1429,15 @@ abstract class $MedicationStatementCopyWith<$Res>
 }
 
 /// @nodoc
-class _$MedicationStatementCopyWithImpl<$Res>
+class __$$MedicationStatementCopyWithImpl<$Res>
     extends _$FhirResourceCopyWithImpl<$Res>
-    implements $MedicationStatementCopyWith<$Res> {
-  _$MedicationStatementCopyWithImpl(
-      MedicationStatement _value, $Res Function(MedicationStatement) _then)
-      : super(_value, (v) => _then(v as MedicationStatement));
+    implements _$$MedicationStatementCopyWith<$Res> {
+  __$$MedicationStatementCopyWithImpl(
+      _$MedicationStatement _value, $Res Function(_$MedicationStatement) _then)
+      : super(_value, (v) => _then(v as _$MedicationStatement));
 
   @override
-  MedicationStatement get _value => super._value as MedicationStatement;
+  _$MedicationStatement get _value => super._value as _$MedicationStatement;
 
   @override
   $Res call({
@@ -1521,7 +1450,7 @@ class _$MedicationStatementCopyWithImpl<$Res>
     Object? subject = freezed,
     Object? timelineDate = freezed,
   }) {
-    return _then(MedicationStatement(
+    return _then(_$MedicationStatement(
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -1593,8 +1522,6 @@ class _$MedicationStatementCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@FreezedUnionValue('MedicationStatement')
-@Implements<Resource>()
 class _$MedicationStatement
     with DiagnosticableTreeMixin
     implements MedicationStatement {
@@ -1668,7 +1595,7 @@ class _$MedicationStatement
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is MedicationStatement &&
+            other is _$MedicationStatement &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.date, date) &&
@@ -1682,6 +1609,7 @@ class _$MedicationStatement
                 .equals(other.timelineDate, timelineDate));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1696,8 +1624,9 @@ class _$MedicationStatement
 
   @JsonKey(ignore: true)
   @override
-  $MedicationStatementCopyWith<MedicationStatement> get copyWith =>
-      _$MedicationStatementCopyWithImpl<MedicationStatement>(this, _$identity);
+  _$$MedicationStatementCopyWith<_$MedicationStatement> get copyWith =>
+      __$$MedicationStatementCopyWithImpl<_$MedicationStatement>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1944,46 +1873,46 @@ class _$MedicationStatement
 abstract class MedicationStatement implements FhirResource, Resource {
   const factory MedicationStatement(
       {@JsonKey(name: 'category')
-          CodeableConcept? category,
+          final CodeableConcept? category,
       @JsonKey(name: 'code')
-          CodeableConcept? code,
+          final CodeableConcept? code,
       @JsonKey(name: 'effectiveDateTime')
-          String? date,
+          final String? date,
       @JsonKey(name: 'medicationCodeableConcept')
-          CodeableConcept? medication,
+          final CodeableConcept? medication,
       @JsonKey(name: 'resourceType')
-          ReferenceType? resourceType,
+          final ReferenceType? resourceType,
       @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
-          MedicationStatusCodes? status,
+          final MedicationStatusCodes? status,
       @JsonKey(name: 'subject')
-          Reference? subject,
+          final Reference? subject,
       @JsonKey(name: 'timelineDate')
-          String? timelineDate}) = _$MedicationStatement;
+          final String? timelineDate}) = _$MedicationStatement;
 
   factory MedicationStatement.fromJson(Map<String, dynamic> json) =
       _$MedicationStatement.fromJson;
 
   @JsonKey(name: 'category')
-  CodeableConcept? get category;
+  CodeableConcept? get category => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'code')
-  CodeableConcept? get code;
+  CodeableConcept? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'effectiveDateTime')
-  String? get date;
+  String? get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'medicationCodeableConcept')
-  CodeableConcept? get medication;
+  CodeableConcept? get medication => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'resourceType')
-  ReferenceType? get resourceType;
+  ReferenceType? get resourceType => throw _privateConstructorUsedError;
   @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
-  MedicationStatusCodes? get status;
+  MedicationStatusCodes? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'subject')
-  Reference? get subject;
+  Reference? get subject => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'timelineDate')
-  String? get timelineDate;
+  String? get timelineDate => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $MedicationStatementCopyWith<MedicationStatement> get copyWith =>
+  _$$MedicationStatementCopyWith<_$MedicationStatement> get copyWith =>
       throw _privateConstructorUsedError;
 }

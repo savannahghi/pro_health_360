@@ -34,7 +34,7 @@ class MyHealthDiaryPage extends StatefulWidget {
 class _MyHealthDiaryPageState extends State<MyHealthDiaryPage> {
   @override
   void initState() {
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch<AppState>(
         context,
         FetchHealthDiaryAction(

@@ -12,27 +12,11 @@ part of 'confidential_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ConfidentialState _$ConfidentialStateFromJson(Map<String, dynamic> json) {
   return _ConfidentialState.fromJson(json);
 }
-
-/// @nodoc
-class _$ConfidentialStateTearOff {
-  const _$ConfidentialStateTearOff();
-
-  _ConfidentialState call() {
-    return _ConfidentialState();
-  }
-
-  ConfidentialState fromJson(Map<String, Object?> json) {
-    return ConfidentialState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ConfidentialState = _$ConfidentialStateTearOff();
 
 /// @nodoc
 mixin _$ConfidentialState {
@@ -57,22 +41,22 @@ class _$ConfidentialStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ConfidentialStateCopyWith<$Res> {
-  factory _$ConfidentialStateCopyWith(
-          _ConfidentialState value, $Res Function(_ConfidentialState) then) =
-      __$ConfidentialStateCopyWithImpl<$Res>;
+abstract class _$$_ConfidentialStateCopyWith<$Res> {
+  factory _$$_ConfidentialStateCopyWith(_$_ConfidentialState value,
+          $Res Function(_$_ConfidentialState) then) =
+      __$$_ConfidentialStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ConfidentialStateCopyWithImpl<$Res>
+class __$$_ConfidentialStateCopyWithImpl<$Res>
     extends _$ConfidentialStateCopyWithImpl<$Res>
-    implements _$ConfidentialStateCopyWith<$Res> {
-  __$ConfidentialStateCopyWithImpl(
-      _ConfidentialState _value, $Res Function(_ConfidentialState) _then)
-      : super(_value, (v) => _then(v as _ConfidentialState));
+    implements _$$_ConfidentialStateCopyWith<$Res> {
+  __$$_ConfidentialStateCopyWithImpl(
+      _$_ConfidentialState _value, $Res Function(_$_ConfidentialState) _then)
+      : super(_value, (v) => _then(v as _$_ConfidentialState));
 
   @override
-  _ConfidentialState get _value => super._value as _ConfidentialState;
+  _$_ConfidentialState get _value => super._value as _$_ConfidentialState;
 }
 
 /// @nodoc
@@ -91,9 +75,10 @@ class _$_ConfidentialState implements _ConfidentialState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ConfidentialState);
+        (other.runtimeType == runtimeType && other is _$_ConfidentialState);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 

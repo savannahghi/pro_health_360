@@ -12,29 +12,11 @@ part of 'medical_data_clinical_status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MedicalDataCode _$MedicalDataCodeFromJson(Map<String, dynamic> json) {
   return _MedicalDataCode.fromJson(json);
 }
-
-/// @nodoc
-class _$MedicalDataCodeTearOff {
-  const _$MedicalDataCodeTearOff();
-
-  _MedicalDataCode call({@JsonKey(name: 'Text') String? text}) {
-    return _MedicalDataCode(
-      text: text,
-    );
-  }
-
-  MedicalDataCode fromJson(Map<String, Object?> json) {
-    return MedicalDataCode.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MedicalDataCode = _$MedicalDataCodeTearOff();
 
 /// @nodoc
 mixin _$MedicalDataCode {
@@ -78,31 +60,31 @@ class _$MedicalDataCodeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MedicalDataCodeCopyWith<$Res>
+abstract class _$$_MedicalDataCodeCopyWith<$Res>
     implements $MedicalDataCodeCopyWith<$Res> {
-  factory _$MedicalDataCodeCopyWith(
-          _MedicalDataCode value, $Res Function(_MedicalDataCode) then) =
-      __$MedicalDataCodeCopyWithImpl<$Res>;
+  factory _$$_MedicalDataCodeCopyWith(
+          _$_MedicalDataCode value, $Res Function(_$_MedicalDataCode) then) =
+      __$$_MedicalDataCodeCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class __$MedicalDataCodeCopyWithImpl<$Res>
+class __$$_MedicalDataCodeCopyWithImpl<$Res>
     extends _$MedicalDataCodeCopyWithImpl<$Res>
-    implements _$MedicalDataCodeCopyWith<$Res> {
-  __$MedicalDataCodeCopyWithImpl(
-      _MedicalDataCode _value, $Res Function(_MedicalDataCode) _then)
-      : super(_value, (v) => _then(v as _MedicalDataCode));
+    implements _$$_MedicalDataCodeCopyWith<$Res> {
+  __$$_MedicalDataCodeCopyWithImpl(
+      _$_MedicalDataCode _value, $Res Function(_$_MedicalDataCode) _then)
+      : super(_value, (v) => _then(v as _$_MedicalDataCode));
 
   @override
-  _MedicalDataCode get _value => super._value as _MedicalDataCode;
+  _$_MedicalDataCode get _value => super._value as _$_MedicalDataCode;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(_MedicalDataCode(
+    return _then(_$_MedicalDataCode(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -132,18 +114,19 @@ class _$_MedicalDataCode implements _MedicalDataCode {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MedicalDataCode &&
+            other is _$_MedicalDataCode &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
-  _$MedicalDataCodeCopyWith<_MedicalDataCode> get copyWith =>
-      __$MedicalDataCodeCopyWithImpl<_MedicalDataCode>(this, _$identity);
+  _$$_MedicalDataCodeCopyWith<_$_MedicalDataCode> get copyWith =>
+      __$$_MedicalDataCodeCopyWithImpl<_$_MedicalDataCode>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -152,7 +135,7 @@ class _$_MedicalDataCode implements _MedicalDataCode {
 }
 
 abstract class _MedicalDataCode implements MedicalDataCode {
-  factory _MedicalDataCode({@JsonKey(name: 'Text') String? text}) =
+  factory _MedicalDataCode({@JsonKey(name: 'Text') final String? text}) =
       _$_MedicalDataCode;
 
   factory _MedicalDataCode.fromJson(Map<String, dynamic> json) =
@@ -160,9 +143,9 @@ abstract class _MedicalDataCode implements MedicalDataCode {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text;
+  String? get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MedicalDataCodeCopyWith<_MedicalDataCode> get copyWith =>
+  _$$_MedicalDataCodeCopyWith<_$_MedicalDataCode> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,5 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pro_health_360/application/redux/actions/send_content_engagement_time_action.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -11,21 +10,23 @@ import '../../../../mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setupFirebaseAnalyticsMocks();
 
   group('SendContentEngagementTimeAction', () {
-    final List<MethodCall> methodCallLog = <MethodCall>[];
     final Store<AppState> store = Store<AppState>(
       initialState: AppState.initial()
           .copyWith(connectivityState: ConnectivityState(isConnected: true)),
     );
 
-    setUp(() async {
-      setupFirebaseAnalyticsMocks(
-        updateLogFunc: (MethodCall call) => methodCallLog.add(call),
-      );
-
+    setUpAll(() async {
       await Firebase.initializeApp();
     });
+
+    setUp(() async {
+      methodCallLog.clear();
+    });
+
+    tearDown(methodCallLog.clear);
 
     test('saves content interaction time', () async {
       await store.dispatch(SendContentEngagementTimeAction());

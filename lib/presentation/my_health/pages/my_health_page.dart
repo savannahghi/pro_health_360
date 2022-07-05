@@ -40,7 +40,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       if (shouldInputPIN(context)) {
         Navigator.pushReplacementNamed(
           context,

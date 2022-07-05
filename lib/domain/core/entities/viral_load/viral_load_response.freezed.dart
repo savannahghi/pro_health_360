@@ -12,30 +12,11 @@ part of 'viral_load_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ViralLoadResponse _$ViralLoadResponseFromJson(Map<String, dynamic> json) {
   return _ViralLoadResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$ViralLoadResponseTearOff {
-  const _$ViralLoadResponseTearOff();
-
-  _ViralLoadResponse call(
-      {@JsonKey(name: 'searchFHIRObservation') ViralLoadEdges? data}) {
-    return _ViralLoadResponse(
-      data: data,
-    );
-  }
-
-  ViralLoadResponse fromJson(Map<String, Object?> json) {
-    return ViralLoadResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ViralLoadResponse = _$ViralLoadResponseTearOff();
 
 /// @nodoc
 mixin _$ViralLoadResponse {
@@ -92,11 +73,11 @@ class _$ViralLoadResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ViralLoadResponseCopyWith<$Res>
+abstract class _$$_ViralLoadResponseCopyWith<$Res>
     implements $ViralLoadResponseCopyWith<$Res> {
-  factory _$ViralLoadResponseCopyWith(
-          _ViralLoadResponse value, $Res Function(_ViralLoadResponse) then) =
-      __$ViralLoadResponseCopyWithImpl<$Res>;
+  factory _$$_ViralLoadResponseCopyWith(_$_ViralLoadResponse value,
+          $Res Function(_$_ViralLoadResponse) then) =
+      __$$_ViralLoadResponseCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'searchFHIRObservation') ViralLoadEdges? data});
 
@@ -105,21 +86,21 @@ abstract class _$ViralLoadResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ViralLoadResponseCopyWithImpl<$Res>
+class __$$_ViralLoadResponseCopyWithImpl<$Res>
     extends _$ViralLoadResponseCopyWithImpl<$Res>
-    implements _$ViralLoadResponseCopyWith<$Res> {
-  __$ViralLoadResponseCopyWithImpl(
-      _ViralLoadResponse _value, $Res Function(_ViralLoadResponse) _then)
-      : super(_value, (v) => _then(v as _ViralLoadResponse));
+    implements _$$_ViralLoadResponseCopyWith<$Res> {
+  __$$_ViralLoadResponseCopyWithImpl(
+      _$_ViralLoadResponse _value, $Res Function(_$_ViralLoadResponse) _then)
+      : super(_value, (v) => _then(v as _$_ViralLoadResponse));
 
   @override
-  _ViralLoadResponse get _value => super._value as _ViralLoadResponse;
+  _$_ViralLoadResponse get _value => super._value as _$_ViralLoadResponse;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_ViralLoadResponse(
+    return _then(_$_ViralLoadResponse(
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -149,18 +130,20 @@ class _$_ViralLoadResponse implements _ViralLoadResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ViralLoadResponse &&
+            other is _$_ViralLoadResponse &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
-  _$ViralLoadResponseCopyWith<_ViralLoadResponse> get copyWith =>
-      __$ViralLoadResponseCopyWithImpl<_ViralLoadResponse>(this, _$identity);
+  _$$_ViralLoadResponseCopyWith<_$_ViralLoadResponse> get copyWith =>
+      __$$_ViralLoadResponseCopyWithImpl<_$_ViralLoadResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -170,17 +153,17 @@ class _$_ViralLoadResponse implements _ViralLoadResponse {
 
 abstract class _ViralLoadResponse implements ViralLoadResponse {
   factory _ViralLoadResponse(
-          {@JsonKey(name: 'searchFHIRObservation') ViralLoadEdges? data}) =
-      _$_ViralLoadResponse;
+      {@JsonKey(name: 'searchFHIRObservation')
+          final ViralLoadEdges? data}) = _$_ViralLoadResponse;
 
   factory _ViralLoadResponse.fromJson(Map<String, dynamic> json) =
       _$_ViralLoadResponse.fromJson;
 
   @override
   @JsonKey(name: 'searchFHIRObservation')
-  ViralLoadEdges? get data;
+  ViralLoadEdges? get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ViralLoadResponseCopyWith<_ViralLoadResponse> get copyWith =>
+  _$$_ViralLoadResponseCopyWith<_$_ViralLoadResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,40 +12,11 @@ part of 'reaction.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Reaction _$ReactionFromJson(Map<String, dynamic> json) {
   return _Reaction.fromJson(json);
 }
-
-/// @nodoc
-class _$ReactionTearOff {
-  const _$ReactionTearOff();
-
-  _Reaction call(
-      {@JsonKey(name: 'substance')
-          CodeableConcept? substance,
-      @JsonKey(name: 'manifestation')
-          List<CodeableConcept?>? manifestation,
-      @JsonKey(name: 'description')
-          String? description,
-      @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
-          AllergyIntoleranceSeverity? severity}) {
-    return _Reaction(
-      substance: substance,
-      manifestation: manifestation,
-      description: description,
-      severity: severity,
-    );
-  }
-
-  Reaction fromJson(Map<String, Object?> json) {
-    return Reaction.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Reaction = _$ReactionTearOff();
 
 /// @nodoc
 mixin _$Reaction {
@@ -152,9 +123,10 @@ class _$ReactionCopyWithImpl<$Res> implements $ReactionCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ReactionCopyWith<$Res> implements $ReactionCopyWith<$Res> {
-  factory _$ReactionCopyWith(_Reaction value, $Res Function(_Reaction) then) =
-      __$ReactionCopyWithImpl<$Res>;
+abstract class _$$_ReactionCopyWith<$Res> implements $ReactionCopyWith<$Res> {
+  factory _$$_ReactionCopyWith(
+          _$_Reaction value, $Res Function(_$_Reaction) then) =
+      __$$_ReactionCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'substance')
@@ -171,13 +143,14 @@ abstract class _$ReactionCopyWith<$Res> implements $ReactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ReactionCopyWithImpl<$Res> extends _$ReactionCopyWithImpl<$Res>
-    implements _$ReactionCopyWith<$Res> {
-  __$ReactionCopyWithImpl(_Reaction _value, $Res Function(_Reaction) _then)
-      : super(_value, (v) => _then(v as _Reaction));
+class __$$_ReactionCopyWithImpl<$Res> extends _$ReactionCopyWithImpl<$Res>
+    implements _$$_ReactionCopyWith<$Res> {
+  __$$_ReactionCopyWithImpl(
+      _$_Reaction _value, $Res Function(_$_Reaction) _then)
+      : super(_value, (v) => _then(v as _$_Reaction));
 
   @override
-  _Reaction get _value => super._value as _Reaction;
+  _$_Reaction get _value => super._value as _$_Reaction;
 
   @override
   $Res call({
@@ -186,13 +159,13 @@ class __$ReactionCopyWithImpl<$Res> extends _$ReactionCopyWithImpl<$Res>
     Object? description = freezed,
     Object? severity = freezed,
   }) {
-    return _then(_Reaction(
+    return _then(_$_Reaction(
       substance: substance == freezed
           ? _value.substance
           : substance // ignore: cast_nullable_to_non_nullable
               as CodeableConcept?,
       manifestation: manifestation == freezed
-          ? _value.manifestation
+          ? _value._manifestation
           : manifestation // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept?>?,
       description: description == freezed
@@ -214,16 +187,15 @@ class _$_Reaction implements _Reaction {
       {@JsonKey(name: 'substance')
           this.substance,
       @JsonKey(name: 'manifestation')
-          this.manifestation,
+          final List<CodeableConcept?>? manifestation,
       @JsonKey(name: 'description')
           this.description,
       @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
-          this.severity});
+          this.severity})
+      : _manifestation = manifestation;
 
   factory _$_Reaction.fromJson(Map<String, dynamic> json) =>
       _$$_ReactionFromJson(json);
-
-  @override
 
   /// Identification of the specific substance (or pharmaceutical product)
   ///  considered to be responsible for the Adverse Reaction event.
@@ -238,22 +210,31 @@ class _$_Reaction implements _Reaction {
   ///  AllergyIntolerance.reaction.substance falls within the semantic scope
   ///  of AllergyIntolerance.code, then the receiving system should ignore
   ///  AllergyIntolerance.reaction.substance.
+  @override
   @JsonKey(name: 'substance')
   final CodeableConcept? substance;
-  @override
 
   /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
-  @JsonKey(name: 'manifestation')
-  final List<CodeableConcept?>? manifestation;
+  final List<CodeableConcept?>? _manifestation;
+
+  /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
   @override
+  @JsonKey(name: 'manifestation')
+  List<CodeableConcept?>? get manifestation {
+    final value = _manifestation;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   /// Text description about the reaction as a whole, including details of the manifestation if required.
+  @override
   @JsonKey(name: 'description')
   final String? description;
-  @override
 
   /// Clinical assessment of the severity of the reaction event as a whole,
   ///  potentially considering multiple different manifestations.
+  @override
   @JsonKey(
       name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
   final AllergyIntoleranceSeverity? severity;
@@ -267,27 +248,28 @@ class _$_Reaction implements _Reaction {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Reaction &&
+            other is _$_Reaction &&
             const DeepCollectionEquality().equals(other.substance, substance) &&
             const DeepCollectionEquality()
-                .equals(other.manifestation, manifestation) &&
+                .equals(other._manifestation, _manifestation) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.severity, severity));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(substance),
-      const DeepCollectionEquality().hash(manifestation),
+      const DeepCollectionEquality().hash(_manifestation),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(severity));
 
   @JsonKey(ignore: true)
   @override
-  _$ReactionCopyWith<_Reaction> get copyWith =>
-      __$ReactionCopyWithImpl<_Reaction>(this, _$identity);
+  _$$_ReactionCopyWith<_$_Reaction> get copyWith =>
+      __$$_ReactionCopyWithImpl<_$_Reaction>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -298,13 +280,13 @@ class _$_Reaction implements _Reaction {
 abstract class _Reaction implements Reaction {
   factory _Reaction(
       {@JsonKey(name: 'substance')
-          CodeableConcept? substance,
+          final CodeableConcept? substance,
       @JsonKey(name: 'manifestation')
-          List<CodeableConcept?>? manifestation,
+          final List<CodeableConcept?>? manifestation,
       @JsonKey(name: 'description')
-          String? description,
+          final String? description,
       @JsonKey(name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
-          AllergyIntoleranceSeverity? severity}) = _$_Reaction;
+          final AllergyIntoleranceSeverity? severity}) = _$_Reaction;
 
   factory _Reaction.fromJson(Map<String, dynamic> json) = _$_Reaction.fromJson;
 
@@ -324,26 +306,28 @@ abstract class _Reaction implements Reaction {
   ///  of AllergyIntolerance.code, then the receiving system should ignore
   ///  AllergyIntolerance.reaction.substance.
   @JsonKey(name: 'substance')
-  CodeableConcept? get substance;
+  CodeableConcept? get substance => throw _privateConstructorUsedError;
   @override
 
   /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
   @JsonKey(name: 'manifestation')
-  List<CodeableConcept?>? get manifestation;
+  List<CodeableConcept?>? get manifestation =>
+      throw _privateConstructorUsedError;
   @override
 
   /// Text description about the reaction as a whole, including details of the manifestation if required.
   @JsonKey(name: 'description')
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
 
   /// Clinical assessment of the severity of the reaction event as a whole,
   ///  potentially considering multiple different manifestations.
   @JsonKey(
       name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
-  AllergyIntoleranceSeverity? get severity;
+  AllergyIntoleranceSeverity? get severity =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ReactionCopyWith<_Reaction> get copyWith =>
+  _$$_ReactionCopyWith<_$_Reaction> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -27,11 +27,11 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Show connection tile on header
   final bool showConnectionStateTile;
 
-  /// The background color for this [ChannelHeader].
+  /// The background color for this [StreamChannelHeader].
   final Color? backgroundColor;
 
   /// AppBar actions
-  /// By default it shows the [ChannelAvatar]
+  /// By default it shows the [StreamChannelAvatar]
   final List<Widget>? actions;
 
   /// Callback to call when the image is tapped.
@@ -48,8 +48,8 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ChannelHeaderThemeData channelHeaderTheme =
-        ChannelHeaderTheme.of(context);
+    final StreamChannelHeaderThemeData channelHeaderTheme =
+        StreamChannelHeaderTheme.of(context);
 
     final Widget leadingWidget = showBackButton
         ? StreamBackButton(
@@ -58,7 +58,7 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
           )
         : const SizedBox();
 
-    return ConnectionStatusBuilder(
+    return StreamConnectionStatusBuilder(
       statusBuilder: (BuildContext context, ConnectionStatus status) {
         String statusString = '';
         bool showStatus = true;
@@ -78,7 +78,7 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
         final ThemeData theme = Theme.of(context);
 
-        return InfoTile(
+        return StreamInfoTile(
           showMessage: showConnectionStateTile && showStatus,
           message: statusString,
           child: AppBar(
@@ -95,7 +95,8 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 10),
                     child: Center(
-                      child: ChannelAvatar(
+                      child: StreamChannelAvatar(
+                        channel: StreamChannel.of(context).channel,
                         borderRadius:
                             channelHeaderTheme.avatarTheme?.borderRadius,
                         constraints:
@@ -115,7 +116,8 @@ class ChatPageAppBar extends StatelessWidget implements PreferredSizeWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     title ??
-                        ChannelName(
+                        StreamChannelName(
+                          channel: StreamChannel.of(context).channel,
                           textStyle: channelHeaderTheme.titleStyle,
                         ),
                     const SizedBox(height: 2),

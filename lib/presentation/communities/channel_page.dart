@@ -120,14 +120,13 @@ class _ChannelPageState extends State<ChannelPage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: MessageListView(
-              threadBuilder: (_, Message? parentMessage) => ThreadPage(
-                parent: parentMessage,
-              ),
-              pinPermissions: const <String>['admin', 'user', 'owner'],
+            child: StreamMessageListView(
+              threadBuilder: (_, Message? parentMessage) {
+                return ThreadPage(parent: parentMessage);
+              },
             ),
           ),
-          const MessageInput(),
+          const StreamMessageInput(),
         ],
       ),
     );
@@ -160,19 +159,17 @@ class ThreadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ThreadHeader(
+      appBar: StreamThreadHeader(
         parent: parent!,
       ),
       body: Column(
         children: <Widget>[
           Expanded(
-            child: MessageListView(
+            child: StreamMessageListView(
               parentMessage: parent,
             ),
           ),
-          MessageInput(
-            parentMessage: parent,
-          ),
+          const StreamMessageInput(),
         ],
       ),
     );

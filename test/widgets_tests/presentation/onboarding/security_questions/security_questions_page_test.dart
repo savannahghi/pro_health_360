@@ -51,7 +51,7 @@ void main() {
 
   group('SecurityQuestions', () {
     setUp(() async {
-      await setupFirebaseAnalyticsMocks();
+      setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
     });
 

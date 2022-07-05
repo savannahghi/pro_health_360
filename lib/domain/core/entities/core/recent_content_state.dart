@@ -2,11 +2,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'recent_content_state.freezed.dart';
 part 'recent_content_state.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class RecentContentState with _$RecentContentState {
   factory RecentContentState({
     @JsonKey(name: 'items') List<Content?>? contentItems,

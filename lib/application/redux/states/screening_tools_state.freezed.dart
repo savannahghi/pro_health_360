@@ -12,38 +12,11 @@ part of 'screening_tools_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ScreeningToolsState _$ScreeningToolsStateFromJson(Map<String, dynamic> json) {
   return _ScreeningToolsState.fromJson(json);
 }
-
-/// @nodoc
-class _$ScreeningToolsStateTearOff {
-  const _$ScreeningToolsStateTearOff();
-
-  _ScreeningToolsState call(
-      {ViolenceState? violenceState,
-      ContraceptiveState? contraceptiveState,
-      TBState? tbState,
-      AlcoholSubstanceUseState? alcoholSubstanceUseState,
-      AvailableScreeningTools? availableScreeningTools}) {
-    return _ScreeningToolsState(
-      violenceState: violenceState,
-      contraceptiveState: contraceptiveState,
-      tbState: tbState,
-      alcoholSubstanceUseState: alcoholSubstanceUseState,
-      availableScreeningTools: availableScreeningTools,
-    );
-  }
-
-  ScreeningToolsState fromJson(Map<String, Object?> json) {
-    return ScreeningToolsState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ScreeningToolsState = _$ScreeningToolsStateTearOff();
 
 /// @nodoc
 mixin _$ScreeningToolsState {
@@ -182,11 +155,11 @@ class _$ScreeningToolsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ScreeningToolsStateCopyWith<$Res>
+abstract class _$$_ScreeningToolsStateCopyWith<$Res>
     implements $ScreeningToolsStateCopyWith<$Res> {
-  factory _$ScreeningToolsStateCopyWith(_ScreeningToolsState value,
-          $Res Function(_ScreeningToolsState) then) =
-      __$ScreeningToolsStateCopyWithImpl<$Res>;
+  factory _$$_ScreeningToolsStateCopyWith(_$_ScreeningToolsState value,
+          $Res Function(_$_ScreeningToolsState) then) =
+      __$$_ScreeningToolsStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {ViolenceState? violenceState,
@@ -208,15 +181,15 @@ abstract class _$ScreeningToolsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ScreeningToolsStateCopyWithImpl<$Res>
+class __$$_ScreeningToolsStateCopyWithImpl<$Res>
     extends _$ScreeningToolsStateCopyWithImpl<$Res>
-    implements _$ScreeningToolsStateCopyWith<$Res> {
-  __$ScreeningToolsStateCopyWithImpl(
-      _ScreeningToolsState _value, $Res Function(_ScreeningToolsState) _then)
-      : super(_value, (v) => _then(v as _ScreeningToolsState));
+    implements _$$_ScreeningToolsStateCopyWith<$Res> {
+  __$$_ScreeningToolsStateCopyWithImpl(_$_ScreeningToolsState _value,
+      $Res Function(_$_ScreeningToolsState) _then)
+      : super(_value, (v) => _then(v as _$_ScreeningToolsState));
 
   @override
-  _ScreeningToolsState get _value => super._value as _ScreeningToolsState;
+  _$_ScreeningToolsState get _value => super._value as _$_ScreeningToolsState;
 
   @override
   $Res call({
@@ -226,7 +199,7 @@ class __$ScreeningToolsStateCopyWithImpl<$Res>
     Object? alcoholSubstanceUseState = freezed,
     Object? availableScreeningTools = freezed,
   }) {
-    return _then(_ScreeningToolsState(
+    return _then(_$_ScreeningToolsState(
       violenceState: violenceState == freezed
           ? _value.violenceState
           : violenceState // ignore: cast_nullable_to_non_nullable
@@ -284,7 +257,7 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ScreeningToolsState &&
+            other is _$_ScreeningToolsState &&
             const DeepCollectionEquality()
                 .equals(other.violenceState, violenceState) &&
             const DeepCollectionEquality()
@@ -296,6 +269,7 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
                 other.availableScreeningTools, availableScreeningTools));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -307,8 +281,8 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
 
   @JsonKey(ignore: true)
   @override
-  _$ScreeningToolsStateCopyWith<_ScreeningToolsState> get copyWith =>
-      __$ScreeningToolsStateCopyWithImpl<_ScreeningToolsState>(
+  _$$_ScreeningToolsStateCopyWith<_$_ScreeningToolsState> get copyWith =>
+      __$$_ScreeningToolsStateCopyWithImpl<_$_ScreeningToolsState>(
           this, _$identity);
 
   @override
@@ -319,28 +293,31 @@ class _$_ScreeningToolsState implements _ScreeningToolsState {
 
 abstract class _ScreeningToolsState implements ScreeningToolsState {
   factory _ScreeningToolsState(
-          {ViolenceState? violenceState,
-          ContraceptiveState? contraceptiveState,
-          TBState? tbState,
-          AlcoholSubstanceUseState? alcoholSubstanceUseState,
-          AvailableScreeningTools? availableScreeningTools}) =
+          {final ViolenceState? violenceState,
+          final ContraceptiveState? contraceptiveState,
+          final TBState? tbState,
+          final AlcoholSubstanceUseState? alcoholSubstanceUseState,
+          final AvailableScreeningTools? availableScreeningTools}) =
       _$_ScreeningToolsState;
 
   factory _ScreeningToolsState.fromJson(Map<String, dynamic> json) =
       _$_ScreeningToolsState.fromJson;
 
   @override
-  ViolenceState? get violenceState;
+  ViolenceState? get violenceState => throw _privateConstructorUsedError;
   @override
-  ContraceptiveState? get contraceptiveState;
+  ContraceptiveState? get contraceptiveState =>
+      throw _privateConstructorUsedError;
   @override
-  TBState? get tbState;
+  TBState? get tbState => throw _privateConstructorUsedError;
   @override
-  AlcoholSubstanceUseState? get alcoholSubstanceUseState;
+  AlcoholSubstanceUseState? get alcoholSubstanceUseState =>
+      throw _privateConstructorUsedError;
   @override
-  AvailableScreeningTools? get availableScreeningTools;
+  AvailableScreeningTools? get availableScreeningTools =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ScreeningToolsStateCopyWith<_ScreeningToolsState> get copyWith =>
+  _$$_ScreeningToolsStateCopyWith<_$_ScreeningToolsState> get copyWith =>
       throw _privateConstructorUsedError;
 }

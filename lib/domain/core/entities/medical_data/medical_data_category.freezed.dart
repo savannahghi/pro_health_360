@@ -12,29 +12,11 @@ part of 'medical_data_category.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MedicalDataCategory _$MedicalDataCategoryFromJson(Map<String, dynamic> json) {
   return _MedicalDataCategory.fromJson(json);
 }
-
-/// @nodoc
-class _$MedicalDataCategoryTearOff {
-  const _$MedicalDataCategoryTearOff();
-
-  _MedicalDataCategory call({@JsonKey(name: 'Text') String? text}) {
-    return _MedicalDataCategory(
-      text: text,
-    );
-  }
-
-  MedicalDataCategory fromJson(Map<String, Object?> json) {
-    return MedicalDataCategory.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MedicalDataCategory = _$MedicalDataCategoryTearOff();
 
 /// @nodoc
 mixin _$MedicalDataCategory {
@@ -78,31 +60,31 @@ class _$MedicalDataCategoryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MedicalDataCategoryCopyWith<$Res>
+abstract class _$$_MedicalDataCategoryCopyWith<$Res>
     implements $MedicalDataCategoryCopyWith<$Res> {
-  factory _$MedicalDataCategoryCopyWith(_MedicalDataCategory value,
-          $Res Function(_MedicalDataCategory) then) =
-      __$MedicalDataCategoryCopyWithImpl<$Res>;
+  factory _$$_MedicalDataCategoryCopyWith(_$_MedicalDataCategory value,
+          $Res Function(_$_MedicalDataCategory) then) =
+      __$$_MedicalDataCategoryCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class __$MedicalDataCategoryCopyWithImpl<$Res>
+class __$$_MedicalDataCategoryCopyWithImpl<$Res>
     extends _$MedicalDataCategoryCopyWithImpl<$Res>
-    implements _$MedicalDataCategoryCopyWith<$Res> {
-  __$MedicalDataCategoryCopyWithImpl(
-      _MedicalDataCategory _value, $Res Function(_MedicalDataCategory) _then)
-      : super(_value, (v) => _then(v as _MedicalDataCategory));
+    implements _$$_MedicalDataCategoryCopyWith<$Res> {
+  __$$_MedicalDataCategoryCopyWithImpl(_$_MedicalDataCategory _value,
+      $Res Function(_$_MedicalDataCategory) _then)
+      : super(_value, (v) => _then(v as _$_MedicalDataCategory));
 
   @override
-  _MedicalDataCategory get _value => super._value as _MedicalDataCategory;
+  _$_MedicalDataCategory get _value => super._value as _$_MedicalDataCategory;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(_MedicalDataCategory(
+    return _then(_$_MedicalDataCategory(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -132,18 +114,19 @@ class _$_MedicalDataCategory implements _MedicalDataCategory {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MedicalDataCategory &&
+            other is _$_MedicalDataCategory &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
-  _$MedicalDataCategoryCopyWith<_MedicalDataCategory> get copyWith =>
-      __$MedicalDataCategoryCopyWithImpl<_MedicalDataCategory>(
+  _$$_MedicalDataCategoryCopyWith<_$_MedicalDataCategory> get copyWith =>
+      __$$_MedicalDataCategoryCopyWithImpl<_$_MedicalDataCategory>(
           this, _$identity);
 
   @override
@@ -153,7 +136,7 @@ class _$_MedicalDataCategory implements _MedicalDataCategory {
 }
 
 abstract class _MedicalDataCategory implements MedicalDataCategory {
-  factory _MedicalDataCategory({@JsonKey(name: 'Text') String? text}) =
+  factory _MedicalDataCategory({@JsonKey(name: 'Text') final String? text}) =
       _$_MedicalDataCategory;
 
   factory _MedicalDataCategory.fromJson(Map<String, dynamic> json) =
@@ -161,9 +144,9 @@ abstract class _MedicalDataCategory implements MedicalDataCategory {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text;
+  String? get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MedicalDataCategoryCopyWith<_MedicalDataCategory> get copyWith =>
+  _$$_MedicalDataCategoryCopyWith<_$_MedicalDataCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }

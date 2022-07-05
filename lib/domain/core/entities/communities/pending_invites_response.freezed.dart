@@ -12,31 +12,12 @@ part of 'pending_invites_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 PendingInvitesResponse _$PendingInvitesResponseFromJson(
     Map<String, dynamic> json) {
   return _PendingInvites.fromJson(json);
 }
-
-/// @nodoc
-class _$PendingInvitesResponseTearOff {
-  const _$PendingInvitesResponseTearOff();
-
-  _PendingInvites call(
-      {@JsonKey(name: 'listPendingInvites') List<Community>? communities}) {
-    return _PendingInvites(
-      communities: communities,
-    );
-  }
-
-  PendingInvitesResponse fromJson(Map<String, Object?> json) {
-    return PendingInvitesResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PendingInvitesResponse = _$PendingInvitesResponseTearOff();
 
 /// @nodoc
 mixin _$PendingInvitesResponse {
@@ -81,34 +62,34 @@ class _$PendingInvitesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PendingInvitesCopyWith<$Res>
+abstract class _$$_PendingInvitesCopyWith<$Res>
     implements $PendingInvitesResponseCopyWith<$Res> {
-  factory _$PendingInvitesCopyWith(
-          _PendingInvites value, $Res Function(_PendingInvites) then) =
-      __$PendingInvitesCopyWithImpl<$Res>;
+  factory _$$_PendingInvitesCopyWith(
+          _$_PendingInvites value, $Res Function(_$_PendingInvites) then) =
+      __$$_PendingInvitesCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'listPendingInvites') List<Community>? communities});
 }
 
 /// @nodoc
-class __$PendingInvitesCopyWithImpl<$Res>
+class __$$_PendingInvitesCopyWithImpl<$Res>
     extends _$PendingInvitesResponseCopyWithImpl<$Res>
-    implements _$PendingInvitesCopyWith<$Res> {
-  __$PendingInvitesCopyWithImpl(
-      _PendingInvites _value, $Res Function(_PendingInvites) _then)
-      : super(_value, (v) => _then(v as _PendingInvites));
+    implements _$$_PendingInvitesCopyWith<$Res> {
+  __$$_PendingInvitesCopyWithImpl(
+      _$_PendingInvites _value, $Res Function(_$_PendingInvites) _then)
+      : super(_value, (v) => _then(v as _$_PendingInvites));
 
   @override
-  _PendingInvites get _value => super._value as _PendingInvites;
+  _$_PendingInvites get _value => super._value as _$_PendingInvites;
 
   @override
   $Res call({
     Object? communities = freezed,
   }) {
-    return _then(_PendingInvites(
+    return _then(_$_PendingInvites(
       communities: communities == freezed
-          ? _value.communities
+          ? _value._communities
           : communities // ignore: cast_nullable_to_non_nullable
               as List<Community>?,
     ));
@@ -118,14 +99,22 @@ class __$PendingInvitesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PendingInvites implements _PendingInvites {
-  _$_PendingInvites({@JsonKey(name: 'listPendingInvites') this.communities});
+  _$_PendingInvites(
+      {@JsonKey(name: 'listPendingInvites') final List<Community>? communities})
+      : _communities = communities;
 
   factory _$_PendingInvites.fromJson(Map<String, dynamic> json) =>
       _$$_PendingInvitesFromJson(json);
 
+  final List<Community>? _communities;
   @override
   @JsonKey(name: 'listPendingInvites')
-  final List<Community>? communities;
+  List<Community>? get communities {
+    final value = _communities;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -136,19 +125,20 @@ class _$_PendingInvites implements _PendingInvites {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PendingInvites &&
+            other is _$_PendingInvites &&
             const DeepCollectionEquality()
-                .equals(other.communities, communities));
+                .equals(other._communities, _communities));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(communities));
 
   @JsonKey(ignore: true)
   @override
-  _$PendingInvitesCopyWith<_PendingInvites> get copyWith =>
-      __$PendingInvitesCopyWithImpl<_PendingInvites>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_communities));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PendingInvitesCopyWith<_$_PendingInvites> get copyWith =>
+      __$$_PendingInvitesCopyWithImpl<_$_PendingInvites>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -158,17 +148,17 @@ class _$_PendingInvites implements _PendingInvites {
 
 abstract class _PendingInvites implements PendingInvitesResponse {
   factory _PendingInvites(
-          {@JsonKey(name: 'listPendingInvites') List<Community>? communities}) =
-      _$_PendingInvites;
+      {@JsonKey(name: 'listPendingInvites')
+          final List<Community>? communities}) = _$_PendingInvites;
 
   factory _PendingInvites.fromJson(Map<String, dynamic> json) =
       _$_PendingInvites.fromJson;
 
   @override
   @JsonKey(name: 'listPendingInvites')
-  List<Community>? get communities;
+  List<Community>? get communities => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PendingInvitesCopyWith<_PendingInvites> get copyWith =>
+  _$$_PendingInvitesCopyWith<_$_PendingInvites> get copyWith =>
       throw _privateConstructorUsedError;
 }

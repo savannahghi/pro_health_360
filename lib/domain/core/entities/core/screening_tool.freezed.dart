@@ -12,34 +12,11 @@ part of 'screening_tool.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ScreeningTool _$ScreeningToolFromJson(Map<String, dynamic> json) {
   return _ScreeningTool.fromJson(json);
 }
-
-/// @nodoc
-class _$ScreeningToolTearOff {
-  const _$ScreeningToolTearOff();
-
-  _ScreeningTool call(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'toolType') ScreeningToolsType? toolType}) {
-    return _ScreeningTool(
-      title: title,
-      description: description,
-      toolType: toolType,
-    );
-  }
-
-  ScreeningTool fromJson(Map<String, Object?> json) {
-    return ScreeningTool.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ScreeningTool = _$ScreeningToolTearOff();
 
 /// @nodoc
 mixin _$ScreeningTool {
@@ -100,11 +77,11 @@ class _$ScreeningToolCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ScreeningToolCopyWith<$Res>
+abstract class _$$_ScreeningToolCopyWith<$Res>
     implements $ScreeningToolCopyWith<$Res> {
-  factory _$ScreeningToolCopyWith(
-          _ScreeningTool value, $Res Function(_ScreeningTool) then) =
-      __$ScreeningToolCopyWithImpl<$Res>;
+  factory _$$_ScreeningToolCopyWith(
+          _$_ScreeningTool value, $Res Function(_$_ScreeningTool) then) =
+      __$$_ScreeningToolCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'title') String? title,
@@ -113,15 +90,15 @@ abstract class _$ScreeningToolCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ScreeningToolCopyWithImpl<$Res>
+class __$$_ScreeningToolCopyWithImpl<$Res>
     extends _$ScreeningToolCopyWithImpl<$Res>
-    implements _$ScreeningToolCopyWith<$Res> {
-  __$ScreeningToolCopyWithImpl(
-      _ScreeningTool _value, $Res Function(_ScreeningTool) _then)
-      : super(_value, (v) => _then(v as _ScreeningTool));
+    implements _$$_ScreeningToolCopyWith<$Res> {
+  __$$_ScreeningToolCopyWithImpl(
+      _$_ScreeningTool _value, $Res Function(_$_ScreeningTool) _then)
+      : super(_value, (v) => _then(v as _$_ScreeningTool));
 
   @override
-  _ScreeningTool get _value => super._value as _ScreeningTool;
+  _$_ScreeningTool get _value => super._value as _$_ScreeningTool;
 
   @override
   $Res call({
@@ -129,7 +106,7 @@ class __$ScreeningToolCopyWithImpl<$Res>
     Object? description = freezed,
     Object? toolType = freezed,
   }) {
-    return _then(_ScreeningTool(
+    return _then(_$_ScreeningTool(
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -176,13 +153,14 @@ class _$_ScreeningTool implements _ScreeningTool {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ScreeningTool &&
+            other is _$_ScreeningTool &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.toolType, toolType));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -192,8 +170,8 @@ class _$_ScreeningTool implements _ScreeningTool {
 
   @JsonKey(ignore: true)
   @override
-  _$ScreeningToolCopyWith<_ScreeningTool> get copyWith =>
-      __$ScreeningToolCopyWithImpl<_ScreeningTool>(this, _$identity);
+  _$$_ScreeningToolCopyWith<_$_ScreeningTool> get copyWith =>
+      __$$_ScreeningToolCopyWithImpl<_$_ScreeningTool>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -203,9 +181,9 @@ class _$_ScreeningTool implements _ScreeningTool {
 
 abstract class _ScreeningTool implements ScreeningTool {
   factory _ScreeningTool(
-          {@JsonKey(name: 'title') String? title,
-          @JsonKey(name: 'description') String? description,
-          @JsonKey(name: 'toolType') ScreeningToolsType? toolType}) =
+          {@JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'toolType') final ScreeningToolsType? toolType}) =
       _$_ScreeningTool;
 
   factory _ScreeningTool.fromJson(Map<String, dynamic> json) =
@@ -213,15 +191,15 @@ abstract class _ScreeningTool implements ScreeningTool {
 
   @override
   @JsonKey(name: 'title')
-  String? get title;
+  String? get title => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'description')
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'toolType')
-  ScreeningToolsType? get toolType;
+  ScreeningToolsType? get toolType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ScreeningToolCopyWith<_ScreeningTool> get copyWith =>
+  _$$_ScreeningToolCopyWith<_$_ScreeningTool> get copyWith =>
       throw _privateConstructorUsedError;
 }

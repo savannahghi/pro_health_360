@@ -12,40 +12,11 @@ part of 'medical_data_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MedicalDataDetails _$MedicalDataDetailsFromJson(Map<String, dynamic> json) {
   return _MedicalDataDetails.fromJson(json);
 }
-
-/// @nodoc
-class _$MedicalDataDetailsTearOff {
-  const _$MedicalDataDetailsTearOff();
-
-  _MedicalDataDetails call(
-      {@JsonKey(name: 'ValueString')
-          String? valueString,
-      @JsonKey(name: 'Code')
-          MedicalDataCode? code,
-      @JsonKey(name: 'Category')
-          MedicalDataCategory? category,
-      @JsonKey(name: 'MedicationCodeableConcept')
-          MedicationCodeableConcept? medicationCodeableConcept}) {
-    return _MedicalDataDetails(
-      valueString: valueString,
-      code: code,
-      category: category,
-      medicationCodeableConcept: medicationCodeableConcept,
-    );
-  }
-
-  MedicalDataDetails fromJson(Map<String, Object?> json) {
-    return MedicalDataDetails.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MedicalDataDetails = _$MedicalDataDetailsTearOff();
 
 /// @nodoc
 mixin _$MedicalDataDetails {
@@ -157,11 +128,11 @@ class _$MedicalDataDetailsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MedicalDataDetailsCopyWith<$Res>
+abstract class _$$_MedicalDataDetailsCopyWith<$Res>
     implements $MedicalDataDetailsCopyWith<$Res> {
-  factory _$MedicalDataDetailsCopyWith(
-          _MedicalDataDetails value, $Res Function(_MedicalDataDetails) then) =
-      __$MedicalDataDetailsCopyWithImpl<$Res>;
+  factory _$$_MedicalDataDetailsCopyWith(_$_MedicalDataDetails value,
+          $Res Function(_$_MedicalDataDetails) then) =
+      __$$_MedicalDataDetailsCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ValueString')
@@ -182,15 +153,15 @@ abstract class _$MedicalDataDetailsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$MedicalDataDetailsCopyWithImpl<$Res>
+class __$$_MedicalDataDetailsCopyWithImpl<$Res>
     extends _$MedicalDataDetailsCopyWithImpl<$Res>
-    implements _$MedicalDataDetailsCopyWith<$Res> {
-  __$MedicalDataDetailsCopyWithImpl(
-      _MedicalDataDetails _value, $Res Function(_MedicalDataDetails) _then)
-      : super(_value, (v) => _then(v as _MedicalDataDetails));
+    implements _$$_MedicalDataDetailsCopyWith<$Res> {
+  __$$_MedicalDataDetailsCopyWithImpl(
+      _$_MedicalDataDetails _value, $Res Function(_$_MedicalDataDetails) _then)
+      : super(_value, (v) => _then(v as _$_MedicalDataDetails));
 
   @override
-  _MedicalDataDetails get _value => super._value as _MedicalDataDetails;
+  _$_MedicalDataDetails get _value => super._value as _$_MedicalDataDetails;
 
   @override
   $Res call({
@@ -199,7 +170,7 @@ class __$MedicalDataDetailsCopyWithImpl<$Res>
     Object? category = freezed,
     Object? medicationCodeableConcept = freezed,
   }) {
-    return _then(_MedicalDataDetails(
+    return _then(_$_MedicalDataDetails(
       valueString: valueString == freezed
           ? _value.valueString
           : valueString // ignore: cast_nullable_to_non_nullable
@@ -258,7 +229,7 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MedicalDataDetails &&
+            other is _$_MedicalDataDetails &&
             const DeepCollectionEquality()
                 .equals(other.valueString, valueString) &&
             const DeepCollectionEquality().equals(other.code, code) &&
@@ -267,6 +238,7 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
                 other.medicationCodeableConcept, medicationCodeableConcept));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -277,8 +249,9 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
 
   @JsonKey(ignore: true)
   @override
-  _$MedicalDataDetailsCopyWith<_MedicalDataDetails> get copyWith =>
-      __$MedicalDataDetailsCopyWithImpl<_MedicalDataDetails>(this, _$identity);
+  _$$_MedicalDataDetailsCopyWith<_$_MedicalDataDetails> get copyWith =>
+      __$$_MedicalDataDetailsCopyWithImpl<_$_MedicalDataDetails>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -289,13 +262,13 @@ class _$_MedicalDataDetails implements _MedicalDataDetails {
 abstract class _MedicalDataDetails implements MedicalDataDetails {
   factory _MedicalDataDetails(
           {@JsonKey(name: 'ValueString')
-              String? valueString,
+              final String? valueString,
           @JsonKey(name: 'Code')
-              MedicalDataCode? code,
+              final MedicalDataCode? code,
           @JsonKey(name: 'Category')
-              MedicalDataCategory? category,
+              final MedicalDataCategory? category,
           @JsonKey(name: 'MedicationCodeableConcept')
-              MedicationCodeableConcept? medicationCodeableConcept}) =
+              final MedicationCodeableConcept? medicationCodeableConcept}) =
       _$_MedicalDataDetails;
 
   factory _MedicalDataDetails.fromJson(Map<String, dynamic> json) =
@@ -303,18 +276,19 @@ abstract class _MedicalDataDetails implements MedicalDataDetails {
 
   @override
   @JsonKey(name: 'ValueString')
-  String? get valueString;
+  String? get valueString => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Code')
-  MedicalDataCode? get code;
+  MedicalDataCode? get code => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'Category')
-  MedicalDataCategory? get category;
+  MedicalDataCategory? get category => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'MedicationCodeableConcept')
-  MedicationCodeableConcept? get medicationCodeableConcept;
+  MedicationCodeableConcept? get medicationCodeableConcept =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MedicalDataDetailsCopyWith<_MedicalDataDetails> get copyWith =>
+  _$$_MedicalDataDetailsCopyWith<_$_MedicalDataDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }

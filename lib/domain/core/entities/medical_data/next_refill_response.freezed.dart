@@ -12,29 +12,11 @@ part of 'next_refill_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 NextRefillResponse _$NextRefillResponseFromJson(Map<String, dynamic> json) {
   return _NextRefillResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$NextRefillResponseTearOff {
-  const _$NextRefillResponseTearOff();
-
-  _NextRefillResponse call({@JsonKey(name: 'data') NextRefillData? data}) {
-    return _NextRefillResponse(
-      data: data,
-    );
-  }
-
-  NextRefillResponse fromJson(Map<String, Object?> json) {
-    return NextRefillResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $NextRefillResponse = _$NextRefillResponseTearOff();
 
 /// @nodoc
 mixin _$NextRefillResponse {
@@ -91,11 +73,11 @@ class _$NextRefillResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NextRefillResponseCopyWith<$Res>
+abstract class _$$_NextRefillResponseCopyWith<$Res>
     implements $NextRefillResponseCopyWith<$Res> {
-  factory _$NextRefillResponseCopyWith(
-          _NextRefillResponse value, $Res Function(_NextRefillResponse) then) =
-      __$NextRefillResponseCopyWithImpl<$Res>;
+  factory _$$_NextRefillResponseCopyWith(_$_NextRefillResponse value,
+          $Res Function(_$_NextRefillResponse) then) =
+      __$$_NextRefillResponseCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'data') NextRefillData? data});
 
@@ -104,21 +86,21 @@ abstract class _$NextRefillResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$NextRefillResponseCopyWithImpl<$Res>
+class __$$_NextRefillResponseCopyWithImpl<$Res>
     extends _$NextRefillResponseCopyWithImpl<$Res>
-    implements _$NextRefillResponseCopyWith<$Res> {
-  __$NextRefillResponseCopyWithImpl(
-      _NextRefillResponse _value, $Res Function(_NextRefillResponse) _then)
-      : super(_value, (v) => _then(v as _NextRefillResponse));
+    implements _$$_NextRefillResponseCopyWith<$Res> {
+  __$$_NextRefillResponseCopyWithImpl(
+      _$_NextRefillResponse _value, $Res Function(_$_NextRefillResponse) _then)
+      : super(_value, (v) => _then(v as _$_NextRefillResponse));
 
   @override
-  _NextRefillResponse get _value => super._value as _NextRefillResponse;
+  _$_NextRefillResponse get _value => super._value as _$_NextRefillResponse;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_NextRefillResponse(
+    return _then(_$_NextRefillResponse(
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -148,18 +130,20 @@ class _$_NextRefillResponse implements _NextRefillResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NextRefillResponse &&
+            other is _$_NextRefillResponse &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
-  _$NextRefillResponseCopyWith<_NextRefillResponse> get copyWith =>
-      __$NextRefillResponseCopyWithImpl<_NextRefillResponse>(this, _$identity);
+  _$$_NextRefillResponseCopyWith<_$_NextRefillResponse> get copyWith =>
+      __$$_NextRefillResponseCopyWithImpl<_$_NextRefillResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -168,7 +152,8 @@ class _$_NextRefillResponse implements _NextRefillResponse {
 }
 
 abstract class _NextRefillResponse implements NextRefillResponse {
-  factory _NextRefillResponse({@JsonKey(name: 'data') NextRefillData? data}) =
+  factory _NextRefillResponse(
+          {@JsonKey(name: 'data') final NextRefillData? data}) =
       _$_NextRefillResponse;
 
   factory _NextRefillResponse.fromJson(Map<String, dynamic> json) =
@@ -176,9 +161,9 @@ abstract class _NextRefillResponse implements NextRefillResponse {
 
   @override
   @JsonKey(name: 'data')
-  NextRefillData? get data;
+  NextRefillData? get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NextRefillResponseCopyWith<_NextRefillResponse> get copyWith =>
+  _$$_NextRefillResponseCopyWith<_$_NextRefillResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,37 +12,11 @@ part of 'contraceptive_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ContraceptiveState _$ContraceptiveStateFromJson(Map<String, dynamic> json) {
   return _ContraceptiveState.fromJson(json);
 }
-
-/// @nodoc
-class _$ContraceptiveStateTearOff {
-  const _$ContraceptiveStateTearOff();
-
-  _ContraceptiveState call(
-      {@JsonKey(name: 'getScreeningToolQuestions')
-          ScreeningQuestionsList? screeningQuestions,
-      bool? errorFetchingQuestions,
-      bool? errorAnsweringQuestions,
-      bool? timeoutFetchingQuestions}) {
-    return _ContraceptiveState(
-      screeningQuestions: screeningQuestions,
-      errorFetchingQuestions: errorFetchingQuestions,
-      errorAnsweringQuestions: errorAnsweringQuestions,
-      timeoutFetchingQuestions: timeoutFetchingQuestions,
-    );
-  }
-
-  ContraceptiveState fromJson(Map<String, Object?> json) {
-    return ContraceptiveState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ContraceptiveState = _$ContraceptiveStateTearOff();
 
 /// @nodoc
 mixin _$ContraceptiveState {
@@ -124,11 +98,11 @@ class _$ContraceptiveStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ContraceptiveStateCopyWith<$Res>
+abstract class _$$_ContraceptiveStateCopyWith<$Res>
     implements $ContraceptiveStateCopyWith<$Res> {
-  factory _$ContraceptiveStateCopyWith(
-          _ContraceptiveState value, $Res Function(_ContraceptiveState) then) =
-      __$ContraceptiveStateCopyWithImpl<$Res>;
+  factory _$$_ContraceptiveStateCopyWith(_$_ContraceptiveState value,
+          $Res Function(_$_ContraceptiveState) then) =
+      __$$_ContraceptiveStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
@@ -142,15 +116,15 @@ abstract class _$ContraceptiveStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ContraceptiveStateCopyWithImpl<$Res>
+class __$$_ContraceptiveStateCopyWithImpl<$Res>
     extends _$ContraceptiveStateCopyWithImpl<$Res>
-    implements _$ContraceptiveStateCopyWith<$Res> {
-  __$ContraceptiveStateCopyWithImpl(
-      _ContraceptiveState _value, $Res Function(_ContraceptiveState) _then)
-      : super(_value, (v) => _then(v as _ContraceptiveState));
+    implements _$$_ContraceptiveStateCopyWith<$Res> {
+  __$$_ContraceptiveStateCopyWithImpl(
+      _$_ContraceptiveState _value, $Res Function(_$_ContraceptiveState) _then)
+      : super(_value, (v) => _then(v as _$_ContraceptiveState));
 
   @override
-  _ContraceptiveState get _value => super._value as _ContraceptiveState;
+  _$_ContraceptiveState get _value => super._value as _$_ContraceptiveState;
 
   @override
   $Res call({
@@ -159,7 +133,7 @@ class __$ContraceptiveStateCopyWithImpl<$Res>
     Object? errorAnsweringQuestions = freezed,
     Object? timeoutFetchingQuestions = freezed,
   }) {
-    return _then(_ContraceptiveState(
+    return _then(_$_ContraceptiveState(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
@@ -211,7 +185,7 @@ class _$_ContraceptiveState implements _ContraceptiveState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ContraceptiveState &&
+            other is _$_ContraceptiveState &&
             const DeepCollectionEquality()
                 .equals(other.screeningQuestions, screeningQuestions) &&
             const DeepCollectionEquality()
@@ -222,6 +196,7 @@ class _$_ContraceptiveState implements _ContraceptiveState {
                 other.timeoutFetchingQuestions, timeoutFetchingQuestions));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -232,8 +207,9 @@ class _$_ContraceptiveState implements _ContraceptiveState {
 
   @JsonKey(ignore: true)
   @override
-  _$ContraceptiveStateCopyWith<_ContraceptiveState> get copyWith =>
-      __$ContraceptiveStateCopyWithImpl<_ContraceptiveState>(this, _$identity);
+  _$$_ContraceptiveStateCopyWith<_$_ContraceptiveState> get copyWith =>
+      __$$_ContraceptiveStateCopyWithImpl<_$_ContraceptiveState>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -244,25 +220,26 @@ class _$_ContraceptiveState implements _ContraceptiveState {
 abstract class _ContraceptiveState implements ContraceptiveState {
   factory _ContraceptiveState(
       {@JsonKey(name: 'getScreeningToolQuestions')
-          ScreeningQuestionsList? screeningQuestions,
-      bool? errorFetchingQuestions,
-      bool? errorAnsweringQuestions,
-      bool? timeoutFetchingQuestions}) = _$_ContraceptiveState;
+          final ScreeningQuestionsList? screeningQuestions,
+      final bool? errorFetchingQuestions,
+      final bool? errorAnsweringQuestions,
+      final bool? timeoutFetchingQuestions}) = _$_ContraceptiveState;
 
   factory _ContraceptiveState.fromJson(Map<String, dynamic> json) =
       _$_ContraceptiveState.fromJson;
 
   @override
   @JsonKey(name: 'getScreeningToolQuestions')
-  ScreeningQuestionsList? get screeningQuestions;
+  ScreeningQuestionsList? get screeningQuestions =>
+      throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingQuestions;
+  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
   @override
-  bool? get errorAnsweringQuestions;
+  bool? get errorAnsweringQuestions => throw _privateConstructorUsedError;
   @override
-  bool? get timeoutFetchingQuestions;
+  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ContraceptiveStateCopyWith<_ContraceptiveState> get copyWith =>
+  _$$_ContraceptiveStateCopyWith<_$_ContraceptiveState> get copyWith =>
       throw _privateConstructorUsedError;
 }

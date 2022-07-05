@@ -30,7 +30,7 @@ class _SavedPostPageState extends State<SavedPostPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       final SavedContentState? state = StoreProvider.state<AppState>(context)
           ?.contentState
           ?.savedContentState;

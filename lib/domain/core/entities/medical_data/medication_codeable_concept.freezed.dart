@@ -12,30 +12,12 @@ part of 'medication_codeable_concept.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MedicationCodeableConcept _$MedicationCodeableConceptFromJson(
     Map<String, dynamic> json) {
   return _MedicationCodeableConcept.fromJson(json);
 }
-
-/// @nodoc
-class _$MedicationCodeableConceptTearOff {
-  const _$MedicationCodeableConceptTearOff();
-
-  _MedicationCodeableConcept call({@JsonKey(name: 'Text') String? text}) {
-    return _MedicationCodeableConcept(
-      text: text,
-    );
-  }
-
-  MedicationCodeableConcept fromJson(Map<String, Object?> json) {
-    return MedicationCodeableConcept.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MedicationCodeableConcept = _$MedicationCodeableConceptTearOff();
 
 /// @nodoc
 mixin _$MedicationCodeableConcept {
@@ -79,32 +61,34 @@ class _$MedicationCodeableConceptCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MedicationCodeableConceptCopyWith<$Res>
+abstract class _$$_MedicationCodeableConceptCopyWith<$Res>
     implements $MedicationCodeableConceptCopyWith<$Res> {
-  factory _$MedicationCodeableConceptCopyWith(_MedicationCodeableConcept value,
-          $Res Function(_MedicationCodeableConcept) then) =
-      __$MedicationCodeableConceptCopyWithImpl<$Res>;
+  factory _$$_MedicationCodeableConceptCopyWith(
+          _$_MedicationCodeableConcept value,
+          $Res Function(_$_MedicationCodeableConcept) then) =
+      __$$_MedicationCodeableConceptCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'Text') String? text});
 }
 
 /// @nodoc
-class __$MedicationCodeableConceptCopyWithImpl<$Res>
+class __$$_MedicationCodeableConceptCopyWithImpl<$Res>
     extends _$MedicationCodeableConceptCopyWithImpl<$Res>
-    implements _$MedicationCodeableConceptCopyWith<$Res> {
-  __$MedicationCodeableConceptCopyWithImpl(_MedicationCodeableConcept _value,
-      $Res Function(_MedicationCodeableConcept) _then)
-      : super(_value, (v) => _then(v as _MedicationCodeableConcept));
+    implements _$$_MedicationCodeableConceptCopyWith<$Res> {
+  __$$_MedicationCodeableConceptCopyWithImpl(
+      _$_MedicationCodeableConcept _value,
+      $Res Function(_$_MedicationCodeableConcept) _then)
+      : super(_value, (v) => _then(v as _$_MedicationCodeableConcept));
 
   @override
-  _MedicationCodeableConcept get _value =>
-      super._value as _MedicationCodeableConcept;
+  _$_MedicationCodeableConcept get _value =>
+      super._value as _$_MedicationCodeableConcept;
 
   @override
   $Res call({
     Object? text = freezed,
   }) {
-    return _then(_MedicationCodeableConcept(
+    return _then(_$_MedicationCodeableConcept(
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -134,20 +118,20 @@ class _$_MedicationCodeableConcept implements _MedicationCodeableConcept {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MedicationCodeableConcept &&
+            other is _$_MedicationCodeableConcept &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
-  _$MedicationCodeableConceptCopyWith<_MedicationCodeableConcept>
-      get copyWith =>
-          __$MedicationCodeableConceptCopyWithImpl<_MedicationCodeableConcept>(
-              this, _$identity);
+  _$$_MedicationCodeableConceptCopyWith<_$_MedicationCodeableConcept>
+      get copyWith => __$$_MedicationCodeableConceptCopyWithImpl<
+          _$_MedicationCodeableConcept>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -156,7 +140,8 @@ class _$_MedicationCodeableConcept implements _MedicationCodeableConcept {
 }
 
 abstract class _MedicationCodeableConcept implements MedicationCodeableConcept {
-  factory _MedicationCodeableConcept({@JsonKey(name: 'Text') String? text}) =
+  factory _MedicationCodeableConcept(
+          {@JsonKey(name: 'Text') final String? text}) =
       _$_MedicationCodeableConcept;
 
   factory _MedicationCodeableConcept.fromJson(Map<String, dynamic> json) =
@@ -164,9 +149,9 @@ abstract class _MedicationCodeableConcept implements MedicationCodeableConcept {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text;
+  String? get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MedicationCodeableConceptCopyWith<_MedicationCodeableConcept>
+  _$$_MedicationCodeableConceptCopyWith<_$_MedicationCodeableConcept>
       get copyWith => throw _privateConstructorUsedError;
 }

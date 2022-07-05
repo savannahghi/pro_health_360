@@ -12,36 +12,11 @@ part of 'appointments_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AppointmentState _$AppointmentStateFromJson(Map<String, dynamic> json) {
   return _AppointmentState.fromJson(json);
 }
-
-/// @nodoc
-class _$AppointmentStateTearOff {
-  const _$AppointmentStateTearOff();
-
-  _AppointmentState call(
-      {@JsonKey(name: 'appointments') List<Appointment>? appointments,
-      int? currentPage,
-      bool? hasNextPage,
-      bool? errorFetchingAppointments}) {
-    return _AppointmentState(
-      appointments: appointments,
-      currentPage: currentPage,
-      hasNextPage: hasNextPage,
-      errorFetchingAppointments: errorFetchingAppointments,
-    );
-  }
-
-  AppointmentState fromJson(Map<String, Object?> json) {
-    return AppointmentState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AppointmentState = _$AppointmentStateTearOff();
 
 /// @nodoc
 mixin _$AppointmentState {
@@ -107,11 +82,11 @@ class _$AppointmentStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AppointmentStateCopyWith<$Res>
+abstract class _$$_AppointmentStateCopyWith<$Res>
     implements $AppointmentStateCopyWith<$Res> {
-  factory _$AppointmentStateCopyWith(
-          _AppointmentState value, $Res Function(_AppointmentState) then) =
-      __$AppointmentStateCopyWithImpl<$Res>;
+  factory _$$_AppointmentStateCopyWith(
+          _$_AppointmentState value, $Res Function(_$_AppointmentState) then) =
+      __$$_AppointmentStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'appointments') List<Appointment>? appointments,
@@ -121,15 +96,15 @@ abstract class _$AppointmentStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AppointmentStateCopyWithImpl<$Res>
+class __$$_AppointmentStateCopyWithImpl<$Res>
     extends _$AppointmentStateCopyWithImpl<$Res>
-    implements _$AppointmentStateCopyWith<$Res> {
-  __$AppointmentStateCopyWithImpl(
-      _AppointmentState _value, $Res Function(_AppointmentState) _then)
-      : super(_value, (v) => _then(v as _AppointmentState));
+    implements _$$_AppointmentStateCopyWith<$Res> {
+  __$$_AppointmentStateCopyWithImpl(
+      _$_AppointmentState _value, $Res Function(_$_AppointmentState) _then)
+      : super(_value, (v) => _then(v as _$_AppointmentState));
 
   @override
-  _AppointmentState get _value => super._value as _AppointmentState;
+  _$_AppointmentState get _value => super._value as _$_AppointmentState;
 
   @override
   $Res call({
@@ -138,9 +113,9 @@ class __$AppointmentStateCopyWithImpl<$Res>
     Object? hasNextPage = freezed,
     Object? errorFetchingAppointments = freezed,
   }) {
-    return _then(_AppointmentState(
+    return _then(_$_AppointmentState(
       appointments: appointments == freezed
-          ? _value.appointments
+          ? _value._appointments
           : appointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>?,
       currentPage: currentPage == freezed
@@ -163,17 +138,25 @@ class __$AppointmentStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppointmentState implements _AppointmentState {
   _$_AppointmentState(
-      {@JsonKey(name: 'appointments') this.appointments,
+      {@JsonKey(name: 'appointments') final List<Appointment>? appointments,
       this.currentPage,
       this.hasNextPage,
-      this.errorFetchingAppointments});
+      this.errorFetchingAppointments})
+      : _appointments = appointments;
 
   factory _$_AppointmentState.fromJson(Map<String, dynamic> json) =>
       _$$_AppointmentStateFromJson(json);
 
+  final List<Appointment>? _appointments;
   @override
   @JsonKey(name: 'appointments')
-  final List<Appointment>? appointments;
+  List<Appointment>? get appointments {
+    final value = _appointments;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final int? currentPage;
   @override
@@ -190,9 +173,9 @@ class _$_AppointmentState implements _AppointmentState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AppointmentState &&
+            other is _$_AppointmentState &&
             const DeepCollectionEquality()
-                .equals(other.appointments, appointments) &&
+                .equals(other._appointments, _appointments) &&
             const DeepCollectionEquality()
                 .equals(other.currentPage, currentPage) &&
             const DeepCollectionEquality()
@@ -201,18 +184,19 @@ class _$_AppointmentState implements _AppointmentState {
                 other.errorFetchingAppointments, errorFetchingAppointments));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(appointments),
+      const DeepCollectionEquality().hash(_appointments),
       const DeepCollectionEquality().hash(currentPage),
       const DeepCollectionEquality().hash(hasNextPage),
       const DeepCollectionEquality().hash(errorFetchingAppointments));
 
   @JsonKey(ignore: true)
   @override
-  _$AppointmentStateCopyWith<_AppointmentState> get copyWith =>
-      __$AppointmentStateCopyWithImpl<_AppointmentState>(this, _$identity);
+  _$$_AppointmentStateCopyWith<_$_AppointmentState> get copyWith =>
+      __$$_AppointmentStateCopyWithImpl<_$_AppointmentState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -222,25 +206,25 @@ class _$_AppointmentState implements _AppointmentState {
 
 abstract class _AppointmentState implements AppointmentState {
   factory _AppointmentState(
-      {@JsonKey(name: 'appointments') List<Appointment>? appointments,
-      int? currentPage,
-      bool? hasNextPage,
-      bool? errorFetchingAppointments}) = _$_AppointmentState;
+      {@JsonKey(name: 'appointments') final List<Appointment>? appointments,
+      final int? currentPage,
+      final bool? hasNextPage,
+      final bool? errorFetchingAppointments}) = _$_AppointmentState;
 
   factory _AppointmentState.fromJson(Map<String, dynamic> json) =
       _$_AppointmentState.fromJson;
 
   @override
   @JsonKey(name: 'appointments')
-  List<Appointment>? get appointments;
+  List<Appointment>? get appointments => throw _privateConstructorUsedError;
   @override
-  int? get currentPage;
+  int? get currentPage => throw _privateConstructorUsedError;
   @override
-  bool? get hasNextPage;
+  bool? get hasNextPage => throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingAppointments;
+  bool? get errorFetchingAppointments => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AppointmentStateCopyWith<_AppointmentState> get copyWith =>
+  _$$_AppointmentStateCopyWith<_$_AppointmentState> get copyWith =>
       throw _privateConstructorUsedError;
 }

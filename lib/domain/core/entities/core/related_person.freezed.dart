@@ -12,58 +12,11 @@ part of 'related_person.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 RelatedPerson _$RelatedPersonFromJson(Map<String, dynamic> json) {
   return _RelatedPerson.fromJson(json);
 }
-
-/// @nodoc
-class _$RelatedPersonTearOff {
-  const _$RelatedPersonTearOff();
-
-  _RelatedPerson call(
-      {@JsonKey(name: 'active')
-          bool? active,
-      @JsonKey(name: 'relatedTo')
-          String? relatedTo,
-      @JsonKey(name: 'relationshipType', defaultValue: RelationshipType.UNKNOWN)
-          RelationshipType? relationshipType,
-      @JsonKey(name: 'firstName')
-          String? firstName,
-      @JsonKey(name: 'lastName')
-          String? lastName,
-      @JsonKey(name: 'otherName')
-          String? otherName,
-      @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-          Gender? gender,
-      @JsonKey(name: 'dateOfBirth')
-          String? dateOfBirth,
-      @JsonKey(name: 'addresses')
-          List<Address>? addresses,
-      @JsonKey(name: 'contacts')
-          List<Contact>? contacts}) {
-    return _RelatedPerson(
-      active: active,
-      relatedTo: relatedTo,
-      relationshipType: relationshipType,
-      firstName: firstName,
-      lastName: lastName,
-      otherName: otherName,
-      gender: gender,
-      dateOfBirth: dateOfBirth,
-      addresses: addresses,
-      contacts: contacts,
-    );
-  }
-
-  RelatedPerson fromJson(Map<String, Object?> json) {
-    return RelatedPerson.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $RelatedPerson = _$RelatedPersonTearOff();
 
 /// @nodoc
 mixin _$RelatedPerson {
@@ -190,11 +143,11 @@ class _$RelatedPersonCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$RelatedPersonCopyWith<$Res>
+abstract class _$$_RelatedPersonCopyWith<$Res>
     implements $RelatedPersonCopyWith<$Res> {
-  factory _$RelatedPersonCopyWith(
-          _RelatedPerson value, $Res Function(_RelatedPerson) then) =
-      __$RelatedPersonCopyWithImpl<$Res>;
+  factory _$$_RelatedPersonCopyWith(
+          _$_RelatedPerson value, $Res Function(_$_RelatedPerson) then) =
+      __$$_RelatedPersonCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'active')
@@ -220,15 +173,15 @@ abstract class _$RelatedPersonCopyWith<$Res>
 }
 
 /// @nodoc
-class __$RelatedPersonCopyWithImpl<$Res>
+class __$$_RelatedPersonCopyWithImpl<$Res>
     extends _$RelatedPersonCopyWithImpl<$Res>
-    implements _$RelatedPersonCopyWith<$Res> {
-  __$RelatedPersonCopyWithImpl(
-      _RelatedPerson _value, $Res Function(_RelatedPerson) _then)
-      : super(_value, (v) => _then(v as _RelatedPerson));
+    implements _$$_RelatedPersonCopyWith<$Res> {
+  __$$_RelatedPersonCopyWithImpl(
+      _$_RelatedPerson _value, $Res Function(_$_RelatedPerson) _then)
+      : super(_value, (v) => _then(v as _$_RelatedPerson));
 
   @override
-  _RelatedPerson get _value => super._value as _RelatedPerson;
+  _$_RelatedPerson get _value => super._value as _$_RelatedPerson;
 
   @override
   $Res call({
@@ -243,7 +196,7 @@ class __$RelatedPersonCopyWithImpl<$Res>
     Object? addresses = freezed,
     Object? contacts = freezed,
   }) {
-    return _then(_RelatedPerson(
+    return _then(_$_RelatedPerson(
       active: active == freezed
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
@@ -277,11 +230,11 @@ class __$RelatedPersonCopyWithImpl<$Res>
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String?,
       addresses: addresses == freezed
-          ? _value.addresses
+          ? _value._addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>?,
       contacts: contacts == freezed
-          ? _value.contacts
+          ? _value._contacts
           : contacts // ignore: cast_nullable_to_non_nullable
               as List<Contact>?,
     ));
@@ -309,9 +262,11 @@ class _$_RelatedPerson implements _RelatedPerson {
       @JsonKey(name: 'dateOfBirth')
           this.dateOfBirth,
       @JsonKey(name: 'addresses')
-          this.addresses,
+          final List<Address>? addresses,
       @JsonKey(name: 'contacts')
-          this.contacts});
+          final List<Contact>? contacts})
+      : _addresses = addresses,
+        _contacts = contacts;
 
   factory _$_RelatedPerson.fromJson(Map<String, dynamic> json) =>
       _$$_RelatedPersonFromJson(json);
@@ -340,12 +295,25 @@ class _$_RelatedPerson implements _RelatedPerson {
   @override
   @JsonKey(name: 'dateOfBirth')
   final String? dateOfBirth;
+  final List<Address>? _addresses;
   @override
   @JsonKey(name: 'addresses')
-  final List<Address>? addresses;
+  List<Address>? get addresses {
+    final value = _addresses;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Contact>? _contacts;
   @override
   @JsonKey(name: 'contacts')
-  final List<Contact>? contacts;
+  List<Contact>? get contacts {
+    final value = _contacts;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -356,7 +324,7 @@ class _$_RelatedPerson implements _RelatedPerson {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RelatedPerson &&
+            other is _$_RelatedPerson &&
             const DeepCollectionEquality().equals(other.active, active) &&
             const DeepCollectionEquality().equals(other.relatedTo, relatedTo) &&
             const DeepCollectionEquality()
@@ -367,10 +335,12 @@ class _$_RelatedPerson implements _RelatedPerson {
             const DeepCollectionEquality().equals(other.gender, gender) &&
             const DeepCollectionEquality()
                 .equals(other.dateOfBirth, dateOfBirth) &&
-            const DeepCollectionEquality().equals(other.addresses, addresses) &&
-            const DeepCollectionEquality().equals(other.contacts, contacts));
+            const DeepCollectionEquality()
+                .equals(other._addresses, _addresses) &&
+            const DeepCollectionEquality().equals(other._contacts, _contacts));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -382,13 +352,13 @@ class _$_RelatedPerson implements _RelatedPerson {
       const DeepCollectionEquality().hash(otherName),
       const DeepCollectionEquality().hash(gender),
       const DeepCollectionEquality().hash(dateOfBirth),
-      const DeepCollectionEquality().hash(addresses),
-      const DeepCollectionEquality().hash(contacts));
+      const DeepCollectionEquality().hash(_addresses),
+      const DeepCollectionEquality().hash(_contacts));
 
   @JsonKey(ignore: true)
   @override
-  _$RelatedPersonCopyWith<_RelatedPerson> get copyWith =>
-      __$RelatedPersonCopyWithImpl<_RelatedPerson>(this, _$identity);
+  _$$_RelatedPersonCopyWith<_$_RelatedPerson> get copyWith =>
+      __$$_RelatedPersonCopyWithImpl<_$_RelatedPerson>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -399,61 +369,61 @@ class _$_RelatedPerson implements _RelatedPerson {
 abstract class _RelatedPerson implements RelatedPerson {
   factory _RelatedPerson(
       {@JsonKey(name: 'active')
-          bool? active,
+          final bool? active,
       @JsonKey(name: 'relatedTo')
-          String? relatedTo,
+          final String? relatedTo,
       @JsonKey(name: 'relationshipType', defaultValue: RelationshipType.UNKNOWN)
-          RelationshipType? relationshipType,
+          final RelationshipType? relationshipType,
       @JsonKey(name: 'firstName')
-          String? firstName,
+          final String? firstName,
       @JsonKey(name: 'lastName')
-          String? lastName,
+          final String? lastName,
       @JsonKey(name: 'otherName')
-          String? otherName,
+          final String? otherName,
       @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-          Gender? gender,
+          final Gender? gender,
       @JsonKey(name: 'dateOfBirth')
-          String? dateOfBirth,
+          final String? dateOfBirth,
       @JsonKey(name: 'addresses')
-          List<Address>? addresses,
+          final List<Address>? addresses,
       @JsonKey(name: 'contacts')
-          List<Contact>? contacts}) = _$_RelatedPerson;
+          final List<Contact>? contacts}) = _$_RelatedPerson;
 
   factory _RelatedPerson.fromJson(Map<String, dynamic> json) =
       _$_RelatedPerson.fromJson;
 
   @override
   @JsonKey(name: 'active')
-  bool? get active;
+  bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'relatedTo')
-  String? get relatedTo;
+  String? get relatedTo => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'relationshipType', defaultValue: RelationshipType.UNKNOWN)
-  RelationshipType? get relationshipType;
+  RelationshipType? get relationshipType => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'firstName')
-  String? get firstName;
+  String? get firstName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'lastName')
-  String? get lastName;
+  String? get lastName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'otherName')
-  String? get otherName;
+  String? get otherName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-  Gender? get gender;
+  Gender? get gender => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'dateOfBirth')
-  String? get dateOfBirth;
+  String? get dateOfBirth => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'addresses')
-  List<Address>? get addresses;
+  List<Address>? get addresses => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'contacts')
-  List<Contact>? get contacts;
+  List<Contact>? get contacts => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RelatedPersonCopyWith<_RelatedPerson> get copyWith =>
+  _$$_RelatedPersonCopyWith<_$_RelatedPerson> get copyWith =>
       throw _privateConstructorUsedError;
 }

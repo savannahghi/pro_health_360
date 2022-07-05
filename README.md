@@ -4,11 +4,11 @@
 
 ### Project prerequisites
 
-1. The **ProHealth360** app runs on Flutter version 2.5.3. To check the flutter version and channel installed in your machine run `flutter --version`.
+1. The **ProHealth360** app runs on Flutter version 3.0.4. To check the flutter version and channel installed in your machine run `flutter --version`.
 
 2. To switch from another channel of Flutter to the stable channel run `flutter channel stable`.
 
-3. To install Flutter version 2.5.3 run `flutter version v2.5.3`.
+3. To install Flutter version 3.0.4 run `flutter version v3.0.4`.
 
 Looks like we are done with the prerequisites :-)
 
@@ -21,9 +21,9 @@ To dig into the data. go to [Stat Counter](https://gs.statcounter.com/screen-res
 
 Examples of apps serving the Kenyan market and doing well with portrait lock are Mpesa and Bolt.
 
-### How to setup and run myafyahub
+### How to setup and run ProHealth360
 
-1. Use `git clone git@github.com:savannahghi/myafyahub.git` to clone this project.
+1. Use `git clone git@github.com:savannahghi/pro_health_360.git` to clone this project.
 
 2. Navigate into the project directory.
 
@@ -59,7 +59,7 @@ Examples of apps serving the Kenyan market and doing well with portrait lock are
 }
 ```
 
-**To run the app(with dev and prod configurations/flavors) on iOS**
+### To run the app(with dev and prod configurations/flavors) on iOS**
 
 run this on your terminal for the dev config
 
@@ -99,7 +99,7 @@ and this for the prod config
 }
 ```
 
-1. Next, you need to complete local keystore setup. For more information, visit [app signing](git@github.com:savannahghi/myafyahub.githttps://developer.android.com/studio/publish/app-signing) in the Android Developers blog
+1. Next, you need to complete local keystore setup. For more information, visit [app signing](git@github.com:savannahghi/pro_health_360.githttps://developer.android.com/studio/publish/app-signing) in the Android Developers blog
 
 2. Run your emulator. See instructions on how to [run an emulator](https://flutter.dev/docs/get-started/install/linux#set-up-the-android-emulator).
 

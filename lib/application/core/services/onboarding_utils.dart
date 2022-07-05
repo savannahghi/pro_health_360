@@ -15,7 +15,7 @@ import 'package:pro_health_360/domain/core/value_objects/enums.dart';
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 void clearAllFlags(BuildContext context) {
-  SchedulerBinding.instance?.addPostFrameCallback((_) {
+  SchedulerBinding.instance.addPostFrameCallback((_) {
     StoreProvider.dispatch(context, WaitAction<AppState>.clear());
   });
 }

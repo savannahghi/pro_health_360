@@ -12,38 +12,11 @@ part of 'groups_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GroupState _$GroupStateFromJson(Map<String, dynamic> json) {
   return _GroupState.fromJson(json);
 }
-
-/// @nodoc
-class _$GroupStateTearOff {
-  const _$GroupStateTearOff();
-
-  _GroupState call(
-      {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
-      @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
-      List<Community?>? communities,
-      bool? isModerator,
-      bool? isOwner}) {
-    return _GroupState(
-      recommendedGroups: recommendedGroups,
-      groupMembers: groupMembers,
-      communities: communities,
-      isModerator: isModerator,
-      isOwner: isOwner,
-    );
-  }
-
-  GroupState fromJson(Map<String, Object?> json) {
-    return GroupState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $GroupState = _$GroupStateTearOff();
 
 /// @nodoc
 mixin _$GroupState {
@@ -116,10 +89,11 @@ class _$GroupStateCopyWithImpl<$Res> implements $GroupStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$GroupStateCopyWith<$Res> implements $GroupStateCopyWith<$Res> {
-  factory _$GroupStateCopyWith(
-          _GroupState value, $Res Function(_GroupState) then) =
-      __$GroupStateCopyWithImpl<$Res>;
+abstract class _$$_GroupStateCopyWith<$Res>
+    implements $GroupStateCopyWith<$Res> {
+  factory _$$_GroupStateCopyWith(
+          _$_GroupState value, $Res Function(_$_GroupState) then) =
+      __$$_GroupStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
@@ -130,14 +104,14 @@ abstract class _$GroupStateCopyWith<$Res> implements $GroupStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
-    implements _$GroupStateCopyWith<$Res> {
-  __$GroupStateCopyWithImpl(
-      _GroupState _value, $Res Function(_GroupState) _then)
-      : super(_value, (v) => _then(v as _GroupState));
+class __$$_GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
+    implements _$$_GroupStateCopyWith<$Res> {
+  __$$_GroupStateCopyWithImpl(
+      _$_GroupState _value, $Res Function(_$_GroupState) _then)
+      : super(_value, (v) => _then(v as _$_GroupState));
 
   @override
-  _GroupState get _value => super._value as _GroupState;
+  _$_GroupState get _value => super._value as _$_GroupState;
 
   @override
   $Res call({
@@ -147,17 +121,17 @@ class __$GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
     Object? isModerator = freezed,
     Object? isOwner = freezed,
   }) {
-    return _then(_GroupState(
+    return _then(_$_GroupState(
       recommendedGroups: recommendedGroups == freezed
-          ? _value.recommendedGroups
+          ? _value._recommendedGroups
           : recommendedGroups // ignore: cast_nullable_to_non_nullable
               as List<Group?>?,
       groupMembers: groupMembers == freezed
-          ? _value.groupMembers
+          ? _value._groupMembers
           : groupMembers // ignore: cast_nullable_to_non_nullable
               as List<GroupMember?>?,
       communities: communities == freezed
-          ? _value.communities
+          ? _value._communities
           : communities // ignore: cast_nullable_to_non_nullable
               as List<Community?>?,
       isModerator: isModerator == freezed
@@ -176,23 +150,49 @@ class __$GroupStateCopyWithImpl<$Res> extends _$GroupStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GroupState implements _GroupState {
   _$_GroupState(
-      {@JsonKey(name: 'recommendedCommunities') this.recommendedGroups,
-      @JsonKey(name: 'listCommunityMembers') this.groupMembers,
-      this.communities,
+      {@JsonKey(name: 'recommendedCommunities')
+          final List<Group?>? recommendedGroups,
+      @JsonKey(name: 'listCommunityMembers')
+          final List<GroupMember?>? groupMembers,
+      final List<Community?>? communities,
       this.isModerator,
-      this.isOwner});
+      this.isOwner})
+      : _recommendedGroups = recommendedGroups,
+        _groupMembers = groupMembers,
+        _communities = communities;
 
   factory _$_GroupState.fromJson(Map<String, dynamic> json) =>
       _$$_GroupStateFromJson(json);
 
+  final List<Group?>? _recommendedGroups;
   @override
   @JsonKey(name: 'recommendedCommunities')
-  final List<Group?>? recommendedGroups;
+  List<Group?>? get recommendedGroups {
+    final value = _recommendedGroups;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<GroupMember?>? _groupMembers;
   @override
   @JsonKey(name: 'listCommunityMembers')
-  final List<GroupMember?>? groupMembers;
+  List<GroupMember?>? get groupMembers {
+    final value = _groupMembers;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Community?>? _communities;
   @override
-  final List<Community?>? communities;
+  List<Community?>? get communities {
+    final value = _communities;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final bool? isModerator;
   @override
@@ -207,31 +207,32 @@ class _$_GroupState implements _GroupState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GroupState &&
+            other is _$_GroupState &&
             const DeepCollectionEquality()
-                .equals(other.recommendedGroups, recommendedGroups) &&
+                .equals(other._recommendedGroups, _recommendedGroups) &&
             const DeepCollectionEquality()
-                .equals(other.groupMembers, groupMembers) &&
+                .equals(other._groupMembers, _groupMembers) &&
             const DeepCollectionEquality()
-                .equals(other.communities, communities) &&
+                .equals(other._communities, _communities) &&
             const DeepCollectionEquality()
                 .equals(other.isModerator, isModerator) &&
             const DeepCollectionEquality().equals(other.isOwner, isOwner));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(recommendedGroups),
-      const DeepCollectionEquality().hash(groupMembers),
-      const DeepCollectionEquality().hash(communities),
+      const DeepCollectionEquality().hash(_recommendedGroups),
+      const DeepCollectionEquality().hash(_groupMembers),
+      const DeepCollectionEquality().hash(_communities),
       const DeepCollectionEquality().hash(isModerator),
       const DeepCollectionEquality().hash(isOwner));
 
   @JsonKey(ignore: true)
   @override
-  _$GroupStateCopyWith<_GroupState> get copyWith =>
-      __$GroupStateCopyWithImpl<_GroupState>(this, _$identity);
+  _$$_GroupStateCopyWith<_$_GroupState> get copyWith =>
+      __$$_GroupStateCopyWithImpl<_$_GroupState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -241,29 +242,31 @@ class _$_GroupState implements _GroupState {
 
 abstract class _GroupState implements GroupState {
   factory _GroupState(
-      {@JsonKey(name: 'recommendedCommunities') List<Group?>? recommendedGroups,
-      @JsonKey(name: 'listCommunityMembers') List<GroupMember?>? groupMembers,
-      List<Community?>? communities,
-      bool? isModerator,
-      bool? isOwner}) = _$_GroupState;
+      {@JsonKey(name: 'recommendedCommunities')
+          final List<Group?>? recommendedGroups,
+      @JsonKey(name: 'listCommunityMembers')
+          final List<GroupMember?>? groupMembers,
+      final List<Community?>? communities,
+      final bool? isModerator,
+      final bool? isOwner}) = _$_GroupState;
 
   factory _GroupState.fromJson(Map<String, dynamic> json) =
       _$_GroupState.fromJson;
 
   @override
   @JsonKey(name: 'recommendedCommunities')
-  List<Group?>? get recommendedGroups;
+  List<Group?>? get recommendedGroups => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'listCommunityMembers')
-  List<GroupMember?>? get groupMembers;
+  List<GroupMember?>? get groupMembers => throw _privateConstructorUsedError;
   @override
-  List<Community?>? get communities;
+  List<Community?>? get communities => throw _privateConstructorUsedError;
   @override
-  bool? get isModerator;
+  bool? get isModerator => throw _privateConstructorUsedError;
   @override
-  bool? get isOwner;
+  bool? get isOwner => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GroupStateCopyWith<_GroupState> get copyWith =>
+  _$$_GroupStateCopyWith<_$_GroupState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,30 +12,11 @@ part of 'saved_content.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SavedContent _$SavedContentFromJson(Map<String, dynamic> json) {
   return _SavedContent.fromJson(json);
 }
-
-/// @nodoc
-class _$SavedContentTearOff {
-  const _$SavedContentTearOff();
-
-  _SavedContent call(
-      {@JsonKey(name: 'getUserBookmarkedContent') FeedItems? savedContent}) {
-    return _SavedContent(
-      savedContent: savedContent,
-    );
-  }
-
-  SavedContent fromJson(Map<String, Object?> json) {
-    return SavedContent.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SavedContent = _$SavedContentTearOff();
 
 /// @nodoc
 mixin _$SavedContent {
@@ -92,11 +73,11 @@ class _$SavedContentCopyWithImpl<$Res> implements $SavedContentCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SavedContentCopyWith<$Res>
+abstract class _$$_SavedContentCopyWith<$Res>
     implements $SavedContentCopyWith<$Res> {
-  factory _$SavedContentCopyWith(
-          _SavedContent value, $Res Function(_SavedContent) then) =
-      __$SavedContentCopyWithImpl<$Res>;
+  factory _$$_SavedContentCopyWith(
+          _$_SavedContent value, $Res Function(_$_SavedContent) then) =
+      __$$_SavedContentCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getUserBookmarkedContent') FeedItems? savedContent});
@@ -106,20 +87,21 @@ abstract class _$SavedContentCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SavedContentCopyWithImpl<$Res> extends _$SavedContentCopyWithImpl<$Res>
-    implements _$SavedContentCopyWith<$Res> {
-  __$SavedContentCopyWithImpl(
-      _SavedContent _value, $Res Function(_SavedContent) _then)
-      : super(_value, (v) => _then(v as _SavedContent));
+class __$$_SavedContentCopyWithImpl<$Res>
+    extends _$SavedContentCopyWithImpl<$Res>
+    implements _$$_SavedContentCopyWith<$Res> {
+  __$$_SavedContentCopyWithImpl(
+      _$_SavedContent _value, $Res Function(_$_SavedContent) _then)
+      : super(_value, (v) => _then(v as _$_SavedContent));
 
   @override
-  _SavedContent get _value => super._value as _SavedContent;
+  _$_SavedContent get _value => super._value as _$_SavedContent;
 
   @override
   $Res call({
     Object? savedContent = freezed,
   }) {
-    return _then(_SavedContent(
+    return _then(_$_SavedContent(
       savedContent: savedContent == freezed
           ? _value.savedContent
           : savedContent // ignore: cast_nullable_to_non_nullable
@@ -150,19 +132,20 @@ class _$_SavedContent implements _SavedContent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SavedContent &&
+            other is _$_SavedContent &&
             const DeepCollectionEquality()
                 .equals(other.savedContent, savedContent));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(savedContent));
 
   @JsonKey(ignore: true)
   @override
-  _$SavedContentCopyWith<_SavedContent> get copyWith =>
-      __$SavedContentCopyWithImpl<_SavedContent>(this, _$identity);
+  _$$_SavedContentCopyWith<_$_SavedContent> get copyWith =>
+      __$$_SavedContentCopyWithImpl<_$_SavedContent>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -173,16 +156,16 @@ class _$_SavedContent implements _SavedContent {
 abstract class _SavedContent implements SavedContent {
   factory _SavedContent(
       {@JsonKey(name: 'getUserBookmarkedContent')
-          FeedItems? savedContent}) = _$_SavedContent;
+          final FeedItems? savedContent}) = _$_SavedContent;
 
   factory _SavedContent.fromJson(Map<String, dynamic> json) =
       _$_SavedContent.fromJson;
 
   @override
   @JsonKey(name: 'getUserBookmarkedContent')
-  FeedItems? get savedContent;
+  FeedItems? get savedContent => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SavedContentCopyWith<_SavedContent> get copyWith =>
+  _$$_SavedContentCopyWith<_$_SavedContent> get copyWith =>
       throw _privateConstructorUsedError;
 }

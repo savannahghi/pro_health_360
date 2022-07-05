@@ -12,30 +12,11 @@ part of 'reset_pin_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ResetPINState _$ResetPINStateFromJson(Map<String, dynamic> json) {
   return _ResetPINState.fromJson(json);
 }
-
-/// @nodoc
-class _$ResetPINStateTearOff {
-  const _$ResetPINStateTearOff();
-
-  _ResetPINState call({String? phone, bool? isPINSet}) {
-    return _ResetPINState(
-      phone: phone,
-      isPINSet: isPINSet,
-    );
-  }
-
-  ResetPINState fromJson(Map<String, Object?> json) {
-    return ResetPINState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ResetPINState = _$ResetPINStateTearOff();
 
 /// @nodoc
 mixin _$ResetPINState {
@@ -85,32 +66,32 @@ class _$ResetPINStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ResetPINStateCopyWith<$Res>
+abstract class _$$_ResetPINStateCopyWith<$Res>
     implements $ResetPINStateCopyWith<$Res> {
-  factory _$ResetPINStateCopyWith(
-          _ResetPINState value, $Res Function(_ResetPINState) then) =
-      __$ResetPINStateCopyWithImpl<$Res>;
+  factory _$$_ResetPINStateCopyWith(
+          _$_ResetPINState value, $Res Function(_$_ResetPINState) then) =
+      __$$_ResetPINStateCopyWithImpl<$Res>;
   @override
   $Res call({String? phone, bool? isPINSet});
 }
 
 /// @nodoc
-class __$ResetPINStateCopyWithImpl<$Res>
+class __$$_ResetPINStateCopyWithImpl<$Res>
     extends _$ResetPINStateCopyWithImpl<$Res>
-    implements _$ResetPINStateCopyWith<$Res> {
-  __$ResetPINStateCopyWithImpl(
-      _ResetPINState _value, $Res Function(_ResetPINState) _then)
-      : super(_value, (v) => _then(v as _ResetPINState));
+    implements _$$_ResetPINStateCopyWith<$Res> {
+  __$$_ResetPINStateCopyWithImpl(
+      _$_ResetPINState _value, $Res Function(_$_ResetPINState) _then)
+      : super(_value, (v) => _then(v as _$_ResetPINState));
 
   @override
-  _ResetPINState get _value => super._value as _ResetPINState;
+  _$_ResetPINState get _value => super._value as _$_ResetPINState;
 
   @override
   $Res call({
     Object? phone = freezed,
     Object? isPINSet = freezed,
   }) {
-    return _then(_ResetPINState(
+    return _then(_$_ResetPINState(
       phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -133,7 +114,8 @@ class _$_ResetPINState implements _ResetPINState {
 
   @override
   final String? phone;
-  @override //If the user has set their PIN
+//If the user has set their PIN
+  @override
   final bool? isPINSet;
 
   @override
@@ -145,11 +127,12 @@ class _$_ResetPINState implements _ResetPINState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ResetPINState &&
+            other is _$_ResetPINState &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.isPINSet, isPINSet));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -158,8 +141,8 @@ class _$_ResetPINState implements _ResetPINState {
 
   @JsonKey(ignore: true)
   @override
-  _$ResetPINStateCopyWith<_ResetPINState> get copyWith =>
-      __$ResetPINStateCopyWithImpl<_ResetPINState>(this, _$identity);
+  _$$_ResetPINStateCopyWith<_$_ResetPINState> get copyWith =>
+      __$$_ResetPINStateCopyWithImpl<_$_ResetPINState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -168,17 +151,18 @@ class _$_ResetPINState implements _ResetPINState {
 }
 
 abstract class _ResetPINState implements ResetPINState {
-  factory _ResetPINState({String? phone, bool? isPINSet}) = _$_ResetPINState;
+  factory _ResetPINState({final String? phone, final bool? isPINSet}) =
+      _$_ResetPINState;
 
   factory _ResetPINState.fromJson(Map<String, dynamic> json) =
       _$_ResetPINState.fromJson;
 
   @override
-  String? get phone;
+  String? get phone => throw _privateConstructorUsedError;
   @override //If the user has set their PIN
-  bool? get isPINSet;
+  bool? get isPINSet => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ResetPINStateCopyWith<_ResetPINState> get copyWith =>
+  _$$_ResetPINStateCopyWith<_$_ResetPINState> get copyWith =>
       throw _privateConstructorUsedError;
 }

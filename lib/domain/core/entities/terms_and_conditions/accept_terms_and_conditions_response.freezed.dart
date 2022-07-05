@@ -12,32 +12,12 @@ part of 'accept_terms_and_conditions_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AcceptTermsAndConditionsResponse _$AcceptTermsAndConditionsResponseFromJson(
     Map<String, dynamic> json) {
   return _AcceptTermsAndConditionsResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$AcceptTermsAndConditionsResponseTearOff {
-  const _$AcceptTermsAndConditionsResponseTearOff();
-
-  _AcceptTermsAndConditionsResponse call(
-      {@JsonKey(name: 'acceptTerms') required bool acceptTerms}) {
-    return _AcceptTermsAndConditionsResponse(
-      acceptTerms: acceptTerms,
-    );
-  }
-
-  AcceptTermsAndConditionsResponse fromJson(Map<String, Object?> json) {
-    return AcceptTermsAndConditionsResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AcceptTermsAndConditionsResponse =
-    _$AcceptTermsAndConditionsResponseTearOff();
 
 /// @nodoc
 mixin _$AcceptTermsAndConditionsResponse {
@@ -82,34 +62,34 @@ class _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AcceptTermsAndConditionsResponseCopyWith<$Res>
+abstract class _$$_AcceptTermsAndConditionsResponseCopyWith<$Res>
     implements $AcceptTermsAndConditionsResponseCopyWith<$Res> {
-  factory _$AcceptTermsAndConditionsResponseCopyWith(
-          _AcceptTermsAndConditionsResponse value,
-          $Res Function(_AcceptTermsAndConditionsResponse) then) =
-      __$AcceptTermsAndConditionsResponseCopyWithImpl<$Res>;
+  factory _$$_AcceptTermsAndConditionsResponseCopyWith(
+          _$_AcceptTermsAndConditionsResponse value,
+          $Res Function(_$_AcceptTermsAndConditionsResponse) then) =
+      __$$_AcceptTermsAndConditionsResponseCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'acceptTerms') bool acceptTerms});
 }
 
 /// @nodoc
-class __$AcceptTermsAndConditionsResponseCopyWithImpl<$Res>
+class __$$_AcceptTermsAndConditionsResponseCopyWithImpl<$Res>
     extends _$AcceptTermsAndConditionsResponseCopyWithImpl<$Res>
-    implements _$AcceptTermsAndConditionsResponseCopyWith<$Res> {
-  __$AcceptTermsAndConditionsResponseCopyWithImpl(
-      _AcceptTermsAndConditionsResponse _value,
-      $Res Function(_AcceptTermsAndConditionsResponse) _then)
-      : super(_value, (v) => _then(v as _AcceptTermsAndConditionsResponse));
+    implements _$$_AcceptTermsAndConditionsResponseCopyWith<$Res> {
+  __$$_AcceptTermsAndConditionsResponseCopyWithImpl(
+      _$_AcceptTermsAndConditionsResponse _value,
+      $Res Function(_$_AcceptTermsAndConditionsResponse) _then)
+      : super(_value, (v) => _then(v as _$_AcceptTermsAndConditionsResponse));
 
   @override
-  _AcceptTermsAndConditionsResponse get _value =>
-      super._value as _AcceptTermsAndConditionsResponse;
+  _$_AcceptTermsAndConditionsResponse get _value =>
+      super._value as _$_AcceptTermsAndConditionsResponse;
 
   @override
   $Res call({
     Object? acceptTerms = freezed,
   }) {
-    return _then(_AcceptTermsAndConditionsResponse(
+    return _then(_$_AcceptTermsAndConditionsResponse(
       acceptTerms: acceptTerms == freezed
           ? _value.acceptTerms
           : acceptTerms // ignore: cast_nullable_to_non_nullable
@@ -142,20 +122,22 @@ class _$_AcceptTermsAndConditionsResponse
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AcceptTermsAndConditionsResponse &&
+            other is _$_AcceptTermsAndConditionsResponse &&
             const DeepCollectionEquality()
                 .equals(other.acceptTerms, acceptTerms));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(acceptTerms));
 
   @JsonKey(ignore: true)
   @override
-  _$AcceptTermsAndConditionsResponseCopyWith<_AcceptTermsAndConditionsResponse>
-      get copyWith => __$AcceptTermsAndConditionsResponseCopyWithImpl<
-          _AcceptTermsAndConditionsResponse>(this, _$identity);
+  _$$_AcceptTermsAndConditionsResponseCopyWith<
+          _$_AcceptTermsAndConditionsResponse>
+      get copyWith => __$$_AcceptTermsAndConditionsResponseCopyWithImpl<
+          _$_AcceptTermsAndConditionsResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -166,7 +148,7 @@ class _$_AcceptTermsAndConditionsResponse
 abstract class _AcceptTermsAndConditionsResponse
     implements AcceptTermsAndConditionsResponse {
   factory _AcceptTermsAndConditionsResponse(
-          {@JsonKey(name: 'acceptTerms') required bool acceptTerms}) =
+          {@JsonKey(name: 'acceptTerms') required final bool acceptTerms}) =
       _$_AcceptTermsAndConditionsResponse;
 
   factory _AcceptTermsAndConditionsResponse.fromJson(
@@ -174,9 +156,10 @@ abstract class _AcceptTermsAndConditionsResponse
 
   @override
   @JsonKey(name: 'acceptTerms')
-  bool get acceptTerms;
+  bool get acceptTerms => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AcceptTermsAndConditionsResponseCopyWith<_AcceptTermsAndConditionsResponse>
+  _$$_AcceptTermsAndConditionsResponseCopyWith<
+          _$_AcceptTermsAndConditionsResponse>
       get copyWith => throw _privateConstructorUsedError;
 }

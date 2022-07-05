@@ -20,7 +20,7 @@ void main() {
   group('ScreeningToolsCarousel', () {
     late Store<AppState> store;
     setUp(() async {
-      await setupFirebaseAnalyticsMocks();
+      setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
       store = Store<AppState>(initialState: AppState.initial());
     });

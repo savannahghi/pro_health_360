@@ -29,6 +29,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart' as stream;
 
+import 'mock_utils.dart';
 import 'test_utils.dart';
 import 'package:firebase_analytics_platform_interface/firebase_analytics_platform_interface.dart';
 
@@ -2935,40 +2936,17 @@ final Map<String, dynamic> groupStateMock = <String, dynamic>{
 
 final MockFirebaseMessaging kMockMessagingPlatform = MockFirebaseMessaging();
 
+void setupFirebaseCoreMocks() {
+  TestFirebaseCoreHostApi.setup(MockFirebaseApp());
+}
+
 void setupFirebaseMessagingMocks() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFirebase.channel
-      .setMockMethodCallHandler((MethodCall call) async {
-    if (call.method == 'Firebase#initializeCore') {
-      return <Map<String, dynamic>>[
-        <String, dynamic>{
-          'name': defaultFirebaseAppName,
-          'options': <String, dynamic>{
-            'apiKey': '123',
-            'appId': '123',
-            'messagingSenderId': '123',
-            'projectId': '123',
-          },
-          'pluginConstants': <String, dynamic>{},
-        }
-      ];
-    }
+  setupFirebaseCoreMocks();
 
-    if (call.method == 'Firebase#initializeApp') {
-      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
-      return <String, dynamic>{
-        'name': args['appName'],
-        'options': args['options'],
-        'pluginConstants': <String, dynamic>{},
-      };
-    }
-
-    return null;
-  });
-
-  // // Mock Platform Interface Methods
-  // // ignore: invalid_use_of_protected_member
+  // Mock Platform Interface Methods
+  // ignore: invalid_use_of_protected_member
   when(kMockMessagingPlatform.delegateFor(app: anyNamed('app')))
       .thenReturn(kMockMessagingPlatform);
   // ignore: invalid_use_of_protected_member
@@ -2986,46 +2964,16 @@ Future<T> neverEndingFuture<T>() async {
   }
 }
 
-Future<void> setupFirebaseAnalyticsMocks({
-  Function(MethodCall)? updateLogFunc,
-}) async {
+final List<MethodCall> methodCallLog = <MethodCall>[];
+
+void setupFirebaseAnalyticsMocks([Callback? customHandlers]) {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFirebase.channel
-      .setMockMethodCallHandler((MethodCall call) async {
-    if (call.method == 'Firebase#initializeCore') {
-      return <Map<String, dynamic>>[
-        <String, dynamic>{
-          'name': defaultFirebaseAppName,
-          'options': <String, dynamic>{
-            'apiKey': '123',
-            'appId': '123',
-            'messagingSenderId': '123',
-            'projectId': '123',
-          },
-          'pluginConstants': <String, dynamic>{},
-        }
-      ];
-    }
-
-    if (call.method == 'Firebase#initializeApp') {
-      final Map<String, dynamic> args = call.arguments as Map<String, dynamic>;
-      return <String, dynamic>{
-        'name': args['appName'],
-        'options': args['options'],
-        'pluginConstants': <String, dynamic>{},
-      };
-    }
-
-    return null;
-  });
+  setupFirebaseCoreMocks();
 
   MethodChannelFirebaseAnalytics.channel
       .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (updateLogFunc != null) {
-      updateLogFunc.call(methodCall);
-    }
-
+    methodCallLog.add(methodCall);
     switch (methodCall.method) {
       default:
         return false;

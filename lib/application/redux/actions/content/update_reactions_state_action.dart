@@ -47,7 +47,7 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
 
     for (int i = 0; i < contentItems!.length; i++) {
       if (contentItems[i]?.contentID == contentID) {
-        contentItems[i] = contentItems[i]?.copyWith.call(
+        final Content? newContentItem = contentItems[i]?.copyWith.call(
               hasLiked: hasLiked ?? contentItems[i]?.hasLiked,
               hasSaved: hasSaved ?? contentItems[i]?.hasSaved,
               likeCount: updateLikeCount
@@ -57,6 +57,18 @@ class UpdateReactionStatusAction extends ReduxAction<AppState> {
                     )
                   : contentItems[i]?.likeCount ?? 0,
             );
+
+        final List<Content?> newList = <Content?>[
+          ...contentItems.sublist(0, i),
+        ];
+
+        if (i != contentItems.length - 1) {
+          newList.addAll(contentItems.sublist(i + 1));
+        }
+
+        newList.insert(i, newContentItem);
+
+        contentItems = newList;
         break;
       }
     }

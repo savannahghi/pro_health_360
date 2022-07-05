@@ -12,36 +12,11 @@ part of 'feed_content_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 FeedContentState _$FeedContentStateFromJson(Map<String, dynamic> json) {
   return _FeedContentState.fromJson(json);
 }
-
-/// @nodoc
-class _$FeedContentStateTearOff {
-  const _$FeedContentStateTearOff();
-
-  _FeedContentState call(
-      {@JsonKey(name: 'items') List<Content?>? contentItems,
-      ContentCategory? selectedCategory,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) {
-    return _FeedContentState(
-      contentItems: contentItems,
-      selectedCategory: selectedCategory,
-      errorFetchingContent: errorFetchingContent,
-      timeoutFetchingContent: timeoutFetchingContent,
-    );
-  }
-
-  FeedContentState fromJson(Map<String, Object?> json) {
-    return FeedContentState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $FeedContentState = _$FeedContentStateTearOff();
 
 /// @nodoc
 mixin _$FeedContentState {
@@ -120,11 +95,11 @@ class _$FeedContentStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$FeedContentStateCopyWith<$Res>
+abstract class _$$_FeedContentStateCopyWith<$Res>
     implements $FeedContentStateCopyWith<$Res> {
-  factory _$FeedContentStateCopyWith(
-          _FeedContentState value, $Res Function(_FeedContentState) then) =
-      __$FeedContentStateCopyWithImpl<$Res>;
+  factory _$$_FeedContentStateCopyWith(
+          _$_FeedContentState value, $Res Function(_$_FeedContentState) then) =
+      __$$_FeedContentStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'items') List<Content?>? contentItems,
@@ -137,15 +112,15 @@ abstract class _$FeedContentStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FeedContentStateCopyWithImpl<$Res>
+class __$$_FeedContentStateCopyWithImpl<$Res>
     extends _$FeedContentStateCopyWithImpl<$Res>
-    implements _$FeedContentStateCopyWith<$Res> {
-  __$FeedContentStateCopyWithImpl(
-      _FeedContentState _value, $Res Function(_FeedContentState) _then)
-      : super(_value, (v) => _then(v as _FeedContentState));
+    implements _$$_FeedContentStateCopyWith<$Res> {
+  __$$_FeedContentStateCopyWithImpl(
+      _$_FeedContentState _value, $Res Function(_$_FeedContentState) _then)
+      : super(_value, (v) => _then(v as _$_FeedContentState));
 
   @override
-  _FeedContentState get _value => super._value as _FeedContentState;
+  _$_FeedContentState get _value => super._value as _$_FeedContentState;
 
   @override
   $Res call({
@@ -154,7 +129,7 @@ class __$FeedContentStateCopyWithImpl<$Res>
     Object? errorFetchingContent = freezed,
     Object? timeoutFetchingContent = freezed,
   }) {
-    return _then(_FeedContentState(
+    return _then(_$_FeedContentState(
       contentItems: contentItems == freezed
           ? _value.contentItems
           : contentItems // ignore: cast_nullable_to_non_nullable
@@ -206,7 +181,7 @@ class _$_FeedContentState implements _FeedContentState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FeedContentState &&
+            other is _$_FeedContentState &&
             const DeepCollectionEquality()
                 .equals(other.contentItems, contentItems) &&
             const DeepCollectionEquality()
@@ -217,6 +192,7 @@ class _$_FeedContentState implements _FeedContentState {
                 .equals(other.timeoutFetchingContent, timeoutFetchingContent));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -227,8 +203,8 @@ class _$_FeedContentState implements _FeedContentState {
 
   @JsonKey(ignore: true)
   @override
-  _$FeedContentStateCopyWith<_FeedContentState> get copyWith =>
-      __$FeedContentStateCopyWithImpl<_FeedContentState>(this, _$identity);
+  _$$_FeedContentStateCopyWith<_$_FeedContentState> get copyWith =>
+      __$$_FeedContentStateCopyWithImpl<_$_FeedContentState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -238,25 +214,25 @@ class _$_FeedContentState implements _FeedContentState {
 
 abstract class _FeedContentState implements FeedContentState {
   factory _FeedContentState(
-      {@JsonKey(name: 'items') List<Content?>? contentItems,
-      ContentCategory? selectedCategory,
-      bool? errorFetchingContent,
-      bool? timeoutFetchingContent}) = _$_FeedContentState;
+      {@JsonKey(name: 'items') final List<Content?>? contentItems,
+      final ContentCategory? selectedCategory,
+      final bool? errorFetchingContent,
+      final bool? timeoutFetchingContent}) = _$_FeedContentState;
 
   factory _FeedContentState.fromJson(Map<String, dynamic> json) =
       _$_FeedContentState.fromJson;
 
   @override
   @JsonKey(name: 'items')
-  List<Content?>? get contentItems;
+  List<Content?>? get contentItems => throw _privateConstructorUsedError;
   @override
-  ContentCategory? get selectedCategory;
+  ContentCategory? get selectedCategory => throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingContent;
+  bool? get errorFetchingContent => throw _privateConstructorUsedError;
   @override
-  bool? get timeoutFetchingContent;
+  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FeedContentStateCopyWith<_FeedContentState> get copyWith =>
+  _$$_FeedContentStateCopyWith<_$_FeedContentState> get copyWith =>
       throw _privateConstructorUsedError;
 }

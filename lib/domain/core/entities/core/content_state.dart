@@ -11,7 +11,7 @@ import 'package:pro_health_360/domain/core/entities/feed/content_engagement_stat
 part 'content_state.freezed.dart';
 part 'content_state.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class ContentState with _$ContentState {
   factory ContentState({
     FeedContentState? feedContentState,

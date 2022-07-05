@@ -12,33 +12,12 @@ part of 'content_engagement_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ContentEngagementState _$ContentEngagementStateFromJson(
     Map<String, dynamic> json) {
   return _ContentEngagementState.fromJson(json);
 }
-
-/// @nodoc
-class _$ContentEngagementStateTearOff {
-  const _$ContentEngagementStateTearOff();
-
-  _ContentEngagementState call(
-      {@JsonKey(name: 'contentId') int? contentId,
-      @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt}) {
-    return _ContentEngagementState(
-      contentId: contentId,
-      contentOpenedAt: contentOpenedAt,
-    );
-  }
-
-  ContentEngagementState fromJson(Map<String, Object?> json) {
-    return ContentEngagementState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ContentEngagementState = _$ContentEngagementStateTearOff();
 
 /// @nodoc
 mixin _$ContentEngagementState {
@@ -91,11 +70,11 @@ class _$ContentEngagementStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ContentEngagementStateCopyWith<$Res>
+abstract class _$$_ContentEngagementStateCopyWith<$Res>
     implements $ContentEngagementStateCopyWith<$Res> {
-  factory _$ContentEngagementStateCopyWith(_ContentEngagementState value,
-          $Res Function(_ContentEngagementState) then) =
-      __$ContentEngagementStateCopyWithImpl<$Res>;
+  factory _$$_ContentEngagementStateCopyWith(_$_ContentEngagementState value,
+          $Res Function(_$_ContentEngagementState) then) =
+      __$$_ContentEngagementStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'contentId') int? contentId,
@@ -103,22 +82,23 @@ abstract class _$ContentEngagementStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ContentEngagementStateCopyWithImpl<$Res>
+class __$$_ContentEngagementStateCopyWithImpl<$Res>
     extends _$ContentEngagementStateCopyWithImpl<$Res>
-    implements _$ContentEngagementStateCopyWith<$Res> {
-  __$ContentEngagementStateCopyWithImpl(_ContentEngagementState _value,
-      $Res Function(_ContentEngagementState) _then)
-      : super(_value, (v) => _then(v as _ContentEngagementState));
+    implements _$$_ContentEngagementStateCopyWith<$Res> {
+  __$$_ContentEngagementStateCopyWithImpl(_$_ContentEngagementState _value,
+      $Res Function(_$_ContentEngagementState) _then)
+      : super(_value, (v) => _then(v as _$_ContentEngagementState));
 
   @override
-  _ContentEngagementState get _value => super._value as _ContentEngagementState;
+  _$_ContentEngagementState get _value =>
+      super._value as _$_ContentEngagementState;
 
   @override
   $Res call({
     Object? contentId = freezed,
     Object? contentOpenedAt = freezed,
   }) {
-    return _then(_ContentEngagementState(
+    return _then(_$_ContentEngagementState(
       contentId: contentId == freezed
           ? _value.contentId
           : contentId // ignore: cast_nullable_to_non_nullable
@@ -157,12 +137,13 @@ class _$_ContentEngagementState implements _ContentEngagementState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ContentEngagementState &&
+            other is _$_ContentEngagementState &&
             const DeepCollectionEquality().equals(other.contentId, contentId) &&
             const DeepCollectionEquality()
                 .equals(other.contentOpenedAt, contentOpenedAt));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -171,8 +152,8 @@ class _$_ContentEngagementState implements _ContentEngagementState {
 
   @JsonKey(ignore: true)
   @override
-  _$ContentEngagementStateCopyWith<_ContentEngagementState> get copyWith =>
-      __$ContentEngagementStateCopyWithImpl<_ContentEngagementState>(
+  _$$_ContentEngagementStateCopyWith<_$_ContentEngagementState> get copyWith =>
+      __$$_ContentEngagementStateCopyWithImpl<_$_ContentEngagementState>(
           this, _$identity);
 
   @override
@@ -183,8 +164,8 @@ class _$_ContentEngagementState implements _ContentEngagementState {
 
 abstract class _ContentEngagementState implements ContentEngagementState {
   factory _ContentEngagementState(
-          {@JsonKey(name: 'contentId') int? contentId,
-          @JsonKey(name: 'contentOpenedAt') String? contentOpenedAt}) =
+          {@JsonKey(name: 'contentId') final int? contentId,
+          @JsonKey(name: 'contentOpenedAt') final String? contentOpenedAt}) =
       _$_ContentEngagementState;
 
   factory _ContentEngagementState.fromJson(Map<String, dynamic> json) =
@@ -192,12 +173,12 @@ abstract class _ContentEngagementState implements ContentEngagementState {
 
   @override
   @JsonKey(name: 'contentId')
-  int? get contentId;
+  int? get contentId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'contentOpenedAt')
-  String? get contentOpenedAt;
+  String? get contentOpenedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ContentEngagementStateCopyWith<_ContentEngagementState> get copyWith =>
+  _$$_ContentEngagementStateCopyWith<_$_ContentEngagementState> get copyWith =>
       throw _privateConstructorUsedError;
 }

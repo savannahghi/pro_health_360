@@ -37,7 +37,7 @@ class VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       widget.sendOTPFunction();
     });
   }

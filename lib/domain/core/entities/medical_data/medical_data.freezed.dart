@@ -12,40 +12,11 @@ part of 'medical_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MedicalData _$MedicalDataFromJson(Map<String, dynamic> json) {
   return _MedicalData.fromJson(json);
 }
-
-/// @nodoc
-class _$MedicalDataTearOff {
-  const _$MedicalDataTearOff();
-
-  _MedicalData call(
-      {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
-      @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
-      @JsonKey(name: 'weight') List<MedicalDataDetails?>? weight,
-      @JsonKey(name: 'viralLoad') List<MedicalDataDetails?>? viralLoad,
-      @JsonKey(name: 'bmi') List<MedicalDataDetails?>? bmi,
-      @JsonKey(name: 'cd4Count') List<MedicalDataDetails?>? cd4Count}) {
-    return _MedicalData(
-      regimen: regimen,
-      allergies: allergies,
-      weight: weight,
-      viralLoad: viralLoad,
-      bmi: bmi,
-      cd4Count: cd4Count,
-    );
-  }
-
-  MedicalData fromJson(Map<String, Object?> json) {
-    return MedicalData.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MedicalData = _$MedicalDataTearOff();
 
 /// @nodoc
 mixin _$MedicalData {
@@ -131,11 +102,11 @@ class _$MedicalDataCopyWithImpl<$Res> implements $MedicalDataCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MedicalDataCopyWith<$Res>
+abstract class _$$_MedicalDataCopyWith<$Res>
     implements $MedicalDataCopyWith<$Res> {
-  factory _$MedicalDataCopyWith(
-          _MedicalData value, $Res Function(_MedicalData) then) =
-      __$MedicalDataCopyWithImpl<$Res>;
+  factory _$$_MedicalDataCopyWith(
+          _$_MedicalData value, $Res Function(_$_MedicalData) then) =
+      __$$_MedicalDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
@@ -147,14 +118,14 @@ abstract class _$MedicalDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$MedicalDataCopyWithImpl<$Res> extends _$MedicalDataCopyWithImpl<$Res>
-    implements _$MedicalDataCopyWith<$Res> {
-  __$MedicalDataCopyWithImpl(
-      _MedicalData _value, $Res Function(_MedicalData) _then)
-      : super(_value, (v) => _then(v as _MedicalData));
+class __$$_MedicalDataCopyWithImpl<$Res> extends _$MedicalDataCopyWithImpl<$Res>
+    implements _$$_MedicalDataCopyWith<$Res> {
+  __$$_MedicalDataCopyWithImpl(
+      _$_MedicalData _value, $Res Function(_$_MedicalData) _then)
+      : super(_value, (v) => _then(v as _$_MedicalData));
 
   @override
-  _MedicalData get _value => super._value as _MedicalData;
+  _$_MedicalData get _value => super._value as _$_MedicalData;
 
   @override
   $Res call({
@@ -165,29 +136,29 @@ class __$MedicalDataCopyWithImpl<$Res> extends _$MedicalDataCopyWithImpl<$Res>
     Object? bmi = freezed,
     Object? cd4Count = freezed,
   }) {
-    return _then(_MedicalData(
+    return _then(_$_MedicalData(
       regimen: regimen == freezed
-          ? _value.regimen
+          ? _value._regimen
           : regimen // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
       allergies: allergies == freezed
-          ? _value.allergies
+          ? _value._allergies
           : allergies // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
       weight: weight == freezed
-          ? _value.weight
+          ? _value._weight
           : weight // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
       viralLoad: viralLoad == freezed
-          ? _value.viralLoad
+          ? _value._viralLoad
           : viralLoad // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
       bmi: bmi == freezed
-          ? _value.bmi
+          ? _value._bmi
           : bmi // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
       cd4Count: cd4Count == freezed
-          ? _value.cd4Count
+          ? _value._cd4Count
           : cd4Count // ignore: cast_nullable_to_non_nullable
               as List<MedicalDataDetails?>?,
     ));
@@ -198,34 +169,81 @@ class __$MedicalDataCopyWithImpl<$Res> extends _$MedicalDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MedicalData implements _MedicalData {
   _$_MedicalData(
-      {@JsonKey(name: 'regimen') this.regimen,
-      @JsonKey(name: 'allergies') this.allergies,
-      @JsonKey(name: 'weight') this.weight,
-      @JsonKey(name: 'viralLoad') this.viralLoad,
-      @JsonKey(name: 'bmi') this.bmi,
-      @JsonKey(name: 'cd4Count') this.cd4Count});
+      {@JsonKey(name: 'regimen') final List<MedicalDataDetails?>? regimen,
+      @JsonKey(name: 'allergies') final List<MedicalDataDetails?>? allergies,
+      @JsonKey(name: 'weight') final List<MedicalDataDetails?>? weight,
+      @JsonKey(name: 'viralLoad') final List<MedicalDataDetails?>? viralLoad,
+      @JsonKey(name: 'bmi') final List<MedicalDataDetails?>? bmi,
+      @JsonKey(name: 'cd4Count') final List<MedicalDataDetails?>? cd4Count})
+      : _regimen = regimen,
+        _allergies = allergies,
+        _weight = weight,
+        _viralLoad = viralLoad,
+        _bmi = bmi,
+        _cd4Count = cd4Count;
 
   factory _$_MedicalData.fromJson(Map<String, dynamic> json) =>
       _$$_MedicalDataFromJson(json);
 
+  final List<MedicalDataDetails?>? _regimen;
   @override
   @JsonKey(name: 'regimen')
-  final List<MedicalDataDetails?>? regimen;
+  List<MedicalDataDetails?>? get regimen {
+    final value = _regimen;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<MedicalDataDetails?>? _allergies;
   @override
   @JsonKey(name: 'allergies')
-  final List<MedicalDataDetails?>? allergies;
+  List<MedicalDataDetails?>? get allergies {
+    final value = _allergies;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<MedicalDataDetails?>? _weight;
   @override
   @JsonKey(name: 'weight')
-  final List<MedicalDataDetails?>? weight;
+  List<MedicalDataDetails?>? get weight {
+    final value = _weight;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<MedicalDataDetails?>? _viralLoad;
   @override
   @JsonKey(name: 'viralLoad')
-  final List<MedicalDataDetails?>? viralLoad;
+  List<MedicalDataDetails?>? get viralLoad {
+    final value = _viralLoad;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<MedicalDataDetails?>? _bmi;
   @override
   @JsonKey(name: 'bmi')
-  final List<MedicalDataDetails?>? bmi;
+  List<MedicalDataDetails?>? get bmi {
+    final value = _bmi;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<MedicalDataDetails?>? _cd4Count;
   @override
   @JsonKey(name: 'cd4Count')
-  final List<MedicalDataDetails?>? cd4Count;
+  List<MedicalDataDetails?>? get cd4Count {
+    final value = _cd4Count;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -236,29 +254,32 @@ class _$_MedicalData implements _MedicalData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MedicalData &&
-            const DeepCollectionEquality().equals(other.regimen, regimen) &&
-            const DeepCollectionEquality().equals(other.allergies, allergies) &&
-            const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.viralLoad, viralLoad) &&
-            const DeepCollectionEquality().equals(other.bmi, bmi) &&
-            const DeepCollectionEquality().equals(other.cd4Count, cd4Count));
+            other is _$_MedicalData &&
+            const DeepCollectionEquality().equals(other._regimen, _regimen) &&
+            const DeepCollectionEquality()
+                .equals(other._allergies, _allergies) &&
+            const DeepCollectionEquality().equals(other._weight, _weight) &&
+            const DeepCollectionEquality()
+                .equals(other._viralLoad, _viralLoad) &&
+            const DeepCollectionEquality().equals(other._bmi, _bmi) &&
+            const DeepCollectionEquality().equals(other._cd4Count, _cd4Count));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(regimen),
-      const DeepCollectionEquality().hash(allergies),
-      const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(viralLoad),
-      const DeepCollectionEquality().hash(bmi),
-      const DeepCollectionEquality().hash(cd4Count));
 
   @JsonKey(ignore: true)
   @override
-  _$MedicalDataCopyWith<_MedicalData> get copyWith =>
-      __$MedicalDataCopyWithImpl<_MedicalData>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_regimen),
+      const DeepCollectionEquality().hash(_allergies),
+      const DeepCollectionEquality().hash(_weight),
+      const DeepCollectionEquality().hash(_viralLoad),
+      const DeepCollectionEquality().hash(_bmi),
+      const DeepCollectionEquality().hash(_cd4Count));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_MedicalDataCopyWith<_$_MedicalData> get copyWith =>
+      __$$_MedicalDataCopyWithImpl<_$_MedicalData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -268,37 +289,44 @@ class _$_MedicalData implements _MedicalData {
 
 abstract class _MedicalData implements MedicalData {
   factory _MedicalData(
-          {@JsonKey(name: 'regimen') List<MedicalDataDetails?>? regimen,
-          @JsonKey(name: 'allergies') List<MedicalDataDetails?>? allergies,
-          @JsonKey(name: 'weight') List<MedicalDataDetails?>? weight,
-          @JsonKey(name: 'viralLoad') List<MedicalDataDetails?>? viralLoad,
-          @JsonKey(name: 'bmi') List<MedicalDataDetails?>? bmi,
-          @JsonKey(name: 'cd4Count') List<MedicalDataDetails?>? cd4Count}) =
-      _$_MedicalData;
+      {@JsonKey(name: 'regimen')
+          final List<MedicalDataDetails?>? regimen,
+      @JsonKey(name: 'allergies')
+          final List<MedicalDataDetails?>? allergies,
+      @JsonKey(name: 'weight')
+          final List<MedicalDataDetails?>? weight,
+      @JsonKey(name: 'viralLoad')
+          final List<MedicalDataDetails?>? viralLoad,
+      @JsonKey(name: 'bmi')
+          final List<MedicalDataDetails?>? bmi,
+      @JsonKey(name: 'cd4Count')
+          final List<MedicalDataDetails?>? cd4Count}) = _$_MedicalData;
 
   factory _MedicalData.fromJson(Map<String, dynamic> json) =
       _$_MedicalData.fromJson;
 
   @override
   @JsonKey(name: 'regimen')
-  List<MedicalDataDetails?>? get regimen;
+  List<MedicalDataDetails?>? get regimen => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'allergies')
-  List<MedicalDataDetails?>? get allergies;
+  List<MedicalDataDetails?>? get allergies =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'weight')
-  List<MedicalDataDetails?>? get weight;
+  List<MedicalDataDetails?>? get weight => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'viralLoad')
-  List<MedicalDataDetails?>? get viralLoad;
+  List<MedicalDataDetails?>? get viralLoad =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'bmi')
-  List<MedicalDataDetails?>? get bmi;
+  List<MedicalDataDetails?>? get bmi => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'cd4Count')
-  List<MedicalDataDetails?>? get cd4Count;
+  List<MedicalDataDetails?>? get cd4Count => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MedicalDataCopyWith<_MedicalData> get copyWith =>
+  _$$_MedicalDataCopyWith<_$_MedicalData> get copyWith =>
       throw _privateConstructorUsedError;
 }

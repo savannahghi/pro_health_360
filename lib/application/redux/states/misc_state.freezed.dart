@@ -12,64 +12,11 @@ part of 'misc_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 MiscState _$MiscStateFromJson(Map<String, dynamic> json) {
   return _MiscState.fromJson(json);
 }
-
-/// @nodoc
-class _$MiscStateTearOff {
-  const _$MiscStateTearOff();
-
-  _MiscState call(
-      {@JsonKey(defaultValue: AppRoutes.phoneLogin)
-          required String initialRoute,
-      List<dynamic>? libraryListItems,
-      FAQsContentState? profileFAQsContentState,
-      String? healthPagePINInputTime,
-      int? pinInputTries,
-      String? maxTryTime,
-      bool? pinVerified,
-      bool? resumeTimer,
-      GroupState? groupState,
-      ChannelMembersState? channelMembersState,
-      ScreeningToolsState? screeningToolsState,
-      @JsonKey(name: 'fetchClientAppointments')
-          AppointmentState? appointmentState,
-      String? inactiveTime,
-      bool? resumeWithPin,
-      List<Survey>? availableSurveysList,
-      int? resumeWithPINRetries,
-      Survey? selectedSurvey}) {
-    return _MiscState(
-      initialRoute: initialRoute,
-      libraryListItems: libraryListItems,
-      profileFAQsContentState: profileFAQsContentState,
-      healthPagePINInputTime: healthPagePINInputTime,
-      pinInputTries: pinInputTries,
-      maxTryTime: maxTryTime,
-      pinVerified: pinVerified,
-      resumeTimer: resumeTimer,
-      groupState: groupState,
-      channelMembersState: channelMembersState,
-      screeningToolsState: screeningToolsState,
-      appointmentState: appointmentState,
-      inactiveTime: inactiveTime,
-      resumeWithPin: resumeWithPin,
-      availableSurveysList: availableSurveysList,
-      resumeWithPINRetries: resumeWithPINRetries,
-      selectedSurvey: selectedSurvey,
-    );
-  }
-
-  MiscState fromJson(Map<String, Object?> json) {
-    return MiscState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $MiscState = _$MiscStateTearOff();
 
 /// @nodoc
 mixin _$MiscState {
@@ -308,10 +255,10 @@ class _$MiscStateCopyWithImpl<$Res> implements $MiscStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
-  factory _$MiscStateCopyWith(
-          _MiscState value, $Res Function(_MiscState) then) =
-      __$MiscStateCopyWithImpl<$Res>;
+abstract class _$$_MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
+  factory _$$_MiscStateCopyWith(
+          _$_MiscState value, $Res Function(_$_MiscState) then) =
+      __$$_MiscStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
@@ -349,13 +296,14 @@ abstract class _$MiscStateCopyWith<$Res> implements $MiscStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
-    implements _$MiscStateCopyWith<$Res> {
-  __$MiscStateCopyWithImpl(_MiscState _value, $Res Function(_MiscState) _then)
-      : super(_value, (v) => _then(v as _MiscState));
+class __$$_MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
+    implements _$$_MiscStateCopyWith<$Res> {
+  __$$_MiscStateCopyWithImpl(
+      _$_MiscState _value, $Res Function(_$_MiscState) _then)
+      : super(_value, (v) => _then(v as _$_MiscState));
 
   @override
-  _MiscState get _value => super._value as _MiscState;
+  _$_MiscState get _value => super._value as _$_MiscState;
 
   @override
   $Res call({
@@ -377,13 +325,13 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
     Object? resumeWithPINRetries = freezed,
     Object? selectedSurvey = freezed,
   }) {
-    return _then(_MiscState(
+    return _then(_$_MiscState(
       initialRoute: initialRoute == freezed
           ? _value.initialRoute
           : initialRoute // ignore: cast_nullable_to_non_nullable
               as String,
       libraryListItems: libraryListItems == freezed
-          ? _value.libraryListItems
+          ? _value._libraryListItems
           : libraryListItems // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
       profileFAQsContentState: profileFAQsContentState == freezed
@@ -435,7 +383,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
           : resumeWithPin // ignore: cast_nullable_to_non_nullable
               as bool?,
       availableSurveysList: availableSurveysList == freezed
-          ? _value.availableSurveysList
+          ? _value._availableSurveysList
           : availableSurveysList // ignore: cast_nullable_to_non_nullable
               as List<Survey>?,
       resumeWithPINRetries: resumeWithPINRetries == freezed
@@ -455,7 +403,7 @@ class __$MiscStateCopyWithImpl<$Res> extends _$MiscStateCopyWithImpl<$Res>
 class _$_MiscState implements _MiscState {
   _$_MiscState(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin) required this.initialRoute,
-      this.libraryListItems,
+      final List<dynamic>? libraryListItems,
       this.profileFAQsContentState,
       this.healthPagePINInputTime,
       this.pinInputTries,
@@ -468,9 +416,11 @@ class _$_MiscState implements _MiscState {
       @JsonKey(name: 'fetchClientAppointments') this.appointmentState,
       this.inactiveTime,
       this.resumeWithPin,
-      this.availableSurveysList,
+      final List<Survey>? availableSurveysList,
       this.resumeWithPINRetries,
-      this.selectedSurvey});
+      this.selectedSurvey})
+      : _libraryListItems = libraryListItems,
+        _availableSurveysList = availableSurveysList;
 
   factory _$_MiscState.fromJson(Map<String, dynamic> json) =>
       _$$_MiscStateFromJson(json);
@@ -478,8 +428,15 @@ class _$_MiscState implements _MiscState {
   @override
   @JsonKey(defaultValue: AppRoutes.phoneLogin)
   final String initialRoute;
+  final List<dynamic>? _libraryListItems;
   @override
-  final List<dynamic>? libraryListItems;
+  List<dynamic>? get libraryListItems {
+    final value = _libraryListItems;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final FAQsContentState? profileFAQsContentState;
   @override
@@ -505,11 +462,20 @@ class _$_MiscState implements _MiscState {
   final String? inactiveTime;
   @override
   final bool? resumeWithPin;
+  final List<Survey>? _availableSurveysList;
   @override
-  final List<Survey>? availableSurveysList;
-  @override // track the number of time a wrong PIN has been input on the resume with PIN workflow
+  List<Survey>? get availableSurveysList {
+    final value = _availableSurveysList;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+// track the number of time a wrong PIN has been input on the resume with PIN workflow
+  @override
   final int? resumeWithPINRetries;
-  @override // selected survey to be opened
+// selected survey to be opened
+  @override
   final Survey? selectedSurvey;
 
   @override
@@ -521,11 +487,11 @@ class _$_MiscState implements _MiscState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MiscState &&
+            other is _$_MiscState &&
             const DeepCollectionEquality()
                 .equals(other.initialRoute, initialRoute) &&
             const DeepCollectionEquality()
-                .equals(other.libraryListItems, libraryListItems) &&
+                .equals(other._libraryListItems, _libraryListItems) &&
             const DeepCollectionEquality().equals(
                 other.profileFAQsContentState, profileFAQsContentState) &&
             const DeepCollectionEquality()
@@ -551,18 +517,19 @@ class _$_MiscState implements _MiscState {
             const DeepCollectionEquality()
                 .equals(other.resumeWithPin, resumeWithPin) &&
             const DeepCollectionEquality()
-                .equals(other.availableSurveysList, availableSurveysList) &&
+                .equals(other._availableSurveysList, _availableSurveysList) &&
             const DeepCollectionEquality()
                 .equals(other.resumeWithPINRetries, resumeWithPINRetries) &&
             const DeepCollectionEquality()
                 .equals(other.selectedSurvey, selectedSurvey));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(initialRoute),
-      const DeepCollectionEquality().hash(libraryListItems),
+      const DeepCollectionEquality().hash(_libraryListItems),
       const DeepCollectionEquality().hash(profileFAQsContentState),
       const DeepCollectionEquality().hash(healthPagePINInputTime),
       const DeepCollectionEquality().hash(pinInputTries),
@@ -575,14 +542,14 @@ class _$_MiscState implements _MiscState {
       const DeepCollectionEquality().hash(appointmentState),
       const DeepCollectionEquality().hash(inactiveTime),
       const DeepCollectionEquality().hash(resumeWithPin),
-      const DeepCollectionEquality().hash(availableSurveysList),
+      const DeepCollectionEquality().hash(_availableSurveysList),
       const DeepCollectionEquality().hash(resumeWithPINRetries),
       const DeepCollectionEquality().hash(selectedSurvey));
 
   @JsonKey(ignore: true)
   @override
-  _$MiscStateCopyWith<_MiscState> get copyWith =>
-      __$MiscStateCopyWithImpl<_MiscState>(this, _$identity);
+  _$$_MiscStateCopyWith<_$_MiscState> get copyWith =>
+      __$$_MiscStateCopyWithImpl<_$_MiscState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -593,66 +560,69 @@ class _$_MiscState implements _MiscState {
 abstract class _MiscState implements MiscState {
   factory _MiscState(
       {@JsonKey(defaultValue: AppRoutes.phoneLogin)
-          required String initialRoute,
-      List<dynamic>? libraryListItems,
-      FAQsContentState? profileFAQsContentState,
-      String? healthPagePINInputTime,
-      int? pinInputTries,
-      String? maxTryTime,
-      bool? pinVerified,
-      bool? resumeTimer,
-      GroupState? groupState,
-      ChannelMembersState? channelMembersState,
-      ScreeningToolsState? screeningToolsState,
+          required final String initialRoute,
+      final List<dynamic>? libraryListItems,
+      final FAQsContentState? profileFAQsContentState,
+      final String? healthPagePINInputTime,
+      final int? pinInputTries,
+      final String? maxTryTime,
+      final bool? pinVerified,
+      final bool? resumeTimer,
+      final GroupState? groupState,
+      final ChannelMembersState? channelMembersState,
+      final ScreeningToolsState? screeningToolsState,
       @JsonKey(name: 'fetchClientAppointments')
-          AppointmentState? appointmentState,
-      String? inactiveTime,
-      bool? resumeWithPin,
-      List<Survey>? availableSurveysList,
-      int? resumeWithPINRetries,
-      Survey? selectedSurvey}) = _$_MiscState;
+          final AppointmentState? appointmentState,
+      final String? inactiveTime,
+      final bool? resumeWithPin,
+      final List<Survey>? availableSurveysList,
+      final int? resumeWithPINRetries,
+      final Survey? selectedSurvey}) = _$_MiscState;
 
   factory _MiscState.fromJson(Map<String, dynamic> json) =
       _$_MiscState.fromJson;
 
   @override
   @JsonKey(defaultValue: AppRoutes.phoneLogin)
-  String get initialRoute;
+  String get initialRoute => throw _privateConstructorUsedError;
   @override
-  List<dynamic>? get libraryListItems;
+  List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
   @override
-  FAQsContentState? get profileFAQsContentState;
+  FAQsContentState? get profileFAQsContentState =>
+      throw _privateConstructorUsedError;
   @override
-  String? get healthPagePINInputTime;
+  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   @override
-  int? get pinInputTries;
+  int? get pinInputTries => throw _privateConstructorUsedError;
   @override
-  String? get maxTryTime;
+  String? get maxTryTime => throw _privateConstructorUsedError;
   @override
-  bool? get pinVerified;
+  bool? get pinVerified => throw _privateConstructorUsedError;
   @override
-  bool? get resumeTimer;
+  bool? get resumeTimer => throw _privateConstructorUsedError;
   @override
-  GroupState? get groupState;
+  GroupState? get groupState => throw _privateConstructorUsedError;
   @override
-  ChannelMembersState? get channelMembersState;
+  ChannelMembersState? get channelMembersState =>
+      throw _privateConstructorUsedError;
   @override
-  ScreeningToolsState? get screeningToolsState;
+  ScreeningToolsState? get screeningToolsState =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'fetchClientAppointments')
-  AppointmentState? get appointmentState;
+  AppointmentState? get appointmentState => throw _privateConstructorUsedError;
   @override
-  String? get inactiveTime;
+  String? get inactiveTime => throw _privateConstructorUsedError;
   @override
-  bool? get resumeWithPin;
+  bool? get resumeWithPin => throw _privateConstructorUsedError;
   @override
-  List<Survey>? get availableSurveysList;
+  List<Survey>? get availableSurveysList => throw _privateConstructorUsedError;
   @override // track the number of time a wrong PIN has been input on the resume with PIN workflow
-  int? get resumeWithPINRetries;
+  int? get resumeWithPINRetries => throw _privateConstructorUsedError;
   @override // selected survey to be opened
-  Survey? get selectedSurvey;
+  Survey? get selectedSurvey => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MiscStateCopyWith<_MiscState> get copyWith =>
+  _$$_MiscStateCopyWith<_$_MiscState> get copyWith =>
       throw _privateConstructorUsedError;
 }

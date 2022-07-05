@@ -54,7 +54,7 @@ class _PINInputPageState extends State<PINInputPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) {
       pinInputTimerStatus(context: context);
     });
   }
@@ -69,7 +69,7 @@ class _PINInputPageState extends State<PINInputPage> {
             errorMessageStyle = boldSize12Text(AppColors.wrongPinTextColor);
             errorMessage = '';
             canEnterPin = true;
-            WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
+            WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) {
               StoreProvider.dispatch(
                 context,
                 UpdatePINInputDetailsAction(
@@ -278,7 +278,7 @@ class _PINInputPageState extends State<PINInputPage> {
                                 } else {
                                   setState(() {
                                     WidgetsBinding.instance
-                                        ?.addPostFrameCallback(
+                                        .addPostFrameCallback(
                                             (Duration timeStamp) {
                                       StoreProvider.dispatch(
                                         context,

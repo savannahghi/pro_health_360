@@ -12,40 +12,11 @@ part of 'address.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Address _$AddressFromJson(Map<String, dynamic> json) {
   return _Address.fromJson(json);
 }
-
-/// @nodoc
-class _$AddressTearOff {
-  const _$AddressTearOff();
-
-  _Address call(
-      {@JsonKey(name: 'addressType') AddressType? addressType,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'postalCode') String? postalCode,
-      @JsonKey(name: 'county') String? county,
-      @JsonKey(name: 'active', defaultValue: false) bool? active}) {
-    return _Address(
-      addressType: addressType,
-      text: text,
-      country: country,
-      postalCode: postalCode,
-      county: county,
-      active: active,
-    );
-  }
-
-  Address fromJson(Map<String, Object?> json) {
-    return Address.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Address = _$AddressTearOff();
 
 /// @nodoc
 mixin _$Address {
@@ -127,9 +98,10 @@ class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
-  factory _$AddressCopyWith(_Address value, $Res Function(_Address) then) =
-      __$AddressCopyWithImpl<$Res>;
+abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
+  factory _$$_AddressCopyWith(
+          _$_Address value, $Res Function(_$_Address) then) =
+      __$$_AddressCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'addressType') AddressType? addressType,
@@ -141,13 +113,13 @@ abstract class _$AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
-    implements _$AddressCopyWith<$Res> {
-  __$AddressCopyWithImpl(_Address _value, $Res Function(_Address) _then)
-      : super(_value, (v) => _then(v as _Address));
+class __$$_AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
+    implements _$$_AddressCopyWith<$Res> {
+  __$$_AddressCopyWithImpl(_$_Address _value, $Res Function(_$_Address) _then)
+      : super(_value, (v) => _then(v as _$_Address));
 
   @override
-  _Address get _value => super._value as _Address;
+  _$_Address get _value => super._value as _$_Address;
 
   @override
   $Res call({
@@ -158,7 +130,7 @@ class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
     Object? county = freezed,
     Object? active = freezed,
   }) {
-    return _then(_Address(
+    return _then(_$_Address(
       addressType: addressType == freezed
           ? _value.addressType
           : addressType // ignore: cast_nullable_to_non_nullable
@@ -229,7 +201,7 @@ class _$_Address implements _Address {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Address &&
+            other is _$_Address &&
             const DeepCollectionEquality()
                 .equals(other.addressType, addressType) &&
             const DeepCollectionEquality().equals(other.text, text) &&
@@ -240,6 +212,7 @@ class _$_Address implements _Address {
             const DeepCollectionEquality().equals(other.active, active));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -252,8 +225,8 @@ class _$_Address implements _Address {
 
   @JsonKey(ignore: true)
   @override
-  _$AddressCopyWith<_Address> get copyWith =>
-      __$AddressCopyWithImpl<_Address>(this, _$identity);
+  _$$_AddressCopyWith<_$_Address> get copyWith =>
+      __$$_AddressCopyWithImpl<_$_Address>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -263,35 +236,36 @@ class _$_Address implements _Address {
 
 abstract class _Address implements Address {
   factory _Address(
-      {@JsonKey(name: 'addressType') AddressType? addressType,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'country') String? country,
-      @JsonKey(name: 'postalCode') String? postalCode,
-      @JsonKey(name: 'county') String? county,
-      @JsonKey(name: 'active', defaultValue: false) bool? active}) = _$_Address;
+          {@JsonKey(name: 'addressType') final AddressType? addressType,
+          @JsonKey(name: 'text') final String? text,
+          @JsonKey(name: 'country') final String? country,
+          @JsonKey(name: 'postalCode') final String? postalCode,
+          @JsonKey(name: 'county') final String? county,
+          @JsonKey(name: 'active', defaultValue: false) final bool? active}) =
+      _$_Address;
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 
   @override
   @JsonKey(name: 'addressType')
-  AddressType? get addressType;
+  AddressType? get addressType => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'text')
-  String? get text;
+  String? get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'country')
-  String? get country;
+  String? get country => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'postalCode')
-  String? get postalCode;
+  String? get postalCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'county')
-  String? get county;
+  String? get county => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active;
+  bool? get active => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AddressCopyWith<_Address> get copyWith =>
+  _$$_AddressCopyWith<_$_Address> get copyWith =>
       throw _privateConstructorUsedError;
 }

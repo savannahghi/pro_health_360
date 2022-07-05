@@ -14,11 +14,12 @@ import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
 
 void main() {
+  setupFirebaseAnalyticsMocks();
+
   group('AlcoholSubstanceUsePage', () {
     late Store<AppState> store;
 
     setUp(() async {
-      await setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
       store = Store<AppState>(initialState: AppState.initial());
     });

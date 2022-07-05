@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'feed_content_state.freezed.dart';
 part 'feed_content_state.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class FeedContentState with _$FeedContentState {
   factory FeedContentState({
     @JsonKey(name: 'items') List<Content?>? contentItems,

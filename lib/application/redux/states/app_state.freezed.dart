@@ -12,46 +12,11 @@ part of 'app_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AppState _$AppStateFromJson(Map<String, dynamic> json) {
   return _AppState.fromJson(json);
 }
-
-/// @nodoc
-class _$AppStateTearOff {
-  const _$AppStateTearOff();
-
-  _AppState call(
-      {AuthCredentials? credentials,
-      OnboardingState? onboardingState,
-      HomeState? homeState,
-      BottomNavigationState? bottomNavigationState,
-      MiscState? miscState,
-      ClientState? clientState,
-      ConnectivityState? connectivityState,
-      ContentState? contentState,
-      @JsonKey(ignore: true) Wait? wait}) {
-    return _AppState(
-      credentials: credentials,
-      onboardingState: onboardingState,
-      homeState: homeState,
-      bottomNavigationState: bottomNavigationState,
-      miscState: miscState,
-      clientState: clientState,
-      connectivityState: connectivityState,
-      contentState: contentState,
-      wait: wait,
-    );
-  }
-
-  AppState fromJson(Map<String, Object?> json) {
-    return AppState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AppState = _$AppStateTearOff();
 
 /// @nodoc
 mixin _$AppState {
@@ -250,9 +215,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
-  factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) then) =
-      __$AppStateCopyWithImpl<$Res>;
+abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
+  factory _$$_AppStateCopyWith(
+          _$_AppState value, $Res Function(_$_AppState) then) =
+      __$$_AppStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {AuthCredentials? credentials,
@@ -284,13 +250,14 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements _$AppStateCopyWith<$Res> {
-  __$AppStateCopyWithImpl(_AppState _value, $Res Function(_AppState) _then)
-      : super(_value, (v) => _then(v as _AppState));
+class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements _$$_AppStateCopyWith<$Res> {
+  __$$_AppStateCopyWithImpl(
+      _$_AppState _value, $Res Function(_$_AppState) _then)
+      : super(_value, (v) => _then(v as _$_AppState));
 
   @override
-  _AppState get _value => super._value as _AppState;
+  _$_AppState get _value => super._value as _$_AppState;
 
   @override
   $Res call({
@@ -304,7 +271,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
     Object? contentState = freezed,
     Object? wait = freezed,
   }) {
-    return _then(_AppState(
+    return _then(_$_AppState(
       credentials: credentials == freezed
           ? _value.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
@@ -391,7 +358,7 @@ class _$_AppState implements _AppState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AppState &&
+            other is _$_AppState &&
             const DeepCollectionEquality()
                 .equals(other.credentials, credentials) &&
             const DeepCollectionEquality()
@@ -409,6 +376,7 @@ class _$_AppState implements _AppState {
             const DeepCollectionEquality().equals(other.wait, wait));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -424,8 +392,8 @@ class _$_AppState implements _AppState {
 
   @JsonKey(ignore: true)
   @override
-  _$AppStateCopyWith<_AppState> get copyWith =>
-      __$AppStateCopyWithImpl<_AppState>(this, _$identity);
+  _$$_AppStateCopyWith<_$_AppState> get copyWith =>
+      __$$_AppStateCopyWithImpl<_$_AppState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -435,39 +403,41 @@ class _$_AppState implements _AppState {
 
 abstract class _AppState implements AppState {
   factory _AppState(
-      {AuthCredentials? credentials,
-      OnboardingState? onboardingState,
-      HomeState? homeState,
-      BottomNavigationState? bottomNavigationState,
-      MiscState? miscState,
-      ClientState? clientState,
-      ConnectivityState? connectivityState,
-      ContentState? contentState,
-      @JsonKey(ignore: true) Wait? wait}) = _$_AppState;
+      {final AuthCredentials? credentials,
+      final OnboardingState? onboardingState,
+      final HomeState? homeState,
+      final BottomNavigationState? bottomNavigationState,
+      final MiscState? miscState,
+      final ClientState? clientState,
+      final ConnectivityState? connectivityState,
+      final ContentState? contentState,
+      @JsonKey(ignore: true) final Wait? wait}) = _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
   @override
-  AuthCredentials? get credentials;
+  AuthCredentials? get credentials => throw _privateConstructorUsedError;
   @override
-  OnboardingState? get onboardingState;
+  OnboardingState? get onboardingState => throw _privateConstructorUsedError;
   @override
-  HomeState? get homeState;
+  HomeState? get homeState => throw _privateConstructorUsedError;
   @override
-  BottomNavigationState? get bottomNavigationState;
+  BottomNavigationState? get bottomNavigationState =>
+      throw _privateConstructorUsedError;
   @override
-  MiscState? get miscState;
+  MiscState? get miscState => throw _privateConstructorUsedError;
   @override
-  ClientState? get clientState;
+  ClientState? get clientState => throw _privateConstructorUsedError;
   @override
-  ConnectivityState? get connectivityState;
+  ConnectivityState? get connectivityState =>
+      throw _privateConstructorUsedError;
   @override
-  ContentState? get contentState;
+  ContentState? get contentState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  Wait? get wait;
+  Wait? get wait => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AppStateCopyWith<_AppState> get copyWith =>
+  _$$_AppStateCopyWith<_$_AppState> get copyWith =>
       throw _privateConstructorUsedError;
 }

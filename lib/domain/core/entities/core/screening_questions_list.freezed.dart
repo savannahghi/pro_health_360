@@ -12,32 +12,12 @@ part of 'screening_questions_list.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ScreeningQuestionsList _$ScreeningQuestionsListFromJson(
     Map<String, dynamic> json) {
   return _ScreeningQuestionsList.fromJson(json);
 }
-
-/// @nodoc
-class _$ScreeningQuestionsListTearOff {
-  const _$ScreeningQuestionsListTearOff();
-
-  _ScreeningQuestionsList call(
-      {@JsonKey(name: 'getScreeningToolQuestions')
-          List<ScreeningQuestion>? screeningQuestionsList}) {
-    return _ScreeningQuestionsList(
-      screeningQuestionsList: screeningQuestionsList,
-    );
-  }
-
-  ScreeningQuestionsList fromJson(Map<String, Object?> json) {
-    return ScreeningQuestionsList.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ScreeningQuestionsList = _$ScreeningQuestionsListTearOff();
 
 /// @nodoc
 mixin _$ScreeningQuestionsList {
@@ -84,11 +64,11 @@ class _$ScreeningQuestionsListCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ScreeningQuestionsListCopyWith<$Res>
+abstract class _$$_ScreeningQuestionsListCopyWith<$Res>
     implements $ScreeningQuestionsListCopyWith<$Res> {
-  factory _$ScreeningQuestionsListCopyWith(_ScreeningQuestionsList value,
-          $Res Function(_ScreeningQuestionsList) then) =
-      __$ScreeningQuestionsListCopyWithImpl<$Res>;
+  factory _$$_ScreeningQuestionsListCopyWith(_$_ScreeningQuestionsList value,
+          $Res Function(_$_ScreeningQuestionsList) then) =
+      __$$_ScreeningQuestionsListCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
@@ -96,21 +76,22 @@ abstract class _$ScreeningQuestionsListCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ScreeningQuestionsListCopyWithImpl<$Res>
+class __$$_ScreeningQuestionsListCopyWithImpl<$Res>
     extends _$ScreeningQuestionsListCopyWithImpl<$Res>
-    implements _$ScreeningQuestionsListCopyWith<$Res> {
-  __$ScreeningQuestionsListCopyWithImpl(_ScreeningQuestionsList _value,
-      $Res Function(_ScreeningQuestionsList) _then)
-      : super(_value, (v) => _then(v as _ScreeningQuestionsList));
+    implements _$$_ScreeningQuestionsListCopyWith<$Res> {
+  __$$_ScreeningQuestionsListCopyWithImpl(_$_ScreeningQuestionsList _value,
+      $Res Function(_$_ScreeningQuestionsList) _then)
+      : super(_value, (v) => _then(v as _$_ScreeningQuestionsList));
 
   @override
-  _ScreeningQuestionsList get _value => super._value as _ScreeningQuestionsList;
+  _$_ScreeningQuestionsList get _value =>
+      super._value as _$_ScreeningQuestionsList;
 
   @override
   $Res call({
     Object? screeningQuestionsList = freezed,
   }) {
-    return _then(_ScreeningQuestionsList(
+    return _then(_$_ScreeningQuestionsList(
       screeningQuestionsList: screeningQuestionsList == freezed
           ? _value.screeningQuestionsList
           : screeningQuestionsList // ignore: cast_nullable_to_non_nullable
@@ -142,19 +123,20 @@ class _$_ScreeningQuestionsList implements _ScreeningQuestionsList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ScreeningQuestionsList &&
+            other is _$_ScreeningQuestionsList &&
             const DeepCollectionEquality()
                 .equals(other.screeningQuestionsList, screeningQuestionsList));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(screeningQuestionsList));
 
   @JsonKey(ignore: true)
   @override
-  _$ScreeningQuestionsListCopyWith<_ScreeningQuestionsList> get copyWith =>
-      __$ScreeningQuestionsListCopyWithImpl<_ScreeningQuestionsList>(
+  _$$_ScreeningQuestionsListCopyWith<_$_ScreeningQuestionsList> get copyWith =>
+      __$$_ScreeningQuestionsListCopyWithImpl<_$_ScreeningQuestionsList>(
           this, _$identity);
 
   @override
@@ -166,7 +148,7 @@ class _$_ScreeningQuestionsList implements _ScreeningQuestionsList {
 abstract class _ScreeningQuestionsList implements ScreeningQuestionsList {
   factory _ScreeningQuestionsList(
           {@JsonKey(name: 'getScreeningToolQuestions')
-              List<ScreeningQuestion>? screeningQuestionsList}) =
+              final List<ScreeningQuestion>? screeningQuestionsList}) =
       _$_ScreeningQuestionsList;
 
   factory _ScreeningQuestionsList.fromJson(Map<String, dynamic> json) =
@@ -174,9 +156,10 @@ abstract class _ScreeningQuestionsList implements ScreeningQuestionsList {
 
   @override
   @JsonKey(name: 'getScreeningToolQuestions')
-  List<ScreeningQuestion>? get screeningQuestionsList;
+  List<ScreeningQuestion>? get screeningQuestionsList =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ScreeningQuestionsListCopyWith<_ScreeningQuestionsList> get copyWith =>
+  _$$_ScreeningQuestionsListCopyWith<_$_ScreeningQuestionsList> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,42 +12,11 @@ part of 'survey.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Survey _$SurveyFromJson(Map<String, dynamic> json) {
   return _Survey.fromJson(json);
 }
-
-/// @nodoc
-class _$SurveyTearOff {
-  const _$SurveyTearOff();
-
-  _Survey call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'link') String? link,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'projectID') int? projectID,
-      @JsonKey(name: 'linkID') int? linkID,
-      @JsonKey(name: 'formID') String? formID}) {
-    return _Survey(
-      id: id,
-      title: title,
-      link: link,
-      description: description,
-      projectID: projectID,
-      linkID: linkID,
-      formID: formID,
-    );
-  }
-
-  Survey fromJson(Map<String, Object?> json) {
-    return Survey.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Survey = _$SurveyTearOff();
 
 /// @nodoc
 mixin _$Survey {
@@ -137,9 +106,9 @@ class _$SurveyCopyWithImpl<$Res> implements $SurveyCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
-  factory _$SurveyCopyWith(_Survey value, $Res Function(_Survey) then) =
-      __$SurveyCopyWithImpl<$Res>;
+abstract class _$$_SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
+  factory _$$_SurveyCopyWith(_$_Survey value, $Res Function(_$_Survey) then) =
+      __$$_SurveyCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'id') String? id,
@@ -152,13 +121,13 @@ abstract class _$SurveyCopyWith<$Res> implements $SurveyCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
-    implements _$SurveyCopyWith<$Res> {
-  __$SurveyCopyWithImpl(_Survey _value, $Res Function(_Survey) _then)
-      : super(_value, (v) => _then(v as _Survey));
+class __$$_SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
+    implements _$$_SurveyCopyWith<$Res> {
+  __$$_SurveyCopyWithImpl(_$_Survey _value, $Res Function(_$_Survey) _then)
+      : super(_value, (v) => _then(v as _$_Survey));
 
   @override
-  _Survey get _value => super._value as _Survey;
+  _$_Survey get _value => super._value as _$_Survey;
 
   @override
   $Res call({
@@ -170,7 +139,7 @@ class __$SurveyCopyWithImpl<$Res> extends _$SurveyCopyWithImpl<$Res>
     Object? linkID = freezed,
     Object? formID = freezed,
   }) {
-    return _then(_Survey(
+    return _then(_$_Survey(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -249,7 +218,7 @@ class _$_Survey implements _Survey {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Survey &&
+            other is _$_Survey &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.link, link) &&
@@ -260,6 +229,7 @@ class _$_Survey implements _Survey {
             const DeepCollectionEquality().equals(other.formID, formID));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -273,8 +243,8 @@ class _$_Survey implements _Survey {
 
   @JsonKey(ignore: true)
   @override
-  _$SurveyCopyWith<_Survey> get copyWith =>
-      __$SurveyCopyWithImpl<_Survey>(this, _$identity);
+  _$$_SurveyCopyWith<_$_Survey> get copyWith =>
+      __$$_SurveyCopyWithImpl<_$_Survey>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -284,38 +254,39 @@ class _$_Survey implements _Survey {
 
 abstract class _Survey implements Survey {
   factory _Survey(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'link') String? link,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'projectID') int? projectID,
-      @JsonKey(name: 'linkID') int? linkID,
-      @JsonKey(name: 'formID') String? formID}) = _$_Survey;
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'link') final String? link,
+      @JsonKey(name: 'description') final String? description,
+      @JsonKey(name: 'projectID') final int? projectID,
+      @JsonKey(name: 'linkID') final int? linkID,
+      @JsonKey(name: 'formID') final String? formID}) = _$_Survey;
 
   factory _Survey.fromJson(Map<String, dynamic> json) = _$_Survey.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'title')
-  String? get title;
+  String? get title => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'link')
-  String? get link;
+  String? get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'description')
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'projectID')
-  int? get projectID;
+  int? get projectID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'linkID')
-  int? get linkID;
+  int? get linkID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'formID')
-  String? get formID;
+  String? get formID => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SurveyCopyWith<_Survey> get copyWith => throw _privateConstructorUsedError;
+  _$$_SurveyCopyWith<_$_Survey> get copyWith =>
+      throw _privateConstructorUsedError;
 }

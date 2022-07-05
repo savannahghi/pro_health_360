@@ -55,7 +55,7 @@ void main() {
     );
 
     setUp(() async {
-      await setupFirebaseAnalyticsMocks();
+      setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
 
       store = Store<AppState>(initialState: AppState.initial());

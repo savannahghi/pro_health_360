@@ -25,7 +25,7 @@ class _ClinicInformationPageState extends State<ClinicInformationPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (Duration timeStamp) async {
         StoreProvider.dispatch<AppState>(
           context,

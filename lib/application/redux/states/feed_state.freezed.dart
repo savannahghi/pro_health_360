@@ -12,27 +12,11 @@ part of 'feed_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 FeedState _$FeedStateFromJson(Map<String, dynamic> json) {
   return _FeedState.fromJson(json);
 }
-
-/// @nodoc
-class _$FeedStateTearOff {
-  const _$FeedStateTearOff();
-
-  _FeedState call() {
-    return _FeedState();
-  }
-
-  FeedState fromJson(Map<String, Object?> json) {
-    return FeedState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $FeedState = _$FeedStateTearOff();
 
 /// @nodoc
 mixin _$FeedState {
@@ -55,20 +39,21 @@ class _$FeedStateCopyWithImpl<$Res> implements $FeedStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$FeedStateCopyWith<$Res> {
-  factory _$FeedStateCopyWith(
-          _FeedState value, $Res Function(_FeedState) then) =
-      __$FeedStateCopyWithImpl<$Res>;
+abstract class _$$_FeedStateCopyWith<$Res> {
+  factory _$$_FeedStateCopyWith(
+          _$_FeedState value, $Res Function(_$_FeedState) then) =
+      __$$_FeedStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FeedStateCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
-    implements _$FeedStateCopyWith<$Res> {
-  __$FeedStateCopyWithImpl(_FeedState _value, $Res Function(_FeedState) _then)
-      : super(_value, (v) => _then(v as _FeedState));
+class __$$_FeedStateCopyWithImpl<$Res> extends _$FeedStateCopyWithImpl<$Res>
+    implements _$$_FeedStateCopyWith<$Res> {
+  __$$_FeedStateCopyWithImpl(
+      _$_FeedState _value, $Res Function(_$_FeedState) _then)
+      : super(_value, (v) => _then(v as _$_FeedState));
 
   @override
-  _FeedState get _value => super._value as _FeedState;
+  _$_FeedState get _value => super._value as _$_FeedState;
 }
 
 /// @nodoc
@@ -87,9 +72,10 @@ class _$_FeedState implements _FeedState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FeedState);
+        (other.runtimeType == runtimeType && other is _$_FeedState);
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 

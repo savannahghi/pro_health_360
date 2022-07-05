@@ -12,40 +12,11 @@ part of 'appointment.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
   return _Appointment.fromJson(json);
 }
-
-/// @nodoc
-class _$AppointmentTearOff {
-  const _$AppointmentTearOff();
-
-  _Appointment call(
-      {@JsonKey(name: 'ID')
-          required String? id,
-      @JsonKey(name: 'reason')
-          required String? reason,
-      @JsonKey(name: 'date')
-          required String? date,
-      @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
-          required bool pendingReschedule}) {
-    return _Appointment(
-      id: id,
-      reason: reason,
-      date: date,
-      pendingReschedule: pendingReschedule,
-    );
-  }
-
-  Appointment fromJson(Map<String, Object?> json) {
-    return Appointment.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Appointment = _$AppointmentTearOff();
 
 /// @nodoc
 mixin _$Appointment {
@@ -117,11 +88,11 @@ class _$AppointmentCopyWithImpl<$Res> implements $AppointmentCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AppointmentCopyWith<$Res>
+abstract class _$$_AppointmentCopyWith<$Res>
     implements $AppointmentCopyWith<$Res> {
-  factory _$AppointmentCopyWith(
-          _Appointment value, $Res Function(_Appointment) then) =
-      __$AppointmentCopyWithImpl<$Res>;
+  factory _$$_AppointmentCopyWith(
+          _$_Appointment value, $Res Function(_$_Appointment) then) =
+      __$$_AppointmentCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'ID')
@@ -135,14 +106,14 @@ abstract class _$AppointmentCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
-    implements _$AppointmentCopyWith<$Res> {
-  __$AppointmentCopyWithImpl(
-      _Appointment _value, $Res Function(_Appointment) _then)
-      : super(_value, (v) => _then(v as _Appointment));
+class __$$_AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
+    implements _$$_AppointmentCopyWith<$Res> {
+  __$$_AppointmentCopyWithImpl(
+      _$_Appointment _value, $Res Function(_$_Appointment) _then)
+      : super(_value, (v) => _then(v as _$_Appointment));
 
   @override
-  _Appointment get _value => super._value as _Appointment;
+  _$_Appointment get _value => super._value as _$_Appointment;
 
   @override
   $Res call({
@@ -151,7 +122,7 @@ class __$AppointmentCopyWithImpl<$Res> extends _$AppointmentCopyWithImpl<$Res>
     Object? date = freezed,
     Object? pendingReschedule = freezed,
   }) {
-    return _then(_Appointment(
+    return _then(_$_Appointment(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -210,7 +181,7 @@ class _$_Appointment implements _Appointment {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Appointment &&
+            other is _$_Appointment &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.reason, reason) &&
             const DeepCollectionEquality().equals(other.date, date) &&
@@ -218,6 +189,7 @@ class _$_Appointment implements _Appointment {
                 .equals(other.pendingReschedule, pendingReschedule));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -228,8 +200,8 @@ class _$_Appointment implements _Appointment {
 
   @JsonKey(ignore: true)
   @override
-  _$AppointmentCopyWith<_Appointment> get copyWith =>
-      __$AppointmentCopyWithImpl<_Appointment>(this, _$identity);
+  _$$_AppointmentCopyWith<_$_Appointment> get copyWith =>
+      __$$_AppointmentCopyWithImpl<_$_Appointment>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -240,31 +212,31 @@ class _$_Appointment implements _Appointment {
 abstract class _Appointment implements Appointment {
   factory _Appointment(
       {@JsonKey(name: 'ID')
-          required String? id,
+          required final String? id,
       @JsonKey(name: 'reason')
-          required String? reason,
+          required final String? reason,
       @JsonKey(name: 'date')
-          required String? date,
+          required final String? date,
       @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
-          required bool pendingReschedule}) = _$_Appointment;
+          required final bool pendingReschedule}) = _$_Appointment;
 
   factory _Appointment.fromJson(Map<String, dynamic> json) =
       _$_Appointment.fromJson;
 
   @override
   @JsonKey(name: 'ID')
-  String? get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'reason')
-  String? get reason;
+  String? get reason => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'date')
-  String? get date;
+  String? get date => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
-  bool get pendingReschedule;
+  bool get pendingReschedule => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AppointmentCopyWith<_Appointment> get copyWith =>
+  _$$_AppointmentCopyWith<_$_Appointment> get copyWith =>
       throw _privateConstructorUsedError;
 }

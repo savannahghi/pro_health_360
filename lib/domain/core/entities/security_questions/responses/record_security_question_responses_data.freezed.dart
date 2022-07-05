@@ -12,34 +12,12 @@ part of 'record_security_question_responses_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 RecordSecurityQuestionResponsesData
     _$RecordSecurityQuestionResponsesDataFromJson(Map<String, dynamic> json) {
   return _RecordSecurityQuestionResponsesData.fromJson(json);
 }
-
-/// @nodoc
-class _$RecordSecurityQuestionResponsesDataTearOff {
-  const _$RecordSecurityQuestionResponsesDataTearOff();
-
-  _RecordSecurityQuestionResponsesData call(
-      {@JsonKey(name: 'recordSecurityQuestionResponses')
-          required List<RecordSecurityQuestionResponse>
-              recordSecurityQuestionResponses}) {
-    return _RecordSecurityQuestionResponsesData(
-      recordSecurityQuestionResponses: recordSecurityQuestionResponses,
-    );
-  }
-
-  RecordSecurityQuestionResponsesData fromJson(Map<String, Object?> json) {
-    return RecordSecurityQuestionResponsesData.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $RecordSecurityQuestionResponsesData =
-    _$RecordSecurityQuestionResponsesDataTearOff();
 
 /// @nodoc
 mixin _$RecordSecurityQuestionResponsesData {
@@ -90,12 +68,12 @@ class _$RecordSecurityQuestionResponsesDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$RecordSecurityQuestionResponsesDataCopyWith<$Res>
+abstract class _$$_RecordSecurityQuestionResponsesDataCopyWith<$Res>
     implements $RecordSecurityQuestionResponsesDataCopyWith<$Res> {
-  factory _$RecordSecurityQuestionResponsesDataCopyWith(
-          _RecordSecurityQuestionResponsesData value,
-          $Res Function(_RecordSecurityQuestionResponsesData) then) =
-      __$RecordSecurityQuestionResponsesDataCopyWithImpl<$Res>;
+  factory _$$_RecordSecurityQuestionResponsesDataCopyWith(
+          _$_RecordSecurityQuestionResponsesData value,
+          $Res Function(_$_RecordSecurityQuestionResponsesData) then) =
+      __$$_RecordSecurityQuestionResponsesDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'recordSecurityQuestionResponses')
@@ -104,26 +82,27 @@ abstract class _$RecordSecurityQuestionResponsesDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$RecordSecurityQuestionResponsesDataCopyWithImpl<$Res>
+class __$$_RecordSecurityQuestionResponsesDataCopyWithImpl<$Res>
     extends _$RecordSecurityQuestionResponsesDataCopyWithImpl<$Res>
-    implements _$RecordSecurityQuestionResponsesDataCopyWith<$Res> {
-  __$RecordSecurityQuestionResponsesDataCopyWithImpl(
-      _RecordSecurityQuestionResponsesData _value,
-      $Res Function(_RecordSecurityQuestionResponsesData) _then)
-      : super(_value, (v) => _then(v as _RecordSecurityQuestionResponsesData));
+    implements _$$_RecordSecurityQuestionResponsesDataCopyWith<$Res> {
+  __$$_RecordSecurityQuestionResponsesDataCopyWithImpl(
+      _$_RecordSecurityQuestionResponsesData _value,
+      $Res Function(_$_RecordSecurityQuestionResponsesData) _then)
+      : super(
+            _value, (v) => _then(v as _$_RecordSecurityQuestionResponsesData));
 
   @override
-  _RecordSecurityQuestionResponsesData get _value =>
-      super._value as _RecordSecurityQuestionResponsesData;
+  _$_RecordSecurityQuestionResponsesData get _value =>
+      super._value as _$_RecordSecurityQuestionResponsesData;
 
   @override
   $Res call({
     Object? recordSecurityQuestionResponses = freezed,
   }) {
-    return _then(_RecordSecurityQuestionResponsesData(
+    return _then(_$_RecordSecurityQuestionResponsesData(
       recordSecurityQuestionResponses: recordSecurityQuestionResponses ==
               freezed
-          ? _value.recordSecurityQuestionResponses
+          ? _value._recordSecurityQuestionResponses
           : recordSecurityQuestionResponses // ignore: cast_nullable_to_non_nullable
               as List<RecordSecurityQuestionResponse>,
     ));
@@ -136,15 +115,21 @@ class _$_RecordSecurityQuestionResponsesData
     implements _RecordSecurityQuestionResponsesData {
   _$_RecordSecurityQuestionResponsesData(
       {@JsonKey(name: 'recordSecurityQuestionResponses')
-          required this.recordSecurityQuestionResponses});
+          required final List<RecordSecurityQuestionResponse>
+              recordSecurityQuestionResponses})
+      : _recordSecurityQuestionResponses = recordSecurityQuestionResponses;
 
   factory _$_RecordSecurityQuestionResponsesData.fromJson(
           Map<String, dynamic> json) =>
       _$$_RecordSecurityQuestionResponsesDataFromJson(json);
 
+  final List<RecordSecurityQuestionResponse> _recordSecurityQuestionResponses;
   @override
   @JsonKey(name: 'recordSecurityQuestionResponses')
-  final List<RecordSecurityQuestionResponse> recordSecurityQuestionResponses;
+  List<RecordSecurityQuestionResponse> get recordSecurityQuestionResponses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recordSecurityQuestionResponses);
+  }
 
   @override
   String toString() {
@@ -155,22 +140,23 @@ class _$_RecordSecurityQuestionResponsesData
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RecordSecurityQuestionResponsesData &&
+            other is _$_RecordSecurityQuestionResponsesData &&
             const DeepCollectionEquality().equals(
-                other.recordSecurityQuestionResponses,
-                recordSecurityQuestionResponses));
+                other._recordSecurityQuestionResponses,
+                _recordSecurityQuestionResponses));
   }
-
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(recordSecurityQuestionResponses));
 
   @JsonKey(ignore: true)
   @override
-  _$RecordSecurityQuestionResponsesDataCopyWith<
-          _RecordSecurityQuestionResponsesData>
-      get copyWith => __$RecordSecurityQuestionResponsesDataCopyWithImpl<
-          _RecordSecurityQuestionResponsesData>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_recordSecurityQuestionResponses));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RecordSecurityQuestionResponsesDataCopyWith<
+          _$_RecordSecurityQuestionResponsesData>
+      get copyWith => __$$_RecordSecurityQuestionResponsesDataCopyWithImpl<
+          _$_RecordSecurityQuestionResponsesData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -182,7 +168,7 @@ abstract class _RecordSecurityQuestionResponsesData
     implements RecordSecurityQuestionResponsesData {
   factory _RecordSecurityQuestionResponsesData(
           {@JsonKey(name: 'recordSecurityQuestionResponses')
-              required List<RecordSecurityQuestionResponse>
+              required final List<RecordSecurityQuestionResponse>
                   recordSecurityQuestionResponses}) =
       _$_RecordSecurityQuestionResponsesData;
 
@@ -192,10 +178,11 @@ abstract class _RecordSecurityQuestionResponsesData
 
   @override
   @JsonKey(name: 'recordSecurityQuestionResponses')
-  List<RecordSecurityQuestionResponse> get recordSecurityQuestionResponses;
+  List<RecordSecurityQuestionResponse> get recordSecurityQuestionResponses =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RecordSecurityQuestionResponsesDataCopyWith<
-          _RecordSecurityQuestionResponsesData>
+  _$$_RecordSecurityQuestionResponsesDataCopyWith<
+          _$_RecordSecurityQuestionResponsesData>
       get copyWith => throw _privateConstructorUsedError;
 }

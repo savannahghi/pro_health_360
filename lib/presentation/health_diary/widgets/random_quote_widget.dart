@@ -35,7 +35,7 @@ class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
 
     _streamController = StreamController<Map<String, dynamic>>.broadcast();
     _stream = _streamController.stream;
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       await genericFetchFunction(
         streamController: _streamController,
         context: context,

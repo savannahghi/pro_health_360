@@ -12,36 +12,11 @@ part of 'pin_input_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 PINInputState _$PINInputStateFromJson(Map<String, dynamic> json) {
   return _PINInputState.fromJson(json);
 }
-
-/// @nodoc
-class _$PINInputStateTearOff {
-  const _$PINInputStateTearOff();
-
-  _PINInputState call(
-      {String? healthPagePINInputTime,
-      int? pinInputTries,
-      String? maxTryTime,
-      bool? pinVerified}) {
-    return _PINInputState(
-      healthPagePINInputTime: healthPagePINInputTime,
-      pinInputTries: pinInputTries,
-      maxTryTime: maxTryTime,
-      pinVerified: pinVerified,
-    );
-  }
-
-  PINInputState fromJson(Map<String, Object?> json) {
-    return PINInputState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PINInputState = _$PINInputStateTearOff();
 
 /// @nodoc
 mixin _$PINInputState {
@@ -106,11 +81,11 @@ class _$PINInputStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PINInputStateCopyWith<$Res>
+abstract class _$$_PINInputStateCopyWith<$Res>
     implements $PINInputStateCopyWith<$Res> {
-  factory _$PINInputStateCopyWith(
-          _PINInputState value, $Res Function(_PINInputState) then) =
-      __$PINInputStateCopyWithImpl<$Res>;
+  factory _$$_PINInputStateCopyWith(
+          _$_PINInputState value, $Res Function(_$_PINInputState) then) =
+      __$$_PINInputStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? healthPagePINInputTime,
@@ -120,15 +95,15 @@ abstract class _$PINInputStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PINInputStateCopyWithImpl<$Res>
+class __$$_PINInputStateCopyWithImpl<$Res>
     extends _$PINInputStateCopyWithImpl<$Res>
-    implements _$PINInputStateCopyWith<$Res> {
-  __$PINInputStateCopyWithImpl(
-      _PINInputState _value, $Res Function(_PINInputState) _then)
-      : super(_value, (v) => _then(v as _PINInputState));
+    implements _$$_PINInputStateCopyWith<$Res> {
+  __$$_PINInputStateCopyWithImpl(
+      _$_PINInputState _value, $Res Function(_$_PINInputState) _then)
+      : super(_value, (v) => _then(v as _$_PINInputState));
 
   @override
-  _PINInputState get _value => super._value as _PINInputState;
+  _$_PINInputState get _value => super._value as _$_PINInputState;
 
   @override
   $Res call({
@@ -137,7 +112,7 @@ class __$PINInputStateCopyWithImpl<$Res>
     Object? maxTryTime = freezed,
     Object? pinVerified = freezed,
   }) {
-    return _then(_PINInputState(
+    return _then(_$_PINInputState(
       healthPagePINInputTime: healthPagePINInputTime == freezed
           ? _value.healthPagePINInputTime
           : healthPagePINInputTime // ignore: cast_nullable_to_non_nullable
@@ -188,7 +163,7 @@ class _$_PINInputState implements _PINInputState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PINInputState &&
+            other is _$_PINInputState &&
             const DeepCollectionEquality()
                 .equals(other.healthPagePINInputTime, healthPagePINInputTime) &&
             const DeepCollectionEquality()
@@ -199,6 +174,7 @@ class _$_PINInputState implements _PINInputState {
                 .equals(other.pinVerified, pinVerified));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -209,8 +185,8 @@ class _$_PINInputState implements _PINInputState {
 
   @JsonKey(ignore: true)
   @override
-  _$PINInputStateCopyWith<_PINInputState> get copyWith =>
-      __$PINInputStateCopyWithImpl<_PINInputState>(this, _$identity);
+  _$$_PINInputStateCopyWith<_$_PINInputState> get copyWith =>
+      __$$_PINInputStateCopyWithImpl<_$_PINInputState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -220,24 +196,24 @@ class _$_PINInputState implements _PINInputState {
 
 abstract class _PINInputState implements PINInputState {
   factory _PINInputState(
-      {String? healthPagePINInputTime,
-      int? pinInputTries,
-      String? maxTryTime,
-      bool? pinVerified}) = _$_PINInputState;
+      {final String? healthPagePINInputTime,
+      final int? pinInputTries,
+      final String? maxTryTime,
+      final bool? pinVerified}) = _$_PINInputState;
 
   factory _PINInputState.fromJson(Map<String, dynamic> json) =
       _$_PINInputState.fromJson;
 
   @override
-  String? get healthPagePINInputTime;
+  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
   @override
-  int? get pinInputTries;
+  int? get pinInputTries => throw _privateConstructorUsedError;
   @override
-  String? get maxTryTime;
+  String? get maxTryTime => throw _privateConstructorUsedError;
   @override
-  bool? get pinVerified;
+  bool? get pinVerified => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PINInputStateCopyWith<_PINInputState> get copyWith =>
+  _$$_PINInputStateCopyWith<_$_PINInputState> get copyWith =>
       throw _privateConstructorUsedError;
 }

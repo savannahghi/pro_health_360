@@ -103,7 +103,7 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     connectivityCheckerSubscription?.cancel();
     super.dispose();
   }
@@ -112,9 +112,9 @@ class _PreLoadAppState extends State<PreLoadApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
 
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
       StoreProvider.dispatch(
         context,
         CheckTokenAction(

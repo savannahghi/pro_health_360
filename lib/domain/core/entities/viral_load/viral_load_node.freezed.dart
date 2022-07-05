@@ -12,29 +12,11 @@ part of 'viral_load_node.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ViralLoadNode _$ViralLoadNodeFromJson(Map<String, dynamic> json) {
   return _ViralLoadNode.fromJson(json);
 }
-
-/// @nodoc
-class _$ViralLoadNodeTearOff {
-  const _$ViralLoadNodeTearOff();
-
-  _ViralLoadNode call({@JsonKey(name: 'node') ViralLoadNodeData? node}) {
-    return _ViralLoadNode(
-      node: node,
-    );
-  }
-
-  ViralLoadNode fromJson(Map<String, Object?> json) {
-    return ViralLoadNode.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ViralLoadNode = _$ViralLoadNodeTearOff();
 
 /// @nodoc
 mixin _$ViralLoadNode {
@@ -91,11 +73,11 @@ class _$ViralLoadNodeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ViralLoadNodeCopyWith<$Res>
+abstract class _$$_ViralLoadNodeCopyWith<$Res>
     implements $ViralLoadNodeCopyWith<$Res> {
-  factory _$ViralLoadNodeCopyWith(
-          _ViralLoadNode value, $Res Function(_ViralLoadNode) then) =
-      __$ViralLoadNodeCopyWithImpl<$Res>;
+  factory _$$_ViralLoadNodeCopyWith(
+          _$_ViralLoadNode value, $Res Function(_$_ViralLoadNode) then) =
+      __$$_ViralLoadNodeCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'node') ViralLoadNodeData? node});
 
@@ -104,21 +86,21 @@ abstract class _$ViralLoadNodeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ViralLoadNodeCopyWithImpl<$Res>
+class __$$_ViralLoadNodeCopyWithImpl<$Res>
     extends _$ViralLoadNodeCopyWithImpl<$Res>
-    implements _$ViralLoadNodeCopyWith<$Res> {
-  __$ViralLoadNodeCopyWithImpl(
-      _ViralLoadNode _value, $Res Function(_ViralLoadNode) _then)
-      : super(_value, (v) => _then(v as _ViralLoadNode));
+    implements _$$_ViralLoadNodeCopyWith<$Res> {
+  __$$_ViralLoadNodeCopyWithImpl(
+      _$_ViralLoadNode _value, $Res Function(_$_ViralLoadNode) _then)
+      : super(_value, (v) => _then(v as _$_ViralLoadNode));
 
   @override
-  _ViralLoadNode get _value => super._value as _ViralLoadNode;
+  _$_ViralLoadNode get _value => super._value as _$_ViralLoadNode;
 
   @override
   $Res call({
     Object? node = freezed,
   }) {
-    return _then(_ViralLoadNode(
+    return _then(_$_ViralLoadNode(
       node: node == freezed
           ? _value.node
           : node // ignore: cast_nullable_to_non_nullable
@@ -148,18 +130,19 @@ class _$_ViralLoadNode implements _ViralLoadNode {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ViralLoadNode &&
+            other is _$_ViralLoadNode &&
             const DeepCollectionEquality().equals(other.node, node));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(node));
 
   @JsonKey(ignore: true)
   @override
-  _$ViralLoadNodeCopyWith<_ViralLoadNode> get copyWith =>
-      __$ViralLoadNodeCopyWithImpl<_ViralLoadNode>(this, _$identity);
+  _$$_ViralLoadNodeCopyWith<_$_ViralLoadNode> get copyWith =>
+      __$$_ViralLoadNodeCopyWithImpl<_$_ViralLoadNode>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -168,7 +151,8 @@ class _$_ViralLoadNode implements _ViralLoadNode {
 }
 
 abstract class _ViralLoadNode implements ViralLoadNode {
-  factory _ViralLoadNode({@JsonKey(name: 'node') ViralLoadNodeData? node}) =
+  factory _ViralLoadNode(
+          {@JsonKey(name: 'node') final ViralLoadNodeData? node}) =
       _$_ViralLoadNode;
 
   factory _ViralLoadNode.fromJson(Map<String, dynamic> json) =
@@ -176,9 +160,9 @@ abstract class _ViralLoadNode implements ViralLoadNode {
 
   @override
   @JsonKey(name: 'node')
-  ViralLoadNodeData? get node;
+  ViralLoadNodeData? get node => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ViralLoadNodeCopyWith<_ViralLoadNode> get copyWith =>
+  _$$_ViralLoadNodeCopyWith<_$_ViralLoadNode> get copyWith =>
       throw _privateConstructorUsedError;
 }

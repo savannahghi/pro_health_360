@@ -12,32 +12,11 @@ part of 'reference.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Reference _$ReferenceFromJson(Map<String, dynamic> json) {
   return _Reference.fromJson(json);
 }
-
-/// @nodoc
-class _$ReferenceTearOff {
-  const _$ReferenceTearOff();
-
-  _Reference call(
-      {@JsonKey(name: 'reference') String? reference,
-      @JsonKey(name: 'display') String? display}) {
-    return _Reference(
-      reference: reference,
-      display: display,
-    );
-  }
-
-  Reference fromJson(Map<String, Object?> json) {
-    return Reference.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Reference = _$ReferenceTearOff();
 
 /// @nodoc
 mixin _$Reference {
@@ -96,10 +75,10 @@ class _$ReferenceCopyWithImpl<$Res> implements $ReferenceCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ReferenceCopyWith<$Res> implements $ReferenceCopyWith<$Res> {
-  factory _$ReferenceCopyWith(
-          _Reference value, $Res Function(_Reference) then) =
-      __$ReferenceCopyWithImpl<$Res>;
+abstract class _$$_ReferenceCopyWith<$Res> implements $ReferenceCopyWith<$Res> {
+  factory _$$_ReferenceCopyWith(
+          _$_Reference value, $Res Function(_$_Reference) then) =
+      __$$_ReferenceCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'reference') String? reference,
@@ -107,20 +86,21 @@ abstract class _$ReferenceCopyWith<$Res> implements $ReferenceCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ReferenceCopyWithImpl<$Res> extends _$ReferenceCopyWithImpl<$Res>
-    implements _$ReferenceCopyWith<$Res> {
-  __$ReferenceCopyWithImpl(_Reference _value, $Res Function(_Reference) _then)
-      : super(_value, (v) => _then(v as _Reference));
+class __$$_ReferenceCopyWithImpl<$Res> extends _$ReferenceCopyWithImpl<$Res>
+    implements _$$_ReferenceCopyWith<$Res> {
+  __$$_ReferenceCopyWithImpl(
+      _$_Reference _value, $Res Function(_$_Reference) _then)
+      : super(_value, (v) => _then(v as _$_Reference));
 
   @override
-  _Reference get _value => super._value as _Reference;
+  _$_Reference get _value => super._value as _$_Reference;
 
   @override
   $Res call({
     Object? reference = freezed,
     Object? display = freezed,
   }) {
-    return _then(_Reference(
+    return _then(_$_Reference(
       reference: reference == freezed
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
@@ -143,8 +123,6 @@ class _$_Reference implements _Reference {
   factory _$_Reference.fromJson(Map<String, dynamic> json) =>
       _$$_ReferenceFromJson(json);
 
-  @override
-
   /// A reference to a location at which the other resource is found.
   ///
   ///  The reference may be a relative reference, in which case it is
@@ -153,6 +131,7 @@ class _$_Reference implements _Reference {
   ///  version specific or not. If the reference is not to a FHIR RESTful
   ///  server, then it should be assumed to be version specific. Internal
   ///  fragment references (start with '#') refer to contained resources.
+  @override
   @JsonKey(name: 'reference')
   final String? reference;
   @override
@@ -168,11 +147,12 @@ class _$_Reference implements _Reference {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Reference &&
+            other is _$_Reference &&
             const DeepCollectionEquality().equals(other.reference, reference) &&
             const DeepCollectionEquality().equals(other.display, display));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -181,8 +161,8 @@ class _$_Reference implements _Reference {
 
   @JsonKey(ignore: true)
   @override
-  _$ReferenceCopyWith<_Reference> get copyWith =>
-      __$ReferenceCopyWithImpl<_Reference>(this, _$identity);
+  _$$_ReferenceCopyWith<_$_Reference> get copyWith =>
+      __$$_ReferenceCopyWithImpl<_$_Reference>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -192,8 +172,8 @@ class _$_Reference implements _Reference {
 
 abstract class _Reference implements Reference {
   factory _Reference(
-      {@JsonKey(name: 'reference') String? reference,
-      @JsonKey(name: 'display') String? display}) = _$_Reference;
+      {@JsonKey(name: 'reference') final String? reference,
+      @JsonKey(name: 'display') final String? display}) = _$_Reference;
 
   factory _Reference.fromJson(Map<String, dynamic> json) =
       _$_Reference.fromJson;
@@ -209,12 +189,12 @@ abstract class _Reference implements Reference {
   ///  server, then it should be assumed to be version specific. Internal
   ///  fragment references (start with '#') refer to contained resources.
   @JsonKey(name: 'reference')
-  String? get reference;
+  String? get reference => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'display')
-  String? get display;
+  String? get display => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ReferenceCopyWith<_Reference> get copyWith =>
+  _$$_ReferenceCopyWith<_$_Reference> get copyWith =>
       throw _privateConstructorUsedError;
 }

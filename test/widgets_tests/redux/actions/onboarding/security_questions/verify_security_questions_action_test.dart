@@ -18,7 +18,7 @@ void main() {
     late StoreTester<AppState> storeTester;
 
     setUp(() async {
-      await setupFirebaseAnalyticsMocks();
+      setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial(),

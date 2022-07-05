@@ -185,7 +185,7 @@ void main() {
   });
 
   test('Test router returns incoming  userProfile page', () async {
-    await setupFirebaseAnalyticsMocks();
+    setupFirebaseAnalyticsMocks();
     await Firebase.initializeApp();
 
     const RouteSettings settings = RouteSettings(name: AppRoutes.userProfile);
@@ -369,7 +369,7 @@ void main() {
   });
 
   test('Test router returns ContentDetailPage', () async {
-    await setupFirebaseAnalyticsMocks();
+    setupFirebaseAnalyticsMocks();
     await Firebase.initializeApp();
 
     final RouteSettings settings = RouteSettings(

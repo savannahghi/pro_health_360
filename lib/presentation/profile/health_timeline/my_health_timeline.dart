@@ -299,7 +299,7 @@ class _MyHealthTimelineState extends State<MyHealthTimeline> {
   //     keys[date] = widgetKey;
   //   }
 
-  //   WidgetsBinding.instance?.addPostFrameCallback((_) {
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
   //     calculateHeights(dates);
   //   });
   // }

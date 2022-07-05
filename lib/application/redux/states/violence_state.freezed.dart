@@ -12,37 +12,11 @@ part of 'violence_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ViolenceState _$ViolenceStateFromJson(Map<String, dynamic> json) {
   return _ViolenceState.fromJson(json);
 }
-
-/// @nodoc
-class _$ViolenceStateTearOff {
-  const _$ViolenceStateTearOff();
-
-  _ViolenceState call(
-      {@JsonKey(name: 'getScreeningToolQuestions')
-          ScreeningQuestionsList? screeningQuestions,
-      bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions,
-      bool? errorAnsweringQuestions}) {
-    return _ViolenceState(
-      screeningQuestions: screeningQuestions,
-      errorFetchingQuestions: errorFetchingQuestions,
-      timeoutFetchingQuestions: timeoutFetchingQuestions,
-      errorAnsweringQuestions: errorAnsweringQuestions,
-    );
-  }
-
-  ViolenceState fromJson(Map<String, Object?> json) {
-    return ViolenceState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ViolenceState = _$ViolenceStateTearOff();
 
 /// @nodoc
 mixin _$ViolenceState {
@@ -124,11 +98,11 @@ class _$ViolenceStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ViolenceStateCopyWith<$Res>
+abstract class _$$_ViolenceStateCopyWith<$Res>
     implements $ViolenceStateCopyWith<$Res> {
-  factory _$ViolenceStateCopyWith(
-          _ViolenceState value, $Res Function(_ViolenceState) then) =
-      __$ViolenceStateCopyWithImpl<$Res>;
+  factory _$$_ViolenceStateCopyWith(
+          _$_ViolenceState value, $Res Function(_$_ViolenceState) then) =
+      __$$_ViolenceStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'getScreeningToolQuestions')
@@ -142,15 +116,15 @@ abstract class _$ViolenceStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ViolenceStateCopyWithImpl<$Res>
+class __$$_ViolenceStateCopyWithImpl<$Res>
     extends _$ViolenceStateCopyWithImpl<$Res>
-    implements _$ViolenceStateCopyWith<$Res> {
-  __$ViolenceStateCopyWithImpl(
-      _ViolenceState _value, $Res Function(_ViolenceState) _then)
-      : super(_value, (v) => _then(v as _ViolenceState));
+    implements _$$_ViolenceStateCopyWith<$Res> {
+  __$$_ViolenceStateCopyWithImpl(
+      _$_ViolenceState _value, $Res Function(_$_ViolenceState) _then)
+      : super(_value, (v) => _then(v as _$_ViolenceState));
 
   @override
-  _ViolenceState get _value => super._value as _ViolenceState;
+  _$_ViolenceState get _value => super._value as _$_ViolenceState;
 
   @override
   $Res call({
@@ -159,7 +133,7 @@ class __$ViolenceStateCopyWithImpl<$Res>
     Object? timeoutFetchingQuestions = freezed,
     Object? errorAnsweringQuestions = freezed,
   }) {
-    return _then(_ViolenceState(
+    return _then(_$_ViolenceState(
       screeningQuestions: screeningQuestions == freezed
           ? _value.screeningQuestions
           : screeningQuestions // ignore: cast_nullable_to_non_nullable
@@ -211,7 +185,7 @@ class _$_ViolenceState implements _ViolenceState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ViolenceState &&
+            other is _$_ViolenceState &&
             const DeepCollectionEquality()
                 .equals(other.screeningQuestions, screeningQuestions) &&
             const DeepCollectionEquality()
@@ -222,6 +196,7 @@ class _$_ViolenceState implements _ViolenceState {
                 other.errorAnsweringQuestions, errorAnsweringQuestions));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -232,8 +207,8 @@ class _$_ViolenceState implements _ViolenceState {
 
   @JsonKey(ignore: true)
   @override
-  _$ViolenceStateCopyWith<_ViolenceState> get copyWith =>
-      __$ViolenceStateCopyWithImpl<_ViolenceState>(this, _$identity);
+  _$$_ViolenceStateCopyWith<_$_ViolenceState> get copyWith =>
+      __$$_ViolenceStateCopyWithImpl<_$_ViolenceState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -244,25 +219,26 @@ class _$_ViolenceState implements _ViolenceState {
 abstract class _ViolenceState implements ViolenceState {
   factory _ViolenceState(
       {@JsonKey(name: 'getScreeningToolQuestions')
-          ScreeningQuestionsList? screeningQuestions,
-      bool? errorFetchingQuestions,
-      bool? timeoutFetchingQuestions,
-      bool? errorAnsweringQuestions}) = _$_ViolenceState;
+          final ScreeningQuestionsList? screeningQuestions,
+      final bool? errorFetchingQuestions,
+      final bool? timeoutFetchingQuestions,
+      final bool? errorAnsweringQuestions}) = _$_ViolenceState;
 
   factory _ViolenceState.fromJson(Map<String, dynamic> json) =
       _$_ViolenceState.fromJson;
 
   @override
   @JsonKey(name: 'getScreeningToolQuestions')
-  ScreeningQuestionsList? get screeningQuestions;
+  ScreeningQuestionsList? get screeningQuestions =>
+      throw _privateConstructorUsedError;
   @override
-  bool? get errorFetchingQuestions;
+  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
   @override
-  bool? get timeoutFetchingQuestions;
+  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
   @override
-  bool? get errorAnsweringQuestions;
+  bool? get errorAnsweringQuestions => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ViolenceStateCopyWith<_ViolenceState> get copyWith =>
+  _$$_ViolenceStateCopyWith<_$_ViolenceState> get copyWith =>
       throw _privateConstructorUsedError;
 }

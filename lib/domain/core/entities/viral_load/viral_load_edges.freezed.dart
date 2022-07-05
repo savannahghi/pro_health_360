@@ -12,29 +12,11 @@ part of 'viral_load_edges.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ViralLoadEdges _$ViralLoadEdgesFromJson(Map<String, dynamic> json) {
   return _ViralLoadEdges.fromJson(json);
 }
-
-/// @nodoc
-class _$ViralLoadEdgesTearOff {
-  const _$ViralLoadEdgesTearOff();
-
-  _ViralLoadEdges call({@JsonKey(name: 'edges') List<ViralLoadNode?>? edges}) {
-    return _ViralLoadEdges(
-      edges: edges,
-    );
-  }
-
-  ViralLoadEdges fromJson(Map<String, Object?> json) {
-    return ViralLoadEdges.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ViralLoadEdges = _$ViralLoadEdgesTearOff();
 
 /// @nodoc
 mixin _$ViralLoadEdges {
@@ -78,33 +60,33 @@ class _$ViralLoadEdgesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ViralLoadEdgesCopyWith<$Res>
+abstract class _$$_ViralLoadEdgesCopyWith<$Res>
     implements $ViralLoadEdgesCopyWith<$Res> {
-  factory _$ViralLoadEdgesCopyWith(
-          _ViralLoadEdges value, $Res Function(_ViralLoadEdges) then) =
-      __$ViralLoadEdgesCopyWithImpl<$Res>;
+  factory _$$_ViralLoadEdgesCopyWith(
+          _$_ViralLoadEdges value, $Res Function(_$_ViralLoadEdges) then) =
+      __$$_ViralLoadEdgesCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'edges') List<ViralLoadNode?>? edges});
 }
 
 /// @nodoc
-class __$ViralLoadEdgesCopyWithImpl<$Res>
+class __$$_ViralLoadEdgesCopyWithImpl<$Res>
     extends _$ViralLoadEdgesCopyWithImpl<$Res>
-    implements _$ViralLoadEdgesCopyWith<$Res> {
-  __$ViralLoadEdgesCopyWithImpl(
-      _ViralLoadEdges _value, $Res Function(_ViralLoadEdges) _then)
-      : super(_value, (v) => _then(v as _ViralLoadEdges));
+    implements _$$_ViralLoadEdgesCopyWith<$Res> {
+  __$$_ViralLoadEdgesCopyWithImpl(
+      _$_ViralLoadEdges _value, $Res Function(_$_ViralLoadEdges) _then)
+      : super(_value, (v) => _then(v as _$_ViralLoadEdges));
 
   @override
-  _ViralLoadEdges get _value => super._value as _ViralLoadEdges;
+  _$_ViralLoadEdges get _value => super._value as _$_ViralLoadEdges;
 
   @override
   $Res call({
     Object? edges = freezed,
   }) {
-    return _then(_ViralLoadEdges(
+    return _then(_$_ViralLoadEdges(
       edges: edges == freezed
-          ? _value.edges
+          ? _value._edges
           : edges // ignore: cast_nullable_to_non_nullable
               as List<ViralLoadNode?>?,
     ));
@@ -114,14 +96,21 @@ class __$ViralLoadEdgesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ViralLoadEdges implements _ViralLoadEdges {
-  _$_ViralLoadEdges({@JsonKey(name: 'edges') this.edges});
+  _$_ViralLoadEdges({@JsonKey(name: 'edges') final List<ViralLoadNode?>? edges})
+      : _edges = edges;
 
   factory _$_ViralLoadEdges.fromJson(Map<String, dynamic> json) =>
       _$$_ViralLoadEdgesFromJson(json);
 
+  final List<ViralLoadNode?>? _edges;
   @override
   @JsonKey(name: 'edges')
-  final List<ViralLoadNode?>? edges;
+  List<ViralLoadNode?>? get edges {
+    final value = _edges;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -132,18 +121,19 @@ class _$_ViralLoadEdges implements _ViralLoadEdges {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ViralLoadEdges &&
-            const DeepCollectionEquality().equals(other.edges, edges));
+            other is _$_ViralLoadEdges &&
+            const DeepCollectionEquality().equals(other._edges, _edges));
   }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(edges));
 
   @JsonKey(ignore: true)
   @override
-  _$ViralLoadEdgesCopyWith<_ViralLoadEdges> get copyWith =>
-      __$ViralLoadEdgesCopyWithImpl<_ViralLoadEdges>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_edges));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ViralLoadEdgesCopyWith<_$_ViralLoadEdges> get copyWith =>
+      __$$_ViralLoadEdgesCopyWithImpl<_$_ViralLoadEdges>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -153,7 +143,7 @@ class _$_ViralLoadEdges implements _ViralLoadEdges {
 
 abstract class _ViralLoadEdges implements ViralLoadEdges {
   factory _ViralLoadEdges(
-          {@JsonKey(name: 'edges') List<ViralLoadNode?>? edges}) =
+          {@JsonKey(name: 'edges') final List<ViralLoadNode?>? edges}) =
       _$_ViralLoadEdges;
 
   factory _ViralLoadEdges.fromJson(Map<String, dynamic> json) =
@@ -161,9 +151,9 @@ abstract class _ViralLoadEdges implements ViralLoadEdges {
 
   @override
   @JsonKey(name: 'edges')
-  List<ViralLoadNode?>? get edges;
+  List<ViralLoadNode?>? get edges => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ViralLoadEdgesCopyWith<_ViralLoadEdges> get copyWith =>
+  _$$_ViralLoadEdgesCopyWith<_$_ViralLoadEdges> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -36,7 +36,7 @@ void main() {
       store.dispatch(UpdateConnectivityAction(hasConnection: true));
       final Map<String, Object> values = <String, Object>{'clientId': 1};
       SharedPreferences.setMockInitialValues(values);
-      await setupFirebaseAnalyticsMocks();
+      setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
     });
 

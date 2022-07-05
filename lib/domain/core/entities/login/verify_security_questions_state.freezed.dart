@@ -12,31 +12,12 @@ part of 'verify_security_questions_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 VerifySecurityQuestionsState _$VerifySecurityQuestionsStateFromJson(
     Map<String, dynamic> json) {
   return _VerifySecurityQuestionsState.fromJson(json);
 }
-
-/// @nodoc
-class _$VerifySecurityQuestionsStateTearOff {
-  const _$VerifySecurityQuestionsStateTearOff();
-
-  _VerifySecurityQuestionsState call(
-      {bool hasVerifiedSecurityQuestions = false}) {
-    return _VerifySecurityQuestionsState(
-      hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions,
-    );
-  }
-
-  VerifySecurityQuestionsState fromJson(Map<String, Object?> json) {
-    return VerifySecurityQuestionsState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $VerifySecurityQuestionsState = _$VerifySecurityQuestionsStateTearOff();
 
 /// @nodoc
 mixin _$VerifySecurityQuestionsState {
@@ -80,34 +61,34 @@ class _$VerifySecurityQuestionsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$VerifySecurityQuestionsStateCopyWith<$Res>
+abstract class _$$_VerifySecurityQuestionsStateCopyWith<$Res>
     implements $VerifySecurityQuestionsStateCopyWith<$Res> {
-  factory _$VerifySecurityQuestionsStateCopyWith(
-          _VerifySecurityQuestionsState value,
-          $Res Function(_VerifySecurityQuestionsState) then) =
-      __$VerifySecurityQuestionsStateCopyWithImpl<$Res>;
+  factory _$$_VerifySecurityQuestionsStateCopyWith(
+          _$_VerifySecurityQuestionsState value,
+          $Res Function(_$_VerifySecurityQuestionsState) then) =
+      __$$_VerifySecurityQuestionsStateCopyWithImpl<$Res>;
   @override
   $Res call({bool hasVerifiedSecurityQuestions});
 }
 
 /// @nodoc
-class __$VerifySecurityQuestionsStateCopyWithImpl<$Res>
+class __$$_VerifySecurityQuestionsStateCopyWithImpl<$Res>
     extends _$VerifySecurityQuestionsStateCopyWithImpl<$Res>
-    implements _$VerifySecurityQuestionsStateCopyWith<$Res> {
-  __$VerifySecurityQuestionsStateCopyWithImpl(
-      _VerifySecurityQuestionsState _value,
-      $Res Function(_VerifySecurityQuestionsState) _then)
-      : super(_value, (v) => _then(v as _VerifySecurityQuestionsState));
+    implements _$$_VerifySecurityQuestionsStateCopyWith<$Res> {
+  __$$_VerifySecurityQuestionsStateCopyWithImpl(
+      _$_VerifySecurityQuestionsState _value,
+      $Res Function(_$_VerifySecurityQuestionsState) _then)
+      : super(_value, (v) => _then(v as _$_VerifySecurityQuestionsState));
 
   @override
-  _VerifySecurityQuestionsState get _value =>
-      super._value as _VerifySecurityQuestionsState;
+  _$_VerifySecurityQuestionsState get _value =>
+      super._value as _$_VerifySecurityQuestionsState;
 
   @override
   $Res call({
     Object? hasVerifiedSecurityQuestions = freezed,
   }) {
-    return _then(_VerifySecurityQuestionsState(
+    return _then(_$_VerifySecurityQuestionsState(
       hasVerifiedSecurityQuestions: hasVerifiedSecurityQuestions == freezed
           ? _value.hasVerifiedSecurityQuestions
           : hasVerifiedSecurityQuestions // ignore: cast_nullable_to_non_nullable
@@ -124,8 +105,8 @@ class _$_VerifySecurityQuestionsState implements _VerifySecurityQuestionsState {
   factory _$_VerifySecurityQuestionsState.fromJson(Map<String, dynamic> json) =>
       _$$_VerifySecurityQuestionsStateFromJson(json);
 
-  @JsonKey()
   @override
+  @JsonKey()
   final bool hasVerifiedSecurityQuestions;
 
   @override
@@ -137,21 +118,22 @@ class _$_VerifySecurityQuestionsState implements _VerifySecurityQuestionsState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _VerifySecurityQuestionsState &&
+            other is _$_VerifySecurityQuestionsState &&
             const DeepCollectionEquality().equals(
                 other.hasVerifiedSecurityQuestions,
                 hasVerifiedSecurityQuestions));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(hasVerifiedSecurityQuestions));
 
   @JsonKey(ignore: true)
   @override
-  _$VerifySecurityQuestionsStateCopyWith<_VerifySecurityQuestionsState>
-      get copyWith => __$VerifySecurityQuestionsStateCopyWithImpl<
-          _VerifySecurityQuestionsState>(this, _$identity);
+  _$$_VerifySecurityQuestionsStateCopyWith<_$_VerifySecurityQuestionsState>
+      get copyWith => __$$_VerifySecurityQuestionsStateCopyWithImpl<
+          _$_VerifySecurityQuestionsState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -161,16 +143,17 @@ class _$_VerifySecurityQuestionsState implements _VerifySecurityQuestionsState {
 
 abstract class _VerifySecurityQuestionsState
     implements VerifySecurityQuestionsState {
-  factory _VerifySecurityQuestionsState({bool hasVerifiedSecurityQuestions}) =
+  factory _VerifySecurityQuestionsState(
+          {final bool hasVerifiedSecurityQuestions}) =
       _$_VerifySecurityQuestionsState;
 
   factory _VerifySecurityQuestionsState.fromJson(Map<String, dynamic> json) =
       _$_VerifySecurityQuestionsState.fromJson;
 
   @override
-  bool get hasVerifiedSecurityQuestions;
+  bool get hasVerifiedSecurityQuestions => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$VerifySecurityQuestionsStateCopyWith<_VerifySecurityQuestionsState>
+  _$$_VerifySecurityQuestionsStateCopyWith<_$_VerifySecurityQuestionsState>
       get copyWith => throw _privateConstructorUsedError;
 }

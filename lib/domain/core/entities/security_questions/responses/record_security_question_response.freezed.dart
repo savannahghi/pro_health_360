@@ -12,34 +12,12 @@ part of 'record_security_question_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 RecordSecurityQuestionResponse _$RecordSecurityQuestionResponseFromJson(
     Map<String, dynamic> json) {
   return _RecordSecurityQuestionResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$RecordSecurityQuestionResponseTearOff {
-  const _$RecordSecurityQuestionResponseTearOff();
-
-  _RecordSecurityQuestionResponse call(
-      {@JsonKey(name: 'securityQuestionID') String? securityQuestionID,
-      @JsonKey(name: 'isCorrect') bool? isCorrect = true}) {
-    return _RecordSecurityQuestionResponse(
-      securityQuestionID: securityQuestionID,
-      isCorrect: isCorrect,
-    );
-  }
-
-  RecordSecurityQuestionResponse fromJson(Map<String, Object?> json) {
-    return RecordSecurityQuestionResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $RecordSecurityQuestionResponse =
-    _$RecordSecurityQuestionResponseTearOff();
 
 /// @nodoc
 mixin _$RecordSecurityQuestionResponse {
@@ -93,12 +71,12 @@ class _$RecordSecurityQuestionResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$RecordSecurityQuestionResponseCopyWith<$Res>
+abstract class _$$_RecordSecurityQuestionResponseCopyWith<$Res>
     implements $RecordSecurityQuestionResponseCopyWith<$Res> {
-  factory _$RecordSecurityQuestionResponseCopyWith(
-          _RecordSecurityQuestionResponse value,
-          $Res Function(_RecordSecurityQuestionResponse) then) =
-      __$RecordSecurityQuestionResponseCopyWithImpl<$Res>;
+  factory _$$_RecordSecurityQuestionResponseCopyWith(
+          _$_RecordSecurityQuestionResponse value,
+          $Res Function(_$_RecordSecurityQuestionResponse) then) =
+      __$$_RecordSecurityQuestionResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'securityQuestionID') String? securityQuestionID,
@@ -106,24 +84,24 @@ abstract class _$RecordSecurityQuestionResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$RecordSecurityQuestionResponseCopyWithImpl<$Res>
+class __$$_RecordSecurityQuestionResponseCopyWithImpl<$Res>
     extends _$RecordSecurityQuestionResponseCopyWithImpl<$Res>
-    implements _$RecordSecurityQuestionResponseCopyWith<$Res> {
-  __$RecordSecurityQuestionResponseCopyWithImpl(
-      _RecordSecurityQuestionResponse _value,
-      $Res Function(_RecordSecurityQuestionResponse) _then)
-      : super(_value, (v) => _then(v as _RecordSecurityQuestionResponse));
+    implements _$$_RecordSecurityQuestionResponseCopyWith<$Res> {
+  __$$_RecordSecurityQuestionResponseCopyWithImpl(
+      _$_RecordSecurityQuestionResponse _value,
+      $Res Function(_$_RecordSecurityQuestionResponse) _then)
+      : super(_value, (v) => _then(v as _$_RecordSecurityQuestionResponse));
 
   @override
-  _RecordSecurityQuestionResponse get _value =>
-      super._value as _RecordSecurityQuestionResponse;
+  _$_RecordSecurityQuestionResponse get _value =>
+      super._value as _$_RecordSecurityQuestionResponse;
 
   @override
   $Res call({
     Object? securityQuestionID = freezed,
     Object? isCorrect = freezed,
   }) {
-    return _then(_RecordSecurityQuestionResponse(
+    return _then(_$_RecordSecurityQuestionResponse(
       securityQuestionID: securityQuestionID == freezed
           ? _value.securityQuestionID
           : securityQuestionID // ignore: cast_nullable_to_non_nullable
@@ -164,12 +142,13 @@ class _$_RecordSecurityQuestionResponse
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RecordSecurityQuestionResponse &&
+            other is _$_RecordSecurityQuestionResponse &&
             const DeepCollectionEquality()
                 .equals(other.securityQuestionID, securityQuestionID) &&
             const DeepCollectionEquality().equals(other.isCorrect, isCorrect));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -178,9 +157,9 @@ class _$_RecordSecurityQuestionResponse
 
   @JsonKey(ignore: true)
   @override
-  _$RecordSecurityQuestionResponseCopyWith<_RecordSecurityQuestionResponse>
-      get copyWith => __$RecordSecurityQuestionResponseCopyWithImpl<
-          _RecordSecurityQuestionResponse>(this, _$identity);
+  _$$_RecordSecurityQuestionResponseCopyWith<_$_RecordSecurityQuestionResponse>
+      get copyWith => __$$_RecordSecurityQuestionResponseCopyWithImpl<
+          _$_RecordSecurityQuestionResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -191,21 +170,22 @@ class _$_RecordSecurityQuestionResponse
 abstract class _RecordSecurityQuestionResponse
     implements RecordSecurityQuestionResponse {
   factory _RecordSecurityQuestionResponse(
-          {@JsonKey(name: 'securityQuestionID') String? securityQuestionID,
-          @JsonKey(name: 'isCorrect') bool? isCorrect}) =
-      _$_RecordSecurityQuestionResponse;
+      {@JsonKey(name: 'securityQuestionID')
+          final String? securityQuestionID,
+      @JsonKey(name: 'isCorrect')
+          final bool? isCorrect}) = _$_RecordSecurityQuestionResponse;
 
   factory _RecordSecurityQuestionResponse.fromJson(Map<String, dynamic> json) =
       _$_RecordSecurityQuestionResponse.fromJson;
 
   @override
   @JsonKey(name: 'securityQuestionID')
-  String? get securityQuestionID;
+  String? get securityQuestionID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'isCorrect')
-  bool? get isCorrect;
+  bool? get isCorrect => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RecordSecurityQuestionResponseCopyWith<_RecordSecurityQuestionResponse>
+  _$$_RecordSecurityQuestionResponseCopyWith<_$_RecordSecurityQuestionResponse>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'saved_content_state.freezed.dart';
 part 'saved_content_state.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class SavedContentState with _$SavedContentState {
   factory SavedContentState({
     @JsonKey(name: 'items') List<Content?>? savedContentItems,

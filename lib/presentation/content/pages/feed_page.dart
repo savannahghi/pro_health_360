@@ -35,7 +35,7 @@ class _FeedPageState extends State<FeedPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await StoreProvider.dispatch<AppState>(
         context,
         FetchContentCategoriesAction(

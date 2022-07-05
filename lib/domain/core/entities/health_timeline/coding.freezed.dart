@@ -12,34 +12,11 @@ part of 'coding.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Coding _$CodingFromJson(Map<String, dynamic> json) {
   return _Coding.fromJson(json);
 }
-
-/// @nodoc
-class _$CodingTearOff {
-  const _$CodingTearOff();
-
-  _Coding call(
-      {@JsonKey(name: 'system') String? system,
-      @JsonKey(name: 'code') String? code,
-      @JsonKey(name: 'display') String? display}) {
-    return _Coding(
-      system: system,
-      code: code,
-      display: display,
-    );
-  }
-
-  Coding fromJson(Map<String, Object?> json) {
-    return Coding.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Coding = _$CodingTearOff();
 
 /// @nodoc
 mixin _$Coding {
@@ -106,9 +83,9 @@ class _$CodingCopyWithImpl<$Res> implements $CodingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CodingCopyWith<$Res> implements $CodingCopyWith<$Res> {
-  factory _$CodingCopyWith(_Coding value, $Res Function(_Coding) then) =
-      __$CodingCopyWithImpl<$Res>;
+abstract class _$$_CodingCopyWith<$Res> implements $CodingCopyWith<$Res> {
+  factory _$$_CodingCopyWith(_$_Coding value, $Res Function(_$_Coding) then) =
+      __$$_CodingCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'system') String? system,
@@ -117,13 +94,13 @@ abstract class _$CodingCopyWith<$Res> implements $CodingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$CodingCopyWithImpl<$Res> extends _$CodingCopyWithImpl<$Res>
-    implements _$CodingCopyWith<$Res> {
-  __$CodingCopyWithImpl(_Coding _value, $Res Function(_Coding) _then)
-      : super(_value, (v) => _then(v as _Coding));
+class __$$_CodingCopyWithImpl<$Res> extends _$CodingCopyWithImpl<$Res>
+    implements _$$_CodingCopyWith<$Res> {
+  __$$_CodingCopyWithImpl(_$_Coding _value, $Res Function(_$_Coding) _then)
+      : super(_value, (v) => _then(v as _$_Coding));
 
   @override
-  _Coding get _value => super._value as _Coding;
+  _$_Coding get _value => super._value as _$_Coding;
 
   @override
   $Res call({
@@ -131,7 +108,7 @@ class __$CodingCopyWithImpl<$Res> extends _$CodingCopyWithImpl<$Res>
     Object? code = freezed,
     Object? display = freezed,
   }) {
-    return _then(_Coding(
+    return _then(_$_Coding(
       system: system == freezed
           ? _value.system
           : system // ignore: cast_nullable_to_non_nullable
@@ -159,23 +136,22 @@ class _$_Coding implements _Coding {
   factory _$_Coding.fromJson(Map<String, dynamic> json) =>
       _$$_CodingFromJson(json);
 
-  @override
-
   /// The identification of the code system that defines the meaning of the
   ///  symbol in the code.
+  @override
   @JsonKey(name: 'system')
   final String? system;
-  @override
 
   /// A symbol in syntax defined by the system. The symbol may be a
   ///  predefined code or an expression in a syntax defined by the coding
   ///  system (e.g. post-coordination).
+  @override
   @JsonKey(name: 'code')
   final String? code;
-  @override
 
   /// A representation of the meaning of the code in the system, following
   ///  the rules of the system.
+  @override
   @JsonKey(name: 'display')
   final String? display;
 
@@ -188,12 +164,13 @@ class _$_Coding implements _Coding {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Coding &&
+            other is _$_Coding &&
             const DeepCollectionEquality().equals(other.system, system) &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.display, display));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -203,8 +180,8 @@ class _$_Coding implements _Coding {
 
   @JsonKey(ignore: true)
   @override
-  _$CodingCopyWith<_Coding> get copyWith =>
-      __$CodingCopyWithImpl<_Coding>(this, _$identity);
+  _$$_CodingCopyWith<_$_Coding> get copyWith =>
+      __$$_CodingCopyWithImpl<_$_Coding>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -214,9 +191,9 @@ class _$_Coding implements _Coding {
 
 abstract class _Coding implements Coding {
   factory _Coding(
-      {@JsonKey(name: 'system') String? system,
-      @JsonKey(name: 'code') String? code,
-      @JsonKey(name: 'display') String? display}) = _$_Coding;
+      {@JsonKey(name: 'system') final String? system,
+      @JsonKey(name: 'code') final String? code,
+      @JsonKey(name: 'display') final String? display}) = _$_Coding;
 
   factory _Coding.fromJson(Map<String, dynamic> json) = _$_Coding.fromJson;
 
@@ -225,21 +202,22 @@ abstract class _Coding implements Coding {
   /// The identification of the code system that defines the meaning of the
   ///  symbol in the code.
   @JsonKey(name: 'system')
-  String? get system;
+  String? get system => throw _privateConstructorUsedError;
   @override
 
   /// A symbol in syntax defined by the system. The symbol may be a
   ///  predefined code or an expression in a syntax defined by the coding
   ///  system (e.g. post-coordination).
   @JsonKey(name: 'code')
-  String? get code;
+  String? get code => throw _privateConstructorUsedError;
   @override
 
   /// A representation of the meaning of the code in the system, following
   ///  the rules of the system.
   @JsonKey(name: 'display')
-  String? get display;
+  String? get display => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CodingCopyWith<_Coding> get copyWith => throw _privateConstructorUsedError;
+  _$$_CodingCopyWith<_$_Coding> get copyWith =>
+      throw _privateConstructorUsedError;
 }

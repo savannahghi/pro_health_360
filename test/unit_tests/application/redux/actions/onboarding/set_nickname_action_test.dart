@@ -22,17 +22,24 @@ import 'set_nickname_action_test.mocks.dart';
 
 @GenerateMocks(<Type>[IGraphQlClient])
 void main() {
+  setupFirebaseAnalyticsMocks();
+
   group('SetNicknameAction', () {
     late StoreTester<AppState> storeTester;
 
-    setUp(() async {
-      await setupFirebaseAnalyticsMocks();
+    setUpAll(() async {
       await Firebase.initializeApp();
+    });
+
+    setUp(() async {
+      methodCallLog.clear();
       storeTester = StoreTester<AppState>(
         initialState: AppState.initial(),
         testInfoPrinter: (TestInfo<dynamic> testInfo) {},
       );
     });
+
+    tearDown(methodCallLog.clear);
 
     test('should update onboarding state', () async {
       final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(

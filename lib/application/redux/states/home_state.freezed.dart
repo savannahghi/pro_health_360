@@ -12,30 +12,11 @@ part of 'home_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 HomeState _$HomeStateFromJson(Map<String, dynamic> json) {
   return _HomeState.fromJson(json);
 }
-
-/// @nodoc
-class _$HomeStateTearOff {
-  const _$HomeStateTearOff();
-
-  _HomeState call({bool? canRecordMood, bool? createHealthDiaryEntry}) {
-    return _HomeState(
-      canRecordMood: canRecordMood,
-      createHealthDiaryEntry: createHealthDiaryEntry,
-    );
-  }
-
-  HomeState fromJson(Map<String, Object?> json) {
-    return HomeState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
@@ -82,29 +63,30 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
-  factory _$HomeStateCopyWith(
-          _HomeState value, $Res Function(_HomeState) then) =
-      __$HomeStateCopyWithImpl<$Res>;
+abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory _$$_HomeStateCopyWith(
+          _$_HomeState value, $Res Function(_$_HomeState) then) =
+      __$$_HomeStateCopyWithImpl<$Res>;
   @override
   $Res call({bool? canRecordMood, bool? createHealthDiaryEntry});
 }
 
 /// @nodoc
-class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
-    implements _$HomeStateCopyWith<$Res> {
-  __$HomeStateCopyWithImpl(_HomeState _value, $Res Function(_HomeState) _then)
-      : super(_value, (v) => _then(v as _HomeState));
+class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements _$$_HomeStateCopyWith<$Res> {
+  __$$_HomeStateCopyWithImpl(
+      _$_HomeState _value, $Res Function(_$_HomeState) _then)
+      : super(_value, (v) => _then(v as _$_HomeState));
 
   @override
-  _HomeState get _value => super._value as _HomeState;
+  _$_HomeState get _value => super._value as _$_HomeState;
 
   @override
   $Res call({
     Object? canRecordMood = freezed,
     Object? createHealthDiaryEntry = freezed,
   }) {
-    return _then(_HomeState(
+    return _then(_$_HomeState(
       canRecordMood: canRecordMood == freezed
           ? _value.canRecordMood
           : canRecordMood // ignore: cast_nullable_to_non_nullable
@@ -139,13 +121,14 @@ class _$_HomeState implements _HomeState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _HomeState &&
+            other is _$_HomeState &&
             const DeepCollectionEquality()
                 .equals(other.canRecordMood, canRecordMood) &&
             const DeepCollectionEquality()
                 .equals(other.createHealthDiaryEntry, createHealthDiaryEntry));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -154,8 +137,8 @@ class _$_HomeState implements _HomeState {
 
   @JsonKey(ignore: true)
   @override
-  _$HomeStateCopyWith<_HomeState> get copyWith =>
-      __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
+  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
+      __$$_HomeStateCopyWithImpl<_$_HomeState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -164,18 +147,19 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  factory _HomeState({bool? canRecordMood, bool? createHealthDiaryEntry}) =
-      _$_HomeState;
+  factory _HomeState(
+      {final bool? canRecordMood,
+      final bool? createHealthDiaryEntry}) = _$_HomeState;
 
   factory _HomeState.fromJson(Map<String, dynamic> json) =
       _$_HomeState.fromJson;
 
   @override
-  bool? get canRecordMood;
+  bool? get canRecordMood => throw _privateConstructorUsedError;
   @override
-  bool? get createHealthDiaryEntry;
+  bool? get createHealthDiaryEntry => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$HomeStateCopyWith<_HomeState> get copyWith =>
+  _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
