@@ -828,3 +828,17 @@ String calculateAge(String dateOfBirth) {
 String capitalize(String word) {
   return word[0].toUpperCase() + word.substring(1);
 }
+
+bool shouldResumeWithPIN(AppState? appState) {
+  final bool isSignedIn = appState?.credentials?.isSignedIn ?? false;
+  final User? userState = appState?.clientState?.user;
+
+  return isSignedIn &&
+      (userState?.hasSetNickname ?? false) &&
+      (userState?.hasSetPin ?? false) &&
+      (userState?.hasSetSecurityQuestions ?? false) &&
+      (userState?.isPhoneVerified ?? false) &&
+      (userState?.termsAccepted ?? false) &&
+      !(userState?.pinChangeRequired ?? false) &&
+      !(userState?.pinUpdateRequired ?? false);
+}

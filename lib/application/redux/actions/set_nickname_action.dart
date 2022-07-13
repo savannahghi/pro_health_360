@@ -97,6 +97,11 @@ class SetNicknameAction extends ReduxAction<AppState> {
       if (data?['setNickName'] == true) {
         dispatch(UpdateOnboardingStateAction(hasSetNickName: true));
         dispatch(UpdateUserProfileAction(nickName: nickname));
+        dispatch(
+          UpdateUserProfileAction(
+            hasSetNickname: true,
+          ),
+        );
 
         final OnboardingPathInfo path = onboardingPath(appState: state);
         final CurrentOnboardingStage? onboardingStage =
