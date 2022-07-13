@@ -15,6 +15,7 @@ import 'package:pro_health_360/application/core/graphql/mutations.dart';
 import 'package:pro_health_360/application/core/services/analytics_service.dart';
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_events.dart';
@@ -81,6 +82,11 @@ class RecordSecurityQuestionResponsesAction extends ReduxAction<AppState> {
 
     if (responseMap.recordSecurityQuestionResponses.isNotEmpty) {
       dispatch(UpdateOnboardingStateAction(hasSetSecurityQuestions: true));
+      dispatch(
+        UpdateUserProfileAction(
+          hasSetSecurityQuestions: true,
+        ),
+      );
 
       final String route = onboardingPath(appState: state).nextRoute;
 

@@ -16,10 +16,9 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 /// [CopyContentLinkWidget] Displays like status on the content details page
 class CopyContentLinkWidget extends StatelessWidget {
   const CopyContentLinkWidget({
-    Key? key,
     this.publicLink,
     required this.contentID,
-  }) : super(key: key);
+  });
 
   final int contentID;
   final String? publicLink;

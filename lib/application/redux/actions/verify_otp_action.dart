@@ -15,6 +15,7 @@ import 'package:pro_health_360/application/core/services/analytics_service.dart'
 import 'package:pro_health_360/application/core/services/onboarding_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
+import 'package:pro_health_360/application/redux/actions/update_user_profile_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/onboarding_path_info.dart';
@@ -78,6 +79,11 @@ class VerifyOTPAction extends ReduxAction<AppState> {
 
         if (isValid) {
           dispatch(UpdateOnboardingStateAction(isPhoneVerified: isValid));
+          dispatch(
+            UpdateUserProfileAction(
+              isPhoneVerified: true,
+            ),
+          );
 
           final OnboardingPathInfo navConfig = onboardingPath(appState: state);
 

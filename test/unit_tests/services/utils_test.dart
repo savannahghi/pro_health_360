@@ -11,6 +11,10 @@ import 'package:mockito/mockito.dart';
 import 'package:pro_health_360/application/core/services/app_setup_data.dart';
 import 'package:pro_health_360/application/core/services/notifications_utils.dart';
 import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/auth_credentials.dart';
+import 'package:pro_health_360/domain/core/entities/core/client_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_context_constants.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/enums.dart';
@@ -302,5 +306,32 @@ void main() {
 
   test('capitalize works correctly', () {
     expect(capitalize('test'), 'Test');
+  });
+  test('shouldResumeWithPIN works correctly', () {
+    expect(
+      shouldResumeWithPIN(
+        AppState(
+          credentials: AuthCredentials(isSignedIn: true),
+          clientState: ClientState(
+            user: User(
+              hasSetNickname: true,
+              hasSetPin: true,
+              hasSetSecurityQuestions: true,
+              isPhoneVerified: true,
+              pinChangeRequired: false,
+              pinUpdateRequired: false,
+              termsAccepted: true,
+            ),
+          ),
+        ),
+      ),
+      true,
+    );
+    expect(
+      shouldResumeWithPIN(
+        null,
+      ),
+      false,
+    );
   });
 }
