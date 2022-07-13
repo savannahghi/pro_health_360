@@ -174,11 +174,8 @@ void main() {
           201,
         ),
       );
-      store.dispatch(
-        UpdateOnboardingStateAction(
-          canResendOTP: true,
-        ),
-      );
+
+      store.dispatch(UpdateOnboardingStateAction(canResendOTP: true));
 
       await buildTestWidget(
         tester: tester,

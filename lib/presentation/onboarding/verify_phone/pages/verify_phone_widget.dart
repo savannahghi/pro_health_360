@@ -67,9 +67,7 @@ class VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
                     smallVerticalSizedBox,
                     Text(
                       verifyCode,
-                      style: normalSize16Text(
-                        AppColors.secondaryColor,
-                      ),
+                      style: normalSize16Text(AppColors.secondaryColor),
                     ),
                   ],
                   if (!widget.vm.wait!.isWaitingFor(sendOTPFlag) &&
