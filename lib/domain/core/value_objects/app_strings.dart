@@ -842,13 +842,13 @@ const String optOut = 'Opt out';
 const String optOutOfMyCareHubString = 'Opt out of ProHealth360';
 const String optOutOfMyCareHubTitleString = 'Opt out of ProHealth360?';
 const String youAreChoosingToOptOut =
-    'You are choosing to opt out of ProHealth360. The following will happened to your account:';
+    'You are choosing to opt out of ProHealth360. The following will happen to your account:';
 const String yourProfileWillBeDeleted =
     '1. Your profile will be deleted. This action is cannot be undone.';
 const String youWillNotLogin =
-    '2. You will not be able to continue to benefit from all the services on ProHealth360';
+    '2. You will not be able to continue to benefit from all the services on ProHealth360.';
 const String youWillNeedToRegisterString =
-    '3. You will need to be registered again to access ProHealth360 services';
+    '3. You will need to be registered again to access ProHealth360 services.';
 
 const String yourHealthRecordWillBeAnonymizedString =
     '4. Your health record will be anonymized. If you wish to delete your data from ProHealth360, kindly contact the admin on ';

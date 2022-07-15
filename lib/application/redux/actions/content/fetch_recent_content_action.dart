@@ -37,7 +37,6 @@ class FetchRecentContentAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     final Map<String, dynamic> variables = <String, dynamic>{
-      'categoryID': 2,
       'Limit': limit.toString()
     };
 
