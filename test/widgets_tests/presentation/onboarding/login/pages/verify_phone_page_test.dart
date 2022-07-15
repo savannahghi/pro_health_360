@@ -13,6 +13,7 @@ import 'package:pro_health_360/application/redux/actions/update_credentials_acti
 import 'package:pro_health_360/application/redux/actions/update_onboarding_state_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/states/onboarding_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/contact.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
@@ -28,12 +29,10 @@ import '../../../../../test_helpers.dart';
 void main() {
   group('VerifyPhonePage', () {
     late Store<AppState> store;
-    late int now;
 
     setUp(() async {
       setupFirebaseAnalyticsMocks();
       await Firebase.initializeApp();
-      now = DateTime.now().microsecondsSinceEpoch;
       store = Store<AppState>(
         initialState: AppState.initial()
             .copyWith
@@ -208,7 +207,12 @@ void main() {
         ),
       );
 
-      store = Store<AppState>(initialState: AppState.initial());
+      store = Store<AppState>(
+        initialState: AppState.initial().copyWith(
+          onboardingState:
+              OnboardingState.initial().copyWith(failedToSendOTP: true),
+        ),
+      );
 
       await buildTestWidget(
         tester: tester,
@@ -235,7 +239,12 @@ void main() {
         ),
       );
 
-      store = Store<AppState>(initialState: AppState.initial());
+      store = Store<AppState>(
+        initialState: AppState.initial().copyWith(
+          onboardingState:
+              OnboardingState.initial().copyWith(failedToSendOTP: true),
+        ),
+      );
 
       await buildTestWidget(
         tester: tester,
@@ -316,31 +325,39 @@ void main() {
         ),
       );
 
+      store = Store<AppState>(
+        initialState: AppState.initial().copyWith(
+          onboardingState: OnboardingState.initial().copyWith(
+            failedToSendOTP: false,
+            canResendOTP: true,
+            phoneNumber: '+254798000000',
+          ),
+        ),
+      );
+
       store.dispatch(
         UpdateOnboardingStateAction(
           currentOnboardingStage: CurrentOnboardingStage.PINExpired,
         ),
       );
 
-      now = now + const Duration(seconds: 100).inSeconds;
+      await tester.runAsync(() async {
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockShortSILGraphQlClient,
+          widget: const VerifyPhonePage(),
+        );
 
-      await buildTestWidget(
-        tester: tester,
-        store: store,
-        client: mockShortSILGraphQlClient,
-        widget: const VerifyPhonePage(),
-      );
+        expect(find.byKey(resendOtpButtonKey), findsOneWidget);
 
-      await tester.pumpAndSettle();
-      expect(find.byKey(resendOtpButtonKey), findsOneWidget);
+        await tester.tap(find.byKey(resendOtpButtonKey));
 
-      await tester.tap(find.byKey(resendOtpButtonKey));
+        await tester.showKeyboard(find.byType(PINInputField));
+        await tester.enterText(find.byType(PINInputField), '123456');
 
-      await tester.showKeyboard(find.byType(PINInputField));
-      await tester.enterText(find.byType(PINInputField), '123456');
-      await tester.pumpAndSettle(const Duration(seconds: 2));
-
-      expect(store.state.onboardingState!.isPhoneVerified, true);
+        expect(store.state.onboardingState!.isPhoneVerified, true);
+      });
     });
   });
 }

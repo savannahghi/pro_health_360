@@ -29,7 +29,7 @@ class VerifyPhonePage extends StatelessWidget {
 
         return VerifyPhoneWidget(
           vm: vm,
-          sendOTPFunction: () async {
+          sendOTPFunction: () {
             StoreProvider.dispatch<AppState>(
               context,
               SendOTPAction(context: context, phoneNumber: phoneNumber),
@@ -39,13 +39,13 @@ class VerifyPhonePage extends StatelessWidget {
               eventType: AnalyticsEventType.ONBOARDING,
             );
           },
-          canResendOTPFunction: () async {
+          canResendOTPFunction: () {
             StoreProvider.dispatch<AppState>(
               context,
               UpdateOnboardingStateAction(canResendOTP: true),
             );
           },
-          cantResendOTPFunction: () async {
+          cantResendOTPFunction: () {
             StoreProvider.dispatch<AppState>(
               context,
               UpdateOnboardingStateAction(canResendOTP: false),
@@ -65,7 +65,7 @@ class VerifyPhonePage extends StatelessWidget {
               );
             }
           },
-          resendOTPFunction: () async {
+          resendOTPFunction: () {
             StoreProvider.dispatch<AppState>(
               context,
               ResendOTPAction(context: context, phoneNumber: phoneNumber),

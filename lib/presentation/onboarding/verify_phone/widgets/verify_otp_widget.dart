@@ -1,17 +1,11 @@
-// Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
-// Project imports:
-
 import 'package:pro_health_360/application/redux/view_models/verify_phone_view_model.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
 import 'package:pro_health_360/presentation/core/widgets/animated_count.dart';
-
-// ignore: depend_on_referenced_packages
 import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOtpWidget extends StatefulWidget {
@@ -39,7 +33,6 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
     with SingleTickerProviderStateMixin, CodeAutoFill {
   Animation<double>? animation;
   int resendTimeout = 60;
-  String testCode = '1234';
   TextEditingController textEditingController = TextEditingController();
 
   late AnimationController _controller;
@@ -47,19 +40,23 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
   @override
   void codeUpdated() {
     setState(() {
-      // update the controller with the detected code
-      textEditingController.text = code ?? testCode;
+      textEditingController.text = code.toString();
+      widget.onDone.call(code.toString());
     });
   }
 
   @override
   void dispose() {
+    cancel();
     _controller.dispose();
+
     super.dispose();
   }
 
   @override
   void initState() {
+    super.initState();
+
     // listen for otp code sent via sms
     listenForCode();
     _controller =
@@ -75,7 +72,6 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
         });
       });
     _controller.forward();
-    super.initState();
   }
 
   @override
@@ -99,7 +95,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
         PINInputField(
           maxLength: 6,
           controller: textEditingController,
-          onDone: (String enteredCode) async {
+          onDone: (String enteredCode) {
             widget.onDone.call(enteredCode);
             textEditingController.clear();
           },
@@ -112,7 +108,7 @@ class VerifyOtpWidgetState extends State<VerifyOtpWidget>
                 anOtpHasBeenSentText(widget.vm.phoneNumber ?? ''),
                 style: normalSize14Text(AppColors.secondaryColor),
               ),
-              smallVerticalSizedBox,
+              verySmallVerticalSizedBox,
               AnimatedCount(count: resendTimeout, duration: Duration.zero),
             ],
           ),

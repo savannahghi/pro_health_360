@@ -32,8 +32,6 @@ class VerifyPhoneWidget extends StatefulWidget {
 }
 
 class VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
-  final TextEditingController otpEditingController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
