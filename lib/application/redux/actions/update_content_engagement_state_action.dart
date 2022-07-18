@@ -12,7 +12,7 @@ class UpdateContentEngagementStateAction extends ReduxAction<AppState> {
   final String? contentOpenedAt;
 
   @override
-  Future<AppState> reduce() async {
+  AppState reduce() {
     final ContentEngagementState? contentEngagementState =
         state.contentState?.contentEngagementState?.copyWith(
       contentId:

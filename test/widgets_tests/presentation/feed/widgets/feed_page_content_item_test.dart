@@ -49,6 +49,12 @@ void main() {
     );
     await tester.pumpAndSettle();
 
+    final Finder playIcon = find.byIcon(Icons.play_arrow);
+
+    expect(playIcon, findsOneWidget);
+    await tester.tap(playIcon);
+    await tester.pump();
+    expect(playIcon, findsNothing);
     expect(find.byType(AudioContent), findsOneWidget);
   });
 

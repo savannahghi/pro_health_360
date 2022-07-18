@@ -217,3 +217,9 @@ mutation deleteCommunityMessage($messageID: String!){
   deleteCommunityMessage(messageID: $messageID)
 }
 ''';
+
+const String viewContentMutation = r'''
+mutation viewContent($userID: String!, $contentID: Int!){
+  viewContent(userID: $userID, contentID: $contentID)
+}
+''';

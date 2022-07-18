@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/actions/content/fetch_content_action.dart';
 import 'package:pro_health_360/application/redux/actions/content/fetch_content_categories_action.dart';
-import 'package:pro_health_360/application/redux/actions/update_content_engagement_state_action.dart';
+import 'package:pro_health_360/application/redux/actions/content/view_content_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/application/redux/view_models/content/content_view_model.dart';
@@ -150,14 +150,23 @@ class _FeedPageState extends State<FeedPage> {
                                   contentDisplayedType:
                                       ContentDisplayedType.FEED,
                                   isNew: isNew,
+                                  onPlayAudioTapped: () =>
+                                      StoreProvider.dispatch<AppState>(
+                                    context,
+                                    ViewContentAction(
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                      contentID: currentFeedItem.contentID ?? 0,
+                                    ),
+                                  ),
                                   onTapPdfCallback: () {
-                                    // record the time the content was tapped for viewing
-                                    StoreProvider.dispatch(
+                                    StoreProvider.dispatch<AppState>(
                                       context,
-                                      UpdateContentEngagementStateAction(
-                                        contentId: currentFeedItem.contentID,
-                                        contentOpenedAt:
-                                            DateTime.now().toString(),
+                                      ViewContentAction(
+                                        client: AppWrapperBase.of(context)!
+                                            .graphQLClient,
+                                        contentID:
+                                            currentFeedItem.contentID ?? 0,
                                       ),
                                     );
                                     Navigator.of(context).pushNamed(
@@ -175,12 +184,13 @@ class _FeedPageState extends State<FeedPage> {
                                     );
                                   },
                                   onTapCallback: () {
-                                    StoreProvider.dispatch(
+                                    StoreProvider.dispatch<AppState>(
                                       context,
-                                      UpdateContentEngagementStateAction(
-                                        contentId: currentFeedItem.contentID,
-                                        contentOpenedAt:
-                                            DateTime.now().toString(),
+                                      ViewContentAction(
+                                        client: AppWrapperBase.of(context)!
+                                            .graphQLClient,
+                                        contentID:
+                                            currentFeedItem.contentID ?? 0,
                                       ),
                                     );
                                     Navigator.of(context).pushNamed(

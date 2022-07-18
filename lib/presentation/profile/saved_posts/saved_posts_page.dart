@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:async_redux/async_redux.dart';
+import 'package:pro_health_360/application/redux/actions/content/view_content_action.dart';
 import 'package:pro_health_360/application/redux/view_models/content/content_view_model.dart';
 
 // Project imports:
@@ -116,31 +118,51 @@ class _SavedPostPageState extends State<SavedPostPage> {
                                 contentDetails: currentSavedItem,
                                 contentDisplayedType:
                                     ContentDisplayedType.BOOKMARK,
-                                onTapPdfCallback: () =>
-                                    Navigator.of(context).pushNamed(
-                                  AppRoutes.viewDocumentPage,
-                                  arguments: <String, dynamic>{
-                                    'pdfTitle': currentSavedItem
-                                        .documents!.first.documentData!.title,
-                                    'pdfUrl': currentSavedItem
-                                        .documents!
-                                        .first
-                                        .documentData!
-                                        .documentMetaData!
-                                        .documentDownloadUrl,
-                                  },
-                                ),
-                                onTapCallback: () =>
-                                    Navigator.of(context).pushNamed(
-                                  AppRoutes.contentDetailPage,
-                                  arguments: <String, dynamic>{
-                                    'payload': ContentDetails(
-                                      content: currentSavedItem,
-                                      contentDisplayedType:
-                                          ContentDisplayedType.BOOKMARK,
+                                onTapPdfCallback: () {
+                                  StoreProvider.dispatch<AppState>(
+                                    context,
+                                    ViewContentAction(
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                      contentID:
+                                          currentSavedItem.contentID ?? 0,
                                     ),
-                                  },
-                                ),
+                                  );
+                                  Navigator.of(context).pushNamed(
+                                    AppRoutes.viewDocumentPage,
+                                    arguments: <String, dynamic>{
+                                      'pdfTitle': currentSavedItem
+                                          .documents!.first.documentData!.title,
+                                      'pdfUrl': currentSavedItem
+                                          .documents!
+                                          .first
+                                          .documentData!
+                                          .documentMetaData!
+                                          .documentDownloadUrl,
+                                    },
+                                  );
+                                },
+                                onTapCallback: () {
+                                  StoreProvider.dispatch<AppState>(
+                                    context,
+                                    ViewContentAction(
+                                      client: AppWrapperBase.of(context)!
+                                          .graphQLClient,
+                                      contentID:
+                                          currentSavedItem.contentID ?? 0,
+                                    ),
+                                  );
+                                  Navigator.of(context).pushNamed(
+                                    AppRoutes.contentDetailPage,
+                                    arguments: <String, dynamic>{
+                                      'payload': ContentDetails(
+                                        content: currentSavedItem,
+                                        contentDisplayedType:
+                                            ContentDisplayedType.BOOKMARK,
+                                      ),
+                                    },
+                                  );
+                                },
                               ),
                             ),
                           );

@@ -1212,6 +1212,20 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+    if (queryString.contains(viewContentMutation)) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'viewContent': true,
+              }
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     return Future<http.Response>.value(
       http.Response(
@@ -1713,6 +1727,37 @@ final Map<String, dynamic> mockLoginResponse = <String, dynamic>{
 
 final core.Content mockVideoContent =
     core.Content.fromJson(videoContentMock.first);
+
+final Map<String, dynamic> mockAudioContent = <String, dynamic>{
+  'ID': 11,
+  'title': 'Tips on how to keep yourself healthy',
+  'date': '2021-08-23T06:42:05.085216Z',
+  'intro': 'Keep yourself healthy',
+  'authorName': 'Abiud Orina',
+  'authorAvatar': 'https://i.postimg.cc/9XpbrC25/profile-image.png',
+  'author': <String, dynamic>{'ID': 'some-id'},
+  'itemType': 'AUDIO_VIDEO',
+  'timeEstimateSeconds': 180,
+  'featuredMedia': <dynamic>[
+    <String, dynamic>{
+      'ID': 1,
+      'title': 'Test Document',
+      'date': '2022-01-13',
+      'intro': 'This is a test document',
+      'authorName': 'Test',
+      'tagNames': <String>['test'],
+      'url': 'test.mp3',
+      'type': 'audio',
+      'thumbnail':
+          'https://storage.googleapis.com/mycarehub-test/media/media_thumbnails/vitalii-pavlyshynets-kcRFW-Hje8Y-unsplash_1.jpg',
+    }
+  ],
+  'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+  'meta': <String, dynamic>{
+    'contentHTMLURL': 'https://mycarehub.co.ke/',
+    'firstPublishedAt': '2021-08-23T06:42:05.085216Z',
+  },
+};
 
 final Map<String, dynamic> documentContentMock = <String, dynamic>{
   'ID': 16,

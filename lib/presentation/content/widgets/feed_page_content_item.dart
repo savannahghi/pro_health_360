@@ -1,6 +1,10 @@
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pro_health_360/application/redux/actions/content/view_content_action.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
@@ -37,6 +41,13 @@ class FeedPageContentItem extends StatelessWidget {
         if (isArticle ||
             content.featuredMedia?[0]?.featuredMediaType ==
                 FeaturedMediaType.video) {
+          StoreProvider.dispatch<AppState>(
+            context,
+            ViewContentAction(
+              client: AppWrapperBase.of(context)!.graphQLClient,
+              contentID: content.contentID ?? 0,
+            ),
+          );
           Navigator.of(context).pushNamed(
             AppRoutes.contentDetailPage,
             arguments: <String, dynamic>{
@@ -82,7 +93,16 @@ class FeedPageContentItem extends StatelessWidget {
                   ),
                 ),
                 if (isAudio)
-                  AudioContent(contentDetails: content)
+                  AudioContent(
+                    contentDetails: content,
+                    onPlayTapped: () => StoreProvider.dispatch<AppState>(
+                      context,
+                      ViewContentAction(
+                        client: AppWrapperBase.of(context)!.graphQLClient,
+                        contentID: content.contentID ?? 0,
+                      ),
+                    ),
+                  )
                 else if (isArticle || hasVideo)
                   Padding(
                     padding: const EdgeInsets.all(14),

@@ -41,7 +41,7 @@ void main() {
               'items': <dynamic>[
                 contentMock.first,
                 contentMock.first,
-                documentContentMock
+                documentContentMock,
               ]
             }
           }
@@ -65,6 +65,47 @@ void main() {
       await Firebase.initializeApp();
     });
 
+    testWidgets('should fetch items and play audio',
+        (WidgetTester tester) async {
+            final MockShortGraphQlClient mockTestSILGraphQlClient =
+          MockShortGraphQlClient.withResponse(
+        'idToken',
+        'endpoint',
+        Response(
+          json.encode(<String, dynamic>{
+            'data': <String, dynamic>{
+              'getContent': <String, dynamic>{
+                'items': <dynamic>[
+                  mockAudioContent,
+                  contentMock.first
+                ]
+              }
+            }
+          }),
+          201,
+        ),
+      );
+      mockNetworkImages(() async {
+        store.dispatch(UpdateConnectivityAction(hasConnection: true));
+
+        await buildTestWidget(
+          tester: tester,
+          store: store,
+          client: mockTestSILGraphQlClient,
+          widget: const FeedPage(),
+        );
+
+        await tester.pumpAndSettle(const Duration(seconds: 10));
+        final Finder playIcon = find.byIcon(Icons.play_arrow);
+
+        expect(find.byType(AudioContent), findsOneWidget);
+        expect(playIcon, findsOneWidget);
+        await tester.tap(playIcon);
+        await tester.pump();
+        expect(playIcon, findsNothing);
+        expect(find.byType(AudioContent), findsOneWidget);
+      });
+    });
     testWidgets('should fetch feed items and display them correctly',
         (WidgetTester tester) async {
       mockNetworkImages(() async {
