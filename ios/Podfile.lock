@@ -116,11 +116,6 @@ PODS:
   - Flutter (1.0.0)
   - flutter_config (0.0.1):
     - Flutter
-  - flutter_image_compress (0.0.1):
-    - Flutter
-    - Mantle
-    - SDWebImage
-    - SDWebImageWebPCoder
   - flutter_local_notifications (0.0.1):
     - Flutter
   - flutter_pdfview (1.0.2):
@@ -177,8 +172,6 @@ PODS:
     - Flutter
   - just_audio (0.0.1):
     - Flutter
-  - launch_review (0.0.1):
-    - Flutter
   - libwebp (1.2.1):
     - libwebp/demux (= 1.2.1)
     - libwebp/mux (= 1.2.1)
@@ -190,9 +183,6 @@ PODS:
   - libwebp/webp (1.2.1)
   - local_auth (0.0.1):
     - Flutter
-  - Mantle (2.2.0):
-    - Mantle/extobjc (= 2.2.0)
-  - Mantle/extobjc (2.2.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -210,9 +200,6 @@ PODS:
   - SDWebImage (5.13.1):
     - SDWebImage/Core (= 5.13.1)
   - SDWebImage/Core (5.13.1)
-  - SDWebImageWebPCoder (0.9.0):
-    - libwebp (~> 1.0)
-    - SDWebImage/Core (~> 5.13)
   - Sentry (7.19.0):
     - Sentry/Core (= 7.19.0)
   - Sentry/Core (7.19.0)
@@ -220,8 +207,6 @@ PODS:
     - Flutter
     - FlutterMacOS
     - Sentry (~> 7.19.0)
-  - share (0.0.1):
-    - Flutter
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_ios (0.0.1):
@@ -233,8 +218,6 @@ PODS:
     - Flutter
     - FMDB (>= 2.7.5)
   - SwiftyGif (5.4.3)
-  - uni_links (0.0.1):
-    - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
   - video_player_avfoundation (0.0.1):
@@ -259,25 +242,21 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - flutter_config (from `.symlinks/plugins/flutter_config/ios`)
-  - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
-  - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - photo_manager (from `.symlinks/plugins/photo_manager/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
-  - share (from `.symlinks/plugins/share/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
   - Sourcery (~> 1.0.0)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
-  - uni_links (from `.symlinks/plugins/uni_links/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
   - video_thumbnail (from `.symlinks/plugins/video_thumbnail/ios`)
@@ -303,12 +282,10 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - libwebp
-    - Mantle
     - nanopb
     - PromisesObjC
     - ReachabilitySwift
     - SDWebImage
-    - SDWebImageWebPCoder
     - Sentry
     - Sourcery
     - SwiftyGif
@@ -334,8 +311,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_config:
     :path: ".symlinks/plugins/flutter_config/ios"
-  flutter_image_compress:
-    :path: ".symlinks/plugins/flutter_image_compress/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_pdfview:
@@ -346,8 +321,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   just_audio:
     :path: ".symlinks/plugins/just_audio/ios"
-  launch_review:
-    :path: ".symlinks/plugins/launch_review/ios"
   local_auth:
     :path: ".symlinks/plugins/local_auth/ios"
   package_info_plus:
@@ -358,8 +331,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/photo_manager/ios"
   sentry_flutter:
     :path: ".symlinks/plugins/sentry_flutter/ios"
-  share:
-    :path: ".symlinks/plugins/share/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_ios:
@@ -368,8 +339,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sms_autofill/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
-  uni_links:
-    :path: ".symlinks/plugins/uni_links/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   video_player_avfoundation:
@@ -404,7 +373,6 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 4eaf1b8a7464b2c5e619ad66e9b20ee3e3206b24
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_config: 2226c1df19c78fe34a05eb7f1363445f18e76fc1
-  flutter_image_compress: fd2b476345226e1a10ea352fa306af95704642c1
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -414,10 +382,8 @@ SPEC CHECKSUMS:
   image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
-  launch_review: 75d5a956ba8eaa493e9c9d4bf4c05e505e8d5ed0
   libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   local_auth: 1740f55d7af0a2e2a8684ce225fe79d8931e808c
-  Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
@@ -425,17 +391,14 @@ SPEC CHECKSUMS:
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: fb26a455eeda4c7a55e4dcb6172dbb258af7a4ca
-  SDWebImageWebPCoder: 3dc350894112feab5375cfba9ce0986544a66a69
   Sentry: d6b16e66a0ad0c39a0b76d9a1194e68e78c37ce6
   sentry_flutter: 609b096af497fa64af7c6c94e792d0780aa472a6
-  share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
   sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
   Sourcery: 70a6048014bd4f37ea80e6bd4354d47bf3b760e1
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
-  uni_links: d97da20c7701486ba192624d99bffaaffcfc298a
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
   video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
   video_thumbnail: c4e2a3c539e247d4de13cd545344fd2d26ffafd1

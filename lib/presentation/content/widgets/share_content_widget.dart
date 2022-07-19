@@ -10,7 +10,7 @@ import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ShareContentWidget extends StatelessWidget {
   const ShareContentWidget({
