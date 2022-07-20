@@ -724,6 +724,22 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
         ),
       );
     }
+    if (queryString == getFAQsQuery) {
+      return Future<http.Response>.value(
+        http.Response(
+          json.encode(
+            <String, dynamic>{
+              'data': <String, dynamic>{
+                'getFAQs': <String, dynamic>{
+                  'items': <dynamic>[contentMock.first]
+                },
+              },
+            },
+          ),
+          201,
+        ),
+      );
+    }
 
     if (queryString.contains('fetchSuggestedGroups')) {
       return Future<http.Response>.value(
@@ -735,18 +751,6 @@ class MockGraphQlClient extends Mock implements GraphQlClient {
               },
             },
           ),
-          201,
-        ),
-      );
-    }
-
-    if (queryString.contains(fetchContentQuery)) {
-      /// return fake data here
-      return Future<http.Response>.value(
-        http.Response(
-          json.encode(<String, dynamic>{
-            'error': <String, dynamic>{'error': 'some error'}
-          }),
           201,
         ),
       );

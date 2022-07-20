@@ -10,7 +10,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 import 'package:pro_health_360/application/redux/actions/FAQS/update_faqs_content_action.dart';
-import 'package:pro_health_360/application/redux/actions/update_content_categories_action.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 // Project imports:
 import 'package:pro_health_360/application/redux/states/app_state.dart';
@@ -31,12 +30,11 @@ void main() {
     http.Response(
       json.encode(<String, dynamic>{
         'data': <String, dynamic>{
-          'getContent': <String, dynamic>{
+          'getFAQs': <String, dynamic>{
             'items': <dynamic>[
               contentMock.first,
             ]
           },
-          'listContentCategories': categoriesMock,
         },
       }),
       201,
@@ -48,13 +46,6 @@ void main() {
     setupFirebaseAnalyticsMocks();
     await Firebase.initializeApp();
     store = Store<AppState>(initialState: AppState.initial());
-    store.dispatch(
-      UpdateContentCategoriesAction(
-        contentCategories: <ContentCategory>[
-          ContentCategory(id: 10002, name: 'consumer-faqs', icon: 'test')
-        ],
-      ),
-    );
   });
 
   group('ProfileFaqsPage', () {
@@ -84,7 +75,7 @@ void main() {
 
     testWidgets('Shows loading indicator when fetching FAQs',
         (WidgetTester tester) async {
-      store.dispatch(WaitAction<AppState>.add(fetchContentCategoriesFlag));
+      store.dispatch(WaitAction<AppState>.add(getFAQsFlag));
       final MockShortGraphQlClient client = MockShortGraphQlClient.withResponse(
         'idToken',
         'endpoint',
@@ -114,8 +105,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'listContentCategories': categoriesMock,
-              'getContent': <String, dynamic>{
+              'getFAQs': <String, dynamic>{
                 'items': <dynamic>[documentContentMock]
               }
             }
@@ -152,7 +142,7 @@ void main() {
         Response(
           json.encode(<String, dynamic>{
             'data': <String, dynamic>{
-              'getContent': <String, dynamic>{'items': <dynamic>[]},
+              'getFAQs': <String, dynamic>{'items': <dynamic>[]},
             },
           }),
           201,
@@ -272,13 +262,6 @@ void main() {
         'and there is id', (WidgetTester tester) async {
       tester.binding.window.physicalSizeTestValue = const Size(1280, 800);
       tester.binding.window.devicePixelRatioTestValue = 1;
-      store.dispatch(
-        UpdateContentCategoriesAction(
-          contentCategories: <ContentCategory>[
-            ContentCategory(id: 0, name: 'test', icon: 'test')
-          ],
-        ),
-      );
       mockNetworkImages(() async {
         final MockShortGraphQlClient client =
             MockShortGraphQlClient.withResponse(

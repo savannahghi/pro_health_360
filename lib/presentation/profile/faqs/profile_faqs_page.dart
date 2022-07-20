@@ -16,8 +16,6 @@ import 'package:pro_health_360/presentation/core/widgets/generic_zero_state_widg
 import 'package:pro_health_360/presentation/router/routes.dart';
 
 class ProfileFaqsPage extends StatefulWidget {
-  // const ProfileFaqsPage();
-
   @override
   _ProfileFaqsPageState createState() => _ProfileFaqsPageState();
 }
@@ -49,16 +47,13 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
             converter: (Store<AppState> store) =>
                 FAQsContentViewModel.fromStore(store.state),
             builder: (BuildContext context, FAQsContentViewModel vm) {
-              if ((vm.wait?.isWaitingFor(getFAQsFlag) ?? false) ||
-                  (vm.wait?.isWaitingFor(fetchContentCategoriesFlag) ??
-                      false)) {
+              if (vm.wait?.isWaitingFor(getFAQsFlag) ?? false) {
                 return Container(
                   height: 300,
                   padding: const EdgeInsets.all(20),
                   child: const PlatformLoader(),
                 );
-              } else if (vm.timeoutFetchingFAQs! ||
-                  vm.timeoutFetchingContentCategories!) {
+              } else if (vm.timeoutFetchingFAQs ?? false) {
                 return GenericErrorWidget(
                   actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {
@@ -74,8 +69,7 @@ class _ProfileFaqsPageState extends State<ProfileFaqsPage> {
                     TextSpan(text: getErrorMessage(fetchingFAQsString))
                   ],
                 );
-              } else if (vm.errorFetchingFAQs! ||
-                  vm.errorFetchingContentCategories!) {
+              } else if (vm.errorFetchingFAQs ?? false) {
                 return GenericErrorWidget(
                   actionKey: helpNoDataWidgetKey,
                   recoverCallback: () async {

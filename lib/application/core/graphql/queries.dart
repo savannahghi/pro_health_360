@@ -37,24 +37,6 @@ query getCurrentTerms($flavour: Flavour!) {
 }
 ''';
 
-const String fetchContentQuery = r'''
-  query fetchContent($limit: Int!, $tags: [String!]! ) {
-  fetchContent(limit: $limit, tags: $tags) {
-    author
-    authorAvatar
-    body
-    contentID
-    contentType
-    createdAt
-    estimate
-    heroImage
-    isNew
-    publicLink
-    tags
-    title
-  }
-}''';
-
 const String getContentQuery = r'''
 query getContent($categoryID: Int, $Limit: String!){
   getContent(categoryID: $categoryID, Limit: $Limit) {
@@ -512,6 +494,71 @@ query listFlaggedMessages($communityCID: String,$memberIDs: [String]){
         type
         title
         image_url
+      }
+    }
+  }
+}
+''';
+
+const String getFAQsQuery = r'''
+query getFAQs($flavour: Flavour!){
+  getFAQs(flavour: $flavour){
+    items {
+      ID
+      title
+      date
+      intro
+      authorName
+      tagNames
+      meta{
+        contentType
+        slug
+        showInMenus
+        seoTitle
+        searchDescription
+        firstPublishedAt
+        locale
+      }
+      itemType
+      timeEstimateSeconds
+      body
+      heroImageRendition{
+        url
+        width
+        height
+        alt
+      }
+      documents {
+        ID
+        Document {
+          ID
+          title
+          meta {
+            documentDetailUrl
+            documentDownloadUrl
+          }
+        }
+      }
+      featuredMedia{
+        ID
+        url
+        title
+        type
+        duration
+        width
+        height
+        thumbnail
+        duration
+      }
+      galleryImages{
+        ID
+        image{
+          ID
+          title
+          meta{
+            imageDownloadUrl
+          }
+        }
       }
     }
   }
