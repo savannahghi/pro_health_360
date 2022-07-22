@@ -161,7 +161,7 @@ abstract class _NextRefillResponse implements NextRefillResponse {
 
   @override
   @JsonKey(name: 'data')
-  NextRefillData? get data => throw _privateConstructorUsedError;
+  NextRefillData? get data;
   @override
   @JsonKey(ignore: true)
   _$$_NextRefillResponseCopyWith<_$_NextRefillResponse> get copyWith =>

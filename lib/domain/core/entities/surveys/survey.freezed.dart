@@ -266,25 +266,25 @@ abstract class _Survey implements Survey {
 
   @override
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
   @JsonKey(name: 'link')
-  String? get link => throw _privateConstructorUsedError;
+  String? get link;
   @override
   @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(name: 'projectID')
-  int? get projectID => throw _privateConstructorUsedError;
+  int? get projectID;
   @override
   @JsonKey(name: 'linkID')
-  int? get linkID => throw _privateConstructorUsedError;
+  int? get linkID;
   @override
   @JsonKey(name: 'formID')
-  String? get formID => throw _privateConstructorUsedError;
+  String? get formID;
   @override
   @JsonKey(ignore: true)
   _$$_SurveyCopyWith<_$_Survey> get copyWith =>

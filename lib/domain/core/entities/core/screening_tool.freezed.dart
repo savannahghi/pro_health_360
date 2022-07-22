@@ -191,13 +191,13 @@ abstract class _ScreeningTool implements ScreeningTool {
 
   @override
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
   @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(name: 'toolType')
-  ScreeningToolsType? get toolType => throw _privateConstructorUsedError;
+  ScreeningToolsType? get toolType;
   @override
   @JsonKey(ignore: true)
   _$$_ScreeningToolCopyWith<_$_ScreeningTool> get copyWith =>

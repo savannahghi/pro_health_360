@@ -157,7 +157,7 @@ abstract class _MedicalDataState implements MedicalDataState {
       _$_MedicalDataState.fromJson;
 
   @override
-  MedicalData? get medicalData => throw _privateConstructorUsedError;
+  MedicalData? get medicalData;
   @override
   @JsonKey(ignore: true)
   _$$_MedicalDataStateCopyWith<_$_MedicalDataState> get copyWith =>

@@ -216,13 +216,13 @@ abstract class _AppointmentState implements AppointmentState {
 
   @override
   @JsonKey(name: 'appointments')
-  List<Appointment>? get appointments => throw _privateConstructorUsedError;
+  List<Appointment>? get appointments;
   @override
-  int? get currentPage => throw _privateConstructorUsedError;
+  int? get currentPage;
   @override
-  bool? get hasNextPage => throw _privateConstructorUsedError;
+  bool? get hasNextPage;
   @override
-  bool? get errorFetchingAppointments => throw _privateConstructorUsedError;
+  bool? get errorFetchingAppointments;
   @override
   @JsonKey(ignore: true)
   _$$_AppointmentStateCopyWith<_$_AppointmentState> get copyWith =>

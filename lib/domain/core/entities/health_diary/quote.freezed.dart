@@ -21,7 +21,7 @@ QuoteRelay _$QuoteRelayFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QuoteRelay {
   @JsonKey(name: 'getHealthDiaryQuote')
-  Quote? get quote => throw _privateConstructorUsedError;
+  List<Quote>? get quotes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +34,7 @@ abstract class $QuoteRelayCopyWith<$Res> {
   factory $QuoteRelayCopyWith(
           QuoteRelay value, $Res Function(QuoteRelay) then) =
       _$QuoteRelayCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'getHealthDiaryQuote') Quote? quote});
-
-  $QuoteCopyWith<$Res>? get quote;
+  $Res call({@JsonKey(name: 'getHealthDiaryQuote') List<Quote>? quotes});
 }
 
 /// @nodoc
@@ -49,25 +47,14 @@ class _$QuoteRelayCopyWithImpl<$Res> implements $QuoteRelayCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? quote = freezed,
+    Object? quotes = freezed,
   }) {
     return _then(_value.copyWith(
-      quote: quote == freezed
-          ? _value.quote
-          : quote // ignore: cast_nullable_to_non_nullable
-              as Quote?,
+      quotes: quotes == freezed
+          ? _value.quotes
+          : quotes // ignore: cast_nullable_to_non_nullable
+              as List<Quote>?,
     ));
-  }
-
-  @override
-  $QuoteCopyWith<$Res>? get quote {
-    if (_value.quote == null) {
-      return null;
-    }
-
-    return $QuoteCopyWith<$Res>(_value.quote!, (value) {
-      return _then(_value.copyWith(quote: value));
-    });
   }
 }
 
@@ -78,10 +65,7 @@ abstract class _$$_QuoteRelayCopyWith<$Res>
           _$_QuoteRelay value, $Res Function(_$_QuoteRelay) then) =
       __$$_QuoteRelayCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'getHealthDiaryQuote') Quote? quote});
-
-  @override
-  $QuoteCopyWith<$Res>? get quote;
+  $Res call({@JsonKey(name: 'getHealthDiaryQuote') List<Quote>? quotes});
 }
 
 /// @nodoc
@@ -96,13 +80,13 @@ class __$$_QuoteRelayCopyWithImpl<$Res> extends _$QuoteRelayCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? quote = freezed,
+    Object? quotes = freezed,
   }) {
     return _then(_$_QuoteRelay(
-      quote: quote == freezed
-          ? _value.quote
-          : quote // ignore: cast_nullable_to_non_nullable
-              as Quote?,
+      quotes: quotes == freezed
+          ? _value._quotes
+          : quotes // ignore: cast_nullable_to_non_nullable
+              as List<Quote>?,
     ));
   }
 }
@@ -110,18 +94,26 @@ class __$$_QuoteRelayCopyWithImpl<$Res> extends _$QuoteRelayCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_QuoteRelay implements _QuoteRelay {
-  _$_QuoteRelay({@JsonKey(name: 'getHealthDiaryQuote') this.quote});
+  _$_QuoteRelay(
+      {@JsonKey(name: 'getHealthDiaryQuote') final List<Quote>? quotes})
+      : _quotes = quotes;
 
   factory _$_QuoteRelay.fromJson(Map<String, dynamic> json) =>
       _$$_QuoteRelayFromJson(json);
 
+  final List<Quote>? _quotes;
   @override
   @JsonKey(name: 'getHealthDiaryQuote')
-  final Quote? quote;
+  List<Quote>? get quotes {
+    final value = _quotes;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'QuoteRelay(quote: $quote)';
+    return 'QuoteRelay(quotes: $quotes)';
   }
 
   @override
@@ -129,13 +121,13 @@ class _$_QuoteRelay implements _QuoteRelay {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_QuoteRelay &&
-            const DeepCollectionEquality().equals(other.quote, quote));
+            const DeepCollectionEquality().equals(other._quotes, _quotes));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(quote));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_quotes));
 
   @JsonKey(ignore: true)
   @override
@@ -150,7 +142,7 @@ class _$_QuoteRelay implements _QuoteRelay {
 
 abstract class _QuoteRelay implements QuoteRelay {
   factory _QuoteRelay(
-          {@JsonKey(name: 'getHealthDiaryQuote') final Quote? quote}) =
+          {@JsonKey(name: 'getHealthDiaryQuote') final List<Quote>? quotes}) =
       _$_QuoteRelay;
 
   factory _QuoteRelay.fromJson(Map<String, dynamic> json) =
@@ -158,7 +150,7 @@ abstract class _QuoteRelay implements QuoteRelay {
 
   @override
   @JsonKey(name: 'getHealthDiaryQuote')
-  Quote? get quote => throw _privateConstructorUsedError;
+  List<Quote>? get quotes;
   @override
   @JsonKey(ignore: true)
   _$$_QuoteRelayCopyWith<_$_QuoteRelay> get copyWith =>
@@ -311,10 +303,10 @@ abstract class _Quote implements Quote {
 
   @override
   @JsonKey(name: 'author')
-  String? get author => throw _privateConstructorUsedError;
+  String? get author;
   @override
   @JsonKey(name: 'quote')
-  String? get quote => throw _privateConstructorUsedError;
+  String? get quote;
   @override
   @JsonKey(ignore: true)
   _$$_QuoteCopyWith<_$_Quote> get copyWith =>

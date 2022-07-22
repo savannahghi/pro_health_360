@@ -144,7 +144,7 @@ abstract class _BottomNavigationState implements BottomNavigationState {
       _$_BottomNavigationState.fromJson;
 
   @override
-  int get currentBottomNavIndex => throw _privateConstructorUsedError;
+  int get currentBottomNavIndex;
   @override
   @JsonKey(ignore: true)
   _$$_BottomNavigationStateCopyWith<_$_BottomNavigationState> get copyWith =>

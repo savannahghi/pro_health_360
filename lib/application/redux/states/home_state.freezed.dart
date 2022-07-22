@@ -155,9 +155,9 @@ abstract class _HomeState implements HomeState {
       _$_HomeState.fromJson;
 
   @override
-  bool? get canRecordMood => throw _privateConstructorUsedError;
+  bool? get canRecordMood;
   @override
-  bool? get createHealthDiaryEntry => throw _privateConstructorUsedError;
+  bool? get createHealthDiaryEntry;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>

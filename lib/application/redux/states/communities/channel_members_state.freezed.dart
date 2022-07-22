@@ -147,7 +147,7 @@ abstract class _ChannelMembersState implements ChannelMembersState {
       _$_ChannelMembersState.fromJson;
 
   @override
-  List<Member>? get members => throw _privateConstructorUsedError;
+  List<Member>? get members;
   @override
   @JsonKey(ignore: true)
   _$$_ChannelMembersStateCopyWith<_$_ChannelMembersState> get copyWith =>

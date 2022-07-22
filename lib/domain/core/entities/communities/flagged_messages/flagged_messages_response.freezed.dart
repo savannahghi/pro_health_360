@@ -159,7 +159,7 @@ abstract class _FlaggedMessagesResponse implements FlaggedMessagesResponse {
 
   @override
   @JsonKey(name: 'listFlaggedMessages')
-  List<MessageObject?>? get messages => throw _privateConstructorUsedError;
+  List<MessageObject?>? get messages;
   @override
   @JsonKey(ignore: true)
   _$$_FlaggedMessagesResponseCopyWith<_$_FlaggedMessagesResponse>

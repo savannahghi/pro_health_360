@@ -731,77 +731,77 @@ abstract class _User implements User {
 
   @override
   @JsonKey(name: 'userID')
-  String? get userId => throw _privateConstructorUsedError;
+  String? get userId;
   @override
   @JsonKey(name: 'userName')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
   @override // This is the nickname
   @JsonKey(name: 'avatar')
-  String? get avatar => throw _privateConstructorUsedError;
+  String? get avatar;
   @override
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override // This is the @handle
   @JsonKey(name: 'firstName')
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
   @JsonKey(name: 'lastName')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
   @JsonKey(name: 'dateOfBirth')
-  String? get dateOfBirth => throw _privateConstructorUsedError;
+  String? get dateOfBirth;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-  Gender? get gender => throw _privateConstructorUsedError;
+  Gender? get gender;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'primaryContact')
-  Contact? get primaryContact => throw _privateConstructorUsedError;
+  Contact? get primaryContact;
   @override
   @JsonKey(name: 'secondaryContacts')
-  List<Contact?>? get secondaryContacts => throw _privateConstructorUsedError;
+  List<Contact?>? get secondaryContacts;
   @override
   @JsonKey(name: 'languages')
-  List<String>? get languages => throw _privateConstructorUsedError;
+  List<String>? get languages;
   @override
   @JsonKey(name: 'termsAccepted', defaultValue: false)
-  bool? get termsAccepted => throw _privateConstructorUsedError;
+  bool? get termsAccepted;
   @override
   @JsonKey(name: 'hasSetPin', defaultValue: false)
-  bool? get hasSetPin => throw _privateConstructorUsedError;
+  bool? get hasSetPin;
   @override
   @JsonKey(name: 'hasSetSecurityQuestions', defaultValue: false)
-  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
+  bool? get hasSetSecurityQuestions;
   @override
   @JsonKey(name: 'hasSetNickname', defaultValue: false)
-  bool? get hasSetNickname => throw _privateConstructorUsedError;
+  bool? get hasSetNickname;
   @override
   @JsonKey(name: 'isPhoneVerified', defaultValue: false)
-  bool? get isPhoneVerified => throw _privateConstructorUsedError;
+  bool? get isPhoneVerified;
   @override
 
   /// Whether this user needs to change their PIN
   ///
   /// This is normally used to signify that this user is a new user
   @JsonKey(name: 'pinChangeRequired', defaultValue: false)
-  bool? get pinChangeRequired => throw _privateConstructorUsedError;
+  bool? get pinChangeRequired;
   @override
 
   /// Used to indicate that the user's PIN has been reset by someone else
   ///
   /// This is used to trigger the change PIN workflow
   @JsonKey(name: 'pinUpdateRequired', defaultValue: false)
-  bool? get pinUpdateRequired => throw _privateConstructorUsedError;
+  bool? get pinUpdateRequired;
   @override
   @JsonKey(name: 'suspended', defaultValue: false)
-  bool? get suspended => throw _privateConstructorUsedError;
+  bool? get suspended;
   @override
-  String? get streamToken => throw _privateConstructorUsedError;
+  String? get streamToken;
   @override
   @JsonKey(name: 'roles')
-  List<Role>? get roles => throw _privateConstructorUsedError;
+  List<Role>? get roles;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

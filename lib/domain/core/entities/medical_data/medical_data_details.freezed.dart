@@ -276,17 +276,16 @@ abstract class _MedicalDataDetails implements MedicalDataDetails {
 
   @override
   @JsonKey(name: 'ValueString')
-  String? get valueString => throw _privateConstructorUsedError;
+  String? get valueString;
   @override
   @JsonKey(name: 'Code')
-  MedicalDataCode? get code => throw _privateConstructorUsedError;
+  MedicalDataCode? get code;
   @override
   @JsonKey(name: 'Category')
-  MedicalDataCategory? get category => throw _privateConstructorUsedError;
+  MedicalDataCategory? get category;
   @override
   @JsonKey(name: 'MedicationCodeableConcept')
-  MedicationCodeableConcept? get medicationCodeableConcept =>
-      throw _privateConstructorUsedError;
+  MedicationCodeableConcept? get medicationCodeableConcept;
   @override
   @JsonKey(ignore: true)
   _$$_MedicalDataDetailsCopyWith<_$_MedicalDataDetails> get copyWith =>

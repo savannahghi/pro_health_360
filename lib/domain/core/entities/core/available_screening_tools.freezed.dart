@@ -205,12 +205,11 @@ abstract class _AvailableScreeningTools implements AvailableScreeningTools {
 
   @override
   @JsonKey(name: 'availableScreeningTools')
-  List<ScreeningTool>? get availableScreeningTools =>
-      throw _privateConstructorUsedError;
+  List<ScreeningTool>? get availableScreeningTools;
   @override
-  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get errorFetchingQuestions;
   @override
-  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingQuestions;
   @override
   @JsonKey(ignore: true)
   _$$_AvailableScreeningToolsCopyWith<_$_AvailableScreeningTools>

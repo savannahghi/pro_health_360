@@ -9,13 +9,13 @@ part 'quote.g.dart';
 @freezed
 class QuoteRelay with _$QuoteRelay {
   factory QuoteRelay({
-    @JsonKey(name: 'getHealthDiaryQuote') Quote? quote,
+    @JsonKey(name: 'getHealthDiaryQuote') List <Quote>? quotes,
   }) = _QuoteRelay;
 
   factory QuoteRelay.fromJson(Map<String, dynamic> json) =>
       _$QuoteRelayFromJson(json);
 
-  factory QuoteRelay.initial() => QuoteRelay(quote: Quote.initial());
+  factory QuoteRelay.initial() => QuoteRelay(quotes: <Quote>[]);
 }
 
 @freezed

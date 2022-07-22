@@ -180,10 +180,10 @@ abstract class _RecordSecurityQuestionResponse
 
   @override
   @JsonKey(name: 'securityQuestionID')
-  String? get securityQuestionID => throw _privateConstructorUsedError;
+  String? get securityQuestionID;
   @override
   @JsonKey(name: 'isCorrect')
-  bool? get isCorrect => throw _privateConstructorUsedError;
+  bool? get isCorrect;
   @override
   @JsonKey(ignore: true)
   _$$_RecordSecurityQuestionResponseCopyWith<_$_RecordSecurityQuestionResponse>

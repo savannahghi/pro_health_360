@@ -61,6 +61,7 @@ const String updateLikeContentFlag = 'update_like_content_flag';
 const String fetchContentFlag = 'fetch_content_flag';
 const String bookMarkContentFlag = 'bookmark_content_flag';
 const String fetchHealthDiaryFlag = 'fetch_health_diary_flag';
+const String fetchHealthDiaryQuoteFlag = 'fetch_health_diary_quote_flag';
 const String fetchLikeStatusFlag = 'fetch_like_status_flag';
 const String fetchBookmarkStatusFlag = 'fetch_bookmark_status_flag';
 const String shareContentFlag = 'share_content_flag';

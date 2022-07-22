@@ -13,6 +13,9 @@ _$_HealthDiaryState _$$_HealthDiaryStateFromJson(Map<String, dynamic> json) =>
               ? null
               : HealthDiaryEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
+      quoteState: json['quoteState'] == null
+          ? null
+          : QuoteRelay.fromJson(json['quoteState'] as Map<String, dynamic>),
       errorFetchingDiaryEntries: json['errorFetchingDiaryEntries'] as bool?,
       timeoutFetchingDiaryEntries: json['timeoutFetchingDiaryEntries'] as bool?,
       shouldShareHealthRecord: json['shouldShareHealthRecord'] as bool?,
@@ -22,6 +25,7 @@ _$_HealthDiaryState _$$_HealthDiaryStateFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_HealthDiaryStateToJson(_$_HealthDiaryState instance) =>
     <String, dynamic>{
       'getClientHealthDiaryEntries': instance.entries,
+      'quoteState': instance.quoteState,
       'errorFetchingDiaryEntries': instance.errorFetchingDiaryEntries,
       'timeoutFetchingDiaryEntries': instance.timeoutFetchingDiaryEntries,
       'shouldShareHealthRecord': instance.shouldShareHealthRecord,

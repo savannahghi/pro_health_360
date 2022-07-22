@@ -156,8 +156,7 @@ abstract class _ScreeningQuestionsList implements ScreeningQuestionsList {
 
   @override
   @JsonKey(name: 'getScreeningToolQuestions')
-  List<ScreeningQuestion>? get screeningQuestionsList =>
-      throw _privateConstructorUsedError;
+  List<ScreeningQuestion>? get screeningQuestionsList;
   @override
   @JsonKey(ignore: true)
   _$$_ScreeningQuestionsListCopyWith<_$_ScreeningQuestionsList> get copyWith =>

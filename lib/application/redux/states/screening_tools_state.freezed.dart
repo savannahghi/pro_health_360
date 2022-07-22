@@ -304,18 +304,15 @@ abstract class _ScreeningToolsState implements ScreeningToolsState {
       _$_ScreeningToolsState.fromJson;
 
   @override
-  ViolenceState? get violenceState => throw _privateConstructorUsedError;
+  ViolenceState? get violenceState;
   @override
-  ContraceptiveState? get contraceptiveState =>
-      throw _privateConstructorUsedError;
+  ContraceptiveState? get contraceptiveState;
   @override
-  TBState? get tbState => throw _privateConstructorUsedError;
+  TBState? get tbState;
   @override
-  AlcoholSubstanceUseState? get alcoholSubstanceUseState =>
-      throw _privateConstructorUsedError;
+  AlcoholSubstanceUseState? get alcoholSubstanceUseState;
   @override
-  AvailableScreeningTools? get availableScreeningTools =>
-      throw _privateConstructorUsedError;
+  AvailableScreeningTools? get availableScreeningTools;
   @override
   @JsonKey(ignore: true)
   _$$_ScreeningToolsStateCopyWith<_$_ScreeningToolsState> get copyWith =>

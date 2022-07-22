@@ -143,7 +143,7 @@ abstract class _MessageObject implements MessageObject {
 
   @override
   @JsonKey(name: 'message')
-  Message? get message => throw _privateConstructorUsedError;
+  Message? get message;
   @override
   @JsonKey(ignore: true)
   _$$_MessageObjectCopyWith<_$_MessageObject> get copyWith =>

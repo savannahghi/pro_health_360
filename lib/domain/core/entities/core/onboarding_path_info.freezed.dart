@@ -168,11 +168,11 @@ abstract class _OnboardingPathInfo implements OnboardingPathInfo {
       final dynamic arguments}) = _$_OnboardingPathInfo;
 
   @override // The next route to navigate to
-  String get nextRoute => throw _privateConstructorUsedError;
+  String get nextRoute;
   @override // The previous route to navigate to
-  String get previousRoute => throw _privateConstructorUsedError;
+  String get previousRoute;
   @override // Any route arguments that may need to be passed while navigating
-  dynamic get arguments => throw _privateConstructorUsedError;
+  dynamic get arguments;
   @override
   @JsonKey(ignore: true)
   _$$_OnboardingPathInfoCopyWith<_$_OnboardingPathInfo> get copyWith =>

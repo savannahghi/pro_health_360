@@ -192,10 +192,10 @@ abstract class _ListGroupInfoResponse implements ListGroupInfoResponse {
 
   @override
   @JsonKey(name: 'listCommunityMembers')
-  List<GroupMember?>? get groupMembers => throw _privateConstructorUsedError;
+  List<GroupMember?>? get groupMembers;
   @override
   @JsonKey(name: 'listCommunities')
-  List<Community?>? get communities => throw _privateConstructorUsedError;
+  List<Community?>? get communities;
   @override
   @JsonKey(ignore: true)
   _$$_ListGroupInfoResponseCopyWith<_$_ListGroupInfoResponse> get copyWith =>

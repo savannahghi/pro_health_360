@@ -255,16 +255,16 @@ abstract class _GroupState implements GroupState {
 
   @override
   @JsonKey(name: 'recommendedCommunities')
-  List<Group?>? get recommendedGroups => throw _privateConstructorUsedError;
+  List<Group?>? get recommendedGroups;
   @override
   @JsonKey(name: 'listCommunityMembers')
-  List<GroupMember?>? get groupMembers => throw _privateConstructorUsedError;
+  List<GroupMember?>? get groupMembers;
   @override
-  List<Community?>? get communities => throw _privateConstructorUsedError;
+  List<Community?>? get communities;
   @override
-  bool? get isModerator => throw _privateConstructorUsedError;
+  bool? get isModerator;
   @override
-  bool? get isOwner => throw _privateConstructorUsedError;
+  bool? get isOwner;
   @override
   @JsonKey(ignore: true)
   _$$_GroupStateCopyWith<_$_GroupState> get copyWith =>

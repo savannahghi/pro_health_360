@@ -189,10 +189,10 @@ abstract class _Reference implements Reference {
   ///  server, then it should be assumed to be version specific. Internal
   ///  fragment references (start with '#') refer to contained resources.
   @JsonKey(name: 'reference')
-  String? get reference => throw _privateConstructorUsedError;
+  String? get reference;
   @override
   @JsonKey(name: 'display')
-  String? get display => throw _privateConstructorUsedError;
+  String? get display;
   @override
   @JsonKey(ignore: true)
   _$$_ReferenceCopyWith<_$_Reference> get copyWith =>

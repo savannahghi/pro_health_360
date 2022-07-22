@@ -160,7 +160,7 @@ abstract class _NotificationsResponse implements NotificationsResponse {
 
   @override
   @JsonKey(name: 'fetchNotifications')
-  NotificationsData get data => throw _privateConstructorUsedError;
+  NotificationsData get data;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationsResponseCopyWith<_$_NotificationsResponse> get copyWith =>
@@ -312,8 +312,7 @@ abstract class _NotificationsData implements NotificationsData {
 
   @override
   @JsonKey(name: 'notifications')
-  List<NotificationDetails> get notifications =>
-      throw _privateConstructorUsedError;
+  List<NotificationDetails> get notifications;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationsDataCopyWith<_$_NotificationsData> get copyWith =>

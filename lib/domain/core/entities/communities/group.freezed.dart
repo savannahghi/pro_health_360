@@ -203,16 +203,16 @@ abstract class _Group implements Group {
 
   @override
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(name: 'memberCount')
-  int? get memberCount => throw _privateConstructorUsedError;
+  int? get memberCount;
   @override
   @JsonKey(name: 'avatar')
-  String? get avatar => throw _privateConstructorUsedError;
+  String? get avatar;
   @override
   @JsonKey(ignore: true)
   _$$_GroupCopyWith<_$_Group> get copyWith =>

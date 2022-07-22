@@ -631,66 +631,61 @@ abstract class _OnboardingState implements OnboardingState {
       _$_OnboardingState.fromJson;
 
   @override
-  TermsAndConditions? get termsAndConditions =>
-      throw _privateConstructorUsedError;
+  TermsAndConditions? get termsAndConditions;
   @override
-  List<SecurityQuestion>? get securityQuestions =>
-      throw _privateConstructorUsedError;
+  List<SecurityQuestion>? get securityQuestions;
   @override
-  List<SecurityQuestionResponse>? get securityQuestionResponses =>
-      throw _privateConstructorUsedError;
+  List<SecurityQuestionResponse>? get securityQuestionResponses;
   @override
-  VerifySecurityQuestionsState? get verifySecurityQuestionsState =>
-      throw _privateConstructorUsedError;
+  VerifySecurityQuestionsState? get verifySecurityQuestionsState;
   @override
 
   ///------------WORKFLOW RELATED BOOLEANS------------
   /// Have standardized shared values that will be used across all states
   /// regardless of the workflow
 // The current stage of onboarding that the user is in
-  CurrentOnboardingStage? get currentOnboardingStage =>
-      throw _privateConstructorUsedError;
+  CurrentOnboardingStage? get currentOnboardingStage;
   @override // If the user has verified their phone number
-  bool? get isPhoneVerified => throw _privateConstructorUsedError;
+  bool? get isPhoneVerified;
   @override // If the user has set their security questions
-  bool? get hasSetSecurityQuestions => throw _privateConstructorUsedError;
+  bool? get hasSetSecurityQuestions;
   @override // If the user has successfully verified their security questions if pin is expired
-  bool? get hasVerifiedSecurityQuestions => throw _privateConstructorUsedError;
+  bool? get hasVerifiedSecurityQuestions;
   @override // If the user has set their nickname
-  bool? get hasSetNickName => throw _privateConstructorUsedError;
+  bool? get hasSetNickName;
   @override // Whether the user's PIN has been set
-  bool? get hasSetPin => throw _privateConstructorUsedError;
+  bool? get hasSetPin;
   @override // Whether the user has accepted terms and conditions
-  bool? get hasAcceptedTerms => throw _privateConstructorUsedError;
+  bool? get hasAcceptedTerms;
   @override
 
   ///------------WORKFLOW RELATED VALUES------------
 // The currently active user's phone number
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
   @override // The PIN
-  String? get pin => throw _privateConstructorUsedError;
+  String? get pin;
   @override // The confirm PIN
-  String? get confirmPIN => throw _privateConstructorUsedError;
+  String? get confirmPIN;
   @override // The OTP used when confirming the phone number
-  String? get otp => throw _privateConstructorUsedError;
+  String? get otp;
   @override
 
   ///------------LOGIN RELATED VALUES------------
 // The number of failed login attempts that this user has
-  int? get failedLoginCount => throw _privateConstructorUsedError;
+  int? get failedLoginCount;
   @override // Whether the credentials this user entered are invalid
-  bool? get invalidCredentials => throw _privateConstructorUsedError;
+  bool? get invalidCredentials;
   @override
 
   ///------------VERIFY PHONE RELATED VALUES------------
 // If the OTP entered is invalid
-  bool? get invalidOTP => throw _privateConstructorUsedError;
+  bool? get invalidOTP;
   @override // Whether there was a failure while sending an OTP
-  bool? get failedToSendOTP => throw _privateConstructorUsedError;
+  bool? get failedToSendOTP;
   @override //  Whether the user is allowed to resend their PIN
-  bool? get canResendOTP => throw _privateConstructorUsedError;
+  bool? get canResendOTP;
   @override
-  String? get nickName => throw _privateConstructorUsedError;
+  String? get nickName;
   @override
   @JsonKey(ignore: true)
   _$$_OnboardingStateCopyWith<_$_OnboardingState> get copyWith =>

@@ -235,19 +235,19 @@ abstract class _CaregiverInformation implements CaregiverInformation {
       _$_CaregiverInformation.fromJson;
 
   @override
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
   @override
   @JsonKey(
       name: 'caregiverType',
       fromJson: caregiverTypeFromJson,
       toJson: caregiverTypeToJson)
-  CaregiverType? get caregiverType => throw _privateConstructorUsedError;
+  CaregiverType? get caregiverType;
   @override
-  String? get clientID => throw _privateConstructorUsedError;
+  String? get clientID;
   @override
   @JsonKey(ignore: true)
   _$$_CaregiverInformationCopyWith<_$_CaregiverInformation> get copyWith =>

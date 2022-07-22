@@ -156,7 +156,7 @@ abstract class _PendingInvites implements PendingInvitesResponse {
 
   @override
   @JsonKey(name: 'listPendingInvites')
-  List<Community>? get communities => throw _privateConstructorUsedError;
+  List<Community>? get communities;
   @override
   @JsonKey(ignore: true)
   _$$_PendingInvitesCopyWith<_$_PendingInvites> get copyWith =>

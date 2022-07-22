@@ -151,7 +151,7 @@ abstract class _ViralLoadEdges implements ViralLoadEdges {
 
   @override
   @JsonKey(name: 'edges')
-  List<ViralLoadNode?>? get edges => throw _privateConstructorUsedError;
+  List<ViralLoadNode?>? get edges;
   @override
   @JsonKey(ignore: true)
   _$$_ViralLoadEdgesCopyWith<_$_ViralLoadEdges> get copyWith =>

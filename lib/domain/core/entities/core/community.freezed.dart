@@ -339,28 +339,28 @@ abstract class _Community implements Community {
 
   @override
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(name: 'memberCount')
-  int? get memberCount => throw _privateConstructorUsedError;
+  int? get memberCount;
   @override
   @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(name: 'createdBy')
-  Member? get createdBy => throw _privateConstructorUsedError;
+  Member? get createdBy;
   @override
   @JsonKey(name: 'ageRange')
-  AgeRange? get ageRange => throw _privateConstructorUsedError;
+  AgeRange? get ageRange;
   @override
   @JsonKey(name: 'gender')
-  List<Gender>? get gender => throw _privateConstructorUsedError;
+  List<Gender>? get gender;
   @override
   @JsonKey(name: 'clientType')
-  List<ClientType>? get clientType => throw _privateConstructorUsedError;
+  List<ClientType>? get clientType;
   @override
   @JsonKey(ignore: true)
   _$$_CommunityCopyWith<_$_Community> get copyWith =>

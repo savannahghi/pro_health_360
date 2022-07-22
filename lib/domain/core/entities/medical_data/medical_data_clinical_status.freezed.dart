@@ -143,7 +143,7 @@ abstract class _MedicalDataCode implements MedicalDataCode {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
   @override
   @JsonKey(ignore: true)
   _$$_MedicalDataCodeCopyWith<_$_MedicalDataCode> get copyWith =>

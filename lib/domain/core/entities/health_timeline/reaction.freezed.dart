@@ -306,26 +306,24 @@ abstract class _Reaction implements Reaction {
   ///  of AllergyIntolerance.code, then the receiving system should ignore
   ///  AllergyIntolerance.reaction.substance.
   @JsonKey(name: 'substance')
-  CodeableConcept? get substance => throw _privateConstructorUsedError;
+  CodeableConcept? get substance;
   @override
 
   /// Clinical symptoms and/or signs that are observed or associated with the adverse reaction event.
   @JsonKey(name: 'manifestation')
-  List<CodeableConcept?>? get manifestation =>
-      throw _privateConstructorUsedError;
+  List<CodeableConcept?>? get manifestation;
   @override
 
   /// Text description about the reaction as a whole, including details of the manifestation if required.
   @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
 
   /// Clinical assessment of the severity of the reaction event as a whole,
   ///  potentially considering multiple different manifestations.
   @JsonKey(
       name: 'severity', unknownEnumValue: AllergyIntoleranceSeverity.moderate)
-  AllergyIntoleranceSeverity? get severity =>
-      throw _privateConstructorUsedError;
+  AllergyIntoleranceSeverity? get severity;
   @override
   @JsonKey(ignore: true)
   _$$_ReactionCopyWith<_$_Reaction> get copyWith =>

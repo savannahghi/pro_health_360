@@ -195,12 +195,11 @@ abstract class _HealthTimelineState implements HealthTimelineState {
       _$_HealthTimelineState.fromJson;
 
   @override
-  Map<String, List<FhirResource>> get healthTimelineItems =>
-      throw _privateConstructorUsedError;
+  Map<String, List<FhirResource>> get healthTimelineItems;
   @override
-  int get offset => throw _privateConstructorUsedError;
+  int get offset;
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(ignore: true)
   _$$_HealthTimelineStateCopyWith<_$_HealthTimelineState> get copyWith =>

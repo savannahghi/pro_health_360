@@ -1,22 +1,21 @@
-// Dart imports:
-import 'dart:async';
-
 // Flutter imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
+import 'package:app_wrapper/app_wrapper.dart';
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 // Project imports:
-import 'package:pro_health_360/application/core/graphql/queries.dart';
-import 'package:pro_health_360/application/core/services/utils.dart';
+import 'package:pro_health_360/application/redux/actions/fetch_health_diary_quote_action.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
+import 'package:pro_health_360/application/redux/states/app_state.dart';
+import 'package:pro_health_360/application/redux/view_models/content/health_diary_view_model.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
 import 'package:pro_health_360/domain/core/value_objects/app_strings.dart';
-import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
 import 'package:pro_health_360/domain/core/value_objects/asset_strings.dart';
 import 'package:pro_health_360/presentation/core/theme/theme.dart';
-import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
-import 'package:pro_health_360/presentation/router/routes.dart';
+import 'package:pro_health_360/presentation/core/widgets/carousel_slider.dart';
 
 class RandomQuoteWidget extends StatefulWidget {
   const RandomQuoteWidget({Key? key}) : super(key: key);
@@ -26,128 +25,87 @@ class RandomQuoteWidget extends StatefulWidget {
 }
 
 class _RandomQuoteWidgetState extends State<RandomQuoteWidget> {
-  late Stream<Map<String, dynamic>> _stream;
-  late StreamController<Map<String, dynamic>> _streamController;
-
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final List<Quote>? quotes = StoreProvider.state<AppState>(context)
+          ?.clientState
+          ?.healthDiaryState
+          ?.quoteState
+          ?.quotes;
 
-    _streamController = StreamController<Map<String, dynamic>>.broadcast();
-    _stream = _streamController.stream;
-    WidgetsBinding.instance.addPostFrameCallback((Duration timeStamp) async {
-      await genericFetchFunction(
-        streamController: _streamController,
-        context: context,
-        logTitle: 'Fetch suggested groups',
-        queryString: getHealthDiaryQuoteQuery,
-        variables: <String, dynamic>{},
-      );
+      if (quotes?.isEmpty ?? true) {
+        StoreProvider.dispatch(
+          context,
+          FetchHealthDiaryQuoteAction(
+            client: AppWrapperBase.of(context)!.graphQLClient,
+          ),
+        );
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Map<String, dynamic>>(
-      stream: _stream,
-      builder:
-          (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
-        //show the loader before the data is displayed
-        if (snapshot.data is Map<String, dynamic> &&
-            snapshot.data != null &&
-            snapshot.data?['loading'] != null &&
-            snapshot.data?['loading'] == true) {
-          return Container(
-            height: 200,
-            padding: const EdgeInsets.all(20),
-            child: const PlatformLoader(),
-          );
-        }
-
-        //error checking
-        if (snapshot.hasError) {
-          reportErrorToSentry(
-            context,
-            snapshot.error,
-            hint: 'Timeout fetching recent content',
-          );
-          final dynamic valueHolder = snapshot.error;
-          final Map<String, dynamic>? error = snapshot.error == null
-              ? null
-              : valueHolder as Map<String, dynamic>;
-
-          /// check if the error is a timeout error and return an appropriate widget
-          if (error == null || error['error'] == 'timeout') {
-            return const GenericTimeoutWidget(
-              route: AppRoutes.home,
-              action: 'fetching recent content',
-            );
-          }
-
-          return GenericErrorWidget(
-            actionKey: helpNoDataWidgetKey,
-            recoverCallback: () async {
-              await genericFetchFunction(
-                streamController: _streamController,
-                context: context,
-                logTitle: 'Fetch suggested groups',
-                queryString: getHealthDiaryQuoteQuery,
-                variables: <String, dynamic>{},
-              );
-            },
-            messageBody: const <TextSpan>[
-              TextSpan(text: messageBodyGenericErrorWidget)
-            ],
-          );
-        }
-
-        if (snapshot.hasData) {
-          final QuoteRelay quoteRelay = QuoteRelay.fromJson(snapshot.data!);
-
-          if (quoteRelay.quote != null) {
-            final Quote? quote = quoteRelay.quote;
-
-            return Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.6),
-                    BlendMode.srcOver,
-                  ),
-                  fit: BoxFit.cover,
-                  image: const AssetImage(moodSelectionBackgroundUrl),
-                ),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-              margin: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SvgPicture.asset(leftQuoteSVGUrl, height: 32),
-                  smallVerticalSizedBox,
-                  Text(
-                    '${toBeginningOfSentenceCase(quote?.quote?.toLowerCase())}',
-                    style: boldSize18Text(Colors.white),
-                  ),
-                  smallVerticalSizedBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        quote?.author ?? defaultQuoteAuthor,
-                        style: normalSize14Text(AppColors.greyTextColor)
-                            .copyWith(fontStyle: FontStyle.italic),
+    return StoreConnector<AppState, HealthDiaryViewModel>(
+      converter: (Store<AppState> store) =>
+          HealthDiaryViewModel.fromStore(store.state),
+      builder: (BuildContext context, HealthDiaryViewModel vm) {
+        final List<Quote> quotes = vm.quotes;
+        if (vm.wait?.isWaitingFor(fetchHealthDiaryQuoteFlag) ?? false) {
+          return const PlatformLoader();
+        } else if (quotes.isNotEmpty) {
+          return CarouselSlider(
+            children: quotes.map((Quote quote) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.6),
+                          BlendMode.srcOver,
+                        ),
+                        fit: BoxFit.cover,
+                        image: const AssetImage(moodSelectionBackgroundUrl),
                       ),
-                      SvgPicture.asset(rightQuoteSVGUrl, height: 32),
-                    ],
-                  ),
-                ],
-              ),
-            );
-          }
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 15,
+                    ),
+                    margin: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SvgPicture.asset(leftQuoteSVGUrl, height: 32),
+                        smallVerticalSizedBox,
+                        Text(
+                          '${toBeginningOfSentenceCase(quote.quote?.toLowerCase())}',
+                          style: boldSize18Text(Colors.white),
+                        ),
+                        smallVerticalSizedBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              quote.author ?? defaultQuoteAuthor,
+                              style: normalSize14Text(AppColors.greyTextColor)
+                                  .copyWith(fontStyle: FontStyle.italic),
+                            ),
+                            SvgPicture.asset(rightQuoteSVGUrl, height: 32),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+          );
         }
-
         return const SizedBox();
       },
     );

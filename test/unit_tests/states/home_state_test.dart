@@ -11,7 +11,7 @@ void main() {
           HomeState.fromJson(HomeState.initial().toJson());
 
       final HomeState actual = HomeState(
-        canRecordMood: false,
+        canRecordMood: true,
         createHealthDiaryEntry: false,
       );
 

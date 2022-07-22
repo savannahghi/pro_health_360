@@ -152,7 +152,7 @@ abstract class _AuthState implements AuthState {
       _$_AuthState.fromJson;
 
   @override
-  AuthCredentials? get credentials => throw _privateConstructorUsedError;
+  AuthCredentials? get credentials;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

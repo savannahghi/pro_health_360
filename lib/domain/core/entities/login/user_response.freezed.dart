@@ -222,13 +222,13 @@ abstract class _UserResponse implements UserResponse {
 
   @override
   @JsonKey(name: 'credentials')
-  AuthCredentials? get credentials => throw _privateConstructorUsedError;
+  AuthCredentials? get credentials;
   @override
   @JsonKey(name: 'clientProfile')
-  ClientState? get clientState => throw _privateConstructorUsedError;
+  ClientState? get clientState;
   @override
   @JsonKey(name: 'getStreamToken')
-  String? get streamToken => throw _privateConstructorUsedError;
+  String? get streamToken;
   @override
   @JsonKey(ignore: true)
   _$$_UserResponseCopyWith<_$_UserResponse> get copyWith =>

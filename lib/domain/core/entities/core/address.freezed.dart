@@ -248,22 +248,22 @@ abstract class _Address implements Address {
 
   @override
   @JsonKey(name: 'addressType')
-  AddressType? get addressType => throw _privateConstructorUsedError;
+  AddressType? get addressType;
   @override
   @JsonKey(name: 'text')
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
   @override
   @JsonKey(name: 'country')
-  String? get country => throw _privateConstructorUsedError;
+  String? get country;
   @override
   @JsonKey(name: 'postalCode')
-  String? get postalCode => throw _privateConstructorUsedError;
+  String? get postalCode;
   @override
   @JsonKey(name: 'county')
-  String? get county => throw _privateConstructorUsedError;
+  String? get county;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(ignore: true)
   _$$_AddressCopyWith<_$_Address> get copyWith =>

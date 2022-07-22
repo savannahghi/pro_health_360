@@ -173,10 +173,10 @@ abstract class _ContentEngagementState implements ContentEngagementState {
 
   @override
   @JsonKey(name: 'contentId')
-  int? get contentId => throw _privateConstructorUsedError;
+  int? get contentId;
   @override
   @JsonKey(name: 'contentOpenedAt')
-  String? get contentOpenedAt => throw _privateConstructorUsedError;
+  String? get contentOpenedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ContentEngagementStateCopyWith<_$_ContentEngagementState> get copyWith =>

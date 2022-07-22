@@ -584,43 +584,40 @@ abstract class _MiscState implements MiscState {
 
   @override
   @JsonKey(defaultValue: AppRoutes.phoneLogin)
-  String get initialRoute => throw _privateConstructorUsedError;
+  String get initialRoute;
   @override
-  List<dynamic>? get libraryListItems => throw _privateConstructorUsedError;
+  List<dynamic>? get libraryListItems;
   @override
-  FAQsContentState? get profileFAQsContentState =>
-      throw _privateConstructorUsedError;
+  FAQsContentState? get profileFAQsContentState;
   @override
-  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
+  String? get healthPagePINInputTime;
   @override
-  int? get pinInputTries => throw _privateConstructorUsedError;
+  int? get pinInputTries;
   @override
-  String? get maxTryTime => throw _privateConstructorUsedError;
+  String? get maxTryTime;
   @override
-  bool? get pinVerified => throw _privateConstructorUsedError;
+  bool? get pinVerified;
   @override
-  bool? get resumeTimer => throw _privateConstructorUsedError;
+  bool? get resumeTimer;
   @override
-  GroupState? get groupState => throw _privateConstructorUsedError;
+  GroupState? get groupState;
   @override
-  ChannelMembersState? get channelMembersState =>
-      throw _privateConstructorUsedError;
+  ChannelMembersState? get channelMembersState;
   @override
-  ScreeningToolsState? get screeningToolsState =>
-      throw _privateConstructorUsedError;
+  ScreeningToolsState? get screeningToolsState;
   @override
   @JsonKey(name: 'fetchClientAppointments')
-  AppointmentState? get appointmentState => throw _privateConstructorUsedError;
+  AppointmentState? get appointmentState;
   @override
-  String? get inactiveTime => throw _privateConstructorUsedError;
+  String? get inactiveTime;
   @override
-  bool? get resumeWithPin => throw _privateConstructorUsedError;
+  bool? get resumeWithPin;
   @override
-  List<Survey>? get availableSurveysList => throw _privateConstructorUsedError;
+  List<Survey>? get availableSurveysList;
   @override // track the number of time a wrong PIN has been input on the resume with PIN workflow
-  int? get resumeWithPINRetries => throw _privateConstructorUsedError;
+  int? get resumeWithPINRetries;
   @override // selected survey to be opened
-  Survey? get selectedSurvey => throw _privateConstructorUsedError;
+  Survey? get selectedSurvey;
   @override
   @JsonKey(ignore: true)
   _$$_MiscStateCopyWith<_$_MiscState> get copyWith =>

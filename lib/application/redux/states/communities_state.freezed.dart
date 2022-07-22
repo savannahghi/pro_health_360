@@ -188,10 +188,9 @@ abstract class _CommunitiesState implements CommunitiesState {
 
   @override
   @JsonKey(name: 'invitedCommunities')
-  List<Community?>? get invitedCommunities =>
-      throw _privateConstructorUsedError;
+  List<Community?>? get invitedCommunities;
   @override
-  List<Message?>? get flaggedMessages => throw _privateConstructorUsedError;
+  List<Message?>? get flaggedMessages;
   @override
   @JsonKey(ignore: true)
   _$$_CommunitiesStateCopyWith<_$_CommunitiesState> get copyWith =>

@@ -307,24 +307,22 @@ abstract class _MedicalData implements MedicalData {
 
   @override
   @JsonKey(name: 'regimen')
-  List<MedicalDataDetails?>? get regimen => throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get regimen;
   @override
   @JsonKey(name: 'allergies')
-  List<MedicalDataDetails?>? get allergies =>
-      throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get allergies;
   @override
   @JsonKey(name: 'weight')
-  List<MedicalDataDetails?>? get weight => throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get weight;
   @override
   @JsonKey(name: 'viralLoad')
-  List<MedicalDataDetails?>? get viralLoad =>
-      throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get viralLoad;
   @override
   @JsonKey(name: 'bmi')
-  List<MedicalDataDetails?>? get bmi => throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get bmi;
   @override
   @JsonKey(name: 'cd4Count')
-  List<MedicalDataDetails?>? get cd4Count => throw _privateConstructorUsedError;
+  List<MedicalDataDetails?>? get cd4Count;
   @override
   @JsonKey(ignore: true)
   _$$_MedicalDataCopyWith<_$_MedicalData> get copyWith =>

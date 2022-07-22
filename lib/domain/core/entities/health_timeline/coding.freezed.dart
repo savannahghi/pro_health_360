@@ -202,20 +202,20 @@ abstract class _Coding implements Coding {
   /// The identification of the code system that defines the meaning of the
   ///  symbol in the code.
   @JsonKey(name: 'system')
-  String? get system => throw _privateConstructorUsedError;
+  String? get system;
   @override
 
   /// A symbol in syntax defined by the system. The symbol may be a
   ///  predefined code or an expression in a syntax defined by the coding
   ///  system (e.g. post-coordination).
   @JsonKey(name: 'code')
-  String? get code => throw _privateConstructorUsedError;
+  String? get code;
   @override
 
   /// A representation of the meaning of the code in the system, following
   ///  the rules of the system.
   @JsonKey(name: 'display')
-  String? get display => throw _privateConstructorUsedError;
+  String? get display;
   @override
   @JsonKey(ignore: true)
   _$$_CodingCopyWith<_$_Coding> get copyWith =>

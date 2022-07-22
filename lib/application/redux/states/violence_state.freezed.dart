@@ -229,14 +229,13 @@ abstract class _ViolenceState implements ViolenceState {
 
   @override
   @JsonKey(name: 'getScreeningToolQuestions')
-  ScreeningQuestionsList? get screeningQuestions =>
-      throw _privateConstructorUsedError;
+  ScreeningQuestionsList? get screeningQuestions;
   @override
-  bool? get errorFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get errorFetchingQuestions;
   @override
-  bool? get timeoutFetchingQuestions => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingQuestions;
   @override
-  bool? get errorAnsweringQuestions => throw _privateConstructorUsedError;
+  bool? get errorAnsweringQuestions;
   @override
   @JsonKey(ignore: true)
   _$$_ViolenceStateCopyWith<_$_ViolenceState> get copyWith =>

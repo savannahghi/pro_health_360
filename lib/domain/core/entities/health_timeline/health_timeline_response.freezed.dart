@@ -181,10 +181,10 @@ abstract class _HealthTimelineResponse implements HealthTimelineResponse {
 
   @override
   @JsonKey(name: 'timeline')
-  List<FhirResource> get patientTimeline => throw _privateConstructorUsedError;
+  List<FhirResource> get patientTimeline;
   @override
   @JsonKey(name: 'totalCount')
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(ignore: true)
   _$$_HealthTimelineResponseCopyWith<_$_HealthTimelineResponse> get copyWith =>

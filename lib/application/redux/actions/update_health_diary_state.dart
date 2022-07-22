@@ -7,6 +7,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/health_diary_state.dart';
 import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
 
 class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
   UpdateHealthDiaryStateActon({
@@ -15,9 +16,11 @@ class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
     this.timeoutFetchingEntries,
     this.shouldNotShareHealthRecord,
     this.shouldShareHealthRecord,
+    this.quoteState,
   });
 
   final List<HealthDiaryEntry?>? diaryEntries;
+  final QuoteRelay? quoteState;
   final bool? errorFetchingDiaryEntries;
   final bool? timeoutFetchingEntries;
   final bool? shouldShareHealthRecord;
@@ -27,6 +30,7 @@ class UpdateHealthDiaryStateActon extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final HealthDiaryState diaryState = HealthDiaryState(
       entries: diaryEntries ?? state.clientState?.healthDiaryState?.entries,
+      quoteState: quoteState ?? state.clientState?.healthDiaryState?.quoteState,
       errorFetchingDiaryEntries: errorFetchingDiaryEntries ??
           state.clientState?.healthDiaryState?.errorFetchingDiaryEntries,
       timeoutFetchingDiaryEntries: timeoutFetchingEntries ??

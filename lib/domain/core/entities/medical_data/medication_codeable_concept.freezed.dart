@@ -149,7 +149,7 @@ abstract class _MedicationCodeableConcept implements MedicationCodeableConcept {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
   @override
   @JsonKey(ignore: true)
   _$$_MedicationCodeableConceptCopyWith<_$_MedicationCodeableConcept>

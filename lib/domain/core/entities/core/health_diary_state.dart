@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
 
 part 'health_diary_state.freezed.dart';
 part 'health_diary_state.g.dart';
@@ -12,6 +13,7 @@ class HealthDiaryState with _$HealthDiaryState {
   factory HealthDiaryState({
     @JsonKey(name: 'getClientHealthDiaryEntries')
         List<HealthDiaryEntry?>? entries,
+    QuoteRelay? quoteState,
     bool? errorFetchingDiaryEntries,
     bool? timeoutFetchingDiaryEntries,
     bool? shouldShareHealthRecord,
@@ -23,6 +25,7 @@ class HealthDiaryState with _$HealthDiaryState {
 
   factory HealthDiaryState.initial() => HealthDiaryState(
         entries: <HealthDiaryEntry>[],
+        quoteState: QuoteRelay.initial(),
         errorFetchingDiaryEntries: false,
         timeoutFetchingDiaryEntries: false,
         shouldShareHealthRecord: false,

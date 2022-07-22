@@ -9,13 +9,13 @@ import '../../../mocks.dart';
 
 void main() {
   test('Quote should convert data to/from JSON', () {
-    final QuoteRelay quoteRelay = QuoteRelay.fromJson(mockQuote);
+    final QuoteRelay quoteRelay = QuoteRelay.fromJson(mockQuoteList);
 
-    expect(quoteRelay.quote, isA<Quote>());
-    expect(quoteRelay.quote!.quote, 'Health at your fingerprints');
-    expect(quoteRelay.quote!.author, 'myAfyaHub');
+    expect(quoteRelay.quotes, isA<List<Quote>>());
+    expect(quoteRelay.quotes!.first.quote, 'Health at your fingerprints');
+    expect(quoteRelay.quotes!.first.author, 'myAfyaHub');
 
-    expect(QuoteRelay.initial().quote!.author, UNKNOWN);
+    expect(QuoteRelay.initial().quotes!.isEmpty, true);
     expect(Quote.initial().quote, UNKNOWN);
   });
 }

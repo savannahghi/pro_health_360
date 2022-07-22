@@ -4,13 +4,13 @@ import 'dart:convert';
 // Package imports:
 import 'package:afya_moja_core/afya_moja_core.dart';
 import 'package:async_redux/async_redux.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
+import 'package:pro_health_360/application/redux/flags/flags.dart';
 
 // Project imports:
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/domain/core/value_objects/app_widget_keys.dart';
-import 'package:pro_health_360/presentation/core/widgets/generic_timeout_widget.dart';
 import 'package:pro_health_360/presentation/health_diary/widgets/random_quote_widget.dart';
 import '../../../../mocks.dart';
 import '../../../../test_helpers.dart';
@@ -33,10 +33,20 @@ void main() {
           Response(
             json.encode(<String, dynamic>{
               'data': <String, dynamic>{
-                'getHealthDiaryQuote': <String, dynamic>{
-                  'quote': 'Health at your fingerprints',
-                  'author': 'myAfyaHub'
-                },
+                'getHealthDiaryQuote': <dynamic>[
+                  <String, dynamic>{
+                    'quote': 'Health at your fingerprints',
+                    'author': 'myAfyaHub'
+                  },
+                  <String, dynamic>{
+                    'quote': 'Health is good',
+                    'author': 'myAfyaHub'
+                  },
+                  <String, dynamic>{
+                    'quote': 'Health at home',
+                    'author': 'myAfyaHub'
+                  },
+                ]
               }
             }),
             201,
@@ -53,7 +63,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.text('Health at your fingerprints'), findsOneWidget);
-        expect(find.text('myAfyaHub'), findsOneWidget);
+        expect(find.text('myAfyaHub'), findsNWidgets(2));
       },
     );
 
@@ -78,12 +88,7 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-
-        /// Refresh and expect the same thing
-        await tester.tap(find.byKey(helpNoDataWidgetKey));
-
-        await tester.pumpAndSettle();
-        expect(find.byType(GenericErrorWidget), findsOneWidget);
+        expect(find.byType(SizedBox), findsOneWidget);
       },
     );
 
@@ -108,8 +113,7 @@ void main() {
         );
 
         await tester.pumpAndSettle();
-
-        expect(find.byType(GenericTimeoutWidget), findsOneWidget);
+        expect(find.byType(SizedBox), findsOneWidget);
       },
     );
 
@@ -127,7 +131,7 @@ void main() {
             201,
           ),
         );
-
+        store.dispatch(WaitAction<AppState>.add(fetchHealthDiaryQuoteFlag));
         await buildTestWidget(
           tester: tester,
           store: store,
@@ -135,7 +139,10 @@ void main() {
           widget: const RandomQuoteWidget(),
         );
 
+        store.dispatch(WaitAction<AppState>.add(fetchHealthDiaryQuoteFlag));
+
         await tester.pump();
+
         expect(find.byType(PlatformLoader), findsOneWidget);
       },
     );

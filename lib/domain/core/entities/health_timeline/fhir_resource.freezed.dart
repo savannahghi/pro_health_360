@@ -776,24 +776,24 @@ abstract class Observation implements FhirResource, Resource {
       _$Observation.fromJson;
 
   @JsonKey(name: 'category')
-  List<CodeableConcept>? get category => throw _privateConstructorUsedError;
+  List<CodeableConcept>? get category;
   @override
   @JsonKey(name: 'code')
-  CodeableConcept? get code => throw _privateConstructorUsedError;
+  CodeableConcept? get code;
   @JsonKey(name: 'effectiveInstant')
-  String? get date => throw _privateConstructorUsedError;
+  String? get date;
   @override // distinct
   @JsonKey(name: 'resourceType')
-  ReferenceType? get resourceType => throw _privateConstructorUsedError;
+  ReferenceType? get resourceType;
   @JsonKey(name: 'status', fromJson: observationStatusFromJson)
-  ObservationStatus? get status => throw _privateConstructorUsedError;
+  ObservationStatus? get status;
   @JsonKey(name: 'subject')
-  Reference? get patient => throw _privateConstructorUsedError;
+  Reference? get patient;
   @override
   @JsonKey(name: 'timelineDate')
-  String? get timelineDate => throw _privateConstructorUsedError;
+  String? get timelineDate;
   @JsonKey(name: 'valueString')
-  String? get value => throw _privateConstructorUsedError;
+  String? get value;
   @override
   @JsonKey(ignore: true)
   _$$ObservationCopyWith<_$Observation> get copyWith =>
@@ -1367,29 +1367,28 @@ abstract class AllergyIntolerance implements FhirResource, Resource {
       _$AllergyIntolerance.fromJson;
 
   @JsonKey(name: 'category')
-  List<AllergyIntoleranceCategory>? get category =>
-      throw _privateConstructorUsedError;
+  List<AllergyIntoleranceCategory>? get category;
   @JsonKey(name: 'clinicalStatus')
-  CodeableConcept? get clinicalStatus => throw _privateConstructorUsedError;
+  CodeableConcept? get clinicalStatus;
   @override
   @JsonKey(name: 'code')
-  CodeableConcept? get code => throw _privateConstructorUsedError;
+  CodeableConcept? get code;
   @JsonKey(name: 'patient')
-  Reference? get patient => throw _privateConstructorUsedError;
+  Reference? get patient;
   @JsonKey(name: 'reaction')
-  List<Reaction>? get reaction => throw _privateConstructorUsedError;
+  List<Reaction>? get reaction;
   @JsonKey(name: 'recordedDate')
-  String? get recordedDate => throw _privateConstructorUsedError;
+  String? get recordedDate;
   @override
   @JsonKey(name: 'resourceType')
-  ReferenceType? get resourceType => throw _privateConstructorUsedError;
+  ReferenceType? get resourceType;
   @override
   @JsonKey(name: 'timelineDate')
-  String? get timelineDate => throw _privateConstructorUsedError;
+  String? get timelineDate;
   @JsonKey(name: 'type')
-  AllergyIntoleranceType? get type => throw _privateConstructorUsedError;
+  AllergyIntoleranceType? get type;
   @JsonKey(name: 'verificationStatus')
-  CodeableConcept? get verificationStatus => throw _privateConstructorUsedError;
+  CodeableConcept? get verificationStatus;
   @override
   @JsonKey(ignore: true)
   _$$AllergyIntoleranceCopyWith<_$AllergyIntolerance> get copyWith =>
@@ -1893,24 +1892,24 @@ abstract class MedicationStatement implements FhirResource, Resource {
       _$MedicationStatement.fromJson;
 
   @JsonKey(name: 'category')
-  CodeableConcept? get category => throw _privateConstructorUsedError;
+  CodeableConcept? get category;
   @override
   @JsonKey(name: 'code')
-  CodeableConcept? get code => throw _privateConstructorUsedError;
+  CodeableConcept? get code;
   @JsonKey(name: 'effectiveDateTime')
-  String? get date => throw _privateConstructorUsedError;
+  String? get date;
   @JsonKey(name: 'medicationCodeableConcept')
-  CodeableConcept? get medication => throw _privateConstructorUsedError;
+  CodeableConcept? get medication;
   @override
   @JsonKey(name: 'resourceType')
-  ReferenceType? get resourceType => throw _privateConstructorUsedError;
+  ReferenceType? get resourceType;
   @JsonKey(name: 'status', fromJson: medicationStatusCodesFromJson)
-  MedicationStatusCodes? get status => throw _privateConstructorUsedError;
+  MedicationStatusCodes? get status;
   @JsonKey(name: 'subject')
-  Reference? get subject => throw _privateConstructorUsedError;
+  Reference? get subject;
   @override
   @JsonKey(name: 'timelineDate')
-  String? get timelineDate => throw _privateConstructorUsedError;
+  String? get timelineDate;
   @override
   @JsonKey(ignore: true)
   _$$MedicationStatementCopyWith<_$MedicationStatement> get copyWith =>

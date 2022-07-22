@@ -143,7 +143,7 @@ abstract class _ViralLoadCode implements ViralLoadCode {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
   @override
   @JsonKey(ignore: true)
   _$$_ViralLoadCodeCopyWith<_$_ViralLoadCode> get copyWith =>

@@ -301,18 +301,15 @@ abstract class _ContentState implements ContentState {
       _$_ContentState.fromJson;
 
   @override
-  FeedContentState? get feedContentState => throw _privateConstructorUsedError;
+  FeedContentState? get feedContentState;
   @override
-  SavedContentState? get savedContentState =>
-      throw _privateConstructorUsedError;
+  SavedContentState? get savedContentState;
   @override
-  RecentContentState? get recentContentState =>
-      throw _privateConstructorUsedError;
+  RecentContentState? get recentContentState;
   @override
-  ListContentCategory? get categoriesList => throw _privateConstructorUsedError;
+  ListContentCategory? get categoriesList;
   @override
-  ContentEngagementState? get contentEngagementState =>
-      throw _privateConstructorUsedError;
+  ContentEngagementState? get contentEngagementState;
   @override
   @JsonKey(ignore: true)
   _$$_ContentStateCopyWith<_$_ContentState> get copyWith =>

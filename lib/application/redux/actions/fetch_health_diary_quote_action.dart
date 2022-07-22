@@ -6,17 +6,17 @@ import 'package:pro_health_360/application/core/graphql/queries.dart';
 import 'package:pro_health_360/application/redux/actions/update_health_diary_state.dart';
 import 'package:pro_health_360/application/redux/flags/flags.dart';
 import 'package:pro_health_360/application/redux/states/app_state.dart';
-import 'package:pro_health_360/domain/core/entities/health_diary/health_diary_entry.dart';
+import 'package:pro_health_360/domain/core/entities/health_diary/quote.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class FetchHealthDiaryAction extends ReduxAction<AppState> {
-  FetchHealthDiaryAction({required this.client});
+class FetchHealthDiaryQuoteAction extends ReduxAction<AppState> {
+  FetchHealthDiaryQuoteAction({required this.client});
 
   final IGraphQlClient client;
 
   @override
   void after() {
-    dispatch(WaitAction<AppState>.remove(fetchHealthDiaryFlag));
+    dispatch(WaitAction<AppState>.remove(fetchHealthDiaryQuoteFlag));
     super.after();
   }
 
@@ -28,21 +28,19 @@ class FetchHealthDiaryAction extends ReduxAction<AppState> {
         timeoutFetchingEntries: false,
       ),
     );
-    dispatch(WaitAction<AppState>.add(fetchHealthDiaryFlag));
+    dispatch(WaitAction<AppState>.add(fetchHealthDiaryQuoteFlag));
     super.before();
   }
 
   @override
   Future<AppState?> reduce() async {
-    final String? clientID = state.clientState!.id;
-
     final Map<String, dynamic> variables = <String, dynamic>{
-      'clientID': clientID
+      'limit': 10,
     };
 
     /// fetch the data from the api
     final Response response = await client.query(
-      getHealthDiaryEntriesQuery,
+      getHealthDiaryQuoteQuery,
       variables,
     );
 
@@ -61,14 +59,12 @@ class FetchHealthDiaryAction extends ReduxAction<AppState> {
       return null;
     }
 
-    final HealthDiaryEdge healthDiaryContent = HealthDiaryEdge.fromJson(
+    final QuoteRelay quoteState = QuoteRelay.fromJson(
       payLoad['data'] as Map<String, dynamic>,
     );
 
-    if (healthDiaryContent.entries != null) {
-      final List<HealthDiaryEntry>? entries = healthDiaryContent.entries;
-
-      dispatch(UpdateHealthDiaryStateActon(diaryEntries: entries));
+    if (quoteState.quotes?.isNotEmpty ?? false) {
+      dispatch(UpdateHealthDiaryStateActon(quoteState: quoteState));
     }
 
     return state;

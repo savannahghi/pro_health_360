@@ -224,13 +224,13 @@ abstract class _FeedContentState implements FeedContentState {
 
   @override
   @JsonKey(name: 'items')
-  List<Content?>? get contentItems => throw _privateConstructorUsedError;
+  List<Content?>? get contentItems;
   @override
-  ContentCategory? get selectedCategory => throw _privateConstructorUsedError;
+  ContentCategory? get selectedCategory;
   @override
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
+  bool? get errorFetchingContent;
   @override
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingContent;
   @override
   @JsonKey(ignore: true)
   _$$_FeedContentStateCopyWith<_$_FeedContentState> get copyWith =>

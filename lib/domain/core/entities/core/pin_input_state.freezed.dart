@@ -205,13 +205,13 @@ abstract class _PINInputState implements PINInputState {
       _$_PINInputState.fromJson;
 
   @override
-  String? get healthPagePINInputTime => throw _privateConstructorUsedError;
+  String? get healthPagePINInputTime;
   @override
-  int? get pinInputTries => throw _privateConstructorUsedError;
+  int? get pinInputTries;
   @override
-  String? get maxTryTime => throw _privateConstructorUsedError;
+  String? get maxTryTime;
   @override
-  bool? get pinVerified => throw _privateConstructorUsedError;
+  bool? get pinVerified;
   @override
   @JsonKey(ignore: true)
   _$$_PINInputStateCopyWith<_$_PINInputState> get copyWith =>

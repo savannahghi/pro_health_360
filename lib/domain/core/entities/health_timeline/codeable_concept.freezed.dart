@@ -189,14 +189,14 @@ abstract class _CodeableConcept implements CodeableConcept {
 
   /// A reference to a code defined by a terminology system.
   @JsonKey(name: 'coding')
-  List<Coding?>? get coding => throw _privateConstructorUsedError;
+  List<Coding?>? get coding;
   @override
 
   /// A human language representation of the concept as seen/selected/uttered
   ///  by the user who entered the data and/or which represents the intended
   ///  meaning of the user.
   @JsonKey(name: 'text')
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
   @override
   @JsonKey(ignore: true)
   _$$_CodeableConceptCopyWith<_$_CodeableConcept> get copyWith =>

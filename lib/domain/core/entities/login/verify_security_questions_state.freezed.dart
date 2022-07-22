@@ -151,7 +151,7 @@ abstract class _VerifySecurityQuestionsState
       _$_VerifySecurityQuestionsState.fromJson;
 
   @override
-  bool get hasVerifiedSecurityQuestions => throw _privateConstructorUsedError;
+  bool get hasVerifiedSecurityQuestions;
   @override
   @JsonKey(ignore: true)
   _$$_VerifySecurityQuestionsStateCopyWith<_$_VerifySecurityQuestionsState>

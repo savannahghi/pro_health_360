@@ -178,8 +178,7 @@ abstract class _RecordSecurityQuestionResponsesData
 
   @override
   @JsonKey(name: 'recordSecurityQuestionResponses')
-  List<RecordSecurityQuestionResponse> get recordSecurityQuestionResponses =>
-      throw _privateConstructorUsedError;
+  List<RecordSecurityQuestionResponse> get recordSecurityQuestionResponses;
   @override
   @JsonKey(ignore: true)
   _$$_RecordSecurityQuestionResponsesDataCopyWith<

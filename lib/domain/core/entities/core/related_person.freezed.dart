@@ -394,34 +394,34 @@ abstract class _RelatedPerson implements RelatedPerson {
 
   @override
   @JsonKey(name: 'active')
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'relatedTo')
-  String? get relatedTo => throw _privateConstructorUsedError;
+  String? get relatedTo;
   @override
   @JsonKey(name: 'relationshipType', defaultValue: RelationshipType.UNKNOWN)
-  RelationshipType? get relationshipType => throw _privateConstructorUsedError;
+  RelationshipType? get relationshipType;
   @override
   @JsonKey(name: 'firstName')
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
   @override
   @JsonKey(name: 'lastName')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
   @override
   @JsonKey(name: 'otherName')
-  String? get otherName => throw _privateConstructorUsedError;
+  String? get otherName;
   @override
   @JsonKey(name: 'gender', fromJson: genderFromJson, toJson: genderToJson)
-  Gender? get gender => throw _privateConstructorUsedError;
+  Gender? get gender;
   @override
   @JsonKey(name: 'dateOfBirth')
-  String? get dateOfBirth => throw _privateConstructorUsedError;
+  String? get dateOfBirth;
   @override
   @JsonKey(name: 'addresses')
-  List<Address>? get addresses => throw _privateConstructorUsedError;
+  List<Address>? get addresses;
   @override
   @JsonKey(name: 'contacts')
-  List<Contact>? get contacts => throw _privateConstructorUsedError;
+  List<Contact>? get contacts;
   @override
   @JsonKey(ignore: true)
   _$$_RelatedPersonCopyWith<_$_RelatedPerson> get copyWith =>

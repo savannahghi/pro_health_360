@@ -966,88 +966,84 @@ abstract class _ClientState implements ClientState {
 
   @override
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'active', defaultValue: false)
-  bool? get active => throw _privateConstructorUsedError;
+  bool? get active;
   @override
   @JsonKey(name: 'addresses')
-  List<Address>? get addresses => throw _privateConstructorUsedError;
+  List<Address>? get addresses;
   @override
   @JsonKey(name: 'counselled', defaultValue: false)
-  bool? get counselled => throw _privateConstructorUsedError;
+  bool? get counselled;
   @override
   @JsonKey(name: 'clientTypes')
-  List<ClientType>? get clientTypes => throw _privateConstructorUsedError;
+  List<ClientType>? get clientTypes;
   @override
   @JsonKey(name: 'facilityID')
-  String? get facilityID => throw _privateConstructorUsedError;
+  String? get facilityID;
   @override
   @JsonKey(name: 'relatedPersons')
-  List<RelatedPerson>? get relatedPersons => throw _privateConstructorUsedError;
+  List<RelatedPerson>? get relatedPersons;
   @override
   @JsonKey(name: 'treatmentBuddy')
-  String? get treatmentBuddy => throw _privateConstructorUsedError;
+  String? get treatmentBuddy;
   @override
   @JsonKey(name: 'treatmentEnrollmentDate')
-  String? get treatmentEnrollmentDate => throw _privateConstructorUsedError;
+  String? get treatmentEnrollmentDate;
   @override
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
+  User? get user;
   @override
 
   /// others
   @JsonKey(name: 'lastMoodRecordedDate')
-  String? get lastMoodRecordedDate => throw _privateConstructorUsedError;
+  String? get lastMoodRecordedDate;
   @override
   @JsonKey(name: 'isSignedIn')
-  bool? get isSignedIn => throw _privateConstructorUsedError;
+  bool? get isSignedIn;
   @override
   @JsonKey(name: 'facilityName')
-  String? get facilityName => throw _privateConstructorUsedError;
+  String? get facilityName;
   @override
   @JsonKey(name: 'facilityPhoneNumber')
-  String? get facilityPhoneNumber => throw _privateConstructorUsedError;
+  String? get facilityPhoneNumber;
   @override
   @JsonKey(name: 'chvUserID')
-  String? get chvUserID => throw _privateConstructorUsedError;
+  String? get chvUserID;
   @override
   @JsonKey(name: 'chvUserName')
-  String? get chvUserName => throw _privateConstructorUsedError;
+  String? get chvUserName;
   @override
   @JsonKey(name: 'CCCNumber')
-  String? get cccNumber => throw _privateConstructorUsedError;
+  String? get cccNumber;
   @override
   @JsonKey(name: 'fhirPatientID')
-  String? get fhirPatientID => throw _privateConstructorUsedError;
+  String? get fhirPatientID;
   @override
 
   /// The client's health diary state
-  HealthDiaryState? get healthDiaryState => throw _privateConstructorUsedError;
+  HealthDiaryState? get healthDiaryState;
   @override // communities state
-  CommunitiesState? get communitiesState => throw _privateConstructorUsedError;
+  CommunitiesState? get communitiesState;
   @override // Past appointments
-  List<Appointment>? get pastAppointments => throw _privateConstructorUsedError;
+  List<Appointment>? get pastAppointments;
   @override // Past appointments
-  List<Appointment>? get upcomingAppointments =>
-      throw _privateConstructorUsedError;
+  List<Appointment>? get upcomingAppointments;
   @override // screening tools state
-  HealthTimelineState? get healthTimelineState =>
-      throw _privateConstructorUsedError;
+  HealthTimelineState? get healthTimelineState;
   @override // Medical data state
-  MedicalDataState? get medicalDataState => throw _privateConstructorUsedError;
+  MedicalDataState? get medicalDataState;
   @override // viral load data
-  ViralLoadEdges? get viralLoadData => throw _privateConstructorUsedError;
+  ViralLoadEdges? get viralLoadData;
   @override // next refill data
-  NextRefillData? get nextRefillData => throw _privateConstructorUsedError;
+  NextRefillData? get nextRefillData;
   @override // caregiver information
-  CaregiverInformation? get caregiverInformation =>
-      throw _privateConstructorUsedError;
+  CaregiverInformation? get caregiverInformation;
   @override
-  bool? get hasCareGiverInfo => throw _privateConstructorUsedError;
+  bool? get hasCareGiverInfo;
   @override // staff notifications
-  List<NotificationDetails?>? get notifications =>
-      throw _privateConstructorUsedError;
+  List<NotificationDetails?>? get notifications;
   @override
   @JsonKey(ignore: true)
   _$$_ClientStateCopyWith<_$_ClientState> get copyWith =>

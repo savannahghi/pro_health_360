@@ -225,16 +225,16 @@ abstract class _Appointment implements Appointment {
 
   @override
   @JsonKey(name: 'ID')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'reason')
-  String? get reason => throw _privateConstructorUsedError;
+  String? get reason;
   @override
   @JsonKey(name: 'date')
-  String? get date => throw _privateConstructorUsedError;
+  String? get date;
   @override
   @JsonKey(name: 'HasRescheduledAppointment', defaultValue: false)
-  bool get pendingReschedule => throw _privateConstructorUsedError;
+  bool get pendingReschedule;
   @override
   @JsonKey(ignore: true)
   _$$_AppointmentCopyWith<_$_Appointment> get copyWith =>

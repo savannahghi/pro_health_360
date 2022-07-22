@@ -306,26 +306,25 @@ abstract class _ScreeningQuestion implements ScreeningQuestion {
 
   @override
   @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
   @JsonKey(name: 'question')
-  String? get questionText => throw _privateConstructorUsedError;
+  String? get questionText;
   @override
   @JsonKey(name: 'answer')
-  String? get answer => throw _privateConstructorUsedError;
+  String? get answer;
   @override
   @JsonKey(name: 'toolType')
-  String? get toolType => throw _privateConstructorUsedError;
+  String? get toolType;
   @override
   @JsonKey(name: 'sequence')
-  int? get sequence => throw _privateConstructorUsedError;
+  int? get sequence;
   @override
   @JsonKey(name: 'responseChoices')
-  Map<String, dynamic>? get responseChoices =>
-      throw _privateConstructorUsedError;
+  Map<String, dynamic>? get responseChoices;
   @override
   @JsonKey(name: 'meta')
-  Map<String, dynamic>? get meta => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get meta;
   @override
   @JsonKey(ignore: true)
   _$$_ScreeningQuestionCopyWith<_$_ScreeningQuestion> get copyWith =>

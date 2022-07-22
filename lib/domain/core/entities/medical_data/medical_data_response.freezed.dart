@@ -162,7 +162,7 @@ abstract class _MedicalDataResponse implements MedicalDataResponse {
 
   @override
   @JsonKey(name: 'getMedicalData')
-  MedicalData? get medicalData => throw _privateConstructorUsedError;
+  MedicalData? get medicalData;
   @override
   @JsonKey(ignore: true)
   _$$_MedicalDataResponseCopyWith<_$_MedicalDataResponse> get copyWith =>

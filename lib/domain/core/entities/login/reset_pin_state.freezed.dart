@@ -158,9 +158,9 @@ abstract class _ResetPINState implements ResetPINState {
       _$_ResetPINState.fromJson;
 
   @override
-  String? get phone => throw _privateConstructorUsedError;
+  String? get phone;
   @override //If the user has set their PIN
-  bool? get isPINSet => throw _privateConstructorUsedError;
+  bool? get isPINSet;
   @override
   @JsonKey(ignore: true)
   _$$_ResetPINStateCopyWith<_$_ResetPINState> get copyWith =>

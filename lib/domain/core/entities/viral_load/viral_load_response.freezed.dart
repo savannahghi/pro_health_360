@@ -161,7 +161,7 @@ abstract class _ViralLoadResponse implements ViralLoadResponse {
 
   @override
   @JsonKey(name: 'searchFHIRObservation')
-  ViralLoadEdges? get data => throw _privateConstructorUsedError;
+  ViralLoadEdges? get data;
   @override
   @JsonKey(ignore: true)
   _$$_ViralLoadResponseCopyWith<_$_ViralLoadResponse> get copyWith =>

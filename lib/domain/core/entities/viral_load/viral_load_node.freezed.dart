@@ -160,7 +160,7 @@ abstract class _ViralLoadNode implements ViralLoadNode {
 
   @override
   @JsonKey(name: 'node')
-  ViralLoadNodeData? get node => throw _privateConstructorUsedError;
+  ViralLoadNodeData? get node;
   @override
   @JsonKey(ignore: true)
   _$$_ViralLoadNodeCopyWith<_$_ViralLoadNode> get copyWith =>

@@ -145,7 +145,7 @@ abstract class _NextRefillData implements NextRefillData {
 
   @override
   @JsonKey(name: 'nextRefill')
-  String? get nextRefill => throw _privateConstructorUsedError;
+  String? get nextRefill;
   @override
   @JsonKey(ignore: true)
   _$$_NextRefillDataCopyWith<_$_NextRefillData> get copyWith =>

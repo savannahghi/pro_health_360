@@ -171,8 +171,7 @@ abstract class _TermsAndConditionsResponse
 
   @override
   @JsonKey(name: 'getCurrentTerms')
-  TermsAndConditions get termsAndConditions =>
-      throw _privateConstructorUsedError;
+  TermsAndConditions get termsAndConditions;
   @override
   @JsonKey(ignore: true)
   _$$_TermsAndConditionsResponseCopyWith<_$_TermsAndConditionsResponse>

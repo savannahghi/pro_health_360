@@ -273,22 +273,22 @@ abstract class _AuthCredentials implements AuthCredentials {
 
   @override
   @JsonKey(name: 'idToken')
-  String? get idToken => throw _privateConstructorUsedError;
+  String? get idToken;
   @override
   @JsonKey(name: 'expiresIn')
-  String? get expiresIn => throw _privateConstructorUsedError;
+  String? get expiresIn;
   @override
   @JsonKey(name: 'refreshToken')
-  String? get refreshToken => throw _privateConstructorUsedError;
+  String? get refreshToken;
   @override
   @JsonKey(name: 'tokenExpiryTimestamp')
-  String? get tokenExpiryTimestamp => throw _privateConstructorUsedError;
+  String? get tokenExpiryTimestamp;
   @override // Other supporting fields that are not returned by the backend
-  bool? get isSignedIn => throw _privateConstructorUsedError;
+  bool? get isSignedIn;
   @override
-  String? get signedInTime => throw _privateConstructorUsedError;
+  String? get signedInTime;
   @override
-  String? get pushToken => throw _privateConstructorUsedError;
+  String? get pushToken;
   @override
   @JsonKey(ignore: true)
   _$$_AuthCredentialsCopyWith<_$_AuthCredentials> get copyWith =>

@@ -2334,10 +2334,12 @@ final List<dynamic> mockListFlaggedMessages = <dynamic>[
 ];
 
 final Map<String, dynamic> mockQuote = <String, dynamic>{
-  'getHealthDiaryQuote': <String, dynamic>{
-    'quote': 'Health at your fingerprints',
-    'author': 'myAfyaHub'
-  },
+  'quote': 'Health at your fingerprints',
+  'author': 'myAfyaHub'
+};
+
+final Map<String, dynamic> mockQuoteList = <String, dynamic>{
+  'getHealthDiaryQuote': <dynamic>[mockQuote, mockQuote, mockQuote],
 };
 
 Map<String, dynamic> mockUpdateClientCareGiver = <String, dynamic>{

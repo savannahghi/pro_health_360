@@ -163,7 +163,7 @@ abstract class _SavedContent implements SavedContent {
 
   @override
   @JsonKey(name: 'getUserBookmarkedContent')
-  FeedItems? get savedContent => throw _privateConstructorUsedError;
+  FeedItems? get savedContent;
   @override
   @JsonKey(ignore: true)
   _$$_SavedContentCopyWith<_$_SavedContent> get copyWith =>

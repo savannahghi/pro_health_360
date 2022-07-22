@@ -229,16 +229,16 @@ abstract class _ViralLoadNodeData implements ViralLoadNodeData {
 
   @override
   @JsonKey(name: 'Status')
-  String? get status => throw _privateConstructorUsedError;
+  String? get status;
   @override
   @JsonKey(name: 'ValueString')
-  String? get valueString => throw _privateConstructorUsedError;
+  String? get valueString;
   @override
   @JsonKey(name: 'EffectiveInstant')
-  String? get effectiveInstant => throw _privateConstructorUsedError;
+  String? get effectiveInstant;
   @override
   @JsonKey(name: 'Code')
-  ViralLoadCode? get code => throw _privateConstructorUsedError;
+  ViralLoadCode? get code;
   @override
   @JsonKey(ignore: true)
   _$$_ViralLoadNodeDataCopyWith<_$_ViralLoadNodeData> get copyWith =>

@@ -15,7 +15,7 @@ class HomeState with _$HomeState {
       _$HomeStateFromJson(json);
 
   factory HomeState.initial() => HomeState(
-        canRecordMood: false,
+        canRecordMood: true,
         createHealthDiaryEntry: false,
 
         ///   - RecentContentState

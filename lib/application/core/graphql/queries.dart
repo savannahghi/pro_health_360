@@ -123,11 +123,11 @@ query getContent($categoryID: Int, $Limit: String!){
 }
 ''';
 
-const String getHealthDiaryQuoteQuery = '''
-query getHealthDiaryQuote {
-  getHealthDiaryQuote {
-    quote
+const String getHealthDiaryQuoteQuery = r'''
+query getHealthDiaryQuote($limit: Int!){
+  getHealthDiaryQuote(limit: $limit){
     author
+    quote
   }
 }
 ''';

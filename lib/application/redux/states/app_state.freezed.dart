@@ -416,26 +416,24 @@ abstract class _AppState implements AppState {
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
   @override
-  AuthCredentials? get credentials => throw _privateConstructorUsedError;
+  AuthCredentials? get credentials;
   @override
-  OnboardingState? get onboardingState => throw _privateConstructorUsedError;
+  OnboardingState? get onboardingState;
   @override
-  HomeState? get homeState => throw _privateConstructorUsedError;
+  HomeState? get homeState;
   @override
-  BottomNavigationState? get bottomNavigationState =>
-      throw _privateConstructorUsedError;
+  BottomNavigationState? get bottomNavigationState;
   @override
-  MiscState? get miscState => throw _privateConstructorUsedError;
+  MiscState? get miscState;
   @override
-  ClientState? get clientState => throw _privateConstructorUsedError;
+  ClientState? get clientState;
   @override
-  ConnectivityState? get connectivityState =>
-      throw _privateConstructorUsedError;
+  ConnectivityState? get connectivityState;
   @override
-  ContentState? get contentState => throw _privateConstructorUsedError;
+  ContentState? get contentState;
   @override
   @JsonKey(ignore: true)
-  Wait? get wait => throw _privateConstructorUsedError;
+  Wait? get wait;
   @override
   @JsonKey(ignore: true)
   _$$_AppStateCopyWith<_$_AppState> get copyWith =>

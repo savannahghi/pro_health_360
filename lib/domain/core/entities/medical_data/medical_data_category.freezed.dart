@@ -144,7 +144,7 @@ abstract class _MedicalDataCategory implements MedicalDataCategory {
 
   @override
   @JsonKey(name: 'Text')
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
   @override
   @JsonKey(ignore: true)
   _$$_MedicalDataCategoryCopyWith<_$_MedicalDataCategory> get copyWith =>

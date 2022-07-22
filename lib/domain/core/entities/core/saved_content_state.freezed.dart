@@ -189,11 +189,11 @@ abstract class _SavedContentState implements SavedContentState {
 
   @override
   @JsonKey(name: 'items')
-  List<Content?>? get savedContentItems => throw _privateConstructorUsedError;
+  List<Content?>? get savedContentItems;
   @override
-  bool? get errorFetchingContent => throw _privateConstructorUsedError;
+  bool? get errorFetchingContent;
   @override
-  bool? get timeoutFetchingContent => throw _privateConstructorUsedError;
+  bool? get timeoutFetchingContent;
   @override
   @JsonKey(ignore: true)
   _$$_SavedContentStateCopyWith<_$_SavedContentState> get copyWith =>

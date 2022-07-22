@@ -156,7 +156,7 @@ abstract class _AcceptTermsAndConditionsResponse
 
   @override
   @JsonKey(name: 'acceptTerms')
-  bool get acceptTerms => throw _privateConstructorUsedError;
+  bool get acceptTerms;
   @override
   @JsonKey(ignore: true)
   _$$_AcceptTermsAndConditionsResponseCopyWith<
