@@ -165,7 +165,7 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                               spacing: 12.0,
                               runSpacing: 12.0,
                               children: <Widget>[
-                                MoodSymptomWidget(
+                                CustomChipWidget(
                                   title: yesString,
                                   isSelected: shouldShare,
                                   gestureKey: shareHealthDiaryKey,
@@ -179,7 +179,7 @@ class _MoodFeedbackPageState extends State<MoodFeedbackPage> {
                                     );
                                   },
                                 ),
-                                MoodSymptomWidget(
+                                CustomChipWidget(
                                   title: noString,
                                   isSelected: shouldNotShare,
                                   gestureKey: dontShareHealthDiaryKey,

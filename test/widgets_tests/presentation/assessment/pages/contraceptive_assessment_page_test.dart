@@ -38,7 +38,7 @@ void main() {
         findsOneWidget,
       );
 
-      await tester.tap(find.byType(MoodSymptomWidget).first);
+      await tester.tap(find.byType(CustomChipWidget).first);
       await tester.ensureVisible(submitButtonFinder);
       await tester.tap(submitButtonFinder);
 

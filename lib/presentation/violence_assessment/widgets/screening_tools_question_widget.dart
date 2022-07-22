@@ -99,7 +99,7 @@ class _ScreeningToolQuestionWidgetState
         final int sequenceNumber =
             widget.screeningToolsQuestions[index].sequence!;
 
-        final List<MoodSymptomWidget> symptomWidgets = <MoodSymptomWidget>[];
+        final List<CustomChipWidget> symptomWidgets = <CustomChipWidget>[];
 
         // question text
         final String questionText =
@@ -112,7 +112,7 @@ class _ScreeningToolQuestionWidgetState
         // create symptomWidget for each of the choices
         choices.forEach((String key, dynamic value) {
           symptomWidgets.add(
-            MoodSymptomWidget(
+            CustomChipWidget(
               title: value as String,
               isSelected: hasAnswer &&
                   key == widget.screeningToolsQuestions[index].answer,

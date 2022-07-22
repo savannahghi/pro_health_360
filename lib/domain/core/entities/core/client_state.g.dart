@@ -74,6 +74,10 @@ _$_ClientState _$$_ClientStateFromJson(Map<String, dynamic> json) =>
               ? null
               : NotificationDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
+      notificationFilterState: json['notificationFilterState'] == null
+          ? null
+          : NotificationFilterState.fromJson(
+              json['notificationFilterState'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
@@ -108,6 +112,7 @@ Map<String, dynamic> _$$_ClientStateToJson(_$_ClientState instance) =>
       'caregiverInformation': instance.caregiverInformation,
       'hasCareGiverInfo': instance.hasCareGiverInfo,
       'notifications': instance.notifications,
+      'notificationFilterState': instance.notificationFilterState,
     };
 
 const _$ClientTypeEnumMap = {

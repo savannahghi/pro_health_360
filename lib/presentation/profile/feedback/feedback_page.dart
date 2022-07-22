@@ -246,7 +246,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         size15VerticalSizedBox,
                         Row(
                           children: <Widget>[
-                            MoodSymptomWidget(
+                            CustomChipWidget(
                               title: yesString,
                               gestureKey: yesFeedbackKey,
                               isSelected: allowFollowUp,
@@ -257,7 +257,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               },
                             ),
                             mediumHorizontalSizedBox,
-                            MoodSymptomWidget(
+                            CustomChipWidget(
                               gestureKey: noFeedbackKey,
                               title: noString,
                               isSelected: !allowFollowUp,

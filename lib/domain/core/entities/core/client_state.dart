@@ -1,6 +1,7 @@
 // Package imports:
 
 import 'package:afya_moja_core/afya_moja_core.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pro_health_360/application/redux/states/communities_state.dart';
 import 'package:pro_health_360/domain/core/entities/appointments/appointment.dart';
@@ -8,6 +9,7 @@ import 'package:pro_health_360/domain/core/entities/appointments/appointment.dar
 import 'package:pro_health_360/domain/core/entities/core/address.dart';
 import 'package:pro_health_360/domain/core/entities/core/health_diary_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/health_timeline_state.dart';
+import 'package:pro_health_360/domain/core/entities/core/notification_filter_state.dart';
 import 'package:pro_health_360/domain/core/entities/core/related_person.dart';
 import 'package:pro_health_360/domain/core/entities/core/user.dart';
 import 'package:pro_health_360/domain/core/entities/medical_data/medical_data_state.dart';
@@ -71,8 +73,9 @@ class ClientState with _$ClientState {
     CaregiverInformation? caregiverInformation,
     bool? hasCareGiverInfo,
 
-    // staff notifications
+    // notifications
     List<NotificationDetails?>? notifications,
+    NotificationFilterState? notificationFilterState,
   }) = _ClientState;
 
   factory ClientState.fromJson(Map<String, dynamic> json) =>

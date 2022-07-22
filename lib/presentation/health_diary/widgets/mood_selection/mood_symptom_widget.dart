@@ -6,9 +6,9 @@ import 'package:pro_health_360/presentation/core/theme/theme.dart';
 // Package imports:
 import 'package:unicons/unicons.dart';
 
-/// [MoodSymptomWidget] Displays reaction icons on the health diary page
-class MoodSymptomWidget extends StatelessWidget {
-  const MoodSymptomWidget({
+/// [CustomChipWidget] Displays reaction icons on the health diary page
+class CustomChipWidget extends StatelessWidget {
+  const CustomChipWidget({
     this.isSelected = false,
     required this.title,
     this.onTap,
