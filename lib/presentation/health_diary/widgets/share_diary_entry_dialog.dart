@@ -62,7 +62,7 @@ class _ShareDiaryEntryDialogState extends State<ShareDiaryEntryDialog> {
             size15VerticalSizedBox,
             Row(
               children: <Widget>[
-                MoodSymptomWidget(
+                CustomChipWidget(
                   title: yesString,
                   gestureKey: yesShareEntireEntryKey,
                   isSelected: canShareEntireEntry,
@@ -73,7 +73,7 @@ class _ShareDiaryEntryDialogState extends State<ShareDiaryEntryDialog> {
                   },
                 ),
                 size15HorizontalSizedBox,
-                MoodSymptomWidget(
+                CustomChipWidget(
                   title: noString,
                   gestureKey: noShareEntireEntryKey,
                   isSelected: !canShareEntireEntry,

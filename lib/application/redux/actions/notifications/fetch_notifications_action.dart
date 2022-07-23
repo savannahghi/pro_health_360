@@ -13,23 +13,23 @@ import 'package:pro_health_360/domain/core/entities/notification/notifications_r
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class FetchNotificationsAction extends ReduxAction<AppState> {
-  final IGraphQlClient client;
-
   FetchNotificationsAction({
     required this.client,
   });
+
+  final IGraphQlClient client;
+
+  @override
+  void after() {
+    dispatch(WaitAction<AppState>.remove(fetchNotificationsFlag));
+    super.after();
+  }
 
   @override
   void before() {
     super.before();
     dispatch(UpdateClientProfileAction(notifications: <NotificationDetails>[]));
     dispatch(WaitAction<AppState>.add(fetchNotificationsFlag));
-  }
-
-  @override
-  void after() {
-    dispatch(WaitAction<AppState>.remove(fetchNotificationsFlag));
-    super.after();
   }
 
   @override

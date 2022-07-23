@@ -564,3 +564,12 @@ query getFAQs($flavour: Flavour!){
   }
 }
 ''';
+
+const String fetchNotificationFilters = r'''
+query fetchNotificationTypeFilters($flavour: Flavour!) {
+  fetchNotificationTypeFilters(flavour: $flavour) {
+  name,
+  enum  
+  }
+}
+''';
